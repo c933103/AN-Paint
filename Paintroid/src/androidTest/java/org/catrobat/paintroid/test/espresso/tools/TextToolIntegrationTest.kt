@@ -850,9 +850,9 @@ class TextToolIntegrationTest {
             FontType.SERIF -> textPaint.typeface = Typeface.create(Typeface.SERIF, style)
             FontType.STC ->
                 textPaint.typeface =
-                    ResourcesCompat.getFont(launchActivityRule.activity, R.font.stc_regular)
+                    Typeface.create("sans-serif", Typeface.NORMAL)
             FontType.DUBAI ->
-                textPaint.typeface = ResourcesCompat.getFont(launchActivityRule.activity, R.font.dubai)
+                textPaint.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
             else -> textPaint.typeface = Typeface.create(Typeface.MONOSPACE, style)
         }
         val textDescent = textPaint.descent()

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+// Local modification, 2026-09-07: use Android system fonts in place of unlicensed bundled font binaries.
 package org.catrobat.paintroid.command.serialization
 
 import android.content.Context
@@ -73,8 +74,8 @@ class TextToolCommandSerializer(version: Int, private val activityContext: Conte
                         FontType.SANS_SERIF -> Typeface.create(Typeface.SANS_SERIF, style)
                         FontType.SERIF -> Typeface.create(Typeface.SERIF, style)
                         FontType.MONOSPACE -> Typeface.create(Typeface.MONOSPACE, style)
-                        FontType.STC -> ResourcesCompat.getFont(activityContext, R.font.stc_regular)
-                        FontType.DUBAI -> ResourcesCompat.getFont(activityContext, R.font.dubai)
+                        FontType.STC -> Typeface.create("sans-serif", style)
+                        FontType.DUBAI -> Typeface.create("sans-serif", style)
                     }
                 } catch (e: Exception) {
                     Log.e("LoadImageAsync", "Typeface not supported on this mobile phone")

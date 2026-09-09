@@ -1,0 +1,449 @@
+AN Paint — icons, fonts and artwork credits
+Updated 9 September 2026
+
+KDE BREEZE ICONS — LGPL-3.0-or-later
+Copyright (C) 2014 Uri Herrera <uri_herrera@nitrux.in> and others.
+KDE Community contributors.
+https://invent.kde.org/frameworks/breeze-icons
+Revision: 235730e69d90949621e4fee77fcc459772b7a8f0
+
+All 16 tool glyphs in ToolButton.kt, Undo/Redo, Cut/Copy/Paste, Select all,
+zoom and sidebar glyphs in ActionButton.kt, left/right arrows in
+ColourStatusButton.kt, and the assembly attachment plus sign in AssemblyCanvas.kt
+use KDE Breeze artwork. The previously drawn icon geometry has been removed.
+These 29 icons are distributed under GNU LGPL version 3 or any later version,
+not under the application's AGPL licence. No icon font is used.
+
+The upstream SVGs are preserved unchanged in artwork/breeze in the source ZIP.
+Aliases are resolved to their original SVG bytes and recorded in inventory.json.
+PNG density resources are rendered from those SVGs, with scaling and a display
+tint applied by the app. Conversion dated 9 September 2026. Converted artwork
+remains LGPL-3.0-or-later. The manifest records exact URLs and SHA-256 hashes;
+tools/generate_breeze_icons.py reproduces the resources. Normal Android builds
+use the checked-in resources without an extra graphics library.
+Help > Icon licences contains the full upstream notice, LGPL v3 and GPL v3
+terms. Help > Export this version's source code includes the SVGs, generated
+resources, conversion script, application source and build instructions.
+KDE attribution does not imply endorsement of AN Paint.
+
+AN PAINT LAUNCHER — AGPL-3.0-or-later
+Copyright (C) 2026 AN Paint contributors.
+The AN monogram, Pale Violet background and Gold stroke are new geometric
+vector artwork distributed under GNU AGPL version 3 or any later version.
+No font or third-party icon is used for this launcher. Editable source:
+artwork/an-paint/launcher.svg. tools/generate_launcher_icons.py creates the
+legacy, round, adaptive and themed Android icon resources; generated.json
+records their SHA-256 hashes. Full AGPL terms are available under Help.
+This is the launcher for package io.github.c933103.anpaint.
+
+DYNAMIC WORKSPACE CONTROLS
+The FG/BG status display, colour spectrum/wheel (AdvancedColourDialog.kt),
+hexagonal swatches (HoneycombPalette.kt), selection outlines and transform
+handles (PaintCanvas.kt / SelectionGeometry.kt), the 100% zoom tick (ZoomSeekBar.kt),
+touch crop handles (CropOverlay.kt), thumbnail framing and snap-preview boundaries show current
+application or image state. Their drawing code remains AGPL-3.0-or-later.
+Assembly thumbnails display the user's imported images. Android supplies the
+landscape submenu indicators; its existing notices apply.
+
+INHERITED POCKET PAINT ARTWORK
+Original project: Catrobat/Paintroid v2.14.1
+https://github.com/Catrobat/Paintroid
+Copyright (C) 2010–2022 The Catrobat Team and contributors.
+The retained editor logos, tool icons, selection handles, backgrounds and
+related resources come from this upstream distribution. Legacy Pocket Paint
+launcher resources remain in the library source and asset inventory below;
+the installed AN Paint launcher uses the new AN monogram described above.
+The original per-file copyright/licence notices are preserved in the source;
+Catrobat-covered resources are distributed under AGPL-3.0-or-later. Files with
+Android Open Source Project notices retain their Apache License 2.0 terms.
+The upstream project and copyright credit do not imply endorsement of AN Paint.
+
+ANDROID / MATERIAL COMPONENT ASSETS
+Android widget resources and icons supplied by packaged AndroidX, Android
+Support and Material Components retain their Android Open Source Project / Google
+copyright and Apache License 2.0 terms. The resolved dependency list and full
+licence texts are under Help > Third-party notices. Platform widget resources
+that come from Android itself are supplied by the device.
+
+FONTS
+AN Paint bundles ten unmodified fonts under SIL Open Font License 1.1. The
+font names, original source URLs and hashes are listed below. Each original
+copyright notice and complete licence text is available under Help > Font
+licences, and preserved in legal/fonts in the corresponding source. No icon
+font is bundled. Text rendering also requests Android's generic sans-serif,
+serif, monospace, default/default-bold and script
+fallback typefaces, with regular/bold/italic/bold-italic styles. The old editor's
+System sans and System Arabic choices also request device typefaces.
+Their concrete font families, designers and copyright holders vary with the
+Android build and vendor. The device supplies these files and their licensing;
+consult its Open-source licences page for exact system-font notices.
+The upstream Dubai and STC/GE SS fonts have been removed and are not redistributed.
+
+SOURCE RESOURCE INVENTORY
+The following image/vector/widget resources are retained from Paintroid or its
+colour-picker module. See each file's original header where present. Resources
+without a file-level header retain their upstream package provenance; no new
+individual author is inferred.
+Paintroid/src/main/res/drawable/btn_toggle_material_background.xml — Android Open Source Project — Apache-2.0
+Paintroid/src/main/res/drawable/control_checkable_material.xml — Android Open Source Project — Apache-2.0
+Paintroid/src/main/res/drawable/ic_catrobat_logo_black.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_launcher_background.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_launcher_foreground.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_checkmark.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_circle.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_circle_out.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_copy.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_cut.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_drag_handle.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_dropdown_arrow_modified.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_dropwdown_arrow.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_heart.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_heart_out.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layer_opacity.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_add.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_add_disabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_add_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_delete.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_delete_disabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_delete_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_layers_visibility.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_paste.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_paste_chip_icon_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_paste_disabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_plus_enabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_rectangle.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_rectangle_out.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_redo.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_redo_disabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_redo_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_rotate_right.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_save_info.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_star.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_star_out.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_brush.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_center_focus_strong.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_clipboard.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_clipping.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_cursor.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_eraser.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_fill.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_flip_horizontal.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_flip_vertical.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_hand.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_import.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_line.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_pipette.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_rectangle.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_resize_adjust.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_rotate_left.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_smudge.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_spray_can.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_text.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_transform.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tool_watercolor.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_tools.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_undo.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_undo_disabled.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/ic_pocketpaint_undo_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_bottom_selected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_bottom_unselected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_center_selected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_center_unselected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_single_selected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_top_selected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_item_top_unselected.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_nav_view_background_ltr.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/layer_nav_view_background_rtl.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_attribute_button_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_checkeredbg_repeat.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_round_rect_shape.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_selectable_button_bg.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_splash.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/pocketpaint_zoom_window_shape.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/rounded_corner_top_ltr.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable/rounded_corner_top_rtl.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ar-hdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ar-mdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ar-xhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ar-xxhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-fa-hdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-fa-mdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-fa-xhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-fa-xxhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/ic_pocketpaint_color_palette.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/ic_pocketpaint_dialog_info.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/ic_pocketpaint_dialog_warning.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/ic_pocketpaint_tool_circle.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/ic_pocketpaint_tool_square.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/pocketpaint_intro_landscape.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/pocketpaint_intro_portrait.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-hdpi/pocketpaint_logo_small.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/ic_pocketpaint_color_palette.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/ic_pocketpaint_dialog_info.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/ic_pocketpaint_dialog_warning.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/ic_pocketpaint_tool_circle.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/ic_pocketpaint_tool_square.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/pocketpaint_intro_landscape.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/pocketpaint_intro_portrait.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-mdpi/pocketpaint_logo_small.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-sd-hdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-sd-mdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-sd-xhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-sd-xxhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ur-hdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ur-mdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ur-xhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-ur-xxhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/ic_pocketpaint_color_palette.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/ic_pocketpaint_dialog_info.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/ic_pocketpaint_dialog_warning.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/ic_pocketpaint_tool_circle.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/ic_pocketpaint_tool_square.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/pocketpaint_intro_landscape.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/pocketpaint_intro_portrait.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xhdpi/pocketpaint_logo_small.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/ic_pocketpaint_color_palette.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/ic_pocketpaint_dialog_info.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/ic_pocketpaint_dialog_warning.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/ic_pocketpaint_tool_circle.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/ic_pocketpaint_tool_square.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/pocketpaint_intro_landscape.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/pocketpaint_intro_portrait.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/pocketpaint_logo.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/drawable-xxhdpi/pocketpaint_logo_small.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-anydpi-v26/ic_launcher.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-hdpi/ic_launcher.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-hdpi/ic_launcher_round.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-mdpi/ic_launcher.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-mdpi/ic_launcher_round.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xhdpi/ic_launcher.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xhdpi/ic_launcher_round.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xxhdpi/ic_launcher.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xxhdpi/ic_launcher_round.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xxxhdpi/ic_launcher.png — Catrobat/Paintroid source distribution; original notices apply
+Paintroid/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_arrow_back.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_done.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_tab_bg_active.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_tab_bg_inactive.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_tab_bg_selector.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable/ic_color_picker_tab_hsv.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-hdpi/ic_color_picker_tab_preset.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-hdpi/ic_color_picker_tab_rgba.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-hdpi/pocketpaint_checkeredbg.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-ldpi/pocketpaint_checkeredbg.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-mdpi/ic_color_picker_pipette.xml — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-mdpi/ic_color_picker_tab_preset.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-mdpi/ic_color_picker_tab_rgba.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-mdpi/pocketpaint_checkeredbg.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xhdpi/ic_color_picker_tab_preset.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xhdpi/ic_color_picker_tab_rgba.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xhdpi/pocketpaint_checkeredbg.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xxhdpi/ic_color_picker_tab_preset.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xxhdpi/ic_color_picker_tab_rgba.png — Catrobat/Paintroid source distribution; original notices apply
+colorpicker/src/main/res/drawable-xxhdpi/pocketpaint_checkeredbg.png — Catrobat/Paintroid source distribution; original notices apply
+
+
+BUNDLED FONT FILES
+
+Lato — fonts/lato.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/lato/Lato-Regular.ttf
+SHA-256: d636e4683231f931eda222d588e944d082bfd3bdba02f928bee461c0f185b251
+
+Alegreya Sans — fonts/alegreyasans.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/alegreyasans/AlegreyaSans-Regular.ttf
+SHA-256: 8fab634196007afca839f1e5a6fb300976daff55d8528b590ef032f01b14ea10
+
+Bree Serif — fonts/breeserif.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/breeserif/BreeSerif-Regular.ttf
+SHA-256: fd080582d70112ef479ba4ddd72407f9a4fcbcec4caa7d29de259b13eeb5f431
+
+Anton — fonts/anton.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/anton/Anton-Regular.ttf
+SHA-256: a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab
+
+Bangers — fonts/bangers.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/bangers/Bangers-Regular.ttf
+SHA-256: 4160a7311de9342674cce9160cde9fcbb30f48190397d86ff1b70b455af65824
+
+Patrick Hand — fonts/patrickhand.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/patrickhand/PatrickHand-Regular.ttf
+SHA-256: 0f173b3e6cb6d1af25babf7f0057c5ac4ee11f9992b0469bb817e967ef4ad0fc
+
+Sacramento — fonts/sacramento.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/sacramento/Sacramento-Regular.ttf
+SHA-256: 9341fda10adbfeb7efc94302b34507a3e227d7e7f5c432df3f5ac8753ff73d24
+
+Sawarabi Gothic — fonts/sawarabigothic.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/sawarabigothic/SawarabiGothic-Regular.ttf
+SHA-256: 04f2f9111bb69cb8d3706c27b44879c2c0fac593a11edf5cfe8cec1efc92c789
+
+Sawarabi Mincho — fonts/sawarabimincho.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/sawarabimincho/SawarabiMincho-Regular.ttf
+SHA-256: 1f27e6b0c2543a311c31d2ba3e895e50028069bd24b5e0d20a5b6e0a0b03e9c4
+
+Anonymous Pro — fonts/anonymouspro.ttf
+Licence: OFL-1.1; unmodified font file
+https://raw.githubusercontent.com/google/fonts/5e35378e6bda803962ee6fd257e444a7d459660d/ofl/anonymouspro/AnonymousPro-Regular.ttf
+SHA-256: 46d8b9a5f4b38fc9d30f3cdd676d4c6f78a9bef949bb1a8304216cc731eb87f8
+
+BREEZE ICON INVENTORY
+
+Free-form selection — breeze_lasso
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-select-lasso.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 451410f2c4d94df29b63d8e6fb09de2853c7341785d343e4e83eb2b8c026e4f5
+
+Rectangular selection — breeze_select
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/select-rectangular.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 14644fb4faa147e264289a1b0e4617ea2e467dd86cdba15064e23c1b81c57b33
+
+Eraser — breeze_eraser
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-eraser.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 3c7e0f87f9852cb7fb2272eee2f4a7ab198fd0b2f4951034a6e6e67de6bf3dd0
+
+Bucket fill — breeze_fill
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/color-fill.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 58728793f5d61f192b18ec9524b2e67970293130f44fa7ea83cd3ee4ed9ecbcb
+
+Eyedropper — breeze_picker
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/color-picker.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 86ef4a078b4811934bff78945ef41e25d32b9c7c11a2be80f566ad9fa21d3d56
+
+Navigate / pan — breeze_navigate
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/transform-move.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 8ba10ab138e1f3c031143d50d67306c9c1015855b4d92030410e74a38b0535ca
+
+Pencil — breeze_pencil
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-freehand.svg
+Licence: LGPL-3.0-or-later
+SHA-256: b4896f696d72463b73016d450d12fb41a9f765e3e5c1869df82f1ed0ba71cdd3
+
+Brush — breeze_brush
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-brush.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 19c6b4e65a105df44978085a33f0b9d0408b85ee9393310492cc7d542f1e0c0e
+
+Airbrush — breeze_spray
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/tool-spray.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 0fbab0e01519aedcd9748a6d422dc9c6ed24d2027818e5419ab6448c52da4bed
+
+Text — breeze_text
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-text.svg
+Licence: LGPL-3.0-or-later
+SHA-256: ea0e9f524554ae63de84cec3bf464491430daf6da86148441031b0629b30ad8a
+
+Line — breeze_line
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-line.svg
+Licence: LGPL-3.0-or-later
+SHA-256: e308a6a8abcbf73f584f633c6025b2ca30a235cb47efad82dbdaa958fa05fd1e
+
+Curve — breeze_curve
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-bezier-curves.svg
+Licence: LGPL-3.0-or-later
+SHA-256: ffa9c3f5b866e49f9a8e9906ac6af63a281518a552cab8e48615a6aeeb5dbbce
+
+Rectangle — breeze_rectangle
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-rectangle.svg
+Licence: LGPL-3.0-or-later
+SHA-256: f9b628a17a64fca344e78d4dfd3fc399f84d741deda06d6cd8b6f2cdc74d3302
+
+Polygon — breeze_polygon
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-polygon.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 5df7540a5637f4f1b58a15a0060d17ab695b3391c8498db06c65d9c2e0ea6275
+
+Ellipse — breeze_ellipse
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-ellipse.svg
+Licence: LGPL-3.0-or-later
+SHA-256: e1bc3f89e6d121591e536401e08c303273c1f01d162e5d1dd8f2d1afec974e1a
+
+Rounded rectangle — breeze_round_rectangle
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/draw-rectangle-rounded.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 31d8eadd5de1736b8dd20090bfd49eb0b8e3bf886767b03f3c4b3d206cc10eea
+
+Undo — breeze_undo
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-undo.svg
+Licence: LGPL-3.0-or-later
+SHA-256: c7b8b6dc9062672da441f783864e8e1b71351f5aa6afc55156cf66502727ec37
+
+Redo — breeze_redo
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-redo.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 20745277f5dcd9f0f9a42619af2956c55a20731fa50863289bcf11e5a28f5d7b
+
+Cut — breeze_cut
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-cut.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 218fcf0ece3a3b216a1895368b6ea2418299d07204c4e91bdb3470de441247e2
+
+Copy — breeze_copy
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-copy.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 374d3358407b7334f85f10be17616482a6a5501ab1beba735c541b263e2bdbde
+
+Paste — breeze_paste
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-paste.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 5f7057b2a8a543e1de6af2cd6b79f3ee15859fef97d5988744c956d81c3ee025
+
+Select all — breeze_select_all
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/edit-select-all.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 0feb8b2e0d046e931b283beb33518115ed0b1359e4350af7784e7ecef7ccf849
+
+Zoom in — breeze_zoom_in
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/zoom-in.svg
+Licence: LGPL-3.0-or-later
+SHA-256: b2c1c80dcffaae9732a2add1641b698ede07fd9abd4490177967058cf4262bbb
+
+Zoom out — breeze_zoom_out
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/zoom-out.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 0f218fdb6a6b6dcac410164ad6e4f96bf6ee92b7924ed242d8d4fec141b2f32e
+
+Collapse sidebar — breeze_up
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/go-up.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 8d96b06ca02732772f764f9e6bf9a50501939e60f546438e689878f73d03f3c5
+
+Expand sidebar — breeze_down
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/go-down.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 0f95471b4e34160804f1c7d8af4cd530e00c4b7614421e4e23dc87b6a164e5d1
+
+Collapse palette — breeze_left
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/go-previous.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 65522c9cf397c4993d07f9ea73484e8171bda1884f2f4210d19f8405b4c1e3c6
+
+Expand palette — breeze_right
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/go-next.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 276230050b6717c890988c32bed253ba690fa41eb1a0167e6836c94744f8143d
+
+Assembly attachment target — breeze_add
+https://raw.githubusercontent.com/KDE/breeze-icons/235730e69d90949621e4fee77fcc459772b7a8f0/icons/actions/22/list-add.svg
+Licence: LGPL-3.0-or-later
+SHA-256: 6840390cdc4be573c2078516676801f87c019503e745d44957a6bbc69b8236ec

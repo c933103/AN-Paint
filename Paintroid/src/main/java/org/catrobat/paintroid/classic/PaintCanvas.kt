@@ -1,0 +1,553 @@
+/* Pocket Paint Local additions, 2026-09-07. GNU AGPL-3.0-or-later; no warranty. */
+package org.catrobat.paintroid.classic
+
+import android.content.Context
+import android.graphics.*
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewConfiguration
+import kotlin.math.*
+import kotlin.random.Random
+import org.json.JSONArray
+import org.json.JSONObject
+
+class PaintCanvas(context: Context, val document: PaintDocument) : View(context) {
+    var tool = PaintTool.PENCIL; private set
+    var zoom = 1f; private set
+    var panX = 0f; private set
+    var panY = 0f; private set
+    var grid = false
+    var trim: CropOverlay? = null; private set
+    var onStatus: () -> Unit = {}
+    var onPick: (Int) -> Unit = {}
+    var onText: (Float, Float) -> Unit = { _, _ -> }
+    var onFill: (Int, Int) -> Unit = { x, y -> document.fill(x, y) }
+    var onError: (Throwable) -> Unit = {}
+    private var start = PointF()
+    private var end = PointF()
+    private var previous = PointF()
+    private var screenStart = PointF()
+    private var screenPrevious = PointF()
+    private var down = false
+    private var movingSelection = false
+    private var panning = false
+    private var multiTouch = false
+    private var initialSelectionRect: RectF? = null
+    private var initialSelectionFloating = false
+    private var initialSelectionRotation = 0f
+    private var selectionHandle = -1 // -2: move, 0..3: corners, 4: rotate, 5..8: edge midpoints
+    private var selectionTouchStart = PointF()
+    private var selectionChanged = false
+    var lockSelectionAspect = true
+    private val touchSlop = ViewConfiguration.get(context).scaledTouchSlop.toFloat()
+    private val doubleTapSlop = min(ViewConfiguration.get(context).scaledDoubleTapSlop.toFloat(),24*resources.displayMetrics.density)
+    private var lastPolygonTap: PointF? = null
+    private var lastPolygonTapTime = -1L
+    private var polygonDoubleTap = false
+    private var polygonTouchMoved = false
+    private var initialCurve: Pair<PointF,PointF>? = null
+    val hasActiveGesture get() = down || multiTouch
+    private var pinchFocus = PointF()
+    private var pinchSpan = 0f
+    private var scrollAxis = 0
+    private var trace = Path()
+    private val polygon = mutableListOf<PointF>()
+    private var curveStage = 0
+    val hasPendingEdit get() = polygon.isNotEmpty() || curveStage > 0 || trim?.changed == true
+    private var control1 = PointF()
+    private var control2 = PointF()
+    private val bar = 20f * resources.displayMetrics.density
+    private var fitted = false
+    private var renderedSelection: Bitmap? = null
+    private var renderedSource: Bitmap? = null
+    private var renderedBackground = 0
+    private var renderedTransparent = false
+    private val sprayTick = object : Runnable {
+        override fun run() {
+            if (down && tool == PaintTool.SPRAY && !multiTouch) {
+                spray(previous); invalidate(); postDelayed(this, 40)
+            }
+        }
+    }
+
+    init {
+        contentDescription = "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger."
+        isFocusable = true
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
+    }
+
+    fun selectTool(next: PaintTool) {
+        applyPending()
+        if (next !in listOf(PaintTool.SELECT, PaintTool.LASSO)) document.finishSelection()
+        tool = next; invalidate(); onStatus()
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        if (!fitted) fit() else { clampPan(); invalidate() }
+    }
+
+    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {
+        trim?.let { union(RectF(it.rect)) }
+    }
+
+    fun fit() {
+        resetPolygonTap()
+        if (width <= bar + 24 || height <= bar + 24) return
+        val bounds = viewportBounds()
+        // Leave touch space around the handles for dragging outwards.
+        val padding = if (trim == null) 12f else max(36*resources.displayMetrics.density,min(width-bar,height-bar)*.12f)
+        zoom = min((width-bar-2*padding).coerceAtLeast(1f)/bounds.width(),(height-bar-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)
+        panX = (width-bar-bounds.width()*zoom)/2-bounds.left*zoom
+        panY = (height-bar-bounds.height()*zoom)/2-bounds.top*zoom
+        fitted = true; invalidate(); onStatus()
+    }
+
+    fun zoomAt(value: Float, x: Float = (width - bar) / 2, y: Float = (height - bar) / 2) {
+        if (!value.isFinite() || value <= 0f) return
+        resetPolygonTap()
+        val point = toImage(x, y)
+        zoom = value.coerceIn(minimumZoom(), 32f)
+        panX = x - point.x * zoom; panY = y - point.y * zoom
+        clampPan(); invalidate(); onStatus()
+    }
+
+    fun zoomStep(factor: Float) {
+        val target = zoom*factor
+        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)
+    }
+    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min((width-bar).coerceAtLeast(1f)/bounds.width(),
+        (height-bar).coerceAtLeast(1f)/bounds.height())/8).coerceIn(.000000001f,.125f) }
+    fun zoomForSlider(progress: Int): Float {
+        val value = progress.coerceIn(0,1000)
+        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()
+            else exp(ln(32.0)*(value-500)/500.0).toFloat()
+    }
+    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))
+        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)
+    fun zoomLabel(): String = if (zoom >= .1f) "${(zoom * 100).roundToInt()}%" else String.format(java.util.Locale.ROOT, "%.2f%%", zoom * 100)
+
+    fun toImage(x: Float, y: Float) = PointF((x - panX) / zoom, (y - panY) / zoom)
+    fun toScreen(x: Float, y: Float) = PointF(panX + x * zoom, panY + y * zoom)
+
+    private fun clampPan() {
+        val w = width - bar; val h = height - bar
+        val bounds = viewportBounds(); val iw = bounds.width()*zoom; val ih = bounds.height()*zoom
+        val visible = min(48*resources.displayMetrics.density,min(w,h)/3)
+        panX = panX.coerceIn(visible-bounds.right*zoom,w-visible-bounds.left*zoom)
+        panY = panY.coerceIn(visible-bounds.bottom*zoom,h-visible-bounds.top*zoom)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        canvas.drawColor(Color.rgb(174, 183, 192))
+        canvas.save()
+        canvas.clipRect(0f, 0f, width - bar, height - bar)
+        canvas.translate(panX, panY); canvas.scale(zoom, zoom)
+        val bitmap = document.bitmap
+        trim?.drawExpansion(canvas,document.background)
+        val p = Paint().apply { color = Color.WHITE }
+        canvas.drawRect(0f, 0f, bitmap.width.toFloat(), bitmap.height.toFloat(), p)
+        canvas.drawBitmap(bitmap, 0f, 0f, Paint(if (zoom < 1) Paint.FILTER_BITMAP_FLAG else 0))
+        document.selection?.let { s ->
+            if (s.floating) {
+                if (renderedSource !== s.image || renderedBackground != document.background || renderedTransparent != document.transparentSelection) {
+                    if (renderedSelection !== renderedSource) renderedSelection?.recycle()
+                    renderedSelection = document.selectionImage()
+                    renderedSource = s.image; renderedBackground = document.background; renderedTransparent = document.transparentSelection
+                }
+                renderedSelection?.let { s.draw(canvas,it,Paint(Paint.FILTER_BITMAP_FLAG)) }
+            }
+            p.color = Color.rgb(20, 60, 120); p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
+            p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
+            s.transformedOutline()?.let { canvas.drawPath(it,p);p.pathEffect=null;p.strokeWidth=1f/zoom }
+            val corners=s.geometry.corners()
+            val outline=Path().apply { moveTo(corners[0].x,corners[0].y);corners.drop(1).forEach { lineTo(it.x,it.y) };close() }
+            canvas.drawPath(outline,p);p.pathEffect=null
+            drawSelectionHandles(canvas,s)
+        }
+        if (down && !multiTouch && !panning && !movingSelection && scrollAxis == 0) {
+            when (tool) {
+                PaintTool.SELECT, PaintTool.LASSO -> {
+                    p.color = Color.rgb(20, 60, 120); p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
+                    p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
+                    if (tool == PaintTool.SELECT) canvas.drawRect(bounds(), p) else canvas.drawPath(trace, p)
+                }
+                PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT -> document.drawShape(canvas, tool, shapePath())
+                else -> Unit
+            }
+        }
+        if (polygon.isNotEmpty()) document.drawShape(canvas, PaintTool.POLYGON, polygonPath(false))
+        if (curveStage > 0 || down && tool == PaintTool.CURVE) document.drawShape(canvas, PaintTool.CURVE, curvePath())
+        if (grid && zoom >= 8) {
+            val line = Paint().apply { color = 0x55808080; strokeWidth = 1f / zoom }
+            val l = max(0, (-panX / zoom).toInt()); val t = max(0, (-panY / zoom).toInt())
+            val r = min(bitmap.width, ((width - bar - panX) / zoom).toInt() + 1)
+            val b = min(bitmap.height, ((height - bar - panY) / zoom).toInt() + 1)
+            for (x in l..r) canvas.drawLine(x.toFloat(), t.toFloat(), x.toFloat(), b.toFloat(), line)
+            for (y in t..b) canvas.drawLine(l.toFloat(), y.toFloat(), r.toFloat(), y.toFloat(), line)
+        }
+        trim?.draw(canvas,zoom,resources.displayMetrics.density)
+        canvas.restore()
+        drawScrollbars(canvas)
+    }
+
+    private fun drawScrollbars(c: Canvas) {
+        val w = width - bar; val h = height - bar
+        val p = Paint().apply { color = Color.rgb(219, 225, 230) }
+        c.drawRect(0f, h, width.toFloat(), height.toFloat(), p)
+        c.drawRect(w, 0f, width.toFloat(), height.toFloat(), p)
+        p.color = Color.rgb(118, 139, 163)
+        val bounds = viewportBounds()
+        val iw = max(w, bounds.width()*zoom); val ih = max(h, bounds.height()*zoom)
+        val bw = max(bar, w * w / iw); val bh = max(bar, h * h / ih)
+        val left = if (iw <= w) 0f else ((-(panX+bounds.left*zoom) / (iw - w)) * (w - bw)).coerceIn(0f,w-bw)
+        val top = if (ih <= h) 0f else ((-(panY+bounds.top*zoom) / (ih - h)) * (h - bh)).coerceIn(0f,h-bh)
+        c.drawRoundRect(RectF(left + 3, h + 5, left + bw - 3, height - 5f), 3f, 3f, p)
+        c.drawRoundRect(RectF(w + 5, top + 3, width - 5f, top + bh - 3), 3f, 3f, p)
+    }
+
+    private fun dragScrollbar(x: Float, y: Float) {
+        val bounds = viewportBounds()
+        if (scrollAxis == 1) panX = -bounds.left*zoom-(bounds.width()*zoom-(width-bar)).coerceAtLeast(0f)*(x/(width-bar)).coerceIn(0f,1f)
+        if (scrollAxis == 2) panY = -bounds.top*zoom-(bounds.height()*zoom-(height-bar)).coerceAtLeast(0f)*(y/(height-bar)).coerceIn(0f,1f)
+        clampPan(); invalidate()
+    }
+
+    private fun bounds() = RectF(min(start.x, end.x), min(start.y, end.y), max(start.x, end.x), max(start.y, end.y))
+    private fun shapePath() = Path().apply {
+        val r = bounds()
+        when (tool) {
+            PaintTool.RECTANGLE -> addRect(r, Path.Direction.CW)
+            PaintTool.ROUND_RECT -> { val radius=document.cornerRadius.coerceIn(0f,min(r.width(),r.height())/2);addRoundRect(r,radius,radius,Path.Direction.CW) }
+            PaintTool.ELLIPSE -> addOval(r, Path.Direction.CW)
+            else -> { moveTo(start.x, start.y); lineTo(end.x, end.y) }
+        }
+    }
+    private fun polygonPath(close: Boolean) = Path().apply {
+        polygon.forEachIndexed { i, point -> if (i == 0) moveTo(point.x, point.y) else lineTo(point.x, point.y) }
+        if (close) close()
+    }
+    private fun curvePath() = Path().apply {
+        moveTo(start.x, start.y)
+        if (curveStage == 0) lineTo(end.x, end.y)
+        else cubicTo(control1.x, control1.y, control2.x, control2.y, end.x, end.y)
+    }
+
+    fun beginTrim() {
+        applyPending(); trim = CropOverlay(ImageDimensions(document.bitmap.width,document.bitmap.height),allowOutside = true); fit(); invalidate(); onStatus()
+    }
+    fun applyTrim() {
+        val crop = trim ?: return
+        document.changeCanvasBounds(crop.rect); trim = null; fit(); invalidate(); onStatus()
+    }
+    fun cancelTrim() { trim = null; fit(); invalidate(); onStatus() }
+
+    fun pauseGesture() {
+        document.finishGesture(); down=false;multiTouch=false;movingSelection=false;selectionHandle=-1;removeCallbacks(sprayTick)
+    }
+
+    fun applyPending() {
+        if (trim != null) applyTrim()
+        if (polygon.size >= 2) document.commitShape(PaintTool.POLYGON, polygonPath(true))
+        polygon.clear();resetPolygonTap()
+        if (curveStage > 0) document.commitShape(PaintTool.CURVE, curvePath())
+        curveStage = 0
+        document.finishSelection(); invalidate(); onStatus()
+    }
+    fun cancelPending(): Boolean {
+        val had = hasPendingEdit
+        val resizing = trim != null
+        trim = null
+        polygon.clear();resetPolygonTap(); curveStage = 0; down = false
+        if (resizing) fit()
+        invalidate(); onStatus(); return had
+    }
+
+    fun draftState(): JSONObject = JSONObject().apply {
+        put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
+        put("polygon",JSONArray().apply { polygon.forEach { put(JSONArray(listOf(it.x,it.y))) } })
+        put("curve_stage",curveStage)
+        put("curve_points",JSONArray(listOf(start.x,start.y,end.x,end.y,control1.x,control1.y,control2.x,control2.y)))
+        trim?.rect?.let { put("bounds",JSONArray(listOf(it.left,it.top,it.right,it.bottom))) }
+    }
+    fun restoreDraft(state: JSONObject) {
+        tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.PENCIL
+        grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()
+        state.optJSONArray("polygon")?.let { points -> for (i in 0 until points.length()) {
+            val p=points.getJSONArray(i); polygon.add(PointF(p.getDouble(0).toFloat(),p.getDouble(1).toFloat()))
+        } }
+        curveStage=state.optInt("curve_stage").coerceIn(0,2)
+        state.optJSONArray("curve_points")?.let { a ->
+            fun point(i: Int)=PointF(a.getDouble(i).toFloat(),a.getDouble(i+1).toFloat())
+            start=point(0);end=point(2);control1=point(4);control2=point(6)
+        }
+        state.optJSONArray("bounds")?.let { a ->
+            trim=CropOverlay(ImageDimensions(document.bitmap.width,document.bitmap.height),allowOutside=true).apply {
+                set(Rect(a.getInt(0),a.getInt(1),a.getInt(2),a.getInt(3)))
+            }
+        }
+        zoom=state.optDouble("zoom",1.0).toFloat().coerceIn(.000001f,32f)
+        panX=state.optDouble("pan_x",0.0).toFloat();panY=state.optDouble("pan_y",0.0).toFloat();fitted=true
+        invalidate();onStatus()
+    }
+
+    private fun stroke(from: PointF, to: PointF) {
+        val canvas = Canvas(document.bitmap)
+        val paint = document.paint(tool)
+        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {
+            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())
+            paint.strokeWidth = max(1f, document.strokeWidth / 4)
+            for (i in 0..count) {
+                val x = from.x + (to.x - from.x) * i / count
+                val y = from.y + (to.y - from.y) * i / count
+                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)
+            }
+        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)
+        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)
+    }
+
+    private fun spray(point: PointF) {
+        val canvas = Canvas(document.bitmap)
+        val p = Paint().apply { color = document.foreground; strokeWidth = 1f }
+        val radius = max(3f, document.strokeWidth * 2)
+        repeat(max(8, radius.toInt())) {
+            val angle = Random.nextFloat() * 2 * PI
+            val r = sqrt(Random.nextFloat()) * radius
+            canvas.drawPoint(point.x + (cos(angle) * r).toFloat(), point.y + (sin(angle) * r).toFloat(), p)
+        }
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        return try { handleTouch(event) }
+        catch (error: ImageSizeException) { abortTouch(error); true }
+        catch (error: OutOfMemoryError) { abortTouch(error); true }
+        catch (error: java.io.IOException) { abortTouch(error); true }
+    }
+
+    private fun abortTouch(error: Throwable) {
+        try { cancelTouchEdit() } catch (_: Throwable) { }
+        down = false; movingSelection = false; removeCallbacks(sprayTick)
+        onError(error); invalidate()
+    }
+
+    private fun cancelTouchEdit() {
+        document.cancelGesture()
+        if (movingSelection) initialSelectionRect?.let { rect -> document.selection?.let { it.rect.set(rect);it.rotation=initialSelectionRotation;it.floating=initialSelectionFloating } }
+        initialCurve?.let { control1=it.first;control2=it.second }
+        trim?.end(true)
+        movingSelection=false;selectionHandle=-1;resetPolygonTap()
+    }
+
+    private fun resetPolygonTap() { lastPolygonTap=null;lastPolygonTapTime=-1L;polygonDoubleTap=false }
+
+    private fun rotationHandle(s: PaintDocument.Selection): PointF {
+        val d=resources.displayMetrics.density
+        val ideal=s.geometry.rotationHandle(34*d/zoom)
+        val screen=toScreen(ideal.x,ideal.y)
+        // Keep the rotation grip reachable even when selecting the whole canvas at Fit.
+        screen.x=screen.x.coerceIn(min(22*d,(width-bar)/2),max(22*d,width-bar-22*d))
+        screen.y=screen.y.coerceIn(min(22*d,(height-bar)/2),max(22*d,height-bar-22*d))
+        return toImage(screen.x,screen.y)
+    }
+    private fun drawSelectionHandles(canvas: Canvas,s: PaintDocument.Selection) {
+        val d=resources.displayMetrics.density/zoom
+        val edge=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=0xff1559a6.toInt();style=Paint.Style.STROKE;strokeWidth=1.5f*d }
+        val fill=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=Color.WHITE }
+        val grip=rotationHandle(s);val top=s.geometry.point(s.rect.centerX(),s.rect.top)
+        canvas.drawLine(top.x,top.y,grip.x,grip.y,edge)
+        canvas.drawCircle(grip.x,grip.y,7*d,fill);canvas.drawCircle(grip.x,grip.y,7*d,edge)
+        val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom }
+        canvas.drawText("Rotate",grip.x+10*d,grip.y+4*d,text)
+        s.geometry.resizeHandles().values.forEach { point ->
+            val r=RectF(point.x-5*d,point.y-5*d,point.x+5*d,point.y+5*d)
+            canvas.drawRect(r,fill);canvas.drawRect(r,edge)
+        }
+    }
+    private fun hitSelection(s: PaintDocument.Selection,point: PointF): Int {
+        val radius=22*resources.displayMetrics.density/zoom
+        val handles=s.geometry.resizeHandles()
+        val corner=handles.keys.minByOrNull { hypot(handles.getValue(it).x-point.x,handles.getValue(it).y-point.y) }!!
+        val nearest=handles.getValue(corner)
+        val cornerDistance=hypot(nearest.x-point.x,nearest.y-point.y)
+        val grip=rotationHandle(s);val rotationDistance=hypot(grip.x-point.x,grip.y-point.y)
+        val centreDistance=hypot(s.rect.centerX()-point.x,s.rect.centerY()-point.y)
+        // A small selection still has a usable move target at its centre.
+        if (s.geometry.contains(point) && centreDistance < min(cornerDistance,rotationDistance)) return -2
+        if (rotationDistance <= radius && rotationDistance < cornerDistance) return 4
+        if (cornerDistance <= radius) return corner
+        return if (s.geometry.contains(point)) -2 else -1
+    }
+    private fun updateSelectionTouch(point: PointF) {
+        val s=document.selection ?: return
+        val original=initialSelectionRect ?: return
+        if (!selectionChanged && hypot(point.x-selectionTouchStart.x,point.y-selectionTouchStart.y)*zoom < touchSlop) return
+        val geometry=SelectionGeometry(original,initialSelectionRotation)
+        var rotation=initialSelectionRotation
+        val rect=when (selectionHandle) {
+            -2 -> RectF(original).apply { offset(point.x-selectionTouchStart.x,point.y-selectionTouchStart.y) }
+            4 -> {
+                val before=atan2(selectionTouchStart.y-original.centerY(),selectionTouchStart.x-original.centerX())
+                val after=atan2(point.y-original.centerY(),point.x-original.centerX())
+                rotation=((initialSelectionRotation+Math.toDegrees((after-before).toDouble()).toFloat()+540)%360)-180
+                val cardinal=(rotation/90).roundToInt()*90f
+                if (abs(rotation-cardinal)<.001f) rotation=cardinal
+                RectF(original)
+            }
+            in 0..3, in 5..8 -> {
+                val target=geometry.resizeHandles().getValue(selectionHandle).apply { offset(point.x-selectionTouchStart.x,point.y-selectionTouchStart.y) }
+                geometry.resized(selectionHandle,target,lockSelectionAspect)
+            }
+            else -> return
+        }
+        if (rect!=s.rect || rotation!=s.rotation) {
+            document.startMovingSelection(asGesture=true)
+            s.rect.set(rect);s.rotation=rotation;selectionChanged=true
+        }
+    }
+
+    private fun handleTouch(event: MotionEvent): Boolean {
+        if (!isEnabled) return false
+        parent?.requestDisallowInterceptTouchEvent(true)
+        if (event.pointerCount > 1) {
+            val focus=PointF((event.getX(0)+event.getX(1))/2,(event.getY(0)+event.getY(1))/2)
+            val span=hypot(event.getX(0)-event.getX(1),event.getY(0)-event.getY(1))
+            if (!multiTouch) cancelTouchEdit()
+            if (multiTouch && event.actionMasked==MotionEvent.ACTION_MOVE) {
+                if (pinchSpan > 1 && span > 1) zoomAt(zoom*span/pinchSpan,pinchFocus.x,pinchFocus.y)
+                panX+=focus.x-pinchFocus.x;panY+=focus.y-pinchFocus.y;clampPan();invalidate();onStatus()
+            }
+            pinchFocus=focus;pinchSpan=span
+            multiTouch = true; down = false; scrollAxis = 0; removeCallbacks(sprayTick)
+            return true
+        }
+        val point = toImage(event.x, event.y)
+        trim?.let { crop ->
+            if (event.actionMasked == MotionEvent.ACTION_DOWN) {
+                scrollAxis = if (event.y >= height-bar) 1 else if (event.x >= width-bar) 2 else 0
+            }
+            if (scrollAxis != 0) {
+                if (event.actionMasked != MotionEvent.ACTION_CANCEL) dragScrollbar(event.x,event.y)
+                if (event.actionMasked in listOf(MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL)) scrollAxis = 0
+                invalidate(); onStatus(); return true
+            }
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> { multiTouch = false; crop.begin(point,24*resources.displayMetrics.density/zoom) }
+                MotionEvent.ACTION_MOVE -> if (!multiTouch) crop.move(point)
+                MotionEvent.ACTION_UP -> { if (!multiTouch) crop.move(point); crop.end(); multiTouch = false; performClick() }
+                MotionEvent.ACTION_CANCEL -> crop.end(true)
+            }
+            invalidate(); onStatus(); return true
+        }
+        when (event.actionMasked) {
+            MotionEvent.ACTION_DOWN -> {
+                multiTouch = false; down = true; panning = tool == PaintTool.ZOOM
+                screenStart = PointF(event.x, event.y); screenPrevious = PointF(event.x, event.y)
+                scrollAxis = if (event.y >= height - bar) 1 else if (event.x >= width - bar) 2 else 0
+                if (scrollAxis != 0) { dragScrollbar(event.x, event.y); return true }
+                if (panning) return true
+                selectionHandle=if (tool in listOf(PaintTool.SELECT,PaintTool.LASSO)) document.selection?.let { hitSelection(it,point) } ?: -1 else -1
+                movingSelection=selectionHandle != -1
+                initialSelectionRect=document.selection?.rect?.let { RectF(it) }
+                initialSelectionFloating=document.selection?.floating==true
+                initialSelectionRotation=document.selection?.rotation ?: 0f
+                selectionTouchStart=PointF(point.x,point.y);selectionChanged=false
+                polygonTouchMoved=false
+                polygonDoubleTap=tool==PaintTool.POLYGON && polygon.size>=3 && lastPolygonTapTime>=0 &&
+                    event.eventTime-lastPolygonTapTime in 1..ViewConfiguration.getDoubleTapTimeout().toLong() &&
+                    lastPolygonTap?.let { hypot(event.x-it.x,event.y-it.y)<=doubleTapSlop }==true
+                initialCurve=if (tool==PaintTool.CURVE) PointF(control1.x,control1.y) to PointF(control2.x,control2.y) else null
+                if (movingSelection) { previous = point; return true }
+                if (tool !in listOf(PaintTool.SELECT,PaintTool.LASSO)) document.finishSelection()
+                previous = point
+                if (tool == PaintTool.CURVE && curveStage > 0) {
+                    if (curveStage == 1) control1 = point else control2 = point
+                } else {
+                    start = point; end = point; trace = Path().apply { moveTo(point.x, point.y) }
+                }
+                when (tool) {
+                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> { document.beginGesture(); stroke(point, point) }
+                    PaintTool.SPRAY -> { document.beginGesture(); spray(point); postDelayed(sprayTick, 40) }
+                    else -> Unit
+                }
+            }
+            MotionEvent.ACTION_MOVE -> {
+                if (multiTouch || !down) return true
+                if (hypot(event.x-screenStart.x,event.y-screenStart.y)>touchSlop) polygonTouchMoved=true
+                if (scrollAxis != 0) { dragScrollbar(event.x, event.y); return true }
+                if (panning) {
+                    panX += event.x - screenPrevious.x; panY += event.y - screenPrevious.y; clampPan()
+                    screenPrevious = PointF(event.x, event.y)
+                } else if (movingSelection) {
+                    updateSelectionTouch(point);onStatus()
+                } else when (tool) {
+                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> {
+                        for (i in 0 until event.historySize) {
+                            val historical = toImage(event.getHistoricalX(i), event.getHistoricalY(i))
+                            stroke(previous, historical); previous = historical
+                        }
+                        stroke(previous, point); previous = point
+                    }
+                    PaintTool.SPRAY -> { previous = point; spray(point) }
+                    PaintTool.LASSO -> { trace.lineTo(point.x, point.y); end = point }
+                    PaintTool.CURVE -> {
+                        if (curveStage == 1) control1 = point else if (curveStage == 2) control2 = point else end = point
+                    }
+                    else -> end = point
+                }
+            }
+            MotionEvent.ACTION_UP -> {
+                removeCallbacks(sprayTick)
+                if (multiTouch || !down) { multiTouch = false; down = false; return true }
+                down = false
+                if (scrollAxis != 0) { scrollAxis = 0; performClick(); return true }
+                if (panning) {
+                    // Navigate mode never draws or changes zoom on a single tap.
+                } else if (movingSelection) {
+                    updateSelectionTouch(point)
+                    document.finishGesture()
+                    if (selectionChanged) document.edited()
+                } else {
+                    when (tool) {
+                        PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> { stroke(previous, point); document.finishGesture() }
+                        PaintTool.SPRAY -> document.finishGesture()
+                        PaintTool.FILL -> onFill(point.x.toInt(), point.y.toInt())
+                        PaintTool.PICKER -> if (point.x >= 0 && point.y >= 0 && point.x < document.bitmap.width && point.y < document.bitmap.height) {
+                            document.foreground = document.bitmap.getPixel(point.x.toInt(), point.y.toInt()); onPick(document.foreground)
+                        }
+                        PaintTool.TEXT -> onText(point.x, point.y)
+                        PaintTool.SELECT -> { document.finishSelection();end = point; document.select(bounds()) }
+                        PaintTool.LASSO -> { document.finishSelection();trace.lineTo(point.x, point.y); trace.close(); val r = RectF(); trace.computeBounds(r, true); document.select(r, trace) }
+                        PaintTool.POLYGON -> {
+                            val tapped=!polygonTouchMoved && hypot(event.x-screenStart.x,event.y-screenStart.y)<=touchSlop
+                            if (polygonDoubleTap && tapped) applyPending()
+                            else {
+                                polygon.add(PointF(point.x,point.y))
+                                lastPolygonTap=if (tapped) PointF(event.x,event.y) else null
+                                lastPolygonTapTime=if (tapped) event.eventTime else -1L
+                                polygonDoubleTap=false
+                            }
+                        }
+                        PaintTool.CURVE -> {
+                            if (curveStage == 0) {
+                                end = point; control1 = PointF(start.x + (end.x - start.x) / 3, start.y + (end.y - start.y) / 3)
+                                control2 = PointF(start.x + 2 * (end.x - start.x) / 3, start.y + 2 * (end.y - start.y) / 3)
+                            } else if (curveStage == 1) control1 = point else control2 = point
+                            curveStage++
+                            if (curveStage == 3) applyPending()
+                        }
+                        PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT -> { end = point; document.commitShape(tool, shapePath()) }
+                        else -> Unit
+                    }
+                }
+                movingSelection = false;selectionHandle=-1; panning = false; performClick(); onStatus()
+            }
+            MotionEvent.ACTION_CANCEL -> {
+                cancelTouchEdit(); multiTouch=false; down = false; removeCallbacks(sprayTick)
+            }
+        }
+        invalidate(); return true
+    }
+    override fun performClick(): Boolean { super.performClick(); return true }
+    override fun onDetachedFromWindow() { removeCallbacks(sprayTick); super.onDetachedFromWindow() }
+}

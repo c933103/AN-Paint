@@ -48,8 +48,8 @@ class TextToolFontListTest {
     private val sansSerifFontFace = Typeface.create(Typeface.SANS_SERIF, normalStyle)
     private val serifFontFace = Typeface.create(Typeface.SERIF, normalStyle)
     private val monospaceFontFace = Typeface.create(Typeface.MONOSPACE, normalStyle)
-    private val stcFontFace = ResourcesCompat.getFont(context, R.font.stc_regular)
-    private val dubaiFontFace = ResourcesCompat.getFont(context, R.font.dubai)
+    private val stcFontFace = Typeface.create("sans-serif", Typeface.NORMAL)
+    private val dubaiFontFace = Typeface.create("sans-serif", Typeface.NORMAL)
 
     @get:Rule
     var launchActivityRule = ActivityTestRule(MainActivity::class.java)

@@ -23,8 +23,11 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- Local build modified 2026-09-07: handle Android 14 selected-photo access. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -32,6 +35,14 @@
     <application
         android:largeHeap="true"
         android:supportsRtl="true">
+        <activity android:name=".classic.ClassicPaintActivity"
+            android:exported="false"
+            android:theme="@style/ClassicPaintTheme"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".classic.AssemblyActivity"
+            android:exported="false"
+            android:theme="@style/ClassicPaintTheme"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <provider
             android:name=".MyProvider"
             android:authorities="${applicationId}.fileprovider"

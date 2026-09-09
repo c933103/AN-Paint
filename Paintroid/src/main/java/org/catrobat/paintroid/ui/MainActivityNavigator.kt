@@ -244,17 +244,19 @@ class MainActivityNavigator(
     }
 
     override fun startLoadImageActivity(@ActivityRequestCode requestCode: Int) {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
             type = "*/*"
-            flags = Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         mainActivity.startActivityForResult(intent, requestCode)
     }
 
     override fun startImportImageActivity(@ActivityRequestCode requestCode: Int) {
-        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
             type = "image/*"
-            flags = Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         mainActivity.startActivityForResult(intent, requestCode)
     }

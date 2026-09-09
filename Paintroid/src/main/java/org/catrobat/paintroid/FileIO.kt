@@ -328,7 +328,8 @@ object FileIO {
         matrix.postRotate(angle)
         val rotatedBitmap =
             Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-        bitmap.recycle()
+        // Local fix, 2026-09-07: an identity transform can return its input.
+        if (rotatedBitmap !== bitmap) bitmap.recycle()
         return rotatedBitmap
     }
 
@@ -505,7 +506,7 @@ object FileIO {
             ((memoryInfo.availMem - memoryInfo.threshold) * CONSTANT_POINT9).toLong(),
             CONSTANT_5000 * CONSTANT_5000 * CONSTANT_4
         )
-        val requiredMemory = options.outWidth * options.outHeight * CONSTANT_4
+        val requiredMemory = options.outWidth.toLong() * options.outHeight * CONSTANT_4
         if (requiredMemory > availableMemory) {
             scaling = true
         }
@@ -515,7 +516,8 @@ object FileIO {
     @Throws(IOException::class)
     private fun getScaleFactor(resolver: ContentResolver, bitmapUri: Uri, context: Context?): Int {
         getMemoryInfo(context)
-        val options = BitmapFactory.Options()
+        // Local build fix, 2026-09-07: read bounds before allocating the scaled image.
+        val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         decodeBitmapFromUri(resolver, bitmapUri, options, context)
         if (options.outHeight <= 0 || options.outWidth <= 0) {
             throw IOException("Can't load bitmap from uri")
@@ -523,7 +525,7 @@ object FileIO {
         val info = Runtime.getRuntime()
         val availableMemory =
             (info.maxMemory() - info.totalMemory() + info.freeMemory()) * CONSTANT_POINT9
-        val heightToWidthFactor = options.outWidth / options.outHeight * 1f
+        val heightToWidthFactor = options.outWidth.toFloat() / options.outHeight.toFloat()
         val availablePixels =
             availableMemory / MAX_LAYERS.toFloat() * CONSTANT_POINT9 / CONSTANT_4 // 4 byte per pixel, 10% safety buffer on memory
         val availableHeight = sqrt(availablePixels / heightToWidthFactor)
@@ -547,6 +549,8 @@ object FileIO {
             inJustDecodeBounds = false
         }
         val scaling = hasEnoughMemory(resolver, bitmapUri, context)
+        // Local fix, 2026-09-07: ask to scale before allocating the full image.
+        if (scaling) return BitmapReturnValue(null, null, true)
         val bitmap = enableAlpha(decodeBitmapFromUri(resolver, bitmapUri, options, context))
         return BitmapReturnValue(
             null,
