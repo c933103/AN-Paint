@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+// Local modification, 2026-09-07: use Android system fonts in place of unlicensed bundled font binaries.
 package org.catrobat.paintroid.tools.implementation
 
 import android.graphics.Canvas
@@ -132,8 +133,8 @@ class TextTool(
     init {
         rotationEnabled = ROTATION_ENABLED
         resizePointsVisible = RESIZE_POINTS_VISIBLE
-        stc = contextCallback.getFont(R.font.stc_regular)
-        dubai = contextCallback.getFont(R.font.dubai)
+        stc = Typeface.create("sans-serif", Typeface.NORMAL)
+        dubai = Typeface.create("sans-serif", Typeface.NORMAL)
         setShapeSizeChangedListener(this)
         textPaint = Paint()
         initializePaint()

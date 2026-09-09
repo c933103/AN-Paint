@@ -50,6 +50,8 @@ import org.catrobat.paintroid.common.PERMISSION_EXTERNAL_STORAGE_SAVE_CONFIRMED_
 import org.catrobat.paintroid.common.PERMISSION_EXTERNAL_STORAGE_SAVE_CONFIRMED_NEW_EMPTY
 import org.catrobat.paintroid.common.PERMISSION_EXTERNAL_STORAGE_SAVE_COPY
 import org.catrobat.paintroid.common.PERMISSION_REQUEST_CODE_REPLACE_PICTURE
+import org.catrobat.paintroid.common.PERMISSION_REQUEST_CODE_IMPORT_PICTURE
+import org.catrobat.paintroid.common.REQUEST_CODE_IMPORT_PNG
 import org.catrobat.paintroid.common.REQUEST_CODE_INTRO
 import org.catrobat.paintroid.common.REQUEST_CODE_LOAD_PICTURE
 import org.catrobat.paintroid.common.RESULT_INTRO_MW_NOT_SUPPORTED
@@ -916,6 +918,43 @@ class MainActivityPresenterTest {
     fun testOnSaveImagePostExecuteWhenFailedThenShowDialog() {
         presenter!!.onSaveImagePostExecute(0, null, false)
         Mockito.verify(navigator)?.showSaveErrorDialog()
+    }
+
+    // Local build tests added 2026-09-07: individual-photo grants must allow import.
+    @Test
+    fun testSelectedPhotosGrantAllowsImportWithoutFullLibraryAccess() {
+        presenter!!.handleRequestPermissionsResult(
+            PERMISSION_REQUEST_CODE_IMPORT_PICTURE,
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED),
+            intArrayOf(PackageManager.PERMISSION_DENIED, PackageManager.PERMISSION_GRANTED)
+        )
+        Mockito.verify(navigator)!!.startImportImageActivity(REQUEST_CODE_IMPORT_PNG)
+        Mockito.verifyNoMoreInteractions(navigator)
+    }
+
+    @Test
+    fun testFullPhotosGrantAllowsImportWithMultiplePermissionResults() {
+        presenter!!.handleRequestPermissionsResult(
+            PERMISSION_REQUEST_CODE_IMPORT_PICTURE,
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED),
+            intArrayOf(PackageManager.PERMISSION_GRANTED, PackageManager.PERMISSION_DENIED)
+        )
+        Mockito.verify(navigator)!!.startImportImageActivity(REQUEST_CODE_IMPORT_PNG)
+        Mockito.verifyNoMoreInteractions(navigator)
+    }
+
+    @Test
+    fun testDeniedPhotoPermissionsDoNotStartImport() {
+        val permissions = arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
+        presenter!!.handleRequestPermissionsResult(
+            PERMISSION_REQUEST_CODE_IMPORT_PICTURE, permissions,
+            intArrayOf(PackageManager.PERMISSION_DENIED, PackageManager.PERMISSION_DENIED)
+        )
+        Mockito.verify(navigator)!!.showRequestPermissionRationaleDialog(
+            PermissionInfoDialog.PermissionType.EXTERNAL_STORAGE, permissions,
+            PERMISSION_REQUEST_CODE_IMPORT_PICTURE
+        )
+        Mockito.verify(navigator, Mockito.never())!!.startImportImageActivity(anyInt())
     }
 
     @Test

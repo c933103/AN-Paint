@@ -19,11 +19,12 @@ import io.gitlab.arturbosch.detekt.Detekt
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Local build modified 2026-09-07: use a distinct application ID and display name.
 apply plugin: 'com.android.application'
 
 ext {
-    appId = 'org.catrobat.paintroid'
-    appName = '@string/pocketpaint_app_name'
+    appId = 'io.github.c933103.anpaint'
+    appName = 'AN Paint'
 }
 
 if (project.hasProperty('independent')) {
@@ -55,6 +56,13 @@ android {
     }
 
     signingConfigs {
+        // Local build 2026-09-07: reuse the derivative's saved key without
+        // overwriting another project's default Android debug key.
+        debug {
+            if (project.hasProperty('localDebugKeystore')) {
+                storeFile = file(project.property('localDebugKeystore'))
+            }
+        }
         signedRelease {
             storeFile = file(project.property("signingKeystore"))
             storePassword = ""
@@ -102,7 +110,7 @@ android {
         }
     }
 
-    namespace = "org.catrobat.paintroid.app"
+    namespace = "io.github.c933103.anpaint"
 }
 
 tasks.withType(Detekt).configureEach {
@@ -114,4 +122,18 @@ tasks.withType(Detekt).configureEach {
 dependencies {
     implementation project(':Paintroid')
     implementation 'com.android.support:support-core-utils:28.0.0'
+}
+
+// Local addition, 2026-09-07: record exactly the dependencies shipped in debug.
+tasks.register('writeDependencyInventory') {
+    doLast {
+        def rows = configurations.debugRuntimeClasspath.incoming.resolutionResult.allComponents.findAll {
+            it.id instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier
+        }.collect {
+            [group: it.id.group, name: it.id.module, version: it.id.version]
+        }.sort { "${it.group}:${it.name}" }
+        def destination = layout.buildDirectory.file('runtime-dependencies.json').get().asFile
+        destination.parentFile.mkdirs()
+        destination.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(rows))
+    }
 }

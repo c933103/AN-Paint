@@ -22,11 +22,12 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import android.webkit.MimeTypeMap
+import com.esotericsoftware.kryo.KryoException
+import com.esotericsoftware.kryo.io.Output
+import java.io.File
 import androidx.test.espresso.idling.CountingIdlingResource
 import java.io.IOException
 import java.lang.ref.WeakReference
-import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,39 +48,45 @@ class LoadImage(
     private val callbackRef: WeakReference<LoadImageCallback> = WeakReference(callback)
     private val context: WeakReference<Context> = WeakReference(context)
 
-    private fun getMimeType(uri: Uri, resolver: ContentResolver): String? {
-        if (uri.scheme == ContentResolver.SCHEME_CONTENT) {
-            return resolver.getType(uri)
-        }
-        val fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri.toString())
-        if (fileExtension.equals("catrobat-image")) {
-            return "application/octet-stream"
-        }
-        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension.toLowerCase(Locale.US))
-    }
-
     private fun getBitmapReturnValue(
         uri: Uri,
         resolver: ContentResolver
     ): BitmapReturnValue {
-        val mimeType: String? = getMimeType(uri, resolver)
-        return if (mimeType == "application/zip" || mimeType == "application/octet-stream") {
-            try {
-                val fileContent = commandSerializer.readFromFile(uri)
+        // Local fix, 2026-09-07: provider MIME types can be generic or incorrect.
+        // Copy once so bounds, pixels and EXIF can be read from the same bytes.
+        val appContext = context.get() ?: throw IOException("Image-loading context is no longer available")
+        val cachedFile = File.createTempFile("paint-import-", ".image", appContext.cacheDir)
+        try {
+            val source = resolver.openInputStream(uri) ?: throw IOException("Cannot open selected file")
+            source.use { input -> cachedFile.outputStream().use { output -> input.copyTo(output) } }
+            val cachedUri = Uri.fromFile(cachedFile)
+            val projectMagic = Output(32).use { output ->
+                output.writeString(CommandSerializer.MAGIC_VALUE)
+                output.toBytes()
+            }
+            val header = cachedFile.inputStream().use { input ->
+                val buffer = ByteArray(projectMagic.size)
+                var count = 0
+                while (count < buffer.size) {
+                    val read = input.read(buffer, count, buffer.size - count)
+                    if (read == -1) break
+                    count += read
+                }
+                buffer.copyOf(count)
+            }
+            return if (header.contentEquals(projectMagic)) {
+                val fileContent = commandSerializer.readFromFile(cachedUri)
                 BitmapReturnValue(fileContent.commandModel, fileContent.colorHistory)
-            } catch (e: CommandSerializer.NotCatrobatImageException) {
-                Log.e(TAG, "Image might be an ora file instead")
-                OpenRasterFileFormatConversion.importOraFile(
-                    resolver,
-                    uri
-                )
-            }
-        } else {
-            if (scaleImage) {
-                FileIO.getScaledBitmapFromUri(resolver, uri, context.get())
+            } else if (header.size >= 4 && header[0] == 0x50.toByte() && header[1] == 0x4b.toByte() &&
+                header[2] == 0x03.toByte() && header[3] == 0x04.toByte()) {
+                OpenRasterFileFormatConversion.importOraFile(resolver, cachedUri)
+            } else if (scaleImage) {
+                FileIO.getScaledBitmapFromUri(resolver, cachedUri, appContext)
             } else {
-                FileIO.getBitmapReturnValueFromUri(resolver, uri, context.get())
+                FileIO.getBitmapReturnValueFromUri(resolver, cachedUri, appContext)
             }
+        } finally {
+            cachedFile.delete()
         }
     }
 
@@ -94,10 +101,10 @@ class LoadImage(
         var returnValue: BitmapReturnValue? = null
         scopeIO.launch {
             idlingResource.increment()
-            if (uri == null) {
-                Log.e(TAG, "Can't load image file, uri is null")
-            } else {
-                try {
+            try {
+                if (uri == null) {
+                    Log.e(TAG, "Can't load image file, uri is null")
+                } else try {
                     val resolver = callback.contentResolver
                     FileIO.filename = "image"
                     returnValue = getBitmapReturnValue(uri, resolver)
@@ -105,17 +112,20 @@ class LoadImage(
                     Log.e(TAG, "Can't load image file", e)
                 } catch (e: NullPointerException) {
                     Log.e(TAG, "Can't load image file", e)
+                } catch (e: SecurityException) {
+                    Log.e(TAG, "Permission to read the selected image is unavailable", e)
+                } catch (e: KryoException) {
+                    Log.e(TAG, "Saved project is invalid or incomplete", e)
+                } catch (e: CommandSerializer.NotCatrobatImageException) {
+                    Log.e(TAG, "Saved project has an invalid header", e)
                 }
-            }
-
-            withContext(Dispatchers.Main) {
-                if (!callback.isFinishing) {
-                    try {
+                withContext(Dispatchers.Main) {
+                    if (!callback.isFinishing) {
                         callback.onLoadImagePostExecute(requestCode, uri, returnValue)
-                    } finally {
-                        idlingResource.decrement()
                     }
                 }
+            } finally {
+                idlingResource.decrement()
             }
         }
     }

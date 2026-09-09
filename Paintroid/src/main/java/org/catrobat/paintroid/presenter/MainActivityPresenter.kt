@@ -349,6 +349,24 @@ open class MainActivityPresenter(
     override fun switchBetweenVersions(@PermissionRequestCode requestCode: Int, isExport: Boolean) {
         this.isExport = isExport
 
+        // Local modification, 2026-09-07: SAF grants access to the selected URI.
+        // Asking for whole-library access here could prevent the picker opening.
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE_REPLACE_PICTURE -> {
+                if (isImageUnchanged || model.isSaved) {
+                    navigator.startLoadImageActivity(REQUEST_CODE_LOAD_PICTURE)
+                } else {
+                    navigator.showSaveBeforeLoadImageDialog()
+                }
+                setFirstCheckBoxInLayerMenu()
+                return
+            }
+            PERMISSION_REQUEST_CODE_IMPORT_PICTURE -> {
+                navigator.startImportImageActivity(REQUEST_CODE_IMPORT_PNG)
+                return
+            }
+        }
+
         if (model.isOpenedFromCatroid) {
             FileIO.storeImageUri = model.savedPictureUri
         }
@@ -391,15 +409,29 @@ open class MainActivityPresenter(
 
         @TargetApi(Build.VERSION_CODES.TIRAMISU)
         if (navigator.isSdkAboveOrEqualT) {
-            if (!navigator.doIHavePermission(Manifest.permission.READ_MEDIA_IMAGES)) {
+            // Local build fix, 2026-09-07: accept full or selected-photo access.
+            val supportsSelectedPhotos = Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
+            val grantedPermission = when {
+                navigator.doIHavePermission(Manifest.permission.READ_MEDIA_IMAGES) ->
+                    Manifest.permission.READ_MEDIA_IMAGES
+                supportsSelectedPhotos && navigator.doIHavePermission(Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) ->
+                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
+                else -> null
+            }
+            if (grantedPermission == null) {
+                val permissions = if (supportsSelectedPhotos) {
+                    arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED)
+                } else {
+                    arrayOf(Manifest.permission.READ_MEDIA_IMAGES)
+                }
                 navigator.askForPermission(
-                        arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                        permissions,
                         requestCode
                 )
             } else {
                 handleRequestPermissionsResult(
                         requestCode,
-                        arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                        arrayOf(grantedPermission),
                         intArrayOf(PackageManager.PERMISSION_GRANTED)
                 )
             }
@@ -489,10 +521,18 @@ open class MainActivityPresenter(
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (permissions.size == 1 && (permissions[0] == Manifest.permission.READ_EXTERNAL_STORAGE ||
-                        permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
-                        permissions[0] == Manifest.permission.READ_MEDIA_IMAGES)) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        // Local build fix, 2026-09-07: Android 14 returns separate full/partial results.
+        val legacyStorageRequest = permissions.size == 1 &&
+            (permissions[0] == Manifest.permission.READ_EXTERNAL_STORAGE ||
+                permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val photoRequest = permissions.isNotEmpty() && permissions.all {
+            it == Manifest.permission.READ_MEDIA_IMAGES || it == Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
+        }
+        if (legacyStorageRequest || photoRequest) {
+            val hasAccess = permissions.indices.any {
+                grantResults.getOrNull(it) == PackageManager.PERMISSION_GRANTED
+            }
+            if (hasAccess) {
                 when (requestCode) {
                     PERMISSION_EXTERNAL_STORAGE_SAVE -> {
                         saveImageConfirmClicked(

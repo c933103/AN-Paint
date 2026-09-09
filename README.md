@@ -1,33 +1,69 @@
-Paintroid
-=========
+# AN Paint
 
-Paintroid, also known as **Pocket Paint**, is associated to [Catroid](https://github.com/Catrobat/Catroid). It is a graphical paint editor application for the Android platform that, among others, allows setting parts of pictures to transparent.
+AN Paint is an independently maintained Android image editor derived from
+[Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
+based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`.
+Original Catrobat copyright and licence notices are retained.
 
-Since Pocket Paint is now available in **Google Play store** you can also download Paintroid (Pocket Paint) from [here](https://play.google.com/store/apps/details?id=org.catrobat.paintroid). Alternatively, you can find it on **F-Droid** [here](https://f-droid.org/packages/org.catrobat.paintroid/).
+The application ID is **`io.github.c933103.anpaint`** and the launcher uses a
+Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
 
+## Editing
 
-For more information oriented towards developers please visit our [developers page](http://developer.catrobat.org/).
+- Touch drawing, shapes, text, fill, free-form and rectangular selections.
+- Corner and edge resize handles, a rotation handle and an aspect-ratio lock.
+- Pinch zoom and pan, centred 100% zoom controls, and Fit view.
+- Pixel/percentage sizing, touch canvas trimming and expansion, and disk-backed undo.
+- Autosave and draft recovery, a compact collapsible toolbox, and advanced colour controls.
+- A separate assembly workspace for up to 20 images, with cropping, normalization,
+  alignment, direct PNG saving and transfer to the main editor.
+- The original Pocket Paint editor, including layers, remains under View.
 
-# Issues #
-**Please report all bugs on our [Jira Bugtracker](https://catrobat.atlassian.net/jira/)**
+The main workspace uses an opaque canvas. Large imports receive a memory-based
+size check and an explicit resize choice; files are not silently downsized.
 
-# Contributing #
+## Installing this version
 
-If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. Then you can look at our [Issue-Tracker](https://catrobat.atlassian.net/jira/software/c/projects/PAINTROID/issues/PAINTROID-697?filter=allissues&jql=project%20%3D%20%22PAINTROID%22%0Aand%20status%20%3D%20%22Ready%20For%20Development%22%0Aand%20assignee%20%3D%20empty%0Aand%20type%20in%20%28Bug%2C%20Story%2C%20Task%29%0Aand%20%28labels%20%21%3D%20Flutter%20OR%20labels%20IS%20EMPTY%29%0AORDER%20BY%20created%20DESC) and start with fixing one ticket. Please make sure to pick a ticket with the status "Ready for development" and comment on the ticket that you are working on it. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), so first read everything you can about these development methods. Code developed in a different style will not be accepted.
-When you are done, comment again on the ticket and create a pull request on github.
-After you've created a pull request we will review your code and do a full testrun on your branch.
+`2.14.1-local.15` starts a new package identity. It installs alongside both the
+original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
+To transfer your current image, **save it as PNG in the old app, then open it in
+the new app**. The image transfers; private autosave history, clipboard and
+preferences remain in the old installation. Keep the old app until any work
+you need has been saved. Later updates to this package must use the same
+signing certificate and a higher version code.
 
-Let's start to set up the working environment using the instructions in our  [Wiki](https://github.com/Catrobat/Catroid/wiki/Setup-working-environment)!
+## Building
 
+Install JDK 17, Android SDK Platform 35 and Build-Tools 35.0.0. Set `JAVA_HOME`
+and `ANDROID_HOME`, then run:
 
-# Resources and links #
-* [Google Play Store Download](https://play.google.com/store/apps/details?id=org.catrobat.paintroid)
-* [F-Droid Download](https://f-droid.org/packages/org.catrobat.paintroid/)
-* [Frequently Asked Questions](https://github.com/Catrobat/Catroid/wiki/Frequently-Asked-Questions)
-* [Credits](http://developer.catrobat.org/credits)
-* [Statistics on OpenHub](https://www.openhub.net/p/catrobat/)
-* [Twitter](http://twitter.com/Catroid)
-* [Our Google group](https://groups.google.com/forum/?fromgroups#!forum/catrobat)
+```sh
+./gradlew --no-daemon --max-workers=1 :app:assembleDebug
+./gradlew --no-daemon --max-workers=1 :Paintroid:testDebugUnitTest :app:lintDebug
+```
 
-# License #
-[License](http://developer.catrobat.org/licenses) of our project (mainly AGPL v3).
+The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build requires
+network access to Google Maven, Maven Central and the Gradle Plugin Portal.
+The APK includes its corresponding source, exportable from Help.
+
+See [LOCAL_BUILD.md](LOCAL_BUILD.md) for detailed build and packaging instructions,
+[CHANGES_FROM_UPSTREAM.md](CHANGES_FROM_UPSTREAM.md) for the changes, and
+[UPSTREAM_README.md](UPSTREAM_README.md) for the unmodified upstream README.
+The upstream issue tracker describes the original project; AN Paint changes
+are independently maintained.
+
+## Licences and artwork
+
+- Application and new AN launcher: [GNU AGPL-3.0-or-later](LICENSE).
+  Original code: Copyright © 2010–2022 The Catrobat Team and contributors;
+  AN Paint modifications and launcher: Copyright © 2026 AN Paint contributors.
+- Tool/action icons: KDE Breeze, LGPL-3.0-or-later. Original SVGs, revision,
+  notices and generation details are in [artwork/breeze](artwork/breeze).
+- The launcher source is [artwork/an-paint/launcher.svg](artwork/an-paint/launcher.svg).
+- Bundled fonts: SIL Open Font License 1.1, with individual authors and full
+  terms in [font notices](Paintroid/src/main/assets/legal/FONT_NOTICES.txt).
+- [Asset credits](Paintroid/src/main/assets/legal/ASSET_CREDITS.txt) and
+  [third-party notices](Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt)
+  identify inherited artwork and the packaged libraries.
+
+No signing keys or private build backups belong in the public repository.

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+// Local modification, 2026-09-07: use Android system fonts in place of unlicensed bundled font binaries.
 package org.catrobat.paintroid.ui.tools
 
 import android.content.Context
@@ -40,8 +41,8 @@ class FontListAdapter internal constructor(
     private val sansSerif = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
     private val monospace = Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL)
     private val serif = Typeface.create(Typeface.SERIF, Typeface.NORMAL)
-    private val dubai = ResourcesCompat.getFont(context, R.font.dubai)
-    private val stc = ResourcesCompat.getFont(context, R.font.stc_regular)
+    private val dubai = Typeface.create("sans-serif", Typeface.NORMAL)
+    private val stc = Typeface.create("sans-serif", Typeface.NORMAL)
 
     private val typeFaces = arrayOf(
         sansSerif,

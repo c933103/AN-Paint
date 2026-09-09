@@ -1,3 +1,4 @@
+<!-- Local build modified 2026-09-07: hide store rating and upstream feedback actions. -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/pocketpaint_options_save_image"
@@ -33,6 +34,7 @@
         android:title="@string/menu_hide_menu" />
     <item
         android:id="@+id/pocketpaint_options_rate_us"
+        android:visible="false"
         android:title="@string/menu_rate_us" />
     <item
         android:id="@+id/pocketpaint_options_help"
@@ -45,6 +47,7 @@
         android:title="@string/share_image_menu" />
     <item
         android:id="@+id/pocketpaint_options_feedback"
+        android:visible="false"
         android:title="@string/menu_feedback" />
     <item
         android:id="@+id/pocketpaint_zoom_window_settings"
