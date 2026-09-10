@@ -78,4 +78,19 @@ class NativeCodecTest {
             font.asset?.let {path -> assertTrue(context.assets.open(path).use {it.readBytes()}.size>1000)}
         }
     }
+    @Test fun losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary() {
+        val input=Bitmap.createBitmap(2057,17,Bitmap.Config.ARGB_8888)
+        val file=File.createTempFile("codec-chunks-",".jxl",context.cacheDir)
+        try {
+            for(y in 0 until input.height) for(x in 0 until input.width)
+                input.setPixel(x,y,Color.rgb((x*19+y)%256,(x+y*17)%256,(x*3+y*11)%256))
+            input.setHasAlpha(false)
+            JxlCodec.encode(input,file,100,true,budget)
+            val output=JxlCodec.decode(file,ImageDimensions(2057,17),budget)
+            try {
+                for(y in 0 until input.height) for(x in 0 until input.width)
+                    assertEquals("Pixel $x,$y",input.getPixel(x,y),output.getPixel(x,y))
+            } finally {output.recycle()}
+        } finally {input.recycle();file.delete()}
+    }
 }

@@ -85,7 +85,9 @@ class UnifiedEditorTest {
         assertEquals(99,root.findViewWithTag<SeekBar>("brush_size").max)
     }
     @Test fun openPolygonConnectsStraightSegmentsWithoutClosingOrFillingThem() {
-        click("tool_POLYGON");click("polygon_close");assertFalse(board.closePolygon)
+        click("tool_POLYGON")
+        root.findViewWithTag<CheckBox>("polygon_close").performClick()
+        shadowOf(Looper.getMainLooper()).idle();assertFalse(board.closePolygon)
         doc.foreground=Color.BLUE;doc.shapeStyle=1;doc.strokeWidth=2f
         for(point in listOf(20f to 20f,80f to 20f,80f to 80f)) {
             event(MotionEvent.ACTION_DOWN,point.first,point.second);event(MotionEvent.ACTION_UP,point.first,point.second)
@@ -147,12 +149,14 @@ class UnifiedEditorTest {
         shadowOf(Looper.getMainLooper()).idle()
         var launch=shadowOf(activity).nextStartedActivityForResult
         assertEquals("image/jpeg",launch.intent.type)
+        assertEquals(launch.intent,shadowOf(activity).nextStartedActivity)
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null)
         assertNull(shadowOf(activity).nextStartedActivity)
         menu("File","Save and share…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.PNG.ordinal)
         shadowOf(Looper.getMainLooper()).idle();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
         launch=shadowOf(activity).nextStartedActivityForResult
+        assertEquals(launch.intent,shadowOf(activity).nextStartedActivity)
         val file=File(activity.cacheDir,"share-result.png")
         activity.onActivityResult(launch.requestCode,Activity.RESULT_OK,Intent().setData(Uri.fromFile(file)));waitIo()
         assertTrue(file.isFile);assertNotNull(BitmapFactory.decodeFile(file.path))

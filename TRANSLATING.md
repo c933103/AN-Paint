@@ -13,6 +13,8 @@ uploads to the upstream Catrobat translation project are not enabled.
 
 - Preserve positional placeholders such as `%1$s`, `%2$d` and `%3$.2f`. They can
   move within a sentence; their number and type must stay unchanged.
+- Translate every applicable Android plural category (`one`, `other`, and any
+  additional categories required by the language); keep the count placeholders.
 - Keep escaped newlines (`\n`), escape apostrophes (`\'`) and XML characters, and
   preserve `%%` where a formatted message contains a literal percent sign.
 - Translate complete menu labels and messages. Menu routing, tool names in saved

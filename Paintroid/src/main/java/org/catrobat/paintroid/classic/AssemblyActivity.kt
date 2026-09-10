@@ -220,7 +220,7 @@ class AssemblyActivity : Activity() {
                     val source = ImportedImage(file,name); val item = AssemblyImage(id,file,name,time,source.dimensions)
                     decoded[id] = thumbnail(item); items.add(item)
                 } catch (error: Exception) { file.delete(); errors.add("${uri.lastPathSegment}: ${error.message}") }
-                catch (_: OutOfMemoryError) { file.delete(); errors.add("${uri.lastPathSegment}: not enough memory for its preview.") }
+                catch (_: OutOfMemoryError) { file.delete(); errors.add(ui(R.string.ui_preview_memory_error,uri.lastPathSegment)) }
             }
             runOnUiThread {
                 if (isDestroyed || isFinishing) { decoded.values.forEach { it.recycle() }; items.forEach { it.file.delete() } }
@@ -270,7 +270,7 @@ class AssemblyActivity : Activity() {
         worker.execute {
             try {
                 val image = renderer.render(size) { n,total -> runOnUiThread { if (!isDestroyed) info.text = ui(R.string.ui_rendering_images, n, total) } }
-                try { file.outputStream().use { if (!image.compress(Bitmap.CompressFormat.PNG,100,it)) throw IOException("PNG encoding failed.") } } finally { image.recycle() }
+                try { file.outputStream().use { if (!image.compress(Bitmap.CompressFormat.PNG,100,it)) throw IOException(ui(R.string.ui_png_encoding_failed)) } } finally { image.recycle() }
                 runOnUiThread {
                     if (isDestroyed || isFinishing) file.delete()
                     else {

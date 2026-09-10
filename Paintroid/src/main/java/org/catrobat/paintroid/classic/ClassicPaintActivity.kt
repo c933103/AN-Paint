@@ -566,12 +566,12 @@ class ClassicPaintActivity : Activity() {
             else -> listOf(
                 ui(R.string.ui_how_to_use) to { showHelp() },
                 ui(R.string.ui_about_copyright_licence) to { LegalInfo.showAbout(this) },
-                "GNU AGPL licence" to { LegalInfo.showAsset(this, ui(R.string.ui_gnu_affero_general_public_license), "legal/AGPL-3.0.txt") },
+                ui(R.string.ui_gnu_agpl_licence) to { LegalInfo.showAsset(this, ui(R.string.ui_gnu_affero_general_public_license), "legal/AGPL-3.0.txt") },
                 ui(R.string.ui_third_party_notices) to { LegalInfo.showAsset(this, ui(R.string.ui_open_source_credits_and_notices), "legal/THIRD_PARTY_NOTICES.txt") },
                 ui(R.string.ui_export_this_version_s_source_code) to { exportSource() },
                 ui(R.string.ui_icons_fonts_artwork_credits) to { LegalInfo.showAsset(this, ui(R.string.ui_icons_fonts_artwork_credits), "legal/ASSET_CREDITS.txt") },
                 ui(R.string.ui_image_credits) to {showImageCredits()},
-                "JPEG XL codec licences" to {LegalInfo.showAsset(this,"JPEG XL codec licences","legal/JPEG_XL_NOTICES.txt")},
+                ui(R.string.ui_jpeg_xl_codec_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")},
                 ui(R.string.ui_font_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt") },
                 ui(R.string.ui_icon_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt") }
             )
@@ -949,7 +949,7 @@ class ClassicPaintActivity : Activity() {
     private fun beginIo() { operationsInFlight++; busy = true; lastIoError = null; paintCanvas.isEnabled = false; updateStatus() }
     private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) } }
     private fun ioFailed(prefix: String, e: Throwable) {
-        runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = "$prefix. ${e.message ?: "Please try a different file or location."}"; message(lastIoError!!) } }
+        runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = "$prefix. ${e.message ?: ui(R.string.ui_try_a_different_file_or_location)}"; message(lastIoError!!) } }
     }
     private fun setColour(colour: Int,background: Boolean) {
         if(background) document.background=colour else document.foreground=colour
