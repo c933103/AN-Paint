@@ -1,6 +1,8 @@
 /* AN Paint, 2026-09-10. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.view.View
@@ -16,9 +18,9 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
     fun show(): AlertDialog {
         var format=initial.format;var quality=initial.quality;var lossless=initial.lossless
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
-        val losslessBox=CheckBox(activity).apply {tag="export_lossless";text="Lossless JPEG XL";isChecked=lossless}
-        val slider=NumericSlider(activity,"Quality (%)",quality,1,100) {quality=it}.apply {tag="export_quality"}
-        val explanation=TextView(activity).apply {text="Higher quality usually makes a larger file. Lossless keeps every colour value."}
+        val losslessBox=CheckBox(activity).apply {tag="export_lossless";text=ui(R.string.ui_lossless_jpeg_xl);isChecked=lossless}
+        val slider=NumericSlider(activity,ui(R.string.ui_quality),quality,1,100) {quality=it}.apply {tag="export_quality"}
+        val explanation=TextView(activity).apply {text=ui(R.string.ui_higher_quality_usually_makes_a_larger_file_lossless)}
         fun update() {
             losslessBox.visibility=if(format==ImageFormat.JPEG_XL) View.VISIBLE else View.GONE
             slider.visibility=if(format==ImageFormat.JPEG || format==ImageFormat.JPEG_XL && !lossless) View.VISIBLE else View.GONE
@@ -33,9 +35,9 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         })
         body.addView(losslessBox);body.addView(slider);body.addView(explanation)
         losslessBox.setOnCheckedChangeListener {_,checked -> lossless=checked;update()};update()
-        return AlertDialog.Builder(activity).setTitle(if(chooseFormat) "Save and share" else "Save as ${format.label}")
+        return AlertDialog.Builder(activity).setTitle(if(chooseFormat) ui(R.string.ui_save_and_share_41edb4) else ui(R.string.ui_save_as, format.label))
             .setView(ScrollView(activity).apply {addView(body)})
-            .setPositiveButton("Choose location…") {_,_ -> confirm(ExportOptions(format,quality,lossless))}
-            .setNegativeButton("Cancel") {_,_ -> cancel()}.setOnCancelListener {cancel()}.show()
+            .setPositiveButton(ui(R.string.ui_choose_location)) {_,_ -> confirm(ExportOptions(format,quality,lossless))}
+            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.show()
     }
 }

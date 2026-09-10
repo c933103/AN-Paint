@@ -15,8 +15,8 @@ class ColourStatusButton(context: Context) : View(context) {
     var expanded = false
     init { isClickable=true;isFocusable=true }
     fun refresh() {
-        contentDescription="Foreground ${hex(foreground)}, background ${hex(backgroundColour)}. ${if (expanded) "Left arrow: collapse" else "Right arrow: expand"} colour palette."
-        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText=if (expanded) "Collapse colour palette" else "Expand colour palette"
+        contentDescription=ui(R.string.ui_foreground_background_colour_palette, hex(foreground), hex(backgroundColour), if (expanded) ui(R.string.ui_left_arrow_collapse) else ui(R.string.ui_right_arrow_expand))
+        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText=if (expanded) ui(R.string.ui_collapse_colour_palette) else ui(R.string.ui_expand_colour_palette)
         invalidate()
     }
     private fun hex(c: Int)=String.format(Locale.ROOT,"#%06X",c and 0xffffff)
@@ -24,7 +24,7 @@ class ColourStatusButton(context: Context) : View(context) {
         val d=resources.displayMetrics.density
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
         val colourRight=width-26*d
-        listOf(foreground to "FG",backgroundColour to "BG").forEachIndexed { i,(colour,name) ->
+        listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->
             val top=i*height/2f
             p.color=colour;c.drawRect(3*d,top+2*d,colourRight,top+height/2f-2*d,p)
             fun linear(value: Int): Double { val s=value/255.0;return if (s<=.04045) s/12.92 else Math.pow((s+.055)/1.055,2.4) }

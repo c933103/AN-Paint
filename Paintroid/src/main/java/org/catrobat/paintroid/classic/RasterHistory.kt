@@ -1,6 +1,8 @@
 /* Pocket Paint Local additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.graphics.Bitmap
 import java.io.*
 import java.nio.ByteBuffer
@@ -16,7 +18,7 @@ class RasterHistory(parent: File) : Closeable {
     private val directory = File(parent, "session-${UUID.randomUUID()}")
 
     fun capture(bitmap: Bitmap): Entry {
-        if (!directory.isDirectory && !directory.mkdirs()) throw IOException("Cannot create the undo cache. Free some device storage and try again.")
+        if (!directory.isDirectory && !directory.mkdirs()) throw IOException(ui(R.string.ui_cannot_create_the_undo_cache_free_some_device))
         val file = File.createTempFile("undo-", ".rgba", directory)
         val deflater = Deflater(Deflater.BEST_SPEED)
         try {
@@ -54,7 +56,7 @@ class RasterHistory(parent: File) : Closeable {
     private fun read(entry: Entry, bitmap: Bitmap?) {
         DataInputStream(InflaterInputStream(BufferedInputStream(entry.file.inputStream()))).use { input ->
             if (input.readInt() != 0x50504c34 || input.readInt() != entry.width || input.readInt() != entry.height)
-                throw IOException("The undo cache is damaged.")
+                throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))
             val bytes = ByteArray(32 * 1024)
             val integers = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asIntBuffer()
             val pixels = IntArray(bytes.size / 4)
@@ -70,7 +72,7 @@ class RasterHistory(parent: File) : Closeable {
                     x += count
                 }
             }
-            if (input.read() != -1) throw IOException("Unexpected data in the undo cache.")
+            if (input.read() != -1) throw IOException(ui(R.string.ui_unexpected_data_in_the_undo_cache))
         }
     }
 

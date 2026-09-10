@@ -185,8 +185,8 @@ class ClassicWorkspaceTest {
         assertEquals(Color.BLACK,doc.bitmap.getPixel(30,10))
         click("undo"); assertEquals(Color.BLUE, doc.bitmap.getPixel(30, 10))
     }
-    @Test fun everyPicturedToolAndMenuHasAnActiveControl() {
-        assertEquals(16, PaintTool.values().size)
+    @Test fun everyCurrentToolAndMenuHasAnActiveControl() {
+        assertEquals(20, PaintTool.values().size)
         PaintTool.values().forEach { tool(it) }
         for (name in listOf("File", "Edit", "View", "Image", "Colors", "Help")) {
             click("menu_$name"); assertTrue(ShadowPopupMenu.getLatestPopupMenu().menu.size() > 0)

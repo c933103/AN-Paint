@@ -26,6 +26,19 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :app:assembleDebug :Paintroid:testDebugUnitTest :app:lintDebug :app:writeDependencyInventory
+      - name: Run native codec tests on Android
+        if: ${{ !cancelled() }}
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-30;google_apis;x86_64" "emulator"
+          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name codec --package "system-images;android-30;google_apis;x86_64"
+          sudo chmod a+rw /dev/kvm
+          "$ANDROID_HOME/emulator/emulator" -avd codec -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > emulator.log 2>&1 &
+          "$ANDROID_HOME/platform-tools/adb" wait-for-device
+          for attempt in $(seq 1 90); do
+            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
+            sleep 2
+          done
+          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest
       - name: Prepare verification tools
         if: always()
         run: |
@@ -43,5 +56,7 @@ jobs:
             app/build/reports/
             app/build/runtime-dependencies.json
             Paintroid/build/test-results/
+            Paintroid/build/outputs/androidTest-results/
+            emulator.log
             Paintroid/build/reports/
             verification-tools/

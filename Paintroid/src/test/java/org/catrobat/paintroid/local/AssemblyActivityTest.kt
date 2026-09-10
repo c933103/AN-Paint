@@ -126,7 +126,7 @@ class AssemblyActivityTest {
         shadowOf(activity).receiveResult(launch.intent,Activity.RESULT_OK,Intent().setData(Uri.parse("content://assembly.fixture/out"))); waitForWork()
         val bitmap=BitmapFactory.decodeFile(output.path)
         assertEquals(36,bitmap.width); assertEquals(24,bitmap.height)
-        assertEquals(Color.RED,bitmap.getPixel(23,15)); assertEquals(Color.GREEN,bitmap.getPixel(24,15)); assertEquals(Color.BLUE,bitmap.getPixel(17,16)); assertEquals(Color.TRANSPARENT,bitmap.getPixel(35,23)); bitmap.recycle()
+        assertEquals(Color.RED,bitmap.getPixel(23,15)); assertEquals(Color.GREEN,bitmap.getPixel(24,15)); assertEquals(Color.BLUE,bitmap.getPixel(17,16)); assertEquals(Color.WHITE,bitmap.getPixel(35,23)); bitmap.recycle()
         originals.forEach { (id,bytes) -> assertArrayEquals(bytes,provider.files.getValue(id).file.readBytes()) }
         click("assembly_save"); waitForWork(); val cancelled=shadowOf(activity).nextStartedActivityForResult
         shadowOf(activity).receiveResult(cancelled.intent,Activity.RESULT_CANCELED,null); waitForWork()

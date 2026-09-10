@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -19,7 +21,7 @@ class CropPreview(context: Context) : View(context) {
     var crop: CropOverlay? = null
     var changed: (Rect) -> Unit = {}
     private var scale = 1f; private var x = 0f; private var y = 0f
-    init { isFocusable = true; isClickable = true; contentDescription = "Crop preview. Drag an edge or corner; drag inside to move the crop." }
+    init { isFocusable = true; isClickable = true; contentDescription = ui(R.string.ui_crop_preview_drag_an_edge_or_corner_drag) }
     private fun position() {
         val size = crop?.image ?: return; val pad = 14 * resources.displayMetrics.density
         scale = min((width-2*pad).coerceAtLeast(1f)/size.width,(height-2*pad).coerceAtLeast(1f)/size.height)
@@ -57,7 +59,7 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
         val selected = images.filter { images.size == 1 || it.attachment == null }.map { it.id }.toMutableSet().apply { if (isEmpty()) addAll(images.map { it.id }) }
         val preview = CropPreview(activity).apply { tag = "crop_preview" }
         if (images.size > 1) body.addView(Spinner(activity).apply {
-            tag = "crop_preview_image"; contentDescription = "Image shown in crop preview"
+            tag = "crop_preview_image"; contentDescription = ui(R.string.ui_image_shown_in_crop_preview)
             adapter = ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,images.map { it.name })
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) = Unit
@@ -65,11 +67,11 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
             }
         })
         body.addView(preview,LinearLayout.LayoutParams(-1,dp(200)))
-        body.addView(TextView(activity).apply { text = "Trim from the original edges. Drag the handles or enter amounts below. Source files stay unchanged."; textSize = 13f })
+        body.addView(TextView(activity).apply { text = ui(R.string.ui_trim_from_the_original_edges_drag_the_handles); textSize = 13f })
         val unitRow = RadioGroup(activity).apply { orientation = LinearLayout.HORIZONTAL }
         val fields = linkedMapOf<String,EditText>()
         fun margins(): CropMargins? {
-            val n = fields.values.map { it.text.toString().toDoubleOrNull() ?: return null }
+            val n = fields.values.map { uiNumber(it.text.toString()) ?: return null }
             return CropMargins(n[0],n[1],n[2],n[3],percent)
         }
         fun displayValues(r: Rect) {
@@ -83,15 +85,15 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
         fun refresh(updatePreview: Boolean = true) {
             if (syncing) return
             try {
-                val m = margins() ?: throw IllegalArgumentException("Enter a trim amount for every edge.")
+                val m = margins() ?: throw IllegalArgumentException(ui(R.string.ui_enter_a_trim_amount_for_every_edge))
                 val crop = m.rect(reference.dimensions)
                 if (updatePreview) { preview.bitmap = previewBitmap(reference); preview.crop = CropOverlay(reference.dimensions,crop); preview.invalidate() }
                 val count = images.count { it.id in selected }
                 images.filter { it.id in selected }.forEach { m.rect(it.dimensions) }
-                status.text = "Preview: ${crop.width()} × ${crop.height()} px\nApply to $count image${if (count == 1) "" else "s"}. Cropping placed images repositions their attachments."
+                status.text = ui(R.string.ui_preview_px_apply_to_image_cropping_placed_images, crop.width(), crop.height(), count, if (count == 1) "" else "s")
             } catch (error: IllegalArgumentException) { status.text = error.message }
         }
-        listOf("Pixels", "Percent").forEachIndexed { index, name ->
+        listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent)).forEachIndexed { index, name ->
             unitRow.addView(RadioButton(activity).apply {
                 text = name; id = View.generateViewId(); tag = "crop_${if (index == 0) "pixels" else "percent"}"; isChecked = index == 0
                 setOnClickListener {
@@ -104,13 +106,13 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 }
             },LinearLayout.LayoutParams(0,-2,1f))
         }; body.addView(unitRow)
-        listOf("Left","Top","Right","Bottom").chunked(2).forEach { pair ->
+        listOf(ui(R.string.ui_left),ui(R.string.ui_top),ui(R.string.ui_right),ui(R.string.ui_bottom)).chunked(2).forEach { pair ->
             val row = LinearLayout(activity)
             pair.forEach { name ->
                 val column = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
                 column.addView(TextView(activity).apply { text = name; textSize = 13f })
                 val field = EditText(activity).apply {
-                    tag = "crop_${name.lowercase(Locale.ROOT)}"; contentDescription = "$name trim in pixels"; inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL; isSingleLine = true; setSelectAllOnFocus(true)
+                    tag = "crop_${name.lowercase(Locale.ROOT)}"; contentDescription = ui(R.string.ui_trim_in_pixels, name); inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL; isSingleLine = true; setSelectAllOnFocus(true)
                     addTextChangedListener(object : TextWatcher {
                         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
                         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { if (fields.size == 4) refresh() }
@@ -119,31 +121,31 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 }; fields[name] = field; column.addView(field); row.addView(column,LinearLayout.LayoutParams(0,-2,1f))
             }; body.addView(row)
         }
-        body.addView(Button(activity).apply { text = "Reset crop"; isAllCaps = false; tag = "crop_reset"; setOnClickListener { displayValues(Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh() } })
+        body.addView(Button(activity).apply { text = ui(R.string.ui_reset_crop); isAllCaps = false; tag = "crop_reset"; setOnClickListener { displayValues(Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh() } })
         body.addView(status); status.setOnClickListener { refresh() }
         if (images.size > 1) {
-            body.addView(TextView(activity).apply { text = "Apply to these images" })
+            body.addView(TextView(activity).apply { text = ui(R.string.ui_apply_to_these_images) })
             val checks = images.map { item -> CheckBox(activity).apply {
                 text = item.name; tag = "crop_include_${item.id}"; isChecked = item.id in selected
                 setOnCheckedChangeListener { _, checked -> if (checked) selected.add(item.id) else selected.remove(item.id); refresh() }
                 body.addView(this)
             } }
             val actions = LinearLayout(activity)
-            listOf("All" to true,"None" to false).forEach { (label,checked) -> actions.addView(Button(activity).apply {
+            listOf(ui(R.string.ui_all) to true,ui(R.string.ui_none) to false).forEach { (label,checked) -> actions.addView(Button(activity).apply {
                 text = label; isAllCaps = false; tag = "crop_${label.lowercase(Locale.ROOT)}"; setOnClickListener { checks.forEach { it.isChecked = checked } }
             },LinearLayout.LayoutParams(0,-2,1f)) }; body.addView(actions)
         }
         preview.changed = { rect -> displayValues(rect); refresh(false) }
         displayValues(if (images.size == 1) reference.crop else Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh()
-        val dialog = AlertDialog.Builder(activity).setTitle(if (images.size == 1) "Crop ${reference.name}" else "Batch crop images")
-            .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton("Cancel",null).setPositiveButton("Apply crop",null).create()
+        val dialog = AlertDialog.Builder(activity).setTitle(if (images.size == 1) ui(R.string.ui_crop, reference.name) else ui(R.string.ui_batch_crop_images))
+            .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             try {
-                require(selected.isNotEmpty()) { "Choose at least one image." }
-                val m = margins() ?: throw IllegalArgumentException("Enter all four trim amounts.")
+                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }
+                val m = margins() ?: throw IllegalArgumentException(ui(R.string.ui_enter_all_four_trim_amounts))
                 val crops = images.filter { it.id in selected }.associate { it.id to m.rect(it.dimensions) }
                 apply(crops); dialog.dismiss()
-            } catch (error: Exception) { status.text = error.message ?: "Could not apply the crop." }
+            } catch (error: Exception) { status.text = error.message ?: ui(R.string.ui_could_not_apply_the_crop) }
         } }; dialog.show(); return dialog
     }
 }

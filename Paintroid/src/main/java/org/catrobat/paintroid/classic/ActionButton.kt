@@ -9,7 +9,9 @@ import android.graphics.*
 import android.view.View
 import org.catrobat.paintroid.R
 
-enum class EditIcon(val label: String) { UNDO("Undo"), REDO("Redo"), CUT("Cut"), COPY("Copy"), PASTE("Paste"), MINUS("Zoom out"), PLUS("Zoom in"), SELECT_ALL("Select all"), SIDEBAR("Toggle toolbox") }
+enum class EditIcon(private val labelId: Int) { UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);
+    val label: String get() = ui(labelId)
+}
 
 class ActionButton(context: Context, val icon: EditIcon) : View(context) {
     private val glyph = CopyleftIcon(context, when (icon) {

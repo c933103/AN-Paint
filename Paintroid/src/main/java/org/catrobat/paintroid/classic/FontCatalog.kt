@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. Font files keep their separate OFL licences. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.graphics.Typeface
 import android.view.View
@@ -15,9 +17,9 @@ class FontCatalog(private val context: Context) {
     val fonts: List<FontChoice>
     private val faces=mutableMapOf<String,Typeface>()
     init {
-        val system=listOf("Sans serif" to "sans-serif","Serif" to "serif","Monospace" to "monospace",
-            "Sans light" to "sans-serif-light","Sans thin" to "sans-serif-thin","Sans condensed" to "sans-serif-condensed",
-            "Sans medium" to "sans-serif-medium","Cursive" to "cursive","Casual" to "casual")
+        val system=listOf(ui(R.string.ui_sans_serif) to "sans-serif",ui(R.string.ui_serif) to "serif",ui(R.string.ui_monospace) to "monospace",
+            ui(R.string.ui_sans_light) to "sans-serif-light",ui(R.string.ui_sans_thin) to "sans-serif-thin",ui(R.string.ui_sans_condensed) to "sans-serif-condensed",
+            ui(R.string.ui_sans_medium) to "sans-serif-medium",ui(R.string.ui_cursive) to "cursive",ui(R.string.ui_casual) to "casual")
         val list=context.assets.open("fonts/inventory.json").bufferedReader().use { JSONArray(it.readText()) }
         fonts=system.map { FontChoice("system_"+it.second,it.first,family=it.second) } + (0 until list.length()).map {
             val row=list.getJSONObject(it);FontChoice(row.getString("id"),row.getString("name"),row.getString("asset"))

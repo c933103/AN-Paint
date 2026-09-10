@@ -4,31 +4,35 @@
  */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.graphics.*
 import java.util.ArrayDeque
 import java.io.File
 
-enum class PaintTool(val label: String, val hint: String) {
-    LASSO("Free-form select", "Draw around an area. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Commit selection applies the edit."),
-    SELECT("Rectangle select", "Drag a selection. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Lock proportions keeps its shape."),
-    ERASER("Eraser", "Drag to erase with the background colour."),
-    FILL("Bucket fill", "Tap an enclosed area. Adjust tolerance for similar colours."),
-    PICKER("Eyedropper", "Tap the image to sample the foreground colour."),
-    ZOOM("Navigate", "Drag to pan without drawing. Pinch with two fingers to zoom and pan. Two-finger navigation also works with drawing tools."),
-    PENCIL("Pencil", "Draw a crisp, one-pixel line."),
-    BRUSH("Brush", "Draw with the selected brush tip and size."),
-    WATERCOLOR("Watercolor", "Draw soft watercolor strokes. Strength controls how strongly the colour blends into the canvas."),
-    SPRAY("Airbrush", "Hold or drag to spray colour."),
-    TEXT("Text", "Tap the canvas to place text and choose its font and size."),
-    LINE("Line", "Drag from the start to the end of the line."),
-    CURVE("Curve", "Drag a line, then drag twice to set its two bends. Finish curve commits it early."),
-    RECTANGLE("Rectangle", "Drag between opposite corners. Choose outline or fill below."),
-    POLYGON("Polygon", "Tap vertices, then double-tap the last vertex to close the polygon. Finish polygon also works."),
-    ELLIPSE("Ellipse", "Drag across the ellipse's bounding box."),
-    ROUND_RECT("Rounded rectangle", "Set Radius (px), then drag between opposite corners. The radius is limited to half the shorter side of each rectangle."),
-    HEART("Heart", "Drag between opposite corners to draw a heart. Choose an outline or fill."),
-    STAR("Star", "Drag between opposite corners to draw a five-pointed star. Choose an outline or fill."),
-    ARROW("Arrow", "Drag from the tail towards the arrowhead. Choose an outline or fill.")
+enum class PaintTool(private val labelId: Int, private val hintId: Int) {
+    LASSO(R.string.ui_free_form_select, R.string.ui_draw_around_an_area_drag_inside_to_move),
+    SELECT(R.string.ui_rectangle_select, R.string.ui_drag_a_selection_drag_inside_to_move_square),
+    ERASER(R.string.ui_eraser, R.string.ui_drag_to_erase_with_the_background_colour),
+    FILL(R.string.ui_bucket_fill, R.string.ui_tap_an_enclosed_area_adjust_tolerance_for_similar),
+    PICKER(R.string.ui_eyedropper, R.string.ui_tap_the_image_to_sample_the_foreground_colour),
+    ZOOM(R.string.ui_navigate, R.string.ui_drag_to_pan_without_drawing_pinch_with_two),
+    PENCIL(R.string.ui_pencil, R.string.ui_draw_a_crisp_one_pixel_line),
+    BRUSH(R.string.ui_brush, R.string.ui_draw_with_the_selected_brush_tip_and_size),
+    WATERCOLOR(R.string.ui_watercolor, R.string.ui_draw_soft_watercolor_strokes_strength_controls_how_strongly),
+    SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),
+    TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),
+    LINE(R.string.ui_line, R.string.ui_drag_from_the_start_to_the_end_of),
+    CURVE(R.string.ui_curve, R.string.ui_drag_a_line_then_drag_twice_to_set),
+    RECTANGLE(R.string.ui_rectangle, R.string.ui_drag_between_opposite_corners_choose_outline_or_fill),
+    POLYGON(R.string.ui_polygon, R.string.ui_tap_vertices_then_double_tap_the_last_vertex),
+    ELLIPSE(R.string.ui_ellipse, R.string.ui_drag_across_the_ellipse_s_bounding_box),
+    ROUND_RECT(R.string.ui_rounded_rectangle, R.string.ui_set_radius_px_then_drag_between_opposite_corners),
+    HEART(R.string.ui_heart, R.string.ui_drag_between_opposite_corners_to_draw_a_heart),
+    STAR(R.string.ui_star, R.string.ui_drag_between_opposite_corners_to_draw_a_five),
+    ARROW(R.string.ui_arrow, R.string.ui_drag_from_the_tail_towards_the_arrowhead_choose);
+    val label: String get() = ui(labelId)
+    val hint: String get() = ui(hintId)
 }
 
 /** A single raster document. Every committed gesture is one undoable operation. */
@@ -84,9 +88,9 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         (clipboard?.let { it.width.toLong() * it.height } ?: 0)
 
     private fun blank(w: Int, h: Int, color: Int): Bitmap {
-        require(w > 0 && h > 0) { "Enter positive image dimensions." }
+        require(w > 0 && h > 0) { ui(R.string.ui_enter_positive_image_dimensions) }
         allocationGuard(w, h)
-        return Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888).apply { eraseColor(color) }
+        return Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888).apply { eraseColor(color or Color.BLACK);setHasAlpha(false) }
     }
 
     fun checkpoint(clearRedo: Boolean = true) {
@@ -117,7 +121,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     fun replace(image: Bitmap, asEdit: Boolean = false) {
         val incoming = if (!image.isMutable) {
             allocationGuard(image.width,image.height)
-            image.copy(Bitmap.Config.ARGB_8888,true) ?: throw OutOfMemoryError("Could not prepare the image.")
+            image.copy(Bitmap.Config.ARGB_8888,true) ?: throw OutOfMemoryError(ui(R.string.ui_could_not_prepare_the_image))
         } else image
         run {
             Canvas(incoming).drawColor(background,PorterDuff.Mode.DST_OVER)
@@ -255,7 +259,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         val bounds = s.geometry.bounds()
         val w = kotlin.math.ceil(bounds.width().toDouble()).toLong()
         val h = kotlin.math.ceil(bounds.height().toDouble()).toLong()
-        require(w in 1..Int.MAX_VALUE.toLong() && h in 1..Int.MAX_VALUE.toLong()) { "Selection dimensions are too large." }
+        require(w in 1..Int.MAX_VALUE.toLong() && h in 1..Int.MAX_VALUE.toLong()) { ui(R.string.ui_selection_dimensions_are_too_large) }
         allocationGuard(w.toInt(),h.toInt())
         val output = Bitmap.createBitmap(w.toInt(),h.toInt(),Bitmap.Config.ARGB_8888)
         var rendered: Bitmap? = null
@@ -287,9 +291,10 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun paste(image: Bitmap? = clipboard, takeOwnership: Boolean = false): Boolean {
         image ?: return false
-        if (!takeOwnership) allocationGuard(image.width, image.height)
+        if (!takeOwnership || !image.isMutable) allocationGuard(image.width, image.height)
         finishSelection(); checkpoint()
-        val copy = if (takeOwnership) image else image.copy(Bitmap.Config.ARGB_8888, true)
+        val copy = if (takeOwnership && image.isMutable) image else image.copy(Bitmap.Config.ARGB_8888, true)
+        if(takeOwnership && copy !== image) image.recycle()
         // Imported files are opaque; an internal clipboard keeps its selection mask.
         if (image !== clipboard) {
             Canvas(copy).drawColor(background,PorterDuff.Mode.DST_OVER)
@@ -300,7 +305,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     }
 
     fun resize(w: Int, h: Int, stretch: Boolean) {
-        require(w > 0 && h > 0) { "Enter positive image dimensions." }
+        require(w > 0 && h > 0) { ui(R.string.ui_enter_positive_image_dimensions) }
         finishSelection()
         val next = blank(w, h, background)
         val canvas = Canvas(next)
@@ -311,13 +316,13 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     }
 
     fun cropCanvas(rect: Rect) {
-        require(rect.left >= 0 && rect.top >= 0 && rect.right <= bitmap.width && rect.bottom <= bitmap.height && rect.width() > 0 && rect.height() > 0) { "Crop must stay inside the canvas." }
+        require(rect.left >= 0 && rect.top >= 0 && rect.right <= bitmap.width && rect.bottom <= bitmap.height && rect.width() > 0 && rect.height() > 0) { ui(R.string.ui_crop_must_stay_inside_the_canvas) }
         changeCanvasBounds(rect)
     }
 
     fun changeCanvasBounds(rect: Rect) {
         val width = rect.right.toLong()-rect.left; val height = rect.bottom.toLong()-rect.top
-        require(width in 1..Int.MAX_VALUE.toLong() && height in 1..Int.MAX_VALUE.toLong()) { "Enter positive canvas dimensions within Android's coordinate range." }
+        require(width in 1..Int.MAX_VALUE.toLong() && height in 1..Int.MAX_VALUE.toLong()) { ui(R.string.ui_enter_positive_canvas_dimensions_within_android_s_coordinate) }
         if (rect == Rect(0,0,bitmap.width,bitmap.height)) return
         allocationGuard(rect.width(),rect.height()); finishSelection()
         val next = Bitmap.createBitmap(rect.width(),rect.height(),Bitmap.Config.ARGB_8888)

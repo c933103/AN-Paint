@@ -118,7 +118,7 @@ class ImageResizeFlowTest {
         assertSame(original,activity.document.bitmap)
         val selection = activity.document.selection!!.image
         assertEquals(400,selection.width); assertEquals(600,selection.height)
-        assertEquals(0x8000ff00.toInt(),selection.getPixel(50,500)); assertEquals(1,provider.reads); assertNoCachedImport()
+        assertEquals(0xff7fff7f.toInt(),selection.getPixel(50,500)); assertEquals(1,provider.reads); assertNoCachedImport()
     }
     @Test fun invalidOrOverBudgetSizesStayInDialogAndCancelPreservesCanvasAndSource() {
         fixture(); memoryBudget(24*mib); activity.document.bitmap.setPixel(2,3,Color.MAGENTA)

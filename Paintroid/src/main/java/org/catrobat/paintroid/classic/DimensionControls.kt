@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.text.Editable
 import android.text.InputType
@@ -15,7 +17,7 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
     prefix: String = "size", locked: Boolean = true) : LinearLayout(context) {
     val widthInput = EditText(context)
     val heightInput = EditText(context)
-    val aspectLock = CheckBox(context).apply { text = "Lock aspect ratio"; tag = "${prefix}_lock"; isChecked = locked }
+    val aspectLock = CheckBox(context).apply { text = ui(R.string.ui_lock_aspect_ratio); tag = "${prefix}_lock"; isChecked = locked }
     private val widthLabel = TextView(context)
     private val heightLabel = TextView(context)
     private val result = TextView(context).apply { tag = "${prefix}_result"; textSize = 13f }
@@ -27,7 +29,7 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
     init {
         orientation = VERTICAL
         val units = RadioGroup(context).apply { orientation = HORIZONTAL; tag = "${prefix}_units" }
-        listOf("Pixels", "Percent").forEachIndexed { i, text ->
+        listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent)).forEachIndexed { i, text ->
             units.addView(RadioButton(context).apply {
                 this.text = text; id = View.generateViewId(); tag = "${prefix}_${if (i == 0) "pixels" else "percent"}"; isChecked = i == 0
                 setOnClickListener { units.check(id); if (percent != (i == 1)) { percent = i == 1; display(); changed(target) } }
@@ -50,7 +52,7 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
         })
         watch(widthInput,true); watch(heightInput,false); display()
     }
-    private fun number(input: EditText) = input.text.toString().toDoubleOrNull()?.takeIf { it.isFinite() && it > 0 && (percent || it == floor(it)) }
+    private fun number(input: EditText) = uiNumber(input.text.toString())?.takeIf { it.isFinite() && it > 0 && (percent || it == floor(it)) }
     private fun pixels(value: Double?, base: Int): Int? {
         val n = value?.let { if (percent) it * base / 100 else it } ?: return null
         return if (n.isFinite() && n.roundToLong() in 1..Int.MAX_VALUE.toLong()) n.roundToInt() else null
@@ -71,14 +73,14 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
         showResult(); syncing = false; changed(target)
     }
     fun setDimensions(size: ImageDimensions) { target = size; display(); changed(target) }
-    private fun showResult() { result.text = target?.describe() ?: "Enter positive dimensions that resolve to at least 1 pixel." }
+    private fun showResult() { result.text = target?.describe() ?: ui(R.string.ui_enter_positive_dimensions_that_resolve_to_at_least) }
     private fun display() {
         syncing = true
         val unit = if (percent) "%" else "px"
-        widthLabel.text = "Width ($unit)"; heightLabel.text = "Height ($unit)"
+        widthLabel.text = ui(R.string.ui_width, unit); heightLabel.text = ui(R.string.ui_height, unit)
         listOf(widthInput,heightInput).forEach { it.inputType = InputType.TYPE_CLASS_NUMBER or if (percent) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0 }
-        widthInput.contentDescription = "Width in ${if (percent) "percent" else "pixels"}"
-        heightInput.contentDescription = "Height in ${if (percent) "percent" else "pixels"}"
+        widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))
+        heightInput.contentDescription = ui(R.string.ui_height_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))
         target?.let { size ->
             widthInput.setText(if (percent) format(size.width * 100.0 / original.width) else size.width.toString())
             heightInput.setText(if (percent) format(size.height * 100.0 / original.height) else size.height.toString())

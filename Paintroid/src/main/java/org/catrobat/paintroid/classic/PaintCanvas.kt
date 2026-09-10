@@ -1,6 +1,8 @@
 /* Pocket Paint Local additions, 2026-09-07. GNU AGPL-3.0-or-later; no warranty. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.graphics.*
 import android.view.MotionEvent
@@ -92,7 +94,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
 
     init {
-        contentDescription = "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger."
+        contentDescription = ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
         isFocusable = true
         setLayerType(LAYER_TYPE_SOFTWARE, null)
     }
@@ -415,7 +417,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.drawLine(top.x,top.y,grip.x,grip.y,edge)
         canvas.drawCircle(grip.x,grip.y,7*d,fill);canvas.drawCircle(grip.x,grip.y,7*d,edge)
         val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom }
-        canvas.drawText("Rotate",grip.x+10*d,grip.y+4*d,text)
+        canvas.drawText(ui(R.string.ui_rotate),grip.x+10*d,grip.y+4*d,text)
         s.geometry.resizeHandles().values.forEach { point ->
             val r=RectF(point.x-5*d,point.y-5*d,point.x+5*d,point.y+5*d)
             canvas.drawRect(r,fill);canvas.drawRect(r,edge)
@@ -497,7 +499,15 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 }
                 MotionEvent.ACTION_UP -> {
                     if(multiTouch || !down) {multiTouch=false;down=false;return true}
-                    if(cursorDrawing) { if(cursorMoved) { stroke(smoothedPrevious,cursor,finishing=true);document.finishGesture() } else document.cancelGesture() }
+                    val old=PointF(cursor.x,cursor.y)
+                    cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
+                    cursorMoved=cursorMoved || hypot(event.x-screenStart.x,event.y-screenStart.y)>touchSlop
+                    if(cursorDrawing) {
+                        if(cursorMoved) {
+                            stroke(if(document.strokeSmoothing && tool!=PaintTool.PENCIL) smoothedPrevious else old,cursor,finishing=true)
+                            document.finishGesture()
+                        } else document.cancelGesture()
+                    }
                     if(!cursorMoved) cursorDrawing=!cursorDrawing
                     down=false;performClick();onStatus()
                 }

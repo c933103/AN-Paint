@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.graphics.Rect
 import android.util.AtomicFile
 import org.json.JSONArray
@@ -18,28 +20,30 @@ data class AssemblyImage(val id: String, val file: File, val name: String, val t
     val croppedSize get() = ImageDimensions(crop.width(),crop.height())
     val placedSize: ImageDimensions get() {
         val n = normalization ?: return croppedSize
-        require(n.pixels > 0) { "Use a positive target dimension." }
+        require(n.pixels > 0) { ui(R.string.ui_use_a_positive_target_dimension) }
         val base = if (n.axis == NormalizeAxis.WIDTH) crop.width() else crop.height()
         val other = if (n.axis == NormalizeAxis.WIDTH) crop.height() else crop.width()
-        require(base > 0 && other > 0) { "The crop must contain at least one pixel." }
+        require(base > 0 && other > 0) { ui(R.string.ui_the_crop_must_contain_at_least_one_pixel) }
         val scaled = (other.toLong()*n.pixels+base/2)/base
-        require(scaled in 1..Int.MAX_VALUE.toLong()) { "The normalized image dimensions are outside Android's range." }
+        require(scaled in 1..Int.MAX_VALUE.toLong()) { ui(R.string.ui_the_normalized_image_dimensions_are_outside_android_s) }
         return if (n.axis == NormalizeAxis.WIDTH) ImageDimensions(n.pixels,scaled.toInt()) else ImageDimensions(scaled.toInt(),n.pixels)
     }
 }
 data class SnapTarget(val attachment: Attachment, val rect: Rect)
-enum class AssemblySort(val label: String) { NAME_ASC("Filename A–Z"), NAME_DESC("Filename Z–A"), OLDEST("Modified: oldest first"), NEWEST("Modified: newest first") }
+enum class AssemblySort(private val labelId: Int) { NAME_ASC(R.string.ui_filename_a_z), NAME_DESC(R.string.ui_filename_z_a), OLDEST(R.string.ui_modified_oldest_first), NEWEST(R.string.ui_modified_newest_first);
+    val label: String get() = ui(labelId)
+}
 data class CropMargins(val left: Double, val top: Double, val right: Double, val bottom: Double, val percent: Boolean) {
     fun rect(size: ImageDimensions): Rect {
         val values = listOf(left,top,right,bottom)
-        require(values.all { it.isFinite() && it >= 0 }) { "Trim amounts must be zero or greater." }
+        require(values.all { it.isFinite() && it >= 0 }) { ui(R.string.ui_trim_amounts_must_be_zero_or_greater) }
         fun amount(n: Double, base: Int): Int {
             val p = if (percent) n * base / 100 else n
-            require(p <= base && (percent || n == kotlin.math.floor(n))) { "Trim amounts must fit inside each image; use whole pixels or percentages." }
+            require(p <= base && (percent || n == kotlin.math.floor(n))) { ui(R.string.ui_trim_amounts_must_fit_inside_each_image_use) }
             return p.roundToInt()
         }
         val r = Rect(amount(left,size.width),amount(top,size.height),size.width-amount(right,size.width),size.height-amount(bottom,size.height))
-        require(r.width() > 0 && r.height() > 0) { "The trim would remove the entire image." }
+        require(r.width() > 0 && r.height() > 0) { ui(R.string.ui_the_trim_would_remove_the_entire_image) }
         return r
     }
 }
@@ -75,7 +79,7 @@ class ImageAssembly(val directory: File) {
         }
     }
     fun add(items: List<AssemblyImage>) {
-        require(state.size + items.size <= MAX_IMAGES) { "An assembly can contain up to 20 images." }
+        require(state.size + items.size <= MAX_IMAGES) { ui(R.string.ui_an_assembly_can_contain_up_to_20_images_86d995) }
         change(state + items)
     }
     /** Remove one image from the attachment tree and promote its successor into the gap. */
@@ -110,7 +114,7 @@ class ImageAssembly(val directory: File) {
         val done = mutableSetOf<String>()
         while (pending.isNotEmpty()) {
             val item = pending.firstOrNull { it.attachment!!.anchor == null || it.attachment.anchor in done }
-                ?: throw IllegalArgumentException("Invalid image attachments.")
+                ?: throw IllegalArgumentException(ui(R.string.ui_invalid_image_attachments))
             val alternatives = if (done.isEmpty()) listOf(Attachment(null,null)) else
                 listOf(item.attachment!!) + next.filter { it.id in done }.flatMap { anchor -> SnapEdge.values().map { Attachment(anchor.id,it) } }
             var best: List<AssemblyImage>? = null; var distance = Double.POSITIVE_INFINITY
@@ -124,14 +128,14 @@ class ImageAssembly(val directory: File) {
                     if (score < distance) { best=candidate; distance=score }
                 } catch (_: IllegalArgumentException) { }
             }
-            next = best ?: throw IllegalArgumentException("The images cannot fit within Android's coordinate range. Choose smaller image sizes.")
+            next = best ?: throw IllegalArgumentException(ui(R.string.ui_the_images_cannot_fit_within_android_s_coordinate))
             done.add(item.id); pending.remove(item)
         }
         validate(next); return next
     }
     fun clear() = change(emptyList())
     fun crop(ids: Set<String>, margins: CropMargins) {
-        require(ids.isNotEmpty()) { "Choose at least one image." }
+        require(ids.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }
         change(state.map { if (it.id in ids) it.copy(crop = margins.rect(it.dimensions)) else it })
     }
     fun crop(id: String, rect: Rect) = change(state.map { if (it.id == id) it.copy(crop = Rect(rect)) else it })
@@ -159,28 +163,28 @@ class ImageAssembly(val directory: File) {
         val byId = items.associateBy { it.id }
         fun resolve(item: AssemblyImage): Rect {
             result[item.id]?.let { return it }
-            require(resolving.add(item.id)) { "An image cannot attach to itself or one of its attached images." }
-            val a = item.attachment ?: throw IllegalArgumentException("The attachment image is not placed.")
+            require(resolving.add(item.id)) { ui(R.string.ui_an_image_cannot_attach_to_itself_or_one) }
+            val a = item.attachment ?: throw IllegalArgumentException(ui(R.string.ui_the_attachment_image_is_not_placed))
             var x = 0; var y = 0
             if (a.anchor != null) {
-                val parent = resolve(byId[a.anchor] ?: throw IllegalArgumentException("The attachment image is missing."))
+                val parent = resolve(byId[a.anchor] ?: throw IllegalArgumentException(ui(R.string.ui_the_attachment_image_is_missing)))
                 require(a.edge != null)
                 x = if (a.edge == SnapEdge.RIGHT) parent.right else parent.left
                 y = if (a.edge == SnapEdge.BOTTOM) parent.bottom else parent.top
             }
             val size = item.placedSize
             val right = x.toLong()+size.width; val bottom = y.toLong()+size.height
-            require(right <= Int.MAX_VALUE && bottom <= Int.MAX_VALUE) { "The assembly exceeds Android's coordinate range." }
+            require(right <= Int.MAX_VALUE && bottom <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }
             val r = Rect(x,y,right.toInt(),bottom.toInt()); result[item.id] = r; resolving.remove(item.id); return r
         }
         items.filter { it.attachment != null }.forEach { resolve(it) }; return result
     }
     private fun validate(items: List<AssemblyImage>) {
         require(items.size <= MAX_IMAGES && items.map { it.id }.distinct().size == items.size)
-        require(items.count { it.attachment != null && it.attachment.anchor == null } <= 1) { "The first image starts at the top left." }
-        items.forEach { require(it.crop.left >= 0 && it.crop.top >= 0 && it.crop.right <= it.dimensions.width && it.crop.bottom <= it.dimensions.height && it.crop.width() > 0 && it.crop.height() > 0) { "The crop must stay inside the image." }; it.placedSize }
+        require(items.count { it.attachment != null && it.attachment.anchor == null } <= 1) { ui(R.string.ui_the_first_image_starts_at_the_top_left) }
+        items.forEach { require(it.crop.left >= 0 && it.crop.top >= 0 && it.crop.right <= it.dimensions.width && it.crop.bottom <= it.dimensions.height && it.crop.width() > 0 && it.crop.height() > 0) { ui(R.string.ui_the_crop_must_stay_inside_the_image) }; it.placedSize }
         val rects = layout(items).values.toList()
-        for (i in rects.indices) for (j in i+1 until rects.size) require(!Rect.intersects(rects[i],rects[j])) { "That arrangement overlaps another image. Use a different edge or unplace the attached images first." }
+        for (i in rects.indices) for (j in i+1 until rects.size) require(!Rect.intersects(rects[i],rects[j])) { ui(R.string.ui_that_arrangement_overlaps_another_image_use_a_different) }
     }
     private fun change(next: List<AssemblyImage>) {
         validate(next); if (next == state) return
@@ -210,7 +214,7 @@ class ImageAssembly(val directory: File) {
         require(list.length() <= MAX_IMAGES)
         return (0 until list.length()).map { i ->
             val o = list.getJSONObject(i); val file = File(directory,o.getString("file"))
-            require(file.canonicalFile.parentFile == directory.canonicalFile && file.isFile) { "An assembly source image is missing." }
+            require(file.canonicalFile.parentFile == directory.canonicalFile && file.isFile) { ui(R.string.ui_an_assembly_source_image_is_missing) }
             val c = o.getJSONArray("crop")
             AssemblyImage(o.getString("id"),file,o.getString("name"),if (o.isNull("time")) null else o.getLong("time"),
                 ImageDimensions(o.getInt("width"),o.getInt("height")),Rect(c.getInt(0),c.getInt(1),c.getInt(2),c.getInt(3)),

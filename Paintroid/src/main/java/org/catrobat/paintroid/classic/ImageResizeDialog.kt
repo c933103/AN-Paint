@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.text.Editable
@@ -21,29 +23,29 @@ class ImageResizeDialog(
         fun dp(n: Int) = (n * density + .5f).toInt()
         fun label(value: String, name: String) = TextView(activity).apply { text = value; tag = name; textSize = 14f; setPadding(0,dp(5),0,dp(5)) }
         val body = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(20),dp(8),dp(20),dp(12)) }
-        body.addView(label("Original: ${source.describe()}\nDecoded image: ${memoryLabel(source.pixels * 4.0)} (RGBA, 4 bytes/pixel)\nEstimated editing memory without resizing: ${memoryLabel(source.pixels * 12.0 + residentPixels * 4.0)}", "resize_original"))
-        body.addView(label("The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.", "resize_reason"))
+        body.addView(label(ui(R.string.ui_original_decoded_image_rgba_4_bytes_pixel_estimated, source.describe(), memoryLabel(source.pixels * 4.0), memoryLabel(source.pixels * 12.0 + residentPixels * 4.0)), "resize_original"))
+        body.addView(label(ui(R.string.ui_the_full_image_and_working_buffers_exceed_the), "resize_reason"))
         val budget = label("", "resize_budget"); body.addView(budget)
         val maxScale = previousAttempt?.let { it.width.toDouble() / source.width * .75 } ?: 1.0
         val suggested = policy().suggestResize(source,residentPixels,maxScale) ?: ImageDimensions(1,1)
         val sizing = DimensionControls(activity,source,suggested,"resize",true)
-        body.addView(label("Resize the copy", "resize_heading")); body.addView(sizing)
+        body.addView(label(ui(R.string.ui_resize_the_copy), "resize_heading")); body.addView(sizing)
         val estimate = label("", "resize_estimate"); body.addView(estimate)
-        body.addView(label("Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail; PNG transparency is preserved.", "resize_explanation"))
+        body.addView(label(ui(R.string.ui_estimates_include_the_current_canvas_and_clipboard_sampled), "resize_explanation"))
         var accepted = false
-        val dialog = AlertDialog.Builder(activity).setTitle("Resize large image?")
+        val dialog = AlertDialog.Builder(activity).setTitle(ui(R.string.ui_resize_large_image))
             .setView(ScrollView(activity).apply { addView(body) })
-            .setNegativeButton("Cancel", null).setPositiveButton("Resize and load", null).create()
+            .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()
         fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }
         fun refresh(): Boolean {
             val current = policy()
-            budget.text = String.format(Locale.ROOT, "Current safe editing budget: %s · up to %.2f MP before decoder overhead", memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
+            budget.text = String.format(Locale.ROOT, ui(R.string.ui_current_safe_editing_budget_s_up_to_2f), memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
             val size = target()
             val plan = size?.let { ImportPlan.create(source,it) }
             val fits = plan != null && current.accepts(plan,residentPixels)
-            estimate.text = if (size == null) "Enter positive dimensions no larger than the original."
-                else "Copy: ${size.describe()}\nDecoded image at this size: ${memoryLabel(size.pixels * 4.0)}\nEstimated loading/editing memory: ${memoryLabel(plan!!.estimatedBytes(residentPixels))}\n" +
-                    if (fits) "Fits the current budget." else "Too large for the current budget. Reduce the dimensions or cancel and free memory."
+            estimate.text = if (size == null) ui(R.string.ui_enter_positive_dimensions_no_larger_than_the_original)
+                else ui(R.string.ui_copy_decoded_image_at_this_size_estimated_loading, size.describe(), memoryLabel(size.pixels * 4.0), memoryLabel(plan!!.estimatedBytes(residentPixels))) +
+                    if (fits) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_too_large_for_the_current_budget_reduce_the)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = fits
             return fits
         }

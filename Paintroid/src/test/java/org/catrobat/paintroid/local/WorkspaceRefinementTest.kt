@@ -150,7 +150,8 @@ class WorkspaceRefinementTest {
         doc.newImage(20,10);saveIdle()
         assertArrayEquals(original,store.recoveryCopies().single().readBytes())
         click("menu_File");val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        assertEquals("Export recovery copy…",menu.getItem(6).title);assertTrue(menu.performIdentifierAction(6,0))
+        val recovery=(0 until menu.size()).map {menu.getItem(it)}.single {it.title=="Export recovery copy…"}
+        assertTrue(menu.performIdentifierAction(recovery.itemId,0))
         val intent=shadowOf(activity).nextStartedActivityForResult
         assertEquals(ClassicPaintActivity.EXPORT_RECOVERY,intent.requestCode);assertEquals(Intent.ACTION_CREATE_DOCUMENT,intent.intent.action)
         val out=File(activity.cacheDir,"recovered-export.zip")

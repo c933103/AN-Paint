@@ -3,6 +3,8 @@
  */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.graphics.*
 import android.view.View
@@ -17,7 +19,7 @@ class HoneycombPalette(context: Context, private val value: ColourValue, private
     private data class Cell(val q: Int, val r: Int, val colour: Int, val grey: Boolean = false)
     private val cells = mutableListOf<Cell>()
     init {
-        contentDescription = "Honeycomb colour swatches with a greyscale row"
+        contentDescription = ui(R.string.ui_honeycomb_colour_swatches_with_a_greyscale_row)
         for (r in -6..6) for (q in max(-6, -r - 6)..min(6, -r + 6)) {
             val ring = maxOf(abs(q), abs(r), abs(-q-r))
             val x = sqrt(3.0) * (q + r / 2.0); val y = 1.5 * r
@@ -32,7 +34,7 @@ class HoneycombPalette(context: Context, private val value: ColourValue, private
                 private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
                 init {
                     tag = "honeycomb_colour_$index"; isFocusable = true; isClickable = true
-                    contentDescription = String.format(Locale.ROOT, "Honeycomb colour #%06X", cell.colour and 0xffffff)
+                    contentDescription = String.format(Locale.ROOT, ui(R.string.ui_honeycomb_colour_06x), cell.colour and 0xffffff)
                     setOnClickListener { value.rgb(cell.colour); invalidateSelection(); changed() }
                     setOnFocusChangeListener { _, _ -> invalidate() }
                 }

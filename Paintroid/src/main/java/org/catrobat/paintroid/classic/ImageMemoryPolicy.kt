@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
@@ -39,11 +41,11 @@ class ImageMemoryPolicy private constructor(val workingBytes: Long) {
         return minOf(MAX_BITMAP_PIXELS, (workingBytes - residentBytes).coerceAtLeast(0) / 12)
     }
     fun check(width: Int, height: Int, residentPixels: Long = 0) {
-        require(width > 0 && height > 0) { "Enter positive image dimensions." }
+        require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) }
         val pixels = width.toLong() * height.toLong()
         val permitted = maxPixels(residentPixels)
         if (pixels > permitted) throw ImageSizeException(String.format(Locale.ROOT,
-            "%d × %d pixels (%.2f MP) exceeds the current safe editing budget of %.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+            ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current),
             width, height, pixels / 1_000_000.0, permitted / 1_000_000.0))
     }
 }

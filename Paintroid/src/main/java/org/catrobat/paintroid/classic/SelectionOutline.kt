@@ -1,6 +1,8 @@
 /* AN Paint selection-outline recovery, 2026-09-09. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.graphics.Path
 import android.graphics.PathMeasure
 import org.json.JSONArray
@@ -29,7 +31,7 @@ internal object SelectionOutline {
     }
     fun read(contours: JSONArray?): Path? {
         if (contours==null || contours.length()==0) return null
-        require(contours.length()<=128) { "Invalid selection outline." }
+        require(contours.length()<=128) { ui(R.string.ui_invalid_selection_outline) }
         var count=0
         return Path().apply {
             for (i in 0 until contours.length()) {

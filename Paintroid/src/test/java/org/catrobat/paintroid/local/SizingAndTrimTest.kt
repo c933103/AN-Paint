@@ -162,7 +162,7 @@ class SizingAndTrimTest {
         assertEquals(Int.MAX_VALUE.toLong(),huge.rect.right.toLong()-huge.rect.left)
         assertEquals(Int.MAX_VALUE.toLong(),huge.rect.bottom.toLong()-huge.rect.top)
     }
-    @Test fun rejectedExpansionPreservesPixelsHistoryAndTransparentBackground() {
+    @Test fun rejectedExpansionPreservesPixelsHistoryAndOpaqueBackground() {
         val doc=PaintDocument(4,4,File(activity.cacheDir,"guarded-bounds")) { w,h ->
             if (w.toLong()*h>100) throw ImageSizeException("Test memory budget exceeded")
         }
@@ -171,7 +171,7 @@ class SizingAndTrimTest {
             try { doc.changeCanvasBounds(Rect(-100,0,4,4)); fail("Oversized canvas accepted") } catch (_: ImageSizeException) { }
             assertEquals(4,doc.bitmap.width); assertEquals(Color.RED,doc.bitmap.getPixel(1,1)); assertFalse(doc.canUndo)
             try { doc.changeCanvasBounds(Rect(Int.MIN_VALUE,0,Int.MAX_VALUE,4)); fail("Overflow accepted") } catch (_: IllegalArgumentException) { }
-            doc.changeCanvasBounds(Rect(-1,-1,5,5)); assertEquals(0,doc.bitmap.getPixel(0,0)); assertEquals(Color.RED,doc.bitmap.getPixel(2,2))
+            doc.changeCanvasBounds(Rect(-1,-1,5,5)); assertEquals(Color.BLACK,doc.bitmap.getPixel(0,0)); assertEquals(Color.RED,doc.bitmap.getPixel(2,2))
         } finally { doc.close() }
     }
     @Test fun undoAvailabilityTracksHistoryAndUnfinishedShapesInToolbarAndMenu() {

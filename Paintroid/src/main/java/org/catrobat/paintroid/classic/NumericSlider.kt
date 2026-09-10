@@ -1,6 +1,8 @@
 /* AN Paint, 2026-09-10. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.AlertDialog
 import android.content.Context
 import android.text.InputType
@@ -19,7 +21,7 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
         addView(number,LayoutParams(-1,dp(44)))
         slider.max=maximum-minimum;slider.progress=value.coerceIn(minimum,maximum)-minimum
         slider.contentDescription=name;addView(slider,LayoutParams(-1,dp(44)))
-        fun display(n: Int) { number.text="$name: $n";number.contentDescription="$name: $n. Tap to type a number." }
+        fun display(n: Int) { number.text="$name: $n";number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }
         display(slider.progress+minimum)
         slider.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(bar: SeekBar?,n: Int,user: Boolean) { display(n+minimum);changed(n+minimum) }
@@ -28,11 +30,11 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
         })
         number.setOnClickListener {
             val input=EditText(context).apply { tag="numeric_input";inputType=InputType.TYPE_CLASS_NUMBER;setText((slider.progress+minimum).toString());selectAll();gravity=Gravity.CENTER }
-            val dialog=AlertDialog.Builder(context).setTitle(name).setMessage("Enter a whole number from $minimum to $maximum.")
-                .setView(input).setPositiveButton("Apply",null).setNegativeButton("Cancel",null).create()
+            val dialog=AlertDialog.Builder(context).setTitle(name).setMessage(ui(R.string.ui_enter_a_whole_number_from_to, minimum, maximum))
+                .setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()
             dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                 val n=input.text.toString().toIntOrNull()
-                if(n==null || n !in minimum..maximum) input.error="Enter a number from $minimum to $maximum."
+                if(n==null || n !in minimum..maximum) input.error=ui(R.string.ui_enter_a_number_from_to, minimum, maximum)
                 else { slider.progress=n-minimum;dialog.dismiss() }
             } };dialog.show()
         }

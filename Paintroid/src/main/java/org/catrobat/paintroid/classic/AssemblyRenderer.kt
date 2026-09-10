@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.graphics.*
 import androidx.exifinterface.media.ExifInterface
@@ -19,7 +21,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         return original.scaled(min(ratio,previous?.let { it.width.toDouble()/original.width*.75 } ?: 1.0))
     }
     fun render(size: ImageDimensions, progress: (Int,Int) -> Unit = { _,_ -> }): Bitmap {
-        if (!fits(size)) throw ImageSizeException("The assembly needs about ${memoryLabel(estimatedBytes(size))}. Choose a smaller output size.")
+        if (!fits(size)) throw ImageSizeException(ui(R.string.ui_the_assembly_needs_about_choose_a_smaller_output, memoryLabel(estimatedBytes(size))))
         val output = Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888)
         try {
             output.eraseColor(Color.WHITE);output.setHasAlpha(false)
@@ -61,7 +63,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         try {
             if (decoder != null) {
                 input = decoder.decodeRegion(rect,BitmapFactory.Options().apply { inSampleSize = plan.sample; inPreferredConfig = Bitmap.Config.ARGB_8888; inScaled = false })
-                    ?: throw IOException("Could not decode the cropped region of ${item.name}.")
+                    ?: throw IOException(ui(R.string.ui_could_not_decode_the_cropped_region_of, item.name))
                 val decoded = input
                 val local = transform(decoded.width,decoded.height,rotation,flip)
                 val rotated = RectF(0f,0f,decoded.width.toFloat(),decoded.height.toFloat()); local.mapRect(rotated)

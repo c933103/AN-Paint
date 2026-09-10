@@ -1,6 +1,8 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.graphics.*
 import androidx.exifinterface.media.ExifInterface
 import java.io.File
@@ -9,9 +11,9 @@ import java.util.Locale
 import kotlin.math.*
 
 data class ImageDimensions(val width: Int, val height: Int) {
-    init { require(width > 0 && height > 0) { "Enter positive image dimensions." } }
+    init { require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) } }
     val pixels: Long get() = width.toLong() * height
-    fun describe() = String.format(Locale.ROOT, "%d × %d px · %,d pixels (%.2f MP)", width, height, pixels, pixels / 1_000_000.0)
+    fun describe() = String.format(Locale.ROOT, ui(R.string.ui_d_d_px_d_pixels_2f_mp), width, height, pixels, pixels / 1_000_000.0)
     fun scaled(scale: Double) = ImageDimensions(max(1, floor(width * scale).toInt()), max(1, floor(height * scale).toInt()))
 }
 
@@ -20,14 +22,14 @@ fun memoryLabel(bytes: Double): String {
     val units = arrayOf("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB")
     var amount = bytes.coerceAtLeast(0.0); var unit = 0
     while (amount >= 1024 && unit < units.lastIndex) { amount /= 1024; unit++ }
-    return String.format(Locale.ROOT, "%.1f %s", amount, units[unit])
+    return String.format(Locale.ROOT, ui(R.string.ui_1f_s), amount, units[unit])
 }
 
 data class ImportPlan(val target: ImageDimensions, val sample: Int, val decodedPixels: Long) {
     fun estimatedBytes(residentPixels: Long) = max(target.pixels * 12.0, decodedPixels * 4.0 + target.pixels * 8.0) + residentPixels * 4.0
     companion object {
         fun create(source: ImageDimensions, target: ImageDimensions): ImportPlan {
-            require(target.width <= source.width && target.height <= source.height) { "Choose dimensions no larger than the original." }
+            require(target.width <= source.width && target.height <= source.height) { ui(R.string.ui_choose_dimensions_no_larger_than_the_original) }
             fun ceilDivide(n: Int, d: Int) = (n.toLong() + d - 1) / d
             var sample = 1
             // Keep at least the requested detail. Decode a bounded power-of-two sample,
@@ -44,7 +46,7 @@ fun ImageMemoryPolicy.accepts(plan: ImportPlan, residentPixels: Long): Boolean =
 
 fun ImageMemoryPolicy.checkImport(plan: ImportPlan, residentPixels: Long) {
     check(plan.target.width, plan.target.height, residentPixels)
-    if (!accepts(plan, residentPixels)) throw ImageSizeException("The decoder and editing buffers need about ${memoryLabel(plan.estimatedBytes(residentPixels))}; the current safe editing budget is ${memoryLabel(workingBytes.toDouble())}. Choose a smaller copy.")
+    if (!accepts(plan, residentPixels)) throw ImageSizeException(ui(R.string.ui_the_decoder_and_editing_buffers_need_about_the, memoryLabel(plan.estimatedBytes(residentPixels)), memoryLabel(workingBytes.toDouble())))
 }
 
 fun ImageMemoryPolicy.suggestResize(source: ImageDimensions, residentPixels: Long, maxScale: Double = 1.0): ImageDimensions? {
@@ -68,7 +70,7 @@ class ImportedImage(val file: File, val name: String) {
     init {
         if(jxl) {val size=JxlCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
         else BitmapFactory.decodeFile(file.path, bounds)
-        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException("This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP or another Android-supported image format.")
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException(ui(R.string.ui_this_file_is_not_a_supported_image_use))
         orientation = if(jxl) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
         dimensions = if (orientation?.rotationDegrees in listOf(90,270)) ImageDimensions(bounds.outHeight,bounds.outWidth) else ImageDimensions(bounds.outWidth,bounds.outHeight)
     }
@@ -79,7 +81,7 @@ class ImportedImage(val file: File, val name: String) {
         try {
             val input = BitmapFactory.decodeFile(file.path, BitmapFactory.Options().apply {
                 inSampleSize = plan.sample; inScaled = false; inMutable = true; inPreferredConfig = Bitmap.Config.ARGB_8888
-            }) ?: throw IOException("Android could not decode this image.")
+            }) ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))
             decoded = input
             input.density = Bitmap.DENSITY_NONE
             val rotation = orientation?.rotationDegrees ?: 0; val flip = orientation?.isFlipped == true

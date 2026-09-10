@@ -2,7 +2,7 @@
 <!-- AN Paint, 2026-09-10. AGPL-3.0-or-later. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <application android:largeHeap="true" android:supportsRtl="true">
+    <application android:name="org.catrobat.paintroid.classic.PaintApplication" android:largeHeap="true" android:supportsRtl="true">
         <activity android:name=".classic.ClassicPaintActivity" android:exported="false"
             android:theme="@style/ClassicPaintTheme" android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".classic.AssemblyActivity" android:exported="false"

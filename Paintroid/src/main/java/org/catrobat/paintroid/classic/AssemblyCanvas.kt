@@ -32,7 +32,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
             panX = d.focusX-p.x*zoom; panY = d.focusY-p.y*zoom; invalidate(); return true
         }
     })
-    init { isFocusable = true; isClickable = true; contentDescription = "Image assembly workspace. Drag placed images or drop thumbnails to snap at right or bottom targets. Pinch to zoom; drag empty space to pan."; setLayerType(LAYER_TYPE_SOFTWARE,null) }
+    init { isFocusable = true; isClickable = true; contentDescription = ui(R.string.ui_image_assembly_workspace_drag_placed_images_or_drop); setLayerType(LAYER_TYPE_SOFTWARE,null) }
     fun toScreen(x: Float,y: Float) = PointF(panX+x*zoom,panY+y*zoom)
     fun toImage(x: Float,y: Float) = PointF((x-panX)/zoom,(y-panY)/zoom)
     fun select(id: String?,fitView: Boolean = true) {
@@ -69,7 +69,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         val layout = dragging?.let { assembly.layoutWithout(it) } ?: assembly.layout()
         if (layout.isEmpty() && selectedId == null) {
             val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xff233b4d.toInt(); textSize = 16*density; textAlign = Paint.Align.CENTER }
-            canvas.drawText("Add images, then drag a thumbnail here",width/2f,height/2f,p); return
+            canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p); return
         }
         canvas.save(); canvas.translate(panX,panY); canvas.scale(zoom,zoom)
         val p = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -93,7 +93,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
     fun beginImageDrag(id: String,fitView: Boolean = true): Boolean {
         if (!isEnabled || assembly.images.none { it.id == id }) return false
         dragging = id; select(id,fitView); onSelect(id)
-        onStatus(if (targets.isEmpty()) "No attachment fits within the current coordinate range. Try smaller image sizes." else "Drop at a highlighted edge: right/top aligned or below/left aligned.")
+        onStatus(if (targets.isEmpty()) ui(R.string.ui_no_attachment_fits_within_the_current_coordinate_range) else ui(R.string.ui_drop_at_a_highlighted_edge_right_top_aligned))
         return true
     }
     fun dragImageTo(x: Float,y: Float) {
@@ -103,7 +103,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
     }
     fun dropImage(x: Float,y: Float): Boolean {
         val id = dragging ?: selectedId ?: return false; dragImageTo(x,y); val target = ghost ?: return false
-        return try { dragging = null; ghost = null; assembly.place(id,target.attachment); select(null); onStatus("Image placed. Drag it to move, or hold and drag another thumbnail."); true }
+        return try { dragging = null; ghost = null; assembly.place(id,target.attachment); select(null); onStatus(ui(R.string.ui_image_placed_drag_it_to_move_or_hold)); true }
         catch (error: Exception) { onError(error); false }
     }
     override fun onDragEvent(event: DragEvent): Boolean {

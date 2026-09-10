@@ -1,13 +1,15 @@
 /* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.content.Context
 import android.graphics.*
 import android.view.View
 import kotlin.math.min
 
 class AssemblyThumbnail(context: Context,private val item: AssemblyImage,private val bitmap: Bitmap?) : View(context) {
-    init { contentDescription = "Cropped thumbnail: ${item.name}" }
+    init { contentDescription = ui(R.string.ui_cropped_thumbnail, item.name) }
     override fun onDraw(canvas: Canvas) {
         val image = bitmap ?: return
         val crop = item.crop

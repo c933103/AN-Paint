@@ -1,6 +1,8 @@
 /* Pocket Paint Local additions, 2026-09-07. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
@@ -26,34 +28,30 @@ object LegalInfo {
         return """
             AN Paint $version
             Package: ${activity.packageName}
-            Formerly distributed as Pocket Paint Local.
 
-            A modified distribution of Pocket Paint (Paintroid), based on Catrobat/Paintroid v2.14.1, commit 853ce3c346910ea73aa4de5514f2a76ace1396fb.
+            AN Paint is an independently maintained modified distribution of Pocket Paint (Paintroid), based on Catrobat/Paintroid v2.14.1, commit 853ce3c346910ea73aa4de5514f2a76ace1396fb.
 
-            Original Paintroid code and colour picker:
-            Copyright © 2010–2022 The Catrobat Team and contributors. Original file-level notices are retained in the source.
+            Original code: Copyright © 2010–2022 The Catrobat Team and contributors. Original file-level notices are retained in the source.
+            https://github.com/Catrobat/Paintroid
+            https://developer.catrobat.org/credits
 
-            Original project: https://github.com/Catrobat/Paintroid
-            Original contributor credits: https://developer.catrobat.org/credits
+            Modifications: Copyright © 2026 AN Paint contributors. The drawing workspace, image assembly, import and memory handling, autosave, selection transforms, copyleft icon integration, fonts, export and build changes were made 7–10 September 2026. This version consolidates the remaining editing functions in the new workspace and removes the original editor, layers, transparency controls, Smudge, automatic crop and project-file formats. Full dated changes are in the corresponding source.
 
-            Local modifications dated 7–9 September 2026: drawing workspace and copyleft icon integration, classic drawing/selection tools with double-tap polygon completion, pixel corner-radius control, corner/edge resizing and rotation handles for rectangular and free-form selections, centred 100% zoom and Fit, direct Android file picking, image import fixes, full-resolution loading, disk undo, local scanline bucket fill, icon controls, zoom slider, honeycomb and advanced RGB/HSV/HSL colour selectors, memory-based size checks and user-approved import downsizing, pixel/percentage sizing with optional aspect locks, touch canvas trimming/expansion, accurate Undo availability and a two-column edit-action grid, a 20-image assembly workspace with sorting, reversible individual/batch crops, width/height normalization, single-image unplacing with gap closure and direct-drag edge snapping, atomic autosave, compact/collapsible toolbars and colour controls, pinch-and-pan navigation, an opaque main editor, named custom colours, bundled font previews and text options, copyable licence text with fixed actions, in-app licence/source access and build changes. The original editor and its additional tools are retained under View.
+            Application code is licensed under the GNU Affero General Public License version 3 or, at your option, any later version (AGPL-3.0-or-later). You may copy, modify and redistribute it under that licence. It is provided WITHOUT ANY WARRANTY, including merchantability or fitness for a particular purpose.
 
-            AN Paint is an independently maintained, modified distribution of Catrobat's Pocket Paint.
+            Tool and action icons: KDE Breeze Icons, Copyright © 2014 Uri Herrera and others; KDE Community contributors. LGPL-3.0-or-later. Exact SVG sources, revisions, hashes, generated Android resources and conversion scripts are included. Read Icon licences for upstream notices and the complete LGPL/GPL texts.
+            https://invent.kde.org/frameworks/breeze-icons
 
-            The covered application code, including these modifications, is licensed under GNU Affero General Public License version 3 or, at your option, any later version (AGPL-3.0-or-later). You may copy, modify and redistribute it under that licence. It is provided WITHOUT ANY WARRANTY, including merchantability or fitness for a particular purpose.
+            The AN monogram launcher is geometric vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. The optional online Catrobat gallery retains its CC BY-SA 4.0 source and licence credits under Image credits; no gallery image is bundled in the app.
 
-            Icons and artwork: all 16 classic tool icons, Undo/Redo, Cut/Copy/Paste, Select all, zoom/navigation controls, reversible panel arrows and the assembly attachment glyph use KDE Breeze Icons. Copyright © 2014 Uri Herrera and others; KDE Community contributors. These icons and the generated PNG resources are licensed under GNU Lesser General Public License version 3 or any later version (LGPL-3.0-or-later). The previous locally drawn icon geometry was removed on 9 September 2026. Read Icon licences for the full LGPL/GPL texts and upstream notice. Original SVGs, exact revision, hashes and conversion script are included in the bundled source. https://invent.kde.org/frameworks/breeze-icons
+            Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
-            Dynamic colour displays, spectrum/wheel controls, honeycomb swatches, crop and selection-transform handles, zoom tick marks and selection boundaries remain application drawing code under AGPL-3.0-or-later. The new AN monogram launcher is geometric vector artwork, Copyright © 2026 AN Paint contributors, under AGPL-3.0-or-later, with editable SVG and generation code in the source. No font is used for the monogram. Inherited Pocket Paint retained-editor artwork retains Catrobat attribution; Android/Material assets retain their Apache-2.0 notices. Android supplies the landscape submenu indicators. Assembly thumbnails come from the user's imported images.
+            JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. Read JPEG XL codec licences for the copyright notices, licences and patent grant. Third-party notices covers the other bundled dependencies.
 
-            Fonts: AN Paint bundles unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro fonts under SIL Open Font License 1.1. Font licences contains each original copyright notice and full licence text. The app also offers Android system sans-serif, serif, monospace and related faces; these and fallback fonts are supplied by the device. Their exact files and copyright holders depend on the Android build; see the device's open-source licences. No Dubai or STC/GE SS font binaries are included.
-
-            Help › Icons, fonts & artwork credits contains the asset inventory and attribution. Other included components retain their respective licences and copyright notices. Read Third-party notices below.
-
-            Complete corresponding source and build scripts for this version are bundled in this APK. In the classic workspace, choose Help › Export this version's source code to save the ZIP. The source contains the full licence and dated change report. No network connection is needed.
+            Complete corresponding source and build scripts are bundled in this APK. Help > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
         """.trimIndent()
     }
-    fun buildAboutDialog(activity: Activity): Dialog = termsDialog(activity,"About, copyright & licence",aboutText(activity))
+    fun buildAboutDialog(activity: Activity): Dialog = termsDialog(activity,ui(R.string.ui_about_copyright_licence),aboutText(activity))
     fun showAbout(activity: Activity) { buildAboutDialog(activity).show() }
     fun showAsset(activity: Activity,title: String,asset: String) {
         val text=activity.assets.open(asset).bufferedReader().use { it.readText() }
@@ -75,12 +73,12 @@ object LegalInfo {
             val b=Button(activity).apply { this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;setPadding(dp(3),0,dp(3),0);setOnClickListener { run(this) } }
             actions.addView(b,LinearLayout.LayoutParams(0,dp(48),1f))
         }
-        action("Copy all","terms_copy") {
+        action(ui(R.string.ui_copy_all),"terms_copy") {
             (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))
-            Toast.makeText(activity,"Full text copied",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
         }
-        action("Other terms","terms_more") { anchor ->
-            val options=listOf("About & copyright","AGPL licence","Third-party notices","Font licences","Icons & artwork","Icon licences")
+        action(ui(R.string.ui_other_terms),"terms_more") { anchor ->
+            val options=listOf(ui(R.string.ui_about_copyright),"AGPL licence",ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences))
             val popup=PopupMenu(activity,anchor)
             options.forEachIndexed { i,label -> popup.menu.add(0,i,i,label) }
             popup.setOnMenuItemClickListener {
@@ -88,14 +86,14 @@ object LegalInfo {
                 when (it.itemId) {
                     0 -> showAbout(activity)
                     1 -> showAsset(activity,"GNU AGPL v3","legal/AGPL-3.0.txt")
-                    2 -> showAsset(activity,"Third-party notices","legal/THIRD_PARTY_NOTICES.txt")
-                    3 -> showAsset(activity,"Font licences","legal/FONT_NOTICES.txt")
-                    4 -> showAsset(activity,"Icons, fonts & artwork credits","legal/ASSET_CREDITS.txt")
-                    else -> showAsset(activity,"Icon licences — KDE Breeze","legal/ICON_NOTICES.txt")
+                    2 -> showAsset(activity,ui(R.string.ui_third_party_notices),"legal/THIRD_PARTY_NOTICES.txt")
+                    3 -> showAsset(activity,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")
+                    4 -> showAsset(activity,ui(R.string.ui_icons_fonts_artwork_credits),"legal/ASSET_CREDITS.txt")
+                    else -> showAsset(activity,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")
                 };true
             };popup.show()
         }
-        action("Done","terms_done") { dialog.dismiss() }
+        action(ui(R.string.ui_done),"terms_done") { dialog.dismiss() }
         body.addView(actions,LinearLayout.LayoutParams(-1,dp(48)))
         dialog.setContentView(body)
         fun resize() {

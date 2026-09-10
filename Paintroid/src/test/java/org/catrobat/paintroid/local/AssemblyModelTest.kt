@@ -71,13 +71,13 @@ class AssemblyModelTest {
         model.undo(); assertEquals(Rect(0,0,101,201),model.image(items[0].id).crop)
         assertThrows(IllegalArgumentException::class.java) { model.crop(items.map { it.id }.toSet(),CropMargins(50.0,0.0,50.0,0.0,true)) }
     }
-    @Test fun exportUsesCroppedOriginalPixelsAndRetainsAlphaAndEmptyCornerTransparency() {
+    @Test fun exportUsesCroppedOriginalPixelsAndFlattensImportsAndEmptySpaceOnWhite() {
         val a=item("red",10,8,color=Color.RED); val b=item("green",8,12,color=0x8000ff00.toInt()); val c=item("blue",12,6,color=Color.BLUE)
         model.add(listOf(a,b,c)); model.crop(b.id,Rect(2,2,8,10))
         model.place(a.id,Attachment(null,null)); model.place(b.id,Attachment(a.id,SnapEdge.RIGHT)); model.place(c.id,Attachment(a.id,SnapEdge.BOTTOM))
         val image=AssemblyRenderer(context,model.images,model.layout(),0).render(model.size()!!)
         assertEquals(16,image.width); assertEquals(14,image.height)
-        assertEquals(Color.RED,image.getPixel(9,7)); assertEquals(0x8000ff00.toInt(),image.getPixel(10,7)); assertEquals(Color.BLUE,image.getPixel(11,8)); assertEquals(Color.TRANSPARENT,image.getPixel(15,13)); image.recycle()
+        assertEquals(Color.RED,image.getPixel(9,7)); assertEquals(0xff7fff7f.toInt(),image.getPixel(10,7)); assertEquals(Color.BLUE,image.getPixel(11,8)); assertEquals(Color.WHITE,image.getPixel(15,13)); image.recycle()
     }
     @Test fun regionCropUsesOrientedCoordinatesForRotatedAndMirroredPhotos() {
         for (orientation in listOf(ExifInterface.ORIENTATION_ROTATE_90,ExifInterface.ORIENTATION_FLIP_HORIZONTAL,ExifInterface.ORIENTATION_TRANSVERSE)) {
@@ -138,12 +138,12 @@ class AssemblyModelTest {
         val before=model.images
         assertThrows(IllegalArgumentException::class.java) { model.normalize(NormalizeAxis.WIDTH,Int.MAX_VALUE) }; assertEquals(before,model.images)
     }
-    @Test fun normalizedExportUsesOriginalImagesAndPreservesAlphaAtTheSharedEdge() {
+    @Test fun normalizedExportUsesOriginalImagesAndFlattensAlphaAtTheSharedEdge() {
         val a=item("a",40,20,color=Color.RED); val b=item("b",20,40,color=0x8000ff00.toInt())
         model.add(listOf(a,b)); model.normalize(NormalizeAxis.WIDTH,80); model.place(a.id,Attachment(null,null)); model.place(b.id,Attachment(a.id,SnapEdge.BOTTOM))
         val result=AssemblyRenderer(context,model.images,model.layout(),0).render(model.size()!!)
         assertEquals(80,result.width); assertEquals(200,result.height)
-        assertEquals(Color.RED,result.getPixel(79,39)); assertEquals(0x8000ff00.toInt(),result.getPixel(79,40)); assertEquals(0x8000ff00.toInt(),result.getPixel(0,199)); result.recycle()
+        assertEquals(Color.RED,result.getPixel(79,39)); assertEquals(0xff7fff7f.toInt(),result.getPixel(79,40)); assertEquals(0xff7fff7f.toInt(),result.getPixel(0,199)); result.recycle()
     }
     @Test fun removingBranchRootAndNormalizationKeepAllOtherImagesWithoutOverlap() {
         val a=item("a",80,60); val b=item("b",40,80); val c=item("c",60,40); val d=item("d",20,20)

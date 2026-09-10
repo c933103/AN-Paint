@@ -4,6 +4,8 @@
  */
 package org.catrobat.paintroid.classic
 
+import org.catrobat.paintroid.R
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -30,12 +32,12 @@ class MediaGalleryActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true}
-        status=TextView(this).apply {text="Catrobat online gallery · artwork by its credited creators";setPadding(16,12,16,12)}
+        status=TextView(this).apply {text=ui(R.string.ui_catrobat_online_gallery_artwork_by_its_credited_creators);setPadding(16,12,16,12)}
         root.addView(status)
         val row=LinearLayout(this)
         fun action(label: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;isAllCaps=false;setOnClickListener {run()}},LinearLayout.LayoutParams(0,-2,1f))}
-        action("Credits & terms") {startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(LICENCE)))}
-        action("Done") {finish()};root.addView(row)
+        action(ui(R.string.ui_credits_terms)) {startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(LICENCE)))}
+        action(ui(R.string.ui_done)) {finish()};root.addView(row)
         web=WebView(this).apply {
             settings.javaScriptEnabled=true;settings.allowFileAccess=false;settings.allowContentAccess=false
             settings.domStorageEnabled=true;settings.mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
@@ -48,7 +50,7 @@ class MediaGalleryActivity : Activity() {
                     return false
                 }
                 override fun onReceivedError(view: WebView,request: WebResourceRequest,error: WebResourceError) {
-                    if(request.isForMainFrame) status.text="The online gallery could not be loaded. Check your connection and try again."
+                    if(request.isForMainFrame) status.text=ui(R.string.ui_the_online_gallery_could_not_be_loaded_check)
                 }
             }
             setOnLongClickListener {
@@ -63,40 +65,40 @@ class MediaGalleryActivity : Activity() {
     }
     private fun insert(uri: Uri) {
         if(downloading)return
-        if(!allowed(uri)) {status.text="This image is outside the supported Catrobat gallery.";return}
-        AlertDialog.Builder(this).setTitle("Insert gallery image?")
-            .setMessage("Catrobat's own artwork uses CC BY-SA 4.0. Keep the creator credit and share adaptations under that licence. Check the source page for any separate attribution. The source URL will be kept under Help > Image credits.")
-            .setNegativeButton("Cancel",null).setPositiveButton("Insert") {_,_ -> download(uri)}.show()
+        if(!allowed(uri)) {status.text=ui(R.string.ui_this_image_is_outside_the_supported_catrobat_gallery);return}
+        AlertDialog.Builder(this).setTitle(ui(R.string.ui_insert_gallery_image))
+            .setMessage(ui(R.string.ui_catrobat_s_own_artwork_uses_cc_by_sa))
+            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_insert)) {_,_ -> download(uri)}.show()
     }
     private fun download(uri: Uri) {
-        downloading=true;status.text="Downloading image…"
+        downloading=true;status.text=ui(R.string.ui_downloading_image)
         worker.execute {
             var temporary: File?=null
             try {
                 var url=URL(uri.toString());var connection: HttpURLConnection?=null
                 for(i in 0..5) {
-                    require(allowed(Uri.parse(url.toString()))) {"The gallery redirected outside its supported hosts."}
+                    require(allowed(Uri.parse(url.toString()))) {ui(R.string.ui_the_gallery_redirected_outside_its_supported_hosts)}
                     val current=url.openConnection() as HttpURLConnection
                     current.connectTimeout=15000;current.readTimeout=30000;current.instanceFollowRedirects=false
-                    if(current.responseCode in 300..399) {val redirect=current.getHeaderField("Location");current.disconnect();require(redirect!=null);url=URL(url,redirect)}
+                    if(current.responseCode in 300..399) {val redirect=current.getHeaderField(ui(R.string.ui_location));current.disconnect();require(redirect!=null);url=URL(url,redirect)}
                     else {connection=current;break}
                 }
-                val source=connection ?: error("Too many gallery redirects.")
+                val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))
                 val file=File.createTempFile("gallery-",".image",cacheDir);temporary=file
                 try {
-                    check(source.responseCode in 200..299) {"The image could not be downloaded."}
+                    check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}
                     source.inputStream.use {input -> file.outputStream().use {out ->
                         val buffer=ByteArray(65536);var total=0L
-                        while(true) {val n=input.read(buffer);if(n<0)break;total+=n;check(total<=128L*1024*1024) {"The gallery download is too large."};out.write(buffer,0,n)}
+                        while(true) {val n=input.read(buffer);if(n<0)break;total+=n;check(total<=128L*1024*1024) {ui(R.string.ui_the_gallery_download_is_too_large)};out.write(buffer,0,n)}
                     }}
                 } finally {source.disconnect()}
-                ImportedImage(file,uri.lastPathSegment ?: "Gallery image") // Validate before returning.
+                ImportedImage(file,uri.lastPathSegment ?: ui(R.string.ui_gallery_image)) // Validate before returning.
                 if(isDestroyed) file.delete() else {
                     temporary=null
                     runOnUiThread {setResult(RESULT_OK,Intent().putExtra("gallery_file",file.name).putExtra("gallery_source",uri.toString()));finish()}
                 }
-            } catch(error: Exception) {runOnUiThread {downloading=false;status.text="Could not load gallery image: ${error.message}"}}
-              catch(error: OutOfMemoryError) {runOnUiThread {downloading=false;status.text="Not enough memory to inspect the gallery image."}}
+            } catch(error: Exception) {runOnUiThread {downloading=false;status.text=ui(R.string.ui_could_not_load_gallery_image, error.message)}}
+              catch(error: OutOfMemoryError) {runOnUiThread {downloading=false;status.text=ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image)}}
             finally {temporary?.delete()}
         }
     }
