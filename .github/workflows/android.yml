@@ -20,7 +20,8 @@ jobs:
         run: |
           echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
           echo "$JAVA_HOME_17_X64/bin" >> "$GITHUB_PATH"
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+          export JAVA_HOME="$JAVA_HOME_17_X64"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
       - name: Build and test
         run: |
           chmod +x gradlew
