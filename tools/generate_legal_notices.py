@@ -15,39 +15,40 @@ CACHE = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle'))) /
 inventory = json.loads((ROOT / 'app/build/runtime-dependencies.json').read_text())
 notice = ["""AN Paint — third-party copyright and licence notices
 
-Paintroid and its colour picker: Copyright (C) 2010–2022 The Catrobat Team and
+Derived from Paintroid: Copyright (C) 2010–2022 The Catrobat Team and
 contributors. GNU AGPL version 3 or any later version. Original per-file notices
-remain in the corresponding source, bundled in this APK. The full AGPL text is
-available separately under Help. Local modifications are dated 7 September 2026.
+remain in the corresponding source, bundled in this APK. Full AGPL text is under
+Help. AN Paint modifications are dated 7–10 September 2026.
 
-The retained editor includes the original Catrobat tools and assets, including
-JavaFillAlgorithm. The classic workspace uses a local scanline fill implementation. Android system typefaces and ten additional OFL-licensed bundled fonts are
-used; the upstream Dubai and STC/GE SS font binaries are not redistributed.
+The consolidated editor uses a local scanline fill implementation. The original
+editor, colour-picker module, project-file libraries and legacy artwork have
+been removed. No Dubai or STC/GE SS font binaries are redistributed.
 
-Classic workspace tool/action/navigation and panel-arrow icons, including the
-assembly attachment glyph, use KDE Breeze Icons. Copyright (C) 2014 Uri Herrera
-and others; KDE Community contributors. Licence: LGPL-3.0-or-later. Original
-SVG source, exact revision, hashes and conversion script are included in the
-source archive. Full terms appear under Help > Icon licences and below.
-Dynamic colour controls, honeycomb swatches and touch/selection boundaries
-remain local application drawing code under AGPL-3.0-or-later.
-Inherited launcher/tool artwork belongs to the Catrobat distribution, with
-original file notices retained. Additional fonts are bundled under OFL-1.1,
-with their complete notices included below and in Font licences. System fonts
-are the device's system sans-serif, serif,
-monospace and fallback faces, including bold/italic variants; their actual font
-families and copyright holders depend on the Android vendor. See the device's
-Open-source licences for its font notices. Help > Icons, fonts & artwork credits
-contains a separate inventory of the included visual assets.
+Tool/action/navigation and panel-arrow icons: KDE Breeze Icons. Copyright (C)
+2014 Uri Herrera and others; KDE Community contributors. LGPL-3.0-or-later.
+Original SVGs, revision, hashes and conversion script are included in the source.
+Full terms appear under Icon licences and below. The AN monogram launcher,
+dynamic colour controls, honeycomb swatches and selection/crop guides are
+AN Paint application artwork/code, AGPL-3.0-or-later.
 
-Resolved runtime components for this build follow. Their publisher metadata,
-copyright notices and licence terms are retained below. Android platform APIs
-and system fonts are supplied by the device, not bundled with this application.
+Ten unmodified fonts are bundled under SIL OFL-1.1, with complete notices below.
+System fonts and platform widget artwork are supplied by the Android device;
+see its open-source licences for their exact files and authors.
 
-AndroidX, Android support and Material Components: The Android Open Source
-Project and Google contributors, Apache License 2.0.
-Kotlin and kotlinx.coroutines: JetBrains s.r.o. and Kotlin contributors,
-Apache License 2.0.
+The optional online Catrobat figures gallery is an external service. Its images
+are not bundled. Catrobat's own non-software artwork uses CC BY-SA 4.0, except
+project names and logos; inserted-image source links are kept under Image credits.
+https://developer.catrobat.org/pages/legal/licenses/catrobat/
+
+JPEG XL uses libjxl 0.12.0 plus Brotli, Highway and skcms. Exact revisions,
+copyrights, licence texts and patent grant follow below and under JPEG XL codec
+licences. tools/fetch_jxl_sources.py obtains the pinned source revisions.
+
+Resolved Android/JVM runtime components for this build follow. Their publisher
+metadata and packaged notices are preserved below. Test and build tools are not
+part of this inventory because they are not distributed in the application.
+AndroidX: The Android Open Source Project and Google contributors, Apache-2.0.
+Kotlin: JetBrains s.r.o. and Kotlin contributors, Apache-2.0.
 
 COMPONENT INVENTORY
 """]
@@ -108,6 +109,7 @@ for (name, entry), text in sorted(embedded.items()):
     notice.extend([f'\n\n{name} — {entry}\n\n', text])
 notice.append('\n\nBUNDLED FONT NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/FONT_NOTICES.txt').read_text())
 notice.append('\n\nBREEZE ICON NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/ICON_NOTICES.txt').read_text())
+notice.append('\n\nJPEG XL CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

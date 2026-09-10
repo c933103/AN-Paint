@@ -4,17 +4,19 @@ KDE Community contributors.
 https://invent.kde.org/frameworks/breeze-icons
 Revision: 235730e69d90949621e4fee77fcc459772b7a8f0
 
-All 16 tool glyphs in ToolButton.kt, Undo/Redo, Cut/Copy/Paste, Select all,
+All 20 tool glyphs in ToolButton.kt, Undo/Redo, Cut/Copy/Paste, Select all,
 zoom and sidebar glyphs in ActionButton.kt, left/right arrows in
 ColourStatusButton.kt, and the assembly attachment plus sign in AssemblyCanvas.kt
 use KDE Breeze artwork. The previously drawn icon geometry has been removed.
-These 29 icons are distributed under GNU LGPL version 3 or any later version,
+These 33 icons are distributed under GNU LGPL version 3 or any later version,
 not under the application's AGPL licence. No icon font is used.
 
 The upstream SVGs are preserved unchanged in artwork/breeze in the source ZIP.
 Aliases are resolved to their original SVG bytes and recorded in inventory.json.
-PNG density resources are rendered from those SVGs, with scaling and a display
-tint applied by the app. Conversion dated 9 September 2026. Converted artwork
+The first 29 icons are rendered to PNG density resources. Watercolor, Heart,
+Star and Arrow retain their SVG path coordinates, opacity and translation as
+Android VectorDrawables. The app applies display tint and scaling.
+Conversions dated 9–10 September 2026. Converted artwork
 remains LGPL-3.0-or-later. The manifest records exact URLs and SHA-256 hashes;
 tools/generate_breeze_icons.py reproduces the resources. Normal Android builds
 use the checked-in resources without an extra graphics library.

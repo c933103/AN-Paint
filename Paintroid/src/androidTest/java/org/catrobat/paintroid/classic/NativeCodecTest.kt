@@ -3,6 +3,7 @@ package org.catrobat.paintroid.classic
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Rect
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
@@ -53,6 +54,19 @@ class NativeCodecTest {
             try {JxlCodec.dimensions(file);fail("Invalid JPEG XL accepted")} catch(_: IOException) { }
             try {JxlCodec.encode(input,file,95,true,1);fail("Memory budget ignored")} catch(_: OutOfMemoryError) { }
             assertEquals(before,input.getPixel(31,27));assertFalse(input.isRecycled)
+        } finally {input.recycle();file.delete()}
+    }
+    @Test fun regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput() {
+        val input=fixture();val file=File.createTempFile("codec-region-",".jxl",context.cacheDir)
+        try {
+            JxlCodec.encode(input,file,100,true,budget)
+            for(size in listOf(ImageDimensions(20,16),ImageDimensions(5,4),ImageDimensions(40,32))) {
+                val output=JxlCodec.decode(file,size,budget,Rect(10,8,30,24))
+                try {
+                    for(y in 0 until size.height) for(x in 0 until size.width)
+                        assertEquals(input.getPixel(10+x*20/size.width,8+y*16/size.height),output.getPixel(x,y))
+                } finally {output.recycle()}
+            }
         } finally {input.recycle();file.delete()}
     }
     @Test fun everyAdvertisedBundledFontLoadsItsActualFontFile() {

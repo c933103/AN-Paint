@@ -72,16 +72,20 @@ size_t limit(jlong requested,uint64_t outputBytes) {
     if(requested<0 || static_cast<uint64_t>(requested)<=outputBytes+1024*1024)throw std::bad_alloc();
     return static_cast<size_t>(std::min<uint64_t>(static_cast<uint64_t>(requested)-outputBytes,SIZE_MAX/2));
 }
-struct Output {Pixels* pixels;uint64_t width,height;};
+struct Output {Pixels* pixels;uint64_t width,height,left,top;};
 void outputPixels(void* opaque,size_t x,size_t y,size_t count,const void* data) {
     auto& o=*static_cast<Output*>(opaque);auto& p=*o.pixels;
     const auto* input=static_cast<const uint8_t*>(data);
-    const uint64_t left=(uint64_t(x)*p.info.width+o.width-1)/o.width;
-    const uint64_t right=std::min<uint64_t>(((uint64_t(x)+count)*p.info.width+o.width-1)/o.width,p.info.width);
-    const uint64_t top=(uint64_t(y)*p.info.height+o.height-1)/o.height;
-    const uint64_t bottom=std::min<uint64_t>(((uint64_t(y)+1)*p.info.height+o.height-1)/o.height,p.info.height);
+    if(y<o.top || y>=o.top+o.height)return;
+    const uint64_t begin=std::max<uint64_t>(x,o.left);
+    const uint64_t end=std::min<uint64_t>(uint64_t(x)+count,o.left+o.width);
+    if(begin>=end)return;
+    const uint64_t left=((begin-o.left)*p.info.width+o.width-1)/o.width;
+    const uint64_t right=std::min<uint64_t>(((end-o.left)*p.info.width+o.width-1)/o.width,p.info.width);
+    const uint64_t top=((uint64_t(y)-o.top)*p.info.height+o.height-1)/o.height;
+    const uint64_t bottom=std::min<uint64_t>(((uint64_t(y)+1-o.top)*p.info.height+o.height-1)/o.height,p.info.height);
     for(uint64_t dy=top;dy<bottom;dy++) for(uint64_t dx=left;dx<right;dx++) {
-        const auto* src=input+4*(dx*o.width/p.info.width-x);
+        const auto* src=input+4*(dx*o.width/p.info.width+o.left-x);
         auto* dest=static_cast<uint8_t*>(p.data)+dy*p.info.stride+dx*4;
         // Android's software bitmap stores premultiplied RGBA. The main editor
         // later composites this temporary import against its opaque background.
@@ -109,7 +113,7 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_info(JNIEnv* env,jobjec
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_decode(JNIEnv* env,jobject,jstring path,jobject bitmap,jlong maxBytes) {
+Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_decode(JNIEnv* env,jobject,jstring path,jobject bitmap,jint left,jint top,jint right,jint bottom,jlong maxBytes) {
     Budget budget{0};
     try {
         Utf name(env,path);Mapping file(name.text);Pixels pixels(env,bitmap);budget.limit=limit(maxBytes,static_cast<uint64_t>(pixels.info.stride)*pixels.info.height);
@@ -117,12 +121,15 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_decode(JNIEnv* env,jobj
         require(JxlDecoderSubscribeEvents(dec.get(),JXL_DEC_BASIC_INFO|JXL_DEC_COLOR_ENCODING|JXL_DEC_FULL_IMAGE)==JXL_DEC_SUCCESS,"Cannot start JPEG XL decoder.");
         JxlDecoderSetUnpremultiplyAlpha(dec.get(),JXL_TRUE);
         JxlDecoderSetInput(dec.get(),static_cast<const uint8_t*>(file.bytes),file.size);JxlDecoderCloseInput(dec.get());
-        Output out{&pixels,0,0};JxlPixelFormat format{4,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,0};
+        Output out{&pixels,0,0,0,0};JxlPixelFormat format{4,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,0};
         for(;;) {
             const auto status=JxlDecoderProcessInput(dec.get());
             if(status==JXL_DEC_BASIC_INFO) {
                 JxlBasicInfo info{};require(JxlDecoderGetBasicInfo(dec.get(),&info)==JXL_DEC_SUCCESS,"Invalid JPEG XL dimensions.");
-                require(info.xsize>0 && info.ysize>0 && info.xsize<=INT_MAX && info.ysize<=INT_MAX,"JPEG XL dimensions exceed supported coordinates.");out.width=info.xsize;out.height=info.ysize;
+                require(info.xsize>0 && info.ysize>0 && info.xsize<=INT_MAX && info.ysize<=INT_MAX,"JPEG XL dimensions exceed supported coordinates.");
+                if(right<0)right=info.xsize;if(bottom<0)bottom=info.ysize;
+                require(left>=0 && top>=0 && right>left && bottom>top && uint32_t(right)<=info.xsize && uint32_t(bottom)<=info.ysize,"The JPEG XL crop must stay inside the image.");
+                out.width=right-left;out.height=bottom-top;out.left=left;out.top=top;
             } else if(status==JXL_DEC_COLOR_ENCODING) {
                 JxlColorEncoding color;JxlColorEncodingSetToSRGB(&color,JXL_FALSE);
                 require(JxlDecoderSetPreferredColorProfile(dec.get(),&color)==JXL_DEC_SUCCESS,"Cannot convert JPEG XL colours to sRGB.");

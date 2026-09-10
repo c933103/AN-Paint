@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import org.catrobat.paintroid.classic.*
+import org.catrobat.paintroid.classic.ImageFormat
 import org.junit.Assert.*
 import org.junit.*
 import org.junit.runner.RunWith

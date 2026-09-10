@@ -48,6 +48,11 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     }
     @Suppress("DEPRECATION")
     fun decodeCrop(item: AssemblyImage, target: ImageDimensions, resident: Long = residentPixels): Bitmap {
+        if(JxlCodec.isJxl(item.file)) {
+            val policy=ImageMemoryPolicy.forDevice(context)
+            policy.check(target.width,target.height,resident)
+            return JxlCodec.decode(item.file,target,(policy.workingBytes-resident*4).coerceAtLeast(0),item.crop)
+        }
         val (rotation,flip) = orientation(item)
         val rawWidth = if (rotation in listOf(90,270)) item.dimensions.height else item.dimensions.width
         val rawHeight = if (rotation in listOf(90,270)) item.dimensions.width else item.dimensions.height

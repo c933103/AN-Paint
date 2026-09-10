@@ -365,7 +365,7 @@ class ClassicWorkspaceTest {
         val text = LegalInfo.aboutText(activity)
         assertTrue(text.contains("The Catrobat Team")); assertTrue(text.contains("modified distribution")); assertTrue(text.contains("WITHOUT ANY WARRANTY"))
         assertTrue(activity.assets.open("legal/AGPL-3.0.txt").bufferedReader().readText().contains("GNU AFFERO GENERAL PUBLIC LICENSE"))
-        assertTrue(activity.assets.open("legal/THIRD_PARTY_NOTICES.txt").bufferedReader().readText().contains("kryo"))
+        assertTrue(activity.assets.open("legal/THIRD_PARTY_NOTICES.txt").bufferedReader().readText().contains("androidx.appcompat"))
         val paths = mutableSetOf<String>()
         ZipInputStream(activity.assets.open(ClassicPaintActivity.SOURCE_ASSET)).use { zip ->
             while (true) { val entry = zip.nextEntry ?: break; paths.add(entry.name) }

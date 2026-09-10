@@ -132,6 +132,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.14.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
     testImplementation "androidx.test:core-ktx:1.4.0"
 
 }
@@ -153,8 +154,9 @@ def bundleCorrespondingSource = tasks.register('bundleCorrespondingSource', Zip)
     reproducibleFileOrder = true
     from(rootProject.projectDir) {
         into 'AN-Paint'
-        exclude '**/build/**', '**/.gradle/**', '**/.git/**', '**/.idea/**'
+        exclude '**/build/**', '**/.gradle/**', '**/.git/**', '**/.idea/**', '**/.cxx/**', '**/.externalNativeBuild/**'
         exclude '**/local.properties', '**/*.keystore', '**/*.jks', '**/*.apk', '**/__pycache__/**'
+        exclude 'verification-tools/**', 'emulator.log'
     }
 }
 android.sourceSets.main.assets.srcDir(layout.buildDirectory.dir('generated/correspondingSource'))
