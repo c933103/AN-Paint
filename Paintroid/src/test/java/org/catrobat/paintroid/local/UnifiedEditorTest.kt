@@ -106,6 +106,7 @@ class UnifiedEditorTest {
     @Test fun fourRecentCellsKeepDistinctColoursAndStayAfterTheScrollablePalette() {
         for(hex in listOf("FF0000","00FF00","0000FF","FFFF00","00FFFF")) click("colour_$hex")
         assertEquals(listOf(Color.CYAN,Color.YELLOW,Color.BLUE,Color.GREEN),RecentColours(activity).colours)
+        assertTrue(root.findViewWithTag<View>("recent_colour_0").contentDescription.toString().contains("#00FFFF"))
         click("recent_colour_2");assertEquals(Color.BLUE,doc.foreground)
         assertEquals(listOf(Color.BLUE,Color.CYAN,Color.YELLOW,Color.GREEN),RecentColours(activity).colours)
         val bar=root.findViewWithTag<ViewGroup>("palette_bar");val recent=root.findViewWithTag<View>("recent_colours")
@@ -169,5 +170,23 @@ class UnifiedEditorTest {
             assertEquals("WATERCOLOR",PaintTool.WATERCOLOR.name)
             assertNotNull(root.findViewWithTag<View>("tool_WATERCOLOR"))
         } finally {Locale.setDefault(before)}
+    }
+    @Test fun jpegQualityChoiceChangesTheEncodedFileWhileKeepingCanvasPixels() {
+        for(y in 0 until 100) for(x in 0 until 100) doc.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
+        val original=pixels()
+        fun save(quality: Int): ByteArray {
+            menu("File","Save as JPEG…")
+            val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality").slider.progress=quality-1
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
+            val launch=shadowOf(activity).nextStartedActivityForResult
+            val output=File(activity.cacheDir,"quality-$quality.jpg")
+            activity.onActivityResult(launch.requestCode,Activity.RESULT_OK,Intent().setData(Uri.fromFile(output)));waitIo()
+            val decoded=BitmapFactory.decodeFile(output.path)
+            assertEquals(100,decoded.width);assertEquals(100,decoded.height);decoded.recycle()
+            return output.readBytes()
+        }
+        val low=save(20);val high=save(95)
+        assertTrue(high.size>low.size);assertFalse(low.contentEquals(high));assertArrayEquals(original,pixels())
     }
 }

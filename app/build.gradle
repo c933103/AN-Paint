@@ -127,6 +127,11 @@ dependencies {
 // Local addition, 2026-09-07: record exactly the dependencies shipped in debug.
 tasks.register('writeDependencyInventory') {
     doLast {
+        // Download published artifacts as well as their POMs so the notice
+        // generator can retain embedded LICENSE/NOTICE files before packaging.
+        configurations.debugRuntimeClasspath.incoming.artifactView {
+            componentFilter { it instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier }
+        }.files.files
         def rows = configurations.debugRuntimeClasspath.incoming.resolutionResult.allComponents.findAll {
             it.id instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier
         }.collect {
