@@ -148,7 +148,7 @@ class ANPaintControlsTest {
         val about=LegalInfo.aboutText(activity)
         assertTrue(about.contains("AN Paint")); assertTrue(about.contains("Catrobat"))
         val credits=activity.assets.open("legal/ASSET_CREDITS.txt").bufferedReader().readText()
-        listOf("ActionButton.kt","ToolButton.kt","AdvancedColourDialog.kt","system","monospace","Apache","AGPL","ic_launcher").forEach { assertTrue(it,credits.contains(it)) }
+        listOf("ActionButton.kt","ToolButton.kt","system","monospace","LGPL","AGPL","launcher.svg","CC BY-SA 4.0").forEach { assertTrue(it,credits.contains(it)) }
         click("menu_Help"); val menu=ShadowPopupMenu.getLatestPopupMenu().menu
         assertTrue(menu.performIdentifierAction(5,0)); assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing)
     }

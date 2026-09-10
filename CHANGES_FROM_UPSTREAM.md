@@ -1,3 +1,28 @@
+# local.16 — 10 September 2026
+
+- Consolidate standalone editing in the new workspace; delete the original editor,
+  its layer/transparency/Smudge/project-format code, obsolete tests/resources and
+  unused dependencies. Keep original Catrobat attribution and source history.
+- Add Watercolor and Heart/Star/Arrow using four additional KDE Breeze icons;
+  preserve all 33 original SVGs, licence notices and Android conversion details.
+- Add cursor drawing, adjustable magnified preview, antialiasing and smoothing;
+  Fit centres the canvas. Preserve connected lines with open-polygon drawing.
+- Increase tool sizes to 100 px and provide tappable numbers for exact entry.
+- Add four distinct recent colours at the far right of the palette.
+- Rename File insertion to Insert image into canvas; place the optional online
+  Catrobat gallery directly below it, with retained source/attribution links.
+- Add adjustable-quality JPEG, JPEG XL import/crop/export via pinned libjxl 0.12.0,
+  and Save and share after successful export. All document outputs are opaque.
+- Extract interface text into Android string resources with stable routing and
+  persistence IDs; add locale-aware decimal entry and translation instructions.
+- Replace obsolete legacy-font tests with checks against the actual current font
+  inventory. The Dubai/STC fallback explanation is in EDITOR_PARITY.md.
+- Build and test in GitHub Actions, including real Android JPEG XL codec tests.
+  Signing remains local with the existing private key; no key is uploaded.
+
+Earlier change history follows; its feature counts and checks describe those
+historical versions.
+
 # Changes from the base repository
 
 Base: [Catrobat/Paintroid](https://github.com/Catrobat/Paintroid), tag `v2.14.1`,

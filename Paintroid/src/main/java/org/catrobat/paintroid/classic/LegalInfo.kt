@@ -78,7 +78,7 @@ object LegalInfo {
             Toast.makeText(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
         }
         action(ui(R.string.ui_other_terms),"terms_more") { anchor ->
-            val options=listOf(ui(R.string.ui_about_copyright),"AGPL licence",ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences))
+            val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences))
             val popup=PopupMenu(activity,anchor)
             options.forEachIndexed { i,label -> popup.menu.add(0,i,i,label) }
             popup.setOnMenuItemClickListener {
@@ -89,7 +89,8 @@ object LegalInfo {
                     2 -> showAsset(activity,ui(R.string.ui_third_party_notices),"legal/THIRD_PARTY_NOTICES.txt")
                     3 -> showAsset(activity,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")
                     4 -> showAsset(activity,ui(R.string.ui_icons_fonts_artwork_credits),"legal/ASSET_CREDITS.txt")
-                    else -> showAsset(activity,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")
+                    5 -> showAsset(activity,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")
+                    else -> showAsset(activity,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")
                 };true
             };popup.show()
         }

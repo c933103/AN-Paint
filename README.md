@@ -17,14 +17,23 @@ Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
 - Autosave and draft recovery, a compact collapsible toolbox, and advanced colour controls.
 - A separate assembly workspace for up to 20 images, with cropping, normalization,
   alignment, direct PNG saving and transfer to the main editor.
-- The original Pocket Paint editor, including layers, remains under View.
+- Watercolor, Heart/Star/Arrow, cursor drawing, magnified preview and sizes up to
+  100 px with exact numeric entry.
+- PNG, adjustable-quality JPEG, lossless/lossy JPEG XL, and Save and share.
+- Four recent colours and an optional online Catrobat figures gallery.
 
-The main workspace uses an opaque canvas. Large imports receive a memory-based
+The original editor, layers, transparency controls, Smudge, automatic crop and
+native project formats have been removed. See [EDITOR_PARITY.md](EDITOR_PARITY.md)
+for the audited feature mapping. The current UI uses Android translation
+resources; see [TRANSLATING.md](TRANSLATING.md).
+
+Both editing workspaces produce opaque images. Large imports receive a memory-based
 size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.15` starts a new package identity. It installs alongside both the
+`2.14.1-local.16` updates local.15 using the same application ID and signing key.
+Version local.15 introduced this package identity. It installs alongside both the
 original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
 To transfer your current image, **save it as PNG in the old app, then open it in
 the new app**. The image transfers; private autosave history, clipboard and
@@ -34,7 +43,8 @@ signing certificate and a higher version code.
 
 ## Building
 
-Install JDK 17, Android SDK Platform 35 and Build-Tools 35.0.0. Set `JAVA_HOME`
+Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,
+NDK 27.2.12479018 and CMake 3.22.1. Set `JAVA_HOME`
 and `ANDROID_HOME`, then run:
 
 ```sh
@@ -43,7 +53,11 @@ and `ANDROID_HOME`, then run:
 ```
 
 The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build requires
-network access to Google Maven, Maven Central and the Gradle Plugin Portal.
+network access to Google Maven, Maven Central, the Gradle Plugin Portal and
+GitHub for pinned JPEG XL/Brotli/Highway/skcms source revisions. The native codec
+builds for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is available
+for a faster emulator-only verification build. Android instrumentation tests run
+the actual JPEG XL codec via `:Paintroid:connectedDebugAndroidTest`.
 The APK includes its corresponding source, exportable from Help.
 
 See [LOCAL_BUILD.md](LOCAL_BUILD.md) for detailed build and packaging instructions,
@@ -64,6 +78,9 @@ are independently maintained.
   terms in [font notices](Paintroid/src/main/assets/legal/FONT_NOTICES.txt).
 - [Asset credits](Paintroid/src/main/assets/legal/ASSET_CREDITS.txt) and
   [third-party notices](Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt)
-  identify inherited artwork and the packaged libraries.
+  identify the artwork and packaged libraries.
+- [JPEG XL codec notices](Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt)
+  preserve the upstream licences and patent grant. Gallery artwork retains its
+  CC BY-SA 4.0 attribution and source links.
 
 No signing keys or private build backups belong in the public repository.

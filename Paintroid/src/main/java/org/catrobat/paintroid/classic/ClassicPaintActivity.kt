@@ -451,7 +451,10 @@ class ClassicPaintActivity : Activity() {
                 }
                 if (tool == PaintTool.WATERCOLOR) addSlider(ui(R.string.ui_strength),document.watercolorStrength,100,1,"watercolor_strength") { document.watercolorStrength=it }
                 if (tool == PaintTool.SPRAY) addSlider(ui(R.string.ui_spray_radius_px),document.sprayRadius.toInt(),100,1,"spray_radius") { document.sprayRadius=it.toFloat() }
-                if (tool == PaintTool.BRUSH) addChoice(listOf(ui(R.string.ui_round), ui(R.string.ui_square), ui(R.string.ui_calligraphy)), document.brushTip) { document.brushTip = it }
+                if (tool in listOf(PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER,PaintTool.LINE)) {
+                    val tips=if(tool==PaintTool.BRUSH) listOf(ui(R.string.ui_round),ui(R.string.ui_square),ui(R.string.ui_calligraphy)) else listOf(ui(R.string.ui_round),ui(R.string.ui_square))
+                    addChoice(tips,document.brushTip.coerceIn(tips.indices)) {document.brushTip=it}
+                }
                 if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT,PaintTool.HEART,PaintTool.STAR,PaintTool.ARROW))
                     addChoice(listOf(ui(R.string.ui_outline), ui(R.string.ui_solid_fill), ui(R.string.ui_fill_line)), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }
             }
@@ -461,6 +464,10 @@ class ClassicPaintActivity : Activity() {
                 paintCanvas.applyPending()
             }, LinearLayout.LayoutParams(-1, dp(48)))
         }
+        if(tool==PaintTool.POLYGON) options.addView(CheckBox(this).apply {
+            tag="polygon_close";text=ui(R.string.ui_close_polygon);textSize=11f;isChecked=paintCanvas.closePolygon
+            setOnCheckedChangeListener {_,checked -> paintCanvas.closePolygon=checked;paintCanvas.invalidate();scheduleAutosave()}
+        })
         options.addView(button(ui(R.string.ui_how_to_use), "tool_help") { message(tool.hint) }, LinearLayout.LayoutParams(-1, dp(48)))
         listOf(
             actionIcon(EditIcon.CUT,"clipboard_cut") { cutSelection() },
@@ -935,9 +942,9 @@ class ClassicPaintActivity : Activity() {
     private fun displayName(uri: Uri): String {
         try { contentResolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor ->
             val index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-            if (index >= 0 && cursor.moveToFirst()) return cursor.getString(index) ?: "Image"
+            if (index >= 0 && cursor.moveToFirst()) return cursor.getString(index) ?: ui(R.string.ui_menu_image)
         } } catch (_: Exception) { /* Display metadata is optional. */ }
-        return uri.lastPathSegment?.substringAfterLast('/') ?: "Image"
+        return uri.lastPathSegment?.substringAfterLast('/') ?: ui(R.string.ui_menu_image)
     }
     private fun beginIo() { operationsInFlight++; busy = true; lastIoError = null; paintCanvas.isEnabled = false; updateStatus() }
     private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) } }

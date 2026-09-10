@@ -1,0 +1,9 @@
+# Optional AN Paint translation-service configuration. No service is enabled by default.
+# Credentials must refer to the maintainer's own project, never the upstream project.
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_PERSONAL_TOKEN
+base_path: .
+preserve_hierarchy: true
+files:
+  - source: /Paintroid/src/main/res/values/strings.xml
+    translation: /Paintroid/src/main/res/values-%android_code%/strings.xml

@@ -5,6 +5,7 @@
 #include <jxl/decode.h>
 #include <jxl/encode.h>
 #include <jxl/color_encoding.h>
+#include <jxl/cms.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -73,6 +74,24 @@ size_t limit(jlong requested,uint64_t outputBytes) {
     return static_cast<size_t>(std::min<uint64_t>(static_cast<uint64_t>(requested)-outputBytes,SIZE_MAX/2));
 }
 struct Output {Pixels* pixels;uint64_t width,height,left,top;};
+struct Input {
+    Pixels* pixels;Budget* budget;
+    static void format(void*,JxlPixelFormat* out) {*out={3,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,0};}
+    static const void* read(void* opaque,size_t x,size_t y,size_t width,size_t height,size_t* stride) {
+        auto& input=*static_cast<Input*>(opaque);auto& p=*input.pixels;
+        if(x>p.info.width || y>p.info.height || width>p.info.width-x || height>p.info.height-y || width>2048 || height>2048)return nullptr;
+        *stride=width*3;
+        auto* rgb=static_cast<uint8_t*>(Budget::alloc(input.budget,*stride*height));
+        if(!rgb)return nullptr;
+        for(size_t row=0;row<height;row++) {
+            const auto* source=static_cast<const uint8_t*>(p.data)+(y+row)*p.info.stride+x*4;
+            auto* target=rgb+row**stride;
+            for(size_t col=0;col<width;col++) for(int channel=0;channel<3;channel++)target[col*3+channel]=source[col*4+channel];
+        }
+        return rgb;
+    }
+    static void release(void* opaque,const void* ptr) {Budget::free(static_cast<Input*>(opaque)->budget,const_cast<void*>(ptr));}
+};
 void outputPixels(void* opaque,size_t x,size_t y,size_t count,const void* data) {
     auto& o=*static_cast<Output*>(opaque);auto& p=*o.pixels;
     const auto* input=static_cast<const uint8_t*>(data);
@@ -118,6 +137,7 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_decode(JNIEnv* env,jobj
     try {
         Utf name(env,path);Mapping file(name.text);Pixels pixels(env,bitmap);budget.limit=limit(maxBytes,static_cast<uint64_t>(pixels.info.stride)*pixels.info.height);
         auto manager=budget.manager();Decoder dec(JxlDecoderCreate(&manager),JxlDecoderDestroy);if(!dec)throw std::bad_alloc();
+        require(JxlDecoderSetCms(dec.get(),*JxlGetDefaultCms())==JXL_DEC_SUCCESS,"Cannot initialize JPEG XL colour management.");
         require(JxlDecoderSubscribeEvents(dec.get(),JXL_DEC_BASIC_INFO|JXL_DEC_COLOR_ENCODING|JXL_DEC_FULL_IMAGE)==JXL_DEC_SUCCESS,"Cannot start JPEG XL decoder.");
         JxlDecoderSetUnpremultiplyAlpha(dec.get(),JXL_TRUE);
         JxlDecoderSetInput(dec.get(),static_cast<const uint8_t*>(file.bytes),file.size);JxlDecoderCloseInput(dec.get());
@@ -153,11 +173,15 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_encode(JNIEnv* env,jobj
         JxlColorEncoding color;JxlColorEncodingSetToSRGB(&color,JXL_FALSE);
         require(JxlEncoderSetColorEncoding(enc.get(),&color)==JXL_ENC_SUCCESS,"Cannot set JPEG XL colour profile.");
         auto* settings=JxlEncoderFrameSettingsCreate(enc.get(),nullptr);
+        if(!settings)throw std::bad_alloc();
         require(JxlEncoderSetFrameLossless(settings,lossless?JXL_TRUE:JXL_FALSE)==JXL_ENC_SUCCESS,"Cannot set JPEG XL lossless mode.");
         require(JxlEncoderSetFrameDistance(settings,lossless?0.f:JxlEncoderDistanceFromQuality(quality))==JXL_ENC_SUCCESS,"Cannot set JPEG XL quality.");
         require(JxlEncoderFrameSettingsSetOption(settings,JXL_ENC_FRAME_SETTING_EFFORT,3)==JXL_ENC_SUCCESS,"Cannot set JPEG XL effort.");
-        JxlPixelFormat format{4,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,pixels.info.stride};
-        require(JxlEncoderAddImageFrame(settings,&format,pixels.data,static_cast<size_t>(pixels.info.stride)*pixels.info.height)==JXL_ENC_SUCCESS,"Cannot encode JPEG XL pixels.");
+        // RGB chunks omit the alpha channel and avoid an additional full-image copy.
+        Input input{&pixels,&budget};JxlChunkedFrameInputSource chunks{};
+        chunks.opaque=&input;chunks.get_color_channels_pixel_format=Input::format;
+        chunks.get_color_channel_data_at=Input::read;chunks.release_buffer=Input::release;
+        require(JxlEncoderAddChunkedFrame(settings,JXL_TRUE,chunks)==JXL_ENC_SUCCESS,"Cannot encode JPEG XL pixels.");
         JxlEncoderCloseInput(enc.get());
         std::unique_ptr<FILE,decltype(&fclose)> file(fopen(name.text,"wb"),fclose);require(file!=nullptr,"Cannot write JPEG XL file.");
         uint8_t buffer[65536];

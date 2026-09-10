@@ -1,3 +1,54 @@
+# AN Paint current build — local.16
+
+Version `2.14.1-local.16`, code `69`, package `io.github.c933103.anpaint`.
+Install over local.15 with the saved AN Paint signing key. Older package IDs
+remain separate installations. No signing keys belong in the public repository.
+
+The new editor is now the only editor. Layers, document transparency, Smudge,
+automatic crop and native project-file formats have been removed. Assembly
+output is opaque white; imported images in the main editor flatten onto BG.
+Internal selection masks remain so free-form and rotated selections retain
+correct geometry. See EDITOR_PARITY.md for the complete feature mapping.
+
+New controls: Watercolor with strength, Heart/Star/Arrow, sizes up to 100 pixels
+with numeric entry, four recent colour cells, cursor drawing and magnified
+preview under View. Fit also centres. Polygon's Close polygon option can be
+switched off for connected open segments. File labels insertion clearly and
+adds the online Catrobat figures gallery, JPEG quality, JPEG XL, and Save and share.
+
+## Rebuild
+
+Install JDK 17, Android SDK 35 and Build-Tools 35.0.0, NDK 27.2.12479018 and
+CMake 3.22.1. Set JAVA_HOME and ANDROID_HOME. Run:
+
+```sh
+./gradlew --no-daemon --max-workers=2 :app:writeDependencyInventory
+python3 tools/generate_legal_notices.py
+./gradlew --no-daemon --max-workers=2 :app:assembleDebug :Paintroid:testDebugUnitTest :app:lintDebug
+```
+
+The output is app/build/outputs/apk/debug/app-debug.apk. For an update build,
+pass `-PlocalDebugKeystore=/absolute/private/path/debug.keystore`; the saved key
+is maintained outside the repository. Default debug signing produces a different
+certificate and cannot update the distributed AN Paint.
+
+JPEG XL source is fetched at exact revisions by tools/fetch_jxl_sources.py;
+libjxl 0.12.0 is built statically into the JNI library. Four ABIs are included
+by default. `-PnativeAbis=x86_64` is for emulator verification only. Run
+`:Paintroid:connectedDebugAndroidTest` on an Android emulator/device to verify
+actual lossless/lossy codec execution, crop/scaling and error handling.
+
+The APK carries corresponding source. Native intermediates (.cxx), Gradle/build
+outputs, APKs and signing keys are excluded from that ZIP. Confirm the source
+and font/icon inventories against the delivered APK before publishing it.
+The new UI strings are in res/values/strings.xml; see TRANSLATING.md.
+
+## Historical build record
+
+The material below records earlier releases and their test results. References
+to the retained original editor, transparent output, old tool counts, package
+IDs and dependency caches describe those releases, not local.16.
+
 # AN Paint
 
 An installable Android image editor built from Catrobat's Pocket Paint

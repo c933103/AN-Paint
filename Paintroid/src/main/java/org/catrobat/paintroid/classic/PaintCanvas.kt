@@ -54,6 +54,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var scrollAxis = 0
     private var trace = Path()
     private val polygon = mutableListOf<PointF>()
+    var closePolygon = true
     private var curveStage = 0
     val hasPendingEdit get() = polygon.isNotEmpty() || curveStage > 0 || trim?.changed == true
     private var control1 = PointF()
@@ -200,7 +201,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 else -> Unit
             }
         }
-        if (polygon.isNotEmpty()) document.drawShape(canvas, PaintTool.POLYGON, polygonPath(false))
+        if (polygon.isNotEmpty()) document.drawShape(canvas, if(closePolygon) PaintTool.POLYGON else PaintTool.LINE, polygonPath(false))
         if (curveStage > 0 || down && tool == PaintTool.CURVE) document.drawShape(canvas, PaintTool.CURVE, curvePath())
         if (grid && zoom >= 8) {
             val line = Paint().apply { color = 0x55808080; strokeWidth = 1f / zoom }
@@ -301,7 +302,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     fun applyPending() {
         if (trim != null) applyTrim()
-        if (polygon.size >= 2) document.commitShape(PaintTool.POLYGON, polygonPath(true))
+        if (polygon.size >= 2) document.commitShape(if(closePolygon) PaintTool.POLYGON else PaintTool.LINE, polygonPath(closePolygon))
         polygon.clear();resetPolygonTap()
         if (curveStage > 0) document.commitShape(PaintTool.CURVE, curvePath())
         curveStage = 0
@@ -317,6 +318,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
 
     fun draftState(): JSONObject = JSONObject().apply {
+        put("close_polygon",closePolygon)
         put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
         put("polygon",JSONArray().apply { polygon.forEach { put(JSONArray(listOf(it.x,it.y))) } })
@@ -325,6 +327,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.rect?.let { put("bounds",JSONArray(listOf(it.left,it.top,it.right,it.bottom))) }
     }
     fun restoreDraft(state: JSONObject) {
+        closePolygon=state.optBoolean("close_polygon",true)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.PENCIL
         cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
         magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
@@ -547,7 +550,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 initialSelectionRotation=document.selection?.rotation ?: 0f
                 selectionTouchStart=PointF(point.x,point.y);selectionChanged=false
                 polygonTouchMoved=false
-                polygonDoubleTap=tool==PaintTool.POLYGON && polygon.size>=3 && lastPolygonTapTime>=0 &&
+                polygonDoubleTap=tool==PaintTool.POLYGON && polygon.size>=(if(closePolygon) 3 else 2) && lastPolygonTapTime>=0 &&
                     event.eventTime-lastPolygonTapTime in 1..ViewConfiguration.getDoubleTapTimeout().toLong() &&
                     lastPolygonTap?.let { hypot(event.x-it.x,event.y-it.y)<=doubleTapSlop }==true
                 initialCurve=if (tool==PaintTool.CURVE) PointF(control1.x,control1.y) to PointF(control2.x,control2.y) else null

@@ -84,6 +84,17 @@ class UnifiedEditorTest {
         assertFalse(dialog.isShowing);assertEquals(100f,doc.strokeWidth,0f)
         assertEquals(99,root.findViewWithTag<SeekBar>("brush_size").max)
     }
+    @Test fun openPolygonConnectsStraightSegmentsWithoutClosingOrFillingThem() {
+        click("tool_POLYGON");click("polygon_close");assertFalse(board.closePolygon)
+        doc.foreground=Color.BLUE;doc.shapeStyle=1;doc.strokeWidth=2f
+        for(point in listOf(20f to 20f,80f to 20f,80f to 80f)) {
+            event(MotionEvent.ACTION_DOWN,point.first,point.second);event(MotionEvent.ACTION_UP,point.first,point.second)
+        }
+        click("apply")
+        assertEquals(Color.BLUE,doc.bitmap.getPixel(50,20));assertEquals(Color.BLUE,doc.bitmap.getPixel(80,50))
+        assertEquals(Color.WHITE,doc.bitmap.getPixel(50,50));assertEquals(Color.WHITE,doc.bitmap.getPixel(70,40))
+        click("undo");assertTrue(pixels().all {it==Color.WHITE})
+    }
     @Test fun watercolorStrengthBlendsIntoOpaqueCanvasAndUndoRestoresIt() {
         click("tool_WATERCOLOR");doc.strokeWidth=20f;doc.foreground=Color.RED;doc.watercolorStrength=20
         drag(20f,40f,80f,40f);val weak=doc.bitmap.getPixel(50,40)
@@ -132,13 +143,14 @@ class UnifiedEditorTest {
         val quality=dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality")
         quality.slider.progress=34
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        shadowOf(Looper.getMainLooper()).idle()
         var launch=shadowOf(activity).nextStartedActivityForResult
         assertEquals("image/jpeg",launch.intent.type)
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null)
         assertNull(shadowOf(activity).nextStartedActivity)
         menu("File","Save and share…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.PNG.ordinal)
-        shadowOf(Looper.getMainLooper()).idle();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        shadowOf(Looper.getMainLooper()).idle();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
         launch=shadowOf(activity).nextStartedActivityForResult
         val file=File(activity.cacheDir,"share-result.png")
         activity.onActivityResult(launch.requestCode,Activity.RESULT_OK,Intent().setData(Uri.fromFile(file)));waitIo()

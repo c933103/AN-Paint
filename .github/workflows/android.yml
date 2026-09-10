@@ -44,10 +44,11 @@ jobs:
       - name: Prepare verification tools
         if: always()
         run: |
-          mkdir -p verification-tools
+          mkdir -p verification-tools/lib64
           cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" verification-tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" verification-tools/
           cp "$ANDROID_HOME/build-tools/35.0.0/aapt2" verification-tools/
+          cp "$ANDROID_HOME/build-tools/35.0.0/lib64/libc++.so" verification-tools/lib64/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
