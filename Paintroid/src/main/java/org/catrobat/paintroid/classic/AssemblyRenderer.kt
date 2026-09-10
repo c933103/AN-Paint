@@ -22,6 +22,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         if (!fits(size)) throw ImageSizeException("The assembly needs about ${memoryLabel(estimatedBytes(size))}. Choose a smaller output size.")
         val output = Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888)
         try {
+            output.eraseColor(Color.WHITE);output.setHasAlpha(false)
             val canvas = Canvas(output)
             val entries = images.filter { it.id in layout }
             entries.forEachIndexed { index,item ->

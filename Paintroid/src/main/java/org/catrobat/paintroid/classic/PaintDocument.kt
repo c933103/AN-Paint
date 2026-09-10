@@ -17,6 +17,7 @@ enum class PaintTool(val label: String, val hint: String) {
     ZOOM("Navigate", "Drag to pan without drawing. Pinch with two fingers to zoom and pan. Two-finger navigation also works with drawing tools."),
     PENCIL("Pencil", "Draw a crisp, one-pixel line."),
     BRUSH("Brush", "Draw with the selected brush tip and size."),
+    WATERCOLOR("Watercolor", "Draw soft watercolor strokes. Strength controls how strongly the colour blends into the canvas."),
     SPRAY("Airbrush", "Hold or drag to spray colour."),
     TEXT("Text", "Tap the canvas to place text and choose its font and size."),
     LINE("Line", "Drag from the start to the end of the line."),
@@ -24,25 +25,30 @@ enum class PaintTool(val label: String, val hint: String) {
     RECTANGLE("Rectangle", "Drag between opposite corners. Choose outline or fill below."),
     POLYGON("Polygon", "Tap vertices, then double-tap the last vertex to close the polygon. Finish polygon also works."),
     ELLIPSE("Ellipse", "Drag across the ellipse's bounding box."),
-    ROUND_RECT("Rounded rectangle", "Set Radius (px), then drag between opposite corners. The radius is limited to half the shorter side of each rectangle.")
+    ROUND_RECT("Rounded rectangle", "Set Radius (px), then drag between opposite corners. The radius is limited to half the shorter side of each rectangle."),
+    HEART("Heart", "Drag between opposite corners to draw a heart. Choose an outline or fill."),
+    STAR("Star", "Drag between opposite corners to draw a five-pointed star. Choose an outline or fill."),
+    ARROW("Arrow", "Drag from the tail towards the arrowhead. Choose an outline or fill.")
 }
 
 /** A single raster document. Every committed gesture is one undoable operation. */
 class PaintDocument(width: Int = 1024, height: Int = 768,
     historyDirectory: File = File(System.getProperty("java.io.tmpdir"), "pocketpaint-history"),
-    val opaqueCanvas: Boolean = false,
     private val allocationGuard: (Int, Int) -> Unit = { w, h -> ImageMemoryPolicy.forRuntime().check(w, h) }) {
     var bitmap: Bitmap = blank(width, height, Color.WHITE); private set
     var foreground = Color.BLACK
-        set(value) { field = if (opaqueCanvas) value or Color.BLACK else value }
+        set(value) { field = value or Color.BLACK }
     var background = Color.WHITE
-        set(value) { field = if (opaqueCanvas) value or Color.BLACK else value }
+        set(value) { field = value or Color.BLACK }
     var cornerRadius = 16f
     var strokeWidth = 5f
+    var watercolorStrength = 50
+    var strokeSmoothing = false
+    var antialiasing = true
+    var sprayRadius = 10f
     var brushTip = 0
     var shapeStyle = 0 // outline, solid, background fill + foreground outline
     var tolerance = 0f
-    var transparentSelection = false
     var dirty = false; private set
     var changed: () -> Unit = {}
     private val history = RasterHistory(historyDirectory)
@@ -109,11 +115,11 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     fun markSaved() { dirty = false; changed() }
 
     fun replace(image: Bitmap, asEdit: Boolean = false) {
-        val incoming = if (opaqueCanvas && !image.isMutable) {
+        val incoming = if (!image.isMutable) {
             allocationGuard(image.width,image.height)
             image.copy(Bitmap.Config.ARGB_8888,true) ?: throw OutOfMemoryError("Could not prepare the image.")
         } else image
-        if (opaqueCanvas) {
+        run {
             Canvas(incoming).drawColor(background,PorterDuff.Mode.DST_OVER)
             incoming.setHasAlpha(false)
         }
@@ -153,8 +159,11 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         style = Paint.Style.STROKE
         strokeJoin = Paint.Join.ROUND
         strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND
-        isAntiAlias = tool != PaintTool.PENCIL
-        if (tool == PaintTool.ERASER && !opaqueCanvas) xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC)
+        isAntiAlias = tool != PaintTool.PENCIL && antialiasing
+        if (tool == PaintTool.WATERCOLOR) {
+            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)
+            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)
+        }
     }
 
     fun fill(x: Int, y: Int) {
@@ -202,17 +211,8 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     }
 
     fun selectionImage(): Bitmap? {
-        val image = selection?.image ?: return null
-        if (!transparentSelection) return image
-        allocationGuard(image.width, image.height)
-        val output = image.copy(Bitmap.Config.ARGB_8888, true)
-        val row = IntArray(output.width)
-        for (y in 0 until output.height) {
-            output.getPixels(row, 0, row.size, 0, y, row.size, 1)
-            for (x in row.indices) if (row[x] == background) row[x] = Color.TRANSPARENT
-            output.setPixels(row, 0, row.size, 0, y, row.size, 1)
-        }
-        return output
+        // Alpha here is solely an internal geometric mask for non-rectangular selections.
+        return selection?.image
     }
 
     private fun eraseSelection(s: Selection) {
@@ -290,6 +290,11 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         if (!takeOwnership) allocationGuard(image.width, image.height)
         finishSelection(); checkpoint()
         val copy = if (takeOwnership) image else image.copy(Bitmap.Config.ARGB_8888, true)
+        // Imported files are opaque; an internal clipboard keeps its selection mask.
+        if (image !== clipboard) {
+            Canvas(copy).drawColor(background,PorterDuff.Mode.DST_OVER)
+            copy.setHasAlpha(false)
+        }
         selection = Selection(RectF(0f, 0f, copy.width.toFloat(), copy.height.toFloat()), copy, null, true)
         edited(); return true
     }

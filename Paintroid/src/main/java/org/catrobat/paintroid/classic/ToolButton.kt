@@ -17,6 +17,10 @@ class ToolButton(context: Context, val tool: PaintTool) : View(context) {
         PaintTool.ZOOM -> R.drawable.breeze_navigate
         PaintTool.PENCIL -> R.drawable.breeze_pencil
         PaintTool.BRUSH -> R.drawable.breeze_brush
+        PaintTool.WATERCOLOR -> R.drawable.breeze_watercolor
+        PaintTool.HEART -> R.drawable.breeze_heart
+        PaintTool.STAR -> R.drawable.breeze_star
+        PaintTool.ARROW -> R.drawable.breeze_arrow
         PaintTool.SPRAY -> R.drawable.breeze_spray
         PaintTool.TEXT -> R.drawable.breeze_text
         PaintTool.LINE -> R.drawable.breeze_line

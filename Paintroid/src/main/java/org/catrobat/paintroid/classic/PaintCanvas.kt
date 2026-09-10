@@ -58,10 +58,31 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var control2 = PointF()
     private val bar = 20f * resources.displayMetrics.density
     private var fitted = false
+    var cursorMode = false; private set
+    var cursorDrawing = false; private set
+    private var cursor = PointF()
+    private var cursorMoved = false
+    private var cursorInitial = PointF()
+    var magnifiedPreview = false
+    var previewMagnification = 2f
+    private var previewPoint: PointF? = null
+    private var previewTouch = PointF()
+    private var smoothedPrevious = PointF()
+
+    fun setCursorMode(enabled: Boolean) {
+        pauseGesture(); cursorMode=enabled; cursorDrawing=false
+        cursor=toImage((width-bar)/2,(height-bar)/2).also { clampCursor(it) }
+        if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
+        invalidate();onStatus()
+    }
+    private fun clampCursor(p: PointF) {
+        p.x=p.x.coerceIn(0f,document.bitmap.width-1f);p.y=p.y.coerceIn(0f,document.bitmap.height-1f)
+    }
+    private fun supportsCursor() = cursorMode && tool in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)
+
     private var renderedSelection: Bitmap? = null
     private var renderedSource: Bitmap? = null
     private var renderedBackground = 0
-    private var renderedTransparent = false
     private val sprayTick = object : Runnable {
         override fun run() {
             if (down && tool == PaintTool.SPRAY && !multiTouch) {
@@ -151,10 +172,10 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.drawBitmap(bitmap, 0f, 0f, Paint(if (zoom < 1) Paint.FILTER_BITMAP_FLAG else 0))
         document.selection?.let { s ->
             if (s.floating) {
-                if (renderedSource !== s.image || renderedBackground != document.background || renderedTransparent != document.transparentSelection) {
+                if (renderedSource !== s.image || renderedBackground != document.background) {
                     if (renderedSelection !== renderedSource) renderedSelection?.recycle()
                     renderedSelection = document.selectionImage()
-                    renderedSource = s.image; renderedBackground = document.background; renderedTransparent = document.transparentSelection
+                    renderedSource = s.image; renderedBackground = document.background
                 }
                 renderedSelection?.let { s.draw(canvas,it,Paint(Paint.FILTER_BITMAP_FLAG)) }
             }
@@ -173,7 +194,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                     p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
                     if (tool == PaintTool.SELECT) canvas.drawRect(bounds(), p) else canvas.drawPath(trace, p)
                 }
-                PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT -> document.drawShape(canvas, tool, shapePath())
+                PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT, PaintTool.HEART, PaintTool.STAR, PaintTool.ARROW -> document.drawShape(canvas, tool, shapePath())
                 else -> Unit
             }
         }
@@ -190,6 +211,32 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.draw(canvas,zoom,resources.displayMetrics.density)
         canvas.restore()
         drawScrollbars(canvas)
+        if (supportsCursor()) {
+            val point=toScreen(cursor.x,cursor.y)
+            val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=if(cursorDrawing) 0xffb3261e.toInt() else 0xff1559a6.toInt();strokeWidth=2*resources.displayMetrics.density;style=Paint.Style.STROKE }
+            val radius=10*resources.displayMetrics.density
+            canvas.drawCircle(point.x,point.y,radius,p)
+            canvas.drawLine(point.x-radius*1.5f,point.y,point.x+radius*1.5f,point.y,p)
+            canvas.drawLine(point.x,point.y-radius*1.5f,point.x,point.y+radius*1.5f,p)
+        }
+        if (magnifiedPreview && down && !multiTouch && !panning && scrollAxis==0) previewPoint?.let { drawMagnifiedPreview(canvas,it) }
+    }
+
+    private fun drawMagnifiedPreview(canvas: Canvas, point: PointF) {
+        val d=resources.displayMetrics.density
+        val size=min(120*d,min(width-bar,height-bar)*.45f)
+        if (size<40*d) return
+        val left=if (previewTouch.x<width/2) width-bar-size-8*d else 8*d
+        val r=RectF(left,8*d,left+size,8*d+size)
+        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=0xff1559a6.toInt();strokeWidth=2*d;style=Paint.Style.STROKE }
+        canvas.save();canvas.clipRect(r);canvas.drawColor(document.background)
+        canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
+        canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)
+        canvas.drawBitmap(document.bitmap,0f,0f,null)
+        document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image) }
+        canvas.restore();canvas.drawRect(r,p)
+        canvas.drawLine(r.centerX()-6*d,r.centerY(),r.centerX()+6*d,r.centerY(),p)
+        canvas.drawLine(r.centerX(),r.centerY()-6*d,r.centerX(),r.centerY()+6*d,p)
     }
 
     private fun drawScrollbars(c: Canvas) {
@@ -221,6 +268,9 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             PaintTool.RECTANGLE -> addRect(r, Path.Direction.CW)
             PaintTool.ROUND_RECT -> { val radius=document.cornerRadius.coerceIn(0f,min(r.width(),r.height())/2);addRoundRect(r,radius,radius,Path.Direction.CW) }
             PaintTool.ELLIPSE -> addOval(r, Path.Direction.CW)
+            PaintTool.HEART -> addPath(ShapePaths.heart(r))
+            PaintTool.STAR -> addPath(ShapePaths.star(r))
+            PaintTool.ARROW -> addPath(ShapePaths.arrow(start,end,document.strokeWidth))
             else -> { moveTo(start.x, start.y); lineTo(end.x, end.y) }
         }
     }
@@ -265,6 +315,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
 
     fun draftState(): JSONObject = JSONObject().apply {
+        put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
         put("polygon",JSONArray().apply { polygon.forEach { put(JSONArray(listOf(it.x,it.y))) } })
         put("curve_stage",curveStage)
@@ -273,6 +324,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
     fun restoreDraft(state: JSONObject) {
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.PENCIL
+        cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
+        magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
         grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()
         state.optJSONArray("polygon")?.let { points -> for (i in 0 until points.length()) {
             val p=points.getJSONArray(i); polygon.add(PointF(p.getDouble(0).toFloat(),p.getDouble(1).toFloat()))
@@ -292,7 +345,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         invalidate();onStatus()
     }
 
-    private fun stroke(from: PointF, to: PointF) {
+    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {
         val canvas = Canvas(document.bitmap)
         val paint = document.paint(tool)
         if (document.brushTip == 2 && tool == PaintTool.BRUSH) {
@@ -303,6 +356,10 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 val y = from.y + (to.y - from.y) * i / count
                 canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)
             }
+        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {
+            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)
+            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)
+            smoothedPrevious=mid
         } else if (from == to) canvas.drawPoint(to.x, to.y, paint)
         else canvas.drawLine(from.x, from.y, to.x, to.y, paint)
     }
@@ -310,7 +367,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private fun spray(point: PointF) {
         val canvas = Canvas(document.bitmap)
         val p = Paint().apply { color = document.foreground; strokeWidth = 1f }
-        val radius = max(3f, document.strokeWidth * 2)
+        val radius = document.sprayRadius.coerceIn(1f,100f)
         repeat(max(8, radius.toInt())) {
             val angle = Random.nextFloat() * 2 * PI
             val r = sqrt(Random.nextFloat()) * radius
@@ -412,7 +469,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (event.pointerCount > 1) {
             val focus=PointF((event.getX(0)+event.getX(1))/2,(event.getY(0)+event.getY(1))/2)
             val span=hypot(event.getX(0)-event.getX(1),event.getY(0)-event.getY(1))
-            if (!multiTouch) cancelTouchEdit()
+            if (!multiTouch) { cancelTouchEdit(); if (supportsCursor()) cursor.set(cursorInitial) }
             if (multiTouch && event.actionMasked==MotionEvent.ACTION_MOVE) {
                 if (pinchSpan > 1 && span > 1) zoomAt(zoom*span/pinchSpan,pinchFocus.x,pinchFocus.y)
                 panX+=focus.x-pinchFocus.x;panY+=focus.y-pinchFocus.y;clampPan();invalidate();onStatus()
@@ -421,7 +478,34 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             multiTouch = true; down = false; scrollAxis = 0; removeCallbacks(sprayTick)
             return true
         }
-        val point = toImage(event.x, event.y)
+        var point = toImage(event.x, event.y)
+        previewTouch.set(event.x,event.y)
+        if (supportsCursor() && trim==null) {
+            when(event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    multiTouch=false;down=true;cursorMoved=false;cursorInitial.set(cursor)
+                    screenStart.set(event.x,event.y);screenPrevious.set(event.x,event.y)
+                    previous.set(cursor);smoothedPrevious.set(cursor)
+                    if(cursorDrawing) document.beginGesture()
+                }
+                MotionEvent.ACTION_MOVE -> if(down && !multiTouch) {
+                    val old=PointF(cursor.x,cursor.y)
+                    cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
+                    screenPrevious.set(event.x,event.y)
+                    cursorMoved=cursorMoved || hypot(event.x-screenStart.x,event.y-screenStart.y)>touchSlop
+                    if(cursorDrawing && cursorMoved) stroke(old,cursor)
+                }
+                MotionEvent.ACTION_UP -> {
+                    if(multiTouch || !down) {multiTouch=false;down=false;return true}
+                    if(cursorDrawing) { if(cursorMoved) { stroke(smoothedPrevious,cursor,finishing=true);document.finishGesture() } else document.cancelGesture() }
+                    if(!cursorMoved) cursorDrawing=!cursorDrawing
+                    down=false;performClick();onStatus()
+                }
+                MotionEvent.ACTION_CANCEL -> { if(cursorDrawing && down) document.cancelGesture();cursor.set(cursorInitial);down=false;multiTouch=false }
+            }
+            previewPoint=PointF(cursor.x,cursor.y);invalidate();return true
+        }
+        previewPoint=point
         trim?.let { crop ->
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
                 scrollAxis = if (event.y >= height-bar) 1 else if (event.x >= width-bar) 2 else 0
@@ -466,7 +550,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                     start = point; end = point; trace = Path().apply { moveTo(point.x, point.y) }
                 }
                 when (tool) {
-                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> { document.beginGesture(); stroke(point, point) }
+                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.WATERCOLOR, PaintTool.ERASER -> { document.beginGesture(); smoothedPrevious.set(point); stroke(point, point) }
                     PaintTool.SPRAY -> { document.beginGesture(); spray(point); postDelayed(sprayTick, 40) }
                     else -> Unit
                 }
@@ -481,7 +565,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 } else if (movingSelection) {
                     updateSelectionTouch(point);onStatus()
                 } else when (tool) {
-                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> {
+                    PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.WATERCOLOR, PaintTool.ERASER -> {
                         for (i in 0 until event.historySize) {
                             val historical = toImage(event.getHistoricalX(i), event.getHistoricalY(i))
                             stroke(previous, historical); previous = historical
@@ -509,7 +593,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                     if (selectionChanged) document.edited()
                 } else {
                     when (tool) {
-                        PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.ERASER -> { stroke(previous, point); document.finishGesture() }
+                        PaintTool.PENCIL, PaintTool.BRUSH, PaintTool.WATERCOLOR, PaintTool.ERASER -> { stroke(if(document.strokeSmoothing && tool!=PaintTool.PENCIL) smoothedPrevious else previous, point, finishing=true); document.finishGesture() }
                         PaintTool.SPRAY -> document.finishGesture()
                         PaintTool.FILL -> onFill(point.x.toInt(), point.y.toInt())
                         PaintTool.PICKER -> if (point.x >= 0 && point.y >= 0 && point.x < document.bitmap.width && point.y < document.bitmap.height) {
@@ -536,7 +620,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                             curveStage++
                             if (curveStage == 3) applyPending()
                         }
-                        PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT -> { end = point; document.commitShape(tool, shapePath()) }
+                        PaintTool.LINE, PaintTool.RECTANGLE, PaintTool.ELLIPSE, PaintTool.ROUND_RECT, PaintTool.HEART, PaintTool.STAR, PaintTool.ARROW -> { end = point; document.commitShape(tool, shapePath()) }
                         else -> Unit
                     }
                 }

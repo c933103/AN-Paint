@@ -21,11 +21,11 @@ jobs:
           echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
           echo "$JAVA_HOME_17_X64/bin" >> "$GITHUB_PATH"
           export JAVA_HOME="$JAVA_HOME_17_X64"
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
       - name: Build and test
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon --max-workers=2 --console=plain :app:assembleDebug :Paintroid:testDebugUnitTest :app:lintDebug :app:writeDependencyInventory
+          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :app:assembleDebug :Paintroid:testDebugUnitTest :app:lintDebug :app:writeDependencyInventory
       - name: Prepare verification tools
         if: always()
         run: |

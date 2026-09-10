@@ -22,7 +22,6 @@ import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.*
-import org.catrobat.paintroid.MainActivity
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.Executors
@@ -35,6 +34,7 @@ class ClassicPaintActivity : Activity() {
         const val EXPORT_SOURCE = 704
         const val ASSEMBLY_IMAGE = 705
         const val EXPORT_RECOVERY = 706
+        const val GALLERY_IMAGE = 707
         const val SOURCE_ASSET = "local-source/AN-Paint-source.zip"
     }
     lateinit var document: PaintDocument; private set
@@ -51,7 +51,11 @@ class ClassicPaintActivity : Activity() {
     private var syncingZoom = false
     private val toolButtons = linkedMapOf<PaintTool, ToolButton>()
     private var filename = "Untitled"
-    private var saveJpeg = false
+    private var exportOptions=ExportOptions()
+    private var shareAfterSave=false
+    private lateinit var recentColours: RecentColours
+    private val recentCells=mutableListOf<View>()
+    private var fullscreen=false
     private var afterSave: (() -> Unit)? = null
     private val worker = Executors.newSingleThreadExecutor()
     @Volatile var busy = false; private set
@@ -87,12 +91,13 @@ class ClassicPaintActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         autosave=AutosaveStore(filesDir)
+        recentColours=RecentColours(this)
         val prefs=getSharedPreferences("classic-ui",MODE_PRIVATE)
         val firstArrowLayout=!prefs.getBoolean("arrow_layout_initialized",false)
         sidebarExpanded=firstArrowLayout || prefs.getBoolean("sidebar_expanded",true)
         paletteExpanded=firstArrowLayout || prefs.getBoolean("palette_expanded",true)
         prefs.edit().putBoolean("arrow_layout_initialized",true).apply()
-        document = PaintDocument(historyDirectory = File(cacheDir,"classic-history"), opaqueCanvas=true,
+        document = PaintDocument(historyDirectory = File(cacheDir,"classic-history"),
             allocationGuard = { w,h -> if (::document.isInitialized) checkImageSize(w,h) })
         var recovered: JSONObject?=null
         var restored=false
@@ -112,7 +117,10 @@ class ClassicPaintActivity : Activity() {
             document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
             document.brushTip=recovered.optInt("brush_tip");document.shapeStyle=recovered.optInt("shape_style")
             document.tolerance=recovered.optDouble("tolerance",0.0).toFloat()
-            document.transparentSelection=recovered.optBoolean("skip_background")
+            document.watercolorStrength=recovered.optInt("watercolor_strength",50).coerceIn(1,100)
+            document.strokeSmoothing=recovered.optBoolean("stroke_smoothing")
+            document.antialiasing=recovered.optBoolean("antialiasing",true)
+            document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
             if (recovered.optBoolean("dirty")) document.edited()
             draftStatus="Draft restored";restored=true
         } catch (_: Exception) { recovered=null;preserveFailedDraft("The previous draft could not be restored.") }
@@ -134,7 +142,7 @@ class ClassicPaintActivity : Activity() {
         paintCanvas=PaintCanvas(this,document).apply {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
-            onPick={ updateColours();updateStatus();scheduleAutosave() }
+            onPick={ colour -> recentColours.add(colour);refreshRecentColours();updateColours();updateStatus();scheduleAutosave() }
             onText={ x,y -> showTextDialog(x,y) }
             onFill={ x,y -> backgroundEdit { document.fill(x,y) } }
             onError={ editFailed(it) }
@@ -151,7 +159,11 @@ class ClassicPaintActivity : Activity() {
         document.changed={ runOnUiThread { if (!isDestroyed) { paintCanvas.invalidate();updateStatus();scheduleAutosave() } } }
         autosaveReady=true;scheduleAutosave()
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
-        savedInstanceState?.let { saveJpeg=it.getBoolean("save_jpeg",false) }
+        savedInstanceState?.let {
+            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true))
+            shareAfterSave=it.getBoolean("share_after_save")
+        }
+        if(savedInstanceState==null) handleExternalImage(intent)
     }
 
     private fun preserveFailedDraft(reason: String) {
@@ -169,7 +181,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun buildWorkspace() {
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
-        toolButtons.clear()
+        toolButtons.clear();recentCells.clear()
         root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(cream);fitsSystemWindows=true }
         setContentView(root);makeHeader()
         val workspace=FrameLayout(this).apply { tag="workspace_overlay" }
@@ -206,7 +218,7 @@ class ClassicPaintActivity : Activity() {
         workspace.addView(sidebarToggle,FrameLayout.LayoutParams(dp(48),dp(48),Gravity.TOP or Gravity.LEFT))
         makePalette(editor);makeStatus();populateToolOptions(paintCanvas.tool)
         if (paintCanvas.trim != null) showBoundsOptions()
-        syncPanels();updateColours();updateStatus()
+        syncPanels();updateColours();updateStatus();syncFullscreen()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -319,14 +331,29 @@ class ClassicPaintActivity : Activity() {
                     tag = "colour_$hex"; contentDescription = "Colour #$hex. Tap foreground, hold background."
                     isFocusable = true
                     background = GradientDrawable().apply { setColor(colour); setStroke(dp(2), 0xffa0a49f.toInt()) }
-                    setOnClickListener { if (!busy) { document.foreground = colour; updateColours() } }
-                    setOnLongClickListener { if (!busy) { document.background = colour; updateColours() }; true }
+                    setOnClickListener { if (!busy) setColour(colour,false) }
+                    setOnLongClickListener { if (!busy) setColour(colour,true); true }
                 }
                 strip.addView(swatch, LinearLayout.LayoutParams(dp(36), dp(36)).apply { setMargins(dp(1), dp(1), dp(1), dp(1)) })
             }
             palette.addView(strip)
         }
         scroll.addView(palette); row.addView(scroll, LinearLayout.LayoutParams(0, dp(76), 1f))
+        // Four extra cells stay at the far right, after the scrolling standard colours.
+        val recent=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="recent_colours" }
+        repeat(2) { rowIndex ->
+            val pair=LinearLayout(this)
+            repeat(2) { column ->
+                val index=rowIndex*2+column
+                val cell=View(this).apply {
+                    tag="recent_colour_$index";isFocusable=true
+                    setOnClickListener { recentColours.colours.getOrNull(index)?.let { if(!busy) setColour(it,false) } }
+                    setOnLongClickListener { recentColours.colours.getOrNull(index)?.let { if(!busy) setColour(it,true) };true }
+                }
+                recentCells.add(cell);pair.addView(cell,LinearLayout.LayoutParams(dp(32),dp(36)).apply {setMargins(dp(1),dp(1),dp(1),dp(1))})
+            };recent.addView(pair)
+        }
+        row.addView(recent);refreshRecentColours()
         editor.addView(row,LinearLayout.LayoutParams(-1,dp(80)))
     }
 
@@ -402,12 +429,7 @@ class ClassicPaintActivity : Activity() {
                     tag="selection_lock_aspect";text="Lock proportions";textSize=11f;isChecked=paintCanvas.lockSelectionAspect
                     setOnCheckedChangeListener { _,checked -> paintCanvas.lockSelectionAspect=checked;scheduleAutosave() }
                 },LinearLayout.LayoutParams(-1,dp(48)))
-                options.addView(button(if (document.transparentSelection) "Skip BG colour ✓" else "Include BG colour ✓", "selection_mode") {
-                    document.transparentSelection = !document.transparentSelection
-                    // Do not change tools here: a floating selection must remain editable.
-                    (options.findViewWithTag<View>("selection_mode") as Button).text = if (document.transparentSelection) "Skip BG colour ✓" else "Include BG colour ✓"
-                    paintCanvas.invalidate()
-                }, LinearLayout.LayoutParams(-1, dp(52)))
+
             }
             PaintTool.FILL -> addSlider("Tolerance", document.tolerance.toInt(), 100) { document.tolerance = it.toFloat() }
             PaintTool.ZOOM -> {
@@ -420,13 +442,15 @@ class ClassicPaintActivity : Activity() {
             PaintTool.TEXT -> options.addView(label("Tap canvas\nto type", 12f))
             PaintTool.PICKER -> options.addView(label("Tap a pixel", 12f))
             else -> {
-                addSlider("Size (px)", document.strokeWidth.toInt(), 64, 1) { document.strokeWidth = it.toFloat() }
+                addSlider("Size (px)", document.strokeWidth.toInt(), 100, 1, "brush_size") { document.strokeWidth = it.toFloat() }
                 if (tool == PaintTool.ROUND_RECT) addSlider("Radius (px)",document.cornerRadius.toInt(),
                     maxOf(64,minOf(document.bitmap.width,document.bitmap.height)/2,document.cornerRadius.toInt()),tagName="corner_radius") {
                     document.cornerRadius=it.toFloat();paintCanvas.invalidate()
                 }
+                if (tool == PaintTool.WATERCOLOR) addSlider("Strength (%)",document.watercolorStrength,100,1,"watercolor_strength") { document.watercolorStrength=it }
+                if (tool == PaintTool.SPRAY) addSlider("Spray radius (px)",document.sprayRadius.toInt(),100,1,"spray_radius") { document.sprayRadius=it.toFloat() }
                 if (tool == PaintTool.BRUSH) addChoice(listOf("Round", "Square", "Calligraphy"), document.brushTip) { document.brushTip = it }
-                if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT))
+                if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT,PaintTool.HEART,PaintTool.STAR,PaintTool.ARROW))
                     addChoice(listOf("Outline", "Solid fill", "Fill + line"), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }
             }
         }
@@ -451,16 +475,12 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun addSlider(name: String, value: Int, maximum: Int, minimum: Int = 0, tagName: String? = null, action: (Int) -> Unit) {
-        val readout = label("$name: $value", 11f); options.addView(readout)
-        options.addView(SeekBar(this).apply {
-            tag=tagName;contentDescription = name; max = maximum - minimum; progress = value - minimum
-            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) { readout.text = "$name: ${progress + minimum}"; action(progress + minimum);paintCanvas.invalidate();scheduleAutosave() }
-                override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
-                override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
-            })
-        }, LinearLayout.LayoutParams(-1, dp(44)))
+        val control=NumericSlider(this,name,value,minimum,maximum) { action(it);paintCanvas.invalidate();scheduleAutosave() }
+        control.slider.tag=tagName
+        control.number.tag=tagName?.let { "${it}_value" }
+        options.addView(control)
     }
+
     private fun addChoice(values: List<String>, selected: Int, action: (Int) -> Unit) {
         val choice = button(values[selected], "tool_option") {}
         choice.setOnClickListener {
@@ -475,9 +495,12 @@ class ClassicPaintActivity : Activity() {
             "File" -> listOf(
                 "New…" to { confirmReplacement { dimensionsDialog(false, true) } },
                 "Load image…" to { confirmReplacement { launchOpen(false) } },
-                "Paste from image…" to { launchOpen(true) },
+                "Insert image into canvas…" to { launchOpen(true) },
+                "Catrobat sticker gallery…" to {startActivityForResult(Intent(this,MediaGalleryActivity::class.java),GALLERY_IMAGE)},
                 "Save as PNG…" to { requestSave(false) },
                 "Save as JPEG…" to { requestSave(true) },
+                "Save as JPEG XL…" to { showSaveOptions(ImageFormat.JPEG_XL) },
+                "Save and share…" to { showSaveOptions(exportOptions.format,true) },
                 "Image assembly…" to { openAssembly() }
             ) + if (autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf("Export recovery copy…" to { requestRecoveryExport() }) else emptyList()
             "Edit" -> listOf(
@@ -495,7 +518,10 @@ class ClassicPaintActivity : Activity() {
                 "Actual size (100%)" to { paintCanvas.zoomAt(1f) },
                 "Fit image" to { paintCanvas.fit() },
                 "${if (paintCanvas.grid) "Hide" else "Show"} pixel grid (800%+)" to { paintCanvas.grid = !paintCanvas.grid; paintCanvas.invalidate() },
-                "Original Pocket Paint editor…" to { showOriginalEditor() },
+                "${if(paintCanvas.cursorMode) "Disable" else "Enable"} cursor drawing" to { paintCanvas.setCursorMode(!paintCanvas.cursorMode);populateToolOptions(paintCanvas.tool) },
+                "Magnified preview…" to { showDrawingSettings(true) },
+                "Drawing settings…" to { showDrawingSettings(false) },
+                "${if(fullscreen) "Show" else "Hide"} editor controls" to { fullscreen=!fullscreen;syncFullscreen() },
                 "Image assembly…" to { openAssembly() },
                 "${if (sidebarExpanded) "Collapse" else "Expand"} toolbox" to { sidebarExpanded=!sidebarExpanded;syncPanels() },
                 "${if (paletteExpanded) "Collapse" else "Expand"} colour palette" to { togglePalette() },
@@ -526,6 +552,8 @@ class ClassicPaintActivity : Activity() {
                 "Third-party notices" to { LegalInfo.showAsset(this, "Open-source credits and notices", "legal/THIRD_PARTY_NOTICES.txt") },
                 "Export this version's source code…" to { exportSource() },
                 "Icons, fonts & artwork credits" to { LegalInfo.showAsset(this, "Icons, fonts & artwork credits", "legal/ASSET_CREDITS.txt") },
+                "Image credits" to {showImageCredits()},
+                "JPEG XL codec licences" to {LegalInfo.showAsset(this,"JPEG XL codec licences","legal/JPEG_XL_NOTICES.txt")},
                 "Font licences" to { LegalInfo.showAsset(this,"Font licences","legal/FONT_NOTICES.txt") },
                 "Icon licences" to { LegalInfo.showAsset(this,"Icon licences — KDE Breeze","legal/ICON_NOTICES.txt") }
             )
@@ -551,7 +579,7 @@ class ClassicPaintActivity : Activity() {
     private fun copySelection() { if (!document.copySelection()) message("Select an area first.") }
     private fun pasteSelection() {
         chooseTool(PaintTool.SELECT)
-        if (document.paste()) selectAfterPaste() else message("Copy an area or use File › Paste from image.")
+        if (document.paste()) selectAfterPaste() else message("Copy an area or use File › Insert image into canvas.")
     }
 
     private fun editAction(action: () -> Unit): Boolean {
@@ -585,8 +613,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun colourDialog(background: Boolean) {
         AdvancedColourDialog(this, if (background) document.background else document.foreground, background) { colour ->
-            if (background) document.background = colour else document.foreground = colour
-            updateColours()
+            setColour(colour,background)
         }.show()
     }
 
@@ -680,12 +707,35 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun requestSave(jpeg: Boolean) {
-        paintCanvas.applyPending(); saveJpeg = jpeg
-        val stem = filename.substringBeforeLast('.', filename).ifBlank { "Untitled" }
+        if(jpeg) showSaveOptions(ImageFormat.JPEG) else {
+            shareAfterSave=false;exportOptions=ExportOptions(ImageFormat.PNG);chooseSaveLocation()
+        }
+    }
+    private fun showSaveOptions(format: ImageFormat,share: Boolean=false) {
+        val prefs=getSharedPreferences("export",MODE_PRIVATE)
+        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true)),share,
+            confirm={options ->
+                exportOptions=options;shareAfterSave=share
+                prefs.edit().putInt("quality",options.quality).putBoolean("lossless",options.lossless).apply()
+                chooseSaveLocation()
+            },cancel={afterSave=null;shareAfterSave=false}).show()
+    }
+    private fun chooseSaveLocation() {
+        paintCanvas.applyPending()
+        val stem=filename.substringBeforeLast('.',filename).ifBlank {"Untitled"}
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE); type = if (jpeg) "image/jpeg" else "image/png"
-            putExtra(Intent.EXTRA_TITLE, stem + if (jpeg) ".jpg" else ".png")
-        }, SAVE_IMAGE)
+            addCategory(Intent.CATEGORY_OPENABLE);type=exportOptions.format.mime
+            putExtra(Intent.EXTRA_TITLE,stem+exportOptions.format.extension)
+        },SAVE_IMAGE)
+    }
+    override fun onNewIntent(intent: Intent) {super.onNewIntent(intent);setIntent(intent);handleExternalImage(intent)}
+    private fun handleExternalImage(incoming: Intent) {
+        val uri=when(incoming.action) {
+            Intent.ACTION_SEND -> incoming.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data
+            else -> null
+        } ?: return
+        confirmReplacement {readImage(uri,false)}
     }
 
     fun exportSource() {
@@ -714,7 +764,14 @@ class ClassicPaintActivity : Activity() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != RESULT_OK) { if (requestCode == SAVE_IMAGE) afterSave = null; return }
+        if (resultCode != RESULT_OK) { if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
+        if(requestCode==GALLERY_IMAGE) {
+            val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
+            val source=data?.getStringExtra("gallery_source")
+            if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !MediaGalleryActivity.allowed(Uri.parse(source))) {message("The gallery image is unavailable.");return}
+            getSharedPreferences("image-credits",MODE_PRIVATE).edit().putStringSet("sources",(getSharedPreferences("image-credits",MODE_PRIVATE).getStringSet("sources",emptySet()) ?: emptySet())+source).apply()
+            readImage(Uri.fromFile(file),true,deleteAfterCopy=true);return
+        }
         if (requestCode == ASSEMBLY_IMAGE) {
             val name = data?.getStringExtra("assembly_output")
             val file = name?.let { File(filesDir,it) }
@@ -804,27 +861,43 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun writeImage(uri: Uri) {
-        if (saveJpeg) { try { checkImageSize(document.bitmap.width, document.bitmap.height) } catch (error: ImageSizeException) { afterSave = null; editFailed(error); return } }
         beginIo()
-        val snapshot = document.bitmap // Editing stays locked until encoding completes.
+        val snapshot=document.bitmap
+        val options=exportOptions;val sharing=shareAfterSave;shareAfterSave=false
         worker.execute {
-            var outputImage: Bitmap? = null
+            var encoded: File?=null
             try {
-                outputImage = if (saveJpeg) Bitmap.createBitmap(snapshot.width, snapshot.height, Bitmap.Config.ARGB_8888).apply {
-                    eraseColor(Color.WHITE); Canvas(this).drawBitmap(snapshot, 0f, 0f, null)
-                } else snapshot
-                contentResolver.openOutputStream(uri, "wt")?.use {
-                    if (!outputImage!!.compress(if (saveJpeg) Bitmap.CompressFormat.JPEG else Bitmap.CompressFormat.PNG, 95, it)) throw IOException("The encoder did not finish.")
-                } ?: throw IOException("The selected location is not writable.")
-                val name = displayName(uri)
-                runOnUiThread { if (!isDestroyed) {
-                    filename = name; document.markSaved(); endIo(); Toast.makeText(this, "Saved $name", Toast.LENGTH_SHORT).show()
-                    val action = afterSave; afterSave = null; action?.invoke()
-                } }
-            } catch (e: Exception) { ioFailed("Could not save image", e) }
-            catch (e: OutOfMemoryError) { ioFailed("Not enough memory to save in this format. Try PNG", e) }
-            finally { if (outputImage !== snapshot) outputImage?.recycle() }
+                val directory=File(cacheDir,"images").apply {mkdirs()}
+                val file=File.createTempFile("AN-Paint-",options.format.extension,directory);encoded=file
+                if(options.format==ImageFormat.JPEG_XL) JxlCodec.encode(snapshot,file,options.quality,options.lossless,
+                    ImageMemoryPolicy.forDevice(this).workingBytes)
+                else file.outputStream().use {
+                    if(!snapshot.compress(if(options.format==ImageFormat.JPEG) Bitmap.CompressFormat.JPEG else Bitmap.CompressFormat.PNG,options.quality,it)) throw IOException("The encoder did not finish.")
+                }
+                contentResolver.openOutputStream(uri,"wt")?.use {output -> file.inputStream().use {it.copyTo(output)}}
+                    ?: throw IOException("The selected location is not writable.")
+                val name=displayName(uri)
+                if(sharing) encoded=null
+                runOnUiThread {if(!isDestroyed) {
+                    filename=name;document.markSaved();endIo();Toast.makeText(this,"Saved $name",Toast.LENGTH_SHORT).show()
+                    if(sharing) shareSavedImage(file,options.format)
+                    val action=afterSave;afterSave=null;action?.invoke()
+                }}
+            } catch(error: Exception) {ioFailed("Could not save image",error)}
+              catch(error: OutOfMemoryError) {ioFailed("Not enough memory to save in this format. Try PNG",error)}
+            finally {encoded?.delete()}
         }
+    }
+    private fun shareSavedImage(file: File,format: ImageFormat) {
+        try {
+            val uri=androidx.core.content.FileProvider.getUriForFile(this,"$packageName.fileprovider",file)
+            val send=Intent(Intent.ACTION_SEND).apply {
+                type=format.mime;putExtra(Intent.EXTRA_STREAM,uri)
+                clipData=android.content.ClipData.newRawUri("AN Paint image",uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            startActivity(Intent.createChooser(send,"Share saved image"))
+        } catch(error: Exception) {message("The image was saved, but Android could not open sharing: ${error.message}")}
     }
 
     private fun exportSourceTo(uri: Uri) {
@@ -860,12 +933,52 @@ class ClassicPaintActivity : Activity() {
     private fun ioFailed(prefix: String, e: Throwable) {
         runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = "$prefix. ${e.message ?: "Please try a different file or location."}"; message(lastIoError!!) } }
     }
-    private fun showOriginalEditor() {
-        AlertDialog.Builder(this).setTitle("Original Pocket Paint editor")
-            .setMessage("Opens the retained editor with layers, extra brushes and Pocket Paint / OpenRaster projects. To edit this canvas there, save it first, then load the saved image in that editor.")
-            .setPositiveButton("Open editor") { _, _ -> startActivity(Intent(this, MainActivity::class.java)) }.setNegativeButton("Cancel", null).show()
+    private fun setColour(colour: Int,background: Boolean) {
+        if(background) document.background=colour else document.foreground=colour
+        recentColours.add(colour);refreshRecentColours();updateColours()
     }
-    private fun showHelp() = message("The arrow on the left directly below the toolbar collapses or restores the sidebar: up to collapse, down to expand. Both panels start expanded on the first launch of this layout; later choices are remembered. In landscape, the top controls share one row with the filename centred; Menu opens File, Edit, View, Image, Colors and Help, each with an Android submenu arrow.\n\nThe FG/BG colour indicator stays fixed at the bottom of the sidebar. The palette opens directly to its right on the same row. Its arrow is on the right edge: left to collapse the palette, right to expand it. Collapsing gives the canvas more height without moving the indicator. Tapping the colour box also toggles the palette. Tap a swatch for foreground or hold for background. FG/BG opens Palette, Honeycomb and Advanced. Advanced has spectrum, wheel, RGB, HSV, HSL and six-digit hex controls. Custom colours start with Pale Violet #5B67FF, Gold #FFD700, Silver #C0C0C0 and Copper #B87333. Hold a custom swatch to replace it. The main editor uses opaque colours; transparent imports are placed onto the current BG colour. Original source files are unchanged.\n\nNavigate replaces the magnifying-glass tool: drag with one finger to pan, pinch with two fingers to zoom and pan. Tap Navigate again or Draw again to return to drawing. Two-finger navigation also works in drawing tools without leaving paint marks. The bottom-right slider has a centre line at 100%. Zoom in/out buttons stop at 100% when a step would cross it; press again to continue. The adjacent Fit button fits the canvas into the view. View also provides 100% and a pixel grid.\n\nAutosave records the current draft after a short editing pause, and when you leave the app. The status shows Draft saved or an autosave error. Reopening restores the draft, filename, tool settings, floating selection and unfinished geometry. Autosave keeps a private working draft. File > Save as PNG/JPEG exports a file to your chosen location; the filename star means that exported file has unsaved changes. Source images are never overwritten by autosave.\n\nSelections: draw a rectangle or free-form outline. Drag inside to move, drag a square corner or edge midpoint to resize, or drag the round Rotate handle to rotate. Lock proportions is on by default; switch it off to stretch width and height independently. Edge handles resize along the selected side. Free-form selections keep their selected shape within the transform box, including after rotation and autosave. The dimensions and angle appear in the sidebar. Commit selection applies the result as one undoable selection edit; autosave retains unfinished transforms. Copy, Cut and Crop to selection use the transformed image. Select all is in the second row of edit icons, and Ctrl+A works on an external keyboard. Cut/Copy and Paste/Select all form two rows below How to use. Include BG colour / Skip BG colour controls the classic background-colour selection mode.\n\nCanvas bounds: drag handles inward to trim or outward to expand on any side, then Apply bounds. New space uses BG; existing pixels are not scaled. Cancel and Undo are available. Resize image, Canvas size and New image also accept Pixels or Percent with an optional aspect lock.\n\nCurve: draw a line and drag twice to bend it. Polygon: tap vertices, then double-tap the final vertex to close it, or use Finish polygon. Rounded rectangle: set Radius (px) with its slider; each shape limits the radius to half its shorter side. Text: tap the canvas, choose a font displayed in its own style and use the live preview. Options include size, bold, italic, underline, strikethrough, alignment, line spacing and a BG text box. Ten additional fonts are bundled; Font licences has their credits and full terms.\n\nFile loads images through Android's picker. Images within the device memory budget load at original resolution. If needed, a resize-choice dialog shows dimensions, pixel count and memory estimates, with Pixels/Percent sizing and optional aspect lock. The original file stays unchanged.\n\nFile or View > Image assembly opens a separate workspace for up to 20 images. Sort thumbnails by filename or time. Crop one image or batch-crop several. Same width / Same height normalizes all loaded images while preserving aspect ratios. Drag thumbnails or placed images to snap right/top aligned or bottom/left aligned. Unplace removes just the selected placement and closes the gap. Show all changes view zoom. Save PNG exports the assembly; Edit in Paint transfers it as an undoable edit. The original Pocket Paint editor remains under View for layers and project formats.\n\nHelp includes original copyright, asset/font credits, full licence text and this version's complete source. Licence text scrolls independently of the fixed Copy all, Other terms and Done buttons.")
+    private fun refreshRecentColours() {
+        recentCells.forEachIndexed { index,cell ->
+            val colour=recentColours.colours.getOrNull(index)
+            cell.background=GradientDrawable().apply { setColor(colour ?: 0xffe8e7df.toInt());setStroke(dp(2),0xffa0a49f.toInt()) }
+            cell.isEnabled=colour!=null
+            cell.contentDescription=if(colour==null) "Recent colour ${index+1}: empty" else String.format(java.util.Locale.ROOT,"Recent colour %d: #%06X. Tap foreground, hold background.",index+1,colour and 0xffffff)
+        }
+    }
+    private fun showImageCredits() {
+        val sources=getSharedPreferences("image-credits",MODE_PRIVATE).getStringSet("sources",emptySet()).orEmpty()
+        val text=if(sources.isEmpty()) "No gallery images have been inserted." else
+            "Gallery artwork: Catrobat and its credited creators. CC BY-SA 4.0 unless the source identifies separate terms. Credit the artwork and describe your modifications when sharing an adaptation.\n\n"+sources.sorted().joinToString("\n\n")+"\n\n"+MediaGalleryActivity.LICENCE
+        LegalInfo.termsDialog(this,"Image credits",text).show()
+    }
+    private fun showDrawingSettings(preview: Boolean) {
+        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}
+        fun toggle(title: String,value: Boolean,change: (Boolean)->Unit) {
+            column.addView(CheckBox(this).apply {text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })
+        }
+        if(preview) {
+            toggle("Show magnified drawing preview",paintCanvas.magnifiedPreview) { paintCanvas.magnifiedPreview=it }
+            column.addView(NumericSlider(this,"Magnification (%)",(paintCanvas.previewMagnification*100).toInt(),100,400) {paintCanvas.previewMagnification=it/100f})
+        } else {
+            toggle("Smooth freehand strokes",document.strokeSmoothing) { document.strokeSmoothing=it }
+            toggle("Smooth pixel edges (anti-aliasing)",document.antialiasing) { document.antialiasing=it }
+            column.addView(label("Pencil keeps crisp one-pixel strokes. Cursor drawing: drag to move the cursor; tap to switch drawing on or off."))
+        }
+        AlertDialog.Builder(this).setTitle(if(preview) "Magnified preview" else "Drawing settings")
+            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton("Done",null).show()
+    }
+    private fun syncFullscreen() {
+        if(!::root.isInitialized) return
+        for(i in 0 until root.childCount) root.getChildAt(i).let { it.visibility=if(fullscreen && it.tag!="workspace_overlay") View.GONE else View.VISIBLE }
+        sidebar.visibility=if(!fullscreen && sidebarExpanded) View.VISIBLE else View.GONE
+        paletteBar.visibility=if(!fullscreen && sidebarExpanded && paletteExpanded) View.VISIBLE else View.GONE
+        sidebarToggle.visibility=if(fullscreen) View.GONE else View.VISIBLE
+        val workspace=root.findViewWithTag<FrameLayout>("workspace_overlay")
+        workspace.findViewWithTag<View>("leave_fullscreen")?.let {workspace.removeView(it)}
+        if(fullscreen) workspace.addView(button("Show controls","leave_fullscreen") {fullscreen=false;syncFullscreen()},FrameLayout.LayoutParams(-2,dp(48),Gravity.TOP or Gravity.END))
+        window.decorView.systemUiVisibility=if(fullscreen) View.SYSTEM_UI_FLAG_FULLSCREEN else View.SYSTEM_UI_FLAG_VISIBLE
+    }
+    private fun showHelp() = message("The arrow on the left directly below the toolbar collapses or restores the sidebar: up to collapse, down to expand. Both panels start expanded on the first launch of this layout; later choices are remembered. In landscape, the top controls share one row with the filename centred; Menu opens File, Edit, View, Image, Colors and Help, each with an Android submenu arrow.\n\nThe FG/BG colour indicator stays fixed at the bottom of the sidebar. The palette opens directly to its right on the same row. Its arrow is on the right edge: left to collapse the palette, right to expand it. Collapsing gives the canvas more height without moving the indicator. Tapping the colour box also toggles the palette. Tap a swatch for foreground or hold for background. FG/BG opens Palette, Honeycomb and Advanced. Advanced has spectrum, wheel, RGB, HSV, HSL and six-digit hex controls. Custom colours start with Pale Violet #5B67FF, Gold #FFD700, Silver #C0C0C0 and Copper #B87333. Hold a custom swatch to replace it. The main editor uses opaque colours; transparent imports are placed onto the current BG colour. Original source files are unchanged.\n\nNavigate replaces the magnifying-glass tool: drag with one finger to pan, pinch with two fingers to zoom and pan. Tap Navigate again or Draw again to return to drawing. Two-finger navigation also works in drawing tools without leaving paint marks. The bottom-right slider has a centre line at 100%. Zoom in/out buttons stop at 100% when a step would cross it; press again to continue. The adjacent Fit button fits the canvas into the view. View also provides 100% and a pixel grid.\n\nAutosave records the current draft after a short editing pause, and when you leave the app. The status shows Draft saved or an autosave error. Reopening restores the draft, filename, tool settings, floating selection and unfinished geometry. Autosave keeps a private working draft. File > Save as PNG/JPEG exports a file to your chosen location; the filename star means that exported file has unsaved changes. Source images are never overwritten by autosave.\n\nSelections: draw a rectangle or free-form outline. Drag inside to move, drag a square corner or edge midpoint to resize, or drag the round Rotate handle to rotate. Lock proportions is on by default; switch it off to stretch width and height independently. Edge handles resize along the selected side. Free-form selections keep their selected shape within the transform box, including after rotation and autosave. The dimensions and angle appear in the sidebar. Commit selection applies the result as one undoable selection edit; autosave retains unfinished transforms. Copy, Cut and Crop to selection use the transformed image. Select all is in the second row of edit icons, and Ctrl+A works on an external keyboard. Cut/Copy and Paste/Select all form two rows below How to use. Selection masks preserve the selected shape; the document itself remains opaque.\n\nCanvas bounds: drag handles inward to trim or outward to expand on any side, then Apply bounds. New space uses BG; existing pixels are not scaled. Cancel and Undo are available. Resize image, Canvas size and New image also accept Pixels or Percent with an optional aspect lock.\n\nCurve: draw a line and drag twice to bend it. Polygon: tap vertices, then double-tap the final vertex to close it, or use Finish polygon. Rounded rectangle: set Radius (px) with its slider; each shape limits the radius to half its shorter side. Text: tap the canvas, choose a font displayed in its own style and use the live preview. Options include size, bold, italic, underline, strikethrough, alignment, line spacing and a BG text box. Ten additional fonts are bundled; Font licences has their credits and full terms.\n\nFile loads images through Android's picker. Images within the device memory budget load at original resolution. If needed, a resize-choice dialog shows dimensions, pixel count and memory estimates, with Pixels/Percent sizing and optional aspect lock. The original file stays unchanged.\n\nFile or View > Image assembly opens a separate workspace for up to 20 images. Sort thumbnails by filename or time. Crop one image or batch-crop several. Same width / Same height normalizes all loaded images while preserving aspect ratios. Drag thumbnails or placed images to snap right/top aligned or bottom/left aligned. Unplace removes just the selected placement and closes the gap. Show all changes view zoom. Save PNG exports the assembly; Edit in Paint transfers it as an undoable edit. The original Pocket Paint editor remains under View for layers and project formats.\n\nHelp includes original copyright, asset/font credits, full licence text and this version's complete source. Licence text scrolls independently of the fixed Copy all, Other terms and Done buttons.")
     private fun message(text: String) { if (!isFinishing && !isDestroyed) AlertDialog.Builder(this).setTitle("AN Paint").setMessage(text).setPositiveButton("OK", null).show() }
 
     private fun scheduleAutosave() {
@@ -878,7 +991,8 @@ class ClassicPaintActivity : Activity() {
         put("version",1);put("filename",filename);put("dirty",document.dirty)
         put("foreground",document.foreground);put("background",document.background)
         put("corner_radius",document.cornerRadius.toDouble());put("stroke_width",document.strokeWidth.toDouble());put("brush_tip",document.brushTip);put("shape_style",document.shapeStyle)
-        put("tolerance",document.tolerance.toDouble());put("skip_background",document.transparentSelection)
+        put("tolerance",document.tolerance.toDouble());put("watercolor_strength",document.watercolorStrength)
+        put("stroke_smoothing",document.strokeSmoothing);put("antialiasing",document.antialiasing);put("spray_radius",document.sprayRadius.toDouble())
         put("canvas",paintCanvas.draftState());put("text_settings",textSettings.json());put("saved_at",System.currentTimeMillis())
         document.selection?.takeIf { it.floating }?.let { s -> put("floating_rect",JSONArray(listOf(s.rect.left,s.rect.top,s.rect.right,s.rect.bottom)));put("floating_rotation",s.rotation.toDouble());s.outline?.let { put("selection_outline",SelectionOutline.write(it)) } }
     }
@@ -905,7 +1019,7 @@ class ClassicPaintActivity : Activity() {
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putBoolean("save_jpeg", saveJpeg); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
         super.onStop();stopped=true
@@ -914,7 +1028,7 @@ class ClassicPaintActivity : Activity() {
             scheduleAutosave();autosaveHandler.removeCallbacks(saveDraft);saveDraftIfReady()
         }
     }
-    override fun onBackPressed() { if (!busy) confirmReplacement { finish() } }
+    override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
         resizeDialog?.dismiss();resizeDialog=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}

@@ -63,14 +63,17 @@ fun ImageMemoryPolicy.suggestResize(source: ImageDimensions, residentPixels: Lon
 class ImportedImage(val file: File, val name: String) {
     private val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
     private val orientation: ExifInterface?
+    private val jxl=JxlCodec.isJxl(file)
     val dimensions: ImageDimensions
     init {
-        BitmapFactory.decodeFile(file.path, bounds)
-        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException("This file is not a supported raster image. Open .ora or Pocket Paint projects in View › Original Pocket Paint editor.")
-        orientation = try { ExifInterface(file.path) } catch (_: IOException) { null }
+        if(jxl) {val size=JxlCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
+        else BitmapFactory.decodeFile(file.path, bounds)
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException("This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP or another Android-supported image format.")
+        orientation = if(jxl) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
         dimensions = if (orientation?.rotationDegrees in listOf(90,270)) ImageDimensions(bounds.outHeight,bounds.outWidth) else ImageDimensions(bounds.outWidth,bounds.outHeight)
     }
     fun decode(plan: ImportPlan): Bitmap {
+        if(jxl) return JxlCodec.decode(file,plan.target,ImageMemoryPolicy.forRuntime().workingBytes)
         var decoded: Bitmap? = null
         var output: Bitmap? = null
         try {

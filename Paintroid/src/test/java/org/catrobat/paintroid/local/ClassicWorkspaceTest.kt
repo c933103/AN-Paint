@@ -320,7 +320,7 @@ class ClassicWorkspaceTest {
         assertEquals(Color.WHITE, doc.bitmap.getPixel(15, 15)); assertEquals(Color.BLUE, doc.bitmap.getPixel(45, 45))
         click("undo"); assertEquals(Color.BLUE, doc.bitmap.getPixel(15, 15)); assertEquals(Color.WHITE, doc.bitmap.getPixel(45, 45))
     }
-    @Test fun freeFormSelectionCutsOnlyInsideMaskAndPastesThroughTransparentBackground() {
+    @Test fun freeFormSelectionPreservesItsMaskAndExternalImagesUseOpaqueBackground() {
         doc.bitmap.eraseColor(Color.RED)
         tool(PaintTool.LASSO)
         event(MotionEvent.ACTION_DOWN, 10f, 10f); event(MotionEvent.ACTION_MOVE, 60f, 10f); event(MotionEvent.ACTION_MOVE, 10f, 60f); event(MotionEvent.ACTION_UP, 10f, 10f)
@@ -329,9 +329,9 @@ class ClassicWorkspaceTest {
         assertTrue(doc.paste()); click("apply"); assertEquals(Color.RED, doc.bitmap.getPixel(10, 10))
         doc.bitmap.eraseColor(Color.GREEN)
         val pasted = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.WHITE); setPixel(10, 10, Color.BLUE) }
-        doc.transparentSelection = true; doc.paste(pasted); click("apply")
-        assertEquals(Color.GREEN, doc.bitmap.getPixel(2, 2)); assertEquals(Color.BLUE, doc.bitmap.getPixel(10, 10))
-        doc.transparentSelection = false; doc.paste(pasted); click("apply"); assertEquals(Color.WHITE, doc.bitmap.getPixel(2, 2)); pasted.recycle()
+        pasted.setPixel(2, 2, Color.TRANSPARENT)
+        doc.paste(pasted); click("apply")
+        assertEquals(Color.WHITE, doc.bitmap.getPixel(2, 2)); assertEquals(Color.BLUE, doc.bitmap.getPixel(10, 10)); pasted.recycle()
     }
     @Test fun textToolDialogPlacesTextAndCanBeUndone() {
         tool(PaintTool.TEXT); tap(5f, 5f)
