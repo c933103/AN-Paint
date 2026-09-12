@@ -79,6 +79,10 @@ class GalleryImportTest {
         assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,asset.toString()))
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         assertTrue(dialog.isShowing);dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        // AlertDialog sends button listeners through its main-thread Handler.
+        // Deliver that message before observing the worker state or blocking on
+        // the transfer latch; performClick() alone has not started the download.
+        shadowOf(Looper.getMainLooper()).idle()
     }
     @Test fun downloadableImageReturnsThroughGalleryAndCompositesOntoExistingPixelsWithSourceCredit() {
         val connection=Connection(URL(asset.toString()),ByteArrayInputStream(imageBytes()))

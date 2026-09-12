@@ -72,6 +72,7 @@ class TranslationReadinessTest {
         try {
             val picker=AdvancedColourDialog(activity,Color.RED,false) {}
             val dialog=picker.show()
+            shadowOf(Looper.getMainLooper()).idle()
             val root=dialog.window!!.decorView
             root.findViewWithTag<View>("colour_advanced_tab").performClick()
             val hue=root.findViewWithTag<EditText>("colour_h")
@@ -95,6 +96,9 @@ class TranslationReadinessTest {
             var selected=Color.BLACK
             val picker=AdvancedColourDialog(activity,Color.RED,false) {selected=it}
             val dialog=picker.show()
+            // AlertDialog delivers OnShow on the main queue; install its validated
+            // positive-button handler before exercising invalid/valid submission.
+            shadowOf(Looper.getMainLooper()).idle()
             val root=dialog.window!!.decorView
             root.findViewWithTag<View>("colour_advanced_tab").performClick()
             val hue=root.findViewWithTag<EditText>("colour_h")
@@ -105,11 +109,13 @@ class TranslationReadinessTest {
             red.setText("٢٥٦")
             assertEquals(activity.getString(R.string.ui_colour_component_range,255),red.error.toString())
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            shadowOf(Looper.getMainLooper()).idle()
             assertTrue(dialog.isShowing);assertEquals(Color.BLACK,selected)
             red.setText("١٢٨")
             assertNull(red.error);assertEquals(128,Color.red(picker.value.colour))
             assertEquals(activity.getString(R.string.ui_colour_red_range),red.contentDescription.toString())
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            shadowOf(Looper.getMainLooper()).idle()
             assertFalse(dialog.isShowing);assertEquals(picker.value.colour,selected)
         } finally {Locale.setDefault(oldLocale)}
     }
