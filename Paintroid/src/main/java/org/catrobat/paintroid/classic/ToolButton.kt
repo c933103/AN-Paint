@@ -8,7 +8,28 @@ import org.catrobat.paintroid.R
 
 /** KDE Breeze artwork under LGPL-3.0-or-later; see artwork/breeze and Icon licences. */
 class ToolButton(context: Context, val tool: PaintTool) : View(context) {
-    private val glyph = CopyleftIcon(context, when (tool) {
+    private val glyph = CopyleftIcon(context, toolIcon(tool))
+    init {
+        contentDescription = tool.label
+        isClickable = true; isFocusable = true
+        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText = tool.label
+    }
+    override fun onDraw(c: Canvas) {
+        super.onDraw(c)
+        val side=minOf(width,height).toFloat()
+        c.save();c.translate((width-side)/2,(height-side)/2);c.scale(side/48f,side/48f)
+        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isSelected) 0xffc7dff3.toInt() else 0xffefeee6.toInt() }
+        c.drawRect(1f, 1f, 47f, 47f, p)
+        p.color = if (isSelected) 0xff1559a6.toInt() else 0xffb9bcb9.toInt(); p.style = Paint.Style.STROKE; p.strokeWidth = 1f
+        c.drawRect(1f, 1f, 47f, 47f, p)
+        glyph.draw(c, 5f, 5f, 43f, 43f, if (isEnabled) 0xff233b4d.toInt() else 0xff8a969f.toInt())
+        c.restore()
+    }
+    override fun drawableStateChanged() { super.drawableStateChanged(); invalidate() }
+    override fun performClick(): Boolean { super.performClick(); return true }
+}
+
+internal fun toolIcon(tool: PaintTool): Int = when(tool) {
         PaintTool.LASSO -> R.drawable.breeze_lasso
         PaintTool.SELECT -> R.drawable.breeze_select
         PaintTool.ERASER -> R.drawable.breeze_eraser
@@ -29,22 +50,4 @@ class ToolButton(context: Context, val tool: PaintTool) : View(context) {
         PaintTool.POLYGON -> R.drawable.breeze_polygon
         PaintTool.ELLIPSE -> R.drawable.breeze_ellipse
         PaintTool.ROUND_RECT -> R.drawable.breeze_round_rectangle
-    })
-    init {
-        contentDescription = tool.label
-        isClickable = true; isFocusable = true
-        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText = tool.label
-    }
-    override fun onDraw(c: Canvas) {
-        super.onDraw(c)
-        c.save(); c.scale(width / 48f, height / 48f)
-        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isSelected) 0xffc7dff3.toInt() else 0xffefeee6.toInt() }
-        c.drawRect(1f, 1f, 47f, 47f, p)
-        p.color = if (isSelected) 0xff1559a6.toInt() else 0xffb9bcb9.toInt(); p.style = Paint.Style.STROKE; p.strokeWidth = 1f
-        c.drawRect(1f, 1f, 47f, 47f, p)
-        glyph.draw(c, 5f, 5f, 43f, 43f, if (isEnabled) 0xff233b4d.toInt() else 0xff8a969f.toInt())
-        c.restore()
-    }
-    override fun drawableStateChanged() { super.drawableStateChanged(); invalidate() }
-    override fun performClick(): Boolean { super.performClick(); return true }
 }

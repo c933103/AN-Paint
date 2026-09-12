@@ -16,7 +16,7 @@ and its tests remain available in Git history.
 | Text and font options | Text dialog: 19 faces, actual-font previews, formatting, alignment, line spacing and optional background box. |
 | Cursor drawing | View > Enable cursor drawing. Drag moves the crosshair; tap toggles ink. Drawing uses Brush, Pencil, Watercolor or Eraser. |
 | Magnified drawing window | View > Magnified preview, with enable switch and adjustable magnification. |
-| Antialiasing, stroke smoothing | View > Drawing settings. Pencil keeps crisp one-pixel strokes. |
+| Antialiasing, stroke smoothing | View > Drawing settings. Pencil keeps crisp hard-edged strokes, with independent 1–100 px width. |
 | Eyedropper and fill tolerance | Toolbox Eyedropper and Bucket fill. |
 | Clipboard/stamp, rectangular and free-form clipping | Cut/Copy/Paste/Select all, reusable paste, rectangle/lasso selections, corner and edge resizing, rotation and aspect lock. |
 | Hand/pan, zoom | Navigate, two-finger pan/zoom, 100% centre tick and step-stop, Fit. |

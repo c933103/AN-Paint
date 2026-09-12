@@ -11,7 +11,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-22.04
-    timeout-minutes: 60
+    timeout-minutes: 80
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -32,26 +32,41 @@ jobs:
           ./gradlew --no-daemon --max-workers=2 --console=plain :app:writeDependencyInventory
           python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
           python3 tools/generate_legal_notices.py
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Run codec and installed-app tests on Android
         if: ${{ success() }}
         run: |
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-30;google_apis;x86_64" "emulator"
-          echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name codec --package "system-images;android-30;google_apis;x86_64"
           sudo chmod a+rw /dev/kvm
-          "$ANDROID_HOME/emulator/emulator" -avd codec -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > emulator.log 2>&1 &
-          "$ANDROID_HOME/platform-tools/adb" wait-for-device
-          for attempt in $(seq 1 90); do
-            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
-            sleep 2
+          for api in 30 35; do
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$api;google_apis;x86_64" "emulator"
+            echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name "codec$api" --package "system-images;android-$api;google_apis;x86_64"
+            "$ANDROID_HOME/emulator/emulator" -avd "codec$api" -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > "emulator-$api.log" 2>&1 &
+            emulator_pid=$!
+            "$ANDROID_HOME/platform-tools/adb" wait-for-device
+            for attempt in $(seq 1 90); do
+              test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
+              sleep 2
+            done
+            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1"
+            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop ro.build.version.sdk | tr -d '\r')" = "$api"
+            runner_args=()
+            if test "$api" = 30; then
+              runner_args+=("-Pandroid.testInstrumentationRunnerArguments.notClass=org.catrobat.paintroid.classic.UltraHdrImportTest")
+            fi
+            ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 "${runner_args[@]}" :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+            for module in Paintroid app; do
+              mkdir -p "build/reports/android-api-$api/$module"
+              cp -R "$module/build/outputs/androidTest-results" "build/reports/android-api-$api/$module/"
+            done
+            "$ANDROID_HOME/platform-tools/adb" emu kill
+            wait "$emulator_pid" || true
           done
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+          cp emulator-35.log emulator.log
       - name: Build universal APK after Android checks
         if: ${{ success() }}
         run: |
           # App instrumentation uses a smaller x86_64 APK. Assemble the final
           # distribution afterward so that all four CPU architectures remain.
-          "$ANDROID_HOME/platform-tools/adb" emu kill
           ./gradlew --no-daemon --max-workers=2 --console=plain --continue :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Prepare verification tools
         if: always()
@@ -67,6 +82,7 @@ jobs:
           name: android-verification
           retention-days: 14
           path: |
+            build/reports/android-api-*/
             build/reports/legacy-font-metadata.json
             app/build/outputs/apk/debug/*.apk
             app/build/reports/
@@ -77,6 +93,6 @@ jobs:
             build/reports/native-runtime-notices.json
             Paintroid/build/test-results/
             Paintroid/build/outputs/androidTest-results/
-            emulator.log
+            emulator*.log
             Paintroid/build/reports/
             verification-tools/

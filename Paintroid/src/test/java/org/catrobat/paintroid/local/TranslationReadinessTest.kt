@@ -105,7 +105,12 @@ class TranslationReadinessTest {
         val indicator=root.findViewWithTag<View>("colour_status")
         fun location(view: View)=IntArray(2).also {view.getLocationOnScreen(it)}
         assertEquals(location(sidebar)[0],location(arrow)[0])
-        assertTrue(location(canvas)[0]>=location(sidebar)[0]+sidebar.width)
+        if(activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE)
+            assertTrue(location(canvas)[0]>=location(sidebar)[0]+sidebar.width)
+        else {
+            assertEquals(location(sidebar)[0],location(canvas)[0])
+            assertTrue(location(canvas)[1]>=location(sidebar)[1]+sidebar.height)
+        }
         assertEquals(location(indicator)[1],location(palette)[1])
         assertTrue(location(palette)[0]>=location(indicator)[0]+indicator.width)
     }

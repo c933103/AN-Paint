@@ -15,6 +15,9 @@ import org.json.JSONObject
 
 class PaintCanvas(context: Context, val document: PaintDocument) : View(context) {
     var tool = PaintTool.PENCIL; private set
+    var pencilSize: Float
+        get() = document.pencilWidth
+        set(value) { document.pencilWidth = value }
     var zoom = 1f; private set
     var panX = 0f; private set
     var panY = 0f; private set
@@ -318,6 +321,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
 
     fun draftState(): JSONObject = JSONObject().apply {
+        put("pencil_size",pencilSize.toDouble())
         put("close_polygon",closePolygon)
         put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
@@ -327,6 +331,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.rect?.let { put("bounds",JSONArray(listOf(it.left,it.top,it.right,it.bottom))) }
     }
     fun restoreDraft(state: JSONObject) {
+        pencilSize=state.optDouble("pencil_size",1.0).toFloat()
         closePolygon=state.optBoolean("close_polygon",true)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.PENCIL
         cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)

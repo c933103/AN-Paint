@@ -2,7 +2,21 @@
 
 Review date: 12 September 2026. Scope: bundling the original font binaries in AN Paint’s Android APK and public source, and allowing users to create and export text in images.
 
-**Decision: do not restore either file under the public terms found.** This review found affirmative restrictions on distribution and application use. It does not infer a prohibition simply from missing metadata. Any separate permission granted privately to an upstream distributor would need to be produced and checked for coverage of AN Paint and its downstream recipients.
+**Decision: do not restore either file under the public terms found.** This review found affirmative restrictions on distribution and application use. It does not infer a prohibition simply from missing metadata. **This is a decision about the permission established for AN Paint, not a finding that Catrobat distributed the fonts unlawfully.** Any separate permission granted to an upstream distributor would need to be produced and checked for coverage of AN Paint and its downstream recipients.
+
+## Why Pocket Paint included them
+
+The upstream history gives a concrete implementation reason: additional fonts were added for Arabic/right-to-left text. It does not establish the licence under which upstream obtained the files.
+
+| Event | Evidence | What it establishes |
+|---|---|---|
+| Dubai added on 3 August 2017; merged on 10 August 2017 | [Commit `edbfd8e`](https://github.com/Catrobat/Paintroid/commit/edbfd8ef8766e4d72e9be26ebc9d18b6391a01de), [PR #367](https://github.com/Catrobat/Paintroid/pull/367) | The Arabic/RTL font change added Dubai and Alarabiya to the text tool, including Arabic text tests. The Dubai blob is exactly `9d9cea18ffa0cdf7b659da4c2460d9e63c42e944`, matching the file inspected below. |
+| “STC” replaced Alarabiya on 15 January 2018 | [Commit `8bfe771`](https://github.com/Catrobat/Paintroid/commit/8bfe77178dc5d3a97117c281cbfea9380da1c0c3), [PR #471](https://github.com/Catrobat/Paintroid/pull/471) | The change removed Alarabiya and added `STC.otf`, updating the selector and tests. The added blob is exactly `efb515fd324deec591e750d5d8273d32d8bf6b9f`, the Boutros GE SS file inspected below. The PR gives no further reason for the substitution. |
+| Both files moved into font resources in August 2018 | [Commit `4542bf7`](https://github.com/Catrobat/Paintroid/commit/4542bf77e7032aaf2ecc5a34318ffe26ec8da4cc) | Git records unchanged-blob renames from `assets/Dubai.TTF` and `assets/STC.otf` to `res/font/dubai.ttf` and `res/font/stc_regular.otf`. This was a resource refactor, not a change to the font binaries or a newly documented licence. |
+
+We checked the introducing commits, both PR descriptions, changed-file lists, public issue comments, inline comments and reviews. PR #367's discussion concerns code and tests; PR #471 has an empty description and a request to run tests. Neither PR adds a font licence file or records a redistribution grant. Searches of the repository's GitHub issues and PRs for the two font names and font licensing did not locate such a grant. The historical Jira tickets `PAINT-172` and `PAINT-271` could not be retrieved, so their contents have not been checked. This is a bounded public-record review; it cannot establish that no separate agreement exists.
+
+Therefore, the answer is: **Pocket Paint included these exact fonts as part of its Arabic text support. We have not established what permission upstream relied on.** Inclusion and a successful merge demonstrate that the assets were shipped in source; they do not, by themselves, supply the missing permission for a downstream APK and repository. Conversely, restrictions found in public terms do not prove that upstream lacked a different applicable grant. Any earlier shorthand saying that upstream “was not allowed” to include them would go beyond the evidence.
 
 ## Exact upstream files and reproducibility
 

@@ -64,18 +64,25 @@ fun ImageMemoryPolicy.suggestResize(source: ImageDimensions, residentPixels: Lon
 /** Native source/tile decode work does not necessarily shrink with the output.
  * Keep the same estimate for the prompt, admission check and decoder allowance.
  */
-class ImportMemoryRequirements(private val nativeBytesAtOnePixel: Long? = null) {
+class ImportMemoryRequirements(
+    private val nativeBytesAtOnePixel: Long? = null,
+    private val decodedBytesPerPixel: Int = 4,
+    private val colourMetadataBytes: Long = 0
+) {
     val hasNativeWork get() = nativeBytesAtOnePixel != null
     private fun nativeBytes(target: ImageDimensions): Double =
         nativeBytesAtOnePixel?.let { it.toDouble() + (target.pixels - 1) * 4.0 } ?: 0.0
 
     fun estimatedBytes(plan: ImportPlan, residentPixels: Long): Double = max(
         plan.estimatedBytes(residentPixels),
-        nativeBytes(plan.target) + plan.target.pixels * 8.0 + residentPixels.coerceAtLeast(0) * 4.0
+        max(nativeBytes(plan.target),plan.decodedPixels * decodedBytesPerPixel.toDouble() + colourMetadataBytes) +
+            plan.target.pixels * 8.0 + residentPixels.coerceAtLeast(0) * 4.0
     )
 
     fun accepts(policy: ImageMemoryPolicy, plan: ImportPlan, residentPixels: Long): Boolean =
-        policy.accepts(plan,residentPixels) && estimatedBytes(plan,residentPixels) <= policy.workingBytes.toDouble()
+        policy.accepts(plan,residentPixels) &&
+            plan.decodedPixels <= (Int.MAX_VALUE.toLong()-8) / minOf(decodedBytesPerPixel,8) &&
+            estimatedBytes(plan,residentPixels) <= policy.workingBytes.toDouble()
 
     fun checkImport(policy: ImageMemoryPolicy, plan: ImportPlan, residentPixels: Long) {
         policy.check(plan.target.width,plan.target.height,residentPixels)
@@ -109,6 +116,7 @@ class ImportedImage(val file: File, val name: String) {
     private val orientation: ExifInterface?
     private val jxl=JxlCodec.isJxl(file)
     private val heif=HeifCodec.isHeif(file)
+    internal val platformColour = if(jxl || heif) null else PlatformImageColour.read(file)
     val dimensions: ImageDimensions
     val memoryRequirements: ImportMemoryRequirements
     init {
@@ -120,7 +128,9 @@ class ImportedImage(val file: File, val name: String) {
         dimensions = if (orientation?.rotationDegrees in listOf(90,270)) ImageDimensions(bounds.outHeight,bounds.outWidth) else ImageDimensions(bounds.outWidth,bounds.outHeight)
         // Inspect the native source/tile footprint once, not on every slider tick.
         // Ordinary formats never initialize a JNI library here.
-        memoryRequirements=ImportMemoryRequirements(if(heif) HeifCodec.decodeWorkingBytes(file,ImageDimensions(1,1)) else null)
+        memoryRequirements=ImportMemoryRequirements(
+            if(heif) HeifCodec.decodeWorkingBytes(file,ImageDimensions(1,1)) else null,
+            platformColour?.decodedWorkingBytesPerPixel ?: 4,platformColour?.metadataWorkingBytes ?: 0)
     }
     fun estimatedBytes(plan: ImportPlan,residentPixels: Long)=memoryRequirements.estimatedBytes(plan,residentPixels)
     fun accepts(policy: ImageMemoryPolicy,plan: ImportPlan,residentPixels: Long)=memoryRequirements.accepts(policy,plan,residentPixels)
@@ -128,19 +138,23 @@ class ImportedImage(val file: File, val name: String) {
     fun suggestResize(policy: ImageMemoryPolicy,residentPixels: Long,maxScale: Double=1.0)=memoryRequirements.suggestResize(dimensions,policy,residentPixels,maxScale)
 
     fun decode(plan: ImportPlan,workingBytes: Long=ImageMemoryPolicy.forRuntime().workingBytes,residentPixels: Long=0): Bitmap {
+        if (estimatedBytes(plan,residentPixels)>workingBytes) throw ImageSizeException(ui(R.string.ui_the_decoder_and_editing_buffers_need_about_the,
+            memoryLabel(estimatedBytes(plan,residentPixels)),memoryLabel(workingBytes.toDouble())))
         val decoderBudget=memoryRequirements.decoderBudget(workingBytes,plan.target,residentPixels)
         if(jxl) return JxlCodec.decode(file,plan.target,decoderBudget)
         if(heif) return HeifCodec.decode(file,plan.target,decoderBudget)
         var decoded: Bitmap? = null
         var output: Bitmap? = null
         try {
-            val input = BitmapFactory.decodeFile(file.path, BitmapFactory.Options().apply {
-                inSampleSize = plan.sample; inScaled = false; inMutable = true; inPreferredConfig = Bitmap.Config.ARGB_8888
-            }) ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))
-            decoded = input
+            val colour = checkNotNull(platformColour)
+            val raw = colour.withDecodeFile(file) { BitmapFactory.decodeFile(it.path,colour.options(plan.sample)) }
+                ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))
+            decoded = raw
+            val input = colour.convert(raw)
+            if (input !== raw) { raw.recycle(); decoded = input }
             input.density = Bitmap.DENSITY_NONE
             val rotation = orientation?.rotationDegrees ?: 0; val flip = orientation?.isFlipped == true
-            if (rotation == 0 && !flip && input.width == plan.target.width && input.height == plan.target.height && input.isMutable) {
+            if (rotation == 0 && !flip && input.width == plan.target.width && input.height == plan.target.height && input.isMutable && input.config == Bitmap.Config.ARGB_8888) {
                 decoded = null; return input
             }
             output = Bitmap.createBitmap(plan.target.width,plan.target.height,Bitmap.Config.ARGB_8888)
@@ -151,7 +165,7 @@ class ImportedImage(val file: File, val name: String) {
             val rect = RectF(0f,0f,input.width.toFloat(),input.height.toFloat()); matrix.mapRect(rect)
             matrix.postTranslate(-rect.left,-rect.top)
             matrix.postScale(plan.target.width / rect.width(),plan.target.height / rect.height())
-            Canvas(output).drawBitmap(input,matrix,Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG))
+            Canvas(output).drawBitmap(input,matrix,Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
             return output.also { output = null }
         } finally { decoded?.recycle(); output?.recycle() }
     }

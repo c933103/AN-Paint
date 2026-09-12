@@ -7,6 +7,7 @@ package org.catrobat.paintroid.classic
 import org.catrobat.paintroid.R
 
 import android.graphics.*
+import android.os.Build
 import java.util.ArrayDeque
 import java.io.File
 
@@ -46,6 +47,8 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         set(value) { field = value or Color.BLACK }
     var cornerRadius = 16f
     var strokeWidth = 5f
+    var pencilWidth = 1f
+        set(value) { field = if (value.isFinite()) value.coerceIn(1f,100f) else 1f }
     var watercolorStrength = 50
     var strokeSmoothing = false
     var antialiasing = true
@@ -118,16 +121,29 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     fun edited() { dirty = true; changed() }
     fun markSaved() { dirty = false; changed() }
 
+    private fun canonicalPixels(image: Bitmap): Boolean = image.config == Bitmap.Config.ARGB_8888 &&
+        (Build.VERSION.SDK_INT < 26 || image.colorSpace?.isSrgb == true)
+
+    private fun copyToCanvasFormat(image: Bitmap, checkMemory: Boolean = true): Bitmap {
+        if (checkMemory) allocationGuard(image.width,image.height)
+        if (canonicalPixels(image)) return image.copy(Bitmap.Config.ARGB_8888,true)
+            ?: throw OutOfMemoryError(ui(R.string.ui_could_not_prepare_the_image))
+        val copy=Bitmap.createBitmap(image.width,image.height,Bitmap.Config.ARGB_8888)
+        try { Canvas(copy).drawBitmap(image,0f,0f,null); return copy }
+        catch (error: Throwable) { copy.recycle(); throw error }
+    }
+
     fun replace(image: Bitmap, asEdit: Boolean = false) {
-        val incoming = if (!image.isMutable) {
-            allocationGuard(image.width,image.height)
-            image.copy(Bitmap.Config.ARGB_8888,true) ?: throw OutOfMemoryError(ui(R.string.ui_could_not_prepare_the_image))
-        } else image
-        run {
+        val incoming = if (!image.isMutable || !canonicalPixels(image)) copyToCanvasFormat(image) else image
+        try {
             Canvas(incoming).drawColor(background,PorterDuff.Mode.DST_OVER)
             incoming.setHasAlpha(false)
+            if (asEdit) checkpoint()
+        } catch (error: Throwable) {
+            if (incoming !== image) incoming.recycle()
+            throw error
         }
-        if (asEdit) checkpoint() else {
+        if (!asEdit) {
             undo.forEach { history.discard(it) }; undo.clear()
             redo.forEach { history.discard(it) }; redo.clear()
         }
@@ -159,7 +175,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun paint(tool: PaintTool): Paint = Paint().apply {
         color = if (tool == PaintTool.ERASER) background else foreground
-        strokeWidth = if (tool == PaintTool.PENCIL) 1f else this@PaintDocument.strokeWidth
+        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth
         style = Paint.Style.STROKE
         strokeJoin = Paint.Join.ROUND
         strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND
@@ -291,15 +307,14 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun paste(image: Bitmap? = clipboard, takeOwnership: Boolean = false): Boolean {
         image ?: return false
-        if (!takeOwnership || !image.isMutable) allocationGuard(image.width, image.height)
-        finishSelection(); checkpoint()
-        val copy = if (takeOwnership && image.isMutable) image else image.copy(Bitmap.Config.ARGB_8888, true)
+        val copyRequired = !takeOwnership || !image.isMutable || !canonicalPixels(image)
+        if (copyRequired) allocationGuard(image.width,image.height)
+        val copy = if (copyRequired) copyToCanvasFormat(image,false) else image
+        try { finishSelection(); checkpoint() }
+        catch (error: Throwable) { if (copy !== image) copy.recycle(); throw error }
         if(takeOwnership && copy !== image) image.recycle()
-        // Imported files are opaque; an internal clipboard keeps its selection mask.
-        if (image !== clipboard) {
-            Canvas(copy).drawColor(background,PorterDuff.Mode.DST_OVER)
-            copy.setHasAlpha(false)
-        }
+        // Alpha is an internal floating-content mask. Commit composites it onto
+        // the existing opaque canvas, including for an inserted transparent file.
         selection = Selection(RectF(0f, 0f, copy.width.toFloat(), copy.height.toFloat()), copy, null, true)
         edited(); return true
     }

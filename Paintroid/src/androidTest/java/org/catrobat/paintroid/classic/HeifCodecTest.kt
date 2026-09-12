@@ -4,6 +4,8 @@ package org.catrobat.paintroid.classic
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Canvas
+import android.util.Base64
 import android.graphics.Rect
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -149,4 +151,105 @@ class HeifCodecTest {
             } finally { generic.delete() }
         } finally { input.recycle(); target.delete() }
     }
+    private fun fixture(name: String): File = file("avif").apply {
+        val encoded = InstrumentationRegistry.getInstrumentation().context.assets
+            .open("colour-fixtures/$name.avif.b64").bufferedReader().use { it.readText() }
+        writeBytes(Base64.decode(encoded, Base64.DEFAULT))
+    }
+    private fun assertRgb(expected: IntArray, actual: Int, tolerance: Int = 3) {
+        val rgb = intArrayOf(Color.red(actual),Color.green(actual),Color.blue(actual))
+        expected.indices.forEach { assertTrue("Channel $it expected ${expected[it]}, got ${rgb[it]}", abs(expected[it]-rgb[it]) <= tolerance) }
+    }
+    @Test fun tenBitLinearAvifConvertsTransferBeforeEightBitQuantization() {
+        val file = fixture("heif-linear10")
+        try {
+            val decoded = HeifCodec.decode(file,ImageDimensions(64,32),budget)
+            try {
+                // Linear-light 18% and 25% are about 118 and 137 in sRGB;
+                // merely dropping two bits would give 46 and 64.
+                assertRgb(intArrayOf(118,118,118),decoded.getPixel(20,16),2)
+                assertRgb(intArrayOf(137,137,137),decoded.getPixel(28,16),2)
+                assertRgb(intArrayOf(255,255,255),decoded.getPixel(60,16),1)
+            } finally { decoded.recycle() }
+        } finally { file.delete() }
+    }
+    @Test fun tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb() {
+        for (name in listOf("heif-pq10","heif-pq10-bitstream","heif-hlg10")) {
+            val file=fixture(name)
+            try {
+                val decoded=HeifCodec.decode(file,ImageDimensions(64,32),budget)
+                try {
+                    val samples=(0..7).map { Color.red(decoded.getPixel(it*8+4,16)) }
+                    assertEquals(0,samples.first()); assertEquals(255,samples.last())
+                    samples.zipWithNext().forEach { (a,b) -> assertTrue("$name tonal order: $samples",b>a) }
+                    if (name.startsWith("heif-pq10")) {
+                        // 100 cd/m2 against a 10,000 cd/m2 source peak mapped
+                        // into the 203 cd/m2 SDR target: visibly unlike raw PQ.
+                        assertTrue("100-nit patch: $samples",samples[2] in 155..175)
+                        assertTrue("400/1000/4000-nit highlights retain distinct levels: $samples",samples[4]<samples[5] && samples[5]<samples[6])
+                    }
+                    val crop=HeifCodec.decode(file,ImageDimensions(16,16),budget,Rect(16,8,32,24))
+                    try { assertEquals(decoded.getPixel(20,16),crop.getPixel(4,8)) } finally { crop.recycle() }
+                } finally { decoded.recycle() }
+            } finally { file.delete() }
+        }
+    }
+    @Test fun avifIccProfileAndNclxWideGamutAreConvertedToSrgb() {
+        val icc=fixture("heif-p3-icc10"); val nclx=fixture("heif-p3-nclx10")
+        try {
+            val a=HeifCodec.decode(icc,ImageDimensions(64,32),budget)
+            val b=HeifCodec.decode(nclx,ImageDimensions(64,32),budget)
+            try {
+                // Independent LittleCMS reference for Display-P3/gamma2.2
+                // source RGB(0.5,0.25,0.75), with allowance for10-bit sampling.
+                assertRgb(intArrayOf(139,57,199),a.getPixel(32,16))
+                // This variant uses the sRGB transfer in its NCLX profile.
+                assertTrue(Color.red(b.getPixel(32,16)) > 132)
+                assertTrue(Color.blue(b.getPixel(32,16)) > 182)
+                assertNotEquals(a.getPixel(32,16),b.getPixel(32,16))
+            } finally { a.recycle();b.recycle() }
+        } finally { icc.delete();nclx.delete() }
+    }
+    @Test fun translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition() {
+        val file=fixture("heif-p3-icc-alpha10")
+        try {
+            val decoded=HeifCodec.decode(file,ImageDimensions(64,32),budget)
+            val flattened=Bitmap.createBitmap(64,32,Bitmap.Config.ARGB_8888)
+            try {
+                assertEquals(0,Color.alpha(decoded.getPixel(4,16)))
+                assertEquals(255,Color.alpha(decoded.getPixel(60,16)))
+                assertTrue(Color.alpha(decoded.getPixel(28,16)) in 107..111)
+                assertRgb(intArrayOf(139,57,199),decoded.getPixel(60,16))
+                val background=Color.rgb(20,120,220)
+                flattened.eraseColor(background)
+                Canvas(flattened).drawBitmap(decoded,0f,0f,null)
+                assertEquals(background,flattened.getPixel(4,16))
+                val alpha=Color.alpha(decoded.getPixel(28,16))/255.0
+                val expected=intArrayOf(139,57,199).mapIndexed { c,v ->
+                    (v*alpha+intArrayOf(20,120,220)[c]*(1-alpha)).toInt()
+                }.toIntArray()
+                assertRgb(expected,flattened.getPixel(28,16),3)
+                assertEquals(255,Color.alpha(flattened.getPixel(28,16)))
+            } finally { decoded.recycle();flattened.recycle() }
+        } finally { file.delete() }
+    }
+
+    @Test fun colouredHlgUsesActualPrimariesForDisplayLuminance() {
+        val p3=fixture("heif-p3-hlg10")
+        val equivalent=fixture("heif-srgb-hlg-equivalent10")
+        try {
+            val a=HeifCodec.decode(p3,ImageDimensions(64,32),budget)
+            val b=HeifCodec.decode(equivalent,ImageDimensions(64,32),budget)
+            try {
+                // These encode the same scene colours in different primaries.
+                // The independently calculated reference fixture catches using
+                // BT.2020 luminance weights on P3/sRGB HLG samples.
+                for (x in 4 until 64 step 8) {
+                    val expected=b.getPixel(x,16)
+                    assertRgb(intArrayOf(Color.red(expected),Color.green(expected),Color.blue(expected)),a.getPixel(x,16),1)
+                }
+            } finally { a.recycle();b.recycle() }
+        } finally { p3.delete();equivalent.delete() }
+    }
+
 }

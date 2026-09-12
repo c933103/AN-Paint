@@ -4,6 +4,11 @@ package org.catrobat.paintroid.classic
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.ColorSpace
+import android.os.Build
+import android.util.Base64
 import androidx.core.graphics.ColorUtils
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -152,6 +157,100 @@ class NativeCodecTest {
             val output=JxlCodec.decode(file,ImageDimensions(input.width,input.height),budget)
             try {assertPixels(input,output)} finally {output.recycle()}
         } finally {input.recycle();file.delete()}
+    }
+    @Test fun sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization() {
+        withColourFixture("linear16",16,6) {image ->
+            // IEC sRGB transfer function applied to 16-bit LINEAR values
+            // 0, .003, .018, .18, .5, 1; copying/truncating the source fails.
+            val expected=intArrayOf(0,10,36,118,188,255)
+            expected.forEachIndexed {x,v -> assertRgbNear(Color.rgb(v,v,v),image.getPixel(x,0),1)}
+        }
+        withColourFixture("p3-icc16",16,3) {image ->
+            // Independent D65 Display-P3 -> sRGB matrix, gamma 2.2 source
+            // and IEC sRGB destination transfer function. Source triplets:
+            // (.8,.4,.2), (.2,.6,.4), (.3,.4,.7). Profile is embedded ICC.
+            val expected=intArrayOf(Color.rgb(221,94,24),Color.rgb(0,157,97),Color.rgb(67,103,186))
+            expected.forEachIndexed {x,c -> assertRgbNear(c,image.getPixel(x,0),2)}
+            if(Build.VERSION.SDK_INT>=26) assertEquals(ColorSpace.get(ColorSpace.Named.SRGB),image.colorSpace)
+        }
+    }
+    @Test fun tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights() {
+        for(name in listOf("pq10","pq10-xyb")) withColourFixture(name,10,8) {image ->
+            // BT.2408 EETF for a 1000-nit source, 203-nit target. Neutral
+            // source luminances: 0,1,10,50,100,203,400,1000 cd/m2, quantized
+            // to actual 10-bit PQ values before encoding. Constants calculated
+            // from ST2084 + BT2408 equations, not the decoder being tested.
+            val expected=intArrayOf(0,15,63,136,186,229,250,255)
+            expected.forEachIndexed {x,v -> assertRgbNear(Color.rgb(v,v,v),image.getPixel(x,0),2)}
+            assertTrue(Color.red(image.getPixel(5,0))<Color.red(image.getPixel(6,0)))
+            assertTrue(Color.red(image.getPixel(6,0))<Color.red(image.getPixel(7,0)))
+        }
+        withColourFixture("linear16-hdr",16,8) {image ->
+            // The same absolute luminances stored in 16-bit linear RGB with
+            // a 1000-nit intensity target, rather than a PQ transfer curve.
+            val expected=intArrayOf(0,15,63,136,186,229,250,255)
+            expected.forEachIndexed {x,v -> assertRgbNear(Color.rgb(v,v,v),image.getPixel(x,0),2)}
+        }
+        withColourFixture("pq10-alpha",10,4) {image ->
+            val alphas=intArrayOf(0,64,128,255)
+            for(x in alphas.indices) assertEquals(alphas[x],Color.alpha(image.getPixel(x,0)))
+            // Convert the unassociated 100-nit HDR colour first, then store
+            // premultiplied RGBA; premultiplying before tone mapping is wrong.
+            for(x in 1..3) assertRgbNear(Color.rgb(186,186,186),image.getPixel(x,0),2)
+        }
+        withColourFixture("hlg10",10,5) {image ->
+            // HLG inverse OETF and reference 1000-nit OOTF (gamma 1.2),
+            // then the same BT.2408 203-nit mapping and IEC sRGB encoding
+            // as PQ. This matches the HEIF importer, not native libjxl's
+            // destination-dependent HLG display adaptation.
+            // Encoded HLG values: 0,.25,.5,.75,1 at ten-bit precision.
+            val expected=intArrayOf(0,62,137,229,255)
+            expected.forEachIndexed {x,v -> assertRgbNear(Color.rgb(v,v,v),image.getPixel(x,0),2)}
+        }
+        withColourFixture("pq10-chunks",10,1031,Rect(247,0,521,1),ImageDimensions(137,1)) {image ->
+            // Source crop crosses the bounded colour-conversion chunk boundary.
+            val values=intArrayOf(0,15,63,136,186,229,250,255)
+            for(x in 0 until 137) {
+                val v=values[(247+x*2)%8]
+                assertRgbNear(Color.rgb(v,v,v),image.getPixel(x,0),2)
+            }
+        }
+    }
+    @Test fun IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground() {
+        withColourFixture("p3-icc-alpha16",16,4) {image ->
+            assertTrue(image.hasAlpha);assertTrue(image.isPremultiplied)
+            val alphas=intArrayOf(0,64,128,255)
+            for(x in alphas.indices) assertEquals(alphas[x],Color.alpha(image.getPixel(x,0)))
+            for(x in 1..3) assertRgbNear(Color.rgb(221,94,24),image.getPixel(x,0),3)
+            for(background in intArrayOf(Color.WHITE,Color.rgb(20,80,160))) {
+                val flat=Bitmap.createBitmap(4,1,Bitmap.Config.ARGB_8888)
+                try {
+                    flat.eraseColor(background)
+                    Canvas(flat).drawBitmap(image,0f,0f,Paint())
+                    for(x in alphas.indices) {
+                        val expected=ColorUtils.compositeColors(Color.argb(alphas[x],221,94,24),background)
+                        assertEquals(255,Color.alpha(flat.getPixel(x,0)))
+                        assertRgbNear(expected,flat.getPixel(x,0),2)
+                    }
+                    assertEquals(background,flat.getPixel(0,0))
+                } finally {flat.recycle()}
+            }
+        }
+    }
+    private fun withColourFixture(name: String,bits: Int,width: Int,crop: Rect?=null,size: ImageDimensions=ImageDimensions(width,1),check: (Bitmap)->Unit) {
+        val file=File.createTempFile("colour-$name-",".jxl",context.cacheDir)
+        try {
+            val encoded=InstrumentationRegistry.getInstrumentation().context.assets.open("colour-fixtures/$name.jxl.b64").use {it.readBytes()}
+            file.writeBytes(Base64.decode(encoded,Base64.DEFAULT))
+            assertEquals("Actual source bit depth",bits,JxlCodec.sourceBitDepth(file))
+            assertEquals(ImageDimensions(width,1),JxlCodec.dimensions(file))
+            val image=JxlCodec.decode(file,size,budget,crop)
+            try {check(image)} finally {image.recycle()}
+        } finally {file.delete()}
+    }
+    private fun assertRgbNear(expected: Int,actual: Int,tolerance: Int) {
+        for(shift in intArrayOf(16,8,0))
+            assertTrue("RGB ${Integer.toHexString(expected)} -> ${Integer.toHexString(actual)}",kotlin.math.abs(((expected ushr shift) and 255)-((actual ushr shift) and 255))<=tolerance)
     }
     private fun pattern(size: ImageDimensions) = Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888).apply {
         val row=IntArray(width)

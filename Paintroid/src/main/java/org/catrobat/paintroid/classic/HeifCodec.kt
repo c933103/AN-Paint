@@ -11,9 +11,40 @@ import java.io.File
 object HeifCodec {
     private object Native {
         init { System.loadLibrary("anpaint_heif") }
+        external fun convertPngColour(input: Bitmap, output: Bitmap, gamma: Float, chromaticities: FloatArray?)
         external fun info(path: String): IntArray
+        external fun convertColour(input: Bitmap, output: Bitmap, icc: ByteArray?, primaries: Int, transfer: Int)
         external fun decode(path: String, target: Bitmap, left: Int, top: Int, right: Int, bottom: Int, budget: Long)
         external fun encode(image: Bitmap, path: String, format: String, quality: Int, lossless: Boolean, budget: Long)
+    }
+
+    /** Convert source-encoded samples to an sRGB import bitmap, preserving coverage alpha. */
+    fun convertIcc(input: Bitmap, profile: ByteArray): Bitmap = convertColour(input, profile, 1, 13)
+
+    /** RGB cICP data uses full-range samples; HDR is tone-mapped to the SDR editor. */
+    fun convertCicp(input: Bitmap, primaries: Int, transfer: Int): Bitmap = convertColour(input, null, primaries, transfer)
+
+    /** PNG gAMA/cHRM conversion when no higher-priority profile is present. */
+    fun convertPngColour(input: Bitmap, gamma: Float, chromaticities: FloatArray?): Bitmap {
+        val output = Bitmap.createBitmap(input.width, input.height, Bitmap.Config.ARGB_8888)
+        try {
+            Native.convertPngColour(input, output, gamma, chromaticities)
+            return output
+        } catch (error: Throwable) {
+            output.recycle()
+            throw error
+        }
+    }
+
+    private fun convertColour(input: Bitmap, profile: ByteArray?, primaries: Int, transfer: Int): Bitmap {
+        val output = Bitmap.createBitmap(input.width, input.height, Bitmap.Config.ARGB_8888)
+        try {
+            Native.convertColour(input, output, profile, primaries, transfer)
+            return output
+        } catch (error: Throwable) {
+            output.recycle()
+            throw error
+        }
     }
 
     /** Inspect ISO BMFF file brands, including compatible brands, rather than the filename. */

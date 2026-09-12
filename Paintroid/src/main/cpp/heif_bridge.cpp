@@ -10,6 +10,9 @@
 #include <mutex>
 #include <stdexcept>
 #include <string>
+#include <vector>
+#include <array>
+#include "ColourConversion.h"
 
 namespace {
 constexpr uint64_t kReserve = 32ULL * 1024 * 1024;
@@ -24,8 +27,8 @@ struct Utf {
 };
 struct Pixels {
     JNIEnv* env; jobject bitmap; AndroidBitmapInfo info{}; void* data = nullptr;
-    Pixels(JNIEnv* e, jobject b) : env(e), bitmap(b) {
-        if (AndroidBitmap_getInfo(env, bitmap, &info) != ANDROID_BITMAP_RESULT_SUCCESS || info.format != ANDROID_BITMAP_FORMAT_RGBA_8888)
+    Pixels(JNIEnv* e, jobject b, bool allowWide = false) : env(e), bitmap(b) {
+        if (AndroidBitmap_getInfo(env, bitmap, &info) != ANDROID_BITMAP_RESULT_SUCCESS || (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888 && !(allowWide && info.format == ANDROID_BITMAP_FORMAT_RGBA_F16)))
             throw std::runtime_error("HEIC/AVIF requires an ARGB_8888 bitmap");
         if (AndroidBitmap_lockPixels(env, bitmap, &data) != ANDROID_BITMAP_RESULT_SUCCESS) throw std::bad_alloc();
     }
@@ -84,10 +87,63 @@ void budgetCheck(jlong requested, uint64_t pixels, uint64_t bitmapBytes, uint64_
     if (requested < 0 || pixels > (UINT64_MAX - bitmapBytes - kReserve) / bytesPerPixel ||
         pixels * bytesPerPixel + bitmapBytes + kReserve > static_cast<uint64_t>(requested)) throw std::bad_alloc();
 }
-// Copy only destination pixels covered by this transformed source tile. The
-// integer mapping is the same for one tile or many, including crop + upscaling.
-void copyTile(Pixels& output, heif_image* tile, int64_t originX, int64_t originY,
-              int64_t left, int64_t top, int64_t right, int64_t bottom) {
+skcms_ICCProfile cicpProfile(int primaries, int transfer) {
+    // ITU-T H.273 primary/white chromaticities, in R/G/B/white order.
+    // The libheif setter validates the enum but does not fill its decoded xy
+    // fields, so construct these primary matrices explicitly.
+    std::array<float,8> xy;
+    switch (primaries) {
+        case 1: case 2: xy={.640f,.330f,.300f,.600f,.150f,.060f,.3127f,.3290f};break;
+        case 4: xy={.670f,.330f,.210f,.710f,.140f,.080f,.310f,.316f};break;
+        case 5: xy={.640f,.330f,.290f,.600f,.150f,.060f,.3127f,.3290f};break;
+        case 6: case 7: xy={.630f,.340f,.310f,.595f,.155f,.070f,.3127f,.3290f};break;
+        case 8: xy={.681f,.319f,.243f,.692f,.145f,.049f,.310f,.316f};break;
+        case 9: xy={.708f,.292f,.170f,.797f,.131f,.046f,.3127f,.3290f};break;
+        case 10: break; // XYZ, equal-energy white, rather than RGB primaries.
+        case 11: xy={.680f,.320f,.265f,.690f,.150f,.060f,.314f,.351f};break;
+        case 12: xy={.680f,.320f,.265f,.690f,.150f,.060f,.3127f,.3290f};break;
+        case 22: xy={.630f,.340f,.295f,.605f,.155f,.077f,.3127f,.3290f};break;
+        default: throw std::runtime_error("Unsupported image colour primaries");
+    }
+    skcms_Matrix3x3 matrix;
+    require(primaries == 10 ? skcms_AdaptToXYZD50(1.0f/3,1.0f/3,&matrix) :
+        skcms_PrimariesToXYZD50(xy[0],xy[1],xy[2],xy[3],xy[4],xy[5],xy[6],xy[7],&matrix),
+        "Unsupported image colour primaries");
+    skcms_ICCProfile profile; skcms_Init(&profile); skcms_SetXYZD50(&profile, &matrix);
+    skcms_TransferFunction curve = *skcms_sRGB_TransferFunction();
+    switch (transfer) {
+        case 1: case 6: case 14: case 15:
+            curve = {1.0f/0.45f, 1.0f/1.09929682680944f, 0.09929682680944f/1.09929682680944f,
+                     1.0f/4.5f, 4.5f*0.018053968510807f, 0, 0}; break;
+        case 2: case 13: break;
+        case 4: curve = {2.2f,1,0,0,0,0,0}; break;
+        case 5: curve = {2.8f,1,0,0,0,0,0}; break;
+        case 7: curve = {1.0f/0.45f,1.0f/1.1115f,0.1115f/1.1115f,1.0f/4.0f,0.0912f,0,0}; break;
+        case 8: case 16: case 18: curve = *skcms_Identity_TransferFunction(); break;
+        case 17: curve = {2.6f,std::pow(52.37f/48.0f,1.0f/2.6f),0,0,0,0,0}; break;
+        default: throw std::runtime_error("Unsupported image transfer characteristic");
+    }
+    skcms_SetTransferFunction(&profile, &curve);
+    return profile;
+}
+float sourcePeak(heif_image_handle* handle, int transfer) {
+    heif_content_light_level cll{};
+    if (heif_image_handle_get_content_light_level(handle, &cll) && cll.max_content_light_level > 203)
+        return std::min(10000.0f, static_cast<float>(cll.max_content_light_level));
+    heif_mastering_display_colour_volume mastering{};
+    if (heif_image_handle_get_mastering_display_colour_volume(handle, &mastering) && mastering.max_display_mastering_luminance > 2030000)
+        return std::min(10000.0f, mastering.max_display_mastering_luminance / 10000.0f);
+    return transfer == 18 ? 1000.0f : transfer == 16 ? 10000.0f : anpaint::colour::kSdrWhiteNits;
+}
+void storePixel(const float* source, uint8_t* target) {
+    target[3] = anpaint::colour::byte(source[3]);
+    for (int c = 0; c < 3; ++c) target[c] = anpaint::colour::byte(source[c] * source[3]);
+}
+// Copy destination pixels covered by this transformed source tile. Native
+// 10/12-bit samples stay at their original precision through RGB conversion,
+// profile conversion and HDR tone mapping; only the final sRGB result is 8-bit.
+void copyTile(Pixels& output, heif_image* tile, heif_image_handle* handle, const std::vector<uint8_t>& icc,
+              int64_t originX, int64_t originY, int64_t left, int64_t top, int64_t right, int64_t bottom) {
     const int64_t tileWidth = heif_image_get_width(tile, heif_channel_interleaved);
     const int64_t tileHeight = heif_image_get_height(tile, heif_channel_interleaved);
     require(tileWidth > 0 && tileHeight > 0, "Decoded HEIC/AVIF tile has no pixels");
@@ -99,21 +155,62 @@ void copyTile(Pixels& output, heif_image* tile, int64_t originX, int64_t originY
     const uint64_t x1 = std::min<uint64_t>(((sx1 - left) * output.info.width + width - 1) / width, output.info.width);
     const uint64_t y0 = ((sy0 - top) * output.info.height + height - 1) / height;
     const uint64_t y1 = std::min<uint64_t>(((sy1 - top) * output.info.height + height - 1) / height, output.info.height);
+    const bool high = heif_image_get_chroma_format(tile) == heif_chroma_interleaved_RRGGBBAA_LE;
+    const int depth = heif_image_get_bits_per_pixel_range(tile, heif_channel_interleaved);
+    require(depth >= 8 && depth <= 16, "Unsupported HEIC/AVIF RGB sample depth");
+    const size_t pixelBytes = high ? 8 : 4;
+    const float maximum = static_cast<float>((1u << depth) - 1);
     size_t stride = 0;
     const uint8_t* data = heif_image_get_plane_readonly2(tile, heif_channel_interleaved, &stride);
-    require(data && stride >= static_cast<uint64_t>(tileWidth) * 4, "Invalid HEIC/AVIF pixel layout");
+    require(data && stride >= static_cast<uint64_t>(tileWidth) * pixelBytes, "Invalid HEIC/AVIF pixel layout");
+    const bool associated = heif_image_is_premultiplied_alpha(tile) || heif_image_handle_is_premultiplied_alpha(handle);
+    heif_color_profile_nclx* raw = nullptr;
+    auto nclxError = heif_image_handle_get_nclx_color_profile(handle, &raw);
+    // The container is authoritative. Some libheif RGB conversion steps retain
+    // source samples but attach a default transfer to their output image.
+    // Only use decoded bitstream metadata when no container profile exists.
+    if (nclxError.code != heif_error_Ok) nclxError = heif_image_get_nclx_color_profile(tile, &raw);
+    Profile nclx(raw, heif_nclx_color_profile_free);
+    int transfer = nclxError.code == heif_error_Ok && nclx ? nclx->transfer_characteristics : 13;
+    auto profile = icc.empty() ? cicpProfile(nclx ? nclx->color_primaries : 1, transfer) : anpaint::colour::Transform::parse(icc.data(), icc.size());
+    if (!icc.empty()) transfer = profile.has_CICP ? profile.CICP.transfer_characteristics : 0;
+    anpaint::colour::Transform transform(profile, transfer, sourcePeak(handle, transfer));
+    std::array<float, 256*4> buffer{};
     for (uint64_t y = y0; y < y1; ++y) {
         const uint64_t sourceY = y * height / output.info.height + top - originY;
-        for (uint64_t x = x0; x < x1; ++x) {
-            const uint64_t sourceX = x * width / output.info.width + left - originX;
-            const auto* source = data + sourceY * stride + sourceX * 4;
-            auto* target = static_cast<uint8_t*>(output.data) + y * output.info.stride + x * 4;
-            // Preserve temporary import alpha until the editor composites it
-            // against its selected opaque background; Android expects premultiplication.
-            target[3] = source[3];
-            for (int c = 0; c < 3; ++c) target[c] = static_cast<uint8_t>((source[c] * source[3] + 127) / 255);
+        for (uint64_t x = x0; x < x1;) {
+            const size_t count = std::min<uint64_t>(256, x1-x);
+            for (size_t i = 0; i < count; ++i) {
+                const uint64_t sourceX = (x+i) * width / output.info.width + left - originX;
+                const auto* pixel = data + sourceY*stride + sourceX*pixelBytes;
+                auto* p = buffer.data()+i*4;
+                for (int c = 0; c < 4; ++c) p[c] = high ? (pixel[c*2] | (pixel[c*2+1] << 8)) / maximum : pixel[c]/255.0f;
+                if (associated) for (int c = 0; c < 3; ++c) p[c] = p[3] > 0 ? p[c]/p[3] : 0;
+            }
+            transform.convert(buffer.data(), count);
+            for (size_t i = 0; i < count; ++i)
+                storePixel(buffer.data()+i*4, static_cast<uint8_t*>(output.data)+y*output.info.stride+(x+i)*4);
+            x += count;
         }
     }
+}
+void convertBitmap(Pixels& input, Pixels& output, const anpaint::colour::Transform& transform) {
+        const bool half = input.info.format == ANDROID_BITMAP_FORMAT_RGBA_F16;
+        const size_t pixelBytes = half ? 8 : 4;
+        const auto format = half ? skcms_PixelFormat_RGBA_hhhh : skcms_PixelFormat_RGBA_8888;
+        const auto alpha = (input.info.flags & ANDROID_BITMAP_FLAGS_ALPHA_MASK) == ANDROID_BITMAP_FLAGS_ALPHA_UNPREMUL
+            ? skcms_AlphaFormat_Unpremul : skcms_AlphaFormat_PremulAsEncoded;
+        std::array<float, 256*4> buffer;
+        for (uint32_t y = 0; y < input.info.height; ++y) for (uint32_t x = 0; x < input.info.width;) {
+            const size_t count = std::min<uint32_t>(256, input.info.width-x);
+            const auto* source = static_cast<uint8_t*>(input.data)+y*input.info.stride+x*pixelBytes;
+            require(skcms_Transform(source, format, alpha, nullptr, buffer.data(), skcms_PixelFormat_RGBA_ffff,
+                                   skcms_AlphaFormat_Unpremul, nullptr, count), "Cannot read decoded bitmap colour samples");
+            transform.convert(buffer.data(), count);
+            for (size_t i = 0; i < count; ++i)
+                storePixel(buffer.data()+i*4, static_cast<uint8_t*>(output.data)+y*output.info.stride+(x+i)*4);
+            x += count;
+        }
 }
 Image encodeTile(Pixels& bitmap, uint32_t left, uint32_t top, uint32_t width, uint32_t height,
                  bool identity, const heif_color_profile_nclx* profile) {
@@ -189,14 +286,22 @@ Java_org_catrobat_paintroid_classic_HeifCodec_00024Native_decode(JNIEnv* env, jo
         DecodeOptions options(heif_decoding_options_alloc(), heif_decoding_options_free);
         if (!options) throw std::bad_alloc();
         options->ignore_transformations = 0;
-        options->convert_hdr_to_8bit = 1;
+        options->convert_hdr_to_8bit = 0;
+        options->output_image_nclx_profile_passthrough = 1;
         options->num_codec_threads = 1;
-        // Default libheif output is sRGB, including NCLX primaries/transfer conversion.
+        // Preserve source transfer/primaries and alpha until explicit colour management.
+        const bool high = std::max(heif_image_handle_get_luma_bits_per_pixel(handle.get()),
+                                   heif_image_handle_get_chroma_bits_per_pixel(handle.get())) > 8;
+        const auto chroma = high ? heif_chroma_interleaved_RRGGBBAA_LE : heif_chroma_interleaved_RGBA;
+        const auto iccSize = heif_image_handle_get_raw_color_profile_size(handle.get());
+        require(iccSize <= anpaint::colour::kMaximumIccBytes, "Embedded ICC profile exceeds the supported size");
+        std::vector<uint8_t> icc(iccSize);
+        if (iccSize) check(heif_image_handle_get_raw_color_profile(handle.get(), icc.data()));
         if (tiles.num_columns == 1 && tiles.num_rows == 1) {
             heif_image* raw = nullptr;
-            check(heif_decode_image(handle.get(), &raw, heif_colorspace_RGB, heif_chroma_interleaved_RGBA, options.get()));
+            check(heif_decode_image(handle.get(), &raw, heif_colorspace_RGB, chroma, options.get()));
             Image decoded(raw, heif_image_release);
-            copyTile(output, decoded.get(), 0, 0, left, top, right, bottom);
+            copyTile(output, decoded.get(), handle.get(), icc, 0, 0, left, top, right, bottom);
         } else {
             const uint32_t firstX = (static_cast<uint64_t>(left) + tiles.left_offset) / tiles.tile_width;
             const uint32_t firstY = (static_cast<uint64_t>(top) + tiles.top_offset) / tiles.tile_height;
@@ -204,9 +309,9 @@ Java_org_catrobat_paintroid_classic_HeifCodec_00024Native_decode(JNIEnv* env, jo
             const uint32_t lastY = std::min<uint64_t>((static_cast<uint64_t>(bottom - 1) + tiles.top_offset) / tiles.tile_height, tiles.num_rows - 1);
             for (uint32_t y = firstY; y <= lastY; ++y) for (uint32_t x = firstX; x <= lastX; ++x) {
                 heif_image* raw = nullptr;
-                check(heif_image_handle_decode_image_tile(handle.get(), &raw, heif_colorspace_RGB, heif_chroma_interleaved_RGBA, options.get(), x, y));
+                check(heif_image_handle_decode_image_tile(handle.get(), &raw, heif_colorspace_RGB, chroma, options.get(), x, y));
                 Image decoded(raw, heif_image_release);
-                copyTile(output, decoded.get(), static_cast<int64_t>(x) * tiles.tile_width - tiles.left_offset,
+                copyTile(output, decoded.get(), handle.get(), icc, static_cast<int64_t>(x) * tiles.tile_width - tiles.left_offset,
                          static_cast<int64_t>(y) * tiles.tile_height - tiles.top_offset, left, top, right, bottom);
             }
         }
@@ -266,5 +371,61 @@ Java_org_catrobat_paintroid_classic_HeifCodec_00024Native_encode(JNIEnv* env, jo
         }
         check(heif_context_write_to_file(ctx.get(), file.text));
     } catch (const std::bad_alloc&) { fail(env, true, "Not enough memory to encode HEIC/AVIF at this size"); }
+      catch (const std::exception& e) { fail(env, false, e.what()); }
+}
+
+
+extern "C" JNIEXPORT void JNICALL
+Java_org_catrobat_paintroid_classic_HeifCodec_00024Native_convertColour(
+        JNIEnv* env, jobject, jobject bitmap, jobject target, jbyteArray rawIcc, jint primaries, jint transfer) {
+    try {
+        std::lock_guard<std::mutex> lock(codecMutex);
+        Pixels input(env, bitmap, true), output(env, target);
+        require(input.info.width == output.info.width && input.info.height == output.info.height,
+                "Colour conversion bitmap dimensions differ");
+        std::vector<uint8_t> icc;
+        skcms_ICCProfile profile;
+        if (rawIcc) {
+            const auto size = env->GetArrayLength(rawIcc);
+            require(size > 0 && static_cast<size_t>(size) <= anpaint::colour::kMaximumIccBytes, "Embedded ICC profile exceeds the supported size");
+            icc.resize(size); env->GetByteArrayRegion(rawIcc, 0, size, reinterpret_cast<jbyte*>(icc.data()));
+            if (env->ExceptionCheck()) return;
+            profile = anpaint::colour::Transform::parse(icc.data(), icc.size());
+            transfer = profile.has_CICP ? profile.CICP.transfer_characteristics : 0;
+        } else profile = cicpProfile(primaries, transfer);
+        anpaint::colour::Transform transform(profile, transfer, transfer == 18 ? 1000.0f : transfer == 16 ? 10000.0f : anpaint::colour::kSdrWhiteNits);
+        convertBitmap(input, output, transform);
+    } catch (const std::bad_alloc&) { fail(env, true, "Not enough memory to convert image colour profile"); }
+      catch (const std::exception& e) { fail(env, false, e.what()); }
+}
+
+
+extern "C" JNIEXPORT void JNICALL
+Java_org_catrobat_paintroid_classic_HeifCodec_00024Native_convertPngColour(
+        JNIEnv* env, jobject, jobject bitmap, jobject target, jfloat gamma, jfloatArray chromaticities) {
+    try {
+        std::lock_guard<std::mutex> lock(codecMutex);
+        Pixels input(env, bitmap, true), output(env, target);
+        require(input.info.width == output.info.width && input.info.height == output.info.height,
+                "Colour conversion bitmap dimensions differ");
+        auto profile = *skcms_sRGB_profile();
+        if (chromaticities) {
+            require(env->GetArrayLength(chromaticities) == 8, "PNG chromaticities must contain eight values");
+            float xy[8]; env->GetFloatArrayRegion(chromaticities, 0, 8, xy);
+            if (env->ExceptionCheck()) return;
+            for (float value : xy) require(std::isfinite(value) && value >= 0 && value <= 1, "Invalid PNG chromaticity");
+            skcms_Matrix3x3 matrix;
+            require(skcms_PrimariesToXYZD50(xy[2],xy[3],xy[4],xy[5],xy[6],xy[7],xy[0],xy[1],&matrix),
+                    "Unsupported PNG chromaticities");
+            skcms_SetXYZD50(&profile,&matrix);
+        }
+        if (gamma != 0) {
+            require(std::isfinite(gamma) && gamma > 0.01f && gamma <= 10.0f, "Unsupported PNG gamma value");
+            skcms_TransferFunction curve{1.0f/gamma,1,0,0,0,0,0};
+            skcms_SetTransferFunction(&profile,&curve);
+        }
+        anpaint::colour::Transform transform(profile);
+        convertBitmap(input,output,transform);
+    } catch (const std::bad_alloc&) { fail(env, true, "Not enough memory to convert PNG colours"); }
       catch (const std::exception& e) { fail(env, false, e.what()); }
 }

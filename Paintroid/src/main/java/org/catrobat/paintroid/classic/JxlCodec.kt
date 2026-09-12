@@ -19,8 +19,12 @@ object JxlCodec {
         n>=2 && b[0]==0xff.toByte() && b[1]==0x0a.toByte() || n==12 && b.contentEquals(byteArrayOf(0,0,0,12,0x4a,0x58,0x4c,0x20,13,10,-121,10))
     }
     fun dimensions(file: File): ImageDimensions = Native.info(file.path).let {ImageDimensions(it[0],it[1])}
+    internal fun sourceBitDepth(file: File): Int = Native.info(file.path)[2]
     fun decode(file: File,size: ImageDimensions,budget: Long,crop: Rect? = null): Bitmap {
+        // createBitmap with ARGB_8888 supplies sRGB on every supported API;
+        // the JNI output has already been converted into that colour space.
         val output=Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888)
+        output.setHasAlpha(true)
         try {Native.decode(file.path,output,crop?.left ?: 0,crop?.top ?: 0,crop?.right ?: -1,crop?.bottom ?: -1,budget);return output}
         catch(error: Throwable) {output.recycle();throw error}
     }

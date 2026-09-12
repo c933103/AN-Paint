@@ -596,3 +596,21 @@ must be assembled without `-PnativeAbis` so it contains all four architectures.
 After running ABI-restricted app tests, rebuild the universal app before
 packaging: instrumentation tasks may otherwise leave a restricted app-debug APK.
 Never mistake build-time ARM compilation for a physical ARM runtime test.
+
+## Colour-managed imports and responsive tools (local.18)
+
+The Android workflow now runs the native codec and installed-app tests on both
+Android 11/API 30 and Android 15/API 35. Ultra HDR gain-map fixtures run only on
+API 35, because Android 11 has no gain-map API. Each platform's reports are
+retained separately under `build/reports/android-api-30` and
+`build/reports/android-api-35`; the final APK still contains all four ABIs.
+
+Synthetic colour fixtures live as base64 source in the instrumentation assets.
+The `tools/generate_*_colour_fixtures.py` scripts document how they were produced;
+fixture generation is independent of the Android production decoder. They cover
+ICC profiles, high bit depth, HDR transfer functions and fractional alpha. The
+editor's working canvas and saved images remain opaque 8-bit sRGB SDR.
+
+Responsive toolbox tests render portrait and landscape with category drawers
+open and closed. Pencil coverage checks exercise actual 1–100 px strokes and
+autosave recovery of the chosen width.

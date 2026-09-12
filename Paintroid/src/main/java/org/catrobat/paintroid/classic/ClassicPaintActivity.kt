@@ -52,6 +52,13 @@ class ClassicPaintActivity : Activity() {
     private lateinit var zoomSlider: SeekBar
     private var syncingZoom = false
     private val toolButtons = linkedMapOf<PaintTool, ToolButton>()
+    private val categoryButtons = linkedMapOf<ToolCategory, ToolCategoryButton>()
+    private val categoryGroups = linkedMapOf<ToolCategory, View>()
+    private val categoryTools = linkedMapOf<ToolCategory, PaintTool>()
+    private var expandedCategory: ToolCategory? = ToolCategory.BRUSH
+    private var toolOptionsExpanded = true
+    private lateinit var toolDrawer: ScrollView
+    private var portraitColours: View? = null
     private var filename = ui(R.string.ui_untitled)
     private var exportOptions=ExportOptions()
     private var shareAfterSave=false
@@ -150,6 +157,8 @@ class ClassicPaintActivity : Activity() {
             onError={ editFailed(it) }
         }
         recovered?.optJSONObject("canvas")?.let { paintCanvas.restoreDraft(it) }
+        expandedCategory=ToolCategory.forTool(paintCanvas.tool)
+        expandedCategory?.let {categoryTools[it]=paintCanvas.tool}
         buildWorkspace()
         if (!restored) paintCanvas.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
             override fun onLayoutChange(view: View,l: Int,t: Int,r: Int,b: Int,ol: Int,ot: Int,or: Int,ob: Int) {
@@ -183,44 +192,102 @@ class ClassicPaintActivity : Activity() {
 
     private fun buildWorkspace() {
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
-        toolButtons.clear();recentCells.clear()
+        toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear();portraitColours=null
         root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(cream);fitsSystemWindows=true }
         setContentView(root);makeHeader()
         val workspace=FrameLayout(this).apply { tag="workspace_overlay" }
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
-        val work=LinearLayout(this).apply { orientation=LinearLayout.HORIZONTAL;tag="editor_workspace";layoutDirection=View.LAYOUT_DIRECTION_LTR }
-        workspace.addView(work,FrameLayout.LayoutParams(-1,-1))
-        sidebar=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="sidebar";layoutDirection=View.LAYOUT_DIRECTION_LOCALE }
-        work.addView(sidebar,LinearLayout.LayoutParams(dp(104),-1))
-        // Keep tools clear of the arrow; the canvas retains its full height.
-        sidebar.addView(Space(this),LinearLayout.LayoutParams(-1,dp(48)))
-        val rail=ScrollView(this).apply { tag="tool_scroll";contentDescription=ui(R.string.ui_toolbox_and_tool_options_scroll_for_more) }
-        sidebar.addView(rail,LinearLayout.LayoutParams(-1,0,1f))
-        val content=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setPadding(dp(3),dp(4),dp(3),dp(8)) }
-        rail.addView(content)
-        for (row in PaintTool.values().toList().chunked(2)) {
-            val pair=LinearLayout(this)
-            row.forEach { tool ->
-                val item=ToolButton(this,tool).apply {
-                    tag="tool_${tool.name}"
-                    setOnClickListener { if (!busy) editAction { chooseTool(if (tool==PaintTool.ZOOM && paintCanvas.tool==tool) drawingTool else tool) } }
-                    setOnLongClickListener { message(tool.label+": "+tool.hint);true }
-                }
-                toolButtons[tool]=item;pair.addView(item,LinearLayout.LayoutParams(0,dp(48),1f))
-            };content.addView(pair)
+        val work=LinearLayout(this).apply {
+            orientation=if(landscape) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
+            tag="editor_workspace";layoutDirection=View.LAYOUT_DIRECTION_LTR
         }
-        options=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setPadding(dp(3),dp(7),dp(3),0) };content.addView(options)
-        colourStatus=ColourStatusButton(this).apply { tag="colour_status";setOnClickListener { togglePalette() } }
-        sidebar.addView(colourStatus,LinearLayout.LayoutParams(-1,dp(80)))
-        // The palette opens beside the pinned indicator, never below the sidebar.
-        val editor=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="canvas_and_palette" }
-        work.addView(editor,LinearLayout.LayoutParams(0,-1,1f))
-        editor.addView(paintCanvas,LinearLayout.LayoutParams(-1,0,1f))
-        sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") { sidebarExpanded=!sidebarExpanded;syncPanels() }
+        workspace.addView(work,FrameLayout.LayoutParams(-1,-1))
+        sidebar=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="sidebar";layoutDirection=View.LAYOUT_DIRECTION_LTR }
+        work.addView(sidebar,if(landscape) LinearLayout.LayoutParams(dp(104),-1) else LinearLayout.LayoutParams(-1,-2))
+        val primary=LinearLayout(this).apply { orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;tag="primary_tools" }
+        val entries=ToolCategory.values().map { category ->
+            ToolCategoryButton(this,category,categoryTools[category] ?: category.tools.first(),!landscape).apply {
+                tag="category_${category.name}"
+                setOnClickListener { if(!busy) editAction { toggleCategory(category) } }
+                categoryButtons[category]=this
+            }
+        }+listOf(PaintTool.ERASER,PaintTool.FILL,PaintTool.PICKER,PaintTool.ZOOM).map { makeToolButton(it) }
+        if(landscape) {
+            sidebar.addView(Space(this),LinearLayout.LayoutParams(-1,dp(48)))
+            val rail=ScrollView(this).apply {tag="primary_tool_scroll";contentDescription=ui(R.string.ui_tool_categories)}
+            entries.chunked(2).forEach { pair ->
+                val row=LinearLayout(this)
+                pair.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(60),1f)) }
+                if(pair.size==1) row.addView(Space(this),LinearLayout.LayoutParams(0,dp(60),1f))
+                primary.addView(row)
+            }
+            rail.addView(primary);sidebar.addView(rail,LinearLayout.LayoutParams(-1,0,1f))
+        } else {
+            entries.forEach { primary.addView(it,LinearLayout.LayoutParams(dp(60),dp(60))) }
+            val rail=HorizontalScrollView(this).apply {
+                tag="primary_tool_scroll";isFillViewport=false;contentDescription=ui(R.string.ui_tool_categories)
+                addView(primary)
+            }
+            sidebar.addView(rail,LinearLayout.LayoutParams(-1,dp(60)).apply {leftMargin=dp(48)})
+        }
+        val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),dp(4),dp(4),dp(8))}
+        toolDrawer=ScrollView(this).apply {tag="tool_scroll";contentDescription=ui(R.string.ui_toolbox_and_tool_options_scroll_for_more);addView(drawerContent)}
+        ToolCategory.values().forEach { category ->
+            val group=LinearLayout(this).apply {orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;tag="category_tools_${category.name}"}
+            if(landscape) category.tools.chunked(3).forEach { tools ->
+                val row=LinearLayout(this)
+                tools.forEach {row.addView(makeToolButton(it),LinearLayout.LayoutParams(0,dp(48),1f))}
+                repeat(3-tools.size) {row.addView(Space(this),LinearLayout.LayoutParams(0,dp(48),1f))}
+                group.addView(row)
+            } else category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(dp(52),dp(48)))}
+            val groupView=if(landscape) group else HorizontalScrollView(this).apply {addView(group)}
+            categoryGroups[category]=groupView;drawerContent.addView(groupView)
+        }
+        options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(3),dp(7),dp(3),0)}
+        drawerContent.addView(options)
+        colourStatus=ColourStatusButton(this).apply {tag="colour_status";setOnClickListener {togglePalette()}}
+        val editor=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="canvas_and_palette"}
+        work.addView(editor,if(landscape) LinearLayout.LayoutParams(0,-1,1f) else LinearLayout.LayoutParams(-1,0,1f))
+        if(landscape) {
+            sidebar.addView(colourStatus,LinearLayout.LayoutParams(-1,dp(80)))
+            val canvasRow=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR}
+            editor.addView(canvasRow,LinearLayout.LayoutParams(-1,0,1f))
+            canvasRow.addView(toolDrawer,LinearLayout.LayoutParams(dp(168),-1))
+            canvasRow.addView(paintCanvas,LinearLayout.LayoutParams(0,-1,1f))
+            makePalette(editor)
+        } else {
+            // The category drawer opens directly below the horizontal tool strip.
+            // Its bounded height keeps drawing space available; all options scroll.
+            sidebar.addView(toolDrawer,LinearLayout.LayoutParams(-1,dp(minOf(200,maxOf(100,resources.configuration.screenHeightDp/4)))))
+            editor.addView(paintCanvas,LinearLayout.LayoutParams(-1,0,1f))
+            val colours=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR;tag="colour_dock"}
+            portraitColours=colours
+            colours.addView(colourStatus,LinearLayout.LayoutParams(dp(104),dp(80)))
+            makePalette(colours)
+            paletteBar.layoutParams=LinearLayout.LayoutParams(0,dp(80),1f)
+            editor.addView(colours,LinearLayout.LayoutParams(-1,dp(80)))
+        }
+        sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") {sidebarExpanded=!sidebarExpanded;syncPanels()}
         workspace.addView(sidebarToggle,FrameLayout.LayoutParams(dp(48),dp(48),Gravity.TOP or Gravity.LEFT))
-        makePalette(editor);makeStatus();populateToolOptions(paintCanvas.tool)
-        if (paintCanvas.trim != null) showBoundsOptions()
+        makeStatus();populateToolOptions(paintCanvas.tool)
+        if(paintCanvas.trim!=null) showBoundsOptions()
         syncPanels();updateColours();updateStatus();syncFullscreen()
+    }
+
+    private fun makeToolButton(tool: PaintTool)=ToolButton(this,tool).apply {
+        tag="tool_${tool.name}"
+        setOnClickListener {if(!busy) editAction {chooseTool(if(tool==PaintTool.ZOOM && paintCanvas.tool==tool) drawingTool else tool)}}
+        setOnLongClickListener {message(tool.label+": "+tool.hint);true}
+        toolButtons[tool]=this
+    }
+
+    private fun toggleCategory(category: ToolCategory) {
+        if(expandedCategory==category) {
+            // Opening options is a view change: keep unfinished geometry intact.
+            toolOptionsExpanded=!toolOptionsExpanded;syncPanels()
+        } else {
+            chooseTool(categoryTools[category] ?: category.tools.first())
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -233,8 +300,18 @@ class ClassicPaintActivity : Activity() {
         syncPanels()
     }
     private fun syncPanels() {
-        sidebar.visibility=if (sidebarExpanded) View.VISIBLE else View.GONE
-        paletteBar.visibility=if (sidebarExpanded && paletteExpanded) View.VISIBLE else View.GONE
+        val visible=sidebarExpanded && !fullscreen
+        sidebar.visibility=if(visible) View.VISIBLE else View.GONE
+        toolDrawer.visibility=if(visible && toolOptionsExpanded) View.VISIBLE else View.GONE
+        categoryGroups.forEach {(category,view) -> view.visibility=if(category==expandedCategory) View.VISIBLE else View.GONE}
+        categoryButtons.forEach {(category,view) ->
+            view.selectedTool=categoryTools[category] ?: category.tools.first()
+            view.expanded=toolOptionsExpanded && expandedCategory==category
+            view.isSelected=paintCanvas.tool in category.tools
+            view.refresh()
+        }
+        portraitColours?.visibility=if(visible) View.VISIBLE else View.GONE
+        paletteBar.visibility=if(visible && paletteExpanded) View.VISIBLE else View.GONE
         sidebarToggle.isSelected=sidebarExpanded
         sidebarToggle.contentDescription=if (sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)
         if (android.os.Build.VERSION.SDK_INT >= 26) sidebarToggle.tooltipText=sidebarToggle.contentDescription
@@ -401,6 +478,7 @@ class ClassicPaintActivity : Activity() {
         redoButton.isEnabled = !busy && document.canRedo
         undoButton.isEnabled = !busy && (document.canUndo || paintCanvas.hasPendingEdit)
         toolButtons.forEach { (tool, view) -> view.isSelected = tool == paintCanvas.tool; view.invalidate() }
+        categoryButtons.forEach {(category,view) ->view.isSelected=paintCanvas.tool in category.tools;view.invalidate()}
     }
 
     private fun updateColours() {
@@ -415,9 +493,17 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun chooseTool(tool: PaintTool) {
-        if (tool != PaintTool.ZOOM) drawingTool=tool
         paintCanvas.selectTool(tool)
-        populateToolOptions(tool)
+        showToolOptions(tool)
+    }
+
+    private fun showToolOptions(tool: PaintTool) {
+        if(tool!=PaintTool.ZOOM) drawingTool=tool
+        expandedCategory=ToolCategory.forTool(tool)
+        expandedCategory?.let {categoryTools[it]=tool}
+        toolOptionsExpanded=true
+        populateToolOptions(tool);syncPanels()
+        toolDrawer.scrollTo(0,0)
     }
 
     private fun populateToolOptions(tool: PaintTool) {
@@ -440,7 +526,7 @@ class ClassicPaintActivity : Activity() {
                 options.addView(button(ui(R.string.ui_100), "zoom_actual") { paintCanvas.zoomAt(1f) },LinearLayout.LayoutParams(-1,dp(44)))
                 options.addView(button(ui(R.string.ui_fit), "zoom_fit") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))
             }
-            PaintTool.PENCIL -> options.addView(label(ui(R.string.ui_1_px), 12f))
+            PaintTool.PENCIL -> addSlider(ui(R.string.ui_size_px),paintCanvas.pencilSize.toInt(),100,1,"pencil_size") {paintCanvas.pencilSize=it.toFloat()}
             PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))
             PaintTool.PICKER -> options.addView(label(ui(R.string.ui_tap_a_pixel), 12f))
             else -> {
@@ -539,7 +625,7 @@ class ClassicPaintActivity : Activity() {
                 ui(R.string.ui_actual_size_100) to { paintCanvas.zoomAt(1f) },
                 ui(R.string.ui_fit_image) to { paintCanvas.fit() },
                 (if (paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)) to { paintCanvas.grid = !paintCanvas.grid; paintCanvas.invalidate() },
-                (if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)) to { paintCanvas.setCursorMode(!paintCanvas.cursorMode);populateToolOptions(paintCanvas.tool) },
+                (if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)) to { paintCanvas.setCursorMode(!paintCanvas.cursorMode);showToolOptions(paintCanvas.tool) },
                 ui(R.string.ui_magnified_preview) to { showDrawingSettings(true) },
                 ui(R.string.ui_drawing_settings) to { showDrawingSettings(false) },
                 (if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)) to { fullscreen=!fullscreen;syncFullscreen() },
@@ -674,6 +760,8 @@ class ClassicPaintActivity : Activity() {
         paintCanvas.beginTrim(); showBoundsOptions()
     }
     private fun showBoundsOptions() {
+        sidebarExpanded=true;toolOptionsExpanded=true;expandedCategory=null
+        syncPanels();toolDrawer.scrollTo(0,0)
         options.removeAllViews()
         options.addView(label(ui(R.string.ui_canvas_bounds),13f))
         options.addView(label(ui(R.string.ui_drag_out_to_expand_in_to_trim_drag),12f))
@@ -981,7 +1069,7 @@ class ClassicPaintActivity : Activity() {
         } else {
             toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }
             toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }
-            column.addView(label(ui(R.string.ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing)))
+            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))
         }
         AlertDialog.Builder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))
             .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()
@@ -989,8 +1077,7 @@ class ClassicPaintActivity : Activity() {
     private fun syncFullscreen() {
         if(!::root.isInitialized) return
         for(i in 0 until root.childCount) root.getChildAt(i).let { it.visibility=if(fullscreen && it.tag!="workspace_overlay") View.GONE else View.VISIBLE }
-        sidebar.visibility=if(!fullscreen && sidebarExpanded) View.VISIBLE else View.GONE
-        paletteBar.visibility=if(!fullscreen && sidebarExpanded && paletteExpanded) View.VISIBLE else View.GONE
+        syncPanels()
         sidebarToggle.visibility=if(fullscreen) View.GONE else View.VISIBLE
         val workspace=root.findViewWithTag<FrameLayout>("workspace_overlay")
         workspace.findViewWithTag<View>("leave_fullscreen")?.let {workspace.removeView(it)}

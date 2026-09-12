@@ -435,3 +435,17 @@ failed one JPEG XL boundary test. Its exact status is preserved in
 
 See `HANDOFF.md` and the release verification report for executed checks and
 physical-device limits; implementation entries alone are not test results.
+
+
+## Responsive toolbox and colour imports: 2.14.1-local.18 — 12 September 2026
+
+- Group drawing, selection and shape/text tools into expandable categories with
+  remembered choices and reversible Breeze arrows. Use a top horizontal strip and
+  downward options in portrait; retain a left strip and rightward options in landscape.
+- Give Pencil an independent 1–100 px width, numeric input and draft persistence.
+- Preserve input alpha until background compositing. Normalize working bitmaps to
+  8-bit sRGB, including floating-point inputs, so memory/history assumptions remain valid.
+- Add explicit ICC/CICP and HDR colour conversion with real high-depth and transparent
+  fixtures. Exercise modern Ultra HDR inputs on Android 15 in addition to Android 11.
+- Trace the original Dubai/STC additions and distinguish undocumented permission
+  for AN Paint from any claim about upstream authorization.

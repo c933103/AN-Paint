@@ -20,9 +20,35 @@ primary still image is opened from HEIF containers; auxiliary depth images and
 additional collection items are not imported as separate documents. The container
 rotation and crop are applied once by libheif.
 
-HEIC/AVIF colour conversion currently uses libheif's NCLX colour information and
-sRGB output. Embedded ICC-only profiles have not received a separate conversion
-or colour-accuracy verification pass.
+HEIC/AVIF imports preserve native 10/12-bit RGB samples while libheif applies
+container rotation/crop and converts YCbCr using the source NCLX matrix/range.
+AN Paint then uses skcms for ICC/primary/transfer conversion before producing
+8-bit sRGB. Embedded ICC takes precedence over NCLX colour primaries/transfer;
+NCLX is still needed for YCbCr decoding. A digest-checked libheif patch preserves
+NCLX passthrough metadata after RGB layout conversion, including codec-bitstream
+profiles with no container `colr` property. Invalid or unsupported profiles fail
+visibly instead of silently being interpreted as sRGB.
+
+PQ and HLG HDR are converted to a 203 cd/m² SDR target using the bundled JPEG XL
+Rec.2408 tone mapper and gamut mapping. PQ uses absolute ST 2084 luminance; HLG
+uses the BT.2100 1,000 cd/m² reference-display OOTF, with luminance calculated
+after primary conversion so Display-P3 HLG is handled correctly. Source peak selection prefers
+MaxCLL, then mastering-display maximum luminance. When those are absent, PQ
+uses 10,000 cd/m² and HLG uses 1,000 cd/m². Linear-light HEIF tagged with a source
+peak above 255 cd/m² is also tone-mapped. This produces an SDR rendition; it
+cannot preserve HDR brightness/headroom in the editor or its exported images,
+and tone-mapped appearance depends on the source metadata and target display.
+
+Transparency remains unassociated through colour conversion (premultiplied
+source samples are first unassociated). Only the final temporary Android bitmap
+is premultiplied. Opening/assembly can therefore composite onto the chosen
+background; inserting can composite onto existing canvas pixels without dark
+transparent fringes. Alpha controls are not reintroduced into the editor.
+
+Synthetic AVIF regression fixtures cover 10-bit linear, PQ, HLG, Display-P3 NCLX,
+ICC-only Display-P3 and fractional alpha. Their generator and source samples are
+under `tools/generate_heif_colour_fixtures.py`; the tests use independent colour
+references and verify crop/alpha behaviour as well as tonal ordering.
 
 WebP's format limit is 16383 pixels per side. The editor's device-dependent memory
 budget also applies. A smaller HEIC/AVIF output can still require a large source
@@ -40,6 +66,28 @@ requests beyond 2048 pixels. Native regression tests include the formerly failin
 2057 × 17 image, the corresponding tall image, a 2065 × 2049 image, lossless crop
 checks, lossy encoding and exhausted-memory recovery.
 
+JPEG XL HDR imports decode floating-point source samples before explicit transfer,
+primary and tone conversion. This also covers non-XYB lossless streams, where the
+initial built-in conversion path produced incorrect PQ levels. The bridge uses a
+bounded pixel callback rather than allocating another full floating-point image.
+Regression fixtures include actual 10-bit PQ/HLG, 16-bit linear SDR/HDR, ICC,
+fractional alpha, XYB and crop/resize across callback boundaries.
+
+PNG, JPEG and WebP embedded RGB/gray ICC profiles use the same bundled colour
+management. A private decode copy strips colour tags before conversion, preventing
+the Android decoder from converting twice. PNG metadata precedence is cICP, ICC,
+sRGB, then gAMA/cHRM. On Android 8/API 26 and later, 16-bit PNG samples use an F16
+intermediate before final quantization. Earlier Android decoders reduce the
+samples to 8 bits first; profile conversion still applies. Unsupported ICC colour
+models such as CMYK fail explicitly. Colour metadata is bounded to avoid an
+uncontrolled profile allocation.
+
+Ultra HDR JPEG opens its authored SDR base rendition. The gain map is discarded
+before editing, because reapplying the original gain map to edited pixels would
+produce incorrect output. This does not reproduce the source's HDR display
+brightness. Memory admission and resize prompts account for high-precision and
+colour-conversion buffers as well as the current document.
+
 Full dependency notices and exact source locators are available in Help and in
 `Paintroid/src/main/assets/legal/`. Fetch scripts under `tools/` reproduce each
 native source revision; the build does not download precompiled codec binaries.
@@ -51,7 +99,7 @@ the Android FORTIFY abort reproduced when encoding successive HEIC grid tiles.
 It does not alter compression algorithms. The patched source and its notice are
 included in the offline source bundle.
 
-Implementation and tests in this file describe the intended local.17 build.
+Implementation and tests in this file describe the intended local.18 build.
 Consult `HANDOFF.md` and `verification/` for the verification actually completed
 for a delivered APK, including the distinction between emulator and physical
 phone checks.

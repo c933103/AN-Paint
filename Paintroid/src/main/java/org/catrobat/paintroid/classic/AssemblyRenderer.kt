@@ -14,9 +14,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     val original = ImageDimensions(layout.values.maxOf { it.right },layout.values.maxOf { it.bottom })
     // File metadata stays constant for this output request. Inspect it once so
     // resizing the dialog does not repeatedly open native codecs on the UI thread.
-    private val nativeRequirements = images.filter { it.id in layout && HeifCodec.isHeif(it.file) }.associate { item ->
-        item.id to ImportMemoryRequirements(HeifCodec.decodeWorkingBytes(item.file,ImageDimensions(1,1)))
-    }
+    private val imports = images.filter { it.id in layout }.associate { it.id to ImportedImage(it.file,it.name) }
     private fun destination(rect: Rect,size: ImageDimensions): Rect {
         fun x(n: Int) = (n.toDouble()*size.width/original.width).roundToInt()
         fun y(n: Int) = (n.toDouble()*size.height/original.height).roundToInt()
@@ -24,12 +22,15 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     }
     fun estimatedBytes(size: ImageDimensions): Double {
         var peak = size.pixels * 28.0 + residentPixels * 4.0
-        nativeRequirements.forEach { (id,requirements) ->
+        imports.forEach { (id,source) ->
             val rect = destination(layout.getValue(id),size)
             val target = ImageDimensions(max(1,rect.width()),max(1,rect.height()))
             // Include the resident assembly output and the same native decode
             // plus compositing reserve used by decodeCrop below.
-            peak = max(peak,requirements.estimatedBytes(ImportPlan(target,1,target.pixels),residentPixels+size.pixels))
+            val item=images.first { it.id==id }
+            val sampleTarget=ImageDimensions(min(target.width,item.crop.width()),min(target.height,item.crop.height()))
+            val plan=ImportPlan.create(item.croppedSize,sampleTarget)
+            peak = max(peak,source.estimatedBytes(plan.copy(target=target),residentPixels+size.pixels))
         }
         return peak
     }
@@ -75,7 +76,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         val jxl=JxlCodec.isJxl(item.file)
         if(jxl || HeifCodec.isHeif(item.file)) {
             val policy=ImageMemoryPolicy.forDevice(context)
-            val requirements=nativeRequirements[item.id] ?: ImportMemoryRequirements(if(jxl) null else HeifCodec.decodeWorkingBytes(item.file,ImageDimensions(1,1)))
+            val requirements=(imports[item.id] ?: ImportedImage(item.file,item.name)).memoryRequirements
             requirements.checkImport(policy,ImportPlan(target,1,target.pixels),resident)
             val budget=requirements.decoderBudget(policy.workingBytes,target,resident)
             return if(jxl) JxlCodec.decode(item.file,target,budget,item.crop) else HeifCodec.decode(item.file,target,budget,item.crop)
@@ -89,37 +90,42 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         // Upscaling final output is also allowed; decode the available original detail.
         val sampleTarget = ImageDimensions(min(target.width,item.crop.width()),min(target.height,item.crop.height()))
         val plan = ImportPlan.create(item.croppedSize,sampleTarget)
-        ImageMemoryPolicy.forDevice(context).checkImport(plan,resident)
-        val decoder = try { BitmapRegionDecoder.newInstance(item.file.path,false) } catch (_: IOException) { null }
-        var input: Bitmap? = null; var output: Bitmap? = null
-        try {
-            if (decoder != null) {
-                input = decoder.decodeRegion(rect,BitmapFactory.Options().apply { inSampleSize = plan.sample; inPreferredConfig = Bitmap.Config.ARGB_8888; inScaled = false })
-                    ?: throw IOException(ui(R.string.ui_could_not_decode_the_cropped_region_of, item.name))
-                val decoded = input
-                val local = transform(decoded.width,decoded.height,rotation,flip)
-                val rotated = RectF(0f,0f,decoded.width.toFloat(),decoded.height.toFloat()); local.mapRect(rotated)
-                local.postScale(target.width/rotated.width(),target.height/rotated.height())
-                output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
-                Canvas(output).drawBitmap(decoded,local,Paint(Paint.FILTER_BITMAP_FLAG))
-            } else {
-                // Some older platform codecs have no region decoder. Use a bounded full
-                // decode, and fail visibly if preserving the requested crop detail cannot fit.
-                val scale = min(1.0,max(target.width.toDouble()/item.crop.width(),target.height.toDouble()/item.crop.height()))
-                val fullTarget = item.dimensions.scaled(scale)
-                val fullPlan = ImportPlan.create(item.dimensions,fullTarget)
-                val source = ImportedImage(item.file,item.name)
-                val policy = ImageMemoryPolicy.forDevice(context)
-                source.checkImport(policy,fullPlan,resident+target.pixels)
-                input = source.decode(fullPlan,policy.workingBytes,resident+target.pixels)
-                val decoded = input
-                val region = RectF(item.crop.left.toFloat()*decoded.width/item.dimensions.width,item.crop.top.toFloat()*decoded.height/item.dimensions.height,
-                    item.crop.right.toFloat()*decoded.width/item.dimensions.width,item.crop.bottom.toFloat()*decoded.height/item.dimensions.height)
-                output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
-                val matrix = Matrix().apply { setRectToRect(region,RectF(0f,0f,target.width.toFloat(),target.height.toFloat()),Matrix.ScaleToFit.FILL) }
-                Canvas(output).drawBitmap(decoded,matrix,Paint(Paint.FILTER_BITMAP_FLAG))
-            }
-            return output!!.also { output = null }
-        } finally { decoder?.recycle(); input?.recycle(); output?.recycle() }
+        val source=imports[item.id] ?: ImportedImage(item.file,item.name)
+        source.checkImport(ImageMemoryPolicy.forDevice(context),plan.copy(target=target),resident)
+        val colour=checkNotNull(source.platformColour)
+        return colour.withDecodeFile(item.file) { decodeFile ->
+            val decoder = try { BitmapRegionDecoder.newInstance(decodeFile.path,false) } catch (_: IOException) { null }
+            var input: Bitmap? = null; var output: Bitmap? = null
+            try {
+                if (decoder != null) {
+                    input = decoder.decodeRegion(rect,colour.options(plan.sample))
+                        ?: throw IOException(ui(R.string.ui_could_not_decode_the_cropped_region_of, item.name))
+                    val rawInput=input
+                    val decoded = colour.convert(rawInput)
+                    if(decoded !== rawInput) { rawInput.recycle();input=decoded }
+                    val local = transform(decoded.width,decoded.height,rotation,flip)
+                    val rotated = RectF(0f,0f,decoded.width.toFloat(),decoded.height.toFloat()); local.mapRect(rotated)
+                    local.postScale(target.width/rotated.width(),target.height/rotated.height())
+                    output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
+                    Canvas(output).drawBitmap(decoded,local,Paint(Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
+                } else {
+                    // Some older platform codecs have no region decoder. Use a bounded full
+                    // decode, and fail visibly if preserving the requested crop detail cannot fit.
+                    val scale = min(1.0,max(target.width.toDouble()/item.crop.width(),target.height.toDouble()/item.crop.height()))
+                    val fullTarget = item.dimensions.scaled(scale)
+                    val fullPlan = ImportPlan.create(item.dimensions,fullTarget)
+                    val policy = ImageMemoryPolicy.forDevice(context)
+                    source.checkImport(policy,fullPlan,resident+target.pixels)
+                    input = source.decode(fullPlan,policy.workingBytes,resident+target.pixels)
+                    val decoded = input
+                    val region = RectF(item.crop.left.toFloat()*decoded.width/item.dimensions.width,item.crop.top.toFloat()*decoded.height/item.dimensions.height,
+                        item.crop.right.toFloat()*decoded.width/item.dimensions.width,item.crop.bottom.toFloat()*decoded.height/item.dimensions.height)
+                    output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
+                    val matrix = Matrix().apply { setRectToRect(region,RectF(0f,0f,target.width.toFloat(),target.height.toFloat()),Matrix.ScaleToFit.FILL) }
+                    Canvas(output).drawBitmap(decoded,matrix,Paint(Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
+                }
+                output!!.also { output = null }
+            } finally { decoder?.recycle(); input?.recycle(); output?.recycle() }
+        }
     }
 }

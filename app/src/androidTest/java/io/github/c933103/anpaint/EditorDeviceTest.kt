@@ -35,6 +35,8 @@ import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.LegalInfo
 import org.catrobat.paintroid.classic.MediaGalleryActivity
+import org.catrobat.paintroid.classic.ToolCategory
+import org.catrobat.paintroid.classic.ToolCategoryButton
 import org.catrobat.paintroid.classic.PaintTool
 import org.junit.After
 import org.junit.Assert.*
@@ -230,6 +232,45 @@ class EditorDeviceTest {
         }
     }
 
+    @Test fun responsiveCategoriesOpenBesideTheToolStripInBothOrientations() {
+        fun position(view: View)=IntArray(2).also {view.getLocationOnScreen(it)}
+        try {
+            for(landscape in listOf(false,true)) {
+                val expected=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE else android.content.res.Configuration.ORIENTATION_PORTRAIT
+                onMain {it.requestedOrientation=if(landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}
+                awaitState("responsive toolbox orientation") {it.resources.configuration.orientation==expected && it.paintCanvas.width>0}
+                instrumentation.waitForIdleSync()
+                for(category in ToolCategory.values()) {
+                    onMain {
+                        val button=it.window.decorView.findViewWithTag<ToolCategoryButton>("category_${category.name}")
+                        if(!button.expanded) assertTrue(button.performClick())
+                    }
+                    instrumentation.waitForIdleSync()
+                    onMain {
+                        val root=it.window.decorView
+                        val drawer=root.findViewWithTag<View>("tool_scroll")
+                        val strip=root.findViewWithTag<View>("primary_tool_scroll")
+                        assertTrue(drawer.isShown)
+                        if(landscape) {
+                            val sidebar=root.findViewWithTag<View>("sidebar")
+                            assertEquals(position(sidebar)[0]+sidebar.width,position(drawer)[0])
+                            assertEquals(position(drawer)[0]+drawer.width,position(it.paintCanvas)[0])
+                        } else {
+                            assertEquals(position(strip)[1]+strip.height,position(drawer)[1])
+                            assertEquals(root.width,it.paintCanvas.width)
+                        }
+                    }
+                    for(tool in category.tools) {
+                        click("tool_${tool.name}")
+                        onMain {assertEquals(tool,it.paintCanvas.tool)}
+                    }
+                    click("category_${category.name}")
+                    onMain {assertFalse(it.window.decorView.findViewWithTag<View>("tool_scroll").isShown)}
+                }
+            }
+        } finally {onMain {it.requestedOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}}
+    }
+
     @Test fun cursorDrawingMagnifierAndFitAreAvailableFromTheViewMenu() {
         menu("View",text(R.string.ui_enable_cursor_drawing))
         onMain {assertTrue(it.paintCanvas.cursorMode)}
@@ -316,10 +357,24 @@ class EditorDeviceTest {
     }
     private fun click(tag: String) {
         awaitState("ready for $tag") {!it.busy}
+        onMain { editor ->
+            val tool=PaintTool.values().firstOrNull {tag=="tool_${it.name}"}
+            tool?.let {ToolCategory.forTool(it)}?.let {category ->
+                val button=editor.window.decorView.findViewWithTag<ToolCategoryButton>("category_${category.name}")
+                if(!button.expanded) assertTrue(button.performClick())
+            }
+        }
+        instrumentation.waitForIdleSync()
         onMain {
             val view=it.window.decorView.findViewWithTag<View>(tag)
             assertNotNull(tag,view)
+            assertTrue("Control is in an expanded panel: $tag",view.isShown)
             view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true)
+        }
+        instrumentation.waitForIdleSync()
+        onMain {
+            val view=it.window.decorView.findViewWithTag<View>(tag)
+            assertTrue("Control is visible after scrolling: $tag",view.getGlobalVisibleRect(Rect()))
             assertTrue(tag,view.performClick())
         }
         instrumentation.waitForIdleSync()

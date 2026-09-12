@@ -10,6 +10,9 @@ endforeach()
 set(JPEGXL_ENABLE_SKCMS ON CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../../build/jxl-source jxl EXCLUDE_FROM_ALL)
 add_library(anpaint_jxl SHARED jxl_bridge.cpp)
+target_include_directories(anpaint_jxl PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}/../../../build/jxl-source
+  ${CMAKE_CURRENT_LIST_DIR}/../../../build/jxl-source/third_party/skcms)
 target_link_libraries(anpaint_jxl PRIVATE jxl jxl_cms jnigraphics log)
 target_link_options(anpaint_jxl PRIVATE "-Wl,-z,max-page-size=16384")
 

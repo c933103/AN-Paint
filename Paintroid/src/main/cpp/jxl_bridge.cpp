@@ -21,6 +21,8 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <vector>
+#include "ColourConversion.h"
 
 namespace {
 struct Budget {
@@ -75,7 +77,11 @@ size_t limit(jlong requested,uint64_t outputBytes) {
     if(requested<0 || static_cast<uint64_t>(requested)<=outputBytes+1024*1024)throw std::bad_alloc();
     return static_cast<size_t>(std::min<uint64_t>(static_cast<uint64_t>(requested)-outputBytes,SIZE_MAX/2));
 }
-struct Output {Pixels* pixels;uint64_t width,height,left,top;};
+struct Output {
+    Pixels* pixels;uint64_t width,height,left,top;
+    std::unique_ptr<anpaint::colour::Transform> colour;
+    bool failed=false;
+};
 struct Input {
     Pixels* pixels;Budget* budget;
     static void format(void*,JxlPixelFormat* out) {*out={3,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,0};}
@@ -127,7 +133,7 @@ struct FileOutput {
     static void finalized(void*,uint64_t) {} // The seekable file already owns these bytes.
     JxlEncoderOutputProcessor processor() {return {this,get,release,seek,finalized};}
 };
-void outputPixels(void* opaque,size_t x,size_t y,size_t count,const void* data) {
+void outputBytePixels(void* opaque,size_t x,size_t y,size_t count,const void* data) {
     auto& o=*static_cast<Output*>(opaque);auto& p=*o.pixels;
     const auto* input=static_cast<const uint8_t*>(data);
     if(y<o.top || y>=o.top+o.height)return;
@@ -146,6 +152,40 @@ void outputPixels(void* opaque,size_t x,size_t y,size_t count,const void* data) 
         dest[3]=src[3];for(int c=0;c<3;c++)dest[c]=static_cast<uint8_t>((src[c]*src[3]+127)/255);
     }
 }
+void outputPixels(void* opaque,size_t x,size_t y,size_t count,const void* data) {
+    auto& out=*static_cast<Output*>(opaque);
+    if(out.failed || y<out.top || y>=out.top+out.height)return;
+    if(!out.colour) {outputBytePixels(opaque,x,y,count,data);return;}
+    // Bounded streaming colour conversion, including reduced/cropped imports:
+    // never allocate a full-resolution float RGBA image beside the bitmap.
+    constexpr size_t chunk=256;
+    std::array<float,4*chunk> floats;
+    std::array<uint8_t,4*chunk> bytes;
+    try {
+        for(size_t offset=0;offset<count;offset+=chunk) {
+            const size_t n=std::min(chunk,count-offset);
+            if(x+offset+n<=out.left || x+offset>=out.left+out.width)continue;
+            std::copy_n(static_cast<const float*>(data)+4*offset,4*n,floats.data());
+            out.colour->convert(floats.data(),n);
+            for(size_t p=0;p<4*n;p++)bytes[p]=anpaint::colour::byte(floats[p]);
+            outputBytePixels(opaque,x+offset,y,n,bytes.data());
+        }
+    } catch(...) {out.failed=true;} // Never unwind through the codec callback.
+}
+skcms_ICCProfile profileForEncoding(const JxlColorEncoding& colour) {
+    if(colour.color_space==JXL_COLOR_SPACE_GRAY)return *skcms_sRGB_profile();
+    skcms_ICCProfile profile;skcms_Init(&profile);
+    profile.data_color_space=skcms_Signature_RGB;
+    require(skcms_PrimariesToXYZD50(
+        colour.primaries_red_xy[0],colour.primaries_red_xy[1],
+        colour.primaries_green_xy[0],colour.primaries_green_xy[1],
+        colour.primaries_blue_xy[0],colour.primaries_blue_xy[1],
+        colour.white_point_xy[0],colour.white_point_xy[1],&profile.toXYZD50),
+        "Invalid JPEG XL HDR colour primaries.");
+    profile.has_toXYZD50=true;
+    skcms_SetTransferFunction(&profile,skcms_Identity_TransferFunction());
+    return profile;
+}
 }
 
 extern "C" JNIEXPORT jintArray JNICALL
@@ -159,8 +199,9 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_info(JNIEnv* env,jobjec
         require(JxlDecoderProcessInput(dec.get())==JXL_DEC_BASIC_INFO,"Invalid JPEG XL header.");
         JxlBasicInfo info{};require(JxlDecoderGetBasicInfo(dec.get(),&info)==JXL_DEC_SUCCESS,"Invalid JPEG XL dimensions.");
         require(info.xsize>0 && info.ysize>0 && info.xsize<=INT_MAX && info.ysize<=INT_MAX,"JPEG XL dimensions exceed supported coordinates.");
-        jint values[2]={static_cast<jint>(info.xsize),static_cast<jint>(info.ysize)};
-        jintArray out=env->NewIntArray(2);if(out)env->SetIntArrayRegion(out,0,2,values);return out;
+        jint values[4]={static_cast<jint>(info.xsize),static_cast<jint>(info.ysize),
+                       static_cast<jint>(info.bits_per_sample),static_cast<jint>(info.alpha_bits)};
+        jintArray out=env->NewIntArray(4);if(out)env->SetIntArrayRegion(out,0,4,values);return out;
     } catch(const std::bad_alloc&) {fail(env,true,"Not enough memory to inspect JPEG XL.");}
       catch(const std::exception& e) {fail(env,budget.exhausted,e.what());}
     return nullptr;
@@ -174,23 +215,57 @@ Java_org_catrobat_paintroid_classic_JxlCodec_00024Native_decode(JNIEnv* env,jobj
         auto manager=budget.manager();Decoder dec(JxlDecoderCreate(&manager),JxlDecoderDestroy);if(!dec)throw std::bad_alloc();
         require(JxlDecoderSetCms(dec.get(),*JxlGetDefaultCms())==JXL_DEC_SUCCESS,"Cannot initialize JPEG XL colour management.");
         require(JxlDecoderSubscribeEvents(dec.get(),JXL_DEC_BASIC_INFO|JXL_DEC_COLOR_ENCODING|JXL_DEC_FULL_IMAGE)==JXL_DEC_SUCCESS,"Cannot start JPEG XL decoder.");
-        JxlDecoderSetUnpremultiplyAlpha(dec.get(),JXL_TRUE);
+        require(JxlDecoderSetUnpremultiplyAlpha(dec.get(),JXL_TRUE)==JXL_DEC_SUCCESS,"Cannot prepare JPEG XL alpha conversion.");
         JxlDecoderSetInput(dec.get(),static_cast<const uint8_t*>(file.bytes),file.size);JxlDecoderCloseInput(dec.get());
         Output out{&pixels,0,0,0,0};JxlPixelFormat format{4,JXL_TYPE_UINT8,JXL_NATIVE_ENDIAN,0};
+        float sourcePeak=1000.f;
+        std::vector<uint8_t> sourceIcc; // Remains alive while skcms references it.
         for(;;) {
             const auto status=JxlDecoderProcessInput(dec.get());
             if(status==JXL_DEC_BASIC_INFO) {
                 JxlBasicInfo info{};require(JxlDecoderGetBasicInfo(dec.get(),&info)==JXL_DEC_SUCCESS,"Invalid JPEG XL dimensions.");
+                sourcePeak=info.intensity_target;
                 require(info.xsize>0 && info.ysize>0 && info.xsize<=INT_MAX && info.ysize<=INT_MAX,"JPEG XL dimensions exceed supported coordinates.");
                 if(right<0)right=info.xsize;if(bottom<0)bottom=info.ysize;
                 require(left>=0 && top>=0 && right>left && bottom>top && uint32_t(right)<=info.xsize && uint32_t(bottom)<=info.ysize,"The JPEG XL crop must stay inside the image.");
                 out.width=right-left;out.height=bottom-top;out.left=left;out.top=top;
             } else if(status==JXL_DEC_COLOR_ENCODING) {
-                JxlColorEncoding color;JxlColorEncodingSetToSRGB(&color,JXL_FALSE);
-                require(JxlDecoderSetPreferredColorProfile(dec.get(),&color)==JXL_DEC_SUCCESS,"Cannot convert JPEG XL colours to sRGB.");
+                JxlColorEncoding original{};
+                const bool structured=JxlDecoderGetColorAsEncodedProfile(dec.get(),JXL_COLOR_PROFILE_TARGET_ORIGINAL,&original)==JXL_DEC_SUCCESS;
+                const bool hdr=structured && (original.transfer_function==JXL_TRANSFER_FUNCTION_PQ || original.transfer_function==JXL_TRANSFER_FUNCTION_HLG ||
+                    (original.transfer_function==JXL_TRANSFER_FUNCTION_LINEAR && sourcePeak>255.f));
+                if(hdr) {
+                    // libjxl 0.12's built-in tone-mapping stage uses the
+                    // destination transfer on non-XYB source pixels. Request
+                    // the original encoding and convert float samples ourselves
+                    // so both lossless and XYB inputs follow the same path.
+                    require(JxlDecoderSetPreferredColorProfile(dec.get(),&original)==JXL_DEC_SUCCESS,"Cannot decode JPEG XL HDR source colours.");
+                    out.colour=std::make_unique<anpaint::colour::Transform>(profileForEncoding(original),original.transfer_function,sourcePeak);
+                } else if(!structured) {
+                    size_t size=0;
+                    require(JxlDecoderGetICCProfileSize(dec.get(),JXL_COLOR_PROFILE_TARGET_ORIGINAL,&size)==JXL_DEC_SUCCESS && size>0 && size<=anpaint::colour::kMaximumIccBytes,"Unsupported JPEG XL colour profile.");
+                    if(size>budget.limit || budget.used.load()>budget.limit-size)throw std::bad_alloc();
+                    budget.limit-=size;sourceIcc.resize(size);
+                    require(JxlDecoderGetColorAsICCProfile(dec.get(),JXL_COLOR_PROFILE_TARGET_ORIGINAL,sourceIcc.data(),sourceIcc.size())==JXL_DEC_SUCCESS,"Cannot read JPEG XL colour profile.");
+                    skcms_ICCProfile profile{};
+                    const bool parsed=skcms_Parse(sourceIcc.data(),sourceIcc.size(),&profile);
+                    if(parsed && profile.has_CICP && (profile.CICP.transfer_characteristics==16 || profile.CICP.transfer_characteristics==18 ||
+                        (profile.CICP.transfer_characteristics==8 && sourcePeak>255.f))) {
+                        require(JxlDecoderSetOutputColorProfile(dec.get(),nullptr,sourceIcc.data(),sourceIcc.size())==JXL_DEC_SUCCESS,"Cannot decode JPEG XL HDR ICC colours.");
+                        out.colour=std::make_unique<anpaint::colour::Transform>(profile,profile.CICP.transfer_characteristics,sourcePeak);
+                    }
+                }
+                if(out.colour)format.data_type=JXL_TYPE_FLOAT;
+                else {
+                    JxlColorEncoding color;JxlColorEncodingSetToSRGB(&color,JXL_FALSE);
+                    require(JxlDecoderSetPreferredColorProfile(dec.get(),&color)==JXL_DEC_SUCCESS,"Cannot convert JPEG XL colours to sRGB.");
+                }
             } else if(status==JXL_DEC_NEED_IMAGE_OUT_BUFFER) {
                 require(out.width>0 && JxlDecoderSetImageOutCallback(dec.get(),&format,outputPixels,&out)==JXL_DEC_SUCCESS,"Cannot prepare JPEG XL output.");
-            } else if(status==JXL_DEC_FULL_IMAGE) return; // First composited frame of an animated input.
+            } else if(status==JXL_DEC_FULL_IMAGE) {
+                require(!out.failed,"Cannot convert JPEG XL HDR pixels to sRGB.");
+                return; // First composited frame of an animated input.
+            }
             else throw std::runtime_error("JPEG XL decoding failed or the file is incomplete.");
         }
     } catch(const std::bad_alloc&) {fail(env,true,"Not enough memory to decode JPEG XL.");}

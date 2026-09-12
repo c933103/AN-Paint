@@ -21,6 +21,18 @@ The Android build compiles the following pinned upstream source revisions:
   revision de4c1d1edc49723a78954d30a83690aa1937422f
   The pinned revision is fetched from SDL's GitHub mirror, libsdl-org/aom.
 
+AN Paint's 2026 colour-management integration also uses the already bundled
+skcms (Google contributors, BSD-3-Clause) and JPEG XL Rec.2408/gamut mapping
+(JPEG XL Project contributors, BSD-3-Clause); their full terms and revisions
+are included in JXL_NOTICES.txt.
+
+AN Paint patches libheif libheif/context.cc so an explicitly requested NCLX
+passthrough decode retains the input NCLX after RGB layout conversion. This
+preserves primaries and transfer metadata from codec-bitstream-only profiles;
+intermediate RGB conversion states otherwise attach defaults without changing
+the transfer-coded samples. The pinned, digest-checked reproducible patch is in
+tools/fetch_heif_sources.py and the patched source is bundled with the app.
+
 The fetch script renames libde265's and libaom's unused "dist" CMake targets
 to prevent a target-name collision. Kvazaar's library sources are compiled
 with an ABI-local version header and portable strategies; its upstream

@@ -99,3 +99,32 @@ def patch_kvazaar_mutex_lifetime(source: Path):
 
 # Run after cache hits too, so an existing offline source archive is repairable.
 patch_kvazaar_mutex_lifetime(DEST / 'kvazaar/src/rdo.c')
+
+
+def patch_heif_passthrough_profile(source: Path):
+    """Preserve source NCLX after RGB conversion when passthrough was requested.
+
+    Some intermediate RGB ColorStates use default metadata while retaining the
+    actual source transfer-coded samples. This matters when HDR/primaries are
+    only signalled in the codec bitstream rather than a container colr property.
+    """
+    original_digest = 'ce2c2be557ade2dad5e22db74a15aa3dd37512ceeeaa0b3c566e0a35849e0fde'
+    patched_digest = 'a68073aeb849f43571674f0fd2344fdd1118e91b7dbf7768e43cd66474fbf531'
+    raw = source.read_bytes()
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest == patched_digest:
+        return
+    if digest != original_digest:
+        raise RuntimeError('Unexpected libheif context.cc; review NCLX passthrough patch')
+    old = '    return convert_colorspace(img, target_colorspace, target_chroma, output_profile, converted_output_bpp,\n                                         options.color_conversion_options, options.color_conversion_options_ext,\n                                         get_security_limits());'
+    new = '    auto converted = convert_colorspace(img, target_colorspace, target_chroma, output_profile, converted_output_bpp,\n                                         options.color_conversion_options, options.color_conversion_options_ext,\n                                         get_security_limits());\n    // AN Paint: RGB conversion paths do not change transfer/primaries, but\n    // intermediate ColorStates can attach defaults. Preserve source tagging\n    // when the caller explicitly requested NCLX passthrough, including VUI-only\n    // profiles that have no container colr box.\n    if (nclx_passthrough && converted) {\n      (*converted)->set_color_profile_nclx(img_nclx);\n    }\n    return converted;'
+    text = raw.decode('utf-8')
+    if text.count(old) != 1:
+        raise RuntimeError('Pinned libheif source changed; review NCLX passthrough patch')
+    patched = text.replace(old, new).encode('utf-8')
+    if hashlib.sha256(patched).hexdigest() != patched_digest:
+        raise RuntimeError('libheif NCLX patch produced unexpected source')
+    source.write_bytes(patched)
+
+
+patch_heif_passthrough_profile(DEST / 'libheif/libheif/context.cc')

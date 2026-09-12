@@ -157,7 +157,7 @@ def bundleCorrespondingSource = tasks.register('bundleCorrespondingSource', Zip)
         into 'AN-Paint'
         exclude '**/build/**', '**/.gradle/**', '**/.git/**', '**/.idea/**', '**/.cxx/**', '**/.externalNativeBuild/**'
         exclude '**/local.properties', '**/*.keystore', '**/*.jks', '**/*.apk', '**/__pycache__/**'
-        exclude 'verification-tools/**', 'emulator.log'
+        exclude 'verification-tools/**', 'emulator*.log'
     }
 }
 android.sourceSets.main.assets.srcDir(layout.buildDirectory.dir('generated/correspondingSource'))

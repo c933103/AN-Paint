@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.17 adds HEIC, AVIF and WebP and fixes JPEG XL encoding. All 192 automated checks pass; lint has no errors or warnings. See [HANDOFF.md](HANDOFF.md) for the verified build, feature audit and remaining device/service limits.
+> Local.18 adds responsive tool categories, adjustable Pencil width and colour-managed high-bit-depth/HDR imports. See [HANDOFF.md](HANDOFF.md) for current verification and remaining limits.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -12,7 +12,9 @@ Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
 
 ## Editing
 
+- Expandable Brush, Selection and Insert categories; tools move above the canvas in portrait.
 - Touch drawing, shapes, text, fill, free-form and rectangular selections.
+- Adjustable hard-edged Pencil width from 1 to 100 px.
 - Corner and edge resize handles, a rotation handle and an aspect-ratio lock.
 - Pinch zoom and pan, centred 100% zoom controls, and Fit view.
 - Pixel/percentage sizing, touch canvas trimming and expansion, and disk-backed undo.
@@ -34,7 +36,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.17` updates local.15/local.16 using the same application ID and signing key.
+`2.14.1-local.18` updates local.15/local.16/local.17 using the same application ID and signing key.
 Version local.15 introduced this package identity. It installs alongside both the
 original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
 To transfer your current image, **save it as PNG in the old app, then open it in
