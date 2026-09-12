@@ -34,9 +34,12 @@ jobs:
           python3 tools/generate_legal_notices.py
           ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Run codec and installed-app tests on Android
-        if: ${{ success() }}
+        # Collect device failures in the same run when the APK compiled but a
+        # host regression failed. The failed build step still fails the job.
+        if: ${{ !cancelled() && hashFiles('app/build/outputs/apk/debug/*.apk') != '' }}
         run: |
           sudo chmod a+rw /dev/kvm
+          checks_failed=0
           for api in 30 35; do
             "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$api;google_apis;x86_64" "emulator"
             echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name "codec$api" --package "system-images;android-$api;google_apis;x86_64"
@@ -53,7 +56,9 @@ jobs:
             if test "$api" = 30; then
               runner_args+=("-Pandroid.testInstrumentationRunnerArguments.notClass=org.catrobat.paintroid.classic.UltraHdrImportTest")
             fi
-            ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 "${runner_args[@]}" :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+            if ! ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 "${runner_args[@]}" :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest; then
+              checks_failed=1
+            fi
             for module in Paintroid app; do
               mkdir -p "build/reports/android-api-$api/$module"
               cp -R "$module/build/outputs/androidTest-results" "build/reports/android-api-$api/$module/"
@@ -62,6 +67,7 @@ jobs:
             wait "$emulator_pid" || true
           done
           cp emulator-35.log emulator.log
+          exit "$checks_failed"
       - name: Build universal APK after Android checks
         if: ${{ success() }}
         run: |

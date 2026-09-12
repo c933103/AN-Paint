@@ -85,7 +85,7 @@ class AssemblyModelTest {
             val canvas=Canvas(bitmap); val paint=Paint()
             paint.color=Color.RED; canvas.drawRect(0f,0f,40f,30f,paint); paint.color=Color.BLUE; canvas.drawRect(40f,0f,80f,30f,paint)
             paint.color=Color.GREEN; canvas.drawRect(0f,30f,40f,60f,paint); paint.color=Color.YELLOW; canvas.drawRect(40f,30f,80f,60f,paint)
-            item.file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.JPEG,100,it) }; bitmap.recycle()
+            writeSrgbFixture(bitmap,item.file,Bitmap.CompressFormat.JPEG); bitmap.recycle()
             ExifInterface(item.file.path).apply { setAttribute(ExifInterface.TAG_ORIENTATION,orientation.toString()); saveAttributes() }
             val source=ImportedImage(item.file,"photo"); val full=source.decode(ImportPlan.create(source.dimensions,source.dimensions))
             val crop=Rect(5,5,source.dimensions.width-5,source.dimensions.height-5)

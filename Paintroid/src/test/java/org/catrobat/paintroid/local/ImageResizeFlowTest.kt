@@ -76,7 +76,7 @@ class ImageResizeFlowTest {
         paint.color = Color.RED; canvas.drawRect(0f,0f,800f,1200f,paint)
         paint.color = Color.BLUE; canvas.drawRect(800f,0f,1600f,1200f,paint)
         paint.color = 0x8000ff00.toInt(); canvas.drawRect(0f,1200f,800f,2400f,paint)
-        provider.file.outputStream().use { assertTrue(image.compress(format,100,it)) }; image.recycle()
+        writeSrgbFixture(image,provider.file,format); image.recycle()
         if (exif) ExifInterface(provider.file.path).apply { setAttribute(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_ROTATE_90.toString()); saveAttributes() }
     }
     private fun load(import: Boolean = false) {
@@ -112,13 +112,21 @@ class ImageResizeFlowTest {
         assertNoCachedImport()
     }
     @Test @Config(sdk = [28]) fun resizeImportCreatesSelectionAtChosenSizeOnAndroidNine() {
-        fixture(); memoryBudget(24*mib); val original = activity.document.bitmap; load(true)
+        fixture(); memoryBudget(24*mib); activity.document.bitmap.eraseColor(Color.BLUE)
+        val original = activity.document.bitmap; load(true)
         val dialog = resizeDialog(); setWidth(dialog,"400")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idleUntil { !activity.busy }
         assertSame(original,activity.document.bitmap)
         val selection = activity.document.selection!!.image
         assertEquals(400,selection.width); assertEquals(600,selection.height)
-        assertEquals(0xff7fff7f.toInt(),selection.getPixel(50,500)); assertEquals(1,provider.reads); assertNoCachedImport()
+        assertEquals(0x8000ff00.toInt(),selection.getPixel(50,500))
+        assertEquals(Color.BLUE,activity.document.bitmap.getPixel(50,50))
+        activity.document.selection!!.rect.offset(0f,-450f)
+        activity.document.finishSelection()
+        assertNull(activity.document.selection);assertEquals(Color.rgb(0,128,127),activity.document.bitmap.getPixel(50,50))
+        assertFalse(activity.document.bitmap.hasAlpha())
+        activity.document.undo();assertEquals(Color.BLUE,activity.document.bitmap.getPixel(50,50))
+        assertEquals(1,provider.reads); assertNoCachedImport()
     }
     @Test fun invalidOrOverBudgetSizesStayInDialogAndCancelPreservesCanvasAndSource() {
         fixture(); memoryBudget(24*mib); activity.document.bitmap.setPixel(2,3,Color.MAGENTA)

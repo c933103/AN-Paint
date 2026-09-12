@@ -46,11 +46,16 @@ internal class PlatformImageColour private constructor(
         // An Ultra HDR JPEG contains a fully authored SDR base. Use that rendition
         // for this SDR editor; never leave a stale gain map on edited pixels.
         if (Build.VERSION.SDK_INT >= 34 && input.hasGainmap()) input.setGainmap(null)
-        return when {
+        return try { when {
             cicp != null -> HeifCodec.convertCicp(input,cicp[0].toInt() and 255,cicp[1].toInt() and 255)
             icc != null -> HeifCodec.convertIcc(input,icc)
             pngGamma != null || pngChromaticities != null -> HeifCodec.convertPngColour(input,pngGamma ?: 0f,pngChromaticities)
             else -> input
+        } } catch (error: LinkageError) {
+            // A damaged/unsupported native installation must become the normal
+            // visible import error, rather than escaping the worker and leaving
+            // the editor permanently busy. Never substitute unconverted pixels.
+            throw IOException(ui(R.string.colour_converter_unavailable),error)
         }
     }
 

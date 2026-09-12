@@ -88,7 +88,7 @@ class ClassicWorkspaceTest {
     }
     private fun fixture(format: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG) {
         val image = Bitmap.createBitmap(24, 48, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.BLUE) }
-        provider.file.outputStream().use { image.compress(format, 100, it) }; image.recycle()
+        writeSrgbFixture(image,provider.file,format); image.recycle()
     }
     private fun receive(result: Int = Activity.RESULT_OK) {
         val launch = shadowOf(activity).nextStartedActivityForResult
@@ -133,6 +133,17 @@ class ClassicWorkspaceTest {
         assertTrue(Color.blue(doc.bitmap.getPixel(40, 30)) > 240)
         assertTrue(Color.red(doc.bitmap.getPixel(40, 30)) < 15)
         click("undo"); assertEquals(0, inkCount())
+    }
+    @Test fun unavailableColourConverterReportsErrorAndClearsBusyState() {
+        val image=Bitmap.createBitmap(32,24,Bitmap.Config.ARGB_8888)
+        image.eraseColor(Color.BLUE)
+        provider.file.outputStream().use { assertTrue(image.compress(Bitmap.CompressFormat.JPEG,100,it)) };image.recycle()
+        assertTrue("Exercise an actual profiled JPEG",provider.file.readBytes().toString(Charsets.ISO_8859_1).contains("ICC_PROFILE"))
+        val previous=doc.bitmap
+        menu("File",1);receive()
+        assertSame(previous,doc.bitmap);assertEquals(0,inkCount())
+        assertNotNull(activity.lastIoError);assertFalse(activity.busy)
+        assertTrue(activity.lastIoError!!.contains("colour converter"))
     }
     @Test fun invalidImageLeavesCurrentCanvasAndShowsError() {
         provider.file.writeText("not an image")
@@ -320,7 +331,7 @@ class ClassicWorkspaceTest {
         assertEquals(Color.WHITE, doc.bitmap.getPixel(15, 15)); assertEquals(Color.BLUE, doc.bitmap.getPixel(45, 45))
         click("undo"); assertEquals(Color.BLUE, doc.bitmap.getPixel(15, 15)); assertEquals(Color.WHITE, doc.bitmap.getPixel(45, 45))
     }
-    @Test fun freeFormSelectionPreservesItsMaskAndExternalImagesUseOpaqueBackground() {
+    @Test fun freeFormSelectionAndInsertedImagesCompositeThroughTheirMasks() {
         doc.bitmap.eraseColor(Color.RED)
         tool(PaintTool.LASSO)
         event(MotionEvent.ACTION_DOWN, 10f, 10f); event(MotionEvent.ACTION_MOVE, 60f, 10f); event(MotionEvent.ACTION_MOVE, 10f, 60f); event(MotionEvent.ACTION_UP, 10f, 10f)
@@ -331,7 +342,8 @@ class ClassicWorkspaceTest {
         val pasted = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.WHITE); setPixel(10, 10, Color.BLUE) }
         pasted.setPixel(2, 2, Color.TRANSPARENT)
         doc.paste(pasted); click("apply")
-        assertEquals(Color.WHITE, doc.bitmap.getPixel(2, 2)); assertEquals(Color.BLUE, doc.bitmap.getPixel(10, 10)); pasted.recycle()
+        assertEquals(Color.GREEN, doc.bitmap.getPixel(2, 2)); assertEquals(Color.BLUE, doc.bitmap.getPixel(10, 10))
+        assertFalse(doc.bitmap.hasAlpha()); pasted.recycle()
     }
     @Test fun textToolDialogPlacesTextAndCanBeUndone() {
         tool(PaintTool.TEXT); tap(5f, 5f)
