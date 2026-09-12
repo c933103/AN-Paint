@@ -22,7 +22,30 @@ Updated 12 September 2026. Package `io.github.c933103.anpaint`, version
 
 ## Verification status
 
-Release verification is in progress. The final signed APK report will be recorded after build and packaging checks complete.
+**Development build: verification is incomplete or contains acknowledged failures.**
+
+APK compilation, package/version identity, exact corresponding source, licences/fonts/icons, all four native CPU architectures, 16 KB alignment and the local.18 upgrade signature passed verification.
+
+| Check | Result |
+|---|---|
+| Unit/regression | passed; 183 tests |
+| Android lint | passed; 0 errors, 0 warnings |
+| API 30 native | not-run |
+| API 30 installed app | not-run |
+| API 35 native | pending |
+| API 35 installed app | pending |
+
+Only Ultra HDR is excluded from API 30 because it needs API 34+. No other test exclusion is applied.
+
+Build source: [`1a840c70cc461bb3257f26eacecae07ab25906d1`](https://github.com/c933103/AN-Paint/commit/1a840c70cc461bb3257f26eacecae07ab25906d1).
+[Asynchronous Android workflow](https://github.com/c933103/AN-Paint/actions/runs/34702846656).
+The downloadable and in-app source ZIPs are identical snapshots of this build. This delivery status was generated afterward; it does not overwrite or claim results from another build.
+
+The detailed JSON report records supplied artifact identities, available test outcomes and missing checks.
+
+Physical-phone installation, ARM runtime execution and third-party sharing remain unverified.
+
+The editor works and exports in opaque 8-bit SDR sRGB. High-bit-depth/HDR import conversion does not preserve HDR output. WebP supports at most 16,383 pixels per side.
 
 ## Remaining verification boundaries
 
