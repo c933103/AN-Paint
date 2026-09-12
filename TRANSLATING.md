@@ -36,7 +36,9 @@ Run `:Paintroid:testDebugUnitTest` and `:app:lintDebug`, then check both orienta
 short screens, collapsed panels, dialogs and screen-reader labels on Android.
 For right-to-left languages, also check directional gestures, aligned toolbar
 controls and filename/path display. The image workspace keeps physical left/right
-geometry: the sidebar stays left, and its colour palette opens to the right.
+geometry: landscape tools stay left with options opening right; portrait tools
+run across the top with options opening below. The colour palette stays attached
+to its indicator and opens to the right.
 Canvas coordinates, image rotation, assembly attachments and direction arrows
 must not be mirrored just because the surrounding text is right-to-left.
 

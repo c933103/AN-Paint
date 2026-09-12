@@ -65,10 +65,10 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
     }
     private fun targetPoint(target: SnapTarget) = PointF(target.rect.left.toFloat(),target.rect.top.toFloat())
     override fun onDraw(canvas: Canvas) {
-        canvas.drawColor(0xffaeb7c0.toInt())
+        canvas.drawColor(EditorColours.surfaceDim)
         val layout = dragging?.let { assembly.layoutWithout(it) } ?: assembly.layout()
         if (layout.isEmpty() && selectedId == null) {
-            val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0xff233b4d.toInt(); textSize = 16*density; textAlign = Paint.Align.CENTER }
+            val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = EditorColours.onSurface; textSize = 16*density; textAlign = Paint.Align.CENTER }
             canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p); return
         }
         canvas.save(); canvas.translate(panX,panY); canvas.scale(zoom,zoom)
@@ -76,17 +76,17 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         layout.forEach { (id,rect) ->
             p.color = Color.WHITE; p.style = Paint.Style.FILL; canvas.drawRect(rect,p)
             drawImage(canvas,assembly.image(id),rect)
-            p.style = Paint.Style.STROKE; p.color = if (id == selectedId) 0xff1559a6.toInt() else 0xff7b8790.toInt(); p.strokeWidth = (if (id == selectedId) 3 else 1)*density/zoom; canvas.drawRect(rect,p)
+            p.style = Paint.Style.STROKE; p.color = if (id == selectedId) EditorColours.primary else EditorColours.outline; p.strokeWidth = (if (id == selectedId) 3 else 1)*density/zoom; canvas.drawRect(rect,p)
         }
         ghost?.let { target -> selectedId?.let { id -> drawImage(canvas,assembly.image(id),target.rect,180) }
-            p.style = Paint.Style.FILL; p.color = 0x3300b46b; canvas.drawRect(target.rect,p)
-            p.style = Paint.Style.STROKE; p.color = 0xff007647.toInt(); p.strokeWidth = 3*density/zoom; canvas.drawRect(target.rect,p)
+            p.style = Paint.Style.FILL; p.color = (EditorColours.tertiary and 0x00ffffff or 0x33000000); canvas.drawRect(target.rect,p)
+            p.style = Paint.Style.STROKE; p.color = EditorColours.tertiary; p.strokeWidth = 3*density/zoom; canvas.drawRect(target.rect,p)
         }
         targets.forEach { target ->
-            val point = targetPoint(target); p.style = Paint.Style.FILL; p.color = if (target == ghost) 0xff007647.toInt() else 0xff1559a6.toInt()
+            val point = targetPoint(target); p.style = Paint.Style.FILL; p.color = if (target == ghost) EditorColours.tertiary else EditorColours.primary
             canvas.drawCircle(point.x,point.y,13*density/zoom,p)
             val r = 8*density/zoom
-            attachGlyph.draw(canvas, point.x-r, point.y-r, point.x+r, point.y+r, Color.WHITE)
+            attachGlyph.draw(canvas, point.x-r, point.y-r, point.x+r, point.y+r, if (target == ghost) EditorColours.onTertiary else EditorColours.onPrimary)
         }
         canvas.restore()
     }

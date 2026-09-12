@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pocket Paint Local additions, 2026-09-07; GNU AGPL-3.0-or-later. -->
+<!-- AN Paint controls with Material Design 3 colours, 2026; AGPL-3.0-or-later. -->
 <resources>
     <style name="ClassicPaintTheme" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
-        <item name="android:colorAccent">#1559A6</item>
-        <item name="android:statusBarColor">#124A88</item>
-        <item name="android:navigationBarColor">#E8E7DF</item>
+        <item name="android:colorBackground">@color/editor_surface</item>
+        <item name="android:colorForeground">@color/editor_on_surface</item>
+        <item name="android:textColorPrimary">@color/editor_on_surface</item>
+        <item name="android:textColorSecondary">@color/editor_on_surface_variant</item>
+        <item name="android:textColorLink">@color/editor_primary</item>
+        <item name="android:colorControlNormal">@color/editor_on_surface_variant</item>
+        <item name="android:colorControlActivated">@color/editor_primary</item>
+        <item name="android:colorControlHighlight">@color/editor_control_highlight</item>
+        <item name="android:colorButtonNormal">@color/editor_secondary_container</item>
+        <item name="android:colorAccent">@color/editor_primary</item>
+        <item name="android:statusBarColor">@color/editor_primary</item>
+        <item name="android:navigationBarColor">@color/editor_inverse_surface</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:windowBackground">#E8E7DF</item>
+        <item name="android:windowBackground">@color/editor_surface</item>
     </style>
 </resources>

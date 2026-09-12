@@ -10,7 +10,7 @@ import android.widget.SeekBar
 
 /** A persistent centre tick labels actual size independently of the current thumb position. */
 class ZoomSeekBar(context: Context) : SeekBar(context) {
-    private val ink = Paint(Paint.ANTI_ALIAS_FLAG).apply { color=0xff233b4d.toInt();textAlign=Paint.Align.CENTER }
+    private val ink = Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.onSurface;textAlign=Paint.Align.CENTER }
     override fun onDraw(canvas: Canvas) {
         val density=resources.displayMetrics.density
         val centre=paddingLeft+(width-paddingLeft-paddingRight)/2f

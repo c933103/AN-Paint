@@ -46,7 +46,7 @@ class AssemblyActivity : Activity() {
     private var thumbnailLoading = false
     private val failedPreviews = mutableSetOf<String>()
     private fun dp(n: Int) = (n*resources.displayMetrics.density+.5f).toInt()
-    private fun text(value: String, size: Float = 13f) = TextView(this).apply { text = value; textSize = size; setTextColor(0xff233b4d.toInt()); gravity = Gravity.CENTER_VERTICAL }
+    private fun text(value: String, size: Float = 13f) = TextView(this).apply { text = value; textSize = size; setTextColor(EditorColours.onSurface); gravity = Gravity.CENTER_VERTICAL }
     private fun button(value: String, name: String, action: () -> Unit) = Button(this).apply {
         text = value; tag = name; isAllCaps = false; textSize = 12f; minWidth = 0; minimumWidth = 0; setPadding(dp(10),0,dp(10),0)
         setOnClickListener { if (!busy) perform(action) }
@@ -66,10 +66,10 @@ class AssemblyActivity : Activity() {
     }
     private fun compact() = resources.configuration.screenHeightDp < 600
     private fun buildInterface() {
-        val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; fitsSystemWindows = true; setBackgroundColor(0xffe8e7df.toInt()) }
+        val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; fitsSystemWindows = true; setBackgroundColor(EditorColours.surface) }
         setContentView(root)
-        val header = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(10),0,dp(6),0); setBackgroundColor(0xff1559a6.toInt()) }
-        count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(Color.WHITE); maxLines = 2 }
+        val header = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(10),0,dp(6),0); setBackgroundColor(EditorColours.primaryContainer) }
+        count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }
         header.addView(count,LinearLayout.LayoutParams(0,dp(if (compact()) 44 else 54),1f))
         undo = ActionButton(this,EditIcon.UNDO).apply { tag = "assembly_undo"; setOnClickListener { if (!busy) perform { assembly.undo() } } }
         redo = ActionButton(this,EditIcon.REDO).apply { tag = "assembly_redo"; setOnClickListener { if (!busy) perform { assembly.redo() } } }
@@ -82,7 +82,7 @@ class AssemblyActivity : Activity() {
         actionRow(add,button(ui(R.string.ui_save_png),"assembly_save") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),"assembly_edit") { requestOutput(true) },button(ui(R.string.ui_how_to_use),"assembly_help") { showHelp() })
         board = AssemblyCanvas(this,assembly) { previews[it] }.apply {
             tag = "assembly_canvas"; onError = { message(it.message ?: ui(R.string.ui_could_not_place_the_image)) }
-            onSelect = { id -> selected = id; for (i in 0 until tray.childCount) tray.getChildAt(i).setBackgroundColor(if (tray.getChildAt(i).tag == "assembly_item_$id") 0xffb8d9f6.toInt() else 0xffdedfdd.toInt()) }; onStatus = { if (!busy) info.text = it }
+            onSelect = { id -> selected = id; for (i in 0 until tray.childCount) tray.getChildAt(i).setBackgroundColor(if (tray.getChildAt(i).tag == "assembly_item_$id") EditorColours.primaryContainer else EditorColours.surfaceContainerHigh) }; onStatus = { if (!busy) info.text = it }
         }
         root.addView(board,LinearLayout.LayoutParams(-1,0,1f))
         info = text(ui(R.string.ui_drag_placed_images_to_move_them_hold_and)).apply { tag = "assembly_status"; setPadding(dp(8),dp(3),dp(8),dp(3)); minLines = if (compact()) 1 else 2; maxLines = if (compact()) 1 else 2; ellipsize = TextUtils.TruncateAt.END }
@@ -132,7 +132,7 @@ class AssemblyActivity : Activity() {
         for (item in assembly.sorted(sort)) {
             val card = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL; tag = "assembly_item_${item.id}"; isFocusable = true; isClickable = true
-                setPadding(dp(6),dp(4),dp(6),dp(4)); setBackgroundColor(if (item.id == selected) 0xffb8d9f6.toInt() else 0xffdedfdd.toInt())
+                setPadding(dp(6),dp(4),dp(6),dp(4)); setBackgroundColor(if (item.id == selected) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh)
                 contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (item.attachment == null) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)
                 setOnClickListener { if (!busy) { selected = item.id; board.select(item.id); renderTray() } }
                 setOnLongClickListener {
@@ -148,7 +148,7 @@ class AssemblyActivity : Activity() {
             card.addView(AssemblyThumbnail(this,item,previews[item.id]),LinearLayout.LayoutParams(-1,dp(if (compact()) 44 else 70)))
             card.addView(text(item.name,12f).apply { tag = "assembly_name_${item.id}"; maxLines = 2; ellipsize = TextUtils.TruncateAt.END },LinearLayout.LayoutParams(-1,dp(if (compact()) 28 else 34)))
             card.addView(text(item.timestamp?.let { DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(it)) } ?: ui(R.string.ui_time_unavailable),10f).apply { maxLines = 1; ellipsize = TextUtils.TruncateAt.END })
-            card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (item.attachment == null) "" else " · placed"}",10f))
+            card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (item.attachment == null) "" else " · " + ui(R.string.ui_placed)}",10f))
             tray.addView(card,LinearLayout.LayoutParams(dp(138),-1).apply { setMargins(dp(3),0,dp(3),0) })
         }
     }

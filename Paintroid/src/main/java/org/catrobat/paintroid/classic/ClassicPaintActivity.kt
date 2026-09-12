@@ -94,8 +94,8 @@ class ClassicPaintActivity : Activity() {
     private var stopped = false
     private var draftStatus = ui(R.string.ui_draft_not_saved_yet)
     private val saveDraft = Runnable { saveDraftIfReady() }
-    private val cream = 0xffe8e7df.toInt()
-    private val ink = 0xff233b4d.toInt()
+    private val surface = EditorColours.surface
+    private val ink = EditorColours.onSurface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -193,7 +193,7 @@ class ClassicPaintActivity : Activity() {
     private fun buildWorkspace() {
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
         toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear();portraitColours=null
-        root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(cream);fitsSystemWindows=true }
+        root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true }
         setContentView(root);makeHeader()
         val workspace=FrameLayout(this).apply { tag="workspace_overlay" }
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
@@ -339,9 +339,9 @@ class ClassicPaintActivity : Activity() {
     private fun makeHeader() {
         undoButton=actionIcon(EditIcon.UNDO,"undo") { undoEdit() }
         redoButton=actionIcon(EditIcon.REDO,"redo") { redoEdit() }
-        titleText=label("AN Paint",15f).apply { tag="document_title";setTextColor(Color.WHITE);ellipsize=TextUtils.TruncateAt.END;maxLines=if (landscape) 1 else 2 }
+        titleText=label("AN Paint",15f).apply { tag="document_title";setTextColor(EditorColours.onPrimaryContainer);ellipsize=TextUtils.TruncateAt.END;maxLines=if (landscape) 1 else 2 }
         if (landscape) {
-            val bar=FrameLayout(this).apply { tag="header_bar";setBackgroundColor(0xff1559a6.toInt()) }
+            val bar=FrameLayout(this).apply { tag="header_bar";setBackgroundColor(EditorColours.primaryContainer) }
             val left=LinearLayout(this).apply { gravity=Gravity.CENTER_VERTICAL }
             val menu=button(ui(R.string.ui_menu),"compact_menu") {}
             menu.setOnClickListener {
@@ -372,7 +372,7 @@ class ClassicPaintActivity : Activity() {
             bar.addView(titleText,FrameLayout.LayoutParams(-1,-1).apply { leftMargin=dp(150);rightMargin=dp(150) })
             root.addView(bar,LinearLayout.LayoutParams(-1,dp(48)))
         } else {
-            val bar=LinearLayout(this).apply { tag="header_bar";gravity=Gravity.CENTER_VERTICAL;setPadding(dp(2),0,dp(2),0);setBackgroundColor(0xff1559a6.toInt()) }
+            val bar=LinearLayout(this).apply { tag="header_bar";gravity=Gravity.CENTER_VERTICAL;setPadding(dp(2),0,dp(2),0);setBackgroundColor(EditorColours.primaryContainer) }
             bar.addView(titleText,LinearLayout.LayoutParams(0,dp(52),1f))
             bar.addView(undoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
             bar.addView(redoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
@@ -409,7 +409,7 @@ class ClassicPaintActivity : Activity() {
                 val swatch = View(this).apply {
                     tag = "colour_$hex"; contentDescription = ui(R.string.ui_colour_tap_foreground_hold_background, hex)
                     isFocusable = true
-                    background = GradientDrawable().apply { setColor(colour); setStroke(dp(2), 0xffa0a49f.toInt()) }
+                    background = GradientDrawable().apply { setColor(colour); setStroke(dp(2), EditorColours.outline) }
                     setOnClickListener { if (!busy) setColour(colour,false) }
                     setOnLongClickListener { if (!busy) setColour(colour,true); true }
                 }
@@ -1047,7 +1047,7 @@ class ClassicPaintActivity : Activity() {
     private fun refreshRecentColours() {
         recentCells.forEachIndexed { index,cell ->
             val colour=recentColours.colours.getOrNull(index)
-            cell.background=GradientDrawable().apply { setColor(colour ?: 0xffe8e7df.toInt());setStroke(dp(2),0xffa0a49f.toInt()) }
+            cell.background=GradientDrawable().apply { setColor(colour ?: EditorColours.surface);setStroke(dp(2),EditorColours.outline) }
             cell.isEnabled=colour!=null
             cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, index+1) else String.format(java.util.Locale.ROOT,ui(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background),index+1,colour and 0xffffff)
         }
@@ -1065,7 +1065,9 @@ class ClassicPaintActivity : Activity() {
         }
         if(preview) {
             toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.magnifiedPreview) { paintCanvas.magnifiedPreview=it }
-            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {paintCanvas.previewMagnification=it/100f})
+            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {
+                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()
+            }.apply {tag="preview_magnification"})
         } else {
             toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }
             toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }

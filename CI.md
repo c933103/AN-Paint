@@ -40,7 +40,10 @@ classes, APKs, CMake output and object files are not restored from a cache.
 
 - Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
-  60 seconds; boot: 120 seconds; main APK installation: 60 seconds.
+  60 seconds; boot and Android service readiness share 120 seconds; main APK
+  installation: 60 seconds. Readiness probes have a maximum 10-second attempt
+  inside that shared deadline, with progress and failure logs. They may retry
+  transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
   native/app instrumentation invocation: 180 seconds. These inner budgets fit
   within the whole emulator execution step's 15-minute limit, leaving time to
@@ -102,3 +105,22 @@ Sources: [the completed local.18 run](https://github.com/c933103/AN-Paint/action
 [Android command-line testing](https://developer.android.com/studio/test/command-line),
 [GitHub artifact sharing](https://docs.github.com/en/actions/tutorials/store-and-share-data),
 [GitHub workflow syntax](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions).
+
+## First independent emulator startup correction
+
+The first split run built the APK and passed regression/lint, but its API 35
+emulator stopped before installing the app. The emulator log reports boot in
+38.220 seconds. Logcat then reports no focused setup/launcher window and a
+launcher input-dispatch ANR; the 10-second synthetic MENU-key command is the
+strongly indicated failure point from that timing. The old script did not label
+each command, so the exact timed-out command cannot be established from its
+Actions log alone.
+
+Startup now dismisses keyguard through WindowManager instead of injecting MENU.
+Boot, package-manager availability, animation settings and keyguard dismissal
+share one 120-second readiness budget. Short transient command failures retry
+within that same budget; all phases and probe results are saved in `startup.log`.
+The 15-minute emulator step limit and independent artifact delivery remain
+unchanged. Host checks cover transient failure, deadline enforcement, premature
+boot-property values, package readiness and emulator death; actual device
+verification of this correction remains pending until the next emulator result.

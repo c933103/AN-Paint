@@ -31,6 +31,11 @@ Full terms appear under Icon licences and below. The AN monogram launcher,
 dynamic colour controls, honeycomb swatches and selection/crop guides are
 AN Paint application artwork/code, AGPL-3.0-or-later.
 
+Material Design 3 baseline colour data: Copyright (C) 2022 The Android Open
+Source Project, Apache-2.0. The exact upstream tokens and licence are preserved
+in artwork/material3; complete notices follow below. AN Paint maps semantic
+roles to its controls while retaining actual image and swatch colours.
+
 Ten unmodified fonts are bundled under SIL OFL-1.1, with complete notices below.
 System fonts and platform widget artwork are supplied by the Android device;
 see its open-source licences for their exact files and authors.
@@ -123,6 +128,7 @@ for title, filename in [('JPEG XL', 'JPEG_XL_NOTICES.txt'), ('WEBP', 'WEBP_NOTIC
                         ('HEIC AND AVIF', 'HEIF_AVIF_NOTICES.txt')]:
     notice.append(f'\n\n{title} CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal' / filename).read_text())
 notice.append('\n\nNATIVE RUNTIME NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt').read_text())
+notice.append('\n\nMATERIAL DESIGN 3 COLOUR NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/MATERIAL_COLOUR_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

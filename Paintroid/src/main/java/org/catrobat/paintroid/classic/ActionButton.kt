@@ -34,10 +34,10 @@ class ActionButton(context: Context, val icon: EditIcon) : View(context) {
         super.onDraw(c)
         val side = minOf(width, height).toFloat()
         c.save(); c.translate((width - side) / 2, (height - side) / 2); c.scale(side / 48, side / 48)
-        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isPressed || icon==EditIcon.SIDEBAR && isSelected) 0xffb8d9f6.toInt() else 0xffdedfdd.toInt() }
+        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isPressed || icon==EditIcon.SIDEBAR && isSelected) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh }
         c.drawRoundRect(3f, 3f, 45f, 45f, 4f, 4f, p)
         val current = if (icon == EditIcon.SIDEBAR && isSelected) requireNotNull(collapseGlyph) else glyph
-        current.draw(c, 5f, 5f, 43f, 43f, if (isEnabled) 0xff233b4d.toInt() else 0xff8a969f.toInt())
+        current.draw(c, 5f, 5f, 43f, 43f, if (!isEnabled) EditorColours.disabledOnSurface else if (isPressed || icon==EditIcon.SIDEBAR && isSelected) EditorColours.onPrimaryContainer else EditorColours.onSurface)
         c.restore()
     }
     override fun drawableStateChanged() { super.drawableStateChanged(); invalidate() }

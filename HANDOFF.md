@@ -1,46 +1,46 @@
-# AN Paint local.18
+# AN Paint local.19
 
 Updated 12 September 2026. Package `io.github.c933103.anpaint`, version
-`2.14.1-local.18`, version code `71`. This updates local.17 with the same signing identity.
+`2.14.1-local.19`, version code `72`. Uses the existing AN Paint signing identity.
 
-## Changes
+## Completion of earlier requests
 
-- Pencil has its own adjustable 1–100 px width and exact numeric input; hard edges
-  and the one-pixel default remain. Draft recovery retains the chosen width.
-- Brush, Selection and Insert categories remember their selected tool and expand
-  beside the main strip. Landscape keeps the strip left and opens options to its
-  right. Portrait puts a horizontal strip below the header with options below it.
-- Colour-managed imports convert supported ICC/CICP/PNG colour information and
-  high-bit-depth/HDR input to the opaque 8-bit SDR sRGB working canvas. Alpha is
-  preserved until opening onto the chosen background, inserting onto existing
-  canvas pixels, or compositing an assembly onto white.
-  HDR input support does not add HDR or transparent document output.
-- The upstream font-introduction history is recorded in FONT-LICENCE-REVIEW.md.
-  Public PRs show that the fonts were added for Arabic text, but do not establish
-  the permission upstream relied on. No sufficient redistribution grant for
-  AN Paint has been established; that is not a finding that Catrobat lacked permission.
+- Replaced the remaining legacy UI colours with shared Material Design 3 roles,
+  including the tool drawers, editor chrome, assembly and dialogs. Actual image
+  pixels and selected drawing colours retain their original values.
+- Completed translation readiness for advanced RGB/HSV/HSL component labels,
+  localized numeric input and assembly placement status.
+- Magnifier-scale changes now redraw and autosave while the editor remains open.
+- Gallery downloads now honour cancellation through the posted result, close
+  connections and remove abandoned temporary files. Added full download-to-insert
+  tests covering image pixels, transparency and source attribution.
+- Rechecked the earlier tool, selection, canvas, format, assembly, font, credit
+  and original-editor consolidation requests. See REQUEST_COMPLETION.md for the
+  complete mapping and EDITOR_PARITY.md for the original-view comparison.
+- Corrected the asynchronous emulator startup readiness failure. APK/source
+  delivery remains independent of long device checks under CI.md.
 
 ## Verification status
 
-The signed local.18 APK passed 177 unit/regression tests. Android 15/API35 passed 35 native tests and 8 installed-app tests; Android 11/API30 passed 34 native tests and 8 app tests. The Ultra HDR test requires API34+ and is explicitly filtered only from API30. No executed tests failed or skipped. Lint reported zero errors and 0 warnings. All four CPU architectures, the matching source/fonts/licences, 16 KB alignment and the local.17 upgrade signature were verified.
+Release verification is in progress. The final signed APK report will be recorded after build and packaging checks complete.
 
-Build: [`6b5acc7b56ca5685e1b148bbf173522a6b218244`](https://github.com/c933103/AN-Paint/commit/6b5acc7b56ca5685e1b148bbf173522a6b218244). [Android workflow](https://github.com/c933103/AN-Paint/actions/runs/34692671218); [detailed verification](https://github.com/c933103/AN-Paint/blob/develop/verification/local18.json). The downloadable and in-app source ZIPs are the exact build snapshot; this final status was recorded afterward.
+## Remaining verification boundaries
 
-## Remaining boundaries
+No physical phone is attached. Physical installation/update, ARM runtime
+performance, manufacturer picker behaviour, live gallery downloading and sharing
+to third-party phone apps have not been verified on a phone. Deterministic gallery
+regressions substitute the HTTPS transport and exercise the actual app path;
+that is not a claim of live phone/network testing.
 
-The subsequent CI workflow revision separates APK delivery from regression and
-emulator results, adds deadlines/cancellation, and fixes a test-only 45-second
-teardown delay. See CI.md. Its first asynchronous run is pending; it does not
-change the completed local.18 APK verification above or claim a new app release.
+The working canvas and exports are opaque 8-bit SDR sRGB. Supported high-bit-depth,
+wide-gamut and HDR imports are converted to that document format; see
+CODEC_SUPPORT.md for supported colour models and format limits. No transparency
+controls, layers or HDR output were reintroduced.
 
-No physical phone is attached. ARM runtime performance, installation/update on a
-phone, sharing to third-party apps and live gallery downloading remain unverified.
-Android emulator checks are reported separately from physical-device use.
+Dubai and the file labelled STC remain excluded under the public terms found.
+The exact-file and upstream-history review is complete, but no additional grant
+covering AN Paint has been established. This does not establish what permission
+Catrobat relied on. See FONT-LICENCE-REVIEW.md.
 
-The editor's working canvas and exports remain opaque 8-bit SDR sRGB. Import
-conversion cannot retain HDR brightness or colours beyond that output gamut.
-Unsupported or malformed colour metadata produces a visible error instead of an
-unmarked colour fallback. CODEC_SUPPORT.md records supported conversions and limits.
-
-Historical local.17 results remain in verification/HANDOFF_LOCAL17.md and
-verification/local17.json. Those counts do not describe this new build.
+Historical local.18 evidence is retained in verification/local18.json and
+verification/HANDOFF_LOCAL18.md. Its counts do not describe this new build.

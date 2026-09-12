@@ -109,6 +109,27 @@ class WorkspaceRefinementTest {
         doc.selection!!.rect.offset(5f,0f);click("apply")
         assertEquals(Color.BLUE,doc.bitmap.getPixel(60,45));assertEquals(Color.WHITE,doc.bitmap.getPixel(15,15))
     }
+    @Test fun changingOnlyMagnifierScaleAutosavesWithoutLeavingOrEditing() {
+        // Finish the startup save first so it cannot hide a missing settings callback.
+        saveIdle()
+        click("menu_View")
+        val menu=ShadowPopupMenu.getLatestPopupMenu().menu
+        val preview=(0 until menu.size()).map {menu.getItem(it)}.single {
+            it.title.toString()==activity.getString(org.catrobat.paintroid.R.string.ui_magnified_preview)
+        }
+        assertTrue(menu.performIdentifierAction(preview.itemId,0));settle()
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val control=dialog.window!!.decorView.findViewWithTag<NumericSlider>("preview_magnification")
+        control.slider.progress=225 // 100% minimum + 225 = 325%.
+        assertEquals(3.25f,canvas.previewMagnification,0f)
+        saveIdle()
+        val draft=AutosaveStore(activity.filesDir).read { _,_ -> }
+        try {
+            assertEquals(3.25,draft.metadata.getJSONObject("canvas").getDouble("preview_magnification"),0.0)
+            assertFalse(doc.dirty);assertFalse(doc.canUndo)
+        } finally {draft.image.recycle();draft.floating?.recycle()}
+        dialog.dismiss()
+    }
     @Test fun autosavePreservesUnappliedExpandedBoundsAcrossRestart() {
         click("trim_canvas");canvas.trim!!.set(Rect(-10,-20,230,140));canvas.onStatus()
         saveIdle();assertEquals(200,doc.bitmap.width)

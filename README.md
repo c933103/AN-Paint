@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.18 is verified: 177 regression tests and 85 emulator checks passed on Android 11/15, with no lint errors or warnings. It adds responsive tool categories, adjustable Pencil width and colour-managed high-bit-depth/HDR imports. See [HANDOFF.md](HANDOFF.md) for the exact build revision and remaining limits.
+> Local.19 completes the remaining Material 3 colour scheme, locale-aware colour inputs, magnifier autosave and gallery cancellation/insertion work. See [REQUEST_COMPLETION.md](REQUEST_COMPLETION.md) for the request audit and [HANDOFF.md](HANDOFF.md) for actual build verification.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -36,7 +36,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.18` updates local.15/local.16/local.17 using the same application ID and signing key.
+`2.14.1-local.19` updates local.15 through local.18 using the same application ID and signing key.
 Version local.15 introduced this package identity. It installs alongside both the
 original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
 To transfer your current image, **save it as PNG in the old app, then open it in

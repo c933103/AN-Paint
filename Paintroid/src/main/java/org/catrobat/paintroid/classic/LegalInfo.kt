@@ -42,6 +42,8 @@ object LegalInfo {
             Tool and action icons: KDE Breeze Icons, Copyright © 2014 Uri Herrera and others; KDE Community contributors. LGPL-3.0-or-later. Exact SVG sources, revisions, hashes, generated Android resources and conversion scripts are included. Read Icon licences for upstream notices and the complete LGPL/GPL texts.
             https://invent.kde.org/frameworks/breeze-icons
 
+            Interface colours use the Material Design 3 baseline light palette. Palette data: Copyright © 2022 The Android Open Source Project, Apache-2.0. Exact upstream tokens and their licence are preserved in artwork/material3 in the source; full terms are in Third-party notices. Image pixels and colour swatches keep their actual colour values.
+
             The AN monogram launcher is geometric vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. The optional online Catrobat gallery retains its CC BY-SA 4.0 source and licence credits under Image credits; no gallery image is bundled in the app.
 
             Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
@@ -71,11 +73,11 @@ object LegalInfo {
     fun termsDialog(activity: Activity,title: String,text: String): Dialog {
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val dialog=Dialog(activity).apply { requestWindowFeature(android.view.Window.FEATURE_NO_TITLE) }
-        val body=LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(Color.WHITE);setPadding(dp(12),dp(8),dp(12),dp(8)) }
-        body.addView(TextView(activity).apply { this.text=title;textSize=18f;setTextColor(Color.BLACK);maxLines=2;gravity=Gravity.CENTER_VERTICAL },LinearLayout.LayoutParams(-1,dp(52)))
+        val body=LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(EditorColours.surface);setPadding(dp(12),dp(8),dp(12),dp(8)) }
+        body.addView(TextView(activity).apply { this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);maxLines=2;gravity=Gravity.CENTER_VERTICAL },LinearLayout.LayoutParams(-1,dp(52)))
         val scroll=ScrollView(activity).apply { tag="terms_scroll" }
         scroll.addView(TextView(activity).apply {
-            tag="terms_text";this.text=text;textSize=14f;setTextColor(Color.BLACK);setTextIsSelectable(true);setPadding(dp(4),dp(6),dp(4),dp(12))
+            tag="terms_text";this.text=text;textSize=14f;setTextColor(EditorColours.onSurface);setTextIsSelectable(true);setPadding(dp(4),dp(6),dp(4),dp(12))
             Linkify.addLinks(this,Linkify.WEB_URLS);movementMethod=LinkMovementMethod.getInstance()
         })
         body.addView(scroll,LinearLayout.LayoutParams(-1,0,1f))

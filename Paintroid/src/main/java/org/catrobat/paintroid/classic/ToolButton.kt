@@ -18,11 +18,11 @@ class ToolButton(context: Context, val tool: PaintTool) : View(context) {
         super.onDraw(c)
         val side=minOf(width,height).toFloat()
         c.save();c.translate((width-side)/2,(height-side)/2);c.scale(side/48f,side/48f)
-        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isSelected) 0xffc7dff3.toInt() else 0xffefeee6.toInt() }
+        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isSelected) EditorColours.primaryContainer else EditorColours.surfaceContainer }
         c.drawRect(1f, 1f, 47f, 47f, p)
-        p.color = if (isSelected) 0xff1559a6.toInt() else 0xffb9bcb9.toInt(); p.style = Paint.Style.STROKE; p.strokeWidth = 1f
+        p.color = if (isSelected) EditorColours.primary else EditorColours.outlineVariant; p.style = Paint.Style.STROKE; p.strokeWidth = 1f
         c.drawRect(1f, 1f, 47f, 47f, p)
-        glyph.draw(c, 5f, 5f, 43f, 43f, if (isEnabled) 0xff233b4d.toInt() else 0xff8a969f.toInt())
+        glyph.draw(c, 5f, 5f, 43f, 43f, if (!isEnabled) EditorColours.disabledOnSurface else if (isSelected) EditorColours.onPrimaryContainer else EditorColours.onSurface)
         c.restore()
     }
     override fun drawableStateChanged() { super.drawableStateChanged(); invalidate() }

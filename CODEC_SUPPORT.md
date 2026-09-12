@@ -1,9 +1,11 @@
 # Image formats
 
-AN Paint edits one opaque 8-bit RGB canvas. Imported transparency is flattened
-onto the background colour. File formats do not introduce layers or transparency
-controls. Animation, multiple pages/items, HDR editing and preservation of camera
-metadata are outside this still-image workflow.
+AN Paint edits one opaque 8-bit RGB canvas. Opening an image composites its
+transparency onto the selected background colour; inserting an image keeps an
+internal floating mask and composites onto the existing canvas pixels when
+committed. Assembly output composites onto white. File formats do not introduce
+layers or transparency controls. Animation, multiple pages/items, HDR editing
+and preservation of camera metadata are outside this still-image workflow.
 
 | Format | Open / insert / assembly | Save as | Controls |
 |---|---|---|---|

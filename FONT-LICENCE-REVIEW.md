@@ -57,7 +57,7 @@ The cited EULA is a third-party preservation of the rights holder’s text, not 
 
 ## The file called STC
 
-The binary inspection confirms that `stc_regular.otf` is **GE SS Text Light by Boutros International**, version 1.200. The Windows family/full-name record says GE SS Text Light; the typographic family is GE SS, style Light. Its designer, manufacturer, copyright and trademark records all identify Boutros. The upstream STC filename and label were inaccurate. [Verified metadata](verification/legacy-font-metadata.json).
+The binary inspection confirms that `stc_regular.otf` is **GE SS Text Light by Boutros International**, version 1.200. The Windows family/full-name record says GE SS Text Light; the typographic family is GE SS, style Light. Its designer, manufacturer, copyright and trademark records all identify Boutros. The upstream STC filename and label do not match that internal family identity; the reviewed records do not explain the relationship between those names. [Verified metadata](verification/legacy-font-metadata.json).
 
 [Boutros’s official GE SS TWO page](https://www.boutrosfonts.com/Boutros-GE-SS-TWO.html) links its [licence notification](https://www.boutrosfonts.com/spip.php?id_article=31&page=license). The notification limits the ordinary grant to workstation publishing and explicitly excludes copying or distribution without an additional agreement. [Boutros’s official free-fonts explanation](https://www.boutrosfonts.com/spip.php?page=free) further says that, except for promotions on its own site, it does not authorize other sites to offer its fonts as free downloads.
 

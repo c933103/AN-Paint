@@ -46,7 +46,7 @@ jobs:
       - name: Run local checks
         timeout-minutes: 10
         run: |
-          python3 -m unittest discover -s tools -p 'test_run_android_instrumentation.py'
+          python3 -m unittest discover -s tools -p 'test_*.py'
           ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:lintDebug
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

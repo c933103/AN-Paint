@@ -167,7 +167,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawColor(Color.rgb(174, 183, 192))
+        canvas.drawColor(EditorColours.surfaceDim)
         canvas.save()
         canvas.clipRect(0f, 0f, width - bar, height - bar)
         canvas.translate(panX, panY); canvas.scale(zoom, zoom)
@@ -185,7 +185,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 }
                 renderedSelection?.let { s.draw(canvas,it,Paint(Paint.FILTER_BITMAP_FLAG)) }
             }
-            p.color = Color.rgb(20, 60, 120); p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
+            p.color = EditorColours.primary; p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
             p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
             s.transformedOutline()?.let { canvas.drawPath(it,p);p.pathEffect=null;p.strokeWidth=1f/zoom }
             val corners=s.geometry.corners()
@@ -196,7 +196,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (down && !multiTouch && !panning && !movingSelection && scrollAxis == 0) {
             when (tool) {
                 PaintTool.SELECT, PaintTool.LASSO -> {
-                    p.color = Color.rgb(20, 60, 120); p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
+                    p.color = EditorColours.primary; p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
                     p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
                     if (tool == PaintTool.SELECT) canvas.drawRect(bounds(), p) else canvas.drawPath(trace, p)
                 }
@@ -219,7 +219,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         drawScrollbars(canvas)
         if (supportsCursor()) {
             val point=toScreen(cursor.x,cursor.y)
-            val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=if(cursorDrawing) 0xffb3261e.toInt() else 0xff1559a6.toInt();strokeWidth=2*resources.displayMetrics.density;style=Paint.Style.STROKE }
+            val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=if(cursorDrawing) EditorColours.error else EditorColours.primary;strokeWidth=2*resources.displayMetrics.density;style=Paint.Style.STROKE }
             val radius=10*resources.displayMetrics.density
             canvas.drawCircle(point.x,point.y,radius,p)
             canvas.drawLine(point.x-radius*1.5f,point.y,point.x+radius*1.5f,point.y,p)
@@ -234,7 +234,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (size<40*d) return
         val left=if (previewTouch.x<width/2) width-bar-size-8*d else 8*d
         val r=RectF(left,8*d,left+size,8*d+size)
-        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=0xff1559a6.toInt();strokeWidth=2*d;style=Paint.Style.STROKE }
+        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;strokeWidth=2*d;style=Paint.Style.STROKE }
         canvas.save();canvas.clipRect(r);canvas.drawColor(document.background)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
         canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)
@@ -247,10 +247,10 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     private fun drawScrollbars(c: Canvas) {
         val w = width - bar; val h = height - bar
-        val p = Paint().apply { color = Color.rgb(219, 225, 230) }
+        val p = Paint().apply { color = EditorColours.surfaceContainerHighest }
         c.drawRect(0f, h, width.toFloat(), height.toFloat(), p)
         c.drawRect(w, 0f, width.toFloat(), height.toFloat(), p)
-        p.color = Color.rgb(118, 139, 163)
+        p.color = EditorColours.outline
         val bounds = viewportBounds()
         val iw = max(w, bounds.width()*zoom); val ih = max(h, bounds.height()*zoom)
         val bw = max(bar, w * w / iw); val bh = max(bar, h * h / ih)
@@ -419,7 +419,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
     private fun drawSelectionHandles(canvas: Canvas,s: PaintDocument.Selection) {
         val d=resources.displayMetrics.density/zoom
-        val edge=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=0xff1559a6.toInt();style=Paint.Style.STROKE;strokeWidth=1.5f*d }
+        val edge=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;style=Paint.Style.STROKE;strokeWidth=1.5f*d }
         val fill=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=Color.WHITE }
         val grip=rotationHandle(s);val top=s.geometry.point(s.rect.centerX(),s.rect.top)
         canvas.drawLine(top.x,top.y,grip.x,grip.y,edge)

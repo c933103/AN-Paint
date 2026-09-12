@@ -35,11 +35,11 @@ class ColourStatusButton(context: Context) : View(context) {
             p.textSize*=minOf(1f,(colourRight-9*d).coerceAtLeast(1f)/p.measureText(label))
             c.drawText(label,6*d,top+height/4f-(p.ascent()+p.descent())/2,p)
         }
-        p.color=if (expanded || isPressed) 0xffb8d9f6.toInt() else 0xffdedfdd.toInt()
+        p.color=if (expanded || isPressed) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh
         c.drawRect(colourRight+2*d,2*d,width-2*d,height-2*d,p)
         val mid=height/2f
-        (if (expanded) collapseGlyph else expandGlyph).draw(c, colourRight+2*d, mid-11*d, width-2*d, mid+11*d, 0xff233b4d.toInt())
-        p.style=Paint.Style.STROKE;p.strokeWidth=d;p.color=0xff8a969f.toInt()
+        (if (expanded) collapseGlyph else expandGlyph).draw(c, colourRight+2*d, mid-11*d, width-2*d, mid+11*d, if (expanded || isPressed) EditorColours.onPrimaryContainer else EditorColours.onSurface)
+        p.style=Paint.Style.STROKE;p.strokeWidth=d;p.color=EditorColours.outline
         c.drawRect(2*d,d,width-2*d,height-d,p)
     }
     override fun performClick(): Boolean { super.performClick();return true }

@@ -28,7 +28,7 @@ class CropPreview(context: Context) : View(context) {
         x = (width-size.width*scale)/2; y = (height-size.height*scale)/2
     }
     override fun onDraw(canvas: Canvas) {
-        canvas.drawColor(0xffaeb7c0.toInt()); val c = crop ?: return; position()
+        canvas.drawColor(EditorColours.surfaceDim); val c = crop ?: return; position()
         canvas.save(); canvas.translate(x,y); canvas.scale(scale,scale)
         canvas.drawRect(0f,0f,c.image.width.toFloat(),c.image.height.toFloat(),Paint().apply { color = Color.WHITE })
         bitmap?.let { canvas.drawBitmap(it,null,Rect(0,0,c.image.width,c.image.height),Paint(Paint.FILTER_BITMAP_FLAG)) }

@@ -35,14 +35,15 @@ class ToolCategoryButton(context: Context,val category: ToolCategory,var selecte
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val d=resources.displayMetrics.density
-        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=if(isSelected) 0xffc7dff3.toInt() else 0xffefeee6.toInt()}
+        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=if(isSelected) EditorColours.primaryContainer else EditorColours.surfaceContainer}
         canvas.drawRect(d,d,width-d,height-d,p)
-        p.style=Paint.Style.STROKE;p.strokeWidth=d;p.color=if(expanded) 0xff1559a6.toInt() else 0xffb9bcb9.toInt()
+        p.style=Paint.Style.STROKE;p.strokeWidth=d;p.color=if(expanded) EditorColours.primary else EditorColours.outlineVariant
         canvas.drawRect(d,d,width-d,height-d,p)
+        val foreground=if(isSelected) EditorColours.onPrimaryContainer else EditorColours.onSurface
         val size=minOf(32*d,width-18*d)
-        glyph.draw(canvas,3*d,5*d,3*d+size,5*d+size,0xff233b4d.toInt())
-        (if(expanded) closeGlyph else openGlyph).draw(canvas,width-16*d,14*d,width-2*d,28*d,0xff233b4d.toInt())
-        p.style=Paint.Style.FILL;p.color=0xff233b4d.toInt();p.typeface=Typeface.DEFAULT_BOLD;p.textSize=10*d
+        glyph.draw(canvas,3*d,5*d,3*d+size,5*d+size,foreground)
+        (if(expanded) closeGlyph else openGlyph).draw(canvas,width-16*d,14*d,width-2*d,28*d,foreground)
+        p.style=Paint.Style.FILL;p.color=foreground;p.typeface=Typeface.DEFAULT_BOLD;p.textSize=10*d
         val label=context.getString(category.labelId)
         p.textSize*=minOf(1f,(width-6*d)/p.measureText(label))
         canvas.drawText(label,(width-p.measureText(label))/2,height-5*d,p)

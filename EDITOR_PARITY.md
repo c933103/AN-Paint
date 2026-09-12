@@ -31,7 +31,7 @@ and its tests remain available in Git history.
 | Fullscreen/hide controls | View > Hide editor controls, with Show controls and Back to restore them. |
 | General Android image intents | VIEW, EDIT and SEND image intents open in the consolidated editor. |
 | Help, credits and source | Help includes attribution, full licence texts, fixed Copy all/Other terms/Done buttons and offline corresponding source. |
-| Layers, transparency controls and transparent document output | Removed as requested. Imports flatten onto the main editor's BG colour; assembly output uses white. Internal masks still preserve the geometry of free-form and rotated selections. |
+| Layers, transparency controls and transparent document output | Removed as requested. Opening an image composites transparency onto the main editor's BG colour; inserting an image composites its mask onto existing canvas pixels; assembly output uses white. Internal masks still preserve the geometry of free-form and rotated selections. |
 | Smudge and automatic crop | Removed as requested. Selection crop and manual canvas trimming remain. |
 | Native Paintroid/OpenRaster project save/load | Removed with layers as requested. Autosave is private draft recovery, not a public project format. |
 | Upstream-specific Pocket Code integration and store/feedback links | Original-app integration is not part of the independently packaged AN Paint. Standard Android image intents and sharing remain; rating/feedback links were already hidden in earlier local builds. |
@@ -77,13 +77,16 @@ That selector and its obsolete tests have now been removed with the original
 editor. Current tests check the current font inventory and load the actual ten
 bundled OFL font files, along with the nine device-supplied font choices.
 
-The [completed licence investigation](FONT-LICENCE-REVIEW.md) checks the exact
+The [documented licence investigation](FONT-LICENCE-REVIEW.md) checks the exact
 upstream bytes and official foundry statements. They are Dubai Regular 1.10 and
-Boutros GE SS Text Light 1.200; the latter was mislabelled STC. Dubai’s original
+Boutros GE SS Text Light 1.200; the latter was labelled STC upstream, without
+an explanation of that name in the records reviewed. Dubai’s original
 binary contains a limited-use notice, and the separately published Dubai EULA
 also excludes image-generating applications. Boutros’s public terms restrict
 copying and distribution without an additional agreement. Both remain excluded
-under the terms found. The report distinguishes direct binary evidence, official
+under the terms established for AN Paint. Upstream inclusion for Arabic text
+support does not establish the applicable grant; this is not a finding that
+Catrobat lacked permission. The report distinguishes direct binary evidence, official
 foundry terms and the third-party preservation of Dubai’s EULA, and retains the
 [full metadata evidence](verification/legacy-font-metadata.json). Restoration
 would require documented additional permission; this is no longer merely an

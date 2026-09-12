@@ -3,11 +3,13 @@ package org.catrobat.paintroid.local
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Looper
 import android.view.View
 import android.widget.EditText
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
+import org.catrobat.paintroid.classic.AdvancedColourDialog
 import org.catrobat.paintroid.classic.NumericSlider
 import org.catrobat.paintroid.classic.PaintTool
 import org.junit.Assert.*
@@ -22,6 +24,7 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
 import org.robolectric.shadows.ShadowPopupMenu
 import java.util.concurrent.TimeUnit
+import java.util.Locale
 
 /** These use fallback English text in an RTL locale; they do not supply a translation. */
 @RunWith(RobolectricTestRunner::class)
@@ -59,6 +62,56 @@ class TranslationReadinessTest {
         assertFalse(dialog.isShowing)
         assertEquals(99,value)
         assertEquals(activity.getString(R.string.ui_numeric_slider_value,control.name,99),control.number.text.toString())
+    }
+
+    @Test
+    @Config(qualifiers="fr-rFR-w412dp-h900dp-port-xhdpi")
+    fun colourFieldsAcceptDecimalCommaWithoutDroppingTheFraction() = withEditor { activity ->
+        val oldLocale=Locale.getDefault()
+        Locale.setDefault(Locale.FRANCE)
+        try {
+            val picker=AdvancedColourDialog(activity,Color.RED,false) {}
+            val dialog=picker.show()
+            val root=dialog.window!!.decorView
+            root.findViewWithTag<View>("colour_advanced_tab").performClick()
+            val hue=root.findViewWithTag<EditText>("colour_h")
+            hue.setText("120,5")
+            assertEquals("120,5",hue.text.toString());assertNull(hue.error)
+            assertEquals(120.5f,picker.value.hsv[0],.001f)
+            val saturation=root.findViewWithTag<EditText>("colour_s")
+            saturation.setText("50,5")
+            assertNull(saturation.error);assertEquals(.505f,picker.value.hsv[1],.0001f)
+            // Ordinary decimal-dot input remains accepted for pasted numbers.
+            hue.setText("240.25")
+            assertNull(hue.error);assertEquals(240.25f,picker.value.hsv[0],.001f)
+            dialog.dismiss()
+        } finally {Locale.setDefault(oldLocale)}
+    }
+
+    @Test fun colourFieldsAcceptArabicDigitsAndDecimalSeparatorAndRejectOutOfRange() = withEditor { activity ->
+        val oldLocale=Locale.getDefault()
+        Locale.setDefault(Locale("ar","EG"))
+        try {
+            var selected=Color.BLACK
+            val picker=AdvancedColourDialog(activity,Color.RED,false) {selected=it}
+            val dialog=picker.show()
+            val root=dialog.window!!.decorView
+            root.findViewWithTag<View>("colour_advanced_tab").performClick()
+            val hue=root.findViewWithTag<EditText>("colour_h")
+            hue.setText("١٢٠٫٥")
+            assertEquals("١٢٠٫٥",hue.text.toString());assertNull(hue.error)
+            assertEquals(120.5f,picker.value.hsv[0],.001f)
+            val red=root.findViewWithTag<EditText>("colour_r")
+            red.setText("٢٥٦")
+            assertEquals(activity.getString(R.string.ui_colour_component_range,255),red.error.toString())
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            assertTrue(dialog.isShowing);assertEquals(Color.BLACK,selected)
+            red.setText("١٢٨")
+            assertNull(red.error);assertEquals(128,Color.red(picker.value.colour))
+            assertEquals(activity.getString(R.string.ui_colour_red_range),red.contentDescription.toString())
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            assertFalse(dialog.isShowing);assertEquals(picker.value.colour,selected)
+        } finally {Locale.setDefault(oldLocale)}
     }
 
     @Test fun rtlLocaleKeepsSidebarArrowAndPaletteAttachedInPortrait() = withEditor { activity ->

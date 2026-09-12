@@ -449,3 +449,28 @@ physical-device limits; implementation entries alone are not test results.
   fixtures. Exercise modern Ultra HDR inputs on Android 15 in addition to Android 11.
 - Trace the original Dubai/STC additions and distinguish undocumented permission
   for AN Paint from any claim about upstream authorization.
+
+
+## Local.19 — completion audit (12 September 2026)
+
+The source audit found actual unfinished requests despite earlier coverage notes:
+Material Design 3 colour roles had not been applied, advanced colour numbers and
+assembly placement status were not fully localizable, magnifier-only changes did
+not schedule autosave, and gallery cancellation could race a completed download.
+This update closes those gaps. REQUEST_COMPLETION.md maps the earlier requests.
+
+- Shared Material 3 baseline colour roles replace legacy UI chrome colours while
+  preserving actual canvas/brush/swatch values. Pinned token provenance, Apache
+  terms and in-app notices accompany the palette.
+- Advanced RGB/HSV/HSL entry accepts localized digits/decimal separators and uses
+  resource labels/range errors. Assembly's placed status uses its string resource.
+- Magnifier scale updates invalidate the preview and schedule draft autosave.
+- Gallery result ownership is checked after background download and again on the
+  UI thread; cancellation destroys connections and copies. Focused regressions
+  exercise download, insertion, alpha, credit propagation, cancellation and errors.
+- The prior direct-ADB emulator run timed out during startup. Readiness now retries
+  transient boot/service failures within a shared deadline and dismisses keyguard
+  directly. It retains phase logs and the existing overall time limit.
+- APK, source and upgrade-signature checks are separate from asynchronous test
+  results. Actual results and pending checks are recorded per build, without
+  treating historical tests or a merely available APK as current verification.

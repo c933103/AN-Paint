@@ -13,6 +13,7 @@ import android.graphics.drawable.GradientDrawable
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.DigitsKeyListener
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -20,6 +21,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.graphics.ColorUtils
 import java.util.Locale
+import java.text.DecimalFormatSymbols
 import kotlin.math.*
 
 class ColourValue(initial: Int) {
@@ -64,7 +66,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     private fun dp(n: Int) = (activity.resources.displayMetrics.density * n + .5f).toInt()
     private fun label(text: String) = TextView(activity).apply { this.text = text; textSize = 12f }
     private fun swatchBackground(view: View, colour: Int) {
-        view.background = GradientDrawable().apply { setColor(colour); setStroke(dp(1), 0xff8e9498.toInt()) }
+        view.background = GradientDrawable().apply { setColor(colour); setStroke(dp(1), EditorColours.outline) }
     }
     private fun column() = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
     private fun button(text: String, tag: String, action: () -> Unit) = Button(activity).apply {
@@ -140,14 +142,20 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             val edit = EditText(activity).apply {
                 tag = "colour_$key"; contentDescription = hintText; textSize = 13f
                 inputType = if (key == "hex") InputType.TYPE_CLASS_TEXT else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+                if (key != "hex") {
+                    @Suppress("DEPRECATION")
+                    val symbols = DecimalFormatSymbols(resources.configuration.locale)
+                    val digits = (0..9).map { (symbols.zeroDigit.code + it).toChar() }.joinToString("")
+                    keyListener = DigitsKeyListener.getInstance(("0123456789." + digits + symbols.decimalSeparator).toSet().joinToString(""))
+                }
                 isSingleLine = true; setSelectAllOnFocus(true)
                 addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                         if (syncing) return
                         if (key != "hex") {
-                            val n = s.toString().toFloatOrNull()
-                            if (n == null || n !in 0f..max.toFloat()) { error = "0–$max"; return }
+                            val n = uiNumber(s.toString())
+                            if (n == null || n !in 0.0..max.toDouble()) { error = ui(R.string.ui_colour_component_range, max); return }
                         }
                         readFields(key)
                     }
@@ -156,11 +164,11 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             }; fields[key] = edit; wrap.addView(edit); return wrap
         }
         advanced.addView(field("hex", ui(R.string.ui_hex_rrggbb), 0))
-        listOf(listOf(Triple("r", "R · 0–255", 255),Triple("g", "G · 0–255", 255),Triple("b", "B · 0–255", 255)),
-            listOf(Triple("h", "HSV H · 0–360°", 360),Triple("s", "HSV S · 0–100%", 100),Triple("v", "HSV V · 0–100%", 100)),
-            listOf(Triple("hl", "HSL H · 0–360°", 360),Triple("sl", "HSL S · 0–100%", 100),Triple("l", "HSL L · 0–100%", 100))).forEach { group ->
+        listOf(listOf(Triple("r", R.string.ui_colour_red_range, 255),Triple("g", R.string.ui_colour_green_range, 255),Triple("b", R.string.ui_colour_blue_range, 255)),
+            listOf(Triple("h", R.string.ui_colour_hsv_hue_range, 360),Triple("s", R.string.ui_colour_hsv_saturation_range, 100),Triple("v", R.string.ui_colour_hsv_value_range, 100)),
+            listOf(Triple("hl", R.string.ui_colour_hsl_hue_range, 360),Triple("sl", R.string.ui_colour_hsl_saturation_range, 100),Triple("l", R.string.ui_colour_hsl_lightness_range, 100))).forEach { group ->
             val row = LinearLayout(activity)
-            group.forEach { (key, label, max) -> row.addView(field(key, label, max), LinearLayout.LayoutParams(0, -2, 1f)) }
+            group.forEach { (key, label, max) -> row.addView(field(key, ui(label), max), LinearLayout.LayoutParams(0, -2, 1f)) }
             advanced.addView(row)
         }
         val scroll = ScrollView(activity).apply { addView(body) }
@@ -178,7 +186,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         custom[index].contentDescription = customLabel(index,value.colour)
     }
     private fun readFields(key: String) {
-        fun number(name: String, max: Float): Float? = fields[name]?.text.toString().toFloatOrNull()?.takeIf { it in 0f..max }
+        fun number(name: String, max: Float): Float? = uiNumber(fields[name]?.text.toString())?.toFloat()?.takeIf { it in 0f..max }
         try {
             when (key) {
                 "hex" -> {
@@ -199,7 +207,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         val numbers = mapOf("r" to Color.red(c).toFloat(),"g" to Color.green(c).toFloat(),"b" to Color.blue(c).toFloat(),
             "h" to value.hsv[0],"s" to value.hsv[1] * 100,"v" to value.hsv[2] * 100,"hl" to hsl[0],"sl" to hsl[1] * 100,"l" to hsl[2] * 100)
         fields.forEach { (key, field) -> if (key != except) {
-            field.setText(if (key == "hex") String.format(Locale.ROOT, "#%06X", c and 0xffffff) else String.format(Locale.ROOT, if (key in listOf("r","g","b","a")) "%.0f" else "%.2f", numbers[key]))
+            field.setText(if (key == "hex") String.format(Locale.ROOT, "#%06X", c and 0xffffff) else String.format(Locale.getDefault(), if (key in listOf("r","g","b")) "%.0f" else "%.2f", numbers[key]))
             field.error = null
         } }
         sample.invalidate(); surface.invalidate(); honeycomb.invalidateSelection(); syncing = false

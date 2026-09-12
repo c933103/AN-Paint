@@ -70,7 +70,7 @@ class CropOverlay(val image: ImageDimensions, initial: Rect = Rect(0,0,image.wid
         val half = 6*density/zoom
         for (point in handles()) {
             p.style = Paint.Style.FILL; p.color = Color.WHITE; canvas.drawRect(point.x-half,point.y-half,point.x+half,point.y+half,p)
-            p.style = Paint.Style.STROKE; p.color = 0xff1559a6.toInt(); p.strokeWidth = density/zoom; canvas.drawRect(point.x-half,point.y-half,point.x+half,point.y+half,p)
+            p.style = Paint.Style.STROKE; p.color = EditorColours.primary; p.strokeWidth = density/zoom; canvas.drawRect(point.x-half,point.y-half,point.x+half,point.y+half,p)
         }
     }
 }
