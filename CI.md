@@ -44,9 +44,14 @@ preprocessed source for each compilation. Direct and depend modes are disabled,
 and no sloppiness checks are relaxed. Java/Kotlin classes, APKs, linked libraries
 and CMake output directories still rebuild from the current checkout.
 
-Cache statistics are printed after assembly. The first run populates the cache;
-no speedup is claimed until reuse has been measured on a later build. Regression
-and emulator jobs do not depend on this cache. References: the official
+Cache statistics are printed after assembly. On 12 September 2026, the initial
+[local.20 build](https://github.com/c933103/AN-Paint/actions/runs/34705339120)
+took 17m1s for universal assembly. The final
+[source-clean build](https://github.com/c933103/AN-Paint/actions/runs/34706970961)
+took 3m54s, with 2,666 hits from 3,058 cacheable compiler calls (87.18%). These
+are observed run timings, not a controlled benchmark or a guarantee for future
+changes. Direct mode stayed disabled; these were preprocessed cache hits.
+Regression and emulator jobs do not depend on this cache. References: the official
 [CMake 3.22 launcher documentation](https://cmake.org/cmake/help/v3.22/envvar/CMAKE_LANG_COMPILER_LAUNCHER.html),
 [ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
 [Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).

@@ -3,6 +3,7 @@ package org.catrobat.paintroid.local
 
 import android.app.LocaleManager
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.RectF
 import android.os.LocaleList
@@ -102,5 +103,52 @@ class AppLanguageTest {
         assertEquals("ja", AppLanguage.wrap(context).resources.configuration.locales[0].language)
         AppLanguage.select(context, "")
         assertTrue(manager.applicationLocales.isEmpty)
+    }
+
+    @Test fun languageOverridePreservesRotationWindowSizeAndLargeTextWithoutReplacingDocument() {
+        AppLanguage.select(context, "fr")
+        context.filesDir.listFiles()?.filter { it.name.startsWith("classic-") }?.forEach { it.delete() }
+        val controller = Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity = controller.get()
+        val original = Configuration(activity.resources.configuration)
+        try {
+            val document = activity.document
+            document.newImage(16, 16)
+            document.foreground = Color.RED; document.fill(2, 2)
+            document.select(RectF(2f, 2f, 10f, 10f))
+            val selection = document.selection
+            for (landscape in listOf(true, false)) {
+                val changed = Configuration(original).apply {
+                    orientation = if (landscape) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
+                    screenWidthDp = if (landscape) 900 else 412
+                    screenHeightDp = if (landscape) 412 else 900
+                    fontScale = 1.5f
+                }
+                activity.onConfigurationChanged(changed)
+                val actual = activity.resources.configuration
+                assertEquals(changed.orientation, actual.orientation)
+                assertEquals(changed.screenWidthDp, actual.screenWidthDp)
+                assertEquals(changed.screenHeightDp, actual.screenHeightDp)
+                assertEquals(1.5f, actual.fontScale, 0f)
+                assertEquals("fr", actual.locales[0].language)
+                // A new locale context must inherit these live device settings too.
+                val wrapped = AppLanguage.wrap(activity).resources.configuration
+                assertEquals(actual.orientation, wrapped.orientation)
+                assertEquals(actual.screenWidthDp, wrapped.screenWidthDp)
+                assertEquals(actual.fontScale, wrapped.fontScale, 0f)
+                assertSame(document, activity.document)
+                assertSame(selection, document.selection)
+                assertTrue(document.canUndo)
+                assertEquals(Color.RED, document.bitmap.getPixel(0, 0))
+            }
+        } finally {
+            activity.onConfigurationChanged(original)
+            controller.pause().stop()
+            val deadline = System.nanoTime() + 10_000_000_000
+            while (activity.busy && System.nanoTime() < deadline) {
+                shadowOf(Looper.getMainLooper()).idle(); Thread.sleep(10)
+            }
+            controller.destroy()
+        }
     }
 }

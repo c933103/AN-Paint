@@ -200,10 +200,20 @@ class EditorDeviceTest {
             menu("File",text(R.string.save20_title))
             device.findObject(UiSelector().className("android.widget.Spinner")).click()
             device.findObject(UiSelector().text(format.label)).click()
-            positive() // Cancellation is supplied by the monitor, so no file is written.
-            awaitState("${format.label} picker") {monitor.requests.count {request -> request.action==Intent.ACTION_CREATE_DOCUMENT}>before}
+            val destinationButton=device.findObject(UiSelector().resourceId("android:id/button1"))
+            assertTrue("${format.label} destination button exists",destinationButton.waitForExists(5000))
+            assertTrue("${format.label} destination button enabled",destinationButton.isEnabled)
+            val bounds=destinationButton.visibleBounds
+            assertFalse("${format.label} destination button has visible bounds",bounds.isEmpty)
+            // The monitor immediately cancels the external picker. UiObject.click()
+            // can then report false despite the tap being handled, because its
+            // accessibility-event acknowledgement never arrives. Inject the same
+            // physical tap and synchronize on the actual picker request below.
+            assertTrue("${format.label} destination tap injected",device.click(bounds.centerX(),bounds.centerY()))
+            awaitState("${format.label} picker") {monitor.requests.count {request -> request.action==Intent.ACTION_CREATE_DOCUMENT}==before+1}
             val request=monitor.requests.last {it.action==Intent.ACTION_CREATE_DOCUMENT}
             assertEquals(format.mime,request.type)
+            assertTrue(request.hasCategory(Intent.CATEGORY_OPENABLE))
             assertTrue(request.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(format.extension))
         }
         assertTrue(ImageFormat.values().map {it.name}.containsAll(listOf("WEBP","HEIC","AVIF")))

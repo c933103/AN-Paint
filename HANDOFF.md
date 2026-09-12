@@ -39,7 +39,7 @@ app and open them in the new app; keep the old installation until that is done.
 - The launcher is an original paintbrush and coloured stroke, with legacy,
   adaptive and themed variants, editable SVG, generated hashes and AGPL credit.
 - CI uses bounded asynchronous device tests and a separate, strict native
-  compiler cache. No cache speedup is claimed until a later reuse is measured.
+  compiler cache. Measured cache reuse and its limits are recorded in CI.md.
 
 ## Verification status
 

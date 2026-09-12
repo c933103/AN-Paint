@@ -294,7 +294,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this);buildWorkspace()
+        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this, newConfig);buildWorkspace()
     }
 
     private fun togglePalette() {

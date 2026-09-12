@@ -50,7 +50,10 @@ internal object AppLanguage {
 
     fun wrap(context: Context): Context {
         val chosen = locale(context)
-        val config = Configuration(context.resources.configuration).apply {
+        // An override is a delta: copying the current screen configuration would
+        // pin orientation, window size and font scale for this context's lifetime.
+        val config = Configuration().apply {
+            fontScale = 0f
             if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
             setLayoutDirection(chosen)
         }
@@ -60,9 +63,9 @@ internal object AppLanguage {
 
     /** Updating the current Activity avoids throwing away undo or an unfinished selection. */
     @Suppress("DEPRECATION")
-    fun refresh(activity: Activity) {
+    fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
         val chosen = locale(activity)
-        val config = Configuration(activity.resources.configuration).apply {
+        val config = Configuration(configuration).apply {
             if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
             setLayoutDirection(chosen)
         }

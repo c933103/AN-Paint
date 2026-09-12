@@ -63,7 +63,7 @@ class AssemblyActivity : Activity() {
     }
     override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
         super.onConfigurationChanged(newConfig)
-        AppLanguage.refresh(this)
+        AppLanguage.refresh(this, newConfig)
         if (::assembly.isInitialized) buildInterface()
     }
     private fun compact() = resources.configuration.screenHeightDp < 600

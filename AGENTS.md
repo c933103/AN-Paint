@@ -19,3 +19,7 @@
   classes, APKs, linked native libraries or CMake build directories. Keep compiler
   identity/content checks and strict header checks; do not enable unsafe cache
   sloppiness or depend mode to improve a timing claim.
+- Before triggering a build after GitHub publication, compare the remote tree with
+  the intended source snapshot, including file removals. Use GitHub's dedicated
+  delete-file operation for removed paths and verify their absence; do not assume
+  a null tree entry was applied by a connector.
