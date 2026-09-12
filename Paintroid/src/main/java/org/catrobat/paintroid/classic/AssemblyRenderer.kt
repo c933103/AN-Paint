@@ -12,13 +12,39 @@ import kotlin.math.*
 /** Only one source region is decoded at a time; previews never determine export quality. */
 class AssemblyRenderer(private val context: Context, private val images: List<AssemblyImage>, private val layout: Map<String,Rect>, private val residentPixels: Long) {
     val original = ImageDimensions(layout.values.maxOf { it.right },layout.values.maxOf { it.bottom })
-    fun estimatedBytes(size: ImageDimensions) = size.pixels * 28.0 + residentPixels * 4.0
+    // File metadata stays constant for this output request. Inspect it once so
+    // resizing the dialog does not repeatedly open native codecs on the UI thread.
+    private val nativeRequirements = images.filter { it.id in layout && HeifCodec.isHeif(it.file) }.associate { item ->
+        item.id to ImportMemoryRequirements(HeifCodec.decodeWorkingBytes(item.file,ImageDimensions(1,1)))
+    }
+    private fun destination(rect: Rect,size: ImageDimensions): Rect {
+        fun x(n: Int) = (n.toDouble()*size.width/original.width).roundToInt()
+        fun y(n: Int) = (n.toDouble()*size.height/original.height).roundToInt()
+        return Rect(x(rect.left),y(rect.top),x(rect.right),y(rect.bottom))
+    }
+    fun estimatedBytes(size: ImageDimensions): Double {
+        var peak = size.pixels * 28.0 + residentPixels * 4.0
+        nativeRequirements.forEach { (id,requirements) ->
+            val rect = destination(layout.getValue(id),size)
+            val target = ImageDimensions(max(1,rect.width()),max(1,rect.height()))
+            // Include the resident assembly output and the same native decode
+            // plus compositing reserve used by decodeCrop below.
+            peak = max(peak,requirements.estimatedBytes(ImportPlan(target,1,target.pixels),residentPixels+size.pixels))
+        }
+        return peak
+    }
     fun fits(size: ImageDimensions): Boolean = size.pixels <= ImageMemoryPolicy.MAX_BITMAP_PIXELS && estimatedBytes(size) <= ImageMemoryPolicy.forDevice(context).workingBytes
-    fun suggested(previous: ImageDimensions? = null): ImageDimensions {
+    fun suggested(previous: ImageDimensions? = null): ImageDimensions? {
         val policy = ImageMemoryPolicy.forDevice(context)
-        val pixels = ((policy.workingBytes-residentPixels*4).coerceAtLeast(0)/28).coerceAtMost(ImageMemoryPolicy.MAX_BITMAP_PIXELS)
-        val ratio = min(1.0,sqrt(pixels.toDouble()/original.pixels)*.9)
-        return original.scaled(min(ratio,previous?.let { it.width.toDouble()/original.width*.75 } ?: 1.0))
+        if (!fits(ImageDimensions(1,1))) return null
+        var low = 0.0
+        var high = min(1.0,previous?.let { it.width.toDouble()/original.width*.75 } ?: 1.0)
+        repeat(48) {
+            val ratio = (low+high)/2
+            val candidate = original.scaled(ratio)
+            if (candidate.pixels<=ImageMemoryPolicy.MAX_BITMAP_PIXELS && estimatedBytes(candidate)<=policy.workingBytes*.9) low=ratio else high=ratio
+        }
+        return original.scaled(low)
     }
     fun render(size: ImageDimensions, progress: (Int,Int) -> Unit = { _,_ -> }): Bitmap {
         if (!fits(size)) throw ImageSizeException(ui(R.string.ui_the_assembly_needs_about_choose_a_smaller_output, memoryLabel(estimatedBytes(size))))
@@ -29,9 +55,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
             val entries = images.filter { it.id in layout }
             entries.forEachIndexed { index,item ->
                 val rect = layout.getValue(item.id)
-                fun x(n: Int) = (n.toDouble()*size.width/original.width).roundToInt()
-                fun y(n: Int) = (n.toDouble()*size.height/original.height).roundToInt()
-                val dest = Rect(x(rect.left),y(rect.top),x(rect.right),y(rect.bottom))
+                val dest = destination(rect,size)
                 if (dest.width() > 0 && dest.height() > 0) {
                     val source = decodeCrop(item,ImageDimensions(dest.width(),dest.height()),residentPixels+size.pixels)
                     try { canvas.drawBitmap(source,null,dest,null) } finally { source.recycle() }
@@ -48,10 +72,13 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     }
     @Suppress("DEPRECATION")
     fun decodeCrop(item: AssemblyImage, target: ImageDimensions, resident: Long = residentPixels): Bitmap {
-        if(JxlCodec.isJxl(item.file)) {
+        val jxl=JxlCodec.isJxl(item.file)
+        if(jxl || HeifCodec.isHeif(item.file)) {
             val policy=ImageMemoryPolicy.forDevice(context)
-            policy.check(target.width,target.height,resident)
-            return JxlCodec.decode(item.file,target,(policy.workingBytes-resident*4).coerceAtLeast(0),item.crop)
+            val requirements=nativeRequirements[item.id] ?: ImportMemoryRequirements(if(jxl) null else HeifCodec.decodeWorkingBytes(item.file,ImageDimensions(1,1)))
+            requirements.checkImport(policy,ImportPlan(target,1,target.pixels),resident)
+            val budget=requirements.decoderBudget(policy.workingBytes,target,resident)
+            return if(jxl) JxlCodec.decode(item.file,target,budget,item.crop) else HeifCodec.decode(item.file,target,budget,item.crop)
         }
         val (rotation,flip) = orientation(item)
         val rawWidth = if (rotation in listOf(90,270)) item.dimensions.height else item.dimensions.width
@@ -81,8 +108,10 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
                 val scale = min(1.0,max(target.width.toDouble()/item.crop.width(),target.height.toDouble()/item.crop.height()))
                 val fullTarget = item.dimensions.scaled(scale)
                 val fullPlan = ImportPlan.create(item.dimensions,fullTarget)
-                ImageMemoryPolicy.forDevice(context).checkImport(fullPlan,resident+target.pixels)
-                input = ImportedImage(item.file,item.name).decode(fullPlan)
+                val source = ImportedImage(item.file,item.name)
+                val policy = ImageMemoryPolicy.forDevice(context)
+                source.checkImport(policy,fullPlan,resident+target.pixels)
+                input = source.decode(fullPlan,policy.workingBytes,resident+target.pixels)
                 val decoded = input
                 val region = RectF(item.crop.left.toFloat()*decoded.width/item.dimensions.width,item.crop.top.toFloat()*decoded.height/item.dimensions.height,
                     item.crop.right.toFloat()*decoded.width/item.dimensions.width,item.crop.bottom.toFloat()*decoded.height/item.dimensions.height)

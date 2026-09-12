@@ -80,7 +80,7 @@ class MediaGalleryActivity : Activity() {
                     require(allowed(Uri.parse(url.toString()))) {ui(R.string.ui_the_gallery_redirected_outside_its_supported_hosts)}
                     val current=url.openConnection() as HttpURLConnection
                     current.connectTimeout=15000;current.readTimeout=30000;current.instanceFollowRedirects=false
-                    if(current.responseCode in 300..399) {val redirect=current.getHeaderField(ui(R.string.ui_location));current.disconnect();require(redirect!=null);url=URL(url,redirect)}
+                    if(current.responseCode in 300..399) {val redirect=current.getHeaderField("Location");current.disconnect();require(redirect!=null);url=URL(url,redirect)}
                     else {connection=current;break}
                 }
                 val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))

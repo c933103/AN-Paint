@@ -134,6 +134,9 @@ class ExportFormatDialogTest {
         assertEquals(View.GONE, dialog.lossless().visibility)
         assertEquals(View.VISIBLE, dialog.quality().visibility)
         assertTrue(dialog.quality().number.performClick())
+        // Dialog dispatches OnShow through the main looper. Let the numeric
+        // validator replace the default positive listener before the next tap.
+        idle()
         val numberDialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val number = numberDialog.window!!.decorView.findViewWithTag<EditText>("numeric_input")
         number.setText("101")

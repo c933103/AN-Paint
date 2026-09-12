@@ -20,6 +20,10 @@ primary still image is opened from HEIF containers; auxiliary depth images and
 additional collection items are not imported as separate documents. The container
 rotation and crop are applied once by libheif.
 
+HEIC/AVIF colour conversion currently uses libheif's NCLX colour information and
+sRGB output. Embedded ICC-only profiles have not received a separate conversion
+or colour-accuracy verification pass.
+
 WebP's format limit is 16383 pixels per side. The editor's device-dependent memory
 budget also applies. A smaller HEIC/AVIF output can still require a large source
 image or tile to be decoded; the import estimate includes that native working

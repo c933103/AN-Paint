@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Looper
 import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.classic.*
@@ -14,6 +15,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import java.io.File
@@ -80,14 +82,17 @@ class ImportMemoryIntegrationTest {
         val dialog=ImageResizeDialog(activity,source,10000,{policy(128*mib)},
             resize={resized=true},cancel={cancelled++},memoryRequirements=native).show()
         try {
+            // Dialog.show posts OnShowListener to the main looper. Run it before
+            // reading the initial estimate or pressing its guarded action button.
+            shadowOf(Looper.getMainLooper()).idle()
             val view=dialog.window!!.decorView
             assertTrue(view.findViewWithTag<TextView>("resize_original").text.contains(memoryLabel(native.estimatedBytes(ImportPlan.create(source,source),10000))))
             assertTrue(view.findViewWithTag<TextView>("resize_estimate").text.contains("smallest output"))
             assertFalse(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             assertFalse(resized);assertTrue(dialog.isShowing)
-            dialog.cancel();assertEquals(1,cancelled)
-        } finally {dialog.dismiss();controller.pause().stop().destroy()}
+            dialog.cancel();shadowOf(Looper.getMainLooper()).idle();assertEquals(1,cancelled)
+        } finally {dialog.dismiss();shadowOf(Looper.getMainLooper()).idle();controller.pause().stop().destroy()}
     }
 
     @Test fun resizeConfirmationRechecksNativeWorkAgainstCurrentMemory() {
@@ -96,6 +101,7 @@ class ImportMemoryIntegrationTest {
         var available=policy(128*mib);var result: ImageDimensions?=null
         val dialog=ImageResizeDialog(activity,source,0,{available},resize={result=it},cancel={},memoryRequirements=native).show()
         try {
+            shadowOf(Looper.getMainLooper()).idle()
             assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
             available=policy(32*mib)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
@@ -105,6 +111,6 @@ class ImportMemoryIntegrationTest {
             assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             assertEquals(ImageDimensions(400,300),result)
-        } finally {dialog.dismiss();controller.pause().stop().destroy()}
+        } finally {dialog.dismiss();shadowOf(Looper.getMainLooper()).idle();controller.pause().stop().destroy()}
     }
 }

@@ -41,11 +41,35 @@ location above. Removed capabilities are explicit, rather than hidden behind an
 inaccessible old activity. This is feature coverage, not a claim that new brush
 rendering is pixel-identical to the original implementation.
 
+## Requirement recheck — 12 September 2026
+
+The original `ToolType`, every surviving tool-options interface, the original
+More options menu, advanced-settings dialog and zoom-window settings were checked
+again against the consolidated workspace. No further standalone editing command
+was found without a corresponding entry in the table. The deliberately removed
+features and original-app Pocket Code integration remain the explicit exceptions.
+
+The requested Watercolor, shape tools, numeric size entry, cursor and magnifier,
+four recent colours, insertion/gallery ordering, JPEG quality, Save and share,
+and Fit/centre behavior have executable regression coverage in
+`UnifiedEditorTest`. Older selection, full-resolution, autosave, canvas-bounds and
+assembly regression classes cover the retained workflows. These tests complement
+the source audit; neither source coverage nor emulator execution establishes
+physical-phone verification.
+
+Translation preparation uses Android resources for editor and dialog text,
+positional formatting, plurals, stable persistence/menu identifiers and separate
+legal notices. The RTL audit found and corrected a detached-sidebar-toggle risk:
+physical image workspace geometry stays left-to-right while text can follow the
+locale. Numeric slider formatting is resource-based. `TRANSLATING.md` describes
+the complete resource catalogue and future-language review. Supplying unspecified
+human translations is not a pending part of this request.
+
 ## Font-test explanation
 
 The old `TextToolFontListTest.kt` substitutions followed removal of the bundled
-Dubai and STC/GE SS font binaries, whose bundled metadata did not establish app
-redistribution rights. The old selector entries then used Android system fonts.
+Dubai and STC-labelled font binaries during the earlier licence review. The old
+selector entries then used Android system fonts.
 Variables still named `dubaiFontFace` and `stcFontFace` were misleading: those
 assertions tested system-font fallbacks, not the named proprietary fonts.
 
@@ -53,4 +77,14 @@ That selector and its obsolete tests have now been removed with the original
 editor. Current tests check the current font inventory and load the actual ten
 bundled OFL font files, along with the nine device-supplied font choices.
 
-The permission status of Dubai and STC is unresolved. An investigation of the exact original font files and authoritative redistribution/embedding terms is a pending task in [HANDOFF.md](HANDOFF.md); missing bundled metadata alone does not establish a prohibition.
+The [completed licence investigation](FONT-LICENCE-REVIEW.md) checks the exact
+upstream bytes and official foundry statements. They are Dubai Regular 1.10 and
+Boutros GE SS Text Light 1.200; the latter was mislabelled STC. Dubai’s original
+binary contains a limited-use notice, and the separately published Dubai EULA
+also excludes image-generating applications. Boutros’s public terms restrict
+copying and distribution without an additional agreement. Both remain excluded
+under the terms found. The report distinguishes direct binary evidence, official
+foundry terms and the third-party preservation of Dubai’s EULA, and retains the
+[full metadata evidence](verification/legacy-font-metadata.json). Restoration
+would require documented additional permission; this is no longer merely an
+absence-of-metadata finding.

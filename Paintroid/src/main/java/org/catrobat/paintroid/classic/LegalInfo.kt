@@ -61,7 +61,8 @@ object LegalInfo {
     }
     /** Keep the codec overview identical to the individual, verbatim bundled notices. */
     fun codecNotices(activity: Activity): String = listOf(
-        "legal/JPEG_XL_NOTICES.txt", "legal/WEBP_NOTICES.txt", "legal/HEIF_AVIF_NOTICES.txt"
+        "legal/JPEG_XL_NOTICES.txt", "legal/WEBP_NOTICES.txt", "legal/HEIF_AVIF_NOTICES.txt",
+        "legal/NATIVE_RUNTIME_NOTICES.txt"
     ).joinToString("\n\n\n") { asset -> activity.assets.open(asset).bufferedReader().use { it.readText() } }
 
     fun showCodecLicences(activity: Activity) {

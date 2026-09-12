@@ -30,9 +30,9 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon --max-workers=2 --console=plain :app:writeDependencyInventory
+          python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
           python3 tools/generate_legal_notices.py
-          ./gradlew --no-daemon --max-workers=2 --console=plain :Paintroid:testDebugUnitTest
-          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Run codec and installed-app tests on Android
         if: ${{ !cancelled() }}
         run: |
@@ -66,6 +66,8 @@ jobs:
             app/build/outputs/androidTest-results/
             app/build/runtime-dependencies.json
             Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt
+            Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt
+            build/reports/native-runtime-notices.json
             Paintroid/build/test-results/
             Paintroid/build/outputs/androidTest-results/
             emulator.log

@@ -1,6 +1,6 @@
 # AN Paint
 
-> **Unfinished local.16 development snapshot.** The APK builds and all 154 regression tests pass, but one JPEG XL emulator test fails. See [HANDOFF.md](HANDOFF.md) for the known defect, completed work and next tasks, including the Dubai/STC font licence investigation.
+> Local.17 adds HEIC, AVIF and WebP, corrects JPEG XL encoding and continues the consolidated-editor verification. See [HANDOFF.md](HANDOFF.md) for the exact current verification status.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -21,7 +21,7 @@ Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
   alignment, direct PNG saving and transfer to the main editor.
 - Watercolor, Heart/Star/Arrow, cursor drawing, magnified preview and sizes up to
   100 px with exact numeric entry.
-- PNG, adjustable-quality JPEG, lossless/lossy JPEG XL, and Save and share.
+- PNG, adjustable-quality JPEG/HEIC, lossless/lossy JPEG XL/WebP/AVIF, and Save and share.
 - Four recent colours and an optional online Catrobat figures gallery.
 
 The original editor, layers, transparency controls, Smudge, automatic crop and
@@ -34,7 +34,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.16` updates local.15 using the same application ID and signing key.
+`2.14.1-local.17` updates local.15/local.16 using the same application ID and signing key.
 Version local.15 introduced this package identity. It installs alongside both the
 original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
 To transfer your current image, **save it as PNG in the old app, then open it in
@@ -56,10 +56,13 @@ and `ANDROID_HOME`, then run:
 
 The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build requires
 network access to Google Maven, Maven Central, the Gradle Plugin Portal and
-GitHub for pinned JPEG XL/Brotli/Highway/skcms source revisions. The native codec
+GitHub for pinned native codec source revisions (JPEG XL, WebP, HEIF/HEVC and AV1
+dependencies). Exported corresponding source also includes those native sources
+offline. The native codecs
 builds for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is available
 for a faster emulator-only verification build. Android instrumentation tests run
-the actual JPEG XL codec via `:Paintroid:connectedDebugAndroidTest`.
+the actual codecs via `:Paintroid:connectedDebugAndroidTest`; installed-app tests
+run via `:app:connectedDebugAndroidTest`.
 The APK includes its corresponding source, exportable from Help.
 
 See [LOCAL_BUILD.md](LOCAL_BUILD.md) for detailed build and packaging instructions,
@@ -82,7 +85,9 @@ are independently maintained.
   [third-party notices](Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt)
   identify the artwork and packaged libraries.
 - [JPEG XL codec notices](Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt)
-  preserve the upstream licences and patent grant. Gallery artwork retains its
+  and [WebP](Paintroid/src/main/assets/legal/WEBP_NOTICES.txt) /
+  [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) notices preserve
+  the upstream licences and patent grants. Gallery artwork retains its
   CC BY-SA 4.0 attribution and source links.
 
 No signing keys or private build backups belong in the public repository.

@@ -401,3 +401,35 @@ Validation results and their scope are recorded in the build backup.
 
 Validation results and the GitHub publication status are recorded with the
 build deliverables. A remote fork is not claimed until GitHub confirms it.
+
+## Editor consolidation: 2.14.1-local.16 — 10–12 September 2026
+
+Removed the original editor following the feature mapping in `EDITOR_PARITY.md`.
+Ported Watercolor, shapes, cursor/magnifier, numeric brush settings, recent
+colours, JPEG quality, sharing and gallery access into the new editor. Removed
+layers/document transparency, Smudge, auto crop and native project formats as
+requested; preserved internal selection masks. UI text moved into translation
+resources. The intentionally unfinished delivery passed 154 unit checks but
+failed one JPEG XL boundary test. Its exact status is preserved in
+`verification/HANDOFF_LOCAL16.md`.
+
+## Codec completion and audit: 2.14.1-local.17 — 12 September 2026
+
+- Correct JPEG XL output streaming and valid source rectangles beyond 2048 px;
+  use the Android API21-compatible large-file writer.
+- Add native HEIC/AVIF still-image imports and saves, and true lossless or
+  quality-adjustable WebP saves. Include all native dependency sources and terms
+  in the offline corresponding-source archive and Help.
+- Include native source/tile working memory in main-editor and assembly import,
+  resizing and export admission checks. A smaller requested output cannot hide
+  source-decoder memory requirements.
+- Add format-dialog, source-memory and RTL regression checks plus installed-app
+  emulator checks. Correct old launcher/backup lint findings without suppressing
+  those warnings.
+- Re-audit original-editor feature coverage; retain the requested removals and
+  translation preparation. Record exact Dubai and former STC/GE SS identities,
+  actual licence restrictions and the decision to keep those binaries excluded.
+- Version code 70; retain `io.github.c933103.anpaint` and the AN Paint signing key.
+
+See `HANDOFF.md` and the release verification report for executed checks and
+physical-device limits; implementation entries alone are not test results.

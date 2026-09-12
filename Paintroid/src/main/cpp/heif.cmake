@@ -43,7 +43,9 @@ function(anpaint_add_heif)
   set(LIBDE265_INCLUDE_DIR ${HEIF_SOURCES}/libde265 CACHE PATH "" FORCE)
   set(LIBDE265_LIBRARY de265 CACHE STRING "" FORCE)
   set(KVAZAAR_INCLUDE_DIR ${KVZ_ROOT}/src CACHE PATH "" FORCE)
-  set(KVAZAAR_LIBRARY anpaint_kvazaar CACHE STRING "" FORCE)
+  # Kvazaar is private to this Android build. Keep it out of libheif's unrelated
+  # install/export package, which otherwise rejects this unexported app target.
+  set(KVAZAAR_LIBRARY "$<BUILD_INTERFACE:anpaint_kvazaar>" CACHE STRING "" FORCE)
   set(HAVE_KVAZAAR_ENABLE_LOGGING 1 CACHE INTERNAL "" FORCE)
   set(HAVE_KVAZAAR_VERSION_STRING 0 CACHE INTERNAL "" FORCE)
   set(AOM_INCLUDE_DIR ${HEIF_SOURCES}/aom CACHE PATH "" FORCE)

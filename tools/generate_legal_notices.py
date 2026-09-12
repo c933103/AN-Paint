@@ -48,6 +48,12 @@ Image codec licences. The scripts tools/fetch_jxl_sources.py,
 tools/fetch_webp_sources.py and tools/fetch_heif_sources.py obtain the pinned
 upstream sources for rebuilding the native libraries.
 
+Native runtime support also includes LLVM libc++, libc++abi, libunwind and
+compiler-rt built-ins supplied by Android NDK 27.2.12479018. Their complete
+NDK-supplied LLVM licence text and exceptions are retained below and under
+Image codec licences. tools/generate_native_runtime_notices.py preserves
+the actual installed toolchain's NOTICE and records its source hash.
+
 Resolved Android/JVM runtime components for this build follow. Their publisher
 metadata and packaged notices are preserved below. Test and build tools are not
 part of this inventory because they are not distributed in the application.
@@ -116,6 +122,7 @@ notice.append('\n\nBREEZE ICON NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets
 for title, filename in [('JPEG XL', 'JPEG_XL_NOTICES.txt'), ('WEBP', 'WEBP_NOTICES.txt'),
                         ('HEIC AND AVIF', 'HEIF_AVIF_NOTICES.txt')]:
     notice.append(f'\n\n{title} CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal' / filename).read_text())
+notice.append('\n\nNATIVE RUNTIME NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

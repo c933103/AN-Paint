@@ -1,5 +1,5 @@
 AN Paint — icons, fonts and artwork credits
-Updated 10 September 2026
+Updated 12 September 2026
 
 KDE BREEZE ICONS — LGPL-3.0-or-later
 Copyright (C) 2014 Uri Herrera <uri_herrera@nitrux.in> and others.
@@ -70,8 +70,15 @@ Anonymous Pro — fonts/anonymouspro.ttf
 Nine additional choices use Android system families (sans-serif, serif,
 monospace and variants). These and missing-glyph fallback fonts are supplied by
 the device, whose open-source notices identify their files and copyright holders.
-No Dubai or STC/GE SS font files are included. Their former legacy selector
-entries were system-font substitutes; that selector has now been deleted.
+No Dubai or STC/GE SS font files are included. Inspection of the exact upstream
+files identifies Dubai Regular 1.10 and Boutros GE SS Text Light 1.200; the
+latter was mislabelled STC. Dubai's binary contains a limited-use licence notice;
+the separately published Dubai EULA also excludes image-generating apps.
+Boutros's public terms restrict copying and distribution without an additional
+agreement. Both remain excluded under the terms found. Full evidence, sources
+and the Dubai EULA mirror's provenance are in FONT-LICENCE-REVIEW.md and
+verification/legacy-font-metadata.json in the exported source.
+The former legacy selector used system-font substitutes; it has been deleted.
 
 JPEG XL AND OTHER CODE
 Read JPEG XL codec licences and Third-party notices for exact versions,

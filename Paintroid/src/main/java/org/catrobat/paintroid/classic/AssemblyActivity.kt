@@ -156,8 +156,10 @@ class AssemblyActivity : Activity() {
         val source = ImportedImage(item.file,item.name)
         val size = source.dimensions.scaled(minOf(1.0,384.0/maxOf(source.dimensions.width,source.dimensions.height)))
         val plan = ImportPlan.create(source.dimensions,size)
-        ImageMemoryPolicy.forDevice(this).checkImport(plan,residentPixels())
-        return source.decode(plan)
+        val policy = ImageMemoryPolicy.forDevice(this)
+        val resident = residentPixels()
+        source.checkImport(policy,plan,resident)
+        return source.decode(plan,policy.workingBytes,resident)
     }
     private fun loadMissingPreviews() {
         if (busy || thumbnailLoading || !::assembly.isInitialized) return
@@ -249,10 +251,15 @@ class AssemblyActivity : Activity() {
         if (renderer.fits(renderer.original)) makeOutput(renderer,renderer.original,toPaint) else outputSizeDialog(renderer,toPaint)
     }
     private fun outputSizeDialog(renderer: AssemblyRenderer,toPaint: Boolean,previous: ImageDimensions? = null) {
+        val suggested = renderer.suggested(previous)
+        if (suggested == null) {
+            message(ui(R.string.ui_assembly_source_memory_floor))
+            return
+        }
         val body = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(16),dp(8),dp(16),dp(8)) }
         body.addView(text(ui(R.string.ui_assembly_decoded_output_estimated_editing_render_memory_at, renderer.original.describe(), memoryLabel(renderer.original.pixels*4.0), memoryLabel(renderer.estimatedBytes(renderer.original)))))
         body.addView(text(ui(R.string.ui_choose_a_smaller_output_copy_the_source_images)))
-        val sizing = DimensionControls(this,renderer.original,renderer.suggested(previous),"assembly_size",true); body.addView(sizing)
+        val sizing = DimensionControls(this,renderer.original,suggested,"assembly_size",true); body.addView(sizing)
         val estimate = text(""); body.addView(estimate)
         val dialog = AlertDialog.Builder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()
         fun refresh() {

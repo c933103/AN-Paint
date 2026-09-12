@@ -51,9 +51,11 @@ class TranslationReadinessTest {
         var value=0
         val control=NumericSlider(activity,activity.getString(R.string.ui_size_px),1,1,100) { value=it }
         control.number.performClick()
+        shadowOf(Looper.getMainLooper()).idle()
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         dialog.window!!.decorView.findViewWithTag<EditText>("numeric_input").setText("٩٩")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        shadowOf(Looper.getMainLooper()).idle()
         assertFalse(dialog.isShowing)
         assertEquals(99,value)
         assertEquals(activity.getString(R.string.ui_numeric_slider_value,control.name,99),control.number.text.toString())

@@ -17,29 +17,39 @@ The [2018 resource move](https://github.com/Catrobat/Paintroid/commit/4542bf77e7
 
 `tools/inspect_legacy_fonts.py` downloads these pinned bytes into memory, validates their Git blob hashes and sizes, and emits SHA-256 hashes, family/version/designer/copyright/licence name records and `OS/2.fsType` to `build/reports/legacy-font-metadata.json`. It writes no font binaries and adds none to the app or source archive. The technical embedding bits do not replace the applicable licence.
 
-Exact internal metadata verification is pending the CI execution of that script; the findings below separate the documented historical identity from current website evidence.
+The script completed in CI and both files matched the pinned blobs and sizes.
+The full result is retained as [verification/legacy-font-metadata.json](verification/legacy-font-metadata.json).
+
+| File | Verified internal identity | Version | `fsType` | SHA-256 |
+|---|---|---|---:|---|
+| `dubai.ttf` | Dubai Regular; Monotype Imaging Inc.; copyright Dubai Executive Council, 2016 | 1.10 | 8 | `7a0be62452c4a73b8f86f3b6c1b0915074c47fa40bb658255b3d0b1cdf6d2f2f` |
+| `stc_regular.otf` | GE SS Text Light; typographic family GE SS, Light; Boutros International, 2004 | 1.200; PS 001.002; hotconv 1.0.38 | 0 | `d03c34017360a88a55237dd3582b2f6d7085e8c519f4e1b8dde84d82d7582273` |
+
+The [OpenType specification](https://learn.microsoft.com/en-us/typography/opentype/spec/os2#fstype) describes value 8 as editable document embedding and value 0 as installable embedding. For value 0, the recipient remains subject to the original purchaser’s licence and obligations. These flags must therefore be considered alongside the distribution terms; neither says that a font is openly licensed for unrestricted APK/source distribution.
 
 ## Dubai
 
+The exact original binary supplies direct evidence: name record 13 identifies it as a Microsoft-supplied font, ties content creation to the supplying product’s licence, permits the specified content embedding and temporary output-device use, and excludes other uses. Its value 8 embedding flag concerns editable documents. This is an explicit limited-use notice, not an empty licence field. [Verified metadata](verification/legacy-font-metadata.json).
+
 [Monotype’s own account](https://www.monotype.com/resources/case-studies/dubai) identifies The Executive Council of Dubai’s project, the Microsoft/Monotype collaboration and Nadine Chahine’s design leadership. It describes free public distribution. That establishes provenance and availability, rather than unlimited redistribution or use rights.
 
-The Executive Council’s **End User Licence Agreement – Dubai Font**, [preserved by Font Squirrel](https://www.fontsquirrel.com/license/dubai), contains the following relevant terms:
+We also checked a possible separately distributed version: The Executive Council’s **End User Licence Agreement – Dubai Font**, [preserved by Font Squirrel](https://www.fontsquirrel.com/license/dubai), contains the following relevant terms:
 
 - Clause 2.2(c) permits some Android application embedding, subject to protections against extracting or installing the font outside the app. It expressly excludes applications that generate output including photos, static/scalable images and other documents or data files. AN Paint does exactly that.
 - Clauses 3.1(d), 3.1(f) and 3.1(i) restrict redistribution, modification and making font code available without additional permission. A public repository containing the font and an extractable APK asset would not meet those conditions.
 - Clause 3.1(j) also restricts making the font subject to a public-software agreement. This is not an OFL or other open-font licence.
 
-The cited EULA is a third-party preservation of the rights holder’s text. The official `dubaifont.com` site could not be retrieved during this review, so a current replacement licence there has not been verified. The specific image-generating-app exclusion in the available EULA is sufficient to withhold restoration; a broad “free for commercial use” download label does not override it.
+The cited EULA is a third-party preservation of the rights holder’s text, not the licence record extracted from the upstream 1.10 file. The official `dubaifont.com` site could not be retrieved, so a current replacement licence there has not been verified. Both the original file’s limited-use notice and this alternative EULA fail to authorize the proposed inclusion. A broad download label does not override either restriction.
 
 ## The file called STC
 
-The earlier AN Paint change record identified this file as **STC/GE SS carrying Boutros copyright**. That binary identity must be checked against the pinned name records above rather than assumed from its Android resource name.
+The binary inspection confirms that `stc_regular.otf` is **GE SS Text Light by Boutros International**, version 1.200. The Windows family/full-name record says GE SS Text Light; the typographic family is GE SS, style Light. Its designer, manufacturer, copyright and trademark records all identify Boutros. The upstream STC filename and label were inaccurate. [Verified metadata](verification/legacy-font-metadata.json).
 
 [Boutros’s official GE SS TWO page](https://www.boutrosfonts.com/Boutros-GE-SS-TWO.html) links its [licence notification](https://www.boutrosfonts.com/spip.php?id_article=31&page=license). The notification limits the ordinary grant to workstation publishing and explicitly excludes copying or distribution without an additional agreement. [Boutros’s official free-fonts explanation](https://www.boutrosfonts.com/spip.php?page=free) further says that, except for promotions on its own site, it does not authorize other sites to offer its fonts as free downloads.
 
-Those terms do not authorize bundling a GE SS/Boutros font into a publicly distributed Android editor or its source. Purchasing a desktop font alone would not establish the additional rights required here. No app/source redistribution grant applicable to AN Paint was found.
+The linked notification is the foundry’s current general distribution statement, not a recovered purchase agreement for the 2004 file. The binary’s `fsType=0` signals installable embedding, but the specification keeps the original licence obligations in force. Neither that flag nor a desktop purchase establishes the additional APK/source redistribution rights needed here. No agreement applicable to AN Paint was found. The confirmed Boutros identity and official restriction support keeping this font excluded unless the applicable additional rights can be documented.
 
-A separate similarly named font exists: [Arabic Typography’s STC Telecom](https://www.arabictypography.com/custom-type/stc-telecom-font). Its designer describes a client-exclusive commission unavailable for general licensing or purchase. That statement must **not** be used as the licence for the upstream file if its metadata instead identifies Boutros/GE SS. It is recorded here to prevent a filename-based misidentification.
+A separate similarly named font exists: [Arabic Typography’s STC Telecom](https://www.arabictypography.com/custom-type/stc-telecom-font). Its designer describes a client-exclusive commission unavailable for general licensing or purchase. That statement is **not** the licence for the inspected upstream Boutros file. It is recorded here to prevent a filename-based misidentification.
 
 ## Why the old test used system sans-serif
 
@@ -49,9 +59,8 @@ The original selector and `TextToolFontListTest.kt` have since been removed with
 
 ## Conditions for revisiting restoration
 
-1. Finish and retain the pinned-binary metadata inspection, correcting any family or version mismatch in this review.
-2. For Dubai, obtain an authoritative replacement licence or specific permission covering image-generating Android applications, public source redistribution and downstream copies.
-3. For the exact Boutros/GE SS file, obtain an applicable app-embedding and redistribution agreement from the authorized rights holder; establish the permission chain for any renamed or modified binary.
-4. If such terms are obtained, review them before changing the font catalogue and include the actual required notices and terms. Until then, retain the current accurately named, licensed font choices.
+1. For Dubai, obtain an authoritative replacement licence or specific permission covering image-generating Android applications, public source redistribution and downstream copies.
+2. For the exact Boutros/GE SS file, obtain an applicable app-embedding and redistribution agreement from the authorized rights holder; establish the permission chain for any renamed or modified binary.
+3. If such terms are obtained, review them before changing the font catalogue and include the actual required notices and terms. Until then, retain the current accurately named, licensed font choices.
 
 No rights holder has been contacted and no licence has been purchased as part of this review.

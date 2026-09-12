@@ -567,3 +567,32 @@ work as PNG in the old app, then load it in the new app. PNG transfers the
 image; the old app retains its autosave, clipboard and preferences. The new
 identity's future updates must use its signing key. Never publish private
 signing material or the build backup to GitHub.
+
+## Consolidated editor and additional codecs (local.16–local.17)
+
+`EDITOR_PARITY.md` maps the original editor's functions to the sole remaining
+workspace. `CODEC_SUPPORT.md` records format behavior and limits. Native builds
+now include JPEG XL, WebP, HEIF/HEVC and AV1 dependencies from exact source
+revisions. `fetchJxlSources`, `fetchWebpSources` and `fetchHeifSources` run before
+source bundling and CMake. The offline source ZIP includes these source trees
+under `Paintroid/build/`; revision markers let the extracted archive reuse them.
+Run Gradle without `clean` when rebuilding directly from that offline archive,
+since `clean` removes the build directory and therefore those reusable sources.
+
+Use the same JDK/SDK/NDK/CMake versions listed above. Python 3 is required for
+source fetch and licence-generation scripts. Normal builds fetch source on the
+first invocation; there is no downloaded opaque native codec binary.
+
+```sh
+./gradlew --no-daemon --max-workers=2 :app:writeDependencyInventory
+python3 tools/generate_legal_notices.py
+./gradlew --no-daemon --max-workers=2 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug
+# With an Android device/emulator connected:
+./gradlew --no-daemon --max-workers=2 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+```
+
+An ABI-restricted build is useful for emulator iteration. Final distribution
+must be assembled without `-PnativeAbis` so it contains all four architectures.
+After running ABI-restricted app tests, rebuild the universal app before
+packaging: instrumentation tasks may otherwise leave a restricted app-debug APK.
+Never mistake build-time ARM compilation for a physical ARM runtime test.
