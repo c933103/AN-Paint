@@ -32,9 +32,9 @@ jobs:
           ./gradlew --no-daemon --max-workers=2 --console=plain :app:writeDependencyInventory
           python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
           python3 tools/generate_legal_notices.py
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Run codec and installed-app tests on Android
-        if: ${{ !cancelled() }}
+        if: ${{ success() }}
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-30;google_apis;x86_64" "emulator"
           echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name codec --package "system-images;android-30;google_apis;x86_64"
@@ -52,7 +52,7 @@ jobs:
           # App instrumentation uses a smaller x86_64 APK. Assemble the final
           # distribution afterward so that all four CPU architectures remain.
           "$ANDROID_HOME/platform-tools/adb" emu kill
-          ./gradlew --no-daemon --max-workers=2 --console=plain :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Prepare verification tools
         if: always()
         run: |

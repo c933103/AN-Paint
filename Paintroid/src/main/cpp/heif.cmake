@@ -1,6 +1,41 @@
 # AN Paint HEIF-family codecs. AGPL-3.0-or-later; library terms remain separate.
 set(HEIF_SOURCES ${CMAKE_CURRENT_LIST_DIR}/../../../build/heif-source)
 
+# libde265 and other siblings use unnamespaced HAVE_* cache entries. AOM's
+# default setter preserves those entries, even for its generic CPU configuration.
+# Isolate all CPU/SIMD flags while AOM configures its sources and RTCD headers,
+# then restore the sibling cache so later reconfiguration does not disable their
+# independently detected optimizations.
+function(anpaint_add_generic_aom)
+  set(aom_cpu_flags
+      AOM_ARCH_AARCH64 AOM_ARCH_ARM AOM_ARCH_PPC AOM_ARCH_X86 AOM_ARCH_X86_64 AOM_ARCH_RISCV
+      HAVE_NEON HAVE_ARM_CRC32 HAVE_NEON_DOTPROD HAVE_NEON_I8MM HAVE_SVE HAVE_SVE2
+      HAVE_VSX HAVE_MMX HAVE_SSE HAVE_SSE2 HAVE_SSE3 HAVE_SSSE3 HAVE_SSE4_1 HAVE_SSE4_2
+      HAVE_AVX HAVE_AVX2 HAVE_AVX512 HAVE_RVV)
+  foreach(flag IN LISTS aom_cpu_flags)
+    if(DEFINED CACHE{${flag}})
+      set(${flag}_was_cached TRUE)
+      get_property(${flag}_saved_value CACHE ${flag} PROPERTY VALUE)
+      get_property(${flag}_saved_type CACHE ${flag} PROPERTY TYPE)
+      get_property(${flag}_saved_help CACHE ${flag} PROPERTY HELPSTRING)
+      get_property(${flag}_saved_advanced CACHE ${flag} PROPERTY ADVANCED)
+    endif()
+    set(${flag} 0 CACHE STRING "AN Paint: generic AOM CPU configuration" FORCE)
+    set(${flag} 0)
+  endforeach()
+  set(AOM_TARGET_CPU generic CACHE STRING "" FORCE)
+  set(AOM_TARGET_CPU generic)
+  add_subdirectory(${HEIF_SOURCES}/aom aom EXCLUDE_FROM_ALL)
+  foreach(flag IN LISTS aom_cpu_flags)
+    if(${flag}_was_cached)
+      set(${flag} "${${flag}_saved_value}" CACHE ${${flag}_saved_type} "${${flag}_saved_help}" FORCE)
+      set_property(CACHE ${flag} PROPERTY ADVANCED "${${flag}_saved_advanced}")
+    else()
+      unset(${flag} CACHE)
+    endif()
+  endforeach()
+endfunction()
+
 # Scope vendor CMake options and checks so they do not alter JPEG XL targets.
 function(anpaint_add_heif)
   set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
@@ -37,8 +72,7 @@ function(anpaint_add_heif)
   endforeach()
   # Portable baseline on every ABI: no assembler executable or CPU detection
   # assumptions at installation time. SIMD can be enabled after ARM profiling.
-  set(AOM_TARGET_CPU generic CACHE STRING "" FORCE)
-  add_subdirectory(${HEIF_SOURCES}/aom aom EXCLUDE_FROM_ALL)
+  anpaint_add_generic_aom()
 
   # Give libheif real in-tree targets through its normal Find modules.
   set(LIBDE265_INCLUDE_DIR ${HEIF_SOURCES}/libde265 CACHE PATH "" FORCE)

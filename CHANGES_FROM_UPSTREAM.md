@@ -430,6 +430,8 @@ failed one JPEG XL boundary test. Its exact status is preserved in
   translation preparation. Record exact Dubai and former STC/GE SS identities,
   actual licence restrictions and the decision to keep those binaries excluded.
 - Version code 70; retain `io.github.c933103.anpaint` and the AN Paint signing key.
+- Isolate native codec CPU-feature settings so the generic AVIF build does not
+  inherit another decoder's ARMv7 NEON detection.
 
 See `HANDOFF.md` and the release verification report for executed checks and
 physical-device limits; implementation entries alone are not test results.

@@ -42,4 +42,8 @@ for Butteraugli. The independent host results are:
 Both pass the revised checks. Dimension checks, opaque pixels and all exact
 lossless per-pixel checks remain. No codec setting or production code was
 changed to accommodate the lossy test. The host reproduction uses an older
-independent codec; final Android CI must verify the packaged 0.12.0 build.
+independent codec. [CI run 34686571856](https://github.com/c933103/AN-Paint/actions/runs/34686571856)
+subsequently passed the revised test with the actual Android libjxl 0.12.0 build,
+along with all 18 native codec/font tests and seven installed-app tests. That
+run's later ARMv7 AVIF compilation failure was separate from the JPEG XL tests;
+the final release report identifies the fully verified universal APK.
