@@ -11,8 +11,9 @@ function(anpaint_add_heif)
   add_subdirectory(${HEIF_SOURCES}/libde265 de265 EXCLUDE_FROM_ALL)
 
   # The upstream Kvazaar CMake writes version files into its source directory,
-  # which races across Android ABIs. Build its unchanged library sources with
-  # an ABI-local version header and the portable strategies instead.
+  # which races across Android ABIs. Build its library sources with an ABI-local
+  # version header and portable strategies instead. The fetch script also fixes
+  # its optional RD logging mutex lifetime on Android.
   set(KVZ_ROOT ${HEIF_SOURCES}/kvazaar)
   file(GLOB kvz_sources ${KVZ_ROOT}/src/*.c)
   list(REMOVE_ITEM kvz_sources ${KVZ_ROOT}/src/encmain.c ${KVZ_ROOT}/src/cli.c ${KVZ_ROOT}/src/yuv_io.c)

@@ -4,6 +4,7 @@ The libraries retain their own licences in HEIF_AVIF_NOTICES.txt. Sources are
 rebuilt by the Android NDK; no opaque prebuilt codec binary is downloaded.
 """
 from pathlib import Path
+import hashlib
 import io
 import shutil
 import tarfile
@@ -49,3 +50,52 @@ for name, repo, revision in SOURCES:
         text = text.replace('add_dependencies(dist ', f'add_dependencies({name}-dist ')
         cmake.write_text(text)
     marker.write_text(revision)
+
+
+def patch_kvazaar_mutex_lifetime(source: Path):
+    """Fix optional RD logging cleanup when encoders are opened repeatedly.
+
+    Upstream 2.3.2 destroys every global outfile mutex on encoder_close,
+    including mutexes never initialized or already destroyed by a prior tile.
+    Android's pthread FORTIFY correctly aborts on the second close. Track the
+    actual initialization lifetime; encoding algorithms remain unchanged.
+    """
+    original_digest = '69e9902060b9d38a107cdea4b7d602b81c93dfd3faf63631226c22e39bad7c72'
+    patched_digest = '0635fc6ddb808ad0b03126a3bc677e97d9f3bfa8cb871c244e89e3d5f9faccb1'
+    raw = source.read_bytes()
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest == patched_digest:
+        return
+    if digest != original_digest:
+        raise RuntimeError('Unexpected Kvazaar rdo.c; review the pinned mutex lifetime patch')
+    text = raw.decode('utf-8')
+    replacements = [
+        ('static pthread_mutex_t outfile_mutex[RD_SAMPLING_MAX_LAST_QP + 1];',
+         'static pthread_mutex_t outfile_mutex[RD_SAMPLING_MAX_LAST_QP + 1];\n'
+         '// AN Paint: track optional RD logging mutex lifetime.\n'
+         'static unsigned char outfile_mutex_initialized[RD_SAMPLING_MAX_LAST_QP + 1];'),
+        ('      goto out_destroy_mutexes;\n    }\n  }',
+         '      goto out_destroy_mutexes;\n    }\n    outfile_mutex_initialized[qp] = 1;\n  }'),
+        ('    pthread_mutex_destroy(outfile_mutex + qp);',
+         '    if (outfile_mutex_initialized[qp]) {\n'
+         '      pthread_mutex_destroy(outfile_mutex + qp);\n'
+         '      outfile_mutex_initialized[qp] = 0;\n    }'),
+        ('  for (i = 0; i < RD_SAMPLING_MAX_LAST_QP; i++) {',
+         '  for (i = 0; i <= RD_SAMPLING_MAX_LAST_QP; i++) {'),
+        ('      fclose(curr);\n    }\n    if (curr_mtx != NULL) {\n      pthread_mutex_destroy(curr_mtx);\n    }',
+         '      fclose(curr);\n      fastrd_learning_outfile[i] = NULL;\n    }\n'
+         '    if (outfile_mutex_initialized[i]) {\n'
+         '      pthread_mutex_destroy(curr_mtx);\n      outfile_mutex_initialized[i] = 0;\n    }'),
+    ]
+    for old, new in replacements:
+        if text.count(old) != 1:
+            raise RuntimeError('Pinned Kvazaar source changed; review mutex lifetime patch')
+        text = text.replace(old, new)
+    patched = text.encode('utf-8')
+    if hashlib.sha256(patched).hexdigest() != patched_digest:
+        raise RuntimeError('Kvazaar mutex patch produced unexpected source')
+    source.write_bytes(patched)
+
+
+# Run after cache hits too, so an existing offline source archive is repairable.
+patch_kvazaar_mutex_lifetime(DEST / 'kvazaar/src/rdo.c')

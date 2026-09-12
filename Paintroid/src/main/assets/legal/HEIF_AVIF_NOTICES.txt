@@ -24,8 +24,13 @@ The Android build compiles the following pinned upstream source revisions:
 The fetch script renames libde265's and libaom's unused "dist" CMake targets
 to prevent a target-name collision. Kvazaar's library sources are compiled
 with an ABI-local version header and portable strategies; its upstream
-source-directory-mutating build is not used. No third-party runtime source
-algorithms are modified. Builds disable third-party example applications,
+source-directory-mutating build is not used. AN Paint's 2026-09-12 patch to
+Kvazaar src/rdo.c tracks initialization of its optional RD logging mutexes,
+destroys only initialized mutexes, and clears closed file pointers. This
+fixes an Android FORTIFY abort when repeated encodes or grid tiles close
+mutexes that were never initialized or already destroyed. Codec algorithms
+are unchanged. The reproducible patch is in tools/fetch_heif_sources.py,
+and the bundled source includes the patched file. Builds disable example applications,
 tests, dynamically loaded codec plugins, and optional unrelated codecs.
 
 The complete source and deterministic fetch/build instructions are bundled
@@ -2037,5 +2042,4 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 

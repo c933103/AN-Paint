@@ -188,7 +188,7 @@ tasks.named('bundleCorrespondingSource').configure {
     ['jxl-source', 'webp-source', 'heif-source'].each { codec ->
         from(layout.buildDirectory.dir(codec)) {
             into "AN-Paint/Paintroid/build/${codec}"
-            exclude '**/__pycache__/**'
+            exclude '**/__pycache__/**', '**/*.jar', '**/*.class', '**/*.pyc', '**/*.o', '**/*.obj', '**/*.a', '**/*.so', '**/*.dll', '**/*.exe'
         }
     }
 }

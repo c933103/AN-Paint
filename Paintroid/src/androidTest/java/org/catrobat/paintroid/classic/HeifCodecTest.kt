@@ -119,4 +119,34 @@ class HeifCodecTest {
             assertEquals(original, input.getPixel(16, 12)); assertFalse(input.isRecycled)
         } finally { input.recycle(); target.delete() }
     }
+    @Test fun commonImporterAndAssemblyUseNativeAvifWithExactCropPixels() {
+        val input = pattern(67,49); val target = file("avif")
+        try {
+            ImageExporter.encode(input,target,ExportOptions(ImageFormat.AVIF,100,true),budget)
+            // The provider's cached filename need not carry the format suffix.
+            val generic = File(context.cacheDir,"${target.nameWithoutExtension}.image")
+            target.copyTo(generic,true)
+            try {
+                val source = ImportedImage(generic,"image from provider")
+                assertEquals(ImageDimensions(67,49),source.dimensions)
+                val policy = ImageMemoryPolicy.forDevice(context)
+                val plan = ImportPlan.create(source.dimensions,ImageDimensions(17,13))
+                source.checkImport(policy,plan,0)
+                val preview = source.decode(plan,policy.workingBytes,0)
+                try {
+                    for(y in 0 until preview.height) for(x in 0 until preview.width)
+                        assertEquals(input.getPixel(x*67/17,y*49/13),preview.getPixel(x,y))
+                } finally { preview.recycle() }
+                val crop = Rect(10,8,40,32)
+                val item = AssemblyImage("native-avif",generic,"image from provider",null,source.dimensions,crop)
+                val renderer = AssemblyRenderer(context,listOf(item),mapOf(item.id to Rect(0,0,30,24)),0)
+                val result = renderer.render(renderer.original)
+                try {
+                    for(y in 0 until result.height) for(x in 0 until result.width)
+                        assertEquals(input.getPixel(crop.left+x,crop.top+y),result.getPixel(x,y))
+                    assertFalse(result.hasAlpha())
+                } finally { result.recycle() }
+            } finally { generic.delete() }
+        } finally { input.recycle(); target.delete() }
+    }
 }

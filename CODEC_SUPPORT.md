@@ -44,6 +44,13 @@ Full dependency notices and exact source locators are available in Help and in
 `Paintroid/src/main/assets/legal/`. Fetch scripts under `tools/` reproduce each
 native source revision; the build does not download precompiled codec binaries.
 
+The Kvazaar source receives a documented mutex-lifetime correction in
+`tools/fetch_heif_sources.py`: optional RD logging mutexes are destroyed only
+after successful initialization, and their state is cleared on close. This fixes
+the Android FORTIFY abort reproduced when encoding successive HEIC grid tiles.
+It does not alter compression algorithms. The patched source and its notice are
+included in the offline source bundle.
+
 Implementation and tests in this file describe the intended local.17 build.
 Consult `HANDOFF.md` and `verification/` for the verification actually completed
 for a delivered APK, including the distinction between emulator and physical

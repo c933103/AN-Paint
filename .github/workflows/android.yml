@@ -45,7 +45,7 @@ jobs:
             test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
             sleep 2
           done
-          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
       - name: Prepare verification tools
         if: always()
         run: |

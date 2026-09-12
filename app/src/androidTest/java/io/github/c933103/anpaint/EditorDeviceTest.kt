@@ -2,7 +2,10 @@
 package io.github.c933103.anpaint
 
 import android.app.Activity
+import android.app.Dialog
 import android.app.Instrumentation
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,6 +19,8 @@ import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+import android.widget.ScrollView
+import android.widget.TextView
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
@@ -28,6 +33,7 @@ import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageFormat
+import org.catrobat.paintroid.classic.LegalInfo
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.PaintTool
 import org.junit.After
@@ -252,6 +258,51 @@ class EditorDeviceTest {
         val gallery=monitor.requests.single {it.component?.className==MediaGalleryActivity::class.java.name}
         assertEquals(context.packageName,gallery.component!!.packageName)
         onMain {assertEquals(100,it.document.bitmap.width);assertNull(it.lastIoError)}
+    }
+
+    @Test fun largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard() {
+        val expected=context.assets.open("legal/THIRD_PARTY_NOTICES.txt").bufferedReader().use {it.readText()}
+        assertTrue("Exercise the complete large bundled notice, not a short substitute",expected.length>300000)
+        lateinit var dialog: Dialog
+        onMain {dialog=LegalInfo.termsDialog(it,text(R.string.ui_third_party_notices),expected);dialog.show()}
+        try {
+            awaitState("large terms dialog layout") {
+                dialog.window!!.decorView.findViewWithTag<View>("terms_actions").height>0
+            }
+            val footerBounds=Rect()
+            onMain {
+                val root=dialog.window!!.decorView
+                assertEquals(expected,root.findViewWithTag<TextView>("terms_text").text.toString())
+                val footer=root.findViewWithTag<View>("terms_actions")
+                assertTrue(footer.getGlobalVisibleRect(footerBounds))
+                for(tag in listOf("terms_copy","terms_more","terms_done")) {
+                    val button=root.findViewWithTag<View>(tag);val visible=Rect()
+                    assertSame(footer,button.parent)
+                    assertTrue("Visible fixed action: $tag",button.isShown && button.getGlobalVisibleRect(visible))
+                    assertTrue("Usable action height: $tag",visible.height()>=button.height/2)
+                }
+                val scroll=root.findViewWithTag<ScrollView>("terms_scroll")
+                assertTrue("Long notice must scroll independently",scroll.canScrollVertically(1))
+                scroll.scrollTo(0,scroll.getChildAt(0).height)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val root=dialog.window!!.decorView;val after=Rect()
+                assertTrue(root.findViewWithTag<View>("terms_actions").getGlobalVisibleRect(after))
+                assertEquals("Scrolling the legal text must not move its actions",footerBounds,after)
+                assertTrue(root.findViewWithTag<View>("terms_copy").performClick())
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val clipboard=it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip=clipboard.primaryClip
+                assertNotNull("Copy all must reach the system clipboard",clip)
+                assertEquals(1,clip!!.itemCount)
+                assertEquals("The Android clipboard must contain every displayed character",expected,clip.getItemAt(0).text.toString())
+                assertTrue(dialog.window!!.decorView.findViewWithTag<View>("terms_done").performClick())
+                assertFalse(dialog.isShowing)
+            }
+        } finally {onMain {dialog.dismiss()}}
     }
 
     private fun fixture(name: String)=File(File(context.cacheDir,"images").apply {mkdirs()},name).also {it.delete();fixtures.add(it)}
