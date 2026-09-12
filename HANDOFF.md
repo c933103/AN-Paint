@@ -22,7 +22,9 @@ Updated 12 September 2026. Package `io.github.c933103.anpaint`, version
 
 ## Verification status
 
-Release verification is in progress. The final signed APK report will be recorded after the Android and packaging checks complete.
+The signed local.18 APK passed 177 unit/regression tests. Android 15/API35 passed 35 native tests and 8 installed-app tests; Android 11/API30 passed 34 native tests and 8 app tests. The Ultra HDR test requires API34+ and is explicitly filtered only from API30. No executed tests failed or skipped. Lint reported zero errors and 0 warnings. All four CPU architectures, the matching source/fonts/licences, 16 KB alignment and the local.17 upgrade signature were verified.
+
+Build: [`6b5acc7b56ca5685e1b148bbf173522a6b218244`](https://github.com/c933103/AN-Paint/commit/6b5acc7b56ca5685e1b148bbf173522a6b218244). [Android workflow](https://github.com/c933103/AN-Paint/actions/runs/34692671218); [detailed verification](https://github.com/c933103/AN-Paint/blob/develop/verification/local18.json). The downloadable and in-app source ZIPs are the exact build snapshot; this final status was recorded afterward.
 
 ## Remaining boundaries
 

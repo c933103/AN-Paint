@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.18 adds responsive tool categories, adjustable Pencil width and colour-managed high-bit-depth/HDR imports. See [HANDOFF.md](HANDOFF.md) for current verification and remaining limits.
+> Local.18 is verified: 177 regression tests and 85 emulator checks passed on Android 11/15, with no lint errors or warnings. It adds responsive tool categories, adjustable Pencil width and colour-managed high-bit-depth/HDR imports. See [HANDOFF.md](HANDOFF.md) for the exact build revision and remaining limits.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
