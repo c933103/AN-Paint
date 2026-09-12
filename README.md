@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.17 adds HEIC, AVIF and WebP, corrects JPEG XL encoding and continues the consolidated-editor verification. See [HANDOFF.md](HANDOFF.md) for the exact current verification status.
+> Local.17 adds HEIC, AVIF and WebP and fixes JPEG XL encoding. All 192 automated checks pass; lint has no errors or warnings. See [HANDOFF.md](HANDOFF.md) for the verified build, feature audit and remaining device/service limits.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),

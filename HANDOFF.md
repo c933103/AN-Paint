@@ -40,9 +40,11 @@ code `70`, using the existing AN Paint signing identity.
 
 ## Verification status
 
-The combined local.17 Android build and tests are in progress. A release
-verification report will replace this paragraph after the final APK is checked.
-No intermediate CI checkpoint is a verified release.
+The signed local.17 APK passed **167 unit/regression tests, 18 native Android codec/font tests and 7 installed-app tests**. Lint reported **0 errors and 0 warnings**. All four CPU architectures were built; the APK and native libraries passed 16 KB alignment checks. The signing certificate matches local.16, and the bundled source, codec notices and fonts match the verified build.
+
+Build: [`c6971956419e59d5802d9d817d7975aafa0879c1`](https://github.com/c933103/AN-Paint/commit/c6971956419e59d5802d9d817d7975aafa0879c1). [Android workflow](https://github.com/c933103/AN-Paint/actions/runs/34687526184); [detailed verification report](https://github.com/c933103/AN-Paint/blob/develop/verification/local17.json). The downloadable and in-app source ZIPs are the exact build snapshot. This final status and verification report were recorded afterward; they do not change the APK code.
+
+The local.16 JPEG XL encoding failure is fixed. No requested implementation item remains open from the consolidation audit. The external-service, colour-profile and device-verification limits described below and in CODEC_SUPPORT.md remain explicit.
 
 ## Physical-device and external-service limits
 
