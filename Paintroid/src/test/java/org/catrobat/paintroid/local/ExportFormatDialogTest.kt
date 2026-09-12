@@ -124,7 +124,7 @@ class ExportFormatDialogTest {
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
         assertSame(selection,activity.document.selection)
         assertTrue(activity.document.selection!!.floating)
-        menu("Save")
+        menu(activity.getString(org.catrobat.paintroid.R.string.ui_save_a5d0d9))
         val plain=shadowOf(activity).nextStartedActivityForResult
         assertEquals("image/gif",plain.intent.type)
         assertTrue(plain.intent.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".gif"))

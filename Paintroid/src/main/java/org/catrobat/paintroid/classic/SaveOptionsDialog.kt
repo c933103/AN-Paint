@@ -61,6 +61,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             explanation.text=ui(when(format) {
                 ImageFormat.GIF -> R.string.save20_gif_description
                 ImageFormat.BMP -> R.string.save20_bmp_description
+                ImageFormat.JPEG,ImageFormat.HEIC -> R.string.save20_lossy_quality_description
                 else -> R.string.ui_higher_quality_usually_makes_a_larger_file_lossless
             })
             explanation.visibility=if(format==ImageFormat.PNG) View.GONE else View.VISIBLE
