@@ -1,106 +1,170 @@
-name: Android verification
+name: Android build and checks
 on:
   push:
-    branches: [editor-unification, develop]
+    branches: [develop]
+    paths-ignore: ['**/*.md', 'verification/**']
+  pull_request:
+    branches: [develop]
+    paths-ignore: ['**/*.md', 'verification/**']
   workflow_dispatch:
+    inputs:
+      device_tests:
+        description: 'Emulator coverage (APK build is independent)'
+        type: choice
+        options: [current, full, none]
+        default: current
 permissions:
   contents: read
 concurrency:
-  group: android-${{ github.ref }}-${{ github.sha }}
-  cancel-in-progress: false
+  group: android-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
 jobs:
-  verify:
+  checks:
+    name: Regression tests and lint
     runs-on: ubuntu-22.04
-    timeout-minutes: 80
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
-      - name: Use Java 17 and Android 35
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+            Paintroid/build/jxl-source
+            Paintroid/build/webp-source
+            Paintroid/build/heif-source
+          key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-checks
+          restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Prepare build tools and notices
+        timeout-minutes: 8
+        run: bash tools/ci_prepare_build.sh
+      - name: Run local checks
+        timeout-minutes: 10
         run: |
-          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
-          echo "$JAVA_HOME_17_X64/bin" >> "$GITHUB_PATH"
-          export JAVA_HOME="$JAVA_HOME_17_X64"
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
-      - name: Inspect original font identities
-        run: |
-          python3 -m pip install fonttools==4.59.2
-          python3 tools/inspect_legacy_fonts.py
-      - name: Build and test
-        run: |
-          chmod +x gradlew
-          ./gradlew --no-daemon --max-workers=2 --console=plain :app:writeDependencyInventory
-          python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
-          python3 tools/generate_legal_notices.py
-          # Compile device tests before the lengthy native build/emulator stage.
-          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:compileDebugAndroidTestKotlin :app:compileDebugAndroidTestKotlin
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
-      - name: Run codec and installed-app tests on Android
-        # Collect device failures in the same run when the APK compiled but a
-        # host regression failed. The failed build step still fails the job.
-        if: ${{ !cancelled() && hashFiles('app/build/outputs/apk/debug/*.apk') != '' }}
-        run: |
-          sudo chmod a+rw /dev/kvm
-          checks_failed=0
-          for api in 30 35; do
-            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$api;google_apis;x86_64" "emulator"
-            echo no | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd --force --name "codec$api" --package "system-images;android-$api;google_apis;x86_64"
-            "$ANDROID_HOME/emulator/emulator" -avd "codec$api" -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > "emulator-$api.log" 2>&1 &
-            emulator_pid=$!
-            "$ANDROID_HOME/platform-tools/adb" wait-for-device
-            for attempt in $(seq 1 90); do
-              test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
-              sleep 2
-            done
-            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1"
-            test "$("$ANDROID_HOME/platform-tools/adb" shell getprop ro.build.version.sdk | tr -d '\r')" = "$api"
-            runner_args=()
-            if test "$api" = 30; then
-              runner_args+=("-Pandroid.testInstrumentationRunnerArguments.notClass=org.catrobat.paintroid.classic.UltraHdrImportTest")
-            fi
-            if ! ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 "${runner_args[@]}" :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest; then
-              checks_failed=1
-            fi
-            for module in Paintroid app; do
-              mkdir -p "build/reports/android-api-$api/$module"
-              cp -R "$module/build/outputs/androidTest-results" "build/reports/android-api-$api/$module/"
-            done
-            "$ANDROID_HOME/platform-tools/adb" emu kill
-            wait "$emulator_pid" || true
-          done
-          cp emulator-35.log emulator.log
-          exit "$checks_failed"
-      - name: Build universal APK after Android checks
-        if: ${{ success() }}
-        run: |
-          # App instrumentation uses a smaller x86_64 APK. Assemble the final
-          # distribution afterward so that all four CPU architectures remain.
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
-      - name: Prepare verification tools
-        if: always()
-        run: |
-          mkdir -p verification-tools/lib64
-          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" verification-tools/
-          cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" verification-tools/
-          cp "$ANDROID_HOME/build-tools/35.0.0/aapt2" verification-tools/
-          cp "$ANDROID_HOME/build-tools/35.0.0/lib64/libc++.so" verification-tools/lib64/
+          python3 -m unittest discover -s tools -p 'test_run_android_instrumentation.py'
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:lintDebug
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: android-verification
+          name: regression-and-lint-${{ github.sha }}
           retention-days: 14
           path: |
-            build/reports/android-api-*/
-            build/reports/legacy-font-metadata.json
-            app/build/outputs/apk/debug/*.apk
+            Paintroid/build/test-results/
+            Paintroid/build/reports/
             app/build/reports/
-            app/build/outputs/androidTest-results/
+
+  build:
+    name: Build APK and corresponding source
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+            Paintroid/build/jxl-source
+            Paintroid/build/webp-source
+            Paintroid/build/heif-source
+          key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-build
+          restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Prepare build tools and notices
+        timeout-minutes: 8
+        run: bash tools/ci_prepare_build.sh
+      - name: Build universal APK
+        timeout-minutes: 22
+        run: ./gradlew --no-daemon --max-workers=2 --console=plain :app:assembleDebug
+      - name: Record build identity and extract matching source
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, zipfile
+          apk = pathlib.Path('app/build/outputs/apk/debug/app-debug.apk')
+          out = pathlib.Path('build/delivery'); out.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(apk) as z:
+              source = z.read('assets/local-source/AN-Paint-source.zip')
+          (out/'AN-Paint-source.zip').write_bytes(source)
+          (out/'build-info.json').write_text(json.dumps({
+              'commit': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
+              'apk_sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
+              'source_sha256': hashlib.sha256(source).hexdigest(),
+              'test_status': 'Reported separately; artifact availability does not imply tests passed.',
+              'signing': 'CI debug key. Upgrade signing remains a separate private packaging step.'
+          }, indent=2)+'\n')
+          PY
+      - name: Upload APK immediately, before device tests
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: apk-and-source-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            build/delivery/
             app/build/runtime-dependencies.json
+            build/reports/native-runtime-notices.json
             Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt
             Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt
-            build/reports/native-runtime-notices.json
-            Paintroid/build/test-results/
-            Paintroid/build/outputs/androidTest-results/
-            emulator*.log
-            Paintroid/build/reports/
             verification-tools/
+      - name: Compile test APKs once for all emulator jobs
+        if: ${{ inputs.device_tests != 'none' }}
+        timeout-minutes: 3
+        run: ./gradlew --no-daemon --max-workers=2 --console=plain :Paintroid:assembleDebugAndroidTest :app:assembleDebugAndroidTest
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ inputs.device_tests != 'none' }}
+        with:
+          name: instrumentation-apks-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            Paintroid/build/outputs/apk/androidTest/debug/*.apk
+            app/build/outputs/apk/androidTest/debug/*.apk
+
+  device:
+    name: Emulator API ${{ matrix.api }}
+    needs: build
+    if: ${{ inputs.device_tests != 'none' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        api: ${{ fromJSON(inputs.device_tests == 'full' && '[30,35]' || '[35]') }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: apk-and-source-${{ github.sha }}
+          path: build/prebuilt
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: instrumentation-apks-${{ github.sha }}
+          path: build/prebuilt
+      - name: Install emulator image
+        timeout-minutes: 6
+        env:
+          TEST_API: ${{ matrix.api }}
+        run: |
+          sudo chmod a+rw /dev/kvm
+          timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"
+      - name: Run prebuilt tests with deadlines and live logs
+        timeout-minutes: 15
+        env:
+          TEST_API: ${{ matrix.api }}
+        run: bash tools/ci_emulator.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: emulator-api-${{ matrix.api }}-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: build/reports/android-api-${{ matrix.api }}/

@@ -1,0 +1,104 @@
+# Android build and test workflow
+
+Updated 12 September 2026. APK production, regression checks and emulator results
+are separate outcomes. An emulator must not prevent obtaining an already-built
+APK or completing unrelated work.
+
+## What runs
+
+| Trigger / choice | Regression and lint | Universal APK | Emulator coverage |
+|---|---|---|---|
+| Code push to `develop`, or pull request targeting it | Yes, independently | Yes | API 35, all native and app checks |
+| Run workflow → `current` | Yes | Yes | API 35 |
+| Run workflow → `full` | Yes | Yes | API 30 and 35 in parallel |
+| Run workflow → `none` | Yes | Yes | Explicitly not run |
+| Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
+
+Direct pushes to a working branch do not duplicate a PR/default-branch run.
+New commits cancel obsolete runs for the same branch/PR. Failed emulator matrix
+jobs do not cancel the other platform. A failed test remains a failed check;
+there is no `continue-on-error` or replacement of failures with green results.
+
+The build job uploads `apk-and-source-<commit>` immediately after assembly and
+before compiling instrumented-test APKs. Regression/lint runs in a separate job;
+neither those results nor emulator completion is a prerequisite for the upload.
+The artifact includes the exact corresponding source ZIP, SHA-256 hashes, commit,
+run ID, runtime inventory, notices and signing/alignment tools. It uses a temporary
+CI debug key; the existing private signing step supplies an upgradeable delivery.
+Artifact availability is not a claim that all tests passed.
+
+Test APKs are compiled once, after the delivery artifact is available. Emulator
+jobs download those binaries and run `adb shell am instrument -w -r` directly;
+they do not invoke Gradle or rebuild native codecs. Full runs use independent
+API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
+has no gain-map API. No test is removed from the current-platform suite.
+
+Dependencies and pinned native source trees are cached. Compiled application
+classes, APKs, CMake output and object files are not restored from a cache.
+
+## Deadlines and evidence
+
+- Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
+- Emulator SDK installation: 5-minute command deadline; device discovery:
+  60 seconds; boot: 120 seconds; main APK installation: 60 seconds.
+- Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
+  native/app instrumentation invocation: 180 seconds. These inner budgets fit
+  within the whole emulator execution step's 15-minute limit, leaving time to
+  collect failure reports and shut down.
+- Emulator shutdown and log collection are bounded. Failure reports upload with
+  `always()` even if a test step fails; forced job cancellation may leave partial
+  evidence, which must not be described as a pass.
+
+`tools/run_android_instrumentation.py` streams raw output into the live Actions
+log, saves partial output, and writes JUnit XML plus `summary.json`. Success requires
+the runner's final result, successful results for every declared method, and no
+missing, unexpected, ignored, failed or aborted tests. An `adb` exit code of zero
+alone is insufficient. No automatic retry hides a failure or doubles a long run.
+Reports are separate artifacts: `regression-and-lint-<commit>` and
+`emulator-api-<api>-<commit>`. They are retained for 14 days; archive final release
+evidence during private packaging rather than depending on temporary artifacts.
+
+The old private `package18.py` describes the historical local.18 artifact layout
+and requires all its recorded results. Future packaging must collect the new
+separate artifacts and report the selected matrix, pending checks and failures
+explicitly. Do not manufacture missing reports to satisfy the old helper.
+
+## How to conclude work
+
+Continue useful implementation while asynchronous checks run. A task can conclude
+with source published and a development build delivered after its build, source
+and signature checks, while clearly stating which runtime checks are pending.
+Do not wait through every device run simply to end a turn. A fully verified release
+still requires the relevant completed checks; a runtime defect remains work to
+fix even when the APK has already been made available.
+
+For failure investigation, inspect the failing job and retained logs first.
+Run the affected class/method locally or through the direct-ADB runner when an
+Android runtime is available. Repeat the complete matrix only for a release or
+when a diagnosed risk spans both supported test platforms.
+
+## The local.18 delay and correction
+
+The prior workflow put everything in one 80-minute job: host checks, API 30,
+API 35, then a universal rebuild and finally artifact upload. Its concurrency key
+included the commit SHA and disabled cancellation, leaving superseded runs active.
+
+The final successful local.18 run lasted 40m44s; its emulator step took about
+20m23s. Earlier failed iterations extended the work across multiple runs. These
+timings do not excuse using that chain as a blocker for other tasks.
+
+The app tests also incurred eight unnecessary 45-second waits per platform.
+After moving the app to `CREATED` to await autosave, AndroidX Test Core 1.6.1's
+`close()` restarted its already-visible helper activity and waited for another
+resume notification. API 30's app suite increased from 39.849s to 399.623s.
+Teardown now preserves the autosave wait, finishes the stopped activity normally,
+waits for destruction, and then closes the scenario's observer. Production app
+code and functional test assertions are unchanged. Its runtime result must be
+confirmed by the next asynchronous run; the predicted saving is not a measured
+result from the revised workflow.
+
+Sources: [the completed local.18 run](https://github.com/c933103/AN-Paint/actions/runs/34692671218),
+[AndroidX helper implementation](https://github.com/android/android-test/blob/axt_06_26_2024/core/java/androidx/test/core/app/InstrumentationActivityInvoker.java),
+[Android command-line testing](https://developer.android.com/studio/test/command-line),
+[GitHub artifact sharing](https://docs.github.com/en/actions/tutorials/store-and-share-data),
+[GitHub workflow syntax](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions).

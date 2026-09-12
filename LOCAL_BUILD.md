@@ -599,11 +599,13 @@ Never mistake build-time ARM compilation for a physical ARM runtime test.
 
 ## Colour-managed imports and responsive tools (local.18)
 
-The Android workflow now runs the native codec and installed-app tests on both
-Android 11/API 30 and Android 15/API 35. Ultra HDR gain-map fixtures run only on
-API 35, because Android 11 has no gain-map API. Each platform's reports are
-retained separately under `build/reports/android-api-30` and
-`build/reports/android-api-35`; the final APK still contains all four ABIs.
+The verified local.18 release ran native and installed-app tests on Android
+11/API 30 and Android 15/API 35. The revised asynchronous workflow runs API 35
+for routine changes; choose `full` to run API 30 and 35 in parallel, or `none`
+to explicitly defer device testing. APK upload and regression/lint results are
+independent of device testing. See [CI.md](CI.md) for triggers, deadlines,
+artifact paths and how to report pending verification. Ultra HDR runs only on
+API 35; the universal APK still contains all four ABIs.
 
 Device tests use AndroidX Test Core 1.6.1, Runner 1.6.2 and JUnit extension
 1.2.1. The old Core 1.4.0 ActivityScenario failed Android 15's receiver rules

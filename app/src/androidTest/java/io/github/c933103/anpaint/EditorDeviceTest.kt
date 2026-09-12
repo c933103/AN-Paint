@@ -98,6 +98,13 @@ class EditorDeviceTest {
             // so a previous test cannot overwrite the next test's fresh fixture.
             scenario.moveToState(Lifecycle.State.CREATED)
             awaitState("pending save before close") {!it.busy}
+            // AndroidX 1.6.1 close() starts its EmptyActivity again even when
+            // moveToState(CREATED) already left that helper resumed. No second
+            // onResume arrives, so its helper waits the full 45-second timeout.
+            // Finish the stopped activity normally, preserving the completed
+            // onStop autosave without triggering another stop/save cycle.
+            onMain {it.finish()}
+            awaitState("activity destroyed after autosave") {it.isDestroyed}
             scenario.close()
         }
         if(::monitor.isInitialized) instrumentation.removeMonitor(monitor)

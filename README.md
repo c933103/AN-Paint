@@ -47,6 +47,11 @@ signing certificate and a higher version code.
 
 ## Building
 
+GitHub publishes the APK/source artifact before emulator checks finish.
+Regression/lint results are independent; routine runs test API 35 and the full
+API 30/35 matrix is selectable manually. See [CI.md](CI.md) for the workflow,
+timeouts and development-build versus verified-release status.
+
 Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,
 NDK 27.2.12479018 and CMake 3.22.1. Set `JAVA_HOME`
 and `ANDROID_HOME`, then run:

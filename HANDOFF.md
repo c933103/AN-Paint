@@ -28,6 +28,11 @@ Build: [`6b5acc7b56ca5685e1b148bbf173522a6b218244`](https://github.com/c933103/A
 
 ## Remaining boundaries
 
+The subsequent CI workflow revision separates APK delivery from regression and
+emulator results, adds deadlines/cancellation, and fixes a test-only 45-second
+teardown delay. See CI.md. Its first asynchronous run is pending; it does not
+change the completed local.18 APK verification above or claim a new app release.
+
 No physical phone is attached. ARM runtime performance, installation/update on a
 phone, sharing to third-party apps and live gallery downloading remain unverified.
 Android emulator checks are reported separately from physical-device use.
