@@ -63,7 +63,6 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 35
     env:
-      CCACHE_DIR: ${{ runner.temp }}/anpaint-ccache
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
       CCACHE_SLOPPINESS: ''
@@ -85,6 +84,8 @@ jobs:
             Paintroid/build/heif-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-build
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Set native compiler cache directory
+        run: echo "CCACHE_DIR=$RUNNER_TEMP/anpaint-ccache" >> "$GITHUB_ENV"
       - name: Restore content-checked native compiler cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
