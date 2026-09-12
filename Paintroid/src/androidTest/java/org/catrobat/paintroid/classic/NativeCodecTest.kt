@@ -4,6 +4,7 @@ package org.catrobat.paintroid.classic
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
+import androidx.core.graphics.ColorUtils
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
@@ -115,13 +116,25 @@ class NativeCodecTest {
                 assertEquals(size,JxlCodec.dimensions(file))
                 val output=JxlCodec.decode(file,size,budget)
                 try {
+                    assertEquals(size.width,output.width);assertEquals(size.height,output.height)
+                    // JXL quality 90 targets perceptual Butteraugli distance 1,
+                    // not a maximum error in each gamma-encoded sRGB channel.
+                    // Independent stock libjxl reproduces (13,191,128) ->
+                    // (0,192,128): red differs by 13 but CIE76 delta E is <1.
+                    // Keep q90, check perceptual colour error over this gradient,
+                    // and retain exact per-pixel checks in the lossless tests.
+                    val expectedLab=DoubleArray(3);val actualLab=DoubleArray(3)
+                    var totalError=0.0;var samples=0;var maxError=0.0;var worst=""
                     for(y in 0 until size.height step 16) for(x in 0 until size.width step 16) {
                         val expected=input.getPixel(x,y);val actual=output.getPixel(x,y)
                         assertEquals(255,Color.alpha(actual))
-                        assertTrue("Red at $x,$y",kotlin.math.abs(Color.red(expected)-Color.red(actual))<=12)
-                        assertTrue("Green at $x,$y",kotlin.math.abs(Color.green(expected)-Color.green(actual))<=12)
-                        assertTrue("Blue at $x,$y",kotlin.math.abs(Color.blue(expected)-Color.blue(actual))<=12)
+                        ColorUtils.colorToLAB(expected,expectedLab);ColorUtils.colorToLAB(actual,actualLab)
+                        val error=ColorUtils.distanceEuclidean(expectedLab,actualLab)
+                        totalError+=error;samples++
+                        if(error>maxError) {maxError=error;worst="$x,$y RGB ${Integer.toHexString(expected)} -> ${Integer.toHexString(actual)}"}
                     }
+                    assertTrue("${size.width} x ${size.height}: maximum CIE76 delta E $maxError at $worst",maxError<=5.0)
+                    assertTrue("${size.width} x ${size.height}: mean CIE76 delta E ${totalError/samples}",totalError/samples<=1.5)
                 } finally {output.recycle()}
             } finally {input.recycle();file.delete()}
         }

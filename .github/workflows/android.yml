@@ -46,6 +46,13 @@ jobs:
             sleep 2
           done
           ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+      - name: Build universal APK after Android checks
+        if: ${{ success() }}
+        run: |
+          # App instrumentation uses a smaller x86_64 APK. Assemble the final
+          # distribution afterward so that all four CPU architectures remain.
+          "$ANDROID_HOME/platform-tools/adb" emu kill
+          ./gradlew --no-daemon --max-workers=2 --console=plain :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
       - name: Prepare verification tools
         if: always()
         run: |

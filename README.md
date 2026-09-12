@@ -59,7 +59,7 @@ network access to Google Maven, Maven Central, the Gradle Plugin Portal and
 GitHub for pinned native codec source revisions (JPEG XL, WebP, HEIF/HEVC and AV1
 dependencies). Exported corresponding source also includes those native sources
 offline. The native codecs
-builds for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is available
+build for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is available
 for a faster emulator-only verification build. Android instrumentation tests run
 the actual codecs via `:Paintroid:connectedDebugAndroidTest`; installed-app tests
 run via `:app:connectedDebugAndroidTest`.
