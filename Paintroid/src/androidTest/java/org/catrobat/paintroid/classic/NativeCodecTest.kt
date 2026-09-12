@@ -218,7 +218,7 @@ class NativeCodecTest {
     }
     @Test fun IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground() {
         withColourFixture("p3-icc-alpha16",16,4) {image ->
-            assertTrue(image.hasAlpha);assertTrue(image.isPremultiplied)
+            assertTrue(image.hasAlpha());assertTrue(image.isPremultiplied)
             val alphas=intArrayOf(0,64,128,255)
             for(x in alphas.indices) assertEquals(alphas[x],Color.alpha(image.getPixel(x,0)))
             for(x in 1..3) assertRgbNear(Color.rgb(221,94,24),image.getPixel(x,0),3)
