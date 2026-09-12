@@ -18,7 +18,7 @@ notice = ["""AN Paint — third-party copyright and licence notices
 Derived from Paintroid: Copyright (C) 2010–2022 The Catrobat Team and
 contributors. GNU AGPL version 3 or any later version. Original per-file notices
 remain in the corresponding source, bundled in this APK. Full AGPL text is under
-Help. AN Paint modifications are dated 7–10 September 2026.
+Help. AN Paint modifications are dated 7–12 September 2026.
 
 The consolidated editor uses a local scanline fill implementation. The original
 editor, colour-picker module, project-file libraries and legacy artwork have
@@ -40,9 +40,13 @@ are not bundled. Catrobat's own non-software artwork uses CC BY-SA 4.0, except
 project names and logos; inserted-image source links are kept under Image credits.
 https://developer.catrobat.org/pages/legal/licenses/catrobat/
 
-JPEG XL uses libjxl 0.12.0 plus Brotli, Highway and skcms. Exact revisions,
-copyrights, licence texts and patent grant follow below and under JPEG XL codec
-licences. tools/fetch_jxl_sources.py obtains the pinned source revisions.
+JPEG XL uses libjxl 0.12.0 plus Brotli, Highway and skcms. WebP uses libwebp 1.6.0
+and SharpYUV, with Android NDK CPU-features support. HEIC and AVIF use libheif
+1.23.4, libde265 1.1.2, Kvazaar 2.3.2 and libaom 3.15.0. Exact revisions,
+copyrights, complete licence texts and patent grants follow below and under
+Image codec licences. The scripts tools/fetch_jxl_sources.py,
+tools/fetch_webp_sources.py and tools/fetch_heif_sources.py obtain the pinned
+upstream sources for rebuilding the native libraries.
 
 Resolved Android/JVM runtime components for this build follow. Their publisher
 metadata and packaged notices are preserved below. Test and build tools are not
@@ -109,7 +113,9 @@ for (name, entry), text in sorted(embedded.items()):
     notice.extend([f'\n\n{name} — {entry}\n\n', text])
 notice.append('\n\nBUNDLED FONT NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/FONT_NOTICES.txt').read_text())
 notice.append('\n\nBREEZE ICON NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/ICON_NOTICES.txt').read_text())
-notice.append('\n\nJPEG XL CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt').read_text())
+for title, filename in [('JPEG XL', 'JPEG_XL_NOTICES.txt'), ('WEBP', 'WEBP_NOTICES.txt'),
+                        ('HEIC AND AVIF', 'HEIF_AVIF_NOTICES.txt')]:
+    notice.append(f'\n\n{title} CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal' / filename).read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

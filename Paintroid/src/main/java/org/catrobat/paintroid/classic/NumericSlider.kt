@@ -21,7 +21,7 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
         addView(number,LayoutParams(-1,dp(44)))
         slider.max=maximum-minimum;slider.progress=value.coerceIn(minimum,maximum)-minimum
         slider.contentDescription=name;addView(slider,LayoutParams(-1,dp(44)))
-        fun display(n: Int) { number.text="$name: $n";number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }
+        fun display(n: Int) { number.text=ui(R.string.ui_numeric_slider_value,name,n);number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }
         display(slider.progress+minimum)
         slider.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(bar: SeekBar?,n: Int,user: Boolean) { display(n+minimum);changed(n+minimum) }

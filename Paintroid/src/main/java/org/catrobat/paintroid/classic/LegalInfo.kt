@@ -35,7 +35,7 @@ object LegalInfo {
             https://github.com/Catrobat/Paintroid
             https://developer.catrobat.org/credits
 
-            Modifications: Copyright © 2026 AN Paint contributors. The drawing workspace, image assembly, import and memory handling, autosave, selection transforms, copyleft icon integration, fonts, export and build changes were made 7–10 September 2026. This version consolidates the remaining editing functions in the new workspace and removes the original editor, layers, transparency controls, Smudge, automatic crop and project-file formats. Full dated changes are in the corresponding source.
+            Modifications: Copyright © 2026 AN Paint contributors. The drawing workspace, image assembly, import and memory handling, autosave, selection transforms, copyleft icon integration, fonts, export and build changes were made 7–12 September 2026. This version consolidates the remaining editing functions in the new workspace and removes the original editor, layers, transparency controls, Smudge, automatic crop and project-file formats. Full dated changes are in the corresponding source.
 
             Application code is licensed under the GNU Affero General Public License version 3 or, at your option, any later version (AGPL-3.0-or-later). You may copy, modify and redistribute it under that licence. It is provided WITHOUT ANY WARRANTY, including merchantability or fitness for a particular purpose.
 
@@ -46,7 +46,9 @@ object LegalInfo {
 
             Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
-            JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. Read JPEG XL codec licences for the copyright notices, licences and patent grant. Third-party notices covers the other bundled dependencies.
+            JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. WebP uses libwebp 1.6.0 and SharpYUV by Google and the WebP project contributors under BSD-3-Clause, with its patent grant and the Android NDK CPU-features Apache-2.0 notice.
+
+            HEIC and AVIF use libheif 1.23.4 and libde265 1.1.2 by Dirk Farin, struktur AG and contributors under LGPL-3.0-or-later; Kvazaar 2.3.2 by Tampere University, ITU/ISO/IEC and project contributors under BSD-3-Clause; and libaom 3.15.0 by the Alliance for Open Media and contributors under BSD-2-Clause and the AOM Patent License 1.0. Image codec licences includes the exact revisions, copyright notices, complete licence texts, patent grants and source/build details for all these components. The same full notices are included in Third-party notices.
 
             Complete corresponding source and build scripts are bundled in this APK. Help > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
         """.trimIndent()
@@ -56,6 +58,14 @@ object LegalInfo {
     fun showAsset(activity: Activity,title: String,asset: String) {
         val text=activity.assets.open(asset).bufferedReader().use { it.readText() }
         termsDialog(activity,title,text).show()
+    }
+    /** Keep the codec overview identical to the individual, verbatim bundled notices. */
+    fun codecNotices(activity: Activity): String = listOf(
+        "legal/JPEG_XL_NOTICES.txt", "legal/WEBP_NOTICES.txt", "legal/HEIF_AVIF_NOTICES.txt"
+    ).joinToString("\n\n\n") { asset -> activity.assets.open(asset).bufferedReader().use { it.readText() } }
+
+    fun showCodecLicences(activity: Activity) {
+        termsDialog(activity,ui(R.string.ui_image_codec_licences),codecNotices(activity)).show()
     }
     fun termsDialog(activity: Activity,title: String,text: String): Dialog {
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
@@ -78,7 +88,7 @@ object LegalInfo {
             Toast.makeText(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
         }
         action(ui(R.string.ui_other_terms),"terms_more") { anchor ->
-            val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences))
+            val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences),ui(R.string.ui_webp_codec_licences),ui(R.string.ui_heic_avif_codec_licences))
             val popup=PopupMenu(activity,anchor)
             options.forEachIndexed { i,label -> popup.menu.add(0,i,i,label) }
             popup.setOnMenuItemClickListener {
@@ -90,7 +100,9 @@ object LegalInfo {
                     3 -> showAsset(activity,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")
                     4 -> showAsset(activity,ui(R.string.ui_icons_fonts_artwork_credits),"legal/ASSET_CREDITS.txt")
                     5 -> showAsset(activity,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")
-                    else -> showAsset(activity,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")
+                    6 -> showAsset(activity,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")
+                    7 -> showAsset(activity,ui(R.string.ui_webp_codec_licences),"legal/WEBP_NOTICES.txt")
+                    else -> showAsset(activity,ui(R.string.ui_heic_avif_codec_licences),"legal/HEIF_AVIF_NOTICES.txt")
                 };true
             };popup.show()
         }

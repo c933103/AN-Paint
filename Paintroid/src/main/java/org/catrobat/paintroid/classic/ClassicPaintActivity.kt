@@ -188,9 +188,9 @@ class ClassicPaintActivity : Activity() {
         setContentView(root);makeHeader()
         val workspace=FrameLayout(this).apply { tag="workspace_overlay" }
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
-        val work=LinearLayout(this).apply { orientation=LinearLayout.HORIZONTAL;tag="editor_workspace" }
+        val work=LinearLayout(this).apply { orientation=LinearLayout.HORIZONTAL;tag="editor_workspace";layoutDirection=View.LAYOUT_DIRECTION_LTR }
         workspace.addView(work,FrameLayout.LayoutParams(-1,-1))
-        sidebar=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="sidebar" }
+        sidebar=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="sidebar";layoutDirection=View.LAYOUT_DIRECTION_LOCALE }
         work.addView(sidebar,LinearLayout.LayoutParams(dp(104),-1))
         // Keep tools clear of the arrow; the canvas retains its full height.
         sidebar.addView(Space(this),LinearLayout.LayoutParams(-1,dp(48)))
@@ -518,6 +518,9 @@ class ClassicPaintActivity : Activity() {
                 ui(R.string.ui_save_as_png) to { requestSave(false) },
                 ui(R.string.ui_save_as_jpeg) to { requestSave(true) },
                 ui(R.string.ui_save_as_jpeg_xl) to { showSaveOptions(ImageFormat.JPEG_XL) },
+                ui(R.string.ui_save_as_webp) to { showSaveOptions(ImageFormat.WEBP) },
+                ui(R.string.ui_save_as_heic) to { showSaveOptions(ImageFormat.HEIC) },
+                ui(R.string.ui_save_as_avif) to { showSaveOptions(ImageFormat.AVIF) },
                 ui(R.string.ui_save_and_share) to { showSaveOptions(exportOptions.format,true) },
                 ui(R.string.ui_image_assembly) to { openAssembly() }
             ) + if (autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to { requestRecoveryExport() }) else emptyList()
@@ -571,7 +574,7 @@ class ClassicPaintActivity : Activity() {
                 ui(R.string.ui_export_this_version_s_source_code) to { exportSource() },
                 ui(R.string.ui_icons_fonts_artwork_credits) to { LegalInfo.showAsset(this, ui(R.string.ui_icons_fonts_artwork_credits), "legal/ASSET_CREDITS.txt") },
                 ui(R.string.ui_image_credits) to {showImageCredits()},
-                ui(R.string.ui_jpeg_xl_codec_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")},
+                ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
                 ui(R.string.ui_font_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt") },
                 ui(R.string.ui_icon_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt") }
             )
@@ -827,7 +830,7 @@ class ClassicPaintActivity : Activity() {
                     if (isDestroyed || isFinishing) source.file.delete()
                     else {
                         val plan = ImportPlan.create(source.dimensions,source.dimensions)
-                        if (ImageMemoryPolicy.forDevice(this).accepts(plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit)
+                        if (source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit)
                         else askToResize(source,import,asEdit = asEdit)
                     }
                 }
@@ -842,7 +845,8 @@ class ClassicPaintActivity : Activity() {
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
             resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit) },
-            cancel = { resizeDialog = null; source.file.delete(); if (!isDestroyed) endIo() }
+            cancel = { resizeDialog = null; source.file.delete(); if (!isDestroyed) endIo() },
+            memoryRequirements = source.memoryRequirements
         ).show()
     }
 
@@ -850,8 +854,9 @@ class ClassicPaintActivity : Activity() {
         worker.execute {
             try {
                 val plan = ImportPlan.create(source.dimensions,target)
-                ImageMemoryPolicy.forDevice(this).checkImport(plan,document.residentPixels)
-                val bitmap = source.decode(plan)
+                val policy=ImageMemoryPolicy.forDevice(this)
+                source.checkImport(policy,plan,document.residentPixels)
+                val bitmap = source.decode(plan,policy.workingBytes,document.residentPixels)
                 source.file.delete()
                 runOnUiThread {
                     if (!isDestroyed && !isFinishing) {
@@ -887,11 +892,7 @@ class ClassicPaintActivity : Activity() {
             try {
                 val directory=File(cacheDir,"images").apply {mkdirs()}
                 val file=File.createTempFile("AN-Paint-",options.format.extension,directory);encoded=file
-                if(options.format==ImageFormat.JPEG_XL) JxlCodec.encode(snapshot,file,options.quality,options.lossless,
-                    ImageMemoryPolicy.forDevice(this).workingBytes)
-                else file.outputStream().use {
-                    if(!snapshot.compress(if(options.format==ImageFormat.JPEG) Bitmap.CompressFormat.JPEG else Bitmap.CompressFormat.PNG,options.quality,it)) throw IOException(ui(R.string.ui_the_encoder_did_not_finish))
-                }
+                ImageExporter.encode(snapshot,file,options,ImageMemoryPolicy.forDevice(this).workingBytes)
                 contentResolver.openOutputStream(uri,"wt")?.use {output -> file.inputStream().use {it.copyTo(output)}}
                     ?: throw IOException(ui(R.string.ui_the_selected_location_is_not_writable))
                 val name=displayName(uri)

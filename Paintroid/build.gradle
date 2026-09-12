@@ -48,6 +48,7 @@ android {
         minSdk    = rootProject.ext.androidMinSdkVersion
         targetSdk = rootProject.ext.androidTargetSdkVersion
         testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
+        externalNativeBuild { cmake { targets 'anpaint_jxl', 'anpaint_webp', 'anpaint_heif' } }
         ndk { abiFilters.addAll((project.findProperty('nativeAbis') ?: 'arm64-v8a,armeabi-v7a,x86_64,x86').split(',')) }
     }
 
@@ -167,6 +168,27 @@ def fetchJxlSources = tasks.register('fetchJxlSources', Exec) {
     workingDir rootProject.projectDir
     commandLine 'python3', 'tools/fetch_jxl_sources.py'
 }
+def fetchWebpSources = tasks.register('fetchWebpSources', Exec) {
+    workingDir rootProject.projectDir
+    commandLine 'python3', 'tools/fetch_webp_sources.py'
+}
+def fetchHeifSources = tasks.register('fetchHeifSources', Exec) {
+    workingDir rootProject.projectDir
+    commandLine 'python3', 'tools/fetch_heif_sources.py'
+}
 tasks.configureEach {
-    if (name.startsWith('configureCMake') || name.startsWith('buildCMake')) dependsOn(fetchJxlSources)
+    if (name.startsWith('configureCMake') || name.startsWith('buildCMake')) dependsOn(fetchJxlSources, fetchWebpSources, fetchHeifSources)
+}
+
+// Export the actual pinned native sources with the app source for offline
+// inspection, modification and relinking. Fetch markers make the exported
+// tree reusable without another native-source download.
+tasks.named('bundleCorrespondingSource').configure {
+    dependsOn(fetchJxlSources, fetchWebpSources, fetchHeifSources)
+    ['jxl-source', 'webp-source', 'heif-source'].each { codec ->
+        from(layout.buildDirectory.dir(codec)) {
+            into "AN-Paint/Paintroid/build/${codec}"
+            exclude '**/__pycache__/**'
+        }
+    }
 }

@@ -61,21 +61,76 @@ fun ImageMemoryPolicy.suggestResize(source: ImageDimensions, residentPixels: Lon
     return source.scaled(low)
 }
 
+/** Native source/tile decode work does not necessarily shrink with the output.
+ * Keep the same estimate for the prompt, admission check and decoder allowance.
+ */
+class ImportMemoryRequirements(private val nativeBytesAtOnePixel: Long? = null) {
+    val hasNativeWork get() = nativeBytesAtOnePixel != null
+    private fun nativeBytes(target: ImageDimensions): Double =
+        nativeBytesAtOnePixel?.let { it.toDouble() + (target.pixels - 1) * 4.0 } ?: 0.0
+
+    fun estimatedBytes(plan: ImportPlan, residentPixels: Long): Double = max(
+        plan.estimatedBytes(residentPixels),
+        nativeBytes(plan.target) + plan.target.pixels * 8.0 + residentPixels.coerceAtLeast(0) * 4.0
+    )
+
+    fun accepts(policy: ImageMemoryPolicy, plan: ImportPlan, residentPixels: Long): Boolean =
+        policy.accepts(plan,residentPixels) && estimatedBytes(plan,residentPixels) <= policy.workingBytes.toDouble()
+
+    fun checkImport(policy: ImageMemoryPolicy, plan: ImportPlan, residentPixels: Long) {
+        policy.check(plan.target.width,plan.target.height,residentPixels)
+        if(!accepts(policy,plan,residentPixels)) throw ImageSizeException(ui(R.string.ui_the_decoder_and_editing_buffers_need_about_the,
+            memoryLabel(estimatedBytes(plan,residentPixels)),memoryLabel(policy.workingBytes.toDouble())))
+    }
+
+    fun suggestResize(source: ImageDimensions, policy: ImageMemoryPolicy, residentPixels: Long, maxScale: Double = 1.0): ImageDimensions? {
+        if(!accepts(policy,ImportPlan.create(source,ImageDimensions(1,1)),residentPixels)) return null
+        var low=0.0;var high=maxScale.coerceIn(0.0,1.0)
+        repeat(48) {
+            val scale=(low+high)/2;val plan=ImportPlan.create(source,source.scaled(scale))
+            if(accepts(policy,plan,residentPixels) && estimatedBytes(plan,residentPixels)<=policy.workingBytes*.9) low=scale else high=scale
+        }
+        return source.scaled(low)
+    }
+
+    /** Native codec allowance includes its output, but excludes resident canvas
+     * and the two further output-sized edit/compositing buffers reserved above.
+     */
+    fun decoderBudget(workingBytes: Long, target: ImageDimensions, residentPixels: Long): Long {
+        fun subtract(bytes: Long,pixels: Long,perPixel: Long): Long =
+            (bytes-pixels.coerceIn(0,Long.MAX_VALUE/perPixel)*perPixel).coerceAtLeast(0)
+        return subtract(subtract(workingBytes.coerceAtLeast(0),residentPixels,4),target.pixels,8)
+    }
+}
+
 /** The provider is copied once; this private file stays alive across the resize choice. */
 class ImportedImage(val file: File, val name: String) {
     private val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
     private val orientation: ExifInterface?
     private val jxl=JxlCodec.isJxl(file)
+    private val heif=HeifCodec.isHeif(file)
     val dimensions: ImageDimensions
+    val memoryRequirements: ImportMemoryRequirements
     init {
         if(jxl) {val size=JxlCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
+        else if(heif) {val size=HeifCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
         else BitmapFactory.decodeFile(file.path, bounds)
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException(ui(R.string.ui_this_file_is_not_a_supported_image_use))
-        orientation = if(jxl) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
+        orientation = if(jxl || heif) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
         dimensions = if (orientation?.rotationDegrees in listOf(90,270)) ImageDimensions(bounds.outHeight,bounds.outWidth) else ImageDimensions(bounds.outWidth,bounds.outHeight)
+        // Inspect the native source/tile footprint once, not on every slider tick.
+        // Ordinary formats never initialize a JNI library here.
+        memoryRequirements=ImportMemoryRequirements(if(heif) HeifCodec.decodeWorkingBytes(file,ImageDimensions(1,1)) else null)
     }
-    fun decode(plan: ImportPlan): Bitmap {
-        if(jxl) return JxlCodec.decode(file,plan.target,ImageMemoryPolicy.forRuntime().workingBytes)
+    fun estimatedBytes(plan: ImportPlan,residentPixels: Long)=memoryRequirements.estimatedBytes(plan,residentPixels)
+    fun accepts(policy: ImageMemoryPolicy,plan: ImportPlan,residentPixels: Long)=memoryRequirements.accepts(policy,plan,residentPixels)
+    fun checkImport(policy: ImageMemoryPolicy,plan: ImportPlan,residentPixels: Long)=memoryRequirements.checkImport(policy,plan,residentPixels)
+    fun suggestResize(policy: ImageMemoryPolicy,residentPixels: Long,maxScale: Double=1.0)=memoryRequirements.suggestResize(dimensions,policy,residentPixels,maxScale)
+
+    fun decode(plan: ImportPlan,workingBytes: Long=ImageMemoryPolicy.forRuntime().workingBytes,residentPixels: Long=0): Bitmap {
+        val decoderBudget=memoryRequirements.decoderBudget(workingBytes,plan.target,residentPixels)
+        if(jxl) return JxlCodec.decode(file,plan.target,decoderBudget)
+        if(heif) return HeifCodec.decode(file,plan.target,decoderBudget)
         var decoded: Bitmap? = null
         var output: Bitmap? = null
         try {

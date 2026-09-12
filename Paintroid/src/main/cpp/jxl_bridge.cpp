@@ -14,6 +14,7 @@
 #include <array>
 #include <atomic>
 #include <climits>
+#include <cerrno>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
@@ -98,7 +99,7 @@ struct Input {
     static void release(void* opaque,const void* ptr) {Budget::free(static_cast<Input*>(opaque)->budget,const_cast<void*>(ptr));}
 };
 struct FileOutput {
-    FILE* file;bool failed=false;
+    FILE* file;bool failed=false;uint64_t position=0;
     std::array<uint8_t,65536> buffer{};
     static void* get(void* opaque,size_t* size) {
         auto& out=*static_cast<FileOutput*>(opaque);
@@ -107,11 +108,21 @@ struct FileOutput {
     }
     static void release(void* opaque,size_t written) {
         auto& out=*static_cast<FileOutput*>(opaque);
-        if(written>out.buffer.size() || (!out.failed && fwrite(out.buffer.data(),1,written,out.file)!=written))out.failed=true;
+        if(written>out.buffer.size() || out.position>INT64_MAX-written) {out.failed=true;return;}
+        size_t done=0;
+        while(!out.failed && done<written) {
+            // pwrite64 is available on the minimum Android API; fseeko64 is not.
+            const ssize_t count=pwrite64(fileno(out.file),out.buffer.data()+done,written-done,static_cast<off64_t>(out.position+done));
+            if(count<0 && errno==EINTR)continue;
+            if(count<=0) {out.failed=true;break;}
+            done+=static_cast<size_t>(count);
+        }
+        out.position+=done;
     }
     static void seek(void* opaque,uint64_t position) {
         auto& out=*static_cast<FileOutput*>(opaque);
-        if(position>INT64_MAX || (!out.failed && fseeko64(out.file,static_cast<off64_t>(position),SEEK_SET)!=0))out.failed=true;
+        if(position>INT64_MAX)out.failed=true;
+        else out.position=position;
     }
     static void finalized(void*,uint64_t) {} // The seekable file already owns these bytes.
     JxlEncoderOutputProcessor processor() {return {this,get,release,seek,finalized};}

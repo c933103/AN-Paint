@@ -21,6 +21,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 
 // Local build modified 2026-09-07: use a distinct application ID and display name.
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 ext {
     appId = 'io.github.c933103.anpaint'
@@ -49,12 +50,15 @@ android {
         versionCode = rootProject.ext.androidVersionCode
         versionName = rootProject.ext.androidVersionName
         manifestPlaceholders += [appName: appName]
+        testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    kotlinOptions { jvmTarget = "17" }
 
     signingConfigs {
         // Local build 2026-09-07: reuse the derivative's saved key without
@@ -122,6 +126,10 @@ tasks.withType(Detekt).configureEach {
 
 dependencies {
     implementation project(':Paintroid')
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:core:1.4.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }
 
 // Local addition, 2026-09-07: record exactly the dependencies shipped in debug.

@@ -33,7 +33,7 @@ jobs:
           python3 tools/generate_legal_notices.py
           ./gradlew --no-daemon --max-workers=2 --console=plain :Paintroid:testDebugUnitTest
           ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :app:assembleDebug :app:lintDebug :app:writeDependencyInventory
-      - name: Run native codec tests on Android
+      - name: Run codec and installed-app tests on Android
         if: ${{ !cancelled() }}
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-30;google_apis;x86_64" "emulator"
@@ -45,7 +45,7 @@ jobs:
             test "$("$ANDROID_HOME/platform-tools/adb" shell getprop sys.boot_completed | tr -d '\r')" = "1" && break
             sleep 2
           done
-          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest
+          ./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
       - name: Prepare verification tools
         if: always()
         run: |
@@ -63,6 +63,7 @@ jobs:
             build/reports/legacy-font-metadata.json
             app/build/outputs/apk/debug/*.apk
             app/build/reports/
+            app/build/outputs/androidTest-results/
             app/build/runtime-dependencies.json
             Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt
             Paintroid/build/test-results/
