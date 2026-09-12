@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AN Paint contributors, 2026. AGPL-3.0-or-later.
+     Preserve allowBackup=false for both Android 12+ extraction paths.
+     Save/export remains the user's way to copy drawings to another device. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" path="."/>
+        <exclude domain="file" path="."/>
+        <exclude domain="database" path="."/>
+        <exclude domain="sharedpref" path="."/>
+        <exclude domain="external" path="."/>
+        <exclude domain="device_root" path="."/>
+        <exclude domain="device_file" path="."/>
+        <exclude domain="device_database" path="."/>
+        <exclude domain="device_sharedpref" path="."/>
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="root" path="."/>
+        <exclude domain="file" path="."/>
+        <exclude domain="database" path="."/>
+        <exclude domain="sharedpref" path="."/>
+        <exclude domain="external" path="."/>
+        <exclude domain="device_root" path="."/>
+        <exclude domain="device_file" path="."/>
+        <exclude domain="device_database" path="."/>
+        <exclude domain="device_sharedpref" path="."/>
+    </device-transfer>
+</data-extraction-rules>

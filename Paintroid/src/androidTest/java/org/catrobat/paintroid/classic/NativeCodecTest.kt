@@ -79,18 +79,82 @@ class NativeCodecTest {
         }
     }
     @Test fun losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary() {
-        val input=Bitmap.createBitmap(2057,17,Bitmap.Config.ARGB_8888)
-        val file=File.createTempFile("codec-chunks-",".jxl",context.cacheDir)
-        try {
-            for(y in 0 until input.height) for(x in 0 until input.width)
-                input.setPixel(x,y,Color.rgb((x*19+y)%256,(x+y*17)%256,(x*3+y*11)%256))
-            input.setHasAlpha(false)
-            JxlCodec.encode(input,file,100,true,budget)
-            val output=JxlCodec.decode(file,ImageDimensions(2057,17),budget)
+        // Include the original failure, its portrait counterpart, and an image
+        // spanning multiple tiles in both directions with partial edge tiles.
+        for(size in listOf(ImageDimensions(2057,17),ImageDimensions(17,2057),ImageDimensions(2065,2049))) {
+            val input=pattern(size);val file=File.createTempFile("codec-chunks-",".jxl",context.cacheDir)
             try {
-                for(y in 0 until input.height) for(x in 0 until input.width)
-                    assertEquals("Pixel $x,$y",input.getPixel(x,y),output.getPixel(x,y))
-            } finally {output.recycle()}
+                JxlCodec.encode(input,file,100,true,budget)
+                assertEquals(size,JxlCodec.dimensions(file))
+                val output=JxlCodec.decode(file,size,budget)
+                try {assertPixels(input,output)} finally {output.recycle()}
+                if(size.width>2048 && size.height>2048) {
+                    // The crop straddles the tile boundary and includes the last row/column.
+                    val crop=Rect(2037,2029,size.width,size.height)
+                    val cropped=JxlCodec.decode(file,ImageDimensions(crop.width(),crop.height()),budget,crop)
+                    try {
+                        for(y in 0 until cropped.height) for(x in 0 until cropped.width)
+                            assertEquals("Crop pixel $x,$y",input.getPixel(crop.left+x,crop.top+y),cropped.getPixel(x,y))
+                    } finally {cropped.recycle()}
+                }
+            } finally {input.recycle();file.delete()}
+        }
+    }
+    @Test fun lossyEncodingHandlesLongPortraitAndLandscapeImages() {
+        for(size in listOf(ImageDimensions(3073,65),ImageDimensions(65,3073))) {
+            val input=Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888)
+            val file=File.createTempFile("codec-lossy-chunks-",".jxl",context.cacheDir)
+            try {
+                val row=IntArray(size.width)
+                for(y in 0 until size.height) {
+                    for(x in row.indices) row[x]=Color.rgb(x*255/(size.width-1),y*255/(size.height-1),128)
+                    input.setPixels(row,0,size.width,0,y,size.width,1)
+                }
+                input.setHasAlpha(false)
+                JxlCodec.encode(input,file,90,false,budget)
+                assertEquals(size,JxlCodec.dimensions(file))
+                val output=JxlCodec.decode(file,size,budget)
+                try {
+                    for(y in 0 until size.height step 16) for(x in 0 until size.width step 16) {
+                        val expected=input.getPixel(x,y);val actual=output.getPixel(x,y)
+                        assertEquals(255,Color.alpha(actual))
+                        assertTrue("Red at $x,$y",kotlin.math.abs(Color.red(expected)-Color.red(actual))<=12)
+                        assertTrue("Green at $x,$y",kotlin.math.abs(Color.green(expected)-Color.green(actual))<=12)
+                        assertTrue("Blue at $x,$y",kotlin.math.abs(Color.blue(expected)-Color.blue(actual))<=12)
+                    }
+                } finally {output.recycle()}
+            } finally {input.recycle();file.delete()}
+        }
+    }
+    @Test fun nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode() {
+        val input=pattern(ImageDimensions(513,517));val file=File.createTempFile("codec-budget-",".jxl",context.cacheDir)
+        try {
+            val before=input.getPixel(512,516)
+            // Pass initial bitmap accounting, then exhaust actual native work buffers.
+            val constrained=input.allocationByteCount.toLong()+2L*1024*1024
+            try {JxlCodec.encode(input,file,100,true,constrained);fail("Native work-buffer budget ignored")}
+            catch(_: OutOfMemoryError) { }
+            assertFalse(input.isRecycled);assertEquals(before,input.getPixel(512,516))
+            JxlCodec.encode(input,file,100,true,budget)
+            val output=JxlCodec.decode(file,ImageDimensions(input.width,input.height),budget)
+            try {assertPixels(input,output)} finally {output.recycle()}
         } finally {input.recycle();file.delete()}
+    }
+    private fun pattern(size: ImageDimensions) = Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888).apply {
+        val row=IntArray(width)
+        for(y in 0 until height) {
+            for(x in row.indices) row[x]=Color.rgb((x*19+y)%256,(x+y*17)%256,(x*3+y*11)%256)
+            setPixels(row,0,width,0,y,width,1)
+        }
+        setHasAlpha(false)
+    }
+    private fun assertPixels(expected: Bitmap,actual: Bitmap) {
+        assertEquals(expected.width,actual.width);assertEquals(expected.height,actual.height)
+        val expectedRow=IntArray(expected.width);val actualRow=IntArray(expected.width)
+        for(y in 0 until expected.height) {
+            expected.getPixels(expectedRow,0,expected.width,0,y,expected.width,1)
+            actual.getPixels(actualRow,0,actual.width,0,y,actual.width,1)
+            assertArrayEquals("Row $y",expectedRow,actualRow)
+        }
     }
 }
