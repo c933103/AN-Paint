@@ -9,8 +9,10 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = shutil.which("java") or "/usr/lib/jvm/java-17-openjdk-amd64/bin/java"
 SOURCE = ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageEncoder.java"
+COLOUR_SOURCE = SOURCE.with_name("LegacyColourMetadata.java")
 HARNESS = r'''
 import org.catrobat.paintroid.classic.LegacyImageEncoder;
+import org.catrobat.paintroid.classic.LegacyColourMetadata;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -68,8 +70,44 @@ public class LegacyRoundTrip {
         try {LegacyImageEncoder.gif(10,10,never,new ByteArrayOutputStream(),1000,true);throw new AssertionError("GIF budget");} catch(IOException expected) { }
         try {LegacyImageEncoder.bmp(10,10,never,new ByteArrayOutputStream(),1000);throw new AssertionError("BMP budget");} catch(IOException expected) { }
     }
+    static byte[] bmpHeader(int header, long space) {
+        byte[] bytes=new byte[14+header+4];bytes[0]='B';bytes[1]='M';bytes[14]=(byte)header;
+        if(header>=108)for(int i=0;i<4;i++)bytes[70+i]=(byte)(space>>>(i*8));
+        return bytes;
+    }
+    static byte[] gifExtension(boolean icc) throws Exception {
+        byte[] original=encode(3,2,true,false,false);
+        ByteArrayOutputStream out=new ByteArrayOutputStream();out.write(original,0,original.length-1);
+        out.write(0x21);out.write(icc?0xff:0xfe);out.write(11);out.write("ICCRGBG1012".getBytes("US-ASCII"));
+        if(icc){out.write(3);out.write(new byte[]{1,2,3});}
+        out.write(0);out.write(0x3b);return out.toByteArray();
+    }
+    static void guard(byte[] bytes, int outcome) throws Exception {
+        File file=File.createTempFile("colour-guard-",".bin");
+        try {
+            try(FileOutputStream out=new FileOutputStream(file)){out.write(bytes);}
+            try {LegacyColourMetadata.check(file);check(outcome==0,"accepted unsupported metadata");}
+            catch(LegacyColourMetadata.UnsupportedColour expected){check(outcome==1,"wrong unsupported response");}
+            catch(IOException expected){check(outcome==2,"unexpected malformed response: "+expected);}
+        } finally {file.delete();}
+    }
+    static void colourAllowed() throws Exception {
+        guard(bmpHeader(40,0),0);
+        for(int header:new int[]{108,124})for(long space:new long[]{0x73524742L,0x57696e20L})guard(bmpHeader(header,space),0);
+        guard(encode(3,2,true,false,false),0);guard(gifExtension(false),0);
+    }
+    static void colourReject() throws Exception {
+        for(int header:new int[]{108,124})for(long space:new long[]{0,0x4c494e4bL,0x4d424544L,99})guard(bmpHeader(header,space),1);
+        guard(gifExtension(true),1);
+    }
+    static void colourTruncated() throws Exception {
+        guard(Arrays.copyOf(bmpHeader(124,0x73524742L),70),2);
+        byte[] gif=encode(3,2,true,false,false);guard(Arrays.copyOf(gif,gif.length-1),2);
+        byte[] broken=gifExtension(false);broken[gif.length+1]=(byte)255;guard(broken,2);
+        byte[] huge=bmpHeader(40,0);for(int i=0;i<4;i++)huge[14+i]=(byte)255;guard(huge,2);
+    }
     public static void main(String[] args) throws Exception {
-        switch(args[0]) {case "bmp":exact(false);break;case "gif":exact(true);break;case "gradient":gradient();break;case "bounds":bounds();break;default:throw new AssertionError();}
+        switch(args[0]) {case "bmp":exact(false);break;case "gif":exact(true);break;case "gradient":gradient();break;case "bounds":bounds();break;case "colour-allowed":colourAllowed();break;case "colour-reject":colourReject();break;case "colour-truncated":colourTruncated();break;default:throw new AssertionError();}
     }
 }
 '''
@@ -81,7 +119,7 @@ class LegacyEncoderTest(unittest.TestCase):
         cls.directory = tempfile.TemporaryDirectory(prefix="anpaint-legacy-codec-")
         path = pathlib.Path(cls.directory.name)
         (path / "LegacyRoundTrip.java").write_text(HARNESS)
-        subprocess.run([JAVA, "-m", "jdk.compiler/com.sun.tools.javac.Main", "-d", str(path), str(SOURCE), str(path / "LegacyRoundTrip.java")], check=True, timeout=30)
+        subprocess.run([JAVA, "-m", "jdk.compiler/com.sun.tools.javac.Main", "-d", str(path), str(SOURCE), str(COLOUR_SOURCE), str(path / "LegacyRoundTrip.java")], check=True, timeout=30)
 
     @classmethod
     def tearDownClass(cls):
@@ -101,6 +139,15 @@ class LegacyEncoderTest(unittest.TestCase):
 
     def test_gif_dimensions_and_both_memory_budgets_before_reading(self):
         self.run_case("bounds")
+
+    def test_legacy_colour_metadata_accepts_untagged_and_explicit_srgb(self):
+        self.run_case("colour-allowed")
+
+    def test_legacy_colour_metadata_rejects_profiles_before_decoding(self):
+        self.run_case("colour-reject")
+
+    def test_legacy_colour_metadata_bounds_truncated_blocks(self):
+        self.run_case("colour-truncated")
 
 
 if __name__ == "__main__":

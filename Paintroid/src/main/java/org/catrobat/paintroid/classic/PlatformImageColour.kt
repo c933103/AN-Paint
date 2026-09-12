@@ -110,6 +110,12 @@ internal class PlatformImageColour private constructor(
                 out.toByteArray()
             }
         fun read(file: File): PlatformImageColour {
+            try { LegacyColourMetadata.check(file) }
+            catch (error: LegacyColourMetadata.UnsupportedColour) {
+                throw IOException(ui(R.string.save20_unsupported_tagged_colour),error)
+            } catch (error: IOException) {
+                throw IOException(ui(R.string.colour_invalid_metadata),error)
+            }
             var profile: ByteArray?=null;var cicp: ByteArray?=null;var highDepth=false
             var pngGamma: Double?=null;var pngChromaticities: DoubleArray?=null;var pngSrgb=false
             val removed=mutableListOf<LongRange>();var format=""

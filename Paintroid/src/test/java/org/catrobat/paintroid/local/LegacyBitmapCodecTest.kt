@@ -6,6 +6,7 @@ import android.graphics.BitmapRegionDecoder
 import android.graphics.Color
 import android.graphics.Rect
 import org.catrobat.paintroid.classic.*
+import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -59,6 +60,27 @@ class LegacyBitmapCodecTest {
             } finally {document.close();file.delete()}
         }} finally {image.recycle()}
     }
+    @Test fun taggedBmpAndGifFailWithAConversionMessageBeforePixelDecoding() {
+        val image=source()
+        val file=File.createTempFile("legacy-profile-",".bin",context.cacheDir)
+        try {
+            val bmp=ByteArray(142).apply {
+                this[0]='B'.code.toByte();this[1]='M'.code.toByte();this[14]=124
+                val embedded=0x4d424544L
+                repeat(4) {this[70+it]=(embedded ushr (it*8)).toByte()}
+            }
+            ImageExporter.encode(image,file,ExportOptions(ImageFormat.GIF),budget)
+            val gif=file.readBytes()
+            val application=byteArrayOf(0x21,0xff.toByte(),11)+"ICCRGBG1012".toByteArray(Charsets.US_ASCII)+byteArrayOf(3,1,2,3,0)
+            for(tagged in listOf(bmp,gif.dropLast(1).toByteArray()+application+byteArrayOf(0x3b))) {
+                file.writeBytes(tagged)
+                try {ImportedImage(file,"tagged.bin");fail("Expected unsupported profile rejection")}
+                catch(expected: IOException) {assertEquals(context.getString(R.string.save20_unsupported_tagged_colour),expected.message)}
+                assertArrayEquals(tagged,file.readBytes())
+            }
+        } finally {image.recycle();file.delete()}
+    }
+
     @Test fun failedEncodeKeepsOldFileAndRemovesTemporaryOutput() {
         val image=source()
         val directory=File(context.cacheDir,"legacy-budget-test").apply {deleteRecursively();mkdirs()}

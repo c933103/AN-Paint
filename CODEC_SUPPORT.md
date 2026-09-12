@@ -30,7 +30,14 @@ adaptive palette: images with at most 256 unique RGB colours preserve those
 colours; larger colour sets are quantized, optionally with Floyd–Steinberg
 dithering. GIF's format limit is 65,535 pixels per side; the device memory budget
 also applies. GIF export writes one still frame and animated GIF import opens
-the first frame. BMP/GIF encoders are original AN Paint code, not another native
+the first frame. BMP V4/V5 colour metadata and GIF application extensions are
+inspected before decoding. Ordinary untagged BMP/GIF and explicitly sRGB BMP are
+supported. Calibrated, linked-profile or embedded-profile BMP, and ICC-tagged GIF,
+are rejected with a clear conversion message; their profiles are not converted.
+Convert those inputs to sRGB PNG using a colour-managed editor first. The metadata
+checks follow the [BMP V5 colour-space fields](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapv5header)
+and [ICC.1:2010 Annex B.5](https://www.color.org/specification/ICC1v43_2010-12.pdf).
+BMP/GIF encoders are original AN Paint code, not another native
 codec dependency. They add no layers, editable transparency or animation timeline.
 
 The bundled codecs are built from pinned source for the supported Android CPU
