@@ -1,0 +1,146 @@
+{
+  "created_utc": "2026-09-12T08:24:26.060877+00:00",
+  "status": "unfinished development snapshot; one known native test failure",
+  "known_failure": "JPEG XL encoding rejects the 2057 by 17 pixel chunk-boundary fixture",
+  "pending": [
+    "Correct JPEG XL chunked encoding and rerun failed test",
+    "Physical-phone and ARM runtime verification",
+    "Review five lint warnings",
+    "Investigate exact Dubai and STC font licences and redistribution terms"
+  ],
+  "version": "2.14.1-local.16",
+  "version_code": 69,
+  "application_id": "io.github.c933103.anpaint",
+  "github_commit": "71b4bc76ce42d4c443babcc9e8032aa0e87d60e3",
+  "workflow_run": 34496438712,
+  "unit_tests": {
+    "totals": {
+      "tests": 154,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": [
+      {
+        "name": "org.catrobat.paintroid.local.ANPaintControlsTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.AssemblyActivityTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.AssemblyModelTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.CanvasEditingControlsTest",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.ClassicWorkspaceTest",
+        "tests": 32,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.EdgeSelectionControlsTest",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.FullResolutionStorageTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.ImageMemoryPolicyTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.ImageResizeFlowTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.SizingAndTrimTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.UnifiedEditorTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.catrobat.paintroid.local.WorkspaceRefinementTest",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "android_emulator_tests": {
+    "totals": {
+      "tests": 6,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": [
+      {
+        "name": "org.catrobat.paintroid.classic.NativeCodecTest",
+        "tests": 6,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "emulator": "Android 11 / API 30 x86_64",
+  "physical_phone_tested": false,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 5
+  },
+  "matching_source_files": 343,
+  "unchanged_bundled_fonts": 10,
+  "same_signing_certificate": true,
+  "apk_and_elf_16kb_alignment": true,
+  "native_abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "apk_sha256": "8cd8ee5ea5072a7a63b5177e69c91a2a1b2a84a6bcb6ed8405f0e368b5897605",
+  "source_sha256": "f04408316caf479235fc65fd48ab15f0df7356e78227a8527f3d2622bd561483"
+}

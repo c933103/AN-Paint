@@ -1,5 +1,7 @@
 # AN Paint
 
+> **Unfinished local.16 development snapshot.** The APK builds and all 154 regression tests pass, but one JPEG XL emulator test fails. See [HANDOFF.md](HANDOFF.md) for the known defect, completed work and next tasks, including the Dubai/STC font licence investigation.
+
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
 based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`.

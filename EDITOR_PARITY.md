@@ -52,3 +52,5 @@ assertions tested system-font fallbacks, not the named proprietary fonts.
 That selector and its obsolete tests have now been removed with the original
 editor. Current tests check the current font inventory and load the actual ten
 bundled OFL font files, along with the nine device-supplied font choices.
+
+The permission status of Dubai and STC is unresolved. An investigation of the exact original font files and authoritative redistribution/embedding terms is a pending task in [HANDOFF.md](HANDOFF.md); missing bundled metadata alone does not establish a prohibition.
