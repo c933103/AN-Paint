@@ -172,6 +172,26 @@ void copyTile(Pixels& output, heif_image* tile, heif_image_handle* handle, const
     if (nclxError.code != heif_error_Ok) nclxError = heif_image_get_nclx_color_profile(tile, &raw);
     Profile nclx(raw, heif_nclx_color_profile_free);
     int transfer = nclxError.code == heif_error_Ok && nclx ? nclx->transfer_characteristics : 13;
+    if (icc.empty() && !high && depth == 8 && nclx &&
+        nclx->color_primaries == heif_color_primaries_ITU_R_BT_709_5 &&
+        transfer == heif_transfer_characteristic_IEC_61966_2_1) {
+        // These decoded samples already are 8-bit sRGB. A second matrix/TRC
+        // round trip can move a low channel by one byte through floating-point
+        // approximation and gamut mapping, breaking exact lossless AVIF import.
+        // Retain the samples, applying only Android's required alpha association.
+        for (uint64_t y = y0; y < y1; ++y) {
+            const uint64_t sourceY = y * height / output.info.height + top - originY;
+            for (uint64_t x = x0; x < x1; ++x) {
+                const uint64_t sourceX = x * width / output.info.width + left - originX;
+                const auto* source = data + sourceY * stride + sourceX * 4;
+                auto* target = static_cast<uint8_t*>(output.data) + y * output.info.stride + x * 4;
+                target[3] = source[3];
+                for (int c = 0; c < 3; ++c) target[c] = associated ? source[c] :
+                    static_cast<uint8_t>((source[c] * source[3] + 127) / 255);
+            }
+        }
+        return;
+    }
     auto profile = icc.empty() ? cicpProfile(nclx ? nclx->color_primaries : 1, transfer) : anpaint::colour::Transform::parse(icc.data(), icc.size());
     if (!icc.empty()) transfer = profile.has_CICP ? profile.CICP.transfer_characteristics : 0;
     anpaint::colour::Transform transform(profile, transfer, sourcePeak(handle, transfer));

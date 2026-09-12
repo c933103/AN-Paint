@@ -605,6 +605,12 @@ API 35, because Android 11 has no gain-map API. Each platform's reports are
 retained separately under `build/reports/android-api-30` and
 `build/reports/android-api-35`; the final APK still contains all four ABIs.
 
+Device tests use AndroidX Test Core 1.6.1, Runner 1.6.2 and JUnit extension
+1.2.1. The old Core 1.4.0 ActivityScenario failed Android 15's receiver rules
+before launching the app. These are test-only dependencies; see the
+[AndroidX Test release notes](https://developer.android.com/jetpack/androidx/releases/test)
+for the target-SDK 34 activity-launch fixes in the 1.6 series.
+
 Synthetic colour fixtures live as base64 source in the instrumentation assets.
 The `tools/generate_*_colour_fixtures.py` scripts document how they were produced;
 fixture generation is independent of the Android production decoder. They cover
