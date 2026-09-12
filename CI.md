@@ -33,8 +33,23 @@ they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
 has no gain-map API. No test is removed from the current-platform suite.
 
-Dependencies and pinned native source trees are cached. Compiled application
-classes, APKs, CMake output and object files are not restored from a cache.
+Dependencies and pinned native source trees are cached. Starting with local.20,
+the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
+C/C++ compiler-launcher environment variables. Its separate 2 GB cache lives
+outside the checkout and hashes the NDK/CMake configuration, pinned-source
+fetch scripts and native source files. The root app-version declaration is not
+part of that key. Native-source changes can restore the previous compatible
+cache, after which ccache checks the compiler binary content, flags and
+preprocessed source for each compilation. Direct and depend modes are disabled,
+and no sloppiness checks are relaxed. Java/Kotlin classes, APKs, linked libraries
+and CMake output directories still rebuild from the current checkout.
+
+Cache statistics are printed after assembly. The first run populates the cache;
+no speedup is claimed until reuse has been measured on a later build. Regression
+and emulator jobs do not depend on this cache. References: the official
+[CMake 3.22 launcher documentation](https://cmake.org/cmake/help/v3.22/envvar/CMAKE_LANG_COMPILER_LAUNCHER.html),
+[ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
+[Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).
 
 ## Deadlines and evidence
 
@@ -96,9 +111,10 @@ After moving the app to `CREATED` to await autosave, AndroidX Test Core 1.6.1's
 resume notification. API 30's app suite increased from 39.849s to 399.623s.
 Teardown now preserves the autosave wait, finishes the stopped activity normally,
 waits for destruction, and then closes the scenario's observer. Production app
-code and functional test assertions are unchanged. Its runtime result must be
-confirmed by the next asynchronous run; the predicted saving is not a measured
-result from the revised workflow.
+code and functional test assertions are unchanged. The local.19 API 35 run
+confirmed the correction: all eight editor tests finished in 37.24 seconds,
+compared with the prior 399.623-second API 30 run. These are different platform
+runs, so the timing comparison is not a controlled benchmark.
 
 Sources: [the completed local.18 run](https://github.com/c933103/AN-Paint/actions/runs/34692671218),
 [AndroidX helper implementation](https://github.com/android/android-test/blob/axt_06_26_2024/core/java/androidx/test/core/app/InstrumentationActivityInvoker.java),
@@ -122,5 +138,13 @@ share one 120-second readiness budget. Short transient command failures retry
 within that same budget; all phases and probe results are saved in `startup.log`.
 The 15-minute emulator step limit and independent artifact delivery remain
 unchanged. Host checks cover transient failure, deadline enforcement, premature
-boot-property values, package readiness and emulator death; actual device
-verification of this correction remains pending until the next emulator result.
+boot-property values, package readiness and emulator death.
+
+The [local.19 API 35 run](https://github.com/c933103/AN-Paint/actions/runs/34702846656)
+passed: all 35 native/import tests finished in 64.154 seconds and all eight editor
+tests in 37.24 seconds. The emulator script reached successful completion at
+166 seconds, including startup and installations; log collection and shutdown
+followed. This establishes emulator verification of the startup and teardown
+corrections. It does not stand in for physical-device verification. Local.20
+uses the new app test component `paint.anpaint.android.test`; the library test
+component remains `org.catrobat.paintroid.test`.

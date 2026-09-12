@@ -116,7 +116,7 @@ main() {
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
     --apk build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
-    --component io.github.c933103.anpaint.test/androidx.test.runner.AndroidJUnitRunner \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
     --suite app --timeout-seconds 180 || failed=1
   phase='Instrumentation complete'

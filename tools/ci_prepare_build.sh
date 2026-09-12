@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Cache dependencies/source only, never compiled app or native outputs.
+# Prepare dependencies and sources; the build workflow separately manages ccache.
+# Never restore compiled app classes, APKs or CMake build directories.
 set -euo pipefail
 export JAVA_HOME="$JAVA_HOME_17_X64"
 export PATH="$JAVA_HOME/bin:$PATH"

@@ -53,9 +53,13 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     private val prefs = activity.getSharedPreferences("classic-custom-colours", Context.MODE_PRIVATE)
     private val fields = linkedMapOf<String, EditText>()
     private val custom = mutableListOf<View>()
+    private lateinit var saveCustomButton: Button
+    private lateinit var customHeading: TextView
     private lateinit var surface: ColourSurface
     private lateinit var sample: View
     private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())
+    private var selectedSlot = (0 until 16).firstOrNull { !hasCustomColour(it) } ?: 0
+    private fun hasCustomColour(index: Int) = index < defaults.size || prefs.contains("colour_$index")
     private fun customColour(index: Int) = prefs.getInt("colour_$index",defaults.getOrNull(index)?.second ?: Color.WHITE) or Color.BLACK
     private fun customLabel(index: Int,colour: Int): String {
         val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)
@@ -73,7 +77,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         this.text = text; this.tag = tag; isAllCaps = false; textSize = 12f; setOnClickListener { action() }
     }
     fun show(): AlertDialog {
-        val body = column().apply { setPadding(dp(16), dp(8), dp(16), dp(12)) }
+        val shell = column().apply { setPadding(dp(12), dp(4), dp(12), dp(4)) }
+        val body = column().apply { setPadding(0, dp(4), 0, dp(8)) }
         val tabs = LinearLayout(activity)
         val palette = column().apply { tag = "colour_palette" }
         surface = ColourSurface(activity, value).apply { tag = "colour_surface"; changed = { sync() }; visibility = View.GONE }
@@ -91,7 +96,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         listOf(Triple(ui(R.string.ui_palette), "colour_mode_0", 0), Triple(ui(R.string.ui_honeycomb), "colour_mode_3", 3), Triple(ui(R.string.ui_advanced), "colour_advanced_tab", 1)).forEach { (name, tag, mode) ->
             tabs.addView(button(name, tag) { selectMode(mode) }, LinearLayout.LayoutParams(0, dp(44), 1f))
         }
-        body.addView(tabs)
+        shell.addView(tabs)
         val advancedTabs = LinearLayout(activity)
         listOf(ui(R.string.ui_spectrum), ui(R.string.ui_wheel)).forEachIndexed { i, name ->
             advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }, LinearLayout.LayoutParams(0, dp(44), 1f))
@@ -112,31 +117,71 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             row.forEachIndexed { i, c -> line.addView(swatch(c, "basic_colour_${rowIndex * 8 + i}") { c }, LinearLayout.LayoutParams(0, dp(28), 1f).apply { setMargins(dp(1), dp(1), dp(1), dp(1)) }) }
             palette.addView(line)
         }
-        palette.addView(label(ui(R.string.ui_custom_colours_hold_a_swatch_to_replace_it)))
-        repeat(2) { row ->
-            val line = LinearLayout(activity)
-            repeat(8) { col ->
-                val index = row * 8 + col
-                val view = swatch(customColour(index), "custom_colour_$index") { customColour(index) }
-                view.contentDescription=customLabel(index,customColour(index))
-                view.setOnLongClickListener { saveCustom(index); true }; custom.add(view)
-                line.addView(view, LinearLayout.LayoutParams(0, dp(28), 1f).apply { setMargins(dp(1), dp(1), dp(1), dp(1)) })
-            }; palette.addView(line)
-        }
-        palette.addView(button(ui(R.string.ui_add_to_custom_colours), "add_custom_colour") {
-            val next = prefs.getInt("next", 4); saveCustom(next); prefs.edit().putInt("next", (next + 1) % 16).apply()
-        }, LinearLayout.LayoutParams(-1, dp(44)))
         body.addView(palette); body.addView(honeycomb, LinearLayout.LayoutParams(-1, dp(278)))
         body.addView(advanced)
+        val scroll = ScrollView(activity).apply { tag="colour_editor_scroll";addView(body) }
+        shell.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
+        // Custom colours are shared by every selector. Choosing a stored swatch
+        // loads it; choosing an empty slot only changes the save destination.
+        val customPanel = column().apply { tag="custom_colours_panel" }
+        customHeading = label("").apply { tag="custom_colour_selection" }
+        customPanel.addView(customHeading)
+        val compact = activity.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        val grid = column()
+        repeat(if (compact) 1 else 2) { row ->
+            val line = LinearLayout(activity)
+            repeat(if (compact) 16 else 8) { col ->
+                val index = row * 8 + col
+                val view = object : View(activity) {
+                    override fun onDraw(canvas: Canvas) {
+                        val p=Paint(Paint.ANTI_ALIAS_FLAG)
+                        val inset=dp(4).toFloat()
+                        val bounds=RectF(inset,inset,width-inset,height-inset)
+                        p.color=if(hasCustomColour(index)) customColour(index) else EditorColours.surface
+                        canvas.drawRect(bounds,p)
+                        p.style=Paint.Style.STROKE;p.strokeWidth=dp(1).toFloat();p.color=EditorColours.outline
+                        canvas.drawRect(bounds,p)
+                        if (!hasCustomColour(index)) {
+                            p.strokeWidth=dp(2).toFloat();p.color=EditorColours.onSurface
+                            canvas.drawLine(width/2f-dp(5),height/2f,width/2f+dp(5),height/2f,p)
+                            canvas.drawLine(width/2f,height/2f-dp(5),width/2f,height/2f+dp(5),p)
+                        }
+                        if (isSelected) {
+                            // An outer ring is independent of the swatch colour.
+                            p.strokeWidth=dp(2).toFloat();p.color=EditorColours.primary
+                            canvas.drawRect(dp(1).toFloat(),dp(1).toFloat(),width-dp(1).toFloat(),height-dp(1).toFloat(),p)
+                        }
+                    }
+                }.apply {
+                    tag="custom_colour_$index";isFocusable=true;isClickable=true
+                    setOnClickListener {
+                        selectedSlot=index
+                        if (hasCustomColour(index)) value.rgb(customColour(index))
+                        refreshCustom();sync()
+                    }
+                }
+                custom.add(view)
+                line.addView(view,if(compact) LinearLayout.LayoutParams(dp(44),dp(44)) else LinearLayout.LayoutParams(0,dp(44),1f))
+            }
+            grid.addView(line)
+        }
+        if (compact) customPanel.addView(HorizontalScrollView(activity).apply { addView(grid) }) else customPanel.addView(grid)
+        shell.addView(customPanel)
         val preview = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
-        preview.addView(label(ui(R.string.ui_new_colour)), LinearLayout.LayoutParams(0, dp(32), 1f))
+        val sampleColumn=column()
+        sampleColumn.addView(label(ui(R.string.ui_new_colour)))
         sample = object : View(activity) {
             override fun onDraw(canvas: Canvas) {
                 val p = Paint()
                 p.color = value.colour; canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), p)
             }
         }.apply { tag = "new_colour_preview" }
-        preview.addView(sample, LinearLayout.LayoutParams(dp(88), dp(28))); body.addView(preview)
+        sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
+        preview.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
+        saveCustomButton=button("", "add_custom_colour") { saveCustom(selectedSlot) }.apply { minWidth=0;minimumWidth=0 }
+        preview.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
+        shell.addView(preview)
+        refreshCustom()
         fun field(key: String, hintText: String, max: Int): LinearLayout {
             val wrap = column(); wrap.addView(label(hintText))
             val edit = EditText(activity).apply {
@@ -171,19 +216,44 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             group.forEach { (key, label, max) -> row.addView(field(key, ui(label), max), LinearLayout.LayoutParams(0, -2, 1f)) }
             advanced.addView(row)
         }
-        val scroll = ScrollView(activity).apply { addView(body) }
-        val dialog = AlertDialog.Builder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(scroll)
+        // Keep the tabs, custom slots and Save action reachable while the long
+        // Advanced controls scroll, including on short landscape screens.
+        val preferredHeight=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
+        val holder=object : FrameLayout(activity) {
+            override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+                val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferredHeight
+                    else MeasureSpec.getSize(heightMeasureSpec)
+                shell.layoutParams.height=minOf(preferredHeight,available)
+                super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+            }
+        }.apply {
+            tag="colour_dialog_holder"
+            addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
+        }
+        val dialog = AlertDialog.Builder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(holder)
             .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_use_colour), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (fields.values.any { it.error != null }) return@setOnClickListener
             commit(value.colour or Color.BLACK); dialog.dismiss()
         } }
-        sync(); dialog.show(); return dialog
+        sync();selectMode(0);dialog.show();return dialog
+    }
+    private fun refreshCustom() {
+        custom.forEachIndexed { index, view ->
+            view.isSelected=index==selectedSlot
+            view.contentDescription=if(hasCustomColour(index))
+                ui(R.string.colour20_stored_slot,index+1,customLabel(index,customColour(index)))
+                else ui(R.string.colour20_empty_slot,index+1)
+            view.invalidate()
+        }
+        customHeading.text=ui(R.string.colour20_custom_selected_slot,selectedSlot+1)
+        saveCustomButton.text=ui(if(hasCustomColour(selectedSlot)) R.string.colour20_replace_slot else R.string.colour20_save_slot,selectedSlot+1)
     }
     private fun saveCustom(index: Int) {
-        prefs.edit().putInt("colour_$index", value.colour).apply()
-        swatchBackground(custom[index], value.colour)
-        custom[index].contentDescription = customLabel(index,value.colour)
+        if (fields.values.any { it.error != null }) return
+        prefs.edit().putInt("colour_$index",value.colour).remove("next").apply()
+        refreshCustom()
+        Toast.makeText(activity,ui(R.string.colour20_saved_slot,index+1),Toast.LENGTH_SHORT).show()
     }
     private fun readFields(key: String) {
         fun number(name: String, max: Float): Float? = uiNumber(fields[name]?.text.toString())?.toFloat()?.takeIf { it in 0f..max }

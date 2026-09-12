@@ -1,69 +1,72 @@
-# AN Paint local.19
+# AN Paint local.20
 
-Updated 12 September 2026. Package `io.github.c933103.anpaint`, version
-`2.14.1-local.19`, version code `72`. Uses the existing AN Paint signing identity.
+Updated 12 September 2026. Package `paint.anpaint.android`, version
+`2.14.1-local.20`, version code `73`.
 
-## Completion of earlier requests
+## Installation identity
 
-- Replaced the remaining legacy UI colours with shared Material Design 3 roles,
-  including the tool drawers, editor chrome, assembly and dialogs. Actual image
-  pixels and selected drawing colours retain their original values.
-- Completed translation readiness for advanced RGB/HSV/HSL component labels,
-  localized numeric input and assembly placement status.
-- Magnifier-scale changes now redraw and autosave while the editor remains open.
-- Gallery downloads now honour cancellation through the posted result, close
-  connections and remove abandoned temporary files. Added full download-to-insert
-  tests covering image pixels, transparency and source attribution.
-- Rechecked the earlier tool, selection, canvas, format, assembly, font, credit
-  and original-editor consolidation requests. See REQUEST_COMPLETION.md for the
-  complete mapping and EDITOR_PARITY.md for the original-view comparison.
-- Corrected the asynchronous emulator startup readiness failure. APK/source
-  delivery remains independent of long device checks under CI.md.
+This package installs separately from local.15–local.19
+(`io.github.c933103.anpaint`). The same signing key is retained, but changing the
+package name prevents an in-place update. Earlier private autosaves, undo history,
+clipboard and preferences are not migrated. Save needed images as PNG in the old
+app and open them in the new app; keep the old installation until that is done.
+
+## Changes in this build
+
+- The pinned colour indicator is the only FG/BG display. Its two colour targets
+  open the corresponding picker; its separate arrow expands or collapses the
+  swatch panel without duplicating FG/BG controls.
+- Custom-colour slots stay visible in Palette, Honeycomb and Advanced. Select a
+  labelled slot, edit the colour and use Save/Replace explicitly. Empty slots
+  show “+”; hidden cycling and long-press replacement are removed. The four
+  preset colours and saved custom colours are preserved within an installation.
+- File has one Save as panel with filename, format and relevant encoding options:
+  PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP and GIF. Quality controls appear for
+  lossy formats, lossless options where supported, and dithering for GIF. Android's
+  destination picker follows the panel. Save and share uses the same options.
+- BMP output uses uncompressed 24-bit RGB. GIF output is a single indexed frame,
+  limited to 256 colours with optional dithering; it does not add animation.
+- Catrobat gallery image use inserts directly. The page header explains credit
+  and licence requirements, and each image has local Use image and Copy credit
+  actions. Copy all and Edit credits support credits for later distribution;
+  saved image credits are also available under Help.
+- View > Settings > App language chooses a language independently of the device,
+  or restores Use device language. Common terms reuse the original Paintroid
+  translations: 73 source files were verified, 42 common terms mapped and 64
+  language variants (including English) are selectable, plus Use device language.
+  New or untranslated text falls back to English. See TRANSLATING.md
+  for the exact inherited sources and partial translation coverage.
+- The launcher is an original paintbrush and coloured stroke, with legacy,
+  adaptive and themed variants, editable SVG, generated hashes and AGPL credit.
+- CI uses bounded asynchronous device tests and a separate, strict native
+  compiler cache. No cache speedup is claimed until a later reuse is measured.
 
 ## Verification status
 
-**Development build: verification is incomplete or contains acknowledged failures.**
+Release verification is in progress. The final signed APK report will be recorded after build and packaging checks complete.
 
-APK compilation, package/version identity, exact corresponding source, licences/fonts/icons, all four native CPU architectures, 16 KB alignment and the local.18 upgrade signature passed verification.
-
-| Check | Result |
-|---|---|
-| Unit/regression | passed; 183 tests |
-| Android lint | passed; 0 errors, 0 warnings |
-| API 30 native | not-run |
-| API 30 installed app | not-run |
-| API 35 native | pending |
-| API 35 installed app | pending |
-
-Only Ultra HDR is excluded from API 30 because it needs API 34+. No other test exclusion is applied.
-
-Build source: [`1a840c70cc461bb3257f26eacecae07ab25906d1`](https://github.com/c933103/AN-Paint/commit/1a840c70cc461bb3257f26eacecae07ab25906d1).
-[Asynchronous Android workflow](https://github.com/c933103/AN-Paint/actions/runs/34702846656).
-The downloadable and in-app source ZIPs are identical snapshots of this build. This delivery status was generated afterward; it does not overwrite or claim results from another build.
-
-The detailed JSON report records supplied artifact identities, available test outcomes and missing checks.
-
-Physical-phone installation, ARM runtime execution and third-party sharing remain unverified.
-
-The editor works and exports in opaque 8-bit SDR sRGB. High-bit-depth/HDR import conversion does not preserve HDR output. WebP supports at most 16,383 pixels per side.
+The implementation entries above are not Android test results. API 35 checks
+run independently of APK delivery; API 30 is a separate optional matrix choice.
+The successful local.19 run is recorded in verification/HANDOFF_LOCAL19.md and
+CI.md, and must not be reported as verification of this new build.
 
 ## Remaining verification boundaries
 
-No physical phone is attached. Physical installation/update, ARM runtime
-performance, manufacturer picker behaviour, live gallery downloading and sharing
-to third-party phone apps have not been verified on a phone. Deterministic gallery
-regressions substitute the HTTPS transport and exercise the actual app path;
-that is not a claim of live phone/network testing.
+No physical phone is attached. Physical installation, ARM runtime performance,
+manufacturer picker behaviour, live gallery downloading and sharing to third-party
+phone apps have not been verified on a phone. Test reports distinguish substituted
+HTTPS transport from a real WebView interaction and from live service use.
 
 The working canvas and exports are opaque 8-bit SDR sRGB. Supported high-bit-depth,
 wide-gamut and HDR imports are converted to that document format; see
-CODEC_SUPPORT.md for supported colour models and format limits. No transparency
-controls, layers or HDR output were reintroduced.
+CODEC_SUPPORT.md for supported colour models and format limits. GIF necessarily
+quantizes colours. Animation, layers and HDR output are not part of this editor.
 
-Dubai and the file labelled STC remain excluded under the public terms found.
-The exact-file and upstream-history review is complete, but no additional grant
-covering AN Paint has been established. This does not establish what permission
-Catrobat relied on. See FONT-LICENCE-REVIEW.md.
+Language choices include inherited partial translations, not newly completed
+translations of every AN Paint feature. English fallback is intentional and
+identified in the language picker.
 
-Historical local.18 evidence is retained in verification/local18.json and
-verification/HANDOFF_LOCAL18.md. Its counts do not describe this new build.
+Dubai and the file labelled STC remain excluded. The exact-file and public
+upstream-history review did not establish an additional grant covering AN Paint.
+This does not establish what permission Catrobat relied on. See
+FONT-LICENCE-REVIEW.md.

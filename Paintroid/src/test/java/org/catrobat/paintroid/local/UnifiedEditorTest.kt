@@ -141,8 +141,10 @@ class UnifiedEditorTest {
         assertFalse(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org.example.com/x.png")))
     }
     @Test fun jpegQualityIsChosenBeforeFilePickerAndSaveAndShareWritesTheFileFirst() {
-        menu("File","Save as JPEG…")
+        menu("File","Save as…")
         var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.JPEG.ordinal)
+        shadowOf(Looper.getMainLooper()).idle()
         val quality=dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality")
         quality.slider.progress=34
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
@@ -179,8 +181,10 @@ class UnifiedEditorTest {
         for(y in 0 until 100) for(x in 0 until 100) doc.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
         val original=pixels()
         fun save(quality: Int): ByteArray {
-            menu("File","Save as JPEG…")
+            menu("File","Save as…")
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.JPEG.ordinal)
+            shadowOf(Looper.getMainLooper()).idle()
             dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality").slider.progress=quality-1
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
             val launch=shadowOf(activity).nextStartedActivityForResult

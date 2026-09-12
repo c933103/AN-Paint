@@ -7,7 +7,6 @@ package org.catrobat.paintroid.classic
 import org.catrobat.paintroid.R
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +20,7 @@ import java.io.InterruptedIOException
 import java.util.concurrent.Executors
 
 class MediaGalleryActivity : Activity() {
+    override fun attachBaseContext(base: android.content.Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
     companion object {
         const val GALLERY="https://catrobat.org/figures-download/"
         const val LICENCE="https://developer.catrobat.org/pages/legal/licenses/catrobat/"
@@ -34,13 +34,25 @@ class MediaGalleryActivity : Activity() {
     @Volatile internal var downloading=false; private set
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
-        val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true}
-        status=TextView(this).apply {text=ui(R.string.ui_catrobat_online_gallery_artwork_by_its_credited_creators);setPadding(16,12,16,12)}
+        fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
+        val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true;setBackgroundColor(EditorColours.surface)}
+        val description=TextView(this).apply {
+            tag="gallery_description";text=ui(R.string.gallery_description);textSize=13f
+            setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
+        }
+        root.addView(ScrollView(this).apply {addView(description)},LinearLayout.LayoutParams(-1,dp(104)))
+        status=TextView(this).apply {tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))}
         root.addView(status)
         val row=LinearLayout(this)
-        fun action(label: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;isAllCaps=false;setOnClickListener {run()}},LinearLayout.LayoutParams(0,-2,1f))}
-        action(ui(R.string.ui_credits_terms)) {startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(LICENCE)))}
-        action(ui(R.string.ui_done)) {finish()};root.addView(row)
+        fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
+        action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
+            val credits=GalleryCredits.text(this)
+            if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
+            else GalleryCredits.copy(this,credits)
+        }
+        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this)}
+        action(ui(R.string.ui_credits_terms),"gallery_terms") {startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(LICENCE)))}
+        action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
         web=WebView(this).apply {
             settings.javaScriptEnabled=true;settings.allowFileAccess=false;settings.allowContentAccess=false
             settings.domStorageEnabled=true;settings.mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
@@ -48,12 +60,22 @@ class MediaGalleryActivity : Activity() {
             webViewClient=object: WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView,url: String): Boolean {
                     val uri=Uri.parse(url)
+                    if(uri.scheme==GalleryPage.CREDIT_SCHEME) {
+                        if(!uri.isHierarchical || uri.host!="copy")return true
+                        val source=uri.getQueryParameter("source")?.let {Uri.parse(it)}
+                        if(source!=null && allowed(source)) GalleryCredits.copy(this@MediaGalleryActivity,
+                            GalleryCredits.credit(source.toString(),uri.getQueryParameter("title").orEmpty().take(512)))
+                        return true
+                    }
                     if(!allowed(uri)) {if(uri.scheme=="https") startActivity(Intent(Intent.ACTION_VIEW,uri));return true}
                     if(uri.path.orEmpty().lowercase().matches(Regex(".*\\.(png|jpe?g|webp|gif|jxl)$"))) {insert(uri);return true}
                     return false
                 }
+                override fun onPageFinished(view: WebView,url: String) {
+                    if(allowed(Uri.parse(url))) view.evaluateJavascript(GalleryPage.script(ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
+                }
                 override fun onReceivedError(view: WebView,request: WebResourceRequest,error: WebResourceError) {
-                    if(request.isForMainFrame) status.text=ui(R.string.ui_the_online_gallery_could_not_be_loaded_check)
+                    if(request.isForMainFrame) showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))
                 }
             }
             setOnLongClickListener {
@@ -64,25 +86,24 @@ class MediaGalleryActivity : Activity() {
             }
         }
         root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
-        if(state==null) web.loadUrl(GALLERY) else web.restoreState(state)
+        if(state==null) web.loadUrl(GALLERY,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
     }
+    private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
     private fun insert(uri: Uri) {
         if(downloading || isFinishing || isDestroyed)return
-        if(!allowed(uri)) {status.text=ui(R.string.ui_this_image_is_outside_the_supported_catrobat_gallery);return}
-        AlertDialog.Builder(this).setTitle(ui(R.string.ui_insert_gallery_image))
-            .setMessage(ui(R.string.ui_catrobat_s_own_artwork_uses_cc_by_sa))
-            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_insert)) {_,_ -> download(uri)}.show()
+        if(!allowed(uri)) {showStatus(ui(R.string.ui_this_image_is_outside_the_supported_catrobat_gallery));return}
+        download(uri)
     }
     private fun download(uri: Uri) {
         if(downloading || isFinishing || isDestroyed)return
-        downloading=true;status.text=ui(R.string.ui_downloading_image)
+        downloading=true;showStatus(ui(R.string.ui_downloading_image))
         worker.execute {
             var temporary: File?=null
             fun checkActive() {
                 if(isFinishing || isDestroyed || Thread.currentThread().isInterrupted) throw InterruptedIOException()
             }
             fun failure(message: String) = runOnUiThread {
-                if(!isFinishing && !isDestroyed) status.text=message
+                if(!isFinishing && !isDestroyed) showStatus(message)
             }
             try {
                 var url=URL(uri.toString());var connection: HttpURLConnection?=null

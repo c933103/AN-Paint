@@ -11,6 +11,11 @@ Add a language by creating `res/values-<Android language qualifier>/strings.xml`
 with the same resource names. Matching companion filenames may be kept or merged
 into that locale's `strings.xml`. Examples: `values-fr`, `values-ja`, `values-b+zh+Hant`.
 Missing entries fall back to English. A translation does not require Kotlin edits.
+Register a newly supported language in the generated language inventories through
+`tools/reuse_upstream_translations.py` (or extend its inventory for a new translation).
+Existing imported vocabulary and exact provenance are in `translations/README.md`.
+The app language can be chosen under View → Settings → App language independently
+of the device language; Android 13 also exposes the same setting in system settings.
 `crowdin.yml` is available for a maintainer's own translation project; automated
 uploads to the upstream Catrobat translation project are not enabled.
 
@@ -26,7 +31,7 @@ uploads to the upstream Catrobat translation project are not enabled.
   names come from the licensed font inventory and should remain recognizable.
 - Legal licence texts and copyright notices are preserved verbatim. Translate
   their navigation labels; keep the original legal notices available.
-- Pixel values remain exact. Decimal entry accepts the device's decimal separator
+- Pixel values remain exact. Decimal entry accepts the selected app language's decimal separator
   as well as a decimal point. Test numeric fields in the target locale.
 - Numeric slider labels use a complete positional format string rather than
   concatenating a setting name, punctuation and a number. A translator can change
@@ -43,9 +48,11 @@ Canvas coordinates, image rotation, assembly attachments and direction arrows
 must not be mirrored just because the surrounding text is right-to-left.
 
 `TranslationReadinessTest` exercises Arabic-digit numeric entry and the portrait
-and landscape controls under an RTL locale, using English fallback resources.
+and landscape controls under an RTL locale. Shared terms now reuse actual upstream
+translations, while new messages retain English fallback.
 It checks that the sidebar toggle and colour palette stay attached and that
 native submenus still run their commands. This is layout and resource-readiness
-coverage, not an Arabic translation. No particular human translation was requested
-for this update. Human translation review and device checks at larger font sizes
-remain part of adding each future language.
+coverage, not a complete Arabic translation. `AppLanguageTest` checks persisted
+language choice, localized number entry, Android 13 integration, and preserving the
+current canvas, undo and selection during a language change. Human review and device
+checks at larger font sizes remain part of completing each future translation.

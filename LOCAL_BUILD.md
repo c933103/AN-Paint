@@ -1,53 +1,77 @@
-# AN Paint current build — local.16
+# AN Paint current build — local.20
 
-Version `2.14.1-local.16`, code `69`, package `io.github.c933103.anpaint`.
-Install over local.15 with the saved AN Paint signing key. Older package IDs
-remain separate installations. No signing keys belong in the public repository.
+Version `2.14.1-local.20`, code `73`, package `paint.anpaint.android`.
+This is a separate installation from local.15–local.19
+(`io.github.c933103.anpaint`), despite retaining the same signing key. The old
+app's private autosaves, undo history, clipboard and preferences are not migrated.
+Transfer needed images by saving PNG in the old app and opening it here. No
+signing keys belong in the public repository.
 
-The new editor is now the only editor. Layers, document transparency, Smudge,
-automatic crop and native project-file formats have been removed. Assembly
-output is opaque white; imported images in the main editor flatten onto BG.
-Internal selection masks remain so free-form and rotated selections retain
-correct geometry. See EDITOR_PARITY.md for the complete feature mapping.
+The sole editor uses an opaque SDR sRGB canvas, with internal masks for selections
+and transparent imports. Layers, transparency controls, Smudge, automatic crop
+and public project formats remain removed. See EDITOR_PARITY.md for the retained
+feature mapping and REQUEST_COMPLETION.md for the request audit.
 
-New controls: Watercolor with strength, Heart/Star/Arrow, sizes up to 100 pixels
-with numeric entry, four recent colour cells, cursor drawing and magnified
-preview under View. Fit also centres. Polygon's Close polygon option can be
-switched off for connected open segments. File labels insertion clearly and
-adds the online Catrobat figures gallery, JPEG quality, JPEG XL, and Save and share.
+Local.20 adds a single Save as panel with filename, format and applicable options;
+24-bit BMP and single-frame GIF output; explicit custom-colour slots; localized
+gallery actions with copyable/editable credits; app-language selection; and an
+original paintbrush launcher. Exact format limitations are in CODEC_SUPPORT.md.
 
 ## Rebuild
 
-Install JDK 17, Android SDK 35 and Build-Tools 35.0.0, NDK 27.2.12479018 and
-CMake 3.22.1. Set JAVA_HOME and ANDROID_HOME. Run:
+Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,
+NDK 27.2.12479018, CMake 3.22.1 and Python 3. Set `JAVA_HOME` and
+`ANDROID_HOME`. From the repository root:
 
 ```sh
 ./gradlew --no-daemon --max-workers=2 :app:writeDependencyInventory
+python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
 python3 tools/generate_legal_notices.py
-./gradlew --no-daemon --max-workers=2 :app:assembleDebug :Paintroid:testDebugUnitTest :app:lintDebug
+./gradlew --no-daemon --max-workers=2 :app:assembleDebug
+./gradlew --no-daemon --max-workers=2 :Paintroid:testDebugUnitTest :app:lintDebug
 ```
 
-The output is app/build/outputs/apk/debug/app-debug.apk. For an update build,
-pass `-PlocalDebugKeystore=/absolute/private/path/debug.keystore`; the saved key
-is maintained outside the repository. Default debug signing produces a different
-certificate and cannot update the distributed AN Paint.
+The APK is `app/build/outputs/apk/debug/app-debug.apk`. A future update to this
+package requires the saved signing certificate. Pass
+`-PlocalDebugKeystore=/absolute/private/path/debug.keystore` when building with
+the private key, or perform the documented private alignment/signing step.
+Default debug signing produces a different certificate. A matching certificate
+alone cannot convert the old package into the new one.
 
-JPEG XL source is fetched at exact revisions by tools/fetch_jxl_sources.py;
-libjxl 0.12.0 is built statically into the JNI library. Four ABIs are included
-by default. `-PnativeAbis=x86_64` is for emulator verification only. Run
-`:Paintroid:connectedDebugAndroidTest` on an Android emulator/device to verify
-actual lossless/lossy codec execution, crop/scaling and error handling.
+JPEG XL, WebP and HEIF/AV1 dependencies are fetched at exact source revisions by
+`tools/fetch_*_sources.py`; native codecs build for all four supported ABIs.
+`-PnativeAbis=x86_64` is for emulator iteration, not universal distribution.
+With an Android emulator or device attached, run:
 
-The APK carries corresponding source. Native intermediates (.cxx), Gradle/build
-outputs, APKs and signing keys are excluded from that ZIP. Confirm the source
-and font/icon inventories against the delivered APK before publishing it.
-The new UI strings are in res/values/strings.xml; see TRANSLATING.md.
+```sh
+./gradlew --no-daemon --max-workers=2 :Paintroid:connectedDebugAndroidTest :app:connectedDebugAndroidTest
+```
+
+GitHub CI produces APK/source before device checks complete, with regression/lint
+independent and routine API 35 checks bounded. API 30/35 is a selectable full
+matrix. The build job's strict ccache stores only checked compiler entries outside
+the checkout; application classes, linked libraries, APKs and CMake directories
+are not reused. See CI.md for deadlines, artifact identities and actual timing.
+Do not wait for a long device job as the only remaining activity, or report
+pending checks as passes.
+
+The APK includes its exact corresponding source and native dependency sources.
+Gradle/build outputs, CMake intermediates, APKs and signing keys are excluded.
+The downloaded source archive keeps native source under `Paintroid/build/` for
+offline rebuilding; avoid `clean` if those offline source trees are needed.
+Verify corresponding source, artwork/font hashes, native architectures, signing
+certificate and 16 KB alignment before delivering an installable APK.
+
+UI strings use Android resources across `res/values/strings*.xml`. The selected
+app language applies to editor, assembly, gallery and numeric formatting.
+`translations/` contains the upstream source index, term map and coverage report;
+TRANSLATING.md explains reproducible generation and English fallback.
 
 ## Historical build record
 
 The material below records earlier releases and their test results. References
 to the retained original editor, transparent output, old tool counts, package
-IDs and dependency caches describe those releases, not local.16.
+IDs and dependency caches describe those releases, not local.20.
 
 # AN Paint
 

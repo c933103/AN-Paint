@@ -13,6 +13,7 @@ import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import org.catrobat.paintroid.classic.*
@@ -111,9 +112,96 @@ class ANPaintControlsTest {
         val dialog=picker(); edit(dialog,"r","999")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); assertTrue(dialog.isShowing)
         assertEquals(Color.BLACK,activity.document.foreground)
+        dialog.window!!.decorView.findViewWithTag<View>("add_custom_colour").performClick()
+        assertFalse(activity.getSharedPreferences("classic-custom-colours",Context.MODE_PRIVATE).contains("colour_4"))
         edit(dialog,"r","64"); edit(dialog,"hex","#broken")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); assertTrue(dialog.isShowing)
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); assertEquals(Color.BLACK,activity.document.foreground)
+    }
+    @Test fun pinnedColourAreasOpenPickersAndOnlyArrowTogglesPalette() {
+        val indicator=root().findViewWithTag<ColourStatusButton>("colour_status")
+        val palette=root().findViewWithTag<ViewGroup>("palette_bar")
+        assertNull(palette.findViewWithTag<View>("foreground_colour"))
+        assertNull(palette.findViewWithTag<View>("background_colour"))
+        val density=activity.resources.displayMetrics.density
+        listOf("foreground_colour","background_colour").forEach { tag ->
+            val target=indicator.findViewWithTag<View>(tag)
+            assertTrue(target.height>=44*density-.5f);assertTrue(target.width>=44*density-.5f)
+        }
+        val expanded=indicator.expanded
+        touch(indicator,10*density,indicator.height*.25f)
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        edit(dialog,"hex","#123456");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        assertEquals(0xff123456.toInt(),activity.document.foreground)
+        assertEquals(expanded,indicator.expanded)
+        touch(indicator,10*density,indicator.height*.75f)
+        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        edit(dialog,"hex","#FEDCBA");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        assertEquals(0xfffedcba.toInt(),activity.document.background)
+        assertEquals(expanded,indicator.expanded)
+        touch(indicator,indicator.width-22*density,indicator.height/2f)
+        assertEquals(!expanded,indicator.expanded)
+        assertEquals(if (expanded) View.GONE else View.VISIBLE,palette.visibility)
+    }
+    @Test fun customColoursSaveIntoExplicitEmptySlotFromAdvancedAndReplaceOnlySelectedSlot() {
+        var dialog=picker();var content=dialog.window!!.decorView
+        edit(dialog,"hex","#13579B")
+        val empty=content.findViewWithTag<View>("custom_colour_8")
+        empty.performClick()
+        assertTrue(empty.isSelected);assertEquals("#13579B",field(dialog,"hex"))
+        val save=content.findViewWithTag<Button>("add_custom_colour")
+        assertTrue(save.isShown);assertTrue(save.text.toString().contains("9"))
+        save.performClick()
+        val prefs=activity.getSharedPreferences("classic-custom-colours",Context.MODE_PRIVATE)
+        assertEquals(0xff13579b.toInt(),prefs.getInt("colour_8",0))
+        assertFalse(prefs.contains("colour_4"))
+        assertFalse(prefs.contains("next"))
+        assertEquals("Replace slot 9",save.text.toString())
+        dialog.dismiss()
+        dialog=picker();content=dialog.window!!.decorView
+        content.findViewWithTag<View>("custom_colour_8").performClick()
+        assertEquals("#13579B",field(dialog,"hex"))
+        assertTrue(content.findViewWithTag<View>("custom_colour_8").isSelected)
+        edit(dialog,"hex","#2468AC")
+        content.findViewWithTag<View>("add_custom_colour").performClick()
+        assertEquals(0xff2468ac.toInt(),prefs.getInt("colour_8",0))
+        content.findViewWithTag<View>("custom_colour_0").performClick()
+        assertEquals("#5B67FF",field(dialog,"hex"))
+        dialog.dismiss()
+    }
+    @Test fun customSlotsAndSaveRemainAvailableInEverySelectorWithoutLongPress() {
+        val dialog=picker();val content=dialog.window!!.decorView
+        val custom=content.findViewWithTag<View>("custom_colours_panel")
+        val save=content.findViewWithTag<View>("add_custom_colour")
+        listOf("colour_mode_0","colour_mode_3","colour_advanced_tab","colour_mode_2").forEach { tab ->
+            content.findViewWithTag<View>(tab).performClick();shadowOf(Looper.getMainLooper()).idle()
+            assertTrue(tab,custom.isShown);assertTrue(tab,save.isShown)
+        }
+        content.findViewWithTag<View>("custom_colour_2").performClick()
+        assertEquals("#C0C0C0",field(dialog,"hex"))
+        assertFalse(content.findViewWithTag<View>("custom_colour_2").isLongClickable)
+        dialog.dismiss()
+    }
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
+    fun customSaveFooterFitsWhenTheAvailableDialogWindowShrinks() {
+        val dialog=picker();val content=dialog.window!!.decorView
+        content.findViewWithTag<View>("colour_advanced_tab").performClick()
+        val holder=content.findViewWithTag<ViewGroup>("colour_dialog_holder")
+        val density=activity.resources.displayMetrics.density
+        val height=(220*density).toInt();val width=(360*density).toInt()
+        holder.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.AT_MOST))
+        holder.layout(holder.left,holder.top,holder.left+holder.measuredWidth,holder.top+holder.measuredHeight)
+        val shell=holder.getChildAt(0) as ViewGroup
+        assertTrue(shell.height<=height)
+        val custom=shell.findViewWithTag<View>("custom_colours_panel")
+        val save=shell.findViewWithTag<View>("add_custom_colour")
+        val scroll=shell.findViewWithTag<View>("colour_editor_scroll")
+        val footer=save.parent as View
+        assertTrue(custom.height>=44*density-.5f)
+        assertTrue(footer.bottom<=shell.height)
+        assertTrue("Advanced controls retain a scrolling viewport",scroll.height>0)
+        dialog.dismiss()
     }
     @Test fun customSwatchesPersistAcrossDialogReopenAndBackgroundUsesSamePicker() {
         var dialog=picker(); edit(dialog,"hex","#AA3300")

@@ -29,6 +29,10 @@
 
     <issue id="MissingTranslation">
         <ignore regexp="res/values/string.xml$" />
+        <!-- Deliberate partial upstream vocabulary reuse; new terms fall back to
+             English. The picker explains this; translations/coverage.json records
+             exact coverage. Resource/format/ExtraTranslation checks remain enabled. -->
+        <ignore regexp="res/values/strings.*\.xml$" />
     </issue>
 
     <issue id="Untranslatable">

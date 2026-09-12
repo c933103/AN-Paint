@@ -29,6 +29,7 @@ import java.io.IOException
 import java.util.concurrent.Executors
 
 class ClassicPaintActivity : Activity() {
+    override fun attachBaseContext(base: android.content.Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
     companion object {
         const val OPEN_IMAGE = 701
         const val IMPORT_IMAGE = 702
@@ -45,8 +46,6 @@ class ClassicPaintActivity : Activity() {
     private lateinit var options: LinearLayout
     private lateinit var titleText: TextView
     private lateinit var statusText: TextView
-    private lateinit var foregroundButton: Button
-    private lateinit var backgroundButton: Button
     private lateinit var undoButton: ActionButton
     private lateinit var redoButton: ActionButton
     private lateinit var zoomSlider: SeekBar
@@ -171,7 +170,7 @@ class ClassicPaintActivity : Activity() {
         autosaveReady=true;scheduleAutosave()
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
         savedInstanceState?.let {
-            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true))
+            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true))
             shareAfterSave=it.getBoolean("share_after_save")
         }
         if(savedInstanceState==null) handleExternalImage(intent)
@@ -191,6 +190,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun buildWorkspace() {
+        paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
         toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear();portraitColours=null
         root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true }
@@ -245,11 +245,14 @@ class ClassicPaintActivity : Activity() {
         }
         options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(3),dp(7),dp(3),0)}
         drawerContent.addView(options)
-        colourStatus=ColourStatusButton(this).apply {tag="colour_status";setOnClickListener {togglePalette()}}
+        colourStatus=ColourStatusButton(this).apply {
+            tag="colour_status";setOnClickListener {togglePalette()}
+            editForeground={ if (!busy) colourDialog(false) };editBackground={ if (!busy) colourDialog(true) }
+        }
         val editor=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="canvas_and_palette"}
         work.addView(editor,if(landscape) LinearLayout.LayoutParams(0,-1,1f) else LinearLayout.LayoutParams(-1,0,1f))
         if(landscape) {
-            sidebar.addView(colourStatus,LinearLayout.LayoutParams(-1,dp(80)))
+            sidebar.addView(colourStatus,LinearLayout.LayoutParams(-1,dp(88)))
             val canvasRow=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR}
             editor.addView(canvasRow,LinearLayout.LayoutParams(-1,0,1f))
             canvasRow.addView(toolDrawer,LinearLayout.LayoutParams(dp(168),-1))
@@ -262,10 +265,10 @@ class ClassicPaintActivity : Activity() {
             editor.addView(paintCanvas,LinearLayout.LayoutParams(-1,0,1f))
             val colours=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR;tag="colour_dock"}
             portraitColours=colours
-            colours.addView(colourStatus,LinearLayout.LayoutParams(dp(104),dp(80)))
+            colours.addView(colourStatus,LinearLayout.LayoutParams(dp(104),dp(88)))
             makePalette(colours)
-            paletteBar.layoutParams=LinearLayout.LayoutParams(0,dp(80),1f)
-            editor.addView(colours,LinearLayout.LayoutParams(-1,dp(80)))
+            paletteBar.layoutParams=LinearLayout.LayoutParams(0,dp(88),1f)
+            editor.addView(colours,LinearLayout.LayoutParams(-1,dp(88)))
         }
         sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") {sidebarExpanded=!sidebarExpanded;syncPanels()}
         workspace.addView(sidebarToggle,FrameLayout.LayoutParams(dp(48),dp(48),Gravity.TOP or Gravity.LEFT))
@@ -291,7 +294,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig);buildWorkspace()
+        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this);buildWorkspace()
     }
 
     private fun togglePalette() {
@@ -390,12 +393,6 @@ class ClassicPaintActivity : Activity() {
 
     private fun makePalette(editor: LinearLayout) {
         val row = LinearLayout(this).apply { tag="palette_bar"; gravity = Gravity.CENTER_VERTICAL; setPadding(dp(4), dp(2), dp(4), dp(2)) }; paletteBar=row
-        val swatches = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
-        foregroundButton = button(ui(R.string.ui_fg), "foreground_colour") { colourDialog(false) }
-        backgroundButton = button(ui(R.string.ui_bg), "background_colour") { colourDialog(true) }
-        swatches.addView(foregroundButton, LinearLayout.LayoutParams(dp(48), dp(36)))
-        swatches.addView(backgroundButton, LinearLayout.LayoutParams(dp(48), dp(36)))
-        row.addView(swatches)
         val scroll = HorizontalScrollView(this).apply { contentDescription = ui(R.string.ui_colour_palette_tap_for_foreground_hold_for_background) }
         val palette = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         val colours = arrayOf(
@@ -433,7 +430,7 @@ class ClassicPaintActivity : Activity() {
             };recent.addView(pair)
         }
         row.addView(recent);refreshRecentColours()
-        editor.addView(row,LinearLayout.LayoutParams(-1,dp(80)))
+        editor.addView(row,LinearLayout.LayoutParams(-1,dp(88)))
     }
 
     private fun makeStatus() {
@@ -482,12 +479,6 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun updateColours() {
-        listOf(foregroundButton to document.foreground, backgroundButton to document.background).forEach { (view, colour) ->
-            view.backgroundTintList = android.content.res.ColorStateList.valueOf(colour)
-            view.setTextColor(if (Color.red(colour) * .299 + Color.green(colour) * .587 + Color.blue(colour) * .114 > 150) Color.BLACK else Color.WHITE)
-        }
-        foregroundButton.contentDescription = ui(R.string.ui_foreground_edit_colour, String.format("#%06X", document.foreground and 0xffffff))
-        backgroundButton.contentDescription = ui(R.string.ui_background_edit_colour, String.format("#%06X", document.background and 0xffffff))
         colourStatus.foreground=document.foreground;colourStatus.backgroundColour=document.background;colourStatus.refresh()
         paintCanvas.invalidate();scheduleAutosave()
     }
@@ -601,12 +592,8 @@ class ClassicPaintActivity : Activity() {
                 ui(R.string.ui_load_image) to { confirmReplacement { launchOpen(false) } },
                 ui(R.string.ui_insert_image_into_canvas) to { launchOpen(true) },
                 ui(R.string.ui_catrobat_sticker_gallery) to {startActivityForResult(Intent(this,MediaGalleryActivity::class.java),GALLERY_IMAGE)},
-                ui(R.string.ui_save_as_png) to { requestSave(false) },
-                ui(R.string.ui_save_as_jpeg) to { requestSave(true) },
-                ui(R.string.ui_save_as_jpeg_xl) to { showSaveOptions(ImageFormat.JPEG_XL) },
-                ui(R.string.ui_save_as_webp) to { showSaveOptions(ImageFormat.WEBP) },
-                ui(R.string.ui_save_as_heic) to { showSaveOptions(ImageFormat.HEIC) },
-                ui(R.string.ui_save_as_avif) to { showSaveOptions(ImageFormat.AVIF) },
+                ui(R.string.ui_save_a5d0d9) to { requestSave(false) },
+                ui(R.string.save20_title) to { showSaveOptions(exportOptions.format) },
                 ui(R.string.ui_save_and_share) to { showSaveOptions(exportOptions.format,true) },
                 ui(R.string.ui_image_assembly) to { openAssembly() }
             ) + if (autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to { requestRecoveryExport() }) else emptyList()
@@ -628,6 +615,7 @@ class ClassicPaintActivity : Activity() {
                 (if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)) to { paintCanvas.setCursorMode(!paintCanvas.cursorMode);showToolOptions(paintCanvas.tool) },
                 ui(R.string.ui_magnified_preview) to { showDrawingSettings(true) },
                 ui(R.string.ui_drawing_settings) to { showDrawingSettings(false) },
+                ui(R.string.language20_settings) to { AppLanguage.showSettings(this) { buildWorkspace() } },
                 (if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)) to { fullscreen=!fullscreen;syncFullscreen() },
                 ui(R.string.ui_image_assembly) to { openAssembly() },
                 (if(sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)) to { sidebarExpanded=!sidebarExpanded;syncPanels() },
@@ -817,24 +805,22 @@ class ClassicPaintActivity : Activity() {
 
     private fun requestSave(jpeg: Boolean) {
         if(jpeg) showSaveOptions(ImageFormat.JPEG) else {
-            shareAfterSave=false;exportOptions=ExportOptions(ImageFormat.PNG);chooseSaveLocation()
+            shareAfterSave=false;chooseSaveLocation()
         }
     }
     private fun showSaveOptions(format: ImageFormat,share: Boolean=false) {
         val prefs=getSharedPreferences("export",MODE_PRIVATE)
-        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true)),share,
-            confirm={options ->
-                exportOptions=options;shareAfterSave=share
-                prefs.edit().putInt("quality",options.quality).putBoolean("lossless",options.lossless).apply()
-                chooseSaveLocation()
-            },cancel={afterSave=null;shareAfterSave=false}).show()
+        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true),prefs.getBoolean("dither",true)),share,
+            confirm={request ->
+                exportOptions=request.options;shareAfterSave=share
+                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("lossless",exportOptions.lossless).putBoolean("dither",exportOptions.dither).apply()
+                chooseSaveLocation(request.fileName)
+            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename).show()
     }
-    private fun chooseSaveLocation() {
-        paintCanvas.applyPending()
-        val stem=filename.substringBeforeLast('.',filename).ifBlank {ui(R.string.ui_untitled)}
+    private fun chooseSaveLocation(proposedName: String=filename) {
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE);type=exportOptions.format.mime
-            putExtra(Intent.EXTRA_TITLE,stem+exportOptions.format.extension)
+            putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))
         },SAVE_IMAGE)
     }
     override fun onNewIntent(intent: Intent) {super.onNewIntent(intent);setIntent(intent);handleExternalImage(intent)}
@@ -878,7 +864,7 @@ class ClassicPaintActivity : Activity() {
             val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
             val source=data?.getStringExtra("gallery_source")
             if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !MediaGalleryActivity.allowed(Uri.parse(source))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
-            getSharedPreferences("image-credits",MODE_PRIVATE).edit().putStringSet("sources",(getSharedPreferences("image-credits",MODE_PRIVATE).getStringSet("sources",emptySet()) ?: emptySet())+source).apply()
+            GalleryCredits.remember(this,source)
             readImage(Uri.fromFile(file),true,deleteAfterCopy=true);return
         }
         if (requestCode == ASSEMBLY_IMAGE) {
@@ -972,6 +958,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun writeImage(uri: Uri) {
+        paintCanvas.applyPending()
         beginIo()
         val snapshot=document.bitmap
         val options=exportOptions;val sharing=shareAfterSave;shareAfterSave=false
@@ -1053,10 +1040,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
     private fun showImageCredits() {
-        val sources=getSharedPreferences("image-credits",MODE_PRIVATE).getStringSet("sources",emptySet()).orEmpty()
-        val text=if(sources.isEmpty()) ui(R.string.ui_no_gallery_images_have_been_inserted) else
-            ui(R.string.ui_gallery_artwork_catrobat_and_its_credited_creators_cc)+sources.sorted().joinToString("\n\n")+"\n\n"+MediaGalleryActivity.LICENCE
-        LegalInfo.termsDialog(this,ui(R.string.ui_image_credits),text).show()
+        GalleryCredits.showEditor(this)
     }
     private fun showDrawingSettings(preview: Boolean) {
         val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}
@@ -1127,7 +1111,7 @@ class ClassicPaintActivity : Activity() {
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
         super.onStop();stopped=true

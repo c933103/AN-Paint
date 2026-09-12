@@ -14,3 +14,8 @@
   for an installable delivery. Pending device checks prevent a “fully verified”
   claim; they do not prevent a clearly identified development delivery.
 - Never publish the saved signing key or private build backup to GitHub.
+- Build caching may store downloaded dependencies, pinned native source trees
+  and ccache's content-checked native compiler objects. Do not restore Java/Kotlin
+  classes, APKs, linked native libraries or CMake build directories. Keep compiler
+  identity/content checks and strict header checks; do not enable unsafe cache
+  sloppiness or depend mode to improve a timing claim.

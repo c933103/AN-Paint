@@ -27,6 +27,7 @@ import java.util.UUID
 import java.util.concurrent.Executors
 
 class AssemblyActivity : Activity() {
+    override fun attachBaseContext(base: android.content.Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
     companion object { const val ADD_IMAGES = 801; const val SAVE_ASSEMBLY = 802 }
     lateinit var assembly: ImageAssembly; private set
     lateinit var board: AssemblyCanvas; private set
@@ -62,6 +63,7 @@ class AssemblyActivity : Activity() {
     }
     override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
         super.onConfigurationChanged(newConfig)
+        AppLanguage.refresh(this)
         if (::assembly.isInitialized) buildInterface()
     }
     private fun compact() = resources.configuration.screenHeightDp < 600

@@ -44,13 +44,17 @@ object LegalInfo {
 
             Interface colours use the Material Design 3 baseline light palette. Palette data: Copyright © 2022 The Android Open Source Project, Apache-2.0. Exact upstream tokens and their licence are preserved in artwork/material3 in the source; full terms are in Third-party notices. Image pixels and colour swatches keep their actual colour values.
 
-            The AN monogram launcher is geometric vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. The optional online Catrobat gallery retains its CC BY-SA 4.0 source and licence credits under Image credits; no gallery image is bundled in the app.
+            The rounded paintbrush launcher and coral/blue paint stroke are original vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. The optional online Catrobat gallery retains its CC BY-SA 4.0 source and licence credits under Image credits; no gallery image is bundled in the app.
+
+            Common UI translations: Catrobat/Paintroid translators and contributors, AGPL-3.0-or-later. The exact upstream revision, unchanged translation source files and reused-key mapping are preserved under translations in the corresponding source. Untranslated terms fall back to English.
 
             Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
             JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. WebP uses libwebp 1.6.0 and SharpYUV by Google and the WebP project contributors under BSD-3-Clause, with its patent grant and the Android NDK CPU-features Apache-2.0 notice.
 
             HEIC and AVIF use libheif 1.23.4 and libde265 1.1.2 by Dirk Farin, struktur AG and contributors under LGPL-3.0-or-later; Kvazaar 2.3.2 by Tampere University, ITU/ISO/IEC and project contributors under BSD-3-Clause; and libaom 3.15.0 by the Alliance for Open Media and contributors under BSD-2-Clause and the AOM Patent License 1.0. Image codec licences includes the exact revisions, copyright notices, complete licence texts, patent grants and source/build details for all these components. The same full notices are included in Third-party notices.
+
+            BMP and GIF encoders are original AN Paint code under AGPL-3.0-or-later. The Graphics Interchange Format and GIF Service Mark belong to CompuServe Incorporated. Format details and this acknowledgement are also in Image codec licences.
 
             Complete corresponding source and build scripts are bundled in this APK. Help > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
         """.trimIndent()
@@ -64,7 +68,7 @@ object LegalInfo {
     /** Keep the codec overview identical to the individual, verbatim bundled notices. */
     fun codecNotices(activity: Activity): String = listOf(
         "legal/JPEG_XL_NOTICES.txt", "legal/WEBP_NOTICES.txt", "legal/HEIF_AVIF_NOTICES.txt",
-        "legal/NATIVE_RUNTIME_NOTICES.txt"
+        "legal/NATIVE_RUNTIME_NOTICES.txt", "legal/RASTER_FORMAT_NOTICES.txt"
     ).joinToString("\n\n\n") { asset -> activity.assets.open(asset).bufferedReader().use { it.readText() } }
 
     fun showCodecLicences(activity: Activity) {

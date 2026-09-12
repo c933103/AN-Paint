@@ -2,15 +2,19 @@
 package org.catrobat.paintroid.local
 
 import android.app.Activity
-import android.app.AlertDialog
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Looper
 import android.webkit.WebView
+import android.widget.Button
+import android.widget.EditText
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.MediaGalleryActivity
+import org.catrobat.paintroid.classic.GalleryCredits
+import org.catrobat.paintroid.classic.GalleryPage
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -24,6 +28,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowDialog
 import org.robolectric.util.ReflectionHelpers
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -77,11 +82,7 @@ class GalleryImportTest {
     private fun selectAsset() {
         val web=ReflectionHelpers.getField<WebView>(gallery,"web")
         assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,asset.toString()))
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        assertTrue(dialog.isShowing);dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
-        // AlertDialog sends button listeners through its main-thread Handler.
-        // Deliver that message before observing the worker state or blocking on
-        // the transfer latch; performClick() alone has not started the download.
+        assertNull("Using a gallery image must not require confirmation",ShadowAlertDialog.getLatestAlertDialog())
         shadowOf(Looper.getMainLooper()).idle()
     }
     @Test fun downloadableImageReturnsThroughGalleryAndCompositesOntoExistingPixelsWithSourceCredit() {
@@ -133,5 +134,34 @@ class GalleryImportTest {
         gallery.openConnection={corrupt};selectAsset();await { !gallery.downloading }
         assertTrue(corrupt.disconnected);assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
         assertTrue(gallery.cacheDir.listFiles()!!.none {it.name.startsWith("gallery-")})
+    }
+    @Test fun imageCreditActionCopiesSpecificSourceWithoutDownloadingOrInventingAnIndividualCreator() {
+        gallery.openConnection={error("Copying a credit must not download the image")}
+        val web=ReflectionHelpers.getField<WebView>(gallery,"web")
+        val action=Uri.Builder().scheme(GalleryPage.CREDIT_SCHEME).authority("copy").appendQueryParameter("source",asset.toString())
+            .appendQueryParameter("title","Needle Yellow").build()
+        assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,action.toString()))
+        val clipboard=gallery.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val credit=clipboard.primaryClip!!.getItemAt(0).text.toString()
+        assertTrue(credit.contains("Needle Yellow"));assertTrue(credit.contains(asset.toString()))
+        assertTrue(credit.contains("Publisher: Catrobat project"));assertTrue(credit.contains(GalleryCredits.CC_BY_SA))
+        assertFalse(credit.contains("Modified"));assertFalse(gallery.isFinishing)
+        assertTrue(GalleryCredits.sources(gallery).isEmpty())
+    }
+    @Test fun editedCreatorAndModificationCreditPersistsAndCopiesForDistribution() {
+        GalleryCredits.remember(gallery,asset.toString())
+        GalleryCredits.showEditor(gallery)
+        val dialog=ShadowDialog.getLatestDialog()
+        val field=dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text")
+        val credit=GalleryCredits.credit(asset.toString())+"\nCreator: credited artist\nChanges: cropped and recoloured."
+        field.setText(credit)
+        dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_copy").performClick()
+        val clipboard=gallery.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        assertEquals(credit,clipboard.primaryClip!!.getItemAt(0).text.toString())
+        assertEquals(credit,GalleryCredits.text(gallery))
+        dialog.dismiss();GalleryCredits.showEditor(gallery)
+        val reopened=ShadowDialog.getLatestDialog()
+        assertEquals(credit,reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+        reopened.dismiss()
     }
 }

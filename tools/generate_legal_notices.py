@@ -27,7 +27,7 @@ been removed. No Dubai or STC/GE SS font binaries are redistributed.
 Tool/action/navigation and panel-arrow icons: KDE Breeze Icons. Copyright (C)
 2014 Uri Herrera and others; KDE Community contributors. LGPL-3.0-or-later.
 Original SVGs, revision, hashes and conversion script are included in the source.
-Full terms appear under Icon licences and below. The AN monogram launcher,
+Full terms appear under Icon licences and below. The original paintbrush-and-stroke launcher,
 dynamic colour controls, honeycomb swatches and selection/crop guides are
 AN Paint application artwork/code, AGPL-3.0-or-later.
 
@@ -35,6 +35,14 @@ Material Design 3 baseline colour data: Copyright (C) 2022 The Android Open
 Source Project, Apache-2.0. The exact upstream tokens and licence are preserved
 in artwork/material3; complete notices follow below. AN Paint maps semantic
 roles to its controls while retaining actual image and swatch colours.
+
+Common UI translations are reused from Catrobat/Paintroid translators and
+contributors under AGPL-3.0-or-later. Exact files, revision, hashes and key mapping
+are retained under translations in the corresponding source.
+
+BMP and GIF encoders are original AN Paint code under AGPL-3.0-or-later.
+The Graphics Interchange Format and GIF Service Mark belong to CompuServe
+Incorporated. Format notices are included below and under Image codec licences.
 
 Ten unmodified fonts are bundled under SIL OFL-1.1, with complete notices below.
 System fonts and platform widget artwork are supplied by the Android device;
@@ -129,6 +137,7 @@ for title, filename in [('JPEG XL', 'JPEG_XL_NOTICES.txt'), ('WEBP', 'WEBP_NOTIC
     notice.append(f'\n\n{title} CODEC NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal' / filename).read_text())
 notice.append('\n\nNATIVE RUNTIME NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt').read_text())
 notice.append('\n\nMATERIAL DESIGN 3 COLOUR NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/MATERIAL_COLOUR_NOTICES.txt').read_text())
+notice.append('\n\nBMP AND GIF FORMAT NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/RASTER_FORMAT_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

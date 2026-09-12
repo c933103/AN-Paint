@@ -24,7 +24,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 ext {
-    appId = 'io.github.c933103.anpaint'
+    appId = 'paint.anpaint.android'
     appName = 'AN Paint'
 }
 
@@ -115,7 +115,7 @@ android {
         }
     }
 
-    namespace = "io.github.c933103.anpaint"
+    namespace = "paint.anpaint.android"
 }
 
 tasks.withType(Detekt).configureEach {

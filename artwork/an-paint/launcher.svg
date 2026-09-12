@@ -1,7 +1,26 @@
-<!-- AN Paint launcher artwork, 2026-09-09. Copyright (C) 2026 AN Paint contributors.
-     GNU AGPL-3.0-or-later. Geometric AN lettering; no font or third-party artwork. -->
+<!-- AN Paint launcher artwork, 2026-09-12. Copyright (C) 2026 AN Paint contributors.
+     SPDX-License-Identifier: AGPL-3.0-or-later. Original paintbrush and paint stroke;
+     no font, reference artwork or third-party icon is used. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
-  <rect width="108" height="108" rx="23" fill="#5B67FF"/>
-  <path fill="#FFFFFF" fill-rule="evenodd" d="M27 70L37 38H44L55 70H47L45 63H36L34 70ZM38 56H43L40.5 47Z M59 70V38H66L74 54V38H82V70H75L67 54V70Z"/>
-  <path d="M36 78H73" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+  <defs>
+    <!-- The themed silhouette keeps a small gap at the ferrule so the brush
+         remains distinct from its paint stroke when every shape is one colour. -->
+    <g id="monochrome">
+      <path fill="#FFFFFF" d="M66.8 28.8C69 26.6 72.6 26.6 74.8 28.8C77 31 77 34.6 74.8 36.8L55.6 56L47.6 48Z"/>
+      <path fill="#FFFFFF" d="M44.8 50.8L52.8 58.8L49.5 62.1C44 67.6 38.5 66.6 31 64.5C34 61.5 33.5 56.9 39.4 56.2Z"/>
+      <path fill="#FFFFFF" d="M29.2 68.6C41.5 76.6 60 77 71.4 66.9C73.6 64.8 76.6 66.5 74 70C62.5 83 40.5 81.7 29.8 73.1C27.5 71.2 27.5 69.5 29.2 68.6Z"/>
+    </g>
+  </defs>
+  <rect id="background" width="108" height="108" rx="23" fill="#EADDFF"/>
+  <g id="foreground">
+    <!-- A broad sweep of colour gives the brush a visible drawing action. -->
+    <path fill="#5B67FF" d="M32 63C39 73 56 75 70 64C73 62 77 65 74 69C63 83 39 82 29 72C26 69 27 64 32 63Z"/>
+    <path fill="#FF916E" d="M31 62C36 64 40 66 47 67C57 69 65 66 70 62C73 60 75 63 73 66C62 77 41 75 31 69C27 67 27 63 31 62Z"/>
+    <!-- Rounded handle, light ferrule and a single clean bristle point. -->
+    <path fill="#6750A4" d="M66.8 28.8C69 26.6 72.6 26.6 74.8 28.8C77 31 77 34.6 74.8 36.8L55.6 56L47.6 48Z"/>
+    <path fill="#B7A3D9" d="M46.2 46.6L57 57.4L51.3 63.1L40.5 52.3Z"/>
+    <path fill="#FFFBFE" d="M44.4 48.4L55.2 59.2L51.3 63.1L40.5 52.3Z"/>
+    <path fill="#7D5260" d="M41.1 52.9L50.7 62.5C44.5 69.1 38.5 66.8 30.5 64.4C34.1 61.8 33.4 54.1 41.1 52.9Z"/>
+    <path fill="#FF916E" d="M35.1 58.8C38.1 61.4 42.1 62.9 47.1 64.8C41.3 67.8 37.2 66.4 30.5 64.4C32.6 62.9 33.2 60.6 35.1 58.8Z"/>
+  </g>
 </svg>

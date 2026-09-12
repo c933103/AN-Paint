@@ -1,14 +1,14 @@
 # AN Paint
 
-> Local.19 completes the remaining Material 3 colour scheme, locale-aware colour inputs, magnifier autosave and gallery cancellation/insertion work. See [REQUEST_COMPLETION.md](REQUEST_COMPLETION.md) for the request audit and [HANDOFF.md](HANDOFF.md) for actual build verification.
+> Local.20 simplifies colour and save controls, adds BMP/GIF export and an app-language setting, improves gallery credits, and replaces the launcher artwork. The package name is now `paint.anpaint.android`, which installs separately from earlier AN Paint. See [HANDOFF.md](HANDOFF.md) for actual build verification.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
 based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`.
 Original Catrobat copyright and licence notices are retained.
 
-The application ID is **`io.github.c933103.anpaint`** and the launcher uses a
-Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
+The application ID is **`paint.anpaint.android`**. Its launcher shows an original
+paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
 
 ## Editing
 
@@ -23,8 +23,9 @@ Pale Violet AN monogram. Android 5.0 (API 21) or newer is required.
   alignment, direct PNG saving and transfer to the main editor.
 - Watercolor, Heart/Star/Arrow, cursor drawing, magnified preview and sizes up to
   100 px with exact numeric entry.
-- PNG, adjustable-quality JPEG/HEIC, lossless/lossy JPEG XL/WebP/AVIF, and Save and share.
-- Four recent colours and an optional online Catrobat figures gallery.
+- One Save as panel for filename, format, quality/lossless options and GIF dithering: PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP and GIF. Save and share uses the same panel.
+- Four recent colours, explicit custom-colour slots, and an optional online Catrobat figures gallery with copyable/editable credits.
+- App language selection with reused Paintroid terms and English fallback for untranslated text.
 
 The original editor, layers, transparency controls, Smudge, automatic crop and
 native project formats have been removed. See [EDITOR_PARITY.md](EDITOR_PARITY.md)
@@ -36,14 +37,21 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.19` updates local.15 through local.18 using the same application ID and signing key.
-Version local.15 introduced this package identity. It installs alongside both the
-original Pocket Paint and earlier AN Paint builds (`app.paint.local`).
+`2.14.1-local.20` uses a new package name and **installs alongside local.15 through
+local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
+the original Pocket Paint. Keeping the signing key does not make different
+package names an in-place update.
+
 To transfer your current image, **save it as PNG in the old app, then open it in
-the new app**. The image transfers; private autosave history, clipboard and
-preferences remain in the old installation. Keep the old app until any work
-you need has been saved. Later updates to this package must use the same
-signing certificate and a higher version code.
+the new app**. Private autosaves, undo history, clipboard and preferences stay in
+the old installation. Keep the old app until needed images have been exported.
+Later updates to `paint.anpaint.android` must use the same signing certificate
+and a higher version code.
+
+Choose **View > Settings > App language** to override the device language.
+Existing Paintroid translations supply common tool names and commands; new or
+untranslated text appears in English. This is partial translation coverage,
+not a claim that every selectable language has a fully translated interface.
 
 ## Building
 
@@ -80,7 +88,7 @@ are independently maintained.
 
 ## Licences and artwork
 
-- Application and new AN launcher: [GNU AGPL-3.0-or-later](LICENSE).
+- Application and original paintbrush launcher: [GNU AGPL-3.0-or-later](LICENSE).
   Original code: Copyright © 2010–2022 The Catrobat Team and contributors;
   AN Paint modifications and launcher: Copyright © 2026 AN Paint contributors.
 - Tool/action icons: KDE Breeze, LGPL-3.0-or-later. Original SVGs, revision,
@@ -95,6 +103,7 @@ are independently maintained.
   and [WebP](Paintroid/src/main/assets/legal/WEBP_NOTICES.txt) /
   [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) notices preserve
   the upstream licences and patent grants. Gallery artwork retains its
-  CC BY-SA 4.0 attribution and source links.
+  CC BY-SA 4.0 attribution and source links; the gallery provides copyable credit
+  text and editing controls for accurately describing later modifications.
 
 No signing keys or private build backups belong in the public repository.

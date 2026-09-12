@@ -2,15 +2,22 @@
 package org.catrobat.paintroid.classic
 
 import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.annotation.StringRes
 import java.text.NumberFormat
 import java.text.ParsePosition
 import java.util.Locale
 
-/** Application resources follow the device locale; no translated labels are used as IDs. */
+/** Application resources follow the selected app language; labels are never used as IDs. */
 class PaintApplication : Application() {
+    override fun attachBaseContext(base: Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
     override fun onCreate() { super.onCreate(); currentResources = resources }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        currentResources = AppLanguage.wrap(this).resources
+    }
     companion object { internal lateinit var currentResources: Resources }
 }
 

@@ -474,3 +474,39 @@ This update closes those gaps. REQUEST_COMPLETION.md maps the earlier requests.
 - APK, source and upgrade-signature checks are separate from asynchronous test
   results. Actual results and pending checks are recorded per build, without
   treating historical tests or a merely available APK as current verification.
+
+
+## Local.20 — save, colour, language and gallery controls (12 September 2026)
+
+- Change the application ID/app namespace to `paint.anpaint.android` and update
+  provider authorities and test runner identity. Retain signing-certificate
+  continuity, while clearly identifying this as a separate installation from
+  local.15–local.19. Private app data is not migrated across package IDs.
+- Replace the AN monogram with original AGPL paintbrush/stroke artwork. Keep
+  editable SVG, reproducible legacy/adaptive/themed resources, hashes and credits.
+- Remove repeated FG/BG from the expanded palette. Keep separate foreground and
+  background targets in the pinned indicator and a dedicated expansion arrow.
+  Show custom slots in all colour modes, with explicit selection, save and
+  replacement; preserve presets and existing saved slots within an installation.
+- Replace separate format entries with one Save as panel: editable filename,
+  format, quality, supported lossless options and GIF dithering. Extend Save and
+  share through the same panel. Changing format updates its filename extension.
+- Add original 24-bit BMP and adaptive 256-colour single-frame GIF encoders.
+  Optional Floyd–Steinberg dithering addresses GIF colour reduction. Animated
+  GIF input still opens one frame; animation editing is not added.
+- Insert gallery images directly without recurring confirmation. Explain credit,
+  modification and ShareAlike requirements in the page header. Add localized Use
+  image / Copy credit controls, Copy all and editable distribution credits,
+  retaining source/title/publisher/licence information and cancellation cleanup.
+- Add View > Settings > App language, including Use device language and Android
+  13+ system-language integration. Reuse 42 equivalent common terms from 73
+  verified upstream translation XML files; expose 64 language variants including
+  English. Partial translations fall back to English and are identified as such.
+- Preserve document/undo/selection while refreshing language-dependent controls.
+  Keep app language available to the gallery, assembly and numeric formatting.
+- Record the successful late local.19 API 35 result separately from this build.
+  Add a bounded, strict content-checked native compiler cache for subsequent
+  builds; no current speedup or local.20 Android test pass is assumed.
+
+Actual compilation, regression, emulator and delivery verification for local.20
+belongs in HANDOFF.md and its corresponding report.

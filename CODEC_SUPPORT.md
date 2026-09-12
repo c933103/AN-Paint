@@ -15,6 +15,23 @@ and preservation of camera metadata are outside this still-image workflow.
 | WebP | Android decoder | Bundled libwebp | Lossless or quality 1–100 |
 | HEIC | Bundled libheif + libde265 | libheif + Kvazaar | Quality 1–100 |
 | AVIF | Bundled libheif + libaom | libheif + libaom | Lossless or quality 1–100 |
+| BMP | Android decoder | Uncompressed 24-bit RGB | Exact RGB pixels; larger files |
+| GIF | Android decoder; first frame | Single indexed frame, at most 256 colours | Optional Floyd–Steinberg dithering |
+
+File > Save as opens one panel for all eight formats. Choose a filename and
+format, then set quality, lossless mode or GIF dithering where applicable before
+opening Android's destination picker. The filename extension follows format
+changes. Save and share uses the same options, writes the selected destination,
+then invokes sharing with that format. Save uses the current export format and
+opens the destination picker directly.
+
+BMP output is uncompressed 24-bit RGB with standard row padding. GIF builds an
+adaptive palette: images with at most 256 unique RGB colours preserve those
+colours; larger colour sets are quantized, optionally with Floyd–Steinberg
+dithering. GIF's format limit is 65,535 pixels per side; the device memory budget
+also applies. GIF export writes one still frame and animated GIF import opens
+the first frame. BMP/GIF encoders are original AN Paint code, not another native
+codec dependency. They add no layers, editable transparency or animation timeline.
 
 The bundled codecs are built from pinned source for the supported Android CPU
 architectures. HEIC/AVIF saving does not require a phone-provided encoder. The
@@ -101,7 +118,7 @@ the Android FORTIFY abort reproduced when encoding successive HEIC grid tiles.
 It does not alter compression algorithms. The patched source and its notice are
 included in the offline source bundle.
 
-Implementation and tests in this file describe the intended local.18 build.
+Implementation and tests in this file describe the local.20 source.
 Consult `HANDOFF.md` and `verification/` for the verification actually completed
 for a delivered APK, including the distinction between emulator and physical
 phone checks.
