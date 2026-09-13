@@ -33,13 +33,13 @@ has passed.
 Source: https://github.com/c933103/AN-Paint/commit/438fab32575139e64e2260f33e6df08887148047
 CI: https://github.com/c933103/AN-Paint/actions/runs/34776649817
 
-## Verification at packaging
+## Verification
 
 - Universal APK built for arm64-v8a, armeabi-v7a, x86 and x86_64.
 - CI regression: 249 tests, 0 failures, 0 errors, 0 skipped.
 - CI lint: 0 issues.
 - Final local Android checks: 59 passed; local lint: zero issues. Host checks: 68 passed, including generation with reversed filesystem enumeration.
-- API 35 emulator job: in_progress. Pending checks are not counted as passed.
+- API 35 emulator checks passed after packaging (job `103777089974`). The private backup retains the accurate earlier packaging-time snapshot.
 - All 766 repository files and modes matched before the build. The embedded source ZIP matches the exported archive and its 763 repository files, plus all four pinned native source trees.
 - APK package/version, signature, original certificate, archive integrity and 16 KiB ZIP alignment verified after signing.
 
@@ -51,4 +51,6 @@ The private backup contains this signed APK, matching source ZIP, original
 signing key, packaging tools, reports and rendered layout previews. Keep this
 backup private; the signing key is not published to GitHub.
 
-Snapshot: 2026-09-13T19:17:50.060358+00:00
+Packaging snapshot: 2026-09-13T19:17:50.060358+00:00
+
+API 35 completion confirmed: 2026-09-13T19:22:13.655529+00:00
