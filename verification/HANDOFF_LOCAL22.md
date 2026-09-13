@@ -120,7 +120,7 @@ the separately signed delivery to preserve compatibility with future updates.
 ## SHA-256
 
 ```text
-18b41f62da3b3831d0da47542df6fdcf2c98b1dd15a6016536a40a340a19c421  AN-Paint-2.14.1-local.22-development.apk
+f386ef95f0065d569fa590ed36fda5fe84d055e17e993ee1c633673b2c8a835c  AN-Paint-2.14.1-local.22-development.apk
 f0e904da3055019a3d84803075f6e596786e65385cf4a2ba1ac7bbc800486708  AN-Paint-source.zip
 ```
 
