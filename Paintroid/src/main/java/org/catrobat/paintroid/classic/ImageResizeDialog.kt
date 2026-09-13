@@ -34,7 +34,7 @@ class ImageResizeDialog(
         val estimate = label("", "resize_estimate"); body.addView(estimate)
         body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_estimates_include_the_current_canvas_and_clipboard_sampled), "resize_explanation"))
         var accepted = false
-        val dialog = AlertDialog.Builder(activity).setTitle(ui(R.string.ui_resize_large_image))
+        val dialog = EditorDialogBuilder(activity).setTitle(ui(R.string.ui_resize_large_image))
             .setView(ScrollView(activity).apply { addView(body) })
             .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()
         fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }

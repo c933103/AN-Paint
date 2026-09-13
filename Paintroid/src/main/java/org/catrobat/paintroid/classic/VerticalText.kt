@@ -94,12 +94,27 @@ internal object VerticalText {
             }
         }
     }
-    fun drawLabel(canvas: Canvas,text: String,paint: Paint,rect: RectF,direction: TextDirection=uiDirection()) {
-        if(rect.width()<=0 || rect.height()<=0 || text.isEmpty()) return
-        val label=if(direction==TextDirection.HORIZONTAL) text else text.trim().replace(Regex("\\s+"),"\n")
-        val bounds=bounds(label,paint,direction,GlyphOrientation.MIXED,1f)
-        val scale=minOf(1f,rect.width()/bounds.width().coerceAtLeast(1f),rect.height()/bounds.height().coerceAtLeast(1f))
-        canvas.save();canvas.translate(rect.centerX()-bounds.width()*scale/2,rect.centerY()-bounds.height()*scale/2)
-        canvas.scale(scale,scale);draw(canvas,label,paint,direction,GlyphOrientation.MIXED);canvas.restore()
+    /** Wrap at CJK cluster or word boundaries, never inside a joined Mongolian word. */
+    fun wrapLabel(text: String,paint: Paint,height: Float,direction: TextDirection=uiDirection()): String {
+        if(direction==TextDirection.HORIZONTAL) return text
+        val columns=mutableListOf<String>()
+        text.split('\n').forEach {paragraph ->
+            val tokens=mutableListOf<String>();var word=""
+            fun flush() {if(word.isNotEmpty()) {tokens.add(word);word=""}}
+            clusters(paragraph).forEach {cluster ->
+                when {upright(cluster)->{flush();tokens.add(cluster)}
+                    cluster.isBlank()->{flush();tokens.add(" ")}
+                    else->word+=cluster}
+            };flush()
+            var line=""
+            tokens.forEach {token ->
+                val candidate=line+token
+                if(line.isNotBlank() && bounds(candidate,paint,direction,GlyphOrientation.MIXED,1f).height()>height) {
+                    columns.add(line.trim());line=token.trimStart()
+                } else line=candidate
+            }
+            columns.add(line.trim())
+        }
+        return columns.joinToString("\n")
     }
 }

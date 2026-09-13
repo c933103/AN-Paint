@@ -28,6 +28,8 @@ import java.util.Locale
 class VerticalRibbonTest {
     @Test fun literaryChineseUsesUprightColumnsAndRemainsAccessible()=check("lzh-Hant","天地玄黃\n宇宙洪荒",TextDirection.VERTICAL_RL)
     @Test fun mongolianUsesJoinedVerticalWordsAndLeftToRightColumns()=check("mn-Mong","ᠮᠣᠩᠭᠣᠯ\nAN Paint",TextDirection.VERTICAL_LR)
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeMongolianUsesASideRibbonAndLeavesCanvasHeight()=check("mn-Mong","ᠮᠣᠩᠭᠣᠯ",TextDirection.VERTICAL_LR)
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeLiteraryChineseUsesASideRibbonAndLeavesCanvasHeight()=check("lzh-Hant","天地玄黃",TextDirection.VERTICAL_RL)
     private fun check(tag: String,text: String,direction: TextDirection) {
         val context=RuntimeEnvironment.getApplication() as Context
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
@@ -38,7 +40,7 @@ class VerticalRibbonTest {
         fun idle()=shadowOf(Looper.getMainLooper()).idle()
         fun render(view: View,name: String) {
             val image=Bitmap.createBitmap(view.width,view.height,Bitmap.Config.ARGB_8888);view.draw(Canvas(image))
-            val file=File("build/reports/classic-preview",name);file.parentFile.mkdirs()
+            val file=File("build/reports/classic-preview",(if(activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) "landscape-" else "")+name);file.parentFile.mkdirs()
             file.outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))};image.recycle()
         }
         try {
@@ -50,7 +52,25 @@ class VerticalRibbonTest {
                 assertTrue(button.isShown);assertTrue(button.text.isNotBlank());assertTrue(button.contentDescription.isNotBlank())
             }
             assertTrue(activity.paintCanvas.height>root.height/3)
+            assertNotNull(root.findViewWithTag<View>("vertical_status_rail"))
+            assertTrue(root.findViewWithTag<View>("undo") is ActionButton)
+            assertFalse(root.findViewWithTag<View>("undo") is Button)
+            assertTrue(root.findViewWithTag<View>("menu_Main") is RibbonTab)
+            val navigate=root.findViewWithTag<ToolButton>("tool_ZOOM")
+            assertTrue(navigate.height>0);assertTrue(navigate.width>0)
             render(root,"vertical-ui-$tag.png")
+            root.findViewWithTag<View>("menu_File").performClick();idle()
+            render(root,"vertical-file-$tag.png")
+            val save=SaveOptionsDialog(activity,ExportOptions(),confirm={},cancel={},initialFilename=text.substringBefore('\n')).show();idle()
+            try {
+                assertNotNull(save.window!!.decorView.findViewWithTag<View>("vertical_save_form"))
+                assertNotNull(save.window!!.decorView.findViewWithTag<View>("vertical_dialog"))
+                val positive=save.getButton(AlertDialog.BUTTON_POSITIVE)
+                assertTrue(positive.isShown)
+                assertTrue(positive.height>0)
+                render(save.window!!.decorView,"vertical-save-$tag.png")
+            } finally {save.dismiss();idle()}
+            root.findViewWithTag<View>("menu_Main").performClick();idle()
             val dialog=TextStyleDialog(activity,TextSettings(text),android.graphics.Color.BLACK,android.graphics.Color.WHITE) {_,_->true}.show();idle()
             try {
                 assertEquals(direction.ordinal,dialog.window!!.decorView.findViewWithTag<Spinner>("text_direction").selectedItemPosition)

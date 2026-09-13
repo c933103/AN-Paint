@@ -35,7 +35,7 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
         fun display(pixels: Int) {
             input.setText(if (percent) String.format(Locale.ROOT,"%.4f",pixels*100.0/largest).trimEnd('0').trimEnd('.') else pixels.toString())
         }
-        val dialog=AlertDialog.Builder(activity).setTitle(ui(R.string.ui_same, name))
+        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_same, name))
             .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_to_all),null).create()
         fun refresh() {
             var valid=false

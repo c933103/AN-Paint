@@ -106,11 +106,12 @@ def generate():
             record["generated_resource"] = str(target.relative_to(ROOT))
         coverage.append(record)
     # Additional locally maintained script/locale foundations.
-    for qualifier, tag in (("values-b+lzh+Hant", "lzh-Hant"), ("values-b+mn+Mong", "mn-Mong"), ("values-b+zh+Hant", "zh-Hant")):
+    for qualifier, tag in (("values-b+lzh+Hant", "lzh-Hant"), ("values-b+mn+Mong", "mn-Mong"), ("values-zh-rHK", "zh-HK"), ("values-b+mn+Cyrl+MN", "mn-Cyrl-MN")):
         path = RES / qualifier / "strings23.xml"
         if not path.is_file():
             raise ValueError(f"Missing local translation foundation: {path}")
         tags.append(tag)
+    tags.sort(key=str.casefold)
     results[DATA / "coverage.json"] = json.dumps({"revision": index["revision"],
         "mapped_common_terms": len(mapping), "offered_language_count_including_english": len(tags),
         "coverage": coverage}, indent=2, ensure_ascii=False) + "\n"

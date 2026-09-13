@@ -7,8 +7,8 @@ import android.view.View
 import org.catrobat.paintroid.R
 
 /** KDE Breeze artwork under LGPL-3.0-or-later; see artwork/breeze and Icon licences. */
-class ToolButton(context: Context, val tool: PaintTool) : FlowButton(context) {
-    init {text=tool.label;contentDescription=tool.label;textSize=11f;labelledIcon(toolIcon(tool));if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=tool.label}
+class ToolButton(context: Context, val tool: PaintTool) : PanelToolButton(context) {
+    init {text=tool.label;contentDescription=tool.label;labelledIcon(toolIcon(tool));if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=tool.label}
 }
 
 internal fun toolIcon(tool: PaintTool): Int = when(tool) {

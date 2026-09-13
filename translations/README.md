@@ -1,6 +1,6 @@
 # Reused Paintroid vocabulary
 
-AN Paint's Settings → App language offers device default and 64 language/region/
+AN Paint's View → Languages offers device default and 69 language/region/
 script variants, including English. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
@@ -28,8 +28,8 @@ export cover these changes. [Catrobat credits](https://developer.catrobat.org/cr
 `common-terms.json` maps AN Paint keys to their original resource keys;
 `coverage.json` records source SHA-256, output path, language tag, reused-entry
 count and the number differing from the original English value. A differing value
-does not certify human translation quality. No machine translations were invented
-to fill missing upstream entries.
+does not certify human translation quality. The pinned upstream XML remains unchanged. Additional local catalogues are partial
+editor translations and must not be presented as independently certified translations.
 
 Nine upstream locale files have no translated vocabulary among the mapped terms:
 Afrikaans, Cherokee, Finnish, Hausa, Igbo, Georgian, Twi, Uzbek and Yoruba/Nigeria.
@@ -61,3 +61,25 @@ document, so undo and unfinished selections remain available. Android 13 and new
 share the setting with the system App languages page. Older Android versions use
 the saved app preference. Number entry and formatting follow the selected app
 locale, while image file formats and source-language legal texts stay unchanged.
+
+
+## Regional and script catalogues (0.0.24)
+
+The same case-insensitive BCP-47 order is generated for every language in both
+inventories; additions are integrated into that order, with device default first
+only in the in-app picker. Traditional Chinese is offered as `zh-TW` (Taiwan) and
+`zh-HK` (Hong Kong), with regional editor vocabulary such as 橡皮擦 / 擦膠 and
+色盤 / 調色板. The removed `zh-Hant` preference migrates to `zh-TW` on both
+legacy Android preferences and Android 13's LocaleManager.
+
+`mn-Cyrl-MN` adds a horizontal Mongolian Cyrillic foundation alongside the vertical
+`mn-Mong` foundation. Clipboard, undo/redo and confirmation terms for the new
+catalogues are selected from AOSP `android-15.0.0_r1`; exact URLs, original Git
+blob hashes and reused entries are recorded in `android-actions.json`. Other new
+Mongolian terms are local editor translations and still need native-speaker review.
+Missing terms continue to use English. Literary Chinese remains `lzh-Hant`.
+
+Vertical UI captions use natural glyph sizes, joined Mongolian words and explicit
+column wrapping. The language picker alone mixes a vertical Mongolian autonym
+with a horizontal identifying label. Native keyboard fields and format identifiers
+remain editable in dialogs; a separate vertical preview displays the filename.

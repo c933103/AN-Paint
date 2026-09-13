@@ -18,11 +18,11 @@ enum class ToolCategory(val labelId: Int,val tools: List<PaintTool>) {
     companion object { fun forTool(tool: PaintTool)=values().firstOrNull {tool in it.tools} }
 }
 
-class ToolCategoryButton(context: Context,val category: ToolCategory,var selectedTool: PaintTool,private val down: Boolean): FlowButton(context) {
+class ToolCategoryButton(context: Context,val category: ToolCategory,var selectedTool: PaintTool,private val down: Boolean): PanelToolButton(context) {
     var expanded=false
-    init {textSize=11f;refresh()}
+    init {refresh()}
     fun refresh() {
-        text=ui(category.labelId)+(if(expanded) " ▴" else " ▾")
+        text=ui(category.labelId);disclosure=expanded
         labelledIcon(toolIcon(selectedTool))
         contentDescription=ui(if(expanded) R.string.ui_collapse_tool_category else R.string.ui_expand_tool_category,ui(category.labelId),selectedTool.label)
         if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=contentDescription

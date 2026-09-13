@@ -42,6 +42,32 @@ class AppLanguageTest {
         Locale.setDefault(oldLocale)
     }
 
+    @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {
+        val tags=AppLanguage.tags(context)
+        assertEquals(tags.sortedWith(String.CASE_INSENSITIVE_ORDER),tags)
+        assertFalse(tags.contains("zh-Hant"))
+        assertTrue(tags.containsAll(listOf("zh-TW","zh-HK","mn-Mong","mn-Cyrl-MN")))
+        context.getSharedPreferences("app-language",0).edit().putString("language-tag","zh-Hant").commit()
+        assertEquals("zh-TW",AppLanguage.selectedTag(context))
+        assertEquals("zh-TW",context.getSharedPreferences("app-language",0).getString("language-tag",null))
+        AppLanguage.select(context,"zh-HK")
+        assertEquals("擦膠",AppLanguage.wrap(context).getString(R.string.ui_eraser))
+        AppLanguage.select(context,"zh-TW")
+        assertEquals("橡皮擦",AppLanguage.wrap(context).getString(R.string.ui_eraser))
+        AppLanguage.select(context,"mn-Cyrl-MN")
+        val resources=AppLanguage.wrap(context).resources
+        assertEquals("Таслах",resources.getString(R.string.ui_cut))
+        assertNotEquals(resources.getString(R.string.ui_discard_changes23),resources.getString(R.string.ui_keep_editing23))
+        assertEquals(org.catrobat.paintroid.classic.TextDirection.HORIZONTAL,org.catrobat.paintroid.classic.VerticalText.uiDirection())
+    }
+
+    @Test @Config(sdk=[33]) fun androidScriptOnlyChinesePreferenceMigratesToRegionalChoice() {
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("zh-Hant")
+        assertEquals("zh-TW",AppLanguage.selectedTag(context))
+        assertEquals("zh-TW",manager.applicationLocales[0].toLanguageTag())
+    }
+
     @Test fun chosenLanguagePersistsAndChangesResourcesAndDecimalInput() {
         AppLanguage.select(context, "fr")
         val wrapped = AppLanguage.wrap(context)

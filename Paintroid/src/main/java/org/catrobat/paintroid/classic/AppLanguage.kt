@@ -20,21 +20,35 @@ internal object AppLanguage {
 
     fun tags(context: Context): List<String> = context.resources.getStringArray(R.array.app_language_tags).toList()
 
+    private fun supportedTag(tag: String): String = when(tag) {
+        "zh-Hant", "zh-Hant-TW" -> "zh-TW"
+        "zh-Hant-HK" -> "zh-HK"
+        "mn", "mn-MN", "mn-Cyrl" -> "mn-Cyrl-MN"
+        else -> tag
+    }
+
     fun selectedTag(context: Context): String {
         val preferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         if (Build.VERSION.SDK_INT >= 33) {
             context.getSystemService(LocaleManager::class.java)?.let { manager ->
                 // Migrate the preference once when a device upgrades from Android 12.
                 if (!preferences.getBoolean("platform-initialized", false)) {
-                    val saved = preferences.getString(LANGUAGE, "").orEmpty()
+                    val saved = supportedTag(preferences.getString(LANGUAGE, "").orEmpty())
                     if (manager.applicationLocales.isEmpty && saved in tags(context))
                         manager.applicationLocales = LocaleList.forLanguageTags(saved)
                     preferences.edit().putBoolean("platform-initialized", true).apply()
                 }
-                return if (manager.applicationLocales.isEmpty) "" else manager.applicationLocales[0].toLanguageTag()
+                val current=if(manager.applicationLocales.isEmpty) "" else manager.applicationLocales[0].toLanguageTag()
+                val selected=supportedTag(current)
+                if(selected!=current) {
+                    manager.applicationLocales=LocaleList.forLanguageTags(selected)
+                    preferences.edit().putString(LANGUAGE,selected).apply()
+                }
+                return selected
             }
         }
-        return preferences.getString(LANGUAGE, "").orEmpty()
+        val current=preferences.getString(LANGUAGE, "").orEmpty()
+        return supportedTag(current).also {if(it!=current) preferences.edit().putString(LANGUAGE,it).apply()}
     }
 
     private fun deviceLocale(context: Context): Locale {
@@ -86,7 +100,9 @@ internal object AppLanguage {
     fun name(tag: String): String {
         if(tag=="lzh-Hant") return "文言（繁體） [lzh-Hant]"
         if(tag=="mn-Mong") return "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ · Mongolian [mn-Mong]"
-        if(tag=="zh-Hant") return "繁體中文 [zh-Hant]"
+        if(tag=="zh-TW") return "繁體中文（台灣） [zh-TW]"
+        if(tag=="zh-HK") return "繁體中文（香港） [zh-HK]"
+        if(tag=="mn-Cyrl-MN") return "Монгол (Кирилл, Монгол Улс) [mn-Cyrl-MN]"
         val locale = Locale.forLanguageTag(tag)
         return "${locale.getDisplayName(locale)} [$tag]"
     }
@@ -108,7 +124,14 @@ internal object AppLanguage {
         }
         return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))
             .setCustomTitle(note)
-            .setSingleChoiceItems(labels.toTypedArray(), choices.indexOf(selectedTag(activity))) { dialog, which ->
+            .setSingleChoiceItems(object: android.widget.ArrayAdapter<String>(activity,android.R.layout.simple_list_item_single_choice,labels) {
+                override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
+                    // Script-specific rows are never recycled as ordinary horizontal rows.
+                    val view=super.getView(position,null,parent) as TextView
+                    if(choices[position]=="mn-Mong") VerticalUi.languageChoice(view)
+                    return view
+                }
+            }, choices.indexOf(selectedTag(activity))) { dialog, which ->
                 dialog.dismiss()
                 if (choices[which] != selectedTag(activity)) {
                     select(activity, choices[which]); refresh(activity); changed()

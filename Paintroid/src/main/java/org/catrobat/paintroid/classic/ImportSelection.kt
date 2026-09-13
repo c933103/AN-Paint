@@ -92,7 +92,7 @@ class ImportSelection(private val activity: Activity,private val worker: Executo
         val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else
             ui(R.string.formats22_animation_message,info.format,frames)+"\n\n"+
                 ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)
-        dialog=AlertDialog.Builder(activity).setTitle(ui(R.string.formats22_animation_title)).setMessage(message)
+        dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_animation_title)).setMessage(message)
             .setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.show()
     }
@@ -111,7 +111,7 @@ class ImportSelection(private val activity: Activity,private val worker: Executo
         val image=ImageView(activity).apply {tag="import_page_preview";adjustViewBounds=true;scaleType=ImageView.ScaleType.FIT_CENTER;contentDescription=ui(R.string.formats22_page_preview)}
         previewView=image
         body.addView(image,LinearLayout.LayoutParams(-1,(220*activity.resources.displayMetrics.density).toInt()))
-        val chooser=AlertDialog.Builder(activity).setTitle(ui(R.string.formats22_select_page))
+        val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_select_page))
             .setView(ScrollView(activity).apply {addView(body)})
             .setPositiveButton(ui(R.string.formats22_open_page),null)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.create()

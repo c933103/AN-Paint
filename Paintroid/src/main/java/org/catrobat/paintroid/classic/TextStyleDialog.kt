@@ -81,7 +81,7 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
             val names=if(preview.direction==TextDirection.HORIZONTAL) arrayOf(ui(R.string.ui_left_aligned),ui(R.string.ui_centred),ui(R.string.ui_right_aligned))
                 else arrayOf(ui(R.string.ui_top23),ui(R.string.ui_centred),ui(R.string.ui_bottom23))
             val old=align.selectedItemPosition
-            if(align.getItemAtPosition(0)!=names[0]) {align.adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,names);align.setSelection(old)}
+            if(align.getItemAtPosition(0)!=names[0]) {align.adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,names);align.setSelection(old);VerticalUi.spinner(align)}
             preview.invalidate()
         }
         val watcher=object : TextWatcher {
@@ -95,7 +95,7 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) { update() }
             override fun onNothingSelected(parent: AdapterView<*>?)=Unit
         };font.onItemSelectedListener=selected;align.onItemSelectedListener=selected;direction.onItemSelectedListener=selected;glyphs.onItemSelectedListener=selected
-        val dialog=AlertDialog.Builder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })
+        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })
             .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()

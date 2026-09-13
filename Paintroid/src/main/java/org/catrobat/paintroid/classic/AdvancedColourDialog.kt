@@ -70,12 +70,12 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     private var syncing = false
     private lateinit var honeycomb: HoneycombPalette
     private fun dp(n: Int) = (activity.resources.displayMetrics.density * n + .5f).toInt()
-    private fun label(text: String) = TextView(activity).apply { this.text = text; textSize = 12f }
+    private fun label(text: String) = FlowTextView(activity).apply { this.text = text; textSize = 12f }
     private fun swatchBackground(view: View, colour: Int) {
         view.background = GradientDrawable().apply { setColor(colour); setStroke(dp(1), EditorColours.outline) }
     }
     private fun column() = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
-    private fun button(text: String, tag: String, action: () -> Unit) = Button(activity).apply {
+    private fun button(text: String, tag: String, action: () -> Unit) = FlowButton(activity).apply {
         this.text = text; this.tag = tag; isAllCaps = false; textSize = 12f; setOnClickListener { action() }
     }
     fun show(): AlertDialog {
@@ -230,7 +230,23 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             tag="colour_dialog_holder"
             addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
         }
-        val dialog = AlertDialog.Builder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(holder)
+        val dialogContent=if(VerticalText.uiVertical()) {
+            VerticalUi.panel(tabs,112);VerticalUi.panel(advanced,160)
+            val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_colour_form"}
+            form.addView(VerticalUi.detach(tabs),LinearLayout.LayoutParams(-2,-2))
+            palette.layoutParams=LinearLayout.LayoutParams(dp(288),-2)
+            (palette.getChildAt(0) as? FlowTextView)?.columnHeightDp=64
+            honeycomb.layoutParams=LinearLayout.LayoutParams(dp(288),dp(278))
+            form.addView(VerticalUi.detach(body),LinearLayout.LayoutParams(-2,-2))
+            // Swatches stay spatial, at usable touch sizes; their captions have separate columns.
+            customPanel.layoutParams=LinearLayout.LayoutParams(dp(352),-2)
+            (customHeading as? FlowTextView)?.columnHeightDp=96
+            form.addView(VerticalUi.detach(customPanel),LinearLayout.LayoutParams(dp(352),-2))
+            VerticalUi.panel(previewRow,112)
+            form.addView(VerticalUi.detach(previewRow),LinearLayout.LayoutParams(-2,-2))
+            form
+        } else holder
+        val dialog = EditorDialogBuilder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(R.string.ui_use_colour), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (fields.values.any { it.error != null }) return@setOnClickListener
@@ -254,7 +270,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         fun changed() {refreshCustom();paletteChanged();Toast.makeText(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT).show()}
         if(paletteStore.add(value.colour)) changed() else {
             val entries=paletteStore.entries()
-            AlertDialog.Builder(activity).setTitle(ui(R.string.ui_replace_palette23))
+            EditorDialogBuilder(activity).setTitle(ui(R.string.ui_replace_palette23))
                 .setItems(entries.map {customLabel(it.first,it.second)}.toTypedArray()) {_,which ->paletteStore.replace(entries[which].first,value.colour);changed()}
                 .setNegativeButton(ui(R.string.ui_cancel),null).show()
         }

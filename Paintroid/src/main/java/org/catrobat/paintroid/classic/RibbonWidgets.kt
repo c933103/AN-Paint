@@ -2,43 +2,131 @@
 package org.catrobat.paintroid.classic
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.*
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.view.Gravity
-import android.view.View
+import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import android.widget.ScrollView
+import android.widget.TextView
+import kotlin.math.ceil
 
-/** Accessible native button with a vertical text drawing path for vertical locales. */
+/** Native text buttons retain their platform appearance. Vertical captions have their own measurements. */
 open class FlowButton(context: Context): Button(context) {
+    var columnHeightDp=144
     private var icon: android.graphics.drawable.Drawable?=null
+    protected fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
     init {
-        isAllCaps=false;textSize=12f;gravity=Gravity.CENTER
+        isAllCaps=false;gravity=Gravity.CENTER;textSize=13f
         minWidth=0;minimumWidth=0;minHeight=0;minimumHeight=0
-        setPadding(dp(4),dp(2),dp(4),dp(2));maxLines=3
         VerticalText.uiTypeface(context)?.let {typeface=it}
-        fun fill(selected: Boolean)=GradientDrawable().apply {
+    }
+    fun labelledIcon(resource: Int,size: Int=32) {
+        icon=context.getDrawable(resource)?.mutate()?.apply {setBounds(0,0,dp(size),dp(size))}
+        if(!VerticalText.uiVertical()) setCompoundDrawables(null,icon,null,null)
+        compoundDrawablePadding=dp(3);requestLayout();invalidate()
+    }
+    private fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat())
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
+        val box=VerticalText.bounds(caption(),paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        val iconWidth=icon?.bounds?.width()?.plus(dp(8)) ?: 0
+        val w=ceil(box.width()).toInt()+iconWidth+paddingLeft+paddingRight
+        val h=maxOf(ceil(box.height()).toInt(),icon?.bounds?.height() ?: 0)+paddingTop+paddingBottom
+        setMeasuredDimension(resolveSize(maxOf(dp(44),w),widthMeasureSpec),resolveSize(maxOf(dp(44),h),heightMeasureSpec))
+    }
+    override fun onDraw(canvas: Canvas) {
+        icon?.setColorFilter(if(isEnabled) currentTextColor else EditorColours.disabledOnSurface,PorterDuff.Mode.SRC_IN)
+        if(!VerticalText.uiVertical()) {super.onDraw(canvas);return}
+        val p=Paint(paint).apply {color=if(isEnabled) currentTextColor else EditorColours.disabledOnSurface}
+        val label=caption();val box=VerticalText.bounds(label,p,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        val iw=icon?.bounds?.width() ?: 0;val gap=if(iw>0) dp(8) else 0
+        val left=(width-box.width()-iw-gap)/2f
+        val textFirst=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+        icon?.let {canvas.save();canvas.translate(if(textFirst) left+box.width()+gap else left,(height-it.bounds.height())/2f);it.draw(canvas);canvas.restore()}
+        canvas.save();canvas.translate(if(textFirst) left else left+iw+gap,(height-box.height())/2f)
+        VerticalText.draw(canvas,label,p,VerticalText.uiDirection(),GlyphOrientation.MIXED);canvas.restore()
+    }
+}
+
+/** Original square tool tiles and small bold captions, confined to ribbon panels. */
+open class PanelToolButton(context: Context): FlowButton(context) {
+    var disclosure: Boolean?=null
+    init {
+        textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
+        setPadding(dp(6),dp(5),dp(6),dp(5));columnHeightDp=112
+        fun tile(selected: Boolean)=GradientDrawable().apply {
             setColor(if(selected) EditorColours.primaryContainer else EditorColours.surfaceContainer)
-            cornerRadius=dp(4).toFloat();setStroke(dp(1),if(selected) EditorColours.primary else EditorColours.outlineVariant)
+            setStroke(dp(1),if(selected) EditorColours.primary else EditorColours.outlineVariant)
         }
         background=StateListDrawable().apply {
-            addState(intArrayOf(android.R.attr.state_selected),fill(true));addState(intArrayOf(android.R.attr.state_pressed),fill(true));addState(intArrayOf(),fill(false))
+            addState(intArrayOf(android.R.attr.state_selected),tile(true))
+            addState(intArrayOf(android.R.attr.state_pressed),tile(true));addState(intArrayOf(),tile(false))
         }
-        setTextColor(ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_enabled),intArrayOf()),intArrayOf(EditorColours.disabledOnSurface,EditorColours.onSurface)))
+        setTextColor(EditorColours.onSurface)
     }
-    protected fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
-    fun labelledIcon(resource: Int,size: Int=28) {
-        icon=context.getDrawable(resource)?.mutate()?.apply {setBounds(0,0,dp(size),dp(size));setColorFilter(EditorColours.onSurface,PorterDuff.Mode.SRC_IN)}
-        setCompoundDrawables(null,icon,null,null);compoundDrawablePadding=dp(2)
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        if(!VerticalText.uiVertical() && MeasureSpec.getMode(widthMeasureSpec)!=MeasureSpec.EXACTLY) {
+            val natural=ceil(paint.measureText(text.toString())).toInt()+dp(if(disclosure!=null) 28 else 12)
+            setMeasuredDimension(resolveSize(maxOf(dp(76),natural),widthMeasureSpec),maxOf(dp(64),measuredHeight))
+        }
+    }
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        disclosure?.let {expanded ->
+            val glyph=CopyleftIcon(context,if(expanded) org.catrobat.paintroid.R.drawable.breeze_up else org.catrobat.paintroid.R.drawable.breeze_down)
+            glyph.draw(canvas,width-dp(16).toFloat(),dp(3).toFloat(),width-dp(2).toFloat(),dp(17).toFloat(),EditorColours.onSurface)
+        }
+    }
+}
+
+/** Tabs share their naturally tallest height so the selected edge meets one common panel boundary. */
+internal class TabStrip(context: Context): android.widget.LinearLayout(context) {
+    init {isBaselineAligned=false}
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        val tallest=(0 until childCount).maxOfOrNull {getChildAt(it).measuredHeight} ?: 0
+        for(i in 0 until childCount) getChildAt(i).let {it.measure(MeasureSpec.makeMeasureSpec(it.measuredWidth,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(tallest,MeasureSpec.EXACTLY))}
+        setMeasuredDimension(measuredWidth,tallest+paddingTop+paddingBottom)
+    }
+}
+
+/** An attached tab with a selected edge; never a boxed command button. */
+class RibbonTab(context: Context): FlowButton(context) {
+    init {background=null;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(16),dp(8),dp(16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
+    override fun onDraw(canvas: Canvas) {
+        val p=Paint(Paint.ANTI_ALIAS_FLAG)
+        if(isSelected) {p.color=EditorColours.surfaceContainer;canvas.drawRect(0f,0f,width.toFloat(),height.toFloat(),p)}
+        p.color=if(isSelected) EditorColours.primary else EditorColours.outlineVariant
+        canvas.drawRect(0f,height-dp(if(isSelected) 3 else 1).toFloat(),width.toFloat(),height.toFloat(),p)
+        super.onDraw(canvas)
+    }
+    override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(info);info.className="android.app.ActionBar\$Tab";info.isSelected=isSelected
+    }
+}
+
+/** Vertical prose wraps into columns at its original size, scrolled by its container. */
+class FlowTextView(context: Context): TextView(context) {
+    var columnHeightDp=240
+    init {VerticalText.uiTypeface(context)?.let {typeface=it};setTextColor(EditorColours.onSurface)}
+    private fun caption(height: Int)=VerticalText.wrapLabel(text.toString(),paint,height.toFloat().coerceAtLeast(paint.fontSpacing))
+    private var columnHeight=0
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
+        val preferred=(columnHeightDp*resources.displayMetrics.density).toInt()
+        columnHeight=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferred else minOf(preferred,MeasureSpec.getSize(heightMeasureSpec)-paddingTop-paddingBottom)
+        val box=VerticalText.bounds(caption(columnHeight),paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        setMeasuredDimension(resolveSize(ceil(box.width()).toInt()+paddingLeft+paddingRight,widthMeasureSpec),
+            resolveSize(ceil(box.height()).toInt()+paddingTop+paddingBottom,heightMeasureSpec))
     }
     override fun onDraw(canvas: Canvas) {
         if(!VerticalText.uiVertical()) {super.onDraw(canvas);return}
-        var top=paddingTop.toFloat()
-        icon?.let {drawable->canvas.save();canvas.translate((width-drawable.bounds.width())/2f,top);drawable.draw(canvas);canvas.restore();top+=drawable.bounds.height()+dp(2)}
-        val p=Paint(paint).apply {color=currentTextColor}
-        VerticalText.drawLabel(canvas,text.toString(),p,RectF(paddingLeft.toFloat(),top,width-paddingRight.toFloat(),height-paddingBottom.toFloat()))
+        canvas.save();canvas.translate(paddingLeft.toFloat(),paddingTop.toFloat())
+        VerticalText.draw(canvas,caption(columnHeight),Paint(paint).apply {color=currentTextColor},VerticalText.uiDirection(),GlyphOrientation.MIXED)
+        canvas.restore()
     }
 }
 

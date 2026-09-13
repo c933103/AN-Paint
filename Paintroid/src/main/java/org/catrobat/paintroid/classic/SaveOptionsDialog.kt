@@ -80,7 +80,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         val asciiInvert=CheckBox(activity).apply {tag="export_ascii_invert";text=ui(R.string.formats22_ascii_invert);isChecked=initial.asciiInvert}
         asciiControls.addView(asciiInvert)
         val slider=NumericSlider(activity,ui(R.string.ui_quality),quality,1,100) {quality=it}.apply {tag="export_quality"}
-        val explanation=TextView(activity).apply {tag="export_description"}
+        val explanation=FlowTextView(activity).apply {tag="export_description"}
         fun update() {
             losslessBox.text=ui(R.string.ui_lossless_format,format.label)
             losslessBox.visibility=if(share && format.supportsLossless) View.VISIBLE else View.GONE
@@ -118,8 +118,43 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         },LinearLayout.LayoutParams(-1,-2))
         body.addView(losslessBox);body.addView(slider);body.addView(ditherBox);body.addView(tiffCompressionBox);body.addView(iconControls);body.addView(asciiControls);body.addView(explanation)
         update()
-        val dialog=AlertDialog.Builder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
-            .setView(ScrollView(activity).apply {addView(body)})
+        val content: View=if(VerticalText.uiVertical()) {
+            val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_save_form"}
+            val tall=(activity.resources.configuration.screenHeightDp-260).coerceIn(144,280)
+            val d=activity.resources.displayMetrics.density
+            fun prose(value: String)=FlowTextView(activity).apply {text=value;columnHeightDp=tall;textSize=14f;setPadding((8*d).toInt(),0,(8*d).toInt(),0)}
+            fun field(label: String,control: View) {
+                val column=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false}
+                if(control is Spinner) VerticalUi.spinner(control,tall)
+                column.addView(prose(label));column.addView(VerticalUi.detach(control),LinearLayout.LayoutParams(((if(control is Spinner) 68 else 128)*d).toInt(),-2))
+                form.addView(column)
+            }
+            // A vertical filename preview sits beside the native keyboard field. Identifiers and numeric
+            // values remain editable with Android's selection/IME support, independent of reading direction.
+            val nameColumn=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL}
+            val preview=prose(filename.text.toString()).apply {tag="vertical_filename_preview"}
+            nameColumn.addView(preview)
+            nameColumn.addView(VerticalUi.detach(filename),LinearLayout.LayoutParams((128*d).toInt(),-2))
+            filename.addTextChangedListener(object: android.text.TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?,start: Int,count: Int,after: Int)=Unit
+                override fun onTextChanged(s: CharSequence?,start: Int,before: Int,count: Int) {preview.text=s}
+                override fun afterTextChanged(s: android.text.Editable?)=Unit
+            })
+            field(ui(R.string.save20_file_name),nameColumn)
+            field(ui(R.string.save20_file_format),body.findViewWithTag<Spinner>("export_format"))
+            listOf(losslessBox,slider,ditherBox,tiffCompressionBox,iconControls,asciiControls,explanation).forEach {control ->
+                VerticalUi.detach(control)
+                if(control is LinearLayout && control !is NumericSlider) VerticalUi.panel(control,tall)
+                if(control is TextView) VerticalUi.caption(control,tall)
+                if(control is FlowTextView) control.columnHeightDp=tall
+                form.addView(control,LinearLayout.LayoutParams(if(control is NumericSlider) (176*d).toInt() else -2,-2).apply {setMargins((8*d).toInt(),0,(8*d).toInt(),0)})
+            }
+            form.addView(prose(ui(if(export) R.string.ui_export_explanation23 else R.string.ui_save_explanation23)))
+            form.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
+            form
+        } else ScrollView(activity).apply {addView(body)}
+        val dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
+            .setView(content)
             .setPositiveButton(ui(R.string.ui_choose_location),null)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()
         dialog.setOnShowListener {

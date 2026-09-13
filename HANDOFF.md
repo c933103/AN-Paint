@@ -1,79 +1,46 @@
-# AN Paint 0.0.23
+# AN Paint 0.0.24
 
-Package **paint.anpaint.android**, version code **76**. Signed with the same
-certificate as 0.0.22 for an in-place update. This is a development build.
+Package `paint.anpaint.android`; version code `77`.
 
-[Corresponding source commit](https://github.com/c933103/AN-Paint/commit/a73521e4a254b921feb2a7bcf359553d38ef2ffd) ·
-[Build and checks](https://github.com/c933103/AN-Paint/actions/runs/34743279040)
+## Requested interface corrections
 
-## Changes
+- Restored the original square tool tiles and bold panel captions, and native text
+  buttons for ordinary horizontal commands. Undo/redo, clipboard, zoom and collapse
+  shortcuts use compact icon controls. Original horizontal Save/Fit labels remain.
+- Main/File/Edit/View/Color use an attached tab strip with a shared selected edge.
+- Vertical captions sit beside tool icons. Glyph sizes stay unchanged; captions
+  wrap into columns at cluster/word boundaries, preserving joined Mongolian words.
+- Vertical scripts use a separate status rail and column-based dialogs. Landscape
+  places the ribbon beside the canvas. Save as shows filename and format first,
+  with optional settings and explanations in scrolling columns. Native keyboard
+  fields remain editable and the filename has a vertical preview.
+- The colour picker keeps its spatial wheel, honeycomb and swatches while giving
+  vertical captions their own columns. Cancel restores the previous colour;
+  accepted colours and saved palette entries still update the main colour panel.
+- Chinese is offered as zh-TW and zh-HK, with regional vocabulary. Existing
+  zh-Hant preferences migrate to zh-TW. Mongolian Cyrillic is mn-Cyrl-MN; the
+  vertical Mongolian foundation remains mn-Mong. All 69 entries are generated in
+  the same case-insensitive BCP-47 order; device default is first in the picker.
 
-- Main, File, Edit, View and Color tabs in both orientations, with a collapsible
-  panel above the canvas. Navigate is first/default; Drawing replaces the Brush
-  group label. Every tool is labelled. Cut/Copy/Paste sit beside Undo/Redo.
-- Edit contains selection, canvas bounds/size and image transformations. View
-  contains grid, cursor drawing, magnifier, Languages and fullscreen. Drawing
-  settings stay with relevant tools. How to use and About/licences/credits are in File.
-- Save as chooses a pixel-preserving format and destination. Save reuses that
-  successful destination/name/format, including restored drafts when permission
-  remains valid. Export as creates lossy/reduced output without changing the Save
-  destination or clearing unsaved changes. All thirteen output formats remain.
-- Color contains Swap, Reset B/W, standard/recent/saved colors. Pickers preview the
-  active FG/BG immediately; Use color confirms and Cancel restores. Optional Add to
-  palette updates the same saved palette in Color. Unconfirmed preview colors stay
-  out of autosave metadata. Saved colors can be used, replaced or removed explicitly.
-- Rotation and panel resizing preserve the viewed image centre or refit Fit mode.
-  Scrollbar limits and thumb dragging agree, including cursor drawing and expanded
-  canvas bounds. Legacy offscreen draft views recover safely.
-- Reviewed action translations across languages, with pinned AOSP clipboard/Cancel
-  terminology and editor-specific corrections. Save / Discard changes / Keep editing
-  are distinct. Japanese flip labels retain the correction from the previous build.
-- Literary Chinese (lzh-Hant) and traditional Mongolian (mn-Mong) foundations, with
-  vertical ribbon labels and bundled Noto Sans Mongolian. Insert text supports
-  horizontal and both vertical column orders, mixed/sideways/upright characters,
-  joined-word shaping, shared preview/output and persistent settings.
+## Verification status
 
-Previous work remains included: DIB/TIFF/ICO/Base64 opening/saving, AVIF, ASCII
-export, PDF raster import, PDF/TIFF page selection, animated GIF/APNG/WebP warnings,
-Catrobat direct insertion/localized page actions/copyable credits, and the paintbrush
-launcher. See REQUEST_COMPLETION.md and CODEC_SUPPORT.md in the matching source.
+Implementation is under local UI and regression verification. This source update
+is not yet an installable delivery or a claim that all checks passed. Final results
+and signed APK/source hashes will be recorded after build and packaging.
 
-## Verification
+The five translation generator/catalogue checks pass. The first targeted UI run
+passed language, vertical-dialog and save-format tests, and exposed a tab/collapse
+alignment regression; that regression was corrected and is being rechecked with
+portrait and landscape vertical layouts.
 
-| Check | Result |
-|---|---|
-| GitHub host checks | 65 passed; 2 skipped |
-| GitHub editor regression tests | 232 passed |
-| Lint | 0 errors / 0 warnings |
-| API 35 device checks | 77 passed |
-| Signing / install identity | Valid, certificate matches 0.0.22; version code increases from 75 to 76 |
-| Source | 723 repository blobs match the frozen GitHub tree; embedded and downloadable source are identical |
-| Native packaging | Four ABIs, expected codecs, 16 KB alignment checked |
-| Fonts / launcher | Eleven bundled fonts with notices; source assets match the APK |
+## Preserved work and limitations
 
-Locally, all 232 editor regressions and 67 host checks passed and lint was clean.
-After the final locale-resource correction, the targeted language/vertical checks
-also passed. Local logs and rendered previews are included in the private backup;
-the table above records the exact GitHub build's separate checks.
+All 0.0.23 editing, Save/export, scroll bar and format support remains. This includes
+BMP/DIB/TIFF, ICO/AVIF/Base64 text, ASCII export, PDF/TIFF page selection, animation
+warnings and corrected Japanese flip labels. See
+[the previous handoff](verification/HANDOFF_0.0.23.md) for the completed prior task.
 
-The initial device run passed 76 of 77 checks; its only failure was an obsolete
-font-count assertion after adding Noto Sans Mongolian. The final source updates
-both catalogue counts, explicitly checks that font's asset, and retains loading
-checks for every font. Historical logs are kept separately in the private backup.
-
-The new language catalogues are partial translations with English fallback and
-remain open to native-speaker review. Their ribbon labels support vertical text;
-native Android dialogs/edit fields keep platform layout. The document remains
-opaque 8-bit SDR sRGB, without layers or animation editing. No physical phone is
-attached; ARM performance and manufacturer-specific picker/live-sharing behavior
-are not established by emulator checks. SVG editing and layered PSD/OpenRaster
-remain significant future format candidates, as described in CODEC_SUPPORT.md.
-
-Keep the private build backup private: it includes the development signing key.
-
-## SHA-256
-
-```text
-45b1b51796313dbd39f767326a353b26cbdd2ee2e7412a5fc84794cc19cac418  AN-Paint-0.0.23-development.apk
-1cc70d8ce02b8771fc6270f609252e33f133d2e27fc43cc6afad1037d05e56ca  AN-Paint-source.zip
-```
+The new language catalogues are partial foundations. Missing strings use English;
+local Mongolian editor vocabulary still needs native-speaker review. Android's
+system document picker and keyboard are system-owned UI. Legal source texts remain
+in their original language. Private signing keys and backups are never published.

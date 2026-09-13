@@ -23,6 +23,10 @@ class TranslationTests(unittest.TestCase):
                     for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()]
         self.assertEqual(tags, platform)
         self.assertEqual(len(tags), len(set(tags)))
+        self.assertEqual(tags, sorted(tags, key=str.casefold))
+        self.assertNotIn("zh-Hant", tags)
+        for tag in ("zh-TW", "zh-HK", "mn-Cyrl-MN", "mn-Mong"):
+            self.assertIn(tag, tags)
         self.assertIn("en", tags)
         self.assertIn("ja", tags)
         self.assertIn("ar", tags)
@@ -39,7 +43,7 @@ class TranslationTests(unittest.TestCase):
         for path in translations.RES.glob("values*/strings_upstream.xml"):
             strings = translations.read_strings(path)
             self.assertNotEqual(normalized(strings["ui_discard_changes23"]), normalized(strings["ui_keep_editing23"]), str(path))
-        for qualifier in ("values-b+lzh+Hant", "values-b+mn+Mong", "values-b+zh+Hant"):
+        for qualifier in ("values-b+lzh+Hant", "values-b+mn+Mong", "values-zh-rHK", "values-b+mn+Cyrl+MN"):
             strings = translations.read_strings(translations.RES / qualifier / "strings23.xml")
             self.assertNotEqual(strings["ui_discard_changes23"], strings["ui_keep_editing23"])
             self.assertTrue(strings["ui_cut"].strip())

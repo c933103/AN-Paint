@@ -24,9 +24,9 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
     }
     init {
         isClickable=true;isFocusable=true;setWillNotDraw(false)
-        val colours=LinearLayout(context).apply { orientation=LinearLayout.VERTICAL }
-        colours.addView(foregroundTarget,LinearLayout.LayoutParams(-1,0,1f))
-        colours.addView(backgroundTarget,LinearLayout.LayoutParams(-1,0,1f))
+        val colours=LinearLayout(context).apply { orientation=if(VerticalText.uiVertical()) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL }
+        colours.addView(foregroundTarget,LinearLayout.LayoutParams(if(VerticalText.uiVertical()) 0 else -1,if(VerticalText.uiVertical()) -1 else 0,1f))
+        colours.addView(backgroundTarget,LinearLayout.LayoutParams(if(VerticalText.uiVertical()) 0 else -1,if(VerticalText.uiVertical()) -1 else 0,1f))
         // Separate targets keep foreground/background editing accessible.
         addView(colours,LayoutParams(-1,-1).apply { rightMargin=0 })
     }
@@ -41,6 +41,20 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
         super.onDraw(c)
         val d=resources.displayMetrics.density
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
+        if(VerticalText.uiVertical()) {
+            listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed {i,(colour,name) ->
+                val left=i*width/2f
+                p.color=colour;c.drawRect(left+2*d,2*d,left+width/2f-2*d,height-2*d,p)
+                val luminance=androidx.core.graphics.ColorUtils.calculateLuminance(colour)
+                p.color=if(luminance>.179) Color.BLACK else Color.WHITE;p.textSize=11*resources.displayMetrics.scaledDensity
+                p.typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
+                val caption=name+"\n"+hex(colour)
+                val bounds=VerticalText.bounds(caption,p,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+                c.save();c.translate(left+(width/2f-bounds.width())/2,(height-bounds.height())/2)
+                VerticalText.draw(c,caption,p,VerticalText.uiDirection(),GlyphOrientation.MIXED);c.restore()
+            }
+            return
+        }
         val colourRight=width.toFloat()
         listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->
             val top=i*height/2f

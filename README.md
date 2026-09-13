@@ -1,6 +1,6 @@
 # AN Paint
 
-> Version 0.0.23 adds tabbed controls in both orientations, persistent Save destinations, live color previews, corrected action translations and vertical text. All 0.0.22 format support remains included. Package `paint.anpaint.android`, version code 76. See [HANDOFF.md](HANDOFF.md) for verification status.
+> Version 0.0.24 restores the classic button styling, separates compact shortcuts from labelled panel tools, gives tabs a shared selected edge, adds dedicated vertical layouts, and offers sorted zh-TW, zh-HK, mn-Cyrl-MN and mn-Mong choices. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 77. See [HANDOFF.md](HANDOFF.md) for verification status.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -38,7 +38,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`0.0.23` uses version code `76` and updates `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.24` uses version code `77` and updates `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
