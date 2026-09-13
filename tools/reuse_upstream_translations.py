@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import pathlib
+import re
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import escape
 
@@ -78,6 +79,11 @@ def generate():
         terms["ui_discard_changes23"] = terms.get("ui_discard_changes23", terms.get("ui_discard", "Discard changes"))
         terms["ui_keep_editing23"] = terms.get("ui_keep_editing23", terms.get("ui_cancel", "Cancel"))
         terms["ui_save_a5d0d9"] = terms.get("ui_save", "Save")
+        if tag.startswith("en-"):
+            for key in ("ui_discard_changes23", "ui_keep_editing23"):
+                terms[key] = defaults[key]
+        if not tag.startswith("en-") and terms.get("ui_drawing23"):
+            terms["ui_draw26"] = terms["ui_drawing23"]
         distinct = sum(1 for key in terms if key in mapping and normal(terms[key]) != normal(base.get(mapping[key], "")))
         distinct += sum(1 for key in reviewed.get(tag, {}) if key not in mapping and normal(terms[key]) != normal(defaults.get(key, "")))
         included = distinct > 0 or tag.startswith("en-")
@@ -111,15 +117,56 @@ def generate():
         if not path.is_file():
             raise ValueError(f"Missing local translation foundation: {path}")
         tags.append(tag)
-    tags.sort(key=str.casefold)
+    catalogue = json.loads((DATA / "language-options.json").read_text())
+    options = {item["tag"]: item for item in catalogue["options"]}
+    translated = set(tags)
+    for tag, item in options.items():
+        if not item.get("name_only") and item.get("translation_base", tag) not in translated:
+            raise ValueError(f"Language option has no translation base: {tag}")
+    tags = [catalogue["pinned_first"]] + sorted(set(options) - {catalogue["pinned_first"]}, key=str.casefold)
+    for record in coverage:
+        record["offered_tags"] = [tag for tag in tags if not options[tag].get("name_only")
+                                  and options[tag].get("translation_base", tag) == record["language_tag"]]
+        record["offered_in_app"] = bool(record["offered_tags"])
+    # New regional English choices inherit the same UI, with explicit spelling
+    # rather than depending on Android's region fallback order.
+    english_overrides = {node.get("name") for q in ("values-en-rAU", "values-en-rCA", "values-en-rGB")
+                         for node in ET.fromstring(results[RES / q / "strings_upstream.xml"])}
+    for tag, qualifier in (("en-001", "values-b+en+001"), ("en-US", "values-en-rUS"),
+                           ("en-SG", "values-en-rSG"), ("en-IN", "values-en-rIN")):
+        lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                 '<!-- Generated English spelling variants; see translations/README.md. -->', '<resources>']
+        for key, value in defaults.items():
+            # Cover existing regional overrides as well as spelling-sensitive
+            # strings, so Android cannot pick another English region's commands.
+            if key in english_overrides or re.search(r'(?i)\b(?:water)?colou?rs?\b', value):
+                def spelling(match):
+                    word = match.group()
+                    return re.sub('(?i)colour', lambda m: 'Color' if m.group()[0].isupper() else 'color', word) if tag == 'en-US' else re.sub('(?i)color', lambda m: 'Colour' if m.group()[0].isupper() else 'colour', word)
+                value = re.sub(r'(?i)\b(?:water)?colou?rs?\b', spelling, value)
+                value = value.replace("'", "\\'") if "\\'" not in value else value
+                lines.append(f'    <string name="{key}">{escape(value)}</string>')
+        results[RES / qualifier / "strings_english.xml"] = '\n'.join(lines + ['</resources>', ''])
     results[DATA / "coverage.json"] = json.dumps({"revision": index["revision"],
         "mapped_common_terms": len(mapping), "offered_language_count_including_english": len(tags),
+        "name_only_options": [tag for tag in tags if options[tag].get("name_only")],
         "coverage": coverage}, indent=2, ensure_ascii=False) + "\n"
     results[RES / "values/app_language_tags.xml"] = (
         '<?xml version="1.0" encoding="utf-8"?>\n<!-- Generated; see translations/README.md. -->\n'
         '<resources>\n    <string-array name="app_language_tags" translatable="false">\n' +
         ''.join(f'        <item>{tag}</item>\n' for tag in tags) +
         '    </string-array>\n</resources>\n')
+    arrays = {
+        "app_language_names": [options[tag]["name"] for tag in tags],
+        "app_language_name_only": [tag for tag in tags if options[tag].get("name_only")],
+        "app_language_aliases": list(catalogue["aliases"]),
+        "app_language_alias_targets": list(catalogue["aliases"].values()),
+    }
+    results[RES / "values/app_language_names.xml"] = (
+        '<?xml version="1.0" encoding="utf-8"?>\n<!-- Generated names only; no translation coverage is implied. -->\n<resources>\n' +
+        ''.join(f'    <string-array name="{key}" translatable="false">\n' +
+                ''.join('        <item>' + escape(value).replace("'", "\\'") + '</item>\n' for value in values) +
+                '    </string-array>\n' for key, values in arrays.items()) + '</resources>\n')
     results[RES / "xml/app_locales.xml"] = (
         '<?xml version="1.0" encoding="utf-8"?>\n<!-- Partial vocabulary; see translations/README.md. -->\n'
         '<locale-config xmlns:android="http://schemas.android.com/apk/res/android">\n' +

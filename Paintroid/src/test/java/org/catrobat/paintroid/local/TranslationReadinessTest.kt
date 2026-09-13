@@ -138,7 +138,7 @@ class TranslationReadinessTest {
         checkPanelGeometry(activity)
         val root=activity.window.decorView
         assertNull(root.findViewWithTag<View>("compact_menu"))
-        for(tab in listOf("Main","File","Edit","View","Color")) assertNotNull(root.findViewWithTag<View>("menu_$tab"))
+        for(tab in listOf("View","Draw","File","Edit","Color")) assertNotNull(root.findViewWithTag<View>("menu_$tab"))
         activity.paintCanvas.zoomAt(3f)
         root.findViewWithTag<View>("zoom_fit_view").performClick()
         val board=activity.paintCanvas

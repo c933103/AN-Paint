@@ -112,7 +112,7 @@ class WorkspaceRefinementTest {
     @Test fun changingOnlyMagnifierScaleAutosavesWithoutLeavingOrEditing() {
         // Finish the startup save first so it cannot hide a missing settings callback.
         saveIdle()
-        EditorTestNavigation.command(activity,"View",2);settle()
+        EditorTestNavigation.command(activity,"View",3);settle()
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val control=dialog.window!!.decorView.findViewWithTag<NumericSlider>("preview_magnification")
         control.slider.progress=225 // 100% minimum + 225 = 325%.
@@ -237,11 +237,12 @@ class WorkspaceRefinementTest {
         click("colour_FF0000");assertEquals(Color.RED,indicator.foreground)
         view<View>("colour_00FF00").performLongClick();assertEquals(Color.GREEN,indicator.backgroundColour)
         render(root(),"palette-expanded.png")
-        click("menu_Main");settle();assertFalse(view<View>("palette_bar").isShown)
+        click("menu_Draw");settle();assertFalse(view<View>("palette_bar").isShown)
         click("menu_Color");settle();assertEquals(Color.RED,indicator.foreground)
         assertTrue(view<View>("swap_colours").isShown);assertTrue(view<View>("reset_colours").isShown)
     }
     @Test fun wholeSidebarCollapsesBelowToolbarAndSurvivesRotation() {
+        click("menu_Draw");settle()
         val toggle=view<View>("sidebar_toggle");val toolbar=view<View>("menu_bar")
         assertTrue(view<View>("sidebar").isShown);assertTrue(toggle.isSelected)
         val arrowPosition=IntArray(2);val toolbarPosition=IntArray(2)
@@ -261,7 +262,7 @@ class WorkspaceRefinementTest {
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeHasOneHeaderAndSideTabsWithEveryPanel() {
         assertNotNull(root().findViewWithTag<View>("menu_bar"));assertNull(root().findViewWithTag<View>("compact_menu"))
         assertEquals("Untitled",view<TextView>("document_title").text.toString())
-        for(tab in listOf("Main","File","Edit","View","Color")) {
+        for(tab in listOf("View","Draw","File","Edit","Color")) {
             click("menu_$tab");settle();assertTrue(view<View>("menu_$tab").isShown)
             val tabs=screenBounds(view<View>("tabs_row"));val panel=screenBounds(view<View>("tab_panel_host"))
             assertEquals(tabs.right,panel.left);assertEquals(tabs.top,panel.top)

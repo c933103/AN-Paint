@@ -285,7 +285,7 @@ class EditorDeviceTest {
                         assertTrue(position(quick)[1]+quick.height<=position(header)[1]+header.height)
                         assertEquals(root.width,position(quick)[0]+quick.width)
                         assertNull(root.findViewWithTag<View>("compact_menu"))
-                        for(tab in listOf("Main","File","Edit","View","Color")) assertTrue(root.findViewWithTag<View>("menu_$tab").isShown)
+                        for(tab in listOf("View","Draw","File","Edit","Color")) assertTrue(root.findViewWithTag<View>("menu_$tab").isShown)
 
                     }
                     for(tool in category.tools) {
@@ -387,7 +387,8 @@ class EditorDeviceTest {
         awaitState("ready for $tag") {!it.busy}
         onMain { editor ->
             val activeTab=when {
-                tag.startsWith("tool_") || tag.startsWith("category_")->"Main"
+                tag=="tool_ZOOM"->"View"
+                tag.startsWith("tool_") || tag.startsWith("category_")->"Draw"
                 tag.startsWith("colour_") || tag in listOf("foreground_colour","background_colour")->"Color"
                 else->null
             }

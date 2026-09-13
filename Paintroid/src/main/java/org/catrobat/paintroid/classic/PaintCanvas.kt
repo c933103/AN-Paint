@@ -22,6 +22,16 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var panX = 0f; private set
     var panY = 0f; private set
     var grid = false
+        set(value) {
+            if(field==value) return
+            val centre=if(viewportWidth>0 && viewportHeight>0) toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2) else null
+            pauseGesture();field=value
+            updateViewport(width,height)
+            if(fitted && fitMode) fit() else {
+                centre?.let {panX=rulerInset+viewportWidth/2-it.x*zoom;panY=rulerInset+viewportHeight/2-it.y*zoom}
+                clampPan();invalidate();onStatus()
+            }
+        }
     var trim: CropOverlay? = null; private set
     var onStatus: () -> Unit = {}
     var onPick: (Int) -> Unit = {}
@@ -68,6 +78,11 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var restoredCentre: PointF? = null
     private var viewportWidth = 0f
     private var viewportHeight = 0f
+    private var viewportInset = 0f
+    internal val rulerInset get() = if(grid) 24f*resources.displayMetrics.density else 0f
+    private val contentWidth get() = (width-bar-rulerInset).coerceAtLeast(1f)
+    private val contentHeight get() = (height-bar-rulerInset).coerceAtLeast(1f)
+    private var rulerTouch = false
     private var scrollGrab = 0f
     var cursorMode = false; private set
     var cursorDrawing = false; private set
@@ -82,7 +97,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     fun setCursorMode(enabled: Boolean) {
         pauseGesture(); cursorMode=enabled; cursorDrawing=false
-        cursor=toImage((width-bar)/2,(height-bar)/2).also { clampCursor(it) }
+        cursor=toImage(rulerInset+contentWidth/2,rulerInset+contentHeight/2).also { clampCursor(it) }
         if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
         invalidate();onStatus()
     }
@@ -118,12 +133,17 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         super.onSizeChanged(w, h, oldw, oldh)
         if (w <= bar + 24 || h <= bar + 24) return
         val centre = restoredCentre ?: if (viewportWidth > 0 && viewportHeight > 0)
-            toImage(viewportWidth / 2, viewportHeight / 2) else null
-        viewportWidth = w - bar; viewportHeight = h - bar; restoredCentre = null
+            toImage(viewportInset+viewportWidth / 2, viewportInset+viewportHeight / 2) else null
+        updateViewport(w,h);restoredCentre = null
         if (!fitted || fitMode) fit() else {
-            centre?.let { panX = viewportWidth / 2 - it.x * zoom; panY = viewportHeight / 2 - it.y * zoom }
+            centre?.let { panX = rulerInset+viewportWidth / 2 - it.x * zoom; panY = rulerInset+viewportHeight / 2 - it.y * zoom }
             clampPan(); invalidate(); onStatus()
         }
+    }
+
+    private fun updateViewport(w: Int,h: Int) {
+        viewportInset=rulerInset
+        viewportWidth=(w-bar-rulerInset).coerceAtLeast(0f);viewportHeight=(h-bar-rulerInset).coerceAtLeast(0f)
     }
 
     private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {
@@ -135,14 +155,14 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (width <= bar + 24 || height <= bar + 24) return
         val bounds = viewportBounds()
         // Leave touch space around the handles for dragging outwards.
-        val padding = if (trim == null) 12f else max(36*resources.displayMetrics.density,min(width-bar,height-bar)*.12f)
-        zoom = min((width-bar-2*padding).coerceAtLeast(1f)/bounds.width(),(height-bar-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)
-        panX = (width-bar-bounds.width()*zoom)/2-bounds.left*zoom
-        panY = (height-bar-bounds.height()*zoom)/2-bounds.top*zoom
+        val padding = if (trim == null) 12f else max(36*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)
+        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)
+        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom
+        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom
         fitted = true; fitMode = true; invalidate(); onStatus()
     }
 
-    fun zoomAt(value: Float, x: Float = (width - bar) / 2, y: Float = (height - bar) / 2) {
+    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {
         if (!value.isFinite() || value <= 0f) return
         resetPolygonTap()
         val point = toImage(x, y)
@@ -156,8 +176,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         val target = zoom*factor
         zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)
     }
-    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min((width-bar).coerceAtLeast(1f)/bounds.width(),
-        (height-bar).coerceAtLeast(1f)/bounds.height())/8).coerceIn(.000000001f,.125f) }
+    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),
+        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }
     fun zoomForSlider(progress: Int): Float {
         val value = progress.coerceIn(0,1000)
         return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()
@@ -166,27 +186,29 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))
         else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)
     fun zoomLabel(): String = if (zoom >= .1f) "${(zoom * 100).roundToInt()}%" else String.format(java.util.Locale.ROOT, "%.2f%%", zoom * 100)
+    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) " · "+ui(R.string.ui_cursor_position26,
+        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else ""
 
     fun toImage(x: Float, y: Float) = PointF((x - panX) / zoom, (y - panY) / zoom)
     fun toScreen(x: Float, y: Float) = PointF(panX + x * zoom, panY + y * zoom)
 
     private fun axis(horizontal: Boolean): ViewportAxis {
         val bounds = viewportBounds()
-        val extent = (if (horizontal) width - bar else height - bar).coerceAtLeast(1f)
+        val extent = if(horizontal) contentWidth else contentHeight
         val padding = min(24 * resources.displayMetrics.density, extent / 5)
         return ViewportAxis(extent, (if (horizontal) bounds.left else bounds.top) * zoom,
             (if (horizontal) bounds.right else bounds.bottom) * zoom, padding)
     }
     private fun clampPan() {
         if (width <= bar || height <= bar) return
-        panX = axis(true).clamp(panX); panY = axis(false).clamp(panY)
+        panX = rulerInset+axis(true).clamp(panX-rulerInset); panY = rulerInset+axis(false).clamp(panY-rulerInset)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawColor(EditorColours.surfaceDim)
         canvas.save()
-        canvas.clipRect(0f, 0f, width - bar, height - bar)
+        canvas.clipRect(rulerInset, rulerInset, width - bar, height - bar)
         canvas.translate(panX, panY); canvas.scale(zoom, zoom)
         val bitmap = document.bitmap
         trim?.drawExpansion(canvas,document.background)
@@ -225,7 +247,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (curveStage > 0 || down && tool == PaintTool.CURVE) document.drawShape(canvas, PaintTool.CURVE, curvePath())
         if (grid && zoom >= 8) {
             val line = Paint().apply { color = 0x55808080; strokeWidth = 1f / zoom }
-            val l = max(0, (-panX / zoom).toInt()); val t = max(0, (-panY / zoom).toInt())
+            val l = max(0, ((rulerInset-panX) / zoom).toInt()); val t = max(0, ((rulerInset-panY) / zoom).toInt())
             val r = min(bitmap.width, ((width - bar - panX) / zoom).toInt() + 1)
             val b = min(bitmap.height, ((height - bar - panY) / zoom).toInt() + 1)
             for (x in l..r) canvas.drawLine(x.toFloat(), t.toFloat(), x.toFloat(), b.toFloat(), line)
@@ -234,6 +256,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.draw(canvas,zoom,resources.displayMetrics.density)
         canvas.restore()
         drawScrollbars(canvas)
+        canvas.save();canvas.clipRect(rulerInset,rulerInset,width-bar,height-bar)
         if (supportsCursor()) {
             val point=toScreen(cursor.x,cursor.y)
             val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=if(cursorDrawing) EditorColours.error else EditorColours.primary;strokeWidth=2*resources.displayMetrics.density;style=Paint.Style.STROKE }
@@ -243,14 +266,51 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             canvas.drawLine(point.x,point.y-radius*1.5f,point.x,point.y+radius*1.5f,p)
         }
         if (magnifiedPreview && down && !multiTouch && !panning && scrollAxis==0) previewPoint?.let { drawMagnifiedPreview(canvas,it) }
+        canvas.restore()
+        if(grid) drawRulers(canvas)
+    }
+
+    private fun drawRulers(canvas: Canvas) {
+        val d=resources.displayMetrics.density
+        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=EditorColours.surfaceContainerHighest}
+        canvas.drawRect(0f,0f,width-bar,rulerInset,p)
+        canvas.drawRect(0f,0f,rulerInset,height-bar,p)
+        p.color=EditorColours.onSurface;p.textSize=10*d;p.strokeWidth=d
+        fun axisLabels(horizontal: Boolean) {
+            val size=if(horizontal) document.bitmap.width else document.bitmap.height
+            val origin=if(horizontal) panX else panY
+            val limit=if(horizontal) width-bar else height-bar
+            val ticks=PixelRuler.ticks(origin,zoom,rulerInset,limit,size,max(48*d,p.measureText(size.toString())+12*d))
+            canvas.save()
+            if(horizontal) canvas.clipRect(rulerInset,0f,limit,rulerInset) else canvas.clipRect(0f,rulerInset,rulerInset,limit)
+            ticks.forEach {tick ->
+                val length=if(tick.major) 8*d else 4*d
+                if(horizontal) {
+                    canvas.drawLine(tick.position,rulerInset-length,tick.position,rulerInset,p)
+                    if(tick.major) canvas.drawText(tick.pixel.toString(),tick.position+3*d,rulerInset-10*d,p)
+                } else {
+                    canvas.drawLine(rulerInset-length,tick.position,rulerInset,tick.position,p)
+                    if(tick.major) {
+                        canvas.save();canvas.translate(rulerInset-10*d,tick.position-3*d);canvas.rotate(-90f)
+                        canvas.drawText(tick.pixel.toString(),0f,0f,p);canvas.restore()
+                    }
+                }
+            }
+            canvas.restore()
+        }
+        axisLabels(true);axisLabels(false)
+        p.color=EditorColours.outline
+        canvas.drawLine(rulerInset,0f,rulerInset,height-bar,p);canvas.drawLine(0f,rulerInset,width-bar,rulerInset,p)
+        p.color=EditorColours.onSurface;p.textAlign=Paint.Align.CENTER
+        canvas.drawText("px",rulerInset/2,rulerInset/2-(p.ascent()+p.descent())/2,p)
     }
 
     private fun drawMagnifiedPreview(canvas: Canvas, point: PointF) {
         val d=resources.displayMetrics.density
-        val size=min(120*d,min(width-bar,height-bar)*.45f)
+        val size=min(120*d,min(contentWidth,contentHeight)*.45f)
         if (size<40*d) return
-        val left=if (previewTouch.x<width/2) width-bar-size-8*d else 8*d
-        val r=RectF(left,8*d,left+size,8*d+size)
+        val left=if (previewTouch.x<width/2) width-bar-size-8*d else rulerInset+8*d
+        val r=RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)
         val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;strokeWidth=2*d;style=Paint.Style.STROKE }
         canvas.save();canvas.clipRect(r);canvas.drawColor(document.background)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
@@ -269,7 +329,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         c.drawRect(w, 0f, width.toFloat(), height.toFloat(), p)
         val horizontal = axis(true); val vertical = axis(false)
         val bw = horizontal.thumbSize(bar); val bh = vertical.thumbSize(bar)
-        val left = horizontal.thumbStart(panX, bw); val top = vertical.thumbStart(panY, bh)
+        val left = rulerInset+horizontal.thumbStart(panX-rulerInset, bw); val top = rulerInset+vertical.thumbStart(panY-rulerInset, bh)
         p.color = if (horizontal.range > 0) EditorColours.outline else EditorColours.outlineVariant
         c.drawRoundRect(RectF(left + 2, h + 4, left + bw - 2, height - 4f), 3f, 3f, p)
         p.color = if (vertical.range > 0) EditorColours.outline else EditorColours.outlineVariant
@@ -280,7 +340,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (scrollAxis == 0) return
         val horizontal = scrollAxis == 1
         val a = axis(horizontal); val thumb = a.thumbSize(bar)
-        val start = a.thumbStart(if (horizontal) panX else panY, thumb)
+        val start = rulerInset+a.thumbStart((if (horizontal) panX else panY)-rulerInset, thumb)
         val point = if (horizontal) x else y
         scrollGrab = if (point in start..start + thumb) point - start else thumb / 2
         dragScrollbar(x, y)
@@ -288,7 +348,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private fun dragScrollbar(x: Float, y: Float) {
         fitMode = false
         val a = axis(scrollAxis == 1)
-        val pan = a.panForThumb((if (scrollAxis == 1) x else y) - scrollGrab, a.thumbSize(bar))
+        val pan = rulerInset+a.panForThumb((if (scrollAxis == 1) x else y) - rulerInset - scrollGrab, a.thumbSize(bar))
         if (scrollAxis == 1) panX = pan else if (scrollAxis == 2) panY = pan
         clampPan(); invalidate(); onStatus()
     }
@@ -351,7 +411,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         put("close_polygon",closePolygon)
         put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("viewport_width",viewportWidth.toDouble());put("viewport_height",viewportHeight.toDouble());put("fit_mode",fitMode)
-        put("centre_x",toImage(viewportWidth/2,viewportHeight/2).x.toDouble());put("centre_y",toImage(viewportWidth/2,viewportHeight/2).y.toDouble())
+        put("centre_x",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).x.toDouble());put("centre_y",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).y.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
         put("polygon",JSONArray().apply { polygon.forEach { put(JSONArray(listOf(it.x,it.y))) } })
         put("curve_stage",curveStage)
@@ -511,6 +571,11 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private fun handleTouch(event: MotionEvent): Boolean {
         if (!isEnabled) return false
         parent?.requestDisallowInterceptTouchEvent(true)
+        if(event.actionMasked==MotionEvent.ACTION_DOWN) rulerTouch=grid && (event.x<rulerInset || event.y<rulerInset)
+        if(rulerTouch) {
+            if(event.actionMasked in listOf(MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL)) rulerTouch=false
+            return true
+        }
         if (event.pointerCount > 1) {
             val focus=PointF((event.getX(0)+event.getX(1))/2,(event.getY(0)+event.getY(1))/2)
             val span=hypot(event.getX(0)-event.getX(1),event.getY(0)-event.getY(1))
@@ -565,7 +630,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 }
                 MotionEvent.ACTION_CANCEL -> { if(cursorDrawing && down) document.cancelGesture();cursor.set(cursorInitial);down=false;multiTouch=false }
             }
-            previewPoint=PointF(cursor.x,cursor.y);invalidate();return true
+            previewPoint=PointF(cursor.x,cursor.y);invalidate();onStatus();return true
         }
         previewPoint=point
         trim?.let { crop ->

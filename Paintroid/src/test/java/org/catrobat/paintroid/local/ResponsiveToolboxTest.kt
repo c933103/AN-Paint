@@ -47,7 +47,7 @@ class ResponsiveToolboxTest {
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
         context.getSharedPreferences("classic-ui",0).edit().clear().commit()
         controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
-        activity.document.newImage(160,120);activity.paintCanvas.fit()
+        activity.document.newImage(160,120);activity.paintCanvas.fit();click("menu_Draw")
     }
     @After fun stop() {
         controller.pause().stop()
@@ -75,6 +75,7 @@ class ResponsiveToolboxTest {
             }
         }
         for(tool in listOf(PaintTool.ERASER,PaintTool.FILL,PaintTool.PICKER,PaintTool.ZOOM)) {
+            if(tool==PaintTool.ZOOM) click("menu_View")
             val item=view<View>("tool_${tool.name}");assertTrue(item.isShown)
             item.requestRectangleOnScreen(Rect(0,0,item.width,item.height),true)
             click("tool_${tool.name}");assertEquals(tool,activity.paintCanvas.tool)
@@ -144,7 +145,7 @@ class ResponsiveToolboxTest {
         click("category_INSERT");assertTrue(view<View>("tool_scroll").isShown)
         assertTrue(board.hasPendingEdit);assertFalse(activity.document.canUndo)
         assertEquals(vertices,board.draftState().getJSONArray("polygon").toString())
-        EditorTestNavigation.command(activity,"View",1);settle()
+        EditorTestNavigation.command(activity,"View",2);settle()
         assertTrue(board.cursorMode);assertEquals(PaintTool.BRUSH,board.tool)
         val category=view<ToolCategoryButton>("category_BRUSH")
         assertTrue(category.expanded);assertTrue(category.isSelected);assertEquals(PaintTool.BRUSH,category.selectedTool)
@@ -181,6 +182,45 @@ class ResponsiveToolboxTest {
             assertTrue(action is ActionButton);assertTrue(bounds(action).width()>=44*activity.resources.displayMetrics.density)
         }
     }
+    @Test fun navigationMovesWithItsOptionsAndCursorReadoutUpdatesBesideZoom()=checkNavigationAndRulers("portrait")
+    @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi")
+    fun narrowPortraitKeepsTheEntireCursorReadoutVisible()=checkNavigationAndRulers("narrow-portrait")
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
+    fun landscapeRulersAndColourControlsRetainTheSideRibbon()=checkNavigationAndRulers("landscape")
+    private fun checkNavigationAndRulers(orientation: String) {
+        val tabs=view<LinearLayout>("tab_strip")
+        assertEquals("menu_View",tabs.getChildAt(0).tag);assertEquals("menu_Draw",tabs.getChildAt(1).tag)
+        assertNull(view<View>("primary_tools").findViewWithTag<View>("tool_ZOOM"))
+        click("menu_View")
+        assertSame(view("tool_ZOOM"),view<android.view.ViewGroup>("panel_View_commands").getChildAt(0))
+        click("tool_ZOOM")
+        assertTrue(view<View>("navigation_options").isShown);assertTrue(view<View>("zoom_actual").isShown)
+        assertFalse(view<View>("sidebar").isShown)
+        click("navigate_draw");assertTrue(view<View>("sidebar").isShown);assertFalse(view<View>("navigation_options").isShown)
+        assertEquals(PaintTool.PENCIL,activity.paintCanvas.tool)
+        EditorTestNavigation.command(activity,"View",1)
+        assertTrue(activity.paintCanvas.grid)
+        activity.paintCanvas.zoomAt(16f)
+        EditorTestNavigation.command(activity,"View",2)
+        val board=activity.paintCanvas
+        val start=board.draftState()
+        for((action,offset) in listOf(MotionEvent.ACTION_DOWN to 0f,MotionEvent.ACTION_MOVE to 32f)) {
+            val event=MotionEvent.obtain(0,20,action,board.width/2f+offset,board.height/2f+offset,0)
+            board.dispatchTouchEvent(event);event.recycle()
+        }
+        val readout=view<android.widget.TextView>("status_text")
+        assertTrue(readout.text.contains(board.zoomLabel()+" · x:"))
+        assertEquals(start.getDouble("cursor_x")+2,board.draftState().getDouble("cursor_x"),.001)
+        render("rulers-cursor-$orientation.png")
+        assertEquals(readout.text.length,readout.layout.getLineEnd(readout.layout.lineCount-1))
+        assertTrue(readout.layout.height<=readout.height-readout.totalPaddingTop-readout.totalPaddingBottom)
+        val cancel=MotionEvent.obtain(0,20,MotionEvent.ACTION_CANCEL,0f,0f,0);board.dispatchTouchEvent(cancel);cancel.recycle()
+        click("menu_Color")
+        for(i in 0 until 16) assertTrue(view<View>("palette_custom_$i").isShown)
+        assertEquals((view<View>("reset_colours").parent as android.view.ViewGroup).indexOfChild(view("reset_colours"))+1,
+            (view<View>("advanced_colour").parent as android.view.ViewGroup).indexOfChild(view("advanced_colour")))
+        render("palette-slots-$orientation.png")
+    }
     @Test fun portraitHeaderKeepsBothTitleLinesAndShortcutsInOneRow() {checkHeader();render("header-portrait.png")}
     @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi")
     fun narrowPortraitKeepsAllSixShortcutsBesideTheTitle() {checkHeader();render("header-narrow-portrait.png")}
@@ -191,14 +231,14 @@ class ResponsiveToolboxTest {
             for(line in 0 until layout.lineCount) assertEquals("Caption ${button.text}",button.width/2f,button.totalPaddingLeft+(layout.getLineLeft(line)+layout.getLineRight(line))/2f,1f)
             assertNotNull(button.compoundDrawables[1])
         }
-        for(tag in listOf("tool_ZOOM","category_BRUSH","category_SELECTION","category_INSERT","tool_ERASER")) centred(view(tag))
+        for(tag in listOf("category_BRUSH","category_SELECTION","category_INSERT","tool_ERASER")) centred(view(tag))
         for(tab in listOf("Edit","View")) {
             click("menu_$tab")
             EditorTestNavigation.buttons(view("panel_${tab}_commands")).forEach {centred(it)}
             render("icon-panel-$tab.png")
         }
         click("menu_Color")
-        for(tag in listOf("swap_colours","reset_colours","edit_palette")) centred(view(tag))
+        for(tag in listOf("swap_colours","reset_colours","add_colour","advanced_colour")) centred(view(tag))
         render("icon-panel-Color.png")
         click("menu_File")
         assertTrue(EditorTestNavigation.buttons(view("panel_File_commands")).none {it is PanelToolButton})
@@ -207,12 +247,12 @@ class ResponsiveToolboxTest {
     fun landscapeSideTabsRemainVisibleAndFullscreenReturnsTheirSpace() {
         checkHeader()
         var previousBottom=0
-        for(name in listOf("Main","File","Edit","View","Color")) {
+        for(name in listOf("View","Draw","File","Edit","Color")) {
             val tab=view<View>("menu_$name");val box=bounds(tab)
             assertTrue(box.top>=previousBottom);previousBottom=box.bottom
             assertTrue(box.right<=bounds(activity.paintCanvas).left)
         }
-        click("menu_View");click("command_View_4")
+        click("menu_View");click("command_View_5")
         assertFalse(view<View>("vertical_ribbon_rail").isShown)
         assertEquals(root.width,activity.paintCanvas.width)
         click("leave_fullscreen")

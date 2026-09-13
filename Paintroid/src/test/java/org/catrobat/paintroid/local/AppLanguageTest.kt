@@ -44,7 +44,8 @@ class AppLanguageTest {
 
     @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {
         val tags=AppLanguage.tags(context)
-        assertEquals(tags.sortedWith(String.CASE_INSENSITIVE_ORDER),tags)
+        assertEquals("en-001",tags.first())
+        assertEquals(tags.drop(1).sortedWith(String.CASE_INSENSITIVE_ORDER),tags.drop(1))
         assertFalse(tags.contains("zh-Hant"))
         assertTrue(tags.containsAll(listOf("zh-TW","zh-HK","mn-Mong","mn-Cyrl-MN")))
         context.getSharedPreferences("app-language",0).edit().putString("language-tag","zh-Hant").commit()
@@ -59,6 +60,65 @@ class AppLanguageTest {
         assertEquals("Таслах",resources.getString(R.string.ui_cut))
         assertNotEquals(resources.getString(R.string.ui_discard_changes23),resources.getString(R.string.ui_keep_editing23))
         assertEquals(org.catrobat.paintroid.classic.TextDirection.HORIZONTAL,org.catrobat.paintroid.classic.VerticalText.uiDirection())
+    }
+
+    @Test fun regionalLabelsLegacyMigrationsAndNameOnlyChoicesUseTheIntendedFallback() {
+        val tags=AppLanguage.tags(context)
+        assertTrue(tags.containsAll(listOf("en-001","en-US","en-SG","en-IN","es-ES","es-419","ko-KR","ko-KP","pt-PT")))
+        assertFalse(tags.any {it in listOf("en","es","ko","pt","nan-TW-Hant","nan-TW-Latn")})
+        assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
+        assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
+        assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT")) {
+            context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
+            assertEquals(after,AppLanguage.selectedTag(context))
+        }
+        val nameOnly=context.resources.getStringArray(R.array.app_language_name_only)
+        assertEquals(30,nameOnly.size)
+        for(tag in nameOnly) {
+            assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
+            assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
+        }
+        AppLanguage.select(context,"en-US")
+        assertEquals("Add color",AppLanguage.wrap(context).getString(R.string.ui_add_colour26))
+        for(tag in listOf("en-001","en-SG","en-IN")) {
+            AppLanguage.select(context,tag)
+            assertEquals("Add colour",AppLanguage.wrap(context).getString(R.string.ui_add_colour26))
+        }
+    }
+
+    @Test fun pickerPinsInternationalEnglishAndMongolianCodeHasItsOwnUnclippedLine() {
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            val picker=AppLanguage.showPicker(activity) {}
+            val list=picker.listView
+            assertEquals("English (International) [en-001]",list.adapter.getItem(1))
+            val index=AppLanguage.tags(activity).indexOf("mn-Mong")+1
+            val row=list.adapter.getView(index,null,list) as TextView
+            row.textSize=24f
+            row.measure(android.view.View.MeasureSpec.makeMeasureSpec(600,android.view.View.MeasureSpec.EXACTLY),android.view.View.MeasureSpec.makeMeasureSpec(0,android.view.View.MeasureSpec.UNSPECIFIED))
+            row.layout(0,0,row.measuredWidth,row.measuredHeight)
+            val layout=row.layout;val last=layout.lineCount-1
+            assertEquals("[mn-Mong]",row.text.subSequence(layout.getLineStart(last),layout.getLineEnd(last)).toString())
+            assertEquals(0,layout.getEllipsisCount(last))
+            assertTrue(layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
+            val image=android.graphics.Bitmap.createBitmap(row.width,row.height,android.graphics.Bitmap.Config.ARGB_8888)
+            row.draw(android.graphics.Canvas(image))
+            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code.png");file.parentFile.mkdirs()
+            file.outputStream().use {image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};image.recycle()
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
     }
 
     @Test @Config(sdk=[33]) fun androidScriptOnlyChinesePreferenceMigratesToRegionalChoice() {

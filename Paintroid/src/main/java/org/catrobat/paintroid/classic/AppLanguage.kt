@@ -20,11 +20,9 @@ internal object AppLanguage {
 
     fun tags(context: Context): List<String> = context.resources.getStringArray(R.array.app_language_tags).toList()
 
-    private fun supportedTag(tag: String): String = when(tag) {
-        "zh-Hant", "zh-Hant-TW" -> "zh-TW"
-        "zh-Hant-HK" -> "zh-HK"
-        "mn", "mn-MN", "mn-Cyrl" -> "mn-Cyrl-MN"
-        else -> tag
+    private fun supportedTag(context: Context,tag: String): String {
+        val index=context.resources.getStringArray(R.array.app_language_aliases).indexOf(tag)
+        return if(index<0) tag else context.resources.getStringArray(R.array.app_language_alias_targets)[index]
     }
 
     fun selectedTag(context: Context): String {
@@ -33,13 +31,13 @@ internal object AppLanguage {
             context.getSystemService(LocaleManager::class.java)?.let { manager ->
                 // Migrate the preference once when a device upgrades from Android 12.
                 if (!preferences.getBoolean("platform-initialized", false)) {
-                    val saved = supportedTag(preferences.getString(LANGUAGE, "").orEmpty())
+                    val saved = supportedTag(context,preferences.getString(LANGUAGE, "").orEmpty())
                     if (manager.applicationLocales.isEmpty && saved in tags(context))
                         manager.applicationLocales = LocaleList.forLanguageTags(saved)
                     preferences.edit().putBoolean("platform-initialized", true).apply()
                 }
                 val current=if(manager.applicationLocales.isEmpty) "" else manager.applicationLocales[0].toLanguageTag()
-                val selected=supportedTag(current)
+                val selected=supportedTag(context,current)
                 if(selected!=current) {
                     manager.applicationLocales=LocaleList.forLanguageTags(selected)
                     preferences.edit().putString(LANGUAGE,selected).apply()
@@ -48,7 +46,7 @@ internal object AppLanguage {
             }
         }
         val current=preferences.getString(LANGUAGE, "").orEmpty()
-        return supportedTag(current).also {if(it!=current) preferences.edit().putString(LANGUAGE,it).apply()}
+        return supportedTag(context,current).also {if(it!=current) preferences.edit().putString(LANGUAGE,it).apply()}
     }
 
     private fun deviceLocale(context: Context): Locale {
@@ -62,14 +60,18 @@ internal object AppLanguage {
     fun locale(context: Context): Locale = selectedTag(context).takeIf { it.isNotEmpty() }
         ?.let(Locale::forLanguageTag) ?: deviceLocale(context)
 
+    private fun resourceLocale(context: Context,chosen: Locale): Locale =
+        if(chosen.toLanguageTag() in context.resources.getStringArray(R.array.app_language_name_only)) Locale.forLanguageTag("en-001") else chosen
+
     fun wrap(context: Context): Context {
         val chosen = locale(context)
+        val translated = resourceLocale(context,chosen)
         // An override is a delta: copying the current screen configuration would
         // pin orientation, window size and font scale for this context's lifetime.
         val config = Configuration().apply {
             fontScale = 0f
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
-            setLayoutDirection(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(translated)) else setLocale(translated)
+            setLayoutDirection(translated)
         }
         Locale.setDefault(chosen)
         return context.createConfigurationContext(config)
@@ -79,9 +81,10 @@ internal object AppLanguage {
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
         val chosen = locale(activity)
+        val translated = resourceLocale(activity,chosen)
         val config = Configuration(configuration).apply {
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
-            setLayoutDirection(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(translated)) else setLocale(translated)
+            setLayoutDirection(translated)
         }
         activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
         PaintApplication.currentResources = activity.resources
@@ -98,11 +101,9 @@ internal object AppLanguage {
     }
 
     fun name(tag: String): String {
-        if(tag=="lzh-Hant") return "文言（繁體） [lzh-Hant]"
-        if(tag=="mn-Mong") return "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ · Mongolian [mn-Mong]"
-        if(tag=="zh-TW") return "繁體中文（台灣） [zh-TW]"
-        if(tag=="zh-HK") return "繁體中文（香港） [zh-HK]"
-        if(tag=="mn-Cyrl-MN") return "Монгол (Кирилл, Монгол Улс) [mn-Cyrl-MN]"
+        val resources=PaintApplication.currentResources
+        val index=resources.getStringArray(R.array.app_language_tags).indexOf(tag)
+        if(index>=0) return "${resources.getStringArray(R.array.app_language_names)[index]} [$tag]"
         val locale = Locale.forLanguageTag(tag)
         return "${locale.getDisplayName(locale)} [$tag]"
     }

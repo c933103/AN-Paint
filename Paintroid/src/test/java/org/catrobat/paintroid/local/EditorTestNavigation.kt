@@ -23,7 +23,8 @@ internal object EditorTestNavigation {
         val actual=when(tag) {"trim_canvas"->"command_Edit_1";"select_all"->"command_Edit_0";else->tag}
         val tab=when {actual.startsWith("command_")->actual.split('_')[1]
             actual.startsWith("colour_") || actual in listOf("foreground_colour","background_colour","swap_colours","reset_colours")->"Color"
-            actual.startsWith("tool_") || actual.startsWith("category_")->"Main";else->null}
+            actual=="tool_ZOOM"->"View"
+            actual.startsWith("tool_") || actual.startsWith("category_")->"Draw";else->null}
         if(tab!=null) {root.findViewWithTag<View>("menu_$tab").performClick();idle()}
         val view=root.findViewWithTag<View>(actual)
         assertNotNull("Missing control $actual",view)

@@ -140,7 +140,7 @@ class ClassicWorkspaceTest {
         menu("File",1);receive()
         assertSame(previous,doc.bitmap);assertEquals(0,inkCount())
         assertNotNull(activity.lastIoError);assertFalse(activity.busy)
-        assertTrue(activity.lastIoError!!.contains("colour converter"))
+        assertTrue(activity.lastIoError!!.contains(activity.getString(org.catrobat.paintroid.R.string.colour_converter_unavailable)))
     }
     @Test fun invalidImageLeavesCurrentCanvasAndShowsError() {
         provider.file.writeText("not an image")
@@ -223,7 +223,7 @@ class ClassicWorkspaceTest {
     @Test fun everyCurrentToolAndMenuHasAnActiveControl() {
         assertEquals(20, PaintTool.values().size)
         PaintTool.values().forEach { tool(it) }
-        for (name in listOf("Main","File","Edit","View","Color")) {
+        for (name in listOf("View","Draw","File","Edit","Color")) {
             click("menu_$name");assertTrue(activity.window.decorView.findViewWithTag<View>("tab_panel_host").isShown)
         }
     }

@@ -18,6 +18,61 @@ import java.util.Locale
 @Config(sdk=[33])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class ViewportAndVerticalTextTest {
+    @Test fun rulersKeepPixelCoordinatesAndStayBoundedForLargeImagesAtEveryZoom() {
+        for(zoom in listOf(.00001f,.25f,1f,8f,32f)) {
+            val ticks=PixelRuler.ticks(-12f,zoom,24f,800f,100_000_000,64f)
+            assertTrue(ticks.isNotEmpty());assertTrue(ticks.size<100)
+            for(tick in ticks) {
+                assertTrue(tick.position in 24f..800f)
+                assertEquals(-12f+tick.pixel*zoom,tick.position,.001f)
+            }
+            val labels=ticks.filter {it.major}
+            labels.zipWithNext().forEach {(a,b)->assertTrue(b.position-a.position>=63.9f)}
+        }
+    }
+    @Test fun gridInsetsPreserveCentreThroughRotationDraftRestoreAndScrollbarDragging() {
+        val doc=PaintDocument().apply {newImage(1600,1200)}
+        val board=PaintCanvas(RuntimeEnvironment.getApplication(),doc)
+        val bar=20*board.resources.displayMetrics.density
+        fun centre(view: PaintCanvas)=view.toImage((view.width-bar+view.rulerInset)/2,(view.height-bar+view.rulerInset)/2)
+        board.layout(0,0,800,600);board.zoomAt(2f)
+        val before=centre(board);board.grid=true
+        assertEquals(before.x,centre(board).x,.001f);assertEquals(before.y,centre(board).y,.001f)
+        board.layout(0,0,500,900)
+        assertEquals(before.x,centre(board).x,.001f);assertEquals(before.y,centre(board).y,.001f)
+        val restored=PaintCanvas(RuntimeEnvironment.getApplication(),doc)
+        restored.restoreDraft(board.draftState());restored.layout(0,0,1000,600)
+        assertTrue(restored.grid);assertEquals(before.x,centre(restored).x,.001f);assertEquals(before.y,centre(restored).y,.001f)
+        for((action,x) in listOf(MotionEvent.ACTION_DOWN to 500f,MotionEvent.ACTION_MOVE to 2000f,MotionEvent.ACTION_UP to 2000f)) {
+            val event=MotionEvent.obtain(0,20,action,x,restored.height-2f,0);restored.dispatchTouchEvent(event);event.recycle()
+        }
+        val edge=restored.toScreen(1600f,0f)
+        assertTrue(edge.x<restored.width-bar && edge.x>restored.width-bar-50*restored.resources.displayMetrics.density)
+        assertFalse(doc.canUndo)
+    }
+    @Test fun rulerTouchesDoNotPaintAndCursorReportsPixelsDuringMovement() {
+        val doc=PaintDocument().apply {newImage(500,400)}
+        assertFalse(doc.paint(PaintTool.BRUSH).isAntiAlias)
+        doc.antialiasing=true;assertTrue(doc.paint(PaintTool.BRUSH).isAntiAlias)
+        val board=PaintCanvas(RuntimeEnvironment.getApplication(),doc)
+        board.layout(0,0,800,600);board.grid=true;board.selectTool(PaintTool.BRUSH)
+        fun touch(action: Int,x: Float,y: Float) {
+            val event=MotionEvent.obtain(0,20,action,x,y,0);board.dispatchTouchEvent(event);event.recycle()
+        }
+        touch(MotionEvent.ACTION_DOWN,5f,100f);touch(MotionEvent.ACTION_MOVE,300f,300f);touch(MotionEvent.ACTION_UP,300f,300f)
+        assertFalse(doc.canUndo)
+        board.zoomAt(2f);board.setCursorMode(true)
+        val before=board.draftState();var readout="";board.onStatus={readout=board.zoomStatusLabel()}
+        touch(MotionEvent.ACTION_DOWN,200f,200f);touch(MotionEvent.ACTION_MOVE,240f,260f)
+        val moved=board.draftState()
+        assertEquals(before.getDouble("cursor_x")+20,moved.getDouble("cursor_x"),.001)
+        assertEquals(before.getDouble("cursor_y")+30,moved.getDouble("cursor_y"),.001)
+        assertTrue(readout,readout.contains("x: ${moved.getDouble("cursor_x").toInt()}, y: ${moved.getDouble("cursor_y").toInt()}"))
+        assertFalse(doc.canUndo)
+        touch(MotionEvent.ACTION_CANCEL,240f,260f)
+        assertEquals(before.getDouble("cursor_x"),board.draftState().getDouble("cursor_x"),0.0)
+        board.setCursorMode(false);assertFalse(board.zoomStatusLabel().contains("x:"))
+    }
     @Test fun scrollbarEndpointsAndDraggingAreInverseForLargeAndExpandedCanvases() {
         for(axis in listOf(ViewportAxis(800f,0f,4000f,48f),ViewportAxis(360f,-120f,960f,24f),ViewportAxis(400f,0f,120f,24f))) {
             val thumb=axis.thumbSize(40f)

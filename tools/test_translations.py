@@ -17,25 +17,34 @@ class TranslationTests(unittest.TestCase):
         mapping = json.loads((translations.DATA / "common-terms.json").read_text())
         self.assertTrue(set(mapping) <= names, set(mapping) - names)
 
-    def test_picker_and_android_locale_list_agree_and_exclude_empty_translations(self):
+    def test_picker_and_android_locale_list_agree_and_name_only_options_are_explicit(self):
         tags = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
         platform = [node.get("{http://schemas.android.com/apk/res/android}name")
                     for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()]
         self.assertEqual(tags, platform)
         self.assertEqual(len(tags), len(set(tags)))
-        self.assertEqual(tags, sorted(tags, key=str.casefold))
+        self.assertEqual(tags[0], "en-001")
+        self.assertEqual(tags[1:], sorted(tags[1:], key=str.casefold))
         self.assertNotIn("zh-Hant", tags)
         for tag in ("zh-TW", "zh-HK", "mn-Cyrl-MN", "mn-Mong"):
             self.assertIn(tag, tags)
-        self.assertIn("en", tags)
+        self.assertIn("en-US", tags)
+        self.assertNotIn("en", tags)
         self.assertIn("ja", tags)
         self.assertIn("ar", tags)
         self.assertIn("sr-Latn", tags)
         self.assertIn("sr-Cyrl", tags)
         coverage = json.loads((translations.DATA / "coverage.json").read_text())
         for row in coverage["coverage"]:
-            if row["language_tag"] in tags and not row["language_tag"].startswith("en-"):
+            if row["offered_in_app"] and not row["language_tag"].startswith("en-"):
                 self.assertGreater(row["entries_different_from_upstream_english"], 0)
+        self.assertEqual(30, len(coverage["name_only_options"]))
+        names = ET.parse(translations.RES / "values/app_language_names.xml")
+        labels = names.findall(".//string-array[@name='app_language_names']/item")
+        self.assertEqual(len(tags), len(labels))
+        self.assertTrue(all(item.text and item.text.strip() for item in labels))
+        for tag in coverage["name_only_options"]:
+            self.assertFalse((translations.RES / ("values-b+" + tag.replace("-", "+"))).exists())
 
     def test_unsaved_prompt_never_reuses_the_discard_label_for_keep_editing(self):
         def normalized(value):

@@ -51,7 +51,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         set(value) { field = if (value.isFinite()) value.coerceIn(1f,100f) else 1f }
     var watercolorStrength = 50
     var strokeSmoothing = false
-    var antialiasing = true
+    var antialiasing = false
     var sprayRadius = 10f
     var brushTip = 0
     var shapeStyle = 0 // outline, solid, background fill + foreground outline

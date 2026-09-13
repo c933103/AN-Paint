@@ -1,6 +1,6 @@
 # AN Paint
 
-> Version 0.0.24 restores the classic button styling, separates compact shortcuts from labelled panel tools, gives tabs a shared selected edge, adds dedicated vertical layouts, and offers sorted zh-TW, zh-HK, mn-Cyrl-MN and mn-Mong choices. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 77. See [HANDOFF.md](HANDOFF.md) for verification status.
+> Version 0.0.26 adds visible empty palette slots, direct Add colour and Advanced controls, pixel rulers, live cursor coordinates, View/Draw tabs, anti-aliasing off by default, and the expanded language menu. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 79. See [HANDOFF.md](HANDOFF.md) for verification status.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -12,11 +12,11 @@ paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
 
 ## Editing
 
-- Main, File, Edit, View and Color tabs with a collapsible panel above the canvas in both orientations. Navigate is first and the initial tool; Drawing, Selection and Insert categories remember their tool. All tool buttons have visible labels. Cut/Copy/Paste sit beside Undo/Redo.
+- View, Draw, File, Edit and Color tabs with a collapsible panel above the canvas in portrait and a vertical side ribbon in landscape. Navigate is first in View and the initial tool; Draw holds Drawing, Selection and Insert categories that remember their tool. All panel tools have visible labels. Cut/Copy/Paste sit beside Undo/Redo on the first title row, with the filename and AN Paint subtitle.
 - Touch drawing, shapes, text, fill, free-form and rectangular selections.
 - Adjustable hard-edged Pencil width from 1 to 100 px.
 - Corner and edge resize handles, a rotation handle and an aspect-ratio lock.
-- Pinch zoom and pan, centred 100% zoom controls, and Fit view.
+- Pinch zoom and pan, centred 100% zoom controls, and Fit view. Pixel grid enables top/left rulers in image pixels. Cursor drawing shows live x/y next to the zoom percentage. Anti-aliasing defaults off, while explicitly saved settings are retained.
 - Pixel/percentage sizing, touch canvas trimming and expansion, and disk-backed undo.
 - Autosave and draft recovery, a compact collapsible toolbox, and advanced colour controls.
 - A separate assembly workspace for up to 20 images, with cropping, normalization,
@@ -25,7 +25,7 @@ paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
   100 px with exact numeric entry.
 - Save as preserves canvas pixels in PNG, lossless JPEG XL/WebP/AVIF, BMP, DIB, TIFF or Base64 PNG text. Save writes the last successful Save as destination directly. Export as offers JPEG, lossy JPEG XL/WebP/AVIF, HEIC, GIF, ICO and ASCII art with their relevant quality, dithering, icon-size or text options. Export never clears unsaved changes or changes the Save destination. Save and share offers all formats.
 - PDF and TIFF page previews/selection, plus warnings when animated GIF/APNG/WebP imports become still images.
-- Live FG/BG color previews with Use color / Cancel, optional Add to palette, four recent colors and shared saved colors in the Color tab and picker. Swap and Reset B/W are in Color. The optional Catrobat gallery supplies copyable/editable credits.
+- Live FG/BG colour previews with Use colour / Cancel, four recent colours and sixteen shared saved slots, including visible empty slots. Add colour or tap an empty slot to choose and save a colour directly; hold a saved slot to edit, use as background or remove it. Advanced is beside Swap and Black / white. The optional Catrobat gallery supplies copyable/editable credits.
 - View > Languages, reviewed destructive-action and clipboard translations, and initial Literary Chinese (`lzh-Hant`) and traditional-script Mongolian (`mn-Mong`) catalogues. Text supports horizontal and both vertical column orders, with mixed, sideways or upright letters; Noto Sans Mongolian preserves joined text.
 
 The original editor, layers, transparency controls, Smudge, automatic crop and
@@ -38,7 +38,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`0.0.24` uses version code `77` and updates `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.26` uses version code `79` and updates `0.0.25`, `0.0.24`, `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
@@ -53,6 +53,9 @@ Choose **View > Languages** to override the device language.
 Existing Paintroid translations supply common tool names and commands; new or
 untranslated text appears in English. This is partial translation coverage,
 not a claim that every selectable language has a fully translated interface.
+English (International) is directly below device language; the other choices
+are sorted by language code. Thirty requested language/script names are offered
+without translations yet. See [the language catalogue notes](translations/README.md).
 
 ## Building
 

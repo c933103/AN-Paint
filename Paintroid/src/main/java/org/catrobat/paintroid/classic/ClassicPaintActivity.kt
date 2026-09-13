@@ -46,6 +46,7 @@ class ClassicPaintActivity : Activity() {
     private lateinit var options: LinearLayout
     private lateinit var titleText: TextView
     private lateinit var statusText: TextView
+    private var cursorStatusHeight=0
     private lateinit var undoButton: ActionButton
     private lateinit var redoButton: ActionButton
     private lateinit var zoomSlider: SeekBar
@@ -56,7 +57,10 @@ class ClassicPaintActivity : Activity() {
     private val categoryTools = linkedMapOf<ToolCategory, PaintTool>()
     private var expandedCategory: ToolCategory? = null
     private var toolOptionsExpanded = false
-    private var activeTab = "Main"
+    private var activeTab = "View"
+    private lateinit var drawingOptionsHost: LinearLayout
+    private lateinit var navigationOptionsHost: LinearLayout
+    private lateinit var toolOptionsView: View
     private lateinit var tabPanelHost: FrameLayout
     private val tabPanels = linkedMapOf<String, View>()
     private val tabButtons = linkedMapOf<String, Button>()
@@ -71,7 +75,7 @@ class ClassicPaintActivity : Activity() {
     private var shareAfterSave=false
     private lateinit var recentColours: RecentColours
     private val recentCells=mutableListOf<View>()
-    private val customPaletteCells=mutableListOf<View>()
+    private val customPaletteCells=mutableListOf<SavedColourCell>()
     private var fullscreen=false
     private var afterSave: (() -> Unit)? = null
     private val worker = Executors.newSingleThreadExecutor()
@@ -140,7 +144,7 @@ class ClassicPaintActivity : Activity() {
             document.tolerance=recovered.optDouble("tolerance",0.0).toFloat()
             document.watercolorStrength=recovered.optInt("watercolor_strength",50).coerceIn(1,100)
             document.strokeSmoothing=recovered.optBoolean("stroke_smoothing")
-            document.antialiasing=recovered.optBoolean("antialiasing",true)
+            document.antialiasing=recovered.optBoolean("antialiasing",false)
             document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
             if (recovered.optBoolean("dirty")) document.edited()
             draftStatus=ui(R.string.ui_draft_restored);restored=true
@@ -222,7 +226,6 @@ class ClassicPaintActivity : Activity() {
         if(sideRibbon==null) root.addView(tabPanelHost,LinearLayout.LayoutParams(-1,-2))
         sidebar=RibbonPanel(this,panelLimit,landscape).apply {tag="sidebar"}
         val primary=LinearLayout(this).apply {orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="primary_tools";layoutDirection=View.LAYOUT_DIRECTION_LTR}
-        primary.addView(makeToolButton(PaintTool.ZOOM),LinearLayout.LayoutParams(-2,toolHeight))
         ToolCategory.values().forEach {category ->
             val entry=ToolCategoryButton(this,category,categoryTools[category] ?: category.tools.first(),!landscape).apply {
                 tag="category_${category.name}";setOnClickListener {if(!busy) editAction {toggleCategory(category)}}
@@ -254,11 +257,14 @@ class ClassicPaintActivity : Activity() {
             categoryGroups[category]=rail;drawerContent.addView(rail)
         }
         options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(4),dp(4),dp(4),0)}
-        drawerContent.addView(if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(options)} else options)
+        toolOptionsView=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(options)} else options
+        drawingOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;addView(toolOptionsView)}
+        drawerContent.addView(drawingOptionsHost)
         sidebar.addView(toolDrawer,LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) -1 else -2))
-        tabPanels["Main"]=if(landscape) sidebar else LimitedScrollView(this,panelLimit).apply {addView(sidebar)}
+        tabPanels["Draw"]=if(landscape) sidebar else LimitedScrollView(this,panelLimit).apply {addView(sidebar)}
         fun commands(name: String): View {
-            fun control(index: Int,action: PanelCommand): FlowButton {
+            fun control(index: Int,action: PanelCommand): View {
+                if(name=="View" && index==0) return makeToolButton(PaintTool.ZOOM)
                 val onClick={action.second();refreshCommandPanel(name)}
                 return (action.icon?.let {panelButton(action.first,"command_${name}_$index",it,onClick)}
                     ?: button(action.first,"command_${name}_$index",onClick)).apply {isEnabled=menuActionEnabled();columnHeightDp=112}
@@ -289,6 +295,10 @@ class ClassicPaintActivity : Activity() {
                 editDetails=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;visibility=View.GONE;tag="edit_details"}
                 body.addView(if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(editDetails)} else editDetails)
             }
+            if(name=="View") {
+                navigationOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="navigation_options"}
+                body.addView(navigationOptionsHost)
+            }
             tabPanels[name]=LimitedScrollView(this,panelLimit).apply {tag="panel_$name";addView(body)}
         }
         val colours=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="colour_dock"}
@@ -299,16 +309,16 @@ class ClassicPaintActivity : Activity() {
         colourHeader.addView(colourStatus,LinearLayout.LayoutParams(dp(132),dp(88)))
         colourHeader.addView(panelButton(ui(R.string.ui_swap23),"swap_colours",R.drawable.classic_swap) {val old=document.foreground;document.foreground=document.background;document.background=old;updateColours()},LinearLayout.LayoutParams(-2,toolHeight))
         colourHeader.addView(panelButton(ui(R.string.ui_reset_bw23),"reset_colours",R.drawable.classic_bw) {document.foreground=Color.BLACK;document.background=Color.WHITE;updateColours()},LinearLayout.LayoutParams(-2,toolHeight))
+        colourHeader.addView(panelButton(ui(R.string.ui_advanced),"advanced_colour",R.drawable.classic_palette) {colourDialog(false,advanced=true)},LinearLayout.LayoutParams(-2,toolHeight))
         if(landscape) {
             val actions=LinearLayout(this).apply {isBaselineAligned=false}
-            actions.addView(VerticalUi.detach(colourHeader.getChildAt(1)))
-            actions.addView(VerticalUi.detach(colourHeader.getChildAt(1)))
-            colourHeader.orientation=LinearLayout.VERTICAL;colourHeader.addView(actions)
+            while(colourHeader.childCount>1) actions.addView(VerticalUi.detach(colourHeader.getChildAt(1)))
+            colourHeader.orientation=LinearLayout.VERTICAL;colourHeader.addView(actions,LinearLayout.LayoutParams(-2,-2))
         }
         colours.addView(HorizontalScrollView(this).apply {addView(colourHeader)})
         makePalette(colours);makeCustomPalette(colours)
         tabPanels["Color"]=LimitedScrollView(this,panelLimit).apply {tag="panel_Color";addView(colours)}
-        tabPanels.forEach {(name,panel) ->tabPanelHost.addView(panel,FrameLayout.LayoutParams(if(landscape) {if(name=="Main") -2 else sidePanelWidth} else -1,if(landscape && name=="Main") -1 else -2))}
+        tabPanels.forEach {(name,panel) ->tabPanelHost.addView(panel,FrameLayout.LayoutParams(if(landscape) {if(name=="Draw") -2 else sidePanelWidth} else -1,if(landscape && name=="Draw") -1 else -2))}
         val workspace=FrameLayout(this).apply {tag="workspace_overlay";layoutDirection=View.LAYOUT_DIRECTION_LTR}
         val canvasArea=if(sideRibbon==null) workspace else FrameLayout(this)
         if(VerticalText.uiVertical()) {
@@ -366,7 +376,11 @@ class ClassicPaintActivity : Activity() {
         tabPanelHost.visibility=if(visible) View.VISIBLE else View.GONE
         tabPanels.forEach {(name,panel) ->panel.visibility=if(name==activeTab) View.VISIBLE else View.GONE}
         tabButtons.forEach {(name,view) ->view.isSelected=name==activeTab}
-        toolDrawer.visibility=if(toolOptionsExpanded) View.VISIBLE else View.GONE
+        val navigating=paintCanvas.tool==PaintTool.ZOOM
+        val host=if(navigating) navigationOptionsHost else drawingOptionsHost
+        if(toolOptionsView.parent!==host) host.addView(VerticalUi.detach(toolOptionsView))
+        navigationOptionsHost.visibility=if(navigating && toolOptionsExpanded) View.VISIBLE else View.GONE
+        toolDrawer.visibility=if(toolOptionsExpanded && !navigating) View.VISIBLE else View.GONE
         categoryGroups.forEach {(category,view) ->view.visibility=if(category==expandedCategory) View.VISIBLE else View.GONE}
         categoryButtons.forEach {(category,view) ->
             view.selectedTool=categoryTools[category] ?: category.tools.first()
@@ -427,7 +441,7 @@ class ClassicPaintActivity : Activity() {
         root.addView(bar,LinearLayout.LayoutParams(-1,dp(52)))
         val tabs=LinearLayout(this).apply {orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="tabs_row";gravity=Gravity.TOP;layoutDirection=View.LAYOUT_DIRECTION_LTR}
         val row=TabStrip(this,landscape).apply {tag="tab_strip"}
-        listOf("Main","File","Edit","View","Color").forEach {name ->
+        listOf("View","Draw","File","Edit","Color").forEach {name ->
             val item=RibbonTab(this,landscape).apply {text=menuTitle(name);contentDescription=text;tag="menu_$name";setOnClickListener {selectTab(name)}}
             tabButtons[name]=item
             row.addView(item,LinearLayout.LayoutParams(if(landscape) -1 else -2,-2))
@@ -482,6 +496,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun makeStatus() {
+        cursorStatusHeight=0
         val row = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0) }
         if(!VerticalText.uiVertical()) {
             statusText = label(ui(R.string.ui_ready), 11f).apply {tag="status_text";maxLines=2}
@@ -510,7 +525,24 @@ class ClassicPaintActivity : Activity() {
 
     private fun updateStatus() {
         if (!::statusText.isInitialized) return
-        statusText.text = (if(VerticalText.uiVertical()) filename+"\n" else "") + if (busy) (if (autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
+        val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
+        val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus
+        if(!VerticalText.uiVertical()) {
+            statusText.maxLines=if(paintCanvas.cursorMode) Int.MAX_VALUE else 2
+            if(paintCanvas.cursorMode) {
+                val available=if(statusText.width>0) statusText.width-statusText.compoundPaddingLeft-statusText.compoundPaddingRight
+                    else dp((resources.configuration.screenWidthDp-242).coerceAtLeast(32))
+                @Suppress("DEPRECATION")
+                fun textHeight(value: String)=android.text.StaticLayout(value,statusText.paint,available.coerceAtLeast(1),
+                    android.text.Layout.Alignment.ALIGN_NORMAL,statusText.lineSpacingMultiplier,statusText.lineSpacingExtra,statusText.includeFontPadding).height
+                // Busy/saved messages must not shrink this area and resize the
+                // canvas repeatedly while autosave records its viewport.
+                cursorStatusHeight=maxOf(cursorStatusHeight,dp(44),maxOf(textHeight(normalStatus),textHeight(shownStatus))+statusText.compoundPaddingTop+statusText.compoundPaddingBottom)
+            } else cursorStatusHeight=0
+            val height=if(paintCanvas.cursorMode) cursorStatusHeight else dp(44)
+            if(statusText.layoutParams.height!=height) statusText.layoutParams=statusText.layoutParams.apply {this.height=height}
+        }
+        statusText.text = (if(VerticalText.uiVertical()) filename+"\n" else "") + shownStatus
         if (::zoomSlider.isInitialized) {
             syncingZoom = true; zoomSlider.progress = paintCanvas.sliderForZoom(); syncingZoom = false
             zoomSlider.isEnabled = !busy
@@ -536,7 +568,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun chooseTool(tool: PaintTool) {
-        activeTab="Main";sidebarExpanded=true
+        activeTab=if(tool==PaintTool.ZOOM) "View" else "Draw";sidebarExpanded=true
         paintCanvas.selectTool(tool)
         showToolOptions(tool)
     }
@@ -624,7 +656,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun menuTitle(name: String): String=ui(when(name) {
-        "Main"->R.string.ui_main23;"File"->R.string.ui_menu_file;"Edit"->R.string.ui_menu_edit
+        "Draw"->R.string.ui_draw26;"File"->R.string.ui_menu_file;"Edit"->R.string.ui_menu_edit
         "View"->R.string.ui_menu_view;"Color"->R.string.ui_colour_tab23;else->R.string.ui_menu_help
     })
     private data class PanelCommand(val first: String,val second: () -> Unit,val icon: Int?=null)
@@ -658,6 +690,7 @@ class ClassicPaintActivity : Activity() {
             command(ui(R.string.ui_clear_image),R.drawable.breeze_eraser) {paintCanvas.applyPending();document.clear()}
         )
         "View"->listOf(
+            command(PaintTool.ZOOM.label,R.drawable.breeze_zoom_in) {chooseTool(PaintTool.ZOOM)},
             command((if(paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
             command((if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)),R.drawable.classic_cursor) {paintCanvas.setCursorMode(!paintCanvas.cursorMode);if(paintCanvas.cursorMode) chooseTool(paintCanvas.tool)},
             command(ui(R.string.ui_magnified_preview),R.drawable.breeze_zoom_in) {showDrawingSettings(true)},
@@ -724,48 +757,62 @@ class ClassicPaintActivity : Activity() {
     }
 
     private var colourPreviewOriginal: Pair<Int,Int>?=null
-    private fun colourDialog(background: Boolean) {
+    private fun colourDialog(background: Boolean,advanced: Boolean=false) {
         colourPreviewOriginal=document.foreground to document.background
         AdvancedColourDialog(this,if(background) document.background else document.foreground,background,
             preview={colour ->if(background) document.background=colour else document.foreground=colour;updateColours(false)},
-            paletteChanged={refreshCustomPalette()},closed={colourPreviewOriginal=null}) {colour ->colourPreviewOriginal=null;setColour(colour,background)}.show()
+            paletteChanged={refreshCustomPalette()},closed={colourPreviewOriginal=null},initialMode=if(advanced) 1 else 0) {colour ->colourPreviewOriginal=null;setColour(colour,background)}.show()
     }
     private fun makeCustomPalette(parent: LinearLayout) {
         val row=LinearLayout(this).apply {tag="saved_palette_row";gravity=Gravity.CENTER_VERTICAL}
         val strip=LinearLayout(this)
         repeat(16) {index ->
-            val cell=View(this).apply {tag="palette_custom_$index";isFocusable=true
-                setOnClickListener {if(!busy) setColour(CustomColours(this@ClassicPaintActivity).colour(index),false)}
-                setOnLongClickListener {if(!busy) setColour(CustomColours(this@ClassicPaintActivity).colour(index),true);true}
+            val cell=SavedColourCell(this).apply {tag="palette_custom_$index";isFocusable=true
+                setOnClickListener {if(!busy) {
+                    val store=CustomColours(this@ClassicPaintActivity)
+                    if(store.has(index)) setColour(store.colour(index),false) else addColour(index)
+                }}
+                setOnLongClickListener {if(!busy) editPaletteColour(index);true}
             }
             customPaletteCells.add(cell);strip.addView(cell,LinearLayout.LayoutParams(dp(40),dp(40)).apply {setMargins(dp(2),dp(2),dp(2),dp(2))})
         }
         row.addView(HorizontalScrollView(this).apply {addView(strip)},LinearLayout.LayoutParams(0,dp(44),1f))
-        row.addView(panelButton(ui(R.string.ui_edit_palette23),"edit_palette",R.drawable.classic_palette) {managePalette()},LinearLayout.LayoutParams(-2,toolHeight))
+        row.addView(panelButton(ui(R.string.ui_add_colour26),"add_colour",R.drawable.classic_palette) {addColour()},LinearLayout.LayoutParams(-2,toolHeight))
         parent.addView(label(ui(R.string.ui_saved_palette23)));parent.addView(row);refreshCustomPalette()
     }
     private fun refreshCustomPalette() {
         val palette=CustomColours(this)
         customPaletteCells.forEachIndexed {index,cell ->
-            cell.visibility=if(palette.has(index)) View.VISIBLE else View.GONE
-            val colour=palette.colour(index)
-            cell.background=GradientDrawable().apply {setColor(colour);setStroke(dp(2),EditorColours.outline)}
-            cell.contentDescription=ui(R.string.ui_colour,String.format(java.util.Locale.ROOT,"#%06X",colour and 0xffffff))
+            cell.colour=if(palette.has(index)) palette.colour(index) else null
+            cell.contentDescription=cell.colour?.let {ui(R.string.ui_colour,String.format(java.util.Locale.ROOT,"#%06X",it and 0xffffff))}
+                ?: ui(R.string.ui_empty_palette26,index+1)
         }
     }
-    private fun managePalette() {
-        val store=CustomColours(this);val entries=store.entries()
-        val labels=entries.map {String.format(java.util.Locale.ROOT,"#%06X",it.second and 0xffffff)}
-        EditorDialogBuilder(this).setTitle(ui(R.string.ui_edit_palette23)).setItems(labels.toTypedArray()) {_,which ->
-            val (index,colour)=entries[which]
-            EditorDialogBuilder(this).setTitle(labels[which]).setItems(arrayOf(ui(R.string.ui_use_colour),ui(R.string.ui_replace_with_active23),ui(R.string.ui_remove_palette23))) {_,action ->
-                when(action) {0->setColour(colour,false);1->store.replace(index,document.foreground);2->store.remove(index)}
-                refreshCustomPalette()
+    private fun addColour(slot: Int?=null) {
+        val store=CustomColours(this)
+        val index=slot ?: (0 until 16).firstOrNull {!store.has(it)}
+        if(index==null) {
+            val entries=store.entries()
+            EditorDialogBuilder(this).setTitle(ui(R.string.ui_replace_palette23))
+                .setItems(entries.map {String.format(java.util.Locale.ROOT,"#%06X",it.second and 0xffffff)}.toTypedArray()) {_,which ->addColour(entries[which].first)}
+                .setNegativeButton(ui(R.string.ui_cancel),null).show()
+            return
+        }
+        colourPreviewOriginal=document.foreground to document.background
+        AdvancedColourDialog(this,if(slot!=null && store.has(slot)) store.colour(slot) else document.foreground,false,
+            preview={document.foreground=it;updateColours(false)},paletteChanged={refreshCustomPalette()},
+            closed={colourPreviewOriginal?.let {document.foreground=it.first;updateColours(false)};colourPreviewOriginal=null},
+            initialMode=1,addingToPalette=true,replacingPaletteColour=store.has(index)) {colour ->
+                colourPreviewOriginal=null;store.replace(index,colour);refreshCustomPalette();setColour(colour,false)
+            }.show()
+    }
+    private fun editPaletteColour(index: Int) {
+        val store=CustomColours(this)
+        if(!store.has(index)) {addColour(index);return}
+        EditorDialogBuilder(this).setTitle(String.format(java.util.Locale.ROOT,"#%06X",store.colour(index) and 0xffffff))
+            .setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->
+                when(action) {0->setColour(store.colour(index),true);1->addColour(index);2->{store.remove(index);refreshCustomPalette()}}
             }.setNegativeButton(ui(R.string.ui_cancel),null).show()
-        }.setPositiveButton(ui(R.string.ui_add_active23)) {_,_->
-            if(!store.add(document.foreground)) message(ui(R.string.ui_replace_palette23))
-            refreshCustomPalette()
-        }.setNegativeButton(ui(R.string.ui_cancel),null).show()
     }
 
     private fun dimensionsDialog(stretch: Boolean, fresh: Boolean) {

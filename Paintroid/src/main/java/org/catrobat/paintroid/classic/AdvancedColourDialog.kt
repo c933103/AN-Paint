@@ -48,7 +48,7 @@ class ColourValue(initial: Int) {
     }
 }
 
-class AdvancedColourDialog(private val activity: Activity, initial: Int, private val background: Boolean, private val preview: (Int) -> Unit = {}, private val paletteChanged: () -> Unit = {}, private val closed: () -> Unit = {}, private val commit: (Int) -> Unit) {
+class AdvancedColourDialog(private val activity: Activity, initial: Int, private val background: Boolean, private val preview: (Int) -> Unit = {}, private val paletteChanged: () -> Unit = {}, private val closed: () -> Unit = {}, private val initialMode: Int = 0, private val addingToPalette: Boolean = false, private val replacingPaletteColour: Boolean = false, private val commit: (Int) -> Unit) {
     private val original = initial or Color.BLACK
     private var accepted = false
     private val paletteStore = CustomColours(activity)
@@ -124,7 +124,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         val scroll = ScrollView(activity).apply { tag="colour_editor_scroll";addView(body) }
         shell.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
         // Custom colours are shared by every selector. Choosing a stored swatch
-        // loads it; choosing an empty slot only changes the save destination.
+        // loads it; an empty slot directly stores the current colour.
         val customPanel = column().apply { tag="custom_colours_panel" }
         customHeading = label("").apply { tag="custom_colour_selection" }
         customPanel.addView(customHeading)
@@ -158,6 +158,9 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                     tag="custom_colour_$index";isFocusable=true;isClickable=true
                     setOnClickListener {
                         if(hasCustomColour(index)) {value.rgb(customColour(index));sync()}
+                        else if(!addingToPalette && fields.values.none {it.error!=null}) {
+                            paletteStore.replace(index,value.colour);refreshCustom();paletteChanged()
+                        }
                     }
                 }
                 custom.add(view)
@@ -179,6 +182,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
         previewRow.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
         saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0 }
+        if(addingToPalette) saveCustomButton.visibility=View.GONE
         previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
         shell.addView(previewRow)
         refreshCustom()
@@ -246,20 +250,19 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             form.addView(VerticalUi.detach(previewRow),LinearLayout.LayoutParams(-2,-2))
             form
         } else holder
-        val dialog = EditorDialogBuilder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)
-            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(R.string.ui_use_colour), null).create()
+        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)
+            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (fields.values.any { it.error != null }) return@setOnClickListener
             accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()
         } }
         dialog.setOnDismissListener {if(!accepted) preview(original);closed()}
-        sync();selectMode(0);dialog.show();return dialog
+        sync();selectMode(initialMode);dialog.show();return dialog
     }
     private fun refreshCustom() {
         custom.forEachIndexed {index,view ->
-            view.visibility=if(hasCustomColour(index)) View.VISIBLE else View.GONE
             view.isSelected=hasCustomColour(index) && customColour(index)==value.colour
-            view.contentDescription=if(hasCustomColour(index)) customLabel(index,customColour(index)) else ""
+            view.contentDescription=if(hasCustomColour(index)) customLabel(index,customColour(index)) else ui(R.string.ui_empty_palette26,index+1)
             view.invalidate()
         }
         customHeading.text=ui(R.string.ui_saved_palette23)

@@ -20,15 +20,17 @@ import kotlin.math.ceil
 /** Vertical controls use columns and intrinsic sizes, not the horizontal layout's fixed rectangles. */
 internal object VerticalUi {
     private fun dp(view: View,n: Int)=(n*view.resources.displayMetrics.density+.5f).toInt()
-    private class Caption(private val value: String,private val height: Float,private val direction: TextDirection): ReplacementSpan() {
+    private class Caption(private val value: String,private val height: Float,private val direction: TextDirection,private val font: android.graphics.Typeface?=null): ReplacementSpan() {
+        private fun styled(paint: Paint)=if(font==null) paint else Paint(paint).apply {typeface=font}
         private fun label(paint: Paint)=VerticalText.wrapLabel(value,paint,height,direction)
         private fun box(paint: Paint)=VerticalText.bounds(label(paint),paint,direction,GlyphOrientation.MIXED,1f)
         override fun getSize(paint: Paint,text: CharSequence,start: Int,end: Int,fm: Paint.FontMetricsInt?): Int {
-            val b=box(paint);fm?.let {it.ascent=-ceil(b.height()).toInt();it.top=it.ascent;it.descent=0;it.bottom=0;it.leading=0}
+            val b=box(styled(paint));fm?.let {it.ascent=-ceil(b.height()).toInt();it.top=it.ascent;it.descent=0;it.bottom=0;it.leading=0}
             return ceil(b.width()).toInt()
         }
         override fun draw(canvas: Canvas,text: CharSequence,start: Int,end: Int,x: Float,top: Int,y: Int,bottom: Int,paint: Paint) {
-            canvas.save();canvas.translate(x,y-box(paint).height());VerticalText.draw(canvas,label(paint),paint,direction,GlyphOrientation.MIXED);canvas.restore()
+            val ink=styled(paint)
+            canvas.save();canvas.translate(x,y-box(ink).height());VerticalText.draw(canvas,label(ink),ink,direction,GlyphOrientation.MIXED);canvas.restore()
         }
     }
     fun caption(view: TextView,heightDp: Int=144,direction: TextDirection=VerticalText.uiDirection()) {
@@ -54,10 +56,13 @@ internal object VerticalUi {
     }
     fun languageChoice(view: TextView) {
         val autonym="ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ"
-        val value=autonym+"  Mongolian [mn-Mong]"
-        view.typeface=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
+        val value=autonym+"  Mongolian\n[mn-Mong]"
+        // Only the autonym uses Mongolian glyphs. A dedicated second line keeps
+        // the language code visible even at narrow widths and large font sizes.
+        view.typeface=android.graphics.Typeface.DEFAULT
         view.setSingleLine(false);view.maxLines=Int.MAX_VALUE
-        view.text=SpannableString(value).apply {setSpan(Caption(autonym,dp(view,120).toFloat(),TextDirection.VERTICAL_LR),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
+        val font=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
+        view.text=SpannableString(value).apply {setSpan(Caption(autonym,dp(view,120).toFloat(),TextDirection.VERTICAL_LR,font),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
     }
     private class VerticalChoices(private val source: SpinnerAdapter,private val height: Int): BaseAdapter() {
         override fun getCount()=source.count

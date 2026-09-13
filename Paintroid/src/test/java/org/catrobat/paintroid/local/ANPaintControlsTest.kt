@@ -70,6 +70,38 @@ class ANPaintControlsTest {
         }
         shadowOf(Looper.getMainLooper()).idle()
     }
+    @Test fun allSavedSlotsStayVisibleAndAddColourCommitsDirectlyToTheSelectedSlot() {
+        click("menu_Color")
+        val store=CustomColours(activity)
+        for(i in 0 until 16) assertTrue("Visible slot $i",root().findViewWithTag<View>("palette_custom_$i").isShown)
+        assertEquals(4,store.entries().size)
+        assertNull(root().findViewWithTag<View>("edit_palette"))
+        click("palette_custom_12")
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertTrue(dialog.window!!.decorView.findViewWithTag<View>("colour_advanced").isShown)
+        edit(dialog,"hex","#13579B")
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();EditorTestNavigation.idle()
+        assertFalse(store.has(12));assertEquals(Color.BLACK,activity.document.foreground)
+        click("palette_custom_12");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        edit(dialog,"hex","#13579B");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();EditorTestNavigation.idle()
+        assertEquals(0xff13579b.toInt(),store.colour(12));assertTrue(store.has(12));assertFalse(store.has(4))
+        click("colour_FF0000");click("palette_custom_12");assertEquals(0xff13579b.toInt(),activity.document.foreground)
+        click("add_colour");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        edit(dialog,"hex","#2468AC");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();EditorTestNavigation.idle()
+        assertTrue(store.has(4));assertEquals(0xff2468ac.toInt(),store.colour(4))
+        click("advanced_colour");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val content=dialog.window!!.decorView
+        assertTrue(content.findViewWithTag<View>("colour_advanced").isShown)
+        for(i in 0 until 16) assertTrue(content.findViewWithTag<View>("custom_colour_$i").isShown)
+        edit(dialog,"hex","#ABCDEF");content.findViewWithTag<View>("custom_colour_15").performClick()
+        assertTrue(store.has(15));assertEquals(0xffabcdef.toInt(),store.colour(15))
+        dialog.dismiss();EditorTestNavigation.idle()
+        root().findViewWithTag<View>("palette_custom_12").performLongClick()
+        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.listView.performItemClick(dialog.listView.adapter.getView(2,null,dialog.listView),2,2)
+        EditorTestNavigation.idle();assertFalse(store.has(12))
+        assertTrue(root().findViewWithTag<View>("palette_custom_12").isShown)
+    }
     @Test fun actionsAreSingleIconsWithAccessibleNamesAndZoomOccupiesBottomRight() {
         listOf("undo" to "Undo","redo" to "Redo","clipboard_cut" to "Cut","clipboard_copy" to "Copy","clipboard_paste" to "Paste").forEach { (tag,label) ->
             val view=root().findViewWithTag<View>(tag); assertTrue(view is ActionButton); assertEquals(label,view.contentDescription)

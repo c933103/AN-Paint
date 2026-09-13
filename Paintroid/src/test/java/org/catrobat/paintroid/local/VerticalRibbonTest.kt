@@ -46,8 +46,8 @@ class VerticalRibbonTest {
         try {
             idle();val root=activity.window.decorView
             assertEquals(direction,VerticalText.uiDirection());assertEquals(PaintTool.ZOOM,activity.paintCanvas.tool)
-            assertEquals(if(tag=="lzh-Hant") "總覽" else "ᠭᠣᠤᠯ",root.findViewWithTag<Button>("menu_Main").text.toString())
-            for(tab in listOf("Main","File","Edit","View","Color")) {
+            assertEquals(if(tag=="lzh-Hant") "繪圖" else "ᠵᠢᠷᠤᠬᠤ",root.findViewWithTag<Button>("menu_Draw").text.toString())
+            for(tab in listOf("View","Draw","File","Edit","Color")) {
                 val button=root.findViewWithTag<Button>("menu_$tab")
                 assertTrue(button.isShown);assertTrue(button.text.isNotBlank());assertTrue(button.contentDescription.isNotBlank())
             }
@@ -55,7 +55,7 @@ class VerticalRibbonTest {
             assertNotNull(root.findViewWithTag<View>("vertical_status_rail"))
             assertTrue(root.findViewWithTag<View>("undo") is ActionButton)
             assertFalse(root.findViewWithTag<View>("undo") is Button)
-            assertTrue(root.findViewWithTag<View>("menu_Main") is RibbonTab)
+            assertTrue(root.findViewWithTag<View>("menu_Draw") is RibbonTab)
             val navigate=root.findViewWithTag<ToolButton>("tool_ZOOM")
             assertTrue(navigate.height>0);assertTrue(navigate.width>0)
             render(root,"vertical-ui-$tag.png")
@@ -79,7 +79,7 @@ class VerticalRibbonTest {
                 render(selected,"vertical-format-$tag.png")
                 render(save.window!!.decorView,"vertical-save-$tag.png")
             } finally {save.dismiss();idle()}
-            root.findViewWithTag<View>("menu_Main").performClick();idle()
+            root.findViewWithTag<View>("menu_Draw").performClick();idle()
             val dialog=TextStyleDialog(activity,TextSettings(text),android.graphics.Color.BLACK,android.graphics.Color.WHITE) {_,_->true}.show();idle()
             try {
                 assertEquals(direction.ordinal,dialog.window!!.decorView.findViewWithTag<Spinner>("text_direction").selectedItemPosition)

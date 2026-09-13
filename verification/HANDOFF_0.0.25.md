@@ -35,3 +35,10 @@ Certificate SHA-256: `f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b
 The private backup contains this signed APK, matching source ZIP, the original
 signing key, packaging tools, reports and rendered layout previews.
 Snapshot: 2026-09-13T16:06:54.940573+00:00
+
+## Subsequent completion
+
+Rechecked during 0.0.26 work: the complete workflow finished successfully.
+The API 35 emulator job `103751118750`, including its prebuilt device tests,
+passed. The build and regression/lint jobs also remain successful. This updates
+the pending emulator status above without changing the delivered APK.

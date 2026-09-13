@@ -1,7 +1,8 @@
 # Reused Paintroid vocabulary
 
-AN Paint's View → Languages offers device default and 69 language/region/
-script variants, including English. This is partial vocabulary reuse, not a claim
+AN Paint's View → Languages offers device default and 104 language/region/
+script choices, including English. Thirty explicitly requested entries currently
+provide a name only and use the English interface. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
 
@@ -31,10 +32,11 @@ count and the number differing from the original English value. A differing valu
 does not certify human translation quality. The pinned upstream XML remains unchanged. Additional local catalogues are partial
 editor translations and must not be presented as independently certified translations.
 
-Nine upstream locale files have no translated vocabulary among the mapped terms:
+Nine upstream locale files originally had no translated vocabulary among the mapped terms:
 Afrikaans, Cherokee, Finnish, Hausa, Igbo, Georgian, Twi, Uzbek and Yoruba/Nigeria.
-They are retained as provenance but are not misleadingly offered as translated
-choices. Selecting device default with one of these languages uses English.
+They are retained as provenance. Later reviewed terms supply Finnish vocabulary;
+Afrikaans is now explicitly offered as a name-only choice, with English UI.
+The remaining empty catalogues are not offered as translated choices.
 
 Old Android `in` and `iw` resource qualifiers correspond to BCP-47 `id` and `he`.
 Upstream `sr-rCS` and `sr-rSP` contain Latin and Cyrillic Serbian respectively;
@@ -65,7 +67,7 @@ locale, while image file formats and source-language legal texts stay unchanged.
 
 ## Regional and script catalogues (0.0.24)
 
-The same case-insensitive BCP-47 order is generated for every language in both
+The same case-insensitive BCP-47 order was generated for every language in both
 inventories; additions are integrated into that order, with device default first
 only in the in-app picker. Traditional Chinese is offered as `zh-TW` (Taiwan) and
 `zh-HK` (Hong Kong), with regional editor vocabulary such as 橡皮擦 / 擦膠 and
@@ -83,3 +85,37 @@ Vertical UI captions use natural glyph sizes, joined Mongolian words and explici
 column wrapping. The language picker alone mixes a vertical Mongolian autonym
 with a horizontal identifying label. Native keyboard fields and format identifiers
 remain editable in dialogs; a separate vertical preview displays the filename.
+
+## Language options (0.0.26)
+
+`language-options.json` is the reviewed source for names, legacy aliases,
+translation bases and name-only choices. Both inventories pin `en-001` first
+(English International); the in-app picker places device language above it.
+All remaining entries follow case-insensitive BCP-47 order. Every label includes
+its code, and names use consistent initial capitalization. Indonesian is
+Bahasa Indonesia and Dutch is Nederlands. The traditional Mongolian autonym
+keeps its bundled font and vertical writing; its code occupies a separate line.
+
+The English choices include International, United States, United Kingdom,
+Australia, Canada, Singapore and India. New English choices explicitly define
+spelling and common commands, avoiding Android's fallback to an arbitrary
+English region. International, Singapore and India use colour; US uses color.
+Spanish offers `es-419` and `es-ES`, Korean offers `ko-KR` and `ko-KP`, and European
+Portuguese is labelled `pt-PT`. These regional non-English choices inherit the
+existing shared Spanish/Korean/Portuguese vocabulary; this update does not claim
+an independent regional translation review. Old `en`, `es`, `ko` and `pt`
+preferences migrate to `en-001`, `es-ES`, `ko-KR` and `pt-PT` respectively.
+
+The 30 name-only choices are `yue-Hant`, `yue-Latn`, `ryu`, `ain`, `cju`, `af`,
+`ku`, `tt`, `lv`, `et`, `is`, `la`, `oc`, `se`, `my`, `shn`, `km`, `lo`, `ceb`,
+`jv`, `bo`, `ug`, `za`, `tai`, `mww`, `nan-Hant-TW`, `nan-Latn-TW`, `hak-Hant`,
+`hak-Latn` and `wuu-Hans`. They have no new translation resource catalogues.
+Selection is retained while English resources are used explicitly, so related
+language fallbacks cannot imply a translation that does not exist.
+
+BCP-47 places script before region, so the requested `nan-TW-Hant`/`nan-TW-Latn`
+are stored as `nan-Hant-TW`/`nan-Latn-TW`. `tai` is the registered Tai language
+collection, labelled Tai languages. Labels that only request Latin script do
+not claim a specific romanization system. The metadata records primary naming
+sources: the pinned MediaWiki autonym list, the IANA language-subtag registry,
+Unicode CLDR and Jeju's official language dictionary.
