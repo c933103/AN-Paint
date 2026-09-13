@@ -54,7 +54,9 @@ object LegalInfo {
 
             HEIC and AVIF use libheif 1.23.4 and libde265 1.1.2 by Dirk Farin, struktur AG and contributors under LGPL-3.0-or-later; Kvazaar 2.3.2 by Tampere University, ITU/ISO/IEC and project contributors under BSD-3-Clause; and libaom 3.15.0 by the Alliance for Open Media and contributors under BSD-2-Clause and the AOM Patent License 1.0. Image codec licences includes the exact revisions, copyright notices, complete licence texts, patent grants and source/build details for all these components. The same full notices are included in Third-party notices.
 
-            BMP and GIF encoders are original AN Paint code under AGPL-3.0-or-later. The Graphics Interchange Format and GIF Service Mark belong to CompuServe Incorporated. Format details and this acknowledgement are also in Image codec licences.
+            TIFF uses LibTIFF 4.7.2 and libjpeg-turbo 3.2.0, with Android system zlib. This software is based in part on the work of the Independent JPEG Group. The LZW compression software was developed by the University of California, Berkeley. Complete original notices, source archive hashes and build details are in Image codec licences and Third-party notices.
+
+            BMP, DIB and GIF encoders are original AN Paint code under AGPL-3.0-or-later. The Graphics Interchange Format and GIF Service Mark belong to CompuServe Incorporated. Format details and this acknowledgement are also in Image codec licences.
 
             Complete corresponding source and build scripts are bundled in this APK. Help > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
         """.trimIndent()
@@ -68,7 +70,7 @@ object LegalInfo {
     /** Keep the codec overview identical to the individual, verbatim bundled notices. */
     fun codecNotices(activity: Activity): String = listOf(
         "legal/JPEG_XL_NOTICES.txt", "legal/WEBP_NOTICES.txt", "legal/HEIF_AVIF_NOTICES.txt",
-        "legal/NATIVE_RUNTIME_NOTICES.txt", "legal/RASTER_FORMAT_NOTICES.txt"
+        "legal/TIFF_NOTICES.txt", "legal/NATIVE_RUNTIME_NOTICES.txt", "legal/RASTER_FORMAT_NOTICES.txt"
     ).joinToString("\n\n\n") { asset -> activity.assets.open(asset).bufferedReader().use { it.readText() } }
 
     fun showCodecLicences(activity: Activity) {

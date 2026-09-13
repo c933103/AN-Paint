@@ -69,6 +69,8 @@ class ClassicPaintActivity : Activity() {
     @Volatile var busy = false; private set
     private var operationsInFlight = 0
     private var resizeDialog: AlertDialog? = null
+    private var importSelection: ImportSelection? = null
+    private var pendingImportFile: File? = null
     var lastIoError: String? = null; private set
     private var textSettings=TextSettings()
     private lateinit var sidebar: LinearLayout
@@ -170,7 +172,7 @@ class ClassicPaintActivity : Activity() {
         autosaveReady=true;scheduleAutosave()
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
         savedInstanceState?.let {
-            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true))
+            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
             shareAfterSave=it.getBoolean("share_after_save")
         }
         if(savedInstanceState==null) handleExternalImage(intent)
@@ -810,10 +812,10 @@ class ClassicPaintActivity : Activity() {
     }
     private fun showSaveOptions(format: ImageFormat,share: Boolean=false) {
         val prefs=getSharedPreferences("export",MODE_PRIVATE)
-        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true),prefs.getBoolean("dither",true)),share,
+        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true),prefs.getBoolean("dither",true),prefs.getBoolean("tiff_compressed",true),prefs.getInt("ico_size",256),prefs.getInt("ascii_columns",100),prefs.getBoolean("ascii_invert",false)),share,
             confirm={request ->
                 exportOptions=request.options;shareAfterSave=share
-                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("lossless",exportOptions.lossless).putBoolean("dither",exportOptions.dither).apply()
+                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("lossless",exportOptions.lossless).putBoolean("dither",exportOptions.dither).putBoolean("tiff_compressed",exportOptions.tiffCompressed).putInt("ico_size",exportOptions.icoSize).putInt("ascii_columns",exportOptions.asciiColumns).putBoolean("ascii_invert",exportOptions.asciiInvert).apply()
                 chooseSaveLocation(request.fileName)
             },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename).show()
     }
@@ -890,22 +892,24 @@ class ClassicPaintActivity : Activity() {
             try {
                 val cached = File.createTempFile("classic-import-", ".image", cacheDir)
                 temporary = cached
-                contentResolver.openInputStream(uri)?.use { source -> cached.outputStream().use { dest ->
-                    val buffer = ByteArray(64 * 1024)
-                    while (true) {
-                        val count = source.read(buffer); if (count < 0) break
-                        dest.write(buffer, 0, count)
-                    }
-                } } ?: throw IOException(ui(R.string.ui_the_selected_provider_did_not_return_any_image))
-                val source = ImportedImage(cached,if (asEdit) ui(R.string.ui_assembly_png) else displayName(uri))
-                if (deleteAfterCopy) File(uri.path!!).delete()
-                temporary = null // The UI/import continuation now owns this cached file.
+                contentResolver.openInputStream(uri)?.use { ImportFiles.copy(it,cached) }
+                    ?: throw IOException(ui(R.string.ui_the_selected_provider_did_not_return_any_image))
+                val name=if(asEdit) ui(R.string.ui_assembly_png) else displayName(uri)
+                if(deleteAfterCopy) File(uri.path!!).delete()
+                temporary=null
                 runOnUiThread {
-                    if (isDestroyed || isFinishing) source.file.delete()
+                    if(isDestroyed || isFinishing) cached.delete()
                     else {
-                        val plan = ImportPlan.create(source.dimensions,source.dimensions)
-                        if (source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit)
-                        else askToResize(source,import,asEdit = asEdit)
+                        val selection=ImportSelection(this,worker,{document.residentPixels},
+                            selected={source ->
+                                importSelection=null;pendingImportFile=source.file
+                                val plan=ImportPlan.create(source.dimensions,source.dimensions)
+                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit)
+                                else askToResize(source,import,asEdit=asEdit)
+                            },cancelled={importSelection=null;endIo()},failed={error ->
+                                importSelection=null;ioFailed(ui(R.string.ui_could_not_open_image),error)
+                            })
+                        importSelection=selection;selection.start(cached,name)
                     }
                 }
             } catch (e: Exception) { ioFailed(ui(R.string.ui_could_not_open_image), e) }
@@ -919,7 +923,7 @@ class ClassicPaintActivity : Activity() {
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
             resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit) },
-            cancel = { resizeDialog = null; source.file.delete(); if (!isDestroyed) endIo() },
+            cancel = { resizeDialog = null; source.file.delete(); pendingImportFile=null; if (!isDestroyed) endIo() },
             memoryRequirements = source.memoryRequirements
         ).show()
     }
@@ -933,6 +937,7 @@ class ClassicPaintActivity : Activity() {
                 val bitmap = source.decode(plan,policy.workingBytes,document.residentPixels)
                 source.file.delete()
                 runOnUiThread {
+                    pendingImportFile=null
                     if (!isDestroyed && !isFinishing) {
                         try {
                             if (import) { chooseTool(PaintTool.SELECT); document.paste(bitmap, takeOwnership = true) }
@@ -973,9 +978,10 @@ class ClassicPaintActivity : Activity() {
                 val name=displayName(uri)
                 if(sharing) encoded=null
                 runOnUiThread {if(!isDestroyed) {
-                    filename=name;document.markSaved();endIo();Toast.makeText(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
+                    if(!options.format.isDerivedExport) {filename=name;document.markSaved()};endIo();Toast.makeText(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
                     if(sharing) shareSavedImage(file,options.format)
-                    val action=afterSave;afterSave=null;action?.invoke()
+                    val action=afterSave;afterSave=null
+                    if(options.format.isDerivedExport && action!=null) message(ui(R.string.formats22_derived_exported,options.format.label)) else action?.invoke()
                 }}
             } catch(error: Exception) {ioFailed(ui(R.string.ui_could_not_save_image),error)}
               catch(error: OutOfMemoryError) {ioFailed(ui(R.string.ui_not_enough_memory_to_save_in_this_format),error)}
@@ -1111,7 +1117,7 @@ class ClassicPaintActivity : Activity() {
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
         super.onStop();stopped=true
@@ -1122,7 +1128,8 @@ class ClassicPaintActivity : Activity() {
     }
     override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
-        resizeDialog?.dismiss();resizeDialog=null
+        importSelection?.dispose();importSelection=null
+        resizeDialog?.dismiss();resizeDialog=null;pendingImportFile?.delete();pendingImportFile=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}
         val metadata=draftMetadata();val generation=draftGeneration
         if (!busy && generation==savedDraftGeneration) document.close() else worker.execute {

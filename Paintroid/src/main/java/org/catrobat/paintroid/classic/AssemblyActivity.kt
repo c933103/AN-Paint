@@ -45,6 +45,8 @@ class AssemblyActivity : Activity() {
     var lastError: String? = null; private set
     private var pendingOutput: File? = null
     private var thumbnailLoading = false
+    private var importSelection: ImportSelection? = null
+    private var cancelImportBatch: (()->Unit)? = null
     private val failedPreviews = mutableSetOf<String>()
     private fun dp(n: Int) = (n*resources.displayMetrics.density+.5f).toInt()
     private fun text(value: String, size: Float = 13f) = TextView(this).apply { text = value; textSize = size; setTextColor(EditorColours.onSurface); gravity = Gravity.CENTER_VERTICAL }
@@ -155,7 +157,7 @@ class AssemblyActivity : Activity() {
         }
     }
     private fun thumbnail(item: AssemblyImage): Bitmap {
-        val source = ImportedImage(item.file,item.name)
+        val source = ImportedImage(item.file,item.name,item.pageIndex)
         val size = source.dimensions.scaled(minOf(1.0,384.0/maxOf(source.dimensions.width,source.dimensions.height)))
         val plan = ImportPlan.create(source.dimensions,size)
         val policy = ImageMemoryPolicy.forDevice(this)
@@ -214,28 +216,52 @@ class AssemblyActivity : Activity() {
         if (busy) return
         if (uris.size > 20-assembly.images.size) { message(ui(R.string.ui_you_can_add_more_images_select_fewer_files, 20-assembly.images.size)); return }
         setBusy(true); lastError = null
-        worker.execute {
-            val items = mutableListOf<AssemblyImage>(); val decoded = mutableMapOf<String,Bitmap>(); val errors = mutableListOf<String>()
-            uris.forEach { uri ->
-                val id = UUID.randomUUID().toString(); val file = File(assembly.directory,"$id.image")
-                try {
-                    val (name,time) = metadata(uri)
-                    contentResolver.openInputStream(uri)?.use { input -> file.outputStream().use { input.copyTo(it,64*1024) } } ?: throw IOException(ui(R.string.ui_no_readable_image_data))
-                    val source = ImportedImage(file,name); val item = AssemblyImage(id,file,name,time,source.dimensions)
-                    decoded[id] = thumbnail(item); items.add(item)
-                } catch (error: Exception) { file.delete(); errors.add("${uri.lastPathSegment}: ${error.message}") }
-                catch (_: OutOfMemoryError) { file.delete(); errors.add(ui(R.string.ui_preview_memory_error,uri.lastPathSegment)) }
+        val items=mutableListOf<AssemblyImage>();val decoded=mutableMapOf<String,Bitmap>();val errors=mutableListOf<String>()
+        val abandoned=java.util.concurrent.atomic.AtomicBoolean(false)
+        cancelImportBatch={abandoned.set(true);decoded.values.forEach {it.recycle()};decoded.clear();items.forEach {it.file.delete()};items.clear()}
+        fun finishBatch() {
+            cancelImportBatch=null
+            if(isDestroyed || isFinishing || abandoned.get()) {decoded.values.forEach {it.recycle()};items.forEach {it.file.delete()};return}
+            previews.putAll(decoded)
+            try {if(items.isNotEmpty()) assembly.add(items)}
+            catch(error: Exception) {items.forEach {previews.remove(it.id)?.recycle();it.file.delete()};errors.add(error.message ?: ui(R.string.ui_could_not_store_the_assembly))}
+            setBusy(false);refresh();if(errors.isNotEmpty()) message(errors.joinToString("\n"))
+        }
+        fun next(index: Int) {
+            if(abandoned.get() || isDestroyed || isFinishing) return
+            if(index==uris.size) {finishBatch();return}
+            val uri=uris[index];val id=UUID.randomUUID().toString();val file=File(assembly.directory,"$id.image")
+            fun failed(error: Throwable) {
+                file.delete()
+                runOnUiThread {if(!abandoned.get() && !isDestroyed && !isFinishing) {importSelection=null;errors.add("${uri.lastPathSegment}: ${error.message}");next(index+1)}}
             }
-            runOnUiThread {
-                if (isDestroyed || isFinishing) { decoded.values.forEach { it.recycle() }; items.forEach { it.file.delete() } }
-                else {
-                    previews.putAll(decoded)
-                    try { if (items.isNotEmpty()) assembly.add(items) }
-                    catch (error: Exception) { items.forEach { previews.remove(it.id)?.recycle(); it.file.delete() }; errors.add(error.message ?: ui(R.string.ui_could_not_store_the_assembly)) }
-                    setBusy(false); refresh(); if (errors.isNotEmpty()) message(errors.joinToString("\n"))
-                }
+            worker.execute {
+                try {
+                    val (name,time)=metadata(uri)
+                    contentResolver.openInputStream(uri)?.use {ImportFiles.copy(it,file)} ?: throw IOException(ui(R.string.ui_no_readable_image_data))
+                    runOnUiThread {
+                        if(abandoned.get() || isDestroyed || isFinishing) file.delete()
+                        else {
+                            val selection=ImportSelection(this,worker,{residentPixels()},selected={source ->
+                                importSelection=null
+                                worker.execute {
+                                    try {
+                                        val item=AssemblyImage(id,file,name,time,source.dimensions,pageIndex=source.pageIndex)
+                                        val bitmap=thumbnail(item)
+                                        runOnUiThread {
+                                            if(abandoned.get() || isDestroyed || isFinishing) {bitmap.recycle();file.delete()}
+                                            else {decoded[id]=bitmap;items.add(item);next(index+1)}
+                                        }
+                                    } catch(error: Exception) {failed(error)} catch(error: OutOfMemoryError) {failed(error)}
+                                }
+                            },cancelled={importSelection=null;next(index+1)},failed={failed(it)})
+                            importSelection=selection;selection.start(file,name)
+                        }
+                    }
+                } catch(error: Exception) {failed(error)} catch(error: OutOfMemoryError) {failed(error)}
             }
         }
+        next(0)
     }
     private fun normalize(axis: NormalizeAxis) {
         if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }
@@ -249,8 +275,17 @@ class AssemblyActivity : Activity() {
     private fun renderer() = AssemblyRenderer(this,assembly.images,assembly.layout(),residentPixels())
     private fun requestOutput(toPaint: Boolean) {
         if (assembly.size() == null) { message(ui(R.string.ui_place_at_least_one_image_in_the_workspace)); return }
-        val renderer = renderer()
-        if (renderer.fits(renderer.original)) makeOutput(renderer,renderer.original,toPaint) else outputSizeDialog(renderer,toPaint)
+        setBusy(true)
+        worker.execute {
+            try {
+                val renderer=renderer()
+                runOnUiThread {if(!isDestroyed && !isFinishing) {
+                    setBusy(false)
+                    if(renderer.fits(renderer.original)) makeOutput(renderer,renderer.original,toPaint) else outputSizeDialog(renderer,toPaint)
+                }}
+            } catch(error: Exception) {runOnUiThread {if(!isDestroyed && !isFinishing) {setBusy(false);refresh();message(ui(R.string.ui_could_not_create_the_assembly,error.message))}}}
+            catch(_: OutOfMemoryError) {runOnUiThread {if(!isDestroyed && !isFinishing) {setBusy(false);refresh();message(ui(R.string.ui_not_enough_memory_for_this_operation_the_assembly))}}}
+        }
     }
     private fun outputSizeDialog(renderer: AssemblyRenderer,toPaint: Boolean,previous: ImageDimensions? = null) {
         val suggested = renderer.suggested(previous)
@@ -305,5 +340,5 @@ class AssemblyActivity : Activity() {
     private fun showHelp() = message(ui(R.string.ui_add_up_to_20_images_with_android_s))
     override fun onSaveInstanceState(outState: Bundle) { outState.putString("pending_output",pendingOutput?.name); outState.putInt("sort",sort.ordinal); outState.putString("selected",selected); super.onSaveInstanceState(outState) }
     override fun onBackPressed() { if (!busy) finish() }
-    override fun onDestroy() { if (::assembly.isInitialized) assembly.changed = {}; previews.values.forEach { it.recycle() }; previews.clear(); worker.shutdown(); super.onDestroy() }
+    override fun onDestroy() { importSelection?.dispose();importSelection=null;cancelImportBatch?.invoke();cancelImportBatch=null; if (::assembly.isInitialized) assembly.changed = {}; previews.values.forEach { it.recycle() }; previews.clear(); worker.shutdown(); super.onDestroy() }
 }

@@ -1,11 +1,14 @@
-BMP AND GIF FORMAT NOTICES
+BMP, DIB AND GIF FORMAT NOTICES
 
-AN Paint BMP and GIF encoders:
+AN Paint BMP, DIB and GIF encoders:
 Copyright (C) 2026 AN Paint contributors. GNU AGPL version 3 or any later version.
 These are original application implementations; no third-party encoder code is
 copied or linked for these formats. Android supplies their import decoder.
 
-BMP export writes uncompressed 24-bit RGB with row padding.
+BMP and DIB export write uncompressed 24-bit RGB with row padding. DIB uses
+a packed Windows BITMAPINFOHEADER without the BMP file header. Original DIB
+validation/wrapping code connects supported packed DIB imports to Android's
+BMP decoder.
 GIF export writes a single opaque image with an adaptive palette of up to 256
 colours and optional error-diffusion dithering. It does not export animation.
 
@@ -17,4 +20,6 @@ https://www.w3.org/Graphics/GIF/spec-gif89a.txt
 Application implementation and rebuildable source:
 Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageEncoder.java
 Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt
+Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt
+Paintroid/src/main/java/org/catrobat/paintroid/classic/PackedDib.java
 https://github.com/c933103/AN-Paint

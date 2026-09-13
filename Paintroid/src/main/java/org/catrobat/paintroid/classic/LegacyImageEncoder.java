@@ -1,5 +1,5 @@
 /* AN Paint, 2026. GNU AGPL-3.0-or-later.
- * Original streaming BMP/GIF encoders, based on the public file-format specifications.
+ * Original streaming BMP/DIB/GIF encoders, based on the public file-format specifications.
  * GIF format and service mark: CompuServe Incorporated.
  */
 package org.catrobat.paintroid.classic;
@@ -36,13 +36,25 @@ public final class LegacyImageEncoder {
 
     /** BITMAPINFOHEADER, uncompressed BGR, padded scanlines stored bottom first. */
     public static void bmp(int width, int height, Rows rows, OutputStream out, long budget) throws IOException {
+        bitmap(width, height, rows, out, budget, true);
+    }
+
+    /** Packed Windows DIB: BITMAPINFOHEADER and pixels, without the 14-byte BMP file header. */
+    public static void dib(int width, int height, Rows rows, OutputStream out, long budget) throws IOException {
+        bitmap(width, height, rows, out, budget, false);
+    }
+
+    private static void bitmap(int width, int height, Rows rows, OutputStream out, long budget, boolean fileHeader) throws IOException {
         long stride = ((long) width * 3 + 3) & ~3L;
         long bytes = stride * height;
         check(width, height, budget, stride + (long) width * 4 + 65536);
         if (stride > Integer.MAX_VALUE - 8 || bytes > 0xffffffffL - 54)
             throw new Failure(1, "The image exceeds the BMP file-size limit.");
-        out.write('B'); out.write('M'); little(out, bytes + 54, 4);
-        little(out, 0, 4); little(out, 54, 4); little(out, 40, 4);
+        if (fileHeader) {
+            out.write('B'); out.write('M'); little(out, bytes + 54, 4);
+            little(out, 0, 4); little(out, 54, 4);
+        }
+        little(out, 40, 4);
         little(out, width, 4); little(out, height, 4); little(out, 1, 2); little(out, 24, 2);
         little(out, 0, 4); little(out, bytes, 4);
         little(out, 0, 4); little(out, 0, 4); little(out, 0, 4); little(out, 0, 4);

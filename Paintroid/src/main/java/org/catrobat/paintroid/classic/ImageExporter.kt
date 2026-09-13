@@ -15,6 +15,11 @@ object ImageExporter {
             ImageFormat.HEIC -> HeifCodec.encode(image,file,"heic",options.quality,false,budget)
             ImageFormat.AVIF -> HeifCodec.encode(image,file,"avif",options.quality,options.lossless,budget)
             ImageFormat.BMP,ImageFormat.GIF -> BitmapFileCodec.encode(image,file,options.format==ImageFormat.GIF,options.dither,budget)
+            ImageFormat.DIB -> DibCodec.encode(image,file,budget)
+            ImageFormat.TIFF -> TiffCodec.encode(image,file,options.tiffCompressed,budget)
+            ImageFormat.ICO -> IcoCodec.encode(image,file,options.icoSize,budget)
+            ImageFormat.BASE64 -> TextImageCodec.encodeBase64(image,file,budget)
+            ImageFormat.ASCII_ART -> TextImageCodec.encodeAscii(image,file,options.asciiColumns,options.asciiInvert,budget)
             ImageFormat.PNG,ImageFormat.JPEG -> file.outputStream().use {
                 val format=if(options.format==ImageFormat.JPEG) Bitmap.CompressFormat.JPEG else Bitmap.CompressFormat.PNG
                 if(!image.compress(format,options.quality.coerceIn(1,100),it)) throw IOException(ui(R.string.ui_the_encoder_did_not_finish))

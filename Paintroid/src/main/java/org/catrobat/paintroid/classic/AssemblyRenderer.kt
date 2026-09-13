@@ -14,7 +14,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     val original = ImageDimensions(layout.values.maxOf { it.right },layout.values.maxOf { it.bottom })
     // File metadata stays constant for this output request. Inspect it once so
     // resizing the dialog does not repeatedly open native codecs on the UI thread.
-    private val imports = images.filter { it.id in layout }.associate { it.id to ImportedImage(it.file,it.name) }
+    private val imports = images.filter { it.id in layout }.associate { it.id to ImportedImage(it.file,it.name,it.pageIndex) }
     private fun destination(rect: Rect,size: ImageDimensions): Rect {
         fun x(n: Int) = (n.toDouble()*size.width/original.width).roundToInt()
         fun y(n: Int) = (n.toDouble()*size.height/original.height).roundToInt()
@@ -74,12 +74,26 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     @Suppress("DEPRECATION")
     fun decodeCrop(item: AssemblyImage, target: ImageDimensions, resident: Long = residentPixels): Bitmap {
         val jxl=JxlCodec.isJxl(item.file)
-        if(jxl || HeifCodec.isHeif(item.file)) {
+        val tiff=TiffCodec.isTiff(item.file)
+        val pdf=PdfCodec.isPdf(item.file)
+        if(jxl || tiff || pdf || HeifCodec.isHeif(item.file)) {
             val policy=ImageMemoryPolicy.forDevice(context)
-            val requirements=(imports[item.id] ?: ImportedImage(item.file,item.name)).memoryRequirements
+            val requirements=(imports[item.id] ?: ImportedImage(item.file,item.name,item.pageIndex)).memoryRequirements
             requirements.checkImport(policy,ImportPlan(target,1,target.pixels),resident)
             val budget=requirements.decoderBudget(policy.workingBytes,target,resident)
-            return if(jxl) JxlCodec.decode(item.file,target,budget,item.crop) else HeifCodec.decode(item.file,target,budget,item.crop)
+            return when {jxl -> JxlCodec.decode(item.file,target,budget,item.crop);tiff -> TiffCodec.decode(item.file,target,budget,item.crop,item.pageIndex);pdf -> PdfCodec.decode(item.file,target,budget,item.crop,item.pageIndex);else -> HeifCodec.decode(item.file,target,budget,item.crop)}
+        }
+        if(IcoCodec.isIco(item.file)) {
+            val source=imports[item.id] ?: ImportedImage(item.file,item.name,item.pageIndex)
+            val policy=ImageMemoryPolicy.forDevice(context)
+            val plan=ImportPlan.create(source.dimensions,source.dimensions)
+            source.checkImport(policy,plan,resident+target.pixels)
+            val input=source.decode(plan,policy.workingBytes,resident+target.pixels)
+            try {
+                val output=Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
+                try {Canvas(output).drawBitmap(input,item.crop,Rect(0,0,target.width,target.height),Paint(Paint.FILTER_BITMAP_FLAG));return output}
+                catch(error: Throwable) {output.recycle();throw error}
+            } finally {input.recycle()}
         }
         val (rotation,flip) = orientation(item)
         val rawWidth = if (rotation in listOf(90,270)) item.dimensions.height else item.dimensions.width
@@ -90,10 +104,10 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
         // Upscaling final output is also allowed; decode the available original detail.
         val sampleTarget = ImageDimensions(min(target.width,item.crop.width()),min(target.height,item.crop.height()))
         val plan = ImportPlan.create(item.croppedSize,sampleTarget)
-        val source=imports[item.id] ?: ImportedImage(item.file,item.name)
+        val source=imports[item.id] ?: ImportedImage(item.file,item.name,item.pageIndex)
         source.checkImport(ImageMemoryPolicy.forDevice(context),plan.copy(target=target),resident)
         val colour=checkNotNull(source.platformColour)
-        return colour.withDecodeFile(item.file) { decodeFile ->
+        return source.withPlatformFile { platformFile -> colour.withDecodeFile(platformFile) { decodeFile ->
             val decoder = try { BitmapRegionDecoder.newInstance(decodeFile.path,false) } catch (_: IOException) { null }
             var input: Bitmap? = null; var output: Bitmap? = null
             try {
@@ -126,6 +140,6 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
                 }
                 output!!.also { output = null }
             } finally { decoder?.recycle(); input?.recycle(); output?.recycle() }
-        }
+        } }
     }
 }

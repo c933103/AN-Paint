@@ -38,6 +38,7 @@ jobs:
             Paintroid/build/jxl-source
             Paintroid/build/webp-source
             Paintroid/build/heif-source
+            Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-checks
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
       - name: Prepare build tools and notices
@@ -82,6 +83,7 @@ jobs:
             Paintroid/build/jxl-source
             Paintroid/build/webp-source
             Paintroid/build/heif-source
+            Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-build
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
       - name: Set native compiler cache directory
@@ -91,7 +93,9 @@ jobs:
         with:
           path: ${{ env.CCACHE_DIR }}
           key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}
-          restore-keys: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
+          restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
+            native-ccache-v1-ubuntu22-4.5.1-
       - name: Install pinned compiler cache
         timeout-minutes: 2
         run: |

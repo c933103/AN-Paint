@@ -68,7 +68,7 @@ class MediaGalleryActivity : Activity() {
                         return true
                     }
                     if(!allowed(uri)) {if(uri.scheme=="https") startActivity(Intent(Intent.ACTION_VIEW,uri));return true}
-                    if(uri.path.orEmpty().lowercase().matches(Regex(".*\\.(png|jpe?g|webp|gif|jxl)$"))) {insert(uri);return true}
+                    if(uri.path.orEmpty().lowercase().matches(Regex(".*\\.(png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)$"))) {insert(uri);return true}
                     return false
                 }
                 override fun onPageFinished(view: WebView,url: String) {

@@ -11,6 +11,7 @@ timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 
 chmod +x gradlew
 ./gradlew --no-daemon --max-workers=2 --console=plain :app:writeDependencyInventory
 python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
+python3 tools/generate_tiff_notices.py
 python3 tools/generate_legal_notices.py
 mkdir -p verification-tools/lib64
 cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" verification-tools/

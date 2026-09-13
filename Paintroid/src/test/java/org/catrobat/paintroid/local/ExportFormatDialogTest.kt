@@ -174,6 +174,69 @@ class ExportFormatDialogTest {
         }
     }
 
+    @Test fun tiffCompressionPersistsAcrossDialogChoicesAndDibHasNoLossyControls() {
+        menu("Save as…")
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.format().setSelection(ImageFormat.TIFF.ordinal);idle()
+        val compression=dialog.window!!.decorView.findViewWithTag<CheckBox>("export_tiff_compressed")
+        assertEquals(View.VISIBLE,compression.visibility);assertTrue(compression.isChecked)
+        assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
+        compression.performClick()
+        dialog.format().setSelection(ImageFormat.DIB.ordinal);idle()
+        assertEquals(View.GONE,compression.visibility)
+        assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
+        dialog.format().setSelection(ImageFormat.TIFF.ordinal);idle()
+        assertFalse(compression.isChecked)
+        dialog.window!!.decorView.findViewWithTag<EditText>("export_filename").setText("scan.TIFF")
+        dialog.confirm()
+        var launch=shadowOf(activity).nextStartedActivityForResult
+        assertEquals("image/tiff",launch.intent.type)
+        assertEquals("scan.tif",launch.intent.getStringExtra(Intent.EXTRA_TITLE))
+        shadowOf(activity).nextStartedActivity
+        activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
+        menu("Save as…")
+        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertEquals("TIFF",dialog.format().selectedItem.toString())
+        assertFalse(dialog.window!!.decorView.findViewWithTag<CheckBox>("export_tiff_compressed").isChecked)
+        dialog.format().setSelection(ImageFormat.DIB.ordinal);idle();dialog.confirm()
+        launch=shadowOf(activity).nextStartedActivityForResult
+        assertEquals("image/x-dib",launch.intent.type)
+        assertTrue(launch.intent.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".dib"))
+        shadowOf(activity).nextStartedActivity
+        activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
+    }
+
+    @Test fun iconAndAsciiOptionsAreSpecificToTheirFormatAndSurviveReopening() {
+        menu("Save as…")
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.format().setSelection(ImageFormat.ICO.ordinal);idle()
+        val icon=dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size")
+        val iconControls=dialog.window!!.decorView.findViewWithTag<View>("export_ico_controls")
+        val asciiControls=dialog.window!!.decorView.findViewWithTag<View>("export_ascii_controls")
+        assertEquals(View.VISIBLE,iconControls.visibility);assertEquals(View.GONE,asciiControls.visibility)
+        assertEquals(View.GONE,dialog.quality().visibility);icon.setSelection(3);idle()
+        dialog.format().setSelection(ImageFormat.ASCII_ART.ordinal);idle()
+        assertEquals(View.GONE,iconControls.visibility);assertEquals(View.VISIBLE,asciiControls.visibility)
+        val columns=dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns")
+        columns.slider.progress=80
+        dialog.window!!.decorView.findViewWithTag<CheckBox>("export_ascii_invert").performClick()
+        dialog.format().setSelection(ImageFormat.BASE64.ordinal);idle()
+        assertEquals(View.GONE,asciiControls.visibility);assertEquals(View.GONE,dialog.quality().visibility)
+        dialog.window!!.decorView.findViewWithTag<EditText>("export_filename").setText("Drawing.TXT")
+        dialog.confirm()
+        val launch=shadowOf(activity).nextStartedActivityForResult
+        assertEquals("text/plain",launch.intent.type);assertEquals("Drawing.txt",launch.intent.getStringExtra(Intent.EXTRA_TITLE))
+        shadowOf(activity).nextStartedActivity
+        activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
+        menu("Save as…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.format().setSelection(ImageFormat.ICO.ordinal);idle()
+        assertEquals("48 × 48",dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").selectedItem.toString())
+        dialog.format().setSelection(ImageFormat.ASCII_ART.ordinal);idle()
+        assertEquals(80,dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns").slider.progress)
+        assertTrue(dialog.window!!.decorView.findViewWithTag<CheckBox>("export_ascii_invert").isChecked)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();idle()
+    }
+
     @Test fun changingFromLosslessWebpToHeicShowsNumericQualityAndNeverClaimsLosslessHeic() {
         var selected: ExportOptions? = null
         val dialog = SaveOptionsDialog(activity, ExportOptions(ImageFormat.WEBP, 95, true), true,

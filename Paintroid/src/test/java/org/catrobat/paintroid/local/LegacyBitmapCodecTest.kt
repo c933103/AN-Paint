@@ -19,7 +19,7 @@ import org.robolectric.annotation.Implements
 import java.io.File
 import java.io.IOException
 
-/** BMP/GIF have no region decoder on some Android versions: exercise the bounded full-decode path. */
+/** Legacy bitmaps have no region decoder on some Android versions: exercise the bounded full-decode path. */
 @Implements(BitmapRegionDecoder::class)
 class UnavailableRegionDecoderShadow {
     companion object {
@@ -37,9 +37,9 @@ class LegacyBitmapCodecTest {
         for(y in 0 until height) for(x in 0 until width) setPixel(x,y,Color.rgb(x*17,y*23,(x+y)*7))
         setHasAlpha(false)
     }
-    @Test fun bmpAndGifOpenInsertAndFallbackCropPreserveEveryPalettePixel() {
+    @Test fun bmpGifAndDibOpenInsertAndFallbackCropPreserveEveryPalettePixel() {
         val image=source()
-        try {for(format in listOf(ImageFormat.BMP,ImageFormat.GIF)) {
+        try {for(format in listOf(ImageFormat.BMP,ImageFormat.GIF,ImageFormat.DIB)) {
             val file=File.createTempFile("legacy-fixture-",".bin",context.cacheDir)
             val document=PaintDocument(13,9,File(context.cacheDir,"legacy-document-${format.name}"))
             try {
@@ -84,12 +84,34 @@ class LegacyBitmapCodecTest {
     @Test fun failedEncodeKeepsOldFileAndRemovesTemporaryOutput() {
         val image=source()
         val directory=File(context.cacheDir,"legacy-budget-test").apply {deleteRecursively();mkdirs()}
-        try {for(format in listOf(ImageFormat.BMP,ImageFormat.GIF)) {
+        try {for(format in listOf(ImageFormat.BMP,ImageFormat.GIF,ImageFormat.DIB)) {
             val file=File(directory,"old"+format.extension).apply {writeText("old content")}
             try {ImageExporter.encode(image,file,ExportOptions(format),1000);fail("Expected rejection")}
             catch(expected: IOException) {assertNotNull(expected.message)}
             assertEquals("old content",file.readText());assertEquals(1,directory.listFiles()!!.size)
             file.delete()
         }} finally {image.recycle();directory.deleteRecursively()}
+    }
+
+    @Test fun packedDibImportKeepsOriginalAndCleansItsPrivateBmpOnFailure() {
+        val image=source()
+        val directory=File(context.cacheDir,"dib-cleanup-test").apply {deleteRecursively();mkdirs()}
+        try {
+            val file=File(directory,"source.dib")
+            ImageExporter.encode(image,file,ExportOptions(ImageFormat.DIB),budget)
+            val original=file.readBytes()
+            assertEquals(40,original[0].toInt())
+            assertTrue(DibCodec.isDib(file))
+            try {
+                DibCodec.withBmpFile(file) {temporary ->
+                    assertNotEquals(file,temporary)
+                    assertEquals("BM",temporary.inputStream().use {String(byteArrayOf(it.read().toByte(),it.read().toByte()),Charsets.US_ASCII)})
+                    throw IOException("fixture cancellation")
+                }
+                fail("Expected fixture cancellation")
+            } catch(expected: IOException) {assertEquals("fixture cancellation",expected.message)}
+            assertArrayEquals(original,file.readBytes())
+            assertEquals(listOf("source.dib"),directory.listFiles()!!.map {it.name})
+        } finally {image.recycle();directory.deleteRecursively()}
     }
 }

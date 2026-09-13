@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.20 simplifies colour and save controls, adds BMP/GIF export and an app-language setting, improves gallery credits, and replaces the launcher artwork. The package name is now `paint.anpaint.android`, which installs separately from earlier AN Paint. See [HANDOFF.md](HANDOFF.md) for actual build verification.
+> Local.22 adds DIB/TIFF/ICO/Base64 support, ASCII export, PDF raster import, PDF/TIFF page selection and animated-image warnings. It retains the corrected Japanese flip labels and all local.20 interface improvements. Package `paint.anpaint.android` updates local.20–local.21 in place with the same signing key. See [HANDOFF.md](HANDOFF.md) for actual build verification.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -23,7 +23,8 @@ paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
   alignment, direct PNG saving and transfer to the main editor.
 - Watercolor, Heart/Star/Arrow, cursor drawing, magnified preview and sizes up to
   100 px with exact numeric entry.
-- One Save as panel for filename, format, quality/lossless options and GIF dithering: PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP and GIF. Save and share uses the same panel.
+- One Save as panel for filename, format and applicable quality, lossless, GIF dithering or TIFF compression options: PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, Base64 text and ASCII art. Icon size and ASCII width/inversion are configurable. Save and share uses the same panel.
+- PDF and TIFF page previews/selection, plus warnings when animated GIF/APNG/WebP imports become still images.
 - Four recent colours, explicit custom-colour slots, and an optional online Catrobat figures gallery with copyable/editable credits.
 - App language selection with reused Paintroid terms and English fallback for untranslated text.
 
@@ -37,7 +38,8 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.20` uses a new package name and **installs alongside local.15 through
+`2.14.1-local.22` updates local.20 and local.21 in place when signed with the same
+key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
@@ -71,8 +73,8 @@ and `ANDROID_HOME`, then run:
 
 The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build requires
 network access to Google Maven, Maven Central, the Gradle Plugin Portal and
-GitHub for pinned native codec source revisions (JPEG XL, WebP, HEIF/HEVC and AV1
-dependencies). Exported corresponding source also includes those native sources
+GitHub and download.osgeo.org for pinned native codec sources (JPEG XL, WebP,
+HEIF/HEVC, AV1 and TIFF/JPEG dependencies). Exported corresponding source also includes those native sources
 offline. The native codecs
 build for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is available
 for a faster emulator-only verification build. Android instrumentation tests run
@@ -101,7 +103,8 @@ are independently maintained.
   identify the artwork and packaged libraries.
 - [JPEG XL codec notices](Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt)
   and [WebP](Paintroid/src/main/assets/legal/WEBP_NOTICES.txt) /
-  [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) notices preserve
+  [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) /
+  [TIFF](Paintroid/src/main/assets/legal/TIFF_NOTICES.txt) notices preserve
   the upstream licences and patent grants. Gallery artwork retains its
   CC BY-SA 4.0 attribution and source links; the gallery provides copyable credit
   text and editing controls for accurately describing later modifications.

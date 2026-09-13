@@ -111,25 +111,34 @@ class ImportMemoryRequirements(
 }
 
 /** The provider is copied once; this private file stays alive across the resize choice. */
-class ImportedImage(val file: File, val name: String) {
+class ImportedImage(val file: File, val name: String, val pageIndex: Int = 0) {
     private val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
     private val orientation: ExifInterface?
     private val jxl=JxlCodec.isJxl(file)
     private val heif=HeifCodec.isHeif(file)
-    internal val platformColour = if(jxl || heif) null else PlatformImageColour.read(file)
+    private val tiff=TiffCodec.isTiff(file)
+    private val dib=DibCodec.isDib(file)
+    private val pdf=PdfCodec.isPdf(file)
+    private val ico=IcoCodec.isIco(file)
+    internal fun <T> withPlatformFile(action: (File)->T): T = if(dib) DibCodec.withBmpFile(file,action) else action(file)
+    internal val platformColour = if(jxl || heif || tiff || pdf || ico) null else withPlatformFile {PlatformImageColour.read(it)}
     val dimensions: ImageDimensions
     val memoryRequirements: ImportMemoryRequirements
     init {
         if(jxl) {val size=JxlCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
         else if(heif) {val size=HeifCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
-        else BitmapFactory.decodeFile(file.path, bounds)
+        else if(tiff) {val size=TiffCodec.dimensions(file,pageIndex);bounds.outWidth=size.width;bounds.outHeight=size.height}
+        else if(pdf) {val size=PdfCodec.dimensions(file,pageIndex);bounds.outWidth=size.width;bounds.outHeight=size.height}
+        else if(ico) {val size=IcoCodec.dimensions(file);bounds.outWidth=size.width;bounds.outHeight=size.height}
+        else withPlatformFile {BitmapFactory.decodeFile(it.path, bounds)}
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw IOException(ui(R.string.ui_this_file_is_not_a_supported_image_use))
-        orientation = if(jxl || heif) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
+        orientation = if(jxl || heif || tiff || dib || pdf || ico) null else try { ExifInterface(file.path) } catch (_: IOException) { null }
         dimensions = if (orientation?.rotationDegrees in listOf(90,270)) ImageDimensions(bounds.outHeight,bounds.outWidth) else ImageDimensions(bounds.outWidth,bounds.outHeight)
         // Inspect the native source/tile footprint once, not on every slider tick.
         // Ordinary formats never initialize a JNI library here.
         memoryRequirements=ImportMemoryRequirements(
-            if(heif) HeifCodec.decodeWorkingBytes(file,ImageDimensions(1,1)) else null,
+            when {heif -> HeifCodec.decodeWorkingBytes(file,ImageDimensions(1,1));tiff -> TiffCodec.decodeWorkingBytes(file,ImageDimensions(1,1),pageIndex);
+                pdf -> PdfCodec.decodeWorkingBytes(file,ImageDimensions(1,1),pageIndex);ico -> IcoCodec.decodeWorkingBytes(file,ImageDimensions(1,1));else -> null},
             platformColour?.decodedWorkingBytesPerPixel ?: 4,platformColour?.metadataWorkingBytes ?: 0)
     }
     fun estimatedBytes(plan: ImportPlan,residentPixels: Long)=memoryRequirements.estimatedBytes(plan,residentPixels)
@@ -143,11 +152,14 @@ class ImportedImage(val file: File, val name: String) {
         val decoderBudget=memoryRequirements.decoderBudget(workingBytes,plan.target,residentPixels)
         if(jxl) return JxlCodec.decode(file,plan.target,decoderBudget)
         if(heif) return HeifCodec.decode(file,plan.target,decoderBudget)
+        if(tiff) return TiffCodec.decode(file,plan.target,decoderBudget,pageIndex=pageIndex)
+        if(pdf) return PdfCodec.decode(file,plan.target,decoderBudget,pageIndex=pageIndex)
+        if(ico) return IcoCodec.decode(file,plan.target,decoderBudget)
         var decoded: Bitmap? = null
         var output: Bitmap? = null
         try {
             val colour = checkNotNull(platformColour)
-            val raw = colour.withDecodeFile(file) { BitmapFactory.decodeFile(it.path,colour.options(plan.sample)) }
+            val raw = withPlatformFile { platformFile -> colour.withDecodeFile(platformFile) { BitmapFactory.decodeFile(it.path,colour.options(plan.sample)) } }
                 ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))
             decoded = raw
             val input = colour.convert(raw)

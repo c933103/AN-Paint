@@ -12,7 +12,7 @@ internal object GalleryPage {
           function adapt() {
             document.querySelectorAll('a.wp-block-file__button[download]').forEach(function(link) {
               var url; try { url=new URL(link.href); } catch(e) { return; }
-              if(url.protocol!=='https:' || ['catrobat.org','www.catrobat.org','catrobatblog.files.wordpress.com','catrobatblog.wpcomstaging.com'].indexOf(url.hostname)<0 || !/\.(png|jpe?g|webp|gif|jxl)$/i.test(url.pathname)) return;
+              if(url.protocol!=='https:' || ['catrobat.org','www.catrobat.org','catrobatblog.files.wordpress.com','catrobatblog.wpcomstaging.com'].indexOf(url.hostname)<0 || !/\.(png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)$/i.test(url.pathname)) return;
               if(link.textContent!==useLabel) link.textContent=useLabel;
               link.setAttribute('aria-label',useLabel);
               var copy=link.parentElement.querySelector('[data-anpaint-credit]');

@@ -18,3 +18,5 @@ target_link_options(anpaint_jxl PRIVATE "-Wl,-z,max-page-size=16384")
 
 include(${CMAKE_CURRENT_LIST_DIR}/webp_codec.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/heif.cmake)
+
+include(${CMAKE_CURRENT_LIST_DIR}/tiff_codec.cmake)

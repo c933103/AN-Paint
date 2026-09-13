@@ -16,7 +16,8 @@ enum class NormalizeAxis { WIDTH, HEIGHT }
 data class ImageNormalization(val axis: NormalizeAxis,val pixels: Int)
 data class Attachment(val anchor: String?, val edge: SnapEdge?)
 data class AssemblyImage(val id: String, val file: File, val name: String, val timestamp: Long?,
-    val dimensions: ImageDimensions, val crop: Rect = Rect(0,0,dimensions.width,dimensions.height), val attachment: Attachment? = null, val normalization: ImageNormalization? = null) {
+    val dimensions: ImageDimensions, val crop: Rect = Rect(0,0,dimensions.width,dimensions.height), val attachment: Attachment? = null, val normalization: ImageNormalization? = null,val pageIndex: Int = 0) {
+    init {require(pageIndex>=0)}
     val croppedSize get() = ImageDimensions(crop.width(),crop.height())
     val placedSize: ImageDimensions get() {
         val n = normalization ?: return croppedSize
@@ -200,13 +201,13 @@ class ImageAssembly(val directory: File) {
         val list = JSONArray()
         items.forEach { item -> list.put(JSONObject().apply {
             put("id",item.id); put("file",item.file.name); put("name",item.name); put("time",item.timestamp ?: JSONObject.NULL)
-            put("width",item.dimensions.width); put("height",item.dimensions.height)
+            put("width",item.dimensions.width); put("height",item.dimensions.height);put("page",item.pageIndex)
             put("crop",JSONArray(listOf(item.crop.left,item.crop.top,item.crop.right,item.crop.bottom)))
             item.normalization?.let { put("normalize_axis",it.axis.name); put("normalize_pixels",it.pixels) }
             item.attachment?.let { put("placed",true); put("anchor",it.anchor ?: JSONObject.NULL); put("edge",it.edge?.name ?: JSONObject.NULL) }
         }) }
         val stream = saved.startWrite()
-        try { stream.write(JSONObject().put("version",2).put("images",list).toString().toByteArray(Charsets.UTF_8)); saved.finishWrite(stream) }
+        try { stream.write(JSONObject().put("version",3).put("images",list).toString().toByteArray(Charsets.UTF_8)); saved.finishWrite(stream) }
         catch (error: Throwable) { saved.failWrite(stream); throw error }
     }
     private fun read(): List<AssemblyImage> {
@@ -219,7 +220,7 @@ class ImageAssembly(val directory: File) {
             AssemblyImage(o.getString("id"),file,o.getString("name"),if (o.isNull("time")) null else o.getLong("time"),
                 ImageDimensions(o.getInt("width"),o.getInt("height")),Rect(c.getInt(0),c.getInt(1),c.getInt(2),c.getInt(3)),
                 if (o.optBoolean("placed")) Attachment(if (o.isNull("anchor")) null else o.getString("anchor"),if (o.isNull("edge")) null else SnapEdge.valueOf(o.getString("edge"))) else null,
-                if (o.has("normalize_axis")) ImageNormalization(NormalizeAxis.valueOf(o.getString("normalize_axis")),o.getInt("normalize_pixels")) else null)
+                if (o.has("normalize_axis")) ImageNormalization(NormalizeAxis.valueOf(o.getString("normalize_axis")),o.getInt("normalize_pixels")) else null,o.optInt("page",0))
         }
     }
 }

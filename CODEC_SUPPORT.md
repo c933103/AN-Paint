@@ -4,8 +4,9 @@ AN Paint edits one opaque 8-bit RGB canvas. Opening an image composites its
 transparency onto the selected background colour; inserting an image keeps an
 internal floating mask and composites onto the existing canvas pixels when
 committed. Assembly output composites onto white. File formats do not introduce
-layers or transparency controls. Animation, multiple pages/items, HDR editing
-and preservation of camera metadata are outside this still-image workflow.
+layers or transparency controls. PDF and TIFF imports select one page for raster
+editing. Animation, multipage document editing, HDR editing and preservation of
+camera metadata remain outside this still-image workflow.
 
 | Format | Open / insert / assembly | Save as | Controls |
 |---|---|---|---|
@@ -17,9 +18,16 @@ and preservation of camera metadata are outside this still-image workflow.
 | AVIF | Bundled libheif + libaom | libheif + libaom | Lossless or quality 1–100 |
 | BMP | Android decoder | Uncompressed 24-bit RGB | Exact RGB pixels; larger files |
 | GIF | Android decoder; first frame | Single indexed frame, at most 256 colours | Optional Floyd–Steinberg dithering |
+| DIB | Validated packed DIB wrapped privately for Android decoding | Packed 24-bit RGB DIB | Uncompressed; no BMP file header |
+| TIFF (`.tif`, `.tiff`) | Bundled libtiff; page selector | One opaque 8-bit RGB page | Lossless Deflate or uncompressed |
+| ICO | Largest PNG or classic DIB icon entry | One PNG icon entry | 16, 24, 32, 48, 64, 128 or 256 px square; aspect preserved |
+| Base64 text (`.txt`) | Raw Base64 or image data URI, decoded before normal import | Lossless PNG in a Base64 data URI | Exact PNG pixels; larger than binary PNG |
+| ASCII art (`.txt`) | Not an image import format | Plain text rendition | 40–240 columns; invert light/dark |
+| PDF | Android PdfRenderer; page selector | Not offered | Rasterizes the chosen page at 144 dpi; resize when needed |
 
-File > Save as opens one panel for all eight formats. Choose a filename and
-format, then set quality, lossless mode or GIF dithering where applicable before
+File > Save as opens one panel for all thirteen export formats. Choose a filename and
+format, then set quality, lossless mode, GIF dithering, TIFF compression, icon size
+or ASCII width/inversion where applicable before
 opening Android's destination picker. The filename extension follows format
 changes. Save and share uses the same options, writes the selected destination,
 then invokes sharing with that format. Save uses the current export format and
@@ -37,8 +45,107 @@ are rejected with a clear conversion message; their profiles are not converted.
 Convert those inputs to sRGB PNG using a colour-managed editor first. The metadata
 checks follow the [BMP V5 colour-space fields](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapv5header)
 and [ICC.1:2010 Annex B.5](https://www.color.org/specification/ICC1v43_2010-12.pdf).
-BMP/GIF encoders are original AN Paint code, not another native
+BMP/DIB/GIF encoders are original AN Paint code, not another native
 codec dependency. They add no layers, editable transparency or animation timeline.
+
+## DIB and TIFF (local.22)
+
+DIB import recognizes packed OS/2 and Windows headers (12, 40, 52, 56, 108 and
+124 bytes), palette-based 1/4/8-bit pixels, 16/24/32-bit pixels, top-down and
+bottom-up rows, RGB/bitfields and RLE4/RLE8. A scoped private BMP wrapper supplies
+the file header needed by Android; the original remains unchanged and temporary
+files are removed after success or failure. Conventional BMP files named `.dib`
+also remain readable through signature detection. Export produces a true packed
+24-bit DIB without the 14-byte BMP file header; use BMP when another app requires
+that header. External Windows palette handles and JPEG/PNG-compressed DIBs are
+not supported. The existing BMP colour-profile restrictions also apply to DIB.
+The parser validates masks, palette bounds, dimensions, scanline sizes and RLE
+runs before platform decoding. Layout follows Microsoft's
+[BITMAPINFOHEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapinfoheader)
+and [BITMAPV5HEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapv5header).
+
+TIFF uses [libtiff 4.7.2](https://libtiff.gitlab.io/libtiff/) and pinned JPEG support.
+A preview and page-number selector open any selected page of classic TIFF or
+BigTIFF in either byte order, including
+strips, tiles, contiguous or separate sample planes, and all eight orientations.
+Supported integer samples include bilevel/palette/grayscale and 8/16-bit RGB,
+with associated or unassociated alpha. Compression support includes None, LZW,
+Deflate, PackBits, CCITT and supported JPEG RGB/grayscale/YCbCr. Supported embedded
+RGB/grayscale ICC profiles are converted before the final 8-bit sRGB quantization.
+Unsupported colour models/profiles fail visibly rather than silently changing
+their meaning. CMYK, Lab, floating-point/log samples and non-JPEG YCbCr are outside
+this decoder's current scope. Up to 4,096 pages are supported; cyclic, broken or
+excessive directory chains are rejected before selection. Multipage editing and
+saving are not added: opening chooses one page, and saving writes that edited page.
+
+TIFF export writes one classic-TIFF page of opaque 8-bit RGB, with optional
+lossless Deflate compression. Both settings preserve the editor's RGB pixels.
+The export uses a private temporary file and replaces its destination only after
+successful encoding. Import memory estimates account for native strip/tile and
+codec work as well as the output; reducing the output does not promise that every
+source image will fit the device's budget. Crop/resize and assembly use the same
+colour/orientation handling as ordinary opening and insertion.
+
+## PDF, icons and text (local.22)
+
+PDF opens through Android's [PdfRenderer](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer)
+on API 21 and newer. The selector shows a preview and accepts a page number, with
+previous/next controls. It is shared by opening, insertion and assembly. Assembly
+stores the page index with the original source and keeps it through crop, undo,
+reopening and output. One PDF point becomes two pixels (144 dpi); page text and
+vectors become raster pixels on white. Crop rendering targets the requested region
+directly. PDFs needing a password are rejected with an explanation. Files up to
+512 MiB, up to 4,096 pages and page dimensions up to 500,000 points are admitted
+subject to the device memory budget. PDFium's internal allocations cannot be
+strictly capped through Android's API; the importer reserves native headroom and
+accounts for the source file as well as the output bitmap.
+
+ICO opens the largest supported icon entry, with up to 256 pixels per side.
+PNG entries use the shared colour-aware importer; classic 1/4/8/16/24/32-bit DIB
+entries apply XOR pixels, the AND mask and legacy alpha rules. Export produces one
+PNG-compressed ICO entry, fitting the canvas into the chosen square without
+stretching and using transparent padding. ICO is a resized export: it does not
+mark the full drawing saved or allow an outstanding replace/close action to discard
+that drawing. Save a full-size PNG or another full-image format too.
+
+Base64 import accepts a supported-image payload encoded as raw Base64 or an
+`image/...;base64,` data URI, with whitespace. It streams a strict decode into a
+private file before image, page and animation inspection; malformed and nonimage
+payloads fail without replacing an existing destination. Export streams a lossless
+PNG into `data:image/png;base64,...` text. No clipboard size limit is involved.
+All provider copies and decoded Base64 payloads are limited to 512 MiB.
+
+ASCII art is a visual text export, not an editable image format. It samples
+luminance into a fixed character ramp, with 40–240 columns and optional inversion.
+Rows account for a typical 2:1 monospaced character cell; the appearance depends
+on the viewer's font. The output is capped at 4 MiB. Exporting it leaves the drawing
+unsaved and does not continue a pending destructive replacement.
+
+## Animated image warning
+
+GIF, APNG and animated WebP containers are inspected before import. When multiple
+frames are present, a warning asks whether to open a still image or cancel. GIF,
+WebP and ordinary APNG import the first/default frame. APNG can have a separate
+poster image; that case explicitly warns that the default poster is imported.
+The warning also applies to images decoded from Base64 and images added to assembly.
+A bounded metadata scan reports a lower-bound count when an exact count is not
+available. If the scan limit is reached before animation can be determined, an
+uncertainty warning still asks before opening a still image. Export remains
+still-image only; no animation timeline is introduced.
+
+## Remaining formats
+
+The common raster interchange formats are covered, including AVIF which was
+already present before local.22. SVG is the most useful next import candidate for
+illustrations and logos, but would need a vector renderer and a raster-size choice.
+Layered PSD, OpenRaster and Krita projects need a deliberate flattening workflow
+or a layer-capable editor; labelling them fully supported in this single-canvas
+app would be misleading. Camera RAW and floating-point EXR are specialist workflows
+with colour/development requirements, rather than missing everyday paint exports.
+These formats are not included in this build. The assessment follows the
+[SVG specification](https://www.w3.org/TR/SVG2/Overview.html),
+[Adobe PSD/PSB specification](https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/)
+and [OpenRaster file layout](https://www.openraster.org/baseline/file-layout-spec.html).
 
 The bundled codecs are built from pinned source for the supported Android CPU
 architectures. HEIC/AVIF saving does not require a phone-provided encoder. The
@@ -125,7 +232,7 @@ the Android FORTIFY abort reproduced when encoding successive HEIC grid tiles.
 It does not alter compression algorithms. The patched source and its notice are
 included in the offline source bundle.
 
-Implementation and tests in this file describe the local.20 source.
+Implementation and tests in this file describe the local.22 source.
 Consult `HANDOFF.md` and `verification/` for the verification actually completed
 for a delivered APK, including the distinction between emulator and physical
 phone checks.

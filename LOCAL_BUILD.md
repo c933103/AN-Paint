@@ -646,3 +646,34 @@ editor's working canvas and saved images remain opaque 8-bit sRGB SDR.
 Responsive toolbox tests render portrait and landscape with category drawers
 open and closed. Pencil coverage checks exercise actual 1–100 px strokes and
 autosave recovery of the chosen width.
+
+
+## TIFF native dependencies (13 September 2026)
+
+`tools/fetch_tiff_sources.py` downloads the official LibTIFF 4.7.2 and
+libjpeg-turbo 3.2.0 source releases, verifies their pinned SHA-256 hashes, and
+atomically stages them under `Paintroid/build/tiff-source`. The Gradle native
+configuration and corresponding-source ZIP depend on this task. Existing
+verified source markers permit offline rebuilds of exported source.
+
+`Paintroid/src/main/cpp/tiff_codec.cmake` builds `anpaint_tiff` for the same four
+ABIs as the other codecs. LibTIFF is a static subproject; libjpeg-turbo uses its
+supported standalone ExternalProject build and produces only its static
+libjpeg API target. No JPEG command-line tools, tests, TurboJPEG API or SIMD
+assembler dependency is included. The external build inherits the NDK, ABI,
+platform, compiler and compiler launcher. Its generated files live in the
+ABI-specific CMake output, which is never restored from CI cache.
+
+Required compression codecs are uncompressed, LZW, PackBits, CCITT Group 3/4,
+JPEG (8/12-bit), old-JPEG (read-only), and Deflate. Android system zlib provides
+Deflate; libdeflate, JBIG, LERC, LZMA, Zstd, WebP, PixarLog and LogLuv are disabled.
+All TIFF and JPEG allocation calls are routed through the bridge's budget
+symbols. LibTIFF's zlib allocation callbacks route system Deflate workspace
+through the same budget. The bridge links the existing skcms/JPEG XL colour
+pipeline.
+
+`tools/generate_tiff_notices.py` preserves full upstream licence texts and a
+source/licence hash manifest in `legal/tiff-sources.json`. Run it before
+`tools/generate_legal_notices.py`; CI does so automatically. The APK's Image
+codec licences and Third-party notices include these original credits. Full
+TIFF/JPEG sources are bundled alongside the application source.

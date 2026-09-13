@@ -1,7 +1,13 @@
-# AN Paint local.21
+# AN Paint local.22
 
 Updated 13 September 2026. Package `paint.anpaint.android`, version
-`2.14.1-local.21`, version code `74`.
+`2.14.1-local.22`, version code `75`.
+
+Local.22 completes DIB/TIFF support and adds ICO and Base64 text opening/saving,
+ASCII text export, PDF raster import, PDF/TIFF page selection and animated-image
+warnings. AVIF opening/saving, including lossless mode, remains supported.
+See CODEC_SUPPORT.md for variants and limits. This build updates local.20–local.21
+in place with the same signing key.
 
 Local.21 corrects the Japanese horizontal-flip label to 左右反転 and vertical-flip
 label to 上下反転. The translation generator preserves this reviewed correction
@@ -27,9 +33,16 @@ app and open them in the new app; keep the old installation until that is done.
   show “+”; hidden cycling and long-press replacement are removed. The four
   preset colours and saved custom colours are preserved within an installation.
 - File has one Save as panel with filename, format and relevant encoding options:
-  PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP and GIF. Quality controls appear for
-  lossy formats, lossless options where supported, and dithering for GIF. Android's
+  PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, Base64 text and ASCII art. Quality controls appear for
+  lossy formats, lossless options where supported, dithering for GIF and a lossless
+  compression switch for TIFF. ICO offers size; ASCII offers width/inversion. Android's
   destination picker follows the panel. Save and share uses the same options.
+- PDF and TIFF show a preview/page selector; the selected page persists through
+  assembly and crop. PDF rasterizes at 144 dpi and saving uses an image format.
+- GIF/APNG/WebP imports warn before reducing animation to a still/default image,
+  including separate APNG posters and Base64-wrapped or assembly imports.
+- ICO and ASCII exports keep the full drawing unsaved and block a pending
+  destructive replacement until a full image copy is saved.
 - BMP output uses uncompressed 24-bit RGB. GIF output is a single indexed frame,
   limited to 256 colours with optional dithering; it does not add animation.
 - Catrobat gallery image use inserts directly. The page header explains credit
@@ -53,9 +66,9 @@ Release verification is in progress. The final signed APK report will be recorde
 
 The implementation entries above are not Android test results. API 35 checks
 run independently of APK delivery; API 30 is a separate optional matrix choice.
-The completed local.20 delivery is recorded in verification/HANDOFF_LOCAL20.md.
-Its 201 regression and 47 API 35 emulator passes must not be reported as fresh
-verification of local.21.
+Previous delivery reports are in verification/HANDOFF_LOCAL20.md and
+verification/HANDOFF_LOCAL21.md. Their results must not be reported as fresh
+verification of local.22.
 
 ## Remaining verification boundaries
 

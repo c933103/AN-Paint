@@ -56,6 +56,13 @@ Regression and emulator jobs do not depend on this cache. References: the offici
 [ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
 [Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).
 
+Local.22 adds a fallback restore prefix for the same OS and ccache version when
+adding TIFF changes the integration-script namespace. Restoring that cache does
+not accept an object without ccache's existing compiler-content, command and
+preprocessed-input checks. Strict header checking, disabled direct/depend modes,
+empty sloppiness and rebuilding linked libraries/APKs remain unchanged. This
+allows unchanged codecs to reuse their valid objects while the new codec builds.
+
 ## Deadlines and evidence
 
 - Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
