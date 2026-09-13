@@ -44,7 +44,7 @@ def generate():
     android = json.loads((DATA / "android-actions.json").read_text())["locales"]
     reviewed = json.loads((DATA / "reviewed-actions.json").read_text())["locales"]
     defaults = {}
-    for path in (RES / "values").glob("*.xml"):
+    for path in sorted((RES / "values").glob("*.xml")):
         defaults.update(read_strings(path))
     def normal(value):
         return value.strip().strip('"').replace("\\'", "'").rstrip(":：").casefold()
@@ -136,7 +136,7 @@ def generate():
                            ("en-SG", "values-en-rSG"), ("en-IN", "values-en-rIN")):
         lines = ['<?xml version="1.0" encoding="utf-8"?>',
                  '<!-- Generated English spelling variants; see translations/README.md. -->', '<resources>']
-        for key, value in defaults.items():
+        for key, value in sorted(defaults.items()):
             # Cover existing regional overrides as well as spelling-sensitive
             # strings, so Android cannot pick another English region's commands.
             if key in english_overrides or re.search(r'(?i)\b(?:water)?colou?rs?\b', value):

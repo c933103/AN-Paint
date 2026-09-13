@@ -1,6 +1,8 @@
 """Host checks for provenance, the selected shared vocabulary, and locale declarations."""
 import json
 import unittest
+from unittest import mock
+import pathlib
 import xml.etree.ElementTree as ET
 import reuse_upstream_translations as translations
 
@@ -9,6 +11,14 @@ class TranslationTests(unittest.TestCase):
     def test_generated_translations_match_verified_upstream_bytes(self):
         for path, text in translations.generate().items():
             self.assertEqual(text, path.read_text(), str(path))
+
+    def test_generation_is_independent_of_filesystem_enumeration_order(self):
+        expected = translations.generate()
+        original = pathlib.Path.glob
+        def reversed_glob(path, pattern):
+            return iter(reversed(list(original(path, pattern))))
+        with mock.patch.object(pathlib.Path, "glob", reversed_glob):
+            self.assertEqual(expected, translations.generate())
 
     def test_every_mapped_resource_exists_in_default_catalogue(self):
         names = set()
