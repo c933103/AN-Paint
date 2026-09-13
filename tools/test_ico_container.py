@@ -6,6 +6,7 @@ all decoded pixels, and Pillow independently opens an exported ICO when present.
 Only the host JDK and Python standard library are required for the core tests.
 """
 import binascii
+import io
 import pathlib
 import shutil
 import struct
@@ -28,6 +29,32 @@ public class IcoFixtureHarness {
     }
     static void run(String[] args) throws Exception {
         File input = new File(args[1]);
+        if (args[0].equals("png-batch")) {
+            for (String line : java.nio.file.Files.readAllLines(input.toPath())) {
+                String[] fields = line.split("\\t");
+                File png = new File(input.getParentFile(), fields[0] + ".png");
+                File icon = new File(input.getParentFile(), fields[0] + ".ico");
+                int width = Integer.parseInt(fields[1]), height = Integer.parseInt(fields[2]);
+                boolean read = false, write = false;
+                try {
+                    IcoContainer.Entry entry = IcoContainer.best(icon);
+                    ByteArrayOutputStream extracted = new ByteArrayOutputStream();
+                    IcoContainer.extractPng(icon, entry, extracted);
+                    if (!java.util.Arrays.equals(extracted.toByteArray(), java.nio.file.Files.readAllBytes(png.toPath())))
+                        throw new AssertionError("extraction changed PNG bytes");
+                    read = true;
+                } catch (IOException expected) { }
+                try {
+                    ByteArrayOutputStream exported = new ByteArrayOutputStream();
+                    IcoContainer.writePng(png, width, height, exported);
+                    if (!java.util.Arrays.equals(exported.toByteArray(), java.nio.file.Files.readAllBytes(icon.toPath())))
+                        throw new AssertionError("export changed ICO bytes");
+                    write = true;
+                } catch (IOException expected) { }
+                System.out.println(fields[0] + " " + read + " " + write);
+            }
+            return;
+        }
         if (args[0].equals("sniff")) {
             System.out.println(IcoContainer.isIco(input)); return;
         }
@@ -65,6 +92,85 @@ def png(width, height):
                                   for x in range(width)) for y in range(height))
     return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 6, 0, 0, 0))
             + chunk(b"IDAT", zlib.compress(raw)) + chunk(b"IEND", b""))
+
+
+
+# Adam7 coordinate sets are enumerated from the PNG specification. Gathering
+# source samples by coordinates also gives Pillow an independent pixel oracle.
+ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4),
+         (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))
+CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}
+
+
+def sample(x, y, channel, depth):
+    return (x * 3 + y * 5 + channel * 7 + 1) & ((1 << depth) - 1)
+
+
+def png_rows(width, height, depth=8, colour=6, interlace=0, filters=(0,)):
+    """Encode real samples, row packing and filters without a production helper.
+
+    Passes with no source coordinates emit no filter byte or rows. Sub-byte
+    samples are packed MSB-first and each pass row begins on a byte boundary.
+    """
+    channels = CHANNELS[colour]
+    bytes_per_pixel = max(1, (channels * depth + 7) // 8)
+    encoded, row_starts = bytearray(), []
+    passes = ADAM7 if interlace else ((0, 0, 1, 1),)
+    row_index = 0
+    for x_start, y_start, x_step, y_step in passes:
+        xs, ys = list(range(x_start, width, x_step)), list(range(y_start, height, y_step))
+        if not xs or not ys:
+            continue
+        previous = b""
+        for y in ys:
+            samples = [sample(x, y, channel, depth) for x in xs for channel in range(channels)]
+            if depth < 8:
+                row = bytearray((len(samples) * depth + 7) // 8)
+                for index, value in enumerate(samples):
+                    bit = index * depth
+                    row[bit // 8] |= value << (8 - depth - bit % 8)
+            elif depth == 8:
+                row = bytearray(samples)
+            else:
+                row = bytearray(b"".join(struct.pack(">H", value) for value in samples))
+            filter_type = filters[row_index % len(filters)]
+            row_starts.append(len(encoded))
+            encoded.append(filter_type)
+            for index, value in enumerate(row):
+                left = row[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+                above = previous[index] if previous else 0
+                upper_left = previous[index - bytes_per_pixel] if previous and index >= bytes_per_pixel else 0
+                if filter_type == 0:
+                    prediction = 0
+                elif filter_type == 1:
+                    prediction = left
+                elif filter_type == 2:
+                    prediction = above
+                elif filter_type == 3:
+                    prediction = (left + above) // 2
+                else:
+                    predictor = left + above - upper_left
+                    distances = (abs(predictor - left), abs(predictor - above), abs(predictor - upper_left))
+                    prediction = (left, above, upper_left)[distances.index(min(distances))]
+                encoded.append((value - prediction) & 255)
+            previous = row
+            row_index += 1
+    return bytes(encoded), row_starts
+
+
+def png_from_rows(width, height, depth=8, colour=6, interlace=0, raw=None, compressed=None, idat_parts=None):
+    if raw is None:
+        raw, _ = png_rows(width, height, depth, colour, interlace)
+    if compressed is None:
+        compressed = zlib.compress(raw)
+    if idat_parts is None:
+        idat_parts = [compressed]
+    palette = b""
+    if colour == 3:
+        palette = chunk(b"PLTE", b"".join(bytes((index, 255 - index, index // 2)) for index in range(1 << depth)))
+    return (b"\x89PNG\r\n\x1a\n"
+            + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, depth, colour, 0, 0, interlace))
+            + palette + b"".join(chunk(b"IDAT", part) for part in idat_parts) + chunk(b"IEND", b""))
 
 
 def ico(entries):
@@ -153,6 +259,28 @@ class IcoContainerTest(unittest.TestCase):
             return None
         self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip(), output
+
+    def assert_png_batch(self, fixtures):
+        """One JVM checks both opening/extraction and saving for every fixture."""
+        manifest = self.path / "png-batch.tsv"
+        lines = []
+        for index, (label, width, height, payload, accepted) in enumerate(fixtures):
+            stem = f"batch-{index}"
+            (self.path / f"{stem}.png").write_bytes(payload)
+            (self.path / f"{stem}.ico").write_bytes(ico([(width, height, 32, payload)]))
+            lines.append(f"{stem}\t{width}\t{height}")
+        manifest.write_text("\n".join(lines) + "\n")
+        result = subprocess.run([JAVA, "-cp", str(self.path), "IcoFixtureHarness", "png-batch", str(manifest)],
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        results = result.stdout.splitlines()
+        self.assertEqual(len(results), len(fixtures), result.stdout)
+        for index, ((label, width, height, payload, accepted), actual) in enumerate(zip(fixtures, results)):
+            with self.subTest(fixture=label):
+                status = str(accepted).lower()
+                self.assertEqual(actual, f"batch-{index} {status} {status}")
+                self.assertEqual((self.path / f"batch-{index}.png").read_bytes(), payload)
+                self.assertEqual((self.path / f"batch-{index}.ico").read_bytes(), ico([(width, height, 32, payload)]))
 
     def assert_pixels(self, width, height, bits, payload, expected):
         stdout, _ = self.invoke("read", ico([(width, height, bits, payload)]))
@@ -285,6 +413,98 @@ class IcoContainerTest(unittest.TestCase):
                 malformed = valid[:8] + chunk(b"IHDR", header) + valid[33:]
                 self.invoke("read", ico([(2, 2, 32, malformed)]), reject=True)
                 self.invoke("write", malformed, 2, 2, reject=True)
+
+    def test_png_rejects_corrupt_or_incomplete_deflate_with_correct_chunk_crcs(self):
+        raw, _ = png_rows(3, 2)
+        stream = zlib.compress(raw)
+        invalid = [("four arbitrary bytes", bytes((1, 2, 3, 4))), ("empty stream", b"")]
+        invalid.extend((f"truncated at {cut}", stream[:cut]) for cut in range(1, len(stream)))
+        bad_adler = bytearray(stream)
+        bad_adler[-1] ^= 0x80
+        invalid.extend((("wrong Adler checksum", bytes(bad_adler)),
+                        ("trailing compressed byte", stream + b"\0"),
+                        ("trailing arbitrary bytes", stream + b"trailing"),
+                        ("second complete zlib stream", stream + zlib.compress(raw)),
+                        ("second empty zlib stream", stream + zlib.compress(b"")),
+                        ("short decompressed row", zlib.compress(raw[:-1])),
+                        ("missing complete row", zlib.compress(raw[:13])),
+                        ("extra decompressed byte", zlib.compress(raw + b"\0")),
+                        ("extra complete row", zlib.compress(raw + raw[:13]))))
+        # Set BTYPE to its reserved value while preserving a legal zlib header.
+        bad_block = stream[:2] + bytes((stream[2] | 6,)) + stream[3:]
+        invalid.append(("reserved deflate block type", bad_block))
+        dictionary_encoder = zlib.compressobj(zdict=raw)
+        invalid.append(("preset dictionary", dictionary_encoder.compress(raw) + dictionary_encoder.flush()))
+        self.assert_png_batch([(label, 3, 2, png_from_rows(3, 2, compressed=value), False)
+                               for label, value in invalid])
+
+    def test_png_rejects_illegal_filter_bytes_and_wrong_adam7_lengths(self):
+        fixtures = []
+        for interlace in (0, 1):
+            raw, starts = png_rows(9, 5, 2, 0, interlace)
+            for row, start in enumerate(starts):
+                malformed = bytearray(raw)
+                malformed[start] = 5 if row % 2 == 0 else 255
+                fixtures.append((f"interlace {interlace} row {row} bad filter", 9, 5,
+                                 png_from_rows(9, 5, 2, 0, interlace, raw=malformed), False))
+            fixtures.extend((f"interlace {interlace} {label}", 9, 5,
+                             png_from_rows(9, 5, 2, 0, interlace, raw=value), False)
+                            for label, value in (("short data", raw[:-1]), ("extra data", raw + b"\0")))
+        # Empty Adam7 passes must not contribute fictitious filter bytes.
+        tiny, _ = png_rows(1, 1, 1, 0, 1)
+        fixtures.append(("filter bytes for empty Adam7 passes", 1, 1,
+                         png_from_rows(1, 1, 1, 0, 1, raw=tiny + bytes(6)), False))
+        self.assert_png_batch(fixtures)
+
+    def test_png_accepts_consecutive_split_and_empty_idat_chunks_only(self):
+        raw, _ = png_rows(7, 3)
+        stream = zlib.compress(raw)
+        fixtures = []
+        splits = (("single", [stream]), ("empty around stream", [b"", stream, b""]),
+                  ("one byte per IDAT", [bytes((value,)) for value in stream]),
+                  ("empty interleaved IDAT", [part for value in stream for part in (b"", bytes((value,)), b"")]))
+        for label, parts in splits:
+            fixtures.append((label, 7, 3, png_from_rows(7, 3, idat_parts=parts), True))
+        header = png_from_rows(7, 3).split(chunk(b"IDAT", stream))[0]
+        middle = len(stream) // 2
+        for label, parts in (("intervening ancillary chunk", [chunk(b"IDAT", stream[:middle]),
+                                                              chunk(b"tEXt", b"label\0value"),
+                                                              chunk(b"IDAT", stream[middle:])]),
+                             ("nonconsecutive empty IDAT", [chunk(b"IDAT", stream),
+                                                            chunk(b"tEXt", b"label\0value"), chunk(b"IDAT", b"")]),
+                             ("extra data in later IDAT", [chunk(b"IDAT", stream), chunk(b"IDAT", b"\0")]),
+                             ("new stream in later IDAT", [chunk(b"IDAT", stream), chunk(b"IDAT", zlib.compress(b""))])):
+            fixtures.append((label, 7, 3, header + b"".join(parts) + chunk(b"IEND", b""), False))
+        self.assert_png_batch(fixtures)
+
+    def test_png_accepts_all_sample_depths_and_adam7_odd_or_empty_passes(self):
+        fixtures = []
+        formats = [(0, depth) for depth in (1, 2, 4, 8, 16)] + [(3, depth) for depth in (1, 2, 4, 8)]
+        formats += [(colour, depth) for colour in (2, 4, 6) for depth in (8, 16)]
+        for colour, depth in formats:
+            for interlace in (0, 1):
+                for width, height in ((1, 1), (1, 7), (7, 1), (2, 3), (9, 5), (17, 11)):
+                    raw, starts = png_rows(width, height, depth, colour, interlace, filters=(0, 1, 2, 3, 4))
+                    self.assertTrue(starts)
+                    payload = png_from_rows(width, height, depth, colour, interlace, raw=raw)
+                    fixtures.append((f"colour {colour} depth {depth} interlace {interlace} {width}x{height}",
+                                     width, height, payload, True))
+        self.assert_png_batch(fixtures)
+
+    def test_adam7_fixture_pixels_match_independent_pillow_decoder(self):
+        try:
+            from PIL import Image
+        except ImportError:
+            self.skipTest("Pillow is optional; independent scanline fixtures remain active")
+        for width, height in ((1, 1), (1, 7), (7, 1), (2, 3), (9, 5), (17, 11)):
+            with self.subTest(width=width, height=height):
+                raw, _ = png_rows(width, height, 8, 2, 1, filters=(0, 1, 2, 3, 4))
+                payload = png_from_rows(width, height, 8, 2, 1, raw=raw)
+                with Image.open(io.BytesIO(payload)) as decoded:
+                    self.assertEqual(decoded.size, (width, height))
+                    self.assertEqual([decoded.convert("RGB").getpixel((x, y)) for y in range(height) for x in range(width)],
+                                     [tuple(sample(x, y, channel, 8) for channel in range(3))
+                                      for y in range(height) for x in range(width)])
 
     def test_dib_rejects_truncated_planes_and_inconsistent_dimensions(self):
         valid = dib(3, 2, 24, [0x123456] * 6)

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.util.zip.CRC32;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 /** Bounded ICO directory, PNG wrapper and classic icon DIB decoding, without Android dependencies.
  * PNG ICO layout: https://devblogs.microsoft.com/oldnewthing/20101022-00/?p=12473
@@ -39,39 +41,109 @@ public final class IcoContainer {
     private static void dimensions(int width,int height) throws IOException {
         if(width<1 || height<1 || width>256 || height>256)throw invalid("icon dimensions must be between 1 and 256 pixels");
     }
-    /** Checks chunk boundaries and CRCs without allocating compressed-image-sized buffers. */
-    private static int pngInfo(RandomAccessFile in,long start,long length,int width,int height) throws IOException {
-        if(!png(in,start,length))throw invalid("missing PNG signature");
-        long end=start+length;boolean first=true,data=false;int depth=0;byte[] buffer=new byte[65536];
-        in.seek(start+8);
-        while(in.getFilePointer()<end) {
-            if(end-in.getFilePointer()<12)throw invalid("truncated PNG chunk");
-            long size=in.readInt()&0xffffffffL;int type=in.readInt();
-            if(size>end-in.getFilePointer()-4)throw invalid("PNG chunk outside its icon entry");
-            if(first && (type!=0x49484452 || size!=13))throw invalid("missing PNG IHDR");
-            CRC32 crc=new CRC32();for(int i=3;i>=0;i--)crc.update(type>>>(i*8)&255);
-            long remaining=size;int pos=0;byte[] header=first?new byte[13]:null;
-            while(remaining>0) {
-                int n=(int)Math.min(remaining,buffer.length);in.readFully(buffer,0,n);crc.update(buffer,0,n);
-                if(header!=null){System.arraycopy(buffer,0,header,pos,n);pos+=n;}remaining-=n;
-            }
-            if((in.readInt()&0xffffffffL)!=crc.getValue())throw invalid("PNG checksum mismatch");
-            if(first) {
-                int w=0,h=0;for(int i=0;i<4;i++){w=w<<8|(header[i]&255);h=h<<8|(header[4+i]&255);}
-                if(w!=width || h!=height)throw invalid("PNG dimensions disagree with the icon directory");
-                int bitDepth=header[8]&255,colourType=header[9]&255;
-                boolean legalDepth=colourType==0?(bitDepth==1 || bitDepth==2 || bitDepth==4 || bitDepth==8 || bitDepth==16):
-                    colourType==3?(bitDepth==1 || bitDepth==2 || bitDepth==4 || bitDepth==8):(bitDepth==8 || bitDepth==16);
-                if(!legalDepth || header[10]!=0 || header[11]!=0 || (header[12]&255)>1)throw invalid("unsupported PNG IHDR settings");
-                int channels;switch(header[9]&255) {case 0:case 3:channels=1;break;case 2:channels=3;break;case 4:channels=2;break;case 6:channels=4;break;default:throw invalid("unsupported PNG colour type");}
-                depth=(header[8]&255)*channels;first=false;
-            } else if(type==0x49484452)throw invalid("duplicate PNG IHDR");
-            if(type==0x49444154)data=true;
-            if(type==0x49454e44) {
-                if(size!=0 || !data || in.getFilePointer()!=end)throw invalid("invalid PNG end chunk");return depth;
+    /** Validate the complete zlib stream without retaining the icon's pixels.
+     * Android can return a partial/blank bitmap for damaged IDAT data, so checking
+     * PNG chunk CRCs alone is insufficient. Adam7 passes each have their own
+     * byte-aligned rows and filter bytes; empty passes contain no rows at all.
+     */
+    private static final class PngPixels {
+        final Inflater inflater = new Inflater();
+        final byte[] output = new byte[8192];
+        final int[] rowBytes;
+        int rowCount, rowIndex, rowRemaining;
+        PngPixels(int width,int height,int bitsPerPixel,boolean interlaced) {
+            rowBytes=new int[height*(interlaced?7:1)];
+            int[] x=interlaced?new int[]{0,4,0,2,0,1,0}:new int[]{0};
+            int[] y=interlaced?new int[]{0,0,4,0,2,0,1}:new int[]{0};
+            int[] dx=interlaced?new int[]{8,8,4,4,2,2,1}:new int[]{1};
+            int[] dy=interlaced?new int[]{8,8,8,4,4,2,2}:new int[]{1};
+            for(int pass=0;pass<x.length;pass++) {
+                int w=width<=x[pass]?0:(width-x[pass]+dx[pass]-1)/dx[pass];
+                int h=height<=y[pass]?0:(height-y[pass]+dy[pass]-1)/dy[pass];
+                if(w==0 || h==0)continue;
+                int length=(w*bitsPerPixel+7)/8;
+                for(int row=0;row<h;row++)rowBytes[rowCount++]=length;
             }
         }
-        throw invalid("missing PNG end chunk");
+        private void pixels(int length) throws IOException {
+            int position=0;
+            while(position<length) {
+                if(rowRemaining==0) {
+                    if(rowIndex==rowCount)throw invalid("too much PNG pixel data");
+                    if((output[position++]&255)>4)throw invalid("invalid PNG scanline filter");
+                    rowRemaining=rowBytes[rowIndex++];
+                }
+                int count=Math.min(rowRemaining,length-position);
+                position+=count;rowRemaining-=count;
+            }
+        }
+        void accept(byte[] bytes,int length) throws IOException {
+            if(length==0)return;
+            if(inflater.finished())throw invalid("extra compressed PNG pixel data");
+            inflater.setInput(bytes,0,length);
+            try {
+                for(;;) {
+                    int count=inflater.inflate(output);
+                    pixels(count);
+                    if(inflater.finished()) {
+                        if(inflater.getRemaining()!=0)throw invalid("extra compressed PNG pixel data");
+                        return;
+                    }
+                    if(inflater.needsDictionary())throw invalid("PNG pixel stream requires a dictionary");
+                    if(inflater.needsInput())return;
+                    if(count==0)throw invalid("PNG pixel stream cannot make progress");
+                }
+            } catch(DataFormatException error) {throw invalid("invalid PNG compressed pixels");}
+        }
+        void finish() throws IOException {
+            if(!inflater.finished() || rowIndex!=rowCount || rowRemaining!=0)
+                throw invalid("truncated PNG pixel data");
+        }
+        void close() {inflater.end();}
+    }
+    /** Checks boundaries, CRCs and all pixel-stream bytes using bounded buffers. */
+    private static int pngInfo(RandomAccessFile in,long start,long length,int width,int height) throws IOException {
+        if(!png(in,start,length))throw invalid("missing PNG signature");
+        long end=start+length;boolean first=true,data=false,dataClosed=false;int depth=0;byte[] buffer=new byte[65536];
+        PngPixels pixels=null;
+        in.seek(start+8);
+        try {
+            while(in.getFilePointer()<end) {
+                if(end-in.getFilePointer()<12)throw invalid("truncated PNG chunk");
+                long size=in.readInt()&0xffffffffL;int type=in.readInt();
+                if(size>end-in.getFilePointer()-4)throw invalid("PNG chunk outside its icon entry");
+                if(first && (type!=0x49484452 || size!=13))throw invalid("missing PNG IHDR");
+                if(type==0x49444154) {
+                    if(dataClosed)throw invalid("nonconsecutive PNG IDAT chunks");
+                    data=true;
+                } else if(data)dataClosed=true;
+                CRC32 crc=new CRC32();for(int i=3;i>=0;i--)crc.update(type>>>(i*8)&255);
+                long remaining=size;int pos=0;byte[] header=first?new byte[13]:null;
+                while(remaining>0) {
+                    int n=(int)Math.min(remaining,buffer.length);in.readFully(buffer,0,n);crc.update(buffer,0,n);
+                    if(header!=null){System.arraycopy(buffer,0,header,pos,n);pos+=n;}
+                    if(type==0x49444154)pixels.accept(buffer,n);
+                    remaining-=n;
+                }
+                if((in.readInt()&0xffffffffL)!=crc.getValue())throw invalid("PNG checksum mismatch");
+                if(first) {
+                    int w=0,h=0;for(int i=0;i<4;i++){w=w<<8|(header[i]&255);h=h<<8|(header[4+i]&255);}
+                    if(w!=width || h!=height)throw invalid("PNG dimensions disagree with the icon directory");
+                    int bitDepth=header[8]&255,colourType=header[9]&255;
+                    boolean legalDepth=colourType==0?(bitDepth==1 || bitDepth==2 || bitDepth==4 || bitDepth==8 || bitDepth==16):
+                        colourType==3?(bitDepth==1 || bitDepth==2 || bitDepth==4 || bitDepth==8):(bitDepth==8 || bitDepth==16);
+                    if(!legalDepth || header[10]!=0 || header[11]!=0 || (header[12]&255)>1)throw invalid("unsupported PNG IHDR settings");
+                    int channels;switch(header[9]&255) {case 0:case 3:channels=1;break;case 2:channels=3;break;case 4:channels=2;break;case 6:channels=4;break;default:throw invalid("unsupported PNG colour type");}
+                    depth=bitDepth*channels;first=false;
+                    pixels=new PngPixels(width,height,depth,header[12]!=0);
+                } else if(type==0x49484452)throw invalid("duplicate PNG IHDR");
+                if(type==0x49454e44) {
+                    if(size!=0 || !data || in.getFilePointer()!=end)throw invalid("invalid PNG end chunk");
+                    pixels.finish();return depth;
+                }
+            }
+            throw invalid("missing PNG end chunk");
+        } finally {if(pixels!=null)pixels.close();}
     }
     private static final class Dib {
         int bits,header;boolean topDown,maskPresent;long pixels,mask,palette,red,green,blue,alpha;int colours;
