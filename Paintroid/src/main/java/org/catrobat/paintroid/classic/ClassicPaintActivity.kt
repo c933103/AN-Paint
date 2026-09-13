@@ -307,7 +307,8 @@ class ClassicPaintActivity : Activity() {
             tag="colour_status";editForeground={if(!busy) colourDialog(false)};editBackground={if(!busy) colourDialog(true)}
         }
         colourHeader.addView(colourStatus,LinearLayout.LayoutParams(dp(132),dp(88)))
-        colourHeader.addView(panelButton(ui(R.string.ui_swap23),"swap_colours",R.drawable.classic_swap) {val old=document.foreground;document.foreground=document.background;document.background=old;updateColours()},LinearLayout.LayoutParams(-2,toolHeight))
+        val swapIcon=if(VerticalText.uiVertical()) R.drawable.classic_swap else R.drawable.classic_swap_vertical
+        colourHeader.addView(panelButton(ui(R.string.ui_swap23),"swap_colours",swapIcon) {val old=document.foreground;document.foreground=document.background;document.background=old;updateColours()},LinearLayout.LayoutParams(-2,toolHeight))
         colourHeader.addView(panelButton(ui(R.string.ui_reset_bw23),"reset_colours",R.drawable.classic_bw) {document.foreground=Color.BLACK;document.background=Color.WHITE;updateColours()},LinearLayout.LayoutParams(-2,toolHeight))
         colourHeader.addView(panelButton(ui(R.string.ui_advanced),"advanced_colour",R.drawable.classic_palette) {colourDialog(false,advanced=true)},LinearLayout.LayoutParams(-2,toolHeight))
         if(landscape) {

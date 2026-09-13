@@ -1,6 +1,6 @@
 # AN Paint
 
-> Version 0.0.26 adds visible empty palette slots, direct Add colour and Advanced controls, pixel rulers, live cursor coordinates, View/Draw tabs, anti-aliasing off by default, and the expanded language menu. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 79. See [HANDOFF.md](HANDOFF.md) for verification status.
+> Version 0.0.27 fixes clipping of the Mongolian language option, turns the Swap arrows to match the foreground/background arrangement, and removes the zoom slider's fixed 100% text label. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 80. See [HANDOFF.md](HANDOFF.md) for verification status.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -38,7 +38,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`0.0.26` uses version code `79` and updates `0.0.25`, `0.0.24`, `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.27` uses version code `80` and updates `0.0.26`, `0.0.25`, `0.0.24`, `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.

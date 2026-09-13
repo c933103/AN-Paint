@@ -92,7 +92,12 @@ class AppLanguageTest {
         }
     }
 
-    @Test fun pickerPinsInternationalEnglishAndMongolianCodeHasItsOwnUnclippedLine() {
+    @Test fun pickerPinsInternationalEnglishAndMongolianCodeHasItsOwnUnclippedLine()=checkMongolianPickerRow(16f)
+
+    @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
+    fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)
+
+    private fun checkMongolianPickerRow(textSize: Float) {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
@@ -100,18 +105,24 @@ class AppLanguageTest {
             val list=picker.listView
             assertEquals("English (International) [en-001]",list.adapter.getItem(1))
             val index=AppLanguage.tags(activity).indexOf("mn-Mong")+1
-            val row=list.adapter.getView(index,null,list) as TextView
-            row.textSize=24f
-            row.measure(android.view.View.MeasureSpec.makeMeasureSpec(600,android.view.View.MeasureSpec.EXACTLY),android.view.View.MeasureSpec.makeMeasureSpec(0,android.view.View.MeasureSpec.UNSPECIFIED))
-            row.layout(0,0,row.measuredWidth,row.measuredHeight)
+            list.setSelectionFromTop(index,0)
+            shadowOf(Looper.getMainLooper()).idle()
+            val row=list.getChildAt(index-list.firstVisiblePosition) as TextView
+            row.textSize=textSize
+            shadowOf(Looper.getMainLooper()).idle()
             val layout=row.layout;val last=layout.lineCount-1
             assertEquals("[mn-Mong]",row.text.subSequence(layout.getLineStart(last),layout.getLineEnd(last)).toString())
             assertEquals(0,layout.getEllipsisCount(last))
-            assertTrue(layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
+            assertTrue("The mounted list row must fit its ${layout.height}px caption inside ${row.height}px (layout height ${row.layoutParams.height})",
+                layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
             val image=android.graphics.Bitmap.createBitmap(row.width,row.height,android.graphics.Bitmap.Config.ARGB_8888)
             row.draw(android.graphics.Canvas(image))
-            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code.png");file.parentFile.mkdirs()
+            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code-${textSize.toInt()}.png");file.parentFile.mkdirs()
             file.outputStream().use {image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};image.recycle()
+            val decor=picker.window!!.decorView
+            val menu=android.graphics.Bitmap.createBitmap(decor.width,decor.height,android.graphics.Bitmap.Config.ARGB_8888)
+            decor.draw(android.graphics.Canvas(menu))
+            java.io.File(file.parentFile,"language-menu-${textSize.toInt()}.png").outputStream().use {menu.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};menu.recycle()
             picker.dismiss()
         } finally {
             controller.pause().stop()

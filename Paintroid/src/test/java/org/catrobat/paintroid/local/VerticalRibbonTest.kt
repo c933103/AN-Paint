@@ -59,6 +59,8 @@ class VerticalRibbonTest {
             val navigate=root.findViewWithTag<ToolButton>("tool_ZOOM")
             assertTrue(navigate.height>0);assertTrue(navigate.width>0)
             render(root,"vertical-ui-$tag.png")
+            root.findViewWithTag<View>("menu_Color").performClick();idle()
+            render(root,"vertical-colours-$tag.png")
             root.findViewWithTag<View>("menu_File").performClick();idle()
             render(root,"vertical-file-$tag.png")
             val save=SaveOptionsDialog(activity,ExportOptions(),confirm={},cancel={},initialFilename=text.substringBefore('\n')).show();idle()

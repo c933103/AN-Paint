@@ -60,7 +60,11 @@ internal object VerticalUi {
         // Only the autonym uses Mongolian glyphs. A dedicated second line keeps
         // the language code visible even at narrow widths and large font sizes.
         view.typeface=android.graphics.Typeface.DEFAULT
-        view.setSingleLine(false);view.maxLines=Int.MAX_VALUE
+        view.setSingleLine(false);view.maxLines=Int.MAX_VALUE;view.ellipsize=null
+        // The dialog theme's single-choice row can have a fixed 48 dp height.
+        // Let the real ListView measure the vertical autonym and code together.
+        view.layoutParams=AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        view.setPaddingRelative(view.paddingStart,dp(view,8),view.paddingEnd,dp(view,8))
         val font=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
         view.text=SpannableString(value).apply {setSpan(Caption(autonym,dp(view,120).toFloat(),TextDirection.VERTICAL_LR,font),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
     }
