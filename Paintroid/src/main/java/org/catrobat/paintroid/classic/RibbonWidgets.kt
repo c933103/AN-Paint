@@ -82,6 +82,19 @@ open class PanelToolButton(context: Context): FlowButton(context) {
     }
 }
 
+/** The tool drawer scrolls within the height left by the naturally measured primary rail. */
+internal class RibbonPanel(context: Context,private val maximum: Int): android.widget.LinearLayout(context) {
+    init {orientation=VERTICAL}
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        if(childCount>=2) {
+            val primary=getChildAt(0)
+            primary.measure(getChildMeasureSpec(widthMeasureSpec,paddingLeft+paddingRight,primary.layoutParams.width),MeasureSpec.makeMeasureSpec(0,MeasureSpec.UNSPECIFIED))
+            getChildAt(1).layoutParams.height=(maximum-primary.measuredHeight-paddingTop-paddingBottom).coerceAtLeast((44*resources.displayMetrics.density).toInt())
+        }
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+    }
+}
+
 /** Tabs share their naturally tallest height so the selected edge meets one common panel boundary. */
 internal class TabStrip(context: Context): android.widget.LinearLayout(context) {
     init {isBaselineAligned=false}
@@ -95,7 +108,7 @@ internal class TabStrip(context: Context): android.widget.LinearLayout(context) 
 
 /** An attached tab with a selected edge; never a boxed command button. */
 class RibbonTab(context: Context): FlowButton(context) {
-    init {background=null;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(16),dp(8),dp(16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
+    init {background=null;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(if(VerticalText.uiVertical()) 12 else 16),dp(8),dp(if(VerticalText.uiVertical()) 12 else 16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
     override fun onDraw(canvas: Canvas) {
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
         if(isSelected) {p.color=EditorColours.surfaceContainer;canvas.drawRect(0f,0f,width.toFloat(),height.toFloat(),p)}
@@ -127,6 +140,18 @@ class FlowTextView(context: Context): TextView(context) {
         canvas.save();canvas.translate(paddingLeft.toFloat(),paddingTop.toFloat())
         VerticalText.draw(canvas,caption(columnHeight),Paint(paint).apply {color=currentTextColor},VerticalText.uiDirection(),GlyphOrientation.MIXED)
         canvas.restore()
+    }
+}
+
+/** Start at the first reading column in right-to-left vertical scripts. */
+internal class ColumnScrollView(context: Context): android.widget.HorizontalScrollView(context) {
+    private var positioned=false
+    override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {
+        super.onLayout(changed,left,top,right,bottom)
+        if(!positioned && childCount>0 && width>0) {
+            positioned=true
+            if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) scrollTo((getChildAt(0).width-width+paddingLeft+paddingRight).coerceAtLeast(0),0)
+        }
     }
 }
 

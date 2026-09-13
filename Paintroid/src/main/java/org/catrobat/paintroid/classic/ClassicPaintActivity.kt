@@ -219,7 +219,7 @@ class ClassicPaintActivity : Activity() {
             addView(tabPanelHost,LinearLayout.LayoutParams(-1,-2))
         } else null
         if(sideRibbon==null) root.addView(tabPanelHost,LinearLayout.LayoutParams(-1,-2))
-        sidebar=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="sidebar"}
+        sidebar=RibbonPanel(this,panelLimit).apply {tag="sidebar"}
         val primary=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="primary_tools";layoutDirection=View.LAYOUT_DIRECTION_LTR}
         primary.addView(makeToolButton(PaintTool.ZOOM),LinearLayout.LayoutParams(-2,toolHeight))
         ToolCategory.values().forEach {category ->
@@ -242,7 +242,7 @@ class ClassicPaintActivity : Activity() {
             categoryGroups[category]=rail;drawerContent.addView(rail)
         }
         options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(4),dp(4),dp(4),0)}
-        drawerContent.addView(if(VerticalText.uiVertical()) HorizontalScrollView(this).apply {addView(options)} else options)
+        drawerContent.addView(if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(options)} else options)
         sidebar.addView(toolDrawer,LinearLayout.LayoutParams(-1,-2))
         tabPanels["Main"]=LimitedScrollView(this,panelLimit).apply {addView(sidebar)}
         fun commands(name: String): View {
@@ -252,7 +252,7 @@ class ClassicPaintActivity : Activity() {
                     columns.addView(button(action.first,"command_${name}_$index") {action.second();refreshCommandPanel(name)}.apply {isEnabled=menuActionEnabled();columnHeightDp=112},
                         LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(3),dp(4),dp(3),dp(4))})
                 }
-                return HorizontalScrollView(this).apply {addView(columns)}
+                return ColumnScrollView(this).apply {addView(columns)}
             }
             val grid=GridLayout(this).apply {columnCount=maxOf(2,resources.configuration.screenWidthDp / 112);tag="panel_${name}_commands"}
             menuActions(name).forEachIndexed {index,action ->
@@ -272,7 +272,7 @@ class ClassicPaintActivity : Activity() {
             if(name=="Edit") {
                 editCommands=grid
                 editDetails=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;visibility=View.GONE;tag="edit_details"}
-                body.addView(if(VerticalText.uiVertical()) HorizontalScrollView(this).apply {addView(editDetails)} else editDetails)
+                body.addView(if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(editDetails)} else editDetails)
             }
             tabPanels[name]=LimitedScrollView(this,panelLimit).apply {tag="panel_$name";addView(body)}
         }

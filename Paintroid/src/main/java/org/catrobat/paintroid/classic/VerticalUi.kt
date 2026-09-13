@@ -65,13 +65,16 @@ internal object VerticalUi {
         override fun getItemId(position: Int)=source.getItemId(position)
         override fun getView(position: Int,convertView: View?,parent: ViewGroup): View = source.getView(position,convertView,parent).also {
             if(it is TextView) caption(it,height)
+            it.layoutParams=ViewGroup.LayoutParams(-2,-2)
         }
         override fun getDropDownView(position: Int,convertView: View?,parent: ViewGroup): View = source.getDropDownView(position,convertView,parent).also {
             if(it is TextView) caption(it,height)
+            it.layoutParams=AbsListView.LayoutParams(-1,-2)
         }
     }
     fun spinner(view: Spinner,heightDp: Int=144) {
         if(!VerticalText.uiVertical() || view.adapter is VerticalChoices) return
+        view.minimumWidth=dp(view,112)
         val position=view.selectedItemPosition
         view.adapter=VerticalChoices(view.adapter,heightDp);view.setSelection(position)
     }
@@ -87,7 +90,7 @@ internal object VerticalUi {
             if(child is LinearLayout && child !is NumericSlider) panel(child,heightDp)
             val spatial=child !is TextView && child !is ViewGroup
             val previousHeight=child.layoutParams?.height ?: -2
-            child.layoutParams=LinearLayout.LayoutParams(if(spatial) dp(child,240) else if(child is NumericSlider || child is EditText || child is Spinner) dp(child,176) else -2,
+            child.layoutParams=LinearLayout.LayoutParams(if(spatial) dp(child,240) else if(child is NumericSlider || child is EditText) dp(child,176) else -2,
                 if(spatial) previousHeight.takeIf {it>0} ?: dp(child,180) else -2).apply {
                 setMargins(dp(child,5),dp(child,4),dp(child,5),dp(child,4))
             }
@@ -154,7 +157,7 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
             checked.forEach {list.setItemChecked(it,true)}
             columns.addView(list,LinearLayout.LayoutParams(dp(212),dp(height)))
         }
-        shell.addView(HorizontalScrollView(context).apply {tag="vertical_dialog_columns";addView(columns)},LinearLayout.LayoutParams(-1,-2))
+        shell.addView(ColumnScrollView(context).apply {tag="vertical_dialog_columns";addView(columns)},LinearLayout.LayoutParams(-1,-2))
         val actions=LinearLayout(context).apply {isBaselineAligned=false;gravity=Gravity.END;tag="vertical_dialog_actions"}
         listOf(AlertDialog.BUTTON_NEUTRAL,AlertDialog.BUTTON_NEGATIVE,AlertDialog.BUTTON_POSITIVE).forEach {which ->
             dialog.getButton(which)?.takeIf {it.visibility==View.VISIBLE}?.let {button ->
@@ -162,7 +165,7 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
                 actions.addView(button,LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(4),dp(8),dp(4),0)})
             }
         }
-        shell.addView(HorizontalScrollView(context).apply {addView(actions)},LinearLayout.LayoutParams(-1,-2))
+        shell.addView(HorizontalScrollView(context).apply {isFillViewport=true;addView(actions)},LinearLayout.LayoutParams(-1,-2))
         dialog.setContentView(LimitedScrollView(context,dp((context.resources.configuration.screenHeightDp*.85).toInt())).apply {addView(shell)})
         dialog.window!!.setLayout(dp((context.resources.configuration.screenWidthDp*.94).toInt()),ViewGroup.LayoutParams.WRAP_CONTENT)
     }

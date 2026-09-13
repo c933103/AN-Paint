@@ -126,7 +126,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             fun field(label: String,control: View) {
                 val column=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false}
                 if(control is Spinner) VerticalUi.spinner(control,tall)
-                column.addView(prose(label));column.addView(VerticalUi.detach(control),LinearLayout.LayoutParams(((if(control is Spinner) 68 else 128)*d).toInt(),-2))
+                column.addView(prose(label));column.addView(VerticalUi.detach(control),LinearLayout.LayoutParams(if(control is Spinner) -2 else (128*d).toInt(),-2))
                 form.addView(column)
             }
             // A vertical filename preview sits beside the native keyboard field. Identifiers and numeric

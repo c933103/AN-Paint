@@ -24,14 +24,20 @@ Package `paint.anpaint.android`; version code `77`.
 
 ## Verification status
 
-Implementation is under local UI and regression verification. This source update
-is not yet an installable delivery or a claim that all checks passed. Final results
-and signed APK/source hashes will be recorded after build and packaging.
+Local Kotlin compilation, the five translation catalogue checks and app lint
+complete successfully (zero lint issues). Rendered English, Literary Chinese and
+Mongolian screens were inspected in portrait and landscape, including Save as.
 
-The five translation generator/catalogue checks pass. The first targeted UI run
-passed language, vertical-dialog and save-format tests, and exposed a tab/collapse
-alignment regression; that regression was corrected and is being rechecked with
-portrait and landscape vertical layouts.
+The full local regression run passed 235 of 236 tests and exposed one tool-drawer
+height regression. That defect was corrected; all 29 affected responsive-toolbox,
+workspace and vertical-layout tests then passed. The earlier 42-test language,
+save-format and layout run also passed. Vertical checks verify that format captions
+are not clipped and Literary Chinese opens dialogs at the first reading column.
+
+The published change now needs its fresh GitHub regression/lint run, universal APK
+build and API 35 device checks. No installable artifact or final all-checks-passed
+claim is made here yet. Final results and signed APK/source hashes will be recorded
+after packaging. Previous failed attempts remain failures in the private logs.
 
 ## Preserved work and limitations
 

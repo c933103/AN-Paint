@@ -68,6 +68,15 @@ class VerticalRibbonTest {
                 val positive=save.getButton(AlertDialog.BUTTON_POSITIVE)
                 assertTrue(positive.isShown)
                 assertTrue(positive.height>0)
+                val format=save.window!!.decorView.findViewWithTag<Spinner>("export_format")
+                val selected=format.selectedView as android.widget.TextView
+                val requiredWidth=android.text.Layout.getDesiredWidth(selected.text,selected.paint)
+                assertTrue("Format caption must fit without clipping",selected.width-selected.paddingLeft-selected.paddingRight>=requiredWidth)
+                if(direction==TextDirection.VERTICAL_RL) {
+                    val columns=save.window!!.decorView.findViewWithTag<android.widget.HorizontalScrollView>("vertical_dialog_columns")
+                    assertEquals((columns.getChildAt(0).width-columns.width).coerceAtLeast(0),columns.scrollX)
+                }
+                render(selected,"vertical-format-$tag.png")
                 render(save.window!!.decorView,"vertical-save-$tag.png")
             } finally {save.dismiss();idle()}
             root.findViewWithTag<View>("menu_Main").performClick();idle()
