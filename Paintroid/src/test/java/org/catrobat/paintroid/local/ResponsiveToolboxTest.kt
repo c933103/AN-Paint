@@ -100,13 +100,19 @@ class ResponsiveToolboxTest {
     }
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
     fun landscapeCategoriesOpenToTheRightAndCollapseReleasesCanvasWidth() {
-        val strip=view<LinearLayout>("primary_tools");assertEquals(LinearLayout.HORIZONTAL,strip.orientation)
+        val strip=view<LinearLayout>("primary_tools");assertEquals(LinearLayout.VERTICAL,strip.orientation)
+        assertTrue(view<View>("primary_tool_scroll") is ScrollView)
         assertNull(root.findViewWithTag<View>("compact_menu"))
         val drawer=view<View>("tool_scroll")
         open(ToolCategory.INSERT);render("tools-landscape-insert.png")
-        assertEquals(root.width,activity.paintCanvas.width)
-        val height=activity.paintCanvas.height;click("category_INSERT")
-        assertFalse(drawer.isShown);assertTrue(activity.paintCanvas.height>height)
+        val rail=bounds(view<View>("primary_tool_scroll"));val panel=bounds(drawer)
+        assertEquals(rail.right,panel.left);assertEquals(rail.top,panel.top)
+        assertEquals(panel.right,bounds(activity.paintCanvas).left)
+        assertTrue(activity.paintCanvas.height>root.height/2)
+        val width=activity.paintCanvas.width;val height=activity.paintCanvas.height
+        click("category_INSERT")
+        assertFalse(drawer.isShown);assertTrue(activity.paintCanvas.width>width)
+        assertEquals(height,activity.paintCanvas.height)
         render("tools-landscape-collapsed.png")
         assertEveryToolReachable()
     }
@@ -160,6 +166,60 @@ class ResponsiveToolboxTest {
         click("tool_PENCIL");assertEquals(100f,activity.paintCanvas.pencilSize,0f)
         assertEquals(99,view<SeekBar>("pencil_size").progress)
     }
+    private fun checkHeader() {
+        val header=bounds(view<View>("header_bar"))
+        val title=bounds(view<View>("document_title"))
+        val subtitle=view<android.widget.TextView>("document_subtitle")
+        assertEquals("AN Paint",subtitle.text.toString())
+        assertTrue(bounds(subtitle).top>=title.bottom)
+        assertTrue(title.width()>0);assertTrue(header.contains(title));assertTrue(header.contains(bounds(subtitle)))
+        val quick=bounds(view<View>("quick_actions"))
+        assertEquals(header.right,quick.right);assertTrue(title.right<=quick.left)
+        for(tag in listOf("undo","redo","clipboard_cut","clipboard_copy","clipboard_paste","save_image")) {
+            val action=view<View>(tag)
+            assertTrue("$tag stays in the first header row",header.contains(bounds(action)))
+            assertTrue(action is ActionButton);assertTrue(bounds(action).width()>=44*activity.resources.displayMetrics.density)
+        }
+    }
+    @Test fun portraitHeaderKeepsBothTitleLinesAndShortcutsInOneRow() {checkHeader();render("header-portrait.png")}
+    @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi")
+    fun narrowPortraitKeepsAllSixShortcutsBesideTheTitle() {checkHeader();render("header-narrow-portrait.png")}
+    @Test fun allRibbonCaptionsAreCentredAndCommandTilesKeepTheirIcons() {
+        fun centred(button: android.widget.Button) {
+            assertTrue(button is PanelToolButton)
+            val layout=requireNotNull(button.layout)
+            for(line in 0 until layout.lineCount) assertEquals("Caption ${button.text}",button.width/2f,button.totalPaddingLeft+(layout.getLineLeft(line)+layout.getLineRight(line))/2f,1f)
+            assertNotNull(button.compoundDrawables[1])
+        }
+        for(tag in listOf("tool_ZOOM","category_BRUSH","category_SELECTION","category_INSERT","tool_ERASER")) centred(view(tag))
+        for(tab in listOf("Edit","View")) {
+            click("menu_$tab")
+            EditorTestNavigation.buttons(view("panel_${tab}_commands")).forEach {centred(it)}
+            render("icon-panel-$tab.png")
+        }
+        click("menu_Color")
+        for(tag in listOf("swap_colours","reset_colours","edit_palette")) centred(view(tag))
+        render("icon-panel-Color.png")
+        click("menu_File")
+        assertTrue(EditorTestNavigation.buttons(view("panel_File_commands")).none {it is PanelToolButton})
+    }
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
+    fun landscapeSideTabsRemainVisibleAndFullscreenReturnsTheirSpace() {
+        checkHeader()
+        var previousBottom=0
+        for(name in listOf("Main","File","Edit","View","Color")) {
+            val tab=view<View>("menu_$name");val box=bounds(tab)
+            assertTrue(box.top>=previousBottom);previousBottom=box.bottom
+            assertTrue(box.right<=bounds(activity.paintCanvas).left)
+        }
+        click("menu_View");click("command_View_4")
+        assertFalse(view<View>("vertical_ribbon_rail").isShown)
+        assertEquals(root.width,activity.paintCanvas.width)
+        click("leave_fullscreen")
+        assertTrue(view<View>("vertical_ribbon_rail").isShown)
+        assertTrue(activity.paintCanvas.width<root.width);checkHeader()
+    }
+
     private fun render(name: String) {
         settle()
         val image=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)

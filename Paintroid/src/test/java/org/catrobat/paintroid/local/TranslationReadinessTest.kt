@@ -154,9 +154,16 @@ class TranslationReadinessTest {
         val tabs=root.findViewWithTag<View>("tabs_row")
         val canvas=activity.paintCanvas
         fun location(view: View)=IntArray(2).also {view.getLocationOnScreen(it)}
-        assertEquals(location(tabs)[1],location(arrow)[1])
-        assertEquals(root.width,canvas.width)
-        assertTrue(location(canvas)[1]>=location(tabs)[1]+tabs.height)
+        if(activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+            assertTrue(location(arrow)[1]>=location(tabs)[1])
+            assertEquals(location(tabs)[1],location(canvas)[1])
+            assertTrue(location(canvas)[0]>=location(tabs)[0]+tabs.width)
+            assertTrue(canvas.width>root.width/3)
+        } else {
+            assertEquals(location(tabs)[1],location(arrow)[1])
+            assertEquals(root.width,canvas.width)
+            assertTrue(location(canvas)[1]>=location(tabs)[1]+tabs.height)
+        }
         assertTrue(canvas.height>0)
         assertNotNull(root.findViewWithTag<View>("menu_Color"))
     }

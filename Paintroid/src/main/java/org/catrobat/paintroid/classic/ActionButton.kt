@@ -14,6 +14,7 @@ enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.st
 }
 
 class ActionButton(context: Context, val icon: EditIcon) : View(context) {
+    var sideLayout=false
     private val glyph = CopyleftIcon(context, when (icon) {
         EditIcon.SAVE -> R.drawable.classic_save
         EditIcon.FIT -> R.drawable.classic_fit
@@ -39,6 +40,7 @@ class ActionButton(context: Context, val icon: EditIcon) : View(context) {
         val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = if (isPressed || icon==EditIcon.SIDEBAR && isSelected) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh }
         c.drawRoundRect(3f, 3f, 45f, 45f, 4f, 4f, p)
         val current = if (icon == EditIcon.SIDEBAR && isSelected) requireNotNull(collapseGlyph) else glyph
+        if(icon==EditIcon.SIDEBAR && sideLayout) c.rotate(-90f,24f,24f)
         current.draw(c, 5f, 5f, 43f, 43f, if (!isEnabled) EditorColours.disabledOnSurface else if (isPressed || icon==EditIcon.SIDEBAR && isSelected) EditorColours.onPrimaryContainer else EditorColours.onSurface)
         c.restore()
     }

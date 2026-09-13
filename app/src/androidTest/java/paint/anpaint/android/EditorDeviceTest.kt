@@ -270,8 +270,20 @@ class EditorDeviceTest {
                         val drawer=root.findViewWithTag<View>("tool_scroll")
                         val strip=root.findViewWithTag<View>("primary_tool_scroll")
                         assertTrue(drawer.isShown)
-                        assertEquals(position(strip)[1]+strip.height,position(drawer)[1])
-                        assertEquals(root.width,it.paintCanvas.width)
+                        if(landscape) {
+                            assertEquals(position(strip)[0]+strip.width,position(drawer)[0])
+                            assertEquals(position(strip)[1],position(drawer)[1])
+                            assertEquals(position(drawer)[0]+drawer.width,position(it.paintCanvas)[0])
+                            assertTrue(it.paintCanvas.height>root.height/2)
+                        } else {
+                            assertEquals(position(strip)[1]+strip.height,position(drawer)[1])
+                            assertEquals(root.width,it.paintCanvas.width)
+                        }
+                        val header=root.findViewWithTag<View>("header_bar")
+                        val quick=root.findViewWithTag<View>("quick_actions")
+                        assertTrue(position(quick)[1]>=position(header)[1])
+                        assertTrue(position(quick)[1]+quick.height<=position(header)[1]+header.height)
+                        assertEquals(root.width,position(quick)[0]+quick.width)
                         assertNull(root.findViewWithTag<View>("compact_menu"))
                         for(tab in listOf("Main","File","Edit","View","Color")) assertTrue(root.findViewWithTag<View>("menu_$tab").isShown)
 

@@ -258,12 +258,15 @@ class WorkspaceRefinementTest {
         assertTrue(view<View>("sidebar_toggle").isSelected)
         click("menu_Color");settle();assertTrue(view<View>("palette_bar").isShown)
     }
-    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeHasOneHeaderCentredFilenameAndEveryMenu() {
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeHasOneHeaderAndSideTabsWithEveryPanel() {
         assertNotNull(root().findViewWithTag<View>("menu_bar"));assertNull(root().findViewWithTag<View>("compact_menu"))
         assertEquals("Untitled",view<TextView>("document_title").text.toString())
         for(tab in listOf("Main","File","Edit","View","Color")) {
             click("menu_$tab");settle();assertTrue(view<View>("menu_$tab").isShown)
-            assertEquals(root().width,canvas.width);assertTrue(canvas.height>100)
+            val tabs=screenBounds(view<View>("tabs_row"));val panel=screenBounds(view<View>("tab_panel_host"))
+            assertEquals(tabs.right,panel.left);assertEquals(tabs.top,panel.top)
+            assertEquals(panel.right,screenBounds(canvas).left)
+            assertTrue(canvas.height>root().height/2);assertTrue(canvas.width>root().width/3)
             render(root(),"tabs-landscape-$tab.png")
         }
         click("tool_ZOOM");click("zoom_actual");assertEquals(1f,canvas.zoom,0f)

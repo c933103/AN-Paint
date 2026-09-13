@@ -1,4 +1,9 @@
-# AN Paint current build — local.20
+# AN Paint build notes
+
+Current version: `0.0.25`, code `78`, package `paint.anpaint.android`.
+See [the UI correction](verification/UI_0.0.25.md) for this update.
+
+## Historical local.20 baseline
 
 Version `2.14.1-local.20`, code `73`, package `paint.anpaint.android`.
 This is a separate installation from local.15–local.19

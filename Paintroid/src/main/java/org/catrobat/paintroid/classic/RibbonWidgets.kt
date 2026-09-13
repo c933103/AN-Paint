@@ -53,8 +53,12 @@ open class FlowButton(context: Context): Button(context) {
 /** Original square tool tiles and small bold captions, confined to ribbon panels. */
 open class PanelToolButton(context: Context): FlowButton(context) {
     var disclosure: Boolean?=null
+    var disclosureBeside=false
     init {
         textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
+        // The activity theme supplies textAlignment=viewStart; gravity alone cannot override it.
+        textAlignment=TEXT_ALIGNMENT_CENTER;gravity=Gravity.CENTER
+        if(!VerticalText.uiVertical()) {minHeight=dp(64);minimumHeight=dp(64)}
         setPadding(dp(6),dp(5),dp(6),dp(5));columnHeightDp=112
         fun tile(selected: Boolean)=GradientDrawable().apply {
             setColor(if(selected) EditorColours.primaryContainer else EditorColours.surfaceContainer)
@@ -67,26 +71,29 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         setTextColor(EditorColours.onSurface)
     }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
         if(!VerticalText.uiVertical() && MeasureSpec.getMode(widthMeasureSpec)!=MeasureSpec.EXACTLY) {
             val natural=ceil(paint.measureText(text.toString())).toInt()+dp(if(disclosure!=null) 28 else 12)
-            setMeasuredDimension(resolveSize(maxOf(dp(76),natural),widthMeasureSpec),maxOf(dp(64),measuredHeight))
-        }
+            // TextView must build its caption layout at the final tile width, including wrap-content rails.
+            val width=resolveSize(maxOf(dp(76),natural),widthMeasureSpec)
+            super.onMeasure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.EXACTLY),heightMeasureSpec)
+        } else super.onMeasure(widthMeasureSpec,heightMeasureSpec)
     }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         disclosure?.let {expanded ->
-            val glyph=CopyleftIcon(context,if(expanded) org.catrobat.paintroid.R.drawable.breeze_up else org.catrobat.paintroid.R.drawable.breeze_down)
+            val glyph=CopyleftIcon(context,if(disclosureBeside) {
+                if(expanded) org.catrobat.paintroid.R.drawable.breeze_left else org.catrobat.paintroid.R.drawable.breeze_right
+            } else if(expanded) org.catrobat.paintroid.R.drawable.breeze_up else org.catrobat.paintroid.R.drawable.breeze_down)
             glyph.draw(canvas,width-dp(16).toFloat(),dp(3).toFloat(),width-dp(2).toFloat(),dp(17).toFloat(),EditorColours.onSurface)
         }
     }
 }
 
 /** The tool drawer scrolls within the height left by the naturally measured primary rail. */
-internal class RibbonPanel(context: Context,private val maximum: Int): android.widget.LinearLayout(context) {
-    init {orientation=VERTICAL}
+internal class RibbonPanel(context: Context,private val maximum: Int,private val sideLayout: Boolean=false): android.widget.LinearLayout(context) {
+    init {orientation=if(sideLayout) HORIZONTAL else VERTICAL;isBaselineAligned=false}
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        if(childCount>=2) {
+        if(!sideLayout && childCount>=2) {
             val primary=getChildAt(0)
             primary.measure(getChildMeasureSpec(widthMeasureSpec,paddingLeft+paddingRight,primary.layoutParams.width),MeasureSpec.makeMeasureSpec(0,MeasureSpec.UNSPECIFIED))
             getChildAt(1).layoutParams.height=(maximum-primary.measuredHeight-paddingTop-paddingBottom).coerceAtLeast((44*resources.displayMetrics.density).toInt())
@@ -96,10 +103,11 @@ internal class RibbonPanel(context: Context,private val maximum: Int): android.w
 }
 
 /** Tabs share their naturally tallest height so the selected edge meets one common panel boundary. */
-internal class TabStrip(context: Context): android.widget.LinearLayout(context) {
-    init {isBaselineAligned=false}
+internal class TabStrip(context: Context,private val sideLayout: Boolean=false): android.widget.LinearLayout(context) {
+    init {isBaselineAligned=false;orientation=if(sideLayout) VERTICAL else HORIZONTAL}
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        if(sideLayout) return
         val tallest=(0 until childCount).maxOfOrNull {getChildAt(it).measuredHeight} ?: 0
         for(i in 0 until childCount) getChildAt(i).let {it.measure(MeasureSpec.makeMeasureSpec(it.measuredWidth,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(tallest,MeasureSpec.EXACTLY))}
         setMeasuredDimension(measuredWidth,tallest+paddingTop+paddingBottom)
@@ -107,13 +115,15 @@ internal class TabStrip(context: Context): android.widget.LinearLayout(context) 
 }
 
 /** An attached tab with a selected edge; never a boxed command button. */
-class RibbonTab(context: Context): FlowButton(context) {
-    init {background=null;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(if(VerticalText.uiVertical()) 12 else 16),dp(8),dp(if(VerticalText.uiVertical()) 12 else 16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
+class RibbonTab(context: Context,private val sideLayout: Boolean=false): FlowButton(context) {
+    init {background=null;textAlignment=TEXT_ALIGNMENT_CENTER;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(if(VerticalText.uiVertical()) 12 else 16),dp(8),dp(if(VerticalText.uiVertical()) 12 else 16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
     override fun onDraw(canvas: Canvas) {
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
         if(isSelected) {p.color=EditorColours.surfaceContainer;canvas.drawRect(0f,0f,width.toFloat(),height.toFloat(),p)}
         p.color=if(isSelected) EditorColours.primary else EditorColours.outlineVariant
-        canvas.drawRect(0f,height-dp(if(isSelected) 3 else 1).toFloat(),width.toFloat(),height.toFloat(),p)
+        val edge=dp(if(isSelected) 3 else 1).toFloat()
+        if(sideLayout) canvas.drawRect(width-edge,0f,width.toFloat(),height.toFloat(),p)
+        else canvas.drawRect(0f,height-edge,width.toFloat(),height.toFloat(),p)
         super.onDraw(canvas)
     }
     override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
