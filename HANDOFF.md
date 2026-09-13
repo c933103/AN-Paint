@@ -1,7 +1,13 @@
-# AN Paint local.20
+# AN Paint local.21
 
-Updated 12 September 2026. Package `paint.anpaint.android`, version
-`2.14.1-local.20`, version code `73`.
+Updated 13 September 2026. Package `paint.anpaint.android`, version
+`2.14.1-local.21`, version code `74`.
+
+Local.21 corrects the Japanese horizontal-flip label to 左右反転 and vertical-flip
+label to 上下反転. The translation generator preserves this reviewed correction
+while retaining the exact upstream source files for provenance. It updates
+local.20 in place when signed with the existing key. All local.20 feature changes
+listed below remain included.
 
 ## Installation identity
 
@@ -47,8 +53,9 @@ Release verification is in progress. The final signed APK report will be recorde
 
 The implementation entries above are not Android test results. API 35 checks
 run independently of APK delivery; API 30 is a separate optional matrix choice.
-The successful local.19 run is recorded in verification/HANDOFF_LOCAL19.md and
-CI.md, and must not be reported as verification of this new build.
+The completed local.20 delivery is recorded in verification/HANDOFF_LOCAL20.md.
+Its 201 regression and 47 API 35 emulator passes must not be reported as fresh
+verification of local.21.
 
 ## Remaining verification boundaries
 

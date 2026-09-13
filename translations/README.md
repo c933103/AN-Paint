@@ -11,7 +11,12 @@ original translated Import image action; its Copy credit button uses the origina
 translated Copy action. The surrounding gallery instructions identify what will
 be copied. Save-dialog File name and File format reuse Image name and Image format.
 The original Quality label's terminal colon is removed because AN Paint's numeric
-slider supplies its own punctuation. Other mapped translation values are preserved.
+slider supplies its own punctuation. Japanese horizontal and vertical flip labels
+are corrected to 左右反転 and 上下反転 respectively: the pinned upstream translation
+had them reversed. `LOCAL_CORRECTIONS` in the generator records the original and
+corrected values, and requires review if the upstream value changes. Coverage
+records these separately from unchanged reused entries. Other mapped translation
+values are preserved; the original source XML and its hashes remain unchanged.
 
 Source: [Catrobat/Paintroid at 853ce3c346910ea73aa4de5514f2a76ace1396fb](https://github.com/Catrobat/Paintroid/tree/853ce3c346910ea73aa4de5514f2a76ace1396fb/Paintroid/src/main/res).
 Copyright belongs to the Catrobat Team and translation contributors, under

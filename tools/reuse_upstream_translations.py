@@ -11,6 +11,15 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = ROOT / "translations"
 RES = ROOT / "Paintroid/src/main/res"
 
+# Correct reviewed upstream mistakes without changing the pinned source files.
+# Each tuple records the expected upstream value and AN Paint's replacement.
+LOCAL_CORRECTIONS = {
+    "ja": {
+        "ui_flip_horizontal": ("上下反転", "左右反転"),
+        "ui_flip_vertical": ("左右反転", "上下反転"),
+    },
+}
+
 
 def read_strings(path):
     return {node.get("name"): "".join(node.itertext()) for node in ET.parse(path).getroot() if node.tag == "string"}
@@ -46,13 +55,20 @@ def generate():
         strings = read_strings(source)
         terms = {key: strings[old] for key, old in mapping.items()
                  if strings.get(old) and not strings[old].startswith("@")}
-        distinct = sum(1 for key in terms if terms[key] != base.get(mapping[key]))
         output_qualifier, tag = qualifier_and_tag(qualifier)
+        corrections = LOCAL_CORRECTIONS.get(tag, {})
+        for key, (original, corrected) in corrections.items():
+            if terms.get(key) != original:
+                raise ValueError(f"Review local correction after upstream change: {tag}/{key}")
+            terms[key] = corrected
+        distinct = sum(1 for key in terms if terms[key] != base.get(mapping[key]))
         included = distinct > 0 or tag.startswith("en-")
         record = {"original_qualifier": qualifier, "language_tag": tag,
-                  "reused_entries": len(terms), "entries_different_from_upstream_english": distinct,
+                  "reused_entries": len(terms) - len(corrections), "entries_different_from_upstream_english": distinct,
                   "offered_in_app": included, "blob_sha": digest,
                   "source_sha256": hashlib.sha256(raw).hexdigest()}
+        if corrections:
+            record["locally_corrected_entries"] = list(corrections)
         if included:
             tags.append(tag)
             lines = ['<?xml version="1.0" encoding="utf-8"?>',
