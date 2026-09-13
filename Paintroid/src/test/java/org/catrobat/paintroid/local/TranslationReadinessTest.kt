@@ -22,7 +22,6 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 import java.util.concurrent.TimeUnit
 import java.util.Locale
 
@@ -127,7 +126,7 @@ class TranslationReadinessTest {
         assertEquals(PaintTool.WATERCOLOR,activity.paintCanvas.tool)
         assertEquals("WATERCOLOR",activity.paintCanvas.tool.name)
         root.findViewWithTag<View>("sidebar_toggle").performClick()
-        assertEquals(View.GONE,root.findViewWithTag<View>("sidebar").visibility)
+        assertFalse(root.findViewWithTag<View>("sidebar").isShown)
         root.findViewWithTag<View>("sidebar_toggle").performClick()
         shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS)
         checkPanelGeometry(activity)
@@ -138,16 +137,10 @@ class TranslationReadinessTest {
     fun rtlLandscapeMenuKeepsSubmenusAndRunsCommandsByStableIdentity() = withEditor { activity ->
         checkPanelGeometry(activity)
         val root=activity.window.decorView
-        root.findViewWithTag<View>("compact_menu").performClick()
-        val popup=ShadowPopupMenu.getLatestPopupMenu()
-        assertNotNull(popup)
-        val menu=popup.menu
-        assertEquals(6,menu.size())
-        for(index in 0 until menu.size()) assertTrue(menu.getItem(index).hasSubMenu())
-        val viewMenu=menu.getItem(2).subMenu!!
-        val fit=(0 until viewMenu.size()).map {viewMenu.getItem(it)}.single {it.title.toString()==activity.getString(R.string.ui_fit_image)}
+        assertNull(root.findViewWithTag<View>("compact_menu"))
+        for(tab in listOf("Main","File","Edit","View","Color")) assertNotNull(root.findViewWithTag<View>("menu_$tab"))
         activity.paintCanvas.zoomAt(3f)
-        assertTrue(viewMenu.performIdentifierAction(fit.itemId,0))
+        root.findViewWithTag<View>("zoom_fit_view").performClick()
         val board=activity.paintCanvas
         val inset=20f*activity.resources.displayMetrics.density
         val centre=board.toScreen(activity.document.bitmap.width/2f,activity.document.bitmap.height/2f)
@@ -157,20 +150,14 @@ class TranslationReadinessTest {
 
     private fun checkPanelGeometry(activity: ClassicPaintActivity) {
         val root=activity.window.decorView
-        val sidebar=root.findViewWithTag<View>("sidebar")
         val arrow=root.findViewWithTag<View>("sidebar_toggle")
-        val canvas=root.findViewWithTag<View>("canvas_and_palette")
-        val palette=root.findViewWithTag<View>("palette_bar")
-        val indicator=root.findViewWithTag<View>("colour_status")
+        val tabs=root.findViewWithTag<View>("tabs_row")
+        val canvas=activity.paintCanvas
         fun location(view: View)=IntArray(2).also {view.getLocationOnScreen(it)}
-        assertEquals(location(sidebar)[0],location(arrow)[0])
-        if(activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE)
-            assertTrue(location(canvas)[0]>=location(sidebar)[0]+sidebar.width)
-        else {
-            assertEquals(location(sidebar)[0],location(canvas)[0])
-            assertTrue(location(canvas)[1]>=location(sidebar)[1]+sidebar.height)
-        }
-        assertEquals(location(indicator)[1],location(palette)[1])
-        assertTrue(location(palette)[0]>=location(indicator)[0]+indicator.width)
+        assertEquals(location(tabs)[1],location(arrow)[1])
+        assertEquals(root.width,canvas.width)
+        assertTrue(location(canvas)[1]>=location(tabs)[1]+tabs.height)
+        assertTrue(canvas.height>0)
+        assertNotNull(root.findViewWithTag<View>("menu_Color"))
     }
 }

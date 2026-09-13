@@ -84,6 +84,9 @@ internal object AppLanguage {
     }
 
     fun name(tag: String): String {
+        if(tag=="lzh-Hant") return "文言（繁體） [lzh-Hant]"
+        if(tag=="mn-Mong") return "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ · Mongolian [mn-Mong]"
+        if(tag=="zh-Hant") return "繁體中文 [zh-Hant]"
         val locale = Locale.forLanguageTag(tag)
         return "${locale.getDisplayName(locale)} [$tag]"
     }

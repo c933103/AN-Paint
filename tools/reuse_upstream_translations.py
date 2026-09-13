@@ -40,6 +40,13 @@ def generate():
     index = json.loads((DATA / "upstream-index.json").read_text())
     mapping = json.loads((DATA / "common-terms.json").read_text())
     base = read_strings(DATA / "upstream/values.xml")
+    android = json.loads((DATA / "android-actions.json").read_text())["locales"]
+    reviewed = json.loads((DATA / "reviewed-actions.json").read_text())["locales"]
+    defaults = {}
+    for path in (RES / "values").glob("*.xml"):
+        defaults.update(read_strings(path))
+    def normal(value):
+        return value.strip().strip('"').replace("\\'", "'").rstrip(":：").casefold()
     results = {}
     coverage = []
     tags = ["en"]
@@ -61,10 +68,22 @@ def generate():
             if terms.get(key) != original:
                 raise ValueError(f"Review local correction after upstream change: {tag}/{key}")
             terms[key] = corrected
-        distinct = sum(1 for key in terms if terms[key] != base.get(mapping[key]))
+        # Use Android's context-specific clipboard and Cancel terms, then apply
+        # editor-context corrections. Exact pinned Paintroid sources stay untouched.
+        android_terms = android.get(tag, {}).get("strings", {})
+        terms.update(android_terms)
+        terms.update(reviewed.get(tag, {}))
+        if normal(terms.get("ui_discard", "")) == normal(terms.get("ui_cancel", "")):
+            terms["ui_discard"] = "Discard changes"
+        terms["ui_discard_changes23"] = terms.get("ui_discard_changes23", terms.get("ui_discard", "Discard changes"))
+        terms["ui_keep_editing23"] = terms.get("ui_keep_editing23", terms.get("ui_cancel", "Cancel"))
+        terms["ui_save_a5d0d9"] = terms.get("ui_save", "Save")
+        distinct = sum(1 for key in terms if key in mapping and normal(terms[key]) != normal(base.get(mapping[key], "")))
+        distinct += sum(1 for key in reviewed.get(tag, {}) if key not in mapping and normal(terms[key]) != normal(defaults.get(key, "")))
         included = distinct > 0 or tag.startswith("en-")
         record = {"original_qualifier": qualifier, "language_tag": tag,
-                  "reused_entries": len(terms) - len(corrections), "entries_different_from_upstream_english": distinct,
+                  "reused_entries": sum(1 for key in terms if key in mapping and key not in corrections and key not in android_terms and key not in reviewed.get(tag, {})),
+                  "android_action_entries": len(android_terms), "reviewed_action_entries": len(reviewed.get(tag, {})), "entries_different_from_upstream_english": distinct,
                   "offered_in_app": included, "blob_sha": digest,
                   "source_sha256": hashlib.sha256(raw).hexdigest()}
         if corrections:
@@ -79,12 +98,19 @@ def generate():
                 # Android's numeric slider already supplies its own punctuation.
                 if key == "ui_quality":
                     value = value.rstrip().rstrip(":：").rstrip()
+                value = value.replace("'", "\\'") if "\\'" not in value else value
                 lines.append(f'    <string name="{key}">{escape(value)}</string>')
             lines += ['</resources>', '']
             target = RES / output_qualifier / "strings_upstream.xml"
             results[target] = "\n".join(lines)
             record["generated_resource"] = str(target.relative_to(ROOT))
         coverage.append(record)
+    # Additional locally maintained script/locale foundations.
+    for qualifier, tag in (("values-b+lzh+Hant", "lzh-Hant"), ("values-b+mn+Mong", "mn-Mong"), ("values-b+zh+Hant", "zh-Hant")):
+        path = RES / qualifier / "strings23.xml"
+        if not path.is_file():
+            raise ValueError(f"Missing local translation foundation: {path}")
+        tags.append(tag)
     results[DATA / "coverage.json"] = json.dumps({"revision": index["revision"],
         "mapped_common_terms": len(mapping), "offered_language_count_including_english": len(tags),
         "coverage": coverage}, indent=2, ensure_ascii=False) + "\n"

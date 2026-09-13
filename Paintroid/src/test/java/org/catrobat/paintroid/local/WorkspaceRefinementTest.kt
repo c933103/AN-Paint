@@ -32,7 +32,7 @@ class WorkspaceRefinementTest {
     private fun root()=activity.window.decorView
     private fun <T: View> view(tag: String): T = root().findViewWithTag(tag)
     private fun settle() { shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS) }
-    private fun click(tag: String) { assertTrue(view<View>(tag).performClick());settle() }
+    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }
     private fun screenBounds(view: View): Rect {
         val position=IntArray(2);view.getLocationOnScreen(position)
         return Rect(position[0],position[1],position[0]+view.width,position[1]+view.height)
@@ -82,7 +82,7 @@ class WorkspaceRefinementTest {
     @Test fun autosaveRunsWhileEditingAndRestoresPixelsNameToolAndSettings() {
         doc.foreground=Color.MAGENTA;doc.background=Color.YELLOW;doc.strokeWidth=9f;doc.tolerance=13f
         click("tool_BRUSH");tapImage(40f,30f)
-        canvas.zoomAt(2f);val viewport=Triple(canvas.zoom,canvas.panX,canvas.panY)
+        canvas.zoomAt(2f);val viewport=Triple(canvas.zoom,canvas.draftState().getDouble("centre_x"),canvas.draftState().getDouble("centre_y"))
         val pixels=doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
         saveIdle();assertTrue(doc.dirty);assertTrue(view<TextView>("document_title").text.endsWith("*"))
         val store=AutosaveStore(activity.filesDir)
@@ -91,7 +91,7 @@ class WorkspaceRefinementTest {
         reopen();assertTrue(pixels.sameAs(doc.bitmap));pixels.recycle()
         assertEquals(PaintTool.BRUSH,canvas.tool);assertEquals(Color.MAGENTA,doc.foreground);assertEquals(Color.YELLOW,doc.background)
         assertEquals(9f,doc.strokeWidth,0f);assertEquals(13f,doc.tolerance,0f);assertTrue(doc.dirty)
-        assertEquals(viewport.first,canvas.zoom,.001f);assertEquals(viewport.second,canvas.panX,.001f);assertEquals(viewport.third,canvas.panY,.001f)
+        assertEquals(viewport.first,canvas.zoom,.001f);assertEquals(viewport.second,canvas.draftState().getDouble("centre_x"),.001);assertEquals(viewport.third,canvas.draftState().getDouble("centre_y"),.001)
     }
     @Test fun autosaveDoesNotCommitUnfinishedPolygonAndRestoresItsGeometry() {
         click("tool_POLYGON");doc.shapeStyle=1
@@ -112,12 +112,7 @@ class WorkspaceRefinementTest {
     @Test fun changingOnlyMagnifierScaleAutosavesWithoutLeavingOrEditing() {
         // Finish the startup save first so it cannot hide a missing settings callback.
         saveIdle()
-        click("menu_View")
-        val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        val preview=(0 until menu.size()).map {menu.getItem(it)}.single {
-            it.title.toString()==activity.getString(org.catrobat.paintroid.R.string.ui_magnified_preview)
-        }
-        assertTrue(menu.performIdentifierAction(preview.itemId,0));settle()
+        EditorTestNavigation.command(activity,"View",2);settle()
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val control=dialog.window!!.decorView.findViewWithTag<NumericSlider>("preview_magnification")
         control.slider.progress=225 // 100% minimum + 225 = 325%.
@@ -151,6 +146,20 @@ class WorkspaceRefinementTest {
         try { store.read { _,_ -> checked=true;throw ImageSizeException("Memory budget exceeded") };fail() } catch (_: ImageSizeException) { }
         assertTrue(checked);assertArrayEquals(bytes,store.file.readBytes())
     }
+    @Test fun autosaveExcludesUnconfirmedColorPreviewAndUseColorUpdatesIt() {
+        saveIdle();val original=doc.foreground
+        click("foreground_colour");val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val body=dialog.window!!.decorView
+        body.findViewWithTag<View>("colour_advanced_tab").performClick();settle()
+        body.findViewWithTag<EditText>("colour_hex").setText("#123456")
+        assertEquals(0xff123456.toInt(),doc.foreground)
+        canvas.onStatus();saveIdle()
+        var draft=AutosaveStore(activity.filesDir).read {_,_->}
+        try {assertEquals(original,draft.metadata.getInt("foreground"))} finally {draft.image.recycle();draft.floating?.recycle()}
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();settle();saveIdle()
+        draft=AutosaveStore(activity.filesDir).read {_,_->}
+        try {assertEquals(0xff123456.toInt(),draft.metadata.getInt("foreground"))} finally {draft.image.recycle();draft.floating?.recycle()}
+    }
     @Test fun leavingDuringBackgroundEditStillSavesItsFinishedPixels() {
         doc.foreground=Color.GREEN;canvas.onFill(20,20)
         controller.pause().stop();waitIo()
@@ -170,9 +179,7 @@ class WorkspaceRefinementTest {
         ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
         doc.newImage(20,10);saveIdle()
         assertArrayEquals(original,store.recoveryCopies().single().readBytes())
-        click("menu_File");val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        val recovery=(0 until menu.size()).map {menu.getItem(it)}.single {it.title=="Export recovery copy…"}
-        assertTrue(menu.performIdentifierAction(recovery.itemId,0))
+        EditorTestNavigation.named(activity,"File","Export recovery copy…")
         val intent=shadowOf(activity).nextStartedActivityForResult
         assertEquals(ClassicPaintActivity.EXPORT_RECOVERY,intent.requestCode);assertEquals(Intent.ACTION_CREATE_DOCUMENT,intent.intent.action)
         val out=File(activity.cacheDir,"recovered-export.zip")
@@ -180,7 +187,7 @@ class WorkspaceRefinementTest {
         waitIo();assertArrayEquals(original,out.readBytes());assertTrue(store.recoveryCopies().single().isFile)
     }
     @Test fun pinchAndTwoFingerPanLeaveNoMarkAndKeepExistingRedo() {
-        tapImage(20f,20f);val painted=doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+        click("tool_PENCIL");tapImage(20f,20f);val painted=doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
         doc.undo();assertTrue(doc.canRedo);assertFalse(doc.canUndo);assertFalse(painted.sameAs(doc.bitmap))
         val before=doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
         canvas.zoomAt(2f);val z=canvas.zoom;val x=canvas.panX;val y=canvas.panY
@@ -196,12 +203,12 @@ class WorkspaceRefinementTest {
     }
     @Test fun navigateToolPansWithOneFingerAndSwitchesBackToDrawing() {
         click("tool_BRUSH");click("tool_ZOOM");assertEquals("Navigate",canvas.tool.label)
-        canvas.fit();val z=canvas.zoom;val x=canvas.panX
+        canvas.zoomAt(8f);val z=canvas.zoom;val x=canvas.panX
         val p=canvas.toScreen(80f,50f)
         single(MotionEvent.ACTION_DOWN,p.x,p.y);single(MotionEvent.ACTION_MOVE,p.x+25,p.y+20);single(MotionEvent.ACTION_UP,p.x+25,p.y+20)
         assertEquals(x+25,canvas.panX,.001f);assertEquals(z,canvas.zoom,0f);assertFalse(doc.canUndo)
         tapImage(80f,50f);assertEquals(z,canvas.zoom,0f)
-        click("tool_ZOOM");assertEquals(PaintTool.BRUSH,canvas.tool)
+        click("navigate_draw");assertEquals(PaintTool.BRUSH,canvas.tool)
     }
     @Test fun twoFingerNavigationCancelsSelectionMovementAndPreservesPendingCurve() {
         Canvas(doc.bitmap).drawRect(20f,20f,50f,50f,Paint().apply { color=Color.BLUE })
@@ -223,70 +230,44 @@ class WorkspaceRefinementTest {
         assertEquals(curve,canvas.draftState().getJSONArray("curve_points").toString());assertTrue(canvas.hasPendingEdit)
     }
     @Test fun colourArrowStartsExpandedStaysPinnedAndRemembersCollapse() {
-        val bar=view<View>("palette_bar");val indicator=view<ColourStatusButton>("colour_status")
-        assertTrue(bar.isShown);assertTrue(indicator.isShown);assertTrue(indicator.expanded)
-        assertTrue(indicator.contentDescription.contains("Left arrow: collapse"))
-        assertPaletteBesideIndicator();val pinnedBounds=screenBounds(indicator)
-        val tools=view<ScrollView>("tool_scroll");tools.scrollTo(0,tools.getChildAt(0).height);settle()
-        assertEquals(pinnedBounds,screenBounds(indicator));val height=canvas.height
-        tools.scrollTo(0,0);settle()
+        assertFalse(view<View>("palette_bar").isShown)
+        click("menu_Color");settle()
+        val indicator=view<ColourStatusButton>("colour_status")
+        assertTrue(indicator.isShown);assertTrue(view<View>("palette_bar").isShown)
         click("colour_FF0000");assertEquals(Color.RED,indicator.foreground)
         view<View>("colour_00FF00").performLongClick();assertEquals(Color.GREEN,indicator.backgroundColour)
         render(root(),"palette-expanded.png")
-        click("colour_status");assertFalse(bar.isShown);assertEquals(height,canvas.height)
-        assertEquals("Collapsing colours must not move the indicator",pinnedBounds,screenBounds(indicator))
-        assertEquals(pinnedBounds.top,screenBounds(canvas).bottom)
-        assertTrue(indicator.contentDescription.contains("Right arrow: expand"))
-        render(root(),"palette-collapsed.png")
-        reopen();assertFalse(view<View>("palette_bar").isShown)
-        click("colour_status");assertTrue(view<View>("palette_bar").isShown)
-        assertPaletteBesideIndicator();assertEquals(pinnedBounds,screenBounds(view<View>("colour_status")))
+        click("menu_Main");settle();assertFalse(view<View>("palette_bar").isShown)
+        click("menu_Color");settle();assertEquals(Color.RED,indicator.foreground)
+        assertTrue(view<View>("swap_colours").isShown);assertTrue(view<View>("reset_colours").isShown)
     }
     @Test fun wholeSidebarCollapsesBelowToolbarAndSurvivesRotation() {
         val toggle=view<View>("sidebar_toggle");val toolbar=view<View>("menu_bar")
         assertTrue(view<View>("sidebar").isShown);assertTrue(toggle.isSelected)
-        assertNull(view<View>("header_bar").findViewWithTag<View>("sidebar_toggle"))
         val arrowPosition=IntArray(2);val toolbarPosition=IntArray(2)
         toggle.getLocationOnScreen(arrowPosition);toolbar.getLocationOnScreen(toolbarPosition)
-        assertEquals(toolbarPosition[1]+toolbar.height,arrowPosition[1]);assertEquals(0,arrowPosition[0])
-        val height=canvas.height;click("sidebar_toggle");assertFalse(toggle.isSelected)
-        assertEquals(View.GONE,view<View>("sidebar").visibility);assertTrue(canvas.height>height)
-        assertTrue(toggle.isShown);val collapsedPosition=IntArray(2);toggle.getLocationOnScreen(collapsedPosition);assertArrayEquals(arrowPosition,collapsedPosition)
+        assertEquals(toolbarPosition[1],arrowPosition[1])
+        val height=canvas.height;click("sidebar_toggle");settle();assertFalse(toggle.isSelected)
+        assertFalse(view<View>("sidebar").isShown);assertTrue(canvas.height>height)
+        assertTrue(toggle.isShown)
         render(root(),"sidebar-collapsed.png")
-        val configuration=Configuration(activity.resources.configuration).apply { orientation=Configuration.ORIENTATION_LANDSCAPE }
+        val configuration=Configuration(activity.resources.configuration).apply {orientation=Configuration.ORIENTATION_LANDSCAPE}
         activity.resources.updateConfiguration(configuration,activity.resources.displayMetrics);activity.onConfigurationChanged(configuration);settle()
-        assertEquals(View.GONE,view<View>("sidebar").visibility);assertNotNull(view<View>("compact_menu"))
-        click("sidebar_toggle");assertTrue(view<View>("sidebar").isShown)
-        assertTrue(view<View>("sidebar_toggle").isSelected);assertTrue(view<View>("palette_bar").isShown)
+        assertFalse(view<View>("sidebar").isShown);assertNull(root().findViewWithTag<View>("compact_menu"))
+        click("sidebar_toggle");settle();assertTrue(view<View>("sidebar").isShown)
+        assertTrue(view<View>("sidebar_toggle").isSelected)
+        click("menu_Color");settle();assertTrue(view<View>("palette_bar").isShown)
     }
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeHasOneHeaderCentredFilenameAndEveryMenu() {
-        assertNull(root().findViewWithTag<View>("menu_bar"));val title=view<TextView>("document_title");val bar=view<View>("header_bar")
-        assertNull(bar.findViewWithTag<View>("sidebar_toggle"))
-        assertTrue(view<View>("sidebar").isShown);assertTrue(view<View>("palette_bar").isShown)
-        assertPaletteBesideIndicator()
-        assertEquals(bar.width/2f,title.left+title.width/2f,1f);assertEquals("Untitled",title.text.toString())
-        click("compact_menu");val categories=ShadowPopupMenu.getLatestPopupMenu().menu
-        assertEquals(listOf("File","Edit","View","Image","Colors","Help"),(0 until categories.size()).map { categories.getItem(it).title.toString() })
-        for (i in 0 until categories.size()) { assertTrue(categories.getItem(i).hasSubMenu());assertTrue(categories.getItem(i).subMenu!!.size()>0) }
-        val helper=org.robolectric.util.ReflectionHelpers.getField<Any>(ShadowPopupMenu.getLatestPopupMenu(),"mPopup")
-        val menuPopup=org.robolectric.util.ReflectionHelpers.callInstanceMethod<Any>(helper,"getPopup")
-        val menuList=org.robolectric.util.ReflectionHelpers.callInstanceMethod<ListView>(menuPopup,"getListView")
-        assertTrue(menuList.childCount>0)
-        for (i in 0 until menuList.childCount) {
-            val arrow=org.robolectric.util.ReflectionHelpers.getField<View>(menuList.getChildAt(i),"mSubMenuArrowView")
-            assertTrue("Submenu indicator must be visible",arrow.isShown)
+        assertNotNull(root().findViewWithTag<View>("menu_bar"));assertNull(root().findViewWithTag<View>("compact_menu"))
+        assertEquals("Untitled",view<TextView>("document_title").text.toString())
+        for(tab in listOf("Main","File","Edit","View","Color")) {
+            click("menu_$tab");settle();assertTrue(view<View>("menu_$tab").isShown)
+            assertEquals(root().width,canvas.width);assertTrue(canvas.height>100)
+            render(root(),"tabs-landscape-$tab.png")
         }
-        render(menuList,"landscape-menu.png")
-        val edit=categories.getItem(1).subMenu!!;assertEquals("Undo",edit.getItem(0).title);assertFalse(edit.getItem(0).isEnabled)
-        val actualSize=categories.getItem(2).subMenu!!.getItem(2)
-        assertTrue(categories.performIdentifierAction(actualSize.itemId,0));assertEquals(1f,canvas.zoom,0f)
+        click("tool_ZOOM");click("zoom_actual");assertEquals(1f,canvas.zoom,0f)
         canvas.fit()
-        render(root(),"compact-landscape.png")
-        val pinnedBounds=screenBounds(view<View>("colour_status"));val height=canvas.height
-        click("colour_status");assertFalse(view<View>("palette_bar").isShown);assertTrue(canvas.height>height)
-        assertEquals(pinnedBounds,screenBounds(view<View>("colour_status")))
-        click("colour_status");assertPaletteBesideIndicator()
-        assertEquals(pinnedBounds,screenBounds(view<View>("colour_status")))
     }
     @Test @Config(qualifiers="w900dp-h360dp-land-xhdpi") fun licenceActionsStayVisibleWhileLongTextScrollsAndCopyEverything() {
         val text="Complete terms\n"+(1..1000).joinToString("\n") { "Clause $it: exact licence text." }
@@ -304,7 +285,7 @@ class WorkspaceRefinementTest {
         render(root,"licence-landscape.png");root.findViewWithTag<View>("terms_done").performClick();assertFalse(dialog.isShowing)
     }
     @Test fun allBundledFontsLoadAndDropdownNamesUseTheirOwnTypeface() {
-        val catalog=FontCatalog(activity);assertEquals(10,catalog.fonts.count { it.asset!=null });assertEquals(19,catalog.fonts.size)
+        val catalog=FontCatalog(activity);assertEquals(11,catalog.fonts.count { it.asset!=null });assertEquals(20,catalog.fonts.size)
         val adapter=catalog.adapter();val parent=LinearLayout(activity)
         val widths=mutableSetOf<Int>()
         for (i in catalog.fonts.indices) {
@@ -327,8 +308,8 @@ class WorkspaceRefinementTest {
         font.setSelection(catalog.fonts.indexOfFirst { it.id=="lato" });settle()
         listOf("text_bold","text_italic","text_underline","text_strike").forEach { root.findViewWithTag<CheckBox>(it).isChecked=true }
         root.findViewWithTag<Spinner>("text_alignment").setSelection(1);settle()
-        val preview=root.findViewWithTag<TextView>("text_preview")
-        assertEquals(Typeface.BOLD_ITALIC,preview.typeface.style);assertTrue(preview.paint.isUnderlineText);assertTrue(preview.paint.isStrikeThruText)
+        val preview=root.findViewWithTag<TextPreview>("text_preview")
+        assertEquals(Typeface.BOLD_ITALIC,preview.face.style);assertTrue(preview.underline);assertTrue(preview.strike)
         render(root,"text-options.png")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();assertFalse(dialog.isShowing);assertTrue(doc.canUndo)
         val pixels=IntArray(doc.bitmap.width*doc.bitmap.height);doc.bitmap.getPixels(pixels,0,doc.bitmap.width,0,0,doc.bitmap.width,doc.bitmap.height)

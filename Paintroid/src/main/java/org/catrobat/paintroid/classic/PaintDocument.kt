@@ -378,22 +378,22 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun close() { clearSelection(); clipboard?.recycle(); bitmap.recycle(); history.close() }
 
-    fun text(x: Float, y: Float, text: String, size: Float, typeface: Typeface, opaque: Boolean,
-        underline: Boolean = false, strike: Boolean = false, alignment: Paint.Align = Paint.Align.LEFT, spacing: Float = 1f) {
-        if (text.isBlank()) return
+    fun text(x: Float,y: Float,text: String,size: Float,typeface: Typeface,opaque: Boolean,
+        underline: Boolean=false,strike: Boolean=false,alignment: Paint.Align=Paint.Align.LEFT,spacing: Float=1f,
+        direction: TextDirection=TextDirection.HORIZONTAL,glyphOrientation: GlyphOrientation=GlyphOrientation.MIXED) {
+        if(text.isBlank()) return
+        require(text.length<=8192 && size.isFinite() && size in 1f..1024f && spacing.isFinite() && spacing in .5f..3f)
+        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=foreground;textSize=size;this.typeface=typeface;isUnderlineText=underline;isStrikeThruText=strike}
+        val bounds=VerticalText.bounds(text,p,direction,glyphOrientation,spacing)
+        val length=if(direction==TextDirection.HORIZONTAL) bounds.width() else bounds.height()
+        val shift=when(alignment) {Paint.Align.CENTER->length/2;Paint.Align.RIGHT->length;else->0f}
+        val left=if(direction==TextDirection.HORIZONTAL) x-shift else if(direction==TextDirection.VERTICAL_RL) x-bounds.width()+p.fontSpacing else x
+        val top=if(direction==TextDirection.HORIZONTAL) y else y-shift
         checkpoint()
-        val canvas = Canvas(bitmap)
-        val p = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = foreground; textSize = size; this.typeface = typeface
-            isUnderlineText = underline; isStrikeThruText = strike; textAlign = alignment
-        }
-        val lines = text.split('\n')
-        val lineHeight = p.fontSpacing * spacing
-        val width = lines.maxOf { p.measureText(it) }
-        val left = x - when (alignment) { Paint.Align.CENTER -> width/2; Paint.Align.RIGHT -> width; else -> 0f }
-        if (opaque) canvas.drawRect(left, y, left + width, y + (lines.size - 1) * lineHeight + p.fontSpacing,
-            Paint().apply { color = background })
-        lines.forEachIndexed { i, line -> canvas.drawText(line, x, y - p.fontMetrics.top + i * lineHeight, p) }
-        edited()
+        val canvas=Canvas(bitmap);canvas.save();canvas.translate(left,top)
+        if(opaque) canvas.drawRect(bounds,Paint().apply {color=background})
+        VerticalText.draw(canvas,text,p,direction,glyphOrientation,spacing,alignment)
+        canvas.restore();edited()
     }
+
 }

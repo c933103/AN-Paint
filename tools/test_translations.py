@@ -32,3 +32,28 @@ class TranslationTests(unittest.TestCase):
         for row in coverage["coverage"]:
             if row["language_tag"] in tags and not row["language_tag"].startswith("en-"):
                 self.assertGreater(row["entries_different_from_upstream_english"], 0)
+
+    def test_unsaved_prompt_never_reuses_the_discard_label_for_keep_editing(self):
+        def normalized(value):
+            return value.strip().strip('"').casefold()
+        for path in translations.RES.glob("values*/strings_upstream.xml"):
+            strings = translations.read_strings(path)
+            self.assertNotEqual(normalized(strings["ui_discard_changes23"]), normalized(strings["ui_keep_editing23"]), str(path))
+        for qualifier in ("values-b+lzh+Hant", "values-b+mn+Mong", "values-b+zh+Hant"):
+            strings = translations.read_strings(translations.RES / qualifier / "strings23.xml")
+            self.assertNotEqual(strings["ui_discard_changes23"], strings["ui_keep_editing23"])
+            self.assertTrue(strings["ui_cut"].strip())
+
+    def test_no_locale_duplicates_resources_across_generated_and_reviewed_catalogues(self):
+        for folder in translations.RES.glob("values*"):
+            seen = set()
+            for path in folder.glob("*.xml"):
+                for node in ET.parse(path).getroot():
+                    if node.tag != "string":
+                        continue
+                    key = node.get("name")
+                    self.assertNotIn(key, seen, str(path) + "/" + key)
+                    seen.add(key)
+        offered = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
+        self.assertIn("lzh-Hant", offered)
+        self.assertIn("mn-Mong", offered)

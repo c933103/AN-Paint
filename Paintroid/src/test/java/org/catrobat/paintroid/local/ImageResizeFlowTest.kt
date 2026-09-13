@@ -29,7 +29,6 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
 import org.robolectric.shadows.ShadowContentResolver
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 
 @RunWith(RobolectricTestRunner::class)
@@ -80,8 +79,7 @@ class ImageResizeFlowTest {
         if (exif) ExifInterface(provider.file.path).apply { setAttribute(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_ROTATE_90.toString()); saveAttributes() }
     }
     private fun load(import: Boolean = false) {
-        activity.window.decorView.findViewWithTag<View>("menu_File").performClick()
-        ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(if (import) 2 else 1,0)
+        EditorTestNavigation.command(activity,"File",if(import) 6 else 1)
         val intent = shadowOf(activity).nextStartedActivityForResult.intent
         shadowOf(activity).receiveResult(intent,Activity.RESULT_OK,Intent().setData(uri))
     }

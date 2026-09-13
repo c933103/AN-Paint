@@ -31,7 +31,6 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
 import org.robolectric.shadows.ShadowContentResolver
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 
 @RunWith(RobolectricTestRunner::class)
@@ -57,7 +56,7 @@ class ANPaintControlsTest {
         shadowOf(Looper.getMainLooper()).idle(); assertFalse(activity.busy)
     }
     private fun root() = activity.window.decorView
-    private fun click(tag: String) { assertTrue(root().findViewWithTag<View>(tag).performClick()); shadowOf(Looper.getMainLooper()).idle() }
+    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }
     private fun picker(): AlertDialog { click("foreground_colour"); return ShadowAlertDialog.getLatestAlertDialog() as AlertDialog }
     private fun edit(dialog: AlertDialog, tag: String, text: String) {
         dialog.window!!.decorView.findViewWithTag<View>("colour_advanced_tab").performClick()
@@ -116,58 +115,42 @@ class ANPaintControlsTest {
         assertFalse(activity.getSharedPreferences("classic-custom-colours",Context.MODE_PRIVATE).contains("colour_4"))
         edit(dialog,"r","64"); edit(dialog,"hex","#broken")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); assertTrue(dialog.isShowing)
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); assertEquals(Color.BLACK,activity.document.foreground)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();EditorTestNavigation.idle(); assertEquals(Color.BLACK,activity.document.foreground)
     }
     @Test fun pinnedColourAreasOpenPickersAndOnlyArrowTogglesPalette() {
+        click("menu_Color")
         val indicator=root().findViewWithTag<ColourStatusButton>("colour_status")
         val palette=root().findViewWithTag<ViewGroup>("palette_bar")
         assertNull(palette.findViewWithTag<View>("foreground_colour"))
         assertNull(palette.findViewWithTag<View>("background_colour"))
-        val density=activity.resources.displayMetrics.density
-        listOf("foreground_colour","background_colour").forEach { tag ->
-            val target=indicator.findViewWithTag<View>(tag)
-            assertTrue(target.height>=44*density-.5f);assertTrue(target.width>=44*density-.5f)
-        }
-        val expanded=indicator.expanded
-        touch(indicator,10*density,indicator.height*.25f)
-        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        edit(dialog,"hex","#123456");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        var dialog=picker();edit(dialog,"hex","#123456")
         assertEquals(0xff123456.toInt(),activity.document.foreground)
-        assertEquals(expanded,indicator.expanded)
-        touch(indicator,10*density,indicator.height*.75f)
-        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        click("background_colour");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         edit(dialog,"hex","#FEDCBA");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
-        assertEquals(0xfffedcba.toInt(),activity.document.background)
-        assertEquals(expanded,indicator.expanded)
-        touch(indicator,indicator.width-22*density,indicator.height/2f)
-        assertEquals(!expanded,indicator.expanded)
-        assertEquals(if (expanded) View.GONE else View.VISIBLE,palette.visibility)
+        click("swap_colours");assertEquals(0xfffedcba.toInt(),activity.document.foreground)
+        assertEquals(0xff123456.toInt(),activity.document.background)
+        click("reset_colours");assertEquals(Color.BLACK,activity.document.foreground);assertEquals(Color.WHITE,activity.document.background)
+        assertTrue(palette.isShown);assertTrue(indicator.isShown)
     }
     @Test fun customColoursSaveIntoExplicitEmptySlotFromAdvancedAndReplaceOnlySelectedSlot() {
-        var dialog=picker();var content=dialog.window!!.decorView
+        var dialog=picker();val original=activity.document.foreground
         edit(dialog,"hex","#13579B")
-        val empty=content.findViewWithTag<View>("custom_colour_8")
-        empty.performClick()
-        assertTrue(empty.isSelected);assertEquals("#13579B",field(dialog,"hex"))
-        val save=content.findViewWithTag<Button>("add_custom_colour")
-        assertTrue(save.isShown);assertTrue(save.text.toString().contains("9"))
+        assertEquals(0xff13579b.toInt(),activity.document.foreground)
+        val save=dialog.window!!.decorView.findViewWithTag<Button>("add_custom_colour")
+        assertTrue(save.isShown);assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_add_palette23),save.text.toString())
         save.performClick()
         val prefs=activity.getSharedPreferences("classic-custom-colours",Context.MODE_PRIVATE)
-        assertEquals(0xff13579b.toInt(),prefs.getInt("colour_8",0))
-        assertFalse(prefs.contains("colour_4"))
-        assertFalse(prefs.contains("next"))
-        assertEquals("Replace slot 9",save.text.toString())
-        dialog.dismiss()
-        dialog=picker();content=dialog.window!!.decorView
-        content.findViewWithTag<View>("custom_colour_8").performClick()
+        assertEquals(0xff13579b.toInt(),prefs.getInt("colour_4",0))
+        assertTrue(root().findViewWithTag<View>("palette_custom_4").isShown)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();EditorTestNavigation.idle()
+        assertEquals(original,activity.document.foreground)
+        dialog=picker();dialog.window!!.decorView.findViewWithTag<View>("custom_colour_4").performClick()
         assertEquals("#13579B",field(dialog,"hex"))
-        assertTrue(content.findViewWithTag<View>("custom_colour_8").isSelected)
-        edit(dialog,"hex","#2468AC")
-        content.findViewWithTag<View>("add_custom_colour").performClick()
-        assertEquals(0xff2468ac.toInt(),prefs.getInt("colour_8",0))
-        content.findViewWithTag<View>("custom_colour_0").performClick()
-        assertEquals("#5B67FF",field(dialog,"hex"))
-        dialog.dismiss()
+        edit(dialog,"hex","#2468AC");dialog.window!!.decorView.findViewWithTag<View>("add_custom_colour").performClick()
+        assertEquals(0xff13579b.toInt(),prefs.getInt("colour_4",0))
+        assertEquals(0xff2468ac.toInt(),prefs.getInt("colour_5",0))
+        dialog.dismiss();EditorTestNavigation.idle();click("palette_custom_4");assertEquals(0xff13579b.toInt(),activity.document.foreground)
     }
     @Test fun customSlotsAndSaveRemainAvailableInEverySelectorWithoutLongPress() {
         val dialog=picker();val content=dialog.window!!.decorView
@@ -207,7 +190,7 @@ class ANPaintControlsTest {
         var dialog=picker(); edit(dialog,"hex","#AA3300")
         dialog.window!!.decorView.findViewWithTag<View>("colour_mode_0").performClick()
         assertTrue(dialog.window!!.decorView.findViewWithTag<View>("add_custom_colour").performClick())
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();EditorTestNavigation.idle()
         click("background_colour"); dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         assertTrue(dialog.window!!.decorView.findViewWithTag<View>("custom_colour_4").performClick())
         assertEquals("#AA3300",field(dialog,"hex"))
@@ -237,8 +220,8 @@ class ANPaintControlsTest {
         assertTrue(about.contains("AN Paint")); assertTrue(about.contains("Catrobat"))
         val credits=activity.assets.open("legal/ASSET_CREDITS.txt").bufferedReader().readText()
         listOf("ActionButton.kt","ToolButton.kt","system","monospace","LGPL","AGPL","launcher.svg","CC BY-SA 4.0").forEach { assertTrue(it,credits.contains(it)) }
-        click("menu_Help"); val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        assertTrue(menu.performIdentifierAction(5,0)); assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing)
+        EditorTestNavigation.command(activity,"File",10)
+        (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).listView.performItemClick(null,4,4); assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing)
     }
     @Test fun colourPickerPreviewsRender() {
         val dialog=picker()
@@ -272,7 +255,7 @@ class ANPaintControlsTest {
     }
     @Test fun oversizedNewCanvasFailsBeforeAllocationAndPreservesPixels() {
         val doc=activity.document; doc.bitmap.setPixel(2,3,Color.RED); val original=doc.bitmap
-        click("menu_File"); ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(0,0)
+        EditorTestNavigation.command(activity,"File",0)
         shadowOf(Looper.getMainLooper()).idle()
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val fields=mutableListOf<EditText>()
@@ -297,7 +280,7 @@ class ANPaintControlsTest {
         provider.file.writeBytes(bytes)
         ShadowContentResolver.registerProviderInternal("anpaint.fixture",provider)
         val doc=activity.document; doc.bitmap.setPixel(2,3,Color.RED); val original=doc.bitmap
-        click("menu_File"); ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(1,0)
+        EditorTestNavigation.command(activity,"File",1)
         val launch=shadowOf(activity).nextStartedActivityForResult
         shadowOf(activity).receiveResult(launch.intent,Activity.RESULT_OK,Intent().setData(Uri.parse("content://anpaint.fixture/document/1")))
         val end = System.nanoTime() + 10_000_000_000L

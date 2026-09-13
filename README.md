@@ -1,6 +1,6 @@
 # AN Paint
 
-> Version 0.0.22 renames the local.22 release, retaining DIB/TIFF/ICO/Base64 support, ASCII export, PDF raster import, PDF/TIFF page selection, animated-image warnings, corrected Japanese flip labels and all local.20 interface improvements. Package `paint.anpaint.android` and version code 75 remain unchanged. See [HANDOFF.md](HANDOFF.md) for actual build verification.
+> Version 0.0.23 adds tabbed controls in both orientations, persistent Save destinations, live color previews, corrected action translations and vertical text. All 0.0.22 format support remains included. Package `paint.anpaint.android`, version code 76. See [HANDOFF.md](HANDOFF.md) for verification status.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -12,7 +12,7 @@ paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
 
 ## Editing
 
-- Expandable Brush, Selection and Insert categories; tools move above the canvas in portrait.
+- Main, File, Edit, View and Color tabs with a collapsible panel above the canvas in both orientations. Navigate is first and the initial tool; Drawing, Selection and Insert categories remember their tool. All tool buttons have visible labels. Cut/Copy/Paste sit beside Undo/Redo.
 - Touch drawing, shapes, text, fill, free-form and rectangular selections.
 - Adjustable hard-edged Pencil width from 1 to 100 px.
 - Corner and edge resize handles, a rotation handle and an aspect-ratio lock.
@@ -23,10 +23,10 @@ paintbrush with a coloured stroke. Android 5.0 (API 21) or newer is required.
   alignment, direct PNG saving and transfer to the main editor.
 - Watercolor, Heart/Star/Arrow, cursor drawing, magnified preview and sizes up to
   100 px with exact numeric entry.
-- One Save as panel for filename, format and applicable quality, lossless, GIF dithering or TIFF compression options: PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, Base64 text and ASCII art. Icon size and ASCII width/inversion are configurable. Save and share uses the same panel.
+- Save as preserves canvas pixels in PNG, lossless JPEG XL/WebP/AVIF, BMP, DIB, TIFF or Base64 PNG text. Save writes the last successful Save as destination directly. Export as offers JPEG, lossy JPEG XL/WebP/AVIF, HEIC, GIF, ICO and ASCII art with their relevant quality, dithering, icon-size or text options. Export never clears unsaved changes or changes the Save destination. Save and share offers all formats.
 - PDF and TIFF page previews/selection, plus warnings when animated GIF/APNG/WebP imports become still images.
-- Four recent colours, explicit custom-colour slots, and an optional online Catrobat figures gallery with copyable/editable credits.
-- App language selection with reused Paintroid terms and English fallback for untranslated text.
+- Live FG/BG color previews with Use color / Cancel, optional Add to palette, four recent colors and shared saved colors in the Color tab and picker. Swap and Reset B/W are in Color. The optional Catrobat gallery supplies copyable/editable credits.
+- View > Languages, reviewed destructive-action and clipboard translations, and initial Literary Chinese (`lzh-Hant`) and traditional-script Mongolian (`mn-Mong`) catalogues. Text supports horizontal and both vertical column orders, with mixed, sideways or upright letters; Noto Sans Mongolian preserves joined text.
 
 The original editor, layers, transparency controls, Smudge, automatic crop and
 native project formats have been removed. See [EDITOR_PARITY.md](EDITOR_PARITY.md)
@@ -38,9 +38,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`0.0.22` is the renamed `2.14.1-local.22` release, with the same version code `75`.
-It can replace local.22 and updates local.20 and local.21 in place when signed with
-the same key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.23` uses version code `76` and updates `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
@@ -51,7 +49,7 @@ the old installation. Keep the old app until needed images have been exported.
 Later updates to `paint.anpaint.android` must use the same signing certificate
 and a higher version code.
 
-Choose **View > Settings > App language** to override the device language.
+Choose **View > Languages** to override the device language.
 Existing Paintroid translations supply common tool names and commands; new or
 untranslated text appears in English. This is partial translation coverage,
 not a claim that every selectable language has a fully translated interface.
@@ -81,7 +79,7 @@ build for arm64-v8a, armeabi-v7a, x86_64 and x86; `-PnativeAbis=x86_64` is avail
 for a faster emulator-only verification build. Android instrumentation tests run
 the actual codecs via `:Paintroid:connectedDebugAndroidTest`; installed-app tests
 run via `:app:connectedDebugAndroidTest`.
-The APK includes its corresponding source, exportable from Help.
+The APK includes its corresponding source, exportable from File > About / licences / credits.
 
 See [LOCAL_BUILD.md](LOCAL_BUILD.md) for detailed build and packaging instructions,
 [CHANGES_FROM_UPSTREAM.md](CHANGES_FROM_UPSTREAM.md) for the changes, and

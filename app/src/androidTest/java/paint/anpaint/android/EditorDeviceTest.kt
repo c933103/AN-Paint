@@ -50,7 +50,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 /**
- * Runs the installed application, real popup menus, bitmap renderer and FileProvider.
+ * Runs the installed application, real tab panels, bitmap renderer and FileProvider.
  * Only the external picker/recipient/gallery activity is substituted by an Android
  * ActivityMonitor; no drawing, decoding, encoding or app activity is simulated.
  * These emulator tests complement, and do not claim, physical ARM-device testing.
@@ -181,7 +181,7 @@ class EditorDeviceTest {
         fun jpeg(quality: Int): ByteArray {
             val destination=fixture("device-quality-$quality.jpg")
             monitor.nextResult.set(resultFor(destination))
-            menu("File",text(R.string.save20_title))
+            menu("File",text(R.string.ui_export_as23))
             device.findObject(UiSelector().className("android.widget.Spinner")).click()
             device.findObject(UiSelector().text("JPEG")).click()
             val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(text(R.string.ui_quality)))
@@ -197,7 +197,7 @@ class EditorDeviceTest {
         assertTrue(high.size>low.size);assertFalse(low.contentEquals(high))
         for(format in ImageFormat.values().filter {it.name in listOf("JPEG_XL","WEBP","HEIC","AVIF","BMP","GIF")}) {
             val before=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
-            menu("File",text(R.string.save20_title))
+            menu("File",text(if(format.canSaveLosslessly) R.string.save20_title else R.string.ui_export_as23))
             device.findObject(UiSelector().className("android.widget.Spinner")).click()
             device.findObject(UiSelector().text(format.label)).click()
             val destinationButton=device.findObject(UiSelector().resourceId("android:id/button1"))
@@ -270,14 +270,11 @@ class EditorDeviceTest {
                         val drawer=root.findViewWithTag<View>("tool_scroll")
                         val strip=root.findViewWithTag<View>("primary_tool_scroll")
                         assertTrue(drawer.isShown)
-                        if(landscape) {
-                            val sidebar=root.findViewWithTag<View>("sidebar")
-                            assertEquals(position(sidebar)[0]+sidebar.width,position(drawer)[0])
-                            assertEquals(position(drawer)[0]+drawer.width,position(it.paintCanvas)[0])
-                        } else {
-                            assertEquals(position(strip)[1]+strip.height,position(drawer)[1])
-                            assertEquals(root.width,it.paintCanvas.width)
-                        }
+                        assertEquals(position(strip)[1]+strip.height,position(drawer)[1])
+                        assertEquals(root.width,it.paintCanvas.width)
+                        assertNull(root.findViewWithTag<View>("compact_menu"))
+                        for(tab in listOf("Main","File","Edit","View","Color")) assertTrue(root.findViewWithTag<View>("menu_$tab").isShown)
+
                     }
                     for(tool in category.tools) {
                         click("tool_${tool.name}")
@@ -303,7 +300,7 @@ class EditorDeviceTest {
         menu("View",text(R.string.ui_magnified_preview))
         clickText(text(R.string.ui_show_magnified_drawing_preview));positive()
         onMain {assertTrue(it.paintCanvas.magnifiedPreview);it.paintCanvas.zoomAt(5f)}
-        menu("View",text(R.string.ui_fit_image))
+        click("zoom_fit_view")
         onMain {
             val centre=it.paintCanvas.toScreen(50f,50f)
             val inset=20*it.resources.displayMetrics.density
@@ -377,6 +374,12 @@ class EditorDeviceTest {
     private fun click(tag: String) {
         awaitState("ready for $tag") {!it.busy}
         onMain { editor ->
+            val activeTab=when {
+                tag.startsWith("tool_") || tag.startsWith("category_")->"Main"
+                tag.startsWith("colour_") || tag in listOf("foreground_colour","background_colour")->"Color"
+                else->null
+            }
+            activeTab?.let {editor.window.decorView.findViewWithTag<View>("menu_$it").performClick()}
             val tool=PaintTool.values().firstOrNull {tag=="tool_${it.name}"}
             tool?.let {ToolCategory.forTool(it)}?.let {category ->
                 val button=editor.window.decorView.findViewWithTag<ToolCategoryButton>("category_${category.name}")
@@ -404,13 +407,19 @@ class EditorDeviceTest {
         instrumentation.waitForIdleSync()
     }
     private fun menu(group: String,item: String) {
-        var compact=false
-        onMain {compact=it.window.decorView.findViewWithTag<View>("compact_menu")!=null}
-        if(compact) {click("compact_menu");clickText(group)} else click("menu_$group")
-        val selector=UiSelector().text(item)
-        if(!device.findObject(selector).exists()) UiScrollable(UiSelector().className("android.widget.ListView")).scrollIntoView(selector)
-        clickText(item)
+        click("menu_$group")
+        var target: View?=null
+        onMain {editor ->
+            fun locate(view: View): View? {
+                if(view is android.widget.Button && view.text.toString()==item && view.tag?.toString()?.startsWith("command_")==true) return view
+                if(view is android.view.ViewGroup) for(i in 0 until view.childCount) locate(view.getChildAt(i))?.let {return it}
+                return null
+            }
+            target=locate(editor.window.decorView);assertNotNull(item,target)
+        }
+        click(target!!.tag.toString())
     }
+
     private fun positive() {
         val button=device.findObject(UiSelector().resourceId("android:id/button1"))
         assertTrue("Dialog positive button",button.waitForExists(5000));assertTrue(button.click())

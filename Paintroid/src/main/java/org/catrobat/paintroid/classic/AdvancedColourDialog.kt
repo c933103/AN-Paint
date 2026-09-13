@@ -48,7 +48,10 @@ class ColourValue(initial: Int) {
     }
 }
 
-class AdvancedColourDialog(private val activity: Activity, initial: Int, private val background: Boolean, private val commit: (Int) -> Unit) {
+class AdvancedColourDialog(private val activity: Activity, initial: Int, private val background: Boolean, private val preview: (Int) -> Unit = {}, private val paletteChanged: () -> Unit = {}, private val closed: () -> Unit = {}, private val commit: (Int) -> Unit) {
+    private val original = initial or Color.BLACK
+    private var accepted = false
+    private val paletteStore = CustomColours(activity)
     val value = ColourValue(initial or Color.BLACK)
     private val prefs = activity.getSharedPreferences("classic-custom-colours", Context.MODE_PRIVATE)
     private val fields = linkedMapOf<String, EditText>()
@@ -58,9 +61,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     private lateinit var surface: ColourSurface
     private lateinit var sample: View
     private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())
-    private var selectedSlot = (0 until 16).firstOrNull { !hasCustomColour(it) } ?: 0
-    private fun hasCustomColour(index: Int) = index < defaults.size || prefs.contains("colour_$index")
-    private fun customColour(index: Int) = prefs.getInt("colour_$index",defaults.getOrNull(index)?.second ?: Color.WHITE) or Color.BLACK
+    private fun hasCustomColour(index: Int) = paletteStore.has(index)
+    private fun customColour(index: Int) = paletteStore.colour(index)
     private fun customLabel(index: Int,colour: Int): String {
         val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)
         return "$name: ${String.format(Locale.ROOT,"#%06X",colour and 0xffffff)}"
@@ -155,9 +157,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                 }.apply {
                     tag="custom_colour_$index";isFocusable=true;isClickable=true
                     setOnClickListener {
-                        selectedSlot=index
-                        if (hasCustomColour(index)) value.rgb(customColour(index))
-                        refreshCustom();sync()
+                        if(hasCustomColour(index)) {value.rgb(customColour(index));sync()}
                     }
                 }
                 custom.add(view)
@@ -167,9 +167,9 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         }
         if (compact) customPanel.addView(HorizontalScrollView(activity).apply { addView(grid) }) else customPanel.addView(grid)
         shell.addView(customPanel)
-        val preview = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
+        val previewRow = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
         val sampleColumn=column()
-        sampleColumn.addView(label(ui(R.string.ui_new_colour)))
+        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)))
         sample = object : View(activity) {
             override fun onDraw(canvas: Canvas) {
                 val p = Paint()
@@ -177,10 +177,10 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             }
         }.apply { tag = "new_colour_preview" }
         sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
-        preview.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
-        saveCustomButton=button("", "add_custom_colour") { saveCustom(selectedSlot) }.apply { minWidth=0;minimumWidth=0 }
-        preview.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
-        shell.addView(preview)
+        previewRow.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
+        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0 }
+        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
+        shell.addView(previewRow)
         refreshCustom()
         fun field(key: String, hintText: String, max: Int): LinearLayout {
             val wrap = column(); wrap.addView(label(hintText))
@@ -231,29 +231,33 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
         }
         val dialog = AlertDialog.Builder(activity).setTitle(if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(holder)
-            .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_use_colour), null).create()
+            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(R.string.ui_use_colour), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (fields.values.any { it.error != null }) return@setOnClickListener
-            commit(value.colour or Color.BLACK); dialog.dismiss()
+            accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()
         } }
+        dialog.setOnDismissListener {if(!accepted) preview(original);closed()}
         sync();selectMode(0);dialog.show();return dialog
     }
     private fun refreshCustom() {
-        custom.forEachIndexed { index, view ->
-            view.isSelected=index==selectedSlot
-            view.contentDescription=if(hasCustomColour(index))
-                ui(R.string.colour20_stored_slot,index+1,customLabel(index,customColour(index)))
-                else ui(R.string.colour20_empty_slot,index+1)
+        custom.forEachIndexed {index,view ->
+            view.visibility=if(hasCustomColour(index)) View.VISIBLE else View.GONE
+            view.isSelected=hasCustomColour(index) && customColour(index)==value.colour
+            view.contentDescription=if(hasCustomColour(index)) customLabel(index,customColour(index)) else ""
             view.invalidate()
         }
-        customHeading.text=ui(R.string.colour20_custom_selected_slot,selectedSlot+1)
-        saveCustomButton.text=ui(if(hasCustomColour(selectedSlot)) R.string.colour20_replace_slot else R.string.colour20_save_slot,selectedSlot+1)
+        customHeading.text=ui(R.string.ui_saved_palette23)
+        saveCustomButton.text=ui(R.string.ui_add_palette23)
     }
-    private fun saveCustom(index: Int) {
-        if (fields.values.any { it.error != null }) return
-        prefs.edit().putInt("colour_$index",value.colour).remove("next").apply()
-        refreshCustom()
-        Toast.makeText(activity,ui(R.string.colour20_saved_slot,index+1),Toast.LENGTH_SHORT).show()
+    private fun saveCustom() {
+        if(fields.values.any {it.error!=null}) return
+        fun changed() {refreshCustom();paletteChanged();Toast.makeText(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT).show()}
+        if(paletteStore.add(value.colour)) changed() else {
+            val entries=paletteStore.entries()
+            AlertDialog.Builder(activity).setTitle(ui(R.string.ui_replace_palette23))
+                .setItems(entries.map {customLabel(it.first,it.second)}.toTypedArray()) {_,which ->paletteStore.replace(entries[which].first,value.colour);changed()}
+                .setNegativeButton(ui(R.string.ui_cancel),null).show()
+        }
     }
     private fun readFields(key: String) {
         fun number(name: String, max: Float): Float? = uiNumber(fields[name]?.text.toString())?.toFloat()?.takeIf { it in 0f..max }
@@ -280,7 +284,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             field.setText(if (key == "hex") String.format(Locale.ROOT, "#%06X", c and 0xffffff) else String.format(Locale.getDefault(), if (key in listOf("r","g","b")) "%.0f" else "%.2f", numbers[key]))
             field.error = null
         } }
-        sample.invalidate(); surface.invalidate(); honeycomb.invalidateSelection(); syncing = false
+        sample.invalidate();surface.invalidate();honeycomb.invalidateSelection();syncing=false
+        refreshCustom();if(fields.values.none {it.error!=null}) preview(value.colour)
     }
 }
 

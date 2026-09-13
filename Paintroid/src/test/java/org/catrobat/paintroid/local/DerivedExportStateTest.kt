@@ -33,7 +33,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 
 /** Real encoders and picker results exercise the unsaved-work guard through Back > Save. */
@@ -73,16 +72,11 @@ class DerivedExportStateTest {
         controller.destroy()
     }
     @After fun stop() = close()
-    private fun menu(label: String) {
-        assertTrue(activity.window.decorView.findViewWithTag<View>("menu_File").performClick()); idle()
-        val menu = ShadowPopupMenu.getLatestPopupMenu().menu
-        val item = (0 until menu.size()).map { menu.getItem(it) }.single { it.title.toString() == label }
-        assertTrue(menu.performIdentifierAction(item.itemId, 0)); idle()
-    }
+    private fun menu(label: String) { EditorTestNavigation.named(activity,"File",label) }
     private fun options(format: ImageFormat): AlertDialog {
-        menu(activity.getString(R.string.save20_title))
+        menu(activity.getString(if(format.canSaveLosslessly) R.string.save20_title else R.string.ui_export_as23))
         val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-        dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(format.ordinal); idle()
+        EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),format); idle()
         return dialog
     }
     private fun rememberOptions(dialog: AlertDialog) {
@@ -92,6 +86,7 @@ class DerivedExportStateTest {
         activity.onActivityResult(launch.requestCode, Activity.RESULT_CANCELED, null); idle()
     }
     private fun writePickerResult(file: File) {
+        EditorTestNavigation.chooseLocationIfShown()
         val launch = checkNotNull(shadowOf(activity).nextStartedActivityForResult)
         assertEquals(Intent.ACTION_CREATE_DOCUMENT, launch.intent.action)
         shadowOf(activity).nextStartedActivity
@@ -114,9 +109,8 @@ class DerivedExportStateTest {
         bitmap.getPixels(original, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         val originalTitle = title()
         assertTrue(activity.document.dirty)
-        activity.onBackPressed(); idle()
-        val confirmation = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-        confirmation.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+        val exporting=options(format)
+        exporting.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
         val file = File.createTempFile("derived-state-", format.extension, activity.cacheDir)
         try {
             writePickerResult(file)
@@ -133,9 +127,6 @@ class DerivedExportStateTest {
             bitmap.getPixels(actual, 0, 320, 0, 0, 320, 160)
             assertArrayEquals(original, actual)
             assertEquals(originalTitle, title())
-            val warning = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-            assertTrue(warning.isShowing)
-            assertEquals(activity.getString(R.string.formats22_derived_exported, format.label), shadowOf(warning).message.toString())
             val pending = ClassicPaintActivity::class.java.getDeclaredField("afterSave").apply { isAccessible = true }
             assertNull("The blocked replacement must not run during a later save", pending.get(activity))
         } finally { file.delete() }
@@ -148,6 +139,8 @@ class DerivedExportStateTest {
         rememberOptions(options(ImageFormat.BASE64))
         activity.onBackPressed(); idle()
         checkNotNull(ShadowAlertDialog.getLatestAlertDialog()).getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+        val saving=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+        EditorTestNavigation.format(saving.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.BASE64)
         val file = File.createTempFile("complete-image-", ".txt", activity.cacheDir)
         try {
             writePickerResult(file)
@@ -167,7 +160,7 @@ class DerivedExportStateTest {
     @Test fun savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable() {
         val dialog = options(ImageFormat.ICO)
         dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").setSelection(3); idle()
-        dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.ASCII_ART.ordinal); idle()
+        EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.ASCII_ART); idle()
         dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns").slider.progress = 80
         dialog.window!!.decorView.findViewWithTag<CheckBox>("export_ascii_invert").isChecked = true
         rememberOptions(dialog)
@@ -175,7 +168,7 @@ class DerivedExportStateTest {
         controller.saveInstanceState(state)
         close(); create(state)
         activity.document.bitmap.eraseColor(Color.BLACK); activity.document.edited()
-        menu(activity.getString(R.string.ui_save_a5d0d9))
+        menu(activity.getString(R.string.ui_export_as23))
         val file = File.createTempFile("restored-ascii-", ".txt", activity.cacheDir)
         try {
             writePickerResult(file)

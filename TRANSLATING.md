@@ -14,7 +14,7 @@ Missing entries fall back to English. A translation does not require Kotlin edit
 Register a newly supported language in the generated language inventories through
 `tools/reuse_upstream_translations.py` (or extend its inventory for a new translation).
 Existing imported vocabulary and exact provenance are in `translations/README.md`.
-The app language can be chosen under View → Settings → App language independently
+The app language can be chosen under View → Languages independently
 of the device language; Android 13 also exposes the same setting in system settings.
 `crowdin.yml` is available for a maintainer's own translation project; automated
 uploads to the upstream Catrobat translation project are not enabled.
@@ -56,3 +56,21 @@ coverage, not a complete Arabic translation. `AppLanguageTest` checks persisted
 language choice, localized number entry, Android 13 integration, and preserving the
 current canvas, undo and selection during a language change. Human review and device
 checks at larger font sizes remain part of completing each future translation.
+
+
+## Action review and vertical foundations (0.0.23)
+
+The shared vocabulary is reviewed by command meaning. AOSP Android 15's pinned
+clipboard/Cancel labels supplement Paintroid; explicit Discard changes and Keep
+editing labels distinguish the unsaved-change outcomes. See
+[translations/ACTION-REVIEW.md](translations/ACTION-REVIEW.md), the exact source
+records and Apache-2.0 licence there. The generator retains the corrected Japanese
+flip labels and does not edit the pinned upstream files. Host checks reject
+resource duplicates and colliding discard/cancel outcomes.
+
+There are 68 offered locale variants, including English, plus device default.
+The Literary Chinese (`lzh-Hant`) and traditional Mongolian (`mn-Mong`) resources
+are initial foundations with English fallback; native-speaker review remains
+welcome. Their ribbon labels and inserted text use the vertical renderer. Native
+Android dialogs/edit fields keep platform layout. The Mongolian font is bundled
+unmodified with its original OFL; no font licence is inferred from upstream use.

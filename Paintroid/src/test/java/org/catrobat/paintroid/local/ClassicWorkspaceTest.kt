@@ -18,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import org.catrobat.paintroid.classic.*
+import org.catrobat.paintroid.classic.ImageFormat
 import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
@@ -32,7 +33,6 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
 import org.robolectric.shadows.ShadowContentResolver
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 import java.util.zip.ZipInputStream
 
@@ -62,11 +62,7 @@ class ClassicWorkspaceTest {
         ShadowContentResolver.registerProviderInternal("classic.fixture", provider)
     }
     @After fun stop() { controller.pause().stop(); awaitIo(); controller.destroy() }
-    private fun click(tag: String) {
-        val view = activity.window.decorView.findViewWithTag<View>(tag)
-        assertNotNull("Missing accessible control: $tag", view); assertTrue(view.performClick())
-        shadowOf(Looper.getMainLooper()).idle()
-    }
+    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }
     private fun tool(tool: PaintTool) { click("tool_${tool.name}"); assertEquals(tool, canvas.tool) }
     private fun event(action: Int, x: Float, y: Float) {
         val p = canvas.toScreen(x, y)
@@ -79,7 +75,7 @@ class ClassicWorkspaceTest {
         event(MotionEvent.ACTION_MOVE, (x1 + x2) / 2, (y1 + y2) / 2)
         event(MotionEvent.ACTION_UP, x2, y2)
     }
-    private fun menu(name: String, index: Int) { click("menu_$name"); assertTrue(ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(index, 0)) }
+    private fun menu(name: String, index: Int) { EditorTestNavigation.command(activity,name,index) }
     private fun awaitIo() {
         val deadline = System.nanoTime() + 10_000_000_000L
         while (activity.busy && System.nanoTime() < deadline) { shadowOf(Looper.getMainLooper()).idle(); Thread.sleep(10) }
@@ -91,6 +87,7 @@ class ClassicWorkspaceTest {
         writeSrgbFixture(image,provider.file,format); image.recycle()
     }
     private fun receive(result: Int = Activity.RESULT_OK) {
+        EditorTestNavigation.chooseLocationIfShown()
         val launch = shadowOf(activity).nextStartedActivityForResult
         assertNotNull(launch)
         shadowOf(activity).receiveResult(launch.intent, result, if (result == Activity.RESULT_OK) Intent().setData(uri) else null)
@@ -126,7 +123,7 @@ class ClassicWorkspaceTest {
     }
     @Test fun fileImportCreatesMovableSelectionAndAppliesImage() {
         fixture(Bitmap.CompressFormat.JPEG)
-        menu("File", 2); receive()
+        menu("File", 6); receive()
         assertNotNull(doc.selection); assertEquals(PaintTool.SELECT, canvas.tool)
         drag(10f, 10f, 40f, 30f); click("apply")
         assertEquals(Color.WHITE, doc.bitmap.getPixel(5, 5))
@@ -158,6 +155,33 @@ class ClassicWorkspaceTest {
         val decoded = BitmapFactory.decodeFile(provider.file.path)
         assertEquals(96, decoded.width); assertEquals(Color.RED, decoded.getPixel(30, 10)); decoded.recycle()
     }
+    @Test fun saveReusesSuccessfulSaveAsDestinationAndFormatWithoutAnotherPicker() {
+        tool(PaintTool.PENCIL);doc.foreground=Color.RED;drag(10f,10f,50f,10f)
+        menu("File",3)
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag("export_format"),ImageFormat.BMP)
+        receive();assertFalse(doc.dirty)
+        assertTrue(provider.file.readBytes().take(2)==listOf('B'.code.toByte(),'M'.code.toByte()))
+        doc.foreground=Color.BLUE;drag(10f,30f,50f,30f)
+        click("save_image");awaitIo()
+        assertNull(shadowOf(activity).nextStartedActivityForResult);assertFalse(doc.dirty)
+        val decoded=BitmapFactory.decodeFile(provider.file.path)
+        assertEquals(Color.BLUE,decoded.getPixel(30,30));decoded.recycle()
+        provider.denyWrite=true;doc.edited();click("save_image");awaitIo()
+        assertTrue(doc.dirty);assertNotNull(activity.lastIoError)
+    }
+    @Test fun recoveredDraftRetainsSaveAsUriAndCancelledSaveAsDoesNotReplaceIt() {
+        click("save_image");receive()
+        controller.pause().stop();awaitIo();controller.destroy()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        shadowOf(Looper.getMainLooper()).idle()
+        menu("File",3);EditorTestNavigation.chooseLocationIfShown();receive(Activity.RESULT_CANCELED)
+        doc.bitmap.setPixel(7,9,Color.MAGENTA);doc.edited()
+        click("save_image");awaitIo()
+        assertNull(shadowOf(activity).nextStartedActivityForResult);assertFalse(doc.dirty)
+        val saved=BitmapFactory.decodeFile(provider.file.path)
+        assertEquals(Color.MAGENTA,saved.getPixel(7,9));saved.recycle()
+    }
     @Test fun failedSaveKeepsUnsavedChanges() {
         tool(PaintTool.PENCIL); drag(10f, 10f, 50f, 10f)
         provider.denyWrite = true
@@ -186,7 +210,7 @@ class ClassicWorkspaceTest {
         assertTrue(inkCount() > 0)
     }
     @Test fun sourceExportMenuWritesTheBundledSourceZip() {
-        menu("Help", 4); receive()
+        menu("File", 10); (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).listView.performItemClick(null,3,3); receive()
         assertNull(activity.lastIoError)
         assertArrayEquals(activity.assets.open(ClassicPaintActivity.SOURCE_ASSET).use { it.readBytes() }, provider.file.readBytes())
     }
@@ -199,33 +223,17 @@ class ClassicWorkspaceTest {
     @Test fun everyCurrentToolAndMenuHasAnActiveControl() {
         assertEquals(20, PaintTool.values().size)
         PaintTool.values().forEach { tool(it) }
-        for (name in listOf("File", "Edit", "View", "Image", "Colors", "Help")) {
-            click("menu_$name"); assertTrue(ShadowPopupMenu.getLatestPopupMenu().menu.size() > 0)
+        for (name in listOf("Main","File","Edit","View","Color")) {
+            click("menu_$name");assertTrue(activity.window.decorView.findViewWithTag<View>("tab_panel_host").isShown)
         }
     }
-    @Test fun headerHasUndoRedoAndNoLoadButtonAndClipboardFollowsHelpForEveryTool() {
-        val root = activity.window.decorView
-        assertNull(root.findViewWithTag<View>("load_image"))
-        val undo = root.findViewWithTag<View>("undo")
-        val redo = root.findViewWithTag<View>("redo")
-        val save = root.findViewWithTag<View>("save_image")
-        assertSame(save.parent, undo.parent); assertSame(save.parent, redo.parent)
-        for (type in PaintTool.values()) {
+    @Test fun clipboardIsAdjacentToUndoRedoAndAllToolsHaveVisibleLabels() {
+        val row=activity.window.decorView.findViewWithTag<ViewGroup>("quick_actions")
+        assertEquals(listOf("undo","redo","clipboard_cut","clipboard_copy","clipboard_paste","save_image"),(0 until row.childCount).map {row.getChildAt(it).tag})
+        for(type in PaintTool.values()) {
             tool(type)
-            val help = root.findViewWithTag<View>("tool_help")
-            val panel = help.parent as ViewGroup
-            val index = panel.indexOfChild(help)
-            val first = panel.getChildAt(index + 1) as ViewGroup
-            val second = panel.getChildAt(index + 2) as ViewGroup
-            assertEquals(2,first.childCount); assertEquals(2,second.childCount)
-            assertEquals("clipboard_cut",first.getChildAt(0).tag); assertEquals("clipboard_copy",first.getChildAt(1).tag)
-            assertEquals("clipboard_paste",second.getChildAt(0).tag); assertEquals("select_all",second.getChildAt(1).tag)
-            shadowOf(Looper.getMainLooper()).idle()
-            assertEquals(first.getChildAt(0).top,first.getChildAt(1).top)
-            assertEquals(second.getChildAt(0).top,second.getChildAt(1).top)
-            assertTrue(first.getChildAt(0).right <= first.getChildAt(1).left)
-            assertTrue(second.getChildAt(0).right <= second.getChildAt(1).left)
-            assertTrue(first.bottom <= second.top)
+            val button=activity.window.decorView.findViewWithTag<android.widget.Button>("tool_${type.name}")
+            assertEquals(type.label,button.text.toString());assertTrue(button.text.isNotBlank())
         }
     }
     @Test fun leftPanelCutCopyPasteAndTopUndoRedoEditTheActualSelection() {
@@ -367,9 +375,9 @@ class ClassicWorkspaceTest {
     @Test fun paletteForegroundBackgroundAndImageTransformMenusWork() {
         click("colour_FF0000"); assertEquals(Color.RED, doc.foreground)
         activity.window.decorView.findViewWithTag<View>("colour_00FF00").performLongClick(); assertEquals(Color.GREEN, doc.background)
-        menu("Colors", 2); assertEquals(Color.GREEN, doc.foreground); assertEquals(Color.RED, doc.background)
+        click("swap_colours"); assertEquals(Color.GREEN, doc.foreground); assertEquals(Color.RED, doc.background)
         doc.bitmap.setPixel(2, 3, Color.BLUE)
-        menu("Image", 3); assertEquals(Color.BLUE, doc.bitmap.getPixel(93, 3))
+        menu("Edit", 6); assertEquals(Color.BLUE, doc.bitmap.getPixel(93, 3))
         click("undo"); assertEquals(Color.BLUE, doc.bitmap.getPixel(2, 3))
         doc.resize(48, 96, false); assertEquals(48, doc.bitmap.width); assertEquals(Color.BLUE, doc.bitmap.getPixel(2, 3))
     }

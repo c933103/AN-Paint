@@ -30,6 +30,10 @@ class FontCatalog(private val context: Context) {
         val base=faces.getOrPut(item.id) { item.asset?.let { Typeface.createFromAsset(context.assets,it) } ?: Typeface.create(item.family,Typeface.NORMAL) }
         return if (style==Typeface.NORMAL) base else Typeface.create(base,style)
     }
+    fun faceForText(index: Int,text: String,style: Int=Typeface.NORMAL): Typeface {
+        val selected=if(index==0 && text.any {it.code in 0x1800..0x18af}) fonts.indexOfFirst {it.id=="notosansmongolian"}.takeIf {it>=0} ?: index else index
+        return face(selected,style)
+    }
     fun adapter() = object : ArrayAdapter<FontChoice>(context,android.R.layout.simple_spinner_dropdown_item,fonts) {
         private fun render(view: View,position: Int): View = (view as TextView).apply {
             text=fonts[position].name;typeface=face(position);textSize=18f;tag="font_option_${fonts[position].id}"

@@ -82,7 +82,7 @@ class AppLanguageTest {
             assertTrue(document.canUndo)
             assertEquals(Color.RED, document.bitmap.getPixel(0, 0))
             assertEquals("ja", activity.resources.configuration.locales[0].language)
-            assertEquals("ヘルプ", activity.window.decorView.findViewWithTag<TextView>("menu_Help").text.toString())
+            assertEquals("ファイル", activity.window.decorView.findViewWithTag<TextView>("menu_File").text.toString())
             assertEquals(activity.getString(R.string.gallery_use_image), ui(R.string.gallery_use_image))
         } finally {
             controller.pause().stop()

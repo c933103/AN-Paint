@@ -10,11 +10,8 @@ import java.util.Locale
 import org.catrobat.paintroid.R
 
 class ColourStatusButton(context: Context) : FrameLayout(context) {
-    private val expandGlyph = CopyleftIcon(context, R.drawable.breeze_right)
-    private val collapseGlyph = CopyleftIcon(context, R.drawable.breeze_left)
     var foreground = Color.BLACK
     var backgroundColour = Color.WHITE
-    var expanded = false
     var editForeground: () -> Unit = {}
     var editBackground: () -> Unit = {}
     private val foregroundTarget = View(context).apply {
@@ -30,15 +27,13 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
         val colours=LinearLayout(context).apply { orientation=LinearLayout.VERTICAL }
         colours.addView(foregroundTarget,LinearLayout.LayoutParams(-1,0,1f))
         colours.addView(backgroundTarget,LinearLayout.LayoutParams(-1,0,1f))
-        // Real child targets keep colour editing accessible; the remaining arrow
-        // strip belongs to this view and expands/collapses the adjacent palette.
-        addView(colours,LayoutParams(-1,-1).apply { rightMargin=(44*resources.displayMetrics.density+.5f).toInt() })
+        // Separate targets keep foreground/background editing accessible.
+        addView(colours,LayoutParams(-1,-1).apply { rightMargin=0 })
     }
     fun refresh() {
         foregroundTarget.contentDescription=ui(R.string.ui_foreground_edit_colour,hex(foreground))
         backgroundTarget.contentDescription=ui(R.string.ui_background_edit_colour,hex(backgroundColour))
-        contentDescription=ui(R.string.ui_foreground_background_colour_palette, hex(foreground), hex(backgroundColour), if (expanded) ui(R.string.ui_left_arrow_collapse) else ui(R.string.ui_right_arrow_expand))
-        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText=if (expanded) ui(R.string.ui_collapse_colour_palette) else ui(R.string.ui_expand_colour_palette)
+        contentDescription=ui(R.string.ui_foreground_colour)+" / "+ui(R.string.ui_background_colour)
         invalidate()
     }
     private fun hex(c: Int)=String.format(Locale.ROOT,"#%06X",c and 0xffffff)
@@ -46,7 +41,7 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
         super.onDraw(c)
         val d=resources.displayMetrics.density
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
-        val colourRight=width-44*d
+        val colourRight=width.toFloat()
         listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->
             val top=i*height/2f
             p.color=colour;c.drawRect(3*d,top+2*d,colourRight,top+height/2f-2*d,p)
@@ -58,11 +53,6 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
             p.textSize*=minOf(1f,(colourRight-9*d).coerceAtLeast(1f)/p.measureText(label))
             c.drawText(label,6*d,top+height/4f-(p.ascent()+p.descent())/2,p)
         }
-        p.color=if (expanded || isPressed) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh
-        c.drawRect(colourRight+2*d,2*d,width-2*d,height-2*d,p)
-        val mid=height/2f
-        val arrowCentre=(colourRight+width)/2f
-        (if (expanded) collapseGlyph else expandGlyph).draw(c, arrowCentre-11*d, mid-11*d, arrowCentre+11*d, mid+11*d, if (expanded || isPressed) EditorColours.onPrimaryContainer else EditorColours.onSurface)
         p.style=Paint.Style.STROKE;p.strokeWidth=d;p.color=EditorColours.outline
         c.drawRect(2*d,d,width-2*d,height-d,p)
     }

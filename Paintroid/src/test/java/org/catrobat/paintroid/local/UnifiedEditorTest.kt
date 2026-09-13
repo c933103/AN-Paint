@@ -24,7 +24,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 import java.util.Locale
 
@@ -51,11 +50,7 @@ class UnifiedEditorTest {
         assertFalse(activity.busy)
     }
     private fun click(tag: String) {assertTrue(root.findViewWithTag<View>(tag).performClick());shadowOf(Looper.getMainLooper()).idle()}
-    private fun menu(group: String,label: String) {
-        click("menu_$group");val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        val item=(0 until menu.size()).map {menu.getItem(it)}.single {it.title.toString()==label}
-        assertTrue(menu.performIdentifierAction(item.itemId,0));shadowOf(Looper.getMainLooper()).idle()
-    }
+    private fun menu(group: String,label: String) { EditorTestNavigation.named(activity,group,label) }
     private fun event(action: Int,x: Float,y: Float) {
         val p=board.toScreen(x,y);val e=MotionEvent.obtain(0,20,action,p.x,p.y,0)
         board.dispatchTouchEvent(e);e.recycle()
@@ -133,17 +128,17 @@ class UnifiedEditorTest {
         assertEquals((board.width-inset)/2,centre.x,1f);assertEquals((board.height-inset)/2,centre.y,1f)
     }
     @Test fun fileMenuNamesInsertionClearlyAndGalleryComesImmediatelyAfterIt() {
-        click("menu_File");val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        val names=(0 until menu.size()).map {menu.getItem(it).title.toString()}
+        click("menu_File")
+        val names=EditorTestNavigation.buttons(root.findViewWithTag("panel_File_commands")).map {it.text.toString()}
         val at=names.indexOf("Insert image into canvas…");assertTrue(at>=0)
         assertEquals("Catrobat sticker gallery…",names[at+1]);assertFalse(names.any {it.contains("project",true)})
         assertTrue(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org/figures-download/")))
         assertFalse(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org.example.com/x.png")))
     }
     @Test fun jpegQualityIsChosenBeforeFilePickerAndSaveAndShareWritesTheFileFirst() {
-        menu("File","Save as…")
+        menu("File","Export as…")
         var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.JPEG.ordinal)
+        EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.JPEG)
         shadowOf(Looper.getMainLooper()).idle()
         val quality=dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality")
         quality.slider.progress=34
@@ -155,7 +150,7 @@ class UnifiedEditorTest {
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null)
         assertNull(shadowOf(activity).nextStartedActivity)
         menu("File","Save and share…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.PNG.ordinal)
+        EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.PNG)
         shadowOf(Looper.getMainLooper()).idle();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
         launch=shadowOf(activity).nextStartedActivityForResult
         assertEquals(launch.intent,shadowOf(activity).nextStartedActivity)
@@ -181,9 +176,9 @@ class UnifiedEditorTest {
         for(y in 0 until 100) for(x in 0 until 100) doc.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
         val original=pixels()
         fun save(quality: Int): ByteArray {
-            menu("File","Save as…")
+            menu("File","Export as…")
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-            dialog.window!!.decorView.findViewWithTag<Spinner>("export_format").setSelection(ImageFormat.JPEG.ordinal)
+            EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.JPEG)
             shadowOf(Looper.getMainLooper()).idle()
             dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_quality").slider.progress=quality-1
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()

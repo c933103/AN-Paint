@@ -54,15 +54,24 @@ class ClassicPaintActivity : Activity() {
     private val categoryButtons = linkedMapOf<ToolCategory, ToolCategoryButton>()
     private val categoryGroups = linkedMapOf<ToolCategory, View>()
     private val categoryTools = linkedMapOf<ToolCategory, PaintTool>()
-    private var expandedCategory: ToolCategory? = ToolCategory.BRUSH
-    private var toolOptionsExpanded = true
+    private var expandedCategory: ToolCategory? = null
+    private var toolOptionsExpanded = false
+    private var activeTab = "Main"
+    private lateinit var tabPanelHost: FrameLayout
+    private val tabPanels = linkedMapOf<String, View>()
+    private val tabButtons = linkedMapOf<String, Button>()
+    private lateinit var editDetails: LinearLayout
+    private lateinit var editCommands: View
     private lateinit var toolDrawer: ScrollView
     private var portraitColours: View? = null
     private var filename = ui(R.string.ui_untitled)
     private var exportOptions=ExportOptions()
+    private var savedTarget: SavedTarget? = null
+    private var isExporting = false
     private var shareAfterSave=false
     private lateinit var recentColours: RecentColours
     private val recentCells=mutableListOf<View>()
+    private val customPaletteCells=mutableListOf<View>()
     private var fullscreen=false
     private var afterSave: (() -> Unit)? = null
     private val worker = Executors.newSingleThreadExecutor()
@@ -100,6 +109,7 @@ class ClassicPaintActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()
         autosave=AutosaveStore(filesDir)
         recentColours=RecentColours(this)
         val prefs=getSharedPreferences("classic-ui",MODE_PRIVATE)
@@ -115,6 +125,7 @@ class ClassicPaintActivity : Activity() {
             val draft=autosave.read { w,h -> checkImageSize(w,h) }
             recovered=draft.metadata
             textSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
+            savedTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
             document.background=recovered.optInt("background",Color.WHITE)
             document.replace(draft.image)
             draft.floating?.let { image ->
@@ -173,7 +184,7 @@ class ClassicPaintActivity : Activity() {
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
         savedInstanceState?.let {
             exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
-            shareAfterSave=it.getBoolean("share_after_save")
+            shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
         }
         if(savedInstanceState==null) handleExternalImage(intent)
     }
@@ -191,97 +202,100 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
+    private val panelLimit get() = dp(if (landscape) 136 else minOf(256, resources.configuration.screenHeightDp / 3))
+    private val toolHeight get() = dp(if (VerticalText.uiVertical()) 120 else 68)
     private fun buildWorkspace() {
+        paintCanvas.pauseGesture()
         paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
-        toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear();portraitColours=null
-        root=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true }
+        toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear()
+        tabPanels.clear();tabButtons.clear();customPaletteCells.clear()
+        root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true}
         setContentView(root);makeHeader()
-        val workspace=FrameLayout(this).apply { tag="workspace_overlay" }
-        root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
-        val work=LinearLayout(this).apply {
-            orientation=if(landscape) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
-            tag="editor_workspace";layoutDirection=View.LAYOUT_DIRECTION_LTR
-        }
-        workspace.addView(work,FrameLayout.LayoutParams(-1,-1))
-        sidebar=LinearLayout(this).apply { orientation=LinearLayout.VERTICAL;tag="sidebar";layoutDirection=View.LAYOUT_DIRECTION_LTR }
-        work.addView(sidebar,if(landscape) LinearLayout.LayoutParams(dp(104),-1) else LinearLayout.LayoutParams(-1,-2))
-        val primary=LinearLayout(this).apply { orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;tag="primary_tools" }
-        val entries=ToolCategory.values().map { category ->
-            ToolCategoryButton(this,category,categoryTools[category] ?: category.tools.first(),!landscape).apply {
-                tag="category_${category.name}"
-                setOnClickListener { if(!busy) editAction { toggleCategory(category) } }
+        tabPanelHost=FrameLayout(this).apply {tag="tab_panel_host"}
+        root.addView(tabPanelHost,LinearLayout.LayoutParams(-1,-2))
+        sidebar=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="sidebar"}
+        val primary=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="primary_tools";layoutDirection=View.LAYOUT_DIRECTION_LTR}
+        primary.addView(makeToolButton(PaintTool.ZOOM),LinearLayout.LayoutParams(dp(80),toolHeight))
+        ToolCategory.values().forEach {category ->
+            val entry=ToolCategoryButton(this,category,categoryTools[category] ?: category.tools.first(),true).apply {
+                tag="category_${category.name}";setOnClickListener {if(!busy) editAction {toggleCategory(category)}}
                 categoryButtons[category]=this
             }
-        }+listOf(PaintTool.ERASER,PaintTool.FILL,PaintTool.PICKER,PaintTool.ZOOM).map { makeToolButton(it) }
-        if(landscape) {
-            sidebar.addView(Space(this),LinearLayout.LayoutParams(-1,dp(48)))
-            val rail=ScrollView(this).apply {tag="primary_tool_scroll";contentDescription=ui(R.string.ui_tool_categories)}
-            entries.chunked(2).forEach { pair ->
-                val row=LinearLayout(this)
-                pair.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(60),1f)) }
-                if(pair.size==1) row.addView(Space(this),LinearLayout.LayoutParams(0,dp(60),1f))
-                primary.addView(row)
-            }
-            rail.addView(primary);sidebar.addView(rail,LinearLayout.LayoutParams(-1,0,1f))
-        } else {
-            entries.forEach { primary.addView(it,LinearLayout.LayoutParams(dp(60),dp(60))) }
-            val rail=HorizontalScrollView(this).apply {
-                tag="primary_tool_scroll";isFillViewport=false;contentDescription=ui(R.string.ui_tool_categories)
-                addView(primary)
-            }
-            sidebar.addView(rail,LinearLayout.LayoutParams(-1,dp(60)).apply {leftMargin=dp(48)})
+            primary.addView(entry,LinearLayout.LayoutParams(dp(92),toolHeight))
         }
-        val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),dp(4),dp(4),dp(8))}
-        toolDrawer=ScrollView(this).apply {tag="tool_scroll";contentDescription=ui(R.string.ui_toolbox_and_tool_options_scroll_for_more);addView(drawerContent)}
-        ToolCategory.values().forEach { category ->
-            val group=LinearLayout(this).apply {orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;tag="category_tools_${category.name}"}
-            if(landscape) category.tools.chunked(3).forEach { tools ->
-                val row=LinearLayout(this)
-                tools.forEach {row.addView(makeToolButton(it),LinearLayout.LayoutParams(0,dp(48),1f))}
-                repeat(3-tools.size) {row.addView(Space(this),LinearLayout.LayoutParams(0,dp(48),1f))}
-                group.addView(row)
-            } else category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(dp(52),dp(48)))}
-            val groupView=if(landscape) group else HorizontalScrollView(this).apply {addView(group)}
-            categoryGroups[category]=groupView;drawerContent.addView(groupView)
+        listOf(PaintTool.ERASER,PaintTool.FILL,PaintTool.PICKER).forEach {
+            primary.addView(makeToolButton(it),LinearLayout.LayoutParams(dp(80),toolHeight))
         }
-        options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(3),dp(7),dp(3),0)}
+        sidebar.addView(HorizontalScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(-1,toolHeight))
+        val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),0,dp(4),dp(4))}
+        toolDrawer=ScrollView(this).apply {tag="tool_scroll";addView(drawerContent)}
+        ToolCategory.values().forEach {category ->
+            val group=LinearLayout(this).apply {isBaselineAligned=false;tag="category_tools_${category.name}"}
+            category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(dp(88),toolHeight))}
+            val rail=HorizontalScrollView(this).apply {addView(group)}
+            categoryGroups[category]=rail;drawerContent.addView(rail)
+        }
+        options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(4),dp(4),dp(4),0)}
         drawerContent.addView(options)
+        sidebar.addView(toolDrawer,LinearLayout.LayoutParams(-1,(panelLimit-toolHeight).coerceAtLeast(dp(68))))
+        tabPanels["Main"]=LimitedScrollView(this,panelLimit).apply {addView(sidebar)}
+        fun commands(name: String): View {
+            val grid=GridLayout(this).apply {columnCount=maxOf(2,resources.configuration.screenWidthDp / 112);tag="panel_${name}_commands"}
+            menuActions(name).forEachIndexed {index,action ->
+                val control=button(action.first,"command_${name}_$index") {action.second();refreshCommandPanel(name)}
+                control.isEnabled=menuActionEnabled()
+                grid.addView(control,GridLayout.LayoutParams().apply {
+                    rowSpec=GridLayout.spec(GridLayout.UNDEFINED,GridLayout.FILL)
+                    width=dp(maxOf(96,resources.configuration.screenWidthDp / grid.columnCount - 6));height=if(VerticalText.uiVertical()) dp(120) else dp(56)
+                    setMargins(dp(2),dp(2),dp(2),dp(2))
+                })
+            }
+            return grid
+        }
+        listOf("File","Edit","View").forEach {name ->
+            val body=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL}
+            val grid=commands(name);body.addView(grid)
+            if(name=="Edit") {
+                editCommands=grid
+                editDetails=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;visibility=View.GONE;tag="edit_details"}
+                body.addView(editDetails)
+            }
+            tabPanels[name]=LimitedScrollView(this,panelLimit).apply {tag="panel_$name";addView(body)}
+        }
+        val colours=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="colour_dock"}
+        val colourHeader=LinearLayout(this).apply {isBaselineAligned=false;gravity=Gravity.CENTER_VERTICAL;layoutDirection=View.LAYOUT_DIRECTION_LTR}
         colourStatus=ColourStatusButton(this).apply {
-            tag="colour_status";setOnClickListener {togglePalette()}
-            editForeground={ if (!busy) colourDialog(false) };editBackground={ if (!busy) colourDialog(true) }
+            tag="colour_status";editForeground={if(!busy) colourDialog(false)};editBackground={if(!busy) colourDialog(true)}
         }
-        val editor=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="canvas_and_palette"}
-        work.addView(editor,if(landscape) LinearLayout.LayoutParams(0,-1,1f) else LinearLayout.LayoutParams(-1,0,1f))
-        if(landscape) {
-            sidebar.addView(colourStatus,LinearLayout.LayoutParams(-1,dp(88)))
-            val canvasRow=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR}
-            editor.addView(canvasRow,LinearLayout.LayoutParams(-1,0,1f))
-            canvasRow.addView(toolDrawer,LinearLayout.LayoutParams(dp(168),-1))
-            canvasRow.addView(paintCanvas,LinearLayout.LayoutParams(0,-1,1f))
-            makePalette(editor)
-        } else {
-            // The category drawer opens directly below the horizontal tool strip.
-            // Its bounded height keeps drawing space available; all options scroll.
-            sidebar.addView(toolDrawer,LinearLayout.LayoutParams(-1,dp(minOf(200,maxOf(100,resources.configuration.screenHeightDp/4)))))
-            editor.addView(paintCanvas,LinearLayout.LayoutParams(-1,0,1f))
-            val colours=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;layoutDirection=View.LAYOUT_DIRECTION_LTR;tag="colour_dock"}
-            portraitColours=colours
-            colours.addView(colourStatus,LinearLayout.LayoutParams(dp(104),dp(88)))
-            makePalette(colours)
-            paletteBar.layoutParams=LinearLayout.LayoutParams(0,dp(88),1f)
-            editor.addView(colours,LinearLayout.LayoutParams(-1,dp(88)))
-        }
-        sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") {sidebarExpanded=!sidebarExpanded;syncPanels()}
-        workspace.addView(sidebarToggle,FrameLayout.LayoutParams(dp(48),dp(48),Gravity.TOP or Gravity.LEFT))
+        colourHeader.addView(colourStatus,LinearLayout.LayoutParams(dp(132),dp(88)))
+        colourHeader.addView(button(ui(R.string.ui_swap23),"swap_colours") {val old=document.foreground;document.foreground=document.background;document.background=old;updateColours()},LinearLayout.LayoutParams(0,dp(60),1f))
+        colourHeader.addView(button(ui(R.string.ui_reset_bw23),"reset_colours") {document.foreground=Color.BLACK;document.background=Color.WHITE;updateColours()},LinearLayout.LayoutParams(0,dp(60),1f))
+        colours.addView(colourHeader)
+        makePalette(colours);makeCustomPalette(colours)
+        tabPanels["Color"]=LimitedScrollView(this,panelLimit).apply {tag="panel_Color";addView(colours)}
+        tabPanels.values.forEach {tabPanelHost.addView(it,FrameLayout.LayoutParams(-1,-2))}
+        val workspace=FrameLayout(this).apply {tag="workspace_overlay";layoutDirection=View.LAYOUT_DIRECTION_LTR}
+        workspace.addView(paintCanvas,FrameLayout.LayoutParams(-1,-1))
+        root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
         makeStatus();populateToolOptions(paintCanvas.tool)
         if(paintCanvas.trim!=null) showBoundsOptions()
         syncPanels();updateColours();updateStatus();syncFullscreen()
     }
 
+    private fun selectTab(name: String) {
+        activeTab=name;sidebarExpanded=true;syncPanels()
+        if(name=="Color") refreshCustomPalette()
+    }
+    private fun refreshCommandPanel(name: String) {
+        menuActions(name).forEachIndexed {index,action ->
+            root.findViewWithTag<Button>("command_${name}_$index")?.let {it.text=action.first;it.isEnabled=menuActionEnabled()}
+        }
+    }
+
     private fun makeToolButton(tool: PaintTool)=ToolButton(this,tool).apply {
         tag="tool_${tool.name}"
-        setOnClickListener {if(!busy) editAction {chooseTool(if(tool==PaintTool.ZOOM && paintCanvas.tool==tool) drawingTool else tool)}}
+        setOnClickListener {if(!busy) editAction {chooseTool(tool)}}
         setOnLongClickListener {message(tool.label+": "+tool.hint);true}
         toolButtons[tool]=this
     }
@@ -299,36 +313,28 @@ class ClassicPaintActivity : Activity() {
         super.onConfigurationChanged(newConfig);AppLanguage.refresh(this, newConfig);buildWorkspace()
     }
 
-    private fun togglePalette() {
-        paletteExpanded=!paletteExpanded
-        if (paletteExpanded) sidebarExpanded=true
-        syncPanels()
-    }
     private fun syncPanels() {
         val visible=sidebarExpanded && !fullscreen
-        sidebar.visibility=if(visible) View.VISIBLE else View.GONE
-        toolDrawer.visibility=if(visible && toolOptionsExpanded) View.VISIBLE else View.GONE
-        categoryGroups.forEach {(category,view) -> view.visibility=if(category==expandedCategory) View.VISIBLE else View.GONE}
+        tabPanelHost.visibility=if(visible) View.VISIBLE else View.GONE
+        tabPanels.forEach {(name,panel) ->panel.visibility=if(name==activeTab) View.VISIBLE else View.GONE}
+        tabButtons.forEach {(name,view) ->view.isSelected=name==activeTab}
+        toolDrawer.visibility=if(toolOptionsExpanded) View.VISIBLE else View.GONE
+        categoryGroups.forEach {(category,view) ->view.visibility=if(category==expandedCategory) View.VISIBLE else View.GONE}
         categoryButtons.forEach {(category,view) ->
             view.selectedTool=categoryTools[category] ?: category.tools.first()
             view.expanded=toolOptionsExpanded && expandedCategory==category
-            view.isSelected=paintCanvas.tool in category.tools
-            view.refresh()
+            view.isSelected=paintCanvas.tool in category.tools;view.refresh()
         }
-        portraitColours?.visibility=if(visible) View.VISIBLE else View.GONE
-        paletteBar.visibility=if(visible && paletteExpanded) View.VISIBLE else View.GONE
         sidebarToggle.isSelected=sidebarExpanded
-        sidebarToggle.contentDescription=if (sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)
-        if (android.os.Build.VERSION.SDK_INT >= 26) sidebarToggle.tooltipText=sidebarToggle.contentDescription
-        colourStatus.expanded=paletteExpanded;colourStatus.refresh()
-        getSharedPreferences("classic-ui",MODE_PRIVATE).edit().putBoolean("sidebar_expanded",sidebarExpanded).putBoolean("palette_expanded",paletteExpanded).apply()
+        sidebarToggle.contentDescription=if(sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)
+        getSharedPreferences("classic-ui",MODE_PRIVATE).edit().putBoolean("sidebar_expanded",sidebarExpanded).apply()
     }
 
     private fun dp(value: Int) = (value * resources.displayMetrics.density + .5f).toInt()
     private fun label(value: String, size: Float = 13f) = TextView(this).apply {
         text = value; textSize = size; setTextColor(ink); gravity = Gravity.CENTER_VERTICAL
     }
-    private fun button(value: String, tagName: String, action: () -> Unit) = Button(this).apply {
+    private fun button(value: String, tagName: String, action: () -> Unit) = FlowButton(this).apply {
         text = value; tag = tagName; contentDescription = value
         isAllCaps = false; textSize = 13f; minWidth = 0; minimumWidth = 0; minHeight = 0; minimumHeight = 0
         setPadding(dp(5), 0, dp(5), 0)
@@ -342,55 +348,31 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun makeHeader() {
-        undoButton=actionIcon(EditIcon.UNDO,"undo") { undoEdit() }
-        redoButton=actionIcon(EditIcon.REDO,"redo") { redoEdit() }
-        titleText=label("AN Paint",15f).apply { tag="document_title";setTextColor(EditorColours.onPrimaryContainer);ellipsize=TextUtils.TruncateAt.END;maxLines=if (landscape) 1 else 2 }
-        if (landscape) {
-            val bar=FrameLayout(this).apply { tag="header_bar";setBackgroundColor(EditorColours.primaryContainer) }
-            val left=LinearLayout(this).apply { gravity=Gravity.CENTER_VERTICAL }
-            val menu=button(ui(R.string.ui_menu),"compact_menu") {}
-            menu.setOnClickListener {
-                if (busy) return@setOnClickListener
-                val popup=PopupMenu(this,menu)
-                val commands=mutableMapOf<Int,() -> Unit>()
-                listOf("File","Edit","View","Image","Colors","Help").forEachIndexed { group,name ->
-                    val submenu=popup.menu.addSubMenu(0,group,group,menuTitle(name))
-                    menuActions(name).forEachIndexed { index,action ->
-                        val id=(group+1)*1000+index
-                        submenu.add(group+1,id,index,action.first).isEnabled=menuActionEnabled(name,index)
-                        commands[id]=action.second
-                    }
-                }
-                popup.setOnMenuItemClickListener { item ->
-                    val command=commands[item.itemId]
-                    if (command==null) false else { if (!busy) editAction(command);true }
-                };popup.show()
-            }
-            left.addView(menu,LinearLayout.LayoutParams(dp(60),dp(48)))
-            bar.addView(left,FrameLayout.LayoutParams(-2,-1,Gravity.START))
-            val right=LinearLayout(this).apply { gravity=Gravity.CENTER_VERTICAL }
-            right.addView(undoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
-            right.addView(redoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
-            right.addView(button(ui(R.string.ui_save),"save_image") { requestSave(false) },LinearLayout.LayoutParams(dp(56),dp(48)))
-            bar.addView(right,FrameLayout.LayoutParams(-2,-1,Gravity.END))
-            titleText.gravity=Gravity.CENTER
-            bar.addView(titleText,FrameLayout.LayoutParams(-1,-1).apply { leftMargin=dp(150);rightMargin=dp(150) })
-            root.addView(bar,LinearLayout.LayoutParams(-1,dp(48)))
-        } else {
-            val bar=LinearLayout(this).apply { tag="header_bar";gravity=Gravity.CENTER_VERTICAL;setPadding(dp(2),0,dp(2),0);setBackgroundColor(EditorColours.primaryContainer) }
-            bar.addView(titleText,LinearLayout.LayoutParams(0,dp(52),1f))
-            bar.addView(undoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
-            bar.addView(redoButton,LinearLayout.LayoutParams(dp(44),dp(48)))
-            bar.addView(button(ui(R.string.ui_save),"save_image") { requestSave(false) },LinearLayout.LayoutParams(dp(54),dp(48)))
-            root.addView(bar)
-            val scroll=HorizontalScrollView(this).apply { tag="menu_bar";isHorizontalScrollBarEnabled=false }
-            val menus=LinearLayout(this)
-            listOf("File","Edit","View","Image","Colors","Help").forEach { name ->
-                val item=button(menuTitle(name),"menu_$name") {};item.setOnClickListener { if (!busy) showMenu(name,item) }
-                menus.addView(item,LinearLayout.LayoutParams(dp(if (name=="Colors") 66 else 56),dp(44)))
-            }
-            scroll.addView(menus);root.addView(scroll,LinearLayout.LayoutParams(-1,dp(44)))
+        titleText=label(filename,13f).apply {tag="document_title";setTextColor(EditorColours.onPrimaryContainer);ellipsize=TextUtils.TruncateAt.END;maxLines=1}
+        val bar=LinearLayout(this).apply {tag="header_bar";gravity=Gravity.CENTER_VERTICAL;setBackgroundColor(EditorColours.primaryContainer)}
+        if(!landscape) root.addView(titleText,LinearLayout.LayoutParams(-1,dp(28)))
+        else bar.addView(titleText,LinearLayout.LayoutParams(0,dp(48),1f))
+        val quick=LinearLayout(this).apply {isBaselineAligned=false;gravity=Gravity.CENTER_VERTICAL;tag="quick_actions";layoutDirection=View.LAYOUT_DIRECTION_LTR}
+        undoButton=actionIcon(EditIcon.UNDO,"undo") {undoEdit()}
+        redoButton=actionIcon(EditIcon.REDO,"redo") {redoEdit()}
+        listOf(undoButton,redoButton,
+            actionIcon(EditIcon.CUT,"clipboard_cut") {cutSelection()},
+            actionIcon(EditIcon.COPY,"clipboard_copy") {copySelection()},
+            actionIcon(EditIcon.PASTE,"clipboard_paste") {pasteSelection()}).forEach {quick.addView(it,LinearLayout.LayoutParams(dp(52),dp(48)))}
+        quick.addView(button(ui(R.string.ui_save),"save_image") {requestSave(false)},LinearLayout.LayoutParams(dp(68),dp(48)))
+        bar.addView(HorizontalScrollView(this).apply {addView(quick)},LinearLayout.LayoutParams(if(landscape) dp(328) else -1,dp(48)))
+        root.addView(bar,LinearLayout.LayoutParams(-1,dp(48)))
+        val tabs=LinearLayout(this).apply {isBaselineAligned=false;tag="tabs_row";gravity=Gravity.CENTER_VERTICAL;layoutDirection=View.LAYOUT_DIRECTION_LTR}
+        val row=LinearLayout(this).apply {isBaselineAligned=false}
+        listOf("Main","File","Edit","View","Color").forEach {name ->
+            val item=button(menuTitle(name),"menu_$name") {selectTab(name)}.apply {tag="menu_$name"}
+            tabButtons[name]=item
+            row.addView(item,LinearLayout.LayoutParams(-2,if(VerticalText.uiVertical()) dp(88) else dp(44)).apply {width=dp(if(VerticalText.uiVertical()) 54 else 64)})
         }
+        tabs.addView(HorizontalScrollView(this).apply {tag="menu_bar";addView(row)},LinearLayout.LayoutParams(0,-2,1f))
+        sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") {sidebarExpanded=!sidebarExpanded;syncPanels()}
+        tabs.addView(sidebarToggle,LinearLayout.LayoutParams(dp(44),dp(44)))
+        root.addView(tabs,LinearLayout.LayoutParams(-1,-2))
     }
 
     private fun makePalette(editor: LinearLayout) {
@@ -439,8 +421,8 @@ class ClassicPaintActivity : Activity() {
         val row = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0) }
         statusText = label(ui(R.string.ui_ready), 11f).apply { maxLines = 2 }
         row.addView(statusText, LinearLayout.LayoutParams(0, dp(44), 1f))
-        val zoomRow = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; tag = "zoom_controls" }
-        zoomRow.addView(actionIcon(EditIcon.MINUS, "zoom_out") { paintCanvas.zoomStep(1/1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))
+        val zoomRow = LinearLayout(this).apply {isBaselineAligned=false; gravity = Gravity.CENTER_VERTICAL; tag = "zoom_controls" }
+        zoomRow.addView(actionIcon(EditIcon.MINUS, "zoom_out") { paintCanvas.zoomStep(1/1.5f) }, LinearLayout.LayoutParams(dp(56), dp(48)))
         zoomSlider = ZoomSeekBar(this).apply {
             tag = "zoom_slider"; contentDescription = ui(R.string.ui_canvas_zoom); max = 1000
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -452,7 +434,7 @@ class ClassicPaintActivity : Activity() {
             })
         }
         zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))
-        zoomRow.addView(actionIcon(EditIcon.PLUS, "zoom_in") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))
+        zoomRow.addView(actionIcon(EditIcon.PLUS, "zoom_in") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(56), dp(48)))
         zoomRow.addView(button(ui(R.string.ui_fit),"zoom_fit_view") { paintCanvas.fit() }.apply {
             contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)
         },LinearLayout.LayoutParams(dp(44),dp(44)))
@@ -471,21 +453,24 @@ class ClassicPaintActivity : Activity() {
         if (::options.isInitialized) options.findViewWithTag<TextView>("selection_dimensions")?.text=document.selection?.let {
             String.format(java.util.Locale.ROOT,ui(R.string.ui_0f_0f_px_1f),it.rect.width(),it.rect.height(),it.rotation)
         } ?: ui(R.string.ui_select_an_area)
-        if (::options.isInitialized) options.findViewWithTag<TextView>("trim_dimensions")?.text = paintCanvas.trim?.rect?.let { ui(R.string.ui_px_724eb3, it.width(), it.height()) } ?: ""
-        titleText.text = "${if (landscape) "" else "AN Paint\n"}$filename${if (document.dirty) " *" else ""}"
+        if (::options.isInitialized) root.findViewWithTag<TextView>("trim_dimensions")?.text = paintCanvas.trim?.rect?.let { ui(R.string.ui_px_724eb3, it.width(), it.height()) } ?: ""
+        if (::editDetails.isInitialized && paintCanvas.trim==null) {editDetails.visibility=View.GONE;editCommands.visibility=View.VISIBLE}
+        titleText.text = "$filename${if (document.dirty) " *" else ""}"
         // Pending geometry can be cancelled; an empty history alone cannot be undone.
         redoButton.isEnabled = !busy && document.canRedo
         undoButton.isEnabled = !busy && (document.canUndo || paintCanvas.hasPendingEdit)
         toolButtons.forEach { (tool, view) -> view.isSelected = tool == paintCanvas.tool; view.invalidate() }
         categoryButtons.forEach {(category,view) ->view.isSelected=paintCanvas.tool in category.tools;view.invalidate()}
+        listOf("File","Edit","View").forEach {refreshCommandPanel(it)}
     }
 
-    private fun updateColours() {
+    private fun updateColours(persist: Boolean=true) {
         colourStatus.foreground=document.foreground;colourStatus.backgroundColour=document.background;colourStatus.refresh()
-        paintCanvas.invalidate();scheduleAutosave()
+        paintCanvas.invalidate();if(persist) scheduleAutosave()
     }
 
     private fun chooseTool(tool: PaintTool) {
+        activeTab="Main";sidebarExpanded=true
         paintCanvas.selectTool(tool)
         showToolOptions(tool)
     }
@@ -548,17 +533,9 @@ class ClassicPaintActivity : Activity() {
             setOnCheckedChangeListener {_,checked -> paintCanvas.closePolygon=checked;paintCanvas.invalidate();scheduleAutosave()}
         })
         options.addView(button(ui(R.string.ui_how_to_use), "tool_help") { message(tool.hint) }, LinearLayout.LayoutParams(-1, dp(48)))
-        listOf(
-            actionIcon(EditIcon.CUT,"clipboard_cut") { cutSelection() },
-            actionIcon(EditIcon.COPY,"clipboard_copy") { copySelection() },
-            actionIcon(EditIcon.PASTE,"clipboard_paste") { pasteSelection() },
-            actionIcon(EditIcon.SELECT_ALL,"select_all") { selectAll() }
-        ).chunked(2).forEachIndexed { index, pair ->
-            val row = LinearLayout(this).apply { tag = "clipboard_row_$index" }
-            pair.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(48),1f)) }
-            options.addView(row,LinearLayout.LayoutParams(-1,dp(48)))
+        if(tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.SPRAY,PaintTool.ERASER,PaintTool.LINE,PaintTool.CURVE)) {
+            options.addView(button(ui(R.string.ui_drawing_settings),"drawing_settings") {showDrawingSettings(false)},LinearLayout.LayoutParams(-1,dp(48)))
         }
-        options.addView(button(ui(R.string.ui_canvas_bounds),"trim_canvas") { trimCanvas() },LinearLayout.LayoutParams(-1,dp(48)))
         updateStatus()
     }
 
@@ -579,92 +556,61 @@ class ClassicPaintActivity : Activity() {
         options.addView(choice, LinearLayout.LayoutParams(-1, dp(48)))
     }
 
-    private fun menuTitle(name: String): String = ui(when(name) {
-        "File" -> R.string.ui_menu_file
-        "Edit" -> R.string.ui_menu_edit
-        "View" -> R.string.ui_menu_view
-        "Image" -> R.string.ui_menu_image
-        "Colors" -> R.string.ui_menu_colours
-        else -> R.string.ui_menu_help
+    private fun menuTitle(name: String): String=ui(when(name) {
+        "Main"->R.string.ui_main23;"File"->R.string.ui_menu_file;"Edit"->R.string.ui_menu_edit
+        "View"->R.string.ui_menu_view;"Color"->R.string.ui_colour_tab23;else->R.string.ui_menu_help
     })
-
-    private fun menuActions(name: String): List<Pair<String, () -> Unit>> = when (name) {
-            "File" -> listOf(
-                ui(R.string.ui_new) to { confirmReplacement { dimensionsDialog(false, true) } },
-                ui(R.string.ui_load_image) to { confirmReplacement { launchOpen(false) } },
-                ui(R.string.ui_insert_image_into_canvas) to { launchOpen(true) },
-                ui(R.string.ui_catrobat_sticker_gallery) to {startActivityForResult(Intent(this,MediaGalleryActivity::class.java),GALLERY_IMAGE)},
-                ui(R.string.ui_save_a5d0d9) to { requestSave(false) },
-                ui(R.string.save20_title) to { showSaveOptions(exportOptions.format) },
-                ui(R.string.ui_save_and_share) to { showSaveOptions(exportOptions.format,true) },
-                ui(R.string.ui_image_assembly) to { openAssembly() }
-            ) + if (autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to { requestRecoveryExport() }) else emptyList()
-            "Edit" -> listOf(
-                ui(R.string.ui_undo) to { undoEdit() },
-                ui(R.string.ui_redo) to { redoEdit() },
-                ui(R.string.ui_cut) to { cutSelection() },
-                ui(R.string.ui_copy) to { copySelection() },
-                ui(R.string.ui_paste) to { pasteSelection() },
-                ui(R.string.ui_delete_selection) to { if (!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first)) },
-                ui(R.string.ui_select_all) to { selectAll() }
-            )
-            "View" -> listOf(
-                ui(R.string.ui_zoom_in) to { paintCanvas.zoomStep(2f) },
-                ui(R.string.ui_zoom_out) to { paintCanvas.zoomStep(.5f) },
-                ui(R.string.ui_actual_size_100) to { paintCanvas.zoomAt(1f) },
-                ui(R.string.ui_fit_image) to { paintCanvas.fit() },
-                (if (paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)) to { paintCanvas.grid = !paintCanvas.grid; paintCanvas.invalidate() },
-                (if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)) to { paintCanvas.setCursorMode(!paintCanvas.cursorMode);showToolOptions(paintCanvas.tool) },
-                ui(R.string.ui_magnified_preview) to { showDrawingSettings(true) },
-                ui(R.string.ui_drawing_settings) to { showDrawingSettings(false) },
-                ui(R.string.language20_settings) to { AppLanguage.showSettings(this) { buildWorkspace() } },
-                (if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)) to { fullscreen=!fullscreen;syncFullscreen() },
-                ui(R.string.ui_image_assembly) to { openAssembly() },
-                (if(sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)) to { sidebarExpanded=!sidebarExpanded;syncPanels() },
-                (if(paletteExpanded) ui(R.string.ui_collapse_colour_palette) else ui(R.string.ui_expand_colour_palette)) to { togglePalette() },
-                ui(R.string.ui_pinch_and_pan_mode) to { chooseTool(PaintTool.ZOOM) }
-            )
-            "Image" -> listOf(
-                ui(R.string.ui_crop_to_selection) to { if (document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first)) },
-                ui(R.string.ui_resize_image) to { dimensionsDialog(true, false) },
-                ui(R.string.ui_canvas_size) to { dimensionsDialog(false, false) },
-                ui(R.string.ui_flip_horizontal) to { paintCanvas.applyPending(); document.transform(Matrix().apply { setScale(-1f, 1f) }) },
-                ui(R.string.ui_flip_vertical) to { paintCanvas.applyPending(); document.transform(Matrix().apply { setScale(1f, -1f) }) },
-                ui(R.string.ui_rotate_90_clockwise) to { paintCanvas.applyPending(); document.transform(Matrix().apply { setRotate(90f) }); paintCanvas.fit() },
-                ui(R.string.ui_rotate_180) to { paintCanvas.applyPending(); document.transform(Matrix().apply { setRotate(180f) }) },
-                ui(R.string.ui_invert_colours) to { paintCanvas.applyPending(); document.invert() },
-                ui(R.string.ui_clear_image) to { paintCanvas.applyPending(); document.clear() },
-                ui(R.string.ui_trim_expand_canvas_by_touch) to { trimCanvas() }
-            )
-            "Colors" -> listOf(
-                ui(R.string.ui_edit_foreground) to { colourDialog(false) },
-                ui(R.string.ui_edit_background) to { colourDialog(true) },
-                ui(R.string.ui_swap_foreground_background) to { val old = document.foreground; document.foreground = document.background; document.background = old; updateColours() },
-                ui(R.string.ui_reset_to_black_white) to { document.foreground = Color.BLACK; document.background = Color.WHITE; updateColours() }
-            )
-            else -> listOf(
-                ui(R.string.ui_how_to_use) to { showHelp() },
-                ui(R.string.ui_about_copyright_licence) to { LegalInfo.showAbout(this) },
-                ui(R.string.ui_gnu_agpl_licence) to { LegalInfo.showAsset(this, ui(R.string.ui_gnu_affero_general_public_license), "legal/AGPL-3.0.txt") },
-                ui(R.string.ui_third_party_notices) to { LegalInfo.showAsset(this, ui(R.string.ui_open_source_credits_and_notices), "legal/THIRD_PARTY_NOTICES.txt") },
-                ui(R.string.ui_export_this_version_s_source_code) to { exportSource() },
-                ui(R.string.ui_icons_fonts_artwork_credits) to { LegalInfo.showAsset(this, ui(R.string.ui_icons_fonts_artwork_credits), "legal/ASSET_CREDITS.txt") },
-                ui(R.string.ui_image_credits) to {showImageCredits()},
-                ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
-                ui(R.string.ui_font_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt") },
-                ui(R.string.ui_icon_licences) to { LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt") }
-            )
-        }
-    private fun menuActionEnabled(name: String,index: Int) = name!="Edit" || when (index) {
-        0 -> document.canUndo || paintCanvas.hasPendingEdit
-        1 -> document.canRedo
-        else -> true
+    private fun menuActions(name: String): List<Pair<String,()->Unit>> = when(name) {
+        "File"->listOf(
+            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},
+            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},
+            ui(R.string.ui_save) to {requestSave(false)},
+            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},
+            ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},
+            ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},
+            ui(R.string.ui_insert_image_into_canvas) to {launchOpen(true)},
+            ui(R.string.ui_catrobat_sticker_gallery) to {startActivityForResult(Intent(this,MediaGalleryActivity::class.java),GALLERY_IMAGE)},
+            ui(R.string.ui_image_assembly) to {openAssembly()},
+            ui(R.string.ui_how_to_use) to {showHelp()},
+            ui(R.string.ui_about_credits23) to {showAboutOptions()}
+        ) + if(autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to {requestRecoveryExport()}) else emptyList()
+        "Edit"->listOf(
+            ui(R.string.ui_select_all) to {selectAll();selectTab("Edit")},
+            ui(R.string.ui_canvas_bounds) to {trimCanvas()},
+            ui(R.string.ui_delete_selection) to {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},
+            ui(R.string.ui_canvas_size) to {dimensionsDialog(false,false)},
+            ui(R.string.ui_crop_to_selection) to {if(document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first))},
+            ui(R.string.ui_resize_image) to {dimensionsDialog(true,false)},
+            ui(R.string.ui_flip_horizontal) to {paintCanvas.applyPending();document.transform(Matrix().apply {setScale(-1f,1f)})},
+            ui(R.string.ui_flip_vertical) to {paintCanvas.applyPending();document.transform(Matrix().apply {setScale(1f,-1f)})},
+            ui(R.string.ui_rotate_90_clockwise) to {paintCanvas.applyPending();document.transform(Matrix().apply {setRotate(90f)});paintCanvas.fit()},
+            ui(R.string.ui_rotate_180) to {paintCanvas.applyPending();document.transform(Matrix().apply {setRotate(180f)})},
+            ui(R.string.ui_invert_colours) to {paintCanvas.applyPending();document.invert()},
+            ui(R.string.ui_clear_image) to {paintCanvas.applyPending();document.clear()}
+        )
+        "View"->listOf(
+            (if(paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)) to {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
+            (if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)) to {paintCanvas.setCursorMode(!paintCanvas.cursorMode);if(paintCanvas.cursorMode) chooseTool(paintCanvas.tool)},
+            ui(R.string.ui_magnified_preview) to {showDrawingSettings(true)},
+            ui(R.string.ui_languages23) to {AppLanguage.showPicker(this) {buildWorkspace()}},
+            (if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)) to {fullscreen=!fullscreen;syncFullscreen()}
+        )
+        else->emptyList()
     }
-    private fun showMenu(name: String, anchor: View) {
-        val actions=menuActions(name)
-        val menu = PopupMenu(this, anchor)
-        actions.forEachIndexed { index, action -> menu.menu.add(0, index, index, action.first).isEnabled=menuActionEnabled(name,index) }
-        menu.setOnMenuItemClickListener { if (!busy) editAction(actions[it.itemId].second); true }; menu.show()
+    private fun menuActionEnabled()=!busy
+    private fun showAboutOptions() {
+        val actions=listOf(
+            ui(R.string.ui_about_copyright_licence) to {LegalInfo.showAbout(this)},
+            ui(R.string.ui_gnu_agpl_licence) to {LegalInfo.showAsset(this,ui(R.string.ui_gnu_affero_general_public_license),"legal/AGPL-3.0.txt")},
+            ui(R.string.ui_third_party_notices) to {LegalInfo.showAsset(this,ui(R.string.ui_open_source_credits_and_notices),"legal/THIRD_PARTY_NOTICES.txt")},
+            ui(R.string.ui_export_this_version_s_source_code) to {exportSource()},
+            ui(R.string.ui_icons_fonts_artwork_credits) to {LegalInfo.showAsset(this,ui(R.string.ui_icons_fonts_artwork_credits),"legal/ASSET_CREDITS.txt")},
+            ui(R.string.ui_image_credits) to {showImageCredits()},
+            ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
+            ui(R.string.ui_font_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")},
+            ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")})
+        AlertDialog.Builder(this).setTitle(ui(R.string.ui_about_credits23)).setItems(actions.map {it.first}.toTypedArray()) {_,index->actions[index].second()}
+            .setNegativeButton(ui(R.string.ui_done),null).show()
     }
 
     private fun selectAfterPaste() {
@@ -708,10 +654,49 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
+    private var colourPreviewOriginal: Pair<Int,Int>?=null
     private fun colourDialog(background: Boolean) {
-        AdvancedColourDialog(this, if (background) document.background else document.foreground, background) { colour ->
-            setColour(colour,background)
-        }.show()
+        colourPreviewOriginal=document.foreground to document.background
+        AdvancedColourDialog(this,if(background) document.background else document.foreground,background,
+            preview={colour ->if(background) document.background=colour else document.foreground=colour;updateColours(false)},
+            paletteChanged={refreshCustomPalette()},closed={colourPreviewOriginal=null}) {colour ->colourPreviewOriginal=null;setColour(colour,background)}.show()
+    }
+    private fun makeCustomPalette(parent: LinearLayout) {
+        val row=LinearLayout(this).apply {tag="saved_palette_row";gravity=Gravity.CENTER_VERTICAL}
+        val strip=LinearLayout(this)
+        repeat(16) {index ->
+            val cell=View(this).apply {tag="palette_custom_$index";isFocusable=true
+                setOnClickListener {if(!busy) setColour(CustomColours(this@ClassicPaintActivity).colour(index),false)}
+                setOnLongClickListener {if(!busy) setColour(CustomColours(this@ClassicPaintActivity).colour(index),true);true}
+            }
+            customPaletteCells.add(cell);strip.addView(cell,LinearLayout.LayoutParams(dp(40),dp(40)).apply {setMargins(dp(2),dp(2),dp(2),dp(2))})
+        }
+        row.addView(HorizontalScrollView(this).apply {addView(strip)},LinearLayout.LayoutParams(0,dp(44),1f))
+        row.addView(button(ui(R.string.ui_edit_palette23),"edit_palette") {managePalette()},LinearLayout.LayoutParams(dp(96),dp(48)))
+        parent.addView(label(ui(R.string.ui_saved_palette23)));parent.addView(row);refreshCustomPalette()
+    }
+    private fun refreshCustomPalette() {
+        val palette=CustomColours(this)
+        customPaletteCells.forEachIndexed {index,cell ->
+            cell.visibility=if(palette.has(index)) View.VISIBLE else View.GONE
+            val colour=palette.colour(index)
+            cell.background=GradientDrawable().apply {setColor(colour);setStroke(dp(2),EditorColours.outline)}
+            cell.contentDescription=ui(R.string.ui_colour,String.format(java.util.Locale.ROOT,"#%06X",colour and 0xffffff))
+        }
+    }
+    private fun managePalette() {
+        val store=CustomColours(this);val entries=store.entries()
+        val labels=entries.map {String.format(java.util.Locale.ROOT,"#%06X",it.second and 0xffffff)}
+        AlertDialog.Builder(this).setTitle(ui(R.string.ui_edit_palette23)).setItems(labels.toTypedArray()) {_,which ->
+            val (index,colour)=entries[which]
+            AlertDialog.Builder(this).setTitle(labels[which]).setItems(arrayOf(ui(R.string.ui_use_colour),ui(R.string.ui_replace_with_active23),ui(R.string.ui_remove_palette23))) {_,action ->
+                when(action) {0->setColour(colour,false);1->store.replace(index,document.foreground);2->store.remove(index)}
+                refreshCustomPalette()
+            }.setNegativeButton(ui(R.string.ui_cancel),null).show()
+        }.setPositiveButton(ui(R.string.ui_add_active23)) {_,_->
+            if(!store.add(document.foreground)) message(ui(R.string.ui_replace_palette23))
+            refreshCustomPalette()
+        }.setNegativeButton(ui(R.string.ui_cancel),null).show()
     }
 
     private fun dimensionsDialog(stretch: Boolean, fresh: Boolean) {
@@ -726,7 +711,7 @@ class ClassicPaintActivity : Activity() {
             if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)
             else editAction {
                 checkImageSize(size.width,size.height); paintCanvas.applyPending()
-                if (fresh) { document.newImage(size.width,size.height); filename = ui(R.string.ui_untitled) } else document.resize(size.width,size.height,stretch)
+                if (fresh) { document.newImage(size.width,size.height); filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
                 paintCanvas.fit(); updateStatus(); dialog.dismiss()
             }
         } }; dialog.show()
@@ -750,15 +735,15 @@ class ClassicPaintActivity : Activity() {
         paintCanvas.beginTrim(); showBoundsOptions()
     }
     private fun showBoundsOptions() {
-        sidebarExpanded=true;toolOptionsExpanded=true;expandedCategory=null
-        syncPanels();toolDrawer.scrollTo(0,0)
-        options.removeAllViews()
-        options.addView(label(ui(R.string.ui_canvas_bounds),13f))
-        options.addView(label(ui(R.string.ui_drag_out_to_expand_in_to_trim_drag),12f))
-        options.addView(label("").apply { tag = "trim_dimensions" })
-        options.addView(button(ui(R.string.ui_apply_bounds),"trim_apply") { paintCanvas.applyTrim(); chooseTool(paintCanvas.tool) },LinearLayout.LayoutParams(-1,dp(48)))
-        options.addView(button(ui(R.string.ui_cancel),"trim_cancel") { paintCanvas.cancelTrim(); chooseTool(paintCanvas.tool) },LinearLayout.LayoutParams(-1,dp(48)))
-        options.addView(button(ui(R.string.ui_fit),"trim_fit") { paintCanvas.fit() },LinearLayout.LayoutParams(-1,dp(48))); updateStatus()
+        activeTab="Edit";sidebarExpanded=true;editCommands.visibility=View.GONE;editDetails.visibility=View.VISIBLE
+        editDetails.removeAllViews()
+        editDetails.addView(label(ui(R.string.ui_drag_out_to_expand_in_to_trim_drag),12f))
+        editDetails.addView(label("").apply {tag="trim_dimensions"})
+        fun finish() {editDetails.visibility=View.GONE;editCommands.visibility=View.VISIBLE;syncPanels()}
+        editDetails.addView(button(ui(R.string.ui_apply_bounds),"trim_apply") {paintCanvas.applyTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))
+        editDetails.addView(button(ui(R.string.ui_cancel),"trim_cancel") {paintCanvas.cancelTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))
+        editDetails.addView(button(ui(R.string.ui_fit),"trim_fit") {paintCanvas.fit()},LinearLayout.LayoutParams(-1,dp(48)))
+        syncPanels();updateStatus()
     }
     override fun onKeyShortcut(keyCode: Int, event: android.view.KeyEvent): Boolean {
         if (event.isCtrlPressed && keyCode == android.view.KeyEvent.KEYCODE_A && !busy) { editAction { selectAll() }; return true }
@@ -769,7 +754,7 @@ class ClassicPaintActivity : Activity() {
         TextStyleDialog(this,textSettings,document.foreground,document.background) { settings,face ->
             editAction {
                 document.text(x,y,settings.text,settings.size,face,settings.box,settings.underline,settings.strike,
-                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing)
+                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing,settings.direction,settings.glyphOrientation)
                 textSettings=settings;scheduleAutosave()
             }
         }.show()
@@ -780,7 +765,7 @@ class ClassicPaintActivity : Activity() {
         if (!document.dirty) { action(); return }
         AlertDialog.Builder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))
             .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }
-            .setNeutralButton(ui(R.string.ui_discard)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_cancel), null).show()
+            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()
     }
 
     fun launchOpen(import: Boolean) {
@@ -806,22 +791,24 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun requestSave(jpeg: Boolean) {
-        if(jpeg) showSaveOptions(ImageFormat.JPEG) else {
-            shareAfterSave=false;chooseSaveLocation()
-        }
+        if(jpeg) {showSaveOptions(ImageFormat.JPEG,export=true);return}
+        val target=savedTarget
+        if(target==null) showSaveOptions(ImageFormat.PNG)
+        else {exportOptions=target.options;isExporting=false;shareAfterSave=false;writeImage(target.uri)}
     }
-    private fun showSaveOptions(format: ImageFormat,share: Boolean=false) {
+    private fun showSaveOptions(format: ImageFormat,share: Boolean=false,export: Boolean=false) {
         val prefs=getSharedPreferences("export",MODE_PRIVATE)
-        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true),prefs.getBoolean("dither",true),prefs.getBoolean("tiff_compressed",true),prefs.getInt("ico_size",256),prefs.getInt("ascii_columns",100),prefs.getBoolean("ascii_invert",false)),share,
+        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),!export,prefs.getBoolean("dither",true),prefs.getBoolean("tiff_compressed",true),prefs.getInt("ico_size",256),prefs.getInt("ascii_columns",100),prefs.getBoolean("ascii_invert",false)),share,
             confirm={request ->
-                exportOptions=request.options;shareAfterSave=share
-                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("lossless",exportOptions.lossless).putBoolean("dither",exportOptions.dither).putBoolean("tiff_compressed",exportOptions.tiffCompressed).putInt("ico_size",exportOptions.icoSize).putInt("ascii_columns",exportOptions.asciiColumns).putBoolean("ascii_invert",exportOptions.asciiInvert).apply()
+                exportOptions=request.options;shareAfterSave=share;isExporting=export
+                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("dither",exportOptions.dither).putBoolean("tiff_compressed",exportOptions.tiffCompressed).putInt("ico_size",exportOptions.icoSize).putInt("ascii_columns",exportOptions.asciiColumns).putBoolean("ascii_invert",exportOptions.asciiInvert).apply()
                 chooseSaveLocation(request.fileName)
-            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename).show()
+            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export).show()
     }
     private fun chooseSaveLocation(proposedName: String=filename) {
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE);type=exportOptions.format.mime
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
             putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))
         },SAVE_IMAGE)
     }
@@ -879,7 +866,13 @@ class ClassicPaintActivity : Activity() {
         if (uri == null) { message(ui(R.string.ui_the_picker_returned_no_file_please_choose_the)); afterSave = null; return }
         when (requestCode) {
             OPEN_IMAGE, IMPORT_IMAGE -> readImage(uri, requestCode == IMPORT_IMAGE)
-            SAVE_IMAGE -> writeImage(uri)
+            SAVE_IMAGE -> {
+                if(!isExporting) try {
+                    val flags=(data?.flags ?: 0) and (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                    if(flags!=0) contentResolver.takePersistableUriPermission(uri,flags)
+                } catch(_: SecurityException) { /* Some providers grant session-only access. */ }
+                writeImage(uri)
+            }
             EXPORT_SOURCE -> exportSourceTo(uri)
             EXPORT_RECOVERY -> exportRecoveryTo(uri)
         }
@@ -941,7 +934,7 @@ class ClassicPaintActivity : Activity() {
                     if (!isDestroyed && !isFinishing) {
                         try {
                             if (import) { chooseTool(PaintTool.SELECT); document.paste(bitmap, takeOwnership = true) }
-                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit); filename = source.name; paintCanvas.fit() }
+                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit); filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
                             if (document.bitmap !== bitmap && document.selection?.image !== bitmap) bitmap.recycle()
@@ -966,7 +959,7 @@ class ClassicPaintActivity : Activity() {
         paintCanvas.applyPending()
         beginIo()
         val snapshot=document.bitmap
-        val options=exportOptions;val sharing=shareAfterSave;shareAfterSave=false
+        val options=exportOptions;val exporting=isExporting;val sharing=shareAfterSave;shareAfterSave=false
         worker.execute {
             var encoded: File?=null
             try {
@@ -978,10 +971,10 @@ class ClassicPaintActivity : Activity() {
                 val name=displayName(uri)
                 if(sharing) encoded=null
                 runOnUiThread {if(!isDestroyed) {
-                    if(!options.format.isDerivedExport) {filename=name;document.markSaved()};endIo();Toast.makeText(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
+                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();Toast.makeText(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
                     if(sharing) shareSavedImage(file,options.format)
                     val action=afterSave;afterSave=null
-                    if(options.format.isDerivedExport && action!=null) message(ui(R.string.formats22_derived_exported,options.format.label)) else action?.invoke()
+                    if(exporting && action!=null) message(ui(R.string.ui_export_did_not_save23)) else action?.invoke()
                 }}
             } catch(error: Exception) {ioFailed(ui(R.string.ui_could_not_save_image),error)}
               catch(error: OutOfMemoryError) {ioFailed(ui(R.string.ui_not_enough_memory_to_save_in_this_format),error)}
@@ -1076,7 +1069,7 @@ class ClassicPaintActivity : Activity() {
         if(fullscreen) workspace.addView(button(ui(R.string.ui_show_controls),"leave_fullscreen") {fullscreen=false;syncFullscreen()},FrameLayout.LayoutParams(-2,dp(48),Gravity.TOP or Gravity.END))
         window.decorView.systemUiVisibility=if(fullscreen) View.SYSTEM_UI_FLAG_FULLSCREEN else View.SYSTEM_UI_FLAG_VISIBLE
     }
-    private fun showHelp() = message(ui(R.string.ui_the_arrow_on_the_left_directly_below_the))
+    private fun showHelp() = message(ui(R.string.ui_help23))
     private fun message(text: String) { if (!isFinishing && !isDestroyed) AlertDialog.Builder(this).setTitle("AN Paint").setMessage(text).setPositiveButton(ui(R.string.ui_ok), null).show() }
 
     private fun scheduleAutosave() {
@@ -1087,7 +1080,8 @@ class ClassicPaintActivity : Activity() {
     }
     private fun draftMetadata(): JSONObject = JSONObject().apply {
         put("version",1);put("filename",filename);put("dirty",document.dirty)
-        put("foreground",document.foreground);put("background",document.background)
+        savedTarget?.let {put("save_target",it.json())}
+        put("foreground",colourPreviewOriginal?.first ?: document.foreground);put("background",colourPreviewOriginal?.second ?: document.background)
         put("corner_radius",document.cornerRadius.toDouble());put("stroke_width",document.strokeWidth.toDouble());put("brush_tip",document.brushTip);put("shape_style",document.shapeStyle)
         put("tolerance",document.tolerance.toDouble());put("watercolor_strength",document.watercolorStrength)
         put("stroke_smoothing",document.strokeSmoothing);put("antialiasing",document.antialiasing);put("spray_radius",document.sprayRadius.toDouble())
@@ -1117,7 +1111,7 @@ class ClassicPaintActivity : Activity() {
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
         super.onStop();stopped=true

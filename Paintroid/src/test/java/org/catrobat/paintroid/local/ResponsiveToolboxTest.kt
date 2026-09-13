@@ -25,7 +25,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -85,6 +84,7 @@ class ResponsiveToolboxTest {
         val strip=view<LinearLayout>("primary_tools")
         assertEquals(LinearLayout.HORIZONTAL,strip.orientation)
         assertTrue(view<View>("primary_tool_scroll") is HorizontalScrollView)
+        open(ToolCategory.BRUSH)
         val rail=view<View>("primary_tool_scroll");val drawer=view<ScrollView>("tool_scroll")
         assertEquals(bounds(rail).bottom,bounds(drawer).top)
         assertEquals(bounds(view<View>("sidebar")).bottom,bounds(activity.paintCanvas).top)
@@ -100,15 +100,13 @@ class ResponsiveToolboxTest {
     }
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
     fun landscapeCategoriesOpenToTheRightAndCollapseReleasesCanvasWidth() {
-        val strip=view<LinearLayout>("primary_tools");assertEquals(LinearLayout.VERTICAL,strip.orientation)
-        val sidebar=view<View>("sidebar");val drawer=view<View>("tool_scroll")
-        assertEquals(bounds(sidebar).right,bounds(drawer).left)
-        assertEquals(bounds(drawer).right,bounds(activity.paintCanvas).left)
-        assertEquals(bounds(drawer).top,bounds(activity.paintCanvas).top)
+        val strip=view<LinearLayout>("primary_tools");assertEquals(LinearLayout.HORIZONTAL,strip.orientation)
+        assertNull(root.findViewWithTag<View>("compact_menu"))
+        val drawer=view<View>("tool_scroll")
         open(ToolCategory.INSERT);render("tools-landscape-insert.png")
-        val width=activity.paintCanvas.width;click("category_INSERT")
-        assertFalse(drawer.isShown);assertTrue(activity.paintCanvas.width>width)
-        assertEquals(bounds(sidebar).right,bounds(activity.paintCanvas).left)
+        assertEquals(root.width,activity.paintCanvas.width)
+        val height=activity.paintCanvas.height;click("category_INSERT")
+        assertFalse(drawer.isShown);assertTrue(activity.paintCanvas.height>height)
         render("tools-landscape-collapsed.png")
         assertEveryToolReachable()
     }
@@ -140,10 +138,7 @@ class ResponsiveToolboxTest {
         click("category_INSERT");assertTrue(view<View>("tool_scroll").isShown)
         assertTrue(board.hasPendingEdit);assertFalse(activity.document.canUndo)
         assertEquals(vertices,board.draftState().getJSONArray("polygon").toString())
-        click("menu_View")
-        val menu=ShadowPopupMenu.getLatestPopupMenu().menu
-        val cursor=(0 until menu.size()).map {menu.getItem(it)}.single {it.title.toString()==activity.getString(org.catrobat.paintroid.R.string.ui_enable_cursor_drawing)}
-        assertTrue(menu.performIdentifierAction(cursor.itemId,0));settle()
+        EditorTestNavigation.command(activity,"View",1);settle()
         assertTrue(board.cursorMode);assertEquals(PaintTool.BRUSH,board.tool)
         val category=view<ToolCategoryButton>("category_BRUSH")
         assertTrue(category.expanded);assertTrue(category.isSelected);assertEquals(PaintTool.BRUSH,category.selectedTool)

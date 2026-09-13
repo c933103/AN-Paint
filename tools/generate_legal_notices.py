@@ -71,6 +71,8 @@ NDK-supplied LLVM licence text and exceptions are retained below and under
 Image codec licences. tools/generate_native_runtime_notices.py preserves
 the actual installed toolchain's NOTICE and records its source hash.
 
+Editor action translations also reuse Android Open Source Project strings from android-15.0.0_r1 under Apache-2.0. Source paths, blob hashes, selected text and the complete licence are in translations/android-actions.json and translations/ANDROID-APACHE-2.0.txt in the corresponding source.
+
 Resolved Android/JVM runtime components for this build follow. Their publisher
 metadata and packaged notices are preserved below. Test and build tools are not
 part of this inventory because they are not distributed in the application.

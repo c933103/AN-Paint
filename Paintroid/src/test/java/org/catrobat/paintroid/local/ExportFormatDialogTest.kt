@@ -33,7 +33,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 
 /** Checks UI choices and the resulting Android document-picker contract. */
 @RunWith(RobolectricTestRunner::class)
@@ -63,31 +62,24 @@ class ExportFormatDialogTest {
         controller.destroy()
     }
     @After fun stop() = close()
-    private fun menu(label: String) {
-        assertTrue(activity.window.decorView.findViewWithTag<View>("menu_File").performClick())
-        idle()
-        val menu = ShadowPopupMenu.getLatestPopupMenu().menu
-        val item = (0 until menu.size()).map { menu.getItem(it) }.single { it.title.toString() == label }
-        assertTrue(menu.performIdentifierAction(item.itemId, 0))
-        idle()
-    }
+    private fun menu(label: String) { EditorTestNavigation.named(activity,"File",label) }
     private fun AlertDialog.confirm() { getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle() }
     private fun AlertDialog.lossless() = window!!.decorView.findViewWithTag<CheckBox>("export_lossless")
     private fun AlertDialog.quality() = window!!.decorView.findViewWithTag<NumericSlider>("export_quality")
     private fun AlertDialog.format() = window!!.decorView.findViewWithTag<Spinner>("export_format")
 
     @Test fun oneFileSaveAsPanelChoosesEveryFormatAndUsesTheEditedName() {
-        assertTrue(activity.window.decorView.findViewWithTag<View>("menu_File").performClick());idle()
-        val fileMenu=ShadowPopupMenu.getLatestPopupMenu().menu
-        assertEquals(1,(0 until fileMenu.size()).map {fileMenu.getItem(it).title.toString()}.count {it.startsWith("Save as")})
-        for (format in ImageFormat.values()) {
-            menu("Save as…")
+        val save=ImageFormat.values().filter {it.canSaveLosslessly}
+        val export=ImageFormat.values().filter {it.supportsQuality || it in listOf(ImageFormat.GIF,ImageFormat.ICO,ImageFormat.ASCII_ART)}
+        assertEquals(ImageFormat.values().toSet(),(save+export).toSet())
+        for((title,formats) in listOf("Save as…" to save,"Export as…" to export)) for(format in formats) {
+            menu(title)
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertEquals(formats.map {it.label},(0 until dialog.format().count).map {dialog.format().getItemAtPosition(it).toString()})
             dialog.window!!.decorView.findViewWithTag<EditText>("export_filename").setText("日曜日 sketch.jpeg")
-            dialog.format().setSelection(format.ordinal);idle();dialog.confirm()
+            EditorTestNavigation.format(dialog.format(),format);dialog.confirm()
             val launch=shadowOf(activity).nextStartedActivityForResult
-            assertNotNull(format.label,launch)
-            assertEquals(Intent.ACTION_CREATE_DOCUMENT,launch.intent.action)
+            assertNotNull(format.label,launch);assertEquals(Intent.ACTION_CREATE_DOCUMENT,launch.intent.action)
             assertEquals(format.mime,launch.intent.type)
             assertEquals("日曜日 sketch"+format.extension,launch.intent.getStringExtra(Intent.EXTRA_TITLE))
             assertTrue(launch.intent.hasCategory(Intent.CATEGORY_OPENABLE))
@@ -115,77 +107,54 @@ class ExportFormatDialogTest {
         val image=Bitmap.createBitmap(7,5,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.RED)}
         try {activity.document.paste(image)} finally {image.recycle()}
         val selection=activity.document.selection
-        menu("Save as…")
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.format().setSelection(ImageFormat.GIF.ordinal);idle();dialog.confirm()
-        val launch=shadowOf(activity).nextStartedActivityForResult
-        shadowOf(activity).nextStartedActivity
-        assertSame(selection,activity.document.selection)
+        menu("Export as…")
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        EditorTestNavigation.format(dialog.format(),ImageFormat.GIF);dialog.confirm()
+        val launch=shadowOf(activity).nextStartedActivityForResult;shadowOf(activity).nextStartedActivity
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
-        assertSame(selection,activity.document.selection)
-        assertTrue(activity.document.selection!!.floating)
-        menu(activity.getString(org.catrobat.paintroid.R.string.ui_save_a5d0d9))
-        val plain=shadowOf(activity).nextStartedActivityForResult
-        assertEquals("image/gif",plain.intent.type)
-        assertTrue(plain.intent.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".gif"))
-        activity.onActivityResult(plain.requestCode,Activity.RESULT_CANCELED,null);idle()
-        assertSame(selection,activity.document.selection)
+        assertSame(selection,activity.document.selection);assertTrue(selection!!.floating)
+        menu(activity.getString(org.catrobat.paintroid.R.string.ui_save))
+        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertEquals("PNG",dialog.format().selectedItem.toString())
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();idle()
+        assertSame(selection,activity.document.selection);assertNull(shadowOf(activity).nextStartedActivityForResult)
     }
 
     @Test fun bmpHasNoQualityAndGifOffersDitheringInsteadOfFakeLosslessControls() {
         var chosen: ExportOptions?=null
-        val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.BMP),
-            confirm={chosen=it.options},cancel={fail("Unexpected cancellation")}).show();idle()
-        assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
+        val bmp=SaveOptionsDialog(activity,ExportOptions(ImageFormat.BMP),confirm={},cancel={}).show();idle()
+        assertEquals(View.GONE,bmp.quality().visibility);assertEquals(View.GONE,bmp.lossless().visibility);bmp.dismiss()
+        val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.GIF),confirm={chosen=it.options},cancel={},export=true).show();idle()
         val dither=dialog.window!!.decorView.findViewWithTag<CheckBox>("export_dither")
-        assertEquals(View.GONE,dither.visibility)
-        dialog.format().setSelection(ImageFormat.GIF.ordinal);idle()
         assertEquals(View.VISIBLE,dither.visibility);assertTrue(dither.isChecked)
         assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
-        dither.performClick();dialog.confirm()
-        assertEquals(ExportOptions(ImageFormat.GIF,95,false,false),chosen)
+        dither.performClick();dialog.confirm();assertEquals(ExportOptions(ImageFormat.GIF,95,false,false),chosen)
     }
 
     @Test fun losslessFormatsToggleQualityAndRetainTheChosenLossyQuality() {
-        for (format in listOf(ImageFormat.JPEG_XL, ImageFormat.WEBP, ImageFormat.AVIF)) {
-            var selected: ExportOptions? = null
-            val dialog = SaveOptionsDialog(activity, ExportOptions(format, 83, true),
-                confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") }).show()
-            idle()
-            assertEquals(View.VISIBLE, dialog.lossless().visibility)
-            assertTrue(dialog.lossless().isChecked)
-            assertEquals(View.GONE, dialog.quality().visibility)
-            dialog.lossless().performClick()
-            assertEquals(View.VISIBLE, dialog.quality().visibility)
-            dialog.quality().slider.progress = 26
-            dialog.lossless().performClick()
-            assertEquals(View.GONE, dialog.quality().visibility)
-            dialog.lossless().performClick()
-            assertEquals(26, dialog.quality().slider.progress)
-            dialog.confirm()
-            assertEquals(ExportOptions(format, 27, false), selected)
-            val losslessDialog = SaveOptionsDialog(activity, selected!!,
-                confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") }).show()
-            idle()
-            losslessDialog.lossless().performClick()
-            assertEquals(View.GONE, losslessDialog.quality().visibility)
-            losslessDialog.confirm()
-            assertEquals(ExportOptions(format, 27, true), selected)
+        for(format in listOf(ImageFormat.JPEG_XL,ImageFormat.WEBP,ImageFormat.AVIF)) {
+            var chosen: ExportOptions?=null
+            val save=SaveOptionsDialog(activity,ExportOptions(format,83,false),confirm={chosen=it.options},cancel={}).show();idle()
+            assertEquals(View.GONE,save.lossless().visibility);assertEquals(View.GONE,save.quality().visibility)
+            save.confirm();assertEquals(ExportOptions(format,83,true),chosen)
+            val export=SaveOptionsDialog(activity,ExportOptions(format,83,true),confirm={chosen=it.options},cancel={},export=true).show();idle()
+            assertEquals(View.GONE,export.lossless().visibility);assertEquals(View.VISIBLE,export.quality().visibility)
+            export.quality().slider.progress=26;export.confirm();assertEquals(ExportOptions(format,27,false),chosen)
         }
     }
 
     @Test fun tiffCompressionPersistsAcrossDialogChoicesAndDibHasNoLossyControls() {
         menu("Save as…")
         var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.format().setSelection(ImageFormat.TIFF.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF);idle()
         val compression=dialog.window!!.decorView.findViewWithTag<CheckBox>("export_tiff_compressed")
         assertEquals(View.VISIBLE,compression.visibility);assertTrue(compression.isChecked)
         assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
         compression.performClick()
-        dialog.format().setSelection(ImageFormat.DIB.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.DIB);idle()
         assertEquals(View.GONE,compression.visibility)
         assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)
-        dialog.format().setSelection(ImageFormat.TIFF.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF);idle()
         assertFalse(compression.isChecked)
         dialog.window!!.decorView.findViewWithTag<EditText>("export_filename").setText("scan.TIFF")
         dialog.confirm()
@@ -196,9 +165,9 @@ class ExportFormatDialogTest {
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
         menu("Save as…")
         dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        assertEquals("TIFF",dialog.format().selectedItem.toString())
+        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF)
         assertFalse(dialog.window!!.decorView.findViewWithTag<CheckBox>("export_tiff_compressed").isChecked)
-        dialog.format().setSelection(ImageFormat.DIB.ordinal);idle();dialog.confirm()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.DIB);idle();dialog.confirm()
         launch=shadowOf(activity).nextStartedActivityForResult
         assertEquals("image/x-dib",launch.intent.type)
         assertTrue(launch.intent.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".dib"))
@@ -207,31 +176,31 @@ class ExportFormatDialogTest {
     }
 
     @Test fun iconAndAsciiOptionsAreSpecificToTheirFormatAndSurviveReopening() {
-        menu("Save as…")
+        menu("Export as…")
         var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.format().setSelection(ImageFormat.ICO.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.ICO);idle()
         val icon=dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size")
         val iconControls=dialog.window!!.decorView.findViewWithTag<View>("export_ico_controls")
         val asciiControls=dialog.window!!.decorView.findViewWithTag<View>("export_ascii_controls")
         assertEquals(View.VISIBLE,iconControls.visibility);assertEquals(View.GONE,asciiControls.visibility)
         assertEquals(View.GONE,dialog.quality().visibility);icon.setSelection(3);idle()
-        dialog.format().setSelection(ImageFormat.ASCII_ART.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.ASCII_ART);idle()
         assertEquals(View.GONE,iconControls.visibility);assertEquals(View.VISIBLE,asciiControls.visibility)
         val columns=dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns")
         columns.slider.progress=80
         dialog.window!!.decorView.findViewWithTag<CheckBox>("export_ascii_invert").performClick()
-        dialog.format().setSelection(ImageFormat.BASE64.ordinal);idle()
-        assertEquals(View.GONE,asciiControls.visibility);assertEquals(View.GONE,dialog.quality().visibility)
+        EditorTestNavigation.format(dialog.format(),ImageFormat.JPEG);idle()
+        assertEquals(View.GONE,asciiControls.visibility);assertEquals(View.VISIBLE,dialog.quality().visibility)
         dialog.window!!.decorView.findViewWithTag<EditText>("export_filename").setText("Drawing.TXT")
         dialog.confirm()
         val launch=shadowOf(activity).nextStartedActivityForResult
-        assertEquals("text/plain",launch.intent.type);assertEquals("Drawing.txt",launch.intent.getStringExtra(Intent.EXTRA_TITLE))
+        assertEquals("image/jpeg",launch.intent.type);assertEquals("Drawing.jpg",launch.intent.getStringExtra(Intent.EXTRA_TITLE))
         shadowOf(activity).nextStartedActivity
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
-        menu("Save as…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.format().setSelection(ImageFormat.ICO.ordinal);idle()
+        menu("Export as…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        EditorTestNavigation.format(dialog.format(),ImageFormat.ICO);idle()
         assertEquals("48 × 48",dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").selectedItem.toString())
-        dialog.format().setSelection(ImageFormat.ASCII_ART.ordinal);idle()
+        EditorTestNavigation.format(dialog.format(),ImageFormat.ASCII_ART);idle()
         assertEquals(80,dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns").slider.progress)
         assertTrue(dialog.window!!.decorView.findViewWithTag<CheckBox>("export_ascii_invert").isChecked)
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();idle()
@@ -240,9 +209,9 @@ class ExportFormatDialogTest {
     @Test fun changingFromLosslessWebpToHeicShowsNumericQualityAndNeverClaimsLosslessHeic() {
         var selected: ExportOptions? = null
         val dialog = SaveOptionsDialog(activity, ExportOptions(ImageFormat.WEBP, 95, true), true,
-            confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") }).show()
+            confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") },export=true).show()
         idle()
-        dialog.format().setSelection(ImageFormat.HEIC.ordinal)
+        EditorTestNavigation.format(dialog.format(),ImageFormat.HEIC)
         idle()
         assertEquals(View.GONE, dialog.lossless().visibility)
         assertEquals(View.VISIBLE, dialog.quality().visibility)
@@ -266,15 +235,15 @@ class ExportFormatDialogTest {
     @Test fun pngHidesQualityAndJpegKeepsItWithoutOfferingLossless() {
         var selected: ExportOptions? = null
         val dialog = SaveOptionsDialog(activity, ExportOptions(ImageFormat.JPEG, 74, true), true,
-            confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") }).show()
+            confirm = { selected = it.options }, cancel = { fail("Unexpected cancellation") },export=true).show()
         idle()
         assertEquals(View.GONE, dialog.lossless().visibility)
         assertEquals(View.VISIBLE, dialog.quality().visibility)
-        dialog.format().setSelection(ImageFormat.PNG.ordinal)
+        EditorTestNavigation.format(dialog.format(),ImageFormat.PNG)
         idle()
         assertEquals(View.GONE, dialog.lossless().visibility)
         assertEquals(View.GONE, dialog.quality().visibility)
-        dialog.format().setSelection(ImageFormat.JPEG.ordinal)
+        EditorTestNavigation.format(dialog.format(),ImageFormat.JPEG)
         idle()
         assertEquals(73, dialog.quality().slider.progress)
         dialog.confirm()
@@ -288,7 +257,7 @@ class ExportFormatDialogTest {
 
     private fun renderSavePanel(name: String,width: Int,height: Int) {
         val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.JPEG,91,false),
-            confirm={},cancel={},initialFilename="Sunday sketch.jpg").show();idle()
+            confirm={},cancel={},initialFilename="Sunday sketch.jpg",export=true).show();idle()
         val view=dialog.window!!.decorView
         view.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.AT_MOST))
         view.layout(0,0,view.measuredWidth,view.measuredHeight)

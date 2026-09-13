@@ -46,9 +46,9 @@ object LegalInfo {
 
             The rounded paintbrush launcher and coral/blue paint stroke are original vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. The optional online Catrobat gallery retains its CC BY-SA 4.0 source and licence credits under Image credits; no gallery image is bundled in the app.
 
-            Common UI translations: Catrobat/Paintroid translators and contributors, AGPL-3.0-or-later. The exact upstream revision, unchanged translation source files and reused-key mapping are preserved under translations in the corresponding source. Untranslated terms fall back to English.
+            Common UI translations: Android Open Source Project (Apache-2.0), with pinned Android 15 action vocabulary, and Catrobat/Paintroid translators and contributors, AGPL-3.0-or-later. The exact upstream revision, unchanged translation source files and reused-key mapping are preserved under translations in the corresponding source. Untranslated terms fall back to English.
 
-            Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho and Anonymous Pro, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
+            Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho, Anonymous Pro and Noto Sans Mongolian, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
             JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. WebP uses libwebp 1.6.0 and SharpYUV by Google and the WebP project contributors under BSD-3-Clause, with its patent grant and the Android NDK CPU-features Apache-2.0 notice.
 
@@ -58,7 +58,7 @@ object LegalInfo {
 
             BMP, DIB and GIF encoders are original AN Paint code under AGPL-3.0-or-later. The Graphics Interchange Format and GIF Service Mark belong to CompuServe Incorporated. Format details and this acknowledgement are also in Image codec licences.
 
-            Complete corresponding source and build scripts are bundled in this APK. Help > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
+            Complete corresponding source and build scripts are bundled in this APK. File > About, licences & credits > Export this version's source code saves the ZIP offline. Public repository: https://github.com/c933103/AN-Paint
         """.trimIndent()
     }
     fun buildAboutDialog(activity: Activity): Dialog = termsDialog(activity,ui(R.string.ui_about_copyright_licence),aboutText(activity))

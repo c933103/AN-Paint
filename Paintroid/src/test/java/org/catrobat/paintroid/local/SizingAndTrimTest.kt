@@ -21,7 +21,6 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
-import org.robolectric.shadows.ShadowPopupMenu
 import java.io.File
 
 @RunWith(RobolectricTestRunner::class)
@@ -44,7 +43,7 @@ class SizingAndTrimTest {
         while (activity.busy && System.nanoTime()<end) { shadowOf(Looper.getMainLooper()).idle(); Thread.sleep(10) }
         controller.destroy()
     }
-    private fun click(tag: String) { activity.window.decorView.findViewWithTag<View>(tag).performClick(); shadowOf(Looper.getMainLooper()).idle() }
+    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }
     private fun drag(from: PointF,to: PointF) {
         for ((action,p) in listOf(MotionEvent.ACTION_DOWN to from,MotionEvent.ACTION_MOVE to to,MotionEvent.ACTION_UP to to)) {
             val e = MotionEvent.obtain(0,20,action,p.x,p.y,0); assertTrue(activity.paintCanvas.dispatchTouchEvent(e)); e.recycle()
@@ -70,7 +69,7 @@ class SizingAndTrimTest {
         for (invalid in listOf("0","-1","NaN","1e200","")) { controls.widthInput.setText(invalid); assertNull(invalid,controls.dimensions) }
     }
     @Test fun resizeAndCanvasSizeDialogsSupportPercentAndOptionalRatioLock() {
-        click("menu_Image"); ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(1,0); shadowOf(Looper.getMainLooper()).idle()
+        EditorTestNavigation.command(activity,"Edit",5); shadowOf(Looper.getMainLooper()).idle()
         var dialog = ShadowAlertDialog.getLatestAlertDialog() as android.app.AlertDialog
         val root = dialog.window!!.decorView
         root.findViewWithTag<View>("size_percent").performClick(); root.findViewWithTag<android.widget.EditText>("size_width").setText("50")
@@ -78,7 +77,7 @@ class SizingAndTrimTest {
         dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
         assertEquals(100,activity.document.bitmap.width); assertEquals(50,activity.document.bitmap.height)
         activity.document.bitmap.setPixel(8,9,0xff00ff00.toInt())
-        click("menu_Image"); ShadowPopupMenu.getLatestPopupMenu().menu.performIdentifierAction(2,0); shadowOf(Looper.getMainLooper()).idle()
+        EditorTestNavigation.command(activity,"Edit",3); shadowOf(Looper.getMainLooper()).idle()
         dialog = ShadowAlertDialog.getLatestAlertDialog() as android.app.AlertDialog
         dialog.window!!.decorView.findViewWithTag<View>("size_percent").performClick()
         assertFalse(dialog.window!!.decorView.findViewWithTag<CheckBox>("size_lock").isChecked)
@@ -144,7 +143,7 @@ class SizingAndTrimTest {
         assertTrue(root.findViewWithTag<View>("undo").isEnabled)
         click("undo"); assertNull(canvas.trim); assertEquals(200,doc.bitmap.width)
         assertFalse(root.findViewWithTag<View>("undo").isEnabled)
-        assertNotNull(root.findViewWithTag<View>("clipboard_row_0"))
+        assertNotNull(root.findViewWithTag<View>("quick_actions"))
         click("trim_canvas"); drag(canvas.toScreen(0f,0f),canvas.toScreen(-15f,-20f)); click("trim_cancel")
         assertEquals(200,doc.bitmap.width); assertEquals(100,doc.bitmap.height); assertFalse(doc.canUndo)
     }
@@ -179,8 +178,8 @@ class SizingAndTrimTest {
         fun undoEnabled()=root.findViewWithTag<View>("undo").isEnabled
         fun redoEnabled()=root.findViewWithTag<View>("redo").isEnabled
         assertFalse(undoEnabled()); assertFalse(redoEnabled())
-        click("menu_Edit"); assertFalse(ShadowPopupMenu.getLatestPopupMenu().menu.findItem(0).isEnabled)
-        drag(canvas.toScreen(10f,10f),canvas.toScreen(60f,20f)); assertTrue(undoEnabled())
+        assertFalse(activity.window.decorView.findViewWithTag<View>("undo").isEnabled)
+        click("tool_PENCIL");drag(canvas.toScreen(10f,10f),canvas.toScreen(60f,20f)); assertTrue(undoEnabled())
         click("undo"); assertFalse(undoEnabled()); assertTrue(redoEnabled())
         click("redo"); assertTrue(undoEnabled()); assertFalse(redoEnabled())
         click("undo")

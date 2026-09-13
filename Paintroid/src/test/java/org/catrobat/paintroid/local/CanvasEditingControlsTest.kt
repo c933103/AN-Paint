@@ -44,12 +44,7 @@ class CanvasEditingControlsTest {
         doc.newImage(240,240);canvas.fit();settle()
     }
     @After fun stop() { controller.pause().stop();waitIo();controller.destroy() }
-    private fun click(tag: String) {
-        val control=view<View>(tag)
-        if (control is CompoundButton) { val checked=control.isChecked;control.performClick();assertEquals(!checked,control.isChecked) }
-        else assertTrue(control.performClick())
-        settle()
-    }
+    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }
     private fun event(action: Int,point: PointF) {
         val p=canvas.toScreen(point.x,point.y)
         clock+=20;if (action==MotionEvent.ACTION_DOWN) downTime=clock

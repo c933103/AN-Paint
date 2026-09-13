@@ -19,6 +19,7 @@ enum class ImageFormat(private val displayLabel: String,val mime: String,val ext
     ASCII_ART("ASCII art","text/plain",".txt");
     val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}
     val supportsQuality: Boolean get() = this in listOf(JPEG,JPEG_XL,WEBP,HEIC,AVIF)
+    val canSaveLosslessly: Boolean get() = this in listOf(PNG,JPEG_XL,WEBP,AVIF,BMP,DIB,TIFF,BASE64)
     val isDerivedExport: Boolean get() = this == ICO || this == ASCII_ART
 }
 data class ExportOptions(val format: ImageFormat=ImageFormat.PNG,val quality: Int=95,val lossless: Boolean=true,val dither: Boolean=true,val tiffCompressed: Boolean=true,
@@ -41,10 +42,12 @@ object ExportNames {
 /** One options panel precedes Android's destination picker for every Save as format. */
 class SaveOptionsDialog(private val activity: Activity,private val initial: ExportOptions,
     private val share: Boolean=false,private val confirm: (SaveRequest)->Unit,private val cancel: ()->Unit,
-    private val initialFilename: String="") {
+    private val initialFilename: String="", private val export: Boolean=false) {
     fun show(): AlertDialog {
-        var format=initial.format;var quality=initial.quality;var lossless=initial.lossless
+        val formats=ImageFormat.values().filter {if(share) true else if(export) it.supportsQuality || it in listOf(ImageFormat.GIF,ImageFormat.ICO,ImageFormat.ASCII_ART) else it.canSaveLosslessly}
+        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality;var lossless=if(share) initial.lossless else !export
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
+        body.addView(TextView(activity).apply {text=ui(if(export) R.string.ui_export_explanation23 else R.string.ui_save_explanation23)})
         body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})
         val filename=EditText(activity).apply {
             tag="export_filename";setSingleLine(true)
@@ -80,7 +83,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         val explanation=TextView(activity).apply {tag="export_description"}
         fun update() {
             losslessBox.text=ui(R.string.ui_lossless_format,format.label)
-            losslessBox.visibility=if(format.supportsLossless) View.VISIBLE else View.GONE
+            losslessBox.visibility=if(share && format.supportsLossless) View.VISIBLE else View.GONE
             slider.visibility=if(format.supportsQuality && !(format.supportsLossless && lossless)) View.VISIBLE else View.GONE
             ditherBox.visibility=if(format==ImageFormat.GIF) View.VISIBLE else View.GONE
             tiffCompressionBox.visibility=if(format==ImageFormat.TIFF) View.VISIBLE else View.GONE
@@ -99,22 +102,23 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             })
             explanation.visibility=if(format==ImageFormat.PNG) View.GONE else View.VISIBLE
         }
+        losslessBox.setOnCheckedChangeListener {_,checked ->lossless=checked;update()}
         body.addView(Spinner(activity).apply {
             tag="export_format";contentDescription=ui(R.string.save20_file_format)
-            adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,ImageFormat.values().map {it.label})
-            setSelection(format.ordinal)
+            adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,formats.map {it.label})
+            setSelection(formats.indexOf(format))
             onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?)=Unit
                 override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
-                    format=ImageFormat.values()[position]
+                    format=formats[position]
                     if(filename.text.isNotBlank()) filename.setText(ExportNames.withExtension(filename.text.toString(),format))
                     update()
                 }
             }
         },LinearLayout.LayoutParams(-1,-2))
         body.addView(losslessBox);body.addView(slider);body.addView(ditherBox);body.addView(tiffCompressionBox);body.addView(iconControls);body.addView(asciiControls);body.addView(explanation)
-        losslessBox.setOnCheckedChangeListener {_,checked -> lossless=checked;update()};update()
-        val dialog=AlertDialog.Builder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(R.string.save20_title))
+        update()
+        val dialog=AlertDialog.Builder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
             .setView(ScrollView(activity).apply {addView(body)})
             .setPositiveButton(ui(R.string.ui_choose_location),null)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()
