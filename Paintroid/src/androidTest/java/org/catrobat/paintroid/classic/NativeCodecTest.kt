@@ -77,8 +77,9 @@ class NativeCodecTest {
     }
     @Test fun everyAdvertisedBundledFontLoadsItsActualFontFile() {
         val catalog=FontCatalog(context)
-        assertEquals(19,catalog.fonts.size)
-        assertEquals(10,catalog.fonts.count {it.asset!=null})
+        assertEquals(20,catalog.fonts.size)
+        assertEquals(11,catalog.fonts.count {it.asset!=null})
+        assertTrue(catalog.fonts.any {it.asset=="fonts/notosansmongolian.ttf"})
         catalog.fonts.forEachIndexed {index,font ->
             assertNotNull(font.name,catalog.face(index))
             font.asset?.let {path -> assertTrue(context.assets.open(path).use {it.readBytes()}.size>1000)}

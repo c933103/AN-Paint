@@ -221,7 +221,7 @@ produce incorrect output. This does not reproduce the source's HDR display
 brightness. Memory admission and resize prompts account for high-precision and
 colour-conversion buffers as well as the current document.
 
-Full dependency notices and exact source locators are available in Help and in
+Full dependency notices and exact source locators are available in File > About and in
 `Paintroid/src/main/assets/legal/`. Fetch scripts under `tools/` reproduce each
 native source revision; the build does not download precompiled codec binaries.
 

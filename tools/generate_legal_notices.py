@@ -18,7 +18,7 @@ notice = ["""AN Paint — third-party copyright and licence notices
 Derived from Paintroid: Copyright (C) 2010–2022 The Catrobat Team and
 contributors. GNU AGPL version 3 or any later version. Original per-file notices
 remain in the corresponding source, bundled in this APK. Full AGPL text is under
-Help. AN Paint modifications are dated 7–12 September 2026.
+File > About. AN Paint modifications are dated 7–13 September 2026.
 
 The consolidated editor uses a local scanline fill implementation. The original
 editor, colour-picker module, project-file libraries and legacy artwork have
@@ -44,7 +44,7 @@ BMP, DIB and GIF encoders are original AN Paint code under AGPL-3.0-or-later.
 The Graphics Interchange Format and GIF Service Mark belong to CompuServe
 Incorporated. Format notices are included below and under Image codec licences.
 
-Ten unmodified fonts are bundled under SIL OFL-1.1, with complete notices below.
+Eleven unmodified fonts are bundled under SIL OFL-1.1, with complete notices below.
 System fonts and platform widget artwork are supplied by the Android device;
 see its open-source licences for their exact files and authors.
 
