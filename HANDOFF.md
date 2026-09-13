@@ -1,7 +1,11 @@
-# AN Paint local.22
+# AN Paint 0.0.22
 
 Updated 13 September 2026. Package `paint.anpaint.android`, version
-`2.14.1-local.22`, version code `75`.
+`0.0.22`, version code `75`.
+
+This release changes the displayed version from `2.14.1-local.22` to `0.0.22`.
+The package, version code, signing key and application behavior are unchanged.
+It can replace the local.22 development build with the same signing key.
 
 Local.22 completes DIB/TIFF support and adds ICO and Base64 text opening/saving,
 ASCII text export, PDF raster import, PDF/TIFF page selection and animated-image
@@ -66,9 +70,11 @@ Release verification is in progress. The final signed APK report will be recorde
 
 The implementation entries above are not Android test results. API 35 checks
 run independently of APK delivery; API 30 is a separate optional matrix choice.
-Previous delivery reports are in verification/HANDOFF_LOCAL20.md and
-verification/HANDOFF_LOCAL21.md. Their results must not be reported as fresh
-verification of local.22.
+Previous delivery reports are in verification/HANDOFF_LOCAL20.md,
+verification/HANDOFF_LOCAL21.md and verification/HANDOFF_LOCAL22.md. Local.22
+passed 221 regression tests, 77 API 35 tests and lint with zero errors/warnings.
+Those results precede this version-name change and must not be reported as fresh
+verification of 0.0.22.
 
 ## Remaining verification boundaries
 

@@ -1,6 +1,6 @@
 # AN Paint
 
-> Local.22 adds DIB/TIFF/ICO/Base64 support, ASCII export, PDF raster import, PDF/TIFF page selection and animated-image warnings. It retains the corrected Japanese flip labels and all local.20 interface improvements. Package `paint.anpaint.android` updates local.20–local.21 in place with the same signing key. See [HANDOFF.md](HANDOFF.md) for actual build verification.
+> Version 0.0.22 renames the local.22 release, retaining DIB/TIFF/ICO/Base64 support, ASCII export, PDF raster import, PDF/TIFF page selection, animated-image warnings, corrected Japanese flip labels and all local.20 interface improvements. Package `paint.anpaint.android` and version code 75 remain unchanged. See [HANDOFF.md](HANDOFF.md) for actual build verification.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -38,8 +38,9 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`2.14.1-local.22` updates local.20 and local.21 in place when signed with the same
-key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.22` is the renamed `2.14.1-local.22` release, with the same version code `75`.
+It can replace local.22 and updates local.20 and local.21 in place when signed with
+the same key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
