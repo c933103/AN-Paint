@@ -171,7 +171,7 @@ regressions/lint and instrumentation compile against the release variant.
 The shipped manifest is not debuggable. Code shrinking is disabled in both
 modules, so the tested Java/Kotlin code is preserved. Native release compilation
 uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
-its x86 inline assembly; strict C11 inherited from libjxl did not compile it.
+its x86 inline assembly; strict C11 inherited from AOM did not compile it.
 Dependency notices use the selected variant's actual runtime dependencies.
 
 GitHub release publication is a separate workflow triggered by a reviewed
@@ -187,3 +187,11 @@ a draft release, and publishes it. This uses the repository-scoped Actions token
 with contents-write and actions-read permissions; routine build jobs remain read-only.
 See [GitHub token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token)
 and [release API](https://docs.github.com/en/rest/releases/releases#create-a-release).
+
+The first universal release attempt passed regression/lint but failed to compile
+libheif's C++ file streams on 32-bit API 21. AOM's CMake flag helper uses
+`CACHE ... FORCE`, adding `_FILE_OFFSET_BITS=64` to shared release flags. Those
+stdio aliases need API 24 on 32-bit Android. The libheif target now explicitly
+undefines that inherited macro on 32-bit API levels below 24; its bounded in-memory
+image import/export API remains unchanged. The targeted compile check covers both
+armeabi-v7a and x86. The original native source trees remain unchanged.

@@ -36,7 +36,8 @@ function(anpaint_add_generic_aom)
   endforeach()
 endfunction()
 
-# Scope vendor CMake options and checks so they do not alter JPEG XL targets.
+# Group the HEIF family in a normal-variable scope. Vendor cache writes still
+# need explicit isolation or target overrides, as documented below.
 function(anpaint_add_heif)
   set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
   set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
@@ -59,7 +60,7 @@ function(anpaint_add_heif)
   configure_file(${KVZ_ROOT}/src/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/kvazaar-generated/version.h @ONLY)
   add_library(anpaint_kvazaar STATIC ${kvz_sources} ${kvz_strategies} ${KVZ_ROOT}/src/extras/libmd5.c)
   # Kvazaar's x86 CPU feature detection uses GNU inline asm. Request its
-  # dialect explicitly; libjxl otherwise leaves strict C11 flags in this scope.
+  # dialect explicitly; AOM otherwise leaves strict C11 flags in the CMake cache.
   set_target_properties(anpaint_kvazaar PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED YES C_EXTENSIONS ON)
   target_compile_definitions(anpaint_kvazaar PRIVATE CMAKE_BUILD KVZ_DLL_EXPORTS)
   target_include_directories(anpaint_kvazaar PUBLIC ${KVZ_ROOT}/src PRIVATE ${KVZ_ROOT}/src/extras ${KVZ_ROOT}/src/strategies ${CMAKE_CURRENT_BINARY_DIR}/kvazaar-generated)
@@ -103,6 +104,13 @@ function(anpaint_add_heif)
   set(ENABLE_MULTITHREADING_SUPPORT OFF CACHE BOOL "" FORCE)
   add_subdirectory(${HEIF_SOURCES}/libheif heif EXCLUDE_FROM_ALL)
   target_include_directories(heif PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/de265)
+  # AOM adds _FILE_OFFSET_BITS=64 to CMake's shared release flags. Android's
+  # 32-bit stdio replacements require API 24; the app supports API 21. Use
+  # the platform's default file offsets in libheif's C++ stream implementation.
+  # AN Paint itself passes bounded image buffers to libheif's memory API.
+  if(ANDROID AND CMAKE_SIZEOF_VOID_P EQUAL 4 AND CMAKE_SYSTEM_VERSION LESS 24)
+    target_compile_options(heif PRIVATE -U_FILE_OFFSET_BITS)
+  endif()
 
   add_library(anpaint_heif SHARED ${CMAKE_CURRENT_LIST_DIR}/heif_bridge.cpp)
   target_include_directories(anpaint_heif PRIVATE ${HEIF_SOURCES}/libheif/libheif/api ${CMAKE_CURRENT_BINARY_DIR}/heif)
