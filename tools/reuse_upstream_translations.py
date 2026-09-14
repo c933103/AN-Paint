@@ -37,12 +37,18 @@ def qualifier_and_tag(qualifier):
     return qualifier, tag
 
 
+def qualifier_for_tag(tag):
+    """Use an unambiguous Android BCP-47 directory for a language tag."""
+    return "values-b+" + tag.replace("-", "+")
+
+
 def generate():
     index = json.loads((DATA / "upstream-index.json").read_text())
     mapping = json.loads((DATA / "common-terms.json").read_text())
     base = read_strings(DATA / "upstream/values.xml")
     android = json.loads((DATA / "android-actions.json").read_text())["locales"]
     reviewed = json.loads((DATA / "reviewed-actions.json").read_text())["locales"]
+    local = json.loads((DATA / "local-translations.json").read_text())
     defaults = {}
     for path in sorted((RES / "values").glob("*.xml")):
         defaults.update(read_strings(path))
@@ -74,6 +80,7 @@ def generate():
         android_terms = android.get(tag, {}).get("strings", {})
         terms.update(android_terms)
         terms.update(reviewed.get(tag, {}))
+        terms.update(local.get(tag, {}))
         if normal(terms.get("ui_discard", "")) == normal(terms.get("ui_cancel", "")):
             terms["ui_discard"] = "Discard changes"
         terms["ui_discard_changes23"] = terms.get("ui_discard_changes23", terms.get("ui_discard", "Discard changes"))
@@ -107,18 +114,47 @@ def generate():
                 value = value.replace("'", "\\'") if "\\'" not in value else value
                 lines.append(f'    <string name="{key}">{escape(value)}</string>')
             lines += ['</resources>', '']
-            target = RES / output_qualifier / "strings_upstream.xml"
+            target = RES / output_qualifier / "strings.xml"
             results[target] = "\n".join(lines)
             record["generated_resource"] = str(target.relative_to(ROOT))
         coverage.append(record)
     # Additional locally maintained script/locale foundations.
     for qualifier, tag in (("values-b+lzh+Hant", "lzh-Hant"), ("values-b+mn+Mong", "mn-Mong"), ("values-zh-rHK", "zh-HK"), ("values-b+mn+Cyrl+MN", "mn-Cyrl-MN")):
-        path = RES / qualifier / "strings23.xml"
-        if not path.is_file():
-            raise ValueError(f"Missing local translation foundation: {path}")
         tags.append(tag)
+        lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                 '<!-- Locally maintained translation foundation; see translations/README.md. -->',
+                 '<resources>']
+        for key, value in local[tag].items():
+            value = value.replace("'", "\\'") if "\\'" not in value else value
+            lines.append(f'    <string name="{key}">{escape(value)}</string>')
+        results[RES / qualifier / "strings.xml"] = '\n'.join(lines + ['</resources>', ''])
     catalogue = json.loads((DATA / "language-options.json").read_text())
     options = {item["tag"]: item for item in catalogue["options"]}
+    basic = json.loads((DATA / "basic-translations.json").read_text())
+    for tag, terms in basic.items():
+        if tag in tags:
+            raise ValueError(f"Basic translation duplicates an existing catalogue: {tag}")
+        if tag not in options:
+            raise ValueError(f"Basic translation is not offered: {tag}")
+        if not terms or any(not value.strip() for value in terms.values()):
+            raise ValueError(f"Basic translation is empty: {tag}")
+        tags.append(tag)
+        lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                 '<!-- Starter translation; native-speaker review is welcome. See translations/README.md. -->',
+                 '<resources>']
+        for key, value in terms.items():
+            if key not in defaults:
+                raise ValueError(f"Unknown basic translation resource: {tag}/{key}")
+            value = value.replace("'", "\\'") if "\\'" not in value else value
+            lines.append(f'    <string name="{key}">{escape(value)}</string>')
+        target = RES / qualifier_for_tag(tag) / "strings.xml"
+        results[target] = '\n'.join(lines + ['</resources>', ''])
+        for record in coverage:
+            if record["language_tag"] == tag:
+                record["starter_translation_entries"] = len(terms)
+                record["entries_different_from_upstream_english"] += len(terms)
+                record["generated_resource"] = str(target.relative_to(ROOT))
+                break
     translated = set(tags)
     for tag, item in options.items():
         if not item.get("name_only") and item.get("translation_base", tag) not in translated:
@@ -131,7 +167,7 @@ def generate():
     # New regional English choices inherit the same UI, with explicit spelling
     # rather than depending on Android's region fallback order.
     english_overrides = {node.get("name") for q in ("values-en-rAU", "values-en-rCA", "values-en-rGB")
-                         for node in ET.fromstring(results[RES / q / "strings_upstream.xml"])}
+                         for node in ET.fromstring(results[RES / q / "strings.xml"])}
     for tag, qualifier in (("en-001", "values-b+en+001"), ("en-US", "values-en-rUS"),
                            ("en-SG", "values-en-rSG"), ("en-IN", "values-en-rIN")):
         lines = ['<?xml version="1.0" encoding="utf-8"?>',
@@ -146,7 +182,7 @@ def generate():
                 value = re.sub(r'(?i)\b(?:water)?colou?rs?\b', spelling, value)
                 value = value.replace("'", "\\'") if "\\'" not in value else value
                 lines.append(f'    <string name="{key}">{escape(value)}</string>')
-        results[RES / qualifier / "strings_english.xml"] = '\n'.join(lines + ['</resources>', ''])
+        results[RES / qualifier / "strings.xml"] = '\n'.join(lines + ['</resources>', ''])
     results[DATA / "coverage.json"] = json.dumps({"revision": index["revision"],
         "mapped_common_terms": len(mapping), "offered_language_count_including_english": len(tags),
         "name_only_options": [tag for tag in tags if options[tag].get("name_only")],
@@ -158,7 +194,6 @@ def generate():
         '    </string-array>\n</resources>\n')
     arrays = {
         "app_language_names": [options[tag]["name"] for tag in tags],
-        "app_language_name_only": [tag for tag in tags if options[tag].get("name_only")],
         "app_language_aliases": list(catalogue["aliases"]),
         "app_language_alias_targets": list(catalogue["aliases"].values()),
     }

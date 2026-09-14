@@ -62,7 +62,7 @@ class AppLanguageTest {
         assertEquals(org.catrobat.paintroid.classic.TextDirection.HORIZONTAL,org.catrobat.paintroid.classic.VerticalText.uiDirection())
     }
 
-    @Test fun regionalLabelsLegacyMigrationsAndNameOnlyChoicesUseTheIntendedFallback() {
+    @Test fun regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues() {
         val tags=AppLanguage.tags(context)
         assertTrue(tags.containsAll(listOf("en-001","en-US","en-SG","en-IN","es-ES","es-419","ko-KR","ko-KP","pt-PT")))
         assertFalse(tags.any {it in listOf("en","es","ko","pt","nan-TW-Hant","nan-TW-Latn")})
@@ -73,16 +73,21 @@ class AppLanguageTest {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val nameOnly=context.resources.getStringArray(R.array.app_language_name_only)
-        assertEquals(30,nameOnly.size)
-        for(tag in nameOnly) {
+        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tai","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        assertEquals(30,starterTags.size)
+        for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
             AppLanguage.select(context,tag)
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
+            assertNotEquals(
+                listOf("Brush","Save","Cancel"),
+                listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel)),
+            )
         }
         AppLanguage.select(context,"en-US")
         assertEquals("Add color",AppLanguage.wrap(context).getString(R.string.ui_add_colour26))

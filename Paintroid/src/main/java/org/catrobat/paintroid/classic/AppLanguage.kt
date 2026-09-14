@@ -60,18 +60,14 @@ internal object AppLanguage {
     fun locale(context: Context): Locale = selectedTag(context).takeIf { it.isNotEmpty() }
         ?.let(Locale::forLanguageTag) ?: deviceLocale(context)
 
-    private fun resourceLocale(context: Context,chosen: Locale): Locale =
-        if(chosen.toLanguageTag() in context.resources.getStringArray(R.array.app_language_name_only)) Locale.forLanguageTag("en-001") else chosen
-
     fun wrap(context: Context): Context {
         val chosen = locale(context)
-        val translated = resourceLocale(context,chosen)
         // An override is a delta: copying the current screen configuration would
         // pin orientation, window size and font scale for this context's lifetime.
         val config = Configuration().apply {
             fontScale = 0f
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(translated)) else setLocale(translated)
-            setLayoutDirection(translated)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
         }
         Locale.setDefault(chosen)
         return context.createConfigurationContext(config)
@@ -81,10 +77,9 @@ internal object AppLanguage {
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
         val chosen = locale(activity)
-        val translated = resourceLocale(activity,chosen)
         val config = Configuration(configuration).apply {
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(translated)) else setLocale(translated)
-            setLayoutDirection(translated)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
         }
         activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
         PaintApplication.currentResources = activity.resources
