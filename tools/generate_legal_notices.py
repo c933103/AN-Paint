@@ -18,7 +18,20 @@ notice = ["""AN Paint — third-party copyright and licence notices
 Derived from Paintroid: Copyright (C) 2010–2022 The Catrobat Team and
 contributors. GNU AGPL version 3 or any later version. Original per-file notices
 remain in the corresponding source, bundled in this APK. Full AGPL text is under
-File > About. AN Paint modifications are dated 7–13 September 2026.
+File > About. AN Paint modifications are dated 7–14 September 2026.
+
+Cursor outline drawing is adapted directly from Catrobat Paintroid CursorTool
+at revision 853ce3c346910ea73aa4de5514f2a76ace1396fb (AGPL-3.0-or-later).
+Its circle/square outlines and alternating crosshair segments are preserved.
+The cursor drawing toggle and circular zoom window follow CursorTool and
+DefaultZoomWindowController at that revision, integrated with AN Paint's
+bitmap, gesture history and viewport. See docs/CURSOR_UPSTREAM.md in source.
+
+Ainu Brush, Save and Done vocabulary: Aynumosir and the minecraft-ainu
+localization contributors, revision 7156800b104515c0ddcc6b36fed7477f63444604.
+https://github.com/aynumosir/minecraft-ainu
+Selected lexical terms; capitalization adapted and kana checked with that
+project's ainu-utils converter. See translations/README.md for exact entries.
 
 The consolidated editor uses a local scanline fill implementation. The original
 editor, colour-picker module, project-file libraries and legacy artwork have
