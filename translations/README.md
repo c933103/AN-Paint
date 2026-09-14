@@ -1,7 +1,7 @@
 # Reused Paintroid vocabulary
 
-AN Paint's View → Languages offers device default and 104 language/region/
-script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary. Ainu and the Tai language collection remain name-only choices. This is partial vocabulary reuse, not a claim
+AN Paint's View → Languages offers device default and 105 language/region/
+script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary, and the two Ainu script choices have Brush, Save and Done. The Tai language collection remains name-only pending selection of a specific Tai language. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
 
@@ -140,3 +140,24 @@ The Cantonese Latin Save label is corrected to `Cyu5 cyun4` (儲存); compare
 [CantoneseClass101's own vocabulary explanation](https://www.cantoneseclass101.com/lesson/lower-intermediate-10-you-really-need-a-chinese-bank-account).
 These corrections and automated checks do not certify every starter translation;
 shared written forms and remaining vocabulary still need native-speaker review.
+
+
+## Ainu script catalogues (0.0.29)
+
+`ain-Latn` and `ain-Kana` replace the unscripted `ain` option, which migrates to
+`ain-Latn`. Their names are Aynu itak and アイヌ イタㇰ. Three starter labels use
+existing community vocabulary from [aynumosir/minecraft-ainu at 7156800](https://github.com/aynumosir/minecraft-ainu/blob/7156800b104515c0ddcc6b36fed7477f63444604/pack/assets/minecraft/lang/ain_latn.json):
+Brush (`item.minecraft.brush`) → Hunte / フンテ;
+Save (`mco.configure.world.buttons.save`) → Ukaosmare / ウカオㇱマレ;
+Done (`gui.done`) → Okere / オケレ.
+The source blob is `13dad2e29e9d05d32ea37a5dd8b2260a20d974ba`.
+Initial capitalization follows the menu style. Kana output was checked with the
+same `ainu-utils` 0.5.0 conversion used by that localization's build script.
+Credit: Aynumosir and its Ainu localization contributors. These are selected
+lexical labels, not a copy of its software or a complete translation. Cancel
+and other unverified entries continue to fall back to English.
+
+`tai` still denotes the entire Tai language collection, not one translatable
+language. No Thai vocabulary is silently substituted. A specific member language
+must be selected before supplying its catalogue; Thai, Lao, Shan and Zhuang
+already have their own independently selectable entries.

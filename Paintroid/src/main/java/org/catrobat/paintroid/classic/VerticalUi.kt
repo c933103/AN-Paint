@@ -20,12 +20,12 @@ import kotlin.math.ceil
 /** Vertical controls use columns and intrinsic sizes, not the horizontal layout's fixed rectangles. */
 internal object VerticalUi {
     private fun dp(view: View,n: Int)=(n*view.resources.displayMetrics.density+.5f).toInt()
-    private class Caption(private val value: String,private val height: Float,private val direction: TextDirection,private val font: android.graphics.Typeface?=null): ReplacementSpan() {
+    private class Caption(private val value: String,private val height: Float,private val direction: TextDirection,private val font: android.graphics.Typeface?=null,private val verticalPadding: Int=0): ReplacementSpan() {
         private fun styled(paint: Paint)=if(font==null) paint else Paint(paint).apply {typeface=font}
         private fun label(paint: Paint)=VerticalText.wrapLabel(value,paint,height,direction)
         private fun box(paint: Paint)=VerticalText.bounds(label(paint),paint,direction,GlyphOrientation.MIXED,1f)
         override fun getSize(paint: Paint,text: CharSequence,start: Int,end: Int,fm: Paint.FontMetricsInt?): Int {
-            val b=box(styled(paint));fm?.let {it.ascent=-ceil(b.height()).toInt();it.top=it.ascent;it.descent=0;it.bottom=0;it.leading=0}
+            val b=box(styled(paint));fm?.let {it.ascent=-ceil(b.height()).toInt()-verticalPadding;it.top=it.ascent;it.descent=verticalPadding;it.bottom=it.descent;it.leading=0}
             return ceil(b.width()).toInt()
         }
         override fun draw(canvas: Canvas,text: CharSequence,start: Int,end: Int,x: Float,top: Int,y: Int,bottom: Int,paint: Paint) {
@@ -65,9 +65,10 @@ internal object VerticalUi {
         // The dialog theme's single-choice row can have a fixed 48 dp height.
         // Let the real ListView measure the vertical autonym and code together.
         view.layoutParams=AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
-        view.setPaddingRelative(view.paddingStart,dp(view,8),view.paddingEnd,dp(view,8))
+        // Keep the native CheckedTextView padding: paddingEnd already includes
+        // its check mark. Feeding that value back adds the mark width twice.
         val font=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
-        view.text=SpannableString(value).apply {setSpan(Caption(columns,dp(view,96).toFloat(),TextDirection.VERTICAL_LR,font),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
+        view.text=SpannableString(value).apply {setSpan(Caption(columns,dp(view,96).toFloat(),TextDirection.VERTICAL_LR,font,dp(view,8)),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
     }
     private class VerticalChoices(private val source: SpinnerAdapter,private val height: Int): BaseAdapter() {
         override fun getCount()=source.count

@@ -615,7 +615,7 @@ class ClassicPaintActivity : Activity() {
                 if (tool == PaintTool.WATERCOLOR) addSlider(ui(R.string.ui_strength),document.watercolorStrength,100,1,"watercolor_strength") { document.watercolorStrength=it }
                 if (tool == PaintTool.SPRAY) addSlider(ui(R.string.ui_spray_radius_px),document.sprayRadius.toInt(),100,1,"spray_radius") { document.sprayRadius=it.toFloat() }
                 if (tool in listOf(PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER,PaintTool.LINE)) {
-                    val tips=if(tool==PaintTool.BRUSH) listOf(ui(R.string.ui_round),ui(R.string.ui_square),ui(R.string.ui_calligraphy)) else listOf(ui(R.string.ui_round),ui(R.string.ui_square))
+                    val tips=if(tool==PaintTool.BRUSH && !paintCanvas.cursorMode) listOf(ui(R.string.ui_round),ui(R.string.ui_square),ui(R.string.ui_calligraphy)) else listOf(ui(R.string.ui_round),ui(R.string.ui_square))
                     addChoice(tips,document.brushTip.coerceIn(tips.indices)) {document.brushTip=it}
                 }
                 if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT,PaintTool.HEART,PaintTool.STAR,PaintTool.ARROW))
@@ -631,9 +631,14 @@ class ClassicPaintActivity : Activity() {
             tag="polygon_close";text=ui(R.string.ui_close_polygon);textSize=11f;isChecked=paintCanvas.closePolygon
             setOnCheckedChangeListener {_,checked -> paintCanvas.closePolygon=checked;paintCanvas.invalidate();scheduleAutosave()}
         })
-        options.addView(button(ui(R.string.ui_how_to_use), "tool_help") { message(tool.hint) }, LinearLayout.LayoutParams(-1, dp(48)))
+        options.addView(button(ui(R.string.ui_how_to_use), "tool_help") {
+            message(if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) ui(R.string.ui_cursor_help29) else tool.hint)
+        }, LinearLayout.LayoutParams(-1, dp(48)))
         if(tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.SPRAY,PaintTool.ERASER,PaintTool.LINE,PaintTool.CURVE)) {
             options.addView(button(ui(R.string.ui_drawing_settings),"drawing_settings") {showDrawingSettings(false)},LinearLayout.LayoutParams(-1,dp(48)))
+        }
+        if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
+            options.addView(button(ui(R.string.ui_magnified_preview),"cursor_preview_settings") {showDrawingSettings(true)},LinearLayout.LayoutParams(-1,dp(48)))
         }
         if(VerticalText.uiVertical()) VerticalUi.panel(options)
         updateStatus()
@@ -693,7 +698,7 @@ class ClassicPaintActivity : Activity() {
         "View"->listOf(
             command(PaintTool.ZOOM.label,R.drawable.breeze_zoom_in) {chooseTool(PaintTool.ZOOM)},
             command((if(paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
-            command((if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)),R.drawable.classic_cursor) {paintCanvas.setCursorMode(!paintCanvas.cursorMode);if(paintCanvas.cursorMode) chooseTool(paintCanvas.tool)},
+            command((if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)),R.drawable.classic_cursor) {paintCanvas.setCursorMode(!paintCanvas.cursorMode);chooseTool(paintCanvas.tool)},
             command(ui(R.string.ui_magnified_preview),R.drawable.breeze_zoom_in) {showDrawingSettings(true)},
             command(ui(R.string.ui_languages23),R.drawable.classic_languages) {AppLanguage.showPicker(this) {buildWorkspace()}},
             command((if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)),R.drawable.classic_fullscreen) {fullscreen=!fullscreen;syncFullscreen()}
@@ -1165,7 +1170,9 @@ class ClassicPaintActivity : Activity() {
             column.addView(CheckBox(this).apply {text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })
         }
         if(preview) {
-            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.magnifiedPreview) { paintCanvas.magnifiedPreview=it }
+            toggle(ui(R.string.ui_show_magnified_drawing_preview),if(paintCanvas.cursorMode) paintCanvas.cursorMagnifier else paintCanvas.magnifiedPreview) {
+                if(paintCanvas.cursorMode) paintCanvas.cursorMagnifier=it else paintCanvas.magnifiedPreview=it
+            }
             column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {
                 paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()
             }.apply {tag="preview_magnification"})

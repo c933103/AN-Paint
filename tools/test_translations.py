@@ -53,7 +53,7 @@ class TranslationTests(unittest.TestCase):
             if row["offered_in_app"] and not row.get("name_only") and not row["language_tag"].startswith("en-"):
                 self.assertGreater(row["entries_different_from_upstream_english"], 0)
         self.assertCountEqual(tags, accounted)
-        self.assertEqual(["ain", "tai"], coverage["name_only_options"])
+        self.assertEqual(["tai"], coverage["name_only_options"])
         names = ET.parse(translations.RES / "values/app_language_names.xml")
         labels = names.findall(".//string-array[@name='app_language_names']/item")
         self.assertEqual(len(tags), len(labels))

@@ -310,8 +310,9 @@ class EditorDeviceTest {
         onMain {assertTrue(it.document.canUndo)}
         click("undo")
         menu("View",text(R.string.ui_magnified_preview))
+        onMain {assertTrue(it.paintCanvas.cursorMagnifier)}
         clickText(text(R.string.ui_show_magnified_drawing_preview));positive()
-        onMain {assertTrue(it.paintCanvas.magnifiedPreview);it.paintCanvas.zoomAt(5f)}
+        onMain {assertFalse(it.paintCanvas.cursorMagnifier);it.paintCanvas.zoomAt(5f)}
         click("zoom_fit_view")
         onMain {
             val centre=it.paintCanvas.toScreen(50f,50f)

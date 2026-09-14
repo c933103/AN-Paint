@@ -88,7 +88,10 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var cursorDrawing = false; private set
     private var cursor = PointF()
     private var cursorMoved = false
+    private val cursorTravel = PointF()
+    private val cursorOverlay = PaintroidCursorOverlay()
     private var cursorInitial = PointF()
+    var cursorMagnifier = true
     var magnifiedPreview = false
     var previewMagnification = 2f
     private var previewPoint: PointF? = null
@@ -97,6 +100,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     fun setCursorMode(enabled: Boolean) {
         pauseGesture(); cursorMode=enabled; cursorDrawing=false
+        if(enabled && document.brushTip==2) document.brushTip=0
         cursor=toImage(rulerInset+contentWidth/2,rulerInset+contentHeight/2).also { clampCursor(it) }
         if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
         invalidate();onStatus()
@@ -258,14 +262,12 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         drawScrollbars(canvas)
         canvas.save();canvas.clipRect(rulerInset,rulerInset,width-bar,height-bar)
         if (supportsCursor()) {
-            val point=toScreen(cursor.x,cursor.y)
-            val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=if(cursorDrawing) EditorColours.error else EditorColours.primary;strokeWidth=2*resources.displayMetrics.density;style=Paint.Style.STROKE }
-            val radius=10*resources.displayMetrics.density
-            canvas.drawCircle(point.x,point.y,radius,p)
-            canvas.drawLine(point.x-radius*1.5f,point.y,point.x+radius*1.5f,point.y,p)
-            canvas.drawLine(point.x,point.y-radius*1.5f,point.x,point.y+radius*1.5f,p)
+            canvas.save();canvas.translate(panX,panY);canvas.scale(zoom,zoom)
+            cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing)
+            canvas.restore()
         }
-        if (magnifiedPreview && down && !multiTouch && !panning && scrollAxis==0) previewPoint?.let { drawMagnifiedPreview(canvas,it) }
+        if ((if(supportsCursor()) cursorMagnifier else magnifiedPreview) && down && !multiTouch && !panning && scrollAxis==0)
+            previewPoint?.let { drawMagnifiedPreview(canvas,it) }
         canvas.restore()
         if(grid) drawRulers(canvas)
     }
@@ -309,17 +311,19 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         val d=resources.displayMetrics.density
         val size=min(120*d,min(contentWidth,contentHeight)*.45f)
         if (size<40*d) return
-        val left=if (previewTouch.x<width/2) width-bar-size-8*d else rulerInset+8*d
+        // Paintroid's zoom window samples the cursor position, independently of
+        // the finger, and moves to the opposite corner when the finger covers it.
+        val left=if (previewTouch.x<width/2 && previewTouch.y<height/2) width-bar-size-8*d else rulerInset+8*d
         val r=RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)
         val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;strokeWidth=2*d;style=Paint.Style.STROKE }
-        canvas.save();canvas.clipRect(r);canvas.drawColor(document.background)
+        canvas.save();canvas.clipPath(Path().apply {addOval(r,Path.Direction.CW)});canvas.drawColor(EditorColours.surfaceDim)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
         canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)
+        canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})
         canvas.drawBitmap(document.bitmap,0f,0f,null)
         document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image) }
-        canvas.restore();canvas.drawRect(r,p)
-        canvas.drawLine(r.centerX()-6*d,r.centerY(),r.centerX()+6*d,r.centerY(),p)
-        canvas.drawLine(r.centerX(),r.centerY()-6*d,r.centerX(),r.centerY()+6*d,p)
+        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing)
+        canvas.restore();canvas.drawOval(r,p)
     }
 
     private fun drawScrollbars(c: Canvas) {
@@ -409,7 +413,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     fun draftState(): JSONObject = JSONObject().apply {
         put("pencil_size",pencilSize.toDouble())
         put("close_polygon",closePolygon)
-        put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
+        put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("cursor_magnifier",cursorMagnifier);put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("viewport_width",viewportWidth.toDouble());put("viewport_height",viewportHeight.toDouble());put("fit_mode",fitMode)
         put("centre_x",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).x.toDouble());put("centre_y",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).y.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
@@ -424,6 +428,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.ZOOM
         cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
         magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
+        cursorMagnifier=state.optBoolean("cursor_magnifier",true)
         grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()
         state.optJSONArray("polygon")?.let { points -> for (i in 0 until points.length()) {
             val p=points.getJSONArray(i); polygon.add(PointF(p.getDouble(0).toFloat(),p.getDouble(1).toFloat()))
@@ -602,7 +607,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (supportsCursor() && trim==null) {
             when(event.actionMasked) {
                 MotionEvent.ACTION_DOWN -> {
-                    multiTouch=false;down=true;cursorMoved=false;cursorInitial.set(cursor)
+                    multiTouch=false;down=true;cursorMoved=false;cursorTravel.set(0f,0f);cursorInitial.set(cursor)
                     screenStart.set(event.x,event.y);screenPrevious.set(event.x,event.y)
                     previous.set(cursor);smoothedPrevious.set(cursor)
                     if(cursorDrawing) document.beginGesture()
@@ -610,22 +615,29 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 MotionEvent.ACTION_MOVE -> if(down && !multiTouch) {
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
+                    cursorTravel.offset(abs(event.x-screenPrevious.x),abs(event.y-screenPrevious.y))
                     screenPrevious.set(event.x,event.y)
-                    cursorMoved=cursorMoved || hypot(event.x-screenStart.x,event.y-screenStart.y)>touchSlop
+                    cursorMoved=cursorTravel.x>touchSlop || cursorTravel.y>touchSlop
                     if(cursorDrawing && cursorMoved) stroke(old,cursor)
                 }
                 MotionEvent.ACTION_UP -> {
                     if(multiTouch || !down) {multiTouch=false;down=false;return true}
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
-                    cursorMoved=cursorMoved || hypot(event.x-screenStart.x,event.y-screenStart.y)>touchSlop
+                    cursorTravel.offset(abs(event.x-screenPrevious.x),abs(event.y-screenPrevious.y))
+                    cursorMoved=cursorTravel.x>touchSlop || cursorTravel.y>touchSlop
                     if(cursorDrawing) {
                         if(cursorMoved) {
                             stroke(if(document.strokeSmoothing && tool!=PaintTool.PENCIL) smoothedPrevious else old,cursor,finishing=true)
                             document.finishGesture()
                         } else document.cancelGesture()
                     }
-                    if(!cursorMoved) cursorDrawing=!cursorDrawing
+                    if(!cursorMoved) {
+                        cursorDrawing=!cursorDrawing
+                        // Match CursorTool.handleDrawMode: entering draw mode
+                        // places one undoable dot; leaving it adds no ink.
+                        if(cursorDrawing) {document.beginGesture();stroke(cursor,cursor);document.finishGesture()}
+                    }
                     down=false;performClick();onStatus()
                 }
                 MotionEvent.ACTION_CANCEL -> { if(cursorDrawing && down) document.cancelGesture();cursor.set(cursorInitial);down=false;multiTouch=false }

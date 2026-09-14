@@ -69,12 +69,12 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tai","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
-        assertEquals(30,starterTags.size)
+        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tai","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        assertEquals(31,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
@@ -85,9 +85,9 @@ class AppLanguageTest {
             assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
-            if(tag in listOf("ain","tai")) assertEquals(listOf("Brush","Save","Cancel"),vocabulary)
+            if(tag in listOf("tai")) assertEquals(listOf("Brush","Save","Cancel"),vocabulary)
             else assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            if(tag !in listOf("ain","tai")) assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
+            if(tag !in listOf("tai")) assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
                 wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
         }
         AppLanguage.select(context,"en-US")
@@ -131,6 +131,12 @@ class AppLanguageTest {
                 layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
             val image=android.graphics.Bitmap.createBitmap(row.width,row.height,android.graphics.Bitmap.Config.ARGB_8888)
             row.draw(android.graphics.Canvas(image))
+            val neighbour=list.getChildAt(index-list.firstVisiblePosition+1) as android.widget.CheckedTextView
+            val neighbourImage=android.graphics.Bitmap.createBitmap(neighbour.width,neighbour.height,android.graphics.Bitmap.Config.ARGB_8888)
+            neighbour.draw(android.graphics.Canvas(neighbourImage));neighbourImage.recycle()
+            val mark=(row as android.widget.CheckedTextView).checkMarkDrawable.bounds
+            assertEquals("Mongolian's radio must align with ordinary language rows",neighbour.checkMarkDrawable.bounds.left,mark.left)
+            assertEquals(neighbour.checkMarkDrawable.bounds.right,mark.right)
             val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code-${textSize.toInt()}-${activity.resources.configuration.orientation}.png");file.parentFile.mkdirs()
             file.outputStream().use {image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};image.recycle()
             val decor=picker.window!!.decorView
