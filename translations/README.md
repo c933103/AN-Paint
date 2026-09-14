@@ -1,8 +1,7 @@
 # Reused Paintroid vocabulary
 
 AN Paint's View → Languages offers device default and 104 language/region/
-script choices, including English. Thirty explicitly requested entries currently
-provide a name only and use the English interface. This is partial vocabulary reuse, not a claim
+script choices, including English. Every offered choice now has at least a starter catalogue with basic Brush, Save and Cancel vocabulary. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
 
@@ -42,6 +41,9 @@ Old Android `in` and `iw` resource qualifiers correspond to BCP-47 `id` and `he`
 Upstream `sr-rCS` and `sr-rSP` contain Latin and Cyrillic Serbian respectively;
 they are exposed as `sr-Latn` and `sr-Cyrl`, with Android BCP-47 resource qualifiers.
 Their original source paths and values remain unchanged in the provenance copy.
+
+Android resources and Crowdin exports use one `strings.xml` per language directory.
+`basic-translations.json` contains the explicitly labelled starter vocabulary.
 
 Rebuild or check without network access:
 
@@ -106,12 +108,11 @@ existing shared Spanish/Korean/Portuguese vocabulary; this update does not claim
 an independent regional translation review. Old `en`, `es`, `ko` and `pt`
 preferences migrate to `en-001`, `es-ES`, `ko-KR` and `pt-PT` respectively.
 
-The 30 name-only choices are `yue-Hant`, `yue-Latn`, `ryu`, `ain`, `cju`, `af`,
+The 30 starter-translation choices are `yue-Hant`, `yue-Latn`, `ryu`, `ain`, `cju`, `af`,
 `ku`, `tt`, `lv`, `et`, `is`, `la`, `oc`, `se`, `my`, `shn`, `km`, `lo`, `ceb`,
 `jv`, `bo`, `ug`, `za`, `tai`, `mww`, `nan-Hant-TW`, `nan-Latn-TW`, `hak-Hant`,
-`hak-Latn` and `wuu-Hans`. They have no new translation resource catalogues.
-Selection is retained while English resources are used explicitly, so related
-language fallbacks cannot imply a translation that does not exist.
+`hak-Latn` and `wuu-Hans`. They each have a small, separately generated translation resource catalogue;
+missing interface text continues to fall back to English. Native-speaker review is welcome.
 
 BCP-47 places script before region, so the requested `nan-TW-Hant`/`nan-TW-Latn`
 are stored as `nan-Hant-TW`/`nan-Latn-TW`. `tai` is the registered Tai language

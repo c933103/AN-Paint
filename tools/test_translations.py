@@ -27,7 +27,7 @@ class TranslationTests(unittest.TestCase):
         mapping = json.loads((translations.DATA / "common-terms.json").read_text())
         self.assertTrue(set(mapping) <= names, set(mapping) - names)
 
-    def test_picker_and_android_locale_list_agree_and_name_only_options_are_explicit(self):
+    def test_picker_and_android_locale_list_agree_and_all_options_are_translated(self):
         tags = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
         platform = [node.get("{http://schemas.android.com/apk/res/android}name")
                     for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()]
@@ -48,22 +48,21 @@ class TranslationTests(unittest.TestCase):
         for row in coverage["coverage"]:
             if row["offered_in_app"] and not row["language_tag"].startswith("en-"):
                 self.assertGreater(row["entries_different_from_upstream_english"], 0)
-        self.assertEqual(30, len(coverage["name_only_options"]))
+        self.assertEqual([], coverage["name_only_options"])
         names = ET.parse(translations.RES / "values/app_language_names.xml")
         labels = names.findall(".//string-array[@name='app_language_names']/item")
         self.assertEqual(len(tags), len(labels))
         self.assertTrue(all(item.text and item.text.strip() for item in labels))
-        for tag in coverage["name_only_options"]:
-            self.assertFalse((translations.RES / ("values-b+" + tag.replace("-", "+"))).exists())
 
     def test_unsaved_prompt_never_reuses_the_discard_label_for_keep_editing(self):
         def normalized(value):
             return value.strip().strip('"').casefold()
-        for path in translations.RES.glob("values*/strings_upstream.xml"):
+        for path in translations.RES.glob("values*/strings.xml"):
             strings = translations.read_strings(path)
-            self.assertNotEqual(normalized(strings["ui_discard_changes23"]), normalized(strings["ui_keep_editing23"]), str(path))
+            if "ui_discard_changes23" in strings:
+                self.assertNotEqual(normalized(strings["ui_discard_changes23"]), normalized(strings["ui_keep_editing23"]), str(path))
         for qualifier in ("values-b+lzh+Hant", "values-b+mn+Mong", "values-zh-rHK", "values-b+mn+Cyrl+MN"):
-            strings = translations.read_strings(translations.RES / qualifier / "strings23.xml")
+            strings = translations.read_strings(translations.RES / qualifier / "strings.xml")
             self.assertNotEqual(strings["ui_discard_changes23"], strings["ui_keep_editing23"])
             self.assertTrue(strings["ui_cut"].strip())
 
@@ -80,3 +79,10 @@ class TranslationTests(unittest.TestCase):
         offered = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
         self.assertIn("lzh-Hant", offered)
         self.assertIn("mn-Mong", offered)
+
+    def test_every_offered_language_has_exactly_one_string_catalogue(self):
+        basic = json.loads((translations.DATA / "basic-translations.json").read_text())
+        for tag in basic:
+            self.assertTrue((translations.RES / translations.qualifier_for_tag(tag) / "strings.xml").is_file(), tag)
+        for folder in translations.RES.glob("values*"):
+            self.assertLessEqual(len(list(folder.glob("strings*.xml"))), 1, str(folder))

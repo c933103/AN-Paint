@@ -3,13 +3,12 @@
 The new editor, its tool names and hints, image assembly, colour and sizing dialogs,
 export choices, status messages, accessibility descriptions and licence-viewer
 buttons use Android string resources in
-`Paintroid/src/main/res/values/strings*.xml`. `strings.xml` contains the main
-catalogue; smaller companion files contain later additions and follow the same
-resource rules. Include all of them when preparing a translation.
+`Paintroid/src/main/res/values/strings.xml`. The complete English source is kept in
+that single catalogue so translation-service exports map cleanly to one
+`strings.xml` catalogue per Android language directory.
 
 Add a language by creating `res/values-<Android language qualifier>/strings.xml`
-with the same resource names. Matching companion filenames may be kept or merged
-into that locale's `strings.xml`. Examples: `values-fr`, `values-ja`, `values-b+zh+Hant`.
+with the same resource names. Keep all entries for that locale in its single `strings.xml`. Examples: `values-fr`, `values-ja`, `values-b+zh+Hant`.
 Missing entries fall back to English. A translation does not require Kotlin edits.
 Register a newly supported language in the generated language inventories through
 `tools/reuse_upstream_translations.py` (or extend its inventory for a new translation).
