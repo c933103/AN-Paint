@@ -62,6 +62,8 @@ cleanup() {
 main() {
   : "${TEST_API:?Set TEST_API to 30 or 35}"
   case "$TEST_API" in 30|35) ;; *) exit 2;; esac
+  variant="${BUILD_VARIANT:-debug}"
+  case "$variant" in debug|release) ;; *) exit 2;; esac
   export ANDROID_SERIAL=emulator-5554
   adb="$ANDROID_HOME/platform-tools/adb"
   report="build/reports/android-api-$TEST_API"
@@ -99,7 +101,7 @@ main() {
   wait_until_ready 'Dismiss keyguard' '*' shell wm dismiss-keyguard
   phase='Install main APK (60s maximum)'
   progress "$phase"
-  timeout --kill-after=5s 60s "$adb" install -r -t build/prebuilt/app/build/outputs/apk/debug/app-debug.apk
+  timeout --kill-after=5s 60s "$adb" install -r -t "build/prebuilt/app/build/outputs/apk/$variant/app-$variant.apk"
   failed=0
   extra=()
   if test "$TEST_API" = 30; then
@@ -108,14 +110,14 @@ main() {
   phase='Native/import instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
-    --apk build/prebuilt/Paintroid/build/outputs/apk/androidTest/debug/Paintroid-debug-androidTest.apk \
+    --apk "build/prebuilt/Paintroid/build/outputs/apk/androidTest/$variant/Paintroid-$variant-androidTest.apk" \
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
   phase='Editor instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
-    --apk build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
     --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
     --suite app --timeout-seconds 180 || failed=1

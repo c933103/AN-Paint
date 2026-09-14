@@ -84,9 +84,13 @@ android {
         signingConfigs.signedRelease.keyPassword = project.property("signingKeyPassword")
     }
 
+    testBuildType = project.findProperty("instrumentationBuildType") ?: System.getenv("BUILD_VARIANT") ?: "debug"
+
     buildTypes {
         release {
-            minifyEnabled true
+            // Keep the same code paths in host tests and the shipped release.
+            minifyEnabled false
+            if (project.hasProperty("ciReleaseSigning")) signingConfig = signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         signedRelease {

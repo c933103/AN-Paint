@@ -7,12 +7,18 @@ buttons use Android string resources in
 that single catalogue so translation-service exports map cleanly to one
 `strings.xml` catalogue per Android language directory.
 
-Add a language by creating `res/values-<Android language qualifier>/strings.xml`
-with the same resource names. Keep all entries for that locale in its single `strings.xml`. Examples: `values-fr`, `values-ja`, `values-b+zh+Hant`.
-Missing entries fall back to English. A translation does not require Kotlin edits.
-Register a newly supported language in the generated language inventories through
-`tools/reuse_upstream_translations.py` (or extend its inventory for a new translation).
-Existing imported vocabulary and exact provenance are in `translations/README.md`.
+Localized `strings.xml` files are generated: edit the matching locale in
+`translations/local-translations.json`, or `translations/basic-translations.json`
+for a starter catalogue, then run `python3 tools/reuse_upstream_translations.py`.
+Do not edit generated XML alone; regeneration would replace those edits. Keep
+all generated entries for a locale in its single `strings.xml` (for example,
+`values-fr`, `values-ja`, `values-zh-rTW`). When importing Crowdin output, merge
+its reviewed entries into the appropriate JSON catalogue before regenerating.
+Register language names, aliases and translation bases in
+`translations/language-options.json`; new full catalogues may also need a
+qualifier in the generator. Missing entries fall back to English. Translation
+work does not normally require Kotlin edits. Existing vocabulary and exact
+provenance are in `translations/README.md`.
 The app language can be chosen under View → Languages independently
 of the device language; Android 13 also exposes the same setting in system settings.
 `crowdin.yml` is available for a maintainer's own translation project; automated
@@ -67,7 +73,7 @@ records and Apache-2.0 licence there. The generator retains the corrected Japane
 flip labels and does not edit the pinned upstream files. Host checks reject
 resource duplicates and colliding discard/cancel outcomes.
 
-There are 68 offered locale variants, including English, plus device default.
+There are 104 offered locale variants, including English, plus device default.
 The Literary Chinese (`lzh-Hant`) and traditional Mongolian (`mn-Mong`) resources
 are initial foundations with English fallback; native-speaker review remains
 welcome. Their ribbon labels and inserted text use the vertical renderer. Native

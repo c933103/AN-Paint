@@ -55,10 +55,11 @@ internal object VerticalUi {
         });update()
     }
     fun languageChoice(view: TextView) {
-        val autonym="ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ"
-        val value=autonym+"  Mongolian\n[mn-Mong]"
-        // Only the autonym uses Mongolian glyphs. A dedicated second line keeps
-        // the language code visible even at narrow widths and large font sizes.
+        val value=view.text.toString()
+        val autonym=value.substringBefore(" [mn-Mong]")
+        // Fold the two joined words into adjacent vertical columns. Keep the
+        // same native-name + code text as every other option, including for accessibility.
+        val columns=autonym.trim().split(Regex("\\s+")).joinToString("\n")
         view.typeface=android.graphics.Typeface.DEFAULT
         view.setSingleLine(false);view.maxLines=Int.MAX_VALUE;view.ellipsize=null
         // The dialog theme's single-choice row can have a fixed 48 dp height.
@@ -66,7 +67,7 @@ internal object VerticalUi {
         view.layoutParams=AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         view.setPaddingRelative(view.paddingStart,dp(view,8),view.paddingEnd,dp(view,8))
         val font=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
-        view.text=SpannableString(value).apply {setSpan(Caption(autonym,dp(view,120).toFloat(),TextDirection.VERTICAL_LR,font),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
+        view.text=SpannableString(value).apply {setSpan(Caption(columns,dp(view,96).toFloat(),TextDirection.VERTICAL_LR,font),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
     }
     private class VerticalChoices(private val source: SpinnerAdapter,private val height: Int): BaseAdapter() {
         override fun getCount()=source.count

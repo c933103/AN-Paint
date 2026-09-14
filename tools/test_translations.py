@@ -27,7 +27,7 @@ class TranslationTests(unittest.TestCase):
         mapping = json.loads((translations.DATA / "common-terms.json").read_text())
         self.assertTrue(set(mapping) <= names, set(mapping) - names)
 
-    def test_picker_and_android_locale_list_agree_and_all_options_are_translated(self):
+    def test_picker_and_android_locale_list_agree_and_coverage_accounts_for_every_option(self):
         tags = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
         platform = [node.get("{http://schemas.android.com/apk/res/android}name")
                     for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()]
@@ -45,10 +45,15 @@ class TranslationTests(unittest.TestCase):
         self.assertIn("sr-Latn", tags)
         self.assertIn("sr-Cyrl", tags)
         coverage = json.loads((translations.DATA / "coverage.json").read_text())
+        accounted = []
         for row in coverage["coverage"]:
-            if row["offered_in_app"] and not row["language_tag"].startswith("en-"):
+            accounted.extend(row["offered_tags"])
+            if row["offered_in_app"]:
+                self.assertTrue((translations.ROOT / row["generated_resource"]).is_file())
+            if row["offered_in_app"] and not row.get("name_only") and not row["language_tag"].startswith("en-"):
                 self.assertGreater(row["entries_different_from_upstream_english"], 0)
-        self.assertEqual([], coverage["name_only_options"])
+        self.assertCountEqual(tags, accounted)
+        self.assertEqual(["ain", "tai"], coverage["name_only_options"])
         names = ET.parse(translations.RES / "values/app_language_names.xml")
         labels = names.findall(".//string-array[@name='app_language_names']/item")
         self.assertEqual(len(tags), len(labels))
@@ -86,3 +91,12 @@ class TranslationTests(unittest.TestCase):
             self.assertTrue((translations.RES / translations.qualifier_for_tag(tag) / "strings.xml").is_file(), tag)
         for folder in translations.RES.glob("values*"):
             self.assertLessEqual(len(list(folder.glob("strings*.xml"))), 1, str(folder))
+
+    def test_starter_save_translation_is_shared_with_the_unsaved_prompt(self):
+        basic = json.loads((translations.DATA / "basic-translations.json").read_text())
+        for tag, terms in basic.items():
+            strings = translations.read_strings(translations.RES / translations.qualifier_for_tag(tag) / "strings.xml")
+            if terms:
+                self.assertEqual("@string/ui_save", strings["ui_save_a5d0d9"], tag)
+            else:
+                self.assertEqual({}, strings, tag)

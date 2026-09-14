@@ -1,6 +1,6 @@
 # Android build and test workflow
 
-Updated 12 September 2026. APK production, regression checks and emulator results
+Updated 14 September 2026. APK production, regression checks and emulator results
 are separate outcomes. An emulator must not prevent obtaining an already-built
 APK or completing unrelated work.
 
@@ -160,3 +160,30 @@ followed. This establishes emulator verification of the startup and teardown
 corrections. It does not stand in for physical-device verification. Local.20
 uses the new app test component `paint.anpaint.android.test`; the library test
 component remains `org.catrobat.paintroid.test`.
+
+## Release builds and GitHub publication (0.0.28)
+
+A `develop` code commit whose subject starts with `Release ` selects the release
+variant and the full API 30/35 matrix. Alternatively choose `build_type: release`
+when manually running the workflow. Release always overrides `device_tests: none`.
+Other code pushes and PRs retain the debug/API 35 defaults. Both release host
+regressions/lint and instrumentation compile against the release variant.
+The shipped manifest is not debuggable. Code shrinking is disabled in both
+modules, so the tested Java/Kotlin code is preserved. Native release compilation
+uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
+its x86 inline assembly; strict C11 inherited from libjxl did not compile it.
+Dependency notices use the selected variant's actual runtime dependencies.
+
+GitHub release publication is a separate workflow triggered by a reviewed
+`verification/releases/request.json` commit, after private upgrade signing.
+The private signing key remains outside GitHub. A small public APK patch contains
+ZIP headers, alignment and signatures plus copy ranges for the unchanged CI
+payload; it contains no signing key. The publisher requires the declared original
+APK hash, final signed APK hash, unchanged non-signature ZIP contents, matching
+embedded source, four ABIs, 16 KB alignment, the existing certificate, release
+manifest and successful regression/build/API 30/API 35 jobs for that exact commit.
+It then uploads APK, corresponding source, checksums and verification evidence to
+a draft release, and publishes it. This uses the repository-scoped Actions token
+with contents-write and actions-read permissions; routine build jobs remain read-only.
+See [GitHub token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token)
+and [release API](https://docs.github.com/en/rest/releases/releases#create-a-release).

@@ -8,11 +8,18 @@ on:
     paths-ignore: ['**/*.md', 'verification/**']
   workflow_dispatch:
     inputs:
+      build_type:
+        description: 'Build variant (release always runs both Android versions)'
+        type: choice
+        options: [debug, release]
+        default: debug
       device_tests:
         description: 'Emulator coverage (APK build is independent)'
         type: choice
         options: [current, full, none]
         default: current
+env:
+  BUILD_VARIANT: ${{ inputs.build_type || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ') && 'release' || 'debug') }}
 permissions:
   contents: read
 concurrency:
@@ -48,7 +55,7 @@ jobs:
         timeout-minutes: 10
         run: |
           python3 -m unittest discover -s tools -p 'test_*.py'
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest :app:lintDebug
+          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest :app:lint${BUILD_VARIANT^}
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -107,7 +114,7 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Build universal APK
         timeout-minutes: 22
-        run: ./gradlew --no-daemon --max-workers=2 --console=plain :app:assembleDebug
+        run: ./gradlew --no-daemon --max-workers=2 --console=plain :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
       - name: Report native compiler cache statistics
         if: always()
         run: if command -v ccache >/dev/null; then ccache --show-stats; fi
@@ -115,13 +122,15 @@ jobs:
         run: |
           python3 - <<'PY'
           import hashlib, json, os, pathlib, zipfile
-          apk = pathlib.Path('app/build/outputs/apk/debug/app-debug.apk')
+          variant = os.environ['BUILD_VARIANT']
+          apk = pathlib.Path(f'app/build/outputs/apk/{variant}/app-{variant}.apk')
           out = pathlib.Path('build/delivery'); out.mkdir(parents=True, exist_ok=True)
           with zipfile.ZipFile(apk) as z:
               source = z.read('assets/local-source/AN-Paint-source.zip')
           (out/'AN-Paint-source.zip').write_bytes(source)
           (out/'build-info.json').write_text(json.dumps({
               'commit': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
+              'build_variant': variant,
               'apk_sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
               'source_sha256': hashlib.sha256(source).hexdigest(),
               'test_status': 'Reported separately; artifact availability does not imply tests passed.',
@@ -135,7 +144,7 @@ jobs:
           retention-days: 14
           if-no-files-found: error
           path: |
-            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/${{ env.BUILD_VARIANT }}/app-${{ env.BUILD_VARIANT }}.apk
             build/delivery/
             app/build/runtime-dependencies.json
             build/reports/native-runtime-notices.json
@@ -143,29 +152,29 @@ jobs:
             Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt
             verification-tools/
       - name: Compile test APKs once for all emulator jobs
-        if: ${{ inputs.device_tests != 'none' }}
+        if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
         timeout-minutes: 3
-        run: ./gradlew --no-daemon --max-workers=2 --console=plain :Paintroid:assembleDebugAndroidTest :app:assembleDebugAndroidTest
+        run: ./gradlew --no-daemon --max-workers=2 --console=plain :Paintroid:assemble${BUILD_VARIANT^}AndroidTest :app:assemble${BUILD_VARIANT^}AndroidTest -PciReleaseSigning
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: ${{ inputs.device_tests != 'none' }}
+        if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
         with:
           name: instrumentation-apks-${{ github.sha }}
           retention-days: 14
           if-no-files-found: error
           path: |
-            Paintroid/build/outputs/apk/androidTest/debug/*.apk
-            app/build/outputs/apk/androidTest/debug/*.apk
+            Paintroid/build/outputs/apk/androidTest/${{ env.BUILD_VARIANT }}/*.apk
+            app/build/outputs/apk/androidTest/${{ env.BUILD_VARIANT }}/*.apk
 
   device:
     name: Emulator API ${{ matrix.api }}
     needs: build
-    if: ${{ inputs.device_tests != 'none' }}
+    if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-22.04
     timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
-        api: ${{ fromJSON(inputs.device_tests == 'full' && '[30,35]' || '[35]') }}
+        api: ${{ fromJSON((inputs.device_tests == 'full' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:

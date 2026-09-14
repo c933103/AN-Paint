@@ -58,6 +58,9 @@ function(anpaint_add_heif)
   set(CMAKE_BUILD_DATE "2026-09-12")
   configure_file(${KVZ_ROOT}/src/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/kvazaar-generated/version.h @ONLY)
   add_library(anpaint_kvazaar STATIC ${kvz_sources} ${kvz_strategies} ${KVZ_ROOT}/src/extras/libmd5.c)
+  # Kvazaar's x86 CPU feature detection uses GNU inline asm. Request its
+  # dialect explicitly; libjxl otherwise leaves strict C11 flags in this scope.
+  set_target_properties(anpaint_kvazaar PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED YES C_EXTENSIONS ON)
   target_compile_definitions(anpaint_kvazaar PRIVATE CMAKE_BUILD KVZ_DLL_EXPORTS)
   target_include_directories(anpaint_kvazaar PUBLIC ${KVZ_ROOT}/src PRIVATE ${KVZ_ROOT}/src/extras ${KVZ_ROOT}/src/strategies ${CMAKE_CURRENT_BINARY_DIR}/kvazaar-generated)
   target_link_libraries(anpaint_kvazaar PUBLIC m)

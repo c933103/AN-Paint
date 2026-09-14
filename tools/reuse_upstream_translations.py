@@ -92,10 +92,12 @@ def generate():
         if not tag.startswith("en-") and terms.get("ui_drawing23"):
             terms["ui_draw26"] = terms["ui_drawing23"]
         distinct = sum(1 for key in terms if key in mapping and normal(terms[key]) != normal(base.get(mapping[key], "")))
-        distinct += sum(1 for key in reviewed.get(tag, {}) if key not in mapping and normal(terms[key]) != normal(defaults.get(key, "")))
+        distinct += sum(1 for key in set(reviewed.get(tag, {})) | set(local.get(tag, {}))
+                        if key not in mapping and normal(terms[key]) != normal(defaults.get(key, "")))
         included = distinct > 0 or tag.startswith("en-")
         record = {"original_qualifier": qualifier, "language_tag": tag,
-                  "reused_entries": sum(1 for key in terms if key in mapping and key not in corrections and key not in android_terms and key not in reviewed.get(tag, {})),
+                  "reused_entries": sum(1 for key in terms if key in mapping and key not in corrections and key not in android_terms and key not in reviewed.get(tag, {}) and key not in local.get(tag, {})),
+                  "local_translation_entries": len(local.get(tag, {})),
                   "android_action_entries": len(android_terms), "reviewed_action_entries": len(reviewed.get(tag, {})), "entries_different_from_upstream_english": distinct,
                   "offered_in_app": included, "blob_sha": digest,
                   "source_sha256": hashlib.sha256(raw).hexdigest()}
@@ -128,6 +130,10 @@ def generate():
             value = value.replace("'", "\\'") if "\\'" not in value else value
             lines.append(f'    <string name="{key}">{escape(value)}</string>')
         results[RES / qualifier / "strings.xml"] = '\n'.join(lines + ['</resources>', ''])
+        coverage.append({"language_tag": tag, "local_translation_entries": len(local[tag]),
+                         "entries_different_from_upstream_english": sum(normal(v) != normal(defaults.get(k, "")) for k,v in local[tag].items()),
+                         "generated_resource": str((RES / qualifier / "strings.xml").relative_to(ROOT)),
+                         "catalogue_source": "translations/local-translations.json"})
     catalogue = json.loads((DATA / "language-options.json").read_text())
     options = {item["tag"]: item for item in catalogue["options"]}
     basic = json.loads((DATA / "basic-translations.json").read_text())
@@ -136,33 +142,38 @@ def generate():
             raise ValueError(f"Basic translation duplicates an existing catalogue: {tag}")
         if tag not in options:
             raise ValueError(f"Basic translation is not offered: {tag}")
-        if not terms or any(not value.strip() for value in terms.values()):
+        if (not terms and not options[tag].get("name_only")) or any(not value.strip() for value in terms.values()):
             raise ValueError(f"Basic translation is empty: {tag}")
         tags.append(tag)
         lines = ['<?xml version="1.0" encoding="utf-8"?>',
                  '<!-- Starter translation; native-speaker review is welcome. See translations/README.md. -->',
                  '<resources>']
-        for key, value in terms.items():
+        rendered_terms = dict(terms)
+        if "ui_save" in terms:
+            rendered_terms["ui_save_a5d0d9"] = "@string/ui_save"
+        for key, value in rendered_terms.items():
             if key not in defaults:
                 raise ValueError(f"Unknown basic translation resource: {tag}/{key}")
             value = value.replace("'", "\\'") if "\\'" not in value else value
             lines.append(f'    <string name="{key}">{escape(value)}</string>')
         target = RES / qualifier_for_tag(tag) / "strings.xml"
         results[target] = '\n'.join(lines + ['</resources>', ''])
-        for record in coverage:
-            if record["language_tag"] == tag:
-                record["starter_translation_entries"] = len(terms)
-                record["entries_different_from_upstream_english"] += len(terms)
-                record["generated_resource"] = str(target.relative_to(ROOT))
-                break
+        record = next((row for row in coverage if row["language_tag"] == tag), None)
+        if record is None:
+            record = {"language_tag": tag}
+            coverage.append(record)
+        record.update({"starter_translation_entries": len(terms),
+                       "entries_different_from_upstream_english": sum(normal(v) != normal(defaults[k]) for k,v in terms.items()),
+                       "generated_resource": str(target.relative_to(ROOT)),
+                       "catalogue_source": "translations/basic-translations.json",
+                       "name_only": bool(options[tag].get("name_only"))})
     translated = set(tags)
     for tag, item in options.items():
         if not item.get("name_only") and item.get("translation_base", tag) not in translated:
             raise ValueError(f"Language option has no translation base: {tag}")
     tags = [catalogue["pinned_first"]] + sorted(set(options) - {catalogue["pinned_first"]}, key=str.casefold)
     for record in coverage:
-        record["offered_tags"] = [tag for tag in tags if not options[tag].get("name_only")
-                                  and options[tag].get("translation_base", tag) == record["language_tag"]]
+        record["offered_tags"] = [tag for tag in tags if options[tag].get("translation_base", tag) == record["language_tag"]]
         record["offered_in_app"] = bool(record["offered_tags"])
     # New regional English choices inherit the same UI, with explicit spelling
     # rather than depending on Android's region fallback order.
@@ -183,6 +194,9 @@ def generate():
                 value = value.replace("'", "\\'") if "\\'" not in value else value
                 lines.append(f'    <string name="{key}">{escape(value)}</string>')
         results[RES / qualifier / "strings.xml"] = '\n'.join(lines + ['</resources>', ''])
+        coverage.append({"language_tag": tag, "english_variant": True,
+                         "offered_tags": [tag], "offered_in_app": True,
+                         "generated_resource": str((RES / qualifier / "strings.xml").relative_to(ROOT))})
     results[DATA / "coverage.json"] = json.dumps({"revision": index["revision"],
         "mapped_common_terms": len(mapping), "offered_language_count_including_english": len(tags),
         "name_only_options": [tag for tag in tags if options[tag].get("name_only")],

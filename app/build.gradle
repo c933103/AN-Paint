@@ -86,13 +86,17 @@ android {
         signingConfigs.signedRelease.keyPassword = project.property("signingKeyPassword")
     }
 
+    testBuildType = project.findProperty("instrumentationBuildType") ?: System.getenv("BUILD_VARIANT") ?: "debug"
+
     buildTypes {
         debug {
             //minifyEnabled true
             //proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
         }
         release {
-            minifyEnabled true
+            // Keep the same code paths in host tests and the shipped release.
+            minifyEnabled false
+            if (project.hasProperty("ciReleaseSigning")) signingConfig = signingConfigs.debug
 
             proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
         }
@@ -133,15 +137,16 @@ dependencies {
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }
 
-// Local addition, 2026-09-07: record exactly the dependencies shipped in debug.
+// Record the actual selected build variant; both variants use the same dependencies.
 tasks.register('writeDependencyInventory') {
     doLast {
         // Download published artifacts as well as their POMs so the notice
         // generator can retain embedded LICENSE/NOTICE files before packaging.
-        configurations.debugRuntimeClasspath.incoming.artifactView {
+        def runtime = configurations.getByName((System.getenv("BUILD_VARIANT") ?: "debug") + "RuntimeClasspath")
+        runtime.incoming.artifactView {
             componentFilter { it instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier }
         }.files.files
-        def rows = configurations.debugRuntimeClasspath.incoming.resolutionResult.allComponents.findAll {
+        def rows = runtime.incoming.resolutionResult.allComponents.findAll {
             it.id instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier
         }.collect {
             [group: it.id.group, name: it.id.module, version: it.id.version]

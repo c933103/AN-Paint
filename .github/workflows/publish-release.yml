@@ -1,0 +1,32 @@
+name: Publish verified GitHub release
+on:
+  push:
+    branches: [develop]
+    paths: ['verification/releases/request.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: publish-anpaint-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Verify completed release tests, restore public signature and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/publish_github_release.py verification/releases/request.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: release-publication-evidence
+          retention-days: 14
+          path: build/github-release/*.json

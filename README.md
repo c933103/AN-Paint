@@ -1,6 +1,6 @@
 # AN Paint
 
-> Version 0.0.27 fixes clipping of the Mongolian language option, turns the Swap arrows to match the foreground/background arrangement, and removes the zoom slider's fixed 100% text label. All earlier format and editing support remains included. Package `paint.anpaint.android`, version code 80. See [HANDOFF.md](HANDOFF.md) for verification status.
+> Version 0.0.28 reviews PR #1, fixes translation coverage and the starter Save prompt, and folds the Mongolian language option into two vertical word columns without an English gloss. Package `paint.anpaint.android`, version code 81. See [HANDOFF.md](HANDOFF.md) for release verification and downloads.
 
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid),
@@ -38,7 +38,7 @@ size check and an explicit resize choice; files are not silently downsized.
 
 ## Installing this version
 
-`0.0.27` uses version code `80` and updates `0.0.26`, `0.0.25`, `0.0.24`, `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
+`0.0.28` uses version code `81` and updates `0.0.27`, `0.0.26`, `0.0.25`, `0.0.24`, `0.0.23`, `0.0.22` and local.20–local.22 in place when signed with the existing key. The package change introduced in local.20 means it **installs alongside local.15 through
 local.19** (`io.github.c933103.anpaint`), earlier AN Paint (`app.paint.local`) and
 the original Pocket Paint. Keeping the signing key does not make different
 package names an in-place update.
@@ -54,14 +54,14 @@ Existing Paintroid translations supply common tool names and commands; new or
 untranslated text appears in English. This is partial translation coverage,
 not a claim that every selectable language has a fully translated interface.
 English (International) is directly below device language; the other choices
-are sorted by language code. Thirty requested language/script names are offered
-without translations yet. See [the language catalogue notes](translations/README.md).
+are sorted by language code. Twenty-eight additional choices have provisional starter vocabulary; Ainu and the
+Tai language collection remain name-only choices with English fallback. See [the language catalogue notes](translations/README.md).
 
 ## Building
 
 GitHub publishes the APK/source artifact before emulator checks finish.
 Regression/lint results are independent; routine runs test API 35 and the full
-API 30/35 matrix is selectable manually. See [CI.md](CI.md) for the workflow,
+API 30/35 matrix runs automatically for release builds and is also selectable manually. See [CI.md](CI.md) for the workflow,
 timeouts and development-build versus verified-release status.
 
 Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,

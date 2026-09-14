@@ -84,10 +84,11 @@ class AppLanguageTest {
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
-            assertNotEquals(
-                listOf("Brush","Save","Cancel"),
-                listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel)),
-            )
+            val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
+            if(tag in listOf("ain","tai")) assertEquals(listOf("Brush","Save","Cancel"),vocabulary)
+            else assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
+            if(tag !in listOf("ain","tai")) assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
+                wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
         }
         AppLanguage.select(context,"en-US")
         assertEquals("Add color",AppLanguage.wrap(context).getString(R.string.ui_add_colour26))
@@ -97,10 +98,13 @@ class AppLanguageTest {
         }
     }
 
-    @Test fun pickerPinsInternationalEnglishAndMongolianCodeHasItsOwnUnclippedLine()=checkMongolianPickerRow(16f)
+    @Test fun pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode()=checkMongolianPickerRow(16f)
 
     @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
     fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)
+
+    @Test @Config(qualifiers="en-rUS-w900dp-h412dp-land-xhdpi")
+    fun landscapePickerFitsTheFoldedMongolianOption()=checkMongolianPickerRow(16f)
 
     private fun checkMongolianPickerRow(textSize: Float) {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
@@ -116,18 +120,23 @@ class AppLanguageTest {
             row.textSize=textSize
             shadowOf(Looper.getMainLooper()).idle()
             val layout=row.layout;val last=layout.lineCount-1
-            assertEquals("[mn-Mong]",row.text.subSequence(layout.getLineStart(last),layout.getLineEnd(last)).toString())
+            assertEquals("ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ [mn-Mong]",row.text.toString())
+            assertEquals(row.text.length,layout.getLineEnd(last))
+            val span=(row.text as android.text.Spanned).getSpans(0,row.text.length,android.text.style.ReplacementSpan::class.java).single()
+            val font=android.graphics.Paint(row.paint).apply {typeface=android.graphics.Typeface.createFromAsset(activity.assets,"fonts/notosansmongolian.ttf")}
+            assertTrue("The two Mongolian words must occupy adjacent columns",
+                span.getSize(row.paint,row.text,0,row.text.indexOf(" ["),null)>=2*font.fontSpacing-1)
             assertEquals(0,layout.getEllipsisCount(last))
             assertTrue("The mounted list row must fit its ${layout.height}px caption inside ${row.height}px (layout height ${row.layoutParams.height})",
                 layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
             val image=android.graphics.Bitmap.createBitmap(row.width,row.height,android.graphics.Bitmap.Config.ARGB_8888)
             row.draw(android.graphics.Canvas(image))
-            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code-${textSize.toInt()}.png");file.parentFile.mkdirs()
+            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code-${textSize.toInt()}-${activity.resources.configuration.orientation}.png");file.parentFile.mkdirs()
             file.outputStream().use {image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};image.recycle()
             val decor=picker.window!!.decorView
             val menu=android.graphics.Bitmap.createBitmap(decor.width,decor.height,android.graphics.Bitmap.Config.ARGB_8888)
             decor.draw(android.graphics.Canvas(menu))
-            java.io.File(file.parentFile,"language-menu-${textSize.toInt()}.png").outputStream().use {menu.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};menu.recycle()
+            java.io.File(file.parentFile,"language-menu-${textSize.toInt()}-${activity.resources.configuration.orientation}.png").outputStream().use {menu.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};menu.recycle()
             picker.dismiss()
         } finally {
             controller.pause().stop()

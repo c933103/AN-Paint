@@ -1,7 +1,7 @@
 # Reused Paintroid vocabulary
 
 AN Paint's View → Languages offers device default and 104 language/region/
-script choices, including English. Every offered choice now has at least a starter catalogue with basic Brush, Save and Cancel vocabulary. This is partial vocabulary reuse, not a claim
+script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary. Ainu and the Tai language collection remain name-only choices. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
 
@@ -34,7 +34,7 @@ editor translations and must not be presented as independently certified transla
 Nine upstream locale files originally had no translated vocabulary among the mapped terms:
 Afrikaans, Cherokee, Finnish, Hausa, Igbo, Georgian, Twi, Uzbek and Yoruba/Nigeria.
 They are retained as provenance. Later reviewed terms supply Finnish vocabulary;
-Afrikaans is now explicitly offered as a name-only choice, with English UI.
+Afrikaans now has a starter catalogue.
 The remaining empty catalogues are not offered as translated choices.
 
 Old Android `in` and `iw` resource qualifiers correspond to BCP-47 `id` and `he`.
@@ -85,7 +85,7 @@ Missing terms continue to use English. Literary Chinese remains `lzh-Hant`.
 
 Vertical UI captions use natural glyph sizes, joined Mongolian words and explicit
 column wrapping. The language picker alone mixes a vertical Mongolian autonym
-with a horizontal identifying label. Native keyboard fields and format identifiers
+with its horizontal language code. Native keyboard fields and format identifiers
 remain editable in dialogs; a separate vertical preview displays the filename.
 
 ## Language options (0.0.26)
@@ -96,7 +96,7 @@ translation bases and name-only choices. Both inventories pin `en-001` first
 All remaining entries follow case-insensitive BCP-47 order. Every label includes
 its code, and names use consistent initial capitalization. Indonesian is
 Bahasa Indonesia and Dutch is Nederlands. The traditional Mongolian autonym
-keeps its bundled font and vertical writing; its code occupies a separate line.
+keeps its bundled font and vertical writing; its two words fold into adjacent vertical columns beside the horizontal code.
 
 The English choices include International, United States, United Kingdom,
 Australia, Canada, Singapore and India. New English choices explicitly define
@@ -108,15 +108,35 @@ existing shared Spanish/Korean/Portuguese vocabulary; this update does not claim
 an independent regional translation review. Old `en`, `es`, `ko` and `pt`
 preferences migrate to `en-001`, `es-ES`, `ko-KR` and `pt-PT` respectively.
 
-The 30 starter-translation choices are `yue-Hant`, `yue-Latn`, `ryu`, `ain`, `cju`, `af`,
+The 30 additional choices are `yue-Hant`, `yue-Latn`, `ryu`, `ain`, `cju`, `af`,
 `ku`, `tt`, `lv`, `et`, `is`, `la`, `oc`, `se`, `my`, `shn`, `km`, `lo`, `ceb`,
 `jv`, `bo`, `ug`, `za`, `tai`, `mww`, `nan-Hant-TW`, `nan-Latn-TW`, `hak-Hant`,
-`hak-Latn` and `wuu-Hans`. They each have a small, separately generated translation resource catalogue;
+`hak-Latn` and `wuu-Hans`. Twenty-eight have a small generated translation catalogue; Ainu and the Tai collection use English fallback. For all choices,
 missing interface text continues to fall back to English. Native-speaker review is welcome.
 
 BCP-47 places script before region, so the requested `nan-TW-Hant`/`nan-TW-Latn`
 are stored as `nan-Hant-TW`/`nan-Latn-TW`. `tai` is the registered Tai language
-collection, labelled Tai languages. Labels that only request Latin script do
-not claim a specific romanization system. The metadata records primary naming
+collection, labelled Tai languages. The Cantonese Latin starter vocabulary uses Jyutping with tone numbers. Other
+Latin-script options do not claim a newly standardized romanization system. The metadata records primary naming
 sources: the pinned MediaWiki autonym list, the IANA language-subtag registry,
 Unicode CLDR and Jeju's official language dictionary.
+
+## PR #1 review (0.0.28)
+
+The consolidation preserves all 4,867 pre-existing string values. Coverage now
+accounts for every offered choice, including starter and local catalogues and
+regional choices sharing a translation base. A translated Save label is reused
+by the unsaved-changes prompt as well as the File panel.
+
+The starter vocabulary remains provisional. The unsupported Japanese substitutes
+under Ainu and Thai substitutes under the Tai collection were removed. Their
+language options remain available with English fallback and the actual chosen
+locale. `tai` is a collection, not the code for Thai; see the
+[IANA language subtag registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
+The Okinawan Cancel label reuses `cancel` from
+[MediaWiki ryu.json at ea83228](https://github.com/wikimedia/mediawiki/blob/ea83228d5fe2b1f9559196a2716c8580cdb2407d/languages/i18n/ryu.json),
+credited to that catalogue's contributors under MediaWiki's GPL-2.0-or-later.
+The Cantonese Latin Save label is corrected to `Cyu5 cyun4` (儲存); compare
+[CantoneseClass101's own vocabulary explanation](https://www.cantoneseclass101.com/lesson/lower-intermediate-10-you-really-need-a-chinese-bank-account).
+These corrections and automated checks do not certify every starter translation;
+shared written forms and remaining vocabulary still need native-speaker review.
