@@ -1,8 +1,10 @@
 # AN Paint 0.0.29 — language and cursor corrections
 
-Package `paint.anpaint.android`; version code 82. Source changes are complete
-except for the Tai vocabulary, which needs a specific Tai language identified.
-The collective `tai` tag is retained without substituting Thai strings.
+Package `paint.anpaint.android`; version code 82. The user clarified Tai Nüa
+(`tdd`): its native name and five sourced action labels replace the mistaken
+`tai` collection choice, with saved-preference migration. See the translation
+audit in `translations/README.md`: regional Spanish and Korean still share base
+catalogues, and all non-English editor translations remain partial.
 
 Mongolian language radio alignment now retains the native CheckedTextView
 padding. Both Ainu scripts are selectable: `ain-Latn` and `ain-Kana`, with
@@ -12,9 +14,10 @@ alternating crosshairs, activation dot and cumulative travel detection. Its
 circular magnifier samples the cursor and defaults on, with adjustable zoom.
 See `translations/README.md` and `docs/CURSOR_UPSTREAM.md` for provenance.
 
-Local checks: 75 host tests, 45 affected editor/layout/cursor tests and zero
-app lint issues. Build and device verification for 0.0.29 are pending. Results
-below belong to 0.0.28 and must not be claimed for this update.
+The preceding cursor/Ainu/Mongolian source passed the complete release workflow
+34814348930. The final Tai Nüa correction requires a new release build and checks;
+its publication and signed delivery are pending. Results below belong to 0.0.28
+and must not be claimed for this update.
 
 ---
 

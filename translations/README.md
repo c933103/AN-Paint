@@ -1,7 +1,7 @@
 # Reused Paintroid vocabulary
 
 AN Paint's View → Languages offers device default and 105 language/region/
-script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary, and the two Ainu script choices have Brush, Save and Done. The Tai language collection remains name-only pending selection of a specific Tai language. This is partial vocabulary reuse, not a claim
+script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary, the two Ainu script choices have Brush, Save and Done, and Tai Nüa has five sourced action labels. No choice is now name-only. This is partial vocabulary reuse, not a claim
 that the entire new editor has been translated. New or absent entries fall back
 to English; the language picker explains that limitation.
 
@@ -157,7 +157,39 @@ Credit: Aynumosir and its Ainu localization contributors. These are selected
 lexical labels, not a copy of its software or a complete translation. Cancel
 and other unverified entries continue to fall back to English.
 
-`tai` still denotes the entire Tai language collection, not one translatable
-language. No Thai vocabulary is silently substituted. A specific member language
-must be selected before supplying its catalogue; Thai, Lao, Shan and Zhuang
-already have their own independently selectable entries.
+## Tai Nüa correction and translation audit (0.0.29, 15 September)
+
+The requested language is Tai Nüa (`tdd`), not the collective `tai` code.
+The picker now shows `ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ [tdd]`; existing `tai` preferences migrate
+to `tdd` in the app and Android 13's system language setting. The old catalogue
+is removed. Historical entries above describe earlier releases only.
+
+Five actions reuse [MediaWiki tdd.json at ea83228](https://github.com/wikimedia/mediawiki/blob/ea83228d5fe2b1f9559196a2716c8580cdb2407d/languages/i18n/tdd.json).
+The autonym comes from `includes/Languages/Data/Names.php` at the same revision.
+Credit: Aey Tai Nuea, AeyTaiNuea, Albertoleoncio, Dai Meng Mao Long and 咽頭べさ;
+GPL-2.0-or-later. Mapping: `cancel` → `ui_cancel`, `edit` → `ui_menu_edit`,
+`ok` → `ui_ok`, `savechanges` → `ui_save`, `editundo` → `ui_undo`.
+The Save action deliberately uses the source's complete **Save changes** phrase,
+also shared by the unsaved-changes prompt; it is not an invented generic Save
+word or the source's Save page label. Brush, Discard changes and other unverified
+terms remain English. This is starter coverage, not complete localization.
+
+The split/renamed options have the following actual coverage. Counts below are
+catalogue labels differing from default English, not a linguistic quality score.
+
+| Choices | Implemented translation | Remaining limitation |
+|---|---|---|
+| `en-001`, `en-US`, `en-SG`, `en-IN` | Explicit English spelling/command overrides with complete English fallback | No independent regional terminology review |
+| `es-419`, `es-ES` | Shared Spanish catalogue, 47 differing labels | No separate Latin American/European vocabulary yet |
+| `ko-KP`, `ko-KR` | Shared Korean catalogue, 53 differing labels | No North Korean terminology adaptation yet |
+| `pt-PT`, `pt-BR` | Existing distinct Portuguese catalogues, 49 / 52 differing labels | Partial editor coverage |
+| `zh-TW`, `zh-HK` | Separate regional catalogues, 88 / 92 differing labels | Partial editor coverage |
+| `mn-Cyrl-MN`, `mn-Mong` | Separate script foundations, 100 / 56 labels | Partial coverage; native-speaker review needed |
+| `ain-Latn`, `ain-Kana` | Three sourced labels each: Brush, Save, Done | Cancel and the rest remain English |
+| `nan-Hant-TW`, `nan-Latn-TW` | Three starter labels each; canonical BCP-47 script/region order | Partial coverage; review needed |
+| `id`, `nl` | Existing Indonesian/Dutch catalogues retained when display names were corrected | No new translation was implied by the rename |
+
+Literary Chinese (`lzh-Hant`) has 149 local foundation labels. The other newly
+added starter choices each have three labels. Missing text uses English across
+all partial catalogues. In particular, offering two regional choices is not a
+claim that their regional terminology has been independently translated.

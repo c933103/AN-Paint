@@ -69,11 +69,11 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tai","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
         assertEquals(31,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
@@ -85,11 +85,15 @@ class AppLanguageTest {
             assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
-            if(tag in listOf("tai")) assertEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            else assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            if(tag !in listOf("tai")) assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
+            assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
+            assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
                 wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
         }
+        assertFalse("The mistaken Tai collection choice is removed",tags.contains("tai"))
+        assertEquals("ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ [tdd]",AppLanguage.name("tdd"))
+        AppLanguage.select(context,"tdd")
+        assertEquals("ᥟᥛᥱ ᥞᥥᥖᥱ",AppLanguage.wrap(context).getString(R.string.ui_cancel))
+        assertEquals("ᥛᥨᥢᥳ ᥛᥥᥰ",AppLanguage.wrap(context).getString(R.string.ui_menu_edit))
         AppLanguage.select(context,"en-US")
         assertEquals("Add color",AppLanguage.wrap(context).getString(R.string.ui_add_colour26))
         for(tag in listOf("en-001","en-SG","en-IN")) {
@@ -157,6 +161,9 @@ class AppLanguageTest {
         manager.applicationLocales=LocaleList.forLanguageTags("zh-Hant")
         assertEquals("zh-TW",AppLanguage.selectedTag(context))
         assertEquals("zh-TW",manager.applicationLocales[0].toLanguageTag())
+        manager.applicationLocales=LocaleList.forLanguageTags("tai")
+        assertEquals("tdd",AppLanguage.selectedTag(context))
+        assertEquals("tdd",manager.applicationLocales[0].toLanguageTag())
     }
 
     @Test fun chosenLanguagePersistsAndChangesResourcesAndDecimalInput() {
