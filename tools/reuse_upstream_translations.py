@@ -198,6 +198,39 @@ def generate():
                          sum(normal(v) != normal(defaults.get(k, "")) for k,v in terms.items()),
                          "generated_resource": str(target.relative_to(ROOT)),
                          "catalogue_source": "translations/gimp-catalogues.json"})
+    # Complete only the requested menu surface, with explicit regional/script
+    # resources. Keep the existing vocabulary for the rest of each interface.
+    menu_catalogue = json.loads((DATA / "main-menu-translations.json").read_text())
+    for tag, menu_terms in menu_catalogue["locales"].items():
+        if not set(menu_catalogue["required_keys"]) <= set(menu_terms):
+            raise ValueError(f"Incomplete menu translation: {tag}")
+        if not set(menu_terms) <= set(defaults):
+            raise ValueError(f"Unknown menu resource: {tag}/{set(menu_terms)-set(defaults)}")
+        record = next((row for row in coverage if row["language_tag"] == tag), None)
+        base_tag = options[tag].get("translation_base", tag)
+        base_record = next((row for row in coverage if row["language_tag"] == base_tag), None)
+        target = ROOT / record["generated_resource"] if record else RES / qualifier_for_tag(tag) / "strings.xml"
+        inherited = results.get(ROOT / base_record["generated_resource"], "<resources/>") if base_record else "<resources/>"
+        terms = {node.get("name"): "".join(node.itertext()) for node in ET.fromstring(inherited)}
+        for key, value in menu_terms.items():
+            if not value.strip():
+                raise ValueError(f"Empty menu translation: {tag}/{key}")
+            terms[key] = value.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'")
+        terms["ui_save_a5d0d9"] = "@string/ui_save"
+        lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                 '<!-- Generated menu completion plus retained vocabulary; see translations/README.md. -->', '<resources>']
+        for key, value in terms.items():
+            literal = ' formatted="false"' if key in menu_terms else ''
+            lines.append(f'    <string name="{key}"{literal}>{escape(value)}</string>')
+        results[target] = '\n'.join(lines + ['</resources>', ''])
+        if record is None:
+            record = {"language_tag": tag, "inherited_translation_base": base_tag}
+            coverage.append(record)
+            tags.append(tag)
+        record.update({"generated_resource": str(target.relative_to(ROOT)),
+                       "menu_translation_entries": len(menu_terms), "main_menu_complete": True,
+                       "entries_different_from_upstream_english": sum(normal(v) != normal(defaults.get(k, "")) for k,v in terms.items())})
+        options[tag]["translation_base"] = tag
     translated = set(tags)
     for tag, item in options.items():
         if not item.get("name_only") and item.get("translation_base", tag) not in translated:

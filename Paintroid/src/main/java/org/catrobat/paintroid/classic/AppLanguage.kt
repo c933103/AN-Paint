@@ -103,8 +103,19 @@ internal object AppLanguage {
         return "${locale.getDisplayName(locale)} [$tag]"
     }
 
+    /** Resolve against the device language, without inheriting the app's override. */
+    internal fun deviceDefaultLabel(context: Context): String {
+        val chosen=deviceLocale(context)
+        val config=Configuration().apply {
+            fontScale=0f
+            if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
+        }
+        return context.createConfigurationContext(config).getString(R.string.language20_device_default)
+    }
+
     fun showSettings(activity: Activity, changed: () -> Unit) {
-        val current = selectedTag(activity).let { if (it.isEmpty()) ui(R.string.language20_device_default) else name(it) }
+        val current = selectedTag(activity).let { if (it.isEmpty()) deviceDefaultLabel(activity) else name(it) }
         AlertDialog.Builder(activity).setTitle(ui(R.string.language20_settings))
             .setItems(arrayOf(ui(R.string.language20_current, current))) { _, _ -> showPicker(activity, changed) }
             .setNegativeButton(ui(R.string.ui_done), null).show()
@@ -112,7 +123,7 @@ internal object AppLanguage {
 
     fun showPicker(activity: Activity, changed: () -> Unit): AlertDialog {
         val choices = listOf("") + tags(activity)
-        val labels = choices.map { if (it.isEmpty()) ui(R.string.language20_device_default) else name(it) }
+        val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity) else name(it) }
         val note = TextView(activity).apply {
             text = ui(R.string.language20_translation_note)
             val padding = (20 * resources.displayMetrics.density).toInt()
@@ -124,6 +135,7 @@ internal object AppLanguage {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.
                     val view=super.getView(position,null,parent) as TextView
+                    if(position==0) view.textLocale=deviceLocale(activity)
                     if(choices[position]=="mn-Mong") VerticalUi.languageChoice(view)
                     return view
                 }

@@ -112,31 +112,43 @@ class UnifiedEditorTest {
         assertEquals(Color.BLUE,RecentColours(activity).colours.first())
     }
     @Test fun cursorDrawMoveSwitchAndFitWorkInTheEditor() {
-        menu("View","Enable cursor drawing");assertTrue(board.cursorMode)
+        menu("View","Cursor drawing");click("cursor_mode_enabled");assertTrue(board.cursorMode)
         assertFalse(board.cursorDrawing)
         val ink=root.findViewWithTag<android.widget.Button>("cursor_draw_toggle")
         assertTrue(ink.isShown);assertEquals("Start drawing",ink.text.toString())
         assertNull(root.findViewWithTag<View>("cursor_draw_enabled"))
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
         ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertTrue(board.cursorDrawing)
+        assertTrue(ink.isSelected)
+        assertEquals("Pan to start drawing. Tap again to stop drawing.",org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
+        assertTrue("Draw toggle overlays the canvas instead of consuming a separate row",ink.parent is FrameLayout)
         event(MotionEvent.ACTION_DOWN,20f,20f);event(MotionEvent.ACTION_UP,20f,20f)
         assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
         val dot=pixels()
         drag(20f,20f,40f,40f);assertTrue(doc.canUndo);assertFalse(dot.contentEquals(pixels()))
         click("undo");assertArrayEquals(dot,pixels())
         click("undo");assertTrue(pixels().all {it==Color.WHITE})
-        menu("View","Cursor drawing settings…")
+        // Opening this category leaves brush settings solely under Drawing.
+        menu("View","Cursor drawing") // collapse the currently open cursor drawer
+        menu("View","Cursor drawing") // reopen it, pausing ink
         assertFalse(board.cursorDrawing)
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        val settings=dialog.window!!.decorView
-        assertNotNull(settings.findViewWithTag<View>("cursor_brush_shape"))
+        val settings=root.findViewWithTag<View>("cursor_settings_panel")
+        assertTrue(settings.isShown)
+        assertNull(root.findViewWithTag<View>("cursor_controls"))
+        assertNull(settings.findViewWithTag<View>("cursor_brush_size"))
+        assertNull(settings.findViewWithTag<View>("cursor_brush"))
+        val brushTip=doc.brushTip;val brushWidth=doc.strokeWidth;val chosenTool=board.tool
+        settings.findViewWithTag<Spinner>("cursor_shape").setSelection(1)
+        shadowOf(Looper.getMainLooper()).idle()
+        assertEquals(1,board.cursorShape);assertEquals(brushTip,doc.brushTip)
+        assertEquals(brushWidth,doc.strokeWidth,0f);assertEquals(chosenTool,board.tool)
         val magnifier=settings.findViewWithTag<CheckBox>("cursor_magnifier_enabled")
         assertTrue(board.cursorMagnifier)
         magnifier.performClick();assertFalse(board.cursorMagnifier)
         magnifier.performClick();assertTrue(board.cursorMagnifier)
         settings.findViewWithTag<NumericSlider>("cursor_marker_size").slider.progress=50
         assertEquals(1.5f,board.cursorMarkerScale,0f)
-        dialog.dismiss();board.zoomAt(5f);board.fit()
+        board.zoomAt(5f);board.fit()
         val centre=board.toScreen(50f,50f)
         val inset=20*activity.resources.displayMetrics.density
         assertEquals((board.width-inset)/2,centre.x,1f);assertEquals((board.height-inset)/2,centre.y,1f)

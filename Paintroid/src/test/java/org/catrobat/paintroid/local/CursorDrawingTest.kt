@@ -100,6 +100,22 @@ class CursorDrawingTest {
         assertTrue(markerWidth(.1f,1.5f)>normal*1.4)
     }
 
+    @Test fun cursorOutlineDoesNotChangeTheBrushAndActiveStateIsVisible() {
+        val board=board();board.setCursorMode(false)
+        board.document.brushTip=2;board.setCursorMode(true)
+        assertEquals("Cursor mode preserves the calligraphy brush",2,board.document.brushTip)
+        fun rendered(drawing: Boolean,shape: Int): IntArray {
+            val image=Bitmap.createBitmap(200,200,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.WHITE)}
+            val brush=Paint().apply {strokeCap=Paint.Cap.ROUND;strokeWidth=20f;color=Color.RED}
+            PaintroidCursorOverlay().draw(Canvas(image),PointF(100f,100f),brush,1f,1f,drawing,1f,if(shape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)
+            assertEquals(Paint.Cap.ROUND,brush.strokeCap)
+            return IntArray(40000).also {image.getPixels(it,0,200,0,0,200,200);image.recycle()}
+        }
+        val positioning=rendered(false,0);val active=rendered(true,0)
+        assertFalse(positioning.contentEquals(active));assertTrue(active.any {it==Color.RED})
+        assertFalse(active.contentEquals(rendered(true,1)))
+    }
+
     @Test fun magnifierSamplesCursorInsteadOfFingerAndItsPreferenceSurvivesDraftRestore() {
         val board=board();board.document.bitmap.eraseColor(Color.BLUE)
         val state=board.draftState();val x=state.getDouble("cursor_x").toFloat();val y=state.getDouble("cursor_y").toFloat()
@@ -113,10 +129,10 @@ class CursorDrawingTest {
         val file=java.io.File("build/reports/classic-preview/cursor-magnifier.png");file.parentFile.mkdirs()
         file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)};image.recycle()
         touch(board,MotionEvent.ACTION_CANCEL,700f,700f)
-        board.cursorMagnifier=false;board.cursorMarkerScale=1.5f;board.setCursorDrawing(true)
+        board.cursorMagnifier=false;board.cursorMarkerScale=1.5f;board.cursorShape=1;board.setCursorDrawing(true)
         val restored=board();restored.restoreDraft(board.draftState())
         assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertFalse(restored.cursorDrawing)
-        assertEquals(1.5f,restored.cursorMarkerScale,0f)
+        assertEquals(1.5f,restored.cursorMarkerScale,0f);assertEquals(1,restored.cursorShape)
         board.setCursorDrawing(false);restored.restoreDraft(board.draftState());assertFalse(restored.cursorDrawing)
         val legacy=board.draftState().apply {remove("cursor_drawing")}
         restored.restoreDraft(legacy);assertFalse(restored.cursorDrawing)

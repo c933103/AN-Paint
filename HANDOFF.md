@@ -1,3 +1,30 @@
+# AN Paint 0.0.32 — unified tool tiles, cursor drawer and menu translations
+
+Version code 85. Edit and View use the same scrolling tool tiles as Draw.
+View > Cursor drawing expands the enable switch, independent round/square cursor
+outline, magnifier and marker-size controls directly in its panel. Brush choice,
+width and tip remain under Draw > Drawing. Enabling cursor mode preserves the
+brush settings and starts with positioning only. The floating on-canvas drawing
+button changes its selected state and Start/Stop caption, with a non-modal toast
+explaining pan to draw / tap again to stop. Active crosshairs change colour.
+Opening the cursor drawer or restoring a draft pauses drawing. Cursor shape is
+saved separately from the brush shape; the marker still has its original size.
+
+The system-default language row resolves against the device language even when
+the app uses another language. Armenian (hy) is added. All five main tabs and
+first-level commands, including FG/BG and cursor controls, have explicit text for
+ja, zh-TW, zh-HK, zh-CN, yue-Hant, yue-Latn, lzh-Hant, ar, de, pl, ru, es-419,
+es-ES, pt-PT, pt-BR, it, fr, he, ko-KR, ko-KP, id, ms, vi, tl, th, el, sr-Cyrl,
+sr-Latn and tr, plus hy. Deeper dialogs retain their existing partial vocabulary.
+Cantonese Latin uses Jyutping; Korean regional commands and Serbian scripts are
+separate resources. Existing pinned translator sources and notices are retained.
+
+Local verification: 81 host checks passed. Release build, regression/lint and
+Android 30/35 verification must finish before publishing the signed release.
+Use the existing upgrade key; never upload the private backup or key to GitHub.
+
+---
+
 # AN Paint 0.0.31 — explicit cursor control and image save settings
 
 Version code 84. Cursor mode starts with positioning only; Start drawing / Stop

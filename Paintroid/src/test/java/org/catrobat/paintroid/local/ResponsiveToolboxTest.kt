@@ -145,7 +145,7 @@ class ResponsiveToolboxTest {
         click("category_INSERT");assertTrue(view<View>("tool_scroll").isShown)
         assertTrue(board.hasPendingEdit);assertFalse(activity.document.canUndo)
         assertEquals(vertices,board.draftState().getJSONArray("polygon").toString())
-        EditorTestNavigation.named(activity,"View","Enable cursor drawing");settle()
+        EditorTestNavigation.named(activity,"View","Cursor drawing");click("cursor_mode_enabled");settle()
         assertTrue(board.cursorMode);assertEquals(PaintTool.BRUSH,board.tool)
         val category=view<ToolCategoryButton>("category_BRUSH")
         assertTrue(category.expanded);assertTrue(category.isSelected);assertEquals(PaintTool.BRUSH,category.selectedTool)
@@ -238,7 +238,11 @@ class ResponsiveToolboxTest {
         for(tag in listOf("category_BRUSH","category_SELECTION","category_INSERT","tool_ERASER")) centred(view(tag))
         for(tab in listOf("Edit","View")) {
             click("menu_$tab")
-            EditorTestNavigation.buttons(view("panel_${tab}_commands")).forEach {centred(it)}
+            EditorTestNavigation.buttons(view("panel_${tab}_commands")).forEach {
+                centred(it)
+                assertEquals("Command tiles have the same height as Drawing",view<View>("category_BRUSH").height,it.height)
+            }
+            assertTrue(view<android.widget.LinearLayout>("panel_${tab}_commands").orientation==android.widget.LinearLayout.HORIZONTAL)
             render("icon-panel-$tab.png")
         }
         click("menu_Color")

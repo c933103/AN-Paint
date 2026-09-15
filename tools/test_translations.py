@@ -11,6 +11,29 @@ import reuse_upstream_translations as translations
 
 
 class TranslationTests(unittest.TestCase):
+    def test_requested_main_menu_coverage_includes_every_command_and_exact_locale(self):
+        data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
+        requested = set("ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th el sr-Cyrl sr-Latn tr hy".split())
+        self.assertEqual(requested, set(data["locales"]))
+        source = (translations.ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt").read_text()
+        commands = source.split('private fun menuActions(', 1)[1].split('private fun menuActionEnabled', 1)[0]
+        keys = set(re.findall(r'R.string.([a-z_0-9]+)', commands))
+        # The two messages are command outcomes, not first-level labels.
+        keys -= {"ui_select_an_area_first"}
+        keys |= {"ui_menu_view", "ui_draw26", "ui_menu_file", "ui_menu_edit", "ui_colour_tab23",
+                 "ui_drawing23", "ui_category_selection", "ui_category_insert", "ui_eraser", "ui_bucket_fill", "ui_eyedropper", "ui_navigate",
+                 "ui_fg", "ui_bg", "ui_swap23", "ui_reset_bw23", "ui_advanced", "ui_add_colour26"}
+        self.assertLessEqual(keys, set(data["required_keys"]))
+        report = json.loads((translations.DATA / "coverage.json").read_text())
+        for tag, terms in data["locales"].items():
+            row = next(r for r in report["coverage"] if r["language_tag"] == tag)
+            self.assertIn(tag, row["offered_tags"])
+            rendered = translations.read_strings(translations.ROOT / row["generated_resource"])
+            for key in data["required_keys"]:
+                self.assertEqual(terms[key].replace("'", "\\'"), rendered[key], f"{tag}/{key}")
+            if tag in ("yue-Latn", "sr-Latn"):
+                self.assertNotRegex("".join(terms.values()), r"[\u0400-\u04ff\u3400-\u9fff]")
+
     def test_generated_translations_match_verified_upstream_bytes(self):
         for path, text in translations.generate().items():
             self.assertEqual(text, path.read_text(), str(path))

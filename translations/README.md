@@ -273,3 +273,26 @@ Cyrillic source: [MediaWiki tt-cyrl.json, ea83228](https://github.com/wikimedia/
 GPL-2.0-or-later, used under its GPL version 3-or-later option. Its contributors,
 AN Paint adaptations and licence information appear with the app's translation
 credits. Existing Tatar's Latin GIMP catalogue is not treated as Cyrillic.
+
+
+## Complete main menus (0.0.32)
+
+`main-menu-translations.json` supplies all five tabs and every first-level
+command for the 29 requested language variants and Armenian (`hy`), including
+the foreground/background labels, cursor toggle messages and system-language
+choice. These AN Paint additions are under AGPL-3.0-or-later. Existing Paintroid,
+GIMP and Android source catalogues and translator credits remain intact.
+
+The generator merges these labels after the existing vocabulary. Spanish,
+Portuguese and Korean regional choices get explicit resources while inheriting
+the existing deeper-dialog vocabulary. Korean KP uses regional terms and spelling
+such as 화상 and 리용방법; it does not silently mirror the KR menu. Cantonese Latin
+uses tone-numbered Jyutping. Serbian Latin uses the corresponding Serbian Latin
+letters and digraphs. Armenian has menu, common action and drawing-tool vocabulary.
+These are authored translations, without a claim of independent native review.
+
+`coverage.json` records main-menu completion separately from whole-app coverage.
+The latter remains partial. Host checks enumerate command labels from the current
+menu code and fail if a requested language omits one. Android resource tests
+exercise the regional/script choices and the device-language row independently
+of the selected app language. Generated files must remain reproducible.

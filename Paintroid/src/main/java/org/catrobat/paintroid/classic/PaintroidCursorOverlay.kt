@@ -33,8 +33,8 @@ internal class PaintroidCursorOverlay {
     private var markerScale=1f
     private val cursorToolPrimaryShapeColor=Color.BLACK
     private var cursorToolSecondaryShapeColor=Color.LTGRAY
-    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f) {
-        toolPosition.set(position);toolPaint=paint;zoom=scale;density=pixelDensity;markerScale=visibilityScale.coerceIn(1f,2f)
+    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap) {
+        toolPosition.set(position);toolPaint=Paint(paint).apply {strokeCap=outlineCap};zoom=scale;density=pixelDensity;markerScale=visibilityScale.coerceIn(1f,2f)
         cursorToolSecondaryShapeColor=if(drawing) paint.color else Color.LTGRAY
         drawShape(canvas)
     }

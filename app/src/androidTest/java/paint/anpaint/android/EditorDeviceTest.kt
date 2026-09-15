@@ -303,7 +303,7 @@ class EditorDeviceTest {
     }
 
     @Test fun cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing() {
-        menu("View",text(R.string.ui_enable_cursor_drawing))
+        menu("View",text(R.string.ui_cursor_drawing32));click("cursor_mode_enabled")
         onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
         // Inject through Android's input dispatcher instead of calling the
         // canvas handler directly; verify a line, not merely an undo entry/dot.
@@ -337,9 +337,18 @@ class EditorDeviceTest {
         }
         click("undo")
         onMain {for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
-        menu("View",text(R.string.ui_cursor_settings31))
-        onMain {assertTrue(it.paintCanvas.cursorMagnifier)}
-        clickText(text(R.string.ui_show_magnified_drawing_preview));positive()
+        click("menu_View")
+        onMain {
+            assertTrue(it.paintCanvas.cursorMagnifier)
+            val root=it.window.decorView
+            assertTrue(root.findViewWithTag<View>("cursor_settings_panel").isShown)
+            assertNull(root.findViewWithTag<View>("cursor_controls"))
+            assertNull(root.findViewWithTag<View>("cursor_brush"))
+            val tip=it.document.brushTip
+            root.findViewWithTag<android.widget.Spinner>("cursor_shape").setSelection(1)
+            assertEquals(tip,it.document.brushTip)
+        }
+        click("cursor_magnifier_enabled")
         onMain {assertFalse(it.paintCanvas.cursorMagnifier);it.paintCanvas.zoomAt(5f)}
         click("zoom_fit_view")
         onMain {

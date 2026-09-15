@@ -82,7 +82,7 @@ class AppLanguageTest {
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
-            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
+            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
             else assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
@@ -187,6 +187,40 @@ class AppLanguageTest {
         assertEquals("Tözätmälärne kire qağu",selected.getString(R.string.ui_discard_changes23))
         assertEquals("Üzgärtüne däwam itü",selected.getString(R.string.ui_keep_editing23))
         assertEquals("Pumala",selected.getString(R.string.ui_brush))
+    }
+
+    @Test @Config(sdk=[30,33]) fun deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage() {
+        AppLanguage.select(context,"ja")
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            val picker=AppLanguage.showPicker(activity) {}
+            assertEquals("Use device language",picker.listView.adapter.getItem(0))
+            assertNotEquals(activity.getString(R.string.language20_device_default),picker.listView.adapter.getItem(0))
+            assertEquals("ja",AppLanguage.selectedTag(activity))
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
+    }
+
+    @Test fun requestedRegionsAndArmenianHaveTheirOwnMainMenuResources() {
+        val expected=mapOf("hy" to "Ֆայլ", "es-ES" to "Archivo", "es-419" to "Archivo",
+            "pt-PT" to "Ficheiro", "pt-BR" to "Arquivo", "ko-KR" to "파일", "ko-KP" to "파일",
+            "sr-Cyrl" to "Датотека", "sr-Latn" to "Datoteka", "yue-Hant" to "檔案", "yue-Latn" to "Dong2 on3")
+        for((tag,file) in expected) {
+            AppLanguage.select(context,tag)
+            val resources=AppLanguage.wrap(context).resources
+            assertEquals(tag,file,resources.getString(R.string.ui_menu_file))
+            assertNotEquals(tag,"Cursor drawing",resources.getString(R.string.ui_cursor_drawing32))
+        }
+        AppLanguage.select(context,"ko-KP")
+        assertEquals("리용방법",AppLanguage.wrap(context).getString(R.string.ui_how_to_use))
+        AppLanguage.select(context,"ko-KR")
+        assertEquals("사용 방법",AppLanguage.wrap(context).getString(R.string.ui_how_to_use))
     }
 
     @Test fun chosenLanguagePersistsAndChangesResourcesAndDecimalInput() {

@@ -35,3 +35,11 @@ short strokes for all four supported brushes, undo/cancellation, circle/square
 geometry, marker visibility at fitted zoom, cursor-centred magnification, settings
 placement and safe restoration. Pixel filtering remains explicitly off in the
 main image view and magnifier; drawing antialiasing remains off by default.
+
+
+Version 0.0.32 keeps the original marker geometry but exposes its circle/square
+outline as `cursorShape`, independently of the selected brush tip. Both the main
+canvas and magnifier use that outline. The cursor drawer contains only cursor
+controls. Drawing tools keep their usual settings, including calligraphy. The
+on-canvas Start/Stop button uses a non-modal toast and the existing active/inactive
+crosshair colouring; it does not reserve another bar below the canvas.
