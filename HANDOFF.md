@@ -10,15 +10,31 @@ pixel display; drawing antialiasing still defaults off.
 The new installed-app tests verify a real input-dispatcher swipe paints a line
 and Save as JPEG XL followed by Save preserves every canvas pixel. Native JPEG
 XL lossless tests already passed for 0.0.29. See docs/CURSOR_UPSTREAM.md and
-docs/JPEG_XL_LOSSLESS.md. Build and release checks for 0.0.30 are pending; the
-completed results below belong to 0.0.29.
+docs/JPEG_XL_LOSSLESS.md. The corrected release passed workflow 34945326732:
+75 local host checks, 257 release regression tests, zero app lint issues, 77 instrumentation tests on API 30 and 78 on API 35. All passed.
+The actual input-dispatcher cursor swipe, explicit move-only mode, unfiltered
+canvas pixel comparison, and JPEG XL Save as/Save checks all passed. The universal
+APK uses the existing upgrade certificate, is non-debuggable, includes four ABIs
+and passes 16 KB ZIP alignment. Its embedded source ZIP matches the separate
+archive and all 791 exported repository blobs.
+
+Source: https://github.com/c933103/AN-Paint/commit/31526a42ced7d6eae6c8c9a756ae6c2e8b23d162
+Build: https://github.com/c933103/AN-Paint/actions/runs/34945326732
+Release: https://github.com/c933103/AN-Paint/releases/tag/v0.0.30
+
+APK SHA-256: `7064b86171764da83d6531ac985e4a71d78f9105add761d79d54a1d0162f27d4`
+Source ZIP SHA-256: `8093a01979acfa1e6b953d0e30fc4150929b390bddbb9fd480303dd232773c81`
+
+The checked-in release request publishes this exact verified APK and corresponding
+source. The private key and backup remain outside GitHub. Earlier results below
+belong to 0.0.29.
 
 The first 0.0.30 run (34944021765) compiled and passed the new app JPEG XL save
 case on API 30 and 35. Its pixel-display test exposed Android's implicit bitmap
 filter constructor flag; the display paint now explicitly clears it. The cursor
 swipe painted correctly, but the test helper incorrectly required a checkbox's
 performClick return value to be true. Checkbox checks now verify state or use
-actual UI input. The complete corrected release still requires a successful run.
+actual UI input. The corrected run above passed both checks and the complete release matrix.
 
 ---
 

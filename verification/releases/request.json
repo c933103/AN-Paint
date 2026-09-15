@@ -1,7 +1,108 @@
 {
-  "version": "0.0.29",
-  "version_code": 82,
-  "commit": "01681570c448824a32039473bede5ae9591795c9",
-  "run_id": 34914389654,
-  "apk_sha256": "97de3f95832c560b20fe39b46e78e2f15658a8ba73d0a7c2a5c76871c905d940"
+  "version": "0.0.30",
+  "version_code": 83,
+  "commit": "31526a42ced7d6eae6c8c9a756ae6c2e8b23d162",
+  "run_id": 34945326732,
+  "apk_sha256": "7064b86171764da83d6531ac985e4a71d78f9105add761d79d54a1d0162f27d4",
+  "feature_checks": {
+    "checks": [
+      {
+        "platform": "emulator30",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit",
+        "status": "passed",
+        "report": "emulator30/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "e6b3fdec7a980a1fd784a33c1048105f465c6bfacdd5381a5a93579344079812"
+      },
+      {
+        "platform": "emulator30",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+        "status": "passed",
+        "report": "emulator30/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "e6b3fdec7a980a1fd784a33c1048105f465c6bfacdd5381a5a93579344079812"
+      },
+      {
+        "platform": "emulator30",
+        "class": "org.catrobat.paintroid.classic.NativeCodecTest",
+        "test": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
+        "status": "passed",
+        "report": "emulator30/Paintroid/androidTest-results/TEST-Paintroid.xml",
+        "report_sha256": "861284e9041dedda797fad7c8c2957a05f96d2cf95cccb89fa60b818b36f5ba6"
+      },
+      {
+        "platform": "emulator30",
+        "class": "org.catrobat.paintroid.classic.NativeCodecTest",
+        "test": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
+        "status": "passed",
+        "report": "emulator30/Paintroid/androidTest-results/TEST-Paintroid.xml",
+        "report_sha256": "861284e9041dedda797fad7c8c2957a05f96d2cf95cccb89fa60b818b36f5ba6"
+      },
+      {
+        "platform": "emulator35",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit",
+        "status": "passed",
+        "report": "emulator35/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "cb16841c2137102d1ae0d071fd0992b511efbdd58c039c8b50bfef9236b2ef77"
+      },
+      {
+        "platform": "emulator35",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+        "status": "passed",
+        "report": "emulator35/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "cb16841c2137102d1ae0d071fd0992b511efbdd58c039c8b50bfef9236b2ef77"
+      },
+      {
+        "platform": "emulator35",
+        "class": "org.catrobat.paintroid.classic.NativeCodecTest",
+        "test": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
+        "status": "passed",
+        "report": "emulator35/Paintroid/androidTest-results/TEST-Paintroid.xml",
+        "report_sha256": "641390d7d971222599fb47061d2372416bb894ee5593d3c151ca7178b580849f"
+      },
+      {
+        "platform": "emulator35",
+        "class": "org.catrobat.paintroid.classic.NativeCodecTest",
+        "test": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
+        "status": "passed",
+        "report": "emulator35/Paintroid/androidTest-results/TEST-Paintroid.xml",
+        "report_sha256": "641390d7d971222599fb47061d2372416bb894ee5593d3c151ca7178b580849f"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.CursorDrawingTest",
+        "test": "enablingCursorDrawsImmediatelyAndMoveOnlyIsExplicit",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.CursorDrawingTest",
+        "test": "movingAndTappingNeverToggleInkAndCancelRollsBack",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.CursorDrawingTest",
+        "test": "strokesShorterThanTouchSlopSurviveLiftForEveryCursorBrush",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.ViewportAndVerticalTextTest",
+        "test": "canvasDisplayDoesNotBlendNeighbouringPixelsWhenZoomedInOrOut",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.ViewportAndVerticalTextTest.xml",
+        "report_sha256": "7b8db0b96984c652300772a3027f61151ed123dc82c014bc5c511d6373479e70"
+      }
+    ],
+    "jpeg_xl_application_pixels_per_save": 49601
+  }
 }

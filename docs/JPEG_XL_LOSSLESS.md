@@ -19,7 +19,9 @@ content resolver, reopen the file with the packaged decoder and compare all
 49,601 RGB pixels of a 257×193 pattern. It then edits a pixel, invokes File → Save,
 checks that no new destination picker was requested, and compares every pixel
 again. Only the external file picker is replaced with a controlled test result.
-The workflow's actual pass/fail result is recorded with the release evidence.
+Both save operations and the native lossless/chunk-boundary tests passed on
+Android API 30 and 35 in [release run 34945326732](https://github.com/c933103/AN-Paint/actions/runs/34945326732).
+The release verification JSON records the exact test names and report hashes.
 
 Lossless here means exact preservation of AN Paint's opaque, 8-bit sRGB canvas
 pixels. Imported images may already have been resized, flattened or converted
