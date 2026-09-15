@@ -1,3 +1,32 @@
+# AN Paint 0.0.33 — grouped Edit commands and uniform tool tiles
+
+Version code 86. Edit expands Selection, Canvas, Flip / Rotate and Colours
+groups. All twelve actions retain their behaviour and stable internal action IDs.
+Tool tiles use one square size per writing mode and font setting; caption length
+does not change an individual tile. Side tabs and vertical File commands share
+a uniform row height. View uses short Pixel grid, Magnifier and Full screen
+labels. Pixel-grid threshold/ruler help is available through How to use and by
+holding Pixel grid. Its selected state indicates whether the grid is enabled.
+
+Cursor drawing uses an Enable/Disable push button rather than a checkbox. The
+on-canvas Start/Stop control, independent cursor outline and shared Drawing
+brush settings remain. All 30 requested menu catalogues include the seven new
+labels/help entries. README now describes the current editor and Save/Export
+behaviour without obsolete release or language-coverage claims.
+
+Local verification: 81 host checks passed; all 134 generated translation files
+match regeneration; Android aapt2 compiled the complete resource tree; whitespace
+checks passed. Kotlin/Android compilation, regression tests, visual screenshots,
+lint and device tests are delegated to GitHub because this workspace lacks the
+Android SDK and Gradle dependency cache. No pending result is claimed as passed.
+This source is a development candidate, not a published signed release. Routine
+GitHub checks build the APK and run regression/lint plus Android API 35. Follow
+CI.md: complete useful local work and report pending jobs without waiting for
+GitHub as the sole remaining activity. Upgrade signing and exact-source checks
+are still required before distributing an installable update.
+
+---
+
 # AN Paint 0.0.32 — unified tool tiles, cursor drawer and menu translations
 
 Version code 85. Edit and View use the same scrolling tool tiles as Draw.

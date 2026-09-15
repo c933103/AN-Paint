@@ -15,7 +15,7 @@ import kotlin.math.ceil
 /** Native text buttons retain their platform appearance. Vertical captions have their own measurements. */
 open class FlowButton(context: Context): Button(context) {
     var columnHeightDp=144
-    private var icon: android.graphics.drawable.Drawable?=null
+    protected var icon: android.graphics.drawable.Drawable?=null
     protected fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
     init {
         isAllCaps=false;gravity=Gravity.CENTER;textSize=13f
@@ -27,7 +27,7 @@ open class FlowButton(context: Context): Button(context) {
         if(!VerticalText.uiVertical()) setCompoundDrawables(null,icon,null,null)
         compoundDrawablePadding=dp(3);requestLayout();invalidate()
     }
-    private fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat())
+    protected open fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat())
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
         val box=VerticalText.bounds(caption(),paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
@@ -52,13 +52,20 @@ open class FlowButton(context: Context): Button(context) {
 
 /** Original square tool tiles and small bold captions, confined to ribbon panels. */
 open class PanelToolButton(context: Context): FlowButton(context) {
+    companion object {
+        fun tileSize(context: Context): Int {
+            val metrics=context.resources.displayMetrics
+            val scale=context.resources.configuration.fontScale.coerceAtLeast(1f)
+            return ((if(VerticalText.uiVertical()) 112 else 96)*metrics.density*scale+.5f).toInt()
+        }
+    }
     var disclosure: Boolean?=null
     var disclosureBeside=false
     init {
         textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
         // The activity theme supplies textAlignment=viewStart; gravity alone cannot override it.
         textAlignment=TEXT_ALIGNMENT_CENTER;gravity=Gravity.CENTER
-        if(!VerticalText.uiVertical()) {minHeight=dp(64);minimumHeight=dp(64)}
+        if(!VerticalText.uiVertical()) {maxLines=3;ellipsize=android.text.TextUtils.TruncateAt.END}
         setPadding(dp(6),dp(5),dp(6),dp(5));columnHeightDp=112
         fun tile(selected: Boolean)=GradientDrawable().apply {
             setColor(if(selected) EditorColours.primaryContainer else EditorColours.surfaceContainer)
@@ -71,12 +78,31 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         setTextColor(EditorColours.onSurface)
     }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        if(!VerticalText.uiVertical() && MeasureSpec.getMode(widthMeasureSpec)!=MeasureSpec.EXACTLY) {
-            val natural=ceil(paint.measureText(text.toString())).toInt()+dp(if(disclosure!=null) 28 else 12)
-            // TextView must build its caption layout at the final tile width, including wrap-content rails.
-            val width=resolveSize(maxOf(dp(76),natural),widthMeasureSpec)
-            super.onMeasure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.EXACTLY),heightMeasureSpec)
-        } else super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        // One square size for every tool, including vertical scripts and larger fonts.
+        // Captions wrap within the tile; their length must never size an individual button.
+        val side=minOf(resolveSize(tileSize(context),widthMeasureSpec),resolveSize(tileSize(context),heightMeasureSpec))
+        columnHeightDp=((side-paddingTop-paddingBottom)/resources.displayMetrics.density).toInt()
+        super.onMeasure(MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY))
+    }
+    override fun caption(): String {
+        val full=super.caption()
+        if(width<=0 || height<=0) return full
+        val availableWidth=width-paddingLeft-paddingRight-(icon?.bounds?.width()?.plus(dp(8)) ?: 0)
+        val availableHeight=height-paddingTop-paddingBottom
+        fun fits(label: String): Boolean {
+            val box=VerticalText.bounds(label,paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+            return box.width()<=availableWidth && box.height()<=availableHeight
+        }
+        if(fits(full)) return full
+        // Retain natural glyph size and shaping; unusually long labels use an
+        // ellipsis inside the tile, with the full caption available to accessibility/tooltip.
+        val clusters=VerticalText.clusters(text.toString()).toMutableList()
+        while(clusters.isNotEmpty()) {
+            clusters.removeAt(clusters.lastIndex)
+            val label=VerticalText.wrapLabel(clusters.joinToString("").trimEnd()+"…",paint,availableHeight.toFloat())
+            if(fits(label)) return label
+        }
+        return "…"
     }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -103,16 +129,19 @@ internal class RibbonPanel(context: Context,private val maximum: Int,private val
 }
 
 /** Tabs share their naturally tallest height so the selected edge meets one common panel boundary. */
-internal class TabStrip(context: Context,private val sideLayout: Boolean=false): android.widget.LinearLayout(context) {
+internal open class EqualHeightRail(context: Context,private val sideLayout: Boolean=false): android.widget.LinearLayout(context) {
     init {isBaselineAligned=false;orientation=if(sideLayout) VERTICAL else HORIZONTAL}
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec,heightMeasureSpec)
-        if(sideLayout) return
         val tallest=(0 until childCount).maxOfOrNull {getChildAt(it).measuredHeight} ?: 0
         for(i in 0 until childCount) getChildAt(i).let {it.measure(MeasureSpec.makeMeasureSpec(it.measuredWidth,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(tallest,MeasureSpec.EXACTLY))}
-        setMeasuredDimension(measuredWidth,tallest+paddingTop+paddingBottom)
+        val margins=(0 until childCount).map {val p=getChildAt(it).layoutParams as android.view.ViewGroup.MarginLayoutParams;p.topMargin+p.bottomMargin}
+        setMeasuredDimension(measuredWidth,resolveSize(tallest*(if(sideLayout) childCount else 1)+paddingTop+paddingBottom+
+            (if(sideLayout) margins.sum() else margins.maxOrNull() ?: 0),heightMeasureSpec))
     }
 }
+
+internal class TabStrip(context: Context,sideLayout: Boolean=false): EqualHeightRail(context,sideLayout)
 
 /** An attached tab with a selected edge; never a boxed command button. */
 class RibbonTab(context: Context,private val sideLayout: Boolean=false): FlowButton(context) {

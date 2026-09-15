@@ -28,6 +28,8 @@ internal object EditorTestNavigation {
         if(tab!=null) {root.findViewWithTag<View>("menu_$tab").performClick();idle()}
         val view=root.findViewWithTag<View>(actual)
         assertNotNull("Missing control $actual",view)
+        revealEditGroup(activity,view)
+        if(actual.startsWith("command_")) assertTrue("Visible command $actual",view.isShown)
         if(view is android.widget.CompoundButton) {val checked=view.isChecked;view.performClick();assertNotEquals(checked,view.isChecked)}
         else assertTrue("Click $actual",view.performClick())
         idle()
@@ -35,8 +37,21 @@ internal object EditorTestNavigation {
     fun command(activity: ClassicPaintActivity,tab: String,index: Int)=click(activity,"command_${tab}_$index")
     fun named(activity: ClassicPaintActivity,tab: String,label: String) {
         click(activity,"menu_$tab")
-        val button=buttons(activity.window.decorView.findViewWithTag("panel_${tab}_commands")).single {it.text.toString()==label}
+        val button=buttons(activity.window.decorView).single {it.text.toString()==label && it.tag?.toString()?.startsWith("command_${tab}_")==true}
+        revealEditGroup(activity,button)
+        assertTrue("Visible command $label",button.isShown)
         assertTrue(button.performClick());idle()
+    }
+    private fun revealEditGroup(activity: ClassicPaintActivity,view: View) {
+        var parent=view.parent
+        while(parent is View) {
+            val tag=parent.tag?.toString().orEmpty()
+            if(tag.startsWith("edit_group_") && tag!="edit_group_host" && parent.visibility!=View.VISIBLE) {
+                assertTrue(activity.window.decorView.findViewWithTag<View>(tag.replace("edit_group_","edit_category_")).performClick());idle()
+                break
+            }
+            parent=parent.parent
+        }
     }
     fun format(spinner: Spinner,format: ImageFormat) {
         val index=(0 until spinner.count).single {spinner.getItemAtPosition(it).toString()==format.label}

@@ -58,6 +58,21 @@ class VerticalRibbonTest {
             assertTrue(root.findViewWithTag<View>("menu_Draw") is RibbonTab)
             val navigate=root.findViewWithTag<ToolButton>("tool_ZOOM")
             assertTrue(navigate.height>0);assertTrue(navigate.width>0)
+            val tabHeights=listOf("View","Draw","File","Edit","Color").map {root.findViewWithTag<View>("menu_$it").height}
+            assertEquals("Vertical-language tabs share one height",1,tabHeights.toSet().size)
+            for(tab in listOf("View","Draw","Edit","File")) {
+                root.findViewWithTag<View>("menu_$tab").performClick();idle()
+                val rail=root.findViewWithTag<View>(if(tab=="Draw") "primary_tools" else "panel_${tab}_commands")
+                val buttons=EditorTestNavigation.buttons(rail)
+                assertTrue(buttons.isNotEmpty())
+                assertEquals("Uniform button heights: $tag/$tab",1,buttons.map {it.height}.toSet().size)
+                if(tab!="File") buttons.forEach {
+                    assertEquals("Square vertical tile: ${it.text}",it.width,it.height)
+                    assertEquals(navigate.height,it.height)
+                }
+                render(root,"vertical-$tab-$tag.png")
+            }
+            root.findViewWithTag<View>("menu_View").performClick();idle()
             render(root,"vertical-ui-$tag.png")
             root.findViewWithTag<View>("menu_Color").performClick();idle()
             render(root,"vertical-colours-$tag.png")

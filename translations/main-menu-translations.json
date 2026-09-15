@@ -1,5 +1,5 @@
 {
-  "scope": "Main tabs, their first-level commands, system-language choice and cursor controls. AN Paint contributors, AGPL-3.0-or-later.",
+  "scope": "Main tabs, first-level commands and Edit groups, system-language choice, cursor controls and pixel-grid help. AN Paint contributors, AGPL-3.0-or-later.",
   "required_keys": [
     "ui_menu_view",
     "ui_draw26",
@@ -61,7 +61,14 @@
     "ui_bg",
     "ui_cursor_help31",
     "ui_foreground_colour",
-    "ui_background_colour"
+    "ui_background_colour",
+    "ui_edit_canvas33",
+    "ui_edit_transform33",
+    "ui_pixel_grid33",
+    "ui_magnifier33",
+    "ui_fullscreen33",
+    "ui_disable_cursor_drawing33",
+    "ui_pixel_grid_help33"
   ],
   "locales": {
     "ja": {
@@ -125,7 +132,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "ドラッグでカーソルを移動します。描画ボタンをタップすると描画を開始できます。 ドラッグすると描画します。もう一度タップすると停止します。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "キャンバス",
+      "ui_edit_transform33": "反転・回転",
+      "ui_pixel_grid33": "ピクセルグリッド",
+      "ui_magnifier33": "拡大鏡",
+      "ui_fullscreen33": "全画面",
+      "ui_disable_cursor_drawing33": "カーソル描画を無効にする",
+      "ui_pixel_grid_help33": "ピクセルグリッドは800%以上に拡大すると表示されます。定規は画像上の位置をピクセル単位で示します。"
     },
     "zh-TW": {
       "ui_menu_view": "檢視",
@@ -188,7 +202,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "拖曳以移動游標。點按繪圖按鈕即可開始繪圖。 拖曳即可開始繪圖。再次點按即可停止。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "畫布",
+      "ui_edit_transform33": "翻轉／旋轉",
+      "ui_pixel_grid33": "像素格線",
+      "ui_magnifier33": "放大鏡",
+      "ui_fullscreen33": "全螢幕",
+      "ui_disable_cursor_drawing33": "停用游標繪圖",
+      "ui_pixel_grid_help33": "放大至800%或以上時會顯示像素格線。尺規以像素為單位顯示影像中的位置。"
     },
     "zh-HK": {
       "ui_menu_view": "檢視",
@@ -251,7 +272,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "拖曳以移動游標。點按繪圖按鈕即可開始繪圖。 拖曳即可開始繪圖。再次點按即可停止。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "畫布",
+      "ui_edit_transform33": "翻轉／旋轉",
+      "ui_pixel_grid33": "像素格線",
+      "ui_magnifier33": "放大鏡",
+      "ui_fullscreen33": "全螢幕",
+      "ui_disable_cursor_drawing33": "停用游標繪圖",
+      "ui_pixel_grid_help33": "放大至800%或以上時會顯示像素格線。尺規以像素為單位顯示圖像中的位置。"
     },
     "zh-CN": {
       "ui_menu_view": "查看",
@@ -314,7 +342,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "拖动以移动光标。点按绘图按钮即可开始绘图。 拖动即可开始绘图。再次点按即可停止。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "画布",
+      "ui_edit_transform33": "翻转／旋转",
+      "ui_pixel_grid33": "像素网格",
+      "ui_magnifier33": "放大镜",
+      "ui_fullscreen33": "全屏",
+      "ui_disable_cursor_drawing33": "停用光标绘图",
+      "ui_pixel_grid_help33": "放大至800%或以上时会显示像素网格。标尺以像素为单位显示图像中的位置。"
     },
     "yue-Hant": {
       "ui_menu_view": "檢視",
@@ -377,7 +412,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "拖動嚟移動游標。撳畫圖掣就開始畫圖。 拖動就開始畫圖。再撳一次就停。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "畫布",
+      "ui_edit_transform33": "翻轉／旋轉",
+      "ui_pixel_grid33": "像素格線",
+      "ui_magnifier33": "放大鏡",
+      "ui_fullscreen33": "全螢幕",
+      "ui_disable_cursor_drawing33": "停用游標畫圖",
+      "ui_pixel_grid_help33": "放大到800%或以上就會顯示像素格線。尺規用像素做單位，顯示圖像入面嘅位置。"
     },
     "yue-Latn": {
       "ui_menu_view": "Gim2 si6",
@@ -440,7 +482,14 @@
       "ui_bg": "Bui3 ging2",
       "ui_cursor_help31": "To1 dung6 lai4 ji4 dung6 jau4 biu1. Gam6 waak6 tou4 zai3 zau6 hoi1 ci2 waak6 tou4. To1 dung6 zau6 hoi1 ci2 waak6 tou4. Zoi3 gam6 jat1 ci3 zau6 ting4.",
       "ui_foreground_colour": "Cin4 ging2",
-      "ui_background_colour": "Bui3 ging2"
+      "ui_background_colour": "Bui3 ging2",
+      "ui_edit_canvas33": "Waak6 bou3",
+      "ui_edit_transform33": "Faan2 zyun2 / syun4 zyun2",
+      "ui_pixel_grid33": "Zoeng6 sou3 gaak3 sin3",
+      "ui_magnifier33": "Fong3 daai6 geng3",
+      "ui_fullscreen33": "Cyun4 jing4 mok6",
+      "ui_disable_cursor_drawing33": "Ting4 jung6 jau4 biu1 waak6 tou4",
+      "ui_pixel_grid_help33": "Fong3 daai6 dou3 800% waak6 ji5 soeng6 zau6 wui5 hin2 si6 zoeng6 sou3 gaak3 sin3. Cek3 kwai1 jung6 zoeng6 sou3 zou6 daan1 wai2, hin2 si6 tou4 zoeng6 jap6 min6 ge3 wai6 zi3."
     },
     "lzh-Hant": {
       "ui_menu_view": "檢視",
@@ -503,7 +552,14 @@
       "ui_bg": "背景",
       "ui_cursor_help31": "拖動以移游標，按繪圖鈕以始繪。 拖動則繪，再按則止。",
       "ui_foreground_colour": "前景",
-      "ui_background_colour": "背景"
+      "ui_background_colour": "背景",
+      "ui_edit_canvas33": "畫布",
+      "ui_edit_transform33": "反轉／旋轉",
+      "ui_pixel_grid33": "像素格",
+      "ui_magnifier33": "放大鏡",
+      "ui_fullscreen33": "全屏",
+      "ui_disable_cursor_drawing33": "停游標繪圖",
+      "ui_pixel_grid_help33": "放大至八倍以上，乃顯像素格。尺規以像素標示圖中位置。"
     },
     "ar": {
       "ui_menu_view": "عرض",
@@ -566,7 +622,14 @@
       "ui_bg": "خلفية",
       "ui_cursor_help31": "اسحب لتحديد موضع المؤشر. انقر زر الرسم لبدء الرسم. اسحب لبدء الرسم. انقر مرة أخرى لإيقاف الرسم.",
       "ui_foreground_colour": "أمامية",
-      "ui_background_colour": "خلفية"
+      "ui_background_colour": "خلفية",
+      "ui_edit_canvas33": "لوحة الرسم",
+      "ui_edit_transform33": "قلب / تدوير",
+      "ui_pixel_grid33": "شبكة البكسل",
+      "ui_magnifier33": "عدسة مكبرة",
+      "ui_fullscreen33": "ملء الشاشة",
+      "ui_disable_cursor_drawing33": "تعطيل الرسم بالمؤشر",
+      "ui_pixel_grid_help33": "تظهر شبكة البكسل عند التكبير إلى 800% أو أكثر. تعرض المساطر المواضع بوحدات بكسل الصورة."
     },
     "de": {
       "ui_menu_view": "Ansicht",
@@ -629,7 +692,14 @@
       "ui_bg": "Hintergrund",
       "ui_cursor_help31": "Zum Positionieren des Cursors ziehen. Zum Zeichnen auf die Zeichentaste tippen. Zum Zeichnen ziehen. Erneut tippen, um das Zeichnen zu stoppen.",
       "ui_foreground_colour": "Vordergrund",
-      "ui_background_colour": "Hintergrund"
+      "ui_background_colour": "Hintergrund",
+      "ui_edit_canvas33": "Leinwand",
+      "ui_edit_transform33": "Spiegeln / Drehen",
+      "ui_pixel_grid33": "Pixelraster",
+      "ui_magnifier33": "Lupe",
+      "ui_fullscreen33": "Vollbild",
+      "ui_disable_cursor_drawing33": "Zeichnen mit Cursor deaktivieren",
+      "ui_pixel_grid_help33": "Das Pixelraster erscheint ab 800% Vergrößerung. Die Lineale zeigen Positionen in Bildpixeln an."
     },
     "pl": {
       "ui_menu_view": "Widok",
@@ -692,7 +762,14 @@
       "ui_bg": "Tło",
       "ui_cursor_help31": "Przeciągnij, aby ustawić kursor. Dotknij przycisku rysowania, aby zacząć rysować. Przeciągnij, aby rysować. Dotknij ponownie, aby zatrzymać rysowanie.",
       "ui_foreground_colour": "Pierwszy plan",
-      "ui_background_colour": "Tło"
+      "ui_background_colour": "Tło",
+      "ui_edit_canvas33": "Płótno",
+      "ui_edit_transform33": "Odbicie / Obrót",
+      "ui_pixel_grid33": "Siatka pikseli",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Pełny ekran",
+      "ui_disable_cursor_drawing33": "Wyłącz rysowanie kursorem",
+      "ui_pixel_grid_help33": "Siatka pikseli pojawia się przy powiększeniu co najmniej 800%. Linijki pokazują pozycje w pikselach obrazu."
     },
     "ru": {
       "ui_menu_view": "Вид",
@@ -755,7 +832,14 @@
       "ui_bg": "Фон",
       "ui_cursor_help31": "Переместите курсор движением пальца. Нажмите кнопку рисования, чтобы начать рисовать. Проведите пальцем, чтобы рисовать. Нажмите ещё раз, чтобы остановить рисование.",
       "ui_foreground_colour": "Передний план",
-      "ui_background_colour": "Фон"
+      "ui_background_colour": "Фон",
+      "ui_edit_canvas33": "Холст",
+      "ui_edit_transform33": "Отражение / Поворот",
+      "ui_pixel_grid33": "Сетка пикселей",
+      "ui_magnifier33": "Лупа",
+      "ui_fullscreen33": "Полный экран",
+      "ui_disable_cursor_drawing33": "Отключить рисование курсором",
+      "ui_pixel_grid_help33": "Сетка пикселей отображается при масштабе 800% и выше. Линейки показывают координаты в пикселях изображения."
     },
     "es-ES": {
       "ui_menu_view": "Ver",
@@ -818,7 +902,14 @@
       "ui_bg": "Fondo",
       "ui_cursor_help31": "Arrastra para colocar el cursor. Toca el botón de dibujo para empezar a dibujar. Arrastra para dibujar. Toca de nuevo para dejar de dibujar.",
       "ui_foreground_colour": "Frente",
-      "ui_background_colour": "Fondo"
+      "ui_background_colour": "Fondo",
+      "ui_edit_canvas33": "Lienzo",
+      "ui_edit_transform33": "Voltear / Girar",
+      "ui_pixel_grid33": "Cuadrícula de píxeles",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Pantalla completa",
+      "ui_disable_cursor_drawing33": "Desactivar dibujo con cursor",
+      "ui_pixel_grid_help33": "La cuadrícula de píxeles aparece con un zoom del 800% o más. Las reglas muestran posiciones en píxeles de la imagen."
     },
     "es-419": {
       "ui_menu_view": "Ver",
@@ -881,7 +972,14 @@
       "ui_bg": "Fondo",
       "ui_cursor_help31": "Arrastra para colocar el cursor. Toca el botón de dibujo para empezar a dibujar. Arrastra para dibujar. Toca de nuevo para dejar de dibujar.",
       "ui_foreground_colour": "Frente",
-      "ui_background_colour": "Fondo"
+      "ui_background_colour": "Fondo",
+      "ui_edit_canvas33": "Lienzo",
+      "ui_edit_transform33": "Voltear / Girar",
+      "ui_pixel_grid33": "Cuadrícula de píxeles",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Pantalla completa",
+      "ui_disable_cursor_drawing33": "Desactivar dibujo con cursor",
+      "ui_pixel_grid_help33": "La cuadrícula de píxeles aparece con un zoom del 800% o más. Las reglas muestran posiciones en píxeles de la imagen."
     },
     "pt-PT": {
       "ui_menu_view": "Ver",
@@ -944,7 +1042,14 @@
       "ui_bg": "Fundo",
       "ui_cursor_help31": "Arraste para posicionar o cursor. Toque no botão de desenho para começar a desenhar. Arraste para desenhar. Toque novamente para parar de desenhar.",
       "ui_foreground_colour": "Frente",
-      "ui_background_colour": "Fundo"
+      "ui_background_colour": "Fundo",
+      "ui_edit_canvas33": "Tela",
+      "ui_edit_transform33": "Inverter / Rodar",
+      "ui_pixel_grid33": "Grelha de píxeis",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Ecrã inteiro",
+      "ui_disable_cursor_drawing33": "Desativar desenho com cursor",
+      "ui_pixel_grid_help33": "A grelha de píxeis aparece com uma ampliação de 800% ou superior. As réguas mostram posições em píxeis da imagem."
     },
     "pt-BR": {
       "ui_menu_view": "Exibir",
@@ -1007,7 +1112,14 @@
       "ui_bg": "Fundo",
       "ui_cursor_help31": "Arraste para posicionar o cursor. Toque no botão de desenho para começar a desenhar. Arraste para desenhar. Toque novamente para parar de desenhar.",
       "ui_foreground_colour": "Frente",
-      "ui_background_colour": "Fundo"
+      "ui_background_colour": "Fundo",
+      "ui_edit_canvas33": "Tela",
+      "ui_edit_transform33": "Inverter / Girar",
+      "ui_pixel_grid33": "Grade de pixels",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Tela cheia",
+      "ui_disable_cursor_drawing33": "Desativar desenho com cursor",
+      "ui_pixel_grid_help33": "A grade de pixels aparece com uma ampliação de 800% ou mais. As réguas mostram posições em pixels da imagem."
     },
     "it": {
       "ui_menu_view": "Visualizza",
@@ -1070,7 +1182,14 @@
       "ui_bg": "Sfondo",
       "ui_cursor_help31": "Trascina per posizionare il cursore. Tocca il pulsante di disegno per iniziare a disegnare. Trascina per disegnare. Tocca di nuovo per smettere di disegnare.",
       "ui_foreground_colour": "Primo piano",
-      "ui_background_colour": "Sfondo"
+      "ui_background_colour": "Sfondo",
+      "ui_edit_canvas33": "Tela",
+      "ui_edit_transform33": "Rifletti / Ruota",
+      "ui_pixel_grid33": "Griglia pixel",
+      "ui_magnifier33": "Lente",
+      "ui_fullscreen33": "Schermo intero",
+      "ui_disable_cursor_drawing33": "Disattiva disegno con cursore",
+      "ui_pixel_grid_help33": "La griglia dei pixel appare con uno zoom dell’800% o superiore. I righelli mostrano le posizioni in pixel dell’immagine."
     },
     "fr": {
       "ui_menu_view": "Affichage",
@@ -1133,7 +1252,14 @@
       "ui_bg": "Arrière-plan",
       "ui_cursor_help31": "Faites glisser pour placer le curseur. Touchez le bouton de dessin pour commencer à dessiner. Faites glisser pour dessiner. Touchez à nouveau pour arrêter.",
       "ui_foreground_colour": "Premier plan",
-      "ui_background_colour": "Arrière-plan"
+      "ui_background_colour": "Arrière-plan",
+      "ui_edit_canvas33": "Canevas",
+      "ui_edit_transform33": "Retourner / Pivoter",
+      "ui_pixel_grid33": "Grille de pixels",
+      "ui_magnifier33": "Loupe",
+      "ui_fullscreen33": "Plein écran",
+      "ui_disable_cursor_drawing33": "Désactiver le dessin au curseur",
+      "ui_pixel_grid_help33": "La grille de pixels apparaît à un zoom de 800% ou plus. Les règles indiquent les positions en pixels de l’image."
     },
     "he": {
       "ui_menu_view": "תצוגה",
@@ -1196,7 +1322,14 @@
       "ui_bg": "רקע",
       "ui_cursor_help31": "יש לגרור כדי למקם את הסמן. נגיעה בכפתור הציור תתחיל את הציור. יש לגרור כדי לצייר. נגיעה נוספת תפסיק את הציור.",
       "ui_foreground_colour": "קדמה",
-      "ui_background_colour": "רקע"
+      "ui_background_colour": "רקע",
+      "ui_edit_canvas33": "בד ציור",
+      "ui_edit_transform33": "היפוך / סיבוב",
+      "ui_pixel_grid33": "רשת פיקסלים",
+      "ui_magnifier33": "זכוכית מגדלת",
+      "ui_fullscreen33": "מסך מלא",
+      "ui_disable_cursor_drawing33": "השבתת ציור עם הסמן",
+      "ui_pixel_grid_help33": "רשת הפיקסלים מופיעה בהגדלה של 800% ומעלה. הסרגלים מציגים מיקומים בפיקסלים של התמונה."
     },
     "ko-KR": {
       "ui_menu_view": "보기",
@@ -1259,7 +1392,14 @@
       "ui_bg": "배경",
       "ui_cursor_help31": "드래그하여 커서를 옮기세요. 그리기 버튼을 누르면 그리기를 시작할 수 있습니다. 드래그하면 그려집니다. 다시 누르면 그리기를 멈춥니다.",
       "ui_foreground_colour": "전경",
-      "ui_background_colour": "배경"
+      "ui_background_colour": "배경",
+      "ui_edit_canvas33": "캔버스",
+      "ui_edit_transform33": "뒤집기 / 회전",
+      "ui_pixel_grid33": "픽셀 격자",
+      "ui_magnifier33": "돋보기",
+      "ui_fullscreen33": "전체 화면",
+      "ui_disable_cursor_drawing33": "커서 그리기 끄기",
+      "ui_pixel_grid_help33": "픽셀 격자는 800% 이상 확대하면 표시됩니다. 눈금자는 이미지의 위치를 픽셀 단위로 표시합니다."
     },
     "ko-KP": {
       "ui_menu_view": "보기",
@@ -1322,7 +1462,14 @@
       "ui_bg": "배경",
       "ui_cursor_help31": "끌어서 커서를 옮기십시오. 그리기단추를 누르면 그리기를 시작할 수 있습니다. 끌면 그려집니다. 다시 누르면 그리기를 멈춥니다.",
       "ui_foreground_colour": "앞면",
-      "ui_background_colour": "배경"
+      "ui_background_colour": "배경",
+      "ui_edit_canvas33": "화판",
+      "ui_edit_transform33": "뒤집기 / 회전",
+      "ui_pixel_grid33": "화소 격자",
+      "ui_magnifier33": "확대경",
+      "ui_fullscreen33": "전체 화면",
+      "ui_disable_cursor_drawing33": "지시자로 그리기 끄기",
+      "ui_pixel_grid_help33": "화소 격자는 800% 이상 확대하면 표시됩니다. 눈금자는 화상의 위치를 화소 단위로 표시합니다."
     },
     "id": {
       "ui_menu_view": "Tampilan",
@@ -1385,7 +1532,14 @@
       "ui_bg": "Latar",
       "ui_cursor_help31": "Seret untuk memosisikan kursor. Ketuk tombol gambar untuk mulai menggambar. Seret untuk mulai menggambar. Ketuk lagi untuk berhenti menggambar.",
       "ui_foreground_colour": "Depan",
-      "ui_background_colour": "Latar"
+      "ui_background_colour": "Latar",
+      "ui_edit_canvas33": "Kanvas",
+      "ui_edit_transform33": "Balik / Putar",
+      "ui_pixel_grid33": "Kisi piksel",
+      "ui_magnifier33": "Kaca pembesar",
+      "ui_fullscreen33": "Layar penuh",
+      "ui_disable_cursor_drawing33": "Nonaktifkan gambar dengan kursor",
+      "ui_pixel_grid_help33": "Kisi piksel muncul pada perbesaran 800% atau lebih. Penggaris menunjukkan posisi dalam piksel gambar."
     },
     "ms": {
       "ui_menu_view": "Paparan",
@@ -1448,7 +1602,14 @@
       "ui_bg": "Latar",
       "ui_cursor_help31": "Seret untuk meletakkan kursor. Ketik butang lukisan untuk mula melukis. Seret untuk mula melukis. Ketik sekali lagi untuk berhenti melukis.",
       "ui_foreground_colour": "Hadapan",
-      "ui_background_colour": "Latar"
+      "ui_background_colour": "Latar",
+      "ui_edit_canvas33": "Kanvas",
+      "ui_edit_transform33": "Balik / Putar",
+      "ui_pixel_grid33": "Grid piksel",
+      "ui_magnifier33": "Kanta pembesar",
+      "ui_fullscreen33": "Skrin penuh",
+      "ui_disable_cursor_drawing33": "Nyahaktif lukisan dengan kursor",
+      "ui_pixel_grid_help33": "Grid piksel muncul pada zum 800% atau lebih. Pembaris menunjukkan kedudukan dalam piksel imej."
     },
     "vi": {
       "ui_menu_view": "Xem",
@@ -1511,7 +1672,14 @@
       "ui_bg": "Nền",
       "ui_cursor_help31": "Kéo để đặt con trỏ. Chạm nút vẽ để bắt đầu vẽ. Kéo để bắt đầu vẽ. Chạm lần nữa để dừng vẽ.",
       "ui_foreground_colour": "Tiền cảnh",
-      "ui_background_colour": "Nền"
+      "ui_background_colour": "Nền",
+      "ui_edit_canvas33": "Khung vẽ",
+      "ui_edit_transform33": "Lật / Xoay",
+      "ui_pixel_grid33": "Lưới điểm ảnh",
+      "ui_magnifier33": "Kính lúp",
+      "ui_fullscreen33": "Toàn màn hình",
+      "ui_disable_cursor_drawing33": "Tắt vẽ bằng con trỏ",
+      "ui_pixel_grid_help33": "Lưới điểm ảnh xuất hiện khi phóng to từ 800% trở lên. Thước hiển thị vị trí theo điểm ảnh của hình ảnh."
     },
     "tl": {
       "ui_menu_view": "Tingnan",
@@ -1574,7 +1742,14 @@
       "ui_bg": "Likuran",
       "ui_cursor_help31": "I-drag para ipuwesto ang cursor. I-tap ang pindutan ng pagguhit para magsimulang gumuhit. I-drag para gumuhit. I-tap muli para tumigil sa pagguhit.",
       "ui_foreground_colour": "Harapan",
-      "ui_background_colour": "Likuran"
+      "ui_background_colour": "Likuran",
+      "ui_edit_canvas33": "Lona",
+      "ui_edit_transform33": "Baligtarin / Ikutin",
+      "ui_pixel_grid33": "Grid ng pixel",
+      "ui_magnifier33": "Lente",
+      "ui_fullscreen33": "Buong screen",
+      "ui_disable_cursor_drawing33": "I-disable ang pagguhit gamit ang cursor",
+      "ui_pixel_grid_help33": "Lilitaw ang grid ng pixel kapag naka-zoom nang 800% o higit pa. Ipinapakita ng mga ruler ang posisyon sa mga pixel ng larawan."
     },
     "th": {
       "ui_menu_view": "มุมมอง",
@@ -1637,7 +1812,14 @@
       "ui_bg": "พื้นหลัง",
       "ui_cursor_help31": "ลากเพื่อวางตำแหน่งเคอร์เซอร์ แตะปุ่มวาดเพื่อเริ่มวาด ลากเพื่อเริ่มวาด แตะอีกครั้งเพื่อหยุดวาด",
       "ui_foreground_colour": "ด้านหน้า",
-      "ui_background_colour": "พื้นหลัง"
+      "ui_background_colour": "พื้นหลัง",
+      "ui_edit_canvas33": "ผืนผ้าใบ",
+      "ui_edit_transform33": "พลิก / หมุน",
+      "ui_pixel_grid33": "ตารางพิกเซล",
+      "ui_magnifier33": "แว่นขยาย",
+      "ui_fullscreen33": "เต็มหน้าจอ",
+      "ui_disable_cursor_drawing33": "ปิดการวาดด้วยเคอร์เซอร์",
+      "ui_pixel_grid_help33": "ตารางพิกเซลจะปรากฏเมื่อซูมตั้งแต่ 800% ขึ้นไป ไม้บรรทัดแสดงตำแหน่งเป็นหน่วยพิกเซลของภาพ"
     },
     "el": {
       "ui_menu_view": "Προβολή",
@@ -1700,7 +1882,14 @@
       "ui_bg": "Παρασκήνιο",
       "ui_cursor_help31": "Σύρετε για να τοποθετήσετε τον δρομέα. Πατήστε το κουμπί σχεδίασης για να ξεκινήσετε. Σύρετε για να σχεδιάσετε. Πατήστε ξανά για διακοπή.",
       "ui_foreground_colour": "Προσκήνιο",
-      "ui_background_colour": "Παρασκήνιο"
+      "ui_background_colour": "Παρασκήνιο",
+      "ui_edit_canvas33": "Καμβάς",
+      "ui_edit_transform33": "Αναστροφή / Περιστροφή",
+      "ui_pixel_grid33": "Πλέγμα pixel",
+      "ui_magnifier33": "Μεγεθυντικός φακός",
+      "ui_fullscreen33": "Πλήρης οθόνη",
+      "ui_disable_cursor_drawing33": "Απενεργοποίηση σχεδίασης με δρομέα",
+      "ui_pixel_grid_help33": "Το πλέγμα pixel εμφανίζεται σε μεγέθυνση 800% ή μεγαλύτερη. Οι χάρακες δείχνουν θέσεις σε pixel της εικόνας."
     },
     "sr-Cyrl": {
       "ui_menu_view": "Приказ",
@@ -1763,7 +1952,14 @@
       "ui_bg": "Позадина",
       "ui_cursor_help31": "Превуците да поставите курсор. Додирните дугме за цртање да почнете. Превуците да цртате. Додирните поново да зауставите цртање.",
       "ui_foreground_colour": "Предњи план",
-      "ui_background_colour": "Позадина"
+      "ui_background_colour": "Позадина",
+      "ui_edit_canvas33": "Платно",
+      "ui_edit_transform33": "Преврни / Ротирај",
+      "ui_pixel_grid33": "Мрежа пиксела",
+      "ui_magnifier33": "Лупа",
+      "ui_fullscreen33": "Цео екран",
+      "ui_disable_cursor_drawing33": "Искључи цртање курсором",
+      "ui_pixel_grid_help33": "Мрежа пиксела се приказује при увећању од 800% или више. Лењири показују положаје у пикселима слике."
     },
     "sr-Latn": {
       "ui_menu_view": "Prikaz",
@@ -1826,7 +2022,14 @@
       "ui_bg": "Pozadina",
       "ui_cursor_help31": "Prevucite da postavite kursor. Dodirnite dugme za crtanje da počnete. Prevucite da crtate. Dodirnite ponovo da zaustavite crtanje.",
       "ui_foreground_colour": "Prednji plan",
-      "ui_background_colour": "Pozadina"
+      "ui_background_colour": "Pozadina",
+      "ui_edit_canvas33": "Platno",
+      "ui_edit_transform33": "Prevrni / Rotiraj",
+      "ui_pixel_grid33": "Mreža piksela",
+      "ui_magnifier33": "Lupa",
+      "ui_fullscreen33": "Ceo ekran",
+      "ui_disable_cursor_drawing33": "Isključi crtanje kursorom",
+      "ui_pixel_grid_help33": "Mreža piksela se prikazuje pri uvećanju od 800% ili više. Lenjiri pokazuju položaje u pikselima slike."
     },
     "tr": {
       "ui_menu_view": "Görünüm",
@@ -1889,7 +2092,14 @@
       "ui_bg": "Arka plan",
       "ui_cursor_help31": "İmleci konumlandırmak için sürükleyin. Çizime başlamak için çizim düğmesine dokunun. Çizmek için sürükleyin. Çizimi durdurmak için yeniden dokunun.",
       "ui_foreground_colour": "Ön plan",
-      "ui_background_colour": "Arka plan"
+      "ui_background_colour": "Arka plan",
+      "ui_edit_canvas33": "Tuval",
+      "ui_edit_transform33": "Çevir / Döndür",
+      "ui_pixel_grid33": "Piksel ızgarası",
+      "ui_magnifier33": "Büyüteç",
+      "ui_fullscreen33": "Tam ekran",
+      "ui_disable_cursor_drawing33": "İmleçle çizimi devre dışı bırak",
+      "ui_pixel_grid_help33": "Piksel ızgarası %800 veya daha fazla yakınlaştırmada görünür. Cetveller, konumları görüntü pikselleri cinsinden gösterir."
     },
     "hy": {
       "ui_menu_view": "Տեսք",
@@ -1952,7 +2162,14 @@
       "ui_bg": "Ֆոն",
       "ui_cursor_help31": "Քաշեք՝ ցուցիչը տեղադրելու համար։ Հպեք նկարչական կոճակին՝ նկարելը սկսելու համար։ Քաշեք՝ նկարելու համար։ Կրկին հպեք՝ դադարեցնելու համար։",
       "ui_foreground_colour": "Առջևի գույն",
-      "ui_background_colour": "Ֆոն"
+      "ui_background_colour": "Ֆոն",
+      "ui_edit_canvas33": "Կտավ",
+      "ui_edit_transform33": "Շրջել / Պտտել",
+      "ui_pixel_grid33": "Պիքսելների ցանց",
+      "ui_magnifier33": "Խոշորացույց",
+      "ui_fullscreen33": "Ամբողջ էկրանով",
+      "ui_disable_cursor_drawing33": "Անջատել ցուցիչով նկարելը",
+      "ui_pixel_grid_help33": "Պիքսելների ցանցը երևում է 800% կամ ավելի խոշորացման դեպքում։ Քանոնները ցույց են տալիս դիրքերը պատկերի պիքսելներով։"
     }
   }
 }

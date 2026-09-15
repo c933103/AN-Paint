@@ -18,12 +18,17 @@ class TranslationTests(unittest.TestCase):
         source = (translations.ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt").read_text()
         commands = source.split('private fun menuActions(', 1)[1].split('private fun menuActionEnabled', 1)[0]
         keys = set(re.findall(r'R.string.([a-z_0-9]+)', commands))
+        groups = source.split('private enum class EditGroup(', 1)[1].split('private lateinit var toolDrawer', 1)[0]
+        keys.update(re.findall(r'R.string.([a-z_0-9]+)', groups))
         # The two messages are command outcomes, not first-level labels.
         keys -= {"ui_select_an_area_first"}
         keys |= {"ui_menu_view", "ui_draw26", "ui_menu_file", "ui_menu_edit", "ui_colour_tab23",
                  "ui_drawing23", "ui_category_selection", "ui_category_insert", "ui_eraser", "ui_bucket_fill", "ui_eyedropper", "ui_navigate",
                  "ui_fg", "ui_bg", "ui_swap23", "ui_reset_bw23", "ui_advanced", "ui_add_colour26"}
         self.assertLessEqual(keys, set(data["required_keys"]))
+        self.assertIn("ui_disable_cursor_drawing33", data["required_keys"])
+        for tag, terms in data["locales"].items():
+            self.assertNotRegex(terms["ui_pixel_grid33"], r"800|%|％", tag)
         report = json.loads((translations.DATA / "coverage.json").read_text())
         for tag, terms in data["locales"].items():
             row = next(r for r in report["coverage"] if r["language_tag"] == tag)

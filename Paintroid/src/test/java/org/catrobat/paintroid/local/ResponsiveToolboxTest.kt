@@ -236,6 +236,7 @@ class ResponsiveToolboxTest {
     @Test fun allRibbonCaptionsAreCentredAndCommandTilesKeepTheirIcons() {
         fun centred(button: android.widget.Button) {
             assertTrue(button is PanelToolButton)
+            assertEquals("Square tile ${button.text}",button.width,button.height)
             val layout=requireNotNull(button.layout)
             for(line in 0 until layout.lineCount) assertEquals("Caption ${button.text}",button.width/2f,button.totalPaddingLeft+(layout.getLineLeft(line)+layout.getLineRight(line))/2f,1f)
             assertNotNull(button.compoundDrawables[1])
@@ -268,8 +269,11 @@ class ResponsiveToolboxTest {
                     click("menu_$tab")
                     val rail=view<View>(if(tab=="Draw") "primary_tools" else "panel_${tab}_commands")
                     EditorTestNavigation.buttons(rail).forEach {button ->
+                        assertEquals("Square translated tile $language/$tab",button.width,button.height)
+                        assertEquals(view<View>("category_BRUSH").height,button.height)
                         val layout=requireNotNull(button.layout)
                         assertEquals("Full caption: $language/$tab/${button.text}",button.text.length,layout.getLineEnd(layout.lineCount-1))
+                        for(line in 0 until layout.lineCount) assertEquals("No ellipsis: $language/$tab/${button.text}",0,layout.getEllipsisCount(line))
                         assertTrue("Caption fits below the icon: $language/$tab/${button.text}",layout.height<=button.height-button.compoundPaddingTop-button.compoundPaddingBottom)
                     }
                     render("translated-$language-$tab-$orientation.png")
@@ -284,6 +288,63 @@ class ResponsiveToolboxTest {
         } finally {AppLanguage.select(activity,original);AppLanguage.refresh(activity)}
     }
 
+    @Test fun editGroupsExposeTheirActionsAndCanvasBoundsReturnToTheGroup() {
+        click("menu_Edit")
+        val categories=EditorTestNavigation.buttons(view("panel_Edit_commands"))
+        assertEquals(listOf("Selection","Canvas","Flip / Rotate",view<android.widget.Button>("menu_Color").text.toString()),categories.map {it.text.toString()})
+        assertFalse(view<View>("command_Edit_0").isShown)
+        click("edit_category_SELECTION")
+        click("command_Edit_0")
+        assertNotNull(activity.document.selection)
+        click("edit_category_SELECTION")
+        assertNotNull("Collapsing a group preserves the selection",activity.document.selection)
+        assertFalse(view<View>("command_Edit_0").isShown)
+        click("edit_category_CANVAS")
+        assertFalse(view<View>("command_Edit_0").isShown)
+        assertTrue(view<View>("command_Edit_1").isShown)
+        click("command_Edit_1")
+        assertTrue(view<View>("edit_details").isShown)
+        click("trim_cancel")
+        assertTrue(view<View>("command_Edit_1").isShown)
+        click("edit_category_TRANSFORM")
+        assertTrue(view<View>("command_Edit_6").isShown)
+        assertFalse(view<View>("command_Edit_1").isShown)
+        render("edit-transform-group.png")
+        click("edit_category_COLOURS")
+        assertTrue(view<View>("command_Edit_10").isShown)
+    }
+
+    @Test fun cursorModeUsesAnEnableDisableButtonAndStopsInkWhenDisabled() {
+        EditorTestNavigation.command(activity,"View",2)
+        val toggle=view<View>("cursor_mode_enabled")
+        assertTrue(toggle is android.widget.Button)
+        assertFalse(toggle is android.widget.CompoundButton)
+        click("cursor_mode_enabled")
+        assertTrue(activity.paintCanvas.cursorMode)
+        assertEquals("Disable cursor drawing",view<android.widget.Button>("cursor_mode_enabled").text.toString())
+        assertFalse(activity.paintCanvas.cursorDrawing)
+        click("cursor_draw_toggle");assertTrue(activity.paintCanvas.cursorDrawing)
+        click("cursor_mode_enabled")
+        assertFalse(activity.paintCanvas.cursorMode);assertFalse(activity.paintCanvas.cursorDrawing)
+        assertFalse(view<View>("cursor_draw_toggle").isShown)
+        assertEquals("Enable cursor drawing",view<android.widget.Button>("cursor_mode_enabled").text.toString())
+    }
+
+    @Test fun pixelGridKeepsAShortCaptionAndExplainsItsThresholdInHelp() {
+        click("menu_View")
+        val grid=view<PanelToolButton>("command_View_1")
+        assertEquals("Pixel grid",grid.text.toString())
+        assertFalse(grid.isSelected)
+        click("command_View_1")
+        assertTrue(grid.isSelected);assertTrue(activity.paintCanvas.grid)
+        assertEquals("Pixel grid",grid.text.toString())
+        assertTrue(grid.performLongClick());settle()
+        val help=ShadowAlertDialog.getLatestAlertDialog()
+        assertTrue(help.isShowing);assertTrue(shadowOf(help).message.toString().contains("800%"))
+        help.dismiss();click("command_View_6")
+        assertTrue(ShadowAlertDialog.getLatestAlertDialog().isShowing)
+    }
+
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
     fun landscapeSideTabsRemainVisibleAndFullscreenReturnsTheirSpace() {
         checkHeader()
@@ -293,7 +354,7 @@ class ResponsiveToolboxTest {
             assertTrue(box.top>=previousBottom);previousBottom=box.bottom
             assertTrue(box.right<=bounds(activity.paintCanvas).left)
         }
-        EditorTestNavigation.named(activity,"View","Hide editor controls");settle()
+        EditorTestNavigation.named(activity,"View","Full screen");settle()
         assertFalse(view<View>("vertical_ribbon_rail").isShown)
         assertEquals(root.width,activity.paintCanvas.width)
         click("leave_fullscreen")

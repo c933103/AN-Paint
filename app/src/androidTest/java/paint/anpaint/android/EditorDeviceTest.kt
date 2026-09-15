@@ -303,7 +303,16 @@ class EditorDeviceTest {
     }
 
     @Test fun cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing() {
-        menu("View",text(R.string.ui_cursor_drawing32));click("cursor_mode_enabled")
+        menu("View",text(R.string.ui_cursor_drawing32))
+        onMain {
+            val toggle=it.window.decorView.findViewWithTag<View>("cursor_mode_enabled")
+            assertTrue(toggle is android.widget.Button);assertFalse(toggle is android.widget.CompoundButton)
+            val cursor=it.window.decorView.findViewWithTag<View>("command_View_2")
+            val grid=it.window.decorView.findViewWithTag<View>("command_View_1")
+            assertEquals(cursor.width,cursor.height);assertEquals(grid.height,cursor.height)
+        }
+        click("cursor_mode_enabled")
+        onMain {assertEquals(text(R.string.ui_disable_cursor_drawing33),it.window.decorView.findViewWithTag<android.widget.Button>("cursor_mode_enabled").text.toString())}
         onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
         // Inject through Android's input dispatcher instead of calling the
         // canvas handler directly; verify a line, not merely an undo entry/dot.

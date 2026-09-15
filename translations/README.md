@@ -296,3 +296,14 @@ The latter remains partial. Host checks enumerate command labels from the curren
 menu code and fail if a requested language omits one. Android resource tests
 exercise the regional/script choices and the device-language row independently
 of the selected app language. Generated files must remain reproducible.
+
+
+## Grouped menus and compact View controls (0.0.33)
+
+All 30 menu catalogues include the new Canvas and Flip / Rotate group labels,
+compact Pixel grid / Magnifier / Full screen buttons, Disable cursor drawing
+and pixel-grid help. Selection and Colours reuse the existing translated labels.
+The 800% threshold appears in help, outside the square tool tiles. The main-menu
+coverage test also enumerates Edit group labels so regrouping cannot introduce
+untranslated first-level controls. Historical release sections above describe
+those releases, not the current catalogue.

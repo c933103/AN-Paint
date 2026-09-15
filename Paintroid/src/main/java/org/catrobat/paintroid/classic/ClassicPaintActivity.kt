@@ -62,12 +62,20 @@ class ClassicPaintActivity : Activity() {
     private lateinit var cursorOptionsHost: LinearLayout
     private var cursorOptionsExpanded=false
     private lateinit var navigationOptionsHost: LinearLayout
+    private lateinit var viewDetailsHost: View
     private lateinit var toolOptionsView: View
     private lateinit var tabPanelHost: FrameLayout
     private val tabPanels = linkedMapOf<String, View>()
     private val tabButtons = linkedMapOf<String, Button>()
     private lateinit var editDetails: LinearLayout
     private lateinit var editCommands: View
+    private var expandedEditGroup: EditGroup?=null
+    private enum class EditGroup(val labelId: Int,val icon: Int,val commands: List<Int>) {
+        SELECTION(R.string.ui_category_selection,R.drawable.breeze_select,listOf(0,2,4)),
+        CANVAS(R.string.ui_edit_canvas33,R.drawable.classic_canvas_size,listOf(1,3,5,11)),
+        TRANSFORM(R.string.ui_edit_transform33,R.drawable.classic_rotate90,listOf(6,7,8,9)),
+        COLOURS(R.string.ui_colour_tab23,R.drawable.classic_invert,listOf(10))
+    }
     private lateinit var toolDrawer: ScrollView
     private var portraitColours: View? = null
     private var filename = ui(R.string.ui_untitled)
@@ -210,9 +218,7 @@ class ClassicPaintActivity : Activity() {
 
     private val panelLimit get() = dp(if (landscape) (resources.configuration.screenHeightDp-96).coerceAtLeast(136) else minOf(256, resources.configuration.screenHeightDp / 3))
     private val sidePanelWidth get() = dp(minOf(248,resources.configuration.screenWidthDp / 3))
-    // PanelToolButton supplies the common 64 dp minimum; longer translated
-    // captions and larger system fonts can increase it without clipping.
-    private val toolHeight = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+    private val toolHeight get() = PanelToolButton.tileSize(this)
     private fun buildWorkspace() {
         paintCanvas.pauseGesture()
         paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
@@ -241,8 +247,8 @@ class ClassicPaintActivity : Activity() {
             primary.addView(makeToolButton(it),LinearLayout.LayoutParams(-2,toolHeight))
         }
         if(landscape) {
-            for(i in 0 until primary.childCount) primary.getChildAt(i).layoutParams=LinearLayout.LayoutParams(-1,toolHeight)
-            sidebar.addView(ScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(dp(if(VerticalText.uiVertical()) 132 else 100),-1))
+            for(i in 0 until primary.childCount) primary.getChildAt(i).layoutParams=LinearLayout.LayoutParams(toolHeight,toolHeight)
+            sidebar.addView(ScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(toolHeight,-1))
         } else sidebar.addView(HorizontalScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(-1,toolHeight))
         val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),0,dp(4),dp(4))}
         toolDrawer=ScrollView(this).apply {tag="tool_scroll";addView(drawerContent)}
@@ -253,10 +259,10 @@ class ClassicPaintActivity : Activity() {
                 // Wrap the category into tiles above its options, beside the primary tool rail.
                 val grid=GridLayout(this).apply {columnCount=2;alignmentMode=GridLayout.ALIGN_BOUNDS}
                 while(group.childCount>0) grid.addView(VerticalUi.detach(group.getChildAt(0)),GridLayout.LayoutParams().apply {
-                    width=if(VerticalText.uiVertical()) -2 else (sidePanelWidth-dp(8))/2;height=toolHeight
+                    width=toolHeight;height=toolHeight
                 })
                 group.orientation=LinearLayout.VERTICAL;group.addView(grid)
-                if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(group)} else group
+                HorizontalScrollView(this).apply {addView(group)}
             } else HorizontalScrollView(this).apply {addView(group)}
             categoryGroups[category]=rail;drawerContent.addView(rail)
         }
@@ -271,21 +277,54 @@ class ClassicPaintActivity : Activity() {
                 if(name=="View" && index==0) return makeToolButton(PaintTool.ZOOM)
                 val onClick={action.second();refreshCommandPanel(name)}
                 return (action.icon?.let {panelButton(action.first,"command_${name}_$index",it,onClick)}
-                    ?: button(action.first,"command_${name}_$index",onClick)).apply {isEnabled=menuActionEnabled();columnHeightDp=112}
+                    ?: button(action.first,"command_${name}_$index",onClick)).apply {
+                    isEnabled=menuActionEnabled();columnHeightDp=112
+                    if(name=="View" && index==1) {
+                        setOnLongClickListener {message(ui(R.string.ui_pixel_grid_help33));true}
+                        if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=ui(R.string.ui_pixel_grid_help33)
+                    }
+                }
             }
-            if(name in listOf("Edit","View")) {
+            if(name=="Edit") {
+                val panel=LinearLayout(this).apply {orientation=if(landscape) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL;isBaselineAligned=false;tag="edit_commands_panel"}
+                val categories=LinearLayout(this).apply {
+                    tag="panel_Edit_commands";orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL
+                    isBaselineAligned=false;layoutDirection=View.LAYOUT_DIRECTION_LTR
+                }
+                val groups=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="edit_group_host"}
+                val actions=menuActions(name)
+                EditGroup.values().forEach {group ->
+                    categories.addView(panelButton(ui(group.labelId),"edit_category_${group.name}",group.icon) {
+                        expandedEditGroup=if(expandedEditGroup==group) null else group;syncEditGroups()
+                    }.apply {disclosure=expandedEditGroup==group;disclosureBeside=landscape},LinearLayout.LayoutParams(toolHeight,toolHeight))
+                    val rail=LinearLayout(this).apply {isBaselineAligned=false;layoutDirection=View.LAYOUT_DIRECTION_LTR}
+                    group.commands.forEach {index ->rail.addView(control(index,actions[index]),LinearLayout.LayoutParams(toolHeight,toolHeight))}
+                    val content: View=if(landscape) {
+                        val grid=GridLayout(this).apply {columnCount=2;alignmentMode=GridLayout.ALIGN_BOUNDS}
+                        while(rail.childCount>0) grid.addView(VerticalUi.detach(rail.getChildAt(0)),GridLayout.LayoutParams().apply {width=toolHeight;height=toolHeight})
+                        HorizontalScrollView(this).apply {addView(grid)}
+                    } else HorizontalScrollView(this).apply {addView(rail)}
+                    content.tag="edit_group_${group.name}";groups.addView(content)
+                }
+                val categoryScroll: View=if(landscape) ScrollView(this).apply {addView(categories)} else HorizontalScrollView(this).apply {addView(categories)}
+                panel.addView(categoryScroll,LinearLayout.LayoutParams(if(landscape) toolHeight else -1,if(landscape) panelLimit else toolHeight))
+                panel.addView(if(landscape) ScrollView(this).apply {addView(groups)} else groups,
+                    LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) panelLimit else -2))
+                return panel
+            }
+            if(name=="View") {
                 val rail=LinearLayout(this).apply {
                     tag="panel_${name}_commands";isBaselineAligned=false
                     orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL
                     layoutDirection=View.LAYOUT_DIRECTION_LTR
                 }
                 menuActions(name).forEachIndexed {index,action ->
-                    rail.addView(control(index,action),LinearLayout.LayoutParams(if(landscape) -1 else -2,toolHeight))
+                    rail.addView(control(index,action),LinearLayout.LayoutParams(toolHeight,toolHeight))
                 }
                 return if(landscape) ScrollView(this).apply {addView(rail)} else HorizontalScrollView(this).apply {addView(rail)}
             }
             if(VerticalText.uiVertical()) {
-                val columns=LinearLayout(this).apply {tag="panel_${name}_commands";isBaselineAligned=false;gravity=Gravity.TOP;orientation=if(landscape) LinearLayout.VERTICAL else LinearLayout.HORIZONTAL;layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR}
+                val columns=EqualHeightRail(this,landscape).apply {tag="panel_${name}_commands";gravity=Gravity.TOP;layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR}
                 menuActions(name).forEachIndexed {index,action ->
                     columns.addView(control(index,action),LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(3),dp(4),dp(3),dp(4))})
                 }
@@ -303,18 +342,22 @@ class ClassicPaintActivity : Activity() {
             return grid
         }
         listOf("File","Edit","View").forEach {name ->
-            val body=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL}
-            val grid=commands(name);body.addView(grid)
+            val body=LinearLayout(this).apply {orientation=if(name=="View" && landscape) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL;isBaselineAligned=false}
+            val grid=commands(name)
+            body.addView(grid,LinearLayout.LayoutParams(if(name=="View" && landscape) toolHeight else -1,if(name=="View" && landscape) panelLimit else -2))
             if(name=="Edit") {
                 editCommands=grid
                 editDetails=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;visibility=View.GONE;tag="edit_details"}
                 body.addView(if(VerticalText.uiVertical()) ColumnScrollView(this).apply {addView(editDetails)} else editDetails)
             }
             if(name=="View") {
+                val details=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL}
                 navigationOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="navigation_options"}
-                body.addView(navigationOptionsHost)
+                details.addView(navigationOptionsHost)
                 cursorOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="cursor_options"}
-                body.addView(cursorOptionsHost)
+                details.addView(cursorOptionsHost)
+                viewDetailsHost=if(landscape) ScrollView(this).apply {addView(details)} else details
+                body.addView(viewDetailsHost,LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) panelLimit else -2))
                 populateCursorOptions()
             }
             tabPanels[name]=LimitedScrollView(this,panelLimit).apply {tag="panel_$name";addView(body)}
@@ -337,7 +380,7 @@ class ClassicPaintActivity : Activity() {
         colours.addView(HorizontalScrollView(this).apply {addView(colourHeader)})
         makePalette(colours);makeCustomPalette(colours)
         tabPanels["Color"]=LimitedScrollView(this,panelLimit).apply {tag="panel_Color";addView(colours)}
-        tabPanels.forEach {(name,panel) ->tabPanelHost.addView(panel,FrameLayout.LayoutParams(if(landscape) {if(name=="Draw") -2 else sidePanelWidth} else -1,if(landscape && name=="Draw") -1 else -2))}
+        tabPanels.forEach {(name,panel) ->tabPanelHost.addView(panel,FrameLayout.LayoutParams(if(landscape) {if(name in listOf("Draw","Edit","View")) -2 else sidePanelWidth} else -1,if(landscape && name=="Draw") -1 else -2))}
         val workspace=FrameLayout(this).apply {tag="workspace_overlay";layoutDirection=View.LAYOUT_DIRECTION_LTR}
         val canvasArea=if(sideRibbon==null) workspace else FrameLayout(this)
         if(VerticalText.uiVertical()) {
@@ -372,6 +415,28 @@ class ClassicPaintActivity : Activity() {
         menuActions(name).forEachIndexed {index,action ->
             root.findViewWithTag<Button>("command_${name}_$index")?.let {it.text=action.first;it.contentDescription=action.first;it.isEnabled=menuActionEnabled()}
         }
+        if(name=="View") syncViewStates()
+    }
+
+    private fun syncEditGroups() {
+        EditGroup.values().forEach {group ->
+            val expanded=expandedEditGroup==group
+            root.findViewWithTag<View>("edit_group_${group.name}")?.visibility=if(expanded) View.VISIBLE else View.GONE
+            root.findViewWithTag<PanelToolButton>("edit_category_${group.name}")?.let {it.disclosure=expanded;it.isSelected=expanded;it.invalidate()}
+        }
+        // Collapsing the group also releases its side-panel width.
+        root.findViewWithTag<View>("edit_group_host")?.let {host ->
+            (if(landscape) host.parent as View else host).visibility=if(expandedEditGroup!=null) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun syncViewStates() {
+        root.findViewWithTag<PanelToolButton>("command_View_1")?.isSelected=paintCanvas.grid
+        root.findViewWithTag<PanelToolButton>("command_View_2")?.isSelected=paintCanvas.cursorMode
+        root.findViewWithTag<Button>("cursor_mode_enabled")?.let {
+            it.text=ui(if(paintCanvas.cursorMode) R.string.ui_disable_cursor_drawing33 else R.string.ui_enable_cursor_drawing)
+            it.contentDescription=it.text;it.isSelected=paintCanvas.cursorMode
+        }
     }
 
     private fun makeToolButton(tool: PaintTool)=ToolButton(this,tool).apply {
@@ -395,6 +460,7 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun syncPanels() {
+        syncEditGroups();syncViewStates()
         val visible=sidebarExpanded && !fullscreen
         tabPanelHost.visibility=if(visible) View.VISIBLE else View.GONE
         tabPanels.forEach {(name,panel) ->panel.visibility=if(name==activeTab) View.VISIBLE else View.GONE}
@@ -404,6 +470,7 @@ class ClassicPaintActivity : Activity() {
         if(toolOptionsView.parent!==host) host.addView(VerticalUi.detach(toolOptionsView))
         navigationOptionsHost.visibility=if(navigating && toolOptionsExpanded && !cursorOptionsExpanded) View.VISIBLE else View.GONE
         cursorOptionsHost.visibility=if(cursorOptionsExpanded) View.VISIBLE else View.GONE
+        viewDetailsHost.visibility=if(navigationOptionsHost.visibility==View.VISIBLE || cursorOptionsHost.visibility==View.VISIBLE) View.VISIBLE else View.GONE
         root.findViewWithTag<PanelToolButton>("command_View_2")?.let {
             it.disclosure=cursorOptionsExpanded;it.disclosureBeside=landscape;it.isSelected=paintCanvas.cursorMode
         }
@@ -727,15 +794,16 @@ class ClassicPaintActivity : Activity() {
         )
         "View"->listOf(
             command(PaintTool.ZOOM.label,R.drawable.breeze_zoom_in) {chooseTool(PaintTool.ZOOM)},
-            command((if(paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
+            command(ui(R.string.ui_pixel_grid33),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
             command(ui(R.string.ui_cursor_drawing32),R.drawable.classic_cursor) {
                 cursorOptionsExpanded=!cursorOptionsExpanded
                 if(cursorOptionsExpanded) {paintCanvas.setCursorDrawing(false);populateCursorOptions()}
                 syncPanels()
             },
-            command(ui(R.string.ui_magnified_preview),R.drawable.breeze_zoom_in) {showDrawingSettings(true)},
+            command(ui(R.string.ui_magnifier33),R.drawable.breeze_zoom_in) {showDrawingSettings(true)},
             command(ui(R.string.ui_languages23),R.drawable.classic_languages) {AppLanguage.showPicker(this) {buildWorkspace()}},
-            command((if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)),R.drawable.classic_fullscreen) {fullscreen=!fullscreen;syncFullscreen()}
+            command(ui(R.string.ui_fullscreen33),R.drawable.classic_fullscreen) {fullscreen=!fullscreen;syncFullscreen()},
+            command(ui(R.string.ui_how_to_use),android.R.drawable.ic_menu_help) {message(ui(R.string.ui_pixel_grid_help33))}
         )
         else->emptyList()
     }
@@ -1205,12 +1273,10 @@ class ClassicPaintActivity : Activity() {
     private fun populateCursorOptions() {
         cursorOptionsHost.removeAllViews()
         val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;isBaselineAligned=false;setPadding(dp(8),dp(4),dp(8),dp(8));tag="cursor_settings_panel"}
-        column.addView(CheckBox(this).apply {
-            tag="cursor_mode_enabled";text=ui(R.string.ui_enable_cursor_drawing);isChecked=paintCanvas.cursorMode
-            setOnCheckedChangeListener {_,on ->
-                paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool);selectTab("View");scheduleAutosave()
-                if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
-            }
+        column.addView(button(ui(if(paintCanvas.cursorMode) R.string.ui_disable_cursor_drawing33 else R.string.ui_enable_cursor_drawing),"cursor_mode_enabled") {
+            val on=!paintCanvas.cursorMode
+            paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool);selectTab("View");scheduleAutosave()
+            if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
         })
         column.addView(label(ui(R.string.ui_cursor_help31),12f))
         column.addView(label(ui(R.string.ui_cursor_shape31)))
