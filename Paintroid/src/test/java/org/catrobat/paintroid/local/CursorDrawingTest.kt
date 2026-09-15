@@ -28,27 +28,43 @@ class CursorDrawingTest {
     private fun tap(board: PaintCanvas) {touch(board,MotionEvent.ACTION_DOWN,100f,500f);touch(board,MotionEvent.ACTION_UP,100f,500f)}
     private fun pixels(board: PaintCanvas)=IntArray(10000).also {board.document.bitmap.getPixels(it,0,100,0,0,100,100)}
 
-    @Test fun activationPlacesAnUndoableDotAndStoppingAddsNoInk() {
+    @Test fun enablingCursorDrawsImmediatelyAndMoveOnlyIsExplicit() {
         val board=board();val doc=board.document;val original=pixels(board)
+        assertTrue(board.cursorDrawing);assertFalse(doc.canUndo)
         tap(board);assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
         assertTrue(pixels(board).any {it==Color.RED});val dot=pixels(board)
+        board.setCursorDrawing(false)
         tap(board);assertFalse(board.cursorDrawing);assertArrayEquals(dot,pixels(board))
         doc.undo();assertArrayEquals(original,pixels(board));assertFalse(doc.canUndo)
     }
 
-    @Test fun cumulativeMovementDoesNotTurnAnOutAndBackDragIntoATapAndCancelRollsBack() {
-        val board=board();val original=pixels(board)
+    @Test fun movingAndTappingNeverToggleInkAndCancelRollsBack() {
+        val board=board();val original=pixels(board);board.setCursorDrawing(false)
         touch(board,MotionEvent.ACTION_DOWN,100f,500f)
-        // Each step is below touch slop and ends at the starting point. The
-        // original CursorTool counts travelled distance, not final displacement.
+        // Repositioning, including touch jitter, must never enable ink.
         repeat(12) {touch(board,MotionEvent.ACTION_MOVE,if(it%2==0) 106f else 100f,500f)}
         touch(board,MotionEvent.ACTION_UP,100f,500f)
         assertFalse(board.cursorDrawing);assertArrayEquals(original,pixels(board));assertFalse(board.document.canUndo)
-        tap(board);val dot=pixels(board);val position=board.draftState().getDouble("cursor_x")
+        board.setCursorDrawing(true);tap(board);val dot=pixels(board);val position=board.draftState().getDouble("cursor_x")
         touch(board,MotionEvent.ACTION_DOWN,100f,500f);touch(board,MotionEvent.ACTION_MOVE,150f,500f)
         assertFalse(dot.contentEquals(pixels(board)))
         touch(board,MotionEvent.ACTION_CANCEL,150f,500f)
         assertArrayEquals(dot,pixels(board));assertEquals(position,board.draftState().getDouble("cursor_x"),0.0)
+    }
+
+    @Test fun strokesShorterThanTouchSlopSurviveLiftForEveryCursorBrush() {
+        for(tool in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
+            val board=board();board.selectTool(tool);board.zoomAt(1f)
+            board.document.strokeWidth=1f;board.pencilSize=1f
+            board.document.bitmap.eraseColor(Color.BLUE)
+            val original=pixels(board)
+            touch(board,MotionEvent.ACTION_DOWN,100f,500f)
+            touch(board,MotionEvent.ACTION_MOVE,103f,500f)
+            touch(board,MotionEvent.ACTION_UP,103f,500f)
+            assertTrue("$tool must retain a short line, not cancel it as a tap",pixels(board).count {it!=Color.BLUE}>=3)
+            assertTrue(board.cursorDrawing);assertTrue(board.document.canUndo)
+            board.document.undo();assertArrayEquals(original,pixels(board));assertFalse(board.document.canUndo)
+        }
     }
 
     @Test fun circleAndSquareCursorOutlinesFollowTheActualBrushCapAndWidth() {
@@ -80,6 +96,9 @@ class CursorDrawingTest {
         touch(board,MotionEvent.ACTION_CANCEL,700f,700f)
         board.cursorMagnifier=false
         val restored=board();restored.restoreDraft(board.draftState())
-        assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertFalse(restored.cursorDrawing)
+        assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertTrue(restored.cursorDrawing)
+        board.setCursorDrawing(false);restored.restoreDraft(board.draftState());assertFalse(restored.cursorDrawing)
+        val legacy=board.draftState().apply {remove("cursor_drawing")}
+        restored.restoreDraft(legacy);assertTrue(restored.cursorDrawing)
     }
 }

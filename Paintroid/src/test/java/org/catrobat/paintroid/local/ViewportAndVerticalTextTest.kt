@@ -61,7 +61,7 @@ class ViewportAndVerticalTextTest {
         }
         touch(MotionEvent.ACTION_DOWN,5f,100f);touch(MotionEvent.ACTION_MOVE,300f,300f);touch(MotionEvent.ACTION_UP,300f,300f)
         assertFalse(doc.canUndo)
-        board.zoomAt(2f);board.setCursorMode(true)
+        board.zoomAt(2f);board.setCursorMode(true);board.setCursorDrawing(false)
         val before=board.draftState();var readout="";board.onStatus={readout=board.zoomStatusLabel()}
         touch(MotionEvent.ACTION_DOWN,200f,200f);touch(MotionEvent.ACTION_MOVE,240f,260f)
         val moved=board.draftState()
@@ -72,6 +72,27 @@ class ViewportAndVerticalTextTest {
         touch(MotionEvent.ACTION_CANCEL,240f,260f)
         assertEquals(before.getDouble("cursor_x"),board.draftState().getDouble("cursor_x"),0.0)
         board.setCursorMode(false);assertFalse(board.zoomStatusLabel().contains("x:"))
+    }
+    @Test fun canvasDisplayDoesNotBlendNeighbouringPixelsWhenZoomedInOrOut() {
+        val doc=PaintDocument().apply {newImage(32,32)}
+        for(y in 0 until 32) for(x in 0 until 32) doc.bitmap.setPixel(x,y,if((x+y)%2==0) Color.RED else Color.BLUE)
+        val board=PaintCanvas(RuntimeEnvironment.getApplication(),doc)
+        board.layout(0,0,800,600)
+        for(zoom in listOf(.6f,1.75f)) {
+            board.zoomAt(zoom)
+            val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
+            try {
+                board.draw(Canvas(image))
+                val start=board.toScreen(4f,4f);val end=board.toScreen(28f,28f)
+                var sampled=0
+                for(y in start.y.toInt()+1 until end.y.toInt()-1) for(x in start.x.toInt()+1 until end.x.toInt()-1) {
+                    val colour=image.getPixel(x,y)
+                    assertTrue("$zoom: display must use original pixel colours at $x,$y",colour==Color.RED || colour==Color.BLUE)
+                    sampled++
+                }
+                assertTrue(sampled>20)
+            } finally {image.recycle()}
+        }
     }
     @Test fun scrollbarEndpointsAndDraggingAreInverseForLargeAndExpandedCanvases() {
         for(axis in listOf(ViewportAxis(800f,0f,4000f,48f),ViewportAxis(360f,-120f,960f,24f),ViewportAxis(400f,0f,120f,24f))) {
@@ -108,7 +129,7 @@ class ViewportAndVerticalTextTest {
         for((action,x) in listOf(MotionEvent.ACTION_DOWN to 10f,MotionEvent.ACTION_MOVE to 750f,MotionEvent.ACTION_UP to 750f)) {
             val event=MotionEvent.obtain(0,20,action,x,board.height-2f,0);board.dispatchTouchEvent(event);event.recycle()
         }
-        assertTrue(board.panX<old);assertFalse(doc.canUndo);assertFalse(board.cursorDrawing)
+        assertTrue(board.panX<old);assertFalse(doc.canUndo);assertTrue(board.cursorDrawing)
     }
     @Test fun unicodeClustersPreserveCombiningCharactersAndEmojiSequences() {
         assertEquals(listOf("Á","👩🏽‍🎨","🇲🇳","𠀀"),VerticalText.clusters("Á👩🏽‍🎨🇲🇳𠀀"))

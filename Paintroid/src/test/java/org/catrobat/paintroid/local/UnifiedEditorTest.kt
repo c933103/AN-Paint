@@ -111,13 +111,16 @@ class UnifiedEditorTest {
         activity.onConfigurationChanged(activity.resources.configuration)
         assertEquals(Color.BLUE,RecentColours(activity).colours.first())
     }
-    @Test fun cursorMovesWithoutInkThenTapTogglesDrawingAndFitCentresView() {
+    @Test fun cursorDrawMoveSwitchAndFitWorkInTheEditor() {
         menu("View","Enable cursor drawing");assertTrue(board.cursorMode)
+        assertTrue(board.cursorDrawing)
+        click("cursor_draw_enabled");assertFalse(board.cursorDrawing)
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
+        click("cursor_draw_enabled");assertTrue(board.cursorDrawing)
         event(MotionEvent.ACTION_DOWN,20f,20f);event(MotionEvent.ACTION_UP,20f,20f)
         assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
         val dot=pixels()
-        drag(20f,20f,40f,40f);assertTrue(doc.canUndo);assertTrue(pixels().any {it!=Color.WHITE})
+        drag(20f,20f,40f,40f);assertTrue(doc.canUndo);assertFalse(dot.contentEquals(pixels()))
         click("undo");assertArrayEquals(dot,pixels())
         click("undo");assertTrue(pixels().all {it==Color.WHITE})
         menu("View","Magnified preview…")

@@ -586,6 +586,12 @@ class ClassicPaintActivity : Activity() {
     private fun populateToolOptions(tool: PaintTool) {
         options.removeAllViews()
         options.addView(label(tool.label, 12f).apply { typeface = Typeface.DEFAULT_BOLD })
+        if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
+            options.addView(CheckBox(this).apply {
+                tag="cursor_draw_enabled";text=ui(R.string.ui_cursor_ink30);isChecked=paintCanvas.cursorDrawing
+                setOnCheckedChangeListener {_,checked ->paintCanvas.setCursorDrawing(checked)}
+            })
+        }
         when (tool) {
             PaintTool.SELECT, PaintTool.LASSO -> {
                 options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))

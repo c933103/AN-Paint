@@ -1,3 +1,20 @@
+# AN Paint 0.0.30 — cursor input and sharp canvas display
+
+Package `paint.anpaint.android`; version code 83. Cursor drawing now enables ink
+immediately, with an explicit Draw with cursor checkbox for moving without ink.
+Short strokes are retained instead of being cancelled as taps. Circle/square
+markers, magnification, cancellation and undo remain supported. Draw/move mode
+persists in drafts. Main canvas, selection previews and magnifier use unfiltered
+pixel display; drawing antialiasing still defaults off.
+
+The new installed-app tests verify a real input-dispatcher swipe paints a line
+and Save as JPEG XL followed by Save preserves every canvas pixel. Native JPEG
+XL lossless tests already passed for 0.0.29. See docs/CURSOR_UPSTREAM.md and
+docs/JPEG_XL_LOSSLESS.md. Build and release checks for 0.0.30 are pending; the
+completed results below belong to 0.0.29.
+
+---
+
 # AN Paint 0.0.29 — language and cursor corrections
 
 Package `paint.anpaint.android`; version code 82. The user clarified Tai Nüa

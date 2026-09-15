@@ -33,6 +33,8 @@ import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageFormat
+import org.catrobat.paintroid.classic.ImageDimensions
+import org.catrobat.paintroid.classic.JxlCodec
 import org.catrobat.paintroid.classic.LegalInfo
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.ToolCategory
@@ -299,16 +301,37 @@ class EditorDeviceTest {
         } finally {onMain {it.requestedOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}}
     }
 
-    @Test fun cursorDrawingMagnifierAndFitAreAvailableFromTheViewMenu() {
+    @Test fun cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit() {
         menu("View",text(R.string.ui_enable_cursor_drawing))
-        onMain {assertTrue(it.paintCanvas.cursorMode)}
-        drag(20f,20f,30f,20f)
-        onMain {assertFalse(it.document.canUndo)}
-        drag(20f,20f,20f,20f) // A tap toggles cursor ink on.
-        onMain {assertTrue(it.paintCanvas.cursorDrawing)}
-        drag(20f,20f,40f,40f)
-        onMain {assertTrue(it.document.canUndo)}
+        onMain {assertTrue(it.paintCanvas.cursorMode);assertTrue(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
+        // Inject through Android's input dispatcher instead of calling the
+        // canvas handler directly; verify a line, not merely an undo entry/dot.
+        val coordinates=IntArray(4)
+        onMain {
+            val location=IntArray(2);it.paintCanvas.getLocationOnScreen(location)
+            val from=it.paintCanvas.toScreen(20f,20f);val to=it.paintCanvas.toScreen(40f,40f)
+            coordinates[0]=location[0]+from.x.toInt();coordinates[1]=location[1]+from.y.toInt()
+            coordinates[2]=location[0]+to.x.toInt();coordinates[3]=location[1]+to.y.toInt()
+        }
+        assertTrue(device.swipe(coordinates[0],coordinates[1],coordinates[2],coordinates[3],20))
+        instrumentation.waitForIdleSync()
+        var drawn=IntArray(0)
+        onMain {
+            assertTrue(it.document.canUndo);assertTrue(it.paintCanvas.cursorDrawing)
+            drawn=IntArray(10000).also {pixels ->it.document.bitmap.getPixels(pixels,0,100,0,0,100,100)}
+            val ink=drawn.indices.filter {index ->drawn[index]==Color.RED}
+            assertTrue("Cursor must produce a visible line",ink.isNotEmpty())
+            assertTrue("Movement must paint beyond the initial dot",ink.maxOf {index ->index%100}-ink.minOf {index ->index%100}>10)
+        }
+        click("cursor_draw_enabled")
+        drag(20f,20f,30f,20f);drag(20f,20f,20f,20f)
+        onMain {
+            assertFalse(it.paintCanvas.cursorDrawing)
+            val moved=IntArray(10000);it.document.bitmap.getPixels(moved,0,100,0,0,100,100)
+            assertArrayEquals(drawn,moved)
+        }
         click("undo")
+        onMain {for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
         menu("View",text(R.string.ui_magnified_preview))
         onMain {assertTrue(it.paintCanvas.cursorMagnifier)}
         clickText(text(R.string.ui_show_magnified_drawing_preview));positive()
@@ -320,6 +343,41 @@ class EditorDeviceTest {
             assertEquals((it.paintCanvas.width-inset)/2,centre.x,1f)
             assertEquals((it.paintCanvas.height-inset)/2,centre.y,1f)
         }
+    }
+
+    @Test fun saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel() {
+        val width=257;val height=193
+        val expected=IntArray(width*height) {i ->val x=i%width;val y=i/width;Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256)}
+        onMain {
+            it.document.newImage(width,height)
+            it.document.bitmap.setPixels(expected,0,width,0,0,width,height)
+            it.document.edited();it.paintCanvas.fit()
+        }
+        val destination=fixture("device-lossless.jxl")
+        monitor.nextResult.set(resultFor(destination))
+        menu("File",text(R.string.save20_title))
+        assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+        assertTrue(device.findObject(UiSelector().text("JPEG XL")).click())
+        positive()
+        awaitState("Lossless JPEG XL saved through File Save as") {!it.busy && destination.length()>0}
+        assertEquals("image/jxl",monitor.requests.last {it.action==Intent.ACTION_CREATE_DOCUMENT}.type)
+        fun checkPixels() {
+            assertTrue(JxlCodec.isJxl(destination))
+            assertEquals(ImageDimensions(width,height),JxlCodec.dimensions(destination))
+            val decoded=JxlCodec.decode(destination,ImageDimensions(width,height),256L*1024*1024)
+            try {
+                val actual=IntArray(expected.size);decoded.getPixels(actual,0,width,0,0,width,height)
+                assertArrayEquals("Every RGB pixel must survive the application's save workflow",expected,actual)
+            } finally {decoded.recycle()}
+        }
+        checkPixels()
+        val pickerCount=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
+        expected[0]=Color.MAGENTA
+        onMain {assertFalse(it.document.dirty);assertNull(it.lastIoError);it.document.bitmap.setPixel(0,0,Color.MAGENTA);it.document.edited()}
+        menu("File",text(R.string.ui_save))
+        awaitState("Save updates the original lossless JPEG XL destination") {!it.busy && !it.document.dirty}
+        assertEquals(pickerCount,monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT})
+        checkPixels()
     }
 
     @Test fun galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor() {

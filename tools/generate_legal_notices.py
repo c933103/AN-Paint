@@ -23,7 +23,7 @@ File > About. AN Paint modifications are dated 7–15 September 2026.
 Cursor outline drawing is adapted directly from Catrobat Paintroid CursorTool
 at revision 853ce3c346910ea73aa4de5514f2a76ace1396fb (AGPL-3.0-or-later).
 Its circle/square outlines and alternating crosshair segments are preserved.
-The cursor drawing toggle and circular zoom window follow CursorTool and
+Cursor movement and the circular zoom window are adapted from CursorTool and
 DefaultZoomWindowController at that revision, integrated with AN Paint's
 bitmap, gesture history and viewport. See docs/CURSOR_UPSTREAM.md in source.
 

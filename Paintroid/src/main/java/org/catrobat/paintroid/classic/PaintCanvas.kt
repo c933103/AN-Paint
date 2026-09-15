@@ -87,9 +87,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var cursorMode = false; private set
     var cursorDrawing = false; private set
     private var cursor = PointF()
-    private var cursorMoved = false
-    private val cursorTravel = PointF()
     private val cursorOverlay = PaintroidCursorOverlay()
+    private val bitmapDisplayPaint = Paint(0)
     private var cursorInitial = PointF()
     var cursorMagnifier = true
     var magnifiedPreview = false
@@ -99,11 +98,16 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var smoothedPrevious = PointF()
 
     fun setCursorMode(enabled: Boolean) {
-        pauseGesture(); cursorMode=enabled; cursorDrawing=false
+        pauseGesture(); cursorMode=enabled; cursorDrawing=enabled
         if(enabled && document.brushTip==2) document.brushTip=0
         cursor=toImage(rulerInset+contentWidth/2,rulerInset+contentHeight/2).also { clampCursor(it) }
         if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
         invalidate();onStatus()
+    }
+    fun setCursorDrawing(enabled: Boolean) {
+        val drawing=cursorMode && enabled
+        if(cursorDrawing==drawing) return
+        pauseGesture();cursorDrawing=drawing;invalidate();onStatus()
     }
     private fun clampCursor(p: PointF) {
         p.x=p.x.coerceIn(0f,document.bitmap.width-1f);p.y=p.y.coerceIn(0f,document.bitmap.height-1f)
@@ -218,7 +222,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.drawExpansion(canvas,document.background)
         val p = Paint().apply { color = Color.WHITE }
         canvas.drawRect(0f, 0f, bitmap.width.toFloat(), bitmap.height.toFloat(), p)
-        canvas.drawBitmap(bitmap, 0f, 0f, Paint(if (zoom < 1) Paint.FILTER_BITMAP_FLAG else 0))
+        canvas.drawBitmap(bitmap, 0f, 0f, bitmapDisplayPaint)
         document.selection?.let { s ->
             if (s.floating) {
                 if (renderedSource !== s.image || renderedBackground != document.background) {
@@ -226,7 +230,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                     renderedSelection = document.selectionImage()
                     renderedSource = s.image; renderedBackground = document.background
                 }
-                renderedSelection?.let { s.draw(canvas,it,Paint(Paint.FILTER_BITMAP_FLAG)) }
+                renderedSelection?.let { s.draw(canvas,it,bitmapDisplayPaint) }
             }
             p.color = EditorColours.primary; p.style = Paint.Style.STROKE; p.strokeWidth = 1.5f / zoom
             p.pathEffect = DashPathEffect(floatArrayOf(5f / zoom, 4f / zoom), 0f)
@@ -320,8 +324,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
         canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)
         canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})
-        canvas.drawBitmap(document.bitmap,0f,0f,null)
-        document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image) }
+        canvas.drawBitmap(document.bitmap,0f,0f,bitmapDisplayPaint)
+        document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image,bitmapDisplayPaint) }
         if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing)
         canvas.restore();canvas.drawOval(r,p)
     }
@@ -413,7 +417,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     fun draftState(): JSONObject = JSONObject().apply {
         put("pencil_size",pencilSize.toDouble())
         put("close_polygon",closePolygon)
-        put("cursor_mode",cursorMode);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("cursor_magnifier",cursorMagnifier);put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
+        put("cursor_mode",cursorMode);put("cursor_drawing",cursorDrawing);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("cursor_magnifier",cursorMagnifier);put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("viewport_width",viewportWidth.toDouble());put("viewport_height",viewportHeight.toDouble());put("fit_mode",fitMode)
         put("centre_x",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).x.toDouble());put("centre_y",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).y.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
@@ -426,7 +430,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         pencilSize=state.optDouble("pencil_size",1.0).toFloat()
         closePolygon=state.optBoolean("close_polygon",true)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.ZOOM
-        cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
+        cursorMode=state.optBoolean("cursor_mode");cursorDrawing=cursorMode && state.optBoolean("cursor_drawing",true);cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
         magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
         cursorMagnifier=state.optBoolean("cursor_magnifier",true)
         grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()
@@ -607,36 +611,26 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (supportsCursor() && trim==null) {
             when(event.actionMasked) {
                 MotionEvent.ACTION_DOWN -> {
-                    multiTouch=false;down=true;cursorMoved=false;cursorTravel.set(0f,0f);cursorInitial.set(cursor)
+                    multiTouch=false;down=true;cursorInitial.set(cursor)
                     screenStart.set(event.x,event.y);screenPrevious.set(event.x,event.y)
                     previous.set(cursor);smoothedPrevious.set(cursor)
-                    if(cursorDrawing) document.beginGesture()
+                    if(cursorDrawing) {document.beginGesture();stroke(cursor,cursor)}
                 }
                 MotionEvent.ACTION_MOVE -> if(down && !multiTouch) {
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
-                    cursorTravel.offset(abs(event.x-screenPrevious.x),abs(event.y-screenPrevious.y))
                     screenPrevious.set(event.x,event.y)
-                    cursorMoved=cursorTravel.x>touchSlop || cursorTravel.y>touchSlop
-                    if(cursorDrawing && cursorMoved) stroke(old,cursor)
+                    if(cursorDrawing && old!=cursor) stroke(old,cursor)
                 }
                 MotionEvent.ACTION_UP -> {
                     if(multiTouch || !down) {multiTouch=false;down=false;return true}
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
-                    cursorTravel.offset(abs(event.x-screenPrevious.x),abs(event.y-screenPrevious.y))
-                    cursorMoved=cursorTravel.x>touchSlop || cursorTravel.y>touchSlop
                     if(cursorDrawing) {
-                        if(cursorMoved) {
+                        if(old!=cursor || document.strokeSmoothing && tool!=PaintTool.PENCIL && smoothedPrevious!=cursor) {
                             stroke(if(document.strokeSmoothing && tool!=PaintTool.PENCIL) smoothedPrevious else old,cursor,finishing=true)
-                            document.finishGesture()
-                        } else document.cancelGesture()
-                    }
-                    if(!cursorMoved) {
-                        cursorDrawing=!cursorDrawing
-                        // Match CursorTool.handleDrawMode: entering draw mode
-                        // places one undoable dot; leaving it adds no ink.
-                        if(cursorDrawing) {document.beginGesture();stroke(cursor,cursor);document.finishGesture()}
+                        }
+                        document.finishGesture()
                     }
                     down=false;performClick();onStatus()
                 }
