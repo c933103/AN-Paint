@@ -69,12 +69,12 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd","tt" to "tt-Cyrl")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
-        assertEquals(31,starterTags.size)
+        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        assertEquals(32,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
@@ -82,8 +82,9 @@ class AppLanguageTest {
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
-            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
-            assertEquals("Discard changes",wrapped.getString(R.string.ui_discard_changes23))
+            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
+            else assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
             assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
@@ -166,12 +167,34 @@ class AppLanguageTest {
         assertEquals("tdd",manager.applicationLocales[0].toLanguageTag())
     }
 
+    @Test fun tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources() {
+        val extra=listOf("am","ast","be","br","ca-ES-valencia","ckb","csb","dz","eo","ga","gd","ka","ky","mr","nds","ne","nn","rw","xh","yi")
+        val tags=AppLanguage.tags(context)
+        assertTrue(tags.containsAll(extra));assertFalse("kw" in tags)
+        for(tag in extra) {
+            AppLanguage.select(context,tag)
+            assertEquals(tag,AppLanguage.wrap(context).resources.configuration.locales[0].toLanguageTag())
+            assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
+        }
+        AppLanguage.select(context,"tt-Cyrl")
+        var selected=AppLanguage.wrap(context)
+        assertEquals("Саклау",selected.getString(R.string.ui_save))
+        assertEquals("Төзәтмәләрне кире кагу",selected.getString(R.string.ui_discard_changes23))
+        assertEquals("Үзгәртүне дәвам итү",selected.getString(R.string.ui_keep_editing23))
+        AppLanguage.select(context,"tt-Latn")
+        selected=AppLanguage.wrap(context)
+        assertEquals("Saqlaw",selected.getString(R.string.ui_save))
+        assertEquals("Tözätmälärne kire qağu",selected.getString(R.string.ui_discard_changes23))
+        assertEquals("Üzgärtüne däwam itü",selected.getString(R.string.ui_keep_editing23))
+        assertEquals("Pumala",selected.getString(R.string.ui_brush))
+    }
+
     @Test fun chosenLanguagePersistsAndChangesResourcesAndDecimalInput() {
         AppLanguage.select(context, "fr")
         val wrapped = AppLanguage.wrap(context)
         PaintApplication.currentResources = wrapped.resources
         assertEquals("fr", AppLanguage.selectedTag(wrapped))
-        assertEquals("Défaire", wrapped.getString(R.string.ui_undo))
+        assertEquals("Annuler", wrapped.getString(R.string.ui_undo))
         assertEquals(wrapped.getString(R.string.ui_cancel), ui(R.string.ui_cancel))
         assertEquals(12.75, uiNumber("12,75")!!, .0001)
         AppLanguage.select(context, "ar")

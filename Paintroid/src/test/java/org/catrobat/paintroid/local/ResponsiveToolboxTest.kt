@@ -145,10 +145,14 @@ class ResponsiveToolboxTest {
         click("category_INSERT");assertTrue(view<View>("tool_scroll").isShown)
         assertTrue(board.hasPendingEdit);assertFalse(activity.document.canUndo)
         assertEquals(vertices,board.draftState().getJSONArray("polygon").toString())
-        EditorTestNavigation.command(activity,"View",2);settle()
+        EditorTestNavigation.named(activity,"View","Enable cursor drawing");settle()
         assertTrue(board.cursorMode);assertEquals(PaintTool.BRUSH,board.tool)
         val category=view<ToolCategoryButton>("category_BRUSH")
         assertTrue(category.expanded);assertTrue(category.isSelected);assertEquals(PaintTool.BRUSH,category.selectedTool)
+        assertTrue(view<View>("panel_View_commands").isShown)
+        assertTrue(view<View>("cursor_draw_toggle").isShown)
+        assertFalse(board.cursorDrawing)
+        click("menu_Draw")
         assertTrue(view<View>("category_tools_BRUSH").isShown)
         assertFalse(view<View>("category_tools_INSERT").isShown)
     }
@@ -252,7 +256,7 @@ class ResponsiveToolboxTest {
             assertTrue(box.top>=previousBottom);previousBottom=box.bottom
             assertTrue(box.right<=bounds(activity.paintCanvas).left)
         }
-        click("menu_View");click("command_View_5")
+        EditorTestNavigation.named(activity,"View","Hide editor controls");settle()
         assertFalse(view<View>("vertical_ribbon_rail").isShown)
         assertEquals(root.width,activity.paintCanvas.width)
         click("leave_fullscreen")

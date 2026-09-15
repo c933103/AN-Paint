@@ -142,12 +142,15 @@ def generate():
     catalogue = json.loads((DATA / "language-options.json").read_text())
     options = {item["tag"]: item for item in catalogue["options"]}
     basic = json.loads((DATA / "basic-translations.json").read_text())
+    transcription = json.loads((DATA / "tatar-transcription.json").read_text())["cyrillic_to_latin"]
+    basic["tt-Latn"] = {key: transcription[value] for key, value in basic["tt"].items()}
     for tag, terms in basic.items():
         if tag in tags:
             raise ValueError(f"Basic translation duplicates an existing catalogue: {tag}")
-        if tag not in options:
+        basic_option = options.get(tag) or next((item for item in options.values() if item.get("translation_base") == tag), None)
+        if basic_option is None:
             raise ValueError(f"Basic translation is not offered: {tag}")
-        if (not terms and not options[tag].get("name_only")) or any(not value.strip() for value in terms.values()):
+        if (not terms and not basic_option.get("name_only")) or any(not value.strip() for value in terms.values()):
             raise ValueError(f"Basic translation is empty: {tag}")
         tags.append(tag)
         lines = ['<?xml version="1.0" encoding="utf-8"?>',
@@ -172,8 +175,29 @@ def generate():
         record.update({"starter_translation_entries": len(terms), "gimp_translation_entries": len(gimp.get(tag, {})),
                        "entries_different_from_upstream_english": sum(normal(v) != normal(defaults[k]) for k,v in terms.items()),
                        "generated_resource": str(target.relative_to(ROOT)),
-                       "catalogue_source": "translations/basic-translations.json",
-                       "name_only": bool(options[tag].get("name_only"))})
+                       "catalogue_source": "translations/tatar-transcription.json" if tag == "tt-Latn" else "translations/basic-translations.json",
+                       "name_only": bool(basic_option.get("name_only"))})
+    # GIMP-only languages use their selected catalogue directly; no unrelated
+    # starter vocabulary or claimed full-interface translation is synthesized.
+    for tag, terms in gimp.items():
+        if tag in tags or tag not in options:
+            continue
+        tags.append(tag)
+        rendered_terms = dict(terms)
+        if "ui_save" in terms:
+            rendered_terms["ui_save_a5d0d9"] = "@string/ui_save"
+        if "ui_discard_changes23" in terms and "ui_keep_editing23" not in terms:
+            rendered_terms["ui_keep_editing23"] = terms.get("ui_cancel", "Cancel")
+        lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                 '<!-- Selected GIMP vocabulary, GPL-3.0-or-later; see translations/README.md. -->', '<resources>']
+        for key, value in rendered_terms.items():
+            lines.append(f'    <string name="{key}">{escape(value)}</string>')
+        target = RES / qualifier_for_tag(tag) / "strings.xml"
+        results[target] = '\n'.join(lines + ['</resources>', ''])
+        coverage.append({"language_tag": tag, "entries_different_from_upstream_english":
+                         sum(normal(v) != normal(defaults.get(k, "")) for k,v in terms.items()),
+                         "generated_resource": str(target.relative_to(ROOT)),
+                         "catalogue_source": "translations/gimp-catalogues.json"})
     translated = set(tags)
     for tag, item in options.items():
         if not item.get("name_only") and item.get("translation_base", tag) not in translated:

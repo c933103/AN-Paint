@@ -12,10 +12,12 @@ restricted to ICO, ASCII art and Base64 text. Save retains the successful Save a
 name, URI, format, quality, lossless mode, GIF dithering and TIFF compression,
 including draft recovery. JPEG XL lossless still uses the verified native codec.
 
-GIMP supplies context-matched common vocabulary across 60 language bases; original
+GIMP supplies context-matched common vocabulary across 81 language bases; original
 translator notices, full GPL text, source revision/hashes and selected original
 PO entries are bundled. Local regional/action corrections retain precedence.
 Coverage is partial; see translations/README.md and coverage.json.
+Twenty GIMP languages are added, along with explicit tt-Cyrl and tt-Latn choices;
+Latin Tatar is generated from the sourced Cyrillic starter catalogue.
 
 Release verification is in progress. This heading records implementation, not
 an Android build or device-test pass. The previous 0.0.30 release remains the
@@ -36,7 +38,7 @@ The new installed-app tests verify a real input-dispatcher swipe paints a line
 and Save as JPEG XL followed by Save preserves every canvas pixel. Native JPEG
 XL lossless tests already passed for 0.0.29. See docs/CURSOR_UPSTREAM.md and
 docs/JPEG_XL_LOSSLESS.md. The corrected release passed workflow 34945326732:
-75 local host checks, 257 release regression tests, zero app lint issues, 77 instrumentation tests on API 30 and 78 on API 35. All passed.
+80 local host checks, 257 release regression tests, zero app lint issues, 77 instrumentation tests on API 30 and 78 on API 35. All passed.
 The actual input-dispatcher cursor swipe, explicit move-only mode, unfiltered
 canvas pixel comparison, and JPEG XL Save as/Save checks all passed. The universal
 APK uses the existing upgrade certificate, is non-debuggable, includes four ABIs

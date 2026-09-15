@@ -1,9 +1,11 @@
-# Reused Paintroid vocabulary
+# Reused translation vocabulary
 
-AN Paint's View → Languages offers device default and 105 language/region/
-script choices, including English. Most choices have partial translations; 28 have starter Brush, Save and Cancel vocabulary, the two Ainu script choices have Brush, Save and Done, and Tai Nüa has five sourced action labels. No choice is now name-only. This is partial vocabulary reuse, not a claim
-that the entire new editor has been translated. New or absent entries fall back
-to English; the language picker explains that limitation.
+AN Paint's View → Languages offers device default and 126 language/region/
+script choices, including English. Coverage is partial and varies by language.
+The generator combines pinned Paintroid, Android and GIMP editor vocabulary,
+reviewed regional corrections and smaller sourced starter catalogues. Tatar
+has separate Cyrillic and Latin choices. No choice is name-only. New or absent
+entries fall back to English; the language picker explains that limitation.
 
 The 42 mapped entries reuse the actual Paintroid translations for common brush,
 shape, editing and save-dialog terms. The gallery's Use image button uses the
@@ -205,8 +207,8 @@ context and msgid. `gimp-catalogues.json` includes the selected original entries
 full catalogue translator/copyright headers, and SHA-256/Git blob hashes of the
 complete upstream files. Sources are `po`, `po-libgimp` and `po-plug-ins`.
 
-The snapshot supplies 5,216 candidate entries across 60 language bases, used by
-62 of the offered language choices. Coverage varies from 6 to 110 labels per
+The snapshot supplies 6,489 candidate entries across 81 language bases, used by
+83 of the offered language choices. Coverage varies from 3 to 110 labels per
 base; these are partial editor vocabularies, not complete AN Paint translations.
 `coverage.json` distinguishes available GIMP entries from those actually used
 after local corrections. Shared source locales for regional choices remain
@@ -225,10 +227,49 @@ GIMP translations remain **GPL-3.0-or-later**. AN Paint's combined distribution
 is under **AGPL-3.0-or-later**, using section 13 of the respective licences.
 The original translator headers and complete GPL text are bundled in
 `Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt`, accessible from
-File → About, licences & credits → GIMP translation credits & licence. They
+File → About, licences & credits → Translation credits & licences. They
 also enter the generated third-party notices and exact corresponding source ZIP.
 No endorsement by GIMP or its translators is implied. Paint.NET resources were
 not imported: its published application licence does not permit this reuse.
 
 Rebuild offline: `python tools/reuse_upstream_translations.py`.
 Verify: `python -m unittest discover -s tools -p 'test_*.py'`.
+
+GIMP's old Latin-script `tt.po` catalogues are not mixed into the Cyrillic
+Tatar resources. The explicit script choices below use a maintained Cyrillic
+source and a generated Latin transcription instead.
+
+
+## Additional GIMP languages and Tatar scripts (0.0.31)
+
+Twenty additional choices now have actual selected GIMP vocabulary: Amharic
+(`am`), Asturian (`ast`), Belarusian (`be`), Breton (`br`), Valencian
+(`ca-ES-valencia`), Central Kurdish (`ckb`), Kashubian (`csb`), Dzongkha (`dz`),
+Esperanto (`eo`), Irish (`ga`), Scottish Gaelic (`gd`), Georgian (`ka`), Kyrgyz
+(`ky`), Marathi (`mr`), Low German (`nds`), Nepali (`ne`), Norwegian Nynorsk (`nn`),
+Kinyarwanda (`rw`), Xhosa (`xh`) and Yiddish (`yi`). GIMP vocabulary also supplements
+the existing Basque (`eu-ES`) and Malayalam (`ml-IN`) choices. Autonyms reuse the
+factual language names from the already pinned MediaWiki Names.php list, with
+menu capitalization. Cornish (`kw`) has no translated matching term at this GIMP
+revision and is not presented as a translated option. Kashubian has only three
+matching labels; `coverage.json` records this rather than implying completeness.
+After regional/action corrections, 6,034 GIMP entries are actually used across
+81 language bases serving 83 choices.
+
+The old `tt` preference migrates to **tt-Cyrl**. Its 18 primary labels retain
+Cyrillic Brush and reuse current Cyrillic MediaWiki actions, including distinct
+Discard changes / Keep editing. **tt-Latn** is generated from that complete
+Cyrillic starter catalogue via explicit, auditable per-string transcriptions.
+`translations/tatar-transcription.json` retains exact original entries, mapping,
+contributor metadata, revision and source hash. The Save alias makes 19 generated
+resources in each script. Updating a Cyrillic term without its transcription
+fails generation; Latin is not maintained as a drifting independent translation.
+
+The spelling uses modern Tatar Latin forms (ä, ö, ü, ñ, ş, ç, q, ğ and dotless ı),
+with language-specific spellings such as Саклау → Saqlaw. These are bounded UI
+transcriptions, not a universal converter or a claim of independent native-speaker
+review. Reference: [Tatar alphabet correspondence and contextual notes](https://transliteration.eki.ee/pdf/Tatar.pdf).
+Cyrillic source: [MediaWiki tt-cyrl.json, ea83228](https://github.com/wikimedia/mediawiki/blob/ea83228d5fe2b1f9559196a2716c8580cdb2407d/languages/i18n/tt-cyrl.json),
+GPL-2.0-or-later, used under its GPL version 3-or-later option. Its contributors,
+AN Paint adaptations and licence information appear with the app's translation
+credits. Existing Tatar's Latin GIMP catalogue is not treated as Cyrillic.

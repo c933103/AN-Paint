@@ -112,7 +112,7 @@ class WorkspaceRefinementTest {
     @Test fun changingOnlyMagnifierScaleAutosavesWithoutLeavingOrEditing() {
         // Finish the startup save first so it cannot hide a missing settings callback.
         saveIdle()
-        EditorTestNavigation.command(activity,"View",3);settle()
+        EditorTestNavigation.named(activity,"View","Magnified preview…");settle()
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val control=dialog.window!!.decorView.findViewWithTag<NumericSlider>("preview_magnification")
         control.slider.progress=225 // 100% minimum + 225 = 325%.

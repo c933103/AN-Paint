@@ -112,6 +112,7 @@ class GimpTranslationTests(unittest.TestCase):
         snapshot = json.loads((translations.DATA / "gimp-catalogues.json").read_text())
         self.assertEqual("e670132a59be1e8fb98d5b935824e4f57937b4ae", snapshot["revision"])
         self.assertEqual("GPL-3.0-or-later", snapshot["license"])
+        self.assertNotIn("tt", snapshot["locale_map"], "GIMP's old Latin Tatar catalogue must not replace the Cyrillic starter locale")
         notices = (translations.RES.parent / "assets/legal/GIMP_TRANSLATION_NOTICES.txt").read_bytes().decode()
         for source in snapshot["sources"]:
             self.assertIn(source["header"], notices)
@@ -146,3 +147,32 @@ class GimpTranslationTests(unittest.TestCase):
         self.assertGreater(sum(r["gimp_translation_entries"] for r in rows), 3500)
         for row in rows:
             self.assertLessEqual(row["gimp_translation_entries"], row["gimp_available_entries"])
+
+
+class TatarScriptTests(unittest.TestCase):
+    def test_latin_catalogue_is_derived_from_the_complete_cyrillic_vocabulary(self):
+        source = json.loads((translations.DATA / "tatar-transcription.json").read_text())
+        basic = json.loads((translations.DATA / "basic-translations.json").read_text())["tt"]
+        latin = translations.read_strings(translations.RES / "values-b+tt+Latn/strings.xml")
+        self.assertEqual(set(basic.values()), set(source["cyrillic_to_latin"]))
+        self.assertEqual("@string/ui_save", latin.pop("ui_save_a5d0d9"))
+        self.assertEqual({k: source["cyrillic_to_latin"][v] for k,v in basic.items()}, latin)
+        for value in latin.values():
+            self.assertNotRegex(value, r"[\u0400-\u04ff]")
+        self.assertEqual("Saqlaw", latin["ui_save"])
+        self.assertNotEqual(latin["ui_discard_changes23"], latin["ui_keep_editing23"])
+        for app_key, upstream_key in source["mapping"].items():
+            original = source["original_strings"][upstream_key]
+            self.assertEqual(original[0].upper()+original[1:], basic[app_key])
+
+    def test_every_new_gimp_option_has_actual_selected_vocabulary(self):
+        options = json.loads((translations.DATA / "language-options.json").read_text())
+        report = json.loads((translations.DATA / "coverage.json").read_text())
+        added = {o["tag"] for o in options["options"] if o.get("translation_source") == "GIMP"}
+        self.assertEqual(20, len(added))
+        self.assertEqual("tt-Cyrl", options["aliases"]["tt"])
+        self.assertTrue({"tt-Cyrl", "tt-Latn"} <= {o["tag"] for o in options["options"]})
+        for tag in added:
+            row = next(r for r in report["coverage"] if r["language_tag"] == tag)
+            self.assertGreater(row["gimp_translation_entries"], 0, tag)
+        self.assertNotIn("kw", added)  # No translated matching term in pinned GIMP Cornish.
