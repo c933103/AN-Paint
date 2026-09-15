@@ -19,9 +19,25 @@ sr-Latn and tr, plus hy. Deeper dialogs retain their existing partial vocabulary
 Cantonese Latin uses Jyutping; Korean regional commands and Serbian scripts are
 separate resources. Existing pinned translator sources and notices are retained.
 
-Local verification: 81 host checks passed. Release build, regression/lint and
-Android 30/35 verification must finish before publishing the signed release.
-Use the existing upgrade key; never upload the private backup or key to GitHub.
+The release passed workflow 34992890074: 81 local host checks; 267 release
+regression tests; zero app lint issues; 78 instrumentation tests on API 30 and
+79 on API 35. All passed. Visual checks cover matching View/Edit tool tiles,
+Armenian, Arabic and Latin Cantonese captions, and the cursor drawer.
+
+The non-debuggable universal APK uses the existing upgrade signing certificate,
+contains four ABIs and passes 16 KB ZIP alignment. Embedded and separate source
+archives match every one of 830 exported repository blobs.
+
+Source: https://github.com/c933103/AN-Paint/commit/964b82f9a2b157a867e361845cdaa0adde0439d5
+Build: https://github.com/c933103/AN-Paint/actions/runs/34992890074
+Release: https://github.com/c933103/AN-Paint/releases/tag/v0.0.32
+
+APK SHA-256: `864630a4001bb9542aaf32c191012dbc7ea7da6c52a708581316b74c30ea29f5`
+Source SHA-256: `86d8039ced245c3e269162670a6ec26e83ab8ea9c574989916845587aa4a6f10`
+
+The release request publishes this exact verified APK and matching source. The
+private signing key and build backup remain outside GitHub. Results below are
+historical and belong to their stated versions.
 
 ---
 
