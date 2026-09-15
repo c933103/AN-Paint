@@ -13,6 +13,13 @@ XL lossless tests already passed for 0.0.29. See docs/CURSOR_UPSTREAM.md and
 docs/JPEG_XL_LOSSLESS.md. Build and release checks for 0.0.30 are pending; the
 completed results below belong to 0.0.29.
 
+The first 0.0.30 run (34944021765) compiled and passed the new app JPEG XL save
+case on API 30 and 35. Its pixel-display test exposed Android's implicit bitmap
+filter constructor flag; the display paint now explicitly clears it. The cursor
+swipe painted correctly, but the test helper incorrectly required a checkbox's
+performClick return value to be true. Checkbox checks now verify state or use
+actual UI input. The complete corrected release still requires a successful run.
+
 ---
 
 # AN Paint 0.0.29 — language and cursor corrections

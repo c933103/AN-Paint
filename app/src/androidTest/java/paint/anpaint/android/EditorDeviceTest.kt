@@ -323,7 +323,7 @@ class EditorDeviceTest {
             assertTrue("Cursor must produce a visible line",ink.isNotEmpty())
             assertTrue("Movement must paint beyond the initial dot",ink.maxOf {index ->index%100}-ink.minOf {index ->index%100}>10)
         }
-        click("cursor_draw_enabled")
+        clickText(text(R.string.ui_cursor_ink30))
         drag(20f,20f,30f,20f);drag(20f,20f,20f,20f)
         onMain {
             assertFalse(it.paintCanvas.cursorDrawing)

@@ -114,9 +114,12 @@ class UnifiedEditorTest {
     @Test fun cursorDrawMoveSwitchAndFitWorkInTheEditor() {
         menu("View","Enable cursor drawing");assertTrue(board.cursorMode)
         assertTrue(board.cursorDrawing)
-        click("cursor_draw_enabled");assertFalse(board.cursorDrawing)
+        val ink=root.findViewWithTag<CheckBox>("cursor_draw_enabled")
+        // CompoundButton toggles before performClick's return value, which only
+        // reports whether a separate OnClickListener handled the click.
+        ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertFalse(board.cursorDrawing)
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
-        click("cursor_draw_enabled");assertTrue(board.cursorDrawing)
+        ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertTrue(board.cursorDrawing)
         event(MotionEvent.ACTION_DOWN,20f,20f);event(MotionEvent.ACTION_UP,20f,20f)
         assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
         val dot=pixels()

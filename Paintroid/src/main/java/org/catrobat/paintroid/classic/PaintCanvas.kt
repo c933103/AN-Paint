@@ -88,7 +88,9 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var cursorDrawing = false; private set
     private var cursor = PointF()
     private val cursorOverlay = PaintroidCursorOverlay()
-    private val bitmapDisplayPaint = Paint(0)
+    // Android adds FILTER_BITMAP_FLAG to constructor flags on newer versions.
+    // Clear it explicitly so fractional zoom never blends neighbouring pixels.
+    private val bitmapDisplayPaint = Paint(0).apply { isFilterBitmap=false;isAntiAlias=false }
     private var cursorInitial = PointF()
     var cursorMagnifier = true
     var magnifiedPreview = false
