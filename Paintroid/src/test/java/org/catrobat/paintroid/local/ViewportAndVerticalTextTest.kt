@@ -129,7 +129,7 @@ class ViewportAndVerticalTextTest {
         for((action,x) in listOf(MotionEvent.ACTION_DOWN to 10f,MotionEvent.ACTION_MOVE to 750f,MotionEvent.ACTION_UP to 750f)) {
             val event=MotionEvent.obtain(0,20,action,x,board.height-2f,0);board.dispatchTouchEvent(event);event.recycle()
         }
-        assertTrue(board.panX<old);assertFalse(doc.canUndo);assertTrue(board.cursorDrawing)
+        assertTrue(board.panX<old);assertFalse(doc.canUndo);assertFalse(board.cursorDrawing)
     }
     @Test fun unicodeClustersPreserveCombiningCharactersAndEmojiSequences() {
         assertEquals(listOf("Á","👩🏽‍🎨","🇲🇳","𠀀"),VerticalText.clusters("Á👩🏽‍🎨🇲🇳𠀀"))

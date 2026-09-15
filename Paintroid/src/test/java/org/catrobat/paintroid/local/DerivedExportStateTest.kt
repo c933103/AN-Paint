@@ -74,7 +74,7 @@ class DerivedExportStateTest {
     @After fun stop() = close()
     private fun menu(label: String) { EditorTestNavigation.named(activity,"File",label) }
     private fun options(format: ImageFormat): AlertDialog {
-        menu(activity.getString(if(format.canSaveLosslessly) R.string.save20_title else R.string.ui_export_as23))
+        menu(activity.getString(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
         val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
         EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),format); idle()
         return dialog
@@ -100,7 +100,7 @@ class DerivedExportStateTest {
         val dialog = options(format)
         if (format == ImageFormat.ICO) {
             dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").setSelection(2); idle()
-        } else {
+        } else if(format==ImageFormat.ASCII_ART) {
             dialog.window!!.decorView.findViewWithTag<NumericSlider>("export_ascii_columns").slider.progress = 0
         }
         rememberOptions(dialog)
@@ -116,6 +116,15 @@ class DerivedExportStateTest {
             writePickerResult(file)
             if (format == ImageFormat.ICO) {
                 assertTrue(IcoCodec.isIco(file)); assertEquals(32, IcoCodec.dimensions(file).width)
+            } else if(format==ImageFormat.BASE64) {
+                assertTrue(TextImageCodec.inspect(file))
+                TextImageCodec.decodeToFile(file,file,1024*1024)
+                val decoded=checkNotNull(BitmapFactory.decodeFile(file.path))
+                try {
+                    assertEquals(320,decoded.width);assertEquals(160,decoded.height)
+                    val recovered=IntArray(original.size);decoded.getPixels(recovered,0,320,0,0,320,160)
+                    assertArrayEquals(original,recovered)
+                } finally {decoded.recycle()}
             } else {
                 val lines = file.readLines()
                 assertEquals(10, lines.size); assertTrue(lines.all { it.length == 40 })
@@ -135,27 +144,7 @@ class DerivedExportStateTest {
     @Test fun icoExportKeepsFullResolutionDrawingAndBlocksPendingClose() = derivedExportKeepsDrawing(ImageFormat.ICO)
     @Test fun asciiExportKeepsOriginalDrawingAndBlocksPendingClose() = derivedExportKeepsDrawing(ImageFormat.ASCII_ART)
 
-    @Test fun losslessBase64SaveCompletesPendingCloseAfterWritingRecoverableImage() {
-        rememberOptions(options(ImageFormat.BASE64))
-        activity.onBackPressed(); idle()
-        checkNotNull(ShadowAlertDialog.getLatestAlertDialog()).getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-        val saving=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-        EditorTestNavigation.format(saving.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.BASE64)
-        val file = File.createTempFile("complete-image-", ".txt", activity.cacheDir)
-        try {
-            writePickerResult(file)
-            assertTrue(TextImageCodec.inspect(file))
-            TextImageCodec.decodeToFile(file, file, 1024 * 1024)
-            val decoded = checkNotNull(BitmapFactory.decodeFile(file.path))
-            try {
-                assertEquals(320, decoded.width); assertEquals(160, decoded.height)
-                assertEquals(Color.BLACK, decoded.getPixel(0, 0))
-                assertEquals(Color.MAGENTA, decoded.getPixel(319, 159))
-            } finally { decoded.recycle() }
-            assertFalse(activity.document.dirty)
-            assertTrue("A full image save should still complete the requested close", activity.isFinishing)
-        } finally { file.delete() }
-    }
+    @Test fun base64ExportKeepsOriginalDrawingAndWritesRecoverableImage() = derivedExportKeepsDrawing(ImageFormat.BASE64)
 
     @Test fun savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable() {
         val dialog = options(ImageFormat.ICO)

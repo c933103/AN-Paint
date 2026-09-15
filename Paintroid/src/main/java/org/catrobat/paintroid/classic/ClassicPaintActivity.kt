@@ -498,6 +498,10 @@ class ClassicPaintActivity : Activity() {
 
     private fun makeStatus() {
         cursorStatusHeight=0
+        val cursorActions=LinearLayout(this).apply {gravity=Gravity.CENTER_VERTICAL;isBaselineAligned=false;setPadding(dp(7),0,dp(7),0)}
+        cursorActions.addView(button(ui(R.string.ui_cursor_start31),"cursor_draw_toggle") {paintCanvas.setCursorDrawing(!paintCanvas.cursorDrawing)},LinearLayout.LayoutParams(-2,if(VerticalText.uiVertical()) -2 else dp(44)))
+        cursorActions.addView(button(ui(R.string.ui_cursor_settings31),"cursor_settings") {showCursorSettings()},LinearLayout.LayoutParams(-2,if(VerticalText.uiVertical()) -2 else dp(44)))
+        root.addView(HorizontalScrollView(this).apply {tag="cursor_controls";addView(cursorActions);visibility=if(paintCanvas.cursorMode) View.VISIBLE else View.GONE})
         val row = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0) }
         if(!VerticalText.uiVertical()) {
             statusText = label(ui(R.string.ui_ready), 11f).apply {tag="status_text";maxLines=2}
@@ -526,6 +530,12 @@ class ClassicPaintActivity : Activity() {
 
     private fun updateStatus() {
         if (!::statusText.isInitialized) return
+        root.findViewWithTag<View>("cursor_controls")?.visibility=if(paintCanvas.cursorAvailable && !fullscreen) View.VISIBLE else View.GONE
+        root.findViewWithTag<Button>("cursor_draw_toggle")?.let {
+            it.text=ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_stop31 else R.string.ui_cursor_start31)
+            it.isEnabled=!busy;it.isSelected=paintCanvas.cursorDrawing;it.contentDescription=it.text
+        }
+        root.findViewWithTag<View>("cursor_settings")?.isEnabled=!busy
         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
         val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus
         if(!VerticalText.uiVertical()) {
@@ -586,12 +596,6 @@ class ClassicPaintActivity : Activity() {
     private fun populateToolOptions(tool: PaintTool) {
         options.removeAllViews()
         options.addView(label(tool.label, 12f).apply { typeface = Typeface.DEFAULT_BOLD })
-        if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
-            options.addView(CheckBox(this).apply {
-                tag="cursor_draw_enabled";text=ui(R.string.ui_cursor_ink30);isChecked=paintCanvas.cursorDrawing
-                setOnCheckedChangeListener {_,checked ->paintCanvas.setCursorDrawing(checked)}
-            })
-        }
         when (tool) {
             PaintTool.SELECT, PaintTool.LASSO -> {
                 options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))
@@ -642,9 +646,6 @@ class ClassicPaintActivity : Activity() {
         }, LinearLayout.LayoutParams(-1, dp(48)))
         if(tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.SPRAY,PaintTool.ERASER,PaintTool.LINE,PaintTool.CURVE)) {
             options.addView(button(ui(R.string.ui_drawing_settings),"drawing_settings") {showDrawingSettings(false)},LinearLayout.LayoutParams(-1,dp(48)))
-        }
-        if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
-            options.addView(button(ui(R.string.ui_magnified_preview),"cursor_preview_settings") {showDrawingSettings(true)},LinearLayout.LayoutParams(-1,dp(48)))
         }
         if(VerticalText.uiVertical()) VerticalUi.panel(options)
         updateStatus()
@@ -704,7 +705,8 @@ class ClassicPaintActivity : Activity() {
         "View"->listOf(
             command(PaintTool.ZOOM.label,R.drawable.breeze_zoom_in) {chooseTool(PaintTool.ZOOM)},
             command((if(paintCanvas.grid) ui(R.string.ui_hide_pixel_grid_800) else ui(R.string.ui_show_pixel_grid_800)),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},
-            command((if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)),R.drawable.classic_cursor) {paintCanvas.setCursorMode(!paintCanvas.cursorMode);chooseTool(paintCanvas.tool)},
+            command((if(paintCanvas.cursorMode) ui(R.string.ui_disable_cursor_drawing) else ui(R.string.ui_enable_cursor_drawing)),R.drawable.classic_cursor) {paintCanvas.setCursorMode(!paintCanvas.cursorMode);showToolOptions(paintCanvas.tool);selectTab("View")},
+            command(ui(R.string.ui_cursor_settings31),R.drawable.classic_cursor) {showCursorSettings()},
             command(ui(R.string.ui_magnified_preview),R.drawable.breeze_zoom_in) {showDrawingSettings(true)},
             command(ui(R.string.ui_languages23),R.drawable.classic_languages) {AppLanguage.showPicker(this) {buildWorkspace()}},
             command((if(fullscreen) ui(R.string.ui_show_editor_controls) else ui(R.string.ui_hide_editor_controls)),R.drawable.classic_fullscreen) {fullscreen=!fullscreen;syncFullscreen()}
@@ -719,6 +721,7 @@ class ClassicPaintActivity : Activity() {
             ui(R.string.ui_third_party_notices) to {LegalInfo.showAsset(this,ui(R.string.ui_open_source_credits_and_notices),"legal/THIRD_PARTY_NOTICES.txt")},
             ui(R.string.ui_export_this_version_s_source_code) to {exportSource()},
             ui(R.string.ui_icons_fonts_artwork_credits) to {LegalInfo.showAsset(this,ui(R.string.ui_icons_fonts_artwork_credits),"legal/ASSET_CREDITS.txt")},
+            ui(R.string.ui_gimp_translations31) to {LegalInfo.showAsset(this,ui(R.string.ui_gimp_translations31),"legal/GIMP_TRANSLATION_NOTICES.txt")},
             ui(R.string.ui_image_credits) to {showImageCredits()},
             ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
             ui(R.string.ui_font_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")},
@@ -920,17 +923,20 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun requestSave(jpeg: Boolean) {
-        if(jpeg) {showSaveOptions(ImageFormat.JPEG,export=true);return}
+        if(jpeg) {showSaveOptions(ImageFormat.JPEG);return}
         val target=savedTarget
         if(target==null) showSaveOptions(ImageFormat.PNG)
         else {exportOptions=target.options;isExporting=false;shareAfterSave=false;writeImage(target.uri)}
     }
     private fun showSaveOptions(format: ImageFormat,share: Boolean=false,export: Boolean=false) {
         val prefs=getSharedPreferences("export",MODE_PRIVATE)
-        SaveOptionsDialog(this,ExportOptions(format,prefs.getInt("quality",95),!export,prefs.getBoolean("dither",true),prefs.getBoolean("tiff_compressed",true),prefs.getInt("ico_size",256),prefs.getInt("ascii_columns",100),prefs.getBoolean("ascii_invert",false)),share,
+        val remembered=savedTarget?.options?.takeIf {!export && it.format==format}
+        SaveOptionsDialog(this,remembered ?: ExportOptions(format,prefs.getInt("quality",95),prefs.getBoolean("lossless",true),prefs.getBoolean("dither",true),prefs.getBoolean("tiff_compressed",true),prefs.getInt("ico_size",256),prefs.getInt("ascii_columns",100),prefs.getBoolean("ascii_invert",false)),share,
             confirm={request ->
                 exportOptions=request.options;shareAfterSave=share;isExporting=export
-                prefs.edit().putInt("quality",exportOptions.quality).putBoolean("dither",exportOptions.dither).putBoolean("tiff_compressed",exportOptions.tiffCompressed).putInt("ico_size",exportOptions.icoSize).putInt("ascii_columns",exportOptions.asciiColumns).putBoolean("ascii_invert",exportOptions.asciiInvert).apply()
+                val savedPrefs=prefs.edit().putInt("quality",exportOptions.quality).putBoolean("dither",exportOptions.dither).putBoolean("tiff_compressed",exportOptions.tiffCompressed).putInt("ico_size",exportOptions.icoSize).putInt("ascii_columns",exportOptions.asciiColumns).putBoolean("ascii_invert",exportOptions.asciiInvert)
+                if(exportOptions.format.supportsLossless) savedPrefs.putBoolean("lossless",exportOptions.lossless)
+                savedPrefs.apply()
                 chooseSaveLocation(request.fileName)
             },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export).show()
     }
@@ -1170,6 +1176,62 @@ class ClassicPaintActivity : Activity() {
     private fun showImageCredits() {
         GalleryCredits.showEditor(this)
     }
+    private fun showCursorSettings() {
+        paintCanvas.setCursorDrawing(false)
+        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;isBaselineAligned=false;setPadding(dp(18),dp(8),dp(18),dp(8));tag="cursor_settings_panel"}
+        val enabled=CheckBox(this).apply {tag="cursor_mode_enabled";text=ui(R.string.ui_enable_cursor_drawing);isChecked=paintCanvas.cursorMode}
+        column.addView(enabled)
+        column.addView(label(ui(R.string.ui_cursor_help31),12f))
+        val tools=listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)
+        val brush=Spinner(this).apply {
+            tag="cursor_brush";contentDescription=ui(R.string.ui_brush)
+            isEnabled=paintCanvas.cursorMode
+            adapter=ArrayAdapter(this@ClassicPaintActivity,android.R.layout.simple_spinner_dropdown_item,tools.map {it.label})
+            setSelection(tools.indexOf(paintCanvas.tool).coerceAtLeast(0))
+        }
+        column.addView(brush)
+        val brushOptions=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;isBaselineAligned=false;tag="cursor_brush_options"}
+        column.addView(brushOptions)
+        fun rebuildBrushOptions() {
+            brushOptions.removeAllViews()
+            val pencil=paintCanvas.tool==PaintTool.PENCIL
+            brushOptions.addView(NumericSlider(this,ui(R.string.ui_size_px),(if(pencil) paintCanvas.pencilSize else document.strokeWidth).toInt(),1,100) {
+                paintCanvas.pauseGesture();if(pencil) paintCanvas.pencilSize=it.toFloat() else document.strokeWidth=it.toFloat();paintCanvas.invalidate();scheduleAutosave()
+            }.apply {tag="cursor_brush_size"})
+            if(!pencil) brushOptions.addView(Spinner(this).apply {
+                tag="cursor_brush_shape";contentDescription=ui(R.string.ui_cursor_shape31)
+                adapter=ArrayAdapter(this@ClassicPaintActivity,android.R.layout.simple_spinner_dropdown_item,listOf(ui(R.string.ui_round),ui(R.string.ui_square)))
+                setSelection(document.brushTip.coerceIn(0,1))
+                onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(parent: AdapterView<*>?)=Unit
+                    override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {if(paintCanvas.cursorMode) {document.brushTip=position;paintCanvas.invalidate();scheduleAutosave()}}
+                }
+            }) else brushOptions.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes),12f))
+            if(VerticalText.uiVertical()) VerticalUi.panel(brushOptions)
+        }
+        brush.onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?)=Unit
+            override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
+                if(paintCanvas.cursorMode) {paintCanvas.selectTool(tools[position]);showToolOptions(paintCanvas.tool)}
+                rebuildBrushOptions()
+            }
+        }
+        enabled.setOnCheckedChangeListener {_,on ->paintCanvas.setCursorMode(on);brush.isEnabled=on;brush.setSelection(tools.indexOf(paintCanvas.tool).coerceAtLeast(0));showToolOptions(paintCanvas.tool);rebuildBrushOptions()}
+        column.addView(CheckBox(this).apply {
+            tag="cursor_magnifier_enabled";text=ui(R.string.ui_show_magnified_drawing_preview);isChecked=paintCanvas.cursorMagnifier
+            setOnCheckedChangeListener {_,on ->paintCanvas.cursorMagnifier=on;paintCanvas.invalidate();scheduleAutosave()}
+        })
+        column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {
+            paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()
+        }.apply {tag="cursor_magnification"})
+        column.addView(NumericSlider(this,ui(R.string.ui_cursor_marker_size31),(paintCanvas.cursorMarkerScale*100).toInt(),100,200) {
+            paintCanvas.cursorMarkerScale=it/100f;paintCanvas.invalidate();scheduleAutosave()
+        }.apply {tag="cursor_marker_size"})
+        column.addView(label(ui(R.string.ui_cursor_marker_help31),12f))
+        rebuildBrushOptions()
+        val content=if(VerticalText.uiVertical()) {VerticalUi.panel(column);HorizontalScrollView(this).apply {addView(column)}} else ScrollView(this).apply {addView(column)}
+        EditorDialogBuilder(this).setTitle(ui(R.string.ui_cursor_settings31)).setView(content).setPositiveButton(ui(R.string.ui_done)) {_,_ ->populateToolOptions(paintCanvas.tool)}.show()
+    }
     private fun showDrawingSettings(preview: Boolean) {
         val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}
         fun toggle(title: String,value: Boolean,change: (Boolean)->Unit) {
@@ -1192,7 +1254,7 @@ class ClassicPaintActivity : Activity() {
     }
     private fun syncFullscreen() {
         if(!::root.isInitialized) return
-        for(i in 0 until root.childCount) root.getChildAt(i).let { it.visibility=if(fullscreen && it.tag!="workspace_overlay") View.GONE else View.VISIBLE }
+        for(i in 0 until root.childCount) root.getChildAt(i).let { it.visibility=if(fullscreen && it.tag!="workspace_overlay" || it.tag=="cursor_controls" && !paintCanvas.cursorAvailable) View.GONE else View.VISIBLE }
         syncPanels()
         root.findViewWithTag<View>("vertical_status_rail")?.visibility=if(fullscreen) View.GONE else View.VISIBLE
         root.findViewWithTag<View>("vertical_ribbon_rail")?.visibility=if(fullscreen) View.GONE else View.VISIBLE

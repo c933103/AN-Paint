@@ -193,3 +193,42 @@ Literary Chinese (`lzh-Hant`) has 149 local foundation labels. The other newly
 added starter choices each have three labels. Missing text uses English across
 all partial catalogues. In particular, offering two regional choices is not a
 claim that their regional terminology has been independently translated.
+
+
+## GIMP editor vocabulary (0.0.31)
+
+Selected standard editor labels now also come from the GIMP translators, pinned
+to `e670132a59be1e8fb98d5b935824e4f57937b4ae` on the stable `gimp-3-2` branch.
+Original source: <https://github.com/GNOME/gimp/tree/e670132a59be1e8fb98d5b935824e4f57937b4ae>.
+`gimp-terms.json` explicitly maps 110 AN Paint labels to a gettext domain,
+context and msgid. `gimp-catalogues.json` includes the selected original entries,
+full catalogue translator/copyright headers, and SHA-256/Git blob hashes of the
+complete upstream files. Sources are `po`, `po-libgimp` and `po-plug-ins`.
+
+The snapshot supplies 5,216 candidate entries across 60 language bases, used by
+62 of the offered language choices. Coverage varies from 6 to 110 labels per
+base; these are partial editor vocabularies, not complete AN Paint translations.
+`coverage.json` distinguishes available GIMP entries from those actually used
+after local corrections. Shared source locales for regional choices remain
+explicit in `language-options.json`; this does not claim independent regional
+review. Rare-script locales receive no unrelated GIMP fallback.
+
+`tools/gimp_translations.py` removes desktop mnemonics, adapts trailing
+punctuation/ellipsis and quality units, and escapes Android strings. Fuzzy,
+empty, plural and format-bearing translations are excluded. Existing reviewed
+clipboard/unsaved-work and regional translations take precedence, as do the
+Japanese horizontal/vertical flip corrections. Ambiguous same-English terms
+(such as GIMP's WebP preset named Drawing or watercolor palette selector) were
+excluded rather than repurposed as drawing tools.
+
+GIMP translations remain **GPL-3.0-or-later**. AN Paint's combined distribution
+is under **AGPL-3.0-or-later**, using section 13 of the respective licences.
+The original translator headers and complete GPL text are bundled in
+`Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt`, accessible from
+File → About, licences & credits → GIMP translation credits & licence. They
+also enter the generated third-party notices and exact corresponding source ZIP.
+No endorsement by GIMP or its translators is implied. Paint.NET resources were
+not imported: its published application licence does not permit this reuse.
+
+Rebuild offline: `python tools/reuse_upstream_translations.py`.
+Verify: `python -m unittest discover -s tools -p 'test_*.py'`.

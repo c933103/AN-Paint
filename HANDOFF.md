@@ -1,3 +1,28 @@
+# AN Paint 0.0.31 — explicit cursor control and image save settings
+
+Version code 84. Cursor mode starts with positioning only; Start drawing / Stop
+ drawing below the canvas controls ink. Dedicated cursor settings under View and
+beside that control expose brush, size, shape, magnifier and marker visibility.
+Opening settings, switching tools and reopening drafts pause ink. Original
+Paintroid geometry remains; the marker now stays visible at fitted zoom without
+changing the painted brush width. Main canvas bitmap filtering remains off.
+
+Save as offers all ordinary images and real compression controls. Export as is
+restricted to ICO, ASCII art and Base64 text. Save retains the successful Save as
+name, URI, format, quality, lossless mode, GIF dithering and TIFF compression,
+including draft recovery. JPEG XL lossless still uses the verified native codec.
+
+GIMP supplies context-matched common vocabulary across 60 language bases; original
+translator notices, full GPL text, source revision/hashes and selected original
+PO entries are bundled. Local regional/action corrections retain precedence.
+Coverage is partial; see translations/README.md and coverage.json.
+
+Release verification is in progress. This heading records implementation, not
+an Android build or device-test pass. The previous 0.0.30 release remains the
+published release until 0.0.31 completes signing, verification and publication.
+
+---
+
 # AN Paint 0.0.30 — cursor input and sharp canvas display
 
 Package `paint.anpaint.android`; version code 83. Cursor drawing now enables ink

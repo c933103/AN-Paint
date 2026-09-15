@@ -113,11 +113,10 @@ class UnifiedEditorTest {
     }
     @Test fun cursorDrawMoveSwitchAndFitWorkInTheEditor() {
         menu("View","Enable cursor drawing");assertTrue(board.cursorMode)
-        assertTrue(board.cursorDrawing)
-        val ink=root.findViewWithTag<CheckBox>("cursor_draw_enabled")
-        // CompoundButton toggles before performClick's return value, which only
-        // reports whether a separate OnClickListener handled the click.
-        ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertFalse(board.cursorDrawing)
+        assertFalse(board.cursorDrawing)
+        val ink=root.findViewWithTag<android.widget.Button>("cursor_draw_toggle")
+        assertTrue(ink.isShown);assertEquals("Start drawing",ink.text.toString())
+        assertNull(root.findViewWithTag<View>("cursor_draw_enabled"))
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
         ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertTrue(board.cursorDrawing)
         event(MotionEvent.ACTION_DOWN,20f,20f);event(MotionEvent.ACTION_UP,20f,20f)
@@ -126,12 +125,17 @@ class UnifiedEditorTest {
         drag(20f,20f,40f,40f);assertTrue(doc.canUndo);assertFalse(dot.contentEquals(pixels()))
         click("undo");assertArrayEquals(dot,pixels())
         click("undo");assertTrue(pixels().all {it==Color.WHITE})
-        menu("View","Magnified preview…")
+        menu("View","Cursor drawing settings…")
+        assertFalse(board.cursorDrawing)
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        fun checks(view: View): List<CheckBox> = if(view is CheckBox) listOf(view) else if(view is ViewGroup) (0 until view.childCount).flatMap {checks(view.getChildAt(it))} else emptyList()
+        val settings=dialog.window!!.decorView
+        assertNotNull(settings.findViewWithTag<View>("cursor_brush_shape"))
+        val magnifier=settings.findViewWithTag<CheckBox>("cursor_magnifier_enabled")
         assertTrue(board.cursorMagnifier)
-        checks(dialog.window!!.decorView).single().performClick();assertFalse(board.cursorMagnifier)
-        checks(dialog.window!!.decorView).single().performClick();assertTrue(board.cursorMagnifier)
+        magnifier.performClick();assertFalse(board.cursorMagnifier)
+        magnifier.performClick();assertTrue(board.cursorMagnifier)
+        settings.findViewWithTag<NumericSlider>("cursor_marker_size").slider.progress=50
+        assertEquals(1.5f,board.cursorMarkerScale,0f)
         dialog.dismiss();board.zoomAt(5f);board.fit()
         val centre=board.toScreen(50f,50f)
         val inset=20*activity.resources.displayMetrics.density
@@ -146,7 +150,7 @@ class UnifiedEditorTest {
         assertFalse(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org.example.com/x.png")))
     }
     @Test fun jpegQualityIsChosenBeforeFilePickerAndSaveAndShareWritesTheFileFirst() {
-        menu("File","Export as…")
+        menu("File","Save as…")
         var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.JPEG)
         shadowOf(Looper.getMainLooper()).idle()
@@ -186,7 +190,7 @@ class UnifiedEditorTest {
         for(y in 0 until 100) for(x in 0 until 100) doc.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
         val original=pixels()
         fun save(quality: Int): ByteArray {
-            menu("File","Export as…")
+            menu("File","Save as…")
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
             EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.JPEG)
             shadowOf(Looper.getMainLooper()).idle()

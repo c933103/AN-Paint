@@ -86,6 +86,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var scrollGrab = 0f
     var cursorMode = false; private set
     var cursorDrawing = false; private set
+    val cursorAvailable get()=cursorMode && tool in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)
     private var cursor = PointF()
     private val cursorOverlay = PaintroidCursorOverlay()
     // Android adds FILTER_BITMAP_FLAG to constructor flags on newer versions.
@@ -93,6 +94,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private val bitmapDisplayPaint = Paint(0).apply { isFilterBitmap=false;isAntiAlias=false }
     private var cursorInitial = PointF()
     var cursorMagnifier = true
+    var cursorMarkerScale = 1f
     var magnifiedPreview = false
     var previewMagnification = 2f
     private var previewPoint: PointF? = null
@@ -100,21 +102,21 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var smoothedPrevious = PointF()
 
     fun setCursorMode(enabled: Boolean) {
-        pauseGesture(); cursorMode=enabled; cursorDrawing=enabled
+        pauseGesture(); cursorMode=enabled; cursorDrawing=false
         if(enabled && document.brushTip==2) document.brushTip=0
         cursor=toImage(rulerInset+contentWidth/2,rulerInset+contentHeight/2).also { clampCursor(it) }
         if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
         invalidate();onStatus()
     }
     fun setCursorDrawing(enabled: Boolean) {
-        val drawing=cursorMode && enabled
+        val drawing=cursorAvailable && enabled
         if(cursorDrawing==drawing) return
         pauseGesture();cursorDrawing=drawing;invalidate();onStatus()
     }
     private fun clampCursor(p: PointF) {
         p.x=p.x.coerceIn(0f,document.bitmap.width-1f);p.y=p.y.coerceIn(0f,document.bitmap.height-1f)
     }
-    private fun supportsCursor() = cursorMode && tool in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)
+    private fun supportsCursor() = cursorAvailable
 
     private var renderedSelection: Bitmap? = null
     private var renderedSource: Bitmap? = null
@@ -135,6 +137,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     fun selectTool(next: PaintTool) {
         applyPending()
+        if(next!=tool) cursorDrawing=false
         if (next !in listOf(PaintTool.SELECT, PaintTool.LASSO)) document.finishSelection()
         tool = next; invalidate(); onStatus()
     }
@@ -269,7 +272,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.save();canvas.clipRect(rulerInset,rulerInset,width-bar,height-bar)
         if (supportsCursor()) {
             canvas.save();canvas.translate(panX,panY);canvas.scale(zoom,zoom)
-            cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing)
+            cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing,cursorMarkerScale)
             canvas.restore()
         }
         if ((if(supportsCursor()) cursorMagnifier else magnifiedPreview) && down && !multiTouch && !panning && scrollAxis==0)
@@ -328,7 +331,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})
         canvas.drawBitmap(document.bitmap,0f,0f,bitmapDisplayPaint)
         document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image,bitmapDisplayPaint) }
-        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing)
+        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing,cursorMarkerScale)
         canvas.restore();canvas.drawOval(r,p)
     }
 
@@ -419,7 +422,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     fun draftState(): JSONObject = JSONObject().apply {
         put("pencil_size",pencilSize.toDouble())
         put("close_polygon",closePolygon)
-        put("cursor_mode",cursorMode);put("cursor_drawing",cursorDrawing);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("cursor_magnifier",cursorMagnifier);put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
+        put("cursor_mode",cursorMode);put("cursor_drawing",cursorDrawing);put("cursor_x",cursor.x.toDouble());put("cursor_y",cursor.y.toDouble());put("cursor_magnifier",cursorMagnifier);put("cursor_marker_scale",cursorMarkerScale.toDouble());put("magnified_preview",magnifiedPreview);put("preview_magnification",previewMagnification.toDouble())
         put("viewport_width",viewportWidth.toDouble());put("viewport_height",viewportHeight.toDouble());put("fit_mode",fitMode)
         put("centre_x",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).x.toDouble());put("centre_y",toImage(viewportInset+viewportWidth/2,viewportInset+viewportHeight/2).y.toDouble())
         put("tool",tool.name); put("zoom",zoom.toDouble()); put("pan_x",panX.toDouble()); put("pan_y",panY.toDouble()); put("grid",grid);put("selection_lock_aspect",lockSelectionAspect)
@@ -432,7 +435,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         pencilSize=state.optDouble("pencil_size",1.0).toFloat()
         closePolygon=state.optBoolean("close_polygon",true)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.ZOOM
-        cursorMode=state.optBoolean("cursor_mode");cursorDrawing=cursorMode && state.optBoolean("cursor_drawing",true);cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
+        cursorMode=state.optBoolean("cursor_mode");cursorDrawing=false;cursor=PointF(state.optDouble("cursor_x",0.0).toFloat(),state.optDouble("cursor_y",0.0).toFloat());clampCursor(cursor)
+        cursorMarkerScale=state.optDouble("cursor_marker_scale",1.0).toFloat().takeIf {it.isFinite()}?.coerceIn(1f,2f) ?: 1f
         magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
         cursorMagnifier=state.optBoolean("cursor_magnifier",true)
         grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()

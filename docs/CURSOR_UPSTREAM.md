@@ -1,39 +1,37 @@
-# Cursor drawing in AN Paint 0.0.30
+# Cursor drawing in AN Paint 0.0.31
 
-The reference is [Catrobat/Paintroid at 853ce3c346910ea73aa4de5514f2a76ace1396fb](https://github.com/Catrobat/Paintroid/tree/853ce3c346910ea73aa4de5514f2a76ace1396fb), under AGPL-3.0-or-later.
+Reference: [Catrobat/Paintroid at 853ce3c346910ea73aa4de5514f2a76ace1396fb](https://github.com/Catrobat/Paintroid/tree/853ce3c346910ea73aa4de5514f2a76ace1396fb), AGPL-3.0-or-later.
 
-- `tools/implementation/CursorTool.kt`, blob `dbfeb38d1134aaf782ff7cc3e510d0895e4c1616`:
-  `drawCircle`, `drawRect` and `drawShape` are directly adapted in
-  `PaintroidCursorOverlay.kt`. The brush size, cap and current ink colour drive
-  the marker; density and zoom retain the upstream stroke-width calculation.
-- Relative finger travel moves the cursor. Version 0.0.29 copied the upstream
-  tap-to-toggle interaction but initially disabled ink and cancelled movements
-  shorter than Android's touch slop. That made short precision strokes disappear
-  and could toggle drawing off. Version 0.0.30 enables ink immediately and exposes
-  **Draw with cursor** beside the brush options. Turn it off to reposition without
-  ink; taps and drags never change that switch. Every movement is drawn without a
-  touch-slop threshold, and a tap places one undoable point. The explicit mode is
-  retained in drafts; older cursor drafts default to drawing enabled.
-- `ui/zoomwindow/DefaultZoomWindowController.kt` and
-  `listener/DrawingSurfaceListener.kt`: the circular preview samples the cursor
-  coordinates independently of touch coordinates. It switches upper corners to
-  avoid the finger, updates while moving, and disappears on lift or pinch.
+`tools/implementation/CursorTool.kt` (blob dbfeb38d1134aaf782ff7cc3e510d0895e4c1616)
+supplies the circle/square geometry and four alternating crosshair segments in
+PaintroidCursorOverlay. The outline surrounds the actual brush cap and width.
 
-AN Paint integrates this into its existing bitmap and history rather than
-restoring the removed workspace/layer/command stack. Cancellation rolls back
-an unfinished stroke. Scrollbars and pinch retain the existing viewport rules.
-The lens draws directly into a clipped Canvas, avoiding upstream's per-frame
-full-image background bitmap allocations. Magnification is adjustable from
-100–400%; cursor magnification defaults on and has its own saved setting.
-Cursor brush options expose Round/Square; freehand drawing retains calligraphy. Pencil
-retains its crisp square tip. The magnifier settings are reachable alongside
-cursor drawing options and through View.
+Enabling cursor mode starts with positioning only. Start drawing / Stop drawing
+is always available below the canvas while a compatible tool is active. With
+ink enabled, dragging draws at the cursor and tapping places a dot. Without ink,
+both gestures only position it. Every movement is retained, including strokes
+shorter than Android touch slop. Cancellation rolls back an unfinished stroke.
+Switching tools, opening cursor settings and reopening a draft pause ink.
 
-Regression tests exercise the explicit draw/move switch, short strokes and undo
-for all four cursor brushes, out-and-back movement,
-cancellation, actual circle/square rendering, correct magnifier sampling and
-saved preference restoration. The language picker tests compare the native
-radio bounds of Mongolian and an adjacent ordinary row in three layouts.
-An installed-app test injects an actual Android swipe and checks that the bitmap
-contains a line extending beyond the initial dot; an undo entry alone is not
-proof of a working stroke.
+View → Cursor drawing settings and the button beside Start/Stop contain brush
+selection, width, Round/Square, magnifier visibility and zoom, and cursor marker
+size. Pencil keeps its square pixel tip. These controls no longer depend on
+opening a particular brush panel. Magnifier and marker settings survive drafts;
+ink deliberately does not resume automatically.
+
+BaseToolWithShape's original marker stroke uses 5 dp divided by canvas zoom,
+clamped to 1–10 image pixels. That clamp can shrink the marker at fitted zoom on
+AN Paint's larger images. AN Paint now retains the 5 dp screen size, with a
+100–200% visibility control. Brush radius remains in image coordinates; enlarging
+the marker does not enlarge the painted stroke.
+
+The circular preview adapts DefaultZoomWindowController and DrawingSurfaceListener,
+samples cursor coordinates independently of the finger, avoids the finger's upper
+corner, and disappears on lift or pinch. It draws directly into a clipped canvas
+and supports 100–400% zoom without per-frame full-image allocations.
+
+Tests cover positioning without ink, explicit Start/Stop through Android input,
+short strokes for all four supported brushes, undo/cancellation, circle/square
+geometry, marker visibility at fitted zoom, cursor-centred magnification, settings
+placement and safe restoration. Pixel filtering remains explicitly off in the
+main image view and magnifier; drawing antialiasing remains off by default.

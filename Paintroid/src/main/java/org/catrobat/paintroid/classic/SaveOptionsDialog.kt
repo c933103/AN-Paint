@@ -20,7 +20,7 @@ enum class ImageFormat(private val displayLabel: String,val mime: String,val ext
     val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}
     val supportsQuality: Boolean get() = this in listOf(JPEG,JPEG_XL,WEBP,HEIC,AVIF)
     val canSaveLosslessly: Boolean get() = this in listOf(PNG,JPEG_XL,WEBP,AVIF,BMP,DIB,TIFF,BASE64)
-    val isDerivedExport: Boolean get() = this == ICO || this == ASCII_ART
+    val isDerivedExport: Boolean get() = this in listOf(ICO,BASE64,ASCII_ART)
 }
 data class ExportOptions(val format: ImageFormat=ImageFormat.PNG,val quality: Int=95,val lossless: Boolean=true,val dither: Boolean=true,val tiffCompressed: Boolean=true,
     val icoSize: Int=256,val asciiColumns: Int=100,val asciiInvert: Boolean=false)
@@ -44,8 +44,8 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
     private val share: Boolean=false,private val confirm: (SaveRequest)->Unit,private val cancel: ()->Unit,
     private val initialFilename: String="", private val export: Boolean=false) {
     fun show(): AlertDialog {
-        val formats=ImageFormat.values().filter {if(share) true else if(export) it.supportsQuality || it in listOf(ImageFormat.GIF,ImageFormat.ICO,ImageFormat.ASCII_ART) else it.canSaveLosslessly}
-        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality;var lossless=if(share) initial.lossless else !export
+        val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}
+        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
         body.addView(TextView(activity).apply {text=ui(if(export) R.string.ui_export_explanation23 else R.string.ui_save_explanation23)})
         body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})
@@ -83,7 +83,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         val explanation=FlowTextView(activity).apply {tag="export_description"}
         fun update() {
             losslessBox.text=ui(R.string.ui_lossless_format,format.label)
-            losslessBox.visibility=if(share && format.supportsLossless) View.VISIBLE else View.GONE
+            losslessBox.visibility=if(format.supportsLossless) View.VISIBLE else View.GONE
             slider.visibility=if(format.supportsQuality && !(format.supportsLossless && lossless)) View.VISIBLE else View.GONE
             ditherBox.visibility=if(format==ImageFormat.GIF) View.VISIBLE else View.GONE
             tiffCompressionBox.visibility=if(format==ImageFormat.TIFF) View.VISIBLE else View.GONE

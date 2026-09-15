@@ -28,9 +28,11 @@ class CursorDrawingTest {
     private fun tap(board: PaintCanvas) {touch(board,MotionEvent.ACTION_DOWN,100f,500f);touch(board,MotionEvent.ACTION_UP,100f,500f)}
     private fun pixels(board: PaintCanvas)=IntArray(10000).also {board.document.bitmap.getPixels(it,0,100,0,0,100,100)}
 
-    @Test fun enablingCursorDrawsImmediatelyAndMoveOnlyIsExplicit() {
+    @Test fun enablingCursorOnlyPositionsUntilDrawingIsExplicitlyStarted() {
         val board=board();val doc=board.document;val original=pixels(board)
-        assertTrue(board.cursorDrawing);assertFalse(doc.canUndo)
+        assertFalse(board.cursorDrawing);assertFalse(doc.canUndo)
+        tap(board);assertArrayEquals(original,pixels(board));assertFalse(doc.canUndo)
+        board.setCursorDrawing(true)
         tap(board);assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
         assertTrue(pixels(board).any {it==Color.RED});val dot=pixels(board)
         board.setCursorDrawing(false)
@@ -54,7 +56,7 @@ class CursorDrawingTest {
 
     @Test fun strokesShorterThanTouchSlopSurviveLiftForEveryCursorBrush() {
         for(tool in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) {
-            val board=board();board.selectTool(tool);board.zoomAt(1f)
+            val board=board();board.selectTool(tool);board.setCursorDrawing(true);board.zoomAt(1f)
             board.document.strokeWidth=1f;board.pencilSize=1f
             board.document.bitmap.eraseColor(Color.BLUE)
             val original=pixels(board)
@@ -81,6 +83,23 @@ class CursorDrawingTest {
         listOf(round,square,large).forEach {it.recycle()}
     }
 
+    @Test fun fittedImagesKeepAVisibleMarkerWithoutInflatingTheBrushFootprint() {
+        fun markerWidth(zoom: Float,visibility: Float): Int {
+            val image=Bitmap.createBitmap(400,400,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.WHITE)}
+            val canvas=Canvas(image);canvas.translate(200f,200f);canvas.scale(zoom,zoom)
+            PaintroidCursorOverlay().draw(canvas,PointF(0f,0f),Paint().apply {strokeCap=Paint.Cap.SQUARE;strokeWidth=2f},zoom,1f,false,visibility)
+            val touched=(0 until 400).filter {image.getPixel(it,200)!=Color.WHITE}
+            // The marker surrounds the actual one-pixel half-width; its centre stays clear.
+            if(zoom>=1f) assertEquals(Color.WHITE,image.getPixel(200,200))
+            image.recycle();return touched.last()-touched.first()+1
+        }
+        val normal=markerWidth(1f,1f)
+        assertTrue(normal>90)
+        assertEquals(normal.toDouble(),markerWidth(.1f,1f).toDouble(),3.0)
+        assertEquals(normal.toDouble(),markerWidth(.5f,1f).toDouble(),3.0)
+        assertTrue(markerWidth(.1f,1.5f)>normal*1.4)
+    }
+
     @Test fun magnifierSamplesCursorInsteadOfFingerAndItsPreferenceSurvivesDraftRestore() {
         val board=board();board.document.bitmap.eraseColor(Color.BLUE)
         val state=board.draftState();val x=state.getDouble("cursor_x").toFloat();val y=state.getDouble("cursor_y").toFloat()
@@ -94,11 +113,12 @@ class CursorDrawingTest {
         val file=java.io.File("build/reports/classic-preview/cursor-magnifier.png");file.parentFile.mkdirs()
         file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)};image.recycle()
         touch(board,MotionEvent.ACTION_CANCEL,700f,700f)
-        board.cursorMagnifier=false
+        board.cursorMagnifier=false;board.cursorMarkerScale=1.5f;board.setCursorDrawing(true)
         val restored=board();restored.restoreDraft(board.draftState())
-        assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertTrue(restored.cursorDrawing)
+        assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertFalse(restored.cursorDrawing)
+        assertEquals(1.5f,restored.cursorMarkerScale,0f)
         board.setCursorDrawing(false);restored.restoreDraft(board.draftState());assertFalse(restored.cursorDrawing)
         val legacy=board.draftState().apply {remove("cursor_drawing")}
-        restored.restoreDraft(legacy);assertTrue(restored.cursorDrawing)
+        restored.restoreDraft(legacy);assertFalse(restored.cursorDrawing)
     }
 }

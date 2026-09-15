@@ -1,5 +1,8 @@
 """Host checks for provenance, the selected shared vocabulary, and locale declarations."""
 import json
+import ast
+import re
+import gimp_translations
 import unittest
 from unittest import mock
 import pathlib
@@ -102,3 +105,44 @@ class TranslationTests(unittest.TestCase):
                 self.assertEqual("@string/ui_save", strings["ui_save_a5d0d9"], tag)
             else:
                 self.assertEqual({}, strings, tag)
+
+
+class GimpTranslationTests(unittest.TestCase):
+    def test_selected_entries_preserve_original_po_text_and_context(self):
+        snapshot = json.loads((translations.DATA / "gimp-catalogues.json").read_text())
+        self.assertEqual("e670132a59be1e8fb98d5b935824e4f57937b4ae", snapshot["revision"])
+        self.assertEqual("GPL-3.0-or-later", snapshot["license"])
+        notices = (translations.RES.parent / "assets/legal/GIMP_TRANSLATION_NOTICES.txt").read_bytes().decode()
+        for source in snapshot["sources"]:
+            self.assertIn(source["header"], notices)
+            self.assertRegex(source["source_sha256"], r"^[0-9a-f]{64}$")
+            for entry in source["entries"]:
+                parsed = {}; field = None
+                for line in entry["raw"].splitlines():
+                    if line.startswith(("msgctxt ", "msgid ", "msgstr ")):
+                        field, value = line.split(" ", 1); parsed[field] = ast.literal_eval(value)
+                    elif line.startswith('"') and field:
+                        parsed[field] += ast.literal_eval(line)
+                for key in ("msgctxt", "msgid", "msgstr"):
+                    self.assertEqual(entry.get(key), parsed.get(key), source["path"])
+                self.assertNotRegex(entry["raw"], r"(?m)^#,.*\bfuzzy\b")
+
+    def test_context_mapping_preserves_clipboard_and_flip_meanings(self):
+        mapping = json.loads((translations.DATA / "gimp-terms.json").read_text())
+        for key in ("ui_cut", "ui_copy", "ui_paste"):
+            self.assertEqual("edit-action", mapping[key]["msgctxt"])
+        self.assertEqual("Flip _Horizontally", mapping["ui_flip_horizontal"]["msgid"])
+        self.assertEqual("Flip _Vertically", mapping["ui_flip_vertical"]["msgid"])
+        ja = translations.read_strings(translations.RES / "values-ja/strings.xml")
+        self.assertEqual("左右反転", ja["ui_flip_horizontal"])
+        self.assertEqual("上下反転", ja["ui_flip_vertical"])
+        self.assertEqual("進階…", gimp_translations.adapt("進階(_A)...", "Advanced…"))
+        self.assertEqual("Qualité (%)", gimp_translations.adapt("_Qualité:", "Quality (%)", " (%)"))
+
+    def test_coverage_reports_actual_imported_terms_without_claiming_complete_localization(self):
+        report = json.loads((translations.DATA / "coverage.json").read_text())
+        rows = [r for r in report["coverage"] if r.get("gimp_translation_entries")]
+        self.assertGreaterEqual(len(rows), 55)
+        self.assertGreater(sum(r["gimp_translation_entries"] for r in rows), 3500)
+        for row in rows:
+            self.assertLessEqual(row["gimp_translation_entries"], row["gimp_available_entries"])

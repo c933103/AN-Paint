@@ -34,6 +34,7 @@ import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.ImageDimensions
+import org.catrobat.paintroid.classic.HeifCodec
 import org.catrobat.paintroid.classic.JxlCodec
 import org.catrobat.paintroid.classic.LegalInfo
 import org.catrobat.paintroid.classic.MediaGalleryActivity
@@ -183,7 +184,7 @@ class EditorDeviceTest {
         fun jpeg(quality: Int): ByteArray {
             val destination=fixture("device-quality-$quality.jpg")
             monitor.nextResult.set(resultFor(destination))
-            menu("File",text(R.string.ui_export_as23))
+            menu("File",text(R.string.save20_title))
             device.findObject(UiSelector().className("android.widget.Spinner")).click()
             device.findObject(UiSelector().text("JPEG")).click()
             val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(text(R.string.ui_quality)))
@@ -199,7 +200,7 @@ class EditorDeviceTest {
         assertTrue(high.size>low.size);assertFalse(low.contentEquals(high))
         for(format in ImageFormat.values().filter {it.name in listOf("JPEG_XL","WEBP","HEIC","AVIF","BMP","GIF")}) {
             val before=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
-            menu("File",text(if(format.canSaveLosslessly) R.string.save20_title else R.string.ui_export_as23))
+            menu("File",text(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
             device.findObject(UiSelector().className("android.widget.Spinner")).click()
             device.findObject(UiSelector().text(format.label)).click()
             val destinationButton=device.findObject(UiSelector().resourceId("android:id/button1"))
@@ -301,9 +302,9 @@ class EditorDeviceTest {
         } finally {onMain {it.requestedOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}}
     }
 
-    @Test fun cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit() {
+    @Test fun cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing() {
         menu("View",text(R.string.ui_enable_cursor_drawing))
-        onMain {assertTrue(it.paintCanvas.cursorMode);assertTrue(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
+        onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
         // Inject through Android's input dispatcher instead of calling the
         // canvas handler directly; verify a line, not merely an undo entry/dot.
         val coordinates=IntArray(4)
@@ -315,6 +316,10 @@ class EditorDeviceTest {
         }
         assertTrue(device.swipe(coordinates[0],coordinates[1],coordinates[2],coordinates[3],20))
         instrumentation.waitForIdleSync()
+        onMain {assertFalse(it.document.canUndo);for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
+        clickText(text(R.string.ui_cursor_start31))
+        assertTrue(device.swipe(coordinates[2],coordinates[3],coordinates[0],coordinates[1],20))
+        instrumentation.waitForIdleSync()
         var drawn=IntArray(0)
         onMain {
             assertTrue(it.document.canUndo);assertTrue(it.paintCanvas.cursorDrawing)
@@ -323,7 +328,7 @@ class EditorDeviceTest {
             assertTrue("Cursor must produce a visible line",ink.isNotEmpty())
             assertTrue("Movement must paint beyond the initial dot",ink.maxOf {index ->index%100}-ink.minOf {index ->index%100}>10)
         }
-        clickText(text(R.string.ui_cursor_ink30))
+        clickText(text(R.string.ui_cursor_stop31))
         drag(20f,20f,30f,20f);drag(20f,20f,20f,20f)
         onMain {
             assertFalse(it.paintCanvas.cursorDrawing)
@@ -332,7 +337,7 @@ class EditorDeviceTest {
         }
         click("undo")
         onMain {for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
-        menu("View",text(R.string.ui_magnified_preview))
+        menu("View",text(R.string.ui_cursor_settings31))
         onMain {assertTrue(it.paintCanvas.cursorMagnifier)}
         clickText(text(R.string.ui_show_magnified_drawing_preview));positive()
         onMain {assertFalse(it.paintCanvas.cursorMagnifier);it.paintCanvas.zoomAt(5f)}
@@ -358,6 +363,8 @@ class EditorDeviceTest {
         menu("File",text(R.string.save20_title))
         assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
         assertTrue(device.findObject(UiSelector().text("JPEG XL")).click())
+        val lossless=device.findObject(UiSelector().text(text(R.string.ui_lossless_jpeg_xl)))
+        assertTrue(lossless.exists());assertTrue(lossless.isChecked)
         positive()
         awaitState("Lossless JPEG XL saved through File Save as") {!it.busy && destination.length()>0}
         assertEquals("image/jxl",monitor.requests.last {it.action==Intent.ACTION_CREATE_DOCUMENT}.type)
@@ -378,6 +385,33 @@ class EditorDeviceTest {
         awaitState("Save updates the original lossless JPEG XL destination") {!it.busy && !it.document.dirty}
         assertEquals(pickerCount,monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT})
         checkPixels()
+    }
+
+    @Test fun lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage() {
+        onMain {a ->for(y in 0 until 100) for(x in 0 until 100) a.document.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))}
+        for(format in listOf(ImageFormat.JPEG_XL,ImageFormat.AVIF)) {
+            val outputs=mutableListOf<ByteArray>()
+            for(quality in listOf(20,95)) {
+                val destination=fixture("quality-${format.name}-$quality${format.extension}")
+                monitor.nextResult.set(resultFor(destination))
+                menu("File",text(R.string.save20_title))
+                assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+                assertTrue(device.findObject(UiSelector().text(format.label)).click())
+                val lossless=device.findObject(UiSelector().className("android.widget.CheckBox").textContains(format.label))
+                assertTrue(lossless.exists());if(lossless.isChecked) assertTrue(lossless.click())
+                val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(text(R.string.ui_quality)))
+                assertTrue(qualityButton.waitForExists(5000));assertTrue(qualityButton.click())
+                setNumber(quality.toString());positive();positive()
+                awaitState("${format.label} quality $quality image") {!it.busy && destination.length()>0}
+                val decoded=if(format==ImageFormat.JPEG_XL) JxlCodec.decode(destination,ImageDimensions(100,100),256L*1024*1024)
+                    else HeifCodec.decode(destination,ImageDimensions(100,100),256L*1024*1024)
+                try {assertEquals(100,decoded.width);assertEquals(100,decoded.height)} finally {decoded.recycle()}
+                onMain {assertNull(it.lastIoError);assertFalse(it.document.dirty)}
+                outputs.add(destination.readBytes())
+            }
+            assertFalse("${format.label} must use the chosen quality",outputs[0].contentEquals(outputs[1]))
+            assertTrue("${format.label} high quality retains more of this detailed pattern",outputs[1].size>outputs[0].size)
+        }
     }
 
     @Test fun galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor() {

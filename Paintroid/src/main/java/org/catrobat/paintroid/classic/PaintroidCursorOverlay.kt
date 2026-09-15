@@ -30,14 +30,18 @@ internal class PaintroidCursorOverlay {
     private var toolPaint=Paint()
     private var zoom=1f
     private var density=1f
+    private var markerScale=1f
     private val cursorToolPrimaryShapeColor=Color.BLACK
     private var cursorToolSecondaryShapeColor=Color.LTGRAY
-    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean) {
-        toolPosition.set(position);toolPaint=paint;zoom=scale;density=pixelDensity
+    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f) {
+        toolPosition.set(position);toolPaint=paint;zoom=scale;density=pixelDensity;markerScale=visibilityScale.coerceIn(1f,2f)
         cursorToolSecondaryShapeColor=if(drawing) paint.color else Color.LTGRAY
         drawShape(canvas)
     }
-    private fun getStrokeWidthForZoom(default: Float,min: Float,max: Float)=(default*density/zoom).coerceIn(min,max)
+    // Keep the upstream 5 dp marker visible at fit-to-image zoom. Clamping this
+    // value in image pixels made the marker shrink on large images. Brush radius
+    // remains in image pixels and is never enlarged by this display setting.
+    private fun getStrokeWidthForZoom(default: Float)=default*density*markerScale/zoom
     private fun drawCircle(
         canvas: Canvas,
         strokeWidth: Float,
@@ -91,10 +95,7 @@ internal class PaintroidCursorOverlay {
 
     private fun drawShape(canvas: Canvas) {
         val brushStrokeWidth = max(toolPaint.strokeWidth / 2f, 1f)
-        val strokeWidth = getStrokeWidthForZoom(
-            DEFAULT_TOOL_STROKE_WIDTH,
-            MINIMAL_TOOL_STROKE_WIDTH, MAXIMAL_TOOL_STROKE_WIDTH
-        )
+        val strokeWidth = getStrokeWidthForZoom(DEFAULT_TOOL_STROKE_WIDTH)
         val cursorPartLength = strokeWidth * 2
         val innerCircleRadius = brushStrokeWidth + strokeWidth / 2f
         val outerCircleRadius = innerCircleRadius + strokeWidth
@@ -158,8 +159,6 @@ internal class PaintroidCursorOverlay {
 
     private companion object {
         const val DEFAULT_TOOL_STROKE_WIDTH=5f
-        const val MINIMAL_TOOL_STROKE_WIDTH=1f
-        const val MAXIMAL_TOOL_STROKE_WIDTH=10f
         const val CURSOR_LINES=4
     }
 }

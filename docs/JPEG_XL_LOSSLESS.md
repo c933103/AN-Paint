@@ -1,12 +1,17 @@
-# JPEG XL lossless verification
+# JPEG XL and image save settings
 
-File → Save as → JPEG XL uses lossless encoding. File → Save reuses that file's
-format, lossless setting and destination. File → Export as → JPEG XL uses lossy
-quality settings; quality 100 by itself is not the lossless Save as path.
+In 0.0.31, File → Save as contains PNG, JPEG, JPEG XL, WebP, HEIC, AVIF,
+BMP, GIF, DIB and TIFF. JPEG XL, WebP and AVIF expose a Lossless checkbox.
+Turning it off shows numeric quality (1–100). JPEG and HEIC expose quality;
+TIFF exposes lossless Deflate compression and GIF exposes palette dithering.
+PNG, BMP and DIB have no lossy quality control. File → Export as contains only
+ICO, ASCII art and Base64 text. Sharing retains all formats.
 
-`SaveOptionsDialog` forces lossless mode for Save as. `ImageExporter` passes the
-setting to the packaged `JxlCodec` JNI implementation, which sets
-`uses_original_profile`, `JxlEncoderSetFrameLossless(true)` and distance zero.
+File → Save reuses the last successful Save as destination, file name, format
+and settings, including after draft recovery. Quality 100 alone is not the
+JPEG XL lossless mode. The checkbox passes `lossless=true` through ImageExporter
+and JxlCodec to `JxlEncoderSetFrameLossless(true)` and distance zero, using the
+original colour profile. No codec implementation changed in 0.0.31.
 
 The released 0.0.29 codec passed native Android 30 and 35 tests comparing every
 opaque RGB pixel after encoding and decoding, including 2057×17, 17×2057 and

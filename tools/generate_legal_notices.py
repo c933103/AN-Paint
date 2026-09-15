@@ -164,6 +164,7 @@ for title, filename in [('JPEG XL', 'JPEG_XL_NOTICES.txt'), ('WEBP', 'WEBP_NOTIC
 notice.append('\n\nNATIVE RUNTIME NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt').read_text())
 notice.append('\n\nMATERIAL DESIGN 3 COLOUR NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/MATERIAL_COLOUR_NOTICES.txt').read_text())
 notice.append('\n\nBMP, DIB AND GIF FORMAT NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/RASTER_FORMAT_NOTICES.txt').read_text())
+notice.append('\n\nGIMP TRANSLATION NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))
