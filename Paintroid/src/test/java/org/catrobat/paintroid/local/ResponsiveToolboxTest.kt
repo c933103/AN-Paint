@@ -37,7 +37,12 @@ class ResponsiveToolboxTest {
     private val root get()=activity.window.decorView
     private fun <T: View> view(tag: String): T=root.findViewWithTag(tag)
     private fun settle()=shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS)
-    private fun click(tag: String) {assertTrue(view<View>(tag).performClick());settle()}
+    private fun click(tag: String) {
+        val control=view<View>(tag)
+        if(control is android.widget.CompoundButton) {val before=control.isChecked;control.performClick();assertNotEquals(before,control.isChecked)}
+        else assertTrue(control.performClick())
+        settle()
+    }
     private fun bounds(view: View): Rect {
         val pos=IntArray(2);view.getLocationOnScreen(pos)
         return Rect(pos[0],pos[1],pos[0]+view.width,pos[1]+view.height)
@@ -205,7 +210,7 @@ class ResponsiveToolboxTest {
         EditorTestNavigation.command(activity,"View",1)
         assertTrue(activity.paintCanvas.grid)
         activity.paintCanvas.zoomAt(16f)
-        EditorTestNavigation.command(activity,"View",2)
+        EditorTestNavigation.command(activity,"View",2);click("cursor_mode_enabled")
         val board=activity.paintCanvas
         val start=board.draftState()
         for((action,offset) in listOf(MotionEvent.ACTION_DOWN to 0f,MotionEvent.ACTION_MOVE to 32f)) {
@@ -251,6 +256,34 @@ class ResponsiveToolboxTest {
         click("menu_File")
         assertTrue(EditorTestNavigation.buttons(view("panel_File_commands")).none {it is PanelToolButton})
     }
+    @Test fun translatedCommandCaptionsFitInPortrait()=checkTranslatedCommands("portrait")
+    @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
+    fun translatedCommandCaptionsFitInLandscape()=checkTranslatedCommands("landscape")
+    private fun checkTranslatedCommands(orientation: String) {
+        val original=AppLanguage.selectedTag(activity)
+        try {
+            for(language in listOf("hy","ar","yue-Latn")) {
+                AppLanguage.select(activity,language);activity.onConfigurationChanged(activity.resources.configuration);settle()
+                for(tab in listOf("Draw","View","Edit")) {
+                    click("menu_$tab")
+                    val rail=view<View>(if(tab=="Draw") "primary_tools" else "panel_${tab}_commands")
+                    EditorTestNavigation.buttons(rail).forEach {button ->
+                        val layout=requireNotNull(button.layout)
+                        assertEquals("Full caption: $language/$tab/${button.text}",button.text.length,layout.getLineEnd(layout.lineCount-1))
+                        assertTrue("Caption fits below the icon: $language/$tab/${button.text}",layout.height<=button.height-button.compoundPaddingTop-button.compoundPaddingBottom)
+                    }
+                    render("translated-$language-$tab-$orientation.png")
+                }
+                click("menu_View")
+                if(!view<View>("cursor_options").isShown) EditorTestNavigation.command(activity,"View",2)
+                assertTrue(view<View>("cursor_settings_panel").isShown);click("cursor_mode_enabled")
+                render("translated-$language-cursor-$orientation.png")
+                // Avoid resuming cursor ink when changing the interface language.
+                activity.paintCanvas.setCursorMode(false)
+            }
+        } finally {AppLanguage.select(activity,original);AppLanguage.refresh(activity)}
+    }
+
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
     fun landscapeSideTabsRemainVisibleAndFullscreenReturnsTheirSpace() {
         checkHeader()

@@ -49,7 +49,12 @@ class UnifiedEditorTest {
         do {shadowOf(Looper.getMainLooper()).idle();if(!activity.busy)break;Thread.sleep(10)} while(System.nanoTime()<until)
         assertFalse(activity.busy)
     }
-    private fun click(tag: String) {assertTrue(root.findViewWithTag<View>(tag).performClick());shadowOf(Looper.getMainLooper()).idle()}
+    private fun click(tag: String) {
+        val control=root.findViewWithTag<View>(tag)
+        if(control is CompoundButton) {val before=control.isChecked;control.performClick();assertNotEquals(before,control.isChecked)}
+        else assertTrue(control.performClick())
+        shadowOf(Looper.getMainLooper()).idle()
+    }
     private fun menu(group: String,label: String) { EditorTestNavigation.named(activity,group,label) }
     private fun event(action: Int,x: Float,y: Float) {
         val p=board.toScreen(x,y);val e=MotionEvent.obtain(0,20,action,p.x,p.y,0)

@@ -1,22 +1,21 @@
-# Cursor drawing in AN Paint 0.0.31
+# Cursor drawing in AN Paint 0.0.32
 
 Reference: [Catrobat/Paintroid at 853ce3c346910ea73aa4de5514f2a76ace1396fb](https://github.com/Catrobat/Paintroid/tree/853ce3c346910ea73aa4de5514f2a76ace1396fb), AGPL-3.0-or-later.
 
 `tools/implementation/CursorTool.kt` (blob dbfeb38d1134aaf782ff7cc3e510d0895e4c1616)
 supplies the circle/square geometry and four alternating crosshair segments in
-PaintroidCursorOverlay. The outline surrounds the actual brush cap and width.
+PaintroidCursorOverlay. The outline surrounds the brush width; its circle/square shape is an independent display setting.
 
 Enabling cursor mode starts with positioning only. Start drawing / Stop drawing
-is always available below the canvas while a compatible tool is active. With
+is available on the canvas while a compatible tool is active, including fullscreen. With
 ink enabled, dragging draws at the cursor and tapping places a dot. Without ink,
 both gestures only position it. Every movement is retained, including strokes
 shorter than Android touch slop. Cancellation rolls back an unfinished stroke.
 Switching tools, opening cursor settings and reopening a draft pause ink.
 
-View → Cursor drawing settings and the button beside Start/Stop contain brush
-selection, width, Round/Square, magnifier visibility and zoom, and cursor marker
-size. Pencil keeps its square pixel tip. These controls no longer depend on
-opening a particular brush panel. Magnifier and marker settings survive drafts;
+View → Cursor drawing expands the enable switch, Round/Square cursor outline,
+magnifier visibility and zoom, and cursor marker size. Brush, width and tip stay
+under Draw → Drawing. Pencil keeps its square pixel tip. Magnifier and marker settings survive drafts;
 ink deliberately does not resume automatically.
 
 BaseToolWithShape's original marker stroke uses 5 dp divided by canvas zoom,

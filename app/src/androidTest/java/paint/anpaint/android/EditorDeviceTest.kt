@@ -512,7 +512,9 @@ class EditorDeviceTest {
         onMain {
             val view=it.window.decorView.findViewWithTag<View>(tag)
             assertTrue("Control is visible after scrolling: $tag",view.getGlobalVisibleRect(Rect()))
-            assertTrue(tag,view.performClick())
+            if(view is android.widget.CompoundButton) {
+                val before=view.isChecked;view.performClick();assertNotEquals(tag,before,view.isChecked)
+            } else assertTrue(tag,view.performClick())
         }
         instrumentation.waitForIdleSync()
     }

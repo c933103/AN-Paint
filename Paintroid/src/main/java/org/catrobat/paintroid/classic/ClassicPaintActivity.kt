@@ -210,7 +210,9 @@ class ClassicPaintActivity : Activity() {
 
     private val panelLimit get() = dp(if (landscape) (resources.configuration.screenHeightDp-96).coerceAtLeast(136) else minOf(256, resources.configuration.screenHeightDp / 3))
     private val sidePanelWidth get() = dp(minOf(248,resources.configuration.screenWidthDp / 3))
-    private val toolHeight get() = if (VerticalText.uiVertical()) -2 else dp(64)
+    // PanelToolButton supplies the common 64 dp minimum; longer translated
+    // captions and larger system fonts can increase it without clipping.
+    private val toolHeight = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
     private fun buildWorkspace() {
         paintCanvas.pauseGesture()
         paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
@@ -1243,8 +1245,8 @@ class ClassicPaintActivity : Activity() {
             column.addView(CheckBox(this).apply {text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })
         }
         if(preview) {
-            toggle(ui(R.string.ui_show_magnified_drawing_preview),if(paintCanvas.cursorMode) paintCanvas.cursorMagnifier else paintCanvas.magnifiedPreview) {
-                if(paintCanvas.cursorMode) paintCanvas.cursorMagnifier=it else paintCanvas.magnifiedPreview=it
+            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.magnifiedPreview) {
+                paintCanvas.magnifiedPreview=it
             }
             column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {
                 paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()
