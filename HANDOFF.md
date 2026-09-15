@@ -14,10 +14,23 @@ alternating crosshairs, activation dot and cumulative travel detection. Its
 circular magnifier samples the cursor and defaults on, with adjustable zoom.
 See `translations/README.md` and `docs/CURSOR_UPSTREAM.md` for provenance.
 
-The preceding cursor/Ainu/Mongolian source passed the complete release workflow
-34814348930. The final Tai Nüa correction requires a new release build and checks;
-its publication and signed delivery are pending. Results below belong to 0.0.28
-and must not be claimed for this update.
+The final source, including Tai Nüa, passed release workflow 34914389654:
+75 host checks, 255 release regression tests, zero app lint issues, 76 Android
+API 30 tests and 77 API 35 tests. All passed. The universal release APK is signed
+with the existing upgrade certificate; package, version, non-debuggable manifest,
+four ABIs and 16 KB ZIP alignment are verified. Its embedded source ZIP matches
+the separate source archive and all 788 exported repository blobs.
+
+Source commit: https://github.com/c933103/AN-Paint/commit/01681570c448824a32039473bede5ae9591795c9
+Build and checks: https://github.com/c933103/AN-Paint/actions/runs/34914389654
+Release: https://github.com/c933103/AN-Paint/releases/tag/v0.0.29
+
+APK SHA-256: `97de3f95832c560b20fe39b46e78e2f15658a8ba73d0a7c2a5c76871c905d940`
+Source ZIP SHA-256: `0ed0526a5c91fdb3ceb0629743f5925431bf47e3e765e36a93dfa20ef16b64df`
+
+The checked-in release request publishes this exact signed APK with corresponding
+source, checksums and verification evidence. The private signing key and build
+backup remain outside GitHub. Earlier results below describe 0.0.28 only.
 
 ---
 
