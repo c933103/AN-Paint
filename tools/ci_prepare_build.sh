@@ -13,6 +13,9 @@ chmod +x gradlew
 python3 tools/generate_native_runtime_notices.py --ndk "$ANDROID_HOME/ndk/27.2.12479018"
 python3 tools/generate_tiff_notices.py
 python3 tools/generate_legal_notices.py
+# The source ZIP contains the working tree. Generated legal assets must already
+# match the recorded commit so release source verification can compare every blob.
+git diff --exit-code -- Paintroid/src/main/assets/legal
 mkdir -p verification-tools/lib64
 cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" verification-tools/
 cp "$ANDROID_HOME/build-tools/35.0.0/zipalign" verification-tools/
