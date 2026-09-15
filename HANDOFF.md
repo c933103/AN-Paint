@@ -25,6 +25,13 @@ CI.md: complete useful local work and report pending jobs without waiting for
 GitHub as the sole remaining activity. Upgrade signing and exact-source checks
 are still required before distributing an installable update.
 
+The initial 0.0.33 run (35001403001) built the APK and passed the API 35
+emulator job. The regression suite did not execute: compilation of its new
+Edit-navigation helper failed on an ambiguous View/ViewParent property. The
+helper now explicitly traverses nullable Views. Node 20 workflow actions are
+also replaced with pinned Node 24 releases, retaining ZIP artifact layout. The
+corrected regression result remains pending; see CI.md for the exact diagnosis.
+
 ---
 
 # AN Paint 0.0.32 — unified tool tiles, cursor drawer and menu translations

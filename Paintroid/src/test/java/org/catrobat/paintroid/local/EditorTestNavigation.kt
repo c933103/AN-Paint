@@ -43,14 +43,14 @@ internal object EditorTestNavigation {
         assertTrue(button.performClick());idle()
     }
     private fun revealEditGroup(activity: ClassicPaintActivity,view: View) {
-        var parent=view.parent
-        while(parent is View) {
+        var parent: View?=view.parent as? View
+        while(parent!=null) {
             val tag=parent.tag?.toString().orEmpty()
             if(tag.startsWith("edit_group_") && tag!="edit_group_host" && parent.visibility!=View.VISIBLE) {
                 assertTrue(activity.window.decorView.findViewWithTag<View>(tag.replace("edit_group_","edit_category_")).performClick());idle()
                 break
             }
-            parent=parent.parent
+            parent=parent.parent as? View
         }
     }
     fun format(spinner: Spinner,format: ImageFormat) {

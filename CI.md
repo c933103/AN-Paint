@@ -195,3 +195,31 @@ stdio aliases need API 24 on 32-bit Android. The libheif target now explicitly
 undefines that inherited macro on 32-bit API levels below 24; its bounded in-memory
 image import/export API remains unchanged. The targeted compile check covers both
 armeabi-v7a and x86. The original native source trees remain unchanged.
+
+
+## Node 24 action migration and test compilation (0.0.33)
+
+Run [35001403001](https://github.com/c933103/AN-Paint/actions/runs/35001403001)
+built the APK and passed the API 35 emulator job. Its regression job stopped at
+`compileDebugUnitTestKotlin`: the new test helper traversed an object inferred as
+both `ViewParent` and `View`, making their inherited `parent` properties ambiguous.
+The helper now traverses explicitly typed nullable `View` references. This keeps
+the group-opening and visible-command assertions intact; no test is skipped.
+The regression suite did not execute in that run.
+
+Both workflows pin Node 24 action releases by full commit SHA:
+
+| Action | Release | Pinned commit |
+|---|---|---|
+| checkout | [v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) | `3d3c42e5aac5ba805825da76410c181273ba90b1` |
+| cache | [v6.1.0](https://github.com/actions/cache/releases/tag/v6.1.0) | `55cc8345863c7cc4c66a329aec7e433d2d1c52a9` |
+| upload-artifact | [v7.0.1](https://github.com/actions/upload-artifact/releases/tag/v7.0.1) | `043fb46d1a93c77aae656e7c1c64a875d1fc6a0a` |
+| download-artifact | [v8.0.1](https://github.com/actions/download-artifact/releases/tag/v8.0.1) | `3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c` |
+
+Their pinned action manifests declare `node24`. The observed hosted runner is
+2.337.0, above the 2.327.1 minimum for Node 24. Uploads explicitly retain ZIP
+archives; named downloads still extract into the existing paths. Download v8
+rejects digest mismatches by default. Existing permissions, cache paths, source
+checks, deadlines and test matrix remain in effect. No insecure Node opt-out or
+unsafe fork-checkout option is enabled. See GitHub's
+[Node 20 migration notice](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/).
