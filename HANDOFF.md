@@ -19,9 +19,25 @@ Coverage is partial; see translations/README.md and coverage.json.
 Twenty GIMP languages are added, along with explicit tt-Cyrl and tt-Latn choices;
 Latin Tatar is generated from the sourced Cyrillic starter catalogue.
 
-Release verification is in progress. This heading records implementation, not
-an Android build or device-test pass. The previous 0.0.30 release remains the
-published release until 0.0.31 completes signing, verification and publication.
+The release passed workflow 34979038050: 80 local host checks; 261 release regression tests; zero app lint issues; 78 instrumentation tests on API 30 and 79 on API 35. All passed.
+
+Real Android input verifies positioning without ink followed by the visible
+Start drawing control, strokes, Stop drawing and cursor settings. JPEG XL Save as
+with lossless enabled and subsequent Save preserve all 49,601 canvas pixels;
+lossy JPEG XL and AVIF quality controls change the actual encoded image files.
+The release APK is non-debuggable, uses the existing upgrade signing certificate,
+contains four ABIs and passes 16 KB ZIP alignment. Embedded and separate source
+archives match every one of 821 exported repository blobs.
+
+Source: https://github.com/c933103/AN-Paint/commit/b18fdb6cfb94230fc7d16a89fe0c03674c23b16b
+Build: https://github.com/c933103/AN-Paint/actions/runs/34979038050
+Release: https://github.com/c933103/AN-Paint/releases/tag/v0.0.31
+
+APK SHA-256: `680cfd1d4eb9cc212299db3986865f10dd4911b1f2e84016d38bf716434ff6df`
+Source SHA-256: `b1592ba5f212033172579e2cae6ffbb51b271a4aa6cbe8ac315006b728bfd246`
+
+The release request publishes this exact signed APK and source. The private key
+and backup remain outside GitHub. Historical results below belong to 0.0.30.
 
 ---
 

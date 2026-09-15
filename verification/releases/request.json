@@ -1,18 +1,18 @@
 {
-  "version": "0.0.30",
-  "version_code": 83,
-  "commit": "31526a42ced7d6eae6c8c9a756ae6c2e8b23d162",
-  "run_id": 34945326732,
-  "apk_sha256": "7064b86171764da83d6531ac985e4a71d78f9105add761d79d54a1d0162f27d4",
+  "version": "0.0.31",
+  "version_code": 84,
+  "commit": "b18fdb6cfb94230fc7d16a89fe0c03674c23b16b",
+  "run_id": 34979038050,
+  "apk_sha256": "680cfd1d4eb9cc212299db3986865f10dd4911b1f2e84016d38bf716434ff6df",
   "feature_checks": {
     "checks": [
       {
         "platform": "emulator30",
         "class": "paint.anpaint.android.EditorDeviceTest",
-        "test": "cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit",
+        "test": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
         "status": "passed",
         "report": "emulator30/app/androidTest-results/TEST-app.xml",
-        "report_sha256": "e6b3fdec7a980a1fd784a33c1048105f465c6bfacdd5381a5a93579344079812"
+        "report_sha256": "fe7d604d0f6b1c955263a3cc687d975e81994a1359a3f23a8eca7954fa43a7dc"
       },
       {
         "platform": "emulator30",
@@ -20,7 +20,15 @@
         "test": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
         "status": "passed",
         "report": "emulator30/app/androidTest-results/TEST-app.xml",
-        "report_sha256": "e6b3fdec7a980a1fd784a33c1048105f465c6bfacdd5381a5a93579344079812"
+        "report_sha256": "fe7d604d0f6b1c955263a3cc687d975e81994a1359a3f23a8eca7954fa43a7dc"
+      },
+      {
+        "platform": "emulator30",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+        "status": "passed",
+        "report": "emulator30/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "fe7d604d0f6b1c955263a3cc687d975e81994a1359a3f23a8eca7954fa43a7dc"
       },
       {
         "platform": "emulator30",
@@ -28,7 +36,7 @@
         "test": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
         "status": "passed",
         "report": "emulator30/Paintroid/androidTest-results/TEST-Paintroid.xml",
-        "report_sha256": "861284e9041dedda797fad7c8c2957a05f96d2cf95cccb89fa60b818b36f5ba6"
+        "report_sha256": "eecc8fd2112eaedfd452daa4643f2b1ebd4850b5084d1e53bf027e9332746663"
       },
       {
         "platform": "emulator30",
@@ -36,15 +44,15 @@
         "test": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
         "status": "passed",
         "report": "emulator30/Paintroid/androidTest-results/TEST-Paintroid.xml",
-        "report_sha256": "861284e9041dedda797fad7c8c2957a05f96d2cf95cccb89fa60b818b36f5ba6"
+        "report_sha256": "eecc8fd2112eaedfd452daa4643f2b1ebd4850b5084d1e53bf027e9332746663"
       },
       {
         "platform": "emulator35",
         "class": "paint.anpaint.android.EditorDeviceTest",
-        "test": "cursorDrawsWithRealTouchInputAndMoveOnlyIsExplicit",
+        "test": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
         "status": "passed",
         "report": "emulator35/app/androidTest-results/TEST-app.xml",
-        "report_sha256": "cb16841c2137102d1ae0d071fd0992b511efbdd58c039c8b50bfef9236b2ef77"
+        "report_sha256": "ea944f78182aff91f06aebb88d4c59df19714c8d5d969ebb7cb076c117d31afa"
       },
       {
         "platform": "emulator35",
@@ -52,7 +60,15 @@
         "test": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
         "status": "passed",
         "report": "emulator35/app/androidTest-results/TEST-app.xml",
-        "report_sha256": "cb16841c2137102d1ae0d071fd0992b511efbdd58c039c8b50bfef9236b2ef77"
+        "report_sha256": "ea944f78182aff91f06aebb88d4c59df19714c8d5d969ebb7cb076c117d31afa"
+      },
+      {
+        "platform": "emulator35",
+        "class": "paint.anpaint.android.EditorDeviceTest",
+        "test": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+        "status": "passed",
+        "report": "emulator35/app/androidTest-results/TEST-app.xml",
+        "report_sha256": "ea944f78182aff91f06aebb88d4c59df19714c8d5d969ebb7cb076c117d31afa"
       },
       {
         "platform": "emulator35",
@@ -60,7 +76,7 @@
         "test": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
         "status": "passed",
         "report": "emulator35/Paintroid/androidTest-results/TEST-Paintroid.xml",
-        "report_sha256": "641390d7d971222599fb47061d2372416bb894ee5593d3c151ca7178b580849f"
+        "report_sha256": "2745d55f4f07367b936869234e840d97b33ecffb2bf77beda00ed04b53d29728"
       },
       {
         "platform": "emulator35",
@@ -68,15 +84,15 @@
         "test": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
         "status": "passed",
         "report": "emulator35/Paintroid/androidTest-results/TEST-Paintroid.xml",
-        "report_sha256": "641390d7d971222599fb47061d2372416bb894ee5593d3c151ca7178b580849f"
+        "report_sha256": "2745d55f4f07367b936869234e840d97b33ecffb2bf77beda00ed04b53d29728"
       },
       {
         "platform": "regression",
         "class": "org.catrobat.paintroid.local.CursorDrawingTest",
-        "test": "enablingCursorDrawsImmediatelyAndMoveOnlyIsExplicit",
+        "test": "enablingCursorOnlyPositionsUntilDrawingIsExplicitlyStarted",
         "status": "passed",
         "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
-        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+        "report_sha256": "e79aaf751ef2a769cb03c9aec3166fa9cb5cd9ebd4ed4d67e5e01fbb72e81eb7"
       },
       {
         "platform": "regression",
@@ -84,7 +100,7 @@
         "test": "movingAndTappingNeverToggleInkAndCancelRollsBack",
         "status": "passed",
         "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
-        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+        "report_sha256": "e79aaf751ef2a769cb03c9aec3166fa9cb5cd9ebd4ed4d67e5e01fbb72e81eb7"
       },
       {
         "platform": "regression",
@@ -92,7 +108,15 @@
         "test": "strokesShorterThanTouchSlopSurviveLiftForEveryCursorBrush",
         "status": "passed",
         "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
-        "report_sha256": "5026cecee470ba75506d360da766bc32385a367d129f15b9705d716800333e67"
+        "report_sha256": "e79aaf751ef2a769cb03c9aec3166fa9cb5cd9ebd4ed4d67e5e01fbb72e81eb7"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.CursorDrawingTest",
+        "test": "fittedImagesKeepAVisibleMarkerWithoutInflatingTheBrushFootprint",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+        "report_sha256": "e79aaf751ef2a769cb03c9aec3166fa9cb5cd9ebd4ed4d67e5e01fbb72e81eb7"
       },
       {
         "platform": "regression",
@@ -100,7 +124,55 @@
         "test": "canvasDisplayDoesNotBlendNeighbouringPixelsWhenZoomedInOrOut",
         "status": "passed",
         "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.ViewportAndVerticalTextTest.xml",
-        "report_sha256": "7b8db0b96984c652300772a3027f61151ed123dc82c014bc5c511d6373479e70"
+        "report_sha256": "29b43c4bf9126daf8b6a1b5ac00c61bee56143c864c570081416b486d11a35e1"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.SavedImageSettingsTest",
+        "test": "reopeningRestoresEveryOrdinaryFormatAndItsCompressionSettings",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.SavedImageSettingsTest.xml",
+        "report_sha256": "748a9628c726920b19c9902e23e651496a8d32472c8d37e6833ca679e0e987af"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.SavedImageSettingsTest",
+        "test": "derivedExportsCannotReplaceTheRememberedSaveDestination",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.SavedImageSettingsTest.xml",
+        "report_sha256": "748a9628c726920b19c9902e23e651496a8d32472c8d37e6833ca679e0e987af"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.ExportFormatDialogTest",
+        "test": "oneFileSaveAsPanelChoosesEveryFormatAndUsesTheEditedName",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.ExportFormatDialogTest.xml",
+        "report_sha256": "1b6e59f8cca303107283c80dd3885c30d649b584ba277a1dd079549dfd96d8b8"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.ExportFormatDialogTest",
+        "test": "losslessFormatsToggleQualityAndRetainTheChosenLossyQuality",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.ExportFormatDialogTest.xml",
+        "report_sha256": "1b6e59f8cca303107283c80dd3885c30d649b584ba277a1dd079549dfd96d8b8"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.DerivedExportStateTest",
+        "test": "base64ExportKeepsOriginalDrawingAndWritesRecoverableImage",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.DerivedExportStateTest.xml",
+        "report_sha256": "38141331a3afd262d91808c92fbedaeb0b6280c48dfea3275eff01cb187a12e4"
+      },
+      {
+        "platform": "regression",
+        "class": "org.catrobat.paintroid.local.AppLanguageTest",
+        "test": "tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources",
+        "status": "passed",
+        "report": "regression/Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.AppLanguageTest.xml",
+        "report_sha256": "31b9a18aedec79afa1193f0b3539a52b5ba3b7e194ec7716e4562dce3c384429"
       }
     ],
     "jpeg_xl_application_pixels_per_save": 49601

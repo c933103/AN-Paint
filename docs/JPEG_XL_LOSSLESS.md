@@ -32,3 +32,6 @@ Lossless here means exact preservation of AN Paint's opaque, 8-bit sRGB canvas
 pixels. Imported images may already have been resized, flattened or converted
 to that canvas representation. This does not preserve arbitrary source metadata,
 original HDR samples, layers or an original JPEG's byte stream.
+
+Version 0.0.31's visible lossless checkbox, Save as/Save round trip, and lossy
+JPEG XL/AVIF quality controls passed on both platforms in [release run 34979038050](https://github.com/c933103/AN-Paint/actions/runs/34979038050).
