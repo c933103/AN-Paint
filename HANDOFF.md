@@ -1,6 +1,6 @@
 # AN Paint 0.0.34 — image insertion, illustration sources and persistent history
 
-Development version code 88. Invert colours is under Edit > Canvas; the redundant
+Release candidate version code 89 (development build: 88). Invert colours is under Edit > Canvas; the redundant
 Colours subgroup is removed. Save and share explains that it saves a copy and
 then opens sharing while retaining the current Save destination.
 
@@ -27,9 +27,22 @@ Android aapt2 compiled resources. Added regression checks cover restored stack
 order and dimensions, redo branching, floating selections, deleted old caches,
 atomic rollback and damaged-history recovery; insertion and provider tests cover
 the new paths. Real WebView fixture tests exercise Irasutoya/Openclipart markup.
-Android compilation, regression/lint and API 35 results for this revision are
-pending GitHub. Finish useful local work and report the asynchronous run; do not
-wait for CI as the sole remaining work or call this a verified release.
+Development source 893c904a72b99d88b88f8a678caa9c2457027bd9 passed workflow
+35046773776: 276 regression tests, zero lint issues and 81 Android API 35
+instrumentation tests, with zero failures or skips. The history recovery and
+provider tests listed above passed. The signed development APK uses the existing
+upgrade certificate; all 839 exported repository blobs match its source commit.
+Its embedded and separate source archives match; all four ABIs and 16 KB ZIP
+alignment are verified. This APK remains a debuggable development build.
+
+This commit prepares the non-debuggable release variant, version code 89, for
+release regression/lint and the full Android 11/15 matrix. Those exact-source
+release checks, signing and publication remain pending. Finish useful local work
+and report the asynchronous run rather than waiting for GitHub alone.
+
+Development checks: https://github.com/c933103/AN-Paint/actions/runs/35046773776
+Development APK SHA-256: 58067b39d7e95c6ad48620c7d4205db61628c7faafc75574f6b689060cf81366
+Development source SHA-256: 6ca06fec33039b937e854874118f428706fa5f0a0dc3e04cb68f8fdc16478bc1
 
 The preceding 0.0.33 release-source workflow 35042901398 completed successfully
 (build/source, regression/lint, API 30 and API 35). Its release publication was
