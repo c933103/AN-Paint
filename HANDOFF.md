@@ -1,6 +1,6 @@
 # AN Paint 0.0.33 — grouped Edit commands and uniform tool tiles
 
-Version code 86. Edit expands Selection, Canvas, Flip / Rotate and Colours
+Release candidate version code 87 (development build: 86). Edit expands Selection, Canvas, Flip / Rotate and Colours
 groups. All twelve actions retain their behaviour and stable internal action IDs.
 Tool tiles use one square size per writing mode and font setting; caption length
 does not change an individual tile. Side tabs and vertical File commands share
@@ -14,23 +14,31 @@ brush settings remain. All 30 requested menu catalogues include the seven new
 labels/help entries. README now describes the current editor and Save/Export
 behaviour without obsolete release or language-coverage claims.
 
-Local verification: 81 host checks passed; all 134 generated translation files
-match regeneration; Android aapt2 compiled the complete resource tree; whitespace
-checks passed. Kotlin/Android compilation, regression tests, visual screenshots,
-lint and device tests are delegated to GitHub because this workspace lacks the
-Android SDK and Gradle dependency cache. No pending result is claimed as passed.
-This source is a development candidate, not a published signed release. Routine
-GitHub checks build the APK and run regression/lint plus Android API 35. Follow
-CI.md: complete useful local work and report pending jobs without waiting for
-GitHub as the sole remaining activity. Upgrade signing and exact-source checks
-are still required before distributing an installable update.
+Verification of development source d65ee237aa341d91c655a6b59be0bb6b3b9dcb6e:
+81 host checks passed; all 134 generated translation files match regeneration;
+Android aapt2 compiled the complete resource tree; whitespace checks passed.
+Workflow 35031011913 passed all three jobs: 270 regression tests, zero lint
+issues and 79 Android API 35 instrumentation tests, without failures or skips.
+Rendered previews were reviewed for grouped Edit actions, square View tiles,
+vertical Chinese/Mongolian layouts, Armenian and Latin Cantonese captions, and
+the cursor push button. The development APK uses version code 86.
 
-The initial 0.0.33 run (35001403001) built the APK and passed the API 35
-emulator job. The regression suite did not execute: compilation of its new
-Edit-navigation helper failed on an ambiguous View/ViewParent property. The
-helper now explicitly traverses nullable Views. Node 20 workflow actions are
-also replaced with pinned Node 24 releases, retaining ZIP artifact layout. The
-corrected regression result remains pending; see CI.md for the exact diagnosis.
+The initial run (35001403001) built the APK and passed API 35, but unit-test
+compilation failed on an ambiguous View/ViewParent property. Explicit nullable
+View traversal fixed it. Both workflows now use pinned Node 24 actions, keeping
+the existing ZIP artifact layout. The corrected run above passed regression.
+
+This commit prepares the non-debuggable release variant and full API 30/35
+verification. Version code 87 permits an upgrade from the development APK.
+The release build, release regression/lint and both emulator results are pending;
+the successful debug results do not substitute for these checks. Exact-source
+verification and private upgrade signing remain required before release delivery.
+Follow CI.md: finish useful work and report the asynchronous run without waiting
+for GitHub as the sole remaining activity. Keep the signing key and private
+backup outside GitHub.
+
+Development build and checks:
+https://github.com/c933103/AN-Paint/actions/runs/35031011913
 
 ---
 
