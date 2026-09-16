@@ -252,7 +252,7 @@ class ANPaintControlsTest {
         assertTrue(about.contains("AN Paint")); assertTrue(about.contains("Catrobat"))
         val credits=activity.assets.open("legal/ASSET_CREDITS.txt").bufferedReader().readText()
         listOf("ActionButton.kt","ToolButton.kt","system","monospace","LGPL","AGPL","launcher.svg","CC BY-SA 4.0").forEach { assertTrue(it,credits.contains(it)) }
-        EditorTestNavigation.command(activity,"File",10)
+        EditorTestNavigation.command(activity,"File",8)
         (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).listView.performItemClick(null,4,4); assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing)
     }
     @Test fun colourPickerPreviewsRender() {

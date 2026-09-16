@@ -16,17 +16,26 @@ internal object GalleryCredits {
     const val CC_BY_SA = "https://creativecommons.org/licenses/by-sa/4.0/"
     private fun preferences(context: Context) = context.getSharedPreferences("image-credits",Context.MODE_PRIVATE)
     fun sources(context: Context): Set<String> = preferences(context).getStringSet("sources",emptySet()).orEmpty().toSet()
-    fun remember(context: Context, source: String) {
-        preferences(context).edit().putStringSet("sources",sources(context)+source).apply()
+    fun remember(context: Context, source: String,provider: IllustrationSource=IllustrationSource.CATROBAT,page: String="",title: String="") {
+        val edit=preferences(context).edit().putStringSet("sources",sources(context)+source)
+        if(provider!=IllustrationSource.CATROBAT || title.isNotBlank()) edit.putString("generated:$source",credit(source,title,provider,page))
+        edit.apply()
     }
-    fun credit(source: String, title: String = Uri.parse(source).lastPathSegment.orEmpty().substringBeforeLast('.')): String = listOf(
+    fun credit(source: String, title: String = Uri.parse(source).lastPathSegment.orEmpty().substringBeforeLast('.'),provider: IllustrationSource=IllustrationSource.CATROBAT,page: String=""): String = if(provider==IllustrationSource.CATROBAT) listOf(
         ui(R.string.gallery_credit_title,title.ifBlank { ui(R.string.ui_gallery_image) }),
         ui(R.string.gallery_credit_publisher),
         ui(R.string.gallery_credit_source,source),
         ui(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY),
         ui(R.string.gallery_credit_licence,CC_BY_SA)
     ).joinToString("\n")
-    private fun sourceText(context: Context, source: String): String = preferences(context).getString("text:$source",null) ?: credit(source)
+    else listOf(ui(R.string.gallery_credit_title,title.ifBlank {ui(R.string.ui_gallery_image)}),
+        if(provider==IllustrationSource.IRASUTOYA) "Irasutoya — Takashi Mifune" else "Openclipart — "+ui(R.string.ui_creator_on_source34),
+        ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home),
+        ui(R.string.gallery_credit_source,source),
+        if(provider==IllustrationSource.IRASUTOYA) ui(R.string.ui_irasutoya_credit34) else "CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/",
+        provider.terms).joinToString("\n")
+    private fun sourceText(context: Context, source: String): String = preferences(context).getString("text:$source",null)
+        ?: preferences(context).getString("generated:$source",null) ?: credit(source)
     fun text(context: Context): String = sources(context).sorted().map { sourceText(context,it) }.filter {it.isNotBlank()}.joinToString("\n\n")
     fun copy(context: Context, text: String) {
         (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)

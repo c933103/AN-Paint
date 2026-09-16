@@ -291,7 +291,7 @@ class ResponsiveToolboxTest {
     @Test fun editGroupsExposeTheirActionsAndCanvasBoundsReturnToTheGroup() {
         click("menu_Edit")
         val categories=EditorTestNavigation.buttons(view("panel_Edit_commands"))
-        assertEquals(listOf("Selection","Canvas","Flip / Rotate",view<android.widget.Button>("menu_Color").text.toString()),categories.map {it.text.toString()})
+        assertEquals(listOf("Selection","Canvas","Flip / Rotate"),categories.map {it.text.toString()})
         assertFalse(view<View>("command_Edit_0").isShown)
         click("edit_category_SELECTION")
         click("command_Edit_0")
@@ -310,7 +310,7 @@ class ResponsiveToolboxTest {
         assertTrue(view<View>("command_Edit_6").isShown)
         assertFalse(view<View>("command_Edit_1").isShown)
         render("edit-transform-group.png")
-        click("edit_category_COLOURS")
+        click("edit_category_CANVAS")
         assertTrue(view<View>("command_Edit_10").isShown)
     }
 

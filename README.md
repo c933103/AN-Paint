@@ -20,7 +20,7 @@ armeabi-v7a, x86_64 and x86.
   landscape uses a side ribbon. Tool tiles share a square size, including vertical
   scripts, and scale together with the system font setting.
 - Draw groups tools into Drawing, Selection and Insert. Edit groups its commands
-  into Selection, Canvas, Flip / Rotate and Colours. Expand a group to reach its
+  into Selection, Canvas and Flip / Rotate. Invert colours is under Canvas. Expand a group to reach its
   commands; collapse it to recover canvas space.
 - Pencil, brush, watercolor, spray, eraser, fill, colour picker, shapes and text.
   Pencil and brush widths have independent numeric controls up to 100 px.
@@ -34,8 +34,11 @@ armeabi-v7a, x86_64 and x86.
   under Draw > Drawing. Enabling cursor mode starts with positioning only; the
   on-canvas Start/Stop button controls ink, displays guidance and changes the
   cursor's visible state. Reopening cursor options or a draft pauses drawing.
-- Autosave and draft recovery, foreground/background previews, recent colours,
-  sixteen saved colour slots and an advanced colour picker.
+- Autosave restores the canvas, unfinished selection and both undo/redo stacks
+  after Android closes the app. It saves history with the private draft, so cache
+  cleanup does not remove the saved steps.
+- Foreground/background previews, recent colours, sixteen saved colour slots
+  and an advanced colour picker.
 - A separate assembly workspace for up to 20 images, with cropping, normalization,
   alignment, direct PNG saving and transfer to the editor.
 
@@ -54,11 +57,25 @@ including after draft recovery.
 
 **Export as** offers ICO, ASCII art and Base64 text with their relevant options.
 Export does not replace the Save destination or clear unsaved changes.
-**Save and share** offers all output formats.
+**Save and share** saves a copy in any supported output format to your chosen
+location, then opens Android sharing. It keeps the current Save destination
+and does not mark that working file saved.
 
 PDF and TIFF imports provide page previews and selection. Animated GIF, APNG and
-WebP imports warn when opening a still frame. The optional Catrobat gallery
-provides copyable, editable attribution for inserted artwork.
+WebP imports warn when opening a still frame.
+
+**Draw > Insert > Other images** groups device files, Catrobat, Irasutoya and
+Openclipart. An inserted image stays selected; the view includes its resize and
+rotation handles even when it exceeds the canvas. **Fit to canvas** changes its
+placement while keeping the source pixels; **Original size** restores its dimensions.
+
+Online artwork pages have **Use image** and **Copy credit** actions. Irasutoya
+uses its English/Japanese search; its original titles and website text remain
+Japanese. Openclipart imports the published Large PNG. Each source retains its
+own terms and copyable, editable credits under File > About > Image credits.
+Irasutoya is free within its stated conditions, including a limit of 20 items
+per commercial design; it is not public domain. No gallery artwork is bundled.
+See [illustration source notes](docs/ILLUSTRATION_SOURCES.md).
 
 ## Languages and text
 
@@ -66,7 +83,7 @@ Choose **View > Languages** to override the device language. The system-default
 choice is labelled in the device's language, independently of the selected app
 language. Android 13 and newer also expose the setting in system App languages.
 
-The main tabs, first-level commands and Edit groups have explicit translations
+The main tabs, first-level commands, Edit groups and Other images controls have explicit translations
 for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
 `de`, `pl`, `ru`, `es-419`, `es-ES`, `pt-PT`, `pt-BR`, `it`, `fr`, `he`, `ko-KR`,
 `ko-KP`, `id`, `ms`, `vi`, `tl`, `th`, `el`, `sr-Cyrl`, `sr-Latn`, `tr` and `hy`.

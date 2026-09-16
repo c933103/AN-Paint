@@ -72,9 +72,8 @@ class ClassicPaintActivity : Activity() {
     private var expandedEditGroup: EditGroup?=null
     private enum class EditGroup(val labelId: Int,val icon: Int,val commands: List<Int>) {
         SELECTION(R.string.ui_category_selection,R.drawable.breeze_select,listOf(0,2,4)),
-        CANVAS(R.string.ui_edit_canvas33,R.drawable.classic_canvas_size,listOf(1,3,5,11)),
-        TRANSFORM(R.string.ui_edit_transform33,R.drawable.classic_rotate90,listOf(6,7,8,9)),
-        COLOURS(R.string.ui_colour_tab23,R.drawable.classic_invert,listOf(10))
+        CANVAS(R.string.ui_edit_canvas33,R.drawable.classic_canvas_size,listOf(1,3,5,10,11)),
+        TRANSFORM(R.string.ui_edit_transform33,R.drawable.classic_rotate90,listOf(6,7,8,9))
     }
     private lateinit var toolDrawer: ScrollView
     private var portraitColours: View? = null
@@ -136,12 +135,17 @@ class ClassicPaintActivity : Activity() {
         var recovered: JSONObject?=null
         var restored=false
         if (autosave.exists()) try {
-            val draft=autosave.read { w,h -> checkImageSize(w,h) }
+            val draft=autosave.read(historyReader=document::readHistory) { w,h -> checkImageSize(w,h) }
             recovered=draft.metadata
             textSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
             savedTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
             document.background=recovered.optInt("background",Color.WHITE)
             document.replace(draft.image)
+            draft.history?.let {document.restoreHistory(it)}
+            if(draft.historyFailed) {
+                autosave.preserveForRecovery()
+                recoveryNotice=ui(R.string.ui_history_unavailable34)
+            }
             draft.floating?.let { image ->
                 val r=recovered!!.getJSONArray("floating_rect")
                 document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
@@ -255,6 +259,9 @@ class ClassicPaintActivity : Activity() {
         ToolCategory.values().forEach {category ->
             val group=LinearLayout(this).apply {isBaselineAligned=false;tag="category_tools_${category.name}"}
             category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(-2,toolHeight))}
+            if(category==ToolCategory.INSERT) group.addView(panelButton(ui(R.string.ui_other_images34),"insert_other_images",android.R.drawable.ic_menu_gallery) {
+                showOtherImages()
+            },LinearLayout.LayoutParams(toolHeight,toolHeight))
             val rail: View=if(landscape) {
                 // Wrap the category into tiles above its options, beside the primary tool rail.
                 val grid=GridLayout(this).apply {columnCount=2;alignmentMode=GridLayout.ALIGN_BOUNDS}
@@ -690,6 +697,12 @@ class ClassicPaintActivity : Activity() {
             PaintTool.SELECT, PaintTool.LASSO -> {
                 options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))
                 options.addView(label("").apply { tag="selection_dimensions" })
+                options.addView(button(ui(R.string.ui_fit_selection34),"selection_fit_canvas") {
+                    if(document.fitSelectionToCanvas()) paintCanvas.fit()
+                })
+                options.addView(button(ui(R.string.ui_original_size34),"selection_original_size") {
+                    if(document.restoreSelectionSize()) paintCanvas.fit()
+                })
                 options.addView(CheckBox(this).apply {
                     tag="selection_lock_aspect";text=ui(R.string.ui_lock_proportions);textSize=11f;isChecked=paintCanvas.lockSelectionAspect
                     setOnCheckedChangeListener { _,checked -> paintCanvas.lockSelectionAspect=checked;scheduleAutosave() }
@@ -772,8 +785,6 @@ class ClassicPaintActivity : Activity() {
             ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},
             ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},
             ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},
-            ui(R.string.ui_insert_image_into_canvas) to {launchOpen(true)},
-            ui(R.string.ui_catrobat_sticker_gallery) to {startActivityForResult(Intent(this,MediaGalleryActivity::class.java),GALLERY_IMAGE)},
             ui(R.string.ui_image_assembly) to {openAssembly()},
             ui(R.string.ui_how_to_use) to {showHelp()},
             ui(R.string.ui_about_credits23) to {showAboutOptions()}
@@ -824,6 +835,15 @@ class ClassicPaintActivity : Activity() {
             .setNegativeButton(ui(R.string.ui_done),null).show()
     }
 
+    private fun showOtherImages() {
+        val sources=listOf(ui(R.string.ui_from_device34))+IllustrationSource.values().map {it.label}
+        EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->
+            if(index==0) launchOpen(true)
+            else startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
+                .putExtra("gallery_provider",IllustrationSource.values()[index-1].name),GALLERY_IMAGE)
+        }.setNegativeButton(ui(R.string.ui_cancel),null).show()
+    }
+
     private fun selectAfterPaste() {
         // Switching to selection before pasting avoids committing a new floating image.
         updateStatus(); paintCanvas.invalidate()
@@ -833,7 +853,7 @@ class ClassicPaintActivity : Activity() {
     private fun copySelection() { if (!document.copySelection()) message(ui(R.string.ui_select_an_area_first)) }
     private fun pasteSelection() {
         chooseTool(PaintTool.SELECT)
-        if (document.paste()) selectAfterPaste() else message(ui(R.string.ui_copy_an_area_or_use_file_insert_image))
+        if (document.paste()) selectAfterPaste() else message(ui(R.string.ui_paste_hint34))
     }
 
     private fun editAction(action: () -> Unit): Boolean {
@@ -1081,9 +1101,11 @@ class ClassicPaintActivity : Activity() {
         if(requestCode==GALLERY_IMAGE) {
             val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
             val source=data?.getStringExtra("gallery_source")
-            if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !MediaGalleryActivity.allowed(Uri.parse(source))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
-            GalleryCredits.remember(this,source)
-            readImage(Uri.fromFile(file),true,deleteAfterCopy=true);return
+            val provider=IllustrationSource.fromId(data?.getStringExtra("gallery_provider"))
+            val page=data?.getStringExtra("gallery_page").orEmpty()
+            val title=data?.getStringExtra("gallery_title").orEmpty().take(512)
+            if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !provider.allowsImage(Uri.parse(source)) || (provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page)))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
+            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,onInserted={GalleryCredits.remember(this,source,provider,page,title)});return
         }
         if (requestCode == ASSEMBLY_IMAGE) {
             val name = data?.getStringExtra("assembly_output")
@@ -1107,7 +1129,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false) {
+    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,onInserted: (() -> Unit)? = null) {
         beginIo()
         worker.execute {
             var temporary: File? = null
@@ -1126,8 +1148,8 @@ class ClassicPaintActivity : Activity() {
                             selected={source ->
                                 importSelection=null;pendingImportFile=source.file
                                 val plan=ImportPlan.create(source.dimensions,source.dimensions)
-                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit)
-                                else askToResize(source,import,asEdit=asEdit)
+                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,onInserted)
+                                else askToResize(source,import,asEdit=asEdit,onInserted=onInserted)
                             },cancelled={importSelection=null;endIo()},failed={error ->
                                 importSelection=null;ioFailed(ui(R.string.ui_could_not_open_image),error)
                             })
@@ -1140,17 +1162,17 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false) {
+    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
         if (isDestroyed || isFinishing) { source.file.delete(); return }
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
-            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit) },
+            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,onInserted) },
             cancel = { resizeDialog = null; source.file.delete(); pendingImportFile=null; if (!isDestroyed) endIo() },
             memoryRequirements = source.memoryRequirements
         ).show()
     }
 
-    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false) {
+    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
         worker.execute {
             try {
                 val plan = ImportPlan.create(source.dimensions,target)
@@ -1162,7 +1184,14 @@ class ClassicPaintActivity : Activity() {
                     pendingImportFile=null
                     if (!isDestroyed && !isFinishing) {
                         try {
-                            if (import) { chooseTool(PaintTool.SELECT); document.paste(bitmap, takeOwnership = true) }
+                            if (import) {
+                                chooseTool(PaintTool.SELECT)
+                                document.paste(bitmap, takeOwnership = true)
+                                onInserted?.invoke()
+                                // Include the whole floating image and its handles, even outside the canvas.
+                                // Refit after the selection drawer changes the available viewport.
+                                paintCanvas.fit();paintCanvas.post { if(!isDestroyed && document.selection!=null) paintCanvas.fit() }
+                            }
                             else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit); filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
@@ -1176,10 +1205,10 @@ class ClassicPaintActivity : Activity() {
                 }
             } catch (_: ImageSizeException) {
                 // Device memory may change while the user considers the proposed size.
-                runOnUiThread { askToResize(source,import,target,asEdit) }
+                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
             } catch (_: OutOfMemoryError) {
                 // A budget is an estimate, not a guarantee. Offer a smaller copy after an allocation failure too.
-                runOnUiThread { askToResize(source,import,target,asEdit) }
+                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
             } catch (e: Exception) { source.file.delete(); ioFailed(ui(R.string.ui_could_not_open_image), e) }
         }
     }
@@ -1363,11 +1392,12 @@ class ClassicPaintActivity : Activity() {
         val image=document.bitmap
         val floating=document.selection?.takeIf { it.floating }?.image
         val metadata=draftMetadata()
+        val history=document.historySnapshot()
         autosaving=true;beginIo()
         worker.execute {
             var error: Throwable?=null
             try {
-                autosave.write(image,floating,metadata);savedDraftGeneration=generation
+                autosave.write(image,floating,metadata,history);savedDraftGeneration=generation
                 File(filesDir,"classic-recovery.png").delete()
             } catch (e: Exception) { error=e } catch (e: OutOfMemoryError) { error=e }
             val failure=error
@@ -1396,7 +1426,7 @@ class ClassicPaintActivity : Activity() {
         val metadata=draftMetadata();val generation=draftGeneration
         if (!busy && generation==savedDraftGeneration) document.close() else worker.execute {
             try {
-                if (!autosaveBlocked && generation!=savedDraftGeneration) autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata)
+                if (!autosaveBlocked && generation!=savedDraftGeneration) autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,document.historySnapshot())
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
             finally { document.close() }
         }

@@ -47,7 +47,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}
         var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
-        body.addView(TextView(activity).apply {text=ui(if(export) R.string.ui_export_explanation23 else R.string.ui_save_explanation23)})
+        body.addView(TextView(activity).apply {text=ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})})
         body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})
         val filename=EditText(activity).apply {
             tag="export_filename";setSingleLine(true)
@@ -149,7 +149,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
                 if(control is FlowTextView) control.columnHeightDp=tall
                 form.addView(control,LinearLayout.LayoutParams(if(control is NumericSlider) (176*d).toInt() else -2,-2).apply {setMargins((8*d).toInt(),0,(8*d).toInt(),0)})
             }
-            form.addView(prose(ui(if(export) R.string.ui_export_explanation23 else R.string.ui_save_explanation23)))
+            form.addView(prose(ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})))
             form.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
             form
         } else ScrollView(activity).apply {addView(body)}

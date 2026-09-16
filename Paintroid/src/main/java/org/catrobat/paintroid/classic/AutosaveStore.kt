@@ -13,7 +13,8 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
-data class AutosaveDraft(val image: Bitmap, val floating: Bitmap?, val metadata: JSONObject)
+data class AutosaveDraft(val image: Bitmap, val floating: Bitmap?, val metadata: JSONObject,
+    val history: RasterHistory.Snapshot? = null,val historyFailed: Boolean = false)
 
 /** One atomic draft contains pixels and their matching metadata. Sources are never overwritten. */
 class AutosaveStore(directory: File) {
@@ -34,7 +35,7 @@ class AutosaveStore(directory: File) {
         it.isFile && it.name.startsWith("classic-draft-recovery-") && it.extension=="zip"
     }?.sortedByDescending { it.lastModified() } ?: emptyList()
 
-    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject) = synchronized(lock) {
+    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(lock) {
         val stream=atomic.startWrite()
         try {
             val zip=ZipOutputStream(stream).apply { setLevel(0) }
@@ -46,11 +47,12 @@ class AutosaveStore(directory: File) {
             if (floating != null) entry("floating.png") {
                 if (!floating.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_selection_encoding_failed))
             }
+            HistoryArchive.write(zip,history)
             zip.finish(); zip.flush(); atomic.finishWrite(stream)
         } catch (error: Throwable) { atomic.failWrite(stream); throw error }
     }
 
-    fun read(checkSize: (Int,Int) -> Unit): AutosaveDraft = synchronized(lock) {
+    fun read(historyReader: ((ZipFile) -> RasterHistory.Snapshot)? = null,checkSize: (Int,Int) -> Unit): AutosaveDraft = synchronized(lock) {
         atomic.openRead().close() // Recover the previous complete transaction after an interrupted write.
         var image: Bitmap?=null; var floating: Bitmap?=null
         try {
@@ -70,7 +72,9 @@ class AutosaveStore(directory: File) {
                 }
                 image=decode("canvas.png")
                 if (metadata.has("floating_rect")) floating=decode("floating.png")
-                return AutosaveDraft(image!!,floating,metadata)
+                var failed=false
+                val history=try {historyReader?.invoke(zip)} catch(_: Exception) {failed=true;null}
+                return AutosaveDraft(image!!,floating,metadata,history,failed)
             }
         } catch (error: Throwable) { image?.recycle(); floating?.recycle(); throw error }
     }

@@ -123,7 +123,7 @@ class ClassicWorkspaceTest {
     }
     @Test fun fileImportCreatesMovableSelectionAndAppliesImage() {
         fixture(Bitmap.CompressFormat.JPEG)
-        menu("File", 6); receive()
+        EditorTestNavigation.otherImage(activity,0); receive()
         assertNotNull(doc.selection); assertEquals(PaintTool.SELECT, canvas.tool)
         drag(10f, 10f, 40f, 30f); click("apply")
         assertEquals(Color.WHITE, doc.bitmap.getPixel(5, 5))
@@ -131,6 +131,25 @@ class ClassicWorkspaceTest {
         assertTrue(Color.red(doc.bitmap.getPixel(40, 30)) < 15)
         click("undo"); assertEquals(0, inkCount())
     }
+    @Test fun oversizedInsertedImageRemainsSelectedWithAllHandlesReachableAndOriginalPixelsRetained() {
+        val image=Bitmap.createBitmap(480,240,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.BLUE)}
+        provider.file.outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))};image.recycle()
+        EditorTestNavigation.otherImage(activity,0);receive()
+        assertEquals(96,doc.bitmap.width);assertEquals(PaintTool.SELECT,canvas.tool)
+        val selection=doc.selection!!;assertTrue(selection.floating)
+        assertEquals(480,selection.image.width);assertEquals(240,selection.image.height)
+        val tl=canvas.toScreen(selection.rect.left,selection.rect.top)
+        val br=canvas.toScreen(selection.rect.right,selection.rect.bottom)
+        assertTrue(tl.x>0 && tl.y>0);assertTrue(br.x<canvas.width && br.y<canvas.height)
+        click("selection_fit_canvas")
+        assertTrue(selection.rect.right<=doc.bitmap.width && selection.rect.bottom<=doc.bitmap.height)
+        assertEquals(480,selection.image.width)
+        click("selection_original_size")
+        assertEquals(480f,selection.rect.width(),0f);assertEquals(240f,selection.rect.height(),0f)
+        assertEquals(Color.WHITE,doc.bitmap.getPixel(0,0))
+        click("undo");assertNull(doc.selection);assertEquals(0,inkCount())
+    }
+
     @Test fun unavailableColourConverterReportsErrorAndClearsBusyState() {
         val image=Bitmap.createBitmap(32,24,Bitmap.Config.ARGB_8888)
         image.eraseColor(Color.BLUE)
@@ -210,7 +229,7 @@ class ClassicWorkspaceTest {
         assertTrue(inkCount() > 0)
     }
     @Test fun sourceExportMenuWritesTheBundledSourceZip() {
-        menu("File", 10); (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).listView.performItemClick(null,3,3); receive()
+        menu("File", 8); (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).listView.performItemClick(null,3,3); receive()
         assertNull(activity.lastIoError)
         assertArrayEquals(activity.assets.open(ClassicPaintActivity.SOURCE_ASSET).use { it.readBytes() }, provider.file.readBytes())
     }

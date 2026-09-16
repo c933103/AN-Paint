@@ -1,3 +1,43 @@
+# AN Paint 0.0.34 — image insertion, illustration sources and persistent history
+
+Development version code 88. Invert colours is under Edit > Canvas; the redundant
+Colours subgroup is removed. Save and share explains that it saves a copy and
+then opens sharing while retaining the current Save destination.
+
+Draw > Insert > Other images contains device files, Catrobat, Irasutoya and
+Openclipart. Imports stay selected with the full transform box visible beyond
+canvas edges. Fit to canvas and Original size change floating geometry without
+resampling the source pixels. Irasutoya has native search using its English/Japanese
+form and localized Use image / Copy credit links beside full artwork links.
+Original website text/titles remain Japanese. Openclipart uses its Large PNG.
+Provider-specific source pages and terms are preserved; artwork is not bundled.
+See docs/ILLUSTRATION_SOURCES.md for the checked public markup and terms.
+
+Both undo and redo stacks now travel inside the atomic autosave ZIP with the
+canvas, metadata and floating selection. Each compressed snapshot has dimensions
+and a SHA-256 digest. Startup imports history into a fresh cache session without
+allocating every historical bitmap. Old drafts without history still open. If
+history is damaged, the canvas is recovered and the archive is preserved for
+recovery with a visible notice. The existing disk-history budget remains.
+This cannot reconstruct undo steps already lost by older versions.
+
+All 30 menu catalogues include the new source/placement/search/use/credit controls
+and Save and share explanation. Local verification: 81 host checks passed;
+Android aapt2 compiled resources. Added regression checks cover restored stack
+order and dimensions, redo branching, floating selections, deleted old caches,
+atomic rollback and damaged-history recovery; insertion and provider tests cover
+the new paths. Real WebView fixture tests exercise Irasutoya/Openclipart markup.
+Android compilation, regression/lint and API 35 results for this revision are
+pending GitHub. Finish useful local work and report the asynchronous run; do not
+wait for CI as the sole remaining work or call this a verified release.
+
+The preceding 0.0.33 release-source workflow 35042901398 completed successfully
+(build/source, regression/lint, API 30 and API 35). Its release publication was
+not completed before these additional changes; the results below remain tied to
+their stated source and do not verify 0.0.34.
+
+---
+
 # AN Paint 0.0.33 — grouped Edit commands and uniform tool tiles
 
 Release candidate version code 87 (development build: 86). Edit expands Selection, Canvas, Flip / Rotate and Colours
@@ -30,9 +70,9 @@ the existing ZIP artifact layout. The corrected run above passed regression.
 
 This commit prepares the non-debuggable release variant and full API 30/35
 verification. Version code 87 permits an upgrade from the development APK.
-The release build, release regression/lint and both emulator results are pending;
-the successful debug results do not substitute for these checks. Exact-source
-verification and private upgrade signing remain required before release delivery.
+The release build, release regression/lint and both emulator jobs subsequently
+passed in workflow 35042901398. Exact-source verification, private upgrade
+signing and release publication were not completed for that release candidate.
 Follow CI.md: finish useful work and report the asynchronous run without waiting
 for GitHub as the sole remaining activity. Keep the signing key and private
 backup outside GitHub.

@@ -158,11 +158,15 @@ class UnifiedEditorTest {
         val inset=20*activity.resources.displayMetrics.density
         assertEquals((board.width-inset)/2,centre.x,1f);assertEquals((board.height-inset)/2,centre.y,1f)
     }
-    @Test fun fileMenuNamesInsertionClearlyAndGalleryComesImmediatelyAfterIt() {
+    @Test fun otherImagesGroupsDeviceAndIllustrationSourcesUnderDrawInsert() {
         click("menu_File")
         val names=EditorTestNavigation.buttons(root.findViewWithTag("panel_File_commands")).map {it.text.toString()}
-        val at=names.indexOf("Insert image into canvas…");assertTrue(at>=0)
-        assertEquals("Catrobat sticker gallery…",names[at+1]);assertFalse(names.any {it.contains("project",true)})
+        assertFalse(names.any {it.contains("Insert image") || it.contains("Catrobat")})
+        click("menu_Draw");click("category_INSERT");click("insert_other_images")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog()
+        assertEquals(listOf("From device…","Catrobat sticker gallery…","Irasutoya","Openclipart"),
+            (0 until dialog.listView.count).map {dialog.listView.getItemAtPosition(it).toString()})
+        dialog.dismiss()
         assertTrue(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org/figures-download/")))
         assertFalse(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org.example.com/x.png")))
     }
@@ -181,6 +185,11 @@ class UnifiedEditorTest {
         activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null)
         assertNull(shadowOf(activity).nextStartedActivity)
         menu("File","Save and share…");dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        fun prose(view: View): String = (if(view is android.widget.TextView) view.text.toString() else "")+
+            if(view is android.view.ViewGroup) (0 until view.childCount).joinToString(" ") {prose(view.getChildAt(it))} else ""
+        val description=prose(dialog.window!!.decorView)
+        assertTrue(description.contains("then choose an app to share it"))
+        assertFalse(description.contains("Export an icon"))
         EditorTestNavigation.format(dialog.window!!.decorView.findViewWithTag<Spinner>("export_format"),ImageFormat.PNG)
         shadowOf(Looper.getMainLooper()).idle();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
         launch=shadowOf(activity).nextStartedActivityForResult

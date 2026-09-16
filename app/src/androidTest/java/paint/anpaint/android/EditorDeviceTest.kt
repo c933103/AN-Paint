@@ -137,7 +137,7 @@ class EditorDeviceTest {
         assertFalse(permissions.contains("android.permission.READ_EXTERNAL_STORAGE"))
 
         monitor.nextResult.set(resultFor(file))
-        menu("File",text(R.string.ui_insert_image_into_canvas))
+        otherImage(text(R.string.ui_from_device34))
         awaitState("image inserted as a floating selection") {!it.busy && it.document.selection?.floating==true}
         onMain {
             assertEquals(17,it.document.bitmap.width);assertEquals(11,it.document.bitmap.height)
@@ -432,8 +432,17 @@ class EditorDeviceTest {
         }
     }
 
+    private fun otherImage(label: String) {
+        click("menu_Draw")
+        onMain {editor ->
+            val category=editor.window.decorView.findViewWithTag<ToolCategoryButton>("category_INSERT")
+            if(!category.expanded) assertTrue(category.performClick())
+        }
+        click("insert_other_images");clickText(label)
+    }
+
     @Test fun galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor() {
-        menu("File",text(R.string.ui_catrobat_sticker_gallery))
+        otherImage(text(R.string.ui_catrobat_sticker_gallery))
         awaitState("gallery launch") {monitor.requests.any {request -> request.component?.className==MediaGalleryActivity::class.java.name}}
         val gallery=monitor.requests.single {it.component?.className==MediaGalleryActivity::class.java.name}
         assertEquals(context.packageName,gallery.component!!.packageName)

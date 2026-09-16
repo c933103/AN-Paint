@@ -79,7 +79,7 @@ class ImageResizeFlowTest {
         if (exif) ExifInterface(provider.file.path).apply { setAttribute(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_ROTATE_90.toString()); saveAttributes() }
     }
     private fun load(import: Boolean = false) {
-        EditorTestNavigation.command(activity,"File",if(import) 6 else 1)
+        if(import) EditorTestNavigation.otherImage(activity,0) else EditorTestNavigation.command(activity,"File",1)
         val intent = shadowOf(activity).nextStartedActivityForResult.intent
         shadowOf(activity).receiveResult(intent,Activity.RESULT_OK,Intent().setData(uri))
     }

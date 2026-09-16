@@ -307,3 +307,15 @@ The 800% threshold appears in help, outside the square tool tiles. The main-menu
 coverage test also enumerates Edit group labels so regrouping cannot introduce
 untranslated first-level controls. Historical release sections above describe
 those releases, not the current catalogue.
+
+
+## Other images and Save and share (0.0.34)
+
+All 30 requested menu variants include Other images, From device, Fit to canvas,
+Original size, Search, the English/Japanese search hint, Back, Use image,
+Copy credit and the corrected Save and share explanation. These authored entries
+are in main-menu-translations.json and its required-key list. The redundant Edit
+Colours group is removed; Invert colours uses the existing translated command
+under Canvas. Provider names and original artwork titles are retained. Longer
+provider instructions and recovery errors retain English fallback where no
+translation exists; this is not whole-app or website translation completion.

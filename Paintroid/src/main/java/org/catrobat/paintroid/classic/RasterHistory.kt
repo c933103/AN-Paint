@@ -15,6 +15,7 @@ import java.util.zip.InflaterInputStream
 /** Lossless disk snapshots. The transfer buffer stays small at any image size. */
 class RasterHistory(parent: File) : Closeable {
     data class Entry(val file: File, val width: Int, val height: Int)
+    data class Snapshot(val undo: List<Entry> = emptyList(),val redo: List<Entry> = emptyList())
     private val directory = File(parent, "session-${UUID.randomUUID()}")
 
     fun capture(bitmap: Bitmap): Entry {
@@ -41,6 +42,27 @@ class RasterHistory(parent: File) : Closeable {
         } catch (error: Throwable) {
             file.delete(); throw error
         } finally { deflater.end() }
+    }
+
+    /** Import immutable compressed snapshots without allocating all their historical bitmaps. */
+    fun importSnapshot(input: InputStream,width: Int,height: Int,sha256: String): Entry {
+        require(width>0 && height>0 && width.toLong()*height<=Int.MAX_VALUE/4)
+        require(sha256.matches(Regex("[0-9a-f]{64}")))
+        if(!directory.isDirectory && !directory.mkdirs()) throw IOException(ui(R.string.ui_cannot_create_the_undo_cache_free_some_device))
+        val file=File.createTempFile("undo-",".rgba",directory)
+        try {
+            val digest=java.security.MessageDigest.getInstance("SHA-256")
+            file.outputStream().buffered().use {out ->
+                val buffer=ByteArray(32768)
+                while(true) {val n=input.read(buffer);if(n<0)break;out.write(buffer,0,n);digest.update(buffer,0,n)}
+            }
+            val actual=digest.digest().joinToString("") {"%02x".format(it.toInt() and 255)}
+            if(actual!=sha256) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))
+            DataInputStream(InflaterInputStream(file.inputStream().buffered())).use {
+                if(it.readInt()!=0x50504c34 || it.readInt()!=width || it.readInt()!=height) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))
+            }
+            return Entry(file,width,height)
+        } catch(error: Throwable) {file.delete();throw error}
     }
 
     fun restore(entry: Entry, current: Bitmap): Bitmap {

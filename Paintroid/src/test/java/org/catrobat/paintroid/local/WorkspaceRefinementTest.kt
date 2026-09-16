@@ -93,6 +93,25 @@ class WorkspaceRefinementTest {
         assertEquals(9f,doc.strokeWidth,0f);assertEquals(13f,doc.tolerance,0f);assertTrue(doc.dirty)
         assertEquals(viewport.first,canvas.zoom,.001f);assertEquals(viewport.second,canvas.draftState().getDouble("centre_x"),.001);assertEquals(viewport.third,canvas.draftState().getDouble("centre_y"),.001)
     }
+    @Test fun restartRestoresUndoAndRedoEvenWhenTheOldHistoryCacheIsGone() {
+        doc.foreground=Color.RED;doc.fill(0,0)
+        doc.foreground=Color.BLUE;doc.fill(0,0)
+        doc.undo();assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
+        assertTrue(doc.canUndo);assertTrue(doc.canRedo)
+        saveIdle()
+        controller.pause().stop();waitIo();controller.destroy()
+        File(activity.cacheDir,"classic-history").deleteRecursively()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        assertTrue(view<View>("undo").isEnabled);assertTrue(view<View>("redo").isEnabled)
+        click("redo");assertEquals(Color.BLUE,doc.bitmap.getPixel(0,0))
+        click("undo");assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
+        click("undo");assertEquals(Color.WHITE,doc.bitmap.getPixel(0,0))
+        click("redo");assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
+        doc.foreground=Color.GREEN;doc.fill(0,0);assertFalse(doc.canRedo)
+        saveIdle();reopen();assertFalse(doc.canRedo);assertTrue(doc.canUndo)
+        click("undo");assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
+    }
+
     @Test fun autosaveDoesNotCommitUnfinishedPolygonAndRestoresItsGeometry() {
         click("tool_POLYGON");doc.shapeStyle=1
         tapImage(10f,10f);tapImage(90f,10f);tapImage(40f,80f)
@@ -108,6 +127,7 @@ class WorkspaceRefinementTest {
         reopen();assertNotNull(doc.selection);assertTrue(doc.selection!!.floating);assertEquals(RectF(50f,40f,70f,60f),doc.selection!!.rect)
         doc.selection!!.rect.offset(5f,0f);click("apply")
         assertEquals(Color.BLUE,doc.bitmap.getPixel(60,45));assertEquals(Color.WHITE,doc.bitmap.getPixel(15,15))
+        click("undo");assertEquals(Color.BLUE,doc.bitmap.getPixel(15,15));assertEquals(Color.WHITE,doc.bitmap.getPixel(60,45))
     }
     @Test fun changingOnlyMagnifierScaleAutosavesWithoutLeavingOrEditing() {
         // Finish the startup save first so it cannot hide a missing settings callback.

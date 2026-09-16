@@ -53,6 +53,16 @@ internal object EditorTestNavigation {
             parent=parent.parent as? View
         }
     }
+    fun otherImage(activity: ClassicPaintActivity,index: Int) {
+        click(activity,"menu_Draw")
+        val category=activity.window.decorView.findViewWithTag<org.catrobat.paintroid.classic.ToolCategoryButton>("category_INSERT")
+        if(!category.expanded) click(activity,"category_INSERT")
+        val tile=activity.window.decorView.findViewWithTag<View>("insert_other_images")
+        assertTrue("Other images is under Insert",tile.isShown)
+        assertTrue(tile.performClick());idle()
+        val dialog=ShadowAlertDialog.getLatestAlertDialog()
+        assertTrue(dialog.listView.performItemClick(null,index,index.toLong()));idle()
+    }
     fun format(spinner: Spinner,format: ImageFormat) {
         val index=(0 until spinner.count).single {spinner.getItemAtPosition(it).toString()==format.label}
         spinner.setSelection(index);idle()

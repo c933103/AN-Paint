@@ -14,6 +14,8 @@ import android.widget.EditText
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.GalleryCredits
+import org.catrobat.paintroid.classic.IllustrationPage
+import org.catrobat.paintroid.classic.IllustrationSource
 import org.catrobat.paintroid.classic.GalleryPage
 import org.junit.After
 import org.junit.Assert.*
@@ -148,6 +150,37 @@ class GalleryImportTest {
         assertFalse(credit.contains("Modified"));assertFalse(gallery.isFinishing)
         assertTrue(GalleryCredits.sources(gallery).isEmpty())
     }
+    @Test fun additionalProvidersImportAnExplicitArtworkAndPreserveTheirOwnTerms() {
+        for(provider in listOf(IllustrationSource.IRASUTOYA,IllustrationSource.OPENCLIPART)) {
+            controller.pause().stop().destroy();await {!gallery.downloading}
+            val intent=android.content.Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java).putExtra("gallery_provider",provider.name)
+            controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent);gallery=controller.setup().get()
+            val source=if(provider==IllustrationSource.IRASUTOYA) "https://blogger.googleusercontent.com/img/b/art/s740/character_typhoon.png" else "https://openclipart.org/image/2000px/250963"
+            val page=if(provider==IllustrationSource.IRASUTOYA) "https://www.irasutoya.com/2026/06/typhoon.html" else "https://openclipart.org/detail/250963/public-domain"
+            gallery.openConnection={Connection(it,ByteArrayInputStream(imageBytes()))}
+            val web=ReflectionHelpers.getField<WebView>(gallery,"web")
+            val use=Uri.Builder().scheme(IllustrationPage.USE_SCHEME).authority("insert")
+                .appendQueryParameter("source",source).appendQueryParameter("page",page).appendQueryParameter("title","Example artwork").build()
+            assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,use.toString()));await {!gallery.downloading}
+            assertEquals(Activity.RESULT_OK,shadowOf(gallery).resultCode)
+            val result=shadowOf(gallery).resultIntent
+            assertEquals(provider.name,result.getStringExtra("gallery_provider"));assertEquals(page,result.getStringExtra("gallery_page"))
+            val credit=GalleryCredits.credit(source,"Example artwork",provider,page)
+            assertTrue(credit.contains(page));assertTrue(credit.contains(provider.terms));assertFalse(credit.contains("CC BY-SA"))
+            if(provider==IllustrationSource.IRASUTOYA) assertTrue(credit.contains("Takashi Mifune")) else assertTrue(credit.contains("CC0"))
+            File(gallery.cacheDir,result.getStringExtra("gallery_file")!!).delete()
+        }
+    }
+    @Test fun illustrationProvidersRejectOtherSourcesHostSpoofingAndNonArtworkFiles() {
+        assertTrue(IllustrationSource.IRASUTOYA.allowsImage(Uri.parse("https://1.bp.blogspot.com/art/s800/image.png")))
+        assertFalse(IllustrationSource.IRASUTOYA.allowsImage(Uri.parse("https://blogger.googleusercontent.com.evil.example/image.png")))
+        assertFalse(IllustrationSource.IRASUTOYA.allowsImage(Uri.parse("http://blogger.googleusercontent.com/image.png")))
+        assertFalse(IllustrationSource.OPENCLIPART.allowsImage(Uri.parse("https://openclipart.org/download/250963/art.svg")))
+        assertFalse(IllustrationSource.OPENCLIPART.allowsImage(Uri.parse("https://catrobat.org/image.png")))
+        assertFalse(IllustrationSource.IRASUTOYA.isArtworkPage(Uri.parse("https://www.irasutoya.com/p/terms.html")))
+        assertFalse(IllustrationSource.OPENCLIPART.isArtworkPage(Uri.parse("https://openclipart.org/search/?query=cat")))
+    }
+
     @Test fun editedCreatorAndModificationCreditPersistsAndCopiesForDistribution() {
         GalleryCredits.remember(gallery,asset.toString())
         GalleryCredits.showEditor(gallery)

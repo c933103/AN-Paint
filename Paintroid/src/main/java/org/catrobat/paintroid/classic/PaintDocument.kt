@@ -157,6 +157,14 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun newImage(w: Int, h: Int) = replace(blank(w, h, background))
 
+    fun historySnapshot()=RasterHistory.Snapshot(undo.toList(),redo.toList())
+    fun readHistory(zip: java.util.zip.ZipFile)=HistoryArchive.read(zip,history)
+    fun restoreHistory(snapshot: RasterHistory.Snapshot) {
+        undo.forEach {history.discard(it)};redo.forEach {history.discard(it)}
+        undo.clear();redo.clear();undo.addAll(snapshot.undo);redo.addAll(snapshot.redo)
+        changed()
+    }
+
     fun undo() = moveHistory(undo, redo)
     fun redo() = moveHistory(redo, undo)
 
@@ -317,6 +325,24 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         // the existing opaque canvas, including for an inserted transparent file.
         selection = Selection(RectF(0f, 0f, copy.width.toFloat(), copy.height.toFloat()), copy, null, true)
         edited(); return true
+    }
+
+    /** Placement changes only the floating geometry; retain the full-resolution source pixels. */
+    fun fitSelectionToCanvas(): Boolean {
+        val s=selection ?: return false
+        startMovingSelection()
+        val factor=minOf(bitmap.width.toFloat()/s.image.width,bitmap.height.toFloat()/s.image.height)
+        val w=s.image.width*factor;val h=s.image.height*factor
+        s.rect.set((bitmap.width-w)/2,(bitmap.height-h)/2,(bitmap.width+w)/2,(bitmap.height+h)/2)
+        s.rotation=0f;edited();return true
+    }
+
+    fun restoreSelectionSize(): Boolean {
+        val s=selection ?: return false
+        startMovingSelection()
+        val cx=s.rect.centerX();val cy=s.rect.centerY()
+        s.rect.set(cx-s.image.width/2f,cy-s.image.height/2f,cx+s.image.width/2f,cy+s.image.height/2f)
+        edited();return true
     }
 
     fun resize(w: Int, h: Int, stretch: Boolean) {

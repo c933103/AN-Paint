@@ -161,6 +161,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {
         trim?.let { union(RectF(it.rect)) }
+        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}
     }
 
     fun fit() {
@@ -168,7 +169,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         if (width <= bar + 24 || height <= bar + 24) return
         val bounds = viewportBounds()
         // Leave touch space around the handles for dragging outwards.
-        val padding = if (trim == null) 12f else max(36*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)
+        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)
         zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)
         panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom
         panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom
