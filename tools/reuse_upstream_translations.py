@@ -3,6 +3,7 @@
 import argparse
 import gimp_translations
 import krita_translations
+import mainstream_translations
 import hashlib
 import json
 import pathlib
@@ -58,6 +59,7 @@ def generate():
         return value.strip().strip('"').replace("\\'", "'").rstrip(":：").casefold()
     gimp = gimp_translations.load(defaults)
     krita = krita_translations.load(defaults)
+    supplements = {"krita": krita, **{name: mainstream_translations.load(name, defaults) for name in mainstream_translations.PROJECTS}}
     results = {}
     coverage = []
     tags = ["en"]
@@ -202,41 +204,51 @@ def generate():
                          "catalogue_source": "translations/gimp-catalogues.json"})
     # Major-app supplements fill absent/English vocabulary. Existing translated
     # terms and the reviewed menu overrides below keep their precedence.
-    for tag, available in krita.items():
-        record = next((row for row in coverage if row['language_tag'] == tag), None)
-        if tag not in options and tag not in {o.get('translation_base') for o in options.values()}:
-            continue
-        target = ROOT / record['generated_resource'] if record and record.get('generated_resource') else RES / qualifier_for_tag(tag) / 'strings.xml'
-        resource = ET.fromstring(results.get(target, '<resources/>'))
-        existing = {node.get('name'): node for node in resource}
-        imported = []
-        for key, value in available.items():
-            node = existing.get(key)
-            if node is not None and normal(''.join(node.itertext())) != normal(defaults[key]):
+    for project, vocabulary in supplements.items():
+        for tag, available in vocabulary.items():
+            record = next((row for row in coverage if row['language_tag'] == tag), None)
+            if tag not in options and tag not in {o.get('translation_base') for o in options.values()}:
                 continue
-            if normal(value) == normal(defaults[key]):
+            target = ROOT / record['generated_resource'] if record and record.get('generated_resource') else RES / qualifier_for_tag(tag) / 'strings.xml'
+            resource = ET.fromstring(results.get(target, '<resources/>'))
+            existing = {node.get('name'): node for node in resource}
+            imported = []
+            for key, value in available.items():
+                node = existing.get(key)
+                if node is not None and normal(''.join(node.itertext())) != normal(defaults[key]):
+                    continue
+                if normal(value) == normal(defaults[key]):
+                    continue
+                if node is None:
+                    node = ET.SubElement(resource, 'string', {'name': key})
+                    existing[key] = node
+                node.text = value
+                imported.append(key)
+            if not imported:
                 continue
-            if node is None:
-                node = ET.SubElement(resource, 'string', {'name': key})
-            node.text = value
-            imported.append(key)
-        if not imported:
-            continue
-        lines = ['<?xml version="1.0" encoding="utf-8"?>',
-                 '<!-- Retained vocabulary plus selected Krita gap fills; see translations/README.md. -->', '<resources>']
-        for node in resource:
-            lines.append(f'    <string name="{node.get("name")}">{escape("".join(node.itertext()))}</string>')
-        results[target] = '\n'.join(lines + ['</resources>', ''])
-        if record is None:
-            record = {'language_tag': tag}
-            coverage.append(record)
-        if tag not in tags:
-            tags.append(tag)
-        record.update({'generated_resource': str(target.relative_to(ROOT)),
-                       'krita_gap_fill_keys': imported,
-                       'krita_catalogue_source': 'translations/krita-catalogues.json',
-                       'entries_different_from_upstream_english': sum(normal(''.join(n.itertext())) != normal(defaults.get(n.get('name'), '')) for n in resource)})
+            if 'ui_save' in imported:
+                alias = existing.get('ui_save_a5d0d9')
+                if alias is None:
+                    alias = ET.SubElement(resource, 'string', {'name': 'ui_save_a5d0d9'})
+                if not alias.text or normal(alias.text) == normal(defaults['ui_save_a5d0d9']):
+                    alias.text = '@string/ui_save'
+            lines = ['<?xml version="1.0" encoding="utf-8"?>',
+                     f'<!-- Retained vocabulary plus selected {project.title()} gap fills; see translations/README.md. -->', '<resources>']
+            for node in resource:
+                lines.append(f'    <string name="{node.get("name")}">{escape("".join(node.itertext()))}</string>')
+            results[target] = '\n'.join(lines + ['</resources>', ''])
+            if record is None:
+                record = {'language_tag': tag}
+                coverage.append(record)
+            if tag not in tags:
+                tags.append(tag)
+            record.update({'generated_resource': str(target.relative_to(ROOT)),
+                           project + '_gap_fill_keys': imported,
+                           project + '_catalogue_source': f'translations/{project}-catalogues.json',
+                           'entries_different_from_upstream_english': sum(normal(''.join(n.itertext())) != normal(defaults.get(n.get('name'), '')) for n in resource)})
     results[RES.parent / 'assets/legal/KRITA_TRANSLATION_NOTICES.txt'] = krita_translations.notices()
+    for project in mainstream_translations.PROJECTS:
+        results[RES.parent / f'assets/legal/{project.upper()}_TRANSLATION_NOTICES.txt'] = mainstream_translations.notices(project)
     # Complete only the requested menu surface, with explicit regional/script
     # resources. Keep the existing vocabulary for the rest of each interface.
     menu_catalogue = json.loads((DATA / "main-menu-translations.json").read_text())
@@ -281,9 +293,10 @@ def generate():
         rendered_path = ROOT / record.get("generated_resource", "")
         rendered = {node.get("name"): "".join(node.itertext()) for node in ET.fromstring(results[rendered_path])} if rendered_path in results else {}
         record["gimp_translation_entries"] = sum(rendered.get(key) == value for key, value in available_gimp.items())
-        available_krita = krita.get(record['language_tag'], {})
-        record['krita_available_entries'] = len(available_krita)
-        record['krita_translation_entries'] = sum(rendered.get(key) == available_krita.get(key) for key in record.get('krita_gap_fill_keys', []))
+        for project, vocabulary in supplements.items():
+            available = vocabulary.get(record['language_tag'], {})
+            record[project + '_available_entries'] = len(available)
+            record[project + '_translation_entries'] = sum(rendered.get(key) == available.get(key) for key in record.get(project + '_gap_fill_keys', []))
         record["offered_tags"] = [tag for tag in tags if options[tag].get("translation_base", tag) == record["language_tag"]]
         record["offered_in_app"] = bool(record["offered_tags"])
     # New regional English choices inherit the same UI, with explicit spelling

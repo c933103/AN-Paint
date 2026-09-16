@@ -138,26 +138,38 @@ class CursorDrawingTest {
         restored.restoreDraft(legacy);assertFalse(restored.cursorDrawing)
     }
 
-    @Test fun navigateMagnifierAppearsOnTouchAndFollowsTheImageAfterPanning() {
-        val board=board();board.setCursorMode(false);board.selectTool(PaintTool.ZOOM);board.zoomAt(5f)
-        board.document.bitmap.eraseColor(Color.BLUE)
-        Canvas(board.document.bitmap).drawRect(45f,45f,55f,55f,Paint().apply {color=Color.RED})
-        board.activeMagnifier=true
-        var point=board.toScreen(50f,50f)
-        touch(board,MotionEvent.ACTION_DOWN,point.x,point.y)
-        val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
-        fun assertLens() {
-            board.draw(Canvas(image))
-            val left=if(point.x<board.width/2 && point.y<board.height/2) board.width-40-240-16 else 16
-            assertEquals("Lens samples the image under the finger",Color.RED,image.getPixel(left+120,136))
+    @Test fun navigateMagnifierSamplesTheFingerAfterBothPanningAndClampedMovement() {
+        // At 5x this 100 px image stays centred inside the viewport; at 12x it can pan.
+        for(scale in listOf(5f,12f)) {
+            val board=board();board.setCursorMode(false);board.selectTool(PaintTool.ZOOM);board.zoomAt(scale)
+            board.document.bitmap.eraseColor(Color.BLUE)
+            Canvas(board.document.bitmap).drawRect(45f,45f,55f,55f,Paint().apply {color=Color.RED})
+            board.activeMagnifier=true
+            var point=board.toScreen(50f,50f)
+            touch(board,MotionEvent.ACTION_DOWN,point.x,point.y)
+            val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
+            fun assertLens(expected: Int) {
+                board.draw(Canvas(image))
+                val left=if(point.x<board.width/2 && point.y<board.height/2) board.width-40-240-16 else 16
+                assertEquals("$scale: lens samples the image under the finger",expected,image.getPixel(left+120,136))
+            }
+            try {
+                assertLens(Color.RED)
+                point=PointF(point.x+35,point.y+25)
+                touch(board,MotionEvent.ACTION_MOVE,point.x,point.y)
+                val sampled=board.toImage(point.x,point.y)
+                if(scale==5f) {
+                    assertEquals(57f,sampled.x,.001f);assertEquals(55f,sampled.y,.001f)
+                    assertLens(Color.BLUE)
+                } else {
+                    assertEquals(50f,sampled.x,.001f);assertEquals(50f,sampled.y,.001f)
+                    assertLens(Color.RED)
+                }
+                touch(board,MotionEvent.ACTION_UP,point.x,point.y)
+                board.draw(Canvas(image));assertNotEquals(Color.RED,image.getPixel(136,136))
+                assertFalse(board.document.canUndo)
+            } finally {image.recycle();board.document.close()}
         }
-        assertLens()
-        point=PointF(point.x+35,point.y+25)
-        touch(board,MotionEvent.ACTION_MOVE,point.x,point.y);assertLens()
-        touch(board,MotionEvent.ACTION_UP,point.x,point.y)
-        board.draw(Canvas(image));assertNotEquals(Color.RED,image.getPixel(136,136))
-        assertFalse(board.document.canUndo)
-        image.recycle();board.document.close()
     }
 
     @Test fun activeMagnifierSettingControlsTheCurrentDrawingMode() {

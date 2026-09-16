@@ -73,24 +73,32 @@ class ViewportAndVerticalTextTest {
         assertEquals(before.getDouble("cursor_x"),board.draftState().getDouble("cursor_x"),0.0)
         board.setCursorMode(false);assertFalse(board.zoomStatusLabel().contains("x:"))
     }
-    @Test fun canvasDisplayDoesNotBlendNeighbouringPixelsWhenZoomedInOrOut() {
+    @Test fun canvasDisplayFiltersOnlyReducedPreviewsAndPreservesSourcePixels() {
         val doc=PaintDocument().apply {newImage(32,32)}
         for(y in 0 until 32) for(x in 0 until 32) doc.bitmap.setPixel(x,y,if((x+y)%2==0) Color.RED else Color.BLUE)
         val board=PaintCanvas(RuntimeEnvironment.getApplication(),doc)
         board.layout(0,0,800,600)
-        for(zoom in listOf(.6f,1.75f)) {
+        val original=IntArray(32*32).also {doc.bitmap.getPixels(it,0,32,0,0,32,32)}
+        for(zoom in listOf(.6f,1f,1.75f)) {
             board.zoomAt(zoom)
             val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
             try {
                 board.draw(Canvas(image))
                 val start=board.toScreen(4f,4f);val end=board.toScreen(28f,28f)
-                var sampled=0
+                var sampled=0;var blended=0
                 for(y in start.y.toInt()+1 until end.y.toInt()-1) for(x in start.x.toInt()+1 until end.x.toInt()-1) {
                     val colour=image.getPixel(x,y)
-                    assertTrue("$zoom: display must use original pixel colours at $x,$y",colour==Color.RED || colour==Color.BLUE)
+                    if(zoom>=1f) assertTrue("$zoom: magnified pixels stay crisp at $x,$y",colour==Color.RED || colour==Color.BLUE)
+                    else {
+                        assertEquals(255,Color.alpha(colour));assertEquals(0,Color.green(colour))
+                        if(Color.red(colour)>0 && Color.blue(colour)>0) blended++
+                    }
                     sampled++
                 }
                 assertTrue(sampled>20)
+                if(zoom<1f) assertTrue("Reduced previews must average neighbouring pixels",blended>20)
+                val unchanged=IntArray(original.size).also {doc.bitmap.getPixels(it,0,32,0,0,32,32)}
+                assertArrayEquals(original,unchanged)
             } finally {image.recycle()}
         }
     }

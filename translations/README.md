@@ -3,7 +3,11 @@
 AN Paint's View → Languages offers device default and 135 language/region/
 script choices, including English. Coverage is partial and varies by language.
 
-Version 0.0.35 adds selected Krita vocabulary for gaps outside the GIMP import:
+Version 0.0.36 adds 232 further resource gap fills from LibreOffice (206) and
+MediaWiki (26), across 21 existing language choices. Exact command contexts,
+original translator notices and MPL/GPL licences are retained.
+
+Version 0.0.35 added selected Krita vocabulary for gaps outside the GIMP import:
 256 resource gap fills across 12 language bases, including 8 new partial choices.
 The supplementary search now focuses on major applications. See
 [the mainstream source audit](MAINSTREAM_SOURCE_AUDIT.md) for inspected projects,
@@ -236,7 +240,9 @@ The original translator headers and complete GPL text are bundled in
 File → About, licences & credits → Translation credits & licences. They
 also enter the generated third-party notices and exact corresponding source ZIP.
 No endorsement by GIMP or its translators is implied. Paint.NET resources were
-not imported: its published application licence does not permit this reuse.
+not imported: its published application licence does not grant this reuse,
+and no separate reusable licence for its official translation catalogue has
+been established. Free downloads and Crowdin hosting alone are not permission.
 
 Rebuild offline: `python tools/reuse_upstream_translations.py`.
 Verify: `python -m unittest discover -s tools -p 'test_*.py'`.

@@ -82,7 +82,7 @@ class AppLanguageTest {
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
-            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
+            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn","ug","af","bo","lo")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
             else assertEquals("File",wrapped.getString(R.string.ui_menu_file))
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))

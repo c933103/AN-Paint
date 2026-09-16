@@ -95,9 +95,10 @@ for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
 Other languages and deeper dialogs have varying partial coverage, with English
 fallback. Translation completeness is not a claim of independent native review.
 
-Existing Paintroid, Android, GIMP and selected Krita vocabulary retains its
+Existing Paintroid, Android, GIMP, Krita, LibreOffice and MediaWiki vocabulary retains its
 provenance and translator credits. Krita fills selected gaps for languages absent
-from the GIMP import, including eight additional partial language choices. See the
+from the GIMP import, including eight additional partial language choices. LibreOffice
+and MediaWiki fill further common-command gaps in 21 existing language choices. See the
 [mainstream source audit](translations/MAINSTREAM_SOURCE_AUDIT.md).
 Armenian, both Tatar scripts and both Ainu scripts are
 available. See [translation notes](translations/README.md) and

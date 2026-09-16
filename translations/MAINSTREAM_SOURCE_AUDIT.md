@@ -10,11 +10,89 @@ Crowdin-origin Android resources, AOSP action labels, selected MediaWiki actions
 and the previously documented Ainu community vocabulary. Their sources and
 credits remain unchanged.
 
-| Application | Source checked | Result in 0.0.35 |
+| Application | Source checked | Current result (0.0.36) |
 | --- | --- | --- |
 | Krita | Official KDE GitLab project and its GitHub mirror, revision `428d44705de20770434ea2915021241dc073879c` | 14 non-English catalogues absent from the GIMP locale map inspected; 256 actual resource gap fills across 12 language bases, including 8 additional partial choices. |
 | Inkscape | [Official translation repository](https://gitlab.com/inkscape/translations) and [translation service](https://translate.inkscape.org/projects/inkscape/master/inkscape/kn/) | GPL-2.0-or-later catalogue licence confirmed. No Inkscape terms imported in this change; a pinned, context-level extraction has not been completed. |
-| LibreOffice | [Translation repository](https://github.com/LibreOffice/translations/tree/84fc1f3ce6a7d0ff415ac93495ba172b8ce2bac6/source) and [official translation service](https://translations.documentfoundation.org/projects/libo_ui-26-2/) | Broad language inventory checked, including languages outside GIMP. Official translation components use MPL-2.0. No LibreOffice terms imported in this change; component-specific mapping and notice review remain to be done. |
+| LibreOffice | [Pinned command catalogues](https://github.com/LibreOffice/translations/tree/84fc1f3ce6a7d0ff415ac93495ba172b8ce2bac6/source) and [official translation service](https://translations.documentfoundation.org/projects/libo_ui-26-2/) | 206 actual resource gap fills across 14 existing language choices, using exact GenericCommands contexts. |
+| MediaWiki | [Pinned core catalogues](https://github.com/wikimedia/mediawiki/tree/ea83228d5fe2b1f9559196a2716c8580cdb2407d/languages/i18n) and `qqq.json` message documentation | 26 further resource gap fills across eight existing choices. This extends the earlier narrow Ryukyuan/Tai Nüa use. |
+| Paint.NET | [Official translation documentation](https://paint.net/doc/latest/Translations.html) and [application licence](https://paint.net/license.html) | Official RESX translations use Crowdin, but these pages do not establish a separate licence allowing catalogue reuse. No import. Independently published language packs require their own explicit permission; none has been imported. |
+
+## LibreOffice and MediaWiki import (0.0.36)
+
+The 0.0.35 work checked LibreOffice's inventory/licensing but did not extract
+individual terms. MediaWiki had only supplied a few starter actions and language
+names. Paint.NET's application licence had been mentioned in the older translation
+notes; there was no catalogue-level audit or import. The current review checks
+the official sources directly and records the narrower actual scope above.
+
+LibreOffice uses the `officecfg/registry/data/org/openoffice/Office/UI.po`
+component. Its [translation service](https://translations.documentfoundation.org/projects/libo_ui-26-2/officecfgregistrydataorgopenofficeofficeui/fy/)
+identifies MPL-2.0; [LibreOffice's licence statement](https://www.libreoffice.org/licenses/)
+and the full retained `LIBREOFFICE-COPYING.MPL` supply the terms. Excerpts and
+adaptations remain available under MPL-2.0 and are additionally distributed
+under AGPL-3.0-or-later under MPL section 3.3, when combined into AN Paint.
+Original headers remain intact. See also the
+[MPL compatibility guidance](https://www.mozilla.org/en-US/MPL/2.0/FAQ/#q14-may-i-combine-mpl-licensed-code-and-lgpl-licensed-code-in-the-same-executable-program).
+
+The mapping selects 27 Android resource keys by exact msgctxt and English msgid:
+menu labels come from popup-menu contexts, clipboard actions from command
+contexts, and geometric tools from their shape commands. It deliberately avoids
+using reset-formatting `Clear` for clearing a canvas, and avoids replacing the
+formatted `Save as %1$s` resource with an unformatted label. Fuzzy, empty and
+English-copy entries are excluded. Desktop `~` mnemonics and trailing dialog
+punctuation are adapted. Uzbek is explicitly mapped to `uz-Latn`, with a check
+against Cyrillic leakage. Interlingua and Northern Sámi have no such component
+at this revision and produce no import.
+
+MediaWiki uses seven documented keys: Cancel, Help, OK, Edit, Undo, Done and
+Save. It does not reuse the File namespace tab as a File menu or wiki-specific
+page commands as canvas commands. Markup, variables and language fallbacks are
+excluded; only messages present in the exact language JSON are eligible.
+Core message documentation was checked in `qqq.json`. Jeju has no core catalogue
+at the pinned revision, so nothing is invented for it. The full upstream
+`COPYING` (GPL-2.0-or-later) and every selected catalogue's `@metadata` authors
+are retained. Wikipedia article text and website documentation licences are
+not used as the source of these software strings.
+
+All 22 full source files matched their reported Git blob hashes before
+excerpting. `libreoffice-catalogues.json` and `mediawiki-catalogues.json` retain
+file identities, original selected entries and contributor metadata; the term
+maps retain exact semantic selectors. Both original licences and notices enter
+the APK and matching corresponding source. No new language choices are added:
+there remain 135 offered choices, with varying partial coverage. Context review
+does not imply independent native-speaker review of every label.
+
+| Existing choice | LibreOffice gap fills | MediaWiki gap fills |
+| --- | ---: | ---: |
+| Afrikaans (`af`) | 26 | 0 |
+| Tibetan (`bo`) | 21 | 0 |
+| Cebuano (`ceb`) | 0 | 3 |
+| Welsh (`cy`) | 24 | 0 |
+| Western Frisian (`fy`) | 22 | 0 |
+| Javanese (`jv`) | 1 | 0 |
+| Latin (`la`) | 0 | 4 |
+| Lao (`lo`) | 26 | 1 |
+| Maithili (`mai`) | 19 | 0 |
+| Ryukyuan (`ryu`) | 0 | 4 |
+| Sindhi (`sd`) | 18 | 0 |
+| Shan (`shn`) | 0 | 5 |
+| Albanian (`sq`) | 14 | 0 |
+| Swahili (`sw`) | 5 | 0 |
+| Tai Nüa (`tdd`) | 0 | 1 |
+| Tagalog (`tl`) | 6 | 0 |
+| Toki Pona (`tok`) | 0 | 5 |
+| Uyghur (`ug`) | 3 | 0 |
+| Urdu (`ur`) | 1 | 0 |
+| Uzbek Latin (`uz-Latn`) | 20 | 0 |
+| Zhuang (`za`) | 0 | 3 |
+| **Total resources** | **206** | **26** |
+
+Existing translations and all 30 reviewed main-menu catalogues retain
+precedence. Coverage counts compare the final generated resources, after menu
+overrides; candidate entries are reported separately. Offline regeneration and
+host checks verify notices, contexts, scripts, exact gap counts and preservation
+of every previously translated label.
 
 ## Krita import
 

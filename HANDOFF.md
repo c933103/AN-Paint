@@ -1,3 +1,46 @@
+# AN Paint 0.0.36 — regression corrections and mainstream translation gaps
+
+Development version code 91. Run 35068263310 for 0.0.35 built the APK and passed
+the API 35 emulator job. Lint reported zero issues. The regression suite executed
+284 tests, with three failures; that run is not a regression pass.
+
+All three failures were traced to test expectations:
+
+- AppLanguageTest still expected English File for Uyghur after the Krita import.
+  It now expects translated File for Uyghur and the added LibreOffice cases.
+- ViewportAndVerticalTextTest required unfiltered source colours below 100%,
+  contradicting the deliberate thin-line display fix. It now requires filtered
+  reduction, crisp pixels at 100%/above, and unchanged source pixels at every zoom.
+- CursorDrawingTest tried to pan a 500 px image inside a larger viewport. The
+  viewport correctly kept it centred, so moving the finger sampled blue outside
+  the red patch. It now checks both this clamped case and actual 1200 px panning,
+  including the sampled coordinates and lens colour before/after movement.
+
+No test is disabled, and the magnifier/thin-line implementations are retained.
+The 0.0.35 colour-recovery and thin-line-specific tests passed in its report;
+there is still no evidence explaining a particular device's white foreground.
+
+Added 232 actual translation resource gaps: LibreOffice 206 across 14 existing
+choices, MediaWiki 26 across eight (21 distinct choices). All 22 full source
+catalogues matched their pinned Git blob hashes before excerpting. Exact
+contexts, translator headers/authors, original licences and adaptations are
+retained and included in the combined notice. Existing translated labels and
+all 30 reviewed main-menu catalogues keep precedence. There remain 135 offered
+choices; these additions are partial. Paint.NET's official docs/licence were
+reviewed directly; no separate reusable catalogue licence was established, so
+no Paint.NET terms are imported. Inkscape remains an audited candidate without
+a completed context-level import. See translations/MAINSTREAM_SOURCE_AUDIT.md.
+
+Local validation: 87 host checks passed, all 145 generated translation/language/
+notice files reproduce, Android aapt2 resource compilation passes, and whitespace
+checks pass. The combined notice equals the unchanged preceding notice plus the
+two new generated sections. The local environment has no usable Gradle dependency
+cache; the corrected Kotlin regression tests require the new GitHub run. Report
+those results as pending until actually completed. Publish the exact source and
+link its asynchronous build without waiting for CI alone, per CI.md.
+
+---
+
 # AN Paint 0.0.35 — compact controls, magnifier and thin-line display
 
 Development version code 90. The prior uniform-tile change increased controls

@@ -1,7 +1,7 @@
 # AN Paint build notes
 
-Current version: `0.0.25`, code `78`, package `paint.anpaint.android`.
-See [the UI correction](verification/UI_0.0.25.md) for this update.
+Current development version: `0.0.36`, code `91`, package `paint.anpaint.android`.
+See HANDOFF.md for the current change record and CI.md for build/test status rules.
 
 ## Historical local.20 baseline
 

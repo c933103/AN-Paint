@@ -178,6 +178,8 @@ notice.append('\n\nMATERIAL DESIGN 3 COLOUR NOTICES\n\n' + (ROOT / 'Paintroid/sr
 notice.append('\n\nBMP, DIB AND GIF FORMAT NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/RASTER_FORMAT_NOTICES.txt').read_text())
 notice.append('\n\nGIMP TRANSLATION NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt').read_text())
 notice.append('\n\nKRITA TRANSLATION NOTICES\n\n' + (ROOT / 'Paintroid/src/main/assets/legal/KRITA_TRANSLATION_NOTICES.txt').read_text())
+for project in ('LIBREOFFICE', 'MEDIAWIKI'):
+    notice.append(f'\n\n{project} TRANSLATION NOTICES\n\n' + (ROOT / f'Paintroid/src/main/assets/legal/{project}_TRANSLATION_NOTICES.txt').read_text())
 destination = ROOT / 'Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt'
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(''.join(notice))

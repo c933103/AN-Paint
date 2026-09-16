@@ -1,9 +1,11 @@
 """Host checks for provenance, the selected shared vocabulary, and locale declarations."""
 import json
+import hashlib
 import ast
 import re
 import gimp_translations
 import krita_translations
+import mainstream_translations
 import unittest
 from unittest import mock
 import pathlib
@@ -225,6 +227,74 @@ class KritaTranslationTests(unittest.TestCase):
         self.assertEqual('保存…', krita_translations.adapt('保存(&S)...', 'Save…'))
         # Existing GIMP/locally reviewed terms have precedence over supplements.
         self.assertEqual('左右反転', translations.read_strings(translations.RES / 'values-ja/strings.xml')['ui_flip_horizontal'])
+
+
+class MainstreamTranslationTests(unittest.TestCase):
+    def test_exact_source_contexts_and_translator_notices_are_preserved(self):
+        for project, revision, count, licence in (
+            ('libreoffice', '84fc1f3ce6a7d0ff415ac93495ba172b8ce2bac6', 14, 'LIBREOFFICE-COPYING.MPL'),
+            ('mediawiki', 'ea83228d5fe2b1f9559196a2716c8580cdb2407d', 8, 'MEDIAWIKI-COPYING.txt'),
+        ):
+            data = json.loads((translations.DATA / f'{project}-catalogues.json').read_text())
+            self.assertEqual(revision, data['revision'])
+            self.assertEqual(count, len(data['sources']))
+            raw_licence = (translations.DATA / licence).read_bytes()
+            self.assertEqual(data['license_blob_sha'], hashlib.sha1(b'blob ' + str(len(raw_licence)).encode() + b'\0' + raw_licence).hexdigest())
+            notice = (translations.RES.parent / f'assets/legal/{project.upper()}_TRANSLATION_NOTICES.txt').read_text()
+            self.assertIn((translations.DATA / licence).read_text(), notice)
+            for source in data['sources']:
+                self.assertRegex(source['blob_sha'], r'^[0-9a-f]{40}$')
+                self.assertIn(source['blob_sha'], notice)
+                if project == 'mediawiki':
+                    for author in source['metadata']['authors']:
+                        self.assertIn(author, notice)
+                    continue
+                self.assertIn(source['header'], notice)
+                for entry in source['entries']:
+                    parsed = {}; field = None
+                    for line in entry['raw'].splitlines():
+                        if line.startswith(('msgctxt ', 'msgid ', 'msgstr ')):
+                            field, value = line.split(' ', 1); parsed[field] = ast.literal_eval(value)
+                        elif line.startswith('"') and field:
+                            parsed[field] += ast.literal_eval(line)
+                    self.assertEqual({k: entry[k] for k in ('msgctxt', 'msgid', 'msgstr')}, parsed)
+                    self.assertNotRegex(entry['raw'], r'(?m)^#,.*\bfuzzy\b')
+
+    def test_supplements_preserve_every_existing_translated_label(self):
+        after = translations.generate()
+        with mock.patch.object(mainstream_translations, 'load', return_value={}):
+            before = translations.generate()
+        defaults = {}
+        for path in (translations.RES / 'values').glob('*.xml'):
+            defaults.update(translations.read_strings(path))
+        normal = lambda s: s.strip().strip('"').replace("\\'", "'").rstrip(':：').casefold()
+        for path, content in before.items():
+            if path.name != 'strings.xml':
+                continue
+            old = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(content)}
+            new = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(after[path])}
+            for key, value in old.items():
+                if normal(value) != normal(defaults.get(key, '')):
+                    self.assertEqual(value, new[key], f'{path}/{key}')
+
+    def test_gap_counts_scripts_and_contexts_are_auditable(self):
+        report = json.loads((translations.DATA / 'coverage.json').read_text())
+        self.assertEqual(135, report['offered_language_count_including_english'])
+        for project, total in (('libreoffice', 206), ('mediawiki', 26)):
+            self.assertEqual(total, sum(r.get(project + '_translation_entries', 0) for r in report['coverage']))
+        mapping = json.loads((translations.DATA / 'libreoffice-terms.json').read_text())
+        self.assertIn('Popups..uno:PickList\nLabel', mapping['ui_menu_file']['msgctxt'])
+        self.assertIn('Commands..uno:FlipHorizontal\nLabel', mapping['ui_flip_horizontal']['msgctxt'])
+        self.assertNotIn('ui_clear', mapping)  # Reset-formatting Clear is not Clear canvas.
+        bo = translations.read_strings(translations.RES / 'values-b+bo/strings.xml')
+        self.assertEqual('"ཡིག་ཆ།"', bo['ui_menu_file'])
+        lo = translations.read_strings(translations.RES / 'values-b+lo/strings.xml')
+        self.assertEqual('"ໄຟລ໌"', lo['ui_menu_file'])
+        za = translations.read_strings(translations.RES / 'values-b+za/strings.xml')
+        self.assertEqual('"Bangcoh"', za['ui_menu_help'])
+        uz = translations.read_strings(translations.RES / 'values-b+uz+Latn/strings.xml')
+        self.assertNotRegex(''.join(uz.values()), r'[\u0400-\u04ff]')
+        self.assertEqual('ཡིག་ཆ།', mainstream_translations.adapt('ཡིག་ཆ།(~F)', 'File', 'libreoffice'))
 
 
 class TatarScriptTests(unittest.TestCase):
