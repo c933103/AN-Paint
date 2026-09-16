@@ -55,8 +55,8 @@ open class PanelToolButton(context: Context): FlowButton(context) {
     companion object {
         fun tileSize(context: Context): Int {
             val metrics=context.resources.displayMetrics
-            val scale=context.resources.configuration.fontScale.coerceAtLeast(1f)
-            return ((if(VerticalText.uiVertical()) 112 else 96)*metrics.density*scale+.5f).toInt()
+            // Preserve the original compact rail height for every locale and font setting.
+            return (64*metrics.density+.5f).toInt()
         }
     }
     var disclosure: Boolean?=null
@@ -65,8 +65,8 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
         // The activity theme supplies textAlignment=viewStart; gravity alone cannot override it.
         textAlignment=TEXT_ALIGNMENT_CENTER;gravity=Gravity.CENTER
-        if(!VerticalText.uiVertical()) {maxLines=3;ellipsize=android.text.TextUtils.TruncateAt.END}
-        setPadding(dp(6),dp(5),dp(6),dp(5));columnHeightDp=112
+        if(!VerticalText.uiVertical()) {maxLines=2;ellipsize=android.text.TextUtils.TruncateAt.END;includeFontPadding=false}
+        setPadding(dp(4),dp(3),dp(4),dp(3));compoundDrawablePadding=dp(2);columnHeightDp=58
         fun tile(selected: Boolean)=GradientDrawable().apply {
             setColor(if(selected) EditorColours.primaryContainer else EditorColours.surfaceContainer)
             setStroke(dp(1),if(selected) EditorColours.primary else EditorColours.outlineVariant)
@@ -78,10 +78,23 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         setTextColor(EditorColours.onSurface)
     }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        // One square size for every tool, including vertical scripts and larger fonts.
+        // One compact square size for every tool, including vertical scripts and larger fonts.
         // Captions wrap within the tile; their length must never size an individual button.
         val side=minOf(resolveSize(tileSize(context),widthMeasureSpec),resolveSize(tileSize(context),heightMeasureSpec))
         columnHeightDp=((side-paddingTop-paddingBottom)/resources.displayMetrics.density).toInt()
+        icon?.let {drawable ->
+            val captionSpace=ceil(paint.fontSpacing*2).toInt()
+            val iconSide=if(VerticalText.uiVertical()) dp(24) else
+                minOf(dp(24),(side-paddingTop-paddingBottom-captionSpace-dp(2)).coerceAtLeast(dp(16)))
+            if(drawable.bounds.width()!=iconSide || drawable.bounds.height()!=iconSide) {
+                drawable.setBounds(0,0,iconSide,iconSide)
+                if(!VerticalText.uiVertical()) setCompoundDrawables(null,drawable,null,null)
+            }
+        }
+        if(!VerticalText.uiVertical()) {
+            compoundDrawablePadding=dp(2)
+            maxLines=((side-paddingTop-paddingBottom-(icon?.bounds?.height() ?: 0)-compoundDrawablePadding)/paint.fontSpacing).toInt().coerceIn(1,2)
+        }
         super.onMeasure(MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY))
     }
     override fun caption(): String {

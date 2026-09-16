@@ -201,6 +201,29 @@ class ClassicWorkspaceTest {
         val saved=BitmapFactory.decodeFile(provider.file.path)
         assertEquals(Color.MAGENTA,saved.getPixel(7,9));saved.recycle()
     }
+    @Test fun restartingPreservesForegroundAndBackgroundIncludingAnExplicitWhiteForeground() {
+        for((hex,colour) in listOf("000000" to Color.BLACK,"FF0000" to Color.RED,"FFFFFF" to Color.WHITE)) {
+            click("colour_$hex")
+            activity.window.decorView.findViewWithTag<View>("colour_0000FF").performLongClick()
+            controller.pause().stop();awaitIo();controller.destroy()
+            controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+            shadowOf(Looper.getMainLooper()).idle()
+            assertEquals("Saved foreground must not swap with the background",colour,doc.foreground)
+            assertEquals(Color.BLUE,doc.background)
+        }
+    }
+
+    @Test fun legacyDraftWithoutColourMetadataDefaultsToBlackForegroundAndWhiteBackground() {
+        val context=activity.applicationContext
+        controller.pause().stop();awaitIo();controller.destroy()
+        val image=Bitmap.createBitmap(24,24,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.WHITE)}
+        AutosaveStore(context.filesDir).write(image,null,org.json.JSONObject().put("version",1))
+        image.recycle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        shadowOf(Looper.getMainLooper()).idle()
+        assertEquals(Color.BLACK,doc.foreground);assertEquals(Color.WHITE,doc.background)
+    }
+
     @Test fun failedSaveKeepsUnsavedChanges() {
         tool(PaintTool.PENCIL); drag(10f, 10f, 50f, 10f)
         provider.denyWrite = true

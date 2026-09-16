@@ -237,6 +237,7 @@ class ResponsiveToolboxTest {
         fun centred(button: android.widget.Button) {
             assertTrue(button is PanelToolButton)
             assertEquals("Square tile ${button.text}",button.width,button.height)
+            assertEquals("Original compact height",(64*activity.resources.displayMetrics.density+.5f).toInt(),button.height)
             val layout=requireNotNull(button.layout)
             for(line in 0 until layout.lineCount) assertEquals("Caption ${button.text}",button.width/2f,button.totalPaddingLeft+(layout.getLineLeft(line)+layout.getLineRight(line))/2f,1f)
             assertNotNull(button.compoundDrawables[1])
@@ -258,6 +259,34 @@ class ResponsiveToolboxTest {
         assertTrue(EditorTestNavigation.buttons(view("panel_File_commands")).none {it is PanelToolButton})
     }
     @Test fun translatedCommandCaptionsFitInPortrait()=checkTranslatedCommands("portrait")
+    @Test fun largerSystemFontsKeepTheOriginalCompactTileHeightAndAccessibleCaption() {
+        for(scale in listOf(1f,1.5f,2f)) {
+            val config=Configuration(activity.resources.configuration).apply {fontScale=scale}
+            val context=activity.createConfigurationContext(config)
+            val tile=PanelToolButton(context).apply {
+                text="A long translated command";contentDescription=text
+                labelledIcon(org.catrobat.paintroid.R.drawable.breeze_zoom_in)
+            }
+            val unbounded=View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED)
+            tile.measure(unbounded,unbounded);tile.layout(0,0,tile.measuredWidth,tile.measuredHeight)
+            val side=(64*context.resources.displayMetrics.density+.5f).toInt()
+            assertEquals(side,tile.width);assertEquals(side,tile.height)
+            assertEquals(tile.text,tile.contentDescription)
+            assertTrue(tile.layout.height<=side-tile.compoundPaddingTop-tile.compoundPaddingBottom)
+        }
+    }
+
+    @Test fun viewMagnifierToggleEditsTheActiveCursorPreference() {
+        EditorTestNavigation.command(activity,"View",2)
+        click("cursor_mode_enabled")
+        assertTrue(activity.paintCanvas.cursorMagnifier)
+        EditorTestNavigation.named(activity,"View","Magnifier")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val toggle=dialog.window!!.decorView.findViewWithTag<android.widget.CheckBox>("magnifier_enabled")
+        assertTrue(toggle.isChecked);toggle.performClick();assertFalse(activity.paintCanvas.cursorMagnifier)
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();settle()
+        assertFalse(view<android.widget.CheckBox>("cursor_magnifier_enabled").isChecked)
+    }
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi")
     fun translatedCommandCaptionsFitInLandscape()=checkTranslatedCommands("landscape")
     private fun checkTranslatedCommands(orientation: String) {
@@ -273,7 +302,8 @@ class ResponsiveToolboxTest {
                         assertEquals(view<View>("category_BRUSH").height,button.height)
                         val layout=requireNotNull(button.layout)
                         assertEquals("Full caption: $language/$tab/${button.text}",button.text.length,layout.getLineEnd(layout.lineCount-1))
-                        for(line in 0 until layout.lineCount) assertEquals("No ellipsis: $language/$tab/${button.text}",0,layout.getEllipsisCount(line))
+                        assertEquals("Compact translated tile",(64*activity.resources.displayMetrics.density+.5f).toInt(),button.height)
+                        assertTrue("Full caption remains accessible: $language/$tab",button.contentDescription.toString().contains(button.text.toString()))
                         assertTrue("Caption fits below the icon: $language/$tab/${button.text}",layout.height<=button.height-button.compoundPaddingTop-button.compoundPaddingBottom)
                     }
                     render("translated-$language-$tab-$orientation.png")

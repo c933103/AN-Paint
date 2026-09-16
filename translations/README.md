@@ -1,7 +1,13 @@
 # Reused translation vocabulary
 
-AN Paint's View → Languages offers device default and 126 language/region/
+AN Paint's View → Languages offers device default and 135 language/region/
 script choices, including English. Coverage is partial and varies by language.
+
+Version 0.0.35 adds selected Krita vocabulary for gaps outside the GIMP import:
+256 resource gap fills across 12 language bases, including 8 new partial choices.
+The supplementary search now focuses on major applications. See
+[the mainstream source audit](MAINSTREAM_SOURCE_AUDIT.md) for inspected projects,
+exact scope, rejected entries, licence evidence and remaining source work.
 The generator combines pinned Paintroid, Android and GIMP editor vocabulary,
 reviewed regional corrections and smaller sourced starter catalogues. Tatar
 has separate Cyrillic and Latin choices. No choice is name-only. New or absent

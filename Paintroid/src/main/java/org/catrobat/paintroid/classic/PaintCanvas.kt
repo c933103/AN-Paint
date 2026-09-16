@@ -90,13 +90,17 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private var cursor = PointF()
     private val cursorOverlay = PaintroidCursorOverlay()
     // Android adds FILTER_BITMAP_FLAG to constructor flags on newer versions.
-    // Clear it explicitly so fractional zoom never blends neighbouring pixels.
+    // Keep magnified pixels crisp; only the overview uses a filtered reduction.
     private val bitmapDisplayPaint = Paint(0).apply { isFilterBitmap=false;isAntiAlias=false }
+    private val bitmapOverview = CanvasBitmapOverview()
     private var cursorInitial = PointF()
     var cursorMagnifier = true
     var cursorMarkerScale = 1f
     var cursorShape = 0
     var magnifiedPreview = false
+    var activeMagnifier: Boolean
+        get() = if(cursorAvailable) cursorMagnifier else magnifiedPreview
+        set(value) { if(cursorAvailable) cursorMagnifier=value else magnifiedPreview=value;invalidate() }
     var previewMagnification = 2f
     private var previewPoint: PointF? = null
     private var previewTouch = PointF()
@@ -228,7 +232,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.drawExpansion(canvas,document.background)
         val p = Paint().apply { color = Color.WHITE }
         canvas.drawRect(0f, 0f, bitmap.width.toFloat(), bitmap.height.toFloat(), p)
-        canvas.drawBitmap(bitmap, 0f, 0f, bitmapDisplayPaint)
+        bitmapOverview.draw(canvas,bitmap,zoom)
         document.selection?.let { s ->
             if (s.floating) {
                 if (renderedSource !== s.image || renderedBackground != document.background) {
@@ -276,7 +280,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)
             canvas.restore()
         }
-        if ((if(supportsCursor()) cursorMagnifier else magnifiedPreview) && down && !multiTouch && !panning && scrollAxis==0)
+        if (activeMagnifier && down && !multiTouch && scrollAxis==0)
             previewPoint?.let { drawMagnifiedPreview(canvas,it) }
         canvas.restore()
         if(grid) drawRulers(canvas)
@@ -400,7 +404,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     fun cancelTrim() { trim = null; fit(); invalidate(); onStatus() }
 
     fun pauseGesture() {
-        document.finishGesture(); down=false;multiTouch=false;movingSelection=false;selectionHandle=-1;removeCallbacks(sprayTick)
+        document.finishGesture(); down=false;multiTouch=false;panning=false;movingSelection=false;selectionHandle=-1;removeCallbacks(sprayTick)
     }
 
     fun applyPending() {
@@ -671,7 +675,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 screenStart = PointF(event.x, event.y); screenPrevious = PointF(event.x, event.y)
                 scrollAxis = if (event.y >= height - bar) 1 else if (event.x >= width - bar) 2 else 0
                 if (scrollAxis != 0) { beginScrollbar(event.x, event.y); return true }
-                if (panning) return true
+                if (panning) {invalidate();return true}
                 selectionHandle=if (tool in listOf(PaintTool.SELECT,PaintTool.LASSO)) document.selection?.let { hitSelection(it,point) } ?: -1 else -1
                 movingSelection=selectionHandle != -1
                 initialSelectionRect=document.selection?.rect?.let { RectF(it) }
@@ -704,6 +708,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                 if (panning) {
                     fitMode=false;panX += event.x - screenPrevious.x; panY += event.y - screenPrevious.y; clampPan()
                     screenPrevious = PointF(event.x, event.y)
+                    previewPoint=toImage(event.x,event.y)
                 } else if (movingSelection) {
                     updateSelectionTouch(point);onStatus()
                 } else when (tool) {
@@ -775,5 +780,5 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         invalidate(); return true
     }
     override fun performClick(): Boolean { super.performClick(); return true }
-    override fun onDetachedFromWindow() { removeCallbacks(sprayTick); super.onDetachedFromWindow() }
+    override fun onDetachedFromWindow() { removeCallbacks(sprayTick);bitmapOverview.close();super.onDetachedFromWindow() }
 }

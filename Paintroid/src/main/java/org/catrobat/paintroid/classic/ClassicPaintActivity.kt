@@ -1336,12 +1336,13 @@ class ClassicPaintActivity : Activity() {
     }
     private fun showDrawingSettings(preview: Boolean) {
         val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}
-        fun toggle(title: String,value: Boolean,change: (Boolean)->Unit) {
-            column.addView(CheckBox(this).apply {text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })
+        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {
+            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })
         }
         if(preview) {
-            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.magnifiedPreview) {
-                paintCanvas.magnifiedPreview=it
+            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,"magnifier_enabled") {
+                paintCanvas.activeMagnifier=it
+                populateCursorOptions()
             }
             column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {
                 paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()

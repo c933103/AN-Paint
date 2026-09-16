@@ -17,8 +17,9 @@ armeabi-v7a, x86_64 and x86.
 ## Editing
 
 - View, Draw, File, Edit and Color tabs. Portrait uses a panel above the canvas;
-  landscape uses a side ribbon. Tool tiles share a square size, including vertical
-  scripts, and scale together with the system font setting.
+  landscape uses a side ribbon. Tool tiles keep the original compact 64 dp square
+  size, including vertical scripts. Larger text wraps or uses an ellipsis, with
+  the full caption retained for accessibility and tooltips.
 - Draw groups tools into Drawing, Selection and Insert. Edit groups its commands
   into Selection, Canvas and Flip / Rotate. Invert colours is under Canvas. Expand a group to reach its
   commands; collapse it to recover canvas space.
@@ -29,6 +30,10 @@ armeabi-v7a, x86_64 and x86.
 - Navigate supports pinch zoom and pan, actual-size and Fit view. Pixel grid is a
   short, selected-state toggle; its 800% threshold and pixel rulers are explained
   under View > How to use and by holding the grid button.
+- Magnifier works while drawing or navigating and samples the cursor in cursor
+  mode. Its View control edits the active mode's setting. Zoomed-out overviews
+  use progressive filtering to retain thin strokes; actual-size and enlarged
+  views keep crisp pixels. Display filtering does not alter drawing AA or exports.
 - View > Cursor drawing expands cursor options, with an Enable/Disable button,
   independent round/square outline, magnifier and marker size. Brush controls stay
   under Draw > Drawing. Enabling cursor mode starts with positioning only; the
@@ -90,8 +95,11 @@ for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
 Other languages and deeper dialogs have varying partial coverage, with English
 fallback. Translation completeness is not a claim of independent native review.
 
-Existing Paintroid, Android and GIMP vocabulary retains its provenance and
-translator credits. Armenian, both Tatar scripts and both Ainu scripts are
+Existing Paintroid, Android, GIMP and selected Krita vocabulary retains its
+provenance and translator credits. Krita fills selected gaps for languages absent
+from the GIMP import, including eight additional partial language choices. See the
+[mainstream source audit](translations/MAINSTREAM_SOURCE_AUDIT.md).
+Armenian, both Tatar scripts and both Ainu scripts are
 available. See [translation notes](translations/README.md) and
 [TRANSLATING.md](TRANSLATING.md) for catalogues, coverage and regeneration.
 

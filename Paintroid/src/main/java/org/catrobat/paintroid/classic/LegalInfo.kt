@@ -48,6 +48,8 @@ object LegalInfo {
 
             Common UI translations: Android Open Source Project (Apache-2.0), with pinned Android 15 action vocabulary, and Catrobat/Paintroid translators and contributors, AGPL-3.0-or-later. The exact upstream revision, unchanged translation source files and reused-key mapping are preserved under translations in the corresponding source. Untranslated terms fall back to English.
 
+            Additional vocabulary comes from GIMP (GPL-3.0-or-later) and selected Krita catalogues (GPL version 3, with original catalogue notices preserved). Exact gettext contexts, original entries, translator credits and source hashes are included. Read Third-party notices for the original headers and full licence text. Krita supplements languages absent from the GIMP import; these additions remain partial.
+
             Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho, Anonymous Pro and Noto Sans Mongolian, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
             JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. WebP uses libwebp 1.6.0 and SharpYUV by Google and the WebP project contributors under BSD-3-Clause, with its patent grant and the Android NDK CPU-features Apache-2.0 notice.

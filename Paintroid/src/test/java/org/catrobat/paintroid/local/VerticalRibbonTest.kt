@@ -68,6 +68,7 @@ class VerticalRibbonTest {
                 assertEquals("Uniform button heights: $tag/$tab",1,buttons.map {it.height}.toSet().size)
                 if(tab!="File") buttons.forEach {
                     assertEquals("Square vertical tile: ${it.text}",it.width,it.height)
+                    assertEquals("Original compact height",(64*activity.resources.displayMetrics.density+.5f).toInt(),it.height)
                     assertEquals(navigate.height,it.height)
                 }
                 render(root,"vertical-$tab-$tag.png")

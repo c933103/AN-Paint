@@ -3,6 +3,7 @@ import json
 import ast
 import re
 import gimp_translations
+import krita_translations
 import unittest
 from unittest import mock
 import pathlib
@@ -175,6 +176,55 @@ class GimpTranslationTests(unittest.TestCase):
         self.assertGreater(sum(r["gimp_translation_entries"] for r in rows), 3500)
         for row in rows:
             self.assertLessEqual(row["gimp_translation_entries"], row["gimp_available_entries"])
+
+
+class KritaTranslationTests(unittest.TestCase):
+    def test_selected_entries_preserve_context_notices_and_source_identity(self):
+        snapshot = json.loads((translations.DATA / 'krita-catalogues.json').read_text())
+        self.assertEqual('428d44705de20770434ea2915021241dc073879c', snapshot['revision'])
+        self.assertEqual(14, len(snapshot['audited_sources']))
+        notice = (translations.RES.parent / 'assets/legal/KRITA_TRANSLATION_NOTICES.txt').read_text()
+        self.assertIn((translations.DATA / 'KRITA-COPYING.txt').read_text(), notice)
+        for source in snapshot['sources']:
+            self.assertIn(source['header'], notice)
+            self.assertRegex(source['blob_sha'], r'^[0-9a-f]{40}$')
+            for entry in source['entries']:
+                parsed = {}; field = None
+                for line in entry['raw'].splitlines():
+                    if line.startswith(('msgctxt ', 'msgid ', 'msgstr ')):
+                        field, value = line.split(' ', 1); parsed[field] = ast.literal_eval(value)
+                    elif line.startswith('"') and field:
+                        parsed[field] += ast.literal_eval(line)
+                for key in ('msgctxt', 'msgid', 'msgstr'):
+                    self.assertEqual(entry.get(key), parsed.get(key), source['path'])
+                self.assertNotRegex(entry['raw'], r'(?m)^#,.*\bfuzzy\b')
+
+    def test_new_choices_have_real_vocabulary_and_do_not_invent_empty_catalogues(self):
+        options = json.loads((translations.DATA / 'language-options.json').read_text())
+        added = {o['tag'] for o in options['options'] if o.get('translation_source') == 'Krita'}
+        self.assertEqual({'cy','fy','hne','ia','mai','tok','uz-Latn','wa'}, added)
+        report = json.loads((translations.DATA / 'coverage.json').read_text())
+        for tag in added:
+            row = next(r for r in report['coverage'] if r['language_tag'] == tag)
+            self.assertGreater(row['krita_translation_entries'], 0)
+            self.assertFalse(row.get('main_menu_complete', False))
+        self.assertNotIn('tg', added); self.assertNotIn('uz-Cyrl', added)
+        uz = translations.read_strings(translations.RES / 'values-b+uz+Latn/strings.xml')
+        self.assertNotRegex(''.join(uz.values()), r'[\u0400-\u04ff]')
+
+    def test_semantic_rejections_and_exact_gap_fill_counts_are_retained(self):
+        report = json.loads((translations.DATA / 'coverage.json').read_text())
+        for row in report['coverage']:
+            if not row.get('krita_gap_fill_keys'):
+                continue
+            rendered = translations.read_strings(translations.ROOT / row['generated_resource'])
+            self.assertLessEqual(row['krita_translation_entries'], row['krita_available_entries'])
+            self.assertTrue(set(row['krita_gap_fill_keys']) <= set(rendered))
+        af = translations.read_strings(translations.RES / 'values-b+af/strings.xml')
+        self.assertNotIn('Driehoek', af.get('ui_rectangle', ''))
+        self.assertEqual('保存…', krita_translations.adapt('保存(&S)...', 'Save…'))
+        # Existing GIMP/locally reviewed terms have precedence over supplements.
+        self.assertEqual('左右反転', translations.read_strings(translations.RES / 'values-ja/strings.xml')['ui_flip_horizontal'])
 
 
 class TatarScriptTests(unittest.TestCase):

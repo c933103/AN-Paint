@@ -1,3 +1,45 @@
+# AN Paint 0.0.35 — compact controls, magnifier and thin-line display
+
+Development version code 90. The prior uniform-tile change increased controls
+from 64 dp to 96/112 dp and multiplied their dimensions by font scale. Tiles now
+retain the original 64 dp square size for all scripts/font settings. Captions
+wrap or ellipsize while preserving their full accessible/tooltip labels.
+
+The magnifier is no longer suppressed in Navigate mode and redraws on the first
+touch. Its sampled point follows the image after a pan. View's magnifier setting
+controls the active cursor/finger preference and refreshes the cursor drawer.
+Zoomed-out canvas display uses cached progressive half-size filtering followed
+by the final reduction. At 100% and above it keeps nearest-neighbour pixels.
+This changes only display; source pixels, Pencil AA, undo and exports are intact.
+An edit invalidates the cached overview by bitmap generation ID.
+
+No migration/default code forcing the foreground to white was found. Black
+remains the fallback. Added regression cases check legacy drafts without colour
+metadata and restart with black, red and deliberately selected white foregrounds,
+while retaining a different background. This does not establish what happened
+on the reported device.
+
+The mainstream translation audit imports selected Krita catalogue vocabulary
+for languages absent from the pinned GIMP import: 256 gap fills, 12 language
+bases, 8 new partial choices. All 14 inspected full PO files matched their pinned
+Git blob hashes. Translator headers, exact excerpts, mapping and full GPL text
+are preserved. Existing reviewed menu translations keep precedence. See
+translations/MAINSTREAM_SOURCE_AUDIT.md for exact counts and remaining work.
+
+Local validation passed: 84 host checks, regeneration of all 143 translation/
+language/notice files, aapt2 resource compilation and whitespace checks. New Kotlin
+regression, lint and API 35 rendering/behaviour checks run on GitHub. Added tests
+cover compact dimensions, active-mode magnifier controls, navigation sampling,
+thin strokes at reduced scales, unchanged source pixels, cache refresh and colour
+recovery. Follow CI.md: publish reviewed source, link the asynchronous run and
+report pending results without waiting for GitHub alone.
+
+The preceding 0.0.34 release-candidate workflow 35060827699 completed successfully
+(build, regression/lint and full emulator matrix). That candidate was not
+published as a release before these additional fixes and is superseded here.
+
+---
+
 # AN Paint 0.0.34 — image insertion, illustration sources and persistent history
 
 Release candidate version code 89 (development build: 88). Invert colours is under Edit > Canvas; the redundant
