@@ -1,6 +1,7 @@
 # AN Paint 0.0.36 — regression corrections and mainstream translation gaps
 
-Development version code 91. Run 35068263310 for 0.0.35 built the APK and passed
+Release candidate version code 92; signed development build code 91.
+Run 35068263310 for 0.0.35 built the APK and passed
 the API 35 emulator job. Lint reported zero issues. The regression suite executed
 284 tests, with three failures; that run is not a regression pass.
 
@@ -34,10 +35,23 @@ a completed context-level import. See translations/MAINSTREAM_SOURCE_AUDIT.md.
 Local validation: 87 host checks passed, all 145 generated translation/language/
 notice files reproduce, Android aapt2 resource compilation passes, and whitespace
 checks pass. The combined notice equals the unchanged preceding notice plus the
-two new generated sections. The local environment has no usable Gradle dependency
-cache; the corrected Kotlin regression tests require the new GitHub run. Report
-those results as pending until actually completed. Publish the exact source and
-link its asynchronous build without waiting for CI alone, per CI.md.
+two new generated sections. Development workflow 35106140807 for commit
+8a0fecd94c393bf58ca3c9f0f1838acbf749e39f has now passed: 284 regression tests,
+81 Android API 35 tests, zero failures/errors/skips and zero lint issues. All
+three corrected tests passed, as did foreground recovery, compact controls,
+active-mode magnifier and thin-line rendering checks.
+
+The development APK is signed with the existing upgrade certificate. Its embedded
+and separate corresponding source ZIPs match, and all 864 exported repository
+files match the recorded Git tree. Four native ABIs, 16 KB ZIP alignment and the
+unchanged non-signature APK payload are verified. APK SHA-256:
+a580fdbeaff9c23fc2e7ed3340ac220defa952c4c2d5bfcf5cfe062f82d44d1e.
+This remains a debuggable development APK.
+
+This commit prepares the non-debuggable 0.0.36 release candidate, version code 92,
+for release regression/lint and the full Android API 30/35 matrix. Those results,
+release-APK signing and GitHub release publication remain pending. Do not claim
+the development checks verify the release binary or wait for GitHub alone, per CI.md.
 
 ---
 
