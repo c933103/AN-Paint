@@ -181,6 +181,10 @@ class ClassicPaintActivity : Activity() {
         paintCanvas=PaintCanvas(this,document).apply {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
+            onCursorDrawingToggled={ drawing ->
+                cursorOptionsExpanded=false;syncPanels()
+                Toast.makeText(this@ClassicPaintActivity,ui(if(drawing) R.string.ui_cursor_pan_draw32 else R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
+            }
             onPick={ colour -> recentColours.add(colour);refreshRecentColours();updateColours();updateStatus();scheduleAutosave() }
             onText={ x,y -> showTextDialog(x,y) }
             onFill={ x,y -> backgroundEdit { document.fill(x,y) } }
@@ -404,10 +408,11 @@ class ClassicPaintActivity : Activity() {
             split.addView(canvasArea,LinearLayout.LayoutParams(0,-1,1f))
             workspace.addView(split,FrameLayout.LayoutParams(-1,-1))
         }
-        canvasArea.addView(panelButton(ui(R.string.ui_cursor_start31),"cursor_draw_toggle",R.drawable.classic_cursor) {
-            paintCanvas.setCursorDrawing(!paintCanvas.cursorDrawing)
-            Toast.makeText(this,ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_pan_draw32 else R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
-        },FrameLayout.LayoutParams(-2,toolHeight,Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
+        canvasArea.addView(CursorDrawingButton(this).apply {
+            tag="cursor_draw_toggle"
+            setOnClickListener {if(!busy) editAction {paintCanvas.toggleCursorDrawing()}}
+            setOnLongClickListener {showCursorHelp();true}
+        },FrameLayout.LayoutParams(dp(48),dp(48),Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
         makeStatus();populateToolOptions(paintCanvas.tool)
         if(paintCanvas.trim!=null) showBoundsOptions()
@@ -626,10 +631,11 @@ class ClassicPaintActivity : Activity() {
 
     private fun updateStatus() {
         if (!::statusText.isInitialized) return
-        root.findViewWithTag<PanelToolButton>("cursor_draw_toggle")?.let {
+        root.findViewWithTag<CursorDrawingButton>("cursor_draw_toggle")?.let {
             it.visibility=if(paintCanvas.cursorAvailable) View.VISIBLE else View.GONE
             it.text=ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_stop31 else R.string.ui_cursor_start31)
             it.isEnabled=!busy;it.isSelected=paintCanvas.cursorDrawing;it.contentDescription=it.text
+            if(android.os.Build.VERSION.SDK_INT>=26) it.tooltipText=it.text
         }
         root.findViewWithTag<PanelToolButton>("command_View_2")?.isSelected=paintCanvas.cursorMode
         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
@@ -1299,17 +1305,22 @@ class ClassicPaintActivity : Activity() {
     private fun showImageCredits() {
         GalleryCredits.showEditor(this)
     }
+    private fun showCursorHelp() {
+        message(ui(R.string.ui_cursor_help31)+"\n\n"+ui(R.string.ui_cursor_tap_hint37)+"\n\n"+ui(R.string.ui_cursor_marker_help31))
+    }
     private fun populateCursorOptions() {
         cursorOptionsHost.removeAllViews()
         val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;isBaselineAligned=false;setPadding(dp(8),dp(4),dp(8),dp(8));tag="cursor_settings_panel"}
         column.addView(button(ui(if(paintCanvas.cursorMode) R.string.ui_disable_cursor_drawing33 else R.string.ui_enable_cursor_drawing),"cursor_mode_enabled") {
             val on=!paintCanvas.cursorMode
-            paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool);selectTab("View");scheduleAutosave()
-            if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
+            paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool)
+            cursorOptionsExpanded=false;selectTab("View");scheduleAutosave()
+            if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+"\n"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG).show()
         })
-        column.addView(label(ui(R.string.ui_cursor_help31),12f))
-        column.addView(label(ui(R.string.ui_cursor_shape31)))
-        column.addView(Spinner(this).apply {
+        column.addView(button(ui(R.string.ui_how_to_use),"cursor_help") {showCursorHelp()})
+        val shapeRow=LinearLayout(this).apply {gravity=Gravity.CENTER_VERTICAL;isBaselineAligned=false}
+        shapeRow.addView(label(ui(R.string.ui_cursor_shape31)),LinearLayout.LayoutParams(0,-2,1f))
+        shapeRow.addView(Spinner(this).apply {
             tag="cursor_shape";contentDescription=ui(R.string.ui_cursor_shape31)
             adapter=ArrayAdapter(this@ClassicPaintActivity,android.R.layout.simple_spinner_dropdown_item,listOf(ui(R.string.ui_round),ui(R.string.ui_square)))
             setSelection(paintCanvas.cursorShape)
@@ -1319,7 +1330,8 @@ class ClassicPaintActivity : Activity() {
                     paintCanvas.cursorShape=position;paintCanvas.invalidate();scheduleAutosave()
                 }
             }
-        })
+        },LinearLayout.LayoutParams(0,dp(48),1f))
+        column.addView(shapeRow)
         column.addView(CheckBox(this).apply {
             tag="cursor_magnifier_enabled";text=ui(R.string.ui_show_magnified_drawing_preview);isChecked=paintCanvas.cursorMagnifier
             setOnCheckedChangeListener {_,on ->paintCanvas.cursorMagnifier=on;paintCanvas.invalidate();scheduleAutosave()}
@@ -1330,7 +1342,6 @@ class ClassicPaintActivity : Activity() {
         column.addView(NumericSlider(this,ui(R.string.ui_cursor_marker_size31),(paintCanvas.cursorMarkerScale*100).toInt(),100,200) {
             paintCanvas.cursorMarkerScale=it/100f;paintCanvas.invalidate();scheduleAutosave()
         }.apply {tag="cursor_marker_size"})
-        column.addView(label(ui(R.string.ui_cursor_marker_help31),12f))
         val content=if(VerticalText.uiVertical()) {VerticalUi.panel(column);ColumnScrollView(this).apply {addView(column)}} else column
         cursorOptionsHost.addView(content)
     }

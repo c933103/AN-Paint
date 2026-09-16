@@ -38,6 +38,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var onText: (Float, Float) -> Unit = { _, _ -> }
     var onFill: (Int, Int) -> Unit = { x, y -> document.fill(x, y) }
     var onError: (Throwable) -> Unit = {}
+    var onCursorDrawingToggled: (Boolean) -> Unit = {}
     private var start = PointF()
     private var end = PointF()
     private var previous = PointF()
@@ -94,6 +95,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     private val bitmapDisplayPaint = Paint(0).apply { isFilterBitmap=false;isAntiAlias=false }
     private val bitmapOverview = CanvasBitmapOverview()
     private var cursorInitial = PointF()
+    private var cursorTogglePending = false
+    private var cursorGestureStarted = false
     var cursorMagnifier = true
     var cursorMarkerScale = 1f
     var cursorShape = 0
@@ -104,11 +107,14 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     var previewMagnification = 2f
     private var previewPoint: PointF? = null
     private var previewTouch = PointF()
+    private var previewOnRight = false
     private var smoothedPrevious = PointF()
 
     fun setCursorMode(enabled: Boolean) {
+        if(cursorMode==enabled) return
         pauseGesture(); cursorMode=enabled; cursorDrawing=false
         cursor=toImage(rulerInset+contentWidth/2,rulerInset+contentHeight/2).also { clampCursor(it) }
+        previewOnRight=false
         if (enabled && tool !in listOf(PaintTool.BRUSH,PaintTool.PENCIL,PaintTool.WATERCOLOR,PaintTool.ERASER)) selectTool(PaintTool.BRUSH)
         invalidate();onStatus()
     }
@@ -116,6 +122,11 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         val drawing=cursorAvailable && enabled
         if(cursorDrawing==drawing) return
         pauseGesture();cursorDrawing=drawing;invalidate();onStatus()
+    }
+    fun toggleCursorDrawing() {
+        if(!cursorAvailable) return
+        setCursorDrawing(!cursorDrawing)
+        onCursorDrawingToggled(cursorDrawing)
     }
     private fun clampCursor(p: PointF) {
         p.x=p.x.coerceIn(0f,document.bitmap.width-1f);p.y=p.y.coerceIn(0f,document.bitmap.height-1f)
@@ -280,8 +291,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)
             canvas.restore()
         }
-        if (activeMagnifier && down && !multiTouch && scrollAxis==0)
-            previewPoint?.let { drawMagnifiedPreview(canvas,it) }
+        if (magnifierVisible)
+            (if(supportsCursor()) cursor else previewPoint)?.let { drawMagnifiedPreview(canvas,it) }
         canvas.restore()
         if(grid) drawRulers(canvas)
     }
@@ -321,14 +332,30 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.drawText("px",rulerInset/2,rulerInset/2-(p.ascent()+p.descent())/2,p)
     }
 
+    internal val magnifierVisible get() = activeMagnifier && trim==null && !multiTouch && scrollAxis==0 &&
+        (supportsCursor() || down && previewPoint!=null)
+
+    internal fun magnifierBounds(): RectF {
+        val d=resources.displayMetrics.density
+        val size=min(80*d,min(contentWidth,contentHeight)*.45f)
+        fun bounds(right: Boolean): RectF {
+            val left=if(right) width-bar-size-8*d else rulerInset+8*d
+            return RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)
+        }
+        // Move only when the finger actually approaches the lens. Keep its
+        // chosen corner between strokes instead of jumping at the screen centre.
+        if(down) {
+            val occupied=RectF(bounds(previewOnRight)).apply {inset(-12*d,-12*d)}
+            val alternative=RectF(bounds(!previewOnRight)).apply {inset(-12*d,-12*d)}
+            if(occupied.contains(previewTouch.x,previewTouch.y) && !alternative.contains(previewTouch.x,previewTouch.y)) previewOnRight=!previewOnRight
+        }
+        return bounds(previewOnRight)
+    }
+
     private fun drawMagnifiedPreview(canvas: Canvas, point: PointF) {
         val d=resources.displayMetrics.density
-        val size=min(120*d,min(contentWidth,contentHeight)*.45f)
-        if (size<40*d) return
-        // Paintroid's zoom window samples the cursor position, independently of
-        // the finger, and moves to the opposite corner when the finger covers it.
-        val left=if (previewTouch.x<width/2 && previewTouch.y<height/2) width-bar-size-8*d else rulerInset+8*d
-        val r=RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)
+        val r=magnifierBounds()
+        if (r.width()<40*d) return
         val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;strokeWidth=2*d;style=Paint.Style.STROKE }
         canvas.save();canvas.clipPath(Path().apply {addOval(r,Path.Direction.CW)});canvas.drawColor(EditorColours.surfaceDim)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
@@ -336,7 +363,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})
         canvas.drawBitmap(document.bitmap,0f,0f,bitmapDisplayPaint)
         document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image,bitmapDisplayPaint) }
-        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)
+        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE,preview=true)
         canvas.restore();canvas.drawOval(r,p)
     }
 
@@ -405,6 +432,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     fun pauseGesture() {
         document.finishGesture(); down=false;multiTouch=false;panning=false;movingSelection=false;selectionHandle=-1;removeCallbacks(sprayTick)
+        cursorTogglePending=false;cursorGestureStarted=false
     }
 
     fun applyPending() {
@@ -515,6 +543,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
 
     private fun cancelTouchEdit() {
+        cursorTogglePending=false;cursorGestureStarted=false
         document.cancelGesture()
         if (movingSelection) initialSelectionRect?.let { rect -> document.selection?.let { it.rect.set(rect);it.rotation=initialSelectionRotation;it.floating=initialSelectionFloating } }
         initialCurve?.let { control1=it.first;control2=it.second }
@@ -607,6 +636,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             }
             pinchFocus=focus;pinchSpan=span
             multiTouch = true; down = false; scrollAxis = 0; removeCallbacks(sprayTick)
+            invalidate()
             return true
         }
         // Scrollbars remain reachable for every tool, including cursor drawing.
@@ -626,16 +656,27 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                     multiTouch=false;down=true;cursorInitial.set(cursor)
                     screenStart.set(event.x,event.y);screenPrevious.set(event.x,event.y)
                     previous.set(cursor);smoothedPrevious.set(cursor)
-                    if(cursorDrawing) {document.beginGesture();stroke(cursor,cursor)}
+                    val target=toScreen(cursor.x,cursor.y)
+                    cursorTogglePending=hypot(event.x-target.x,event.y-target.y)<=24*resources.displayMetrics.density
+                    cursorGestureStarted=false
+                    if(cursorDrawing && !cursorTogglePending) {document.beginGesture();cursorGestureStarted=true;stroke(cursor,cursor)}
                 }
                 MotionEvent.ACTION_MOVE -> if(down && !multiTouch) {
+                    if(cursorTogglePending && hypot(event.x-screenStart.x,event.y-screenStart.y)<=touchSlop) return true
+                    cursorTogglePending=false
+                    if(cursorDrawing && !cursorGestureStarted) {document.beginGesture();cursorGestureStarted=true;stroke(cursor,cursor)}
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
                     screenPrevious.set(event.x,event.y)
                     if(cursorDrawing && old!=cursor) stroke(old,cursor)
                 }
                 MotionEvent.ACTION_UP -> {
-                    if(multiTouch || !down) {multiTouch=false;down=false;return true}
+                    if(multiTouch || !down) {multiTouch=false;down=false;invalidate();onStatus();return true}
+                    if(cursorTogglePending && hypot(event.x-screenStart.x,event.y-screenStart.y)<=touchSlop) {
+                        cursorTogglePending=false;down=false;performClick();toggleCursorDrawing();return true
+                    }
+                    cursorTogglePending=false
+                    if(cursorDrawing && !cursorGestureStarted) {document.beginGesture();cursorGestureStarted=true;stroke(cursor,cursor)}
                     val old=PointF(cursor.x,cursor.y)
                     cursor.offset((event.x-screenPrevious.x)/zoom,(event.y-screenPrevious.y)/zoom);clampCursor(cursor)
                     if(cursorDrawing) {
@@ -644,9 +685,9 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
                         }
                         document.finishGesture()
                     }
-                    down=false;performClick();onStatus()
+                    down=false;cursorGestureStarted=false;performClick();onStatus()
                 }
-                MotionEvent.ACTION_CANCEL -> { if(cursorDrawing && down) document.cancelGesture();cursor.set(cursorInitial);down=false;multiTouch=false }
+                MotionEvent.ACTION_CANCEL -> { if(cursorGestureStarted) document.cancelGesture();cursor.set(cursorInitial);down=false;multiTouch=false;cursorTogglePending=false;cursorGestureStarted=false }
             }
             previewPoint=PointF(cursor.x,cursor.y);invalidate();onStatus();return true
         }

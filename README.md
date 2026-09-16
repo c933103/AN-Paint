@@ -30,15 +30,19 @@ armeabi-v7a, x86_64 and x86.
 - Navigate supports pinch zoom and pan, actual-size and Fit view. Pixel grid is a
   short, selected-state toggle; its 800% threshold and pixel rulers are explained
   under View > How to use and by holding the grid button.
-- Magnifier works while drawing or navigating and samples the cursor in cursor
-  mode. Its View control edits the active mode's setting. Zoomed-out overviews
+- The compact 80 dp magnifier works while drawing or navigating and samples the
+  cursor in cursor mode, remaining visible between cursor strokes. It changes
+  corners only when the finger approaches it. Its View control edits the active
+  mode's setting. Zoomed-out overviews
   use progressive filtering to retain thin strokes; actual-size and enlarged
   views keep crisp pixels. Display filtering does not alter drawing AA or exports.
 - View > Cursor drawing expands cursor options, with an Enable/Disable button,
   independent round/square outline, magnifier and marker size. Brush controls stay
-  under Draw > Drawing. Enabling cursor mode starts with positioning only; the
-  on-canvas Start/Stop button controls ink, displays guidance and changes the
-  cursor's visible state. Reopening cursor options or a draft pauses drawing.
+  under Draw > Drawing. Enabling cursor mode closes its settings and starts with
+  positioning only. Tap the cursor itself or the compact on-canvas Start/Stop
+  control to switch drawing on/off; the cursor visibly changes and guidance
+  appears. Dragging the cursor still moves or draws. Reopening cursor options
+  or a draft pauses drawing. Instructions are under Cursor drawing > How to use.
 - Autosave restores the canvas, unfinished selection and both undo/redo stacks
   after Android closes the app. It saves history with the private draft, so cache
   cleanup does not remove the saved steps.

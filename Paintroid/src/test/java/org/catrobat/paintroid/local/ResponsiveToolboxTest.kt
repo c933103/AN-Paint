@@ -354,6 +354,7 @@ class ResponsiveToolboxTest {
         assertEquals("Disable cursor drawing",view<android.widget.Button>("cursor_mode_enabled").text.toString())
         assertFalse(activity.paintCanvas.cursorDrawing)
         click("cursor_draw_toggle");assertTrue(activity.paintCanvas.cursorDrawing)
+        EditorTestNavigation.command(activity,"View",2)
         click("cursor_mode_enabled")
         assertFalse(activity.paintCanvas.cursorMode);assertFalse(activity.paintCanvas.cursorDrawing)
         assertFalse(view<View>("cursor_draw_toggle").isShown)

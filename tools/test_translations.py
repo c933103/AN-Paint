@@ -30,6 +30,7 @@ class TranslationTests(unittest.TestCase):
                  "ui_fg", "ui_bg", "ui_swap23", "ui_reset_bw23", "ui_advanced", "ui_add_colour26"}
         self.assertLessEqual(keys, set(data["required_keys"]))
         self.assertIn("ui_disable_cursor_drawing33", data["required_keys"])
+        self.assertIn("ui_cursor_tap_hint37", data["required_keys"])
         for tag, terms in data["locales"].items():
             self.assertNotRegex(terms["ui_pixel_grid33"], r"800|%|％", tag)
         report = json.loads((translations.DATA / "coverage.json").read_text())

@@ -121,6 +121,8 @@ class UnifiedEditorTest {
         assertFalse(board.cursorDrawing)
         val ink=root.findViewWithTag<android.widget.Button>("cursor_draw_toggle")
         assertTrue(ink.isShown);assertEquals("Start drawing",ink.text.toString())
+        assertFalse("Enabling the cursor returns the space to the canvas",root.findViewWithTag<View>("cursor_options").isShown)
+        assertEquals((48*activity.resources.displayMetrics.density+.5f).toInt(),ink.layoutParams.height)
         assertNull(root.findViewWithTag<View>("cursor_draw_enabled"))
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
         ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertTrue(board.cursorDrawing)
@@ -134,7 +136,6 @@ class UnifiedEditorTest {
         click("undo");assertArrayEquals(dot,pixels())
         click("undo");assertTrue(pixels().all {it==Color.WHITE})
         // Opening this category leaves brush settings solely under Drawing.
-        menu("View","Cursor drawing") // collapse the currently open cursor drawer
         menu("View","Cursor drawing") // reopen it, pausing ink
         assertFalse(board.cursorDrawing)
         val settings=root.findViewWithTag<View>("cursor_settings_panel")

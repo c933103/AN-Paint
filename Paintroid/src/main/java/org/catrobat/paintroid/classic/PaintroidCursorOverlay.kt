@@ -31,16 +31,17 @@ internal class PaintroidCursorOverlay {
     private var zoom=1f
     private var density=1f
     private var markerScale=1f
-    private val cursorToolPrimaryShapeColor=Color.BLACK
+    private val cursorToolPrimaryShapeColor=Color.rgb(85,85,85)
     private var cursorToolSecondaryShapeColor=Color.LTGRAY
-    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap) {
-        toolPosition.set(position);toolPaint=Paint(paint).apply {strokeCap=outlineCap};zoom=scale;density=pixelDensity;markerScale=visibilityScale.coerceIn(1f,2f)
+    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap,preview: Boolean=false) {
+        toolPosition.set(position);toolPaint=Paint(paint).apply {strokeCap=outlineCap};zoom=scale;density=pixelDensity
+        // A lens needs a finer sight, not another full-size canvas marker.
+        markerScale=visibilityScale.coerceIn(1f,2f)*(if(preview) .6f else 1f)
         cursorToolSecondaryShapeColor=if(drawing) paint.color else Color.LTGRAY
         drawShape(canvas)
     }
-    // Keep the upstream 5 dp marker visible at fit-to-image zoom. Clamping this
-    // value in image pixels made the marker shrink on large images. Brush radius
-    // remains in image pixels and is never enlarged by this display setting.
+    // Keep a compact sight visible at fit-to-image zoom. Brush radius remains in
+    // image pixels; neither the visibility setting nor the lens changes the ink.
     private fun getStrokeWidthForZoom(default: Float)=default*density*markerScale/zoom
     private fun drawCircle(
         canvas: Canvas,
@@ -158,7 +159,7 @@ internal class PaintroidCursorOverlay {
 
 
     private companion object {
-        const val DEFAULT_TOOL_STROKE_WIDTH=5f
+        const val DEFAULT_TOOL_STROKE_WIDTH=3.5f
         const val CURSOR_LINES=4
     }
 }

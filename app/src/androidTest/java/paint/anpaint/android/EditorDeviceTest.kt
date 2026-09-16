@@ -312,6 +312,11 @@ class EditorDeviceTest {
             assertEquals(cursor.width,cursor.height);assertEquals(grid.height,cursor.height)
         }
         click("cursor_mode_enabled")
+        onMain {
+            assertFalse("Enabling closes the options drawer",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)
+            val control=it.window.decorView.findViewWithTag<View>("cursor_draw_toggle")
+            assertEquals((48*it.resources.displayMetrics.density+.5f).toInt(),control.height)
+        }
         onMain {assertEquals(text(R.string.ui_disable_cursor_drawing33),it.window.decorView.findViewWithTag<android.widget.Button>("cursor_mode_enabled").text.toString())}
         onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
         // Inject through Android's input dispatcher instead of calling the
@@ -346,7 +351,7 @@ class EditorDeviceTest {
         }
         click("undo")
         onMain {for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
-        click("menu_View")
+        menu("View",text(R.string.ui_cursor_drawing32))
         onMain {
             assertTrue(it.paintCanvas.cursorMagnifier)
             val root=it.window.decorView
@@ -365,6 +370,31 @@ class EditorDeviceTest {
             val inset=20*it.resources.displayMetrics.density
             assertEquals((it.paintCanvas.width-inset)/2,centre.x,1f)
             assertEquals((it.paintCanvas.height-inset)/2,centre.y,1f)
+        }
+    }
+
+    @Test fun tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot() {
+        menu("View",text(R.string.ui_cursor_drawing32));click("cursor_mode_enabled")
+        fun tapCursor() {
+            awaitState("ready to tap cursor") {!it.busy}
+            val target=IntArray(2)
+            onMain {
+                val state=it.paintCanvas.draftState()
+                val cursor=it.paintCanvas.toScreen(state.getDouble("cursor_x").toFloat(),state.getDouble("cursor_y").toFloat())
+                it.paintCanvas.getLocationOnScreen(target)
+                target[0]+=cursor.x.toInt();target[1]+=cursor.y.toInt()
+            }
+            assertTrue(device.click(target[0],target[1]));instrumentation.waitForIdleSync()
+        }
+        tapCursor()
+        onMain {
+            assertTrue(it.paintCanvas.cursorDrawing);assertFalse(it.document.canUndo)
+            assertEquals(text(R.string.ui_cursor_stop31),it.window.decorView.findViewWithTag<View>("cursor_draw_toggle").contentDescription.toString())
+        }
+        tapCursor()
+        onMain {
+            assertFalse(it.paintCanvas.cursorDrawing);assertFalse(it.document.canUndo)
+            for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))
         }
     }
 

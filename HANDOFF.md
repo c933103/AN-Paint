@@ -1,3 +1,40 @@
+# AN Paint 0.0.37 — cursor interaction and compact magnifier
+
+Development version code 93. Compared the user's screenshots with Pocket Paint
+v2.14.1 at Catrobat/Paintroid commit 853ce3c346910ea73aa4de5514f2a76ace1396fb:
+CursorTool, BaseToolWithShape, DrawingSurfaceListener, DefaultZoomWindowController,
+and the colour/dimension resources. The original uses an 80 dp lens, #555555
+cursor outline, and tap/drag distinction. AN Paint's previous 120 dp lens,
+black full-size marker inside both views, tall Start tile and open settings
+drawer covered substantially more canvas.
+
+The lens is now 80 dp with a finer sight; the main cursor has a compact grey
+marker. Actual brush footprint and drawing paint remain independent of marker
+size/shape. Cursor preview remains visible before and between strokes, samples
+the current cursor, and retains its corner until a finger approaches it. Pinch
+and scrollbar gestures suppress the lens; ending a pinch redraws it. Finger
+preview continues to work during drawing/navigation and disappears on release.
+
+Tapping the cursor's 48 dp target toggles ink and shows the existing guidance.
+Dragging that target still positions/draws after touch slop. This confines tap
+toggles to a deliberate target; touches elsewhere retain precise short strokes.
+Mode toggles add no dot/undo entry. A compact 48 dp Start/Stop canvas button also
+remains available with translated accessible names and help on long press.
+Enabling cursor mode or toggling ink closes its settings drawer. Help text is
+behind How to use, and cursor shape occupies one row. Brush controls remain in
+Draw > Drawing. Added the cursor-tap instruction to all 30 required locales.
+
+Local checks: 87 host tests pass; Android aapt2 compiles all resources; all 145
+generated translation/language files reproduce; git whitespace checks pass.
+Added four focused cursor regressions and one Android input-dispatch test;
+updated existing UI checks to reopen the drawer before operating its settings.
+Kotlin/Robolectric execution, lint, universal APK assembly and Android API 35
+checks are pending CI. No physical-device parity claim is made from host checks.
+The preceding 0.0.36 release candidate does not include these fixes. Continue
+with the 0.0.37 development build; do not wait for GitHub as the only work.
+
+---
+
 # AN Paint 0.0.36 — regression corrections and mainstream translation gaps
 
 Release candidate version code 92; signed development build code 91.
