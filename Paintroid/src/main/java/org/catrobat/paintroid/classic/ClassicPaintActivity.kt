@@ -182,7 +182,6 @@ class ClassicPaintActivity : Activity() {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
             onCursorDrawingToggled={ drawing ->
-                cursorOptionsExpanded=false;syncPanels()
                 Toast.makeText(this@ClassicPaintActivity,ui(if(drawing) R.string.ui_cursor_pan_draw32 else R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
             }
             onPick={ colour -> recentColours.add(colour);refreshRecentColours();updateColours();updateStatus();scheduleAutosave() }
@@ -408,11 +407,11 @@ class ClassicPaintActivity : Activity() {
             split.addView(canvasArea,LinearLayout.LayoutParams(0,-1,1f))
             workspace.addView(split,FrameLayout.LayoutParams(-1,-1))
         }
-        canvasArea.addView(CursorDrawingButton(this).apply {
-            tag="cursor_draw_toggle"
-            setOnClickListener {if(!busy) editAction {paintCanvas.toggleCursorDrawing()}}
+        canvasArea.addView(panelButton(ui(R.string.ui_cursor_start31),"cursor_draw_toggle",R.drawable.classic_cursor) {
+            paintCanvas.toggleCursorDrawing()
+        }.apply {
             setOnLongClickListener {showCursorHelp();true}
-        },FrameLayout.LayoutParams(dp(48),dp(48),Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
+        },FrameLayout.LayoutParams(-2,toolHeight,Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
         makeStatus();populateToolOptions(paintCanvas.tool)
         if(paintCanvas.trim!=null) showBoundsOptions()
@@ -631,7 +630,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun updateStatus() {
         if (!::statusText.isInitialized) return
-        root.findViewWithTag<CursorDrawingButton>("cursor_draw_toggle")?.let {
+        root.findViewWithTag<PanelToolButton>("cursor_draw_toggle")?.let {
             it.visibility=if(paintCanvas.cursorAvailable) View.VISIBLE else View.GONE
             it.text=ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_stop31 else R.string.ui_cursor_start31)
             it.isEnabled=!busy;it.isSelected=paintCanvas.cursorDrawing;it.contentDescription=it.text
@@ -1314,7 +1313,7 @@ class ClassicPaintActivity : Activity() {
         column.addView(button(ui(if(paintCanvas.cursorMode) R.string.ui_disable_cursor_drawing33 else R.string.ui_enable_cursor_drawing),"cursor_mode_enabled") {
             val on=!paintCanvas.cursorMode
             paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool)
-            cursorOptionsExpanded=false;selectTab("View");scheduleAutosave()
+            cursorOptionsExpanded=true;populateCursorOptions();selectTab("View");scheduleAutosave()
             if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+"\n"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG).show()
         })
         column.addView(button(ui(R.string.ui_how_to_use),"cursor_help") {showCursorHelp()})

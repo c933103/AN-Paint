@@ -121,11 +121,13 @@ class UnifiedEditorTest {
         assertFalse(board.cursorDrawing)
         val ink=root.findViewWithTag<android.widget.Button>("cursor_draw_toggle")
         assertTrue(ink.isShown);assertEquals("Start drawing",ink.text.toString())
-        assertFalse("Enabling the cursor returns the space to the canvas",root.findViewWithTag<View>("cursor_options").isShown)
-        assertEquals((48*activity.resources.displayMetrics.density+.5f).toInt(),ink.layoutParams.height)
+        assertTrue("Enabling keeps cursor settings open",root.findViewWithTag<View>("cursor_options").isShown)
+        assertEquals((64*activity.resources.displayMetrics.density+.5f).toInt(),ink.layoutParams.height)
         assertNull(root.findViewWithTag<View>("cursor_draw_enabled"))
         drag(20f,20f,30f,20f);assertFalse(doc.canUndo);assertTrue(pixels().all {it==Color.WHITE})
         ink.performClick();shadowOf(Looper.getMainLooper()).idle();assertTrue(board.cursorDrawing)
+        assertTrue("Starting ink keeps cursor settings open",root.findViewWithTag<View>("cursor_options").isShown)
+        assertEquals("Stop drawing",ink.text.toString())
         assertTrue(ink.isSelected)
         assertEquals("Pan to start drawing. Tap again to stop drawing.",org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
         assertTrue("Draw toggle overlays the canvas instead of consuming a separate row",ink.parent is FrameLayout)
@@ -136,6 +138,7 @@ class UnifiedEditorTest {
         click("undo");assertArrayEquals(dot,pixels())
         click("undo");assertTrue(pixels().all {it==Color.WHITE})
         // Opening this category leaves brush settings solely under Drawing.
+        menu("View","Cursor drawing") // explicitly close it
         menu("View","Cursor drawing") // reopen it, pausing ink
         assertFalse(board.cursorDrawing)
         val settings=root.findViewWithTag<View>("cursor_settings_panel")

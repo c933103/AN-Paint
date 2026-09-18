@@ -337,7 +337,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
 
     internal fun magnifierBounds(): RectF {
         val d=resources.displayMetrics.density
-        val size=min(80*d,min(contentWidth,contentHeight)*.45f)
+        val size=min(120*d,min(contentWidth,contentHeight)*.45f)
         fun bounds(right: Boolean): RectF {
             val left=if(right) width-bar-size-8*d else rulerInset+8*d
             return RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)
@@ -361,9 +361,13 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)
         canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)
         canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})
-        canvas.drawBitmap(document.bitmap,0f,0f,bitmapDisplayPaint)
+        // Explicit pixel bounds avoid Bitmap density scaling. The main canvas
+        // uses the same bounds, so the lens scale is the actual enlargement.
+        canvas.drawBitmap(document.bitmap,null,Rect(0,0,document.bitmap.width,document.bitmap.height),bitmapDisplayPaint)
         document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image,bitmapDisplayPaint) }
-        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),factor,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE,preview=true)
+        // Keep the main viewport's marker geometry. Using factor here would
+        // cancel the lens enlargement of the cursor while magnifying the ink.
+        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),zoom,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)
         canvas.restore();canvas.drawOval(r,p)
     }
 

@@ -1,3 +1,38 @@
+# AN Paint 0.0.38 — actual lens enlargement and restored controls
+
+Development version code 94. The previous handoff promised these corrections
+but no 0.0.38 patch or commit survived. Reconstructed from published 0.0.37
+commit d9a029a33313f34c8ec3b49fdb6963fd7067c0c2 after verifying all 868 files.
+
+The lens now uses explicit image-pixel bounds instead of Android's density-aware
+bitmap-position overload. Its cursor overlay retains main-viewport geometry,
+so lens scaling enlarges the image and cursor together instead of cancelling
+the cursor's enlargement and applying a further 0.6 shrink factor. The previous
+120 dp lens area is restored; making the lens smaller was not the user's request.
+
+The icon-only CursorDrawingButton is removed. The previous labelled 64 dp
+PanelToolButton supplies visible Start drawing / Stop drawing controls. Enabling
+cursor mode and toggling ink leave its settings open. Existing tap-on-cursor,
+positioning, cancellation, persistent preview and brush separation are retained.
+
+Workflow 35157182368 built 0.0.37 and passed regression/lint, but failed its
+Android 15 job: cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing
+could not find visible Start drawing text. That test is retained, including its
+text-based Android input actions. Its drawer assertions now require settings to
+remain open after enabling, starting and stopping. Regression checks likewise
+retain actual drawing/undo assertions and explicitly close/reopen settings only
+when testing reopening. Added rendered-size checks for lens image pixels across
+bitmap densities and for both cursor outlines at several magnifications.
+
+Local validation passed: 87 host checks, reproducible generation of all 145
+translation/language files, Android aapt2 resource compilation and whitespace
+checks. Kotlin/Robolectric, lint, APK assembly and Android 15 execution remain
+pending CI. Follow CI.md: publish the complete source, link its
+asynchronous run, and do not wait for GitHub as the sole remaining activity.
+Upgrade signing and installable APK delivery remain pending the new build.
+
+---
+
 # AN Paint 0.0.37 — cursor interaction and compact magnifier
 
 Development version code 93. Compared the user's screenshots with Pocket Paint

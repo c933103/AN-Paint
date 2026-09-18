@@ -313,9 +313,9 @@ class EditorDeviceTest {
         }
         click("cursor_mode_enabled")
         onMain {
-            assertFalse("Enabling closes the options drawer",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)
+            assertTrue("Enabling keeps the options drawer open",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)
             val control=it.window.decorView.findViewWithTag<View>("cursor_draw_toggle")
-            assertEquals((48*it.resources.displayMetrics.density+.5f).toInt(),control.height)
+            assertEquals((64*it.resources.displayMetrics.density+.5f).toInt(),control.height)
         }
         onMain {assertEquals(text(R.string.ui_disable_cursor_drawing33),it.window.decorView.findViewWithTag<android.widget.Button>("cursor_mode_enabled").text.toString())}
         onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
@@ -332,6 +332,7 @@ class EditorDeviceTest {
         instrumentation.waitForIdleSync()
         onMain {assertFalse(it.document.canUndo);for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
         clickText(text(R.string.ui_cursor_start31))
+        onMain {assertTrue("Start keeps settings open",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)}
         assertTrue(device.swipe(coordinates[2],coordinates[3],coordinates[0],coordinates[1],20))
         instrumentation.waitForIdleSync()
         var drawn=IntArray(0)
@@ -343,6 +344,7 @@ class EditorDeviceTest {
             assertTrue("Movement must paint beyond the initial dot",ink.maxOf {index ->index%100}-ink.minOf {index ->index%100}>10)
         }
         clickText(text(R.string.ui_cursor_stop31))
+        onMain {assertTrue("Stop keeps settings open",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)}
         drag(20f,20f,30f,20f);drag(20f,20f,20f,20f)
         onMain {
             assertFalse(it.paintCanvas.cursorDrawing)
@@ -351,7 +353,6 @@ class EditorDeviceTest {
         }
         click("undo")
         onMain {for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
-        menu("View",text(R.string.ui_cursor_drawing32))
         onMain {
             assertTrue(it.paintCanvas.cursorMagnifier)
             val root=it.window.decorView

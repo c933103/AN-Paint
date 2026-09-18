@@ -33,10 +33,9 @@ internal class PaintroidCursorOverlay {
     private var markerScale=1f
     private val cursorToolPrimaryShapeColor=Color.rgb(85,85,85)
     private var cursorToolSecondaryShapeColor=Color.LTGRAY
-    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap,preview: Boolean=false) {
+    fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap) {
         toolPosition.set(position);toolPaint=Paint(paint).apply {strokeCap=outlineCap};zoom=scale;density=pixelDensity
-        // A lens needs a finer sight, not another full-size canvas marker.
-        markerScale=visibilityScale.coerceIn(1f,2f)*(if(preview) .6f else 1f)
+        markerScale=visibilityScale.coerceIn(1f,2f)
         cursorToolSecondaryShapeColor=if(drawing) paint.color else Color.LTGRAY
         drawShape(canvas)
     }

@@ -94,7 +94,7 @@ class CursorDrawingTest {
             image.recycle();return touched.last()-touched.first()+1
         }
         val normal=markerWidth(1f,1f)
-        assertTrue("Compact marker stays below the 80 dp lens diameter",normal in 60..79)
+        assertTrue("Main marker retains its compact size",normal in 60..79)
         assertEquals(normal.toDouble(),markerWidth(.1f,1f).toDouble(),3.0)
         assertEquals(normal.toDouble(),markerWidth(.5f,1f).toDouble(),3.0)
         assertTrue(markerWidth(.1f,1.5f)>normal*1.4)
@@ -123,16 +123,16 @@ class CursorDrawingTest {
         touch(board,MotionEvent.ACTION_DOWN,700f,700f)
         val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
         board.draw(Canvas(image))
-        // Pocket Paint's 80 dp lens, inset 8 dp. It samples the cursor, not the finger.
-        assertEquals(RectF(16f,16f,176f,176f),board.magnifierBounds())
-        assertEquals(Color.RED,image.getPixel(96,96))
+        // Preserve the 120 dp lens area; it samples the cursor, not the finger.
+        assertEquals(RectF(16f,16f,256f,256f),board.magnifierBounds())
+        assertEquals(Color.RED,image.getPixel(136,136))
         assertNotEquals(Color.RED,image.getPixel(17,17))
         val file=java.io.File("build/reports/classic-preview/cursor-magnifier.png");file.parentFile.mkdirs()
         file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)};image.recycle()
         touch(board,MotionEvent.ACTION_UP,700f,700f)
         assertTrue("Positioning preview remains visible after lifting the finger",board.magnifierVisible)
         val still=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
-        board.draw(Canvas(still));assertEquals(Color.RED,still.getPixel(96,96));still.recycle()
+        board.draw(Canvas(still));assertEquals(Color.RED,still.getPixel(136,136));still.recycle()
         board.cursorMagnifier=false;board.cursorMarkerScale=1.5f;board.cursorShape=1;board.setCursorDrawing(true)
         val restored=board();restored.restoreDraft(board.draftState())
         assertFalse(restored.cursorMagnifier);assertTrue(restored.cursorMode);assertFalse(restored.cursorDrawing)
@@ -154,7 +154,7 @@ class CursorDrawingTest {
             val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
             fun assertLens(expected: Int) {
                 board.draw(Canvas(image))
-                assertEquals("$scale: lens samples the image under the finger",expected,image.getPixel(96,96))
+                assertEquals("$scale: lens samples the image under the finger",expected,image.getPixel(136,136))
             }
             try {
                 assertLens(Color.RED)
@@ -169,7 +169,7 @@ class CursorDrawingTest {
                     assertLens(Color.RED)
                 }
                 touch(board,MotionEvent.ACTION_UP,point.x,point.y)
-                board.draw(Canvas(image));assertFalse(board.magnifierVisible);assertNotEquals(Color.RED,image.getPixel(96,96))
+                board.draw(Canvas(image));assertFalse(board.magnifierVisible);assertNotEquals(Color.RED,image.getPixel(136,136))
                 assertFalse(board.document.canUndo)
             } finally {image.recycle();board.document.close()}
         }
@@ -182,6 +182,70 @@ class CursorDrawingTest {
         board.setCursorMode(false);board.activeMagnifier=true;assertTrue(board.magnifiedPreview)
         board.setCursorMode(true);assertTrue(board.activeMagnifier)
         board.document.close()
+    }
+
+    @Test fun lensEnlargesRenderedPixelsByTheSelectedScaleRegardlessOfBitmapDensity() {
+        val board=board();board.setCursorMode(false);board.selectTool(PaintTool.ZOOM)
+        board.activeMagnifier=true
+        board.document.bitmap.eraseColor(Color.WHITE)
+        Canvas(board.document.bitmap).drawRect(48f,48f,52f,52f,Paint().apply {color=Color.RED})
+        val original=pixels(board)
+        val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
+        fun redWidth(centre: PointF): Int {
+            val y=centre.y.toInt()
+            return (centre.x.toInt()-50..centre.x.toInt()+50).count {image.getPixel(it,y)==Color.RED}
+        }
+        try {
+            for(density in listOf(Bitmap.DENSITY_NONE,160,480)) {
+                board.document.bitmap.density=density
+                for(scale in listOf(.5f,1f,2f)) {
+                    board.zoomAt(scale)
+                    val point=board.toScreen(50f,50f)
+                    touch(board,MotionEvent.ACTION_DOWN,point.x,point.y)
+                    for(magnification in listOf(1f,2f,4f)) {
+                        board.previewMagnification=magnification;board.draw(Canvas(image))
+                        val lens=board.magnifierBounds()
+                        val mainWidth=redWidth(point)
+                        val lensWidth=redWidth(PointF(lens.centerX(),lens.centerY()))
+                        assertEquals("Main pixels at density $density / zoom $scale",(4*scale).toInt(),mainWidth)
+                        assertEquals("Lens pixels at density $density / zoom $scale / magnification $magnification",
+                            (4*maxOf(scale,1f)*magnification).toInt(),lensWidth)
+                        assertArrayEquals("Display must not change the drawing",original,pixels(board))
+                    }
+                    touch(board,MotionEvent.ACTION_UP,point.x,point.y)
+                }
+            }
+        } finally {image.recycle();board.document.close()}
+    }
+
+    @Test fun lensEnlargesTheRenderedCursorOutlineTogetherWithTheCanvas() {
+        val board=board();board.document.strokeWidth=2f
+        val image=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
+        // A diagonal crosses the outline without intersecting the crosshair arms.
+        fun outlineExtent(centre: PointF): Int {
+            val positions=(1..75).filter {offset ->
+                val colour=image.getPixel(centre.x.toInt()+offset,centre.y.toInt()+offset)
+                Color.red(colour)<150 && Color.green(colour)<150 && Color.blue(colour)<150
+            }
+            assertTrue("A visible outline must be rendered",positions.isNotEmpty())
+            return positions.last()
+        }
+        try {
+            for(shape in listOf(0,1)) for(scale in listOf(1f,2f)) {
+                board.cursorShape=shape;board.zoomAt(scale)
+                val state=board.draftState()
+                val point=board.toScreen(state.getDouble("cursor_x").toFloat(),state.getDouble("cursor_y").toFloat())
+                for(magnification in listOf(1f,2f,4f)) {
+                    board.previewMagnification=magnification;board.draw(Canvas(image))
+                    val lens=board.magnifierBounds()
+                    val mainExtent=outlineExtent(point)
+                    val lensExtent=outlineExtent(PointF(lens.centerX(),lens.centerY()))
+                    assertEquals("Shape $shape at zoom $scale must enlarge with the lens",
+                        mainExtent*magnification,lensExtent.toFloat(),magnification+1f)
+                    assertFalse(board.document.canUndo)
+                }
+            }
+        } finally {image.recycle();board.document.close()}
     }
 
     @Test fun tappingTheCursorTogglesInkWithoutPaintingAndDraggingItStillDraws() {
@@ -233,11 +297,11 @@ class CursorDrawingTest {
         assertTrue(board.magnifierVisible)
         assertEquals(16f,board.magnifierBounds().left,0f)
         touch(board,MotionEvent.ACTION_DOWN,90f,90f)
-        assertEquals(608f,board.magnifierBounds().left,0f)
+        assertEquals(528f,board.magnifierBounds().left,0f)
         touch(board,MotionEvent.ACTION_MOVE,430f,250f)
-        assertEquals("Crossing the screen centre must not move the lens",608f,board.magnifierBounds().left,0f)
+        assertEquals("Crossing the screen centre must not move the lens",528f,board.magnifierBounds().left,0f)
         touch(board,MotionEvent.ACTION_UP,430f,250f)
-        assertEquals(608f,board.magnifierBounds().left,0f)
+        assertEquals(528f,board.magnifierBounds().left,0f)
         touch(board,MotionEvent.ACTION_DOWN,680f,90f)
         assertEquals(16f,board.magnifierBounds().left,0f)
         touch(board,MotionEvent.ACTION_CANCEL,680f,90f)
