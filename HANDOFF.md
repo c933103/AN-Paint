@@ -1,6 +1,7 @@
 # AN Paint 0.0.38 — actual lens enlargement and restored controls
 
-Development version code 94. The previous handoff promised these corrections
+Release candidate version code 95; signed development build code 94.
+The previous handoff promised these corrections
 but no 0.0.38 patch or commit survived. Reconstructed from published 0.0.37
 commit d9a029a33313f34c8ec3b49fdb6963fd7067c0c2 after verifying all 868 files.
 
@@ -26,10 +27,25 @@ bitmap densities and for both cursor outlines at several magnifications.
 
 Local validation passed: 87 host checks, reproducible generation of all 145
 translation/language files, Android aapt2 resource compilation and whitespace
-checks. Kotlin/Robolectric, lint, APK assembly and Android 15 execution remain
-pending CI. Follow CI.md: publish the complete source, link its
-asynchronous run, and do not wait for GitHub as the sole remaining activity.
-Upgrade signing and installable APK delivery remain pending the new build.
+checks. Development workflow 35292661234 for source commit
+8c6253a4da73ec8971a502931848df9b7e879545 passed: 290 regression tests,
+82 Android API 35 tests and zero lint issues, with no failures/errors/skips.
+Both rendered-size tests and the previously failing text-based Start drawing
+test passed. Reviewed the cursor magnifier, labelled control and open settings
+in the portrait and landscape renderings.
+
+The development APK is signed with the existing upgrade certificate. Embedded
+and separate source archives match all 864 exported repository files. All four
+native ABIs, 16 KB ZIP alignment, and unchanged non-signature APK contents are
+verified. Development APK SHA-256:
+beb959da0378b4a28f240fc6577cf2e2006045ef13ff9f1756a3a8fd994fb1da.
+Source SHA-256:
+fa4f807616e9bac647a71c7944cec6bc29cf072e9f24af845aff32644889f7b2.
+
+This commit prepares the non-debuggable release candidate and full Android
+API 30/35 checks. Those exact-source release checks, release signing and GitHub
+release publication remain pending. Follow CI.md: link the asynchronous run
+and do not wait for GitHub as the sole remaining activity.
 
 ---
 

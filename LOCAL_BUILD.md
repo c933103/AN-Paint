@@ -1,6 +1,7 @@
 # AN Paint build notes
 
-Current development version: `0.0.36`, code `91`, package `paint.anpaint.android`.
+Current release candidate: `0.0.38`, code `95`, package `paint.anpaint.android`.
+The signed development build uses code `94`.
 See HANDOFF.md for the current change record and CI.md for build/test status rules.
 
 ## Historical local.20 baseline
