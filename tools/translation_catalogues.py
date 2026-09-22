@@ -17,7 +17,7 @@ DATA = ROOT / "translations"
 RES = ROOT / "Paintroid/src/main/res"
 
 FORMAT_TOKEN = re.compile(
-    r"%(?:\\d+\\$)?[-+# 0,(<]*(?:\\d+)?(?:\\.\\d+)?[a-zA-Z%]"
+    r"%(?:\d+\$)?[-+# 0,(<]*(?:\d+)?(?:\.\d+)?[a-zA-Z%]"
 )
 
 
