@@ -1,3 +1,11 @@
+# Current translation model (full-catalogue pass)
+
+The live Android locale files under `Paintroid/src/main/res/values*/strings.xml` are now canonical source files. They are edited directly and are not regenerated from the JSON/snapshot material in this directory. The files below are retained as provenance, terminology references and historical audit data; their wording is not automatically authoritative for AN Paint. See `TRANSLATING.md` for the current workflow.
+
+The historical notes below describe how the partial catalogues were originally assembled. Statements that localized XML is generated, that English fallback is the intended final state, or that imported wording has precedence describe that older workflow and are not current policy.
+
+---
+
 # Reused translation vocabulary
 
 AN Paint's View → Languages offers device default and 135 language/region/
