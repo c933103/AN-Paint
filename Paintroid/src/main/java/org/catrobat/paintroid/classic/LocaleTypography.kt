@@ -46,7 +46,8 @@ internal object LocaleTypography {
     }
     private fun apply(view: View,font: Typeface) {
         // Explicit font previews must continue to show their own selected face.
-        if(view is TextView && view.tag!="text_content" && !view.tag.toString().startsWith("font_option_")) {
+        val tag=view.tag as? String
+        if(view is TextView && tag!="text_content" && tag?.startsWith("font_option_")!=true) {
             val styled=Typeface.create(font,view.typeface?.style ?: Typeface.NORMAL)
             if(view.typeface!==styled) view.typeface=styled
         }
