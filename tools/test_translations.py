@@ -55,6 +55,9 @@ class TranslationCatalogueTests(unittest.TestCase):
         self.assertIn("ko-Kore-KR", tags)
         self.assertIn("vi-Hani", tags)
         self.assertNotIn("ko-Hani", tags)
+        language_names = (translations.RES / "values/app_language_names.xml").read_text()
+        self.assertIn("㗂越（𡨸喃）", language_names)
+        self.assertNotIn("㗂越（漢喃）", language_names)
 
         vi_hani = "".join(
             translations.read_strings(
@@ -71,7 +74,7 @@ class TranslationCatalogueTests(unittest.TestCase):
         self.assertRegex(ko_kore, r"[\uac00-\ud7a3]")
         self.assertRegex(ko_kore, r"[\u3400-\u9fff\uf900-\ufaff]")
         # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
-        # into the Hán-Nôm UI. Latin technical/product names are allowed.
+        # into the Chữ Nôm UI. Latin technical/product names are allowed.
         self.assertNotRegex(
             vi_hani,
             r"[ĂÂĐÊÔƠƯăâđêôơư"
