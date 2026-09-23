@@ -126,6 +126,24 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
+    def test_completed_sinitic_catalogues_preserve_literal_tokens(self):
+        catalogues = translations.catalogue_paths()
+        poj = translations.read_strings(catalogues["nan-Latn-TW"])
+        self.assertIn("data:image/png;base64,", poj["formats22_base64_description"])
+        for key in (
+            "ui_catrobat_s_own_artwork_uses_cc_by_sa",
+            "ui_gallery_artwork_catrobat_and_its_credited_creators_cc",
+            "gallery_description",
+            "gallery_credit_licence",
+        ):
+            self.assertIn("CC BY-SA 4.0", poj[key], key)
+        self.assertIn("65,535", poj["save20_gif_size_limit"])
+
+        literary = translations.read_strings(catalogues["lzh-Hant"])
+        assembly_help = literary["ui_add_up_to_20_images_with_android_s"]
+        self.assertIn("圖像替換", assembly_help)
+        self.assertNotIn("前景替換", assembly_help)
+
     def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
         catalogues = translations.catalogue_paths()
         for tag in ("yue-Latn", "hak-Latn", "nan-Latn-TW"):
