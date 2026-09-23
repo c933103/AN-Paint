@@ -66,6 +66,28 @@ Android-resource translation systems.
   describe image geometry. They must not be semantically mirrored merely because
   the surrounding interface is right-to-left.
 
+## Sinitic variety conventions
+
+Several language tags cover varieties for which a script tag alone does not identify
+one universal written standard. AN Paint currently uses these explicit conventions:
+
+- `lzh-Hant`: technical Literary Chinese in Traditional characters. Modern product,
+  codec and computing terms may remain modern where forcing an archaic paraphrase
+  would obscure the operation.
+- `hak-Hant`: Sixian Hakka in Han characters.
+- `hak-Latn`: the same Sixian Hakka wording in Pha̍k-fa-sṳ (PFS), not a
+  romanization of Mandarin text.
+- `nan-Hant-TW`: Taiwan Southern Min / Taiwanese Hokkien in Han characters.
+- `nan-Latn-TW`: the same Taiwanese wording in Pe̍h-ōe-jī (POJ), not Mandarin
+  transliteration.
+- `wuu-Hans`: Simplified-script written Wu using Shanghainese as the concrete
+  vernacular basis. `wuu` is a macrolanguage tag and this catalogue must not be
+  described as a standardized pan-Wu written norm.
+
+Han- and Latin-script pairs must stay semantically aligned, but the Latin catalogue
+is a real orthographic rendering of the target variety rather than a character-by-
+character transliteration of Standard Chinese.
+
 ## Validation
 
 `tools/translation_catalogues.py` reads the canonical XML directly. Run:
