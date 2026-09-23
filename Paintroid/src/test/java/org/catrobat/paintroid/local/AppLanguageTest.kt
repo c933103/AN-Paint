@@ -69,12 +69,25 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd","tt" to "tt-Cyrl")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","cju" to "jje","tai" to "tdd","tt" to "tt-Cyrl")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
-        assertEquals(32,starterTags.size)
+        val completeLowResourceTags=listOf("jje","mnc-Mong","ryu","ain-Kana","ain-Latn")
+        assertTrue(tags.containsAll(completeLowResourceTags))
+        for(tag in completeLowResourceTags) {
+            assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
+            assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertNotEquals(listOf("Brush","Save","Cancel"),
+                listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel)))
+        }
+        val starterTags=listOf("yue-Hant","yue-Latn","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        assertEquals(28,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
