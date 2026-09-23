@@ -15,18 +15,16 @@ enum class GlyphOrientation { MIXED, SIDEWAYS, UPRIGHT }
 
 /** Shared shaping and measurements for inserted text, previews and vertical UI labels. */
 internal object VerticalText {
-    fun uiDirection(): TextDirection {
-        val locale=Locale.getDefault()
-        return when {locale.language=="lzh"->TextDirection.VERTICAL_RL
-            locale.language=="mn" && locale.script=="Mong"->TextDirection.VERTICAL_LR
-            else->TextDirection.HORIZONTAL}
+    /** Direction depends on script, so every language written in Mong shares shaping. */
+    fun uiDirection(locale: Locale=Locale.getDefault()): TextDirection = when {
+        locale.script=="Mong" -> TextDirection.VERTICAL_LR
+        locale.language=="lzh" -> TextDirection.VERTICAL_RL
+        locale.language=="en" && locale.country=="XV" -> TextDirection.VERTICAL_LR
+        locale.language=="qaa" && locale.script=="Zsye" && locale.country=="XV" -> TextDirection.VERTICAL_RL
+        else -> TextDirection.HORIZONTAL
     }
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
-    private var mongolianFace: Typeface?=null
-    fun uiTypeface(context: Context): Typeface? {
-        if(Locale.getDefault().language!="mn" || Locale.getDefault().script!="Mong") return null
-        return mongolianFace ?: Typeface.createFromAsset(context.assets,"fonts/notosansmongolian.ttf").also {mongolianFace=it}
-    }
+    fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
     /** Preserve surrogate pairs, combining marks, variation selectors and ZWJ sequences. */
     fun clusters(text: String): List<String> {
         val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0
@@ -44,7 +42,12 @@ internal object VerticalText {
     }
     private fun upright(text: String): Boolean {
         val cp=Character.codePointAt(text,0)
-        return cp in 0x2e80..0xa4cf || cp in 0xac00..0xd7ff || cp in 0xf900..0xfaff || cp in 0xfe10..0xfe4f ||
+        // BMP emoji, emoji presentation selectors and keycaps also stay upright;
+        // checking only the supplementary emoji blocks rotates many test controls.
+        if(text.indexOf('\ufe0f')>=0 || text.indexOf('\u20e3')>=0) return true
+        return cp in 0x2600..0x27bf || cp in 0x231a..0x231b || cp in 0x23e9..0x23fa ||
+            cp in 0x25aa..0x25ab || cp in 0x25fb..0x25fe || cp==0x25b6 || cp==0x25c0 ||
+            cp==0x2b50 || cp==0x2b55 || cp in 0x2b1b..0x2b1c || cp in 0x2e80..0xa4cf || cp in 0xac00..0xd7ff || cp in 0xf900..0xfaff || cp in 0xfe10..0xfe4f ||
             cp in 0xff01..0xff60 || cp in 0x1f000..0x1ffff || cp in 0x20000..0x3ffff
     }
     private val punctuation=mapOf('、' to '︑','。' to '︒','「' to '﹁','」' to '﹂','『' to '﹃','』' to '﹄','（' to '︵','）' to '︶','【' to '︻','】' to '︼','…' to '︙')

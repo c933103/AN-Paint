@@ -27,6 +27,7 @@ class MediaGalleryActivity : Activity() {
         fun allowed(uri: Uri)=IllustrationSource.CATROBAT.allowsPage(uri)
     }
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
+    private var documentCredits: List<ImageCredit> = emptyList()
     private var pendingSearch: String?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
@@ -36,6 +37,8 @@ class MediaGalleryActivity : Activity() {
     @Volatile internal var downloading=false; private set
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
+        documentCredits=runCatching {ImageCredit.read(org.json.JSONArray(state?.getString("document_image_credits")
+            ?: intent.getStringExtra("document_image_credits") ?: "[]"))}.getOrDefault(emptyList())
         fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
         val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true;setBackgroundColor(EditorColours.surface)}
         val description=TextView(this).apply {
@@ -48,11 +51,14 @@ class MediaGalleryActivity : Activity() {
         val row=LinearLayout(this)
         fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
-            val credits=GalleryCredits.text(this)
+            val credits=ImageCredit.text(documentCredits)
             if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
             else GalleryCredits.copy(this,credits)
         }
-        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this)}
+        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this,documentCredits) {source,text ->
+            documentCredits=documentCredits.map {if(it.source==source) it.copy(text=text) else it}
+            setResult(RESULT_OK,Intent().putExtra("document_image_credits",ImageCredit.write(documentCredits).toString()))
+        }}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
         action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
         val navigation=LinearLayout(this)
@@ -96,8 +102,11 @@ class MediaGalleryActivity : Activity() {
                         val page=uri.getQueryParameter("page")?.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: web.url.orEmpty()
                         if(source!=null && provider.allowsImage(source) && (provider==IllustrationSource.CATROBAT || provider.isArtworkPage(Uri.parse(page)))) {
                             val title=uri.getQueryParameter("title").orEmpty().take(512)
-                            if(uri.scheme==GalleryPage.CREDIT_SCHEME) GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page))
-                            else insert(source,page,title)
+                            val author=uri.getQueryParameter("author").orEmpty().take(1024)
+                            val licence=uri.getQueryParameter("licence").orEmpty().take(4096)
+                            val authorUrl=uri.getQueryParameter("author_url").orEmpty().take(4096)
+                            if(uri.scheme==GalleryPage.CREDIT_SCHEME) GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page,author,licence,authorUrl))
+                            else insert(source,page,title,author,licence,authorUrl)
                         }
                         return true
                     }
@@ -107,7 +116,7 @@ class MediaGalleryActivity : Activity() {
                 }
                 override fun onPageFinished(view: WebView,url: String) {
                     if(provider.allowsPage(Uri.parse(url))) {
-                        view.evaluateJavascript(IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
+                        view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
                         pendingSearch?.let {query ->pendingSearch=null;view.evaluateJavascript(IllustrationPage.searchIrasutoya(query),null)}
                     }
                 }
@@ -122,20 +131,20 @@ class MediaGalleryActivity : Activity() {
                 } else false
             }
         }
-        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
+        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
     }
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
     private fun openExternal(uri: Uri) {
         try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
     }
-    private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty()) {
+    private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty(),author: String="",licence: String="",authorUrl: String="") {
         if(downloading || isFinishing || isDestroyed)return
         if(!provider.allowsImage(uri)) {showStatus(ui(R.string.ui_gallery_unsupported34));return}
         if(provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page))) {showStatus(ui(R.string.ui_open_artwork34));return}
-        download(uri,page.take(4096),title.take(512))
+        download(uri,page.take(4096),title.take(512),author,licence,authorUrl)
     }
-    private fun download(uri: Uri,page: String,title: String) {
+    private fun download(uri: Uri,page: String,title: String,author: String,licence: String,authorUrl: String) {
         if(downloading || isFinishing || isDestroyed)return
         downloading=true;showStatus(ui(R.string.ui_downloading_image))
         worker.execute {
@@ -178,7 +187,9 @@ class MediaGalleryActivity : Activity() {
                     // the worker posts this result but before Android delivers it.
                     if(isFinishing || isDestroyed) file.delete() else {
                         setResult(RESULT_OK,Intent().putExtra("gallery_file",file.name).putExtra("gallery_source",uri.toString()).putExtra("gallery_provider",provider.name)
-                            .putExtra("gallery_page",page).putExtra("gallery_title",title))
+                            .putExtra("gallery_page",page).putExtra("gallery_title",title)
+                            .putExtra("gallery_author",author).putExtra("gallery_licence",licence).putExtra("gallery_author_url",authorUrl)
+                            .putExtra("document_image_credits",ImageCredit.write(documentCredits).toString()))
                         finish()
                     }
                 }
@@ -191,6 +202,6 @@ class MediaGalleryActivity : Activity() {
     }
     @Deprecated("Android legacy activity back callback")
     override fun onBackPressed() {if(web.canGoBack()) web.goBack() else super.onBackPressed()}
-    override fun onSaveInstanceState(outState: Bundle) {web.saveState(outState);super.onSaveInstanceState(outState)}
+    override fun onSaveInstanceState(outState: Bundle) {outState.putString("document_image_credits",ImageCredit.write(documentCredits).toString());web.saveState(outState);super.onSaveInstanceState(outState)}
     override fun onDestroy() {web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
 }

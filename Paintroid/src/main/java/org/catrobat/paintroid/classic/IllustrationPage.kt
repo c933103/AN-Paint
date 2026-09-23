@@ -23,6 +23,7 @@ internal object IllustrationPage {
                 if(provider==='IRASUTOYA') return ['blogger.googleusercontent.com','1.bp.blogspot.com','2.bp.blogspot.com','3.bp.blogspot.com','4.bp.blogspot.com'].indexOf(u.hostname)>=0 && /\.(png|jpe?g|webp|gif)$/i.test(u.pathname);
                 return ['openclipart.org','www.openclipart.org'].indexOf(u.hostname)>=0 && /^\/image\/(400|800|2000)px\/[0-9]+\/?${'$'}/.test(u.pathname);
               }
+              ${ArtworkMetadata.script}
               function add(anchor,title) {
                 var u=url(anchor.href); if(!accepted(u)) return;
                 var row=anchor.nextElementSibling;
@@ -34,7 +35,8 @@ internal object IllustrationPage {
                 [use,copy].forEach(function(label,i) {
                   var link=row.children[i];
                   if(!link) { link=document.createElement('a');link.style.cssText='display:inline-block;padding:12px;background:#e9ddff;color:#21005d;border:1px solid #6750a4;border-radius:4px;font:16px sans-serif';row.appendChild(link); }
-                  var target=(i===0?'$USE_SCHEME://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+'?source='+encodeURIComponent(u.href)+'&page='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(title);
+                  link.setAttribute('data-anpaint-action','true');
+                  var target=(i===0?'$USE_SCHEME://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+'?source='+encodeURIComponent(u.href)+'&page='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(title)+artworkCredit(document);
                   if(link.getAttribute('href')!==target) link.setAttribute('href',target);
                   if(link.textContent!==label) link.textContent=label;
                 });

@@ -72,13 +72,17 @@ class GalleryPageDeviceTest {
     }
     @Test fun openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap() {
         val result=adaptIllustration(IllustrationSource.OPENCLIPART,"https://openclipart.org/detail/250963/public-domain","""
-            <html><body><h2>Public Domain</h2><div class="btn-group">
+            <html><body><h2>Public Domain</h2><a rel="author" href="/artist/example">Example artist</a><a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a><div class="btn-group">
             <a href="/download/250963/public-domain.svg">Download SVG</a>
             <a href="/image/400px/250963">Small</a><a href="/image/800px/250963">Medium</a>
             <a href="/image/2000px/250963">Large</a></div></body></html>
         """.trimIndent())
         assertEquals(1,result.getInt(0))
-        assertEquals("https://openclipart.org/image/2000px/250963",android.net.Uri.parse(result.getString(3)).getQueryParameter("source"))
+        val use=android.net.Uri.parse(result.getString(3))
+        assertEquals("https://openclipart.org/image/2000px/250963",use.getQueryParameter("source"))
+        assertEquals("Example artist",use.getQueryParameter("author"))
+        assertEquals("https://openclipart.org/artist/example",use.getQueryParameter("author_url"))
+        assertEquals("CC0 https://creativecommons.org/publicdomain/zero/1.0/",use.getQueryParameter("licence"))
     }
     private fun adaptIllustration(provider: IllustrationSource,url: String,html: String): JSONArray {
         val instrumentation=InstrumentationRegistry.getInstrumentation();val done=CountDownLatch(1)

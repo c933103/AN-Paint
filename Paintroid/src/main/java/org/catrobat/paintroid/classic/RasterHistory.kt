@@ -14,11 +14,11 @@ import java.util.zip.InflaterInputStream
 
 /** Lossless disk snapshots. The transfer buffer stays small at any image size. */
 class RasterHistory(parent: File) : Closeable {
-    data class Entry(val file: File, val width: Int, val height: Int)
+    data class Entry(val file: File, val width: Int, val height: Int, val imageCredits: List<ImageCredit> = emptyList())
     data class Snapshot(val undo: List<Entry> = emptyList(),val redo: List<Entry> = emptyList())
     private val directory = File(parent, "session-${UUID.randomUUID()}")
 
-    fun capture(bitmap: Bitmap): Entry {
+    fun capture(bitmap: Bitmap, imageCredits: List<ImageCredit> = emptyList()): Entry {
         if (!directory.isDirectory && !directory.mkdirs()) throw IOException(ui(R.string.ui_cannot_create_the_undo_cache_free_some_device))
         val file = File.createTempFile("undo-", ".rgba", directory)
         val deflater = Deflater(Deflater.BEST_SPEED)
@@ -38,7 +38,7 @@ class RasterHistory(parent: File) : Closeable {
                     }
                 }
             }
-            return Entry(file, bitmap.width, bitmap.height)
+            return Entry(file, bitmap.width, bitmap.height,imageCredits.toList())
         } catch (error: Throwable) {
             file.delete(); throw error
         } finally { deflater.end() }

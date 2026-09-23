@@ -42,7 +42,7 @@ object ExportNames {
 /** One options panel precedes Android's destination picker for every Save as format. */
 class SaveOptionsDialog(private val activity: Activity,private val initial: ExportOptions,
     private val share: Boolean=false,private val confirm: (SaveRequest)->Unit,private val cancel: ()->Unit,
-    private val initialFilename: String="", private val export: Boolean=false) {
+    private val initialFilename: String="", private val export: Boolean=false, private val imageCredits: String="") {
     fun show(): AlertDialog {
         val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}
         var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless
@@ -117,6 +117,26 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             }
         },LinearLayout.LayoutParams(-1,-2))
         body.addView(losslessBox);body.addView(slider);body.addView(ditherBox);body.addView(tiffCompressionBox);body.addView(iconControls);body.addView(asciiControls);body.addView(explanation)
+        val creditsPanel=if(imageCredits.isBlank()) null else LinearLayout(activity).apply {
+            orientation=LinearLayout.VERTICAL;tag="export_image_credits"
+            val details=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;tag="export_credit_details";visibility=View.GONE}
+            details.addView(TextView(activity).apply {
+                text=imageCredits;tag="export_credit_text";setTextIsSelectable(true);textDirection=View.TEXT_DIRECTION_FIRST_STRONG
+            })
+            details.addView(Button(activity).apply {
+                text=ui(R.string.ui_copy_all);tag="export_copy_credits";isAllCaps=false
+                setOnClickListener {GalleryCredits.copy(activity,imageCredits)}
+            })
+            addView(Button(activity).apply {
+                text="▸ "+ui(R.string.ui_image_credits);tag="export_toggle_credits";isAllCaps=false
+                setOnClickListener {
+                    val open=details.visibility!=View.VISIBLE;details.visibility=if(open) View.VISIBLE else View.GONE
+                    text=(if(open) "▾ " else "▸ ")+ui(R.string.ui_image_credits)
+                }
+            })
+            addView(details)
+        }
+        creditsPanel?.let {body.addView(it)}
         update()
         val content: View=if(VerticalText.uiVertical()) {
             val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_save_form"}
@@ -149,6 +169,9 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
                 if(control is FlowTextView) control.columnHeightDp=tall
                 form.addView(control,LinearLayout.LayoutParams(if(control is NumericSlider) (176*d).toInt() else -2,-2).apply {setMargins((8*d).toInt(),0,(8*d).toInt(),0)})
             }
+            // Credits contain original names and URLs. Keep selectable native text in a bounded
+            // scrolling column even when the surrounding interface uses vertical text.
+            creditsPanel?.let {form.addView(ScrollView(activity).apply {addView(VerticalUi.detach(it))},LinearLayout.LayoutParams((264*d).toInt(),(tall*d).toInt()))}
             form.addView(prose(ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})))
             form.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
             form

@@ -142,6 +142,12 @@ class ViewportAndVerticalTextTest {
     @Test fun unicodeClustersPreserveCombiningCharactersAndEmojiSequences() {
         assertEquals(listOf("Á","👩🏽‍🎨","🇲🇳","𠀀"),VerticalText.clusters("Á👩🏽‍🎨🇲🇳𠀀"))
     }
+    @Test fun mixedVerticalEmojiSymbolsSelectorsAndKeycapsStayUpright() {
+        val paint=Paint().apply {textSize=32f}
+        val box=VerticalText.bounds("✅⚙️1️⃣",paint,TextDirection.VERTICAL_RL,GlyphOrientation.MIXED,1f)
+        assertEquals(3*paint.fontSpacing,box.height(),.01f)
+        assertEquals(listOf("✅","⚙️","1️⃣"),VerticalText.clusters("✅⚙️1️⃣"))
+    }
     @Test fun verticalLatinModesAndColumnOrdersProduceDistinctEditablePixels() {
         val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply {textSize=32f;color=Color.BLACK;typeface=Typeface.DEFAULT}
         val upright=VerticalText.bounds("ABC",paint,TextDirection.VERTICAL_LR,GlyphOrientation.UPRIGHT,1f)
@@ -168,6 +174,12 @@ class ViewportAndVerticalTextTest {
             Locale.setDefault(Locale.forLanguageTag("mn-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
             val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(font)
             val paint=Paint().apply {typeface=font;textSize=40f};assertTrue(paint.hasGlyph("ᠮ"))
+            Locale.setDefault(Locale.forLanguageTag("mnc-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
+            assertSame(font,VerticalText.uiTypeface(RuntimeEnvironment.getApplication()))
+            assertTrue(paint.hasGlyph("ᡤ"))
+            assertEquals(TextDirection.VERTICAL_LR,VerticalText.uiDirection(Locale.forLanguageTag("en-XV")))
+            assertEquals(TextDirection.VERTICAL_RL,VerticalText.uiDirection(Locale.forLanguageTag("qaa-Zsye-XV")))
+            assertEquals(TextDirection.HORIZONTAL,VerticalText.uiDirection(Locale.forLanguageTag("en-US")))
             val settings=TextSettings("ᠮᠣᠩᠭᠣᠯ",direction=TextDirection.VERTICAL_LR,glyphOrientation=GlyphOrientation.SIDEWAYS)
             assertEquals(settings,TextSettings.read(settings.json()))
             assertEquals(TextDirection.HORIZONTAL,TextSettings.read(JSONObject().put("text","Old draft")).direction)

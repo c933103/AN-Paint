@@ -1,8 +1,677 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Starter translation; native-speaker review is welcome. See translations/README.md. -->
+<!-- Canonical Ainu Latin translation; see TRANSLATING.md. -->
 <resources>
+    <string name="ui_0f_0f_px_1f">%1$.0f × %2$.0f px\n%3$.1f°</string>
+    <string name="ui_100" formatted="false">100%</string>
+    <string name="ui_1_px">1 px</string>
+    <string name="ui_1f_s">%1$.1f %2$s</string>
+    <string name="ui_a_separate_recovery_copy_has_been_kept_use">%1$s Noka a=hosipire kusu mosma an cinuyep a=ama wa an. ZIP ne a=ama kusu Cinuyep &gt; Noka hosipire kusu copy sanke a=eywanke yan. Kon rusuy yakun ZIP or wa canvas.png a=sanke wa, noka ne a=maka hine yayan saysu-kiru aeywankep a=eywanke yan.</string>
+    <string name="ui_aa_bb_0123">Aa Bb 0123 · Aynu</string>
+    <string name="ui_about_copyright">Yayopeyope newa copyright</string>
+    <string name="ui_about_copyright_licence">Yayopeyope, copyright newa licence</string>
+    <string name="ui_actual_size_100" formatted="false">Sonno saysu (100%)</string>
+    <string name="ui_add_images">Noka omare</string>
+    <string name="ui_add_images_first">Hoskino noka a=omare yan.</string>
+    <string name="ui_add_images_then_drag_a_thumbnail_here">Noka a=omare, pon noka te un a=raye yan</string>
+    <string name="ui_add_text">Itak omare</string>
+    <string name="ui_add_to_custom_colours">Yaykata iro or un omare</string>
+    <string name="ui_add_up_to_20_images_with_android_s">Android cinuyep-numke aeywankep ani noka 20 pakno a=omare easkay. Corpok tray or ta pon noka, cinuyep rehe, crop saysu newa cinuyep asire erin a=nukar, provider kor yak patek. Cinuyep rehe hene asire erin hene ari a=soyere easkay; soyere yakka tane a=anu noka uske a=kiru ka somo ki.\n\nPon noka a=kik hine a=numke. Noka crop anak nea noka a=tuye; Noka opitta crop anak a=numke noka or un pixel hene percent hene pes a=anu. Crop handle a=raye hene cipiskip a=nuye hene ki yan. Crop hosipire ari hoski pes a=hosipire. Crop anak moto cinuyep a=kiru ka somo ki, huskokatukar ka easkay.\n\nPon noka a=kisma hine a=raye, easkay yakun workspace or ta an noka a=raye wa, a=nukare pes or un anu. Half-sír noka anak e=anu kusu an uske sonno a=nukare. Simoysam ta a=kote yakun sapa uneno an; corpok ta a=kote yakun harkisam pes uneno an. Pon noka a=kik hine + target a=kik ka easkay. Hoskino noka anak origin or ta an. E=kor noka a=tuye yakun or un a=kote noka ka a=raye. Noka ukoetaye ka eaykap.\n\nUneno width newa Uneno height anak noka opitta kor yaykata aspect ratio a=epunkine kor, uneno saysu a=anu. Pixels, percent, Smallest hene Largest hene numke yan. Moto saysu hosipire anak uneno saysu patek a=hosipire, crop a=ama.\n\nAnu p hontomotuye anak a=numke noka patek tray un a=hosipire. Ios noka anak isam uske a=omasuy, anu wa an. Isamka anak nea noka patek a=isamka. Huskokatukar/Suy ki ari sinna a=hosipire. A=anu noka a=raye yakun a=soyere; sat uske a=raye yakun view a=raye. Tu tek ani pinch hine zoom ki yan. Opitta nukare anak noka ukote opitta a=nukar pakno zoom ki, output saysu a=kiru ka somo ki.\n\nPNG ama anak ukote noka PNG ne a=ama. Paint or ta nuye anak main editor un a=omante hine huskokatukar easkay replacement ne a=kar. Output anak memori budget kasu yakun pon output copy a=numke yan. Moto cinuyep a=kiru ka somo ki. Tane an assembly anak kikay or ta a=ama wa, suy e=ek yakun a=maka.\n\nTan mode anak main editor Yaykaopas or ta an Catrobat/AGPL newa asset credits uneno a=eywanke.</string>
+    <string name="ui_advanced">Na poronno</string>
+    <string name="ui_airbrush">Airbrush</string>
+    <string name="ui_all">Opitta</string>
+    <string name="ui_an_assembly_can_contain_up_to_20_images">Sine noka ukote or ta noka 20 pakno a=omare easkay. Mosma noka a=omare kusu sine noka a=isamka yan.</string>
+    <string name="ui_an_assembly_can_contain_up_to_20_images_86d995">Sine noka ukote or ta noka 20 pakno a=omare easkay.</string>
+    <string name="ui_an_assembly_source_image_is_missing">Noka ukote moto noka isam.</string>
+    <string name="ui_an_image_cannot_attach_to_itself_or_one">Noka anak yaykota hene yaykota a=kote noka hene or un a=kote ka eaykap.</string>
+    <string name="ui_an_paint_assembly_image">AN Paint ukote noka</string>
+    <string name="ui_an_paint_image">AN Paint noka</string>
+    <string name="ui_an_paint_image_assembly">AN Paint · Noka ukote</string>
+    <string name="ui_an_paint_image_assembly_20_images_placed">AN Paint · Noka ukote\n%1$s/20 noka · %2$s anu wa an</string>
+    <string name="ui_android_blocked_the_file_picker">Android anak cinuyep-numke aeywankep a=kisma: %1$s</string>
+    <string name="ui_android_could_not_decode_this_image">Android anak tan noka decode eaykap.</string>
+    <string name="ui_android_could_not_find_a_file_picker_enable">Android anak cinuyep-numke aeywankep a=turaynu. Android iyanu or ta Files hene Documents hene app a=askayre wa suy ki yan.</string>
+    <string name="ui_apply">Anu</string>
+    <string name="ui_apply_bounds">Pes anu</string>
+    <string name="ui_apply_crop">Crop anu</string>
+    <string name="ui_apply_to_all">Opitta or un anu</string>
+    <string name="ui_apply_to_these_images">Tan noka utar or un anu</string>
+    <string name="ui_arrow">Ay</string>
+    <string name="ui_assembly_decoded_output_estimated_editing_render_memory_at">Noka ukote: %1$s\nDecode output: %2$s\nMoto saysu ta edit/render memori a=erampetek: %3$s</string>
+    <string name="ui_assembly_output_size">Noka ukote output saysu</string>
+    <string name="ui_assembly_png">Assembly.png</string>
+    <string name="ui_assembly_saved">Noka ukote a=ama</string>
+    <string name="ui_autosave_failed_use_save">Autosave hayta · Ukaosmare eywanke</string>
+    <string name="ui_autosave_image_encoding_failed">Autosave noka encode a=hayta.</string>
+    <string name="ui_autosave_is_paused_to_protect_that_draft_use">%1$s Nea draft a=epunkine kusu autosave a=sini. Cinuyep &gt; Noka hosipire kusu copy sanke a=eywanke wa a=ama, tane an e=ki p anak PNG/JPEG ne a=ama yan.</string>
+    <string name="ui_autosave_metadata_is_missing">Autosave metadata isam.</string>
+    <string name="ui_autosave_paused_use_save">Autosave sini · Ukaosmare eywanke</string>
+    <string name="ui_autosave_pixels_are_missing">Autosave pixel isam.</string>
+    <string name="ui_autosave_pixels_could_not_be_read">Autosave pixel a=nukar eaykap.</string>
+    <string name="ui_autosave_selection_encoding_failed">Autosave numkep encode a=hayta.</string>
+    <string name="ui_autosaving_draft">Draft autosave kor an…</string>
+    <string name="ui_background_colour">Oka iro</string>
+    <string name="ui_background_edit_colour">Oka iro %1$s. Iro nuye.</string>
+    <string name="ui_basic_colours">Yayan iro</string>
+    <string name="ui_batch_crop">Noka opitta crop</string>
+    <string name="ui_batch_crop_images">Noka opitta crop</string>
+    <string name="ui_bg">BG</string>
+    <string name="ui_bold">Poro itokpa</string>
+    <string name="ui_bottom">Corpoki</string>
     <string name="ui_brush">Hunte</string>
-    <string name="ui_save">Ukaosmare</string>
+    <string name="ui_bucket_fill">Iro ecarse</string>
+    <string name="ui_by_pixels_hold_and_drag_to_place">%1$s. %2$s. %3$s × %4$s pixel. A=kisma wa a=raye hine anu yan.</string>
+    <string name="ui_calligraphy">Kampinuye katuhu</string>
+    <string name="ui_cancel">Hontomotuye</string>
+    <string name="ui_cannot_create_the_undo_cache_free_some_device">Huskokatukar cache a=kar eaykap. Kikay or ta uske a=sarare wa suy ki yan.</string>
+    <string name="ui_canvas_bounds">Kampiso pes</string>
+    <string name="ui_canvas_size">Kampiso saysu…</string>
+    <string name="ui_canvas_size_30460e">Kampiso saysu</string>
+    <string name="ui_canvas_zoom">Kampiso zoom</string>
+    <string name="ui_canvas_zoom_771f84">Kampiso zoom %1$s</string>
+    <string name="ui_casual">Yayan</string>
+    <string name="ui_catrobat_online_gallery_artwork_by_its_credited_creators">Catrobat online gallery · a=nuyenuye kur credit an noka</string>
+    <string name="ui_catrobat_s_own_artwork_uses_cc_by_sa">Catrobat kor noka anak CC BY-SA 4.0 ari a=eywanke. Noka-kar-kur credit a=ama, a=sinnare noka ka nea licence ari a=ukopaye yan. Moto sos or ta mosma attribution an ya a=nukar yan. Moto URL anak Cinuyep &gt; Yayopeyope, licences &amp; credits &gt; Noka credits or ta a=ama.</string>
+    <string name="ui_catrobat_sticker_gallery">Catrobat sticker gallery…</string>
+    <string name="ui_centred">Tumu ta</string>
+    <string name="ui_choose_a_smaller_output_copy_the_source_images">Na pon output copy a=numke yan. Moto noka newa crop iyanu anak moto resolution ne a=ama.</string>
+    <string name="ui_choose_a_smaller_size">Na pon saysu a=numke yan.</string>
+    <string name="ui_choose_at_least_one_image">Sine noka hene a=numke yan.</string>
+    <string name="ui_choose_dimensions_no_larger_than_the_original">Moto noka akkari poro ka somo ki saysu a=numke yan.</string>
+    <string name="ui_choose_location">Uske numke…</string>
+    <string name="ui_clear_all">Opitta isamka</string>
+    <string name="ui_clear_image">Noka isamka</string>
+    <string name="ui_collapse_colour_palette">Iro palette komo</string>
+    <string name="ui_collapse_toolbox">Aeywankep komo</string>
+    <string name="ui_colour">Iro %1$s</string>
+    <string name="ui_colour_palette_tap_for_foreground_hold_for_background">Iro palette. A=kik yakun kotca iro; a=kisma yakun oka iro. Na poronno iro a=nukar kusu scroll ki yan.</string>
+    <string name="ui_colour_tap_foreground_hold_background">Iro #%1$s. A=kik yakun kotca iro, a=kisma yakun oka iro.</string>
+    <string name="ui_commit_selection">Numkep okere</string>
+    <string name="ui_common_in">Uneno %1$s (%2$s)</string>
+    <string name="ui_common_in_pixels">Uneno %1$s pixel ani</string>
+    <string name="ui_copper">Copper iro</string>
+    <string name="ui_copy">Néno an pe kar</string>
+    <string name="ui_copy_all">Opitta néno an pe kar</string>
+    <string name="ui_copy_an_area_or_use_file_insert_image">Uske néno an pe a=kar hene Cinuyep › Kampiso or un noka omare a=eywanke hene ki yan.</string>
+    <string name="ui_copy_decoded_image_at_this_size_estimated_loading">Néno an pe: %1$s\nTan saysu decode noka: %2$s\nLoad/edit memori a=erampetek: %3$s\n</string>
+    <string name="ui_corners_and_edges_resize_round_handle_rotates">Sikkew newa pes ari saysu a=kiru. Circle handle ari a=kiru.</string>
+    <string name="ui_could_not_apply_the_crop">Crop a=anu eaykap.</string>
+    <string name="ui_could_not_complete_the_edit">Nuye a=okere eaykap. %1$s</string>
+    <string name="ui_could_not_complete_the_operation">Ikar a=okere eaykap.</string>
+    <string name="ui_could_not_create_the_assembly">Noka ukote a=kar eaykap: %1$s</string>
+    <string name="ui_could_not_decode_the_cropped_region_of">%1$s crop uske a=decode eaykap.</string>
+    <string name="ui_could_not_export_source_code">Source code a=export eaykap</string>
+    <string name="ui_could_not_export_the_recovery_copy">Noka hosipire kusu copy a=sanke eaykap</string>
+    <string name="ui_could_not_load_gallery_image">Gallery noka a=load eaykap: %1$s</string>
+    <string name="ui_could_not_open_image">Noka a=maka eaykap</string>
+    <string name="ui_could_not_place_the_image">Noka a=anu eaykap.</string>
+    <string name="ui_could_not_prepare_the_image">Noka a=etoko-kar eaykap.</string>
+    <string name="ui_could_not_save_image">Noka a=ama eaykap</string>
+    <string name="ui_could_not_save_the_assembly">Noka ukote a=ama eaykap: %1$s</string>
+    <string name="ui_could_not_store_the_assembly">Noka ukote a=ukao eaykap.</string>
+    <string name="ui_create_output">Output kar</string>
+    <string name="ui_credits_terms">Credits newa terms</string>
+    <string name="ui_crop">%1$s crop</string>
+    <string name="ui_crop_image">Noka crop</string>
+    <string name="ui_crop_must_stay_inside_the_canvas">Crop uske anak kampiso or ta an kuni ne.</string>
+    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">Crop cietokonukarpe. Pes hene sikkew hene a=raye wa saysu a=kiru; tumu a=raye wa crop a=raye.</string>
+    <string name="ui_crop_to_selection">Numkep pakno crop</string>
+    <string name="ui_cropped_thumbnail">Crop pon noka: %1$s</string>
+    <string name="ui_current_safe_budget_2f_mp">Tane an safe budget: %1$.2f MP.</string>
+    <string name="ui_current_safe_editing_budget_s_up_to_2f">Tane an safe edit budget: %1$s · decoder overhead etoko %2$.2f MP pakno</string>
+    <string name="ui_cursive">Cursive itokpa-noka</string>
+    <string name="ui_curve">Curve</string>
+    <string name="ui_custom_colour">Yaykata iro %1$s</string>
+    <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Yaykata iro · swatch a=kisma wa a=kiru</string>
+    <string name="ui_cut">Tuye</string>
+    <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pixel (%3$.2f MP) anak tane an safe edit budget %4$.2f MP kasu. AN Paint anak noka opitta memori or ta a=ama, transform newa numkep kusu ka uske a=ama. Easkay memori anak tan budget a=toktobu. Poro bitmap a=kar etoko ikar a=sini. Yaykata resize a=ki ka somo ki.</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixel (%4$.2f MP)</string>
+    <string name="ui_delete_selection">Numkep isamka</string>
+    <string name="ui_disable_cursor_drawing">Cursor nuye aykapte</string>
+    <string name="ui_discard">Isamka</string>
     <string name="ui_done">Okere</string>
-    <string name="ui_save_a5d0d9">@string/ui_save</string>
+    <string name="ui_downloading_image">Noka iranke kor an…</string>
+    <string name="ui_draft_not_saved_yet">Draft naa a=ama ka somo ki</string>
+    <string name="ui_draft_pending">Draft a=ama kusu an</string>
+    <string name="ui_draft_restored">Draft a=hosipire</string>
+    <string name="ui_draft_saved">Draft a=ama</string>
+    <string name="ui_drag_a_line_then_drag_twice_to_set">Line a=raye, oro wa tu suy a=raye wa tu curve point a=anu. Curve okere a=kik yakun hoski a=okere.</string>
+    <string name="ui_drag_a_selection_drag_inside_to_move_square">Numkep a=raye. Tumu a=raye wa a=raye, osikkewnu handle hene pes handle hene ari saysu a=kiru, circle handle ari a=kiru. Katuhu esina anak katuhu a=epunkine.</string>
+    <string name="ui_drag_across_the_ellipse_s_bounding_box">Ellipse kor bounding box ukohetuku sikkew utur a=raye yan.</string>
+    <string name="ui_drag_between_opposite_corners_choose_outline_or_fill">Ukohetuku sikkew utur a=raye. Corpok ta outline hene fill hene a=numke yan.</string>
+    <string name="ui_drag_between_opposite_corners_to_draw_a_five">Ukohetuku sikkew utur a=raye wa 5-point nociw a=nuye. Pes hene fill hene a=numke yan.</string>
+    <string name="ui_drag_between_opposite_corners_to_draw_a_heart">Ukohetuku sikkew utur a=raye wa sampe a=nuye. Pes hene fill hene a=numke yan.</string>
+    <string name="ui_drag_from_the_start_to_the_end_of">Line hoski wano kes un a=raye yan.</string>
+    <string name="ui_drag_from_the_tail_towards_the_arrowhead_choose">Ay kes wano arrowhead un a=raye. Pes hene fill hene a=numke yan.</string>
+    <string name="ui_drag_out_to_expand_in_to_trim_drag">Soy un a=raye yakun sarare, onnay un a=raye yakun tuye. Tumu a=raye wa pes a=raye. Na poro uske kon rusuy yakun pinch hene Fit hene ki yan. Asir uske anak BG iro ari a=ecarse.</string>
+    <string name="ui_drag_placed_images_to_move_them_hold_and">A=anu noka a=raye wa a=raye. Pon noka a=kisma wa a=raye yakun a=omare.</string>
+    <string name="ui_drag_to_erase_with_the_background_colour">A=raye wa oka iro ani a=isamka.</string>
+    <string name="ui_drag_to_pan_without_drawing_pinch_with_two">A=nuye ka somo ki no a=raye wa pan ki. Tu tek ani pinch wa zoom newa pan ki. Nuye aeywankep ani ka tu tek navigation a=ki easkay.</string>
+    <string name="ui_draw_a_crisp_one_pixel_line">Owpeka pes an line a=nuye. Width 1 wano 100 pixel pakno a=kiru.</string>
+    <string name="ui_draw_again">Suy nuye</string>
+    <string name="ui_draw_around_an_area_drag_inside_to_move">Uske etoko a=nuye. Tumu a=raye wa a=raye; osikkewnu handle hene pes handle hene ari saysu a=kiru; circle handle ari a=kiru. Numkep okere ari edit a=anu.</string>
+    <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Riten watercolor stroke a=nuye. Strength ari iro kampiso tura ne wa ehasuy katuhu a=kiru.</string>
+    <string name="ui_draw_with_the_selected_brush_tip_and_size">A=numke brush tip newa saysu ani a=nuye.</string>
+    <string name="ui_drawing_canvas_pinch_and_move_two_fingers_to">Noka a=nuye kampiso. Tu tek ani pinch newa a=raye wa zoom newa pan ki. Raye-nukar mode anak sine tek ani ka pan ki.</string>
+    <string name="ui_drawing_settings">Nuye iyanu…</string>
+    <string name="ui_drawing_settings_d900c6">Nuye iyanu</string>
+    <string name="ui_drop_at_a_highlighted_edge_right_top_aligned">A=nukare pes or un anu: simoysam/sapa uneno an, eici corpok/harkisam uneno an.</string>
+    <string name="ui_each_px_px_percent_is_relative_to_the">Sinep %1$s: %2$s px\n%3$s: %4$s–%5$s px\nPercent anak tane iyotta poro %6$s %7$s px or un a=ukor. A=anu noka anak uske a=kar kusu suy a=anuyere.</string>
+    <string name="ui_edit_background">Oka iro nuye…</string>
+    <string name="ui_edit_foreground">Kotca iro nuye…</string>
+    <string name="ui_edit_in_paint">Paint or ta nuye</string>
+    <string name="ui_ellipse">Ellipse</string>
+    <string name="ui_enable_android_s_files_or_documents_app_then">Android kor Files hene Documents hene app a=askayre wa, suy ki yan.</string>
+    <string name="ui_enable_cursor_drawing">Cursor nuye askayre</string>
+    <string name="ui_enter_a_number_from_to">%1$s wano %2$s pakno cipiskip a=nuye yan.</string>
+    <string name="ui_enter_a_positive_size">0 akkari poro saysu a=nuye yan.</string>
+    <string name="ui_enter_a_trim_amount_for_every_edge">Pes opitta kor trim saysu a=nuye yan.</string>
+    <string name="ui_enter_a_whole_number_from_to">%1$s wano %2$s pakno whole cipiskip a=nuye yan.</string>
+    <string name="ui_enter_all_four_trim_amounts">4 pes kor trim saysu opitta a=nuye yan.</string>
+    <string name="ui_enter_positive_canvas_dimensions_within_android_s_coordinate">Android coordinate range or ta an 0 akkari poro kampiso saysu a=nuye yan.</string>
+    <string name="ui_enter_positive_dimensions">0 akkari poro saysu a=nuye yan.</string>
+    <string name="ui_enter_positive_dimensions_no_larger_than_the_original">0 akkari poro, moto saysu kasu ka somo ki saysu a=nuye yan.</string>
+    <string name="ui_enter_positive_dimensions_that_resolve_to_at_least">1 pixel hene ne easkay 0 akkari poro saysu a=nuye yan.</string>
+    <string name="ui_enter_positive_image_dimensions">0 akkari poro noka saysu a=nuye yan.</string>
+    <string name="ui_enter_valid_dimensions">Owpeka saysu a=nuye yan.</string>
+    <string name="ui_eraser">Isamka-aeywankep</string>
+    <string name="ui_estimated_memory_current_working_budget">Memori a=erampetek: %1$s\nTane an working budget: %2$s\n</string>
+    <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Tan erampetek or ta tane an kampiso newa clipboard, sample decode newa edit buffer a=omare. Sonno memori eywanke katu sinna an. Pon copy anak komke noka ipe a=isamka. Import kor a=numke opaque oka iro a=eywanke; moto cinuyep a=kiru ka somo ki.</string>
+    <string name="ui_expand_colour_palette">Iro palette sarare</string>
+    <string name="ui_expand_toolbox">Aeywankep sarare</string>
+    <string name="ui_export_recovery_copy">Noka hosipire kusu copy sanke…</string>
+    <string name="ui_export_recovery_copy_144b8a">Noka hosipire kusu copy sanke</string>
+    <string name="ui_export_this_version_s_source_code">Tan werson source code export…</string>
+    <string name="ui_eyedropper">Iro-numke</string>
+    <string name="ui_fg">FG</string>
+    <string name="ui_filename_a_z">Cinuyep rehe A–Z</string>
+    <string name="ui_filename_z_a">Cinuyep rehe Z–A</string>
+    <string name="ui_fill_line">Fill + line</string>
+    <string name="ui_fill_text_box_with_bg_colour">Text box BG iro ani ecarse</string>
+    <string name="ui_finish_curve">Curve okere</string>
+    <string name="ui_finish_polygon">Polygon okere</string>
+    <string name="ui_fit">Fit</string>
+    <string name="ui_fit_entire_canvas_in_view">Kampiso opitta view or un fit</string>
+    <string name="ui_fit_image">Noka fit</string>
+    <string name="ui_fits_the_current_budget">Tane an budget or ta easkay.</string>
+    <string name="ui_flip_horizontal">Harkisam newa simoysam itasare</string>
+    <string name="ui_flip_vertical">Sapa newa corpok itasare</string>
+    <string name="ui_font">Itokpa-noka</string>
+    <string name="ui_font_family">Itokpa-noka urespa</string>
+    <string name="ui_font_licences">Itokpa-noka licence</string>
+    <string name="ui_foreground_background_colour_palette">Kotca iro %1$s, oka iro %2$s. %3$s iro palette.</string>
+    <string name="ui_foreground_colour">Kotca iro</string>
+    <string name="ui_foreground_edit_colour">Kotca iro %1$s. Iro nuye.</string>
+    <string name="ui_free_form_select">Yaykata katuhu numke</string>
+    <string name="ui_full_text_copied">Itak opitta néno an pe a=kar</string>
+    <string name="ui_gallery_artwork_catrobat_and_its_credited_creators_cc">Gallery noka: Catrobat newa credit an noka-kar-kur. Moto or ta mosma terms isam yakun CC BY-SA 4.0 ne. A=sinnare noka a=ukopaye kor noka credit a=ama wa, e=kiru hi a=nuye.\n\n</string>
+    <string name="ui_gallery_image">Gallery noka</string>
+    <string name="ui_give_all_images_the_same_each_image_keeps">Noka %1$s opitta uneno %2$s a=anu. Noka sinep sinep kor aspect ratio a=epunkine. Moto cinuyep newa crop iyanu a=kiru ka somo ki.</string>
+    <string name="ui_gnu_affero_general_public_license">GNU Affero General Public License</string>
+    <string name="ui_gold">Konkane iro</string>
+    <string name="ui_heart">Sampe</string>
+    <string name="ui_height">Height (%1$s)</string>
+    <string name="ui_height_in">Height %1$s ani</string>
+    <string name="ui_heights">Height utar</string>
+    <string name="ui_hex_rrggbb">Hex #RRGGBB</string>
+    <string name="ui_hide_editor_controls">Editor control nuyna</string>
+    <string name="ui_hide_pixel_grid_800" formatted="false">Pixel grid nuyna (800%+)</string>
+    <string name="ui_higher_quality_usually_makes_a_larger_file_lossless">Quality poro yakun cinuyep ka poro kuni an. Lossless anak iro value opitta a=ama.</string>
+    <string name="ui_hold_a_thumbnail_and_drag_it_here_or">Pon noka a=kisma wa te un a=raye, eici a=kik hine workspace a=kik yan.</string>
+    <string name="ui_hold_or_drag_to_spray_colour">A=kisma hene a=raye hene wa iro a=spray.</string>
+    <string name="ui_honeycomb">Honeycomb</string>
+    <string name="ui_honeycomb_colour_06x">Honeycomb iro #%1$06X</string>
+    <string name="ui_honeycomb_colour_swatches_with_a_greyscale_row">Greyscale row an honeycomb iro swatch</string>
+    <string name="ui_how_to_use">Eywankekatu</string>
+    <string name="ui_hue_and_saturation_spectrum_lightness_slider_on_the">Hue newa saturation spectrum; simoysam ta lightness slider an</string>
+    <string name="ui_hue_and_saturation_wheel_value_slider_on_the">Hue newa saturation wheel; simoysam ta value slider an</string>
+    <string name="ui_icon_licences">Inoka licence</string>
+    <string name="ui_icon_licences_kde_breeze">Inoka licence — KDE Breeze</string>
+    <string name="ui_icons_artwork">Inoka newa noka</string>
+    <string name="ui_icons_fonts_artwork_credits">Inoka, itokpa-noka newa noka credits</string>
+    <string name="ui_image">Noka</string>
+    <string name="ui_image_assembly">Noka ukote…</string>
+    <string name="ui_image_assembly_workspace_drag_placed_images_or_drop">Noka ukote workspace. A=anu noka a=raye hene pon noka a=anu hene wa simoysam hene corpok hene target or un snap ki. Pinch wa zoom; sat uske a=raye wa pan.</string>
+    <string name="ui_image_credits">Noka credits</string>
+    <string name="ui_image_placed_drag_it_to_move_or_hold">Noka a=anu wa an. A=raye wa a=raye, eici mosma pon noka a=kisma wa a=raye.</string>
+    <string name="ui_image_shown_in_crop_preview">Crop cietokonukarpe or ta a=nukare noka</string>
+    <string name="ui_image_thumbnails_and_filenames_scroll_horizontally_for_more">Pon noka newa cinuyep rehe. Sampe un scroll wa na poronno nukar.</string>
+    <string name="ui_insert">Omare</string>
+    <string name="ui_insert_gallery_image">Gallery noka a=omare ya?</string>
+    <string name="ui_insert_image_into_canvas">Kampiso or un noka omare…</string>
+    <string name="ui_invalid_autosave_metadata">Autosave metadata komke.</string>
+    <string name="ui_invalid_colour">Iro komke</string>
+    <string name="ui_invalid_image_attachments">Noka kote tatum komke.</string>
+    <string name="ui_invalid_selection_outline">Numkep outline komke.</string>
+    <string name="ui_invert_colours">Iro ehorka</string>
+    <string name="ui_italic">Italic</string>
+    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Sapa-harkisam pixel a=ama. Kampiso na pon ne yakun simoysam/corpok pes soy ta an pixel a=isamka; Huskokatukar ari a=hosipire.</string>
+    <string name="ui_largest">Iyotta poro</string>
+    <string name="ui_left">Harkisam</string>
+    <string name="ui_left_aligned">Harkisam uneno</string>
+    <string name="ui_left_arrow_collapse">Harkisam ay: komo</string>
+    <string name="ui_line">Line</string>
+    <string name="ui_line_spacing" formatted="false">Line utur (%)</string>
+    <string name="ui_load_image">Noka maka…</string>
+    <string name="ui_lock_aspect_ratio">Aspect ratio esina</string>
+    <string name="ui_lock_proportions">Katuhu esina</string>
+    <string name="ui_lossless_jpeg_xl">Lossless JPEG XL</string>
+    <string name="ui_magnification" formatted="false">Porore katu (%)</string>
+    <string name="ui_magnified_preview">Porore cietokonukarpe…</string>
+    <string name="ui_magnified_preview_ea9209">Porore cietokonukarpe</string>
+    <string name="ui_menu">Menu</string>
+    <string name="ui_modified_newest_first">Asire erin: asir p hoski</string>
+    <string name="ui_modified_oldest_first">Asire erin: husko p hoski</string>
+    <string name="ui_monospace">Uneno sep itokpa-noka</string>
+    <string name="ui_navigate">Raye-nukar</string>
+    <string name="ui_new">Asir…</string>
+    <string name="ui_new_colour">Asir iro</string>
+    <string name="ui_new_image">Asir noka</string>
+    <string name="ui_no_attachment_fits_within_the_current_coordinate_range">Tane an coordinate range or ta easkay kote uske isam. Na pon noka saysu eywanke yan.</string>
+    <string name="ui_no_gallery_images_have_been_inserted">Gallery noka naa a=omare ka somo ki.</string>
+    <string name="ui_no_readable_image_data">A=nukar easkay noka tatum isam.</string>
+    <string name="ui_none">Isam</string>
+    <string name="ui_not_enough_memory_for_this_operation_the_assembly">Tan ikar kusu memori sak. Noka ukote moto cinuyep anak a=ama.</string>
+    <string name="ui_not_enough_memory_to_finish_opening_this_image">Tan noka a=maka okere kusu memori sak</string>
+    <string name="ui_not_enough_memory_to_inspect_the_gallery_image">Gallery noka a=nukar kusu memori sak.</string>
+    <string name="ui_not_enough_memory_to_inspect_this_image">Tan noka a=nukar kusu memori sak</string>
+    <string name="ui_not_enough_memory_to_save_in_this_format">Tan format ani a=ama kusu memori sak. PNG eywanke yan</string>
+    <string name="ui_not_placed">A=anu ka somo ki</string>
+    <string name="ui_ok">OK</string>
+    <string name="ui_open_source_credits_and_notices">Open-source credits newa notices</string>
+    <string name="ui_original_decoded_image_rgba_4_bytes_pixel_estimated">Moto: %1$s\nDecode noka: %2$s (RGBA, 4 bytes/pixel)\nResize ka somo ki yakun edit memori a=erampetek: %3$s</string>
+    <string name="ui_other_terms">Mosma an terms</string>
+    <string name="ui_outline">Pes</string>
+    <string name="ui_pale_violet">Pale Violet iro</string>
+    <string name="ui_palette">Iro palette</string>
+    <string name="ui_paste">Oma</string>
+    <string name="ui_pencil">Pencil</string>
+    <string name="ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing">Pencil anak a=numke width hem owpeka pes a=epunkine.</string>
+    <string name="ui_percent">Percent</string>
+    <string name="ui_percent_fd8671">percent</string>
+    <string name="ui_percent_of_pixels">%1$s pixel kor percent</string>
+    <string name="ui_pinch_and_pan_mode">Pinch newa pan mode</string>
+    <string name="ui_pinch_to_zoom_drag_to_pan">Pinch wa zoom. Raye wa pan.</string>
+    <string name="ui_pixels">Pixels</string>
+    <string name="ui_pixels_6ec9c2">pixels</string>
+    <string name="ui_place_at_least_one_image_in_the_workspace">Hoskino workspace or ta sine noka hene a=anu yan.</string>
+    <string name="ui_place_text">Itak anu</string>
+    <string name="ui_placed">Anu wa an</string>
+    <string name="ui_please_try_again">Suy ki wa un=kore yan.</string>
+    <string name="ui_please_wait_for_the_current_operation">Tane an ikar a=okere pakno tere yan.</string>
+    <string name="ui_polygon">Polygon</string>
+    <string name="ui_preview">Aetokonukar</string>
+    <string name="ui_previous_draft_kept_for_recovery">Husko draft a=hosipire kusu a=ama</string>
+    <string name="ui_px">%1$s · %2$s\n%3$s × %4$s px · %5$s</string>
+    <string name="ui_px_724eb3">%1$s × %2$s px</string>
+    <string name="ui_px_drag_an_image_to_move_hold_a">%1$s × %2$s px · noka a=raye wa a=raye; pon noka a=kisma wa omare.</string>
+    <string name="ui_quality" formatted="false">Quality (%)</string>
+    <string name="ui_radius_px">Radius (px)</string>
+    <string name="ui_ready">Etoko an</string>
+    <string name="ui_recent_colour_d_06x_tap_foreground_hold_background">Tane eywanke iro %1$d: #%2$06X. A=kik yakun kotca, a=kisma yakun oka iro.</string>
+    <string name="ui_recent_colour_empty">Tane eywanke iro %1$s: sat</string>
+    <string name="ui_recovered_image">A=hosipire noka</string>
+    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">Noka hosipire kusu copy a=sanke. ZIP or wa canvas.png a=sanke hine Cinuyep &gt; Noka maka ani a=maka yan. ZIP or ta draft iyanu newa floating numkep ka an.</string>
+    <string name="ui_rectangle">Rectangle</string>
+    <string name="ui_rectangle_select">Rectangle numke</string>
+    <string name="ui_redo">Suy ki</string>
+    <string name="ui_remove">Isamka</string>
+    <string name="ui_rendering_images">Noka render kor an %1$s / %2$s…</string>
+    <string name="ui_reset_crop">Crop hosipire</string>
+    <string name="ui_reset_to_black_white">Kunne / retar ne hosipire</string>
+    <string name="ui_resize_and_load">Resize wa load</string>
+    <string name="ui_resize_image">Noka resize…</string>
+    <string name="ui_resize_image_ab28be">Noka resize</string>
+    <string name="ui_resize_large_image">Poro noka resize ya?</string>
+    <string name="ui_resize_the_copy">Néno an pe resize</string>
+    <string name="ui_restore_original_sizes">Moto saysu hosipire</string>
+    <string name="ui_right">Simoysam</string>
+    <string name="ui_right_aligned">Simoysam uneno</string>
+    <string name="ui_right_arrow_expand">Simoysam ay: sarare</string>
+    <string name="ui_rotate">Kiru</string>
+    <string name="ui_rotate_180">180° kiru</string>
+    <string name="ui_rotate_90_clockwise">90° simoysam un kiru</string>
+    <string name="ui_round">Round</string>
+    <string name="ui_rounded_rectangle">Rounded rectangle</string>
+    <string name="ui_same">Uneno %1$s</string>
+    <string name="ui_same_height">Uneno height</string>
+    <string name="ui_same_width">Uneno width</string>
+    <string name="ui_sans_condensed">Sans condensed</string>
+    <string name="ui_sans_light">Sans light</string>
+    <string name="ui_sans_medium">Sans medium</string>
+    <string name="ui_sans_serif">Itomka isam itokpa-noka</string>
+    <string name="ui_sans_thin">Sans thin</string>
+    <string name="ui_save">Ukaosmare</string>
+    <string name="ui_save_a5d0d9">Ukaosmare…</string>
+    <string name="ui_save_and_share">Ama wa ukopaye…</string>
+    <string name="ui_save_and_share_41edb4">Ama wa ukopaye</string>
+    <string name="ui_save_as">%1$s ne ama</string>
+    <string name="ui_save_as_jpeg">JPEG ne ama…</string>
+    <string name="ui_save_as_jpeg_xl">JPEG XL ne ama…</string>
+    <string name="ui_save_as_png">PNG ne ama…</string>
+    <string name="ui_save_png">PNG ama</string>
+    <string name="ui_save_your_changes">Sinna a=ama ya?</string>
+    <string name="ui_saved">%1$s a=ama</string>
+    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">Noka saysu a=kiru. Ratio a=esina ka somo ki yakun width newa height yaykata a=kiru easkay.</string>
+    <string name="ui_select_all">Opitta numke</string>
+    <string name="ui_select_an_area">Uske numke</string>
+    <string name="ui_select_an_area_first">Hoskino uske a=numke yan.</string>
+    <string name="ui_selection_dimensions_are_too_large">Numkep saysu poro ruwe ne.</string>
+    <string name="ui_serif">Itomka an itokpa-noka</string>
+    <string name="ui_set_radius_px_then_drag_between_opposite_corners">Radius (px) a=anu, oro wa ukohetuku sikkew utur a=raye. Radius anak rectangle kor takne pes kor half pakno.</string>
+    <string name="ui_share_saved_image">A=ama noka ukopaye</string>
+    <string name="ui_show_all">Opitta nukare</string>
+    <string name="ui_show_controls">Control nukare</string>
+    <string name="ui_show_editor_controls">Editor control nukare</string>
+    <string name="ui_show_magnified_drawing_preview">Porore nuye cietokonukarpe nukare</string>
+    <string name="ui_show_pixel_grid_800" formatted="false">Pixel grid nukare (800%+)</string>
+    <string name="ui_shows_the_whole_assembly_image_and_output_sizes">Noka ukote opitta a=nukare. Noka newa output saysu a=kiru ka somo ki.</string>
+    <string name="ui_silver">Silver iro</string>
+    <string name="ui_size_pixels">Saysu (pixels)</string>
+    <string name="ui_size_px">Saysu (px)</string>
+    <string name="ui_smallest">Iyotta pon</string>
+    <string name="ui_smooth_freehand_strokes">Freehand stroke ratci</string>
+    <string name="ui_smooth_pixel_edges_anti_aliasing">Pixel pes ratci (anti-aliasing)</string>
+    <string name="ui_solid_fill">Solid fill</string>
+    <string name="ui_some_previews_could_not_be_decoded_you_can">Cietokonukarpe usa suy decode eaykap. Nea noka a=isamka hene noka ukote a=ama hene easkay.</string>
+    <string name="ui_sort_images_by_filename_or_modification_time">Cinuyep rehe hene asire erin hene ari noka soyere</string>
+    <string name="ui_sort_tray">Tray soyere</string>
+    <string name="ui_source_code_exported_including_build_scripts_and_licence">Source code a=export, build script newa licence notice ka a=omare.</string>
+    <string name="ui_spectrum">Spectrum</string>
+    <string name="ui_spray_radius_px">Spray radius (px)</string>
+    <string name="ui_square">Square</string>
+    <string name="ui_star">Nociw</string>
+    <string name="ui_strength" formatted="false">Strength (%)</string>
+    <string name="ui_strikethrough">Itak kasi line</string>
+    <string name="ui_swap_foreground_background">Kotca / oka iro itasare</string>
+    <string name="ui_tap_a_pixel">Pixel kik</string>
+    <string name="ui_tap_an_enclosed_area_adjust_tolerance_for_similar">A=esina uske a=kik. Uneno iro kusu tolerance a=kiru.</string>
+    <string name="ui_tap_an_image_first">Hoskino noka a=kik yan.</string>
+    <string name="ui_tap_an_image_thumbnail_first">Hoskino pon noka a=kik yan.</string>
+    <string name="ui_tap_canvas_to_type">Kampiso kik\nitak nuye</string>
+    <string name="ui_tap_the_canvas_to_place_text_and_choose">Kampiso a=kik wa itak a=anu, itokpa-noka newa saysu a=numke.</string>
+    <string name="ui_tap_the_image_to_sample_the_foreground_colour">Noka a=kik wa kotca iro a=uk.</string>
+    <string name="ui_tap_to_type_a_number">%1$s: %2$s. Cipiskip a=nuye kusu kik.</string>
+    <string name="ui_tap_vertices_then_double_tap_the_last_vertex">Vertex a=kik, kes vertex a=kikkik wa polygon a=esina. Polygon okere ka easkay. Polygon esina a=aykapte yakun ukokote open line segment a=nuye.</string>
+    <string name="ui_text">Itak</string>
+    <string name="ui_text_alignment">Itak uneno katu</string>
+    <string name="ui_that_arrangement_overlaps_another_image_use_a_different">Nea anu-katu anak mosma noka tura ukoetaye. Mosma pes eywanke hene hoskino a=kote noka unplace hene ki yan.</string>
+    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">Toolbar corpok harkisam ta an ay anak aeywankep a=komo hene a=sarare hene: kanto un ay ari komo, corpok un ay ari sarare. Portrait or ta tool strip anak toolbar corpok ta harkisam wano simoysam un an; swipe wa mosma aeywankep a=nukar. Landscape or ta harkisam ta an. Hunte topa or ta Pencil, Hunte, Watercolor newa Airbrush an. Numkep topa or ta rectangle newa free-form selection an. Omare topa or ta line, shape newa itak an. Category a=kik yakun portrait or ta strip corpok, landscape or ta simoysam ta, aeywankep newa iyanu a=sarare. Suy a=kik yakun a=komo; ay ka ehorka. Category anak hoski a=eywanke aeywankep a=eramuan. Mosma iyanu newa edit control a=nukar kusu options panel a=scroll. Tan layout hoskino a=maka kor tu panel opitta a=sarare; ios e=numke katu a=eramuan. Landscape or ta kanto control anak sine row or ta an, cinuyep rehe tumu ta an; Menu anak Cinuyep, Nuye, Nukar, Noka, Iro newa Yaykaopas a=maka, Android submenu ay an.\n\nFG/BG iro noka anak harkisam-corpok ta palette sam ta ramma an. Iro palette anak uneno row or ta simoysam un a=sarare. Ay anak simoysam pes ta an: harkisam un yakun palette a=komo, simoysam un yakun a=sarare. Komo yakun extra swatch patek a=nuyna, iro noka a=raye ka somo ki. Iro box a=kik ka palette a=kiru. Swatch a=kik yakun kotca iro, a=kisma yakun oka iro. FG/BG anak Iro palette, Honeycomb newa Na poronno a=maka. Na poronno or ta spectrum, wheel, RGB, HSV, HSL newa 6-digit hex control an. Iyotta simoysam ta 4 cell anak tane eywanke iro a=ama; a=kik yakun kotca, a=kisma yakun oka iro. Yaykata iro hoski anak Pale Violet #5B67FF, Gold #FFD700, Silver #C0C0C0 newa Copper #B87333. Yaykata swatch a=kisma wa a=kiru. Main editor anak opaque iro a=eywanke; transparent import anak tane an BG iro kasi a=anu. Moto cinuyep a=kiru ka somo ki.\n\nRaye-nukar anak husko magnifying-glass aeywankep ehos. Sine tek ani a=raye wa pan; tu tek ani pinch wa zoom newa pan. Raye-nukar suy a=kik hene Suy nuye a=kik hene wa nuye or un hosipi. Nuye aeywankep or ta ka tu tek navigation anak paint mark a=ama ka somo ki. Simoysam-corpok slider or ta 100% tumu line an. Zoom in/out button anak sine step ani 100% a=kasu yakun 100% ta hoskino sini; suy kik wa arpa. Simoysam an Fit button anak kampiso opitta view or un fit wa tumu ta anu. Nukar or ta 100% newa pixel grid ka an.\n\nAutosave anak edit irukaypo sini okake newa app wano e=soyene kor tane an draft a=ama. Status anak Draft saved hene autosave hayta hene a=nukare. Suy maka yakun draft, cinuyep rehe, tool iyanu, floating numkep newa naa a=okere ka somo geometry a=hosipire. Autosave anak ciyehe working draft ne a=ama. Cinuyep or ta PNG, quality a=kiru easkay JPEG newa HEIC, lossless hene lossy hene JPEG XL, WebP newa AVIF an. Ama wa ukopaye anak Android sharing a=maka etoko cinuyep a=ama. Export anak e=numke uske un a=ama; cinuyep rehe or ta nociw an yakun export cinuyep okake a=ama ka somo ki sinna an. Autosave anak moto noka a=kasi-nuye ka somo ki.\n\nNumkep: rectangle hene free-form outline hene a=nuye. Tumu a=raye wa a=raye; square sikkew hene pes tumu handle hene a=raye wa resize; circle Kiru handle a=raye wa kiru. Katuhu esina anak siurenkareno askay; aykapte yakun width newa height yaykata a=sarare easkay. Pes handle anak a=numke pes arahke patek resize. Free-form selection anak kiru newa autosave okake ka transform box or ta numkep katuhu a=epunkine. Saysu newa angle anak sidebar or ta a=nukare. Numkep okere anak result sine huskokatukar easkay selection edit ne a=anu; autosave anak naa a=okere ka somo transform a=ama. Néno an pe kar, Tuye newa Numkep pakno crop anak transform noka a=eywanke. Opitta numke anak edit icon 2 row ta an, external keyboard ani Ctrl+A ka easkay. Tuye/Néno an pe kar newa Oma/Opitta numke anak Eywankekatu corpok tu row ne an. Numkep mask anak a=numke katuhu a=epunkine; document anak opaque ne an.\n\nKampiso pes: handle onnay un a=raye wa tuye, soy un a=raye wa pes a=sarare, oro wa Pes anu a=kik. Asir uske anak BG iro; an pixel a=scaleka ka somo ki. Hontomotuye newa Huskokatukar easkay. Noka resize, Kampiso saysu newa Asir noka anak Pixels hene Percent hene a=eywanke, aspect lock ka easkay.\n\nCurve: line a=nuye wa tu suy a=raye hine a=kemnu. Polygon: vertex a=kik, kes vertex a=kikkik hene Polygon okere a=eywanke hene ki. Polygon esina a=aykapte yakun open segment ukokote a=nuye. Rounded rectangle: slider ani Radius (px) a=anu; radius anak takne pes half pakno. Text: kampiso a=kik, yaykata style ani a=nukare itokpa-noka a=numke, live cietokonukarpe a=eywanke. Saysu, bold, italic, underline, strikethrough, alignment, line spacing newa BG text box an. Watercolor anak Hunte topa or ta Hunte newa Airbrush sam ta an; Strength a=kiru wa na riten stroke a=kar. Pencil, brush newa tool saysu slider 100 pixel pakno. Pencil anak 1 pixel wano, yaykata width a=eramuan. Cipiskip a=kik wa sonno value a=nuye. Sampe, Nociw newa Ay anak mosma shape kor outline/fill numke katu uneno an. Nukar &gt; Cursor nuye or ta askay/aykapte, cursor katuhu newa magnifier iyanu a=sarare. Cursor a=anu kusu a=raye, screen drawing button a=kik, oro wa pan wa nuye. Suy a=kik wa sini. Hunte newa stroke iyanu anak Nuye &gt; Nuye or ta an. Nukar &gt; Porore-nukar anak cursor hene nuye point hene a=porore wa a=nukare, magnification a=kiru easkay. Nuye iyanu or ta antialiasing newa stroke smoothing ka an. Mosma 10 itokpa-noka a=omare; Itokpa-noka licence or ta credit newa terms opitta an.\n\nCinuyep &gt; Noka maka anak Android picker ani kampiso a=kiru. Kampiso or un noka omare anak noka floating selection ne a=omare. Corpok Catrobat sticker gallery anak online noka a=kore; download easkay noka a=kik hene a=kisma hene wa omare. Cinuyep &gt; Yayopeyope, licences &amp; credits &gt; Noka credits anak moto rinko newa licence notice a=ama. Kikay memori budget or ta easkay noka anak moto resolution ani load. Kon yakun resize-choice dialog or ta saysu, pixel cipiskip newa memori erampetek a=nukare, Pixels/Percent saysu newa aspect lock a=numke easkay. Moto cinuyep a=kiru ka somo ki.\n\nCinuyep hene Nukar &gt; Noka ukote hene anak noka 20 pakno easkay mosma workspace a=maka. Pon noka cinuyep rehe hene erin hene ari a=soyere. Sine noka crop hene poronno noka batch-crop hene ki. Uneno width / Uneno height anak aspect ratio a=epunkine kor load noka opitta uneno saysu a=anu. Pon noka hene a=anu noka hene a=raye wa simoysam/sapa uneno hene corpok/harkisam uneno hene snap. Anu p hontomotuye anak a=numke anu patek a=isamka wa uske a=omasuy. Opitta nukare anak view zoom patek. PNG ama anak assembly a=export; Paint or ta nuye anak huskokatukar easkay edit ne main editor un a=omante. App anak sine opaque noka editor a=eywanke. Noka ukote anak mosma arrangement workspace ne an.\n\nYaykaopas or ta moto copyright, asset/font credits, licence itak opitta newa tan werson source opitta an. Licence itak anak Opitta néno an pe kar, Mosma an terms newa Okere fixed button wano yaykata a=scroll.</string>
+    <string name="ui_the_assembly_exceeds_android_s_coordinate_range">Noka ukote anak Android coordinate range a=kasu.</string>
+    <string name="ui_the_assembly_needs_about_choose_a_smaller_output">Noka ukote anak %1$s pakno konrusuy. Na pon output saysu a=numke yan.</string>
+    <string name="ui_the_assembly_output_is_unavailable_reopen_image_assembly">Noka ukote output a=eywanke eaykap. Noka ukote suy a=maka wa suy ki yan.</string>
+    <string name="ui_the_attachment_image_is_missing">A=kote noka isam.</string>
+    <string name="ui_the_attachment_image_is_not_placed">A=kote noka a=anu ka somo ki.</string>
+    <string name="ui_the_crop_must_contain_at_least_one_pixel">Crop or ta 1 pixel hene an kuni ne.</string>
+    <string name="ui_the_crop_must_stay_inside_the_image">Crop anak noka onnay ta an kuni ne.</string>
+    <string name="ui_the_decoder_and_editing_buffers_need_about_the">Decoder newa edit buffer anak %1$s pakno konrusuy; tane safe edit budget anak %2$s. Na pon copy a=numke yan.</string>
+    <string name="ui_the_draft_is_saving_try_again_shortly">Draft a=ama kor an. Irukaypo okake suy ki yan.</string>
+    <string name="ui_the_encoder_did_not_finish">Encoder a=okere ka somo ki.</string>
+    <string name="ui_the_first_image_starts_at_the_top_left">Hoski noka anak sapa-harkisam wano hoski.</string>
+    <string name="ui_the_full_image_and_working_buffers_exceed_the">Noka opitta newa working buffer anak tane safe budget a=kasu, eici Android anak a=kar eaykap. Nuye kusu copy resize yan. Moto cinuyep a=kiru ka somo ki.</string>
+    <string name="ui_the_gallery_download_is_too_large">Gallery download poro.</string>
+    <string name="ui_the_gallery_image_is_unavailable">Gallery noka a=eywanke eaykap.</string>
+    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">Gallery anak a=easkayre host soy un redirect.</string>
+    <string name="ui_the_image_could_not_be_downloaded">Noka a=iranke eaykap.</string>
+    <string name="ui_the_image_was_saved_but_android_could_not">Noka a=ama, korka Android sharing a=maka eaykap: %1$s</string>
+    <string name="ui_the_images_cannot_fit_within_android_s_coordinate">Noka anak Android coordinate range or ta easkay ka somo. Na pon noka saysu a=numke yan.</string>
+    <string name="ui_the_normalized_image_dimensions_are_outside_android_s">Uneno a=anu noka saysu anak Android range soy ta an.</string>
+    <string name="ui_the_online_gallery_could_not_be_loaded_check">Online gallery a=load eaykap. Connection a=nukar wa suy ki yan.</string>
+    <string name="ui_the_picker_returned_no_file_please_choose_the">Picker anak cinuyep a=kore ka somo ki. Cinuyep suy a=numke yan.</string>
+    <string name="ui_the_picker_returned_no_files">Picker anak cinuyep a=kore ka somo ki.</string>
+    <string name="ui_the_previous_draft_could_not_be_moved_to">Husko draft noka hosipire kusu copy ne a=raye eaykap.</string>
+    <string name="ui_the_previous_draft_could_not_be_preserved_separately">Husko draft yaykata a=ama eaykap.</string>
+    <string name="ui_the_previous_draft_could_not_be_restored">Husko draft a=hosipire eaykap.</string>
+    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">Husko draft suy a=maka kusu na poronno memori konrusuy.</string>
+    <string name="ui_the_saved_assembly_could_not_be_opened">A=ama noka ukote a=maka eaykap: %1$s</string>
+    <string name="ui_the_selected_location_is_not_writable">A=numke uske or un a=nuye eaykap.</string>
+    <string name="ui_the_selected_provider_did_not_return_any_image">A=numke provider anak noka tatum a=kore ka somo ki.</string>
+    <string name="ui_the_trim_would_remove_the_entire_image">Tan trim anak noka opitta a=isamka.</string>
+    <string name="ui_the_undo_cache_is_damaged">Huskokatukar cache a=wen.</string>
+    <string name="ui_there_is_not_enough_memory_for_this_operation">Moto resolution ani tan ikar kusu memori sak. Yaykata resize a=ki ka somo ki.</string>
+    <string name="ui_third_party_notices">Mosma kur notices</string>
+    <string name="ui_this_file_is_not_a_supported_image_use">Tan cinuyep anak a=easkayre noka somo ne. PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF hene Base64 noka itak hene eywanke yan.</string>
+    <string name="ui_this_image_is_outside_the_supported_catrobat_gallery">Tan noka anak a=easkayre Catrobat gallery soy ta an.</string>
+    <string name="ui_this_location_is_not_writable">Tan uske or un a=nuye eaykap.</string>
+    <string name="ui_time_unavailable">Erin tatum isam</string>
+    <string name="ui_toggle_toolbox">Aeywankep komo/sarare</string>
+    <string name="ui_tolerance">Tolerance</string>
+    <string name="ui_too_large_for_the_current_budget_reduce_the">Tane budget kusu poro. Saysu a=ponre hene cancel wa memori a=sarare hene ki yan.</string>
+    <string name="ui_too_many_gallery_redirects">Gallery redirect poronno.</string>
+    <string name="ui_tool_option">Aeywankep option</string>
+    <string name="ui_toolbox_and_tool_options_scroll_for_more">Aeywankep newa options. Na poronno a=nukar kusu scroll.</string>
+    <string name="ui_top">Sapa</string>
+    <string name="ui_trim_amounts_must_be_zero_or_greater">Trim saysu anak 0 hene akkari poro hene kuni ne.</string>
+    <string name="ui_trim_amounts_must_fit_inside_each_image_use">Trim saysu anak noka sinep sinep onnay ta easkay kuni ne; whole pixel hene percent hene eywanke yan.</string>
+    <string name="ui_trim_expand_canvas_by_touch">Tek ani kampiso trim / sarare…</string>
+    <string name="ui_trim_from_the_original_edges_drag_the_handles">Moto pes wano trim. Handle a=raye hene corpok cipiskip a=nuye hene ki. Moto cinuyep a=kiru ka somo ki.</string>
+    <string name="ui_trim_in_pixels">%1$s trim pixels ani</string>
+    <string name="ui_type_text">Itak nuye</string>
+    <string name="ui_underline">Itak pok line</string>
+    <string name="ui_undo">Huskokatukar</string>
+    <string name="ui_unexpected_data_in_the_undo_cache">Huskokatukar cache or ta a=erampetek ka somo tatum an.</string>
+    <string name="ui_unplace">Anu p hontomotuye</string>
+    <string name="ui_untitled">Re sak</string>
+    <string name="ui_use_1_1024_pixels">1–1024 pixel eywanke yan.</string>
+    <string name="ui_use_50_300" formatted="false">50–300% eywanke yan.</string>
+    <string name="ui_use_a_positive_target_dimension">0 akkari poro target saysu eywanke yan.</string>
+    <string name="ui_use_colour">Tan iro eywanke</string>
+    <string name="ui_use_rrggbb">#RRGGBB eywanke</string>
+    <string name="ui_watercolor">Watercolor</string>
+    <string name="ui_wheel">Wheel</string>
+    <string name="ui_width">Width (%1$s)</string>
+    <string name="ui_width_in">Width %1$s ani</string>
+    <string name="ui_widths">Width utar</string>
+    <string name="ui_working">Ikar kor an…</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">Na %1$s noka a=omare easkay. Na pon cinuyep a=numke yan.</string>
+    <string name="ui_your_current_image_has_unsaved_changes">Tane an noka or ta naa a=ama ka somo ki sinna an.</string>
+    <string name="ui_zoom_in">Porore</string>
+    <string name="ui_zoom_out">Ponre</string>
+    <string name="ui_menu_file">Cinuyep</string>
+    <string name="ui_menu_edit">Nuye</string>
+    <string name="ui_menu_view">Nukar</string>
+    <string name="ui_menu_image">Noka</string>
+    <string name="ui_menu_colours">Iro</string>
+    <string name="ui_menu_help">Yaykaopas</string>
+    <string name="ui_close_polygon">Polygon esina</string>
+    <string name="ui_agpl_licence">AGPL licence</string>
+    <string name="ui_jpeg_xl_codec_licences">JPEG XL codec licence</string>
+    <string name="ui_gnu_agpl_licence">GNU AGPL licence</string>
+    <string name="ui_try_a_different_file_or_location">Mosma cinuyep hene uske hene ani suy ki wa un=kore yan.</string>
+    <string name="ui_preview_memory_error">%1$s: cietokonukarpe kusu memori sak.</string>
+    <string name="ui_png_encoding_failed">PNG encode a=hayta.</string>
+    <string name="ui_trim_in_percent">%1$s trim percent ani</string>
+    <string name="ui_colour_component_range">0–%1$d</string>
+    <string name="ui_colour_red_range">R · 0–255</string>
+    <string name="ui_colour_green_range">G · 0–255</string>
+    <string name="ui_colour_blue_range">B · 0–255</string>
+    <string name="ui_colour_hsv_hue_range">HSV H · 0–360°</string>
+    <string name="ui_colour_hsv_saturation_range" formatted="false">HSV S · 0–100%</string>
+    <string name="ui_colour_hsv_value_range" formatted="false">HSV V · 0–100%</string>
+    <string name="ui_colour_hsl_hue_range">HSL H · 0–360°</string>
+    <string name="ui_colour_hsl_saturation_range" formatted="false">HSL S · 0–100%</string>
+    <string name="ui_colour_hsl_lightness_range" formatted="false">HSL L · 0–100%</string>
+    <string name="ui_main23">Mosem</string>
+    <string name="ui_drawing23">Nuye</string>
+    <string name="ui_colour_tab23">Iro</string>
+    <string name="ui_swap23">Iro itasare</string>
+    <string name="ui_reset_bw23">Kunne / retar</string>
+    <string name="ui_export_as23">Export ne…</string>
+    <string name="ui_about_credits23">Yayopeyope, licences &amp; credits</string>
+    <string name="ui_languages23">Itak</string>
+    <string name="ui_save_explanation23">Noka format newa compression iyanu a=numke. Ukaosmare anak tan cinuyep rehe, uske, format newa iyanu suy a=eywanke.</string>
+    <string name="ui_export_explanation23">Icon, Base64 itak hene ASCII art hene export. Export yakka tane an noka newa Ukaosmare uske a=kiru ka somo ki.</string>
+    <string name="ui_export_did_not_save23">Export a=kar. Arpa etoko tane an noka Ukaosmare hene Mosma re ani ama hene ani a=ama yan.</string>
+    <string name="ui_selected_colour23">A=numke iro</string>
+    <string name="ui_add_palette23">Iro palette or un omare</string>
+    <string name="ui_saved_palette23">A=ama palette</string>
+    <string name="ui_added_palette23">Iro palette or un a=omare</string>
+    <string name="ui_replace_palette23">Iro palette ful — a=kiru iro a=numke</string>
+    <string name="ui_edit_palette23">Iro palette nuye</string>
+    <string name="ui_replace_with_active23">Tane an iro ani kiru</string>
+    <string name="ui_remove_palette23">Iro palette or wa isamka</string>
+    <string name="ui_add_active23">Tane an iro omare</string>
+    <string name="ui_text_direction23">Itak nuye katu</string>
+    <string name="ui_horizontal23">Sampes</string>
+    <string name="ui_vertical_rl23">Sapa wano corpok un · column simoysam wano harkisam un</string>
+    <string name="ui_vertical_lr23">Sapa wano corpok un · column harkisam wano simoysam un</string>
+    <string name="ui_vertical_letters23">Vertical itak or an itokpa</string>
+    <string name="ui_vertical_mixed23">Yaykata · CJK rik, word sampes</string>
+    <string name="ui_vertical_sideways23">Sampes · word ukokote</string>
+    <string name="ui_vertical_upright23">Rik · itokpa sinep sinep</string>
+    <string name="ui_vertical_hint23">Asir line anak asir column a=kar. Sampes word anak Mongolian ka a=omare, ukokote script a=epunkine. Rik itokpa anak combining mark newa emoji sequence a=ukohopuni ka somo ki.</string>
+    <string name="ui_top23">Sapa uneno</string>
+    <string name="ui_bottom23">Corpok uneno</string>
+    <string name="ui_discard_changes23">Sinna isamka</string>
+    <string name="ui_keep_editing23">Nuye etoko arpa</string>
+    <string name="ui_help23">Tab a=numke wa kor control a=nukare. Nukar anak Raye-nukar wano hoski; Nuye or ta Nuye, Numkep newa Omare an. Raye-nukar anak a=nuye ka somo ki no pan ki; tu tek ani pinch wa zoom. Tab sam ta an ay anak panel a=komo. Aeywankep opitta re an. Nuye anak selection, kampiso pes, saysu hene noka hene a=kiru. Iro anak kotca newa oka iro a=numke; Iro itasare ari itasare, Kunne / retar ari hosipire. Iro-numke aeywankep anak a=numke iro sonno a=nukare. Tan iro eywanke ari a=ramuosma; Hontomotuye ari hoski iro a=hosipire. Iro omare hene sat saved slot a=kik hene wa iro a=numke wa a=ama. A=ama iro a=kisma wa nuye hene isamka hene ki. Na poronno anak Kunne / retar sam ta komke editor a=maka. Pixel grid or ta noka-pixel ruler ka an; cursor nuye kor x/y zoom sam ta a=nukare. Mosma re ani ama anak noka format, compression iyanu newa uske a=numke; Ukaosmare anak nea iyanu ani suy or un a=nuye. Export ne anak ICO, ASCII art hene Base64 itak hene a=kar, noka a=ama ruwe ne sekor a=kar ka somo ki. Ama wa ukopaye anak copy a=ama, oro wa Android sharing a=maka. Tane Ukaosmare uske a=ama. Nuye &gt; Omare &gt; Mosma noka or ta kikay cinuyep, Catrobat, Irasutoya newa Openclipart an. A=omare noka anak a=numke wa an; kampiso soy ta ka handle a=nukare. Noka kampiso un fit anak anu saysu a=kiru; Moto saysu anak moto saysu a=hosipire. App suy a=maka kor autosave anak draft newa undo/redo tu stack a=hosipire. Cinuyep or ta image assembly, Eywankekatu, newa Yayopeyope, licences &amp; credits ka an. Itak omare anak sampes newa vertical nuye a=easkay.</string>
+    <string name="ui_draw26">Nuye</string>
+    <string name="ui_add_colour26">Iro omare</string>
+    <string name="ui_edit_colour26">Iro nuye</string>
+    <string name="ui_empty_palette26">Sat palette slot %1$d — iro omare</string>
+    <string name="ui_cursor_position26">x: %1$d, y: %2$d</string>
+    <string name="ui_numeric_slider_value">%1$s: %2$d</string>
+    <string name="ui_webp_codec_licences">WebP codec licences</string>
+    <string name="ui_heic_avif_codec_licences">HEIC newa AVIF codec licences</string>
+    <string name="colour20_custom_selected_slot">Yaykata iro · Slot %1$d a=numke</string>
+    <string name="colour20_stored_slot">Slot %1$d · %2$s. A=kik wa eywanke; iro a=kiru, oro wa Replace ani sinna a=ama.</string>
+    <string name="colour20_empty_slot">Sat slot %1$d. Tane an iro a=ama uske ne kusu kik.</string>
+    <string name="colour20_save_slot">Slot %1$d or un ama</string>
+    <string name="colour20_replace_slot">Slot %1$d kiru</string>
+    <string name="colour20_saved_slot">Iro slot %1$d or un a=ama</string>
+    <string name="colour_invalid_metadata">Noka kor iro metadata komke hene a=easkayre ka somo ki.</string>
+    <string name="colour_truncated_metadata">Noka tatum anak iro metadata tumu ta okere.</string>
+    <string name="colour_unsupported_icc_model">Tan noka anak image decoder a=kiru eaykap ICC iro model a=eywanke. Hoskino iro a=ancikattaro app ani RGB copy a=export yan.</string>
+    <string name="colour_converter_unavailable">Noka iro converter a=hoski eaykap. Noka a=import ka somo ki.</string>
+    <string name="ui_lossless_format">Lossless %1$s</string>
+    <string name="ui_save_as_webp">WebP ne ama…</string>
+    <string name="ui_save_as_heic">HEIC ne ama…</string>
+    <string name="ui_save_as_avif">AVIF ne ama…</string>
+    <string name="ui_image_codec_licences">Noka codec licences</string>
+    <string name="ui_codec_resize_memory_floor">Tan format anak resize etoko moto noka hene moto tile hene decode kuni ne. Output pon yakka easkay memori a=kasu kuni an.</string>
+    <string name="ui_no_resize_fits_decoder_memory">Iyotta pon output yakka tan noka decoder working buffer tane memori budget or ta easkay ka somo. Hontomotuye wa na pon moto noka eywanke yan.</string>
+    <string name="formats22_base64_label">Base64 itak</string>
+    <string name="formats22_ascii_label">ASCII art</string>
+    <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+    <string name="formats22_tiff_description">Sine RGB page a=ama. Compression anak pixel a=kiru ka somo ki no cinuyep saysu a=ponre; uncompressed TIFF kusu aykapte.</string>
+    <string name="formats22_dib_description">Uncompressed 24-bit Windows DIB ne a=ama. A=uk cinuyep app anak BMP header konrusuy yakun BMP eywanke.</string>
+    <string name="formats22_dib_size_limit">Noka anak DIB cinuyep saysu limit a=kasu.</string>
+    <string name="formats22_import_limit">Tan cinuyep anak 512 MiB import limit a=kasu. Na pon cinuyep a=numke yan.</string>
+    <string name="formats22_select_page">Sos numke</string>
+    <string name="formats22_page_description">%1$s · %2$s\n%3$d sos. Noka ne a=nuye sine sos a=numke.</string>
+    <string name="formats22_pdf_raster_hint">PDF sos anak 144 dpi ani a=render. Itak newa vector object anak pixel ne an.</string>
+    <string name="formats22_page_number">Sos cipiskip</string>
+    <string name="formats22_previous_page">Hoski sos</string>
+    <string name="formats22_next_page">Ios sos</string>
+    <string name="formats22_open_page">Sos maka</string>
+    <string name="formats22_page_preview">A=numke sos cietokonukarpe</string>
+    <string name="formats22_page_range">1 wano %1$d pakno sos cipiskip a=nuye yan.</string>
+    <string name="formats22_loading_page">Sos %1$d / %2$d · Cietokonukarpe load kor an…</string>
+    <string name="formats22_page_dimensions">Sos %1$d / %2$d · %3$d × %4$d pixel</string>
+    <string name="formats22_preview_unavailable">Cietokonukarpe a=eywanke eaykap: %1$s</string>
+    <string name="formats22_preview_memory">Tan cietokonukarpe kusu memori sak. Sos a=maka kor easkay yakun na pon saysu a=kore.</string>
+    <string name="formats22_animation_title">Animation noka</string>
+    <string name="formats22_animation_message">Tan %1$s or ta frame %2$s an. AN Paint anak still noka a=nuye, animation a=ama ka somo ki.</string>
+    <string name="formats22_animation_unknown">Tan %1$s anak frame poronno an ya a=ramuosma kusu komke. AN Paint anak still noka patek a=maka, animation a=ama ka somo ki.</string>
+    <string name="formats22_at_least_frames">%1$d hene akkari</string>
+    <string name="formats22_animation_still">Hoski frame patek a=import. A=ama yakun still noka ne an.</string>
+    <string name="formats22_animation_poster">Tan PNG or ta animation wano mosma default noka an. Animation frame somo, nea noka a=import. A=ama yakun still noka ne an.</string>
+    <string name="formats22_open_still">Still noka maka</string>
+    <string name="formats22_derived_exported">%1$s a=export. Noka opitta or ta naa a=ama ka somo ki sinna an; a=kiru etoko noka opitta copy a=ama yan.</string>
+    <string name="formats22_pdf_invalid">PDF a=nukar eaykap. Cinuyep a=wen hene tan Android werson a=easkayre ka somo feature a=eywanke hene kuni an.</string>
+    <string name="formats22_pdf_encrypted">PDF anak ciesinaitak konrusuy hene a=easkayre ka somo encryption a=eywanke. Import etoko a=epunkine ka somo copy a=ama yan.</string>
+    <string name="formats22_pdf_file_size">PDF anak ipe an cinuyep ne, 512 MiB kasu ka somo ki kuni ne.</string>
+    <string name="formats22_pdf_page_count">PDF or ta 1 wano %1$d pakno sos an kuni ne.</string>
+    <string name="formats22_pdf_page_index">PDF sos numke anak tane owpeka somo ne. Tan document wano sos suy a=numke yan.</string>
+    <string name="formats22_pdf_dimensions">PDF sos saysu komke hene import kusu poro hene.</string>
+    <string name="formats22_pdf_crop">PDF crop anak a=numke sos onnay ta an ipe an rectangle kuni ne.</string>
+    <string name="formats22_pdf_memory">PDF render anak a=easkay noka memori budget a=kasu.</string>
+    <string name="formats22_base64_description">Lossless PNG Base64 itak ne a=ama, data:image/png;base64, ari hoski. Tan itak cinuyep suy a=maka wa noka a=hosipire easkay. Base64 anak kor PNG akkari poro.</string>
+    <string name="formats22_ascii_description">Retar newa kunne itokpa ani plain itak a=nuye. Uneno sep itokpa-noka ani nukar. Tanpe noka a=nukare p ne; moto noka ne suy a=maka eaykap.</string>
+    <string name="formats22_ascii_columns">Width (itokpa)</string>
+    <string name="formats22_ascii_invert">Retar newa kunne itokpa itasare</string>
+    <string name="formats22_text_not_image">Base64 itak or ta a=easkayre noka isam.</string>
+    <string name="gallery_description">Noka eywanke a=kik yakun nani omare. Noka sam ta Credit néno an pe kar a=kik yakun kor re, publisher, moto newa licence a=copy, e=ukopaye kor eywanke easkay. Catrobat moto noka anak CC BY-SA 4.0; mosma a=nuyenuye creator, copyright newa moto notice a=ama. E=kiru p a=nuye, a=sinnare noka anak CC BY-SA 4.0 hene compatible licence hene ari ukopaye. Credits nuye ari tan tatum a=omare easkay; a=omare moto anak Cinuyep → Yayopeyope, licences &amp; credits → Noka credits or ta a=ama.</string>
+    <string name="gallery_use_image">Noka eywanke</string>
+    <string name="gallery_copy_credit">Credit néno an pe kar</string>
+    <string name="gallery_edit_credits">Credits nuye</string>
+    <string name="gallery_credit_copied">Credit néno an pe a=kar</string>
+    <string name="gallery_credit_edit_hint">Ukopaye etoko creator hene copyright notice hene a=ama wa, e=ki sinna a=nuye yan. A=ukopaye noka or ta isam moto a=isamka. Corpok itak a=nuye easkay.</string>
+    <string name="gallery_credit_title">Noka: %1$s</string>
+    <string name="gallery_credit_publisher">Publisher: Catrobat project</string>
+    <string name="gallery_credit_source">Moto: %1$s</string>
+    <string name="gallery_credit_gallery">Gallery: %1$s</string>
+    <string name="gallery_credit_licence">Catrobat moto noka: CC BY-SA 4.0 — %1$s</string>
+    <string name="gallery_credit_saved">Credit itak a=ama</string>
+    <string name="ui_assembly_source_memory_floor">Moto noka anak iyotta pon output yakka tane easkay akkari poronno decode memori konrusuy. Noka ukote saysu a=ponre yakka pirka ka somo. Mosma document a=esina hene na pon moto noka a=etoko-kar hene wa suy ki yan. E=kor noka ukote a=kiru ka somo ki.</string>
+    <string name="formats22_ico_size">Inoka saysu</string>
+    <string name="formats22_ico_description">A=numke saysu (16–256 pixel) ta sine PNG-compressed inoka noka a=ama. E=kor noka kor katuhu a=epunkine, transparent square tumu ta a=anu.</string>
+    <string name="formats22_ico_decode_budget">Tan inoka decode anak a=easkay noka memori budget a=kasu.</string>
+    <string name="formats22_ico_dimensions_error">Inoka noka saysu anak kor directory tura uneno somo ne.</string>
+    <string name="formats22_ico_invalid_size">16, 24, 32, 48, 64, 128 hene 256 pixel hene inoka saysu a=numke.</string>
+    <string name="language20_settings">Iyanu</string>
+    <string name="language20_app_language">App itak</string>
+    <string name="language20_current">App itak: %1$s</string>
+    <string name="language20_device_default">Kikay itak eywanke</string>
+    <string name="language20_translation_note">App itak\n\nTan app or ta Aynu itak newa English itak an.</string>
+    <string name="save20_title">Mosma re ani ama…</string>
+    <string name="save20_file_name">Cinuyep rehe</string>
+    <string name="save20_file_format">Cinuyep format</string>
+    <string name="save20_dither">Iro dither</string>
+    <string name="save20_gif_description">Still noka, iro 256 pakno. Dither ari iro gradient a=ratci. Animation GIF anak hoski frame ne a=maka.</string>
+    <string name="save20_bmp_description">Uncompressed 24-bit RGB; iro sonno a=ama, cinuyep poro.</string>
+    <string name="save20_invalid_name">Slash hene control itokpa hene sak cinuyep rehe a=nuye yan.</string>
+    <string name="save20_encoding_budget">Noka newa encoding buffer anak export memori budget a=kasu.</string>
+    <string name="save20_bmp_size_limit">Noka anak BMP cinuyep saysu limit a=kasu.</string>
+    <string name="save20_gif_size_limit">GIF pes saysu anak 65,535 pixel kasu ka somo ki kuni ne.</string>
+    <string name="save20_destination_error">A=okere noka anak kor destination cinuyep a=kiru eaykap.</string>
+    <string name="save20_unsupported_tagged_colour">Tan BMP hene GIF hene anak AN Paint naa a=kiru eaykap iro profile a=eywanke. Import etoko iro a=ancikattaro editor ani sRGB PNG ne a=kiru yan.</string>
+    <string name="save20_lossy_quality_description">Quality poro yakun na poronno komke p a=ama, cinuyep ka poro kuni an.</string>
+    <string name="ui_category_brush">Hunte</string>
+    <string name="ui_category_selection">Numkep</string>
+    <string name="ui_category_insert">Omare</string>
+    <string name="ui_expand_tool_category">%1$s: %2$s a=numke. Aeywankep newa options sarare</string>
+    <string name="ui_collapse_tool_category">%1$s: %2$s a=numke. Aeywankep newa options komo</string>
+    <string name="ui_tool_categories">Aeywankep topa. Na poronno a=nukar kusu scroll</string>
+    <string name="ui_pencil_crisp_adjustable_strokes">Pencil anak a=numke width hem owpeka pes a=epunkine.</string>
+    <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
+    <string name="ui_cursor_ink30">Cursor ani nuye</string>
+    <string name="ui_cursor_help31">Cursor a=anu kusu a=raye. Screen or an drawing button a=kik, oro wa pan wa nuye. Suy a=kik wa sini. Hunte newa stroke iyanu anak Nuye → Nuye or ta a=numke.</string>
+    <string name="ui_cursor_start31">Nuye hoski</string>
+    <string name="ui_cursor_stop31">Nuye sini</string>
+    <string name="ui_cursor_settings31">Cursor nuye iyanu…</string>
+    <string name="ui_cursor_shape31">Cursor katuhu</string>
+    <string name="ui_cursor_marker_size31" formatted="false">Cursor marker saysu (%)</string>
+    <string name="ui_cursor_marker_help31">A=nuye hunte saysu a=kiru ka somo ki no cursor marker a=porore.</string>
+    <string name="ui_gimp_translations31">Itak-kiru credits &amp; licences</string>
+    <string name="ui_cursor_drawing32">Cursor nuye</string>
+    <string name="ui_cursor_pan_draw32">Pan wa nuye hoski. Suy kik wa sini.</string>
+    <string name="ui_cursor_pan_move32">Pan wa cursor a=anu. Nuye button a=kik wa nuye hoski.</string>
+    <string name="ui_cursor_tap_hint37">Cursor a=kik wa nuye hoski hene sini hene.</string>
+    <string name="ui_edit_canvas33">Kampiso</string>
+    <string name="ui_edit_transform33">Flip / Kiru</string>
+    <string name="ui_pixel_grid33">Pixel grid</string>
+    <string name="ui_magnifier33">Porore-nukar</string>
+    <string name="ui_fullscreen33">Screen opitta</string>
+    <string name="ui_disable_cursor_drawing33">Cursor nuye aykapte</string>
+    <string name="ui_pixel_grid_help33" formatted="false">800% zoom hene akkari ta pixel grid a=nukare. Ruler anak noka pixel or ta uske a=nukare.</string>
+    <string name="ui_other_images34">Mosma noka</string>
+    <string name="ui_from_device34">Kikay wano…</string>
+    <string name="ui_fit_selection34">Noka kampiso un fit</string>
+    <string name="ui_original_size34">Moto saysu</string>
+    <string name="ui_share_explanation34">E=numke uske un copy a=ama, oro wa ukopaye app a=numke. Tane Ukaosmare destination a=kiru ka somo ki.</string>
+    <string name="ui_search34">Hunara</string>
+    <string name="ui_search_english34">English hene Japanese hene ani hunara</string>
+    <string name="ui_gallery_back34">Hosipi</string>
+    <string name="ui_paste_hint34">Uske néno an pe a=kar hene Nuye → Omare → Mosma noka a=eywanke hene ki.</string>
+    <string name="ui_irasutoya_help34">Noka sos a=maka wa Noka eywanke a=kik. English hene Japanese hene ani a=hunara easkay; noka re newa site itak anak Japanese ne a=ama. Free eywanke anak Irasutoya terms e=koeoripak kuni ne: commercial design or ta item 21 hene akkari a=eywanke yakun a=hok easkay. Special collaboration anak mosma terms kon nankor. Moto sos newa credits anak Cinuyep → Yayopeyope, licences &amp; credits → Noka credits or ta a=ama.</string>
+    <string name="ui_openclipart_help34">Noka sos a=maka wa Large PNG download sam ta Noka eywanke a=kik. Openclipart anak CC0 ani noka a=ukopaye. Moto sos newa licence anak Cinuyep → Yayopeyope, licences &amp; credits → Noka credits or ta a=ama.</string>
+    <string name="ui_gallery_unsupported34">Tan noka anak a=numke noka-moto soy ta an.</string>
+    <string name="ui_open_artwork34">Hoskino noka sos a=maka, oro wa Noka eywanke a=kik.</string>
+    <string name="ui_creator_on_source34">Noka-kar-kur kusu moto sos a=nukar yan.</string>
+    <string name="ui_irasutoya_credit34">Copyright anak noka-kar-kur kor. Eywanke anak Irasutoya terms e=koeoripak kuni ne; Creative Commons licence somo ne.</string>
+    <string name="ui_history_unavailable34">Kampiso a=hosipire, korka kor undo huskoanpe a=nukar eaykap. Moto draft anak noka hosipire kusu copy ne a=ama.</string>
+    <plurals name="ui_crop_preview_images">
+        <item quantity="one">Cietokonukarpe: %1$d × %2$d px\n%3$d noka or un anu. A=anu noka a=crop yakun or un a=kote noka ka a=raye.</item>
+        <item quantity="other">Cietokonukarpe: %1$d × %2$d px\n%3$d noka or un anu. A=anu noka a=crop yakun or un a=kote noka ka a=raye.</item>
+    </plurals>
 </resources>

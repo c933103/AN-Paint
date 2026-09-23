@@ -13,6 +13,19 @@ import mainstream_translations
 import translation_catalogues as translations
 
 
+# This is the completed batch scope, not a fixed key count. New English keys
+# must be translated in every completed catalogue before the batch can pass.
+COMPLETED_TAGS = set("""
+    ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
+    tl ceb ms id sw fi hu af nl et lv lt
+    es-ES es-419 fr de ru ar eo
+    lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
+    en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr
+    bo dz mn-Cyrl-MN mn-Mong jje mnc-Mong ain-Kana ain-Latn ryu
+    ko-KR ko-KP ko-Kore-KR vi vi-Hani en-XV qaa-Zsye-XV
+""".split())
+
+
 class TranslationCatalogueTests(unittest.TestCase):
     def test_picker_android_locale_list_and_canonical_catalogues_agree(self):
         tags = translations.offered_tags()
@@ -41,6 +54,58 @@ class TranslationCatalogueTests(unittest.TestCase):
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
+
+    def test_completed_batch_catalogues_are_complete(self):
+        self.assertLessEqual(COMPLETED_TAGS, set(translations.offered_tags()))
+        for tag in sorted(COMPLETED_TAGS):
+            with self.subTest(tag=tag):
+                self.assertEqual(
+                    [], translations.validate_catalogue(tag, require_complete=True), tag,
+                )
+
+    def test_new_korean_and_vietnamese_script_variants_are_registered(self):
+        tags = translations.offered_tags()
+        self.assertIn("ko-Kore-KR", tags)
+        self.assertIn("vi-Hani", tags)
+        self.assertNotIn("ko-Hani", tags)
+
+        language_names = (translations.RES / "values/app_language_names.xml").read_text()
+        self.assertIn("㗂越（𡨸喃）", language_names)
+        self.assertNotIn("㗂越（漢喃）", language_names)
+
+        vi_hani = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["vi-Hani"]
+            ).values()
+        )
+        self.assertRegex(vi_hani, r"[\u3400-\u9fff\uf900-\ufaff]")
+
+        ko_kore = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["ko-Kore-KR"]
+            ).values()
+        )
+        self.assertRegex(ko_kore, r"[\uac00-\ud7a3]")
+        self.assertRegex(ko_kore, r"[\u3400-\u9fff\uf900-\ufaff]")
+        # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
+        # into the Chữ Nôm UI. Latin technical/product names are allowed.
+        self.assertNotRegex(
+            vi_hani,
+            r"[ĂÂĐÊÔƠƯăâđêôơư"
+            r"ÀÁẠẢÃẦẤẬẨẪẰẮẶẲẴ"
+            r"ÈÉẸẺẼỀẾỆỂỄ"
+            r"ÌÍỊỈĨ"
+            r"ÒÓỌỎÕỒỐỘỔỖỜỚỢỞỠ"
+            r"ÙÚỤỦŨỪỨỰỬỮ"
+            r"ỲÝỴỶỸ"
+            r"àáạảãầấậẩẫằắặẳẵ"
+            r"èéẹẻẽềếệểễ"
+            r"ìíịỉĩ"
+            r"òóọỏõồốộổỗờớợởỡ"
+            r"ùúụủũừứựửữ"
+            r"ỳýỵỷỹ]",
+        )
+
     def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
         seen = set()
         for path in sorted((translations.RES / "values").glob("*.xml")):
@@ -51,15 +116,15 @@ class TranslationCatalogueTests(unittest.TestCase):
                 self.assertNotIn(key, seen, f"{path}/{node.get('name')}")
                 seen.add(key)
 
-    def test_locales_do_not_duplicate_string_keys_across_files(self):
+    def test_locales_do_not_duplicate_string_or_plural_keys_across_files(self):
         for folder in translations.RES.glob("values*"):
             seen = set()
             for path in folder.glob("*.xml"):
                 for node in ET.parse(path).getroot():
-                    if node.tag != "string":
+                    if node.tag not in ("string", "plurals"):
                         continue
-                    key = node.get("name")
-                    self.assertNotIn(key, seen, str(path) + "/" + key)
+                    key = (node.tag, node.get("name"))
+                    self.assertNotIn(key, seen, str(path) + "/" + str(key))
                     seen.add(key)
 
     def test_requested_main_menu_surface_exists_without_freezing_old_wording(self):
@@ -115,14 +180,81 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
+    def test_catalogues_preserve_literal_tokens(self):
+        defaults = translations.default_resources()[0]
+        for tag, path in translations.catalogue_paths().items():
+            for key, value in translations.read_strings(path).items():
+                if key in defaults:
+                    with self.subTest(tag=tag, key=key):
+                        self.assertEqual(
+                            [], translations.literal_token_errors(key, value, defaults[key]),
+                        )
+
+    def test_literary_assembly_help_describes_image_replacement(self):
+        literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
+        self.assertNotIn("前景替換", literary["ui_add_up_to_20_images_with_android_s"])
+
+    def test_mechanical_word_replacement_corruptions_do_not_return(self):
+        catalogues = translations.catalogue_paths()
+        for tag in ("hak-Hant-TW", "hak-Latn-TW", "lzh-Hant"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            for corrupt in ("主愛", "Chú oi", "肚容", "目个地", "飽與度", "柔與"):
+                self.assertNotIn(corrupt, text, tag)
+
     def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
         catalogues = translations.catalogue_paths()
-        for tag in ("yue-Latn", "sr-Latn", "uz-Latn", "tt-Latn"):
+        for tag in ("yue-Latn", "hak-Latn-TW", "nan-Latn-TW"):
             text = "".join(translations.read_strings(catalogues[tag]).values())
-            if tag == "yue-Latn":
-                self.assertNotRegex(text, r"[\u3400-\u9fff]")
-            else:
-                self.assertNotRegex(text, r"[\u0400-\u04ff]")
+            self.assertNotRegex(text, r"[\u3400-\u9fff]", tag)
+        for tag in ("sr-Latn", "uz-Latn", "tt-Latn"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            self.assertNotRegex(text, r"[\u0400-\u04ff]", tag)
+
+    def test_simplified_wu_does_not_regress_to_traditional_forms(self):
+        text = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["wuu-Hans"]
+            ).values()
+        )
+        self.assertNotRegex(
+            text,
+            r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
+        )
+
+
+class AndroidResourceValidationTests(unittest.TestCase):
+    def test_android_quotes_distinguish_xml_entities_from_android_escaping(self):
+        for xml_value in ("l&apos;image", "l'image", "an even \\\\' apostrophe"):
+            with self.subTest(xml_value=xml_value):
+                value = ET.fromstring(f"<string>{xml_value}</string>").text
+                self.assertIn("unescaped Android apostrophe", translations.android_string_errors(value))
+        for value in ("l\\'image", "\"l'image\"", 'a \\"quoted\\" value', "plain text", '"open', "trail\\"):
+            with self.subTest(value=value):
+                self.assertEqual([], translations.android_string_errors(value))
+
+    def test_equivalent_locale_qualifiers_share_a_configuration(self):
+        for left, right in (("values-b+pt+PT", "values-pt-rPT"),
+                            ("values-b+id", "values-in"),
+                            ("values-b+he+IL-v21", "values-iw-rIL-v21")):
+            self.assertEqual(translations.resource_configuration(left),
+                             translations.resource_configuration(right))
+        for left, right in (("values-fr", "values-fr-night"),
+                            ("values-b+mn+Mong", "values-b+mn+Cyrl+MN"),
+                            ("values-en-rUS", "values-en-rGB")):
+            self.assertNotEqual(translations.resource_configuration(left),
+                                translations.resource_configuration(right))
+
+    def test_literal_syntax_and_license_tokens_cannot_be_spaced_or_translated(self):
+        for original, damaged in (("data:image/png;base64,", "data: image / png; base64,"),
+                                  ("CC BY-SA 4.0", "CC BY-SA 4. 0")):
+            self.assertEqual([], translations.literal_token_errors("example", original, original))
+            self.assertTrue(translations.literal_token_errors("example", damaged, original))
+
+    def test_gif_limit_accepts_localized_grouping_but_not_broken_numbers(self):
+        for number in ("65,535", "65.535", "65 535", "65\u202f535", "65535", "٦٥٬٥٣٥"):
+            self.assertEqual([], translations.literal_token_errors("save20_gif_size_limit", number, ""))
+        for number in ("65, 535", "65. 535", "65  535", "65,536", "165,535", "65,5350"):
+            self.assertTrue(translations.literal_token_errors("save20_gif_size_limit", number, ""), number)
 
 
 class GimpProvenanceTests(unittest.TestCase):
