@@ -126,6 +126,15 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
+    def test_reviewed_hakka_core_terms_stay_aligned(self):
+        catalogues = translations.catalogue_paths()
+        han = translations.read_strings(catalogues["hak-Hant"])
+        pfs = translations.read_strings(catalogues["hak-Latn"])
+        self.assertEqual("保存", han["ui_save"])
+        self.assertEqual("Pó-chhùn", pfs["ui_save"])
+        self.assertEqual("Chhí-sêu", pfs["ui_cancel"])
+        self.assertEqual("Fa-pit", pfs["ui_brush"])
+
     def test_completed_sinitic_catalogues_preserve_literal_tokens(self):
         catalogues = translations.catalogue_paths()
         poj = translations.read_strings(catalogues["nan-Latn-TW"])
