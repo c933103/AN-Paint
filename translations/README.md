@@ -339,3 +339,25 @@ Colours group is removed; Invert colours uses the existing translated command
 under Canvas. Provider names and original artwork titles are retained. Longer
 provider instructions and recovery errors retain English fallback where no
 translation exists; this is not whole-app or website translation completion.
+
+
+## Jeju, Manchu, Ainu and Okinawan repair (23 September 2026)
+
+The five catalogues `jje`, `mnc-Mong`, `ain-Kana`, `ain-Latn` and `ryu` now
+cover the current source strings and plural forms. The old `cju` preference
+migrates to `jje`; only `jje` appears in the picker. Historical starter-coverage
+notes above describe earlier versions.
+
+The repair reviews the active editor, cursor, recovery, assembly and credit
+instructions for missing clauses and language-specific wording. Jeju and
+Okinawan help was rewritten beyond Korean/Japanese ending substitutions, and
+both Ainu scripts and Manchu received substantial dictionary-backed repairs.
+Resource coverage is not proof of fluent language: technical loans and remaining
+language-review limitations are stated in the catalogue comments and semantic
+audit documents. See [the Ainu audit](AINU_SEMANTIC_AUDIT.md) and
+[the Manchu audit](MANCHU_SEMANTIC_AUDIT.md).
+
+Mongolian-script locales now share vertical direction, bundled font selection,
+and the language-picker caption layout. The picker keeps the locale code
+horizontal and preserves the full accessible native name. Regression checks
+cover Manchu rendering, the saved Jeju migration and dynamic catalogue completeness.

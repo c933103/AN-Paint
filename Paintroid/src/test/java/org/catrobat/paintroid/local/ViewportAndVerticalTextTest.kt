@@ -165,9 +165,17 @@ class ViewportAndVerticalTextTest {
         val old=Locale.getDefault()
         try {
             Locale.setDefault(Locale.forLanguageTag("lzh-Hant"));assertEquals(TextDirection.VERTICAL_RL,TextSettings().direction)
-            Locale.setDefault(Locale.forLanguageTag("mn-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
-            val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(font)
-            val paint=Paint().apply {typeface=font;textSize=40f};assertTrue(paint.hasGlyph("ᠮ"))
+            for(tag in listOf("mn-Mong","mnc-Mong")) {
+                Locale.setDefault(Locale.forLanguageTag(tag))
+                assertEquals(tag,TextDirection.VERTICAL_LR,VerticalText.uiDirection())
+                assertEquals(tag,TextDirection.VERTICAL_LR,TextSettings().direction)
+                val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(tag,font)
+                val paint=Paint().apply {typeface=font;textSize=40f}
+                assertTrue(tag,paint.hasGlyph(if(tag=="mnc-Mong") "ᡠ" else "ᠮ"))
+            }
+            Locale.setDefault(Locale.forLanguageTag("mn-Cyrl-MN"))
+            assertEquals(TextDirection.HORIZONTAL,VerticalText.uiDirection())
+            assertNull(VerticalText.uiTypeface(RuntimeEnvironment.getApplication()))
             val settings=TextSettings("ᠮᠣᠩᠭᠣᠯ",direction=TextDirection.VERTICAL_LR,glyphOrientation=GlyphOrientation.SIDEWAYS)
             assertEquals(settings,TextSettings.read(settings.json()))
             assertEquals(TextDirection.HORIZONTAL,TextSettings.read(JSONObject().put("text","Old draft")).direction)
