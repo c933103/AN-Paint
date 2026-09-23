@@ -69,6 +69,7 @@ class TranslationCatalogueTests(unittest.TestCase):
                 translations.catalogue_paths()["vi-Hani"]
             ).values()
         )
+        self.assertRegex(vi_hani, r"[\u3400-\u9fff\uf900-\ufaff]")
         # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
         # into the Hán-Nôm UI. Latin technical/product names are allowed.
         self.assertNotRegex(
