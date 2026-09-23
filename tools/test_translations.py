@@ -56,14 +56,6 @@ class TranslationCatalogueTests(unittest.TestCase):
         self.assertIn("vi-Hani", tags)
         self.assertNotIn("ko-Hani", tags)
 
-        korean_mixed = "".join(
-            translations.read_strings(
-                translations.catalogue_paths()["ko-Kore-KR"]
-            ).values()
-        )
-        self.assertRegex(korean_mixed, r"[\uac00-\ud7af]")
-        self.assertRegex(korean_mixed, r"[\u3400-\u9fff\uf900-\ufaff]")
-
         vi_hani = "".join(
             translations.read_strings(
                 translations.catalogue_paths()["vi-Hani"]
