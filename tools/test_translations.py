@@ -5,6 +5,7 @@ import json
 import pathlib
 import re
 import unittest
+import unicodedata
 import xml.etree.ElementTree as ET
 
 import gimp_translations
@@ -189,6 +190,45 @@ class TranslationCatalogueTests(unittest.TestCase):
                         self.assertEqual(
                             [], translations.literal_token_errors(key, value, defaults[key]),
                         )
+
+    def test_documented_credit_routes_use_the_localized_file_about_panel(self):
+        # ClassicPaintActivity.menuActions("File") opens showAboutOptions(),
+        # which contains Image credits and the licence/source-code panels.
+        # Compare with the rendered labels, not fixed translation wording.
+        route_labels = {
+            "ui_catrobat_s_own_artwork_uses_cc_by_sa": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_the_arrow_on_the_left_directly_below_the": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_add_up_to_20_images_with_android_s": (
+                "ui_menu_file", "ui_about_credits23",
+            ),
+        }
+
+        def displayed(value):
+            return unicodedata.normalize(
+                "NFC", value.strip('"').replace(r"\'", "'").replace(r'\"', '"'),
+            ).casefold()
+
+        defaults = translations.default_resources()[0]
+        for path in sorted(translations.RES.glob("values*/strings.xml")):
+            local = translations.read_strings(path)
+            rendered = {**defaults, **local}
+            for key, labels in route_labels.items():
+                if key not in local:
+                    continue
+                for label in labels:
+                    with self.subTest(catalogue=path.parent.name, key=key, label=label):
+                        # A menu label may end a standalone sentence (notably
+                        # Tibetan shad) but omit that terminator inside a path.
+                        # Preserve internal punctuation and every label word.
+                        label_text = displayed(rendered[label]).rstrip(
+                            " \t\r\n.,;:!?…。！？；：།༎",
+                        )
+                        self.assertTrue(label_text)
+                        self.assertIn(label_text, displayed(local[key]))
 
     def test_literary_assembly_help_describes_image_replacement(self):
         literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
