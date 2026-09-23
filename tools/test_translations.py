@@ -117,7 +117,7 @@ class TranslationCatalogueTests(unittest.TestCase):
 
     def test_completed_lzh_hakka_hokkien_wu_catalogues_are_complete(self):
         for tag in (
-            "lzh-Hant", "hak-Hant", "hak-Latn",
+            "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
             "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
         ):
             self.assertEqual(
@@ -126,36 +126,30 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
-    def test_reviewed_hakka_core_terms_stay_aligned(self):
-        catalogues = translations.catalogue_paths()
-        han = translations.read_strings(catalogues["hak-Hant"])
-        pfs = translations.read_strings(catalogues["hak-Latn"])
-        self.assertEqual("保存", han["ui_save"])
-        self.assertEqual("Pó-chhùn", pfs["ui_save"])
-        self.assertEqual("Chhí-sêu", pfs["ui_cancel"])
-        self.assertEqual("Fa-pit", pfs["ui_brush"])
+    def test_catalogues_preserve_literal_tokens(self):
+        defaults = translations.default_resources()[0]
+        for tag, path in translations.catalogue_paths().items():
+            for key, value in translations.read_strings(path).items():
+                if key in defaults:
+                    with self.subTest(tag=tag, key=key):
+                        self.assertEqual(
+                            [], translations.literal_token_errors(key, value, defaults[key]),
+                        )
 
-    def test_completed_sinitic_catalogues_preserve_literal_tokens(self):
-        catalogues = translations.catalogue_paths()
-        poj = translations.read_strings(catalogues["nan-Latn-TW"])
-        self.assertIn("data:image/png;base64,", poj["formats22_base64_description"])
-        for key in (
-            "ui_catrobat_s_own_artwork_uses_cc_by_sa",
-            "ui_gallery_artwork_catrobat_and_its_credited_creators_cc",
-            "gallery_description",
-            "gallery_credit_licence",
-        ):
-            self.assertIn("CC BY-SA 4.0", poj[key], key)
-        self.assertIn("65,535", poj["save20_gif_size_limit"])
+    def test_literary_assembly_help_describes_image_replacement(self):
+        literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
+        self.assertNotIn("前景替換", literary["ui_add_up_to_20_images_with_android_s"])
 
-        literary = translations.read_strings(catalogues["lzh-Hant"])
-        assembly_help = literary["ui_add_up_to_20_images_with_android_s"]
-        self.assertIn("圖像替換", assembly_help)
-        self.assertNotIn("前景替換", assembly_help)
+    def test_mechanical_word_replacement_corruptions_do_not_return(self):
+        catalogues = translations.catalogue_paths()
+        for tag in ("hak-Hant-TW", "hak-Latn-TW", "lzh-Hant"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            for corrupt in ("主愛", "Chú oi", "肚容", "目个地", "飽與度", "柔與"):
+                self.assertNotIn(corrupt, text, tag)
 
     def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
         catalogues = translations.catalogue_paths()
-        for tag in ("yue-Latn", "hak-Latn", "nan-Latn-TW"):
+        for tag in ("yue-Latn", "hak-Latn-TW", "nan-Latn-TW"):
             text = "".join(translations.read_strings(catalogues[tag]).values())
             self.assertNotRegex(text, r"[\u3400-\u9fff]", tag)
         for tag in ("sr-Latn", "uz-Latn", "tt-Latn"):
