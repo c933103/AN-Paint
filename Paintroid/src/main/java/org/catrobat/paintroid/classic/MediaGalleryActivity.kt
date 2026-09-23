@@ -107,7 +107,7 @@ class MediaGalleryActivity : Activity() {
                 }
                 override fun onPageFinished(view: WebView,url: String) {
                     if(provider.allowsPage(Uri.parse(url))) {
-                        view.evaluateJavascript(IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
+                        view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
                         pendingSearch?.let {query ->pendingSearch=null;view.evaluateJavascript(IllustrationPage.searchIrasutoya(query),null)}
                     }
                 }
@@ -122,7 +122,7 @@ class MediaGalleryActivity : Activity() {
                 } else false
             }
         }
-        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
+        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
     }
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}

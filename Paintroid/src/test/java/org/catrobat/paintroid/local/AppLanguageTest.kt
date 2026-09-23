@@ -83,7 +83,7 @@ class AppLanguageTest {
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn","ug","af","bo","lo")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
-            else assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            // Completed translations and shared loanwords must not be frozen to an old English fallback.
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
@@ -104,6 +104,27 @@ class AppLanguageTest {
     }
 
     @Test fun pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode()=checkMongolianPickerRow(16f)
+
+    @Test fun nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom() {
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            val picker=AppLanguage.showPicker(activity) {}
+            val index=AppLanguage.tags(activity).indexOf("vi-Hani")+1
+            assertTrue(index>0)
+            val row=picker.listView.adapter.getView(index,null,picker.listView) as TextView
+            val font=org.catrobat.paintroid.classic.LocaleTypography.typeface(activity,Locale.forLanguageTag("vi-Hani"))
+            assertNotNull(font)
+            assertSame(font,row.typeface)
+            assertTrue(android.graphics.Paint().apply {typeface=row.typeface}.hasGlyph("𡨸"))
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
+    }
 
     @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
     fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)

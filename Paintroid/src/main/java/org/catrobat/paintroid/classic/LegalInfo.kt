@@ -12,7 +12,6 @@ import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.LinearLayout
 import android.widget.Button
-import android.widget.PopupMenu
 import android.widget.Toast
 import android.view.Gravity
 import android.content.ClipData
@@ -50,7 +49,7 @@ object LegalInfo {
 
             Additional vocabulary comes from GIMP (GPL-3.0-or-later) and selected Krita catalogues (GPL version 3, with original catalogue notices preserved). Exact gettext contexts, original entries, translator credits and source hashes are included. Read Third-party notices for the original headers and full licence text. Krita supplements languages absent from the GIMP import; these additions remain partial. Further selected gaps use LibreOffice command catalogues (MPL-2.0, also offered under AGPL-3.0-or-later under MPL section 3.3) and MediaWiki common actions (GPL-2.0-or-later). Their original translator notices, exact message contexts, source hashes and licences are in Third-party notices and the corresponding source.
 
-            Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho, Anonymous Pro and Noto Sans Mongolian, SIL Open Font License 1.1. Font licences includes the original copyright notices and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
+            Fonts: unmodified Lato, Alegreya Sans, Bree Serif, Anton, Bangers, Patrick Hand, Sacramento, Sawarabi Gothic, Sawarabi Mincho, Anonymous Pro and Noto Sans Mongolian, SIL Open Font License 1.1. AN Paint Nom UI is a renamed subset of Nom Na Tong (MIT) and Gothic Nguyen (SIL OFL 1.1), distributed under SIL OFL 1.1 with the original MIT notice retained. AN Paint Wu Fallback is a glyph-only subset of Nom Na Tong under MIT. Font licences include the original copyright notices, modification details and full terms. Android system and fallback fonts are supplied by the device; see its open-source licences for their exact attribution. No Dubai or STC/GE SS font binaries are included.
 
             JPEG XL uses libjxl 0.12.0 by the JPEG XL Project Authors under BSD-3-Clause, with Brotli, Highway and skcms. WebP uses libwebp 1.6.0 and SharpYUV by Google and the WebP project contributors under BSD-3-Clause, with its patent grant and the Android NDK CPU-features Apache-2.0 notice.
 
@@ -82,7 +81,7 @@ object LegalInfo {
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val dialog=Dialog(activity).apply { requestWindowFeature(android.view.Window.FEATURE_NO_TITLE) }
         val body=LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(EditorColours.surface);setPadding(dp(12),dp(8),dp(12),dp(8)) }
-        body.addView(TextView(activity).apply { this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);maxLines=2;gravity=Gravity.CENTER_VERTICAL },LinearLayout.LayoutParams(-1,dp(52)))
+        body.addView(FlowTextView(activity).apply { this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);maxLines=2;gravity=Gravity.CENTER_VERTICAL;columnHeightDp=96 },LinearLayout.LayoutParams(-1,if(VerticalText.uiVertical()) -2 else dp(52)))
         val scroll=ScrollView(activity).apply { tag="terms_scroll" }
         scroll.addView(TextView(activity).apply {
             tag="terms_text";this.text=text;textSize=14f;setTextColor(EditorColours.onSurface);setTextIsSelectable(true);setPadding(dp(4),dp(6),dp(4),dp(12))
@@ -91,20 +90,19 @@ object LegalInfo {
         body.addView(scroll,LinearLayout.LayoutParams(-1,0,1f))
         val actions=LinearLayout(activity).apply { tag="terms_actions";gravity=Gravity.CENTER_VERTICAL }
         fun action(label: String,tagName: String,run: (Button) -> Unit) {
-            val b=Button(activity).apply { this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;setPadding(dp(3),0,dp(3),0);setOnClickListener { run(this) } }
-            actions.addView(b,LinearLayout.LayoutParams(0,dp(48),1f))
+            val b=FlowButton(activity).apply { columnHeightDp=96;this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;setPadding(dp(3),0,dp(3),0);setOnClickListener { run(this) } }
+            actions.addView(b,LinearLayout.LayoutParams(0,if(VerticalText.uiVertical()) -2 else dp(48),1f))
         }
         action(ui(R.string.ui_copy_all),"terms_copy") {
             (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))
             Toast.makeText(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
         }
-        action(ui(R.string.ui_other_terms),"terms_more") { anchor ->
+        action(ui(R.string.ui_other_terms),"terms_more") { _ ->
             val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences),ui(R.string.ui_webp_codec_licences),ui(R.string.ui_heic_avif_codec_licences))
-            val popup=PopupMenu(activity,anchor)
-            options.forEachIndexed { i,label -> popup.menu.add(0,i,i,label) }
-            popup.setOnMenuItemClickListener {
+            EditorDialogBuilder(activity).setTitle(ui(R.string.ui_other_terms))
+                .setItems(options.toTypedArray()) { _, index ->
                 dialog.dismiss()
-                when (it.itemId) {
+                when (index) {
                     0 -> showAbout(activity)
                     1 -> showAsset(activity,"GNU AGPL v3","legal/AGPL-3.0.txt")
                     2 -> showAsset(activity,ui(R.string.ui_third_party_notices),"legal/THIRD_PARTY_NOTICES.txt")
@@ -114,12 +112,13 @@ object LegalInfo {
                     6 -> showAsset(activity,ui(R.string.ui_jpeg_xl_codec_licences),"legal/JPEG_XL_NOTICES.txt")
                     7 -> showAsset(activity,ui(R.string.ui_webp_codec_licences),"legal/WEBP_NOTICES.txt")
                     else -> showAsset(activity,ui(R.string.ui_heic_avif_codec_licences),"legal/HEIF_AVIF_NOTICES.txt")
-                };true
-            };popup.show()
+                }
+            }.setNegativeButton(ui(R.string.ui_cancel),null).show()
         }
         action(ui(R.string.ui_done),"terms_done") { dialog.dismiss() }
-        body.addView(actions,LinearLayout.LayoutParams(-1,dp(48)))
+        body.addView(actions,LinearLayout.LayoutParams(-1,if(VerticalText.uiVertical()) -2 else dp(48)))
         dialog.setContentView(body)
+        LocaleTypography.install(body)
         fun resize() {
             val m=activity.resources.displayMetrics
             dialog.window?.setLayout((m.widthPixels*.94f).toInt(),(m.heightPixels*.88f).toInt())

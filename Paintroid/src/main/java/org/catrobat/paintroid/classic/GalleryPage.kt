@@ -13,6 +13,7 @@ internal object GalleryPage {
             document.querySelectorAll('a.wp-block-file__button[download]').forEach(function(link) {
               var url; try { url=new URL(link.href); } catch(e) { return; }
               if(url.protocol!=='https:' || ['catrobat.org','www.catrobat.org','catrobatblog.files.wordpress.com','catrobatblog.wpcomstaging.com'].indexOf(url.hostname)<0 || !/\.(png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)$/i.test(url.pathname)) return;
+              link.setAttribute('data-anpaint-action','true');
               if(link.textContent!==useLabel) link.textContent=useLabel;
               link.setAttribute('aria-label',useLabel);
               var copy=link.parentElement.querySelector('[data-anpaint-credit]');
@@ -21,6 +22,7 @@ internal object GalleryPage {
                 copy.className=link.className;
                 copy.style.marginLeft='0.5em';link.insertAdjacentElement('afterend',copy);
               }
+              copy.setAttribute('data-anpaint-action','true');
               var titleNode=document.getElementById(link.getAttribute('aria-describedby'));
               var title=titleNode ? titleNode.textContent.trim() : url.pathname.split('/').pop();
               var target='$CREDIT_SCHEME://copy?source='+encodeURIComponent(url.href)+'&title='+encodeURIComponent(title);

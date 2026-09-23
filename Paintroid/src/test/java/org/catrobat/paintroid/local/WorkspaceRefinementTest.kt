@@ -309,7 +309,7 @@ class WorkspaceRefinementTest {
         render(root,"licence-landscape.png");root.findViewWithTag<View>("terms_done").performClick();assertFalse(dialog.isShowing)
     }
     @Test fun allBundledFontsLoadAndDropdownNamesUseTheirOwnTypeface() {
-        val catalog=FontCatalog(activity);assertEquals(11,catalog.fonts.count { it.asset!=null });assertEquals(20,catalog.fonts.size)
+        val catalog=FontCatalog(activity);assertEquals(12,catalog.fonts.count { it.asset!=null });assertEquals(21,catalog.fonts.size)
         val adapter=catalog.adapter();val parent=LinearLayout(activity)
         val widths=mutableSetOf<Int>()
         for (i in catalog.fonts.indices) {

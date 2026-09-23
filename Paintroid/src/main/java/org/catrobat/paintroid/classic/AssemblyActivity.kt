@@ -72,6 +72,7 @@ class AssemblyActivity : Activity() {
     private fun buildInterface() {
         val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; fitsSystemWindows = true; setBackgroundColor(EditorColours.surface) }
         setContentView(root)
+        LocaleTypography.install(root)
         val header = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(10),0,dp(6),0); setBackgroundColor(EditorColours.primaryContainer) }
         count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }
         header.addView(count,LinearLayout.LayoutParams(0,dp(if (compact()) 44 else 54),1f))
@@ -115,7 +116,7 @@ class AssemblyActivity : Activity() {
     private fun perform(action: () -> Unit) { try { action() } catch (error: Exception) { message(error.message ?: ui(R.string.ui_could_not_complete_the_operation)) } catch (_: OutOfMemoryError) { message(ui(R.string.ui_not_enough_memory_for_this_operation_the_assembly)) } }
     private fun message(value: String) {
         lastError = value
-        if (!isDestroyed && !isFinishing) AlertDialog.Builder(this).setTitle("AN Paint").setMessage(value).setPositiveButton(ui(R.string.ui_ok),null).show()
+        if (!isDestroyed && !isFinishing) EditorDialogBuilder(this).setTitle("AN Paint").setMessage(value).setPositiveButton(ui(R.string.ui_ok),null).show()
     }
     private fun setBusy(value: Boolean) { busy = value; if (::board.isInitialized) { board.isEnabled = !value; undo.isEnabled = !value && assembly.canUndo; redo.isEnabled = !value && assembly.canRedo; add.isEnabled = !value && assembly.images.size < 20 }; if (value) info.text = ui(R.string.ui_working) }
     private fun refresh() {
@@ -298,7 +299,7 @@ class AssemblyActivity : Activity() {
         body.addView(text(ui(R.string.ui_choose_a_smaller_output_copy_the_source_images)))
         val sizing = DimensionControls(this,renderer.original,suggested,"assembly_size",true); body.addView(sizing)
         val estimate = text(""); body.addView(estimate)
-        val dialog = AlertDialog.Builder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()
+        val dialog = EditorDialogBuilder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()
         fun refresh() {
             val size = sizing.dimensions
             estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)
