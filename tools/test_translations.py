@@ -61,8 +61,8 @@ class TranslationCatalogueTests(unittest.TestCase):
                 translations.catalogue_paths()["ko-Kore-KR"]
             ).values()
         )
-        self.assertRegex(korean_mixed, r"[\\uac00-\\ud7af]")
-        self.assertRegex(korean_mixed, r"[\\u3400-\\u9fff\\uf900-\\ufaff]")
+        self.assertRegex(korean_mixed, r"[\uac00-\ud7af]")
+        self.assertRegex(korean_mixed, r"[\u3400-\u9fff\uf900-\ufaff]")
 
         vi_hani = "".join(
             translations.read_strings(
