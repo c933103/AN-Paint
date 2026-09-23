@@ -101,3 +101,26 @@ Known imported errors should remain documented where useful. For example, the
 historical Paintroid Japanese horizontal/vertical flip strings were reversed;
 AN Paint's canonical Japanese catalogue uses `左右反転` for horizontal flip and
 `上下反転` for vertical flip.
+
+## Locale conventions used by AN Paint
+
+Some BCP-47 language tags cover more than one spoken variety or more than one
+writing convention. AN Paint labels the concrete convention used by each catalogue
+instead of implying that one file is a neutral standard for the entire macrolanguage.
+
+- `lzh-Hant`: technical Literary Chinese in Traditional script. Classical grammar
+  and concise imperatives are preferred, while modern technical proper names and
+  unavoidable computing terminology remain recognizable.
+- `hak-Hant`: Sixian Hakka in Han characters.
+- `hak-Latn`: the same Sixian Hakka wording in Pha̍k-fa-sṳ (PFS). It is a companion
+  catalogue, not a romanization of Mandarin wording.
+- `nan-Hant-TW`: Taiwan Hokkien/Taiwanese in Han characters.
+- `nan-Latn-TW`: the same Taiwan Hokkien wording in Pe̍h-ōe-jī (POJ).
+- `wuu-Hans`: Shanghai-based written Wu in Simplified script. The `wuu` tag covers
+  multiple Wu varieties; this catalogue does not claim to be a standardized pan-Wu
+  written language.
+
+For script-paired catalogues, first settle the vernacular wording and semantics in
+that language, then keep the companion script/romanization semantically aligned.
+Do not create a Latin catalogue by mechanically romanizing Mandarin or another
+neighbouring Sinitic language.

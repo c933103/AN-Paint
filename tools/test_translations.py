@@ -115,14 +115,36 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
+    def test_completed_lzh_hakka_hokkien_wu_catalogues_are_complete(self):
+        for tag in (
+            "lzh-Hant", "hak-Hant", "hak-Latn",
+            "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
+        ):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
     def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
         catalogues = translations.catalogue_paths()
-        for tag in ("yue-Latn", "sr-Latn", "uz-Latn", "tt-Latn"):
+        for tag in ("yue-Latn", "hak-Latn", "nan-Latn-TW"):
             text = "".join(translations.read_strings(catalogues[tag]).values())
-            if tag == "yue-Latn":
-                self.assertNotRegex(text, r"[\u3400-\u9fff]")
-            else:
-                self.assertNotRegex(text, r"[\u0400-\u04ff]")
+            self.assertNotRegex(text, r"[\u3400-\u9fff]", tag)
+        for tag in ("sr-Latn", "uz-Latn", "tt-Latn"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            self.assertNotRegex(text, r"[\u0400-\u04ff]", tag)
+
+    def test_simplified_wu_does_not_regress_to_traditional_forms(self):
+        text = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["wuu-Hans"]
+            ).values()
+        )
+        self.assertNotRegex(
+            text,
+            r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
+        )
 
 
 class GimpProvenanceTests(unittest.TestCase):
