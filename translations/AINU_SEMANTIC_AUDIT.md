@@ -1,170 +1,173 @@
-# Ainu catalogue semantic audit — 23 September 2026
+# Ainu catalogue semantic audit — 24 September 2026
 
-This review covers the Latin and Kana canonical catalogues together. Both contain
-all current resource keys, but that is **resource coverage, not a certification
-of complete or fluent Ainu**. The full catalogues, including the long editor,
-assembly, recovery and insertion instructions, were read against their English
-sources. The first pass repairs verifiable semantic errors and navigation
-references. The second rewrites the active main help, cursor instructions,
-assembly instructions, and gallery credit requirements in paired Ainu clauses.
-This is a substantive repair, not a finished native-speaker certification: other
-active messages and the older help resource still contain mixed English/Ainu.
+Both canonical Ainu catalogues now contain 669 string entries and the required
+crop-preview plural forms. The remaining mixed English explanatory passages have
+been rewritten in both Latin and Kana: memory warnings, codec descriptions,
+recovery guidance, drawing and colour controls, vertical-text instructions,
+gallery requirements, and the complete older ten-paragraph manual. The active
+main help, cursor help and seven-paragraph assembly help were completed in the
+preceding pass and kept consistent with the final control captions.
 
-## Evidence and corrections
+This is completed resource and prose work with source-based semantic review.
+It is not a claim of native-speaker certification or a universal Ainu software
+terminology standard. Person marking, register and idiomatic preference can
+still benefit from fluent-speaker feedback; those ordinary review limits are
+not a reason to leave English instructions in place.
 
-The primary lexical source is the National Ainu Museum's searchable editions of
-Shigeru Kayano's and Suzuko Tamura's dictionaries, with dialect and author
-identified per entry. These are lexical evidence, not an official software
-terminology standard. No dictionary examples or corpus were copied into the app.
-The new software uses of ordinary words below are contextual translations.
+## Scope and retained meaning
 
-| Meaning in AN Paint | Corrected Latin / Kana wording | Evidence and reason |
+The English sources and both complete catalogues were read. An independent
+second review compared all newly authored batches, the complete older manual,
+and the inherited resource values. Its concrete corrections were applied before
+this report was updated. The plural forms were also inspected and rewritten.
+
+- Memory messages distinguish an editing limit from installed RAM, include the
+  complete image and temporary loading/editing space, stop before unsafe
+  allocation, and preserve the no-automatic-resize and unchanged-source clauses.
+  Smaller output still may need the full source image or tiles decoded first.
+- Codec descriptions retain first-frame/default-poster behavior, lossless versus
+  detail-losing output, quality controls, colour-profile handling, unprotected PDF
+  copies, and all dimensions, limits and format identifiers.
+- Recovery text distinguishes the previous retained work, the current drawing,
+  uncommitted selections, undo history and a separate exported ZIP. It preserves
+  the `canvas.png` recovery instruction and the actual File menu captions.
+- Assembly text preserves all placement/cropping gestures, alignment and
+  non-overlap rules, proportional resizing, unplace/remove effects, restoration,
+  output-size limits, and the unchanged original files.
+- Drawing and colour instructions preserve exact gesture counts, side/corner
+  handles, stroke versus cursor-marker size, palette behavior, selected colours,
+  numeric controls and all original radius/size constraints.
+- Vertical instructions distinguish 90° rotated joined words from upright
+  individual characters, preserve combining marks and emoji sequences, and
+  explain that a new line creates another top-to-bottom writing area.
+- Gallery text retains named creators, ownership/source notices, modification
+  descriptions, licence requirements and the actual File → About → Image credits
+  route. Irasutoya's commercial 21-image threshold is mandatory; special
+  collaboration conditions remain conditional.
+
+Product, licence and format names, units, colour-model components, script names,
+filenames and syntax remain recognizable. `Large PNG download` is the exact
+external website button. These retained identifiers are not untranslated English
+sentences and are not respelled as arbitrary Kana. ASCII art has a descriptive
+Ainu label using the unchanged ASCII identifier.
+
+## Lexical evidence and semantic repairs
+
+The primary traditional source is the National Ainu Museum's searchable Kayano
+and Tamura dictionaries. These establish meanings and dialectal usage, not an
+official modern computing vocabulary. Dictionary examples and corpora were not
+copied into the application.
+
+| Application meaning | Wording / evidence | Repair |
 | --- | --- | --- |
-| Right side | `simoysam` / `シモイサㇺ` | [Museum: simoysam](https://ainugo.nam.go.jp/dic?word=simoysam). The old `sam` means side/beside without specifying right. Uses genuinely meaning “beside” remain. |
-| Left side | `harkisam` / `ハㇻキサㇺ` | [Museum: harki](https://ainugo.nam.go.jp/dic?word=harki). The old `harkiso` names a particular hearth seat, unsuitable for a screen coordinate. |
-| Corner | `sikkew` / `シッケウ` | [Museum: sikkew](https://ainugo.nam.go.jp/dic?word=sikkew). The old `sike` means baggage, not a corner. |
-| Square handles | `osikkewnu` / `オシッケウヌ` | [Museum: osikkewnu](https://ainugo.nam.go.jp/dic?word=osikkewnu). The old `sik` does not mean square. |
-| Restore a retained image | Forms of `hosipire` / `ホシピレ` | [Museum: hosipire](https://ainugo.nam.go.jp/dic?word=hosipire). [NINJAL's folklore introduction](https://ainu.ninjal.ac.jp/folklore/en/) identifies `uepeker` as prose folktale; it was incorrectly used for recovery. |
-| Record modifications in credits | `nuye` / `ヌイェ` | [Museum: nuye](https://ainugo.nam.go.jp/dic?word=nuye), writing/recording sense. Folktale vocabulary also appeared in the instruction to indicate modifications. |
-| Open a document or panel | `maka` / `マカ` | [Museum: maka](https://ainugo.nam.go.jp/dic?word=maka), opening sense. Replaces the unsupported `neire` in this catalogue. Applying it to files is a software extension. |
-| Wait for the current operation | `tere` / `テレ` | [Museum: tere](https://ainugo.nam.go.jp/dic?word=tere). Replaces `isamne`. |
-| Reverse colours or the tool arrow | `ehorka` / `エホㇿカ` | [Museum: ehorka](https://ainugo.nam.go.jp/dic?word=ehorka), reverse/opposite sense. The old `hontomotuye` means interrupt/stop, and remains the Cancel caption. |
-| Swap colours, light/dark characters, or opposite sides | `itasare` / `イタサレ` | [Museum: itasare](https://ainugo.nam.go.jp/dic?word=itasare), exchange sense. Flip labels explicitly identify the exchanged sides. |
-| Rotate | `kiru` / `キル` | [Museum: kiru](https://ainugo.nam.go.jp/dic?word=kiru), turn/change direction sense. The 90° control specifies the right side; the angle is retained. |
-| Arrow, star, heart | `ay`, `nociw`, `sampe` / `アイ`, `ノチウ`, `サンペ` | Museum entries for [ay](https://ainugo.nam.go.jp/dic?word=ay), [nociw](https://ainugo.nam.go.jp/dic?word=nociw), and [sampe](https://ainugo.nam.go.jp/dic?word=sampe). The same terms appear in their drawing instructions. |
-| Two fingers | `tu askepet` / `トゥ アㇱケペッ` | [Museum: askepet](https://ainugo.nam.go.jp/dic?word=askepet). The old `tu tek` means two hands, not the pinch gesture's two fingers. |
-| Make smaller | `ponte` / `ポンテ` | [Museum: ponte](https://ainugo.nam.go.jp/dic?word=ponte) includes the small-making construction; [ponre](https://ainugo.nam.go.jp/dic?word=ponre) is a nickname, not a reduce command. |
-| Send an image | `eikra` / `エイㇰラ` | [Museum: eikra](https://ainugo.nam.go.jp/dic?word=eikra), send an object. The digital use is an application extension, replacing unsupported `ukopaye` here. |
-| Move the view or a placed image | `moymoye` / `モイモイェ` | [Museum: moymoye](https://ainugo.nam.go.jp/dic?word=moymoye), move something. The Navigate caption describes moving and looking. |
-| Information concerning an image | `noka oruspe` / `ノカ オルㇱペ` | [Museum: oruspe](https://ainugo.nam.go.jp/dic?word=oruspe), the broad matters/circumstances-about-something sense, not the separate narrow rumour sense. |
-| Conditions of use | `irenka` / `イレンカ` | [Museum: irenka](https://ainugo.nam.go.jp/dic?word=irenka), the rule/promise sense. This does not translate or replace the legal licence text. |
+| Right and left sides | [simoysam](https://ainugo.nam.go.jp/dic?word=simoysam), [harkisam](https://ainugo.nam.go.jp/dic?word=harki) | `sam` only means side/beside; `harkiso` names a hearth seat. Valid beside-uses of `sam` remain. |
+| Corner and rectangular shape | [sikkew](https://ainugo.nam.go.jp/dic?word=sikkew), [osikkewnu](https://ainugo.nam.go.jp/dic?word=osikkewnu) | Replaced baggage/eye vocabulary. The square caption specifies equal width and height. |
+| Restore an image | [hosipire](https://ainugo.nam.go.jp/dic?word=hosipire) | Replaced `uepeker`, identified as a prose-folktale genre by [NINJAL](https://ainu.ninjal.ac.jp/folklore/en/). |
+| Record changes in credits | [nuye](https://ainugo.nam.go.jp/dic?word=nuye) | Replaced the same folktale error with writing/recording. |
+| Open / wait | [maka](https://ainugo.nam.go.jp/dic?word=maka), [tere](https://ainugo.nam.go.jp/dic?word=tere) | Replaced unsupported catalogue forms `neire` and `isamne`. File/panel opening is a software extension. |
+| Reverse / exchange / rotate | [ehorka](https://ainugo.nam.go.jp/dic?word=ehorka), [itasare](https://ainugo.nam.go.jp/dic?word=itasare), [kiru](https://ainugo.nam.go.jp/dic?word=kiru) | Distinguishes reversal and replacement from interrupting or rotating. |
+| Two fingers | [askepet](https://ainugo.nam.go.jp/dic?word=askepet) | Replaces `tu tek`, which meant two hands. |
+| Make smaller | [ponte](https://ainugo.nam.go.jp/dic?word=ponte) | Replaces [ponre](https://ainugo.nam.go.jp/dic?word=ponre), nickname. |
+| Send an image | [eikra](https://ainugo.nam.go.jp/dic?word=eikra) | Uses the sending-an-object sense, extended to digital images. |
+| Move the view | [moymoye](https://ainugo.nam.go.jp/dic?word=moymoye) | Uses moving something. Existing `raye` also has genuine movement senses and was not rejected from a homonym alone. |
+| Image information / conditions | [oruspe](https://ainugo.nam.go.jp/dic?word=oruspe), [irenka](https://ainugo.nam.go.jp/dic?word=irenka) | Uses the matters-concerning-something and rule/promise senses. The legal licence itself is not replaced. |
+| Curved / round | [rewke](https://ainugo.nam.go.jp/dic?word=rewke), [sikari](https://ainugo.nam.go.jp/dic?word=sikari) | Shape controls use descriptive Ainu properties and actions. |
+| Copper / silver | [hurekane](https://ainugo.nam.go.jp/dic?word=hurekane), [sirokane](https://ainugo.nam.go.jp/dic?word=sirokane) | Uses documented colour/material vocabulary. |
+| Insufficient | [ehaye](https://ainugo.nam.go.jp/dic?word=ehaye) | Uses shortage wording for RAM. `kon rusuy` is a complete requirement phrase; `kon` alone was not treated as insufficient. |
 
-Directions were reviewed in the alignment labels, crop/resize descriptions,
-attachment instructions, palette help and both vertical column-order choices.
-The words for left and right were not substituted globally: `sam` beside an
-image, tab or button is a valid different meaning.
+Arrow, star and heart use the museum-attested `ay`, `nociw` and `sampe`. Empty
+colour slots use absence (`isam`), not dryness (`sat`). Fewer selected files now
+means a smaller file count, not smaller individual files. Horizontal text uses
+explicit left-to-right direction; sideways vertical words explicitly rotate 90°.
 
-The Advanced caption uses `Na poronno` (more), replacing the misleading `Na komke`.
-The text-direction caption describes the manner of writing rather than using
-`hosipi` (return). The portrait tool-strip description now names its left-to-right
-course instead of saying “toward the heart”. These are descriptive application
-phrases and still warrant speaker review.
+## Published community computing vocabulary
 
-## Paired script and navigation repairs
+Traditional dictionary absence alone is not evidence against modern usage.
+These primary community pages establish actual published forms and meanings:
 
-Help now refers to the actual localized captions for File, Draw, Drawing, Insert,
-Other images, Load image, Save, Save as, Export recovery copy, Use image, Copy
-credit, and the selection/assembly controls. The credits path is File → About,
-licences & credits → Image credits, matching the active editor. Both script
-catalogues use the same semantic paths.
+| Form | Documented use | Source |
+| --- | --- | --- |
+| `saysu` | Size, explicitly identified as a modern loan | [saysu](https://itak.aynu.org/saysu) |
+| `tatum` | Data; also used in the collection's own interface | [tatum](https://itak.aynu.org/tatum) |
+| `sinna`, `isina` | Computing change/diff and limitation | [sinna](https://itak.aynu.org/sinna) |
+| `husko katukar` | Undo, with the published word spacing | [husko](https://itak.aynu.org/husko) |
+| `nure`, `sanke` | Load and export | [community collection](https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/dictionary.html), linked `js/ainu.js` and `js/source.js` |
+| `raye`, `nuye`, `hontomotuye` | Move, edit and cancel | [ye](https://itak.aynu.org/ye) |
+| `irukay`, `irukaypo an` | Brief duration / temporary modifier | [irukay](https://itak.aynu.org/irukay) |
+| `nokan`, `komke` | Fine/detailed versus invalid | [nokan](https://itak.aynu.org/nokan), [komke](https://itak.aynu.org/komke) |
+| `hayta` | Computing error/failure | [hayta](https://itak.aynu.org/hayta) |
+| `itaktupte` | Translation, attributed to Oota | [tak](https://itak.aynu.org/tak) |
+| `ipe`, `owpeka` | Content and valid in computing | [ipe](https://itak.aynu.org/ipe), [owpeka](https://itak.aynu.org/owpeka) |
+| `iosno` | Last / most recent | [ios](https://itak.aynu.org/ios) |
 
-The Kana catalogue previously converted pieces of English words as if they were
-Ainu syllables: `Use image` became `ウセ image`, `Save as` became `Save アㇱ`, and
-`Other images` became `オッヘㇾ images`. These app-control references now use their
-Kana resource captions. Remaining technical English is retained visibly as
-English; converting its letters to arbitrary Kana would not translate it.
-The `tu` notation was normalized to `トゥ`, as in the museum examples, and the
-font sample retains its intended `Aa Bb` case comparison.
+The community collection also documents `cinuyep` (file), `iyanu` (settings),
+`sonep` (category), `uesere` (licence), `attupte` (copy), and `nikamkorinuyep`
+(pencil), with contributor/source labels. Its `pororu`, `pararu` and `riru`
+dimension terms are explicitly **published community neologisms**, not asserted
+here to be universally established traditional nouns. It identifies different
+sources and dialectal proposals rather than claiming an absolute standard.
+Historical loans such as `hunte` and `sirokane` are documented Ainu vocabulary;
+Japanese origin does not make an established Ainu loan an untranslated template.
 
-The existing community-sourced Brush, Save and Done labels remain. Historical
-loans such as `hunte` are documented Ainu vocabulary and must not be rejected
-merely because they have Japanese origins. Similarly, a traditional dictionary's
-absence of a software sense does not alone disprove modern community usage.
-For example, the modern community glossary attributes `hayta` in the failure
-sense to Oota; this review does not classify it as an error solely from the
-traditional meanings. The existing source history remains in README.md.
+New technical explanations use ordinary clauses rather than claiming invented
+standard compounds. Decoding is described as making an image from file data,
+encoding as making an image file, and buffers as temporary space used for loading
+or editing. RAM remains a technical identifier. Lossless storage keeps each
+pixel's colour unchanged; raising quality preserves more fine detail. Serif
+controls describe the presence/absence of small terminal strokes. These are
+contextual compositions and remain open to idiomatic refinement.
 
-## Active instruction rewrite
+## Grammar, paired scripts and review corrections
 
-The second pass rewrites `ui_help23`, `ui_cursor_help31` and its gesture/marker
-hints, `ui_add_up_to_20_images_with_android_s`, `gallery_description`, the credit
-editor hint, and the Catrobat, Irasutoya and Openclipart instructions. Kana was
-authored alongside the Latin text; English letters were not transliterated as
-if that would produce Ainu. The app calls the first two help resources from
-`ClassicPaintActivity` and the assembly resource from `AssemblyActivity`.
+[NINJAL's introduction](https://ainu.ninjal.ac.jp/folklore/en/) and the museum's
+[grammar introduction](https://ainugo.nam.go.jp/pages/ainu_basic.html) supply the
+word-order, person-marking and verb-valency framework. Direct instructions use
+imperatives, including the attested polite [yan](https://ainugo.nam.go.jp/dic?word=yan).
+Explicit third-person subjects such as Android are distinguished from impersonal
+transitive `a=` constructions. These sources support selected forms; they do not
+certify every composed sentence as the only idiomatic option.
 
-The assembly instructions retain the 20-image limit, provider-dependent metadata,
-sorting, individual/batch crop, preview, attachment alignment, origin coordinates,
-non-overlap rule, proportional resizing, unplace/remove behavior, undo/redo,
-navigation, export, memory fallback, original-file preservation, and restoration.
-The final paragraph names the actual File → About panel. Cursor instructions
-distinguish moving the view, starting/stopping drawing, and marker enlargement
-that does not change the brush size.
+Kana represents the authored Ainu, with product/format identifiers protected.
+Ainu person prefixes are rendered in Kana rather than left as Latin A/E markers.
+The chosen small-ッ spelling for doubled consonants follows NINJAL's explicit
+pp/tt/kk guidance and museum examples; true final consonants retain their Ainu
+small-letter forms. `wakka` is also written ワッカ in the Foundation's
+[primary introductory textbook](https://www.ff-ainu.or.jp/web/potal_site/files/ishikari_shokyu.pdf).
+The earlier erroneous conversions of English fragments (`Use`, `Save as`, `Other`)
+were replaced by actual translated control captions.
 
-[NINJAL's grammatical introduction](https://ainu.ninjal.ac.jp/folklore/) supplies
-the basic word-order/person-marking framework. The instructions use direct
-imperatives, including polite `yan`, whose imperative use is documented by the
-[museum](https://ainugo.nam.go.jp/dic?word=yan). These sources support the selected
-forms; they do not establish that every newly composed sentence is idiomatic.
+Independent review produced substantive fixes: uncommitted versus unpositioned
+selections; freeing some storage rather than deleting all files; straight versus
+merely long lines; glyph tilt versus moving text; cursor markers versus brush
+strokes; a rectangular square with equal dimensions; unprotected versus merely
+passwordless PDF files; quality-setting linkage; explicit hex controls; the
+actual second edit row; ownership notices; and most-recently-used category tools.
 
-Modern software vocabulary also needs a source beyond traditional dictionaries.
-The [community terminology collection](https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/dictionary.html)
-and its linked `js/ainu.js`/`js/source.js` identify their contributors and source
-classes. It explicitly warns that its proposals are not absolute answers. This
-pass uses its documented `cinuyep` (file), `iyanu` (settings), `sonep` (category),
-`uesere` (licence), and `attupte` (copy); the collection attributes the latter and
-category terminology to Oota. Its English/Japanese language labels are
-`Inkiriskur itak` and `Sisam itak`. The dimension labels `pororu`, `pararu` and
-`riru` are **published community neologisms**, explicitly classified as such by
-that collection, not claimed here as universally established Ainu terms.
+## Licence evidence
 
-Technical identifiers remain recognizable: Android, Catrobat, Irasutoya,
-Openclipart, PNG, ICO, ASCII art, Base64, CC0, CC BY-SA 4.0, URL, and x/y. The
-external button `Large PNG download` remains exact. `commercial design` remains
-a visibly quoted external legal category. Cursor, pixel, percent, zoom and
-memory terminology still need a consistent community terminology decision;
-their presence is not a claim of established Ainu loanword status.
-
-The credit instructions preserve attribution, source/owner notices, modification
-indication, and ShareAlike or compatible-licence requirements, checked against
-the [CC BY-SA 4.0 deed](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
+Credit requirements were checked against the
+[CC BY-SA 4.0 deed](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
 Irasutoya's [terms](https://www.irasutoya.com/p/terms.html) and
-[FAQ](https://www.irasutoya.com/p/faq.html) retain the commercial-use threshold of
-21 images and the possibility of separate collaboration conditions.
+[FAQ](https://www.irasutoya.com/p/faq.html) establish the commercial 21-image
+threshold and possible separate collaboration conditions.
 [Openclipart's source policy](https://openclipart.org/share) supplies CC0.
-
-## Remaining review required
-
-The following are concrete outstanding language issues, not build failures:
-
-- Active memory/codec instructions still mix English technical phrases with
-  Ainu, particularly `ui_d_d_pixels_2f_mp_exceeds_the_current`,
-  `ui_estimates_include_the_current_canvas_and_clipboard_sampled`,
-  `ui_the_decoder_and_editing_buffers_need_about_the`,
-  `ui_the_full_image_and_working_buffers_exceed_the`,
-  `ui_codec_resize_memory_floor` and `ui_no_resize_fits_decoder_memory`.
-- Several active captions and short descriptions retain `Crop`, `Draft`,
-  `Resize`, `Export`, `Quality`, `Aspect ratio`, `Pencil`, `Airbrush`, and
-  `Watercolor`. Tool descriptions still contain `bounding box` and `stroke`.
-  The older, currently uncalled help resource
-  `ui_the_arrow_on_the_left_directly_below_the` remains substantially mixed;
-  only its navigation, script consistency and verified vocabulary were repaired.
-  These need consistent community terminology and a fluent rewrite.
-- Existing terms and constructions such as `sinna`, `tatum`, `saysu`, `sampes`
-  and `huskokatukar` need provenance and context review. Sourced modern terms
-  such as `iyanu` also need sentence-level review. A borrowed term,
-  a semantic extension and an invented string of dictionary words are different
-  things; this audit cannot settle every one of those cases.
-- Person marking, verb valency, number, register and sentence-level naturalness
-  need checking throughout both versions. Matching Latin/Kana labels does not
-  validate the grammar of the surrounding instructions.
-- The Kana catalogue still contains Latin technical English. Its presence must
-  not be hidden by claiming all text is native Ainu. The in-app language note now
-  states that Ainu and English are both present.
+The Ainu interface explains these requirements; the full licence identifiers and
+legal texts remain available through the app's existing panels.
 
 ## Validation
 
-Both Ainu catalogues pass `validate_catalogue(tag, require_complete=True)` and
-Android string validation, including placeholders and protected literals. No
-keys, plurals, format identifiers or licence identifiers were removed.
-`git diff --check` passes. Source inspection also checked the new credits and
-insertion paths against the editor's menus. Both scripts include the actual
-current About caption in the Catrobat, assembly and older help resources checked
-by the integrated navigation regression. All template caption references used
-while editing have been expanded; none remain in the XML.
+Both scripts pass complete-catalogue validation, Android string validation,
+format-placeholder and protected-literal checks. All 27 translation tests pass
+with the integrated literal-percent validator. Both catalogues also compile with
+strict SDK 35 AAPT2. Static percent text uses `formatted="false"`; percent signs
+in strings with actual format arguments use `%%`.
+No resource keys, plural quantities, placeholders or licence identifiers were
+removed. The cursor-help alias resolves to the intended resource. Both scripts
+contain their actual About caption in all three globally checked help passages.
+No editing-template references remain. A residual Latin-token scan was reviewed
+against retained identifiers; crop-preview plural text was checked as well.
+`git diff --check` passes.
 
-The full translation unittest run on the starting worktree reports existing
-Hakka directory/literal and Manchu Base64-literal failures that belong to other
-parallel integration changes; none concern these Ainu edits. Run the complete
-suite again on the combined integration branch. No fluency score is inferred
-from these structural checks.
+These are source and structural checks, plus the described semantic review.
+They are not a claim of device-layout verification, native-speaker certification,
+or a new official terminology standard.
