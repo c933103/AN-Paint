@@ -47,6 +47,21 @@ def android_string_errors(value: str) -> list[str]:
     return sorted(set(errors))
 
 
+def format_string_errors(value: str, formatted: bool = True) -> list[str]:
+    """Require explicit literal-percent handling before AAPT or String.format.
+
+    formatted=false bypasses AAPT's check, not runtime formatting. A value with
+    argument placeholders must still escape literal percent signs as %%.
+    """
+    if "%" not in FORMAT_TOKEN.sub("", value):
+        return []
+    if placeholders(value):
+        return ["literal percent in a format string must use %%"]
+    if formatted:
+        return ['literal percent requires formatted="false"']
+    return []
+
+
 def resource_configuration(folder: str) -> tuple[str, ...]:
     """Normalize legacy and BCP-47 Android locale directory equivalents.
 
@@ -91,16 +106,17 @@ def validate_android_strings() -> list[str]:
     for path in sorted(RES.glob("values*/*.xml")):
         for node in ET.parse(path).getroot():
             if node.tag == "string":
-                values = [(node.get("name"), "".join(node.itertext()))]
+                values = [(node.get("name"), "".join(node.itertext()), node.get("formatted") != "false")]
             elif node.tag in ("plurals", "string-array"):
                 values = [
-                    (f"{node.get('name')}[{item.get('quantity', str(i))}]", "".join(item.itertext()))
+                    (f"{node.get('name')}[{item.get('quantity', str(i))}]", "".join(item.itertext()),
+                     item.get("formatted", node.get("formatted")) != "false")
                     for i, item in enumerate(node.findall("item"))
                 ]
             else:
                 continue
-            for key, value in values:
-                for error in android_string_errors(value):
+            for key, value, formatted in values:
+                for error in android_string_errors(value) + format_string_errors(value, formatted):
                     errors.append(f"{path.parent.name}/{key}: {error}")
     return errors
 
@@ -200,7 +216,9 @@ def offered_tags() -> list[str]:
 
 
 def placeholders(value: str) -> Counter[str]:
-    return Counter(FORMAT_TOKEN.findall(value))
+    # %% produces a literal character and consumes no argument. A translation
+    # may use a percent sign where English spells out the word (or vice versa).
+    return Counter(token for token in FORMAT_TOKEN.findall(value) if not token.endswith(("%", "n")))
 
 
 def validate_catalogue(tag: str, require_complete: bool = False) -> list[str]:

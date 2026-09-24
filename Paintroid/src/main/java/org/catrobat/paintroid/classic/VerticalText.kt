@@ -25,7 +25,7 @@ internal object VerticalText {
     }
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
     fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
-    /** Preserve surrogate pairs, combining marks, variation selectors and ZWJ sequences. */
+    /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */
     fun clusters(text: String): List<String> {
         val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0
         while(i<text.length) {
@@ -33,7 +33,8 @@ internal object VerticalText {
             val type=Character.getType(cp)
             val regional=cp in 0x1f1e6..0x1f1ff
             val attach=result.isNotEmpty() && (previous==0x200d || cp==0x200d || cp in 0xfe00..0xfe0f || cp in 0xe0100..0xe01ef ||
-                cp in 0x1f3fb..0x1f3ff || type==Character.NON_SPACING_MARK.toInt() || type==Character.COMBINING_SPACING_MARK.toInt() ||
+                // UAX #29 classifies emoji tags as Extend despite their FORMAT category.
+                cp in 0xe0020..0xe007f || cp in 0x1f3fb..0x1f3ff || type==Character.NON_SPACING_MARK.toInt() || type==Character.COMBINING_SPACING_MARK.toInt() ||
                 type==Character.ENCLOSING_MARK.toInt() || regional && regionalCount%2==1)
             if(attach) result[result.lastIndex]+=part else result.add(part)
             regionalCount=if(regional) regionalCount+1 else 0;previous=cp;i+=count

@@ -1,9 +1,12 @@
-# Manchu semantic audit — 23 September 2026
+# Manchu semantic audit — 24 September 2026
 
 Scope: `Paintroid/src/main/res/values-b+mnc+Mong/strings.xml` (`mnc-Mong`).
-Commit `764051ce1` changes 274 string values. The catalogue was read in batches
-against the English source; this is a source-assisted repair, not independent
-native-speaker review or a claim that every remaining string is idiomatic.
+The first repair changed 274 string values. The 24 September
+follow-up completes the previously listed technical gaps: 199 further resources
+in this workstream, plus 56 colour/typography resources in the parallel
+[colour and typography audit](MANCHU_COLOUR_TYPOGRAPHY_AUDIT.md). The complete
+670-resource catalogue was read in batches against the English source. These
+are source-assisted translations; independent speaker review has not occurred.
 
 ## Sources and method
 
@@ -65,43 +68,63 @@ actions and consequences. `ui_irasutoya_help34` retains the commercial 21-or-mor
 item fee condition, special collaboration terms and retained source/credits.
 Credit routes use the actual File > About > Image credits labels.
 
-## Remaining specialist review
+## Technical completion — 24 September
+
+The memory/format and general-prose batches replace the previously documented mixed
+English passages with complete Manchu descriptions. They retain the actions,
+conditions, limits and format arguments; the work is not a change of script
+applied to English words. The full help uses the same translated labels as the
+controls, including those supplied by the parallel colour/typography repair.
+
+| Previously open area | Completed repair / representative keys |
+| --- | --- |
+| Memory budgets, estimates and preview failures | `ui_current_safe_editing_budget_s_up_to_2f`, `ui_copy_decoded_image_at_this_size_estimated_loading`, `ui_estimates_include_the_current_canvas_and_clipboard_sampled`, `ui_preview_memory_error`, `formats22_preview_memory`: explain available RAM, estimated temporary space, detail loss and opaque imports; insufficient-memory messages now explicitly use `hamirakū`. |
+| Encoding, decoding and source memory floors | `ui_codec_resize_memory_floor`, `save20_encoding_budget`, `formats22_ico_decode_budget`: describe reading a file into an image, converting an image to its stored form, and temporary storage needed while doing so. The smaller-output limitation remains explicit. |
+| Save/export and exact file formats | `ui_save_explanation23`, `ui_export_explanation23`, `formats22_tiff_description`, `formats22_dib_description`, `formats22_base64_description`, `formats22_ascii_description`: complete native explanations of format selection, smaller-file storage, lossless colour preservation, DIB headers, Base64 recovery and non-reopenable ASCII renditions. |
+| PDF, ICO and animation | `formats22_pdf_raster_hint`, `formats22_pdf_encrypted`, `formats22_pdf_crop`, `formats22_ico_description`, all four `formats22_animation_*` messages and `save20_gif_description`: retain rasterization, password/encryption restrictions, crop constraints, transparent square placement, still-image import and animation loss. Dithering is described as mixing small colour dots. |
+| Credits, licensing and gallery actions | `gallery_description`, `gallery_credit_edit_hint`, `ui_catrobat_s_own_artwork_uses_cc_by_sa`, the About/notice/license titles and gallery error messages: translate the actual instructions, retain creator/copyright/source obligations, describe compatible reuse conditions, and synchronize every full File > About > Image credits breadcrumb. |
+| Remaining general controls | Pixel-grid, crop-preview plurals, geometry, percentage, device, tool-option and source-export strings are translated. Both Android plural branches preserve their three ordered arguments and attachment-repositioning instruction. |
+
+Additional lexical checks during this pass corrected `tukiyebure` (raising)
+used for locking proportions to a description of preserving the width/height
+relationship. `ni` is a grammatical particle, so references to another person
+now use `niyalma`. Inherited Japanese `kikai` is replaced with `agūra` in device
+contexts. The transparent/translucent phrase is the attested `fondo gehun`,
+correcting the inherited `fundo` spelling. `temgetu bithe` is attested as a
+license/certificate; `baitalara i temgetu bithe` describes a usage license.
+These are contextual UI applications of historical vocabulary, not claims of
+an established modern software terminology standard.
+
+## Retained literals and review status
 
 Proper format names and identifiers are deliberately literal: `PNG`, `JPEG`,
 `JPEG XL`, `WebP`, `HEIC`, `AVIF`, `TIFF`, `DIB`, `BMP`, `GIF`, `PDF`, `ZIP`,
 `Base64`, `ASCII`, `RGB`, `RGBA`, `sRGB`, `ICC`, `HSV`, `HSL`, `CC0`, `CC BY-SA`,
-`AGPL`, `Android`, app/provider names, units and filenames. Their presence does
-not itself indicate a translation defect. No claim is made that other retained
-English words are established Manchu loans.
+`AGPL`, `Android`, app/provider names, units and filenames. `GNU Affero General
+Public License` is the formal document title. `English`/`Japanese` identify
+supported search languages; `Large PNG`, `Files` and `Documents` identify
+external controls/apps. `Aa Bb 0123` is an intentional font sample.
+`data:image/png;base64,`, `canvas.png`, `Ctrl+A`, colour codes and format arguments
+remain exact. General prose words such as decoder, export, palette, compression,
+copyright and quality are no longer retained as untranslated instructions.
 
-The following are actual unresolved English phrases, unexplained technical
-terms, or inherited wording that needs semantic review. This is a concrete
-handoff, not an exhaustive certification of the other values.
+A combined scan of both workstreams found no unexplained Latin prose tokens
+after excluding these names, units, identifiers and samples. It also found no
+remaining occurrences of the reviewed respelled-English scaffolds. The two
+workstreams change disjoint keys, and their combined catalogue changes 255
+resources from the published `d861555d1` baseline. The earlier open-item table is resolved;
+there is no known untranslated passage being deferred under “specialist review.”
+This does not turn a lexical/source review into independent speaker review.
+Further review can improve idiom and contemporary terminology without treating
+every unchanged format name as missing translation.
 
-| Keys | Remaining work |
-| --- | --- |
-| `ui_current_safe_editing_budget_s_up_to_2f` | Translate `safe edit budget` and `decoder overhead`; the related detailed RAM warning was repaired, but this short summary remains mixed. |
-| `ui_assembly_decoded_output_estimated_editing_render_memory_at`, `ui_copy_decoded_image_at_this_size_estimated_loading`, `ui_original_decoded_image_rgba_4_bytes_pixel_estimated` | Replace `Decode output`, `Load/edit`, `edit/render` and respelled resize text with consistent native descriptions. Preserve numbers, RGBA and bytes/pixel. |
-| `ui_estimates_include_the_current_canvas_and_clipboard_sampled` | `clipboard`, `sample decode`, `edit buffer`, `Import` and `copy` remain; verify the full detail-loss/opaque-background explanation, not only nouns. |
-| `ui_preview_memory_error`, `formats22_preview_memory` | Recheck inherited `memori elejehe` against “not enough memory”; align with the repaired `RAM hamirakū` warnings and preserve the smaller-page option. |
-| `ui_vertical_hint23` | `column`, `combining mark`, `emoji sequence` are partly untranslated/respelled; “upright” still differs from the repaired `undu` controls. Retain joining-script and sequence-preservation semantics. |
-| `ui_honeycomb_colour_swatches_with_a_greyscale_row`, `ui_hue_and_saturation_spectrum_lightness_slider_on_the`, `ui_hue_and_saturation_wheel_value_slider_on_the` | Translate English descriptive phrases and distinguish hue, saturation, HSV value and HSL lightness. |
-| `ui_airbrush`, `ui_pencil`, `ui_ellipse`, `ui_honeycomb`, `ui_radius_px`, `ui_spray_radius_px`, `ui_cursive`, `ui_quality` | Still English labels. Related authored help intentionally matches the visible labels pending a reviewed terminology choice. |
-| `ui_save_explanation23`, `ui_export_explanation23`, `ui_higher_quality_usually_makes_a_larger_file_lossless`, `ui_lossless_format` | Explain format/compression and lossless meaning; do not classify `compression setting` or `Lossless` as a proper name. |
-| `colour_unsupported_icc_model`, `colour_converter_unavailable`, `save20_unsupported_tagged_colour` | Translate `image decoder`, `color-managed app/editor`, `converter` and `profile`; retain ICC/sRGB and the required conversion-before-import action. |
-| `ui_codec_resize_memory_floor`, `formats22_pdf_memory`, `formats22_ico_decode_budget`, `save20_encoding_budget` | Explain decoder source/tile/buffer memory without English noun clusters. Source-size memory-floor behavior must remain explicit. |
-| `formats22_tiff_description`, `formats22_dib_description`, `formats22_pdf_raster_hint`, `formats22_pdf_encrypted`, `formats22_pdf_crop`, `formats22_ico_description` | Technical description review: compression, file header, vector rasterization, encryption, crop rectangle and transparent square. `crop`, `durbe` and `transparent` remain in inherited wording. |
-| `formats22_animation_message`, `formats22_animation_unknown`, `formats22_animation_still`, `formats22_animation_poster`, `save20_gif_description` | Review frame/animation/default-image/dithering terminology and inherited verb orthography; preserve still-image-only import and discarded animation. |
-| `formats22_base64_description`, `formats22_ascii_description` | Syntax prefix is independently repaired, but surrounding lossless/plain-text/size wording still needs review. Preserve the inability to reopen ASCII art as the original image. |
-| `gallery_description`, `gallery_credit_edit_hint`, `ui_gallery_artwork_catrobat_and_its_credited_creators_cc`, `ui_about_copyright_licence`, `ui_credits_terms` | English `publisher`, `copyright`, `Credit`, `terms` and `licence` remain; historical vocabulary alone does not validate modern licensing prose. Verify route wording after integration. |
+`language20_translation_note` now says that the text is translated into Manchu,
+format/application names retain their original forms, and the translation is
+under review. It makes no claim of speaker certification.
 
-`language20_translation_note` now explicitly says Manchu and English text are
-present and that the translation remains under review. It replaces the former
-assertion that the entire catalogue was translated without English fallback.
-Resource presence is not evidence of language quality.
-
-Validation on the repair worktree: XML parsing, unchanged format-placeholder
-multisets, no temporary conversion markers, `git diff --check`, and all 20 tests
-in the inherited `tools/test_translations.py` passed. The integration branch runs
-the expanded host/resource tests and Android build separately; these checks
-cannot establish idiomatic Manchu or substitute for specialist review.
+Validation: XML parsing, unchanged format-placeholder multisets, no temporary
+conversion markers, and `git diff --check` pass. The 97 host tests passed during
+the follow-up; all 25 translation tests passed again after the final general
+terminology edits. The parallel colour/typography repair also passes full AAPT
+resource compilation. The integration branch verifies the combined Android
+build separately. These technical checks cannot establish idiomatic Manchu.

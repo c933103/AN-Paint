@@ -252,5 +252,25 @@ keeps the user's selected face. Complete Mongolian remains a drawing choice.
 Font regressions compare selectable entries with the inventory's drawing roles
 instead of freezing catalogue size. The Android test additionally opens, hashes
 and loads every declared asset, including UI-only subsets; hiding a subset from
-the selector does not remove its font-load coverage. New Android results are
-required to verify this correction; neither failed run is described as passing.
+the selector does not remove its font-load coverage.
+
+The subsequent [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35937278241)
+at `29ef7eab4587071c59a2d013cd7e88112decd674` and
+[integrated run](https://github.com/c933103/AN-Paint/actions/runs/35937264365)
+at `ee6d2d5e258d9424f8987bb14b11517953019843` passed the full workflow.
+The integrated run reports 307 unit tests, lint, production/test APK compilation,
+all 71 native tests and all 11 editor device tests passing. This verifies the
+font-role and gallery-credit recreation repairs in that snapshot; later changes
+still require their own exact-head checks.
+
+## Literal percent checks in translated resources
+
+The final Ainu completion introduced literal percent signs into translated
+instructions. Strict AAPT2 compilation caught two errors that the old host
+placeholder comparison missed. Static text now explicitly uses
+`formatted="false"`; strings with runtime arguments escape literal percent
+signs as `%%`. The validator applies these checks to every string, plural and
+string-array, including unoffered locales. Disabling AAPT format checking does
+not bypass the check for an unescaped percent mixed with runtime arguments.
+`%%` consumes no argument, so it is excluded from placeholder-count comparisons;
+a translation may use the sign where English spells out “percent”.

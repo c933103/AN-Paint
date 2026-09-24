@@ -55,6 +55,20 @@ class TranslationCatalogueTests(unittest.TestCase):
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
+    def test_literal_percent_is_safe_in_static_and_formatted_translations(self):
+        self.assertTrue(translations.format_string_errors("px hene % hene; uneno %"))
+        self.assertEqual([], translations.format_string_errors("px hene % hene; uneno %", formatted=False))
+        for formatted in (True, False):
+            with self.subTest(formatted=formatted):
+                self.assertTrue(translations.format_string_errors("%1$s a=tuye pakno % ani", formatted))
+                self.assertEqual([], translations.format_string_errors("%1$s a=tuye pakno %% ani", formatted))
+
+    def test_percent_escape_is_not_a_format_argument(self):
+        self.assertEqual(translations.placeholders("%1$s percent of pixels"),
+                         translations.placeholders("%1$s px kor %%"))
+        self.assertNotEqual(translations.placeholders("%1$s %%"),
+                            translations.placeholders("%1$d %%"))
+
 
     def test_completed_batch_catalogues_are_complete(self):
         self.assertLessEqual(COMPLETED_TAGS, set(translations.offered_tags()))

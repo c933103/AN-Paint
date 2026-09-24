@@ -148,6 +148,16 @@ class ViewportAndVerticalTextTest {
         assertEquals(3*paint.fontSpacing,box.height(),.01f)
         assertEquals(listOf("✅","⚙️","1️⃣"),VerticalText.clusters("✅⚙️1️⃣"))
     }
+    @Test fun subdivisionFlagTagsStayTogetherWhenMeasuredAndWrappedVertically() {
+        // England: BLACK FLAG, tag letters "gbeng", CANCEL TAG.
+        val flag=buildString { listOf(0x1f3f4,0xe0067,0xe0062,0xe0065,0xe006e,0xe0067,0xe007f).forEach { appendCodePoint(it) } }
+        val paint=Paint().apply {textSize=32f}
+        assertEquals(listOf(flag,"✅"),VerticalText.clusters(flag+"✅"))
+        for(direction in listOf(TextDirection.VERTICAL_RL,TextDirection.VERTICAL_LR)) {
+            assertEquals(2*paint.fontSpacing,VerticalText.bounds(flag+"✅",paint,direction,GlyphOrientation.MIXED,1f).height(),.01f)
+            assertEquals(flag+"\n✅",VerticalText.wrapLabel(flag+"✅",paint,paint.fontSpacing,direction))
+        }
+    }
     @Test fun verticalLatinModesAndColumnOrdersProduceDistinctEditablePixels() {
         val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply {textSize=32f;color=Color.BLACK;typeface=Typeface.DEFAULT}
         val upright=VerticalText.bounds("ABC",paint,TextDirection.VERTICAL_LR,GlyphOrientation.UPRIGHT,1f)
