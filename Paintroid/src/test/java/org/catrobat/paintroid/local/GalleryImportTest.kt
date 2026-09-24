@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
 import android.os.Looper
 import android.webkit.WebView
 import android.widget.Button
@@ -203,5 +204,35 @@ class GalleryImportTest {
         val reopened=ShadowDialog.getLatestDialog()
         assertEquals(credit,reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
         reopened.dismiss()
+    }
+
+    @Test fun galleryRecreationReturnsSavedCreditEditsWithoutTurningUneditedBrowsingIntoAnInsertion() {
+        val original=ImageCredit(asset.toString(),"Original creator credit")
+        val revised="Corrected creator and modifications"
+        val intent=android.content.Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java)
+            .putExtra("document_image_credits",ImageCredit.write(listOf(original)).toString())
+        for(edited in listOf(false,true)) {
+            controller.pause().stop().destroy()
+            controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+            gallery=controller.setup().get()
+            if(edited) {
+                gallery.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+                shadowOf(Looper.getMainLooper()).idle()
+                val dialog=ShadowAlertDialog.getLatestAlertDialog()
+                dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText(revised)
+                dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_done").performClick()
+            }
+            val saved=Bundle()
+            controller.saveInstanceState(saved).pause().stop().destroy()
+            controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+            gallery=controller.create(saved).start().resume().visible().get()
+            gallery.window.decorView.findViewWithTag<Button>("gallery_done").performClick()
+            assertEquals(if(edited) Activity.RESULT_OK else Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
+            if(edited) {
+                val result=shadowOf(gallery).resultIntent
+                assertFalse(result.hasExtra("gallery_file"))
+                assertEquals(listOf(original.copy(text=revised)),ImageCredit.read(org.json.JSONArray(result.getStringExtra("document_image_credits"))))
+            }
+        }
     }
 }

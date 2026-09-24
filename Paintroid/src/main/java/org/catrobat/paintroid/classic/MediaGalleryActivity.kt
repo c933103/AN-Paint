@@ -28,6 +28,7 @@ class MediaGalleryActivity : Activity() {
     }
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
     private var documentCredits: List<ImageCredit> = emptyList()
+    private var creditsEdited=false
     private var pendingSearch: String?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
@@ -39,6 +40,8 @@ class MediaGalleryActivity : Activity() {
         super.onCreate(state)
         documentCredits=runCatching {ImageCredit.read(org.json.JSONArray(state?.getString("document_image_credits")
             ?: intent.getStringExtra("document_image_credits") ?: "[]"))}.getOrDefault(emptyList())
+        creditsEdited=state?.getBoolean("document_image_credits_edited")==true
+        if(creditsEdited) returnEditedCredits()
         fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
         val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true;setBackgroundColor(EditorColours.surface)}
         val description=TextView(this).apply {
@@ -57,7 +60,7 @@ class MediaGalleryActivity : Activity() {
         }
         action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this,documentCredits) {source,text ->
             documentCredits=documentCredits.map {if(it.source==source) it.copy(text=text) else it}
-            setResult(RESULT_OK,Intent().putExtra("document_image_credits",ImageCredit.write(documentCredits).toString()))
+            creditsEdited=true;returnEditedCredits()
         }}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
         action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
@@ -134,6 +137,9 @@ class MediaGalleryActivity : Activity() {
         root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
     }
+    private fun returnEditedCredits() {
+        setResult(RESULT_OK,Intent().putExtra("document_image_credits",ImageCredit.write(documentCredits).toString()))
+    }
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
     private fun openExternal(uri: Uri) {
         try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
@@ -202,6 +208,10 @@ class MediaGalleryActivity : Activity() {
     }
     @Deprecated("Android legacy activity back callback")
     override fun onBackPressed() {if(web.canGoBack()) web.goBack() else super.onBackPressed()}
-    override fun onSaveInstanceState(outState: Bundle) {outState.putString("document_image_credits",ImageCredit.write(documentCredits).toString());web.saveState(outState);super.onSaveInstanceState(outState)}
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("document_image_credits",ImageCredit.write(documentCredits).toString())
+        outState.putBoolean("document_image_credits_edited",creditsEdited)
+        web.saveState(outState);super.onSaveInstanceState(outState)
+    }
     override fun onDestroy() {web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
 }

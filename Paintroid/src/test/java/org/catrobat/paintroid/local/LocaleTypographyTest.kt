@@ -23,6 +23,26 @@ import java.util.Locale
 @Config(sdk=[30])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class LocaleTypographyTest {
+    @Test fun uiSubsetsStayOutOfDrawingChoicesAndPreserveExplicitFonts() {
+        val context=RuntimeEnvironment.getApplication()
+        val old=Locale.getDefault()
+        try {
+            val catalog=org.catrobat.paintroid.classic.FontCatalog(context)
+            assertFalse(catalog.fonts.any {it.id in setOf("anpaintnomui","anpaintwuufallback")})
+            val explicit=catalog.fonts.indexOfFirst {it.id=="lato"}
+            assertTrue(explicit>0)
+            for((tag,text) in listOf("vi-Hani" to "𡨸喃", "wuu-Hans" to "𠲎")) {
+                Locale.setDefault(Locale.forLanguageTag(tag))
+                val fallback=Typeface.create(LocaleTypography.typeface(context),Typeface.BOLD)
+                assertSame(tag,fallback,catalog.faceForText(0,text,Typeface.BOLD))
+                assertSame(tag,catalog.face(explicit),catalog.faceForText(explicit,text))
+            }
+            Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+            val mongolian=catalog.fonts.indexOfFirst {it.id=="notosansmongolian"}
+            assertTrue(mongolian>0)
+            assertSame(catalog.face(mongolian),catalog.faceForText(0,"ᠮᠣᠩᠭᠤᠯ"))
+        } finally {Locale.setDefault(old)}
+    }
     @Test fun nomFontReachesNativeControlsButPreservesExplicitTextFonts() {
         val context=RuntimeEnvironment.getApplication()
         val old=Locale.getDefault()

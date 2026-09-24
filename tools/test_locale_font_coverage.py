@@ -63,6 +63,7 @@ class LocaleFontCoverageTest(unittest.TestCase):
         self.assertIn(0x2e7b6, points)
         record = next(row for row in json.loads((ASSETS / 'fonts/inventory.json').read_text())
                       if row['id'] == 'anpaintnomui')
+        self.assertTrue(record['ui_only'])
         self.assertEqual(record['sha256'], hashlib.sha256(font.read_bytes()).hexdigest())
 
     def test_wu_fallback_covers_its_supplementary_text_without_replacing_ordinary_glyphs(self):
