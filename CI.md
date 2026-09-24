@@ -235,3 +235,23 @@ rejects digest mismatches by default. Existing permissions, cache paths, source
 checks, deadlines and test matrix remain in effect. No insecure Node opt-out or
 unsafe fork-checkout option is enabled. See GitHub's
 [Node 20 migration notice](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/).
+
+
+## Locale UI font inventory check (24 September 2026)
+
+The repaired [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35934972156)
+and [integrated run](https://github.com/c933103/AN-Paint/actions/runs/35935361997)
+passed APK/test-APK compilation, regression tests and lint. Both API 35 runs
+completed all 71 native checks and all 11 editor checks; their sole failure was
+`NativeCodecTest.everyAdvertisedBundledFontLoadsItsActualFontFile`, which expected
+20 drawing font choices but found 21 after the Nôm UI subset was added.
+
+The Nôm asset is a subset for catalogue and picker text, so it now has the same
+`ui_only` role as the Wu fallback and is excluded from the drawing-font selector.
+Default Nôm text still uses its glyph coverage, while an explicit drawing font
+keeps the user's selected face. Complete Mongolian remains a drawing choice.
+Font regressions compare selectable entries with the inventory's drawing roles
+instead of freezing catalogue size. The Android test additionally opens, hashes
+and loads every declared asset, including UI-only subsets; hiding a subset from
+the selector does not remove its font-load coverage. New Android results are
+required to verify this correction; neither failed run is described as passing.
