@@ -69,11 +69,11 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd","tt" to "tt-Cyrl")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd","tt" to "tt-Cyrl","hak-Hant" to "hak-Hant-TW","hak-Latn" to "hak-Latn-TW")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
+        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant-TW","hak-Latn-TW","wuu-Hans")
         assertEquals(32,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
@@ -165,6 +165,16 @@ class AppLanguageTest {
         manager.applicationLocales=LocaleList.forLanguageTags("tai")
         assertEquals("tdd",AppLanguage.selectedTag(context))
         assertEquals("tdd",manager.applicationLocales[0].toLanguageTag())
+    }
+
+    @Test @Config(sdk=[30,33]) fun hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends() {
+        for((old,new) in listOf("hak-Hant" to "hak-Hant-TW","hak-Latn" to "hak-Latn-TW")) {
+            context.getSharedPreferences("app-language",0).edit().putString("language-tag",old).commit()
+            if(android.os.Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!
+                .applicationLocales=LocaleList.forLanguageTags(old)
+            assertEquals(new,AppLanguage.selectedTag(context))
+            assertEquals(new,context.getSharedPreferences("app-language",0).getString("language-tag",null))
+        }
     }
 
     @Test fun tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources() {
