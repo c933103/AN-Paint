@@ -136,7 +136,7 @@ internal object AppLanguage {
                     // Script-specific rows are never recycled as ordinary horizontal rows.
                     val view=super.getView(position,null,parent) as TextView
                     if(position==0) view.textLocale=deviceLocale(activity)
-                    if(choices[position]=="mn-Mong") VerticalUi.languageChoice(view)
+                    if(Locale.forLanguageTag(choices[position]).script=="Mong") VerticalUi.languageChoice(view)
                     return view
                 }
             }, choices.indexOf(selectedTag(activity))) { dialog, which ->

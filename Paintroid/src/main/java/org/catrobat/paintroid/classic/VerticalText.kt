@@ -18,13 +18,13 @@ internal object VerticalText {
     fun uiDirection(): TextDirection {
         val locale=Locale.getDefault()
         return when {locale.language=="lzh"->TextDirection.VERTICAL_RL
-            locale.language=="mn" && locale.script=="Mong"->TextDirection.VERTICAL_LR
+            locale.script=="Mong"->TextDirection.VERTICAL_LR
             else->TextDirection.HORIZONTAL}
     }
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
     private var mongolianFace: Typeface?=null
     fun uiTypeface(context: Context): Typeface? {
-        if(Locale.getDefault().language!="mn" || Locale.getDefault().script!="Mong") return null
+        if(Locale.getDefault().script!="Mong") return null
         return mongolianFace ?: Typeface.createFromAsset(context.assets,"fonts/notosansmongolian.ttf").also {mongolianFace=it}
     }
     /** Preserve surrogate pairs, combining marks, variation selectors and ZWJ sequences. */
