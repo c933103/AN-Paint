@@ -233,7 +233,7 @@ class ClassicPaintActivity : Activity() {
         toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear()
         tabPanels.clear();tabButtons.clear();customPaletteCells.clear()
         root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true}
-        setContentView(root);makeHeader()
+        setContentView(root);makeHeader();LocaleTypography.install(root)
         tabPanelHost=FrameLayout(this).apply {tag="tab_panel_host"}
         val sideRibbon=if(landscape) LinearLayout(this).apply {
             orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_ribbon_rail";layoutDirection=View.LAYOUT_DIRECTION_LTR

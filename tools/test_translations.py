@@ -41,6 +41,58 @@ class TranslationCatalogueTests(unittest.TestCase):
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
+
+    def test_completed_korean_and_vietnamese_catalogues_are_complete(self):
+        for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+    def test_new_korean_and_vietnamese_script_variants_are_registered(self):
+        tags = translations.offered_tags()
+        self.assertIn("ko-Kore-KR", tags)
+        self.assertIn("vi-Hani", tags)
+        self.assertNotIn("ko-Hani", tags)
+
+        language_names = (translations.RES / "values/app_language_names.xml").read_text()
+        self.assertIn("㗂越（𡨸喃）", language_names)
+        self.assertNotIn("㗂越（漢喃）", language_names)
+
+        vi_hani = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["vi-Hani"]
+            ).values()
+        )
+        self.assertRegex(vi_hani, r"[\u3400-\u9fff\uf900-\ufaff]")
+
+        ko_kore = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["ko-Kore-KR"]
+            ).values()
+        )
+        self.assertRegex(ko_kore, r"[\uac00-\ud7a3]")
+        self.assertRegex(ko_kore, r"[\u3400-\u9fff\uf900-\ufaff]")
+        # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
+        # into the Chữ Nôm UI. Latin technical/product names are allowed.
+        self.assertNotRegex(
+            vi_hani,
+            r"[ĂÂĐÊÔƠƯăâđêôơư"
+            r"ÀÁẠẢÃẦẤẬẨẪẰẮẶẲẴ"
+            r"ÈÉẸẺẼỀẾỆỂỄ"
+            r"ÌÍỊỈĨ"
+            r"ÒÓỌỎÕỒỐỘỔỖỜỚỢỞỠ"
+            r"ÙÚỤỦŨỪỨỰỬỮ"
+            r"ỲÝỴỶỸ"
+            r"àáạảãầấậẩẫằắặẳẵ"
+            r"èéẹẻẽềếệểễ"
+            r"ìíịỉĩ"
+            r"òóọỏõồốộổỗờớợởỡ"
+            r"ùúụủũừứựửữ"
+            r"ỳýỵỷỹ]",
+        )
+
     def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
         seen = set()
         for path in sorted((translations.RES / "values").glob("*.xml")):
