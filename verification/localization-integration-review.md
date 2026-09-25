@@ -59,6 +59,17 @@ Detailed provenance and limits are recorded in:
 - [Ainu semantic audit](../translations/AINU_SEMANTIC_AUDIT.md)
 - [Manchu semantic audit](../translations/MANCHU_SEMANTIC_AUDIT.md)
 - [Manchu colour and typography audit](../translations/MANCHU_COLOUR_TYPOGRAPHY_AUDIT.md)
+- [Recovered thread obligations](localization-thread-handoffs.md)
+- [Every PR review finding](../translations/PR_REVIEW_AUDIT.md)
+- [Base captions and Cantonese readings](localization-base-caption-audit.md)
+- [PR3/4 handoff and independent Cebuano review](localization-pr3-pr4-handoff-review.md)
+- [Mainstream and Himalayan handoff repairs](localization-mainstream-himalayan-handoff.md)
+- [Taiwanese, Wu and Literary Chinese review](../translations/NAN_WUU_LZH_HANDOFF_REVIEW.md)
+- [Korean mixed-script evidence](../translations/KOREAN_SCRIPT_REVIEW.md)
+- [Nôm contextual spelling review](../translations/NOM_CONTEXT_REVIEW.md)
+- [Jeju grammar review](../translations/JEJU_GRAMMAR_REVIEW.md)
+- [Okinawan grammar review](../translations/OKINAWAN_GRAMMAR_REVIEW.md)
+- [Shared cursor guidance outside the original batches](localization-cursor-help-followup.md)
 
 Ainu and Manchu required additional completion after the initial integration.
 Their starting catalogues contained English-heavy passages and incorrect

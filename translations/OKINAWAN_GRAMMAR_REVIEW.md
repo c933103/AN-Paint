@@ -70,3 +70,28 @@ watercolor-caption reference has `formatted="false"` for its literal percent.
 These checks protect resources, arguments, identifiers and limits. They do not
 prove idiomatic language. This is a source-assisted editorial pass without an
 independent native-speaker sign-off.
+
+## Follow-up after independent review
+
+The initial pass incorrectly wrote the required-item predicate as `要いびーん`.
+Hanazono's lesson 26 (PDF page 123) supplies `イリヤビーン`; the memory and
+password clauses now use `いりやびーん`. Related `要する`/`要いる` clauses
+are rewritten as purpose phrases or a required-item noun with an existential
+condition, preserving their actual requirement. The Irasutoya charge sentence
+now also uses `料金ぬいりやびーん`, retaining the current File → About → Image
+credits captions.
+
+`formats22_pdf_invalid` had also presented two possible failure causes as facts.
+It now explicitly scopes them with `可能性ぬ あいびーん`: the file may be damaged
+or contain features unsupported by this Android version. `可能性` is a modern
+technical noun, with Okinawan case and existential grammar. This preserves
+uncertainty without presenting either cause as diagnosed.
+
+The review did not normalize the existing variant `なやびーん` merely because
+`ないびーん` occurs in the textbook. Regional variation needs evidence, not
+blanket normalization. The independent reviewer checked the
+[Okinawa language centre glossary](https://shimakutuba.jp/ctladmin/wp-content/uploads/2021/06/ca0632475bcb04913082a3fe272b8590.pdf)
+entry `なりゆん／ないん` for that variant.
+
+All 27 translation tests pass after the follow-up. This remains a source-assisted
+editorial review with the language limits stated above.

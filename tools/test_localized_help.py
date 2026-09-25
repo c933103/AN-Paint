@@ -34,7 +34,7 @@ def displayed(value):
     value = unicodedata.normalize("NFC", value).casefold()
     # Hyphens separate the same words in some Ainu/Hakka help captions. Spaces,
     # quote style and standalone final punctuation are layout, not inflection.
-    return re.sub(r'[\s\-‐‑"「」『』«»“”［］]+', "", value)
+    return re.sub(r'[\s\-‐‑"「」『』«»“”„‟［］]+', "", value)
 
 
 def caption(value):
@@ -92,6 +92,15 @@ class LocalizedHelpTests(unittest.TestCase):
             rendered = {**self.locales["values"], **local}
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(local["ui_paste_hint34"]), route_pattern(rendered, keys))
+
+    def test_cursor_help_includes_the_actual_settings_route(self):
+        keys = ("ui_draw26", "ui_drawing23")
+        for locale, local in self.locales.items():
+            if "ui_cursor_help31" not in local:
+                continue
+            rendered = {**self.locales["values"], **local}
+            with self.subTest(locale=locale):
+                self.assertRegex(displayed(local["ui_cursor_help31"]), route_pattern(rendered, keys))
 
     def test_known_show_all_caption_corruptions_do_not_return(self):
         # A substring check would accept 示全部 inside the incorrect 顯示全部變更.
