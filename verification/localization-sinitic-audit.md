@@ -113,7 +113,8 @@ Definitions and example sentences are not redistributed.
 
 The historical 51-decision scratch audit was lost before publication; this is a
 newly reconstructed decision record, not a claim that that file was recovered.
-The full pair/manual review is ongoing in the following source commits.
+The following source commits complete the recovered pair/manual review; the
+sections below state its evidence and limits.
 
 ### Pair and manual follow-up
 
@@ -132,7 +133,7 @@ Additional contextual reading decisions from the same ODS:
 | Word/context | ODS ID | Sixian reading | Decision |
 | --- | --- | --- | --- |
 | 像 in images/pixels | 15179 | xiong55 | `siong`; `qiong55` (12871) is the verb “resemble” |
-| 具 in 工具 | 9896 | ki55 | `ki`, not aspirated `khî` |
+| 具 in 工具 | 9896 | ki55 | `khi`; keep aspiration and correct the tone (ODS `k` is aspirated) |
 | 清 in clearing | 12783 | qin24 | `chhîn`; `qiang24` (12689) has another context |
 | 靜 in still images | 12839 | qin55 | `chhin`, consistently in codecs and import labels |
 | 明 in light/dark | 11236 | min11 | `mìn`, not the next/following-day reading |
@@ -161,3 +162,48 @@ unrelated character occurrence was replaced. The [Hakka Affairs Council PFS
 literature study](https://www.hakka.gov.tw/File/Attach/46366/File_97551.pdf),
 pp. 8–9, provides contemporary Taiwanese spellings such as `thèu` and `chhêu`;
 eu tone marks were normalized without changing the underlying tone category.
+
+### Final dictionary-gap pass
+
+The ODS does not contain every modern software compound. For those gaps, the
+existing Hakka wording was compared with each constituent's contextual sense;
+a first-match Han character converter was not used. Additional explicit choices:
+
+| Context | ODS ID | Source reading | Decision |
+| --- | --- | --- | --- |
+| 析 in resolution 解析度 | 15010 | xid2 | `sit`, replacing the slice/side sense `sak` (12966) |
+| 支 in software support 支援 | 15441 | zii24 | Literary `chṳ̂`; classifier `gi24` (7636) is not this sense |
+| 援 in 支援 | 9296 (also 9274) | ien11 (also ien24) | `yèn`, consistently; this is a compound not directly listed in the ODS |
+| 兩 in two fingers/corners | 10616 | liong31 | `lióng`; weight unit `liong24` (10600) is not the UI sense |
+| 清楚 in attribution edits | 3318 | qin24 cu31 | `chhîn-chhú`, matching the existing general clear/sharp wording |
+| 取消 | 2051 | qi31 seu24 | `chhí-sêu`, the same spelling in button and quoted help |
+| 完整 | 1884 | van11 ziin31 | Retain `vàn-chṳ́n` in preservation/recovery messages |
+| 聲明 | 13120 | sang24 min11 | Retain `sâng-mìn` in notices |
+| 形狀 | 8842 | hin11 cong55 | Retain `hìn-chhong`; not Mandarin-tone transliteration |
+| 這下 | 3403 | ia31 ha55 (also lia31 ha55) | Retain `yá-ha`, supported by the complete word entry |
+
+The correction to 具 explicitly keeps aspiration: MOE `ki55` corresponds to PFS
+`khi`, whereas MOE `gi55` would correspond to `ki`. An intermediate follow-up
+commit incorrectly removed the aspiration; this pass fixes that error and the
+explanation. The corpus/constituent source decisions above remain editorial
+choices for software senses and must not be presented as dictionary quotations
+of whole translated sentences.
+
+### Count words and warning syntax
+
+The remaining homophone pass found the image classifier 張 had taken the
+“threaten/make difficulties” reading (ODS 6663, `diong24`). Image counts now use
+`chông` from the flat-object classifier (15729, `zong24`), including assembly
+counts and both manuals. Amount 量 uses `liong55` (10635), and numeric 數 uses
+`su55` (13825), instead of the unrelated/overgeneralized readings.
+
+The paired dimension/PDF warnings were also rewritten as Hakka clauses: native
+`m̀-hó` restrictions (毋好, 10903), `m̀ la` insufficiency (毋罅, 10904), and
+`ia-he` alternatives (抑係, 249). The required positive sizes, nonempty PDF,
+512 MiB maximum, nonzero rectangular crop, Android coordinate range, and
+integer-pixel/percentage choices were checked against English after rewriting.
+These changes address sentence structure as well as pronunciation. Shared
+technical nouns remain where they express the intended software concept.
+
+All Hakka changes are stored directly in the two Android XML catalogues. No
+translation generator or runtime dictionary dependency was introduced.

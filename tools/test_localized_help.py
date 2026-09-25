@@ -30,6 +30,7 @@ def catalogues():
 
 def displayed(value):
     value = value.replace(r"\'", "'").replace(r'\"', '"')
+    value = re.sub(r"\\u([0-9a-fA-F]{4})", lambda match: chr(int(match[1], 16)), value)
     value = unicodedata.normalize("NFC", value).casefold()
     # Hyphens separate the same words in some Ainu/Hakka help captions. Spaces,
     # quote style and standalone final punctuation are layout, not inflection.
@@ -41,7 +42,17 @@ def caption(value):
 
 
 def route_pattern(rendered, keys):
-    return r"[།༎]*[>→]".join(re.escape(caption(rendered[key])) for key in keys)
+    def resolve(key):
+        seen = set()
+        while key not in seen:
+            seen.add(key)
+            value = rendered[key]
+            if not value.startswith("@string/"):
+                return value
+            key = value.removeprefix("@string/")
+        raise AssertionError(f"Cyclic caption reference: {key}")
+
+    return r"[།༎]*[>→]".join(re.escape(caption(resolve(key))) for key in keys)
 
 
 class LocalizedHelpTests(unittest.TestCase):
@@ -70,6 +81,17 @@ class LocalizedHelpTests(unittest.TestCase):
             final_paragraph = re.split(r"\\n\\n|\n\s*\n", local[MANUAL])[-1]
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(final_paragraph), route_pattern(rendered, keys))
+
+    def test_active_paste_hint_names_the_actual_insert_controls(self):
+        # The category caption is ui_category_insert, not the similarly named
+        # ui_insert dialog action; Literary Chinese uses distinct words here.
+        keys = ("ui_draw26", "ui_category_insert", "ui_other_images34")
+        for locale, local in self.locales.items():
+            if "ui_paste_hint34" not in local:
+                continue
+            rendered = {**self.locales["values"], **local}
+            with self.subTest(locale=locale):
+                self.assertRegex(displayed(local["ui_paste_hint34"]), route_pattern(rendered, keys))
 
     def test_known_show_all_caption_corruptions_do_not_return(self):
         # A substring check would accept 示全部 inside the incorrect 顯示全部變更.

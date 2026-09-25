@@ -4,6 +4,13 @@ This is the combined review candidate for open localization PRs #2–#9 and #12.
 It is published as draft [PR #15](https://github.com/c933103/AN-Paint/pull/15).
 No pull request has been merged into `develop` as part of this work.
 
+**25 September correction:** the earlier completion statement did not account
+for unfinished conversation handoffs. That statement is withdrawn. The resumed
+work is tracked in [the per-conversation handoff ledger](localization-thread-handoffs.md)
+and [the individual PR review ledger](../translations/PR_REVIEW_AUDIT.md).
+The historical validation below remains evidence for its stated snapshots,
+not proof that later linguistic work was already complete.
+
 ## Scope and review disposition
 
 | Finding or request | Repair and shared application |
@@ -60,8 +67,8 @@ source-assisted descriptions of the actual controls, memory behavior, image
 formats, credits and full help instructions. Both Ainu scripts are reviewed
 together; Manchu uses its own vocabulary and clause structure. Retained format
 names and external button labels are distinguished from untranslated prose.
-The audits record evidence and terminology choices. This completes known
-translation gaps without claiming independent fluent-speaker certification.
+The audits record evidence and terminology choices for those Ainu/Manchu
+repairs. They did not close the other conversations' outstanding obligations.
 
 ## Verification
 
@@ -101,7 +108,7 @@ Later translation completion and emoji-tag changes require their own exact-head
 Android result; the current result is linked in PR #15. An APK build or an
 earlier passing run does not establish full validation of a later commit.
 
-The final 24 September completion pass passes all 99 host tests and strict
+The 24 September application snapshot passed 99 host tests and strict
 whole-resource AAPT2 compilation. This includes the two additional percent
 regressions, both completed Ainu scripts, the combined Manchu repairs, and all
 other catalogues. The final independent Ainu correction check confirmed the
