@@ -55,3 +55,8 @@ Only two obsolete sentences in the first legacy-help paragraph were changed in
 `values-b+mnc+Mong/strings.xml`: they told users to open a generic Menu and Android
 arrows. The replacement points to the actual localized File → About/credits
 captions. The rest of the previously completed Manchu catalogue was preserved.
+
+A subsequent shared-route pass updates the legacy manual's insertion paragraph
+to Draw → Insert → Other images, including all three online providers, device
+files, the Use image action, and floating selection. Assembly is now File-only.
+That additional manual key is separate from the 173-string grammar batch above.
