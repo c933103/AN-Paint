@@ -43,7 +43,7 @@ completed evidence for these edits.
 | Geometry | Crop bounds, one-pixel minimum, reflow of attached images, aspect ratio, and half-short-edge radius limit remain. |
 | Save/export | Save reuses the active target; exports do not mark the current drawing saved or change that target. |
 | Vertical text | New columns, joined scripts including Mongolian, combining marks, and emoji sequences remain separate clauses. |
-| Help captions | Paste uses the actual `ほかの画像` control; drawing guidance uses the actual `移動・拡大縮小` and `強さ（%）` controls. |
+| Help captions | Paste uses the actual `ほかぬ画像` control; drawing guidance uses the actual `移動・拡大縮小` and `強さ（%）` controls. |
 | Language note | Removed the inaccurate claim that the catalogue prioritizes Paintroid translations. |
 
 The long editor, assembly, and legacy-help texts were read in full. Most had
@@ -95,3 +95,55 @@ entry `なりゆん／ないん` for that variant.
 
 All 27 translation tests pass after the follow-up. This remains a source-assisted
 editorial review with the language limits stated above.
+
+## Short commands and caption dependencies after the second review
+
+The independent reviewer identified a gap in the earlier pass: short commands
+such as “smooth freehand strokes” and “keep editing” still used Japanese clause
+grammar. Calling those clauses technical vocabulary was incorrect. The follow-up
+reread the short-string inventory, including accessibility descriptions, against
+the English actions and states. It repairs action predicates, selected/saved
+relative clauses, conjunctions, and the case relations in colour, geometry,
+vertical-text, save/export, and gallery controls. It also revisits the surrounding
+sentences in the three full manuals wherever a control caption changed.
+
+The grammar basis is Hanazono's lessons 1, 3, 5, 7–9 and 12–13: noun relations,
+bare objects, means/destination marking, dictionary versus attributive verb
+forms, and sequential versus ongoing/completed action. Technical operations can
+use a modern operation noun with Okinawan `すん`/`する`/`さびーん`; this is not a
+claim that the loan noun is a traditional Okinawan technical term. For lexical
+checks, the [Okinawa language centre's intermediate glossary](https://shimakutuba.jp/ctladmin/wp-content/uploads/2022/04/bbe0f98656c5accaefcece009989770a.pdf)
+entry 0158 supports the exchange verb used for colour swapping. The individually
+retrieved [NINJAL OMOLO entry list](https://ninda.ninjal.ac.jp/s/omolo/item-set/905511?page=211)
+supplies `塗ゆん`; this targeted lookup does not change the earlier limitation
+about the full downloadable dictionary.
+
+Concrete distinctions checked:
+
+- Smooth freehand strokes and antialias pixel edges remain different controls.
+- Save-and-share explicitly saves first; sharing refers to the saved image.
+- Active colour, saved colour, and selected slot remain different states.
+- The safe-editing-budget caption explicitly excludes extra decoder memory.
+- Sorting still offers filename or modification time; copying/credit editing
+  are actions, while credit-saved and gallery-redirect messages report outcomes.
+- Polygon closure joins the two endpoints; turning it off draws connected segments with unjoined terminal endpoints.
+- The copy/insert hint now uses Draw → Insert → Other images, including its
+  legacy duplicate resource.
+
+Changed short captions were compared against retained help and gallery prose.
+Quoted labels and route components now use their current caption values;
+shortened labels that no longer identify a real control were removed or expanded.
+The comparison allows another still-valid resource alias and does not treat every
+shared technical noun as an obsolete label.
+
+Validation after this batch: 27 translation tests and 5 localized-help tests pass;
+`git diff --check` is clean. The earlier grammar and native-speaker review limits
+still apply. Resource coverage and passing tests are not certification of
+idiomatic Okinawan, and the earlier counts did not establish that either.
+
+The independent caption review additionally caught two concrete issues in this
+batch. The open-polygon tooltip and manual now explicitly retain connected
+segments while leaving the terminal endpoints unjoined. The selection-handle
+tooltip quotes `ui_lock_proportions`, matching the checkbox bound by
+`ClassicPaintActivity`, rather than the different resize-dialog
+`ui_lock_aspect_ratio` control. The latter label remains valid in resize controls.

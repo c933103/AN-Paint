@@ -82,16 +82,17 @@ class LocalizedHelpTests(unittest.TestCase):
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(final_paragraph), route_pattern(rendered, keys))
 
-    def test_active_paste_hint_names_the_actual_insert_controls(self):
+    def test_paste_hints_name_the_actual_insert_controls(self):
         # The category caption is ui_category_insert, not the similarly named
         # ui_insert dialog action; Literary Chinese uses distinct words here.
         keys = ("ui_draw26", "ui_category_insert", "ui_other_images34")
         for locale, local in self.locales.items():
-            if "ui_paste_hint34" not in local:
-                continue
             rendered = {**self.locales["values"], **local}
-            with self.subTest(locale=locale):
-                self.assertRegex(displayed(local["ui_paste_hint34"]), route_pattern(rendered, keys))
+            for resource in ("ui_paste_hint34", "ui_copy_an_area_or_use_file_insert_image"):
+                if resource not in local:
+                    continue
+                with self.subTest(locale=locale, resource=resource):
+                    self.assertRegex(displayed(local[resource]), route_pattern(rendered, keys))
 
     def test_cursor_help_includes_the_actual_settings_route(self):
         keys = ("ui_draw26", "ui_drawing23")
@@ -101,6 +102,21 @@ class LocalizedHelpTests(unittest.TestCase):
             rendered = {**self.locales["values"], **local}
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(local["ui_cursor_help31"]), route_pattern(rendered, keys))
+
+    def test_selection_hint_does_not_quote_the_resize_dialog_checkbox(self):
+        # Selection uses ui_lock_proportions; ui_lock_aspect_ratio belongs to
+        # the size dialog. A native paraphrase need not quote either caption.
+        resource = "ui_drag_a_selection_drag_inside_to_move_square"
+        for locale, local in self.locales.items():
+            if resource not in local:
+                continue
+            rendered = {**self.locales["values"], **local}
+            selection = caption(rendered["ui_lock_proportions"])
+            resize = caption(rendered["ui_lock_aspect_ratio"])
+            text = displayed(local[resource])
+            if selection != resize and selection not in text:
+                with self.subTest(locale=locale):
+                    self.assertNotIn(resize, text)
 
     def test_known_show_all_caption_corruptions_do_not_return(self):
         # A substring check would accept 示全部 inside the incorrect 顯示全部變更.

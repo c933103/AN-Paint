@@ -80,7 +80,10 @@ early manual paragraph also concealed a wrong final copyright paragraph.
 file. It reads all XMLs, checks the three active gallery routes in order,
 checks the final copyright paragraph separately, rejects specifically
 identified Show all mistranslations, and checks real import and cursor-settings
-control captions. Normalization handles resource aliases, escaped Unicode,
+control captions. Both active and retained duplicate paste hints are covered;
+the latter's obsolete File → Insert route was found in the final Okinawan review
+and repaired across affected catalogues using their reviewed active wording.
+Normalization handles resource aliases, escaped Unicode,
 NFC, case, quote style, final punctuation and word-separating hyphens/spaces; it does not invent
 inflected-word equivalences. The Literary Chinese guard rejects the wrong full
 phrase even though it contains the shorter correct label as a substring.
@@ -91,6 +94,11 @@ ambiguous/wrong Show all references. Those findings were repaired in the locale
 passes. Two additional regressions cover import captions and cursor-settings
 routes. The latter also repaired missing instructions in Armenian, both Serbian
 scripts, Hebrew, Polish and Thai, outside the original completion batches.
+The sixth regression follows the final independent Okinawan review: selection
+help must not quote the resize dialog's different aspect-ratio checkbox.
+The inherited mismatch was also repaired in Japanese, Russian and Swahili;
+native paraphrases are allowed. The Okinawan-only connected-polygon omission
+introduced by the caption rewrite was separately corrected before publication.
 The final combined validation is recorded in the integration review; none of
 these checks is skipped or treated as proof of native-language fluency.
 

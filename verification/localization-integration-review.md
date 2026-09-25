@@ -31,6 +31,7 @@ not proof that later linguistic work was already complete.
 | Edited gallery credits lost after rotation | Restore the pending credit-only activity result after recreation. Leaving an untouched gallery still returns no edit. |
 | Copyable export attribution | Save as / Export as show a collapsed image-credit section with selectable text and Copy all. Attribution text keeps its original language when the application language changes. |
 | Obsolete Help-menu instructions | Use actual localized File → About, licences & credits → Image credits routes. Check documented labels against the active resources, allowing casing and terminal punctuation differences. |
+| Shared findings discovered in one locale | Apply gallery, copyright, Show all, active/retained insertion hints and cursor-settings route repairs across existing catalogues. Cursor guidance also reaches Armenian, both Serbian scripts, Hebrew, Polish and Thai outside the original completion batches. |
 
 The original PRs receive scoped catalogue and build repairs as well. Shared
 application behavior is reviewed together here to avoid restricting it to the
@@ -82,6 +83,27 @@ The audits record evidence and terminology choices for those Ainu/Manchu
 repairs. They did not close the other conversations' outstanding obligations.
 
 ## Verification
+
+The resumed 25 September code snapshot (`7577306abf04cc8750d5e8ab15144e7e6ddd9aee`)
+passes **109 host tests** and strict whole-resource SDK 35 AAPT2 compilation.
+This includes all final Jeju/Okinawan corrections, the rebuilt Nôm font,
+Korean semantic checks and six shared-help regressions. `git diff --check` is
+clean. The subsequent final audit update changes documentation only. The
+publication step compares the complete remote tree with that intended source
+snapshot before moving a PR branch.
+
+The reopened handoff obligations and concrete independent-review findings are
+addressed with the source evidence and limits linked above. In particular,
+Korean review now includes externally published literary annotations and
+parallel civic prose, not just dictionary pairs. Independent preservation
+checks confirm the Korean/Nôm and Taiwanese/Wu/Literary Chinese batches were
+not lost while integrating commits. These checks do not certify native fluency.
+
+The earlier published integration `7939f1292e706bd24dfd6596a8d3d51f3b202a84`
+passed its complete [Android workflow](https://github.com/c933103/AN-Paint/actions/runs/35939028394),
+rechecked on 25 September. The resumed source requires its own Android result;
+PR #15 and each updated original PR report their new commit/run status. A prior
+green build is not presented as a pass for the new translations or font asset.
 
 Run the host regression suite:
 
