@@ -1,327 +1,443 @@
-"""Host checks for provenance, the selected shared vocabulary, and locale declarations."""
-import json
-import hashlib
+"""Host checks for canonical locale XML and retained translation provenance."""
 import ast
+import hashlib
+import json
+import pathlib
 import re
+import unittest
+import unicodedata
+import xml.etree.ElementTree as ET
+
 import gimp_translations
 import krita_translations
 import mainstream_translations
-import unittest
-from unittest import mock
-import pathlib
-import xml.etree.ElementTree as ET
-import reuse_upstream_translations as translations
+import translation_catalogues as translations
 
 
-class TranslationTests(unittest.TestCase):
-    def test_requested_main_menu_coverage_includes_every_command_and_exact_locale(self):
-        data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
-        requested = set("ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th el sr-Cyrl sr-Latn tr hy".split())
-        self.assertEqual(requested, set(data["locales"]))
-        source = (translations.ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt").read_text()
-        commands = source.split('private fun menuActions(', 1)[1].split('private fun menuActionEnabled', 1)[0]
-        keys = set(re.findall(r'R.string.([a-z_0-9]+)', commands))
-        groups = source.split('private enum class EditGroup(', 1)[1].split('private lateinit var toolDrawer', 1)[0]
-        keys.update(re.findall(r'R.string.([a-z_0-9]+)', groups))
-        # The two messages are command outcomes, not first-level labels.
-        keys -= {"ui_select_an_area_first"}
-        keys |= {"ui_menu_view", "ui_draw26", "ui_menu_file", "ui_menu_edit", "ui_colour_tab23",
-                 "ui_drawing23", "ui_category_selection", "ui_category_insert", "ui_eraser", "ui_bucket_fill", "ui_eyedropper", "ui_navigate",
-                 "ui_fg", "ui_bg", "ui_swap23", "ui_reset_bw23", "ui_advanced", "ui_add_colour26"}
-        self.assertLessEqual(keys, set(data["required_keys"]))
-        self.assertIn("ui_disable_cursor_drawing33", data["required_keys"])
-        self.assertIn("ui_cursor_tap_hint37", data["required_keys"])
-        for tag, terms in data["locales"].items():
-            self.assertNotRegex(terms["ui_pixel_grid33"], r"800|%|％", tag)
-        report = json.loads((translations.DATA / "coverage.json").read_text())
-        for tag, terms in data["locales"].items():
-            row = next(r for r in report["coverage"] if r["language_tag"] == tag)
-            self.assertIn(tag, row["offered_tags"])
-            rendered = translations.read_strings(translations.ROOT / row["generated_resource"])
-            for key in data["required_keys"]:
-                self.assertEqual(terms[key].replace("'", "\\'"), rendered[key], f"{tag}/{key}")
-            if tag in ("yue-Latn", "sr-Latn"):
-                self.assertNotRegex("".join(terms.values()), r"[\u0400-\u04ff\u3400-\u9fff]")
+# This is the completed batch scope, not a fixed key count. New English keys
+# must be translated in every completed catalogue before the batch can pass.
+COMPLETED_TAGS = set("""
+    ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
+    tl ceb ms id sw fi hu af nl et lv lt
+    es-ES es-419 fr de ru ar eo
+    lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
+    en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr
+    bo dz mn-Cyrl-MN mn-Mong jje mnc-Mong ain-Kana ain-Latn ryu
+    ko-KR ko-KP ko-Kore-KR vi vi-Hani en-XV qaa-Zsye-XV
+""".split())
 
-    def test_generated_translations_match_verified_upstream_bytes(self):
-        for path, text in translations.generate().items():
-            self.assertEqual(text, path.read_text(), str(path))
 
-    def test_generation_is_independent_of_filesystem_enumeration_order(self):
-        expected = translations.generate()
-        original = pathlib.Path.glob
-        def reversed_glob(path, pattern):
-            return iter(reversed(list(original(path, pattern))))
-        with mock.patch.object(pathlib.Path, "glob", reversed_glob):
-            self.assertEqual(expected, translations.generate())
-
-    def test_every_mapped_resource_exists_in_default_catalogue(self):
-        names = set()
-        for path in (translations.RES / "values").glob("*.xml"):
-            names.update(node.get("name") for node in ET.parse(path).getroot())
-        mapping = json.loads((translations.DATA / "common-terms.json").read_text())
-        self.assertTrue(set(mapping) <= names, set(mapping) - names)
-
-    def test_picker_and_android_locale_list_agree_and_coverage_accounts_for_every_option(self):
-        tags = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
-        platform = [node.get("{http://schemas.android.com/apk/res/android}name")
-                    for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()]
+class TranslationCatalogueTests(unittest.TestCase):
+    def test_picker_android_locale_list_and_canonical_catalogues_agree(self):
+        tags = translations.offered_tags()
+        platform = [
+            node.get("{http://schemas.android.com/apk/res/android}name")
+            for node in ET.parse(translations.RES / "xml/app_locales.xml").getroot()
+        ]
         self.assertEqual(tags, platform)
         self.assertEqual(len(tags), len(set(tags)))
         self.assertEqual(tags[0], "en-001")
         self.assertEqual(tags[1:], sorted(tags[1:], key=str.casefold))
         self.assertNotIn("zh-Hant", tags)
-        for tag in ("zh-TW", "zh-HK", "mn-Cyrl-MN", "mn-Mong"):
+        for tag in ("zh-TW", "zh-HK", "mn-Cyrl-MN", "mn-Mong", "tdd",
+                    "sr-Latn", "sr-Cyrl", "en-US", "ja", "ar"):
             self.assertIn(tag, tags)
-        self.assertIn("en-US", tags)
-        self.assertNotIn("en", tags)
-        self.assertIn("ja", tags)
-        self.assertIn("ar", tags)
-        self.assertIn("sr-Latn", tags)
-        self.assertIn("sr-Cyrl", tags)
-        coverage = json.loads((translations.DATA / "coverage.json").read_text())
-        accounted = []
-        for row in coverage["coverage"]:
-            accounted.extend(row["offered_tags"])
-            if row["offered_in_app"]:
-                self.assertTrue((translations.ROOT / row["generated_resource"]).is_file())
-            if row["offered_in_app"] and not row.get("name_only") and not row["language_tag"].startswith("en-"):
-                self.assertGreater(row["entries_different_from_upstream_english"], 0)
-        self.assertCountEqual(tags, accounted)
-        self.assertEqual([], coverage["name_only_options"])
-        self.assertIn("tdd", tags)
-        self.assertNotIn("tai", tags)
+
+        catalogues = translations.catalogue_paths()
+        for tag in tags:
+            self.assertIn(tag, catalogues, f"{tag} has no exact strings.xml catalogue")
+
         names = ET.parse(translations.RES / "values/app_language_names.xml")
         labels = names.findall(".//string-array[@name='app_language_names']/item")
         self.assertEqual(len(tags), len(labels))
         self.assertTrue(all(item.text and item.text.strip() for item in labels))
 
-    def test_unsaved_prompt_never_reuses_the_discard_label_for_keep_editing(self):
-        def normalized(value):
-            return value.strip().strip('"').casefold()
-        for path in translations.RES.glob("values*/strings.xml"):
-            strings = translations.read_strings(path)
-            if "ui_discard_changes23" in strings:
-                self.assertNotEqual(normalized(strings["ui_discard_changes23"]), normalized(strings["ui_keep_editing23"]), str(path))
-        for qualifier in ("values-b+lzh+Hant", "values-b+mn+Mong", "values-zh-rHK", "values-b+mn+Cyrl+MN"):
-            strings = translations.read_strings(translations.RES / qualifier / "strings.xml")
-            self.assertNotEqual(strings["ui_discard_changes23"], strings["ui_keep_editing23"])
-            self.assertTrue(strings["ui_cut"].strip())
+    def test_canonical_catalogues_are_structurally_valid(self):
+        self.assertEqual([], translations.validate_all(require_complete=False))
 
-    def test_no_locale_duplicates_resources_across_generated_and_reviewed_catalogues(self):
+    def test_literal_percent_is_safe_in_static_and_formatted_translations(self):
+        self.assertTrue(translations.format_string_errors("px hene % hene; uneno %"))
+        self.assertEqual([], translations.format_string_errors("px hene % hene; uneno %", formatted=False))
+        for formatted in (True, False):
+            with self.subTest(formatted=formatted):
+                self.assertTrue(translations.format_string_errors("%1$s a=tuye pakno % ani", formatted))
+                self.assertEqual([], translations.format_string_errors("%1$s a=tuye pakno %% ani", formatted))
+
+    def test_percent_escape_is_not_a_format_argument(self):
+        self.assertEqual(translations.placeholders("%1$s percent of pixels"),
+                         translations.placeholders("%1$s px kor %%"))
+        self.assertNotEqual(translations.placeholders("%1$s %%"),
+                            translations.placeholders("%1$d %%"))
+
+
+    def test_completed_batch_catalogues_are_complete(self):
+        self.assertLessEqual(COMPLETED_TAGS, set(translations.offered_tags()))
+        for tag in sorted(COMPLETED_TAGS):
+            with self.subTest(tag=tag):
+                self.assertEqual(
+                    [], translations.validate_catalogue(tag, require_complete=True), tag,
+                )
+
+    def test_new_korean_and_vietnamese_script_variants_are_registered(self):
+        tags = translations.offered_tags()
+        self.assertIn("ko-Kore-KR", tags)
+        self.assertIn("vi-Hani", tags)
+        self.assertNotIn("ko-Hani", tags)
+
+        language_names = (translations.RES / "values/app_language_names.xml").read_text()
+        self.assertIn("㗂越（𡨸喃）", language_names)
+        self.assertNotIn("㗂越（漢喃）", language_names)
+
+        vi_hani = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["vi-Hani"]
+            ).values()
+        )
+        self.assertRegex(vi_hani, r"[\u3400-\u9fff\uf900-\ufaff]")
+
+        ko_kore = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["ko-Kore-KR"]
+            ).values()
+        )
+        self.assertRegex(ko_kore, r"[\uac00-\ud7a3]")
+        self.assertRegex(ko_kore, r"[\u3400-\u9fff\uf900-\ufaff]")
+        # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
+        # into the Chữ Nôm UI. Latin technical/product names are allowed.
+        self.assertNotRegex(
+            vi_hani,
+            r"[ĂÂĐÊÔƠƯăâđêôơư"
+            r"ÀÁẠẢÃẦẤẬẨẪẰẮẶẲẴ"
+            r"ÈÉẸẺẼỀẾỆỂỄ"
+            r"ÌÍỊỈĨ"
+            r"ÒÓỌỎÕỒỐỘỔỖỜỚỢỞỠ"
+            r"ÙÚỤỦŨỪỨỰỬỮ"
+            r"ỲÝỴỶỸ"
+            r"àáạảãầấậẩẫằắặẳẵ"
+            r"èéẹẻẽềếệểễ"
+            r"ìíịỉĩ"
+            r"òóọỏõồốộổỗờớợởỡ"
+            r"ùúụủũừứựửữ"
+            r"ỳýỵỷỹ]",
+        )
+
+    def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
+        seen = set()
+        for path in sorted((translations.RES / "values").glob("*.xml")):
+            for node in ET.parse(path).getroot():
+                if node.tag not in ("string", "plurals"):
+                    continue
+                key = (node.tag, node.get("name"))
+                self.assertNotIn(key, seen, f"{path}/{node.get('name')}")
+                seen.add(key)
+
+    def test_locales_do_not_duplicate_string_or_plural_keys_across_files(self):
         for folder in translations.RES.glob("values*"):
             seen = set()
             for path in folder.glob("*.xml"):
                 for node in ET.parse(path).getroot():
-                    if node.tag != "string":
+                    if node.tag not in ("string", "plurals"):
                         continue
-                    key = node.get("name")
-                    self.assertNotIn(key, seen, str(path) + "/" + key)
+                    key = (node.tag, node.get("name"))
+                    self.assertNotIn(key, seen, str(path) + "/" + str(key))
                     seen.add(key)
-        offered = [node.text for node in ET.parse(translations.RES / "values/app_language_tags.xml").findall(".//item")]
-        self.assertIn("lzh-Hant", offered)
-        self.assertIn("mn-Mong", offered)
 
-    def test_every_offered_language_has_exactly_one_string_catalogue(self):
-        basic = json.loads((translations.DATA / "basic-translations.json").read_text())
-        for tag in basic:
-            self.assertTrue((translations.RES / translations.qualifier_for_tag(tag) / "strings.xml").is_file(), tag)
-        for folder in translations.RES.glob("values*"):
-            self.assertLessEqual(len(list(folder.glob("strings*.xml"))), 1, str(folder))
+    def test_requested_main_menu_surface_exists_without_freezing_old_wording(self):
+        data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
+        requested = set(
+            "ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru "
+            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th "
+            "el sr-Cyrl sr-Latn tr hy".split()
+        )
+        self.assertEqual(requested, set(data["locales"]))
+        source = (
+            translations.ROOT
+            / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ).read_text()
+        commands = source.split("private fun menuActions(", 1)[1].split(
+            "private fun menuActionEnabled", 1
+        )[0]
+        keys = set(re.findall(r"R.string.([a-z_0-9]+)", commands))
+        groups = source.split("private enum class EditGroup(", 1)[1].split(
+            "private lateinit var toolDrawer", 1
+        )[0]
+        keys.update(re.findall(r"R.string.([a-z_0-9]+)", groups))
+        keys -= {"ui_select_an_area_first"}
+        keys |= {
+            "ui_menu_view", "ui_draw26", "ui_menu_file", "ui_menu_edit",
+            "ui_colour_tab23", "ui_drawing23", "ui_category_selection",
+            "ui_category_insert", "ui_eraser", "ui_bucket_fill", "ui_eyedropper",
+            "ui_navigate", "ui_fg", "ui_bg", "ui_swap23", "ui_reset_bw23",
+            "ui_advanced", "ui_add_colour26",
+        }
+        self.assertLessEqual(keys, set(data["required_keys"]))
+        catalogues = translations.catalogue_paths()
+        for tag in requested:
+            rendered = translations.read_strings(catalogues[tag])
+            self.assertLessEqual(set(data["required_keys"]), set(rendered), tag)
 
-    def test_starter_save_translation_is_shared_with_the_unsaved_prompt(self):
-        basic = json.loads((translations.DATA / "basic-translations.json").read_text())
-        for tag, terms in basic.items():
-            strings = translations.read_strings(translations.RES / translations.qualifier_for_tag(tag) / "strings.xml")
-            if terms:
-                self.assertEqual("@string/ui_save", strings["ui_save_a5d0d9"], tag)
-            else:
-                self.assertEqual({}, strings, tag)
+    def test_known_semantic_corrections_remain_correct(self):
+        ja = translations.read_strings(translations.catalogue_paths()["ja"])
+        self.assertEqual("左右反転", ja["ui_flip_horizontal"])
+        self.assertEqual("上下反転", ja["ui_flip_vertical"])
+
+    def test_unsaved_prompt_actions_are_distinct(self):
+        def normalized(value):
+            return value.strip().strip('"').casefold()
+
+        for tag, path in translations.catalogue_paths().items():
+            strings = translations.read_strings(path)
+            if "ui_discard_changes23" not in strings or "ui_keep_editing23" not in strings:
+                continue
+            self.assertNotEqual(
+                normalized(strings["ui_discard_changes23"]),
+                normalized(strings["ui_keep_editing23"]),
+                tag,
+            )
+
+    def test_catalogues_preserve_literal_tokens(self):
+        defaults = translations.default_resources()[0]
+        for tag, path in translations.catalogue_paths().items():
+            for key, value in translations.read_strings(path).items():
+                if key in defaults:
+                    with self.subTest(tag=tag, key=key):
+                        self.assertEqual(
+                            [], translations.literal_token_errors(key, value, defaults[key]),
+                        )
+
+    def test_documented_credit_routes_use_the_localized_file_about_panel(self):
+        # ClassicPaintActivity.menuActions("File") opens showAboutOptions(),
+        # which contains Image credits and the licence/source-code panels.
+        # Compare with the rendered labels, not fixed translation wording.
+        route_labels = {
+            "ui_catrobat_s_own_artwork_uses_cc_by_sa": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_the_arrow_on_the_left_directly_below_the": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_add_up_to_20_images_with_android_s": (
+                "ui_menu_file", "ui_about_credits23",
+            ),
+        }
+
+        def displayed(value):
+            return unicodedata.normalize(
+                "NFC", value.strip('"').replace(r"\'", "'").replace(r'\"', '"'),
+            ).casefold()
+
+        defaults = translations.default_resources()[0]
+        for path in sorted(translations.RES.glob("values*/strings.xml")):
+            local = translations.read_strings(path)
+            rendered = {**defaults, **local}
+            for key, labels in route_labels.items():
+                if key not in local:
+                    continue
+                for label in labels:
+                    with self.subTest(catalogue=path.parent.name, key=key, label=label):
+                        # A menu label may end a standalone sentence (notably
+                        # Tibetan shad) but omit that terminator inside a path.
+                        # Preserve internal punctuation and every label word.
+                        label_text = displayed(rendered[label]).rstrip(
+                            " \t\r\n.,;:!?…。！？；：།༎",
+                        )
+                        self.assertTrue(label_text)
+                        self.assertIn(label_text, displayed(local[key]))
+
+    def test_literary_assembly_help_describes_image_replacement(self):
+        literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
+        self.assertNotIn("前景替換", literary["ui_add_up_to_20_images_with_android_s"])
+
+    def test_mechanical_word_replacement_corruptions_do_not_return(self):
+        catalogues = translations.catalogue_paths()
+        for tag in ("hak-Hant-TW", "hak-Latn-TW", "lzh-Hant"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            for corrupt in ("主愛", "Chú oi", "肚容", "目个地", "飽與度", "柔與"):
+                self.assertNotIn(corrupt, text, tag)
+
+    def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
+        catalogues = translations.catalogue_paths()
+        for tag in ("yue-Latn", "hak-Latn-TW", "nan-Latn-TW"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            self.assertNotRegex(text, r"[\u3400-\u9fff]", tag)
+        for tag in ("sr-Latn", "uz-Latn", "tt-Latn"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            self.assertNotRegex(text, r"[\u0400-\u04ff]", tag)
+
+    def test_simplified_wu_does_not_regress_to_traditional_forms(self):
+        text = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["wuu-Hans"]
+            ).values()
+        )
+        self.assertNotRegex(
+            text,
+            r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
+        )
 
 
-class GimpTranslationTests(unittest.TestCase):
+class AndroidResourceValidationTests(unittest.TestCase):
+    def test_android_quotes_distinguish_xml_entities_from_android_escaping(self):
+        for xml_value in ("l&apos;image", "l'image", "an even \\\\' apostrophe"):
+            with self.subTest(xml_value=xml_value):
+                value = ET.fromstring(f"<string>{xml_value}</string>").text
+                self.assertIn("unescaped Android apostrophe", translations.android_string_errors(value))
+        for value in ("l\\'image", "\"l'image\"", 'a \\"quoted\\" value', "plain text", '"open', "trail\\"):
+            with self.subTest(value=value):
+                self.assertEqual([], translations.android_string_errors(value))
+
+    def test_equivalent_locale_qualifiers_share_a_configuration(self):
+        for left, right in (("values-b+pt+PT", "values-pt-rPT"),
+                            ("values-b+id", "values-in"),
+                            ("values-b+he+IL-v21", "values-iw-rIL-v21")):
+            self.assertEqual(translations.resource_configuration(left),
+                             translations.resource_configuration(right))
+        for left, right in (("values-fr", "values-fr-night"),
+                            ("values-b+mn+Mong", "values-b+mn+Cyrl+MN"),
+                            ("values-en-rUS", "values-en-rGB")):
+            self.assertNotEqual(translations.resource_configuration(left),
+                                translations.resource_configuration(right))
+
+    def test_literal_syntax_and_license_tokens_cannot_be_spaced_or_translated(self):
+        for original, damaged in (("data:image/png;base64,", "data: image / png; base64,"),
+                                  ("CC BY-SA 4.0", "CC BY-SA 4. 0")):
+            self.assertEqual([], translations.literal_token_errors("example", original, original))
+            self.assertTrue(translations.literal_token_errors("example", damaged, original))
+
+    def test_gif_limit_accepts_localized_grouping_but_not_broken_numbers(self):
+        for number in ("65,535", "65.535", "65 535", "65\u202f535", "65535", "٦٥٬٥٣٥"):
+            self.assertEqual([], translations.literal_token_errors("save20_gif_size_limit", number, ""))
+        for number in ("65, 535", "65. 535", "65  535", "65,536", "165,535", "65,5350"):
+            self.assertTrue(translations.literal_token_errors("save20_gif_size_limit", number, ""), number)
+
+
+class GimpProvenanceTests(unittest.TestCase):
     def test_selected_entries_preserve_original_po_text_and_context(self):
         snapshot = json.loads((translations.DATA / "gimp-catalogues.json").read_text())
         self.assertEqual("e670132a59be1e8fb98d5b935824e4f57937b4ae", snapshot["revision"])
         self.assertEqual("GPL-3.0-or-later", snapshot["license"])
-        self.assertNotIn("tt", snapshot["locale_map"], "GIMP's old Latin Tatar catalogue must not replace the Cyrillic starter locale")
-        notices = (translations.RES.parent / "assets/legal/GIMP_TRANSLATION_NOTICES.txt").read_bytes().decode()
+        self.assertNotIn(
+            "tt",
+            snapshot["locale_map"],
+            "GIMP's old Latin Tatar catalogue must not be treated as Cyrillic Tatar",
+        )
+        notices = (
+            translations.RES.parent / "assets/legal/GIMP_TRANSLATION_NOTICES.txt"
+        ).read_bytes().decode()
         for source in snapshot["sources"]:
             self.assertIn(source["header"], notices)
             self.assertRegex(source["source_sha256"], r"^[0-9a-f]{64}$")
             for entry in source["entries"]:
-                parsed = {}; field = None
+                parsed = {}
+                field = None
                 for line in entry["raw"].splitlines():
                     if line.startswith(("msgctxt ", "msgid ", "msgstr ")):
-                        field, value = line.split(" ", 1); parsed[field] = ast.literal_eval(value)
+                        field, value = line.split(" ", 1)
+                        parsed[field] = ast.literal_eval(value)
                     elif line.startswith('"') and field:
                         parsed[field] += ast.literal_eval(line)
                 for key in ("msgctxt", "msgid", "msgstr"):
                     self.assertEqual(entry.get(key), parsed.get(key), source["path"])
                 self.assertNotRegex(entry["raw"], r"(?m)^#,.*\bfuzzy\b")
 
-    def test_context_mapping_preserves_clipboard_and_flip_meanings(self):
+    def test_context_mapping_still_describes_the_reference_material(self):
         mapping = json.loads((translations.DATA / "gimp-terms.json").read_text())
         for key in ("ui_cut", "ui_copy", "ui_paste"):
             self.assertEqual("edit-action", mapping[key]["msgctxt"])
         self.assertEqual("Flip _Horizontally", mapping["ui_flip_horizontal"]["msgid"])
         self.assertEqual("Flip _Vertically", mapping["ui_flip_vertical"]["msgid"])
-        ja = translations.read_strings(translations.RES / "values-ja/strings.xml")
-        self.assertEqual("左右反転", ja["ui_flip_horizontal"])
-        self.assertEqual("上下反転", ja["ui_flip_vertical"])
         self.assertEqual("進階…", gimp_translations.adapt("進階(_A)...", "Advanced…"))
-        self.assertEqual("Qualité (%)", gimp_translations.adapt("_Qualité:", "Quality (%)", " (%)"))
-
-    def test_coverage_reports_actual_imported_terms_without_claiming_complete_localization(self):
-        report = json.loads((translations.DATA / "coverage.json").read_text())
-        rows = [r for r in report["coverage"] if r.get("gimp_translation_entries")]
-        self.assertGreaterEqual(len(rows), 55)
-        self.assertGreater(sum(r["gimp_translation_entries"] for r in rows), 3500)
-        for row in rows:
-            self.assertLessEqual(row["gimp_translation_entries"], row["gimp_available_entries"])
 
 
-class KritaTranslationTests(unittest.TestCase):
+class KritaProvenanceTests(unittest.TestCase):
     def test_selected_entries_preserve_context_notices_and_source_identity(self):
-        snapshot = json.loads((translations.DATA / 'krita-catalogues.json').read_text())
-        self.assertEqual('428d44705de20770434ea2915021241dc073879c', snapshot['revision'])
-        self.assertEqual(14, len(snapshot['audited_sources']))
-        notice = (translations.RES.parent / 'assets/legal/KRITA_TRANSLATION_NOTICES.txt').read_text()
-        self.assertIn((translations.DATA / 'KRITA-COPYING.txt').read_text(), notice)
-        for source in snapshot['sources']:
-            self.assertIn(source['header'], notice)
-            self.assertRegex(source['blob_sha'], r'^[0-9a-f]{40}$')
-            for entry in source['entries']:
-                parsed = {}; field = None
-                for line in entry['raw'].splitlines():
-                    if line.startswith(('msgctxt ', 'msgid ', 'msgstr ')):
-                        field, value = line.split(' ', 1); parsed[field] = ast.literal_eval(value)
+        snapshot = json.loads((translations.DATA / "krita-catalogues.json").read_text())
+        self.assertEqual("428d44705de20770434ea2915021241dc073879c", snapshot["revision"])
+        self.assertEqual(14, len(snapshot["audited_sources"]))
+        notice = (
+            translations.RES.parent / "assets/legal/KRITA_TRANSLATION_NOTICES.txt"
+        ).read_text()
+        self.assertIn((translations.DATA / "KRITA-COPYING.txt").read_text(), notice)
+        for source in snapshot["sources"]:
+            self.assertIn(source["header"], notice)
+            self.assertRegex(source["blob_sha"], r"^[0-9a-f]{40}$")
+            for entry in source["entries"]:
+                parsed = {}
+                field = None
+                for line in entry["raw"].splitlines():
+                    if line.startswith(("msgctxt ", "msgid ", "msgstr ")):
+                        field, value = line.split(" ", 1)
+                        parsed[field] = ast.literal_eval(value)
                     elif line.startswith('"') and field:
                         parsed[field] += ast.literal_eval(line)
-                for key in ('msgctxt', 'msgid', 'msgstr'):
-                    self.assertEqual(entry.get(key), parsed.get(key), source['path'])
-                self.assertNotRegex(entry['raw'], r'(?m)^#,.*\bfuzzy\b')
-
-    def test_new_choices_have_real_vocabulary_and_do_not_invent_empty_catalogues(self):
-        options = json.loads((translations.DATA / 'language-options.json').read_text())
-        added = {o['tag'] for o in options['options'] if o.get('translation_source') == 'Krita'}
-        self.assertEqual({'cy','fy','hne','ia','mai','tok','uz-Latn','wa'}, added)
-        report = json.loads((translations.DATA / 'coverage.json').read_text())
-        for tag in added:
-            row = next(r for r in report['coverage'] if r['language_tag'] == tag)
-            self.assertGreater(row['krita_translation_entries'], 0)
-            self.assertFalse(row.get('main_menu_complete', False))
-        self.assertNotIn('tg', added); self.assertNotIn('uz-Cyrl', added)
-        uz = translations.read_strings(translations.RES / 'values-b+uz+Latn/strings.xml')
-        self.assertNotRegex(''.join(uz.values()), r'[\u0400-\u04ff]')
-
-    def test_semantic_rejections_and_exact_gap_fill_counts_are_retained(self):
-        report = json.loads((translations.DATA / 'coverage.json').read_text())
-        for row in report['coverage']:
-            if not row.get('krita_gap_fill_keys'):
-                continue
-            rendered = translations.read_strings(translations.ROOT / row['generated_resource'])
-            self.assertLessEqual(row['krita_translation_entries'], row['krita_available_entries'])
-            self.assertTrue(set(row['krita_gap_fill_keys']) <= set(rendered))
-        af = translations.read_strings(translations.RES / 'values-b+af/strings.xml')
-        self.assertNotIn('Driehoek', af.get('ui_rectangle', ''))
-        self.assertEqual('保存…', krita_translations.adapt('保存(&S)...', 'Save…'))
-        # Existing GIMP/locally reviewed terms have precedence over supplements.
-        self.assertEqual('左右反転', translations.read_strings(translations.RES / 'values-ja/strings.xml')['ui_flip_horizontal'])
+                for key in ("msgctxt", "msgid", "msgstr"):
+                    self.assertEqual(entry.get(key), parsed.get(key), source["path"])
+                self.assertNotRegex(entry["raw"], r"(?m)^#,.*\bfuzzy\b")
 
 
-class MainstreamTranslationTests(unittest.TestCase):
+class MainstreamProvenanceTests(unittest.TestCase):
     def test_exact_source_contexts_and_translator_notices_are_preserved(self):
         for project, revision, count, licence in (
-            ('libreoffice', '84fc1f3ce6a7d0ff415ac93495ba172b8ce2bac6', 14, 'LIBREOFFICE-COPYING.MPL'),
-            ('mediawiki', 'ea83228d5fe2b1f9559196a2716c8580cdb2407d', 8, 'MEDIAWIKI-COPYING.txt'),
+            ("libreoffice", "84fc1f3ce6a7d0ff415ac93495ba172b8ce2bac6", 14, "LIBREOFFICE-COPYING.MPL"),
+            ("mediawiki", "ea83228d5fe2b1f9559196a2716c8580cdb2407d", 8, "MEDIAWIKI-COPYING.txt"),
         ):
-            data = json.loads((translations.DATA / f'{project}-catalogues.json').read_text())
-            self.assertEqual(revision, data['revision'])
-            self.assertEqual(count, len(data['sources']))
+            data = json.loads((translations.DATA / f"{project}-catalogues.json").read_text())
+            self.assertEqual(revision, data["revision"])
+            self.assertEqual(count, len(data["sources"]))
             raw_licence = (translations.DATA / licence).read_bytes()
-            self.assertEqual(data['license_blob_sha'], hashlib.sha1(b'blob ' + str(len(raw_licence)).encode() + b'\0' + raw_licence).hexdigest())
-            notice = (translations.RES.parent / f'assets/legal/{project.upper()}_TRANSLATION_NOTICES.txt').read_text()
+            self.assertEqual(
+                data["license_blob_sha"],
+                hashlib.sha1(
+                    b"blob " + str(len(raw_licence)).encode() + b"\0" + raw_licence
+                ).hexdigest(),
+            )
+            notice = (
+                translations.RES.parent
+                / f"assets/legal/{project.upper()}_TRANSLATION_NOTICES.txt"
+            ).read_text()
             self.assertIn((translations.DATA / licence).read_text(), notice)
-            for source in data['sources']:
-                self.assertRegex(source['blob_sha'], r'^[0-9a-f]{40}$')
-                self.assertIn(source['blob_sha'], notice)
-                if project == 'mediawiki':
-                    for author in source['metadata']['authors']:
+            for source in data["sources"]:
+                self.assertRegex(source["blob_sha"], r"^[0-9a-f]{40}$")
+                self.assertIn(source["blob_sha"], notice)
+                if project == "mediawiki":
+                    for author in source["metadata"]["authors"]:
                         self.assertIn(author, notice)
                     continue
-                self.assertIn(source['header'], notice)
-                for entry in source['entries']:
-                    parsed = {}; field = None
-                    for line in entry['raw'].splitlines():
-                        if line.startswith(('msgctxt ', 'msgid ', 'msgstr ')):
-                            field, value = line.split(' ', 1); parsed[field] = ast.literal_eval(value)
+                self.assertIn(source["header"], notice)
+                for entry in source["entries"]:
+                    parsed = {}
+                    field = None
+                    for line in entry["raw"].splitlines():
+                        if line.startswith(("msgctxt ", "msgid ", "msgstr ")):
+                            field, value = line.split(" ", 1)
+                            parsed[field] = ast.literal_eval(value)
                         elif line.startswith('"') and field:
                             parsed[field] += ast.literal_eval(line)
-                    self.assertEqual({k: entry[k] for k in ('msgctxt', 'msgid', 'msgstr')}, parsed)
-                    self.assertNotRegex(entry['raw'], r'(?m)^#,.*\bfuzzy\b')
+                    self.assertEqual(
+                        {k: entry[k] for k in ("msgctxt", "msgid", "msgstr")},
+                        parsed,
+                    )
+                    self.assertNotRegex(entry["raw"], r"(?m)^#,.*\bfuzzy\b")
 
-    def test_supplements_preserve_every_existing_translated_label(self):
-        after = translations.generate()
-        with mock.patch.object(mainstream_translations, 'load', return_value={}):
-            before = translations.generate()
-        defaults = {}
-        for path in (translations.RES / 'values').glob('*.xml'):
-            defaults.update(translations.read_strings(path))
-        normal = lambda s: s.strip().strip('"').replace("\\'", "'").rstrip(':：').casefold()
-        for path, content in before.items():
-            if path.name != 'strings.xml':
-                continue
-            old = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(content)}
-            new = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(after[path])}
-            for key, value in old.items():
-                if normal(value) != normal(defaults.get(key, '')):
-                    self.assertEqual(value, new[key], f'{path}/{key}')
-
-    def test_gap_counts_scripts_and_contexts_are_auditable(self):
-        report = json.loads((translations.DATA / 'coverage.json').read_text())
-        self.assertEqual(135, report['offered_language_count_including_english'])
-        for project, total in (('libreoffice', 206), ('mediawiki', 26)):
-            self.assertEqual(total, sum(r.get(project + '_translation_entries', 0) for r in report['coverage']))
-        mapping = json.loads((translations.DATA / 'libreoffice-terms.json').read_text())
-        self.assertIn('Popups..uno:PickList\nLabel', mapping['ui_menu_file']['msgctxt'])
-        self.assertIn('Commands..uno:FlipHorizontal\nLabel', mapping['ui_flip_horizontal']['msgctxt'])
-        self.assertNotIn('ui_clear', mapping)  # Reset-formatting Clear is not Clear canvas.
-        bo = translations.read_strings(translations.RES / 'values-b+bo/strings.xml')
-        self.assertEqual('"ཡིག་ཆ།"', bo['ui_menu_file'])
-        lo = translations.read_strings(translations.RES / 'values-b+lo/strings.xml')
-        self.assertEqual('"ໄຟລ໌"', lo['ui_menu_file'])
-        za = translations.read_strings(translations.RES / 'values-b+za/strings.xml')
-        self.assertEqual('"Bangcoh"', za['ui_menu_help'])
-        uz = translations.read_strings(translations.RES / 'values-b+uz+Latn/strings.xml')
-        self.assertNotRegex(''.join(uz.values()), r'[\u0400-\u04ff]')
-        self.assertEqual('ཡིག་ཆ།', mainstream_translations.adapt('ཡིག་ཆ།(~F)', 'File', 'libreoffice'))
+    def test_reference_mappings_keep_known_semantic_rejections(self):
+        mapping = json.loads((translations.DATA / "libreoffice-terms.json").read_text())
+        self.assertIn("Popups..uno:PickList\nLabel", mapping["ui_menu_file"]["msgctxt"])
+        self.assertIn(
+            "Commands..uno:FlipHorizontal\nLabel",
+            mapping["ui_flip_horizontal"]["msgctxt"],
+        )
+        self.assertNotIn("ui_clear", mapping)
 
 
-class TatarScriptTests(unittest.TestCase):
-    def test_latin_catalogue_is_derived_from_the_complete_cyrillic_vocabulary(self):
+class TatarReferenceTests(unittest.TestCase):
+    def test_reviewed_tatar_transcription_reference_is_internally_consistent(self):
         source = json.loads((translations.DATA / "tatar-transcription.json").read_text())
         basic = json.loads((translations.DATA / "basic-translations.json").read_text())["tt"]
-        latin = translations.read_strings(translations.RES / "values-b+tt+Latn/strings.xml")
         self.assertEqual(set(basic.values()), set(source["cyrillic_to_latin"]))
-        self.assertEqual("@string/ui_save", latin.pop("ui_save_a5d0d9"))
-        self.assertEqual({k: source["cyrillic_to_latin"][v] for k,v in basic.items()}, latin)
-        for value in latin.values():
-            self.assertNotRegex(value, r"[\u0400-\u04ff]")
-        self.assertEqual("Saqlaw", latin["ui_save"])
-        self.assertNotEqual(latin["ui_discard_changes23"], latin["ui_keep_editing23"])
         for app_key, upstream_key in source["mapping"].items():
             original = source["original_strings"][upstream_key]
-            self.assertEqual(original[0].upper()+original[1:], basic[app_key])
+            self.assertEqual(original[0].upper() + original[1:], basic[app_key])
 
-    def test_every_new_gimp_option_has_actual_selected_vocabulary(self):
-        options = json.loads((translations.DATA / "language-options.json").read_text())
-        report = json.loads((translations.DATA / "coverage.json").read_text())
-        added = {o["tag"] for o in options["options"] if o.get("translation_source") == "GIMP"}
-        self.assertEqual(20, len(added))
-        self.assertEqual("tt-Cyrl", options["aliases"]["tt"])
-        self.assertTrue({"tt-Cyrl", "tt-Latn"} <= {o["tag"] for o in options["options"]})
-        for tag in added:
-            row = next(r for r in report["coverage"] if r["language_tag"] == tag)
-            self.assertGreater(row["gimp_translation_entries"], 0, tag)
-        self.assertNotIn("kw", added)  # No translated matching term in pinned GIMP Cornish.
+
+if __name__ == "__main__":
+    unittest.main()

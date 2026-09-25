@@ -1,3 +1,20 @@
+# Current translation model (full-catalogue pass)
+
+The live Android locale files under `Paintroid/src/main/res/values*/strings.xml` are now canonical source files. They are edited directly and are not regenerated from the JSON/snapshot material in this directory. The files below are retained as provenance, terminology references and historical audit data; their wording is not automatically authoritative for AN Paint. See `TRANSLATING.md` for the current workflow.
+
+The historical notes below describe how the partial catalogues were originally assembled. Statements that localized XML is generated, that English fallback is the intended final state, or that imported wording has precedence describe that older workflow and are not current policy.
+
+The September 2026 integration and continuation repairs are documented in the
+[combined review](../verification/localization-integration-review.md),
+[Ainu semantic audit](AINU_SEMANTIC_AUDIT.md), and
+[Manchu semantic audit](MANCHU_SEMANTIC_AUDIT.md). The known unfinished Ainu and
+Manchu explanatory passages are now translated, including full help text and
+technical controls. These source-assisted repairs are distinct from independent
+native-speaker certification. The completed batch is checked against current
+English resource keys; format names and external labels remain recognizable.
+
+---
+
 # Reused translation vocabulary
 
 AN Paint's View → Languages offers device default and 135 language/region/

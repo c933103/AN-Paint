@@ -1,81 +1,125 @@
 # Translating AN Paint
 
-The new editor, its tool names and hints, image assembly, colour and sizing dialogs,
-export choices, status messages, accessibility descriptions and licence-viewer
-buttons use Android string resources in
-`Paintroid/src/main/res/values/strings.xml`. The complete English source is kept in
-that single catalogue so translation-service exports map cleanly to one
-`strings.xml` catalogue per Android language directory.
+AN Paint uses ordinary Android resource catalogues. The English source catalogue is
+`Paintroid/src/main/res/values/strings.xml`, together with the other translatable
+XML files in `Paintroid/src/main/res/values/`.
 
-Localized `strings.xml` files are generated: edit the matching locale in
-`translations/local-translations.json`, or `translations/basic-translations.json`
-for a starter catalogue, then run `python3 tools/reuse_upstream_translations.py`.
-Do not edit generated XML alone; regeneration would replace those edits. Keep
-all generated entries for a locale in its single `strings.xml` (for example,
-`values-fr`, `values-ja`, `values-zh-rTW`). When importing Crowdin output, merge
-its reviewed entries into the appropriate JSON catalogue before regenerating.
-Register language names, aliases and translation bases in
-`translations/language-options.json`; new full catalogues may also need a
-qualifier in the generator. Missing entries fall back to English. Translation
-work does not normally require Kotlin edits. Existing vocabulary and exact
-provenance are in `translations/README.md`.
-The app language can be chosen under View → Languages independently
-of the device language; Android 13 also exposes the same setting in system settings.
-`crowdin.yml` is available for a maintainer's own translation project; automated
-uploads to the upstream Catrobat translation project are not enabled.
+Each localized `strings.xml` under `Paintroid/src/main/res/values*/` is a
+**canonical source file**. It is not generated from JSON and must not be overwritten
+from Paintroid, GIMP, Krita, LibreOffice, MediaWiki, Android or any other application.
 
-- Preserve positional placeholders such as `%1$s`, `%2$d` and `%3$.2f`. They can
-  move within a sentence; their number and type must stay unchanged.
-- Translate every applicable Android plural category (`one`, `other`, and any
-  additional categories required by the language); keep the count placeholders.
-- Keep escaped newlines (`\n`), escape apostrophes (`\'`) and XML characters, and
-  preserve `%%` where a formatted message contains a literal percent sign.
-- Translate complete menu labels and messages. Menu routing, tool names in saved
-  drafts, view tags, filenames, MIME types and asset paths remain stable identifiers.
-- Entries marked `translatable="false"` are fixed export filenames. Font brand
-  names come from the licensed font inventory and should remain recognizable.
-- Legal licence texts and copyright notices are preserved verbatim. Translate
-  their navigation labels; keep the original legal notices available.
-- Pixel values remain exact. Decimal entry accepts the selected app language's decimal separator
-  as well as a decimal point. Test numeric fields in the target locale.
-- Numeric slider labels use a complete positional format string rather than
-  concatenating a setting name, punctuation and a number. A translator can change
-  their order; Android formats the number for the locale.
+Those older catalogues remain under `translations/` as reference and provenance.
+They can be useful terminology evidence, but they are not assumed to be correct.
+When their wording conflicts with the meaning of AN Paint, the AN Paint translation
+should be corrected directly in the locale's `strings.xml`.
 
-Run `:Paintroid:testDebugUnitTest` and `:app:lintDebug`, then check both orientations,
-short screens, collapsed panels, dialogs and screen-reader labels on Android.
-For right-to-left languages, also check directional gestures, aligned toolbar
-controls and filename/path display. The image workspace keeps physical left/right
-geometry: landscape tools stay left with options opening right; portrait tools
-run across the top with options opening below. The colour palette stays attached
-to its indicator and opens to the right.
-Canvas coordinates, image rotation, assembly attachments and direction arrows
-must not be mirrored just because the surrounding text is right-to-left.
+The intended end state is a complete catalogue for every language offered by
+View → Languages and Android's App languages page. English fallback is only a
+temporary migration condition while the full-catalogue pass is being completed.
 
-`TranslationReadinessTest` exercises Arabic-digit numeric entry and the portrait
-and landscape controls under an RTL locale. Shared terms now reuse actual upstream
-translations, while new messages retain English fallback.
-It checks that the sidebar toggle and colour palette stay attached and that
-native submenus still run their commands. This is layout and resource-readiness
-coverage, not a complete Arabic translation. `AppLanguageTest` checks persisted
-language choice, localized number entry, Android 13 integration, and preserving the
-current canvas, undo and selection during a language change. Human review and device
-checks at larger font sizes remain part of completing each future translation.
+## Editing a translation
 
+Edit the locale directly, for example:
 
-## Action review and vertical foundations (0.0.23)
+- `Paintroid/src/main/res/values-ja/strings.xml`
+- `Paintroid/src/main/res/values-fr/strings.xml`
+- `Paintroid/src/main/res/values-zh-rHK/strings.xml`
+- `Paintroid/src/main/res/values-b+yue+Hant/strings.xml`
+- `Paintroid/src/main/res/values-b+sr+Latn/strings.xml`
 
-The shared vocabulary is reviewed by command meaning. AOSP Android 15's pinned
-clipboard/Cancel labels supplement Paintroid; explicit Discard changes and Keep
-editing labels distinguish the unsaved-change outcomes. See
-[translations/ACTION-REVIEW.md](translations/ACTION-REVIEW.md), the exact source
-records and Apache-2.0 licence there. The generator retains the corrected Japanese
-flip labels and does not edit the pinned upstream files. Host checks reject
-resource duplicates and colliding discard/cancel outcomes.
+Keep one `strings.xml` catalogue for each exact offered language/script/region.
+Use explicit BCP-47 Android qualifiers for variants where a plain language qualifier
+would be ambiguous.
 
-There are 104 offered locale variants, including English, plus device default.
-The Literary Chinese (`lzh-Hant`) and traditional Mongolian (`mn-Mong`) resources
-are initial foundations with English fallback; native-speaker review remains
-welcome. Their ribbon labels and inserted text use the vertical renderer. Native
-Android dialogs/edit fields keep platform layout. The Mongolian font is bundled
-unmodified with its original OFL; no font licence is inferred from upstream use.
+Do not edit `translations/local-translations.json`,
+`translations/basic-translations.json`, `translations/main-menu-translations.json`
+or the imported catalogue snapshots as a way of changing the live UI. They document
+earlier/imported work and can be consulted when reviewing terminology.
+
+`crowdin.yml` points directly from the English Android catalogue to localized
+Android `strings.xml` files, so no conversion step is needed for Crowdin or similar
+Android-resource translation systems.
+
+## Correctness rules
+
+- Translate according to the actual AN Paint operation and surrounding UI. Existing
+  wording from another application is evidence, not authority.
+- Preserve positional placeholders such as `%1$s`, `%2$d` and `%3$.2f`.
+  Their position may change but their number and type must not.
+- Translate all plural forms required by the target language and preserve their
+  placeholders.
+- Preserve escaped newlines, literal percent signs, resource references and XML
+  escaping.
+- Entries marked `translatable="false"` are identifiers such as fixed export
+  filenames and are not translated.
+- Product, codec and licence names should remain recognizable where they are proper
+  names.
+- Legal licence bodies and copyright notices remain available verbatim; translate
+  only their UI/navigation labels unless the licence itself supplies an official
+  localized text.
+- Distinguish regional and script variants where their terminology actually differs.
+  Do not substitute a neighbouring language merely because it is easier to source.
+- Script-specific catalogues must use the requested script. Romanized variants are
+  not allowed to fall back to Cyrillic/Han/etc. text unless the item is itself a
+  proper name conventionally written that way.
+- Canvas directions, coordinates, image rotation and physical attachment directions
+  describe image geometry. They must not be semantically mirrored merely because
+  the surrounding interface is right-to-left.
+
+## Sinitic variety conventions
+
+Several language tags cover varieties for which a script tag alone does not identify
+one universal written standard. AN Paint currently uses these explicit conventions:
+
+- `lzh-Hant`: technical Literary Chinese in Traditional characters. Modern product,
+  codec and computing terms may remain modern where forcing an archaic paraphrase
+  would obscure the operation.
+- `hak-Hant-TW`: Taiwan Sixian Hakka in Han characters.
+- `hak-Latn-TW`: the same Sixian Hakka wording in Pha̍k-fa-sṳ (PFS), not a
+  romanization of Mandarin text.
+- `nan-Hant-TW`: Taiwan Southern Min / Taiwanese Hokkien in Han characters.
+- `nan-Latn-TW`: the same Taiwanese wording in Pe̍h-ōe-jī (POJ), not Mandarin
+  transliteration.
+- `wuu-Hans`: Simplified-script written Wu using Shanghainese as the concrete
+  vernacular basis. `wuu` is a macrolanguage tag and this catalogue must not be
+  described as a standardized pan-Wu written norm.
+
+Han- and Latin-script pairs must stay semantically aligned, but the Latin catalogue
+is a real orthographic rendering of the target variety rather than a character-by-
+character transliteration of Standard Chinese.
+
+## Validation
+
+`tools/translation_catalogues.py` reads the canonical XML directly. Run:
+
+```sh
+python3 tools/translation_catalogues.py
+python3 tools/translation_catalogues.py --complete
+python3 -m unittest discover -s tools -p 'test_translations.py'
+```
+
+The first command checks catalogue/resource structure and format placeholders.
+`--complete` additionally requires every translatable source key and plural
+resource in every offered non-English locale. During the current completion pass,
+the structural check is suitable for intermediate commits; the complete check is
+the acceptance criterion for finishing the pass.
+
+Then run the normal Android unit/lint checks and inspect both orientations, short
+screens, large font sizes, dialogs, accessibility labels and RTL layouts as
+applicable.
+
+`TranslationReadinessTest` covers layout/resource behavior under RTL conditions.
+`AppLanguageTest` covers persisted app-language choice, localized numeric entry,
+Android 13 integration, and preserving the current canvas/undo/selection state
+through a language change.
+
+## Provenance material
+
+Files under `translations/upstream/` and the GIMP/Krita/LibreOffice/MediaWiki/
+Android snapshot files are retained so previous wording and licences remain
+auditable. They do not regenerate or override canonical Android locale files.
+
+Known imported errors should remain documented where useful. For example, the
+historical Paintroid Japanese horizontal/vertical flip strings were reversed;
+AN Paint's canonical Japanese catalogue uses `左右反転` for horizontal flip and
+`上下反転` for vertical flip.

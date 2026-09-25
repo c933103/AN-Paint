@@ -9,10 +9,13 @@ internal object GalleryPage {
     fun script(useLabel: String, copyLabel: String): String = """
         (function() {
           var useLabel=${JSONObject.quote(useLabel)}, copyLabel=${JSONObject.quote(copyLabel)};
+          ${ArtworkMetadata.script}
           function adapt() {
             document.querySelectorAll('a.wp-block-file__button[download]').forEach(function(link) {
-              var url; try { url=new URL(link.href); } catch(e) { return; }
+              var url; try { url=new URL(link.getAttribute('data-anpaint-source') || link.href); } catch(e) { return; }
               if(url.protocol!=='https:' || ['catrobat.org','www.catrobat.org','catrobatblog.files.wordpress.com','catrobatblog.wpcomstaging.com'].indexOf(url.hostname)<0 || !/\.(png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)$/i.test(url.pathname)) return;
+              link.setAttribute('data-anpaint-source',url.href);
+              link.setAttribute('data-anpaint-action','true');
               if(link.textContent!==useLabel) link.textContent=useLabel;
               link.setAttribute('aria-label',useLabel);
               var copy=link.parentElement.querySelector('[data-anpaint-credit]');
@@ -21,9 +24,13 @@ internal object GalleryPage {
                 copy.className=link.className;
                 copy.style.marginLeft='0.5em';link.insertAdjacentElement('afterend',copy);
               }
+              copy.setAttribute('data-anpaint-action','true');
               var titleNode=document.getElementById(link.getAttribute('aria-describedby'));
               var title=titleNode ? titleNode.textContent.trim() : url.pathname.split('/').pop();
-              var target='$CREDIT_SCHEME://copy?source='+encodeURIComponent(url.href)+'&title='+encodeURIComponent(title);
+              var query='?source='+encodeURIComponent(url.href)+'&page='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(title)+artworkCredit(link.parentElement);
+              var insert='${IllustrationPage.USE_SCHEME}://insert'+query;
+              if(link.getAttribute('href')!==insert) link.setAttribute('href',insert);
+              var target='$CREDIT_SCHEME://copy'+query;
               if(copy.getAttribute('href')!==target) copy.setAttribute('href',target);
               if(copy.textContent!==copyLabel) copy.textContent=copyLabel;
             });
