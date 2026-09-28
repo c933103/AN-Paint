@@ -4,6 +4,14 @@ This is the combined review candidate for open localization PRs #2–#9 and #12.
 It is published as draft [PR #15](https://github.com/c933103/AN-Paint/pull/15).
 No pull request has been merged into `develop` as part of this work.
 
+**28 September status: incomplete.** The [current reconciliation](localization-reconciliation-2026-09-28.md)
+checks original handoffs, later discussion discoveries and PR findings against
+published source. It identifies two malformed Malay labels, a missing capacity
+clause in the Traditional Mongolian legacy manual, a documented short-string
+review gap, and unavailable complete latest thread tails. Current application
+snapshot `50395ad05` passed [Android run 36175711603](https://github.com/c933103/AN-Paint/actions/runs/36175711603).
+That passing run does not close these semantic or history gaps.
+
 **25 September correction:** the earlier completion statement did not account
 for unfinished conversation handoffs. That statement is withdrawn. The resumed
 work is tracked in [the per-conversation handoff ledger](localization-thread-handoffs.md)
@@ -92,8 +100,10 @@ clean. The subsequent final audit update changes documentation only. The
 publication step compares the complete remote tree with that intended source
 snapshot before moving a PR branch.
 
-The reopened handoff obligations and concrete independent-review findings are
-addressed with the source evidence and limits linked above. In particular,
+Many recovered handoff obligations and concrete independent-review findings have
+implemented repairs with the source evidence and limits linked above; their
+overall closure is not established. The 28 September reconciliation identifies
+remaining defects and review gaps. In particular,
 Korean review now includes externally published literary annotations and
 parallel civic prose, not just dictionary pairs. Independent preservation
 checks confirm the Korean/Nôm and Taiwanese/Wu/Literary Chinese batches were
