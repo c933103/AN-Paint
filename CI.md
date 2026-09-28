@@ -1,5 +1,9 @@
 # Android build and test workflow
 
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
 Updated 23 September 2026. APK production, regression checks and emulator results
 are separate outcomes. An emulator must not prevent obtaining an already-built
 APK or completing unrelated work.
@@ -25,7 +29,7 @@ there is no `continue-on-error` or replacement of failures with green results.
 Host translation checks cover every Android catalogue, including English and
 resource locales not listed in the picker. They reject equivalent resource
 directories, Android quoting errors, altered syntax/licence identifiers,
-incorrect GIF limit numbers and format-placeholder mismatches. The completed
+incorrect GIF limit numbers and format-placeholder mismatches. The scoped
 localization batch also has a completeness gate against the current default
 catalogue, so adding an English string requires updating that whole batch.
 These structural checks do not certify linguistic accuracy; semantic review
