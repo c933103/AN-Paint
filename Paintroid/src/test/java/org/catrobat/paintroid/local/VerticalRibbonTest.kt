@@ -28,6 +28,9 @@ import java.util.Locale
 class VerticalRibbonTest {
     @Test fun literaryChineseUsesUprightColumnsAndRemainsAccessible()=check("lzh-Hant","天地玄黃\n宇宙洪荒",TextDirection.VERTICAL_RL)
     @Test fun mongolianUsesJoinedVerticalWordsAndLeftToRightColumns()=check("mn-Mong","ᠮᠣᠩᠭᠣᠯ\nAN Paint",TextDirection.VERTICAL_LR)
+    @Test fun manchuUsesTheSameJoinedVerticalLayout()=check("mnc-Mong","ᠮᠠᠨᠵᡠ\nAN Paint",TextDirection.VERTICAL_LR)
+    @Test fun englishTestLocaleUsesVerticalLatinWords()=check("en-XV","Vertical English",TextDirection.VERTICAL_LR)
+    @Test fun emojiTestLocalePreservesClustersInRightToLeftColumns()=check("qaa-Zsye-XV","👩🏽‍🎨🇺🇳🎨\nAN Paint",TextDirection.VERTICAL_RL)
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeMongolianUsesASideRibbonAndLeavesCanvasHeight()=check("mn-Mong","ᠮᠣᠩᠭᠣᠯ",TextDirection.VERTICAL_LR)
     @Test @Config(qualifiers="w900dp-h412dp-land-xhdpi") fun landscapeLiteraryChineseUsesASideRibbonAndLeavesCanvasHeight()=check("lzh-Hant","天地玄黃",TextDirection.VERTICAL_RL)
     private fun check(tag: String,text: String,direction: TextDirection) {
@@ -46,7 +49,7 @@ class VerticalRibbonTest {
         try {
             idle();val root=activity.window.decorView
             assertEquals(direction,VerticalText.uiDirection());assertEquals(PaintTool.ZOOM,activity.paintCanvas.tool)
-            assertEquals(if(tag=="lzh-Hant") "繪圖" else "ᠵᠢᠷᠤᠬᠤ",root.findViewWithTag<Button>("menu_Draw").text.toString())
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_draw26),root.findViewWithTag<Button>("menu_Draw").text.toString())
             for(tab in listOf("View","Draw","File","Edit","Color")) {
                 val button=root.findViewWithTag<Button>("menu_$tab")
                 assertTrue(button.isShown);assertTrue(button.text.isNotBlank());assertTrue(button.contentDescription.isNotBlank())

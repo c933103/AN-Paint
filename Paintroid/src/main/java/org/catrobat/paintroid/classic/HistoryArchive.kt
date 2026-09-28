@@ -14,6 +14,9 @@ internal object HistoryArchive {
     private fun hex(bytes: ByteArray)=bytes.joinToString("") {"%02x".format(it.toInt() and 255)}
     fun write(zip: ZipOutputStream,snapshot: RasterHistory.Snapshot) {
         val manifest=JSONObject().put("version",1)
+        val credits=(snapshot.undo+snapshot.redo).flatMap {it.imageCredits}.distinct()
+        val creditIndex=credits.withIndex().associate {it.value to it.index}
+        manifest.put("image_credit_catalog",ImageCredit.write(credits))
         for((name,stack) in listOf("undo" to snapshot.undo,"redo" to snapshot.redo)) {
             val entries=JSONArray()
             stack.forEachIndexed {index,entry ->
@@ -25,7 +28,8 @@ internal object HistoryArchive {
                     while(true) {val n=input.read(buffer);if(n<0)break;zip.write(buffer,0,n);digest.update(buffer,0,n)}
                 }
                 zip.closeEntry()
-                entries.put(JSONObject().put("width",entry.width).put("height",entry.height).put("sha256",hex(digest.digest())))
+                entries.put(JSONObject().put("width",entry.width).put("height",entry.height).put("sha256",hex(digest.digest()))
+                    .put("image_credits",JSONArray(entry.imageCredits.map {creditIndex.getValue(it)})))
             }
             manifest.put(name,entries)
         }
@@ -36,6 +40,7 @@ internal object HistoryArchive {
         if(index.size !in 1..4L*1024*1024) throw IOException("Invalid draft history index")
         val manifest=zip.getInputStream(index).use {JSONObject(it.bufferedReader().readText())}
         require(manifest.getInt("version")==1)
+        val credits=ImageCredit.read(manifest.optJSONArray("image_credit_catalog"),deduplicate=false)
         val imported=mutableListOf<RasterHistory.Entry>()
         try {
             fun stack(name: String): List<RasterHistory.Entry> {
@@ -46,7 +51,10 @@ internal object HistoryArchive {
                     val entry=zip.getEntry("history/$name/$n.rgba") ?: throw IOException("Draft history entry is missing")
                     zip.getInputStream(entry).use {input ->
                         history.importSnapshot(input,info.getInt("width"),info.getInt("height"),info.getString("sha256"))
-                    }.also {imported.add(it)}
+                    }.also {imported.add(it)}.let {snapshot ->
+                        val refs=info.optJSONArray("image_credits")
+                        snapshot.copy(imageCredits=if(refs==null) emptyList() else (0 until refs.length()).map {credits[refs.getInt(it)]})
+                    }
                 }
             }
             return RasterHistory.Snapshot(stack("undo"),stack("redo"))

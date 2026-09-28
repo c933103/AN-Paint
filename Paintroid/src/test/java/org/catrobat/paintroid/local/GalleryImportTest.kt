@@ -7,12 +7,14 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
 import android.os.Looper
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.EditText
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.MediaGalleryActivity
+import org.catrobat.paintroid.classic.ImageCredit
 import org.catrobat.paintroid.classic.GalleryCredits
 import org.catrobat.paintroid.classic.IllustrationPage
 import org.catrobat.paintroid.classic.IllustrationSource
@@ -106,7 +108,7 @@ class GalleryImportTest {
             assertEquals(Color.RED,main.document.bitmap.getPixel(0,0))
             assertEquals(Color.GREEN,main.document.bitmap.getPixel(1,0))
             assertEquals(0xff007f80.toInt(),main.document.bitmap.getPixel(2,0))
-            assertEquals(setOf(asset.toString()),main.getSharedPreferences("image-credits",0).getStringSet("sources",emptySet()))
+            assertEquals(listOf(asset.toString()),main.document.imageCredits.map {it.source})
             assertFalse(downloaded.exists())
         } finally {mainController.pause().stop();await { !main.busy };mainController.destroy()}
     }
@@ -148,7 +150,7 @@ class GalleryImportTest {
         assertTrue(credit.contains("Needle Yellow"));assertTrue(credit.contains(asset.toString()))
         assertTrue(credit.contains("Publisher: Catrobat project"));assertTrue(credit.contains(GalleryCredits.CC_BY_SA))
         assertFalse(credit.contains("Modified"));assertFalse(gallery.isFinishing)
-        assertTrue(GalleryCredits.sources(gallery).isEmpty())
+        assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
     }
     @Test fun additionalProvidersImportAnExplicitArtworkAndPreserveTheirOwnTerms() {
         for(provider in listOf(IllustrationSource.IRASUTOYA,IllustrationSource.OPENCLIPART)) {
@@ -160,11 +162,16 @@ class GalleryImportTest {
             gallery.openConnection={Connection(it,ByteArrayInputStream(imageBytes()))}
             val web=ReflectionHelpers.getField<WebView>(gallery,"web")
             val use=Uri.Builder().scheme(IllustrationPage.USE_SCHEME).authority("insert")
-                .appendQueryParameter("source",source).appendQueryParameter("page",page).appendQueryParameter("title","Example artwork").build()
+                .appendQueryParameter("source",source).appendQueryParameter("page",page).appendQueryParameter("title","Example artwork")
+                .appendQueryParameter("author","Listed artist").appendQueryParameter("author_url","https://example.org/artist")
+                .appendQueryParameter("licence","Declared licence https://example.org/terms").build()
             assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,use.toString()));await {!gallery.downloading}
             assertEquals(Activity.RESULT_OK,shadowOf(gallery).resultCode)
             val result=shadowOf(gallery).resultIntent
             assertEquals(provider.name,result.getStringExtra("gallery_provider"));assertEquals(page,result.getStringExtra("gallery_page"))
+            assertEquals("Listed artist",result.getStringExtra("gallery_author"))
+            assertEquals("https://example.org/artist",result.getStringExtra("gallery_author_url"))
+            assertEquals("Declared licence https://example.org/terms",result.getStringExtra("gallery_licence"))
             val credit=GalleryCredits.credit(source,"Example artwork",provider,page)
             assertTrue(credit.contains(page));assertTrue(credit.contains(provider.terms));assertFalse(credit.contains("CC BY-SA"))
             if(provider==IllustrationSource.IRASUTOYA) assertTrue(credit.contains("Takashi Mifune")) else assertTrue(credit.contains("CC0"))
@@ -182,8 +189,9 @@ class GalleryImportTest {
     }
 
     @Test fun editedCreatorAndModificationCreditPersistsAndCopiesForDistribution() {
-        GalleryCredits.remember(gallery,asset.toString())
-        GalleryCredits.showEditor(gallery)
+        var entries=listOf(ImageCredit(asset.toString(),GalleryCredits.credit(asset.toString())))
+        val edit: (String,String)->Unit={source,text -> entries=entries.map {if(it.source==source) it.copy(text=text) else it}}
+        GalleryCredits.showEditor(gallery,entries,edit);shadowOf(Looper.getMainLooper()).idle()
         val dialog=ShadowDialog.getLatestDialog()
         val field=dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text")
         val credit=GalleryCredits.credit(asset.toString())+"\nCreator: credited artist\nChanges: cropped and recoloured."
@@ -191,10 +199,40 @@ class GalleryImportTest {
         dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_copy").performClick()
         val clipboard=gallery.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         assertEquals(credit,clipboard.primaryClip!!.getItemAt(0).text.toString())
-        assertEquals(credit,GalleryCredits.text(gallery))
-        dialog.dismiss();GalleryCredits.showEditor(gallery)
+        assertEquals(credit,ImageCredit.text(entries))
+        dialog.dismiss();GalleryCredits.showEditor(gallery,entries,edit);shadowOf(Looper.getMainLooper()).idle()
         val reopened=ShadowDialog.getLatestDialog()
         assertEquals(credit,reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
         reopened.dismiss()
+    }
+
+    @Test fun galleryRecreationReturnsSavedCreditEditsWithoutTurningUneditedBrowsingIntoAnInsertion() {
+        val original=ImageCredit(asset.toString(),"Original creator credit")
+        val revised="Corrected creator and modifications"
+        val intent=android.content.Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java)
+            .putExtra("document_image_credits",ImageCredit.write(listOf(original)).toString())
+        for(edited in listOf(false,true)) {
+            controller.pause().stop().destroy()
+            controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+            gallery=controller.setup().get()
+            if(edited) {
+                gallery.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+                shadowOf(Looper.getMainLooper()).idle()
+                val dialog=ShadowAlertDialog.getLatestAlertDialog()
+                dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText(revised)
+                dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_done").performClick()
+            }
+            val saved=Bundle()
+            controller.saveInstanceState(saved).pause().stop().destroy()
+            controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+            gallery=controller.create(saved).start().resume().visible().get()
+            gallery.window.decorView.findViewWithTag<Button>("gallery_done").performClick()
+            assertEquals(if(edited) Activity.RESULT_OK else Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
+            if(edited) {
+                val result=shadowOf(gallery).resultIntent
+                assertFalse(result.hasExtra("gallery_file"))
+                assertEquals(listOf(original.copy(text=revised)),ImageCredit.read(org.json.JSONArray(result.getStringExtra("document_image_credits"))))
+            }
+        }
     }
 }

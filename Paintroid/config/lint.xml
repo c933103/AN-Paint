@@ -29,9 +29,9 @@
 
     <issue id="MissingTranslation">
         <ignore regexp="res/values/string.xml$" />
-        <!-- Deliberate partial upstream vocabulary reuse; new terms fall back to
-             English. The picker explains this; translations/coverage.json records
-             exact coverage. Resource/format/ExtraTranslation checks remain enabled. -->
+        <!-- Temporary during the full-catalogue migration. Canonical locale XML is
+             being completed directly; remove this exception once
+             tools/translation_catalogues.py --complete passes for every locale. -->
         <ignore regexp="res/values/strings.*\.xml$" />
     </issue>
 

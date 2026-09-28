@@ -1,11 +1,675 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Retained vocabulary plus selected Mediawiki gap fills; see translations/README.md. -->
 <resources>
-    <string name="ui_brush">Brush</string>
-    <string name="ui_save">Tipigi</string>
+    <string name="ui_brush">Brutsa</string>
+    <string name="ui_category_brush">Brutsa</string>
+    <string name="ui_undo">I-undo</string>
+    <string name="ui_redo">I-redo</string>
+    <string formatted="false" name="ui_eraser">Papas</string>
+    <string formatted="false" name="ui_bucket_fill">Pun-a</string>
+    <string name="ui_line">Linya</string>
+    <string name="ui_text">Teksto</string>
+    <string name="ui_watercolor">Watercolor</string>
+    <string name="ui_airbrush">Airbrush</string>
+    <string formatted="false" name="ui_eyedropper">Tigkuha og kolor</string>
+    <string name="ui_apply">I-apply</string>
+    <string name="ui_done">Human</string>
+    <string name="ui_paste">I-paste</string>
+    <string name="ui_copy">Kopyaha</string>
+    <string name="ui_cut">I-cut</string>
+    <string name="ui_new_image">Bag-ong hulagway</string>
+    <string formatted="false" name="ui_save">Tipigi</string>
+    <string name="ui_discard">Isalikway</string>
     <string name="ui_cancel">Kanselahon</string>
+    <string name="ui_save_your_changes">Tipigan ang imong mga kausaban?</string>
+    <string name="ui_monospace">Monospace</string>
+    <string name="ui_serif">Serif</string>
+    <string name="ui_sans_serif">Sans serif</string>
+    <string name="ui_rectangle">Rektanggulo</string>
+    <string name="ui_ellipse">Elipse</string>
+    <string name="ui_star">Bituon</string>
+    <string name="ui_heart">Kasingkasing</string>
+    <string name="ui_solid_fill">Pun-a</string>
+    <string name="ui_outline">Gawas nga linya</string>
+    <string formatted="false" name="ui_flip_horizontal">Balihon pahalang</string>
+    <string formatted="false" name="ui_flip_vertical">Balihon patindog</string>
+    <string name="ui_menu_help">Tabang</string>
+    <string name="ui_menu_colours">Mga kolor</string>
+    <string name="ui_smooth_freehand_strokes">Pahapsaya ang mga linya nga gidrowing sa kamot</string>
+    <string name="ui_smooth_pixel_edges_anti_aliasing">Pahapsaya ang mga kilid sa pixel (anti-aliasing)</string>
+    <string name="ui_quality" formatted="false">Kalidad (%)</string>
+    <string name="language20_settings">Mga setting</string>
+    <string name="save20_file_name">Ngalan sa file</string>
+    <string name="save20_file_format">Format sa file</string>
+    <string formatted="false" name="gallery_use_image">Gamita ang hulagway</string>
+    <string formatted="false" name="gallery_copy_credit">Kopyaha ang kredito</string>
+    <string name="ui_ok">OK</string>
+    <string formatted="false" name="ui_select_all">Pilia tanan</string>
+    <string name="ui_discard_changes23">Isalikway ang mga kausaban</string>
+    <string name="ui_keep_editing23">Padayon sa pag-edit</string>
     <string name="ui_save_a5d0d9">@string/ui_save</string>
-    <string name="ui_menu_help">"Tabang"</string>
-    <string name="ui_menu_edit">"Usba"</string>
-    <string name="ui_undo">"i-way bili"</string>
+    <string formatted="false" name="ui_menu_edit">I-edit</string>
+    <string formatted="false" name="ui_menu_view">Tan-awa</string>
+    <string name="ui_zoom_in">I-zoom in</string>
+    <string name="ui_zoom_out">I-zoom out</string>
+    <string name="ui_curve">Kurba</string>
+    <string name="ui_bold">Baga</string>
+    <string name="ui_underline">Badlisan sa ubos</string>
+    <string name="ui_insert">Isulod</string>
+    <string formatted="false" name="ui_category_insert">Isulod</string>
+    <string formatted="false" name="save20_title">Tipigi isip…</string>
+    <string formatted="false" name="ui_draw26">Drowing</string>
+    <string formatted="false" name="ui_menu_file">File</string>
+    <string formatted="false" name="ui_colour_tab23">Kolor</string>
+    <string formatted="false" name="ui_drawing23">Pagdrowing</string>
+    <string formatted="false" name="ui_category_selection">Pagpili</string>
+    <string formatted="false" name="ui_navigate">Ilihok ug i-zoom</string>
+    <string formatted="false" name="ui_show_pixel_grid_800">Ipakita ang pixel grid (800% pataas)</string>
+    <string formatted="false" name="ui_hide_pixel_grid_800">Itago ang pixel grid (800% pataas)</string>
+    <string formatted="false" name="ui_cursor_drawing32">Pagdrowing gamit ang cursor</string>
+    <string formatted="false" name="ui_magnified_preview">Gipadakong pasiunang tan-aw…</string>
+    <string formatted="false" name="ui_languages23">Mga pinulongan</string>
+    <string formatted="false" name="ui_hide_editor_controls">Itago ang mga control sa editor</string>
+    <string formatted="false" name="ui_show_editor_controls">Ipakita ang mga control sa editor</string>
+    <string formatted="false" name="ui_new">Bag-o…</string>
+    <string formatted="false" name="ui_load_image">Ablihi ang hulagway…</string>
+    <string formatted="false" name="ui_export_as23">I-export isip…</string>
+    <string formatted="false" name="ui_save_and_share">Tipigi ug ipaambit…</string>
+    <string formatted="false" name="ui_insert_image_into_canvas">Isulod ang hulagway sa canvas…</string>
+    <string formatted="false" name="ui_catrobat_sticker_gallery">Galeriya sa mga sticker sa Catrobat…</string>
+    <string formatted="false" name="ui_image_assembly">Paghiusa sa mga hulagway…</string>
+    <string formatted="false" name="ui_how_to_use">Unsaon paggamit</string>
+    <string formatted="false" name="ui_about_credits23">Mahitungod, mga lisensiya ug kredito</string>
+    <string formatted="false" name="ui_export_recovery_copy">I-export ang kopya para sa pagbawi…</string>
+    <string formatted="false" name="ui_canvas_bounds">Mga utlanan sa canvas</string>
+    <string formatted="false" name="ui_delete_selection">Tangtanga ang napili</string>
+    <string formatted="false" name="ui_canvas_size">Gidak-on sa canvas…</string>
+    <string formatted="false" name="ui_crop_to_selection">I-crop sa napili</string>
+    <string formatted="false" name="ui_resize_image">Usba ang gidak-on sa hulagway…</string>
+    <string formatted="false" name="ui_rotate_90_clockwise">I-rotate 90° padulong sa tuo</string>
+    <string formatted="false" name="ui_rotate_180">I-rotate 180°</string>
+    <string formatted="false" name="ui_invert_colours">Balihon ang mga kolor</string>
+    <string formatted="false" name="ui_clear_image">Haw-asa ang hulagway</string>
+    <string formatted="false" name="ui_swap23">Bayloa ang mga kolor</string>
+    <string formatted="false" name="ui_reset_bw23">Itom / puti</string>
+    <string formatted="false" name="ui_advanced">Dugang nga opsyon</string>
+    <string formatted="false" name="ui_add_colour26">Pagdugang og kolor</string>
+    <string formatted="false" name="language20_device_default">Gamita ang pinulongan sa device</string>
+    <string formatted="false" name="ui_enable_cursor_drawing">I-enable ang pagdrowing gamit ang cursor</string>
+    <string formatted="false" name="ui_cursor_start31">Sugdi ang pagdrowing</string>
+    <string formatted="false" name="ui_cursor_stop31">Hunonga ang pagdrowing</string>
+    <string formatted="false" name="ui_cursor_shape31">Porma sa cursor</string>
+    <string formatted="false" name="ui_round">Lingin</string>
+    <string formatted="false" name="ui_square">Kuwadrado</string>
+    <string formatted="false" name="ui_cursor_pan_draw32">Ilihok ang panan-aw aron magsugod sa pagdrowing. I-tap pag-usab aron mohunong.</string>
+    <string formatted="false" name="ui_cursor_pan_move32">Ilihok ang panan-aw aron ipwesto ang cursor. I-tap ang buton sa pagdrowing aron magsugod.</string>
+    <string formatted="false" name="ui_fg">FG</string>
+    <string formatted="false" name="ui_bg">BG</string>
+    <string formatted="false" name="ui_cursor_help31">I-drag aron ipwesto ang cursor. I-tap ang buton sa pagdrowing sa screen, dayon ilihok ang panan-aw aron magdrowing. I-tap pag-usab aron mohunong. Pilia ang brutsa ug ang mga setting sa mga badlis ubos sa Drowing → Pagdrowing.</string>
+    <string formatted="false" name="ui_foreground_colour">Kolor sa atubangan</string>
+    <string formatted="false" name="ui_background_colour">Kolor sa likod</string>
+    <string formatted="false" name="ui_edit_canvas33">Canvas</string>
+    <string formatted="false" name="ui_edit_transform33">Balihon / I-rotate</string>
+    <string formatted="false" name="ui_pixel_grid33">Pixel grid</string>
+    <string formatted="false" name="ui_magnifier33">Pangpadako</string>
+    <string formatted="false" name="ui_fullscreen33">Tibuok screen</string>
+    <string formatted="false" name="ui_disable_cursor_drawing33">I-disable ang pagdrowing gamit ang cursor</string>
+    <string formatted="false" name="ui_pixel_grid_help33">Makita ang pixel grid kon ang pagpadako sa panan-aw moabot sa 800% o labaw pa. Ipakita sa mga ruler ang mga posisyon, nga gisukod sa mga pixel sa hulagway.</string>
+    <string formatted="false" name="ui_other_images34">Ubang mga hulagway</string>
+    <string formatted="false" name="ui_from_device34">Gikan sa device…</string>
+    <string formatted="false" name="ui_fit_selection34">Ipahaom ang hulagway sa canvas</string>
+    <string formatted="false" name="ui_original_size34">Orihinal nga gidak-on</string>
+    <string formatted="false" name="ui_search34">Pangitaa</string>
+    <string formatted="false" name="ui_search_english34">Pangitaa sa Iningles o Hapon</string>
+    <string formatted="false" name="ui_gallery_back34">Balik</string>
+    <string formatted="false" name="ui_share_explanation34">Tipigi ang usa ka kopya sa imong gipiling lokasyon, dayon pilia ang app nga gamiton sa pagpaambit niini. Dili mausab ang kasamtangang destinasyon sa Tipigi.</string>
+    <string formatted="false" name="ui_cursor_tap_hint37">I-tap ang cursor aron magsugod o mohunong sa pagdrowing.</string>
+    <string name="ui_0f_0f_px_1f">%1$.0f × %2$.0f px\n%3$.1f°</string>
+    <string name="ui_100" formatted="false">100%</string>
+    <string name="ui_1_px">1 px</string>
+    <string name="ui_1f_s">%1$.1f %2$s</string>
+    <string name="ui_a_separate_recovery_copy_has_been_kept_use">%1$s Gitipigan ang usa ka lahi nga kopya para sa pagbawi. Gamita ang File &gt; I-export ang kopya para sa pagbawi aron matipigan ang ZIP niini. I-extract ang canvas.png gikan niini ug ablihi kana nga hulagway aron magamit ang kasagarang mga opsyon sa pag-usab sa gidak-on kung gikinahanglan.</string>
+    <string name="ui_aa_bb_0123">Aa Bb 0123 · あいう</string>
+    <string name="ui_about_copyright">Mahitungod ug copyright</string>
+    <string name="ui_about_copyright_licence">Mahitungod, copyright ug lisensiya</string>
+    <string name="ui_actual_size_100" formatted="false">Aktuwal nga gidak-on (100%)</string>
+    <string name="ui_add_images">Pagdugang og mga hulagway</string>
+    <string name="ui_add_images_first">Pagdugang una og mga hulagway.</string>
+    <string name="ui_add_images_then_drag_a_thumbnail_here">Pagdugang og mga hulagway, dayon i-drag ang thumbnail dinhi</string>
+    <string name="ui_add_text">Pagdugang og teksto</string>
+    <string name="ui_add_to_custom_colours">Idugang sa custom nga mga kolor</string>
+    <string name="ui_add_up_to_20_images_with_android_s">Pagdugang og hangtod 20 ka hulagway gamit ang tigpili og file sa Android. Sa listahan sa ubos makita ang gagmay nga mga hulagway, mga ngalan sa file, mga dimensiyon human ma-crop ug mga oras sa pag-usab sa file kon ihatag sa tighatag sa file. Ihan-ay sumala sa ngalan sa file o oras sa pag-usab; dili niini usbon ang han-ay sa mga hulagway nga nabutang na.\n\nI-tap ang gamay nga hulagway aron pilion kini. Ang I-crop ang hulagway moputol sa maong hulagway; ang Dungan nga pag-crop moputol sa mga kilid sa napiling mga hulagway sumala sa pixel o porsyento nga imong gitakda. I-drag ang mga gunitanan sa pag-crop o isulod ang mga kantidad. Ang I-reset ang crop mobalik sa orihinal nga mga kilid. Dili madaot ang orihinal sa pag-crop ug mahimong i-undo ang kausaban.\n\nPislita ug dugay ang gamay nga hulagway, o i-drag ang hulagway nga anaa na sa dapit sa paghan-ay, dayon ihulog kini sa gipasiugda nga kilid. Ang aninag nga pasiunang tan-aw magpakita sa eksaktong resulta sa pagdugtong. Kon idugtong sa tuo, papatason ang mga ibabaw; kon idugtong sa ubos, papatason ang wala nga mga kilid. Mahimo usab nimong i-tap ang gamay nga hulagway ug dayon ang timaan nga +. Ang unang hulagway magsugod sa gigikanan sa mga koordinado. Molihok ang nadugtong na nga mga hulagway kon i-crop ang hulagway nga ilang gidugtongan. Dili tugotan nga magtabon ang mga hulagway.\n\nAng Parehas nga gilapdon ug Parehas nga gitas-on mohatag sa matag hulagway og parehas nga dimensiyon samtang gipabilin ang kaugalingong katimbangan sa gilapdon ug gitas-on niini. Pilia ang mga pixel, porsyento, Pinakagamay o Pinakadako. Ang Ibalik ang orihinal nga mga gidak-on motangtang sa pagparehas sa gidak-on apan magpabilin sa mga pag-crop.\n\nAng Kuhaa sa pwesto mobalik lamang sa napiling hulagway ngadto sa listahan sa ubos. Ang mosunod nga mga hulagway mopuno sa nabakanteng luna apan magpabilin nga nabutang. Ang Kuhaa motangtang lamang sa maong hulagway gikan sa mga gisulod. Ang I-undo/I-redo mobalik niining mga kausaban. I-drag ang nabutang nga hulagway aron usbon ang han-ay; i-drag ang bakanteng luna aron ibalhin ang panan-aw. Ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako. Ang Ipakita tanan mousab sa pagpadako aron makita ang tibuok paghiusa; dili gayod niini usbon ang mga dimensiyon sa resulta.\n\nAng Tipigi ang PNG direktang motipig sa gihiusa nga hulagway. Ang I-edit sa Paint mobalhin niini ngadto sa pangunang editor isip kapuli sa hulagway nga mahimong i-undo. Kon molapas ang resulta sa gahin sa memorya, pilia ang mas gamay nga kopya sa resulta. Dili mausab ang orihinal nga mga file. Tipigan sa device ang kasamtangang paghiusa ug ablihan kini pag-usab sa imong pagbalik.\n\nKini nga paagi mogamit sa parehas nga Catrobat/AGPL ug mga kredito sa materyales nga makita sa panel nga «File &gt; Mahitungod, mga lisensiya ug kredito» sa pangunang editor.</string>
+    <string name="ui_all">Tanan</string>
+    <string name="ui_an_assembly_can_contain_up_to_20_images">Ang usa ka paghiusa mahimong adunay hangtod 20 ka hulagway. Kuhaa ang usa ka hulagway aron makadugang og lain.</string>
+    <string name="ui_an_assembly_can_contain_up_to_20_images_86d995">Ang usa ka paghiusa mahimong adunay hangtod 20 ka hulagway.</string>
+    <string name="ui_an_assembly_source_image_is_missing">Nawala ang usa sa orihinal nga mga hulagway sa paghiusa.</string>
+    <string name="ui_an_image_cannot_attach_to_itself_or_one">Dili mahimong idugtong ang hulagway sa iyang kaugalingon o sa usa sa mga hulagway nga nadugtong niini.</string>
+    <string name="ui_an_paint_assembly_image">Gihiusa nga hulagway sa AN Paint</string>
+    <string name="ui_an_paint_image">Hulagway sa AN Paint</string>
+    <string name="ui_an_paint_image_assembly">AN Paint · Paghiusa sa hulagway</string>
+    <string name="ui_an_paint_image_assembly_20_images_placed">AN Paint · Paghiusa sa hulagway\n%1$s/20 ka hulagway · %2$s nabutang</string>
+    <string name="ui_android_blocked_the_file_picker">Gibabagan sa Android ang tigpili og file: %1$s</string>
+    <string name="ui_android_could_not_decode_this_image">Dili ma-decode sa Android kini nga hulagway.</string>
+    <string name="ui_android_could_not_find_a_file_picker_enable">Walay nakitang tigpili og file ang Android. Paandara ang Files o Documents nga app sa mga setting sa Android, dayon sulayi pag-usab.</string>
+    <string name="ui_apply_bounds">I-apply ang mga utlanan</string>
+    <string name="ui_apply_crop">I-apply ang crop</string>
+    <string name="ui_apply_to_all">I-apply sa tanan</string>
+    <string name="ui_apply_to_these_images">I-apply niining mga hulagway</string>
+    <string name="ui_arrow">Pana</string>
+    <string name="ui_assembly_decoded_output_estimated_editing_render_memory_at">Paghiusa: %1$s\nResulta human ma-decode: %2$s\nGibanabanang memorya alang sa pag-edit ug pagpakita sa orihinal nga gidak-on: %3$s</string>
+    <string name="ui_assembly_output_size">Gidak-on sa mahuman nga paghiusa</string>
+    <string name="ui_assembly_png">Paghiusa.png</string>
+    <string name="ui_assembly_saved">Natipigan ang paghiusa</string>
+    <string name="ui_autosave_failed_use_save">Napakyas ang autosave · gamita ang Tipigi</string>
+    <string name="ui_autosave_image_encoding_failed">Napakyas ang pag-encode sa hulagway para sa autosave.</string>
+    <string name="ui_autosave_is_paused_to_protect_that_draft_use">%1$s Gi-pause ang autosave aron maprotektahan ang maong draft. Gamita ang File &gt; I-export ang kopya para sa pagbawi aron matipigan kini, ug Tipigi isip PNG/JPEG aron matipigan ang kasamtangang trabaho.</string>
+    <string name="ui_autosave_metadata_is_missing">Wala ang metadata sa autosave.</string>
+    <string name="ui_autosave_paused_use_save">Gi-pause ang autosave · gamita ang Tipigi</string>
+    <string name="ui_autosave_pixels_are_missing">Wala ang pixel data sa autosave.</string>
+    <string name="ui_autosave_pixels_could_not_be_read">Dili mabasa ang pixel data sa autosave.</string>
+    <string name="ui_autosave_selection_encoding_failed">Napakyas ang pag-encode sa napili para sa autosave.</string>
+    <string name="ui_autosaving_draft">Gi-autosave ang draft…</string>
+    <string name="ui_background_edit_colour">Likod %1$s. I-edit ang kolor.</string>
+    <string name="ui_basic_colours">Mga batakang kolor</string>
+    <string name="ui_batch_crop">Dungan nga pag-crop</string>
+    <string name="ui_batch_crop_images">Dungan nga i-crop ang mga hulagway</string>
+    <string name="ui_bottom">Ubos</string>
+    <string name="ui_by_pixels_hold_and_drag_to_place">%1$s. %2$s. %3$s × %4$s pixels. Pislita ug dugay dayon i-drag aron ibutang.</string>
+    <string name="ui_calligraphy">Kaligrapiya</string>
+    <string name="ui_cannot_create_the_undo_cache_free_some_device">Dili makahimo og undo cache. Pagbakante og storage sa device ug sulayi pag-usab.</string>
+    <string name="ui_canvas_size_30460e">Gidak-on sa canvas</string>
+    <string name="ui_canvas_zoom">Zoom sa canvas</string>
+    <string name="ui_canvas_zoom_771f84">Zoom sa canvas %1$s</string>
+    <string name="ui_casual">Kaswal</string>
+    <string name="ui_catrobat_online_gallery_artwork_by_its_credited_creators">Galeriya sa Catrobat sa internet · mga dibuho sa mga magbubuhat nga ginganlan sa kredito</string>
+    <string name="ui_catrobat_s_own_artwork_uses_cc_by_sa">Ang kaugalingong mga dibuho sa Catrobat naggamit sa CC BY-SA 4.0. Tipigi ang ngalan sa magbubuhat sa kredito ug ipaambit ang mga giusab nga dibuho ubos sa maong lisensiya. Susiha ang panid nga gigikanan alang sa bisan unsang lahi nga pagngalan sa tag-iya. Tipigan ang URL nga gigikanan ubos sa File &gt; Mahitungod, mga lisensiya ug kredito &gt; Mga kredito sa hulagway.</string>
+    <string name="ui_centred">Nakasentro</string>
+    <string name="ui_choose_a_smaller_output_copy_the_source_images">Pilia ang mas gamay nga kopya sa resulta. Ang orihinal nga mga hulagway ug mga setting sa pag-crop magpabilin sa ilang orihinal nga resolusyon.</string>
+    <string name="ui_choose_a_smaller_size">Pilia ang mas gamay nga gidak-on.</string>
+    <string name="ui_choose_at_least_one_image">Pilia ang labing menos usa ka hulagway.</string>
+    <string name="ui_choose_dimensions_no_larger_than_the_original">Pilia ang mga dimensiyon nga dili mas dako kaysa orihinal.</string>
+    <string name="ui_choose_location">Pilia ang lokasyon…</string>
+    <string name="ui_clear_all">Haw-asa tanan</string>
+    <string name="ui_collapse_colour_palette">I-collapse ang paleta sa kolor</string>
+    <string name="ui_collapse_toolbox">I-collapse ang toolbox</string>
+    <string name="ui_colour">Kolor %1$s</string>
+    <string name="ui_colour_palette_tap_for_foreground_hold_for_background">Paleta sa kolor. I-tap para sa atubangan; pislita ug dugay para sa likod. I-scroll para sa dugang nga mga kolor.</string>
+    <string name="ui_colour_tap_foreground_hold_background">Kolor #%1$s. I-tap para sa atubangan, pislita ug dugay para sa likod.</string>
+    <string name="ui_commit_selection">I-apply ang napili</string>
+    <string name="ui_common_in">Parehas nga %1$s sa %2$s</string>
+    <string name="ui_common_in_pixels">Parehas nga %1$s sa pixels</string>
+    <string name="ui_copper">Tumbaga</string>
+    <string name="ui_copy_all">Kopyaha tanan</string>
+    <string name="ui_copy_an_area_or_use_file_insert_image">Kopyaha ang usa ka bahin o gamita ang Drowing → Isulod → Ubang mga hulagway.</string>
+    <string name="ui_copy_decoded_image_at_this_size_estimated_loading">Kopya: %1$s\nHulagway human ma-decode niining gidak-ona: %2$s\nGibanabanang memorya alang sa pag-abli ug pag-edit: %3$s\n</string>
+    <string name="ui_corners_and_edges_resize_round_handle_rotates">Gamita ang mga gunitanan sa mga kanto ug kilid aron usbon ang gidak-on. Ang lingin nga gunitanan maoy mopatuyok.</string>
+    <string name="ui_could_not_apply_the_crop">Dili ma-apply ang crop.</string>
+    <string name="ui_could_not_complete_the_edit">Dili makompleto ang pag-edit. %1$s</string>
+    <string name="ui_could_not_complete_the_operation">Dili makompleto ang operasyon.</string>
+    <string name="ui_could_not_create_the_assembly">Dili makahimo sa paghiusa: %1$s</string>
+    <string name="ui_could_not_decode_the_cropped_region_of">Dili ma-decode ang gi-crop nga bahin sa %1$s.</string>
+    <string name="ui_could_not_export_source_code">Dili ma-export ang source code</string>
+    <string name="ui_could_not_export_the_recovery_copy">Dili ma-export ang kopya para sa pagbawi</string>
+    <string name="ui_could_not_load_gallery_image">Dili ma-load ang hulagway sa gallery: %1$s</string>
+    <string name="ui_could_not_open_image">Dili maablihan ang hulagway</string>
+    <string name="ui_could_not_place_the_image">Dili mabutang ang hulagway.</string>
+    <string name="ui_could_not_prepare_the_image">Dili maandam ang hulagway.</string>
+    <string name="ui_could_not_save_image">Dili matipigan ang hulagway</string>
+    <string name="ui_could_not_save_the_assembly">Dili matipigan ang paghiusa: %1$s</string>
+    <string name="ui_could_not_store_the_assembly">Dili matipigan ang paghiusa.</string>
+    <string name="ui_create_output">Paghimo og output</string>
+    <string name="ui_credits_terms">Mga kredito ug mga kondisyon</string>
+    <string name="ui_crop">I-crop ang %1$s</string>
+    <string name="ui_crop_image">I-crop ang hulagway</string>
+    <string name="ui_crop_must_stay_inside_the_canvas">Kinahanglan magpabilin sulod sa canvas ang crop.</string>
+    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">Pasiunang tan-aw sa pag-crop. I-drag ang kilid o kanto; i-drag ang sulod aron ibalhin ang bahin nga putlon.</string>
+    <string name="ui_cropped_thumbnail">Gamay nga hulagway human ma-crop: %1$s</string>
+    <string name="ui_current_safe_budget_2f_mp">Kasamtangang luwas nga limit: %1$.2f MP.</string>
+    <string name="ui_current_safe_editing_budget_s_up_to_2f">Kasamtangang luwas nga gahin sa memorya alang sa pag-edit: %1$s · hangtod %2$.2f MP, wala pa labot ang dugang nga memorya sa decoder</string>
+    <string name="ui_cursive">Sinumpay nga pagsulat</string>
+    <string name="ui_custom_colour">Custom nga kolor %1$s</string>
+    <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Custom nga mga kolor · pislita ug dugay ang swatch aron ilisan kini</string>
+    <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">Ang %1$d × %2$d pixels (%3$.2f MP) milapas sa kasamtangang luwas nga gahin sa pag-edit nga %4$.2f MP. Gitipigan sa AN Paint ang tibuok hulagway sa memorya ug gigahinan usab og luna ang pag-usab sa porma ug mga pagpili. Ang magamit nga memorya maoy magbuot niining gahin. Gihunong ang operasyon sa wala pa paggahin og memorya alang sa sobrang dakong bitmap. Wala awtomatikong usba ang gidak-on.</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_disable_cursor_drawing">I-disable ang pagdrowing gamit ang cursor</string>
+    <string name="ui_downloading_image">Gi-download ang hulagway…</string>
+    <string name="ui_draft_not_saved_yet">Wala pa matipigi ang draft</string>
+    <string name="ui_draft_pending">Naghulat nga matipigan ang draft</string>
+    <string name="ui_draft_restored">Naibalik ang draft</string>
+    <string name="ui_draft_saved">Natipigan ang draft</string>
+    <string name="ui_drag_a_line_then_drag_twice_to_set">I-drag ang usa ka linya, dayon i-drag kaduha aron itakda ang duha ka liko niini. Gamita ang Tapusa ang kurba aron i-apply kini dayon.</string>
+    <string name="ui_drag_a_selection_drag_inside_to_move_square">I-drag aron magpili og bahin. I-drag ang sulod aron ibalhin kini, ang kuwadradong gunitanan sa kanto o kilid aron usbon ang gidak-on, o ang lingin nga gunitanan aron tuyokon. Ang I-lock ang proporsiyon magpabilin sa porma niini.</string>
+    <string name="ui_drag_across_the_ellipse_s_bounding_box">I-drag tabok sa kahon nga naglibot sa elipse.</string>
+    <string name="ui_drag_between_opposite_corners_choose_outline_or_fill">I-drag tali sa magkaatbang nga mga kanto. Pilia sa ubos kon badlisan lang ang gawas o pun-on og kolor ang sulod.</string>
+    <string name="ui_drag_between_opposite_corners_to_draw_a_five">I-drag tali sa magkaatbang nga mga kanto aron magdrowing og bituon nga lima ka tumoy. Pilia kon badlisan lang ang gawas o pun-on og kolor ang sulod.</string>
+    <string name="ui_drag_between_opposite_corners_to_draw_a_heart">I-drag tali sa magkaatbang nga mga kanto aron magdrowing og kasingkasing. Pilia kon badlisan lang ang gawas o pun-on og kolor ang sulod.</string>
+    <string name="ui_drag_from_the_start_to_the_end_of">I-drag gikan sa sinugdanan hangtod sa tumoy sa linya.</string>
+    <string name="ui_drag_from_the_tail_towards_the_arrowhead_choose">I-drag gikan sa ikog padulong sa tumoy sa pana. Pilia kon badlisan lang ang gawas o pun-on og kolor ang sulod.</string>
+    <string name="ui_drag_out_to_expand_in_to_trim_drag">I-drag pagawas aron palapdon, o pasulod aron putlon. I-drag ang sulod aron ibalhin ang mga utlanan. Ipaduol ang duha ka tudlo o gamita ang Ipahaom aron mas daghang luna ang makita. Pun-on sa BG ang bag-ong luna.</string>
+    <string name="ui_drag_placed_images_to_move_them_hold_and">I-drag ang mga nabutang nga hulagway aron ibalhin. Pislita ug dugay ang gamay nga hulagway, dayon i-drag aron idugang kini.</string>
+    <string name="ui_drag_to_erase_with_the_background_colour">I-drag aron papason gamit ang kolor sa likod.</string>
+    <string name="ui_drag_to_pan_without_drawing_pinch_with_two">I-drag aron ibalhin ang panan-aw nga dili magdrowing. Ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako; ilihok silang duha aron ibalhin ang panan-aw. Magamit usab ang duha ka tudlo samtang naggamit sa mga himan sa pagdrowing.</string>
+    <string name="ui_draw_a_crisp_one_pixel_line">Drowing og klarong linya. I-adjust ang Gilapdon gikan 1 hangtod 100 pixels.</string>
+    <string name="ui_draw_again">Drowing pag-usab</string>
+    <string name="ui_draw_around_an_area_drag_inside_to_move">Drowing palibot sa usa ka bahin. I-drag ang sulod aron ibalhin kini, ang kuwadradong gunitanan sa kanto o kilid aron usbon ang gidak-on, o ang lingin nga gunitanan aron tuyokon. Ang I-apply ang napili mopatuman sa kausaban.</string>
+    <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Drowing og humok nga mga badlis gamit ang Watercolor. Ang Kusog maoy magbuot kon unsa kakusog ang pagsagol sa kolor sa canvas.</string>
+    <string name="ui_draw_with_the_selected_brush_tip_and_size">Drowing gamit ang napiling tumoy ug gidak-on sa brutsa.</string>
+    <string name="ui_drawing_canvas_pinch_and_move_two_fingers_to">Canvas sa pagdrowing. Ipaduol o ipalayo ang duha ka tudlo aron mag-zoom; lihoka silang duha aron ibalhin ang panan-aw. Sa Ilihok ug i-zoom, mahimo usab ang paglihok gamit ang usa ka tudlo.</string>
+    <string name="ui_drawing_settings">Mga setting sa pagdrowing…</string>
+    <string name="ui_drawing_settings_d900c6">Mga setting sa pagdrowing</string>
+    <string name="ui_drop_at_a_highlighted_edge_right_top_aligned">Ihulog sa gipasiugda nga kilid: sa tuo nga patas ang ibabaw, o sa ubos nga patas ang wala nga mga kilid.</string>
+    <string name="ui_each_px_px_percent_is_relative_to_the">Matag %1$s: %2$s px\n%3$s: %4$s–%5$s px\nAng porsyento gibase sa pinakadakong kasamtangang %6$s: %7$s px. Ang mga hulagway nga nabutang ipahan-ay pag-usab aron adunay lugar.</string>
+    <string name="ui_edit_background">I-edit ang likod…</string>
+    <string name="ui_edit_foreground">I-edit ang atubangan…</string>
+    <string name="ui_edit_in_paint">I-edit sa Paint</string>
+    <string name="ui_enable_android_s_files_or_documents_app_then">Paandara ang Files o Documents nga app sa Android, dayon sulayi pag-usab.</string>
+    <string name="ui_enter_a_number_from_to">Pagsulod og numero gikan %1$s hangtod %2$s.</string>
+    <string name="ui_enter_a_positive_size">Pagsulod og positibong gidak-on.</string>
+    <string name="ui_enter_a_trim_amount_for_every_edge">Pagsulod sa kantidad nga putlon sa matag kilid.</string>
+    <string name="ui_enter_a_whole_number_from_to">Pagsulod og tibuok numero gikan %1$s hangtod %2$s.</string>
+    <string name="ui_enter_all_four_trim_amounts">Pagsulod sa kantidad nga putlon sa tanang upat ka kilid.</string>
+    <string name="ui_enter_positive_canvas_dimensions_within_android_s_coordinate">Pagsulod og positibong dimensiyon sa canvas sulod sa coordinate range sa Android.</string>
+    <string name="ui_enter_positive_dimensions">Pagsulod og positibong mga dimensiyon.</string>
+    <string name="ui_enter_positive_dimensions_no_larger_than_the_original">Pagsulod og positibong mga dimensiyon nga dili mas dako kaysa orihinal.</string>
+    <string name="ui_enter_positive_dimensions_that_resolve_to_at_least">Pagsulod og positibong mga dimensiyon nga moresulta sa labing menos 1 pixel.</string>
+    <string name="ui_enter_positive_image_dimensions">Pagsulod og positibong dimensiyon sa hulagway.</string>
+    <string name="ui_enter_valid_dimensions">Pagsulod og balidong mga dimensiyon.</string>
+    <string name="ui_estimated_memory_current_working_budget">Gibanabanang memorya: %1$s\nKasamtangang magamit nga gahin: %2$s\n</string>
+    <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Apil sa banabana ang kasamtangang canvas ug clipboard, ang pag-decode sa piniling mga pixel, ug ang temporaryong mga tipiganan sa pag-edit. Magkalahi ang tinuod nga paggamit sa memorya. Mawad-an og detalye ang mas gamay nga kopya. Ang gisulod nga hulagway ibutang sa napiling kolor sa likod nga dili aninag; dili mausab ang orihinal nga file.</string>
+    <string name="ui_expand_colour_palette">Palapda ang paleta sa kolor</string>
+    <string name="ui_expand_toolbox">Palapda ang toolbox</string>
+    <string name="ui_export_recovery_copy_144b8a">I-export ang kopya para sa pagbawi</string>
+    <string name="ui_export_this_version_s_source_code">I-export ang source code niining bersiyon…</string>
+    <string name="ui_filename_a_z">Ngalan sa file A–Z</string>
+    <string name="ui_filename_z_a">Ngalan sa file Z–A</string>
+    <string name="ui_fill_line">Puno + linya</string>
+    <string name="ui_fill_text_box_with_bg_colour">Pun-a ang text box gamit ang BG nga kolor</string>
+    <string name="ui_finish_curve">Tapusa ang kurba</string>
+    <string name="ui_finish_polygon">Tapusa ang polygon</string>
+    <string name="ui_fit">Ipahaom</string>
+    <string name="ui_fit_entire_canvas_in_view">Ipahaom ang tibuok canvas sa view</string>
+    <string name="ui_fit_image">Ipahaom ang hulagway</string>
+    <string name="ui_fits_the_current_budget">Masulod sa kasamtangang gahin.</string>
+    <string name="ui_font">Font</string>
+    <string name="ui_font_family">Pamilya sa font</string>
+    <string name="ui_font_licences">Mga lisensiya sa font</string>
+    <string name="ui_foreground_background_colour_palette">Atubangan %1$s, likod %2$s. %3$s nga paleta sa kolor.</string>
+    <string name="ui_foreground_edit_colour">Atubangan %1$s. I-edit ang kolor.</string>
+    <string name="ui_free_form_select">Free-form nga pagpili</string>
+    <string name="ui_full_text_copied">Nakopya ang tibuok teksto</string>
+    <string name="ui_gallery_artwork_catrobat_and_its_credited_creators_cc">Mga dibuho sa galeriya: Catrobat ug ang mga magbubuhat nga ginganlan sa kredito. CC BY-SA 4.0, gawas kon adunay laing mga kondisyon nga gitakda sa gigikanan. Ilakip ang kredito sa dibuho ug ihulagway ang imong mga kausaban kon ipaambit ang giusab nga dibuho.\n\n</string>
+    <string name="ui_gallery_image">Hulagway sa gallery</string>
+    <string name="ui_give_all_images_the_same_each_image_keeps">Hatagi ang tanang %1$s ka hulagway og parehas nga %2$s. Magpabilin ang kaugalingong katimbangan sa gilapdon ug gitas-on sa matag hulagway. Dili mausab ang orihinal nga mga file ug mga setting sa pag-crop.</string>
+    <string name="ui_gnu_affero_general_public_license">GNU Affero General Public License</string>
+    <string name="ui_gold">Bulawan</string>
+    <string name="ui_height">Gitas-on (%1$s)</string>
+    <string name="ui_height_in">Gitas-on sa %1$s</string>
+    <string name="ui_heights">Mga gitas-on</string>
+    <string name="ui_hex_rrggbb">Hex #RRGGBB</string>
+    <string name="ui_higher_quality_usually_makes_a_larger_file_lossless">Kasagarang mas dako ang file kon mas taas ang kalidad. Sa lossless, dili mausab ang bisan unsang kantidad sa kolor.</string>
+    <string name="ui_hold_a_thumbnail_and_drag_it_here_or">Pislita ug dugay ang gamay nga hulagway ug i-drag dinhi, o i-tap kini dayon i-tap ang dapit sa paghan-ay.</string>
+    <string name="ui_hold_or_drag_to_spray_colour">Pislita ug dugay o i-drag aron mag-spray og kolor.</string>
+    <string name="ui_honeycomb">Honeycomb</string>
+    <string name="ui_honeycomb_colour_06x">Kolor sa honeycomb #%1$06X</string>
+    <string name="ui_honeycomb_colour_swatches_with_a_greyscale_row">Mga swatch sa kolor nga honeycomb nga adunay grayscale row</string>
+    <string name="ui_hue_and_saturation_spectrum_lightness_slider_on_the">Spectrum sa hue ug saturation; pangpadulas sa lightness sa tuo</string>
+    <string name="ui_hue_and_saturation_wheel_value_slider_on_the">Ligid sa hue ug saturation; pangpadulas sa value sa tuo</string>
+    <string name="ui_icon_licences">Mga lisensiya sa icon</string>
+    <string name="ui_icon_licences_kde_breeze">Mga lisensiya sa icon — KDE Breeze</string>
+    <string name="ui_icons_artwork">Mga icon ug artwork</string>
+    <string name="ui_icons_fonts_artwork_credits">Mga kredito sa icon, font ug artwork</string>
+    <string name="ui_image">Hulagway</string>
+    <string name="ui_image_assembly_workspace_drag_placed_images_or_drop">Dapit sa paghiusa sa mga hulagway. I-drag ang nabutang nga mga hulagway o ihulog ang gagmay nga mga hulagway aron idugtong sa mga dapit nga gitiman-an sa tuo o ubos. Ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako; i-drag ang bakanteng luna aron ibalhin ang panan-aw.</string>
+    <string name="ui_image_credits">Mga kredito sa hulagway</string>
+    <string name="ui_image_placed_drag_it_to_move_or_hold">Nabutang ang hulagway. I-drag aron ibalhin, o pislita ug dugay ang laing gamay nga hulagway, dayon i-drag.</string>
+    <string name="ui_image_shown_in_crop_preview">Hulagway nga gipakita sa crop preview</string>
+    <string name="ui_image_thumbnails_and_filenames_scroll_horizontally_for_more">Gagmay nga mga hulagway ug mga ngalan sa file. I-scroll pahalang aron makita ang uban.</string>
+    <string name="ui_insert_gallery_image">Isulod ang hulagway gikan sa gallery?</string>
+    <string name="ui_invalid_autosave_metadata">Dili balido ang metadata sa autosave.</string>
+    <string name="ui_invalid_colour">Dili balido nga kolor</string>
+    <string name="ui_invalid_image_attachments">Dili balido ang mga pagdugtong sa mga hulagway.</string>
+    <string name="ui_invalid_selection_outline">Dili balido ang outline sa pagpili.</string>
+    <string name="ui_italic">Hilig</string>
+    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Gipabilin ang mga pixel sa wala nga ibabaw. Ang mas gamay nga canvas motangtang sa mga pixel lapas sa tuo/ubos nga kilid; ang I-undo mobalik niini.</string>
+    <string name="ui_largest">Pinakadako</string>
+    <string name="ui_left">Wala</string>
+    <string name="ui_left_aligned">I-align sa wala</string>
+    <string name="ui_left_arrow_collapse">Wala nga pana: i-collapse</string>
+    <string name="ui_line_spacing" formatted="false">Gilay-on sa linya (%)</string>
+    <string name="ui_lock_aspect_ratio">I-lock ang aspect ratio</string>
+    <string name="ui_lock_proportions">I-lock ang proporsiyon</string>
+    <string name="ui_lossless_jpeg_xl">JPEG XL nga walay mawala nga detalye</string>
+    <string name="ui_magnification" formatted="false">Pagpadako (%)</string>
+    <string name="ui_magnified_preview_ea9209">Gipadakong pasiunang tan-aw</string>
+    <string name="ui_menu">Menu</string>
+    <string name="ui_modified_newest_first">Giusab: pinakabag-o una</string>
+    <string name="ui_modified_oldest_first">Giusab: pinakadaan una</string>
+    <string name="ui_new_colour">Bag-ong kolor</string>
+    <string name="ui_no_attachment_fits_within_the_current_coordinate_range">Walay attachment nga masulod sa kasamtangang coordinate range. Sulayi ang mas gagmay nga gidak-on sa hulagway.</string>
+    <string name="ui_no_gallery_images_have_been_inserted">Wala pay hulagway gikan sa gallery nga naisulod.</string>
+    <string name="ui_no_readable_image_data">Walay mabasang image data.</string>
+    <string name="ui_none">Wala</string>
+    <string name="ui_not_enough_memory_for_this_operation_the_assembly">Kulang ang memorya alang niining operasyon. Gipabilin ang orihinal nga mga file sa paghiusa.</string>
+    <string name="ui_not_enough_memory_to_finish_opening_this_image">Kulang ang memorya aron mahuman ang pag-abli niining hulagway</string>
+    <string name="ui_not_enough_memory_to_inspect_the_gallery_image">Kulang ang memorya aron susihon ang hulagway sa gallery.</string>
+    <string name="ui_not_enough_memory_to_inspect_this_image">Kulang ang memorya aron susihon kini nga hulagway</string>
+    <string name="ui_not_enough_memory_to_save_in_this_format">Kulang ang memorya aron matipigan niining pormata. Sulayi ang PNG</string>
+    <string name="ui_not_placed">Wala nabutang</string>
+    <string name="ui_open_source_credits_and_notices">Mga kredito ug pahibalo sa open source</string>
+    <string name="ui_original_decoded_image_rgba_4_bytes_pixel_estimated">Orihinal: %1$s\nHulagway human ma-decode: %2$s (RGBA, 4 bytes/pixel)\nGibanabanang memorya sa pag-edit nga dili usbon ang gidak-on: %3$s</string>
+    <string name="ui_other_terms">Ubang mga kondisyon</string>
+    <string name="ui_pale_violet">Maputlang violet</string>
+    <string name="ui_palette">Paleta</string>
+    <string name="ui_pencil">Lapis</string>
+    <string name="ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing">Ang lapis magpabilin og klarong mga kilid sa bisan unsang napiling gilapdon.</string>
+    <string name="ui_percent">Porsyento</string>
+    <string name="ui_percent_fd8671">porsyento</string>
+    <string name="ui_percent_of_pixels">porsyento sa %1$s pixels</string>
+    <string name="ui_pinch_and_pan_mode">Pag-usab sa pagpadako ug pagbalhin sa panan-aw</string>
+    <string name="ui_pinch_to_zoom_drag_to_pan">Ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako. I-drag aron ibalhin ang panan-aw.</string>
+    <string name="ui_pixels">Pixels</string>
+    <string name="ui_pixels_6ec9c2">pixels</string>
+    <string name="ui_place_at_least_one_image_in_the_workspace">Ibutang una ang labing menos usa ka hulagway sa dapit sa paghan-ay.</string>
+    <string name="ui_place_text">Ibutang ang teksto</string>
+    <string name="ui_placed">Nabutang</string>
+    <string name="ui_please_try_again">Palihog sulayi pag-usab.</string>
+    <string name="ui_please_wait_for_the_current_operation">Palihog hulata nga mahuman ang kasamtangang operasyon.</string>
+    <string name="ui_polygon">Polygon</string>
+    <string name="ui_preview">Pasiunang tan-aw</string>
+    <string name="ui_previous_draft_kept_for_recovery">Gitipigan ang miaging draft para sa pagbawi</string>
+    <string name="ui_px">%1$s · %2$s\n%3$s × %4$s px · %5$s</string>
+    <string name="ui_px_724eb3">%1$s × %2$s px</string>
+    <string name="ui_px_drag_an_image_to_move_hold_a">%1$s × %2$s px · i-drag ang hulagway aron ibalhin; pislita ug dugay ang gamay nga hulagway aron idugang.</string>
+    <string name="ui_radius_px">Radius (px)</string>
+    <string name="ui_ready">Andam</string>
+    <string name="ui_recent_colour_d_06x_tap_foreground_hold_background">Bag-ong gigamit nga kolor %1$d: #%2$06X. I-tap para sa atubangan, pislita ug dugay para sa likod.</string>
+    <string name="ui_recent_colour_empty">Bag-ong gigamit nga kolor %1$s: walay sulod</string>
+    <string name="ui_recovered_image">Na-recover nga hulagway</string>
+    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">Na-export ang kopya para sa pagbawi. I-extract ang canvas.png gikan sa ZIP ug ablihi kini pinaagi sa File &gt; Ablihi ang hulagway. Ang ZIP naglakip usab sa mga setting sa draft ug bisan unsang floating selection.</string>
+    <string name="ui_rectangle_select">Rectangle nga pagpili</string>
+    <string name="ui_remove">Kuhaa</string>
+    <string name="ui_rendering_images">Gi-render ang %1$s / %2$s ka hulagway…</string>
+    <string name="ui_reset_crop">I-reset ang crop</string>
+    <string name="ui_reset_to_black_white">I-reset ngadto sa itom / puti</string>
+    <string name="ui_resize_and_load">Usba ang gidak-on ug ablihi</string>
+    <string name="ui_resize_image_ab28be">Usba ang gidak-on sa hulagway</string>
+    <string name="ui_resize_large_image">Usbon ang gidak-on sa dakong hulagway?</string>
+    <string name="ui_resize_the_copy">Usba ang gidak-on sa kopya</string>
+    <string name="ui_restore_original_sizes">Ibalik ang orihinal nga mga gidak-on</string>
+    <string name="ui_right">Tuo</string>
+    <string name="ui_right_aligned">I-align sa tuo</string>
+    <string name="ui_right_arrow_expand">Tuo nga pana: palapda</string>
+    <string name="ui_rotate">I-rotate</string>
+    <string name="ui_rounded_rectangle">Rektanggulo nga lingin ang mga kanto</string>
+    <string name="ui_same">Parehas nga %1$s</string>
+    <string name="ui_same_height">Parehas nga gitas-on</string>
+    <string name="ui_same_width">Parehas nga gilapdon</string>
+    <string name="ui_sans_condensed">Sans condensed</string>
+    <string name="ui_sans_light">Sans light</string>
+    <string name="ui_sans_medium">Sans medium</string>
+    <string name="ui_sans_thin">Sans thin</string>
+    <string name="ui_save_and_share_41edb4">Tipigi ug ipaambit</string>
+    <string name="ui_save_as">Tipigi isip %1$s</string>
+    <string name="ui_save_as_jpeg">Tipigi isip JPEG…</string>
+    <string name="ui_save_as_jpeg_xl">Tipigi isip JPEG XL…</string>
+    <string name="ui_save_as_png">Tipigi isip PNG…</string>
+    <string name="ui_save_png">Tipigi ang PNG</string>
+    <string name="ui_saved">Natipigan ang %1$s</string>
+    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">Usbon ang gidak-on sa hulagway. Ablihi ang pagkandado sa katimbangan aron bulag nga mabitad ang gilapdon ug gitas-on.</string>
+    <string name="ui_select_an_area">Pilia ang usa ka bahin</string>
+    <string name="ui_select_an_area_first">Pilia una ang usa ka bahin.</string>
+    <string name="ui_selection_dimensions_are_too_large">Sobra kadako ang mga dimensiyon sa pagpili.</string>
+    <string name="ui_set_radius_px_then_drag_between_opposite_corners">Itakda ang Radius (px), dayon i-drag tali sa magkaatbang nga mga kanto. Ang radius limitado sa katunga sa mas mubo nga kilid sa matag rektanggulo.</string>
+    <string name="ui_share_saved_image">Ipaambit ang natipigan nga hulagway</string>
+    <string name="ui_show_all">Ipakita tanan</string>
+    <string name="ui_show_controls">Ipakita ang mga control</string>
+    <string name="ui_show_magnified_drawing_preview">Ipakita ang gipadakong preview sa pagdrowing</string>
+    <string name="ui_shows_the_whole_assembly_image_and_output_sizes">Ipakita ang tibuok paghiusa. Dili mausab ang gidak-on sa hulagway ug output.</string>
+    <string name="ui_silver">Pilak</string>
+    <string name="ui_size_pixels">Gidak-on (pixels)</string>
+    <string name="ui_size_px">Gidak-on (px)</string>
+    <string name="ui_smallest">Pinakagamay</string>
+    <string name="ui_some_previews_could_not_be_decoded_you_can">Dili ma-decode ang pipila ka preview. Mahimo nimong kuhaon ang maong mga hulagway o sulayan pagtipig sa paghiusa.</string>
+    <string name="ui_sort_images_by_filename_or_modification_time">I-sort ang mga hulagway sumala sa ngalan sa file o oras sa pag-usab</string>
+    <string name="ui_sort_tray">I-sort ang tray</string>
+    <string name="ui_source_code_exported_including_build_scripts_and_licence">Na-export ang source code, lakip ang mga build script ug pahibalo sa lisensiya.</string>
+    <string name="ui_spectrum">Spectrum</string>
+    <string name="ui_spray_radius_px">Radius sa spray (px)</string>
+    <string name="ui_strength" formatted="false">Kusog (%)</string>
+    <string name="ui_strikethrough">Badlisan sa tunga</string>
+    <string name="ui_swap_foreground_background">Bayloa ang kolor sa atubangan ug sa likod</string>
+    <string name="ui_tap_a_pixel">I-tap ang usa ka pixel</string>
+    <string name="ui_tap_an_enclosed_area_adjust_tolerance_for_similar">I-tap ang siradong bahin. I-adjust ang tolerance para sa susamang mga kolor.</string>
+    <string name="ui_tap_an_image_first">I-tap una ang usa ka hulagway.</string>
+    <string name="ui_tap_an_image_thumbnail_first">I-tap una ang thumbnail sa hulagway.</string>
+    <string name="ui_tap_canvas_to_type">I-tap ang canvas\naron mag-type</string>
+    <string name="ui_tap_the_canvas_to_place_text_and_choose">I-tap ang canvas aron ibutang ang teksto ug pilion ang font ug gidak-on niini.</string>
+    <string name="ui_tap_the_image_to_sample_the_foreground_colour">I-tap ang hulagway aron mokuha og sample sa kolor sa atubangan.</string>
+    <string name="ui_tap_to_type_a_number">%1$s: %2$s. I-tap aron mag-type og numero.</string>
+    <string name="ui_tap_vertices_then_double_tap_the_last_vertex">I-tap ang mga tumoy, dayon i-tap kaduha ang katapusang tumoy aron isira ang polygon. Mahimo usab gamiton ang Tapusa ang polygon. Palonga ang Isira ang polygon aron magdrowing og sinumpay nga mga linya nga bukas ang tumoy.</string>
+    <string name="ui_text_alignment">Alignment sa teksto</string>
+    <string name="ui_that_arrangement_overlaps_another_image_use_a_different">Sa maong pagkahan-ay, matabonan ang laing hulagway. Gamita ang laing kilid o kuhaa una sa pwesto ang mga nadugtong nga hulagway.</string>
+    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">Ang pana sa wala nga anaa direkta ubos sa laray sa mga himan mopilo o mopakita pag-usab sa mga himan: pataas aron piloon, paubos aron ablihan. Kon patindog ang screen, pahalang ang laray sa mga himan ubos sa ibabaw nga laray; i-swipe kini aron makita ang dugang nga mga himan. Kon pahigda ang screen, anaa kini sa wala. Ang pundok nga Brutsa naglakip sa Lapis, Brutsa, Watercolor ug Airbrush. Ang Pagpili naglakip sa rektanggulong pagpili ug pagpili sa porma nga imong gidrowing. Ang Isulod naglakip sa mga linya, porma ug teksto. I-tap ang usa ka pundok aron ablihan ang mga himan ug mga setting niini, direkta ubos sa laray kon patindog ang screen o sa tuo niini kon pahigda. I-tap pag-usab aron piloon; mobaliktad ang pana. Hinumdoman sa matag pundok ang katapusang gigamit nga himan niini. I-scroll ang panel sa mga opsyon nga adunay gitakdang utlanan aron makita ang dugang nga mga setting ug mga kontrol sa pag-edit. Bukas ang duha ka panel sa unang paggamit niining pagkahan-ay; hinumdoman ang sunod nimong mga pagpili. Kon pahigda ang screen, usa ra ka laray ang mga kontrol sa ibabaw ug anaa sa tunga ang ngalan sa file. Mga kredito ug mga kondisyon: «File &gt; Mahitungod, mga lisensiya ug kredito».\n\nMagpabilin ang timaan sa kolor sa FG/BG sa wala sa ubos, tupad sa paleta. Moabli ang paleta direkta sa tuo niini sa parehas nga laray. Anaa ang pana niini sa tuo nga kilid: pakaliwa aron piloon ang paleta, patuo aron ablihan. Ang pagpilo motago sa dugang nga mga kahon sa kolor nga dili ibalhin ang timaan. Mahimo usab ablihan o piloon ang paleta pinaagi sa pag-tap sa kahon sa kolor. I-tap ang kahon aron gamiton ang kolor sa atubangan, o pislita ug dugay aron gamiton sa likod. Ang FG/BG moabli sa Paleta, Honeycomb ug Dugang nga opsyon. Ang Dugang nga opsyon adunay spectrum ug ligid sa mga kolor, ug mga kontrol sa RGB, HSV, HSL ug hex nga unom ka digit. Tipigan sa upat ka kahon sa pinakatuo ang bag-ong gigamit nga mga kolor; i-tap alang sa atubangan o pislita ug dugay alang sa likod. Ang kaugalingong mga kolor magsugod sa Maputlang violet #5B67FF, Bulawan #FFD700, Pilak #C0C0C0 ug Tumbaga #B87333. Pislita ug dugay ang kaugalingong kahon sa kolor aron ilisan kini. Dili aninag ang mga kolor sa pangunang editor; ang aninag nga mga bahin sa gisulod nga hulagway pun-on sa kasamtangang kolor sa BG. Dili mausab ang orihinal nga mga file.\n\nAng Ilihok ug i-zoom mopuli sa himan nga pangpadako: i-drag gamit ang usa ka tudlo aron ibalhin ang panan-aw; ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako, ug ilihok silang duha aron ibalhin ang panan-aw. I-tap pag-usab ang Ilihok ug i-zoom o Drowing pag-usab aron mobalik sa pagdrowing. Magamit usab ang duha ka tudlo samtang naggamit sa mga himan sa pagdrowing, nga walay mabiling mga badlis sa pintura. Ang pangpadulas sa tuo sa ubos adunay badlis sa tunga sa 100%. Mohunong sa 100% ang mga buton sa pagpadako ug pagpagamay kon ang usa ka lakang molabang niini; pislita pag-usab aron mopadayon. Ang tupad nga buton nga Ipahaom mopahaom ug mosentro sa canvas sulod sa panan-aw. Aduna usab 100% ug pixel grid sa Tan-awa.\n\nAwtomatikong matipigan ang kasamtangang draft human sa mubo nga paghunong sa pag-edit ug kon mobiya ka sa app. Makita sa kahimtang ang Natipigan ang draft o sayop sa awtomatikong pagtipig. Kon ablihan pag-usab, mobalik ang draft, ngalan sa file, mga setting sa himan, naglutaw nga napiling bahin ug wala pa mahuman nga mga porma. Pribadong kopya sa kasamtangang buhat ang tipigan sa awtomatikong pagtipig. Sa File adunay PNG, JPEG ug HEIC nga mausab ang kalidad, ug JPEG XL, WebP ug AVIF nga mahimong tipigan nga adunay o walay pagkawala sa detalye. Ang Tipigi ug ipaambit mosulat una sa imong file sa dili pa ablihan ang pagpaambit sa Android. Ang I-export motipig sa imong gipiling lokasyon; ang bituon sa ngalan sa file nagpasabot nga adunay mga kausaban nga wala pa matipigi sa gi-export nga file. Dili gayod sulatan pag-usab sa awtomatikong pagtipig ang orihinal nga mga hulagway.\n\nMga pagpili: drowing og rektanggulo o gawas nga linya sa porma nga imong gusto. I-drag ang sulod aron ibalhin, ang kuwadradong gunitanan sa kanto o tunga sa kilid aron usbon ang gidak-on, o ang lingin nga gunitanan nga I-rotate aron tuyokon. Nakaandar daan ang I-lock ang proporsiyon; palonga kini aron bulag nga mabitad ang gilapdon ug gitas-on. Ang mga gunitanan sa kilid mousab lamang sa gidak-on sa napiling kilid. Ang pagpili nga gisubay sa imong gidrowing magpabilin sa napiling porma sulod sa kahon sa pag-usab, bisan human tuyokon o awtomatikong tipigan. Makita ang mga dimensiyon ug anggulo sa panel sa kilid. Ang I-apply ang napili mopatuman sa resulta isip usa ka kausaban sa pagpili nga mahimong i-undo; magpabilin sa awtomatikong pagtipig ang wala pa mahuman nga pag-usab sa porma. Ang Kopyaha, I-cut ug I-crop sa napili mogamit sa giusab nga hulagway. Anaa ang Pilia tanan sa ikaduhang laray sa mga timaan sa pag-edit, ug magamit ang Ctrl+A sa bulag nga keyboard nga gikonektar sa device. Duha ka laray ubos sa Unsaon paggamit ang I-cut/Kopyaha ug I-paste/Pilia tanan. Ang mga maskara sa pagpili magpabilin sa napiling porma; ang dokumento mismo dili mahimong aninag.\n\nMga utlanan sa canvas: i-drag ang mga gunitanan pasulod aron putlon o pagawas aron palapdon ang bisan unsang kilid, dayon gamita ang I-apply ang mga utlanan. BG ang gamiton sa bag-ong luna; dili usbon ang gidak-on sa kasamtangang mga pixel. Magamit ang Kanselahon ug I-undo. Ang Usba ang gidak-on sa hulagway, Gidak-on sa canvas ug Bag-ong hulagway modawat usab sa mga pixel o porsyento, ug mahimo nimong ikandado ang katimbangan sa gilapdon ug gitas-on.\n\nKurba: drowing og linya ug i-drag kaduha aron paliko-on kini. Polygon: i-tap ang mga tumoy, dayon i-tap kaduha ang katapusang tumoy o gamita ang Tapusa ang polygon. Palonga ang Isira ang polygon aron magdrowing og sinumpay nga mga linya nga bukas ang tumoy. Rektanggulo nga lingin ang mga kanto: itakda ang Radius (px) gamit ang pangpadulas; kutob lamang sa katunga sa mas mubo nga kilid ang radius sa matag porma. Teksto: i-tap ang canvas, pilia ang font nga gipakita sa kaugalingong estilo niini, ug gamita ang pasiunang tan-aw nga nagbag-o dayon. Apil sa mga opsyon ang gidak-on, Baga, Hilig, Badlisan sa ubos, Badlisan sa tunga, paghan-ay, gilay-on sa mga linya ug kahon sa teksto nga adunay kolor sa BG. Ang Watercolor anaa sa pundok nga Brutsa tupad sa Brutsa ug Airbrush; usba ang kusog aron mas humok ang mga badlis. Ang mga pangpadulas sa gidak-on sa lapis, brutsa ug himan moabot sa 100 pixels. Magsugod ang Lapis sa 1 pixel ug hinumdoman ang kaugalingong gilapdon niini. I-tap ang gipakitang numero aron isulod ang tukmang kantidad. Parehas sa ubang mga porma ang mga kapilian sa Kasingkasing, Bituon ug Pana: badlisan ang gawas o pun-on ang sulod. Ang Tan-awa &gt; Pagdrowing gamit ang cursor moabli sa buton sa pagpaandar, porma sa cursor ug mga setting sa pangpadako. I-drag aron ipwesto ang cursor, i-tap ang buton sa pagdrowing sa screen, dayon ilihok ang panan-aw aron magdrowing. I-tap pag-usab aron mohunong. Magpabilin ang mga setting sa brutsa ug mga badlis ubos sa Drowing &gt; Pagdrowing. Ang Tan-awa &gt; Gipadakong pasiunang tan-aw magpakita sa cursor o dapit sa pagdrowing sa pagpadako nga imong matakda. Aduna usab pagpahapsay sa mga kilid sa pixel ug sa mga badlis sa mga setting sa pagdrowing. Napulo ka dugang nga font ang gilakip; anaa sa Mga lisensiya sa font ang ilang mga kredito ug tibuok mga kondisyon.\n\nAng File &gt; Ablihi ang hulagway mopuli sa canvas pinaagi sa tigpili sa Android. Ang «Drowing &gt; Isulod &gt; Ubang mga hulagway &gt; Gikan sa device» modugang og hulagway isip naglutaw nga napiling bahin. Ang Galeriya sa mga sticker sa Catrobat sa «Drowing &gt; Isulod &gt; Ubang mga hulagway» naghatag og mga dibuho sa internet; i-tap o pislita ug dugay ang hulagway nga mahimong i-download aron isulod kini. Tipigan sa File &gt; Mahitungod, mga lisensiya ug kredito &gt; Mga kredito sa hulagway ang mga sumpay sa gigikanan ug pahibalo sa lisensiya. Ang mga hulagway nga masulod sa gahin sa memorya sa device ablihan sa orihinal nga resolusyon. Kon gikinahanglan, ang kapilian sa pag-usab sa gidak-on magpakita sa mga dimensiyon, gidaghanon sa pixel ug mga banabana sa memorya; mahimo kang mogamit sa mga pixel o porsyento ug mopili kon ikandado ba ang katimbangan sa gilapdon ug gitas-on. Dili mausab ang orihinal nga file.\n\nAng File &gt; Paghiusa sa mga hulagway moabli og lahi nga dapit sa paghan-ay alang sa hangtod 20 ka hulagway. Ihan-ay ang gagmay nga mga hulagway sumala sa ngalan sa file o oras. I-crop ang usa ka hulagway o daghang hulagway sa usa ka higayon. Ang Parehas nga gilapdon / Parehas nga gitas-on moparehas sa mga dimensiyon sa tanang giablihang hulagway samtang gipabilin ang ilang mga katimbangan sa gilapdon ug gitas-on. I-drag ang gagmay nga mga hulagway o ang nabutang na aron idugtong sa tuo nga patas ang ibabaw, o sa ubos nga patas ang wala nga mga kilid. Ang Kuhaa sa pwesto motangtang lamang sa napiling pagbutang ug mopuno sa nabakanteng luna. Ang Ipakita tanan mousab lamang sa pagpadako sa panan-aw. Ang Tipigi ang PNG mo-export sa paghiusa; ang I-edit sa Paint mobalhin niini isip kausaban nga mahimong i-undo. Usa ra ka editor sa dili aninag nga hulagway ang gamiton sa app. Ang Paghiusa sa mga hulagway usa ka lahi nga dapit sa paghan-ay.\n\nAng panel nga «File &gt; Mahitungod, mga lisensiya ug kredito» naglakip sa orihinal nga copyright, mga kredito sa materyales ug font, tibuok teksto sa lisensiya ug kompleto nga source code niining bersiyon. Mahimong i-scroll ang teksto sa lisensiya nga dili molihok ang mga buton nga Kopyaha tanan, Ubang mga kondisyon ug Human.</string>
+    <string name="ui_the_assembly_exceeds_android_s_coordinate_range">Ang paghiusa milapas sa coordinate range sa Android.</string>
+    <string name="ui_the_assembly_needs_about_choose_a_smaller_output">Ang paghiusa nanginahanglan og mga %1$s. Pilia ang mas gamay nga gidak-on sa output.</string>
+    <string name="ui_the_assembly_output_is_unavailable_reopen_image_assembly">Dili makuha ang resulta sa paghiusa. Ablihi pag-usab ang Paghiusa sa mga hulagway ug sulayi pag-usab.</string>
+    <string name="ui_the_attachment_image_is_missing">Nawala ang hulagway nga dugtongan.</string>
+    <string name="ui_the_attachment_image_is_not_placed">Wala pa mabutang ang hulagway nga dugtongan.</string>
+    <string name="ui_the_crop_must_contain_at_least_one_pixel">Kinahanglan adunay labing menos usa ka pixel ang crop.</string>
+    <string name="ui_the_crop_must_stay_inside_the_image">Kinahanglan magpabilin sulod sa hulagway ang crop.</string>
+    <string name="ui_the_decoder_and_editing_buffers_need_about_the">Ang decoder ug temporaryong mga tipiganan sa pag-edit nanginahanglan og mga %1$s; ang kasamtangang luwas nga gahin sa pag-edit mao ang %2$s. Pilia ang mas gamay nga kopya.</string>
+    <string name="ui_the_draft_is_saving_try_again_shortly">Gitipigan ang draft. Sulayi pag-usab sa makadiyot.</string>
+    <string name="ui_the_encoder_did_not_finish">Wala mahuman ang encoder.</string>
+    <string name="ui_the_first_image_starts_at_the_top_left">Ang unang hulagway magsugod sa wala nga ibabaw.</string>
+    <string name="ui_the_full_image_and_working_buffers_exceed_the">Ang tibuok hulagway ug temporaryong mga tipiganan milapas sa kasamtangang luwas nga gahin, o wala kini magahini og memorya sa Android. Usba ang gidak-on sa usa ka kopya aron ma-edit. Dili mausab ang imong orihinal nga file.</string>
+    <string name="ui_the_gallery_download_is_too_large">Sobra kadako ang download gikan sa gallery.</string>
+    <string name="ui_the_gallery_image_is_unavailable">Dili makuha ang hulagway sa galeriya.</string>
+    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">Gibalhin sa galeriya ang hangyo ngadto sa website nga wala sa gitugot nga mga gigikanan.</string>
+    <string name="ui_the_image_could_not_be_downloaded">Dili ma-download ang hulagway.</string>
+    <string name="ui_the_image_was_saved_but_android_could_not">Natipigan ang hulagway, apan wala maablihi sa Android ang pagpaambit: %1$s</string>
+    <string name="ui_the_images_cannot_fit_within_android_s_coordinate">Dili masulod ang mga hulagway sa coordinate range sa Android. Pilia ang mas gagmay nga gidak-on sa hulagway.</string>
+    <string name="ui_the_normalized_image_dimensions_are_outside_android_s">Ang giparehas nga mga dimensiyon sa hulagway milapas sa kutob nga madawat sa Android.</string>
+    <string name="ui_the_online_gallery_could_not_be_loaded_check">Dili maablihan ang galeriya sa internet. Susiha ang imong koneksiyon ug sulayi pag-usab.</string>
+    <string name="ui_the_picker_returned_no_file_please_choose_the">Walay file nga gibalik sa picker. Palihog pilia pag-usab ang file.</string>
+    <string name="ui_the_picker_returned_no_files">Walay mga file nga gibalik sa picker.</string>
+    <string name="ui_the_previous_draft_could_not_be_moved_to">Dili mabalhin ang miaging draft ngadto sa kopya para sa pagbawi.</string>
+    <string name="ui_the_previous_draft_could_not_be_preserved_separately">Dili matipigan nga bulag ang miaging draft.</string>
+    <string name="ui_the_previous_draft_could_not_be_restored">Dili maibalik ang miaging draft.</string>
+    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">Nanginahanglan og dugang nga memorya ang miaging draft aron maabli pag-usab.</string>
+    <string name="ui_the_saved_assembly_could_not_be_opened">Dili maablihan ang natipigan nga paghiusa: %1$s</string>
+    <string name="ui_the_selected_location_is_not_writable">Dili masulatan ang napiling lokasyon.</string>
+    <string name="ui_the_selected_provider_did_not_return_any_image">Walay datos sa hulagway nga gibalik sa napiling tighatag sa file.</string>
+    <string name="ui_the_trim_would_remove_the_entire_image">Kini nga pagputol motangtang sa tibuok hulagway.</string>
+    <string name="ui_the_undo_cache_is_damaged">Nadaot ang undo cache.</string>
+    <string name="ui_there_is_not_enough_memory_for_this_operation">Kulang ang memorya alang niining operasyon sa orihinal nga resolusyon. Wala awtomatikong usba ang gidak-on.</string>
+    <string name="ui_third_party_notices">Mga pahibalo sa ubang tag-iya</string>
+    <string name="ui_this_file_is_not_a_supported_image_use">Kini nga file dili suportadong hulagway. Gamita ang PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF o teksto sa hulagway sa Base64.</string>
+    <string name="ui_this_image_is_outside_the_supported_catrobat_gallery">Kini nga hulagway wala sa suportadong Catrobat gallery.</string>
+    <string name="ui_this_location_is_not_writable">Dili masulatan kini nga lokasyon.</string>
+    <string name="ui_time_unavailable">Walay makuhang oras</string>
+    <string name="ui_toggle_toolbox">I-toggle ang toolbox</string>
+    <string name="ui_tolerance">Toleransiya</string>
+    <string name="ui_too_large_for_the_current_budget_reduce_the">Sobra kadako para sa kasamtangang limit. Gamaya ang mga dimensiyon o kanselaha ug pagbakante og memorya.</string>
+    <string name="ui_too_many_gallery_redirects">Sobra kadaghan ang gallery redirects.</string>
+    <string name="ui_tool_option">Opsyon sa tool</string>
+    <string name="ui_toolbox_and_tool_options_scroll_for_more">Toolbox ug mga opsyon sa tool. I-scroll para sa dugang.</string>
+    <string name="ui_top">Ibabaw</string>
+    <string name="ui_trim_amounts_must_be_zero_or_greater">Kinahanglan zero o labaw pa ang mga kantidad nga putlon.</string>
+    <string name="ui_trim_amounts_must_fit_inside_each_image_use">Kinahanglan masulod ang mga kantidad nga putlon sa matag hulagway; gamita ang tibuok pixels o porsyento.</string>
+    <string name="ui_trim_expand_canvas_by_touch">Putla / palapda ang canvas pinaagi sa touch…</string>
+    <string name="ui_trim_from_the_original_edges_drag_the_handles">Putla gikan sa orihinal nga mga kilid. I-drag ang mga gunitanan o isulod ang mga kantidad sa ubos. Dili mausab ang orihinal nga mga file.</string>
+    <string name="ui_trim_in_pixels">%1$s nga putol sa pixels</string>
+    <string name="ui_type_text">Mag-type og teksto</string>
+    <string name="ui_unexpected_data_in_the_undo_cache">Adunay wala damhang data sa undo cache.</string>
+    <string name="ui_unplace">Kuhaa sa pwesto</string>
+    <string name="ui_untitled">Walay titulo</string>
+    <string name="ui_use_1_1024_pixels">Gamita ang 1–1024 pixels.</string>
+    <string name="ui_use_50_300" formatted="false">Gamita ang 50–300%.</string>
+    <string name="ui_use_a_positive_target_dimension">Gamita ang positibong target nga dimensiyon.</string>
+    <string name="ui_use_colour">Gamita ang kolor</string>
+    <string name="ui_use_rrggbb">Gamita ang #RRGGBB</string>
+    <string name="ui_wheel">Color wheel</string>
+    <string name="ui_width">Gilapdon (%1$s)</string>
+    <string name="ui_width_in">Gilapdon sa %1$s</string>
+    <string name="ui_widths">Mga gilapdon</string>
+    <string name="ui_working">Nagproseso…</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">Mahimo ka pang makadugang og %1$s ka hulagway. Pilia ang mas gamay nga gidaghanon sa mga file.</string>
+    <string name="ui_your_current_image_has_unsaved_changes">Ang kasamtangang hulagway adunay wala pa matipigi nga mga kausaban.</string>
+    <string name="ui_menu_image">Hulagway</string>
+    <string name="ui_close_polygon">Isira ang polygon</string>
+    <string name="ui_agpl_licence">Lisensiya sa AGPL</string>
+    <string name="ui_jpeg_xl_codec_licences">Mga lisensiya sa JPEG XL codec</string>
+    <string name="ui_gnu_agpl_licence">Lisensiya sa GNU AGPL</string>
+    <string name="ui_try_a_different_file_or_location">Palihog sulayi ang laing file o lokasyon.</string>
+    <string name="ui_preview_memory_error">%1$s: kulang ang memorya para sa preview niini.</string>
+    <string name="ui_png_encoding_failed">Napakyas ang pag-encode sa PNG.</string>
+    <string name="ui_trim_in_percent">%1$s nga putol sa porsyento</string>
+    <string name="ui_colour_component_range">0–%1$d</string>
+    <string name="ui_colour_red_range">R · 0–255</string>
+    <string name="ui_colour_green_range">G · 0–255</string>
+    <string name="ui_colour_blue_range">B · 0–255</string>
+    <string name="ui_colour_hsv_hue_range">HSV H · 0–360°</string>
+    <string name="ui_colour_hsv_saturation_range" formatted="false">HSV S · 0–100%</string>
+    <string name="ui_colour_hsv_value_range" formatted="false">HSV V · 0–100%</string>
+    <string name="ui_colour_hsl_hue_range">HSL H · 0–360°</string>
+    <string name="ui_colour_hsl_saturation_range" formatted="false">HSL S · 0–100%</string>
+    <string name="ui_colour_hsl_lightness_range" formatted="false">HSL L · 0–100%</string>
+    <string name="ui_main23">Panguna</string>
+    <string name="ui_save_explanation23">Pilia ang pormat sa hulagway ug mga setting sa pagpagamay sa file niini. Gamiton pag-usab sa Tipigi kining ngalan sa file, lokasyon, pormat ug mga setting.</string>
+    <string name="ui_export_explanation23">I-export ang icon, teksto sa Base64 o dibuho sa ASCII. Dili mausab sa pag-export ang kasamtangang hulagway ug ang destinasyon sa Tipigi niini.</string>
+    <string name="ui_export_did_not_save23">Nahimo ang export. Gamita ang Tipigi o Tipigi isip aron matipigan ang kasamtangang hulagway sa dili pa mopadayon.</string>
+    <string name="ui_selected_colour23">Napiling kolor</string>
+    <string name="ui_add_palette23">Idugang sa paleta</string>
+    <string name="ui_saved_palette23">Natipigan nga paleta</string>
+    <string name="ui_added_palette23">Gidugang sa paleta</string>
+    <string name="ui_replace_palette23">Puno ang paleta — pilia ang kolor nga ilisan</string>
+    <string name="ui_edit_palette23">I-edit ang paleta</string>
+    <string name="ui_replace_with_active23">Ilisi gamit ang aktibong kolor</string>
+    <string name="ui_remove_palette23">Kuhaa gikan sa paleta</string>
+    <string name="ui_add_active23">Idugang ang aktibong kolor</string>
+    <string name="ui_text_direction23">Direksiyon sa teksto</string>
+    <string name="ui_horizontal23">Pahalang</string>
+    <string name="ui_vertical_rl23">Ibabaw paubos · mga column tuo paingon wala</string>
+    <string name="ui_vertical_lr23">Ibabaw paubos · mga column wala paingon tuo</string>
+    <string name="ui_vertical_letters23">Mga letra sa patindog nga teksto</string>
+    <string name="ui_vertical_mixed23">Awtomatiko · patindog ang CJK, gipahigda ang mga pulong</string>
+    <string name="ui_vertical_sideways23">Gipahigda · ipabiling sinumpay ang mga letra sa pulong</string>
+    <string name="ui_vertical_upright23">Patindog · tagsa-tagsa ka karakter</string>
+    <string name="ui_vertical_hint23">Ang bag-ong linya magsugod og bag-ong kolum. Ang mga pulong nga gipahigda magpabilin nga sinumpay ang mga letra, lakip sa pagsulat sa Mongol. Kon patindog ang mga letra, magpabilin nga magkuyog ang mga timaan nga ikabit sa letra ug ang mga bahin sa usa ka emoji.</string>
+    <string name="ui_top23">I-align sa ibabaw</string>
+    <string name="ui_bottom23">I-align sa ubos</string>
+    <string name="ui_help23">Pilia ang tab aron makita ang mga kontrol niini. Ang Tan-awa magsugod sa Ilihok ug i-zoom; ang Drowing adunay Pagdrowing, Pagpili ug Isulod. Ang Ilihok ug i-zoom mobalhin sa panan-aw nga dili magdrowing; ipaduol o ipalayo ang duha ka tudlo aron usbon ang pagpadako. Ang pana tupad sa mga tab mopilo sa panel. Adunay ngalan ang tanang himan. Ang I-edit mousab sa pagpili, mga utlanan sa canvas, mga dimensiyon o hulagway. Ang Kolor mopili sa mga kolor sa atubangan ug likod; ang Bayloa ang mga kolor magbaylo niini ug ang Itom / puti mobalik sa itom ug puti. Ang tigpili og kolor magpakita dayon sa imong gipili. Ang Gamita ang kolor mokumpirma niini; ang Kanselahon mobalik sa miaging kolor. Gamita ang Pagdugang og kolor o i-tap ang bakanteng kahon aron mopili ug motipig og kolor. Pislita ug dugay ang natipigan nga kolor aron usbon o kuhaon. Ang Dugang nga opsyon moabli sa detalyadong editor tupad sa Itom / puti. Ang pixel grid magpakita usab og mga ruler nga gisukod sa mga pixel sa hulagway; ang pagdrowing gamit ang cursor magpakita dayon sa x/y tupad sa pagpadako. Ang Tipigi isip mopili sa pormat sa hulagway, mga setting sa pagpagamay sa file ug lokasyon; ang Tipigi mosulat pag-usab didto gamit ang maong mga setting. Ang I-export isip maghimo og ICO, dibuho sa ASCII o teksto sa Base64 nga dili markahan ang drowing nga natipigan. Ang Tipigi ug ipaambit motipig og kopya, dayon moabli sa pagpaambit sa Android. Dili mausab ang kasamtangang destinasyon sa Tipigi. Ang Drowing &gt; Isulod &gt; Ubang mga hulagway adunay mga file sa device, Catrobat, Irasutoya ug Openclipart. Ang gisulod nga mga hulagway magpabilin nga napili; makita ang ilang mga gunitanan bisan anaa sa gawas sa canvas. Ang Ipahaom ang hulagway sa canvas mousab sa pagbutang; ang Orihinal nga gidak-on mobalik sa mga dimensiyon sa orihinal. Kon ablihan pag-usab ang app, ibalik sa awtomatikong pagtipig ang draft ug ang duha ka han-ay sa I-undo/I-redo. Aduna usab Paghiusa sa mga hulagway, Unsaon paggamit, ug Mahitungod, mga lisensiya ug kredito sa File. Ang pagsulod og teksto nagsuporta sa pahalang ug patindog nga pagsulat.</string>
+    <string name="ui_edit_colour26">I-edit ang kolor</string>
+    <string name="ui_empty_palette26">Walay sulod nga palette slot %1$d — pagdugang og kolor</string>
+    <string name="ui_cursor_position26">x: %1$d, y: %2$d</string>
+    <string name="ui_numeric_slider_value">%1$s: %2$d</string>
+    <string name="ui_webp_codec_licences">Mga lisensiya sa WebP codec</string>
+    <string name="ui_heic_avif_codec_licences">Mga lisensiya sa HEIC ug AVIF codec</string>
+    <string name="colour20_custom_selected_slot">Custom nga mga kolor · Napili ang slot %1$d</string>
+    <string name="colour20_stored_slot">Slot %1$d · %2$s. I-tap aron gamiton; i-adjust ang kolor, dayon Ilisi aron matipigan ang mga kausaban.</string>
+    <string name="colour20_empty_slot">Walay sulod nga slot %1$d. I-tap aron pilion kung asa tipigan ang kasamtangang kolor.</string>
+    <string name="colour20_save_slot">Tipigi sa slot %1$d</string>
+    <string name="colour20_replace_slot">Ilisi ang slot %1$d</string>
+    <string name="colour20_saved_slot">Natipigan ang kolor sa slot %1$d</string>
+    <string name="colour_invalid_metadata">Ang hulagway adunay dili balido o dili suportadong metadata sa kolor.</string>
+    <string name="colour_truncated_metadata">Naputol ang file sa hulagway samtang naa pa sa metadata sa kolor.</string>
+    <string name="colour_unsupported_icc_model">Kini nga hulagway naggamit sa modelo sa kolor nga ICC nga dili mausab sa decoder. I-export una ang kopya sa RGB gamit ang app nga makadumala sa mga kolor.</string>
+    <string name="colour_converter_unavailable">Dili masugdan ang tig-usab sa kolor sa hulagway. Wala masulod ang hulagway.</string>
+    <string name="ui_lossless_format">%1$s nga walay mawala nga detalye</string>
+    <string name="ui_save_as_webp">Tipigi isip WebP…</string>
+    <string name="ui_save_as_heic">Tipigi isip HEIC…</string>
+    <string name="ui_save_as_avif">Tipigi isip AVIF…</string>
+    <string name="ui_image_codec_licences">Mga lisensiya sa image codec</string>
+    <string name="ui_codec_resize_memory_floor">Niining pormata, kinahanglan ma-decode ang orihinal nga hulagway o mga bahin niini sa dili pa usbon ang gidak-on. Bisan kon gamay ang resulta, mahimong molapas gihapon sa magamit nga memorya.</string>
+    <string name="ui_no_resize_fits_decoder_memory">Bisan sa pinakagamay nga resulta, dili masulod sa kasamtangang gahin sa memorya ang temporaryong mga tipiganan sa decoder niining hulagway. Kanselaha ug gamita ang mas gamay nga orihinal nga hulagway.</string>
+    <string name="formats22_base64_label">Teksto sa Base64</string>
+    <string name="formats22_ascii_label">Dibuho sa ASCII</string>
+    <string name="formats22_tiff_compression">Pagpagamay nga walay mawala nga detalye (Deflate)</string>
+    <string name="formats22_tiff_description">Motipig og usa ka panid sa RGB. Ang pagpaminos sa gidak-on sa file dili mousab sa mga pixel; palonga kini aron matipigan ang TIFF nga wala gipagamay.</string>
+    <string name="formats22_dib_description">Motipig og 24-bit Windows DIB nga wala gipagamay ang file. Gamita ang BMP kon ang app nga modawat nanginahanglan sa ulohan sa file sa BMP.</string>
+    <string name="formats22_dib_size_limit">Ang hulagway milapas sa limit sa gidak-on sa DIB file.</string>
+    <string name="formats22_import_limit">Kini nga file milapas sa 512 MiB nga kutob sa pagpasulod. Pilia ang mas gamay nga file.</string>
+    <string name="formats22_select_page">Pilia ang panid</string>
+    <string name="formats22_page_description">%1$s · %2$s\n%3$d ka panid. Pilia ang usa ka panid nga i-edit isip hulagway.</string>
+    <string name="formats22_pdf_raster_hint">Ihulagway ang mga panid sa PDF sa 144 dpi. Ang teksto ug mga butang nga gihulagway pinaagi sa vector mahimong mga pixel.</string>
+    <string name="formats22_page_number">Numero sa panid</string>
+    <string name="formats22_previous_page">Miaging panid</string>
+    <string name="formats22_next_page">Sunod nga panid</string>
+    <string name="formats22_open_page">Ablihi ang panid</string>
+    <string name="formats22_page_preview">Pasiunang tan-aw sa napiling panid</string>
+    <string name="formats22_page_range">Pagsulod og numero sa panid gikan 1 hangtod %1$d.</string>
+    <string name="formats22_loading_page">Panid %1$d sa %2$d · Giandam ang pasiunang tan-aw…</string>
+    <string name="formats22_page_dimensions">Panid %1$d sa %2$d · %3$d × %4$d pixels</string>
+    <string name="formats22_preview_unavailable">Dili makuha ang pasiunang tan-aw: %1$s</string>
+    <string name="formats22_preview_memory">Kulang ang memorya alang niining pasiunang tan-aw. Kon ablihan ang panid, ikatanyag ang mas gagmay nga mga dimensiyon kon mahimo.</string>
+    <string name="formats22_animation_title">Hulagway nga naglihok</string>
+    <string name="formats22_animation_message">Kini nga %1$s adunay %2$s ka sunodsunod nga hulagway. Dili maglihok ang hulagway nga ma-edit sa AN Paint; dili niini tipigan ang paglihok.</string>
+    <string name="formats22_animation_unknown">Sobra kakomplikado kining %1$s aron masiguro kon adunay daghang sunodsunod nga hulagway. Usa lang ka hulagway nga dili maglihok ang ablihan sa AN Paint; dili niini tipigan ang bisan unsang paglihok.</string>
+    <string name="formats22_at_least_frames">labing menos %1$d</string>
+    <string name="formats22_animation_still">Ang unang hulagway lamang sa sunodsunod nga mga hulagway ang isulod. Kon tipigan, makahimo kini og hulagway nga dili maglihok.</string>
+    <string name="formats22_animation_poster">Kini nga PNG adunay lahi nga gitakdang hulagway. Mao kini ang isulod imbes sa sunodsunod nga mga hulagway nga naglihok. Kon tipigan, makahimo kini og hulagway nga dili maglihok.</string>
+    <string name="formats22_open_still">Ablihi ang hulagway nga dili maglihok</string>
+    <string name="formats22_derived_exported">Na-export ang %1$s. Ang imong tibuok drawing adunay wala pa matipigi nga mga kausaban; tipigi una ang tibuok kopya sa hulagway sa dili pa ilisan kini.</string>
+    <string name="formats22_pdf_invalid">Dili mabasa ang PDF. Mahimong nadaot ang file o naggamit og mga bahin nga dili suportado niining bersiyon sa Android.</string>
+    <string name="formats22_pdf_encrypted">Ang PDF nanginahanglan og password o naggamit og dili suportadong encryption. Tipigi una ang walay proteksiyon nga kopya sa dili pa i-import.</string>
+    <string name="formats22_pdf_file_size">Ang PDF kinahanglan dili walay sulod ug dili molapas sa 512 MiB.</string>
+    <string name="formats22_pdf_page_count">Kinahanglan adunay 1 hangtod %1$d ka panid ang PDF.</string>
+    <string name="formats22_pdf_page_index">Dili na balido ang napiling panid sa PDF. Pilia ang usa ka panid gikan niining dokumento.</string>
+    <string name="formats22_pdf_dimensions">Dili balido o sobra kadako ang mga dimensiyon sa panid sa PDF aron masulod.</string>
+    <string name="formats22_pdf_crop">Kinahanglan positibo ang gilapdon ug gitas-on sa rektanggulong putlon gikan sa PDF, ug kinahanglan anaa kini sulod sa napiling panid.</string>
+    <string name="formats22_pdf_memory">Ang paghimo og hulagway gikan sa PDF milapas sa magamit nga gahin sa memorya alang sa hulagway.</string>
+    <string name="formats22_base64_description">Motipig og PNG nga walay mawala nga detalye isip teksto sa Base64, nga magsugod sa data:image/png;base64,. Ablihi pag-usab kining file sa teksto aron mabalik ang hulagway. Mas dako ang Base64 kay sa PNG nga anaa sulod niini.</string>
+    <string name="formats22_ascii_description">Mosulat og yano nga teksto gamit ang hayag ug ngitngit nga mga karakter. Tan-awa kini gamit ang font nga parehas ang gilapdon sa matag karakter. Paglarawan lamang kini; dili kini maabli pag-usab isip orihinal nga hulagway.</string>
+    <string name="formats22_ascii_columns">Gilapdon (mga karakter)</string>
+    <string name="formats22_ascii_invert">Bayloa ang hayag ug ngitngit nga mga karakter</string>
+    <string name="formats22_text_not_image">Ang teksto sa Base64 walay suportadong hulagway.</string>
+    <string name="gallery_description">I-tap ang Gamita ang hulagway aron isulod dayon. Ang Kopyaha ang kredito tupad sa hulagway mokopya sa titulo, tigmantala, gigikanan ug lisensiya aron imong malakip sa pagmantala. Ang orihinal nga mga dibuho sa Catrobat ubos sa CC BY-SA 4.0; tipigi ang bisan unsang gilain nga ginganlan nga magbubuhat, pahibalo sa copyright ug uban pang pahibalo sa gigikanan. Ihulagway ang imong mga kausaban ug ipaambit ang giusab nga mga dibuho ubos sa CC BY-SA 4.0 o lisensiya nga nahiuyon niini. Ang I-edit ang mga kredito motugot kanimo sa pagdugang niining mga detalye; magpabilin ang mga gigikanan sa gisulod nga mga hulagway ubos sa File → Mahitungod, mga lisensiya ug kredito → Mga kredito sa hulagway.</string>
+    <string name="gallery_edit_credits">I-edit ang mga kredito</string>
+    <string name="gallery_credit_copied">Nakopya ang kredito</string>
+    <string name="gallery_credit_edit_hint">Sa dili pa imantala, tipigi ang bisan unsang ngalan sa magbubuhat o pahibalo sa copyright ug idugang ang paghulagway sa imong mga kausaban. Kuhaa ang mga gigikanan nga wala sa hulagway nga imantala. Mahimong usbon ang teksto sa ubos.</string>
+    <string name="gallery_credit_title">Dibuho: %1$s</string>
+    <string name="gallery_credit_publisher">Tigmantala: proyekto sa Catrobat</string>
+    <string name="gallery_credit_source">Gigikanan: %1$s</string>
+    <string name="gallery_credit_gallery">Galeriya: %1$s</string>
+    <string name="gallery_credit_licence">Orihinal nga dibuho sa Catrobat: CC BY-SA 4.0 — %1$s</string>
+    <string name="gallery_credit_saved">Natipigan ang teksto sa kredito</string>
+    <string name="ui_assembly_source_memory_floor">Ang usa sa orihinal nga mga hulagway nanginahanglan og mas dakong memorya sa pag-decode kay sa magamit karon, bisan gamay kaayo ang resulta. Dili kini masulbad pinaagi sa pagpagamay sa mga dimensiyon sa paghiusa. Sirad-i ang ubang mga dokumento o pag-andam og mas gamay nga orihinal nga hulagway sa dili pa mosulay pag-usab. Wala mausab ang imong paghiusa.</string>
+    <string name="formats22_ico_size">Gidak-on sa icon</string>
+    <string name="formats22_ico_description">Motipig og usa ka hulagway sa icon, nga gipagamay ang file gamit ang PNG, sa napiling gidak-on (16–256 pixels). Magpabilin ang mga proporsiyon sa imong hulagway ug ibutang kini sa tunga sa aninag nga kuwadrado.</string>
+    <string name="formats22_ico_decode_budget">Ang pag-decode niining icon milapas sa magamit nga gahin sa memorya alang sa hulagway.</string>
+    <string name="formats22_ico_dimensions_error">Ang mga dimensiyon sa hulagway sa icon dili motakdo sa lista sa sulod sa file.</string>
+    <string name="formats22_ico_invalid_size">Pilia ang gidak-on sa icon nga 16, 24, 32, 48, 64, 128 o 256 pixels.</string>
+    <string name="language20_app_language">Pinulongan sa app</string>
+    <string name="language20_current">Pinulongan sa app: %1$s</string>
+    <string name="language20_translation_note">Kini nga bersiyon sa pinulongan naglakip sa tanang hubarang teksto sa interface sa AN Paint.</string>
+    <string name="save20_dither">I-dither ang mga kolor</string>
+    <string name="save20_gif_description">Hulagway nga dili maglihok, hangtod 256 ka kolor. Sa dithering, isagol ang gagmay nga mga tulbok sa kolor aron humok tan-awon ang anam-anam nga pag-usab sa kolor. Ang unang hulagway lamang sa GIF nga naglihok ang ablihan.</string>
+    <string name="save20_bmp_description">24-bit RGB nga wala gipagamay ang file; tukmang mga kolor, mas dagkong mga file.</string>
+    <string name="save20_invalid_name">Pagsulod og ngalan sa file nga walay slash o control characters.</string>
+    <string name="save20_encoding_budget">Ang hulagway ug temporaryong mga tipiganan sa pag-encode milapas sa gahin sa memorya alang sa pag-export.</string>
+    <string name="save20_bmp_size_limit">Ang hulagway milapas sa limit sa gidak-on sa BMP file.</string>
+    <string name="save20_gif_size_limit">Ang dimensiyon sa GIF dili mahimong molapas sa 65,535 pixels sa matag kilid.</string>
+    <string name="save20_destination_error">Dili mapulihan sa nahuman nga hulagway ang destinasyon niini.</string>
+    <string name="save20_unsupported_tagged_colour">Kini nga BMP o GIF naggamit og profile sa kolor nga dili pa mausab sa AN Paint. Usba una kini ngadto sa sRGB PNG gamit ang editor nga makadumala sa mga kolor sa dili pa isulod.</string>
+    <string name="save20_lossy_quality_description">Ang mas taas nga kalidad magpabilin og mas daghang detalye ug kasagarang makahimo og mas dako nga file.</string>
+    <string name="ui_expand_tool_category">%1$s: napili ang %2$s. Palapda ang mga tool ug opsyon</string>
+    <string name="ui_collapse_tool_category">%1$s: napili ang %2$s. I-collapse ang mga tool ug opsyon</string>
+    <string name="ui_tool_categories">Mga category sa tool. I-scroll aron makita ang dugang nga mga tool</string>
+    <string name="ui_pencil_crisp_adjustable_strokes">Ang lapis magpabilin og klarong mga kilid sa bisan unsang napiling gilapdon.</string>
+    <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
+    <string name="ui_cursor_ink30">Drowing gamit ang cursor</string>
+    <string name="ui_cursor_settings31">Mga setting sa pagdrowing gamit ang cursor…</string>
+    <string name="ui_cursor_marker_size31" formatted="false">Gidak-on sa cursor marker (%)</string>
+    <string name="ui_cursor_marker_help31">Mopadako sa timaan sa cursor nga dili mousab sa gidak-on sa brutsa nga gamiton sa pagpinta.</string>
+    <string name="ui_gimp_translations31">Mga kredito ug lisensiya sa hubad</string>
+    <string name="ui_paste_hint34">Kopyaha ang usa ka bahin o gamita ang Drowing → Isulod → Ubang mga hulagway.</string>
+    <string name="ui_irasutoya_help34">Ablihi ang panid sa dibuho ug i-tap ang Gamita ang hulagway. Pangitaa sa Iningles o Hapon; ang mga titulo sa dibuho ug teksto sa website magpabilin sa Hapon. Ang paggamit nga walay bayad sakop sa mga kondisyon sa Irasutoya: ang mga disenyo alang sa negosyo nga naggamit og 21 o labaw pa ka dibuho kinahanglan bayran. Ang espesyal nga mga hiniusang proyekto mahimong adunay laing mga kondisyon. Tipigan ang mga panid nga gigikanan ug mga kredito ubos sa File → Mahitungod, mga lisensiya ug kredito → Mga kredito sa hulagway.</string>
+    <string name="ui_openclipart_help34">Ablihi ang panid sa dibuho ug i-tap ang Gamita ang hulagway tupad sa Large PNG nga i-download. Gimantala sa Openclipart ang mga dibuho ubos sa CC0. Tipigan ang panid nga gigikanan ug lisensiya ubos sa File → Mahitungod, mga lisensiya ug kredito → Mga kredito sa hulagway.</string>
+    <string name="ui_gallery_unsupported34">Kini nga hulagway wala sa napiling gigikanan sa mga dibuho.</string>
+    <string name="ui_open_artwork34">Ablihi una ang panid sa dibuho, dayon i-tap ang Gamita ang hulagway.</string>
+    <string name="ui_creator_on_source34">Tan-awa ang panid nga gigikanan aron mailhan ang nag-amot sa dibuho.</string>
+    <string name="ui_irasutoya_credit34">Magpabilin sa magbubuhat ang copyright. Ang paggamit sakop sa mga kondisyon sa Irasutoya; dili kini lisensiya sa Creative Commons.</string>
+    <string name="ui_history_unavailable34">Naibalik ang canvas, apan dili mabasa ang undo history niini. Gitipigan ang orihinal nga draft isip kopya para sa pagbawi.</string>
+    <plurals name="ui_crop_preview_images">
+        <item quantity="other">Preview: %1$d × %2$d px\nI-apply sa %3$d ka hulagway. Kung i-crop ang nabutang nga hulagway, i-adjust usab ang posisyon sa mga naka-attach nga hulagway.</item>
+    </plurals>
 </resources>

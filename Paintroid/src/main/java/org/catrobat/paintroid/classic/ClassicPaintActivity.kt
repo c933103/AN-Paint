@@ -150,6 +150,7 @@ class ClassicPaintActivity : Activity() {
                 val r=recovered!!.getJSONArray("floating_rect")
                 document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
             }
+            document.restoreImageCredits(recovered.optJSONObject("image_credits"))
             filename=recovered.optString("filename",ui(R.string.ui_recovered_image))
             document.foreground=recovered.optInt("foreground",Color.BLACK)
             document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
@@ -233,7 +234,7 @@ class ClassicPaintActivity : Activity() {
         toolButtons.clear();categoryButtons.clear();categoryGroups.clear();recentCells.clear()
         tabPanels.clear();tabButtons.clear();customPaletteCells.clear()
         root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setBackgroundColor(surface);fitsSystemWindows=true}
-        setContentView(root);makeHeader()
+        setContentView(root);makeHeader();LocaleTypography.install(root)
         tabPanelHost=FrameLayout(this).apply {tag="tab_panel_host"}
         val sideRibbon=if(landscape) LinearLayout(this).apply {
             orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_ribbon_rail";layoutDirection=View.LAYOUT_DIRECTION_LTR
@@ -845,7 +846,8 @@ class ClassicPaintActivity : Activity() {
         EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->
             if(index==0) launchOpen(true)
             else startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
-                .putExtra("gallery_provider",IllustrationSource.values()[index-1].name),GALLERY_IMAGE)
+                .putExtra("gallery_provider",IllustrationSource.values()[index-1].name)
+                .putExtra("document_image_credits",ImageCredit.write(document.imageCredits).toString()),GALLERY_IMAGE)
         }.setNegativeButton(ui(R.string.ui_cancel),null).show()
     }
 
@@ -1057,7 +1059,7 @@ class ClassicPaintActivity : Activity() {
                 if(exportOptions.format.supportsLossless) savedPrefs.putBoolean("lossless",exportOptions.lossless)
                 savedPrefs.apply()
                 chooseSaveLocation(request.fileName)
-            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export).show()
+            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export,imageCredits=ImageCredit.text(document.imageCredits)).show()
     }
     private fun chooseSaveLocation(proposedName: String=filename) {
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
@@ -1104,13 +1106,23 @@ class ClassicPaintActivity : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) { if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
         if(requestCode==GALLERY_IMAGE) {
+            data?.getStringExtra("document_image_credits")?.let {encoded ->
+                runCatching {ImageCredit.read(JSONArray(encoded))}.getOrDefault(emptyList()).forEach {
+                    document.editImageCredit(it.source,it.text)
+                }
+            }
+            if(data?.hasExtra("gallery_file")!=true && data?.hasExtra("document_image_credits")==true) return
             val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
             val source=data?.getStringExtra("gallery_source")
             val provider=IllustrationSource.fromId(data?.getStringExtra("gallery_provider"))
             val page=data?.getStringExtra("gallery_page").orEmpty()
             val title=data?.getStringExtra("gallery_title").orEmpty().take(512)
             if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !provider.allowsImage(Uri.parse(source)) || (provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page)))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
-            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,onInserted={GalleryCredits.remember(this,source,provider,page,title)});return
+            val credit=document.imageCredits.firstOrNull {it.source==source} ?: ImageCredit(source,GalleryCredits.credit(source,title,provider,page,
+                data?.getStringExtra("gallery_author").orEmpty().take(1024),
+                data?.getStringExtra("gallery_licence").orEmpty().take(4096),
+                data?.getStringExtra("gallery_author_url").orEmpty().take(4096)))
+            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,credits=listOf(credit));return
         }
         if (requestCode == ASSEMBLY_IMAGE) {
             val name = data?.getStringExtra("assembly_output")
@@ -1134,7 +1146,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         beginIo()
         worker.execute {
             var temporary: File? = null
@@ -1153,8 +1165,8 @@ class ClassicPaintActivity : Activity() {
                             selected={source ->
                                 importSelection=null;pendingImportFile=source.file
                                 val plan=ImportPlan.create(source.dimensions,source.dimensions)
-                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,onInserted)
-                                else askToResize(source,import,asEdit=asEdit,onInserted=onInserted)
+                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,credits)
+                                else askToResize(source,import,asEdit=asEdit,credits=credits)
                             },cancelled={importSelection=null;endIo()},failed={error ->
                                 importSelection=null;ioFailed(ui(R.string.ui_could_not_open_image),error)
                             })
@@ -1167,17 +1179,17 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         if (isDestroyed || isFinishing) { source.file.delete(); return }
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
-            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,onInserted) },
+            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,credits) },
             cancel = { resizeDialog = null; source.file.delete(); pendingImportFile=null; if (!isDestroyed) endIo() },
             memoryRequirements = source.memoryRequirements
         ).show()
     }
 
-    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         worker.execute {
             try {
                 val plan = ImportPlan.create(source.dimensions,target)
@@ -1191,8 +1203,7 @@ class ClassicPaintActivity : Activity() {
                         try {
                             if (import) {
                                 chooseTool(PaintTool.SELECT)
-                                document.paste(bitmap, takeOwnership = true)
-                                onInserted?.invoke()
+                                document.paste(bitmap, takeOwnership = true, credits = credits)
                                 // Include the whole floating image and its handles, even outside the canvas.
                                 // Refit after the selection drawer changes the available viewport.
                                 paintCanvas.fit();paintCanvas.post { if(!isDestroyed && document.selection!=null) paintCanvas.fit() }
@@ -1210,10 +1221,10 @@ class ClassicPaintActivity : Activity() {
                 }
             } catch (_: ImageSizeException) {
                 // Device memory may change while the user considers the proposed size.
-                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
             } catch (_: OutOfMemoryError) {
                 // A budget is an estimate, not a guarantee. Offer a smaller copy after an allocation failure too.
-                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
             } catch (e: Exception) { source.file.delete(); ioFailed(ui(R.string.ui_could_not_open_image), e) }
         }
     }
@@ -1302,7 +1313,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
     private fun showImageCredits() {
-        GalleryCredits.showEditor(this)
+        GalleryCredits.showEditor(this,document.imageCredits,document::editImageCredit)
     }
     private fun showCursorHelp() {
         message(ui(R.string.ui_cursor_help31)+"\n\n"+ui(R.string.ui_cursor_tap_hint37)+"\n\n"+ui(R.string.ui_cursor_marker_help31))
@@ -1388,6 +1399,7 @@ class ClassicPaintActivity : Activity() {
     }
     private fun draftMetadata(): JSONObject = JSONObject().apply {
         put("version",1);put("filename",filename);put("dirty",document.dirty)
+        put("image_credits",document.imageCreditsState())
         savedTarget?.let {put("save_target",it.json())}
         put("foreground",colourPreviewOriginal?.first ?: document.foreground);put("background",colourPreviewOriginal?.second ?: document.background)
         put("corner_radius",document.cornerRadius.toDouble());put("stroke_width",document.strokeWidth.toDouble());put("brush_tip",document.brushTip);put("shape_style",document.shapeStyle)

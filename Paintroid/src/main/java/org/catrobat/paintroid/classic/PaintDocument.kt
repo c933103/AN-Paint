@@ -61,6 +61,29 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     private val history = RasterHistory(historyDirectory)
     private val undo = ArrayDeque<RasterHistory.Entry>()
     private val redo = ArrayDeque<RasterHistory.Entry>()
+    // Retain committed provenance through destructive edits: pixels cannot reliably
+    // reveal whether any part of an attributed image remains. New/open clears the document ledger.
+    private val committedCredits = linkedMapOf<String,ImageCredit>()
+    private var clipboardCredits: List<ImageCredit> = emptyList()
+    val imageCredits: List<ImageCredit> get() = (committedCredits.values + selection?.credits.orEmpty()).distinctBy {it.source}
+    fun imageCreditsState() = org.json.JSONObject().put("committed",ImageCredit.write(committedCredits.values))
+        .put("floating",ImageCredit.write(selection?.credits.orEmpty()))
+    fun restoreImageCredits(state: org.json.JSONObject?) {
+        committedCredits.clear()
+        ImageCredit.read(state?.optJSONArray("committed")).forEach { committedCredits[it.source]=it }
+        selection?.credits=ImageCredit.read(state?.optJSONArray("floating"))
+    }
+    fun editImageCredit(source: String, text: String) {
+        committedCredits[source]?.let {committedCredits[source]=it.copy(text=text)}
+        fun amend(credits: List<ImageCredit>)=credits.map {if(it.source==source) it.copy(text=text) else it}
+        selection?.let {s -> s.credits=amend(s.credits)}
+        clipboardCredits=amend(clipboardCredits)
+        listOf(undo,redo).forEach {stack ->
+            val revised=stack.map {it.copy(imageCredits=amend(it.imageCredits))}
+            stack.clear();stack.addAll(revised)
+        }
+        changed()
+    }
     private var gesture = false
     private var gestureDirty = false
     val canUndo get() = undo.isNotEmpty()
@@ -71,6 +94,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
             op(Path().apply { addRect(rect,Path.Direction.CW) },Path.Op.INTERSECT)
             offset(-rect.left,-rect.top)
         } }) {
+        var credits: List<ImageCredit> = emptyList()
         internal val geometry get() = SelectionGeometry(rect,rotation)
         internal fun transformedOutline(): Path? = outline?.let { local ->
             val matrix=Matrix().apply {
@@ -97,7 +121,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     }
 
     fun checkpoint(clearRedo: Boolean = true) {
-        val snapshot = history.capture(bitmap)
+        val snapshot = history.capture(bitmap,committedCredits.values.toList())
         undo.addLast(snapshot)
         if (clearRedo) { redo.forEach { history.discard(it) }; redo.clear() }
         // Limit disk history, never image resolution. Retain at least one complete step.
@@ -115,7 +139,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         if (!gesture) return
         val restored=history.restore(undo.last,bitmap)
         if (restored !== bitmap) bitmap.recycle()
-        bitmap=restored; history.discard(undo.removeLast()); gesture=false; dirty=gestureDirty; changed()
+        bitmap=restored; committedCredits.clear();undo.last.imageCredits.forEach {committedCredits[it.source]=it}; history.discard(undo.removeLast()); gesture=false; dirty=gestureDirty; changed()
     }
 
     fun edited() { dirty = true; changed() }
@@ -144,6 +168,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
             throw error
         }
         if (!asEdit) {
+            committedCredits.clear()
             undo.forEach { history.discard(it) }; undo.clear()
             redo.forEach { history.discard(it) }; redo.clear()
         }
@@ -171,12 +196,13 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     private fun moveHistory(from: ArrayDeque<RasterHistory.Entry>, to: ArrayDeque<RasterHistory.Entry>) {
         if (from.isEmpty()) { clearSelection(); changed(); return }
         finishSelection() // Redo must include the visible, transformed floating content.
-        val saved = history.capture(bitmap)
+        val saved = history.capture(bitmap,committedCredits.values.toList())
         try {
             if (bitmap.width != from.last.width || bitmap.height != from.last.height) allocationGuard(from.last.width, from.last.height)
             val restored = history.restore(from.last, bitmap)
             if (restored !== bitmap) bitmap.recycle()
             bitmap = restored; clearSelection()
+            committedCredits.clear();from.last.imageCredits.forEach {committedCredits[it.source]=it}
             history.discard(from.removeLast()); to.addLast(saved); edited()
         } catch (error: Throwable) { history.discard(saved); throw error }
     }
@@ -263,6 +289,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
             val rendered = selectionImage()!!
             s.draw(Canvas(bitmap),rendered,Paint(Paint.FILTER_BITMAP_FLAG))
             if (rendered !== s.image) rendered.recycle()
+            s.credits.forEach {committedCredits[it.source]=it}
             dirty = true
         }
         clearSelection(); changed()
@@ -298,7 +325,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun copySelection(): Boolean {
         val copied = transformedSelectionImage() ?: return false
-        clipboard?.recycle(); clipboard = copied
+        clipboard?.recycle(); clipboard = copied; clipboardCredits = imageCredits
         changed(); return true
     }
 
@@ -313,7 +340,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         return deleteSelection()
     }
 
-    fun paste(image: Bitmap? = clipboard, takeOwnership: Boolean = false): Boolean {
+    fun paste(image: Bitmap? = clipboard, takeOwnership: Boolean = false, credits: List<ImageCredit> = if(image === clipboard) clipboardCredits else emptyList()): Boolean {
         image ?: return false
         val copyRequired = !takeOwnership || !image.isMutable || !canonicalPixels(image)
         if (copyRequired) allocationGuard(image.width,image.height)
@@ -323,7 +350,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         if(takeOwnership && copy !== image) image.recycle()
         // Alpha is an internal floating-content mask. Commit composites it onto
         // the existing opaque canvas, including for an inserted transparent file.
-        selection = Selection(RectF(0f, 0f, copy.width.toFloat(), copy.height.toFloat()), copy, null, true)
+        selection = Selection(RectF(0f, 0f, copy.width.toFloat(), copy.height.toFloat()), copy, null, true).apply {this.credits=credits.toList()}
         edited(); return true
     }
 
@@ -400,7 +427,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         edited()
     }
 
-    fun clear() { finishSelection(); checkpoint(); bitmap.eraseColor(background); edited() }
+    fun clear() { finishSelection(); checkpoint(); bitmap.eraseColor(background); committedCredits.clear(); edited() }
 
     fun close() { clearSelection(); clipboard?.recycle(); bitmap.recycle(); history.close() }
 

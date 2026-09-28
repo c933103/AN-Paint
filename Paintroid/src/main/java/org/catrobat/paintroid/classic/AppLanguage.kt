@@ -116,7 +116,7 @@ internal object AppLanguage {
 
     fun showSettings(activity: Activity, changed: () -> Unit) {
         val current = selectedTag(activity).let { if (it.isEmpty()) deviceDefaultLabel(activity) else name(it) }
-        AlertDialog.Builder(activity).setTitle(ui(R.string.language20_settings))
+        EditorDialogBuilder(activity).setTitle(ui(R.string.language20_settings))
             .setItems(arrayOf(ui(R.string.language20_current, current))) { _, _ -> showPicker(activity, changed) }
             .setNegativeButton(ui(R.string.ui_done), null).show()
     }
@@ -128,15 +128,21 @@ internal object AppLanguage {
             text = ui(R.string.language20_translation_note)
             val padding = (20 * resources.displayMetrics.density).toInt()
             setPadding(padding, padding, padding, padding / 2)
+            LocaleTypography.typeface(activity)?.let {typeface=it}
+            VerticalUi.caption(this,128)
         }
         return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))
-            .setCustomTitle(note)
+            .setCustomTitle(if(VerticalText.uiVertical()) ColumnScrollView(activity).apply {addView(note)} else note)
             .setSingleChoiceItems(object: android.widget.ArrayAdapter<String>(activity,android.R.layout.simple_list_item_single_choice,labels) {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.
                     val view=super.getView(position,null,parent) as TextView
                     if(position==0) view.textLocale=deviceLocale(activity)
-                    if(choices[position]=="mn-Mong") VerticalUi.languageChoice(view)
+                    if(position>0) {
+                        val locale=Locale.forLanguageTag(choices[position])
+                        view.textLocale=locale
+                        VerticalUi.languageChoice(view,locale)
+                    }
                     return view
                 }
             }, choices.indexOf(selectedTag(activity))) { dialog, which ->
@@ -144,6 +150,10 @@ internal object AppLanguage {
                 if (choices[which] != selectedTag(activity)) {
                     select(activity, choices[which]); refresh(activity); changed()
                 }
-            }.setNegativeButton(ui(R.string.ui_cancel), null).show()
+            }.setNegativeButton(ui(R.string.ui_cancel), null).show().also { dialog ->
+                val cancel=dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                LocaleTypography.typeface(activity)?.let {cancel.typeface=it}
+                VerticalUi.caption(cancel,96)
+            }
     }
 }

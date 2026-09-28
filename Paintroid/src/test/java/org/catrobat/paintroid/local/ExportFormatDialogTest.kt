@@ -3,6 +3,7 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,6 +13,8 @@ import java.io.File
 import android.os.Bundle
 import android.os.Looper
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
@@ -86,6 +89,29 @@ class ExportFormatDialogTest {
             shadowOf(activity).nextStartedActivity
             activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
             assertFalse(activity.busy);assertNull(shadowOf(activity).nextStartedActivity)
+        }
+    }
+
+    @Test fun saveAndExportOfferCollapsedSelectableCreditsAndCopyThemWithoutStartingSave() {
+        val credit="Artwork — Author\nCC BY 4.0\nhttps://example.org/art"
+        activity.document.paste(Bitmap.createBitmap(2,2,Bitmap.Config.ARGB_8888),true,
+            listOf(org.catrobat.paintroid.classic.ImageCredit("https://example.org/art.png",credit)))
+        for(title in listOf("Save as…","Export as…")) {
+            menu(title)
+            val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            val view=dialog.window!!.decorView
+            val details=view.findViewWithTag<View>("export_credit_details")
+            assertEquals(View.GONE,details.visibility)
+            view.findViewWithTag<Button>("export_toggle_credits").performClick()
+            assertEquals(View.VISIBLE,details.visibility)
+            val text=view.findViewWithTag<TextView>("export_credit_text")
+            assertEquals(credit,text.text.toString());assertTrue(text.isTextSelectable)
+            view.findViewWithTag<Button>("export_copy_credits").performClick()
+            val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            assertEquals(credit,clipboard.primaryClip!!.getItemAt(0).text.toString())
+            assertNull(shadowOf(activity).nextStartedActivityForResult)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            assertNotNull(activity.document.selection)
         }
     }
 
