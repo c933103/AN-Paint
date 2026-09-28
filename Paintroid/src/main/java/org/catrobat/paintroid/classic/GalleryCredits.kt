@@ -76,7 +76,7 @@ internal object GalleryCredits {
         action(ui(R.string.ui_save),"gallery_credit_save") {save();Toast.makeText(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT).show()}
         action(ui(R.string.ui_done),"gallery_credit_done") {save();dialog.dismiss()}
         body.addView(actions)
-        dialog.setContentView(body)
+        dialog.setContentView(body);LocaleTypography.install(body)
         dialog.window?.setLayout(-1,(activity.resources.displayMetrics.heightPixels*.85f).toInt())
         dialog.show()
         dialog.window?.setLayout(-1,(activity.resources.displayMetrics.heightPixels*.85f).toInt())
