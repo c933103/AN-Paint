@@ -89,6 +89,12 @@ See [illustration source notes](docs/ILLUSTRATION_SOURCES.md).
 
 ## Languages and text
 
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
+Every localization assertion below is a prior claim pending full recheck.
+
 Choose **View > Languages** to override the device language. The system-default
 choice is labelled in the device's language, independently of the selected app
 language. Android 13 and newer also expose the setting in system App languages.
