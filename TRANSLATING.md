@@ -1,5 +1,9 @@
 # Translating AN Paint
 
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
 `Paintroid/src/main/res/values/strings.xml`, together with the other translatable
 XML files in `Paintroid/src/main/res/values/`.
@@ -15,7 +19,7 @@ should be corrected directly in the locale's `strings.xml`.
 
 The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
-temporary migration condition while the full-catalogue pass is being completed.
+temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
 ## Editing a translation
 
@@ -100,9 +104,9 @@ python3 -m unittest discover -s tools -p 'test_translations.py'
 
 The first command checks catalogue/resource structure and format placeholders.
 `--complete` additionally requires every translatable source key and plural
-resource in every offered non-English locale. During the current completion pass,
-the structural check is suitable for intermediate commits; the complete check is
-the acceptance criterion for finishing the pass.
+resource in every offered non-English locale. These are structural checks only. Key coverage does not establish semantic
+correctness, completed review, or acceptance of the original conversation work.
+All earlier progress remains withdrawn pending full recheck.
 
 Then run the normal Android unit/lint checks and inspect both orientations, short
 screens, large font sizes, dialogs, accessibility labels and RTL layouts as

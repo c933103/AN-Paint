@@ -14,9 +14,9 @@ import mainstream_translations
 import translation_catalogues as translations
 
 
-# This is the completed batch scope, not a fixed key count. New English keys
-# must be translated in every completed catalogue before the batch can pass.
-COMPLETED_TAGS = set("""
+# This is the required resource-check scope, not accepted task completion.
+# All earlier progress is withdrawn; preserve every key-coverage assertion.
+SCOPED_TAGS = set("""
     ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
     tl ceb ms id sw fi hu af nl et lv lt
     es-ES es-419 fr de ru ar eo
@@ -70,9 +70,9 @@ class TranslationCatalogueTests(unittest.TestCase):
                             translations.placeholders("%1$d %%"))
 
 
-    def test_completed_batch_catalogues_are_complete(self):
-        self.assertLessEqual(COMPLETED_TAGS, set(translations.offered_tags()))
-        for tag in sorted(COMPLETED_TAGS):
+    def test_scoped_catalogues_have_all_source_keys(self):
+        self.assertLessEqual(SCOPED_TAGS, set(translations.offered_tags()))
+        for tag in sorted(SCOPED_TAGS):
             with self.subTest(tag=tag):
                 self.assertEqual(
                     [], translations.validate_catalogue(tag, require_complete=True), tag,
