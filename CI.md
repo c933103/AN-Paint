@@ -1,6 +1,10 @@
 # Android build and test workflow
 
-Updated 14 September 2026. APK production, regression checks and emulator results
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
+Updated 23 September 2026. APK production, regression checks and emulator results
 are separate outcomes. An emulator must not prevent obtaining an already-built
 APK or completing unrelated work.
 
@@ -8,16 +12,28 @@ APK or completing unrelated work.
 
 | Trigger / choice | Regression and lint | Universal APK | Emulator coverage |
 |---|---|---|---|
-| Code push to `develop`, or pull request targeting it | Yes, independently | Yes | API 35, all native and app checks |
+| Code push to `develop`, or pull request targeting any branch | Yes, independently | Yes | API 35, all native and app checks |
 | Run workflow → `current` | Yes | Yes | API 35 |
 | Run workflow → `full` | Yes | Yes | API 30 and 35 in parallel |
 | Run workflow → `none` | Yes | Yes | Explicitly not run |
 | Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
 
 Direct pushes to a working branch do not duplicate a PR/default-branch run.
+Pull requests targeting another working branch receive the same checks as those
+targeting `develop`. Stacked localization PRs therefore do not need temporary
+CI-only PRs or retargeting to obtain build and regression results.
 New commits cancel obsolete runs for the same branch/PR. Failed emulator matrix
 jobs do not cancel the other platform. A failed test remains a failed check;
 there is no `continue-on-error` or replacement of failures with green results.
+
+Host translation checks cover every Android catalogue, including English and
+resource locales not listed in the picker. They reject equivalent resource
+directories, Android quoting errors, altered syntax/licence identifiers,
+incorrect GIF limit numbers and format-placeholder mismatches. The scoped
+localization batch also has a completeness gate against the current default
+catalogue, so adding an English string requires updating that whole batch.
+These structural checks do not certify linguistic accuracy; semantic review
+remains necessary, especially for minority languages.
 
 The build job uploads `apk-and-source-<commit>` immediately after assembly and
 before compiling instrumented-test APKs. Regression/lint runs in a separate job;
