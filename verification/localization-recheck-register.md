@@ -12,6 +12,10 @@ reinstate any withdrawn conclusion. The rows below retain their full-recheck
 status: complete latest-thread reconciliation and broader semantic/operational
 obligations are still open. Consult the linked records for the exact new work
 rather than interpreting the reset status as absence of these later edits.
+The same report now records the continuation's Malay/Indonesian, Hakka,
+Mongolian and Korean corrections, bounded crop-plural and cursor-help reviews,
+the credit-transfer repairs, and PR9 conflict repair. These fresh results do
+not reinstate the withdrawn broad claims or close multi-part rows by proxy.
 
 The scope remains the latest summary PR, the latest discussions and conclusions in all eight other threads, their original PRs and shared base, and related integration findings, including findings outside PR reviews. Completing the other 81 locales is excluded. Checking a specifically implicated shared defect in another locale does not expand that scope to completing that locale.
 

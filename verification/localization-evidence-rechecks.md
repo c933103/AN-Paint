@@ -6,6 +6,12 @@ This overlay applies to earlier lexical/corpus classifications and source/catalo
 
 The [main recheck register](localization-recheck-register.md) governs this reset. The other 81 locales remain outside scope.
 
+**6 October follow-up:** the [new Hakka context review](hakka-context-recheck-2026-10-06.md)
+and [new Korean context/evidence review](korean-context-recheck-2026-10-06.md)
+record current corrections, independently replayed coordinates and specific
+retrieval limits. Their bounded results do not reinstate historical TSV labels
+or complete all obligations in the rows below.
+
 | ID | Prior evidence record to recheck | Current status |
 | --- | --- | --- |
 | EV-001 | [KOREAN_HANJA_REVIEW.tsv, data row 1](../translations/KOREAN_HANJA_REVIEW.tsv) — all attestations, coordinates, context and decisions in this record | Pending full recheck |

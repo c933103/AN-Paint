@@ -124,4 +124,3 @@ or Android runtime sign-off. No new implementation-mirroring test was added.
 | 18 | `other` | Taikyti 18 vaizdų. |
 | 19 | `other` | Taikyti 19 vaizdų. |
 | 20 | `other` | Taikyti 20 vaizdų. |
-

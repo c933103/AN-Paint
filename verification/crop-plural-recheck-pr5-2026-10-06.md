@@ -157,4 +157,3 @@ or Android runtime sign-off. No new implementation-mirroring test was added.
 | 18 | `many` | تُطبق على 18 صورة. |
 | 19 | `many` | تُطبق على 19 صورة. |
 | 20 | `many` | تُطبق على 20 صورة. |
-
