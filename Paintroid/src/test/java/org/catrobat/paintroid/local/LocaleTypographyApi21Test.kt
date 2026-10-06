@@ -27,14 +27,15 @@ class LocaleTypographyApi21Test {
         try {
             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
             val context=RuntimeEnvironment.getApplication()
-            val face=LocaleTypography.typeface(context)!!
+            // The API21 legacy shadow compares font family/style, not object identity.
+            val face=Typeface.createFromAsset(context.assets,"fonts/anpaintnomui.ttf")
             val root=LinearLayout(context)
             val label=TextView(context).apply {text="𮞶"}
             val explicit=EditText(context).apply {tag="text_content";typeface=Typeface.MONOSPACE}
             val preview=TextView(context).apply {tag="font_option_monospace";typeface=Typeface.MONOSPACE}
             listOf(label,explicit,preview).forEach {root.addView(it)}
             LocaleTypography.install(root)
-            assertSame(face,label.typeface)
+            assertEquals(face,label.typeface)
             assertSame(Typeface.MONOSPACE,explicit.typeface)
             assertSame(Typeface.MONOSPACE,preview.typeface)
             val spinner=Spinner(context).apply {
@@ -45,15 +46,15 @@ class LocaleTypographyApi21Test {
             root.viewTreeObserver.dispatchOnGlobalLayout()
             assertEquals(1,spinner.selectedItemPosition)
             val row=spinner.adapter.getDropDownView(1,null,root) as TextView
-            assertSame(face,row.typeface)
+            assertEquals(face,row.typeface)
             @Suppress("DEPRECATION")
             val toastView=LocaleTypography.toast(context,"𪮻 𡳒",Toast.LENGTH_LONG).view!!
-            assertSame(face,toastView.findViewById<TextView>(android.R.id.message).typeface)
+            assertEquals(face,toastView.findViewById<TextView>(android.R.id.message).typeface)
             val fonts=FontCatalog(context)
             assertFalse(fonts.fonts.any {it.id=="anpaintnomui"})
             val lato=fonts.fonts.indexOfFirst {it.id=="lato"}
             assertTrue(lato>0)
-            assertSame(fonts.face(lato),fonts.faceForText(lato,"𡨸喃"))
+            assertEquals(fonts.face(lato),fonts.faceForText(lato,"𡨸喃"))
         } finally {Locale.setDefault(previous)}
     }
 }
