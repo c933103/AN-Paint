@@ -68,7 +68,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         canvas.drawColor(EditorColours.surfaceDim)
         val layout = dragging?.let { assembly.layoutWithout(it) } ?: assembly.layout()
         if (layout.isEmpty() && selectedId == null) {
-            val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = EditorColours.onSurface; textSize = 16*density; textAlign = Paint.Align.CENTER }
+            val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = EditorColours.onSurface; textSize = 16*density; textAlign = Paint.Align.CENTER; typeface = VerticalText.uiTypeface(context) }
             canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p); return
         }
         canvas.save(); canvas.translate(panX,panY); canvas.scale(zoom,zoom)

@@ -55,7 +55,7 @@ class MediaGalleryActivity : Activity() {
         fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
             val credits=ImageCredit.text(documentCredits)
-            if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
+            if(credits.isBlank()) LocaleTypography.toast(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
             else GalleryCredits.copy(this,credits)
         }
         action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this,documentCredits) {source,text ->

@@ -56,7 +56,9 @@ class LocaleFontCoverageTest(unittest.TestCase):
         points = mapped_codepoints(font)
         text = ''.join(ET.parse(RES / 'values-b+vi+Hani/strings.xml').getroot().itertext())
         text += '㗂越（𡨸喃）'
-        required = {ord(c) for c in text if 0x3400 <= ord(c) <= 0x9fff or 0x20000 <= ord(c) <= 0x3ffff}
+        # Guard punctuation and Latin UI text as well as every Han plane.
+        # XML layout line breaks are not glyphs; ordinary spaces remain covered.
+        required = {ord(c) for c in text if c not in '\n\r\t'}
         self.assertTrue(any(cp > 0xffff for cp in required))
         self.assertEqual([], [f'U+{cp:04X}' for cp in sorted(required - points)])
         # The review's uncommon Extension-F glyph remains a regression sample.

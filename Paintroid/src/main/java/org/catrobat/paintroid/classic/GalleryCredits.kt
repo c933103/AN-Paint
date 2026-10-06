@@ -39,14 +39,14 @@ internal object GalleryCredits {
     fun copy(context: Context, text: String) {
         (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
             .setPrimaryClip(ClipData.newPlainText(ui(R.string.ui_image_credits),text))
-        Toast.makeText(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT).show()
+        LocaleTypography.toast(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT).show()
     }
 
     /** Editing is optional and separate from insertion. Footer stays outside scrolling text. */
     fun showEditor(activity: Activity, credits: List<ImageCredit>, onEdit: (String,String)->Unit) {
         val entries=credits.associateBy {it.source}.toMutableMap()
         val sources=entries.keys.sorted()
-        if(sources.isEmpty()) { Toast.makeText(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return }
+        if(sources.isEmpty()) { LocaleTypography.toast(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return }
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(12),dp(12),dp(12),dp(8));setBackgroundColor(EditorColours.surface)}
         body.addView(TextView(activity).apply {text=ui(R.string.gallery_credit_edit_hint);textSize=13f;setTextColor(EditorColours.onSurface)})
@@ -80,7 +80,7 @@ internal object GalleryCredits {
                 dialog.getButton(which).apply {tag=tagName;setOnClickListener {run()}}
             }
             action(AlertDialog.BUTTON_NEGATIVE,"gallery_credit_copy") {save();copy(activity,field.text.toString())}
-            action(AlertDialog.BUTTON_NEUTRAL,"gallery_credit_save") {save();Toast.makeText(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT).show()}
+            action(AlertDialog.BUTTON_NEUTRAL,"gallery_credit_save") {save();LocaleTypography.toast(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT).show()}
             action(AlertDialog.BUTTON_POSITIVE,"gallery_credit_done") {save();dialog.dismiss()}
         }
         dialog.show()

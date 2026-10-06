@@ -95,7 +95,7 @@ object LegalInfo {
         }
         action(ui(R.string.ui_copy_all),"terms_copy") {
             (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))
-            Toast.makeText(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
+            LocaleTypography.toast(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
         }
         action(ui(R.string.ui_other_terms),"terms_more") { _ ->
             val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences),ui(R.string.ui_webp_codec_licences),ui(R.string.ui_heic_avif_codec_licences))
