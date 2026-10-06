@@ -17,6 +17,32 @@ The live Android locale files under `Paintroid/src/main/res/values*/strings.xml`
 
 The historical notes below describe how the partial catalogues were originally assembled. Statements that localized XML is generated, that English fallback is the intended final state, or that imported wording has precedence describe that older workflow and are not current policy.
 
+
+## Jeju, Manchu, Ainu and Okinawan repair (23 September 2026)
+
+[PR9-specific historical record before the reset](https://github.com/c933103/AN-Paint/blob/97e511dc63f1b2011300ce49fd1582b4de23ce3d/translations/README.md).
+The shared-base record is linked above; both remain withdrawn historical claims.
+
+The five catalogues `jje`, `mnc-Mong`, `ain-Kana`, `ain-Latn` and `ryu` now
+cover the current source strings and plural forms. The old `cju` preference
+migrates to `jje`; only `jje` appears in the picker. Historical starter-coverage
+notes above describe earlier versions.
+
+The repair reviews the active editor, cursor, recovery, assembly and credit
+instructions for missing clauses and language-specific wording. Jeju and
+Okinawan help was rewritten beyond Korean/Japanese ending substitutions, and
+both Ainu scripts and Manchu received substantial dictionary-backed repairs.
+Resource coverage is not proof of fluent language: technical loans and remaining
+language-review limitations are stated in the catalogue comments and semantic
+audit documents. See [the Ainu audit](AINU_SEMANTIC_AUDIT.md) and
+[the Manchu audit](MANCHU_SEMANTIC_AUDIT.md).
+
+Mongolian-script locales now share vertical direction, bundled font selection,
+and the language-picker caption layout. The picker keeps the locale code
+horizontal and preserves the full accessible native name. Regression checks
+cover Manchu rendering, the saved Jeju migration and dynamic catalogue completeness.
+
+
 ---
 
 # Reused translation vocabulary

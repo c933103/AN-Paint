@@ -56,7 +56,7 @@ internal object VerticalUi {
     }
     fun languageChoice(view: TextView) {
         val value=view.text.toString()
-        val autonym=value.substringBefore(" [mn-Mong]")
+        val autonym=value.substringBefore(" [")
         // Fold the two joined words into adjacent vertical columns. Keep the
         // same native-name + code text as every other option, including for accessibility.
         val columns=autonym.trim().split(Regex("\\s+")).joinToString("\n")
