@@ -17,12 +17,12 @@ import kotlin.math.roundToLong
 class NormalizeImagesDialog(private val activity: Activity,private val assembly: ImageAssembly,private val axis: NormalizeAxis) {
     fun show(): AlertDialog {
         require(assembly.images.isNotEmpty())
-        val name = if (axis == NormalizeAxis.WIDTH) "width" else "height"
+        val isWidth = axis == NormalizeAxis.WIDTH
         val sizes = assembly.images.map { if (axis == NormalizeAxis.WIDTH) it.placedSize.width else it.placedSize.height }
         val largest = sizes.maxOrNull()!!; val smallest = sizes.minOrNull()!!
         fun dp(n: Int) = (n*activity.resources.displayMetrics.density+.5f).toInt()
         val body = LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL; setPadding(dp(18),dp(6),dp(18),dp(8)) }
-        body.addView(TextView(activity).apply { text=ui(R.string.ui_give_all_images_the_same_each_image_keeps, sizes.size, name) })
+        body.addView(TextView(activity).apply { text=ui(if (isWidth) R.string.ui_normalize_width_intro else R.string.ui_normalize_height_intro, sizes.size) })
         val units = RadioGroup(activity).apply { orientation=LinearLayout.HORIZONTAL }
         val input = EditText(activity).apply { tag="normalize_value"; isSingleLine=true; setSelectAllOnFocus(true); inputType=InputType.TYPE_CLASS_NUMBER; setText(largest.toString()) }
         val info = TextView(activity).apply { tag="normalize_info"; setPadding(0,dp(8),0,dp(8)) }
@@ -43,7 +43,7 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
                 val target=value() ?: throw IllegalArgumentException(ui(R.string.ui_enter_a_positive_size))
                 val normalized=assembly.images.map { it.copy(normalization=ImageNormalization(axis,target)).placedSize }
                 val other=normalized.map { if (axis==NormalizeAxis.WIDTH) it.height else it.width }
-                info.text=ui(R.string.ui_each_px_px_percent_is_relative_to_the, name, target, if (axis==NormalizeAxis.WIDTH) ui(R.string.ui_heights) else ui(R.string.ui_widths), other.minOrNull(), other.maxOrNull(), name, largest)
+                info.text=ui(if (isWidth) R.string.ui_normalize_width_info else R.string.ui_normalize_height_info, target, other.minOrNull(), other.maxOrNull(), largest)
                 valid=true
             } catch (error: IllegalArgumentException) { info.text=error.message }
             dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled=valid
@@ -54,12 +54,12 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
                 setOnClickListener {
                     val old=value(); units.check(id); percent=index==1
                     input.inputType=InputType.TYPE_CLASS_NUMBER or if (percent) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0
-                    input.contentDescription=ui(R.string.ui_common_in, name, if (percent) ui(R.string.ui_percent_of_pixels, largest) else ui(R.string.ui_pixels_6ec9c2))
+                    input.contentDescription=if (percent) ui(if (isWidth) R.string.ui_normalize_width_input_percent else R.string.ui_normalize_height_input_percent, largest) else ui(if (isWidth) R.string.ui_width else R.string.ui_height, "px")
                     old?.let { display(it) }; refresh()
                 }
             },LinearLayout.LayoutParams(0,-2,1f))
         }
-        input.contentDescription=ui(R.string.ui_common_in_pixels, name)
+        input.contentDescription=ui(if (isWidth) R.string.ui_width else R.string.ui_height, "px")
         body.addView(units); body.addView(input)
         val presets=LinearLayout(activity)
         listOf(ui(R.string.ui_smallest) to smallest,ui(R.string.ui_largest) to largest).forEach { (label,pixels) ->

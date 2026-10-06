@@ -78,6 +78,21 @@ class TranslationCatalogueTests(unittest.TestCase):
                     [], translations.validate_catalogue(tag, require_complete=True), tag,
                 )
 
+    def test_normalization_messages_use_canonical_crowdin_catalogues(self):
+        keys = {
+            "ui_normalize_width_intro", "ui_normalize_height_intro",
+            "ui_normalize_width_info", "ui_normalize_height_info",
+            "ui_normalize_width_input_percent", "ui_normalize_height_input_percent",
+        }
+        # Crowdin exports this file, not default companion XML files.
+        source = translations.read_strings(translations.RES / "values/strings.xml")
+        self.assertLessEqual(keys, set(source))
+        # Keep the real-language scope and the two existing layout fixtures.
+        paths = translations.catalogue_paths()
+        for tag in sorted(SCOPED_TAGS):
+            with self.subTest(tag=tag):
+                self.assertLessEqual(keys, set(translations.read_strings(paths[tag])))
+
     def test_new_korean_and_vietnamese_script_variants_are_registered(self):
         tags = translations.offered_tags()
         self.assertIn("ko-Kore-KR", tags)
