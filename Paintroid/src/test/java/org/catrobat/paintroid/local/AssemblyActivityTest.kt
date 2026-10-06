@@ -139,11 +139,17 @@ class AssemblyActivityTest {
         assertNotNull(result.getStringExtra("assembly_output"))
         val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java)
         val main=mainController.setup().get(); main.document.newImage(5,7); main.document.bitmap.setPixel(2,3,Color.MAGENTA)
+        val credit=ImageCredit("https://example.org/previous.png","Previous canvas artwork — original author")
+        main.document.paste(Bitmap.createBitmap(1,1,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.RED)},true,listOf(credit))
+        main.document.finishSelection()
         main.onActivityResult(ClassicPaintActivity.ASSEMBLY_IMAGE,Activity.RESULT_OK,result)
         val end=System.nanoTime()+10_000_000_000L
         while (main.busy && System.nanoTime()<end) { idle(); Thread.sleep(10) }; idle()
         assertNull(main.lastIoError); assertEquals(36,main.document.bitmap.width); assertEquals(24,main.document.bitmap.height); assertEquals(Color.GREEN,main.document.bitmap.getPixel(30,5))
+        assertTrue(main.document.imageCredits.isEmpty())
         main.document.undo(); assertEquals(5,main.document.bitmap.width); assertEquals(7,main.document.bitmap.height); assertEquals(Color.MAGENTA,main.document.bitmap.getPixel(2,3))
+        assertEquals(listOf(credit),main.document.imageCredits)
+        main.document.redo();assertTrue(main.document.imageCredits.isEmpty());assertEquals(Color.GREEN,main.document.bitmap.getPixel(30,5))
         assertFalse(File(main.filesDir,result.getStringExtra("assembly_output")!!).exists())
         mainController.pause().stop(); val stopEnd=System.nanoTime()+10_000_000_000L
         while (main.busy && System.nanoTime()<stopEnd) { idle(); Thread.sleep(10) }; mainController.destroy()

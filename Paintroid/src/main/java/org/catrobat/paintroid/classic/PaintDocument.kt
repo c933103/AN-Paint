@@ -68,10 +68,15 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
     val imageCredits: List<ImageCredit> get() = (committedCredits.values + selection?.credits.orEmpty()).distinctBy {it.source}
     fun imageCreditsState() = org.json.JSONObject().put("committed",ImageCredit.write(committedCredits.values))
         .put("floating",ImageCredit.write(selection?.credits.orEmpty()))
+        .put("selection_sources_known",true)
     fun restoreImageCredits(state: org.json.JSONObject?) {
         committedCredits.clear()
         ImageCredit.read(state?.optJSONArray("committed")).forEach { committedCredits[it.source]=it }
-        selection?.credits=ImageCredit.read(state?.optJSONArray("floating"))
+        val floating=ImageCredit.read(state?.optJSONArray("floating"))
+        // Older drafts did not attach canvas provenance to lifted selections. Their empty
+        // floating list cannot distinguish lifted pixels from an uncredited insertion.
+        selection?.credits=if(state?.optBoolean("selection_sources_known")==true) floating
+            else (committedCredits.values+floating).distinctBy {it.source}
     }
     fun editImageCredit(source: String, text: String) {
         committedCredits[source]?.let {committedCredits[source]=it.copy(text=text)}
@@ -157,7 +162,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         catch (error: Throwable) { copy.recycle(); throw error }
     }
 
-    fun replace(image: Bitmap, asEdit: Boolean = false) {
+    fun replace(image: Bitmap, asEdit: Boolean = false, retainCredits: Boolean = asEdit) {
         val incoming = if (!image.isMutable || !canonicalPixels(image)) copyToCanvasFormat(image) else image
         try {
             Canvas(incoming).drawColor(background,PorterDuff.Mode.DST_OVER)
@@ -167,8 +172,8 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
             if (incoming !== image) incoming.recycle()
             throw error
         }
+        if (!retainCredits) committedCredits.clear()
         if (!asEdit) {
-            committedCredits.clear()
             undo.forEach { history.discard(it) }; undo.clear()
             redo.forEach { history.discard(it) }; redo.clear()
         }
@@ -260,7 +265,11 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         canvas.translate(-rect.left.toFloat(), -rect.top.toFloat())
         if (mask != null) canvas.clipPath(mask)
         canvas.drawBitmap(bitmap, 0f, 0f, null)
-        selection = Selection(RectF(rect), image, mask?.let { Path(it) }, false)
+        // A crop of flattened canvas pixels can contain any committed source. Keep that
+        // conservative provenance on the selection, separate from a newly pasted image.
+        selection = Selection(RectF(rect), image, mask?.let { Path(it) }, false).apply {
+            credits = committedCredits.values.toList()
+        }
         changed()
     }
 
@@ -325,7 +334,7 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun copySelection(): Boolean {
         val copied = transformedSelectionImage() ?: return false
-        clipboard?.recycle(); clipboard = copied; clipboardCredits = imageCredits
+        clipboard?.recycle(); clipboard = copied; clipboardCredits = selection!!.credits.toList()
         changed(); return true
     }
 

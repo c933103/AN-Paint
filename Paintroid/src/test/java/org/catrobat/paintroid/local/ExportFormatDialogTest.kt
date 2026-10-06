@@ -19,7 +19,9 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import org.catrobat.paintroid.classic.ClassicPaintActivity
+import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.ExportOptions
+import org.catrobat.paintroid.classic.ImageCredit
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.NumericSlider
 import org.catrobat.paintroid.classic.SaveOptionsDialog
@@ -113,6 +115,34 @@ class ExportFormatDialogTest {
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             assertNotNull(activity.document.selection)
         }
+    }
+
+    @Test fun originalMultilingualCreditsStaySelectableAndCopyableInHorizontalAndVerticalDialogs() {
+        val originalTag=AppLanguage.selectedTag(activity)
+        val credits=listOf(ImageCredit("https://example.org/one.png","作品 — 作者\nCC BY 4.0"),
+            ImageCredit("https://example.org/two.png","Зураг — Зохиогч\nhttps://example.org/two"))
+        val text=ImageCredit.text(credits)
+        var confirmed=0
+        try {
+            for(tag in listOf("ja","mn-Mong")) for(export in listOf(false,true)) {
+                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+                val dialog=SaveOptionsDialog(activity,ExportOptions(),confirm={confirmed++},cancel={},export=export,imageCredits=text).show()
+                idle()
+                val view=dialog.window!!.decorView
+                val details=view.findViewWithTag<View>("export_credit_details")
+                assertEquals(View.GONE,details.visibility)
+                view.findViewWithTag<Button>("export_toggle_credits").performClick()
+                val field=view.findViewWithTag<TextView>("export_credit_text")
+                assertEquals(text,field.text.toString());assertTrue(field.isTextSelectable)
+                view.findViewWithTag<Button>("export_copy_credits").performClick()
+                val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                assertEquals(text,clipboard.primaryClip!!.getItemAt(0).text.toString())
+                assertEquals(0,confirmed);assertTrue(dialog.isShowing)
+                view.findViewWithTag<Button>("export_toggle_credits").performClick()
+                assertEquals(View.GONE,details.visibility)
+                dialog.dismiss()
+            }
+        } finally {AppLanguage.select(activity,originalTag);AppLanguage.refresh(activity)}
     }
 
     @Test fun invalidNamesStayInPanelAndCancellingDoesNotStartThePicker() {

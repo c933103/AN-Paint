@@ -1208,7 +1208,10 @@ class ClassicPaintActivity : Activity() {
                                 // Refit after the selection drawer changes the available viewport.
                                 paintCanvas.fit();paintCanvas.post { if(!isDestroyed && document.selection!=null) paintCanvas.fit() }
                             }
-                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit); filename = source.name;savedTarget=null; paintCanvas.fit() }
+                            // An assembly result replaces every canvas pixel. Preserve the previous
+                            // image and its credits in Undo, but do not attribute the new composite
+                            // to unrelated gallery sources from the previous canvas.
+                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false); filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
                             if (document.bitmap !== bitmap && document.selection?.image !== bitmap) bitmap.recycle()
