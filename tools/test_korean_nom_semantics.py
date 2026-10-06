@@ -42,6 +42,26 @@ class KoreanNomContextTests(unittest.TestCase):
         self.assertIn('커서', v['formats22_pdf_dimensions'])
         self.assertNotIn('지시자', v['formats22_pdf_dimensions'])
 
+    def test_korean_recovery_and_assembly_errors_name_available_commands(self):
+        for locale in ('b+ko+KR', 'b+ko+KP', 'b+ko+Kore+KR'):
+            with self.subTest(locale=locale):
+                v = strings(locale)
+                for message, command in (
+                    ('ui_recovery_copy_exported_extract_canvas_png_from_the', 'ui_load_image'),
+                    ('ui_the_assembly_output_is_unavailable_reopen_image_assembly',
+                     'ui_image_assembly'),
+                ):
+                    self.assertIn(v['ui_menu_file'] + ' → ' + v[command], v[message])
+
+    def test_korean_language_note_keeps_heading_and_english_fallback(self):
+        for locale in ('b+ko+KR', 'b+ko+KP', 'b+ko+Kore+KR'):
+            with self.subTest(locale=locale):
+                v = strings(locale)
+                note = v['language20_translation_note']
+                self.assertTrue(note.startswith(v['language20_app_language'] + '\\n\\n'))
+                self.assertIn('영어로', note)
+                self.assertIn('아직 번역되지 않은', note)
+
     def test_all_five_manuals_name_the_live_routes(self):
         for locale in ('b+ko+KR', 'b+ko+KP', 'b+ko+Kore+KR', 'vi', 'b+vi+Hani'):
             with self.subTest(locale=locale):

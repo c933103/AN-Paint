@@ -71,11 +71,13 @@ def verify(path):
         assert row["status"] in ("accepted_occurrence", "rejected_ui_sense"), row
 
     accepted = sum(row["status"] == "accepted_occurrence" for row in review)
-    print(f"Verified {len(review)} source spans in {len(records)} records: "
-          f"{accepted} accepted occurrences, {len(review) - accepted} rejected UI senses")
+    print(f"Mechanically verified {len(review)} source spans in {len(records)} records.")
+    print(f"Historical TSV labels (not renewed acceptance): {accepted} "
+          f"accepted_occurrence; {len(review) - accepted} rejected_ui_sense")
     print(f"Extraction: {occurrences} annotated occurrences; "
           f"{len(matched_pairs)}/{len(app_pairs)} app pairs found before contextual review")
-    print("Coordinates verified; semantic decisions remain the recorded human-readable review.")
+    print("Coordinates verified only. Historical semantic decisions remain withdrawn "
+          "pending independent contextual recheck.")
 
 
 if __name__ == "__main__":
