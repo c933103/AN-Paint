@@ -182,7 +182,7 @@ class ClassicPaintActivity : Activity() {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
             onCursorDrawingToggled={ drawing ->
-                Toast.makeText(this@ClassicPaintActivity,ui(if(drawing) R.string.ui_cursor_pan_draw32 else R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
+                LocaleTypography.toast(this@ClassicPaintActivity,ui(if(drawing) R.string.ui_cursor_pan_draw32 else R.string.ui_cursor_pan_move32),Toast.LENGTH_LONG).show()
             }
             onPick={ colour -> recentColours.add(colour);refreshRecentColours();updateColours();updateStatus();scheduleAutosave() }
             onText={ x,y -> showTextDialog(x,y) }
@@ -517,7 +517,7 @@ class ClassicPaintActivity : Activity() {
     private fun actionIcon(icon: EditIcon, tagName: String, action: () -> Unit) = ActionButton(this, icon).apply {
         tag = tagName
         setOnClickListener { if (!busy) editAction(action) }
-        setOnLongClickListener { Toast.makeText(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT).show(); true }
+        setOnLongClickListener { LocaleTypography.toast(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT).show(); true }
     }
 
     private fun makeHeader() {
@@ -1234,7 +1234,7 @@ class ClassicPaintActivity : Activity() {
                 val name=displayName(uri)
                 if(sharing) encoded=null
                 runOnUiThread {if(!isDestroyed) {
-                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();Toast.makeText(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
+                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();LocaleTypography.toast(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT).show()
                     if(sharing) shareSavedImage(file,options.format)
                     val action=afterSave;afterSave=null
                     if(exporting && action!=null) message(ui(R.string.ui_export_did_not_save23)) else action?.invoke()
@@ -1314,7 +1314,7 @@ class ClassicPaintActivity : Activity() {
             val on=!paintCanvas.cursorMode
             paintCanvas.setCursorMode(on);showToolOptions(paintCanvas.tool)
             cursorOptionsExpanded=true;populateCursorOptions();selectTab("View");scheduleAutosave()
-            if(on) Toast.makeText(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+"\n"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG).show()
+            if(on) LocaleTypography.toast(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+"\n"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG).show()
         })
         column.addView(button(ui(R.string.ui_how_to_use),"cursor_help") {showCursorHelp()})
         val shapeRow=LinearLayout(this).apply {gravity=Gravity.CENTER_VERTICAL;isBaselineAligned=false}

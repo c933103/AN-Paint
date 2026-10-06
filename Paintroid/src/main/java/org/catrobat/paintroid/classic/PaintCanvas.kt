@@ -573,7 +573,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         val grip=rotationHandle(s);val top=s.geometry.point(s.rect.centerX(),s.rect.top)
         canvas.drawLine(top.x,top.y,grip.x,grip.y,edge)
         canvas.drawCircle(grip.x,grip.y,7*d,fill);canvas.drawCircle(grip.x,grip.y,7*d,edge)
-        val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom }
+        val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom;typeface=VerticalText.uiTypeface(context) }
         canvas.drawText(ui(R.string.ui_rotate),grip.x+10*d,grip.y+4*d,text)
         s.geometry.resizeHandles().values.forEach { point ->
             val r=RectF(point.x-5*d,point.y-5*d,point.x+5*d,point.y+5*d)

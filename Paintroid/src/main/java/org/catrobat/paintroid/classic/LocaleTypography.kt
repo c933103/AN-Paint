@@ -4,6 +4,8 @@ package org.catrobat.paintroid.classic
 import android.content.Context
 import android.database.DataSetObserver
 import android.graphics.Typeface
+import android.os.Build
+import android.widget.Toast
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -26,6 +28,14 @@ internal object LocaleTypography {
         val asset=asset(locale) ?: return null
         return faces.getOrPut(asset) {Typeface.createFromAsset(context.assets,asset)}
     }
+    /** On API 21–29 toast text lives in its own window, outside Activity roots.
+     * API 30+ standard toasts are system-rendered; their font coverage is a separate limit.
+     */
+    @Suppress("DEPRECATION")
+    fun toast(context: Context,text: CharSequence,duration: Int): Toast =
+        Toast.makeText(context,text,duration).also {toast ->
+            if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}
+        }
     /** Spinner popups are separate windows, outside the Activity's view tree. */
     private class TypefaceChoices(private val source: SpinnerAdapter,private val font: Typeface): BaseAdapter() {
         override fun getCount()=source.count

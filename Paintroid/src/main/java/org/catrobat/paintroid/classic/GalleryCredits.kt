@@ -40,13 +40,13 @@ internal object GalleryCredits {
     fun copy(context: Context, text: String) {
         (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
             .setPrimaryClip(ClipData.newPlainText(ui(R.string.ui_image_credits),text))
-        Toast.makeText(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT).show()
+        LocaleTypography.toast(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT).show()
     }
 
     /** Editing is optional and separate from insertion. Footer stays outside scrolling text. */
     fun showEditor(activity: Activity) {
         val sources=sources(activity).sorted()
-        if(sources.isEmpty()) { Toast.makeText(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return }
+        if(sources.isEmpty()) { LocaleTypography.toast(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return }
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val dialog=Dialog(activity).apply {requestWindowFeature(Window.FEATURE_NO_TITLE)}
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(12),dp(12),dp(12),dp(8));setBackgroundColor(EditorColours.surface)}
@@ -73,7 +73,7 @@ internal object GalleryCredits {
             actions.addView(Button(activity).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))
         }
         action(ui(R.string.gallery_copy_credit),"gallery_credit_copy") {save();copy(activity,field.text.toString())}
-        action(ui(R.string.ui_save),"gallery_credit_save") {save();Toast.makeText(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT).show()}
+        action(ui(R.string.ui_save),"gallery_credit_save") {save();LocaleTypography.toast(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT).show()}
         action(ui(R.string.ui_done),"gallery_credit_done") {save();dialog.dismiss()}
         body.addView(actions)
         dialog.setContentView(body);LocaleTypography.install(body)
