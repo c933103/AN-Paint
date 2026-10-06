@@ -6,7 +6,7 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
 
 Every assertion in the record below is a **withdrawn prior claim requiring full recheck**, including any statement that work was reviewed, implemented, repaired, complete, verified, preserved, or free of further defects. Prior lexical acceptance labels and test outcomes are historical inputs, not current task status.
 
-[Original record at its previous commit](https://github.com/c933103/AN-Paint/blob/97e511dc63f1b2011300ce49fd1582b4de23ce3d/translations/README.md).
+[Original record at its previous commit](https://github.com/c933103/AN-Paint/blob/8cf4ed2e531c17d0ab08b98a3a3f835fc9195ec0/translations/README.md).
 
 <details>
 <summary>Withdrawn historical claim record — no accepted progress</summary>
@@ -16,6 +16,32 @@ Every assertion in the record below is a **withdrawn prior claim requiring full 
 The live Android locale files under `Paintroid/src/main/res/values*/strings.xml` are now canonical source files. They are edited directly and are not regenerated from the JSON/snapshot material in this directory. The files below are retained as provenance, terminology references and historical audit data; their wording is not automatically authoritative for AN Paint. See `TRANSLATING.md` for the current workflow.
 
 The historical notes below describe how the partial catalogues were originally assembled. Statements that localized XML is generated, that English fallback is the intended final state, or that imported wording has precedence describe that older workflow and are not current policy.
+
+
+## Jeju, Manchu, Ainu and Okinawan repair (23 September 2026)
+
+[PR9-specific historical record before the reset](https://github.com/c933103/AN-Paint/blob/97e511dc63f1b2011300ce49fd1582b4de23ce3d/translations/README.md).
+The shared-base record is linked above; both remain withdrawn historical claims.
+
+The five catalogues `jje`, `mnc-Mong`, `ain-Kana`, `ain-Latn` and `ryu` now
+cover the current source strings and plural forms. The old `cju` preference
+migrates to `jje`; only `jje` appears in the picker. Historical starter-coverage
+notes above describe earlier versions.
+
+The repair reviews the active editor, cursor, recovery, assembly and credit
+instructions for missing clauses and language-specific wording. Jeju and
+Okinawan help was rewritten beyond Korean/Japanese ending substitutions, and
+both Ainu scripts and Manchu received substantial dictionary-backed repairs.
+Resource coverage is not proof of fluent language: technical loans and remaining
+language-review limitations are stated in the catalogue comments and semantic
+audit documents. See [the Ainu audit](AINU_SEMANTIC_AUDIT.md) and
+[the Manchu audit](MANCHU_SEMANTIC_AUDIT.md).
+
+Mongolian-script locales now share vertical direction, bundled font selection,
+and the language-picker caption layout. The picker keeps the locale code
+horizontal and preserves the full accessible native name. Regression checks
+cover Manchu rendering, the saved Jeju migration and dynamic catalogue completeness.
+
 
 ---
 
@@ -352,27 +378,5 @@ Colours group is removed; Invert colours uses the existing translated command
 under Canvas. Provider names and original artwork titles are retained. Longer
 provider instructions and recovery errors retain English fallback where no
 translation exists; this is not whole-app or website translation completion.
-
-
-## Jeju, Manchu, Ainu and Okinawan repair (23 September 2026)
-
-The five catalogues `jje`, `mnc-Mong`, `ain-Kana`, `ain-Latn` and `ryu` now
-cover the current source strings and plural forms. The old `cju` preference
-migrates to `jje`; only `jje` appears in the picker. Historical starter-coverage
-notes above describe earlier versions.
-
-The repair reviews the active editor, cursor, recovery, assembly and credit
-instructions for missing clauses and language-specific wording. Jeju and
-Okinawan help was rewritten beyond Korean/Japanese ending substitutions, and
-both Ainu scripts and Manchu received substantial dictionary-backed repairs.
-Resource coverage is not proof of fluent language: technical loans and remaining
-language-review limitations are stated in the catalogue comments and semantic
-audit documents. See [the Ainu audit](AINU_SEMANTIC_AUDIT.md) and
-[the Manchu audit](MANCHU_SEMANTIC_AUDIT.md).
-
-Mongolian-script locales now share vertical direction, bundled font selection,
-and the language-picker caption layout. The picker keeps the locale code
-horizontal and preserves the full accessible native name. Regression checks
-cover Manchu rendering, the saved Jeju migration and dynamic catalogue completeness.
 
 </details>
