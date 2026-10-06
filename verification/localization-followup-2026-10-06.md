@@ -48,7 +48,8 @@ PR9's current merge conflict was examined without merging or changing it.
 `d60178949819a8fac8977ced0ba6497c84c7a90e` reports only
 `translations/README.md`. The conflicting line links to different historical
 records (`8cf4ed2e5` versus `97e511dc6`). No locale XML conflict was reported by
-that check. Resolution remains separate work; no PR has been merged here.
+that check. The later [PR9 history-link repair](pr9-history-link-recheck-2026-10-06.md)
+preserves both archive links and removes the conflict without a branch/PR merge.
 
 ## Remaining scope and retrieval limits
 
@@ -62,6 +63,7 @@ The register's broader semantic and operational reviews remain open, including
 all excluded short strings, Hakka official Sixian evidence/contextual PFS pairing,
 Korean general-domain mixed-script evidence and its eight concepts, the complete
 minority-language manuals, plural semantics, vertical/RTL/script rendering and
-document-credit lifecycle. The identified PR9 documentation conflict remains.
+document-credit lifecycle. The identified PR9 documentation conflict has since been repaired; its language
+review remains pending.
 None is closed by XML parity, test counts, word-presence checks or this report.
 The unrelated 81 locales remain outside completion scope.

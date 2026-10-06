@@ -8,6 +8,10 @@ Every assertion in the record below is a **withdrawn prior claim requiring full 
 
 [Original record at its previous commit](https://github.com/c933103/AN-Paint/blob/e51ab25c0fd4bfe10a8b4907ac3b7b9e30b42a26/translations/README.md).
 
+Related withdrawn original-branch records are also preserved:
+[shared base](https://github.com/c933103/AN-Paint/blob/8cf4ed2e531c17d0ab08b98a3a3f835fc9195ec0/translations/README.md)
+and [PR9's language-specific history](https://github.com/c933103/AN-Paint/blob/97e511dc63f1b2011300ce49fd1582b4de23ce3d/translations/README.md).
+
 <details>
 <summary>Withdrawn historical claim record — no accepted progress</summary>
 
