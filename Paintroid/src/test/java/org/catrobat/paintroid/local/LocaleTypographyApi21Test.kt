@@ -77,9 +77,9 @@ class LocaleTypographyApi21Test {
 class Api21ViewBackedToast : ShadowToast() {
     companion object {
         @JvmStatic
-        @Implementation
+        @Implementation(methodName="makeText")
         @Suppress("DEPRECATION")
-        fun makeText(context: Context,text: CharSequence,duration: Int): Toast =
+        fun makeTextWithView(context: Context,text: CharSequence,duration: Int): Toast =
             Toast(context).apply {
                 this.duration=duration
                 view=TextView(context).apply {id=android.R.id.message;this.text=text}
