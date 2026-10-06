@@ -4,6 +4,15 @@
 
 The user rejected the entire previous delivery and instructed that each part become additional work requiring an individual full recheck. This register implements that reset; creating the register does not advance the original reconciliation or translation work. No source revalidation is claimed here.
 
+**6 October follow-up:** [New bounded results](localization-followup-2026-10-06.md)
+record fresh source corrections for the two Malay labels (R-003–R-006) and the
+specific Traditional Mongolian legacy capacity omission (R-008), plus current
+local checks and 57 per-file original/integration comparisons. This does not
+reinstate any withdrawn conclusion. The rows below retain their full-recheck
+status: complete latest-thread reconciliation and broader semantic/operational
+obligations are still open. Consult the linked records for the exact new work
+rather than interpreting the reset status as absence of these later edits.
+
 The scope remains the latest summary PR, the latest discussions and conclusions in all eight other threads, their original PRs and shared base, and related integration findings, including findings outside PR reviews. Completing the other 81 locales is excluded. Checking a specifically implicated shared defect in another locale does not expand that scope to completing that locale.
 
 ## Rules for the reset
