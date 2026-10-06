@@ -59,6 +59,8 @@ class LocaleFontCoverageTest(unittest.TestCase):
         # Guard punctuation and Latin UI text as well as every Han plane.
         # XML layout line breaks are not glyphs; ordinary spaces remain covered.
         required = {ord(c) for c in text if c not in '\n\r\t'}
+        # Retain the two independently validated additive Nôm glyphs.
+        required.update((0x651D, 0x671D))
         self.assertTrue(any(cp > 0xffff for cp in required))
         self.assertEqual([], [f'U+{cp:04X}' for cp in sorted(required - points)])
         # The review's uncommon Extension-F glyph remains a regression sample.
