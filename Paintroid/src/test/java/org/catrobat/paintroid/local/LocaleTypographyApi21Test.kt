@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.Context
 import android.graphics.Typeface
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -16,11 +17,14 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.Implementation
+import org.robolectric.annotation.Implements
+import org.robolectric.shadows.ShadowToast
 import java.util.Locale
 
-/** API21 binding checks. Glyph rasterization still requires an API21 device/emulator. */
+/** API21 binding checks with a view-backed Toast shadow, not device glyph rasterization. */
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk=[21])
+@Config(sdk=[21],shadows=[Api21ViewBackedToast::class])
 class LocaleTypographyApi21Test {
     @Test fun nomFaceReachesApi21ControlsAndToastWithoutReplacingDrawingChoices() {
         val previous=Locale.getDefault()
@@ -48,13 +52,37 @@ class LocaleTypographyApi21Test {
             val row=spinner.adapter.getDropDownView(1,null,root) as TextView
             assertEquals(face,row.typeface)
             @Suppress("DEPRECATION")
-            val toastView=LocaleTypography.toast(context,"𪮻 𡳒",Toast.LENGTH_LONG).view!!
-            assertEquals(face,toastView.findViewById<TextView>(android.R.id.message).typeface)
+            val plainMessage=Toast.makeText(context,"plain",Toast.LENGTH_LONG).view!!.findViewById<TextView>(android.R.id.message)
+            assertFalse(face==plainMessage.typeface)
+            val toast=LocaleTypography.toast(context,"𪮻 𡳒",Toast.LENGTH_LONG)
+            assertEquals(Toast.LENGTH_LONG,toast.duration)
+            @Suppress("DEPRECATION")
+            val toastMessage=toast.view!!.findViewById<TextView>(android.R.id.message)
+            assertEquals("𪮻 𡳒",toastMessage.text.toString())
+            assertEquals(face,toastMessage.typeface)
             val fonts=FontCatalog(context)
             assertFalse(fonts.fonts.any {it.id=="anpaintnomui"})
             val lato=fonts.fonts.indexOfFirst {it.id=="lato"}
             assertTrue(lato>0)
             assertEquals(fonts.face(lato),fonts.faceForText(lato,"𡨸喃"))
         } finally {Locale.setDefault(previous)}
+    }
+}
+
+/** Robolectric 4.14.1's default Toast shadow omits the view created by API21 Android.
+ * Supply an unstyled message view so the real app wrapper must install its typeface.
+ * This intentionally does not model framework toast inflation or native rendering.
+ */
+@Implements(Toast::class)
+class Api21ViewBackedToast : ShadowToast() {
+    companion object {
+        @JvmStatic
+        @Implementation
+        @Suppress("DEPRECATION")
+        fun makeText(context: Context,text: CharSequence,duration: Int): Toast =
+            Toast(context).apply {
+                this.duration=duration
+                view=TextView(context).apply {id=android.R.id.message;this.text=text}
+            }
     }
 }
