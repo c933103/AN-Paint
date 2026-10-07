@@ -18,6 +18,7 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Build
 import android.os.Looper
+import android.os.LocaleList
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
@@ -33,6 +34,9 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.runner.lifecycle.ActivityLifecycleCallback
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
+import androidx.test.runner.lifecycle.Stage
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.UiSelector
@@ -73,6 +77,12 @@ class EditorDeviceTest {
     private lateinit var scenario: ActivityScenario<ClassicPaintActivity>
     private lateinit var activity: ClassicPaintActivity
     private lateinit var monitor: ExternalActivities
+    private var originalLanguageTag=""
+    private val lifecycleCallback=ActivityLifecycleCallback { observed,stage ->
+        // Android's app-locale change can recreate the Activity even when its
+        // ordinary configuration callback is handled. Never keep a dead editor.
+        if(observed is ClassicPaintActivity && stage==Stage.CREATED) activity=observed
+    }
     private val fixtures=mutableListOf<File>()
 
     private class ExternalActivities : Instrumentation.ActivityMonitor() {
@@ -90,6 +100,10 @@ class EditorDeviceTest {
 
     @Before fun launchInstalledApp() {
         assertEquals("paint.anpaint.android",context.packageName)
+        originalLanguageTag=if(Build.VERSION.SDK_INT>=33)
+            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
+        else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
+        instrumentation.runOnMainSync {ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(lifecycleCallback)}
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
         listOf("classic-ui","recent-colours","export").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
         monitor=ExternalActivities();instrumentation.addMonitor(monitor)
@@ -103,22 +117,29 @@ class EditorDeviceTest {
     }
 
     @After fun closeInstalledApp() {
-        if(::scenario.isInitialized) {
-            // Let onStop's real draft write finish before destroying the activity,
-            // so a previous test cannot overwrite the next test's fresh fixture.
-            scenario.moveToState(Lifecycle.State.CREATED)
-            awaitState("pending save before close") {!it.busy}
-            // AndroidX 1.6.1 close() starts its EmptyActivity again even when
-            // moveToState(CREATED) already left that helper resumed. No second
-            // onResume arrives, so its helper waits the full 45-second timeout.
-            // Finish the stopped activity normally, preserving the completed
-            // onStop autosave without triggering another stop/save cycle.
-            onMain {it.finish()}
-            awaitState("activity destroyed after autosave") {it.isDestroyed}
-            scenario.close()
+        try {
+            if(::scenario.isInitialized) {
+                // Let onStop's real draft write finish before destroying the activity,
+                // so a previous test cannot overwrite the next test's fresh fixture.
+                scenario.moveToState(Lifecycle.State.CREATED)
+                awaitState("pending save before close") {!it.busy}
+                // AndroidX 1.6.1 close() starts its EmptyActivity again even when
+                // moveToState(CREATED) already left that helper resumed. No second
+                // onResume arrives, so its helper waits the full 45-second timeout.
+                // Finish the stopped activity normally, preserving the completed
+                // onStop autosave without triggering another stop/save cycle.
+                onMain {it.finish()}
+                awaitState("activity destroyed after autosave") {it.isDestroyed}
+                scenario.close()
+            }
+        } finally {
+            // A failed assertion/teardown must not leave a monitor intercepting the
+            // next test's picker results or leak a vertical locale into its layout.
+            if(::monitor.isInitialized) instrumentation.removeMonitor(monitor)
+            instrumentation.runOnMainSync {ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(lifecycleCallback)}
+            restoreOriginalLanguage()
+            fixtures.forEach {it.delete()}
         }
-        if(::monitor.isInitialized) instrumentation.removeMonitor(monitor)
-        fixtures.forEach {it.delete()}
     }
 
     @Test fun filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas() {
@@ -494,9 +515,6 @@ class EditorDeviceTest {
 
     @Test @SdkSuppress(minSdkVersion=29)
     fun insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish() {
-        val originalTag=if(Build.VERSION.SDK_INT>=33)
-            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
-        else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
         val expected=insertCreditedGalleryFixture()
         try {
             chooseAppLanguage("en-XV")
@@ -508,7 +526,7 @@ class EditorDeviceTest {
         } finally {
             var dialogOpen=false;onMain {dialogOpen=creditDialogRoot()!=null}
             if(dialogOpen) {device.pressBack();instrumentation.waitForIdleSync()}
-            chooseAppLanguage(originalTag)
+            restoreOriginalLanguage()
         }
     }
 
@@ -636,10 +654,25 @@ class EditorDeviceTest {
             val list=localePickerList(tags.size+1)
             val row=list.getChildAt(index-list.firstVisiblePosition)
             assertNotNull("Locale picker row: $tag",row)
+            assertTrue("Exact requested locale row: $tag",tag.isEmpty() || (row as TextView).text.toString().endsWith("[$tag]"))
             assertTrue(row.getGlobalVisibleRect(bounds))
             offsetToScreen(row,bounds)
         }
         assertTrue("Choose the visible locale row",device.click(bounds.centerX(),bounds.centerY()))
+        instrumentation.waitForIdleSync()
+        onMain {
+            assertEquals("The real picker selected the requested locale",tag,
+                it.getSharedPreferences("app-language",0).getString("language-tag",null))
+        }
+    }
+
+    private fun restoreOriginalLanguage() {
+        instrumentation.runOnMainSync {
+            context.getSharedPreferences("app-language",0).edit().putString("language-tag",originalLanguageTag)
+                .putBoolean("platform-initialized",true).commit()
+            if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)
+                .applicationLocales=LocaleList.forLanguageTags(originalLanguageTag)
+        }
         instrumentation.waitForIdleSync()
     }
 
