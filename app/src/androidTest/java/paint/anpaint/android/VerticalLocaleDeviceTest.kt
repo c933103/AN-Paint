@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Rect
+import android.graphics.Point
 import android.graphics.Color
 import android.os.Build
 import android.os.Handler
@@ -355,6 +356,7 @@ class VerticalLocaleDeviceTest {
     private fun tap(label: String,target: ()->View): Int {
         val swipes=reveal(label,target)
         val bounds=onMain {usableBounds(target()) ?: throw AssertionError("Target moved before tap: $label")}
+        android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName tap=$label screen=$bounds tool=${onMain {activity.paintCanvas.tool}}")
         assertTrue("Native tap: $label",device.click(bounds.centerX(),bounds.centerY()))
         instrumentation.waitForIdleSync()
         return swipes
@@ -399,6 +401,7 @@ class VerticalLocaleDeviceTest {
                 next ?: throw AssertionError("No native scroll route to $label: raw=$targetBounds visible=${visibleBounds(view)}")
             }
             swipe(gesture.bounds,gesture.horizontal,gesture.direction)
+            awaitGeometrySettled(label,target)
         }
         throw AssertionError("Native scrolling did not reveal $label")
     }
@@ -407,8 +410,28 @@ class VerticalLocaleDeviceTest {
         val low=if(horizontal) bounds.left+bounds.width()/5 else bounds.top+bounds.height()/5
         val high=if(horizontal) bounds.right-bounds.width()/5 else bounds.bottom-bounds.height()/5
         val start=if(direction>0) high else low;val end=if(direction>0) low else high
-        assertTrue("Native overflow swipe",if(horizontal) device.swipe(start,bounds.centerY(),end,bounds.centerY(),16)
-            else device.swipe(bounds.centerX(),start,bounds.centerX(),end,16))
+        val first=if(horizontal) Point(start,bounds.centerY()) else Point(bounds.centerX(),start)
+        val last=if(horizontal) Point(end,bounds.centerY()) else Point(bounds.centerX(),end)
+        // A fast swipe immediately followed by a tap can make HorizontalScrollView
+        // consume ACTION_DOWN to stop its fling. Keep native pointer motion, but
+        // end it with stationary move segments before releasing the finger.
+        assertTrue("Native overflow swipe",device.swipe(arrayOf(first,last,last,last),20))
+    }
+    private fun awaitGeometrySettled(label: String,target: ()->View) {
+        var previous: List<Int>?=null
+        var changedAt=SystemClock.uptimeMillis()
+        awaitState("scroll geometry settled before $label") {
+            val view=target();val bounds=rawBounds(view)
+            val signature=mutableListOf(bounds.left,bounds.top,bounds.right,bounds.bottom)
+            var parent: View?=view.parent as? View
+            while(parent!=null) {
+                signature.add(parent.scrollX);signature.add(parent.scrollY)
+                parent=parent.parent as? View
+            }
+            if(signature!=previous || view.isLayoutRequested) {
+                previous=signature;changedAt=SystemClock.uptimeMillis();false
+            } else SystemClock.uptimeMillis()-changedAt>=150
+        }
     }
 
     private fun screenshot(suffix: String) {
