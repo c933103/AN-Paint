@@ -39,6 +39,8 @@ import androidx.test.runner.lifecycle.ActivityLifecycleCallback
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Until
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
@@ -115,6 +117,7 @@ class EditorDeviceTest {
         scenario.onActivity {activity=it}
         awaitState("initial canvas layout") {it.paintCanvas.width>0 && it.paintCanvas.height>0 && !it.busy}
         onMain {it.document.newImage(100,100);it.document.markSaved();it.paintCanvas.fit()}
+        dismissClipboardOverlay()
     }
 
     @After fun closeInstalledApp() {
@@ -140,6 +143,7 @@ class EditorDeviceTest {
             instrumentation.runOnMainSync {ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(lifecycleCallback)}
             restoreOriginalLanguage()
             fixtures.forEach {it.delete()}
+            if(::activity.isInitialized) dismissClipboardOverlay()
         }
     }
 
@@ -622,6 +626,12 @@ class EditorDeviceTest {
                 assertNotNull("Copy leaves the dialog open",creditDialogRoot())
                 assertNotNull("Copy does not commit the pending image",it.document.selection)
             }
+            dismissClipboardOverlay(waitForAppearance=true)
+            onMain {
+                val clip=(it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip
+                assertEquals("Dismissing the system preview preserves copied attribution",expected,clip!!.getItemAt(0).text.toString())
+                assertNotNull("Dismissing the preview leaves Save/Export open",creditDialogRoot())
+            }
             assertEquals("Expand and Copy must not launch a destination or share activity",requestsBefore,monitor.requests.size)
             tapCreditDialogControl("export_toggle_credits")
             onMain {assertEquals(View.GONE,creditDialogRoot()!!.findViewWithTag<View>("export_credit_details").visibility)}
@@ -712,6 +722,31 @@ class EditorDeviceTest {
 
     private fun activityText(id: Int): String {
         var value="";onMain {value=it.getString(id)};return value
+    }
+
+    private fun dismissClipboardOverlay(waitForAppearance: Boolean=false) {
+        if(Build.VERSION.SDK_INT<33) return
+        // Clipboard preview is a separate, nonfocusable SystemUI window. By/UiObject2
+        // searches all windows; the old UiSelector only searches the active popup.
+        val overlaySelector=By.res("com.android.systemui","clipboard_ui")
+        val overlay=if(waitForAppearance) device.wait(Until.findObject(overlaySelector),1500)
+            else device.findObject(overlaySelector)
+        val showing=instrumentation.uiAutomation.windows.any {it.title?.toString()=="ClipboardOverlay"}
+        if(overlay==null && !showing) return
+        android.util.Log.i("EditorDeviceTest","Dismissing SystemUI clipboard preview")
+        val dismiss=overlay?.findObject(By.res("com.android.systemui","dismiss_button"))
+        if(dismiss!=null) {
+            val bounds=dismiss.visibleBounds
+            assertFalse("Clipboard preview dismiss target",bounds.isEmpty)
+            assertTrue("Dismiss only the clipboard preview",device.click(bounds.centerX(),bounds.centerY()))
+        }
+        // Some platform variants hide the dismiss affordance. Let their bounded
+        // preview timeout finish without more taps that could reset that timeout.
+        assertTrue("Clipboard preview content is gone",device.wait(Until.gone(overlaySelector),10000)==true)
+        awaitState("SystemUI clipboard window removed") {
+            instrumentation.uiAutomation.windows.none {window ->window.title?.toString()=="ClipboardOverlay"}
+        }
+        android.util.Log.i("EditorDeviceTest","SystemUI clipboard preview removed")
     }
 
     private fun tapFormatChoice(label: String) {
@@ -837,6 +872,7 @@ class EditorDeviceTest {
                 assertTrue(dialog.window!!.decorView.findViewWithTag<View>("terms_done").performClick())
                 assertFalse(dialog.isShowing)
             }
+            dismissClipboardOverlay(waitForAppearance=true)
         } finally {onMain {dialog.dismiss()}}
     }
 
