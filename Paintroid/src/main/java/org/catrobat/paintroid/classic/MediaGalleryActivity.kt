@@ -29,6 +29,7 @@ class MediaGalleryActivity : Activity() {
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
     private var documentCredits: List<ImageCredit> = emptyList()
     private var creditsEdited=false
+    private var creditEditor: GalleryCredits.EditorSession?=null
     private var pendingSearch: String?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
@@ -58,10 +59,7 @@ class MediaGalleryActivity : Activity() {
             if(credits.isBlank()) LocaleTypography.toast(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
             else GalleryCredits.copy(this,credits)
         }
-        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this,documentCredits) {source,text ->
-            documentCredits=documentCredits.map {if(it.source==source) it.copy(text=text) else it}
-            creditsEdited=true;returnEditedCredits()
-        }}
+        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {showCreditEditor()}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
         action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
         val navigation=LinearLayout(this)
@@ -136,6 +134,16 @@ class MediaGalleryActivity : Activity() {
         }
         root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
+        val editorSource=state?.getString("image_credit_editor_source")
+        val editorText=state?.getString("image_credit_editor_draft")
+        if(editorSource!=null && editorText!=null) showCreditEditor(GalleryCredits.EditorDraft(editorSource,editorText))
+    }
+    private fun showCreditEditor(draft: GalleryCredits.EditorDraft?=null) {
+        if(creditEditor?.dialog?.isShowing==true)return
+        creditEditor=GalleryCredits.showEditor(this,documentCredits,draft) {source,text ->
+            documentCredits=documentCredits.map {if(it.source==source) it.copy(text=text) else it}
+            creditsEdited=true;returnEditedCredits()
+        }
     }
     private fun returnEditedCredits() {
         setResult(RESULT_OK,Intent().putExtra("document_image_credits",ImageCredit.write(documentCredits).toString()))
@@ -211,7 +219,15 @@ class MediaGalleryActivity : Activity() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString("document_image_credits",ImageCredit.write(documentCredits).toString())
         outState.putBoolean("document_image_credits_edited",creditsEdited)
+        creditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke()?.let {draft ->
+            outState.putString("image_credit_editor_source",draft.source)
+            outState.putString("image_credit_editor_draft",draft.text)
+        }
         web.saveState(outState);super.onSaveInstanceState(outState)
     }
-    override fun onDestroy() {web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
+    override fun onDestroy() {
+        // Dismiss the old window without invoking a save action. A saved draft is restored separately.
+        creditEditor?.dialog?.dismiss();creditEditor=null
+        web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
+    }
 }

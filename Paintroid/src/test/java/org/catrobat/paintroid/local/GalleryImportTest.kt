@@ -235,4 +235,90 @@ class GalleryImportTest {
             }
         }
     }
+
+    @Test fun unfinishedCreditDraftSurvivesRecreationWithoutBecomingASavedEdit() {
+        val original=ImageCredit(asset.toString(),"Original creator and source")
+        val revised="Unconfirmed creator correction\n変更内容: cropped"
+        controller.pause().stop().destroy()
+        val intent=android.content.Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java)
+            .putExtra("document_image_credits",ImageCredit.write(listOf(original)).toString())
+        controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+        gallery=controller.setup().get()
+        gallery.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+        shadowOf(Looper.getMainLooper()).idle()
+        val oldDialog=ShadowAlertDialog.getLatestAlertDialog()
+        oldDialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText(revised)
+        val saved=Bundle()
+        controller.saveInstanceState(saved).pause().stop().destroy()
+        // Saving activity state must not save the currently typed credit.
+        assertEquals(listOf(original),ImageCredit.read(org.json.JSONArray(saved.getString("document_image_credits"))))
+        assertFalse(saved.getBoolean("document_image_credits_edited"))
+        assertFalse(oldDialog.isShowing)
+        controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+        gallery=controller.create(saved).start().resume().visible().get()
+        shadowOf(Looper.getMainLooper()).idle()
+        val restored=ShadowAlertDialog.getLatestAlertDialog()
+        assertNotSame(oldDialog,restored);assertTrue(restored.isShowing)
+        assertEquals(revised,restored.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+        assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
+        assertNull(shadowOf(gallery).resultIntent)
+        // Explicit Done still commits the draft through the existing result path.
+        restored.window!!.decorView.findViewWithTag<Button>("gallery_credit_done").performClick()
+        val result=shadowOf(gallery).resultIntent
+        assertEquals(Activity.RESULT_OK,shadowOf(gallery).resultCode)
+        assertFalse(result.hasExtra("gallery_file"))
+        assertEquals(listOf(original.copy(text=revised)),ImageCredit.read(org.json.JSONArray(result.getStringExtra("document_image_credits"))))
+    }
+
+    @Test fun restoredCreditDraftKeepsSelectedSourceAndAnEmptyDraftWithoutSavingIt() {
+        val first=ImageCredit("https://example.org/a.png","First saved credit")
+        val second=ImageCredit("https://example.org/b.png","Second saved credit")
+        val saved=Bundle().apply {
+            putString("document_image_credits",ImageCredit.write(listOf(first,second)).toString())
+            putBoolean("document_image_credits_edited",false)
+            putString("image_credit_editor_source",second.source)
+            putString("image_credit_editor_draft","")
+        }
+        controller.pause().stop().destroy()
+        controller=Robolectric.buildActivity(MediaGalleryActivity::class.java)
+        gallery=controller.create(saved).start().resume().visible().get()
+        shadowOf(Looper.getMainLooper()).idle()
+        val dialog=ShadowAlertDialog.getLatestAlertDialog()
+        assertNotNull(dialog);assertTrue(dialog.isShowing)
+        val view=dialog.window!!.decorView
+        assertEquals(1,view.findViewWithTag<android.widget.Spinner>("gallery_credit_source").selectedItemPosition)
+        assertEquals("",view.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+        assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
+        val again=Bundle();controller.saveInstanceState(again)
+        assertEquals(listOf(first,second),ImageCredit.read(org.json.JSONArray(again.getString("document_image_credits"))))
+        assertFalse(again.getBoolean("document_image_credits_edited"))
+        assertEquals(second.source,again.getString("image_credit_editor_source"))
+        assertEquals("",again.getString("image_credit_editor_draft"))
+        dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_done").performClick()
+        assertEquals(listOf(first,second.copy(text="")),ImageCredit.read(org.json.JSONArray(shadowOf(gallery).resultIntent.getStringExtra("document_image_credits"))))
+    }
+
+    @Test fun dismissedCreditDraftIsNotSavedOrReopenedByActivityRecreation() {
+        val original=ImageCredit(asset.toString(),"Original creator and source")
+        controller.pause().stop().destroy()
+        val intent=android.content.Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java)
+            .putExtra("document_image_credits",ImageCredit.write(listOf(original)).toString())
+        controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+        gallery=controller.setup().get()
+        gallery.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+        shadowOf(Looper.getMainLooper()).idle()
+        val dialog=ShadowAlertDialog.getLatestAlertDialog()
+        dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText("Discard this draft")
+        dialog.cancel() // Dialog Back/cancellation is still a discard, not a confirmation.
+        val saved=Bundle();controller.saveInstanceState(saved).pause().stop().destroy()
+        assertFalse(saved.containsKey("image_credit_editor_source"))
+        assertFalse(saved.containsKey("image_credit_editor_draft"))
+        assertEquals(listOf(original),ImageCredit.read(org.json.JSONArray(saved.getString("document_image_credits"))))
+        controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,intent)
+        gallery=controller.create(saved).start().resume().visible().get()
+        shadowOf(Looper.getMainLooper()).idle()
+        assertFalse(ShadowAlertDialog.getLatestAlertDialog()?.isShowing==true)
+        gallery.window.decorView.findViewWithTag<Button>("gallery_done").performClick()
+        assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
+    }
 }
