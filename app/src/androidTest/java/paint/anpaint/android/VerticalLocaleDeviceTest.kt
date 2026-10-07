@@ -16,6 +16,7 @@ import android.os.LocaleList
 import android.os.Looper
 import android.os.SystemClock
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
@@ -69,6 +70,9 @@ class VerticalLocaleDeviceTest {
     private var originalOrientation=ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     private var evidenceName="setup"
     private val externalRequests=CopyOnWriteArrayList<Intent>()
+    // Read-only synchronization with this app's already scheduled autosave.
+    private val draftGenerationField=ClassicPaintActivity::class.java.getDeclaredField("draftGeneration").apply {isAccessible=true}
+    private val savedDraftGenerationField=ClassicPaintActivity::class.java.getDeclaredField("savedDraftGeneration").apply {isAccessible=true}
     private val monitor=object: Instrumentation.ActivityMonitor() {
         override fun onStartActivity(intent: Intent): Instrumentation.ActivityResult? {
             if(intent.action !in listOf(Intent.ACTION_CREATE_DOCUMENT,Intent.ACTION_OPEN_DOCUMENT,
@@ -172,10 +176,28 @@ class VerticalLocaleDeviceTest {
                 // cannot pass merely because the injected tap missed its target.
                 tap("Line tool precondition") {root().findViewWithTag<View>("tool_LINE")}
                 awaitState("Line selected before Arrow") {activity.paintCanvas.tool==PaintTool.LINE}
-                val swipes=tap("offscreen Arrow tool") {root().findViewWithTag<View>("tool_ARROW")}
-                overflowToolSwipes+=swipes
-                android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow native_swipes=$swipes")
-                awaitState("Arrow tool selected by native input") {activity.paintCanvas.tool==PaintTool.ARROW}
+                // Selecting Line schedules autosave 1500ms later. A native
+                // reveal swipe can cross that boundary, so !busy before the
+                // swipe alone does not establish readiness at the tap's UP.
+                // Drain the real pending write; do not suppress or alter it.
+                awaitState("Line autosave finished before Arrow input") {
+                    assertNull("Autosave failed before Arrow input",activity.lastAutosaveError)
+                    !activity.busy && draftGenerationField.getLong(activity)==savedDraftGenerationField.getLong(activity)
+                }
+                val arrow=onMain {root().findViewWithTag<View>("tool_ARROW")}
+                onMain {
+                    arrow.setOnTouchListener {view,event ->
+                        if(event.actionMasked in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL))
+                            android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow touch=${MotionEvent.actionToString(event.actionMasked)} busy=${activity.busy} draft=${draftGenerationField.getLong(activity)} saved=${savedDraftGenerationField.getLong(activity)} raw=${rawBounds(view)} visible=${visibleBounds(view)}")
+                        false // Observe only; normal native dispatch and click remain intact.
+                    }
+                }
+                try {
+                    val swipes=tap("offscreen Arrow tool") {arrow}
+                    overflowToolSwipes+=swipes
+                    android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow native_swipes=$swipes")
+                    awaitState("Arrow tool selected by native input") {activity.paintCanvas.tool==PaintTool.ARROW}
+                } finally {onMain {arrow.setOnTouchListener(null)}}
                 assertCanvas(tag)
                 screenshot("workspace")
                 selectTab("File")
