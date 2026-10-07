@@ -49,6 +49,14 @@ they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
 has no gain-map API. No test is removed from the current-platform suite.
 
+The app APK runs in two complementary invocations: the existing editor suite
+excludes exactly `paint.anpaint.android.VerticalLocaleDeviceTest`, then the
+vertical-locale suite includes exactly that class. Both selectors are checked
+against the complete source inventory; unknown or repeated classes, combined
+include/exclude filters and empty selections fail. Host tests check that the
+partition loses and repeats no methods. Each invocation retains its own
+180-second deadline. Native/import checks and their API 30 exclusion are unchanged.
+
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
 C/C++ compiler-launcher environment variables. Its separate 2 GB cache lives
@@ -88,9 +96,10 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  native/app instrumentation invocation: 180 seconds. These inner budgets fit
-  within the whole emulator execution step's 15-minute limit, leaving time to
-  collect failure reports and shut down.
+  native, editor and vertical-locale instrumentation invocation: 180 seconds.
+  The whole emulator execution step keeps its 15-minute limit. This outer limit
+  still applies if multiple installations, startup or invocations consume their
+  full individual budgets; their worst-case limits are not an extended allowance.
 - Emulator shutdown and log collection are bounded. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
   evidence, which must not be described as a pass.
@@ -100,6 +109,14 @@ log, saves partial output, and writes JUnit XML plus `summary.json`. Success req
 the runner's final result, successful results for every declared method, and no
 missing, unexpected, ignored, failed or aborted tests. An `adb` exit code of zero
 alone is insufficient. No automatic retry hides a failure or doubles a long run.
+Editor results remain in `app/androidTest-results`; vertical-locale results are
+separate in `app-vertical/androidTest-results`. Before emulator shutdown, bounded
+exit cleanup pulls the app's external-files `vertical-locale-evidence` directory
+into `app/vertical-locale-evidence` under the same uploaded emulator report root.
+This runs after test failures and timeouts too. Pull output is retained in
+`vertical-locale-pull.log`; a failed pull fails an otherwise successful job and
+never replaces an existing failure. Forced cancellation may still interrupt
+collection. Screenshots supplement the method results, not replace them.
 Reports are separate artifacts: `regression-and-lint-<commit>` and
 `emulator-api-<api>-<commit>`. They are retained for 14 days; archive final release
 evidence during private packaging rather than depending on temporary artifacts.

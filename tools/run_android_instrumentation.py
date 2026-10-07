@@ -44,6 +44,26 @@ def declared_tests(directory: Path) -> set[Identity]:
     return expected
 
 
+def select_tests(expected: set[Identity], *, include_classes: list[str] | None = None,
+                 exclude_classes: list[str] | None = None) -> set[Identity]:
+    """Select whole classes only; typos or empty selections must never pass CI."""
+    included, excluded = include_classes or [], exclude_classes or []
+    if included and excluded:
+        raise ValueError('Use either --include-class or --exclude-class, not both')
+    owners = {owner for owner, _ in expected}
+    for label, classes in (('Included', included), ('Excluded', excluded)):
+        if len(classes) != len(set(classes)):
+            raise ValueError(f'{label} class supplied more than once')
+        unknown = set(classes) - owners
+        if unknown:
+            raise ValueError(f'{label} class not found in source inventory: {sorted(unknown)}')
+    selected = {item for item in expected
+                if (not included or item[0] in included) and item[0] not in excluded}
+    if not selected:
+        raise ValueError('Class selection removed every declared test')
+    return selected
+
+
 def parse_protocol(output: str, expected: set[Identity], *, returncode: int | None = 0,
                    timed_out: bool = False, run_errors: list[str] | None = None) -> dict:
     """Parse raw `am instrument -w -r` output, rejecting incomplete test runs."""
@@ -219,6 +239,8 @@ def main() -> int:
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--suite', required=True)
     parser.add_argument('--component', help='test.package/androidx.test.runner.AndroidJUnitRunner')
+    parser.add_argument('--include-class', action='append', default=[],
+                        help='Run exactly this declared class (repeatable; no method selectors)')
     parser.add_argument('--exclude-class', action='append', default=[])
     parser.add_argument('--timeout-seconds', type=int, default=480)
     args = parser.parse_args()
@@ -233,13 +255,9 @@ def main() -> int:
     try:
         if args.timeout_seconds <= 0:
             raise ValueError('--timeout-seconds must be positive')
-        expected = declared_tests(args.source_tests)
-        unknown_exclusions = set(args.exclude_class) - {owner for owner, _ in expected}
-        if unknown_exclusions:
-            raise ValueError(f'Excluded class not found in source inventory: {sorted(unknown_exclusions)}')
-        expected = {item for item in expected if item[0] not in args.exclude_class}
-        if not expected:
-            raise ValueError('Exclusions removed every declared test')
+        expected = select_tests(declared_tests(args.source_tests),
+                                include_classes=args.include_class,
+                                exclude_classes=args.exclude_class)
         if not args.apk.is_file():
             raise ValueError(f'Test APK not found: {args.apk}')
         installed = subprocess.run([args.adb, 'install', '-r', '-t', str(args.apk)],
@@ -258,6 +276,8 @@ def main() -> int:
             raise ValueError(f'Instrumentation {component} was not installed; found {sorted(available)}')
         target = available[component]
         command = [args.adb, 'shell', 'am', 'instrument', '-w', '-r']
+        if args.include_class:
+            command += ['-e', 'class', ','.join(args.include_class)]
         if args.exclude_class:
             command += ['-e', 'notClass', ','.join(args.exclude_class)]
         command.append(component)
@@ -274,6 +294,7 @@ def main() -> int:
         result = parse_protocol(log.read_text(errors='replace'), expected, returncode=returncode,
                                 timed_out=timed_out, run_errors=errors)
         result['component'] = component
+        result['included_classes'] = args.include_class
         result['excluded_classes'] = args.exclude_class
         write_reports(args.output, args.suite, result, time.monotonic() - started)
     print(json.dumps({key: result[key] for key in ('success', 'expected_tests', 'completed_tests', 'errors')}, indent=2))

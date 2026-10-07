@@ -42,12 +42,53 @@ wait_until_ready() {
   done
 }
 
+# Separate budgets preserve every app method without lengthening an invocation.
+run_instrumentation_suites() {
+  local failed=0
+  local extra=()
+  local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
+  if test "$TEST_API" = 30; then
+    extra+=(--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest)
+  fi
+  phase='Native/import instrumentation'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/Paintroid/build/outputs/apk/androidTest/$variant/Paintroid-$variant-androidTest.apk" \
+    --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
+    --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
+  phase='Editor instrumentation'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
+    --suite app --timeout-seconds 180 --exclude-class "$vertical_class" || failed=1
+  phase='Vertical locale instrumentation'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/androidTest-results" \
+    --suite app-vertical --timeout-seconds 180 --include-class "$vertical_class" || failed=1
+  return "$failed"
+}
+
 cleanup() {
   local status=$?
   trap - ERR
   set +e
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
   timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1
+  # getExternalFilesDir(null) for the installed app, not the test APK. Pull before
+  # stopping the device, including when a suite fails or exceeds its deadline.
+  mkdir -p "$report/app"
+  if ! timeout --kill-after=3s 15s "$adb" pull \
+      /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence \
+      "$report/app/vertical-locale-evidence" > "$report/vertical-locale-pull.log" 2>&1; then
+    progress 'FAILED: could not collect vertical locale evidence; see vertical-locale-pull.log' >&2
+    if (( status == 0 )); then status=1; fi
+  fi
   timeout --kill-after=3s 10s "$adb" emu kill
   if test -n "$emulator_pid"; then
     kill "$emulator_pid" 2>/dev/null
@@ -57,6 +98,7 @@ cleanup() {
     done
     kill -KILL "$emulator_pid" 2>/dev/null || true
   fi
+  exit "$status"
 }
 
 main() {
@@ -103,24 +145,7 @@ main() {
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" install -r -t "build/prebuilt/app/build/outputs/apk/$variant/app-$variant.apk"
   failed=0
-  extra=()
-  if test "$TEST_API" = 30; then
-    extra+=(--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest)
-  fi
-  phase='Native/import instrumentation'
-  progress "$phase"
-  python3 tools/run_android_instrumentation.py --adb "$adb" \
-    --apk "build/prebuilt/Paintroid/build/outputs/apk/androidTest/$variant/Paintroid-$variant-androidTest.apk" \
-    --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
-    --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
-    --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  phase='Editor instrumentation'
-  progress "$phase"
-  python3 tools/run_android_instrumentation.py --adb "$adb" \
-    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
-    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
-    --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
-    --suite app --timeout-seconds 180 || failed=1
+  run_instrumentation_suites || failed=1
   phase='Instrumentation complete'
   progress "$phase (result $failed)"
   exit "$failed"
