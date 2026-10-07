@@ -231,12 +231,7 @@ class EditorDeviceTest {
             val before=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
             menu("File",text(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
             assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
-            val choice=device.findObject(UiSelector().text(format.label))
-            assertTrue("${format.label} format choice exists",choice.waitForExists(5000))
-            instrumentation.waitForIdleSync()
-            val choiceBounds=choice.visibleBounds
-            assertFalse("${format.label} format choice is visible",choiceBounds.isEmpty)
-            assertTrue("${format.label} format tap injected",device.click(choiceBounds.centerX(),choiceBounds.centerY()))
+            tapFormatChoice(format.label)
             // Confirm the popup actually completed selection. Ignoring a failed
             // UiObject.click can leave it covering the destination button.
             val selected=device.findObject(UiSelector().className("android.widget.Spinner")
@@ -717,6 +712,67 @@ class EditorDeviceTest {
 
     private fun activityText(id: Int): String {
         var value="";onMain {value=it.getString(id)};return value
+    }
+
+    private fun tapFormatChoice(label: String) {
+        val bounds=Rect()
+        if(Build.VERSION.SDK_INT>=29) {
+            var originalSelection=-1
+            onMain {
+                val list=popupFormatList(label) ?: throw AssertionError("$label popup list")
+                originalSelection=creditDialogRoot()!!.findViewWithTag<android.widget.Spinner>("export_format").selectedItemPosition
+                val index=(0 until list.count).first {position ->list.getItemAtPosition(position).toString()==label}
+                // Scroll only the popup viewport. The Spinner's format changes
+                // later through the injected input, not this list highlight.
+                list.setSelectionFromTop(index,0)
+            }
+            awaitState("$label popup row laid out") {popupFormatChoice(label)?.height?.let {height ->height>0}==true}
+            onMain {
+                val row=popupFormatChoice(label)
+                assertNotNull("$label popup row",row)
+                row!!.requestRectangleOnScreen(Rect(0,0,row.width,row.height),true)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val row=popupFormatChoice(label)!!
+                assertEquals("Scrolling must not select the format",originalSelection,
+                    creditDialogRoot()!!.findViewWithTag<android.widget.Spinner>("export_format").selectedItemPosition)
+                assertTrue("$label row has a visible native hit target",row.getGlobalVisibleRect(bounds))
+                val parentBounds=Rect()
+                (row.parent as? View)?.getGlobalVisibleRect(parentBounds)
+                offsetToScreen(row,bounds)
+                offsetToScreen(row,parentBounds)
+                android.util.Log.i("EditorDeviceTest","Format $label rowHeight=${row.height}, screen target=$bounds, parent=$parentBounds")
+                assertTrue("$label row is fully reachable after scrolling",bounds.height()>=row.height)
+            }
+        } else {
+            val choice=device.findObject(UiSelector().text(label))
+            assertTrue("$label format choice exists",choice.waitForExists(5000))
+            bounds.set(choice.visibleBounds)
+        }
+        assertFalse("$label format choice is visible",bounds.isEmpty)
+        assertTrue("$label format tap injected",device.click(bounds.centerX(),bounds.centerY()))
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun popupFormatList(label: String): ListView? {
+        fun find(view: View): ListView? {
+            if(view is ListView && view.isShown && (0 until view.count).any {view.getItemAtPosition(it).toString()==label}) return view
+            if(view is ViewGroup) for(index in 0 until view.childCount) find(view.getChildAt(index))?.let {return it}
+            return null
+        }
+        return WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {find(it)}
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun popupFormatChoice(label: String): TextView? {
+        fun find(view: View,inList: Boolean=false): TextView? {
+            if(inList && view is TextView && view.isShown && view.text.toString()==label) return view
+            if(view is ViewGroup) for(index in 0 until view.childCount)
+                find(view.getChildAt(index),inList || view is ListView)?.let {return it}
+            return null
+        }
+        return WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {find(it)}
     }
 
     @android.annotation.TargetApi(29)
