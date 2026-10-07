@@ -9,6 +9,9 @@ import android.util.AtomicFile
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executor
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
@@ -18,13 +21,47 @@ data class AutosaveDraft(val image: Bitmap, val floating: Bitmap?, val metadata:
 
 /** One atomic draft contains pixels and their matching metadata. Sources are never overwritten. */
 class AutosaveStore(directory: File) {
-    companion object { private val lock=Any() }
+    private class FileState {
+        val pendingLock=Object()
+        val ioLock=Any()
+        var pendingWrites=0
+    }
+    companion object { private val states=ConcurrentHashMap<String,FileState>() }
     val file = File(directory,"classic-autosave.zip")
+    private val state=states.getOrPut(file.canonicalPath) {FileState()}
     private val atomic = AtomicFile(file)
-    fun exists() = file.isFile || File(file.path+".bak").isFile
+
+    /** Register before enqueueing: a replacement Activity must also wait for queued writes.
+     * The action must not await the main thread or call this store's recovery methods.
+     * Completion belongs to the worker, not its later UI/status callback.
+     */
+    fun submitWrite(executor: Executor, action: () -> Unit) {
+        val completed=AtomicBoolean(false)
+        synchronized(state.pendingLock) {state.pendingWrites++}
+        fun complete() {
+            if(completed.compareAndSet(false,true)) synchronized(state.pendingLock) {
+                state.pendingWrites--;state.pendingLock.notifyAll()
+            }
+        }
+        try {
+            executor.execute {try {action()} finally {complete()}}
+        } catch(error: Throwable) {
+            // Also safe for an Executor that runs inline and propagates action's failure.
+            complete();throw error
+        }
+    }
+
+    private inline fun <T> afterPendingWrites(action: () -> T): T = synchronized(state.pendingLock) {
+        while(state.pendingWrites>0) state.pendingLock.wait()
+        synchronized(state.ioLock) {action()}
+    }
+
+    // AtomicFile's first transaction exists only as .new until finishWrite. Checking
+    // the base file without joining that write would silently create a blank canvas.
+    fun exists() = afterPendingWrites {file.isFile || File(file.path+".bak").isFile}
 
     /** Move an unreadable draft aside before allowing a new autosave to replace its name. */
-    fun preserveForRecovery(): File = synchronized(lock) {
+    fun preserveForRecovery(): File = afterPendingWrites {
         try { atomic.openRead().close() } catch (_: IOException) { }
         val source=File(file.path+".bak").takeIf { it.isFile } ?: file
         val target=File(file.parentFile,"classic-draft-recovery-${System.currentTimeMillis()}-${java.util.UUID.randomUUID()}.zip")
@@ -35,7 +72,7 @@ class AutosaveStore(directory: File) {
         it.isFile && it.name.startsWith("classic-draft-recovery-") && it.extension=="zip"
     }?.sortedByDescending { it.lastModified() } ?: emptyList()
 
-    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(lock) {
+    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(state.ioLock) {
         val stream=atomic.startWrite()
         try {
             val zip=ZipOutputStream(stream).apply { setLevel(0) }
@@ -52,7 +89,7 @@ class AutosaveStore(directory: File) {
         } catch (error: Throwable) { atomic.failWrite(stream); throw error }
     }
 
-    fun read(historyReader: ((ZipFile) -> RasterHistory.Snapshot)? = null,checkSize: (Int,Int) -> Unit): AutosaveDraft = synchronized(lock) {
+    fun read(historyReader: ((ZipFile) -> RasterHistory.Snapshot)? = null,checkSize: (Int,Int) -> Unit): AutosaveDraft = afterPendingWrites {
         atomic.openRead().close() // Recover the previous complete transaction after an interrupted write.
         var image: Bitmap?=null; var floating: Bitmap?=null
         try {
@@ -79,3 +116,4 @@ class AutosaveStore(directory: File) {
         } catch (error: Throwable) { image?.recycle(); floating?.recycle(); throw error }
     }
 }
+

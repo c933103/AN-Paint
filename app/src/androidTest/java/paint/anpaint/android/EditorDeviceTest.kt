@@ -522,6 +522,17 @@ class EditorDeviceTest {
                 it.resources.configuration.locales[0].toLanguageTag()=="en-XV" &&
                     it.window.decorView.findViewWithTag<View>("vertical_status_rail")?.isShown==true
             }
+            onMain {
+                assertEquals("Canvas width survives locale recreation",100,it.document.bitmap.width)
+                assertEquals("Canvas height survives locale recreation",100,it.document.bitmap.height)
+                assertEquals(Color.WHITE,it.document.bitmap.getPixel(0,0))
+                val selection=it.document.selection
+                assertNotNull("Floating insertion survives locale recreation",selection)
+                assertEquals(3,selection!!.image.width);assertEquals(2,selection.image.height)
+                assertEquals(Color.MAGENTA,selection.image.getPixel(0,0))
+                assertEquals(0f,selection.rect.left,0f);assertEquals(0f,selection.rect.top,0f)
+                assertEquals(3f,selection.rect.right,0f);assertEquals(2f,selection.rect.bottom,0f)
+            }
             checkSaveAndExportCredits(expected,vertical=true)
         } finally {
             var dialogOpen=false;onMain {dialogOpen=creditDialogRoot()!=null}
@@ -568,13 +579,19 @@ class EditorDeviceTest {
     @android.annotation.TargetApi(29)
     private fun checkSaveAndExportCredits(expected: String,vertical: Boolean=false) {
         val requestsBefore=monitor.requests.size
+        onMain {
+            assertEquals("Inserted attribution survives the current activity",listOf(expected),it.document.imageCredits.map {credit ->credit.text})
+            assertNotNull("The credited inserted image is still pending",it.document.selection)
+        }
         for(title in listOf(R.string.save20_title,R.string.ui_export_as23)) {
             menu("File",activityText(title))
             awaitState("credit-panel dialog layout") {creditDialogRoot()?.height?.let {height ->height>0}==true}
             onMain {
                 val root=creditDialogRoot()!!
                 if(vertical) assertNotNull("Vertical Save/Export form",root.findViewWithTag<View>("vertical_save_form"))
-                assertEquals("Each panel starts collapsed",View.GONE,root.findViewWithTag<View>("export_credit_details").visibility)
+                val details=root.findViewWithTag<View>("export_credit_details")
+                assertNotNull("Save/Export includes the retained document credits",details)
+                assertEquals("Each panel starts collapsed",View.GONE,details.visibility)
                 assertFalse(root.findViewWithTag<View>("export_copy_credits").isShown)
                 (it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
                     .setPrimaryClip(ClipData.newPlainText("test sentinel","not copied"))
@@ -599,7 +616,13 @@ class EditorDeviceTest {
             tapCreditDialogControl("export_toggle_credits")
             onMain {assertEquals(View.GONE,creditDialogRoot()!!.findViewWithTag<View>("export_credit_details").visibility)}
             val cancel=device.findObject(UiSelector().resourceId("android:id/button2"))
-            assertTrue(cancel.waitForExists(5000));assertTrue(cancel.click());instrumentation.waitForIdleSync()
+            assertTrue("Cancel is visible",cancel.waitForExists(5000))
+            val cancelBounds=cancel.visibleBounds
+            assertFalse(cancelBounds.isEmpty)
+            // A dismissal may not emit UiObject.click's acknowledgement even
+            // when Android handled it. Verify the actual resulting window state.
+            assertTrue(device.click(cancelBounds.centerX(),cancelBounds.centerY()))
+            awaitState("Cancel dismissed Save/Export") {creditDialogRoot()==null}
             onMain {assertNull(creditDialogRoot());assertNotNull(it.document.selection);assertNull(it.lastIoError)}
             assertEquals("Cancellation must not launch a destination",requestsBefore,monitor.requests.size)
             // Expansion is local to one dialog; reopening starts collapsed again.

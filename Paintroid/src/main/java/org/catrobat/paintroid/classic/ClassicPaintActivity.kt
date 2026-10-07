@@ -1420,7 +1420,7 @@ class ClassicPaintActivity : Activity() {
         val metadata=draftMetadata()
         val history=document.historySnapshot()
         autosaving=true;beginIo()
-        worker.execute {
+        autosave.submitWrite(worker) {
             var error: Throwable?=null
             try {
                 autosave.write(image,floating,metadata,history);savedDraftGeneration=generation
@@ -1450,7 +1450,9 @@ class ClassicPaintActivity : Activity() {
         resizeDialog?.dismiss();resizeDialog=null;pendingImportFile?.delete();pendingImportFile=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}
         val metadata=draftMetadata();val generation=draftGeneration
-        if (!busy && generation==savedDraftGeneration) document.close() else worker.execute {
+        // Join this queued final save from the replacement Activity before it reads
+        // the draft. The handover finishes on the worker without a main-thread callback.
+        if (!busy && generation==savedDraftGeneration) document.close() else autosave.submitWrite(worker) {
             try {
                 if (!autosaveBlocked && generation!=savedDraftGeneration) autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,document.historySnapshot())
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
@@ -1459,3 +1461,4 @@ class ClassicPaintActivity : Activity() {
         worker.shutdown();super.onDestroy()
     }
 }
+
