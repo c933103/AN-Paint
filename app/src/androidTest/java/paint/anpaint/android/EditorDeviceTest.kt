@@ -21,6 +21,7 @@ import android.os.Looper
 import android.os.LocaleList
 import android.os.SystemClock
 import android.view.MotionEvent
+import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
@@ -229,8 +230,18 @@ class EditorDeviceTest {
         for(format in ImageFormat.values().filter {it.name in listOf("JPEG_XL","WEBP","HEIC","AVIF","BMP","GIF")}) {
             val before=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
             menu("File",text(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
-            device.findObject(UiSelector().className("android.widget.Spinner")).click()
-            device.findObject(UiSelector().text(format.label)).click()
+            assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+            val choice=device.findObject(UiSelector().text(format.label))
+            assertTrue("${format.label} format choice exists",choice.waitForExists(5000))
+            instrumentation.waitForIdleSync()
+            val choiceBounds=choice.visibleBounds
+            assertFalse("${format.label} format choice is visible",choiceBounds.isEmpty)
+            assertTrue("${format.label} format tap injected",device.click(choiceBounds.centerX(),choiceBounds.centerY()))
+            // Confirm the popup actually completed selection. Ignoring a failed
+            // UiObject.click can leave it covering the destination button.
+            val selected=device.findObject(UiSelector().className("android.widget.Spinner")
+                .childSelector(UiSelector().text(format.label)))
+            assertTrue("${format.label} is selected in the closed spinner",selected.waitForExists(5000))
             val destinationButton=device.findObject(UiSelector().resourceId("android:id/button1"))
             assertTrue("${format.label} destination button exists",destinationButton.waitForExists(5000))
             assertTrue("${format.label} destination button enabled",destinationButton.isEnabled)
@@ -536,7 +547,10 @@ class EditorDeviceTest {
             checkSaveAndExportCredits(expected,vertical=true)
         } finally {
             var dialogOpen=false;onMain {dialogOpen=creditDialogRoot()!=null}
-            if(dialogOpen) {device.pressBack();instrumentation.waitForIdleSync()}
+            if(dialogOpen) {
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                awaitState("credit dialog dismissed before locale restoration") {creditDialogRoot()==null}
+            }
             restoreOriginalLanguage()
         }
     }
@@ -584,6 +598,7 @@ class EditorDeviceTest {
             assertNotNull("The credited inserted image is still pending",it.document.selection)
         }
         for(title in listOf(R.string.save20_title,R.string.ui_export_as23)) {
+            android.util.Log.i("EditorDeviceTest","Checking credit panel ${activityText(title)}, vertical=$vertical")
             menu("File",activityText(title))
             awaitState("credit-panel dialog layout") {creditDialogRoot()?.height?.let {height ->height>0}==true}
             onMain {
@@ -629,7 +644,8 @@ class EditorDeviceTest {
             menu("File",activityText(title))
             awaitState("reopened credit panel") {creditDialogRoot()!=null}
             onMain {assertEquals(View.GONE,creditDialogRoot()!!.findViewWithTag<View>("export_credit_details").visibility)}
-            assertTrue(device.pressBack());instrumentation.waitForIdleSync()
+            instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+            awaitState("Back dismissed Save/Export") {creditDialogRoot()==null}
             onMain {assertNull(creditDialogRoot());assertNotNull(it.document.selection)}
             assertEquals("Back must not confirm Save/Export",requestsBefore,monitor.requests.size)
         }
