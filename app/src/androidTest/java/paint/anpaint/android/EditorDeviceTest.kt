@@ -4,6 +4,8 @@ package paint.anpaint.android
 import android.app.Activity
 import android.app.Dialog
 import android.app.Instrumentation
+import android.app.LocaleManager
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -14,11 +16,15 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Handler
+import android.os.Build
 import android.os.Looper
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.view.inspector.WindowInspector
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.content.FileProvider
@@ -74,9 +80,10 @@ class EditorDeviceTest {
         val nextResult=AtomicReference<Intent?>()
         override fun onStartActivity(intent: Intent): Instrumentation.ActivityResult? {
             val isPicker=intent.action==Intent.ACTION_OPEN_DOCUMENT || intent.action==Intent.ACTION_GET_CONTENT || intent.action==Intent.ACTION_CREATE_DOCUMENT
-            if(!isPicker && intent.action!=Intent.ACTION_CHOOSER && intent.component?.className!=MediaGalleryActivity::class.java.name) return null
+            val isGallery=intent.component?.className==MediaGalleryActivity::class.java.name
+            if(!isPicker && intent.action!=Intent.ACTION_CHOOSER && !isGallery) return null
             requests.add(Intent(intent))
-            val result=if(isPicker) nextResult.getAndSet(null) else null
+            val result=if(isPicker || isGallery) nextResult.getAndSet(null) else null
             return Instrumentation.ActivityResult(if(result==null) Activity.RESULT_CANCELED else Activity.RESULT_OK,result)
         }
     }
@@ -478,6 +485,186 @@ class EditorDeviceTest {
         val gallery=monitor.requests.single {it.component?.className==MediaGalleryActivity::class.java.name}
         assertEquals(context.packageName,gallery.component!!.packageName)
         onMain {assertEquals(100,it.document.bitmap.width);assertNull(it.lastIoError)}
+    }
+
+    @Test @SdkSuppress(minSdkVersion=29)
+    fun insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport() {
+        checkSaveAndExportCredits(insertCreditedGalleryFixture())
+    }
+
+    @Test @SdkSuppress(minSdkVersion=29)
+    fun insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish() {
+        val originalTag=if(Build.VERSION.SDK_INT>=33)
+            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
+        else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
+        val expected=insertCreditedGalleryFixture()
+        try {
+            chooseAppLanguage("en-XV")
+            awaitState("vertical English workspace") {
+                it.resources.configuration.locales[0].toLanguageTag()=="en-XV" &&
+                    it.window.decorView.findViewWithTag<View>("vertical_status_rail")?.isShown==true
+            }
+            checkSaveAndExportCredits(expected,vertical=true)
+        } finally {
+            var dialogOpen=false;onMain {dialogOpen=creditDialogRoot()!=null}
+            if(dialogOpen) {device.pressBack();instrumentation.waitForIdleSync()}
+            chooseAppLanguage(originalTag)
+        }
+    }
+
+    private fun insertCreditedGalleryFixture(): String {
+        // Substitute the remote gallery result only. The installed activity still
+        // validates the source, decodes the file, inserts it and retains its credit.
+        val source="https://catrobat.org/wp-content/uploads/2025/01/Needle_Yellow.png"
+        val title="Artwork 作品"
+        val author="Artist 作者 👩🏽‍🎨"
+        val authorUrl="https://example.org/artist"
+        val licence="https://creativecommons.org/licenses/by-sa/4.0/"
+        val file=File(context.cacheDir,"gallery-device-credit.png").also {it.delete();fixtures.add(it)}
+        val image=Bitmap.createBitmap(3,2,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.MAGENTA)}
+        try {file.outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {image.recycle()}
+        var expected=""
+        onMain {
+            expected=listOf(it.getString(R.string.gallery_credit_title,title),
+                it.getString(R.string.gallery_credit_publisher),it.getString(R.string.gallery_credit_source,source),
+                it.getString(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY),
+                it.getString(R.string.gallery_credit_licence,licence),author,authorUrl).joinToString("\n")
+        }
+        monitor.nextResult.set(Intent().putExtra("gallery_file",file.name).putExtra("gallery_source",source)
+            .putExtra("gallery_provider","CATROBAT").putExtra("gallery_title",title)
+            .putExtra("gallery_author",author).putExtra("gallery_author_url",authorUrl).putExtra("gallery_licence",licence))
+        otherImage(activityText(R.string.ui_catrobat_sticker_gallery))
+        awaitState("credited gallery image inserted") {!it.busy && it.document.selection?.floating==true}
+        onMain {
+            assertEquals(100,it.document.bitmap.width);assertEquals(100,it.document.bitmap.height)
+            assertEquals(3,it.document.selection!!.image.width);assertEquals(2,it.document.selection!!.image.height)
+            assertEquals(Color.MAGENTA,it.document.selection!!.image.getPixel(0,0))
+            assertEquals(listOf(source),it.document.imageCredits.map {credit -> credit.source})
+            assertEquals(listOf(expected),it.document.imageCredits.map {credit -> credit.text})
+            assertNull(it.lastIoError)
+        }
+        assertFalse("The decoded temporary gallery file is removed",file.exists())
+        return expected
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun checkSaveAndExportCredits(expected: String,vertical: Boolean=false) {
+        val requestsBefore=monitor.requests.size
+        for(title in listOf(R.string.save20_title,R.string.ui_export_as23)) {
+            menu("File",activityText(title))
+            awaitState("credit-panel dialog layout") {creditDialogRoot()?.height?.let {height ->height>0}==true}
+            onMain {
+                val root=creditDialogRoot()!!
+                if(vertical) assertNotNull("Vertical Save/Export form",root.findViewWithTag<View>("vertical_save_form"))
+                assertEquals("Each panel starts collapsed",View.GONE,root.findViewWithTag<View>("export_credit_details").visibility)
+                assertFalse(root.findViewWithTag<View>("export_copy_credits").isShown)
+                (it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+                    .setPrimaryClip(ClipData.newPlainText("test sentinel","not copied"))
+            }
+            tapCreditDialogControl("export_toggle_credits")
+            onMain {
+                val root=creditDialogRoot()!!
+                assertEquals(View.VISIBLE,root.findViewWithTag<View>("export_credit_details").visibility)
+                val field=root.findViewWithTag<TextView>("export_credit_text")
+                assertEquals("Original attribution is retained character for character",expected,field.text.toString())
+                assertTrue("Native text remains selectable",field.isTextSelectable)
+            }
+            tapCreditDialogControl("export_copy_credits")
+            onMain {
+                val clip=(it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip
+                assertNotNull(clip);assertEquals(1,clip!!.itemCount)
+                assertEquals("Copy reaches the real Android clipboard",expected,clip.getItemAt(0).text.toString())
+                assertNotNull("Copy leaves the dialog open",creditDialogRoot())
+                assertNotNull("Copy does not commit the pending image",it.document.selection)
+            }
+            assertEquals("Expand and Copy must not launch a destination or share activity",requestsBefore,monitor.requests.size)
+            tapCreditDialogControl("export_toggle_credits")
+            onMain {assertEquals(View.GONE,creditDialogRoot()!!.findViewWithTag<View>("export_credit_details").visibility)}
+            val cancel=device.findObject(UiSelector().resourceId("android:id/button2"))
+            assertTrue(cancel.waitForExists(5000));assertTrue(cancel.click());instrumentation.waitForIdleSync()
+            onMain {assertNull(creditDialogRoot());assertNotNull(it.document.selection);assertNull(it.lastIoError)}
+            assertEquals("Cancellation must not launch a destination",requestsBefore,monitor.requests.size)
+            // Expansion is local to one dialog; reopening starts collapsed again.
+            menu("File",activityText(title))
+            awaitState("reopened credit panel") {creditDialogRoot()!=null}
+            onMain {assertEquals(View.GONE,creditDialogRoot()!!.findViewWithTag<View>("export_credit_details").visibility)}
+            assertTrue(device.pressBack());instrumentation.waitForIdleSync()
+            onMain {assertNull(creditDialogRoot());assertNotNull(it.document.selection)}
+            assertEquals("Back must not confirm Save/Export",requestsBefore,monitor.requests.size)
+        }
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun creditDialogRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull {
+        it.isShown && it.findViewWithTag<View>("export_filename")!=null
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun tapCreditDialogControl(tag: String) {
+        onMain {
+            val view=creditDialogRoot()!!.findViewWithTag<View>(tag)
+            assertTrue("Shown credit control: $tag",view.isShown)
+            view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true)
+        }
+        instrumentation.waitForIdleSync()
+        val bounds=Rect()
+        onMain {
+            val view=creditDialogRoot()!!.findViewWithTag<View>(tag)
+            assertTrue("Reachable credit control: $tag",view.getGlobalVisibleRect(bounds))
+            assertTrue("Usable credit-control height: $tag",bounds.height()>=view.height/2)
+            offsetToScreen(view,bounds)
+        }
+        assertTrue("Real input tap: $tag",device.click(bounds.centerX(),bounds.centerY()))
+        instrumentation.waitForIdleSync()
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun chooseAppLanguage(tag: String) {
+        menu("View",activityText(R.string.ui_languages23))
+        val bounds=Rect()
+        onMain {
+            val tags=it.resources.getStringArray(R.array.app_language_tags).toList()
+            assertTrue("Requested locale is selectable: $tag",tag.isEmpty() || tag in tags)
+            val index=if(tag.isEmpty()) 0 else tags.indexOf(tag)+1
+            val list=localePickerList(tags.size+1)
+            list.setSelection(index)
+        }
+        instrumentation.waitForIdleSync()
+        onMain {
+            val tags=it.resources.getStringArray(R.array.app_language_tags).toList()
+            val index=if(tag.isEmpty()) 0 else tags.indexOf(tag)+1
+            val list=localePickerList(tags.size+1)
+            val row=list.getChildAt(index-list.firstVisiblePosition)
+            assertNotNull("Locale picker row: $tag",row)
+            assertTrue(row.getGlobalVisibleRect(bounds))
+            offsetToScreen(row,bounds)
+        }
+        assertTrue("Choose the visible locale row",device.click(bounds.centerX(),bounds.centerY()))
+        instrumentation.waitForIdleSync()
+    }
+
+    private fun activityText(id: Int): String {
+        var value="";onMain {value=it.getString(id)};return value
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun localePickerList(expectedCount: Int): ListView {
+        // Native AlertDialog uses a private framework list ID. Locate its
+        // visible list by type and the app's actual locale inventory instead.
+        fun find(view: View): ListView? {
+            if(view is ListView && view.isShown && view.count==expectedCount) return view
+            if(view is ViewGroup) for(index in 0 until view.childCount) find(view.getChildAt(index))?.let {return it}
+            return null
+        }
+        return WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {find(it)}
+            ?: throw AssertionError("Visible app-language picker list")
+    }
+
+    private fun offsetToScreen(view: View,bounds: Rect) {
+        // getGlobalVisibleRect is root-relative; injected input uses screen
+        // coordinates, including the dialog window's offset from the activity.
+        val location=IntArray(2);view.rootView.getLocationOnScreen(location)
+        bounds.offset(location[0],location[1])
     }
 
     @Test fun largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard() {
