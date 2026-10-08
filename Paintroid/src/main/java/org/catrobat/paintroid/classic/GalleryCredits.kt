@@ -28,6 +28,14 @@ internal object GalleryCredits {
         ui(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY),
         ui(R.string.gallery_credit_licence,CC_BY_SA)
     ).joinToString("\n")
+    else if(provider==IllustrationSource.COMMONS) listOf(
+        ui(R.string.gallery_credit_title,title.ifBlank {ui(R.string.ui_gallery_image)}),
+        "Wikimedia Commons",
+        ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home),
+        ui(R.string.gallery_credit_source,source),
+        ui(R.string.commons_check_file_licence),
+        provider.terms
+    ).joinToString("\n")
     else listOf(ui(R.string.gallery_credit_title,title.ifBlank {ui(R.string.ui_gallery_image)}),
         if(provider==IllustrationSource.IRASUTOYA) "Irasutoya — Takashi Mifune" else "Openclipart — "+ui(R.string.ui_creator_on_source34),
         ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home),
