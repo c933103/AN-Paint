@@ -206,11 +206,45 @@ class LocaleNotificationTest {
         assertEquals(1,touches)
     }
 
+    @Test fun dialogDismissAndReshowReattachesTheSameContentWithoutNotifications() {
+        val dialog=Dialog(activity)
+        val anchor=TextView(activity)
+        dialog.setContentView(anchor)
+        try {
+            dialog.show()
+            advance(0)
+            val dialogHost=dialog.window!!.decorView.findViewById<FrameLayout>(android.R.id.content)
+            assertTrue(dialogHost.isAttachedToWindow)
+            assertTrue(anchor.isAttachedToWindow)
+            assertSame(dialogHost,anchor.parent)
+            assertEquals(1,dialogHost.childCount)
+
+            dialog.dismiss()
+            advance(0)
+            assertFalse(dialogHost.isAttachedToWindow)
+            assertFalse(anchor.isAttachedToWindow)
+            assertSame(dialogHost,anchor.parent)
+
+            dialog.show()
+            // PAUSED mode must run the new ViewRoot's traversal on each show.
+            advance(0)
+            assertSame(dialogHost,dialog.window!!.decorView.findViewById<FrameLayout>(android.R.id.content))
+            assertTrue(dialogHost.isAttachedToWindow)
+            assertTrue(anchor.isAttachedToWindow)
+            assertSame(dialogHost,anchor.parent)
+            assertEquals(1,dialogHost.childCount)
+        } finally {
+            dialog.dismiss()
+            advance(0)
+        }
+    }
+
     @Test fun dialogDismissAndReshowCannotRetainAnUntimedNotice() {
         val dialog=Dialog(activity)
         val anchor=TextView(activity)
         dialog.setContentView(anchor)
         dialog.show()
+        advance(0)
         controller.windowFocusChanged(false)
         dialog.window!!.decorView.dispatchWindowFocusChanged(true)
         try {
@@ -230,8 +264,14 @@ class LocaleNotificationTest {
 
             // Android reuses the same Window/content tree on a second show.
             dialog.show()
+            // A focus callback does not run the new ViewRoot's pending traversal.
+            advance(0)
             dialog.window!!.decorView.dispatchWindowFocusChanged(true)
+            assertSame(dialogHost,dialog.window!!.decorView.findViewById<FrameLayout>(android.R.id.content))
             assertTrue(dialogHost.isAttachedToWindow)
+            assertTrue(anchor.isAttachedToWindow)
+            assertSame(dialogHost,anchor.parent)
+            assertNull(old.parent)
             assertNull(dialogHost.findViewWithTag<View>("locale_notification"))
             LocaleTypography.showMessage(activity,"new",Toast.LENGTH_SHORT,anchor)
             assertEquals(1,(0 until dialogHost.childCount).count {dialogHost.getChildAt(it).tag=="locale_notification"})
