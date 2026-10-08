@@ -270,7 +270,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     }
     private fun saveCustom() {
         if(fields.values.any {it.error!=null}) return
-        fun changed() {refreshCustom();paletteChanged();LocaleTypography.toast(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT).show()}
+        fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}
         if(paletteStore.add(value.colour)) changed() else {
             val entries=paletteStore.entries()
             EditorDialogBuilder(activity).setTitle(ui(R.string.ui_replace_palette23))

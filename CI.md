@@ -249,8 +249,8 @@ completed all 71 native checks and all 11 editor checks; their sole failure was
 `NativeCodecTest.everyAdvertisedBundledFontLoadsItsActualFontFile`, which expected
 20 drawing font choices but found 21 after the Nôm UI subset was added.
 
-The Nôm asset is a subset for catalogue and picker text, so it now has the same
-`ui_only` role as the Wu fallback and is excluded from the drawing-font selector.
+The Nôm asset is a subset for catalogue and picker text, so it has the
+`ui_only` role and is excluded from the drawing-font selector.
 Default Nôm text still uses its glyph coverage, while an explicit drawing font
 keeps the user's selected face. Complete Mongolian remains a drawing choice.
 Font regressions compare selectable entries with the inventory's drawing roles
