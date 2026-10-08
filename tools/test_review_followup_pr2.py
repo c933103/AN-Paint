@@ -49,6 +49,9 @@ class ReviewFollowupPr2Tests(unittest.TestCase):
         inventory = json.loads((catalogues.RES.parent / "assets/fonts/inventory.json").read_text())
         assets = {entry["asset"] for entry in inventory}
         self.assertEqual(len(inventory), len(assets))
+        # The manual describes selectable drawing fonts, excluding UI-only subsets.
+        drawing_assets = {entry["asset"] for entry in inventory
+                          if not entry.get("ui_only", False)}
         words = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty".split()
         counts = {word: count for count, word in enumerate(words)}
         paths = catalogues.catalogue_paths()
@@ -61,7 +64,7 @@ class ReviewFollowupPr2Tests(unittest.TestCase):
                 self.assertIsNotNone(match)
                 value = match.group(1).lower()
                 count = int(value) if value.isdecimal() else counts.get(value)
-                self.assertEqual(len(assets), count)
+                self.assertEqual(len(drawing_assets), count)
 
 
 if __name__ == "__main__":

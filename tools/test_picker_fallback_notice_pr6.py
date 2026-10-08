@@ -12,6 +12,7 @@ font rendering, or dialog layout. A reviewed paraphrase should update the
 relevant clause expectation, not remove its obligation.
 """
 from pathlib import Path
+import re
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -51,6 +52,38 @@ def local_strings(tag):
     return strings('values-b+' + tag.replace('-', '+'))
 
 
+def kotlin_tokens(source):
+    """Small source-contract lexer, not a Kotlin parser or runtime proof.
+
+    Keep literals atomic and ignore comments/formatting so dead comments, quoted
+    code and braces inside strings cannot satisfy or truncate a scoped guard.
+    """
+    if isinstance(source, tuple):
+        return source
+    pattern = r'"""[\s\S]*?"""|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|//[^\n]*|/\*[\s\S]*?\*/|[A-Za-z_]\w*|\d+|[^\s]'
+    return tuple(t for t in re.findall(pattern, source)
+                 if not t.startswith(("//", "/*")))
+
+
+def code_locations(source, fragment):
+    source, fragment = kotlin_tokens(source), kotlin_tokens(fragment)
+    return [i for i in range(len(source) - len(fragment) + 1)
+            if source[i:i + len(fragment)] == fragment]
+
+
+def kotlin_block(source, opening):
+    source, opening = kotlin_tokens(source), kotlin_tokens(opening)
+    matches = code_locations(source, opening)
+    if len(matches) != 1 or opening.count("{") - opening.count("}") != 1:
+        raise AssertionError("Expected one scoped Kotlin block: " + " ".join(opening))
+    start, depth = matches[0] + len(opening), 1
+    for end in range(start, len(source)):
+        depth += (source[end] == "{") - (source[end] == "}")
+        if depth == 0:
+            return source[start:end]
+    raise AssertionError("Unclosed Kotlin block")
+
+
 class PickerFallbackNoticePr6Tests(unittest.TestCase):
     def test_scope_is_the_three_reported_active_catalogues(self):
         self.assertEqual({'nan-Hant-TW', 'nan-Latn-TW', 'wuu-Hans'}, set(CASES))
@@ -67,11 +100,64 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
             'Reassess the local notices if the source obligations change.',
         )
 
+    def assertCode(self, source, fragment):
+        self.assertTrue(code_locations(source, fragment), fragment)
+
+    def classic_source(self, name):
+        return (ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic' / name).read_text()
+
+    def picker(self):
+        return kotlin_block(self.classic_source('AppLanguage.kt'),
+                            'fun showPicker(activity: Activity, changed: () -> Unit): AlertDialog {')
+
     def test_picker_still_uses_the_notice_as_its_custom_title(self):
-        source = (ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt').read_text()
-        picker = source.split('fun showPicker(', 1)[1]
-        self.assertIn('text = ui(R.string.language20_translation_note)', picker)
-        self.assertIn('.setCustomTitle(note)', picker)
+        picker = self.picker()
+        note = kotlin_block(picker, 'val note = TextView(activity).apply {')
+        self.assertCode(note, 'text = ui(R.string.language20_translation_note)')
+        # The same notice replaces the ordinary title on both paths. PR12 adds
+        # horizontal scrolling for vertical columns, without replacing the text.
+        self.assertEqual(1, len(code_locations(picker, '.setCustomTitle(')))
+        self.assertCode(picker, 'return AlertDialog.Builder(activity)'
+                        '.setTitle(ui(R.string.language20_app_language))'
+                        '.setCustomTitle(if (VerticalText.uiVertical())'
+                        'ColumnScrollView(activity).apply { addView(note) } else note)')
+
+    def test_picker_notice_retains_typography_and_vertical_transformation(self):
+        note = kotlin_block(self.picker(), 'val note = TextView(activity).apply {')
+        self.assertCode(note, 'LocaleTypography.typeface(activity)?.let { typeface = it }'
+                        'VerticalUi.caption(this, 128)')
+        self.assertCode(note, 'text = ui(R.string.language20_translation_note)')
+        self.assertLess(code_locations(note, 'text = ui(R.string.language20_translation_note)')[0],
+                        code_locations(note, 'VerticalUi.caption(')[0])
+
+    def test_vertical_notice_caption_keeps_text_and_horizontal_bypass(self):
+        caption = kotlin_block(self.classic_source('VerticalUi.kt'),
+                               'fun caption(view: TextView, heightDp: Int = 144,'
+                               'direction: TextDirection = VerticalText.uiDirection()) {')
+        self.assertCode(caption, 'if (direction == TextDirection.HORIZONTAL || view is EditText'
+                        '|| view is FlowButton || view is FlowTextView) return')
+        self.assertCode(caption, 'VerticalText.uiTypeface(view.context)?.let { view.typeface = it }')
+        update = kotlin_block(caption, 'fun update() {')
+        self.assertCode(update, 'val value = view.text.toString()')
+        self.assertCode(update, 'view.text = SpannableString(value).apply { if (isNotEmpty())'
+                        'setSpan(Caption(value, dp(view, heightDp).toFloat(), direction),'
+                        '0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE) }')
+        self.assertCode(caption, 'override fun afterTextChanged(s: Editable?) = update()')
+        self.assertCode(caption, '}); update()')
+
+    def test_vertical_notice_wrapper_scrolls_from_the_first_reading_column(self):
+        columns = kotlin_block(self.classic_source('RibbonWidgets.kt'),
+                               'internal class ColumnScrollView(context: Context):'
+                               'android.widget.HorizontalScrollView(context) {')
+        self.assertCode(columns, 'private var positioned = false')
+        layout = kotlin_block(columns, 'override fun onLayout(changed: Boolean, left: Int,'
+                              'top: Int, right: Int, bottom: Int) {')
+        self.assertCode(layout, 'super.onLayout(changed, left, top, right, bottom)')
+        first_layout = kotlin_block(layout, 'if (!positioned && childCount > 0 && width > 0) {')
+        self.assertCode(first_layout, 'positioned = true')
+        self.assertCode(first_layout, 'if (VerticalText.uiDirection() == TextDirection.VERTICAL_RL)'
+                        'scrollTo((getChildAt(0).width - width + paddingLeft + paddingRight)'
+                        '.coerceAtLeast(0), 0)')
 
 
 def heading_test(tag):

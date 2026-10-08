@@ -10,6 +10,7 @@ import android.view.*
 import android.widget.*
 import org.catrobat.paintroid.classic.*
 import org.json.JSONObject
+import org.json.JSONArray
 import org.junit.*
 import org.junit.Assert.*
 import org.junit.runner.RunWith
@@ -309,7 +310,11 @@ class WorkspaceRefinementTest {
         render(root,"licence-landscape.png");root.findViewWithTag<View>("terms_done").performClick();assertFalse(dialog.isShowing)
     }
     @Test fun allBundledFontsLoadAndDropdownNamesUseTheirOwnTypeface() {
-        val catalog=FontCatalog(activity);assertEquals(11,catalog.fonts.count { it.asset!=null });assertEquals(20,catalog.fonts.size)
+        val catalog=FontCatalog(activity)
+        val inventory=activity.assets.open("fonts/inventory.json").bufferedReader().use {JSONArray(it.readText())}
+        val drawing=(0 until inventory.length()).map {inventory.getJSONObject(it)}.filterNot {it.optBoolean("ui_only")}
+        assertEquals(drawing.map {it.getString("asset")}.sorted(),catalog.fonts.mapNotNull {it.asset}.sorted())
+        assertEquals(catalog.fonts.size,catalog.fonts.map {it.id}.toSet().size)
         val adapter=catalog.adapter();val parent=LinearLayout(activity)
         val widths=mutableSetOf<Int>()
         for (i in catalog.fonts.indices) {

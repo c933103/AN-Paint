@@ -105,6 +105,27 @@ class AppLanguageTest {
 
     @Test fun pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode()=checkMongolianPickerRow(16f)
 
+    @Test fun nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom() {
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            val picker=AppLanguage.showPicker(activity) {}
+            val index=AppLanguage.tags(activity).indexOf("vi-Hani")+1
+            assertTrue(index>0)
+            val row=picker.listView.adapter.getView(index,null,picker.listView) as TextView
+            val font=org.catrobat.paintroid.classic.LocaleTypography.typeface(activity,Locale.forLanguageTag("vi-Hani"))
+            assertNotNull(font)
+            assertSame(font,row.typeface)
+            assertTrue(android.graphics.Paint().apply {typeface=row.typeface}.hasGlyph("𡨸"))
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
+    }
+
     @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
     fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)
 

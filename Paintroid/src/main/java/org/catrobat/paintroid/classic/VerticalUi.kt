@@ -54,12 +54,17 @@ internal object VerticalUi {
             override fun afterTextChanged(s: Editable?)=update()
         });update()
     }
-    fun languageChoice(view: TextView) {
+    fun languageChoice(view: TextView,locale: java.util.Locale) {
         val value=view.text.toString()
-        val autonym=value.substringBefore(" [mn-Mong]")
+        val autonym=value.substringBefore(" [")
+        val direction=VerticalText.uiDirection(locale)
+        if(direction==TextDirection.HORIZONTAL) {
+            LocaleTypography.typeface(view.context,locale)?.let {view.typeface=it}
+            return
+        }
         // Fold the two joined words into adjacent vertical columns. Keep the
         // same native-name + code text as every other option, including for accessibility.
-        val columns=autonym.trim().split(Regex("\\s+")).joinToString("\n")
+        val columns=if(locale.script=="Mong") autonym.trim().split(Regex("\\s+")).joinToString("\n") else autonym
         view.typeface=android.graphics.Typeface.DEFAULT
         view.setSingleLine(false);view.maxLines=Int.MAX_VALUE;view.ellipsize=null
         // The dialog theme's single-choice row can have a fixed 48 dp height.
@@ -67,8 +72,8 @@ internal object VerticalUi {
         view.layoutParams=AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         // Keep the native CheckedTextView padding: paddingEnd already includes
         // its check mark. Feeding that value back adds the mark width twice.
-        val font=android.graphics.Typeface.createFromAsset(view.context.assets,"fonts/notosansmongolian.ttf")
-        view.text=SpannableString(value).apply {setSpan(Caption(columns,dp(view,96).toFloat(),TextDirection.VERTICAL_LR,font,dp(view,8)),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
+        val font=LocaleTypography.typeface(view.context,locale)
+        view.text=SpannableString(value).apply {setSpan(Caption(columns,dp(view,96).toFloat(),direction,font,dp(view,8)),0,autonym.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
     }
     private class VerticalChoices(private val source: SpinnerAdapter,private val height: Int): BaseAdapter() {
         override fun getCount()=source.count
@@ -124,11 +129,14 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}
     override fun create(): AlertDialog {
         val dialog=super.create()
-        if(VerticalText.uiVertical()) dialog.window!!.decorView.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
+        dialog.window!!.decorView.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
             override fun onViewDetachedFromWindow(view: View)=Unit
             override fun onViewAttachedToWindow(view: View) {
                 view.removeOnAttachStateChangeListener(this)
-                view.post {if(dialog.isShowing) mount(dialog)}
+                view.post {if(dialog.isShowing) {
+                    if(VerticalText.uiVertical()) mount(dialog)
+                    LocaleTypography.install(dialog.window!!.decorView)
+                }}
             }
         })
         return dialog

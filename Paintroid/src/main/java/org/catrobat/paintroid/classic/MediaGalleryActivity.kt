@@ -49,7 +49,7 @@ class MediaGalleryActivity : Activity() {
         fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
             val credits=GalleryCredits.text(this)
-            if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
+            if(credits.isBlank()) LocaleTypography.showMessage(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT)
             else GalleryCredits.copy(this,credits)
         }
         action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this)}
@@ -107,7 +107,7 @@ class MediaGalleryActivity : Activity() {
                 }
                 override fun onPageFinished(view: WebView,url: String) {
                     if(provider.allowsPage(Uri.parse(url))) {
-                        view.evaluateJavascript(IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
+                        view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
                         pendingSearch?.let {query ->pendingSearch=null;view.evaluateJavascript(IllustrationPage.searchIrasutoya(query),null)}
                     }
                 }
@@ -122,7 +122,7 @@ class MediaGalleryActivity : Activity() {
                 } else false
             }
         }
-        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
+        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
     }
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}

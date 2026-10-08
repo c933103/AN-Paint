@@ -1,4 +1,8 @@
-"""Host checks for canonical locale XML and retained translation provenance."""
+"""Host checks for canonical locale XML and retained translation provenance.
+
+Catalogue structure and key-coverage checks do not establish semantic or
+linguistic correctness, review acceptance, or completion of the required recheck.
+"""
 import ast
 import hashlib
 import json
@@ -40,6 +44,58 @@ class TranslationCatalogueTests(unittest.TestCase):
 
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
+
+
+    def test_korean_and_vietnamese_catalogues_pass_structural_validation(self):
+        for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+    def test_new_korean_and_vietnamese_script_variants_are_registered(self):
+        tags = translations.offered_tags()
+        self.assertIn("ko-Kore-KR", tags)
+        self.assertIn("vi-Hani", tags)
+        self.assertNotIn("ko-Hani", tags)
+
+        language_names = (translations.RES / "values/app_language_names.xml").read_text()
+        self.assertIn("㗂越（𡨸喃）", language_names)
+        self.assertNotIn("㗂越（漢喃）", language_names)
+
+        vi_hani = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["vi-Hani"]
+            ).values()
+        )
+        self.assertRegex(vi_hani, r"[\u3400-\u9fff\uf900-\ufaff]")
+
+        ko_kore = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["ko-Kore-KR"]
+            ).values()
+        )
+        self.assertRegex(ko_kore, r"[\uac00-\ud7a3]")
+        self.assertRegex(ko_kore, r"[\u3400-\u9fff\uf900-\ufaff]")
+        # Quốc Ngữ letters with Vietnamese-specific diacritics must not leak
+        # into the Chữ Nôm UI. Latin technical/product names are allowed.
+        self.assertNotRegex(
+            vi_hani,
+            r"[ĂÂĐÊÔƠƯăâđêôơư"
+            r"ÀÁẠẢÃẦẤẬẨẪẰẮẶẲẴ"
+            r"ÈÉẸẺẼỀẾỆỂỄ"
+            r"ÌÍỊỈĨ"
+            r"ÒÓỌỎÕỒỐỘỔỖỜỚỢỞỠ"
+            r"ÙÚỤỦŨỪỨỰỬỮ"
+            r"ỲÝỴỶỸ"
+            r"àáạảãầấậẩẫằắặẳẵ"
+            r"èéẹẻẽềếệểễ"
+            r"ìíịỉĩ"
+            r"òóọỏõồốộổỗờớợởỡ"
+            r"ùúụủũừứựửữ"
+            r"ỳýỵỷỹ]",
+        )
 
     def test_crowdin_uses_one_canonical_source_and_output(self):
         config = (translations.ROOT / "crowdin.yml").read_text()
@@ -136,7 +192,7 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
-    def test_completed_lzh_hakka_hokkien_wu_catalogues_are_complete(self):
+    def test_lzh_hakka_hokkien_wu_catalogues_pass_structural_validation(self):
         for tag in (
             "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
             "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
