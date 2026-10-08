@@ -28,10 +28,10 @@ class LocaleTypographyTest {
         val old=Locale.getDefault()
         try {
             val catalog=org.catrobat.paintroid.classic.FontCatalog(context)
-            assertFalse(catalog.fonts.any {it.id in setOf("anpaintnomui")})
+            assertFalse(catalog.fonts.any {it.id in setOf("anpaintnomui","anpaintwuufallback")})
             val explicit=catalog.fonts.indexOfFirst {it.id=="lato"}
             assertTrue(explicit>0)
-            for((tag,text) in listOf("vi-Hani" to "𡨸喃")) {
+            for((tag,text) in listOf("vi-Hani" to "𡨸喃", "wuu-Hans" to "𠲎")) {
                 Locale.setDefault(Locale.forLanguageTag(tag))
                 val fallback=Typeface.create(LocaleTypography.typeface(context),Typeface.BOLD)
                 assertSame(tag,fallback,catalog.faceForText(0,text,Typeface.BOLD))
@@ -76,6 +76,11 @@ class LocaleTypographyTest {
             val popupRow=spinner.adapter.getDropDownView(1,null,root) as TextView
             assertSame(font,popupRow.typeface)
             assertEquals("𮞶",popupRow.text.toString())
+            Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
+            val wu=LocaleTypography.typeface(context)!!
+            assertTrue(Paint().apply {typeface=wu}.hasGlyph("𠲎"))
+            val catalog=org.catrobat.paintroid.classic.FontCatalog(context)
+            assertFalse(catalog.fonts.any {it.id=="anpaintwuufallback"})
         } finally {Locale.setDefault(old)}
     }
 }

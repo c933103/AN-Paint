@@ -19,7 +19,7 @@ import java.util.Locale
 class GalleryTypographyTest {
     @Test fun nomAndManchuActionsEmbedTheSameVerifiedFontsAsNativeControls() {
         val context=RuntimeEnvironment.getApplication()
-        for((tag,asset) in listOf("vi-Hani" to "fonts/anpaintnomui.ttf","mnc-Mong" to "fonts/notosansmongolian.ttf")) {
+        for((tag,asset) in listOf("vi-Hani" to "fonts/anpaintnomui.ttf","mnc-Mong" to "fonts/notosansmongolian.ttf","wuu-Hans" to "fonts/anpaintwuufallback.ttf")) {
             val css=GalleryTypography.css(context,Locale.forLanguageTag(tag))
             val encoded=css.substringAfter("data:font/ttf;base64,").substringBefore('"')
             assertArrayEquals(context.assets.open(asset).use {it.readBytes()},Base64.decode(encoded,Base64.DEFAULT))
@@ -30,7 +30,8 @@ class GalleryTypographyTest {
     }
     @Test fun allVerticalLocalesUseScopedWritingDirectionWithoutReplacingPageProse() {
         val context=RuntimeEnvironment.getApplication()
-        for((tag,direction) in listOf("mn-Mong" to "vertical-lr","lzh-Hant" to "vertical-rl","en-US" to "horizontal-tb")) {
+        for((tag,direction) in listOf("mn-Mong" to "vertical-lr","lzh-Hant" to "vertical-rl",
+                "en-XV" to "vertical-lr","qaa-Zsye-XV" to "vertical-rl","en-US" to "horizontal-tb")) {
             val css=GalleryTypography.css(context,Locale.forLanguageTag(tag))
             assertTrue(tag,css.contains("writing-mode:$direction!important"))
         }

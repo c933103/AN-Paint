@@ -37,6 +37,7 @@ class TranslationReadinessTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS)
             check(activity)
         } finally {

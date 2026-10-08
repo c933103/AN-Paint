@@ -40,7 +40,7 @@ class FontCatalog(private val context: Context) {
         val locale=java.util.Locale.getDefault()
         // Catalogue subsets supply missing glyphs for the default choice only;
         // they are not complete drawing fonts and must not replace an explicit choice.
-        if(locale.language=="vi" && locale.script=="Hani")
+        if(locale.language=="vi" && locale.script=="Hani" || locale.language=="wuu" && text.contains("𠲎"))
             LocaleTypography.typeface(context)?.let {return Typeface.create(it,style)}
         return face(index,style)
     }

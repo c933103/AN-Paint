@@ -54,6 +54,7 @@ class ClassicWorkspaceTest {
         context.getSharedPreferences("classic-ui",Context.MODE_PRIVATE).edit().clear().commit()
         controller = Robolectric.buildActivity(ClassicPaintActivity::class.java)
         activity = controller.setup().get()
+        awaitEditorStartup(activity)
         doc.newImage(96, 96); canvas.fit()
         provider = DocumentProvider().apply {
             file = File(context.cacheDir, "classic-fixture.image")
@@ -192,7 +193,7 @@ class ClassicWorkspaceTest {
     @Test fun recoveredDraftRetainsSaveAsUriAndCancelledSaveAsDoesNotReplaceIt() {
         click("save_image");receive()
         controller.pause().stop();awaitIo();controller.destroy()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         shadowOf(Looper.getMainLooper()).idle()
         menu("File",3);EditorTestNavigation.chooseLocationIfShown();receive(Activity.RESULT_CANCELED)
         doc.bitmap.setPixel(7,9,Color.MAGENTA);doc.edited()
@@ -206,7 +207,7 @@ class ClassicWorkspaceTest {
             click("colour_$hex")
             activity.window.decorView.findViewWithTag<View>("colour_0000FF").performLongClick()
             controller.pause().stop();awaitIo();controller.destroy()
-            controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+            controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
             shadowOf(Looper.getMainLooper()).idle()
             assertEquals("Saved foreground must not swap with the background",colour,doc.foreground)
             assertEquals(Color.BLUE,doc.background)
@@ -219,7 +220,7 @@ class ClassicWorkspaceTest {
         val image=Bitmap.createBitmap(24,24,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.WHITE)}
         AutosaveStore(context.filesDir).write(image,null,org.json.JSONObject().put("version",1))
         image.recycle()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(Color.BLACK,doc.foreground);assertEquals(Color.WHITE,doc.background)
     }

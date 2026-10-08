@@ -38,6 +38,7 @@ class ClassicPaintActivity : Activity() {
         const val ASSEMBLY_IMAGE = 705
         const val EXPORT_RECOVERY = 706
         const val GALLERY_IMAGE = 707
+        const val LEGACY_CREDITS = 708
         const val SOURCE_ASSET = "local-source/AN-Paint-source.zip"
     }
     lateinit var document: PaintDocument; private set
@@ -88,6 +89,12 @@ class ClassicPaintActivity : Activity() {
     private var fullscreen=false
     private var afterSave: (() -> Unit)? = null
     private val worker = Executors.newSingleThreadExecutor()
+    private lateinit var startup: EditorStartup<AutosaveStore.Recovery<RecoveredEditor>>
+    @Volatile var startupReady=false; private set
+    private var startupFailure: String?=null
+    private var initialCanvasSized=false
+    private val pendingStartupEvents=mutableListOf<Bundle>()
+    private var deliveringStartupEvents=false
     @Volatile var busy = false; private set
     private var operationsInFlight = 0
     private var resizeDialog: AlertDialog? = null
@@ -103,6 +110,12 @@ class ClassicPaintActivity : Activity() {
     private var paletteExpanded = true
     private var drawingTool = PaintTool.PENCIL
     private val landscape get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    private var imageCreditEditor: GalleryCredits.EditorSession?=null
+    private var imageCreditSession: CreditEditSession?=null
+    private var unrestoredCreditSessionToken: String?=null
+    private var creditSessionRestoreError: AlertDialog?=null
+    private var galleryCreditSessionToken: String?=null
+    private val adoptedCreditSessions=linkedMapOf<String,CreditEditSession.AdoptionReceipt>()
     private lateinit var autosave: AutosaveStore
     private val autosaveHandler = Handler(Looper.getMainLooper())
     private var draftGeneration = 0L
@@ -124,60 +137,60 @@ class ClassicPaintActivity : Activity() {
         super.onCreate(savedInstanceState)
         AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()
         autosave=AutosaveStore(filesDir)
+        galleryCreditSessionToken=savedInstanceState?.getString("gallery_credit_session")
+        // Adoption receipts belong only to this instance's captured document generation.
+        // Replaying them onto a recovered older draft could release credits never saved there.
         recentColours=RecentColours(this)
         val prefs=getSharedPreferences("classic-ui",MODE_PRIVATE)
         val firstArrowLayout=!prefs.getBoolean("arrow_layout_initialized",false)
         sidebarExpanded=firstArrowLayout || prefs.getBoolean("sidebar_expanded",true)
         paletteExpanded=firstArrowLayout || prefs.getBoolean("palette_expanded",true)
         prefs.edit().putBoolean("arrow_layout_initialized",true).apply()
-        document = PaintDocument(historyDirectory = File(cacheDir,"classic-history"),
-            allocationGuard = { w,h -> if (::document.isInitialized) checkImageSize(w,h) })
-        var recovered: JSONObject?=null
-        var restored=false
-        if (autosave.exists()) try {
-            val draft=autosave.read(historyReader=document::readHistory) { w,h -> checkImageSize(w,h) }
-            recovered=draft.metadata
-            textSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
-            savedTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
-            document.background=recovered.optInt("background",Color.WHITE)
-            document.replace(draft.image)
-            draft.history?.let {document.restoreHistory(it)}
-            if(draft.historyFailed) {
-                autosave.preserveForRecovery()
-                recoveryNotice=ui(R.string.ui_history_unavailable34)
-            }
-            draft.floating?.let { image ->
-                val r=recovered!!.getJSONArray("floating_rect")
-                document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
-            }
-            filename=recovered.optString("filename",ui(R.string.ui_recovered_image))
-            document.foreground=recovered.optInt("foreground",Color.BLACK)
-            document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
-            document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
-            document.brushTip=recovered.optInt("brush_tip");document.shapeStyle=recovered.optInt("shape_style")
-            document.tolerance=recovered.optDouble("tolerance",0.0).toFloat()
-            document.watercolorStrength=recovered.optInt("watercolor_strength",50).coerceIn(1,100)
-            document.strokeSmoothing=recovered.optBoolean("stroke_smoothing")
-            document.antialiasing=recovered.optBoolean("antialiasing",false)
-            document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
-            if (recovered.optBoolean("dirty")) document.edited()
-            draftStatus=ui(R.string.ui_draft_restored);restored=true
-        } catch (_: Exception) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_could_not_be_restored)) }
-          catch (_: OutOfMemoryError) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_needs_more_memory_to_reopen)) }
-        if (!restored) {
-            val recovery=File(filesDir,"classic-recovery.png")
-            if (recovery.isFile) try {
-                val bounds=BitmapFactory.Options().apply { inJustDecodeBounds=true }
-                BitmapFactory.decodeFile(recovery.path,bounds);checkImageSize(bounds.outWidth,bounds.outHeight)
-                BitmapFactory.decodeFile(recovery.path,BitmapFactory.Options().apply { inMutable=true;inScaled=false })?.let {
-                    document.replace(it)
-                    val old=getSharedPreferences("classic",MODE_PRIVATE)
-                    filename=old.getString("filename",ui(R.string.ui_recovered_image)) ?: ui(R.string.ui_recovered_image)
-                    if (old.getBoolean("dirty",false)) document.edited()
-                    restored=true;draftStatus=ui(R.string.ui_draft_restored)
-                }
-            } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
+        unrestoredCreditSessionToken=savedInstanceState?.getString("main_credit_session")
+        savedInstanceState?.let {
+            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
+            shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
         }
+        savedInstanceState?.getParcelableArrayList<Bundle>("startup_events")?.let {pendingStartupEvents.addAll(it)}
+        if(savedInstanceState==null && externalImageUri(intent)!=null) enqueueExternalImage(intent)
+        showStartup()
+        startup=EditorStartup(worker,java.util.concurrent.Executor {runOnUiThread(it)},
+            load={recoverEditor(this,autosave)},release={it.value.document.close()},receive=::receiveStartup)
+        startup.start()
+    }
+
+    private fun showStartup() {
+        busy=true
+        val loading=LinearLayout(this).apply {
+            tag="editor_startup";orientation=LinearLayout.VERTICAL;gravity=Gravity.CENTER
+            setBackgroundColor(surface)
+            if(startupFailure==null) addView(ProgressBar(this@ClassicPaintActivity).apply {tag="editor_startup_progress"})
+            addView(FlowTextView(this@ClassicPaintActivity).apply {
+                tag="editor_startup_label";columnHeightDp=(resources.configuration.screenHeightDp-160).coerceIn(96,240)
+                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)
+                gravity=Gravity.CENTER;setPadding(dp(24),dp(24),dp(24),dp(24))
+            })
+        }
+        setContentView(loading);LocaleTypography.install(loading)
+    }
+
+    private fun receiveStartup(result: Result<AutosaveStore.Recovery<RecoveredEditor>>) {
+        val recoveredEditor=result.getOrElse {error ->
+            // Do not install or autosave an empty canvas after unexpected startup failure.
+            lastIoError=error.message ?: ui(R.string.ui_please_try_again)
+            startupFailure=ui(R.string.ui_could_not_complete_the_edit,lastIoError!!);showStartup();return
+        }
+        if(isFinishing || isDestroyed) {worker.execute {recoveredEditor.value.document.close()};return}
+        if(!autosave.isCurrent(recoveredEditor)) {
+            worker.execute {recoveredEditor.value.document.close()};startup.start();return
+        }
+        val recovery=recoveredEditor.value
+        document=recovery.document
+        filename=recovery.filename;textSettings=recovery.textSettings;savedTarget=recovery.savedTarget
+        draftStatus=recovery.draftStatus;autosaveBlocked=recovery.autosaveBlocked
+        lastAutosaveError=recovery.lastAutosaveError;recoveryNotice=recovery.recoveryNotice
+        val recovered=recovery.metadata;val restored=recovery.restored
+        initialCanvasSized=restored
         paintCanvas=PaintCanvas(this,document).apply {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
@@ -197,30 +210,57 @@ class ClassicPaintActivity : Activity() {
             override fun onLayoutChange(view: View,l: Int,t: Int,r: Int,b: Int,ol: Int,ot: Int,or: Int,ob: Int) {
                 if (r-l <= dp(20)+24 || b-t <= dp(20)+24) return
                 view.removeOnLayoutChangeListener(this)
-                editAction { document.newImage(r-l-dp(20)-24,b-t-dp(20)-24) };paintCanvas.fit()
+                try {editAction { document.newImage(r-l-dp(20)-24,b-t-dp(20)-24) };paintCanvas.fit()}
+                finally {
+                    // Removing this listener ends its ownership of initial canvas sizing,
+                    // even if allocation failed. Never resize after accepting deferred input.
+                    initialCanvasSized=true;deliverPendingInputs()
+                }
             }
         })
-        document.changed={ runOnUiThread { if (!isDestroyed) { paintCanvas.invalidate();updateStatus();scheduleAutosave() } } }
-        autosaveReady=true;scheduleAutosave()
-        recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
-        savedInstanceState?.let {
-            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
-            shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
+        document.validateCreditMetadata={credits -> AutosaveStore.metadataBytes(draftMetadata().put("image_credits",credits));Unit}
+        document.validatePastedCreditMetadata={credits,width,height ->
+            AutosaveStore.metadataBytes(draftMetadata().apply {
+                put("image_credits",credits);put("floating_rect",JSONArray(listOf(0f,0f,width.toFloat(),height.toFloat())))
+                put("floating_rotation",0.0);remove("selection_outline")
+            });Unit
         }
-        if(savedInstanceState==null) handleExternalImage(intent)
+        document.changed={ runOnUiThread { if (!isDestroyed) { paintCanvas.invalidate();updateStatus();scheduleAutosave() } } }
+        startupReady=true;busy=false;autosaveReady=true;updateStatus();scheduleAutosave()
+        recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
+        unrestoredCreditSessionToken?.let {token ->
+            try {
+                val session=CreditEditSession.open(filesDir,token)
+                val field=session.draft?.takeIf {value -> document.imageCredits.any {it.source==value.source}}
+                if(field!=null) showImageCredits(field,session)
+                else unrestoredCreditSessionToken=null
+            } catch(_: Exception) {
+                creditSessionRestoreError=EditorDialogBuilder(this).setMessage(ui(R.string.gallery_credit_could_not_save))
+                    .setPositiveButton(ui(R.string.ui_done),null).show()
+            }
+        }
+        deliverPendingInputs()
     }
 
-    private fun preserveFailedDraft(reason: String) {
+    private fun deferStartupInput() = !startupReady || !initialCanvasSized ||
+        pendingStartupEvents.isNotEmpty() || deliveringStartupEvents
+
+    private fun enqueueExternalImage(incoming: Intent) {
+        pendingStartupEvents.add(Bundle().apply {putString("kind","intent");putParcelable("data",incoming)})
+    }
+
+    private fun deliverPendingInputs() {
+        if(!startupReady || !initialCanvasSized || isFinishing || isDestroyed || deliveringStartupEvents) return
+        // Preserve dispatch order across results/intents and another recreation. Keep a
+        // startup backlog until I/O finishes rather than dropping explicit selections.
+        deliveringStartupEvents=true
         try {
-            autosave.preserveForRecovery()
-            recoveryNotice=ui(R.string.ui_a_separate_recovery_copy_has_been_kept_use, reason)
-            draftStatus=ui(R.string.ui_previous_draft_kept_for_recovery)
-        } catch (_: Exception) {
-            autosaveBlocked=true
-            lastAutosaveError=ui(R.string.ui_the_previous_draft_could_not_be_preserved_separately)
-            draftStatus=ui(R.string.ui_autosave_paused_use_save)
-            recoveryNotice=ui(R.string.ui_autosave_is_paused_to_protect_that_draft_use, reason)
-        }
+            while(!busy && pendingStartupEvents.isNotEmpty()) {
+                val event=pendingStartupEvents.removeAt(0)
+                if(event.getString("kind")=="intent") event.getParcelable<Intent>("data")?.let(::handleExternalImage)
+                else handleActivityResult(event.getInt("request"),event.getInt("result"),event.getParcelable("data"))
+            }
+        } finally {deliveringStartupEvents=false}
     }
 
     private val panelLimit get() = dp(if (landscape) (resources.configuration.screenHeightDp-96).coerceAtLeast(136) else minOf(256, resources.configuration.screenHeightDp / 3))
@@ -467,7 +507,8 @@ class ClassicPaintActivity : Activity() {
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this, newConfig);buildWorkspace()
+        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this,newConfig)
+        if(startupReady) buildWorkspace() else showStartup()
     }
 
     private fun syncPanels() {
@@ -835,7 +876,9 @@ class ClassicPaintActivity : Activity() {
             ui(R.string.ui_image_credits) to {showImageCredits()},
             ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
             ui(R.string.ui_font_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")},
-            ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")})
+            ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")}) +
+            if(ImageCreditArchive.hasRecords(this)) listOf(ui(R.string.legacy_credits_title) to {showLegacyImageCredits()})
+            else emptyList()
         EditorDialogBuilder(this).setTitle(ui(R.string.ui_about_credits23)).setItems(actions.map {it.first}.toTypedArray()) {_,index->actions[index].second()}
             .setNegativeButton(ui(R.string.ui_done),null).show()
     }
@@ -844,8 +887,14 @@ class ClassicPaintActivity : Activity() {
         val sources=listOf(ui(R.string.ui_from_device34))+IllustrationSource.values().map {it.label}
         EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->
             if(index==0) launchOpen(true)
-            else startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
-                .putExtra("gallery_provider",IllustrationSource.values()[index-1].name),GALLERY_IMAGE)
+            else try {
+                paintCanvas.pauseGesture()
+                val session=CreditEditSession.create(filesDir,document.imageCredits,creditEditContext())
+                galleryCreditSessionToken=session.token
+                startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
+                    .putExtra("gallery_provider",IllustrationSource.values()[index-1].name)
+                    .putExtra(CreditEditSession.EXTRA_SESSION,session.token),GALLERY_IMAGE)
+            } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
         }.setNegativeButton(ui(R.string.ui_cancel),null).show()
     }
 
@@ -961,7 +1010,7 @@ class ClassicPaintActivity : Activity() {
             if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)
             else editAction {
                 checkImageSize(size.width,size.height); paintCanvas.applyPending()
-                if (fresh) { document.newImage(size.width,size.height); filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
+                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
                 paintCanvas.fit(); updateStatus(); dialog.dismiss()
             }
         } }; dialog.show()
@@ -1057,7 +1106,8 @@ class ClassicPaintActivity : Activity() {
                 if(exportOptions.format.supportsLossless) savedPrefs.putBoolean("lossless",exportOptions.lossless)
                 savedPrefs.apply()
                 chooseSaveLocation(request.fileName)
-            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export).show()
+            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export,imageCredits=ImageCredit.text(document.imageCredits),
+            legacyCredits=if(ImageCreditArchive.hasRecords(this)) ::showLegacyImageCredits else null).show()
     }
     private fun chooseSaveLocation(proposedName: String=filename) {
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
@@ -1066,13 +1116,19 @@ class ClassicPaintActivity : Activity() {
             putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))
         },SAVE_IMAGE)
     }
-    override fun onNewIntent(intent: Intent) {super.onNewIntent(intent);setIntent(intent);handleExternalImage(intent)}
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent);setIntent(intent)
+        if(externalImageUri(intent)==null) return
+        if(deferStartupInput()) {enqueueExternalImage(intent);deliverPendingInputs()}
+        else handleExternalImage(intent)
+    }
+    private fun externalImageUri(incoming: Intent): Uri? = when(incoming.action) {
+        Intent.ACTION_SEND -> incoming.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+        Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data
+        else -> null
+    }
     private fun handleExternalImage(incoming: Intent) {
-        val uri=when(incoming.action) {
-            Intent.ACTION_SEND -> incoming.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-            Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data
-            else -> null
-        } ?: return
+        val uri=externalImageUri(incoming) ?: return
         confirmReplacement {readImage(uri,false)}
     }
 
@@ -1101,16 +1157,73 @@ class ClassicPaintActivity : Activity() {
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != RESULT_OK) { if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
+        super.onActivityResult(requestCode,resultCode,data)
+        if(deferStartupInput()) {
+            pendingStartupEvents.add(Bundle().apply {putString("kind","result");putInt("request",requestCode);putInt("result",resultCode);putParcelable("data",data)})
+            deliverPendingInputs()
+        } else handleActivityResult(requestCode,resultCode,data)
+    }
+    private fun handleActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
+        if (resultCode != RESULT_OK) {
+            if(requestCode==GALLERY_IMAGE) {
+                galleryCreditSessionToken?.let {token ->runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false)}.getOrNull()?.let {
+                    if(!it.accepted && !it.hasDraft) it.discard()
+                }}
+                galleryCreditSessionToken=null
+            }
+            if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
+        if(requestCode==LEGACY_CREDITS) {
+            attachLegacyImageCredit(data?.getStringExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN));return
+        }
         if(requestCode==GALLERY_IMAGE) {
+            val token=data?.getStringExtra(CreditEditSession.EXTRA_SESSION)
+            val expectedSession=galleryCreditSessionToken
+            if((expectedSession!=null && token!=expectedSession) ||
+                (expectedSession==null && data?.hasExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)==true)) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            val returnedSession=try {token?.let {CreditEditSession.open(filesDir,it,restoreDraft=false)}} catch(_: Exception) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            // A late accepted result must not rewrite a fresh/replaced editor. A standalone
+            // Gallery may still return an unedited image insertion; it carries no credit edits.
+            if(returnedSession!=null && expectedSession==null &&
+                (returnedSession.accepted || returnedSession.edits.isNotEmpty() || data?.hasExtra("gallery_file")!=true)) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            val encoded=data?.getStringExtra("document_image_credits")
+            if(returnedSession==null && encoded!=null) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            if(returnedSession!=null) {
+                try {
+                    val edits=returnedSession.edits
+                    document.editImageCredits(edits) // Validate all sources before mutating any of them.
+                    if(edits.isNotEmpty())unrestoredCreditSessionToken=null
+                    if(token!=null && returnedSession!=null) {
+                        returnedSession.adoptionReceipt?.let {adoptedCreditSessions[token]=it}
+                        if(!returnedSession.accepted && !returnedSession.hasDraft) returnedSession.discard()
+                    }
+                } catch(_: IllegalArgumentException) {message(ui(R.string.gallery_credit_too_large));return}
+                  catch(_: org.json.JSONException) {message(ui(R.string.ui_invalid_autosave_metadata));return}
+            }
+            galleryCreditSessionToken=null
+            if(data?.hasExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)==true) {
+                attachLegacyImageCredit(data.getStringExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN))
+                if(data.hasExtra("gallery_file")!=true)return
+            }
+            if(data?.hasExtra("gallery_file")!=true && (returnedSession!=null || encoded!=null)) return
             val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
             val source=data?.getStringExtra("gallery_source")
             val provider=IllustrationSource.fromId(data?.getStringExtra("gallery_provider"))
             val page=data?.getStringExtra("gallery_page").orEmpty()
             val title=data?.getStringExtra("gallery_title").orEmpty().take(512)
             if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !provider.allowsImage(Uri.parse(source)) || (provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page)))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
-            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,onInserted={GalleryCredits.remember(this,source,provider,page,title)});return
+            val credit=document.imageCredits.firstOrNull {it.source==source} ?: ImageCredit(source,GalleryCredits.credit(source,title,provider,page,
+                data?.getStringExtra("gallery_author").orEmpty().take(1024),
+                data?.getStringExtra("gallery_licence").orEmpty().take(4096),
+                data?.getStringExtra("gallery_author_url").orEmpty().take(4096)))
+            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,credits=listOf(credit));return
         }
         if (requestCode == ASSEMBLY_IMAGE) {
             val name = data?.getStringExtra("assembly_output")
@@ -1134,7 +1247,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         beginIo()
         worker.execute {
             var temporary: File? = null
@@ -1153,8 +1266,8 @@ class ClassicPaintActivity : Activity() {
                             selected={source ->
                                 importSelection=null;pendingImportFile=source.file
                                 val plan=ImportPlan.create(source.dimensions,source.dimensions)
-                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,onInserted)
-                                else askToResize(source,import,asEdit=asEdit,onInserted=onInserted)
+                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,credits)
+                                else askToResize(source,import,asEdit=asEdit,credits=credits)
                             },cancelled={importSelection=null;endIo()},failed={error ->
                                 importSelection=null;ioFailed(ui(R.string.ui_could_not_open_image),error)
                             })
@@ -1167,17 +1280,17 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         if (isDestroyed || isFinishing) { source.file.delete(); return }
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
-            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,onInserted) },
+            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,credits) },
             cancel = { resizeDialog = null; source.file.delete(); pendingImportFile=null; if (!isDestroyed) endIo() },
             memoryRequirements = source.memoryRequirements
         ).show()
     }
 
-    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,onInserted: (() -> Unit)? = null) {
+    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
         worker.execute {
             try {
                 val plan = ImportPlan.create(source.dimensions,target)
@@ -1191,13 +1304,15 @@ class ClassicPaintActivity : Activity() {
                         try {
                             if (import) {
                                 chooseTool(PaintTool.SELECT)
-                                document.paste(bitmap, takeOwnership = true)
-                                onInserted?.invoke()
+                                document.paste(bitmap, takeOwnership = true, credits = credits)
                                 // Include the whole floating image and its handles, even outside the canvas.
                                 // Refit after the selection drawer changes the available viewport.
                                 paintCanvas.fit();paintCanvas.post { if(!isDestroyed && document.selection!=null) paintCanvas.fit() }
                             }
-                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit); filename = source.name;savedTarget=null; paintCanvas.fit() }
+                            // An assembly result replaces every canvas pixel. Preserve the previous
+                            // image and its credits in Undo, but do not attribute the new composite
+                            // to unrelated gallery sources from the previous canvas.
+                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false);unrestoredCreditSessionToken=null; filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
                             if (document.bitmap !== bitmap && document.selection?.image !== bitmap) bitmap.recycle()
@@ -1210,10 +1325,10 @@ class ClassicPaintActivity : Activity() {
                 }
             } catch (_: ImageSizeException) {
                 // Device memory may change while the user considers the proposed size.
-                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
             } catch (_: OutOfMemoryError) {
                 // A budget is an estimate, not a guarantee. Offer a smaller copy after an allocation failure too.
-                runOnUiThread { askToResize(source,import,target,asEdit,onInserted) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
             } catch (e: Exception) { source.file.delete(); ioFailed(ui(R.string.ui_could_not_open_image), e) }
         }
     }
@@ -1285,7 +1400,7 @@ class ClassicPaintActivity : Activity() {
         return uri.lastPathSegment?.substringAfterLast('/') ?: ui(R.string.ui_menu_image)
     }
     private fun beginIo() { operationsInFlight++; busy = true; lastIoError = null; paintCanvas.isEnabled = false; updateStatus() }
-    private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) } }
+    private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) }; if(!busy) deliverPendingInputs() }
     private fun ioFailed(prefix: String, e: Throwable) {
         runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = "$prefix. ${e.message ?: ui(R.string.ui_try_a_different_file_or_location)}"; message(lastIoError!!) } }
     }
@@ -1301,8 +1416,80 @@ class ClassicPaintActivity : Activity() {
             cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, index+1) else String.format(java.util.Locale.ROOT,ui(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background),index+1,colour and 0xffffff)
         }
     }
-    private fun showImageCredits() {
-        GalleryCredits.showEditor(this)
+    private fun showLegacyImageCredits() {
+        startActivityForResult(Intent(this,LegacyImageCreditsActivity::class.java),LEGACY_CREDITS)
+    }
+
+    private fun attachLegacyImageCredit(token: String?) {
+        val credit=ImageCreditArchive.find(this,token) ?: return
+        if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}
+        if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}
+        editAction {
+            val added=try {
+                document.attachImageCredit(credit) {projected ->
+                    AutosaveStore.metadataBytes(draftMetadata().put("image_credits",projected))
+                    HistoryArchive.validate(document.historySnapshot())
+                }
+            } catch(_: IllegalArgumentException) {
+                message(ui(R.string.gallery_credit_too_large));return@editAction
+            }
+            LocaleTypography.showMessage(this,ui(if(added) R.string.legacy_credits_added
+                else R.string.legacy_credits_existing),Toast.LENGTH_SHORT,paintCanvas)
+        }
+    }
+
+    private fun creditEditContext()=CreditEditContext(draftMetadata(),HistoryArchive.manifest(document.historySnapshot()))
+    private fun showImageCredits(draft: GalleryCredits.EditorDraft?=null) {showImageCredits(draft,null)}
+    private fun showImageCredits(draft: GalleryCredits.EditorDraft?,restoredSession: CreditEditSession?) {
+        if(imageCreditEditor?.dialog?.isShowing==true)return
+        if(document.imageCredits.isEmpty()) {GalleryCredits.showEditor(this,emptyList(),document::editImageCredit);return}
+        try {
+            val session=restoredSession ?: imageCreditSession?.takeIf {draft!=null}
+                ?: CreditEditSession.create(filesDir,document.imageCredits,creditEditContext())
+            val editor=GalleryCredits.showEditor(this,document.imageCredits,draft,onEdit={source,text ->
+                val edits=listOf(ImageCredit(source,text))
+                document.validateImageCreditEdits(edits)
+                session.edit(source,text) {ImageCreditArchive.retainAccepted(this,it)}
+                document.editImageCredits(edits)
+                session.adoptionReceipt?.let {adoptedCreditSessions[session.token]=it}
+            },onDismiss={
+                try {
+                    session.saveDraft(null)
+                    if(!session.accepted) session.discard()
+                } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
+                imageCreditSession=null
+            })
+            if(editor!=null) {
+                imageCreditSession=session;imageCreditEditor=editor
+                // Establish ownership only after the editor exists. Either successful restore
+                // or a fresh editor supersedes retry state; failed construction keeps it.
+                // No old session/archive file is deleted by changing this association.
+                unrestoredCreditSessionToken=null
+            }
+        } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
+    }
+    private fun preserveCreditEditor() {
+        try {
+            val field=imageCreditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
+            imageCreditSession?.saveDraft(field)
+        } catch(_: Exception) {
+            LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,
+                imageCreditEditor?.dialog?.window?.decorView)
+        }
+    }
+    private fun creditAdoptionReceipts(metadata: JSONObject,history: RasterHistory.Snapshot): Map<String,CreditEditSession.AdoptionReceipt> {
+        return adoptedCreditSessions.filter {(token,receipt) ->runCatching {
+            val session=CreditEditSession.open(filesDir,token,restoreDraft=false)
+            session.revision==receipt.revision && session.acceptedSnapshot==receipt.snapshotToken && session.representedBy(metadata,history)
+        }.getOrDefault(false)}
+    }
+    private fun retireCreditSessions(receipts: Map<String,CreditEditSession.AdoptionReceipt>,metadata: JSONObject,history: RasterHistory.Snapshot) {
+        receipts.forEach {(token,receipt) ->
+            // Only exact values in this successful autosave can release explicitly owned snapshots.
+            // A captured receipt cannot grow to include a newer Save.
+            runCatching {ImageCreditArchive.releaseAfterAdoption(this,receipt,metadata,history)}
+            runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false).retireAfterAdoption(receipt.revision)}
+        }
     }
     private fun showCursorHelp() {
         message(ui(R.string.ui_cursor_help31)+"\n\n"+ui(R.string.ui_cursor_tap_hint37)+"\n\n"+ui(R.string.ui_cursor_marker_help31))
@@ -1388,6 +1575,7 @@ class ClassicPaintActivity : Activity() {
     }
     private fun draftMetadata(): JSONObject = JSONObject().apply {
         put("version",1);put("filename",filename);put("dirty",document.dirty)
+        put("image_credits",document.imageCreditsState())
         savedTarget?.let {put("save_target",it.json())}
         put("foreground",colourPreviewOriginal?.first ?: document.foreground);put("background",colourPreviewOriginal?.second ?: document.background)
         put("corner_radius",document.cornerRadius.toDouble());put("stroke_width",document.strokeWidth.toDouble());put("brush_tip",document.brushTip);put("shape_style",document.shapeStyle)
@@ -1404,43 +1592,67 @@ class ClassicPaintActivity : Activity() {
         val floating=document.selection?.takeIf { it.floating }?.image
         val metadata=draftMetadata()
         val history=document.historySnapshot()
+        val creditSessions=creditAdoptionReceipts(metadata,history)
         autosaving=true;beginIo()
-        worker.execute {
+        autosave.submitWrite(worker) {
             var error: Throwable?=null
             try {
                 autosave.write(image,floating,metadata,history);savedDraftGeneration=generation
+                retireCreditSessions(creditSessions,metadata,history)
                 File(filesDir,"classic-recovery.png").delete()
             } catch (e: Exception) { error=e } catch (e: OutOfMemoryError) { error=e }
             val failure=error
             runOnUiThread { if (!isDestroyed) {
                 autosaving=false
-                if (failure==null) { draftStatus=ui(R.string.ui_draft_saved);lastAutosaveError=null }
+                if (failure==null) { creditSessions.forEach {(token,revision) ->if(adoptedCreditSessions[token]==revision) adoptedCreditSessions.remove(token)};draftStatus=ui(R.string.ui_draft_saved);lastAutosaveError=null }
                 else { failedDraftGeneration=generation;lastAutosaveError=failure.message;draftStatus=ui(R.string.ui_autosave_failed_use_save) }
                 endIo()
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) {
+        if(pendingStartupEvents.isNotEmpty()) outState.putParcelableArrayList("startup_events",ArrayList(pendingStartupEvents))
+        preserveCreditEditor()
+        (imageCreditSession?.token ?: unrestoredCreditSessionToken)?.let {outState.putString("main_credit_session",it)}
+        galleryCreditSessionToken?.let {outState.putString("gallery_credit_session",it)}
+        outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
+        preserveCreditEditor()
         super.onStop();stopped=true
         if (::document.isInitialized && autosaveReady) {
             if (!busy) paintCanvas.pauseGesture()
             scheduleAutosave();autosaveHandler.removeCallbacks(saveDraft);saveDraftIfReady()
         }
     }
-    override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
+    override fun onBackPressed() { if(!startupReady) {finish();return}; if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
+        if(!startupReady) {
+            // No placeholder owns the durable draft. The worker releases any unpublished
+            // document after it finishes, without writing or waiting on the main thread.
+            if(::startup.isInitialized) startup.cancel()
+            worker.shutdown();super.onDestroy();return
+        }
+        imageCreditEditor?.dismissForRecreation();imageCreditEditor=null
+        creditSessionRestoreError?.dismiss();creditSessionRestoreError=null
         importSelection?.dispose();importSelection=null
         resizeDialog?.dismiss();resizeDialog=null;pendingImportFile?.delete();pendingImportFile=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}
         val metadata=draftMetadata();val generation=draftGeneration
-        if (!busy && generation==savedDraftGeneration) document.close() else worker.execute {
+        val history=document.historySnapshot()
+        val creditSessions=creditAdoptionReceipts(metadata,history)
+        // Join this queued final save from the replacement Activity before it reads
+        // the draft. The handover finishes on the worker without a main-thread callback.
+        if (!busy && generation==savedDraftGeneration) document.close() else autosave.submitWrite(worker) {
             try {
-                if (!autosaveBlocked && generation!=savedDraftGeneration) autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,document.historySnapshot())
+                if (!autosaveBlocked && generation!=savedDraftGeneration) {
+                    autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,history)
+                    retireCreditSessions(creditSessions,metadata,history)
+                }
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
             finally { document.close() }
         }
         worker.shutdown();super.onDestroy()
     }
 }
+

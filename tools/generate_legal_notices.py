@@ -71,7 +71,8 @@ Incorporated. Format notices are included below and under Image codec licences.
 Eleven original fonts are bundled under SIL OFL-1.1. AN Paint Nom UI is a
 renamed subset combining Nom Na Tong (MIT) and Gothic Nguyen (SIL OFL-1.1),
 distributed under SIL OFL-1.1 with the MIT source notice retained. Complete
-original notices and modification details follow below.
+original notices and modification details follow below. AN Paint Wu Fallback
+is a glyph-only subset of Nom Na Tong under its original MIT licence.
 System fonts and platform widget artwork are supplied by the Android device;
 see its open-source licences for their exact files and authors.
 

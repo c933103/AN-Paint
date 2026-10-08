@@ -1,20 +1,33 @@
 """Host checks for canonical locale XML and retained translation provenance.
 
 Catalogue structure and key-coverage checks do not establish semantic or
-linguistic correctness, review acceptance, or completion of the required recheck.
-"""
+linguistic correctness, review acceptance, or completion of the required recheck."""
 import ast
 import hashlib
 import json
 import pathlib
 import re
 import unittest
+import unicodedata
 import xml.etree.ElementTree as ET
 
 import gimp_translations
 import krita_translations
 import mainstream_translations
 import translation_catalogues as translations
+
+
+# This is the required resource-check scope, not accepted task completion.
+# All earlier progress is withdrawn; preserve every key-coverage assertion.
+SCOPED_TAGS = set("""
+    ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
+    tl ceb ms id sw fi hu af nl et lv lt
+    es-ES es-419 fr de ru ar eo
+    lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
+    en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr
+    bo dz mn-Cyrl-MN mn-Mong jje mnc-Mong ain-Kana ain-Latn ryu
+    ko-KR ko-KP ko-Kore-KR vi vi-Hani en-XV qaa-Zsye-XV
+""".split())
 
 
 class TranslationCatalogueTests(unittest.TestCase):
@@ -45,14 +58,43 @@ class TranslationCatalogueTests(unittest.TestCase):
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
+    def test_literal_percent_is_safe_in_static_and_formatted_translations(self):
+        self.assertTrue(translations.format_string_errors("px hene % hene; uneno %"))
+        self.assertEqual([], translations.format_string_errors("px hene % hene; uneno %", formatted=False))
+        for formatted in (True, False):
+            with self.subTest(formatted=formatted):
+                self.assertTrue(translations.format_string_errors("%1$s a=tuye pakno % ani", formatted))
+                self.assertEqual([], translations.format_string_errors("%1$s a=tuye pakno %% ani", formatted))
 
-    def test_korean_and_vietnamese_catalogues_pass_structural_validation(self):
-        for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
-            self.assertEqual(
-                [],
-                translations.validate_catalogue(tag, require_complete=True),
-                tag,
-            )
+    def test_percent_escape_is_not_a_format_argument(self):
+        self.assertEqual(translations.placeholders("%1$s percent of pixels"),
+                         translations.placeholders("%1$s px kor %%"))
+        self.assertNotEqual(translations.placeholders("%1$s %%"),
+                            translations.placeholders("%1$d %%"))
+
+
+    def test_scoped_catalogues_have_all_source_keys(self):
+        self.assertLessEqual(SCOPED_TAGS, set(translations.offered_tags()))
+        for tag in sorted(SCOPED_TAGS):
+            with self.subTest(tag=tag):
+                self.assertEqual(
+                    [], translations.validate_catalogue(tag, require_complete=True), tag,
+                )
+
+    def test_normalization_messages_use_canonical_crowdin_catalogues(self):
+        keys = {
+            "ui_normalize_width_intro", "ui_normalize_height_intro",
+            "ui_normalize_width_info", "ui_normalize_height_info",
+            "ui_normalize_width_input_percent", "ui_normalize_height_input_percent",
+        }
+        # Crowdin exports this file, not default companion XML files.
+        source = translations.read_strings(translations.RES / "values/strings.xml")
+        self.assertLessEqual(keys, set(source))
+        # Keep the real-language scope and the two existing layout fixtures.
+        paths = translations.catalogue_paths()
+        for tag in sorted(SCOPED_TAGS):
+            with self.subTest(tag=tag):
+                self.assertLessEqual(keys, set(translations.read_strings(paths[tag])))
 
     def test_new_korean_and_vietnamese_script_variants_are_registered(self):
         tags = translations.offered_tags()
@@ -97,27 +139,6 @@ class TranslationCatalogueTests(unittest.TestCase):
             r"ỳýỵỷỹ]",
         )
 
-    def test_crowdin_uses_one_canonical_source_and_output(self):
-        config = (translations.ROOT / "crowdin.yml").read_text()
-        # Check the supported simple file-mapping contract without a YAML dependency.
-        sources = re.findall(r"(?m)^\s*-?\s*source:\s*([^\n#]+)", config)
-        outputs = re.findall(r"(?m)^\s*-?\s*translation:\s*([^\n#]+)", config)
-        self.assertEqual(["/Paintroid/src/main/res/values/strings.xml"],
-                         [value.strip().strip("\"'") for value in sources])
-        self.assertEqual(["/Paintroid/src/main/res/values-%android_code%/strings.xml"],
-                         [value.strip().strip("\"'") for value in outputs])
-
-    def test_crowdin_source_contains_all_translatable_default_resources(self):
-        source = translations.RES / "values/strings.xml"
-        uncovered = []
-        for path in sorted((translations.RES / "values").glob("*.xml")):
-            for node in ET.parse(path).getroot():
-                is_text = node.tag in ("string", "plurals", "string-array") or (
-                    node.tag == "item" and node.get("type") == "string")
-                if is_text and node.get("translatable") != "false" and path != source:
-                    uncovered.append(f"{path.name}/{node.tag}/{node.get('name')}")
-        self.assertEqual([], uncovered, "Crowdin cannot export resources outside strings.xml")
-
     def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
         seen = set()
         for path in sorted((translations.RES / "values").glob("*.xml")):
@@ -128,15 +149,15 @@ class TranslationCatalogueTests(unittest.TestCase):
                 self.assertNotIn(key, seen, f"{path}/{node.get('name')}")
                 seen.add(key)
 
-    def test_locales_do_not_duplicate_string_keys_across_files(self):
+    def test_locales_do_not_duplicate_string_or_plural_keys_across_files(self):
         for folder in translations.RES.glob("values*"):
             seen = set()
             for path in folder.glob("*.xml"):
                 for node in ET.parse(path).getroot():
-                    if node.tag != "string":
+                    if node.tag not in ("string", "plurals"):
                         continue
-                    key = node.get("name")
-                    self.assertNotIn(key, seen, str(path) + "/" + key)
+                    key = (node.tag, node.get("name"))
+                    self.assertNotIn(key, seen, str(path) + "/" + str(key))
                     seen.add(key)
 
     def test_requested_main_menu_surface_exists_without_freezing_old_wording(self):
@@ -192,17 +213,6 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
-    def test_lzh_hakka_hokkien_wu_catalogues_pass_structural_validation(self):
-        for tag in (
-            "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
-            "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
-        ):
-            self.assertEqual(
-                [],
-                translations.validate_catalogue(tag, require_complete=True),
-                tag,
-            )
-
     def test_catalogues_preserve_literal_tokens(self):
         defaults = translations.default_resources()[0]
         for tag, path in translations.catalogue_paths().items():
@@ -212,6 +222,45 @@ class TranslationCatalogueTests(unittest.TestCase):
                         self.assertEqual(
                             [], translations.literal_token_errors(key, value, defaults[key]),
                         )
+
+    def test_documented_credit_routes_use_the_localized_file_about_panel(self):
+        # ClassicPaintActivity.menuActions("File") opens showAboutOptions(),
+        # which contains Image credits and the licence/source-code panels.
+        # Compare with the rendered labels, not fixed translation wording.
+        route_labels = {
+            "ui_catrobat_s_own_artwork_uses_cc_by_sa": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_the_arrow_on_the_left_directly_below_the": (
+                "ui_menu_file", "ui_about_credits23", "ui_image_credits",
+            ),
+            "ui_add_up_to_20_images_with_android_s": (
+                "ui_menu_file", "ui_about_credits23",
+            ),
+        }
+
+        def displayed(value):
+            return unicodedata.normalize(
+                "NFC", value.strip('"').replace(r"\'", "'").replace(r'\"', '"'),
+            ).casefold()
+
+        defaults = translations.default_resources()[0]
+        for path in sorted(translations.RES.glob("values*/strings.xml")):
+            local = translations.read_strings(path)
+            rendered = {**defaults, **local}
+            for key, labels in route_labels.items():
+                if key not in local:
+                    continue
+                for label in labels:
+                    with self.subTest(catalogue=path.parent.name, key=key, label=label):
+                        # A menu label may end a standalone sentence (notably
+                        # Tibetan shad) but omit that terminator inside a path.
+                        # Preserve internal punctuation and every label word.
+                        label_text = displayed(rendered[label]).rstrip(
+                            " \t\r\n.,;:!?…。！？；：།༎",
+                        )
+                        self.assertTrue(label_text)
+                        self.assertIn(label_text, displayed(local[key]))
 
     def test_literary_assembly_help_describes_image_replacement(self):
         literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
@@ -243,6 +292,82 @@ class TranslationCatalogueTests(unittest.TestCase):
             text,
             r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
         )
+
+
+    def test_korean_and_vietnamese_catalogues_pass_structural_validation(self):
+        for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+    def test_crowdin_uses_one_canonical_source_and_output(self):
+        config = (translations.ROOT / "crowdin.yml").read_text()
+        # Check the supported simple file-mapping contract without a YAML dependency.
+        sources = re.findall(r"(?m)^\s*-?\s*source:\s*([^\n#]+)", config)
+        outputs = re.findall(r"(?m)^\s*-?\s*translation:\s*([^\n#]+)", config)
+        self.assertEqual(["/Paintroid/src/main/res/values/strings.xml"],
+                         [value.strip().strip("\"'") for value in sources])
+        self.assertEqual(["/Paintroid/src/main/res/values-%android_code%/strings.xml"],
+                         [value.strip().strip("\"'") for value in outputs])
+
+    def test_crowdin_source_contains_all_translatable_default_resources(self):
+        source = translations.RES / "values/strings.xml"
+        uncovered = []
+        for path in sorted((translations.RES / "values").glob("*.xml")):
+            for node in ET.parse(path).getroot():
+                is_text = node.tag in ("string", "plurals", "string-array") or (
+                    node.tag == "item" and node.get("type") == "string")
+                if is_text and node.get("translatable") != "false" and path != source:
+                    uncovered.append(f"{path.name}/{node.tag}/{node.get('name')}")
+        self.assertEqual([], uncovered, "Crowdin cannot export resources outside strings.xml")
+
+    def test_lzh_hakka_hokkien_wu_catalogues_pass_structural_validation(self):
+        for tag in (
+            "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
+            "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
+        ):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+
+class AndroidResourceValidationTests(unittest.TestCase):
+    def test_android_quotes_distinguish_xml_entities_from_android_escaping(self):
+        for xml_value in ("l&apos;image", "l'image", "an even \\\\' apostrophe"):
+            with self.subTest(xml_value=xml_value):
+                value = ET.fromstring(f"<string>{xml_value}</string>").text
+                self.assertIn("unescaped Android apostrophe", translations.android_string_errors(value))
+        for value in ("l\\'image", "\"l'image\"", 'a \\"quoted\\" value', "plain text", '"open', "trail\\"):
+            with self.subTest(value=value):
+                self.assertEqual([], translations.android_string_errors(value))
+
+    def test_equivalent_locale_qualifiers_share_a_configuration(self):
+        for left, right in (("values-b+pt+PT", "values-pt-rPT"),
+                            ("values-b+id", "values-in"),
+                            ("values-b+he+IL-v21", "values-iw-rIL-v21")):
+            self.assertEqual(translations.resource_configuration(left),
+                             translations.resource_configuration(right))
+        for left, right in (("values-fr", "values-fr-night"),
+                            ("values-b+mn+Mong", "values-b+mn+Cyrl+MN"),
+                            ("values-en-rUS", "values-en-rGB")):
+            self.assertNotEqual(translations.resource_configuration(left),
+                                translations.resource_configuration(right))
+
+    def test_literal_syntax_and_license_tokens_cannot_be_spaced_or_translated(self):
+        for original, damaged in (("data:image/png;base64,", "data: image / png; base64,"),
+                                  ("CC BY-SA 4.0", "CC BY-SA 4. 0")):
+            self.assertEqual([], translations.literal_token_errors("example", original, original))
+            self.assertTrue(translations.literal_token_errors("example", damaged, original))
+
+    def test_gif_limit_accepts_localized_grouping_but_not_broken_numbers(self):
+        for number in ("65,535", "65.535", "65 535", "65\u202f535", "65535", "٦٥٬٥٣٥"):
+            self.assertEqual([], translations.literal_token_errors("save20_gif_size_limit", number, ""))
+        for number in ("65, 535", "65. 535", "65  535", "65,536", "165,535", "65,5350"):
+            self.assertTrue(translations.literal_token_errors("save20_gif_size_limit", number, ""), number)
 
 
 class GimpProvenanceTests(unittest.TestCase):

@@ -22,6 +22,7 @@ internal object LocaleTypography {
     fun asset(locale: Locale=Locale.getDefault()): String? = when {
         locale.script=="Mong" -> "fonts/notosansmongolian.ttf"
         locale.language=="vi" && locale.script=="Hani" -> "fonts/anpaintnomui.ttf"
+        locale.language=="wuu" && locale.script=="Hans" -> "fonts/anpaintwuufallback.ttf"
         else -> null
     }
     fun typeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? {

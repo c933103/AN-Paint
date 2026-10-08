@@ -3,6 +3,7 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,11 +13,15 @@ import java.io.File
 import android.os.Bundle
 import android.os.Looper
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import org.catrobat.paintroid.classic.ClassicPaintActivity
+import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.ExportOptions
+import org.catrobat.paintroid.classic.ImageCredit
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.NumericSlider
 import org.catrobat.paintroid.classic.SaveOptionsDialog
@@ -51,6 +56,7 @@ class ExportFormatDialogTest {
     private fun create(state: Bundle? = null) {
         controller = Robolectric.buildActivity(ClassicPaintActivity::class.java)
         activity = controller.create(state).start().resume().visible().get()
+        awaitEditorStartup(activity)
         activity.document.newImage(64, 48)
         idle()
     }
@@ -87,6 +93,57 @@ class ExportFormatDialogTest {
             activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()
             assertFalse(activity.busy);assertNull(shadowOf(activity).nextStartedActivity)
         }
+    }
+
+    @Test fun saveAndExportOfferCollapsedSelectableCreditsAndCopyThemWithoutStartingSave() {
+        val credit="Artwork — Author\nCC BY 4.0\nhttps://example.org/art"
+        activity.document.paste(Bitmap.createBitmap(2,2,Bitmap.Config.ARGB_8888),true,
+            listOf(org.catrobat.paintroid.classic.ImageCredit("https://example.org/art.png",credit)))
+        for(title in listOf("Save as…","Export as…")) {
+            menu(title)
+            val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            val view=dialog.window!!.decorView
+            val details=view.findViewWithTag<View>("export_credit_details")
+            assertEquals(View.GONE,details.visibility)
+            view.findViewWithTag<Button>("export_toggle_credits").performClick()
+            assertEquals(View.VISIBLE,details.visibility)
+            val text=view.findViewWithTag<TextView>("export_credit_text")
+            assertEquals(credit,text.text.toString());assertTrue(text.isTextSelectable)
+            view.findViewWithTag<Button>("export_copy_credits").performClick()
+            val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            assertEquals(credit,clipboard.primaryClip!!.getItemAt(0).text.toString())
+            assertNull(shadowOf(activity).nextStartedActivityForResult)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            assertNotNull(activity.document.selection)
+        }
+    }
+
+    @Test fun originalMultilingualCreditsStaySelectableAndCopyableInHorizontalAndVerticalDialogs() {
+        val originalTag=AppLanguage.selectedTag(activity)
+        val credits=listOf(ImageCredit("https://example.org/one.png","作品 — 作者\nCC BY 4.0"),
+            ImageCredit("https://example.org/two.png","Зураг — Зохиогч\nhttps://example.org/two"))
+        val text=ImageCredit.text(credits)
+        var confirmed=0
+        try {
+            for(tag in listOf("ja","mn-Mong")) for(export in listOf(false,true)) {
+                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+                val dialog=SaveOptionsDialog(activity,ExportOptions(),confirm={confirmed++},cancel={},export=export,imageCredits=text).show()
+                idle()
+                val view=dialog.window!!.decorView
+                val details=view.findViewWithTag<View>("export_credit_details")
+                assertEquals(View.GONE,details.visibility)
+                view.findViewWithTag<Button>("export_toggle_credits").performClick()
+                val field=view.findViewWithTag<TextView>("export_credit_text")
+                assertEquals(text,field.text.toString());assertTrue(field.isTextSelectable)
+                view.findViewWithTag<Button>("export_copy_credits").performClick()
+                val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                assertEquals(text,clipboard.primaryClip!!.getItemAt(0).text.toString())
+                assertEquals(0,confirmed);assertTrue(dialog.isShowing)
+                view.findViewWithTag<Button>("export_toggle_credits").performClick()
+                assertEquals(View.GONE,details.visibility)
+                dialog.dismiss()
+            }
+        } finally {AppLanguage.select(activity,originalTag);AppLanguage.refresh(activity)}
     }
 
     @Test fun invalidNamesStayInPanelAndCancellingDoesNotStartThePicker() {

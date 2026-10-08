@@ -9,6 +9,12 @@ import android.util.AtomicFile
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executor
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
@@ -18,48 +24,129 @@ data class AutosaveDraft(val image: Bitmap, val floating: Bitmap?, val metadata:
 
 /** One atomic draft contains pixels and their matching metadata. Sources are never overwritten. */
 class AutosaveStore(directory: File) {
-    companion object { private val lock=Any() }
+    private class FileState {
+        val pendingLock=Object()
+        val ioLock=ReentrantLock()
+        val revision=AtomicLong()
+        var pendingWrites=0
+    }
+    companion object {
+        const val MAX_METADATA_BYTES = 256 * 1024
+        private val states=ConcurrentHashMap<String,FileState>()
+        internal fun metadataBytes(metadata: JSONObject): ByteArray {
+            val bytes=metadata.toString().toByteArray(Charsets.UTF_8)
+            require(bytes.size in 1..MAX_METADATA_BYTES) { ui(R.string.ui_invalid_autosave_metadata) }
+            require(metadata.getInt("version")==1) { ui(R.string.ui_invalid_autosave_metadata) }
+            return bytes
+        }
+    }
     val file = File(directory,"classic-autosave.zip")
+    private val state=states.getOrPut(file.canonicalPath) {FileState()}
     private val atomic = AtomicFile(file)
-    fun exists() = file.isFile || File(file.path+".bak").isFile
+
+    /** Register before enqueueing: a replacement Activity must also wait for queued writes.
+     * The action must not await the main thread or call this store's recovery methods.
+     * Completion belongs to the worker, not its later UI/status callback.
+     */
+    fun submitWrite(executor: Executor, action: () -> Unit) {
+        val completed=AtomicBoolean(false)
+        synchronized(state.pendingLock) {state.pendingWrites++;state.revision.incrementAndGet()}
+        fun complete() {
+            if(completed.compareAndSet(false,true)) synchronized(state.pendingLock) {
+                state.pendingWrites--;state.pendingLock.notifyAll()
+            }
+        }
+        try {
+            executor.execute {try {action()} finally {complete()}}
+        } catch(error: Throwable) {
+            // Also safe for an Executor that runs inline and propagates action's failure.
+            complete();throw error
+        }
+    }
+
+    private inline fun <T> afterPendingWrites(action: (Long) -> T): T {
+        // A recovery transaction can read and preserve the same snapshot under one I/O lock.
+        if(state.ioLock.isHeldByCurrentThread) return action(state.revision.get())
+        while(true) {
+            synchronized(state.pendingLock) {
+                while(state.pendingWrites>0) state.pendingLock.wait()
+            }
+            state.ioLock.lock()
+            try {
+                // A writer may have registered while recovery was acquiring the I/O lock.
+                // Never hold pendingLock during PNG/history I/O: UI-thread registration of
+                // the final lifecycle handoff must remain quick, even during another read.
+                val revision=synchronized(state.pendingLock) {
+                    if(state.pendingWrites==0) state.revision.get() else null
+                }
+                if(revision!=null) return action(revision)
+            } finally {state.ioLock.unlock()}
+        }
+    }
+
+    internal data class Recovery<T>(val revision: Long,val value: T)
+    internal fun <T> recover(action: () -> T): Recovery<T> = afterPendingWrites {revision ->
+        Recovery(revision,action())
+    }
+    internal fun isCurrent(recovery: Recovery<*>) = synchronized(state.pendingLock) {
+        state.pendingWrites==0 && state.revision.get()==recovery.revision
+    }
+
+    // AtomicFile's first transaction exists only as .new until finishWrite. Checking
+    // the base file without joining that write would silently create a blank canvas.
+    fun exists() = afterPendingWrites {file.isFile || File(file.path+".bak").isFile}
 
     /** Move an unreadable draft aside before allowing a new autosave to replace its name. */
-    fun preserveForRecovery(): File = synchronized(lock) {
+    fun preserveForRecovery(retainOriginal: Boolean = false): File = afterPendingWrites {
         try { atomic.openRead().close() } catch (_: IOException) { }
         val source=File(file.path+".bak").takeIf { it.isFile } ?: file
         val target=File(file.parentFile,"classic-draft-recovery-${System.currentTimeMillis()}-${java.util.UUID.randomUUID()}.zip")
-        if (!source.isFile || !source.renameTo(target)) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
+        if (!source.isFile) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
+        if(retainOriginal) {
+            // Startup may be abandoned after recovery. Keep the source readable for the
+            // successor until an initialized editor commits its replacement autosave.
+            val copy=AtomicFile(target)
+            val output=copy.startWrite()
+            try {source.inputStream().use {it.copyTo(output)};output.fd.sync();copy.finishWrite(output)}
+            catch(error: Throwable) {copy.failWrite(output);throw error}
+        } else if(!source.renameTo(target)) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
         target
     }
     fun recoveryCopies(): List<File> = file.parentFile?.listFiles()?.filter {
         it.isFile && it.name.startsWith("classic-draft-recovery-") && it.extension=="zip"
     }?.sortedByDescending { it.lastModified() } ?: emptyList()
 
-    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(lock) {
+    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = state.ioLock.withLock {
+        state.revision.incrementAndGet()
+        // Validate the exact serialized bytes before opening an AtomicFile transaction.
+        // This also protects non-credit metadata (polygon points, names and tool state).
+        val metadataBytes=metadataBytes(metadata)
+        HistoryArchive.validate(history)
         val stream=atomic.startWrite()
         try {
             val zip=ZipOutputStream(stream).apply { setLevel(0) }
             fun entry(name: String, action: () -> Unit) {
                 zip.putNextEntry(ZipEntry(name)); action(); zip.closeEntry()
             }
-            entry("draft.json") { zip.write(metadata.toString().toByteArray(Charsets.UTF_8)) }
+            entry("draft.json") { zip.write(metadataBytes) }
             entry("canvas.png") { if (!image.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_image_encoding_failed)) }
             if (floating != null) entry("floating.png") {
                 if (!floating.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_selection_encoding_failed))
             }
             HistoryArchive.write(zip,history)
-            zip.finish(); zip.flush(); atomic.finishWrite(stream)
+            // AtomicFile logs some sync failures. Surface them before reporting durable adoption.
+            zip.finish(); zip.flush(); stream.fd.sync(); atomic.finishWrite(stream)
         } catch (error: Throwable) { atomic.failWrite(stream); throw error }
     }
 
-    fun read(historyReader: ((ZipFile) -> RasterHistory.Snapshot)? = null,checkSize: (Int,Int) -> Unit): AutosaveDraft = synchronized(lock) {
+    fun read(historyReader: ((ZipFile) -> RasterHistory.Snapshot)? = null,checkSize: (Int,Int) -> Unit): AutosaveDraft = afterPendingWrites {
         atomic.openRead().close() // Recover the previous complete transaction after an interrupted write.
         var image: Bitmap?=null; var floating: Bitmap?=null
         try {
             ZipFile(file).use { zip ->
                 val entry=zip.getEntry("draft.json") ?: throw IOException(ui(R.string.ui_autosave_metadata_is_missing))
-                require(entry.size in 1..262144) { ui(R.string.ui_invalid_autosave_metadata) }
-                val metadata=zip.getInputStream(entry).use { JSONObject(it.bufferedReader().readText()) }
+                require(entry.size in 1..MAX_METADATA_BYTES.toLong()) { ui(R.string.ui_invalid_autosave_metadata) }
+                val metadata=zip.getInputStream(entry).use { JSONObject(BoundedJson.read(it,MAX_METADATA_BYTES)) }
                 require(metadata.getInt("version")==1)
                 fun decode(name: String): Bitmap {
                     val e=zip.getEntry(name) ?: throw IOException(ui(R.string.ui_autosave_pixels_are_missing))

@@ -69,7 +69,7 @@ class NomNotificationSourceTest(unittest.TestCase):
         }
         for name,expected in checks.items():
             self.assertIn(expected,(JAVA/name).read_text(),name)
-        self.assertIn('copy(activity,field.text.toString(),field)',(JAVA/'GalleryCredits.kt').read_text())
+        self.assertIn('copy(activity,entries.getValue(sources[selected]).text,field)',(JAVA/'GalleryCredits.kt').read_text())
 
     def test_exact_cursor_resources_are_covered_by_the_bundled_font(self):
         values={e.attrib['name']:e.text or '' for e in ET.parse(ROOT/'Paintroid/src/main/res/values-b+vi+Hani/strings.xml').getroot()}

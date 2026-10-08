@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild the bundled Nôm UI subset from two pinned, locally supplied fonts.
+"""Rebuild the Nôm UI and Wu fallback subsets from pinned, local fonts.
 
 Usage: python tools/build_nom_ui_font.py NomNaTong-Regular.ttf GothicNguyen.ttf
 Requires fonttools. This tool never generates or changes translations.
@@ -63,11 +63,32 @@ def build(primary, secondary):
     merged.save(output)
     actual = TTFont(output).getBestCmap()
     assert ideographs <= actual.keys()
+    # A glyph-only Wu fallback lets Android/WebView keep their system fonts
+    # for every ordinary character instead of substituting Vietnamese glyph forms.
+    wu_text = ''.join(ET.parse(ROOT / 'Paintroid/src/main/res/values-b+wuu+Hans/strings.xml').getroot().itertext())
+    wu_points = {ord(c) for c in wu_text if 0x20000 <= ord(c) <= 0x3ffff}
+    wu_font = TTFont(primary)
+    assert wu_points <= wu_font.getBestCmap().keys(), 'Uncovered Wu supplementary glyph'
+    options = subset.Options()
+    options.name_IDs = ['*']
+    options.name_languages = ['*']
+    options.drop_tables += ['GSUB','GPOS','GDEF','BASE','JSTF','DSIG']
+    processor = subset.Subsetter(options=options)
+    processor.populate(unicodes=wu_points)
+    processor.subset(wu_font)
+    for name_id, value in {1:'AN Paint Wu Fallback',2:'Regular',3:'AN Paint Wu Fallback 1.0',
+                           4:'AN Paint Wu Fallback',6:'ANPaintWuFallback-Regular',16:'AN Paint Wu Fallback',17:'Regular'}.items():
+        wu_font['name'].removeNames(nameID=name_id)
+        wu_font['name'].setName(value,name_id,3,1,0x409)
+    wu_font['head'].created = wu_font['head'].modified = 3862464000
+    wu_font.recalcTimestamp = False
+    wu_output = ASSETS / 'fonts/anpaintwuufallback.ttf'
+    wu_font.save(wu_output)
     inventory_path = ASSETS / 'fonts/inventory.json'
     inventory = json.loads(inventory_path.read_text())
     for entry in inventory:
-        if entry['id'] == 'anpaintnomui':
-            entry['sha256'] = hashlib.sha256(output.read_bytes()).hexdigest()
+        if entry['id'] in ('anpaintnomui', 'anpaintwuufallback'):
+            entry['sha256'] = hashlib.sha256((ASSETS / entry['asset']).read_bytes()).hexdigest()
     inventory_path.write_text(json.dumps(inventory,ensure_ascii=False,indent=2)+'\n')
     print(f'Covered {len(ideographs)} ideographs, including {sum(cp>0xffff for cp in ideographs)} supplementary characters; {output.stat().st_size} bytes')
     print('SHA256:',hashlib.sha256(output.read_bytes()).hexdigest())
