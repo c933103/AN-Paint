@@ -106,6 +106,8 @@ class ClassicPaintActivity : Activity() {
     private val landscape get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     private var imageCreditEditor: GalleryCredits.EditorSession?=null
     private var imageCreditSession: CreditEditSession?=null
+    private var unrestoredCreditSessionToken: String?=null
+    private var creditSessionRestoreError: AlertDialog?=null
     private var galleryCreditSessionToken: String?=null
     private val adoptedCreditSessions=linkedMapOf<String,CreditEditSession.AdoptionReceipt>()
     private lateinit var autosave: AutosaveStore
@@ -224,10 +226,15 @@ class ClassicPaintActivity : Activity() {
             shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
         }
         savedInstanceState?.getString("main_credit_session")?.let {token ->
-            runCatching {CreditEditSession.open(filesDir,token)}.getOrNull()?.let {session ->
-                session.draft?.takeIf {field -> document.imageCredits.any {it.source==field.source}}?.let {
-                    imageCreditSession=session;showImageCredits(it)
-                }
+            unrestoredCreditSessionToken=token
+            try {
+                val session=CreditEditSession.open(filesDir,token)
+                val field=session.draft?.takeIf {value -> document.imageCredits.any {it.source==value.source}}
+                if(field!=null) showImageCredits(field,session)
+                else unrestoredCreditSessionToken=null
+            } catch(_: Exception) {
+                creditSessionRestoreError=EditorDialogBuilder(this).setMessage(ui(R.string.gallery_credit_could_not_save))
+                    .setPositiveButton(ui(R.string.ui_done),null).show()
             }
         }
         if(savedInstanceState==null) handleExternalImage(intent)
@@ -992,7 +999,7 @@ class ClassicPaintActivity : Activity() {
             if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)
             else editAction {
                 checkImageSize(size.width,size.height); paintCanvas.applyPending()
-                if (fresh) { document.newImage(size.width,size.height); filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
+                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
                 paintCanvas.fit(); updateStatus(); dialog.dismiss()
             }
         } }; dialog.show()
@@ -1136,8 +1143,8 @@ class ClassicPaintActivity : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) {
             if(requestCode==GALLERY_IMAGE) {
-                galleryCreditSessionToken?.let {token ->runCatching {CreditEditSession.open(filesDir,token)}.getOrNull()?.let {
-                    if(!it.accepted && it.draft==null) it.discard()
+                galleryCreditSessionToken?.let {token ->runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false)}.getOrNull()?.let {
+                    if(!it.accepted && !it.hasDraft) it.discard()
                 }}
                 galleryCreditSessionToken=null
             }
@@ -1152,7 +1159,7 @@ class ClassicPaintActivity : Activity() {
                 (expectedSession==null && data?.hasExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)==true)) {
                 message(ui(R.string.gallery_credit_could_not_save));return
             }
-            val returnedSession=try {token?.let {CreditEditSession.open(filesDir,it)}} catch(_: Exception) {
+            val returnedSession=try {token?.let {CreditEditSession.open(filesDir,it,restoreDraft=false)}} catch(_: Exception) {
                 message(ui(R.string.gallery_credit_could_not_save));return
             }
             // A late accepted result must not rewrite a fresh/replaced editor. A standalone
@@ -1169,9 +1176,10 @@ class ClassicPaintActivity : Activity() {
                 try {
                     val edits=returnedSession.edits
                     document.editImageCredits(edits) // Validate all sources before mutating any of them.
+                    if(edits.isNotEmpty())unrestoredCreditSessionToken=null
                     if(token!=null && returnedSession!=null) {
                         returnedSession.adoptionReceipt?.let {adoptedCreditSessions[token]=it}
-                        if(!returnedSession.accepted && returnedSession.draft==null) returnedSession.discard()
+                        if(!returnedSession.accepted && !returnedSession.hasDraft) returnedSession.discard()
                     }
                 } catch(_: IllegalArgumentException) {message(ui(R.string.gallery_credit_too_large));return}
                   catch(_: org.json.JSONException) {message(ui(R.string.ui_invalid_autosave_metadata));return}
@@ -1281,7 +1289,7 @@ class ClassicPaintActivity : Activity() {
                             // An assembly result replaces every canvas pixel. Preserve the previous
                             // image and its credits in Undo, but do not attribute the new composite
                             // to unrelated gallery sources from the previous canvas.
-                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false); filename = source.name;savedTarget=null; paintCanvas.fit() }
+                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false);unrestoredCreditSessionToken=null; filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
                             if (document.bitmap !== bitmap && document.selection?.image !== bitmap) bitmap.recycle()
@@ -1408,14 +1416,14 @@ class ClassicPaintActivity : Activity() {
     }
 
     private fun creditEditContext()=CreditEditContext(draftMetadata(),HistoryArchive.manifest(document.historySnapshot()))
-    private fun showImageCredits(draft: GalleryCredits.EditorDraft?=null) {
+    private fun showImageCredits(draft: GalleryCredits.EditorDraft?=null) {showImageCredits(draft,null)}
+    private fun showImageCredits(draft: GalleryCredits.EditorDraft?,restoredSession: CreditEditSession?) {
         if(imageCreditEditor?.dialog?.isShowing==true)return
         if(document.imageCredits.isEmpty()) {GalleryCredits.showEditor(this,emptyList(),document::editImageCredit);return}
         try {
-            val session=imageCreditSession?.takeIf {draft!=null}
+            val session=restoredSession ?: imageCreditSession?.takeIf {draft!=null}
                 ?: CreditEditSession.create(filesDir,document.imageCredits,creditEditContext())
-            imageCreditSession=session
-            imageCreditEditor=GalleryCredits.showEditor(this,document.imageCredits,draft,onEdit={source,text ->
+            val editor=GalleryCredits.showEditor(this,document.imageCredits,draft,onEdit={source,text ->
                 val edits=listOf(ImageCredit(source,text))
                 document.validateImageCreditEdits(edits)
                 session.edit(source,text) {ImageCreditArchive.retainAccepted(this,it)}
@@ -1428,18 +1436,27 @@ class ClassicPaintActivity : Activity() {
                 } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
                 imageCreditSession=null
             })
+            if(editor!=null) {
+                imageCreditSession=session;imageCreditEditor=editor
+                // Establish ownership only after the editor exists. Either successful restore
+                // or a fresh editor supersedes retry state; failed construction keeps it.
+                // No old session/archive file is deleted by changing this association.
+                unrestoredCreditSessionToken=null
+            }
         } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
     }
     private fun preserveCreditEditor() {
-        val field=imageCreditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
-        try {imageCreditSession?.saveDraft(field)} catch(_: Exception) {
+        try {
+            val field=imageCreditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
+            imageCreditSession?.saveDraft(field)
+        } catch(_: Exception) {
             LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,
                 imageCreditEditor?.dialog?.window?.decorView)
         }
     }
     private fun creditAdoptionReceipts(metadata: JSONObject,history: RasterHistory.Snapshot): Map<String,CreditEditSession.AdoptionReceipt> {
         return adoptedCreditSessions.filter {(token,receipt) ->runCatching {
-            val session=CreditEditSession.open(filesDir,token)
+            val session=CreditEditSession.open(filesDir,token,restoreDraft=false)
             session.revision==receipt.revision && session.acceptedSnapshot==receipt.snapshotToken && session.representedBy(metadata,history)
         }.getOrDefault(false)}
     }
@@ -1447,7 +1464,7 @@ class ClassicPaintActivity : Activity() {
         receipts.forEach {(token,receipt) ->
             // Release only this immutable accepted snapshot. A newer Save has a different token.
             runCatching {ImageCreditArchive.releaseAccepted(this,receipt.snapshotToken)}
-            runCatching {CreditEditSession.open(filesDir,token).retireAfterAdoption(receipt.revision)}
+            runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false).retireAfterAdoption(receipt.revision)}
         }
     }
     private fun showCursorHelp() {
@@ -1571,7 +1588,7 @@ class ClassicPaintActivity : Activity() {
     }
     override fun onSaveInstanceState(outState: Bundle) {
         preserveCreditEditor()
-        imageCreditSession?.let {outState.putString("main_credit_session",it.token)}
+        (imageCreditSession?.token ?: unrestoredCreditSessionToken)?.let {outState.putString("main_credit_session",it)}
         galleryCreditSessionToken?.let {outState.putString("gallery_credit_session",it)}
         outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
@@ -1586,6 +1603,7 @@ class ClassicPaintActivity : Activity() {
     override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
         imageCreditEditor?.dismissForRecreation();imageCreditEditor=null
+        creditSessionRestoreError?.dismiss();creditSessionRestoreError=null
         importSelection?.dispose();importSelection=null
         resizeDialog?.dismiss();resizeDialog=null;pendingImportFile?.delete();pendingImportFile=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}

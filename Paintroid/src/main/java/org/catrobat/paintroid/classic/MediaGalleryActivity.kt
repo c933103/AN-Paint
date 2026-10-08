@@ -34,6 +34,7 @@ class MediaGalleryActivity : Activity() {
     private var sessionHandedBack=false
     private var creditEditor: GalleryCredits.EditorSession?=null
     private var creditSessionError: android.app.AlertDialog?=null
+    private var unrestoredSessionToken: String?=null
     private var pendingSearch: String?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
@@ -44,6 +45,7 @@ class MediaGalleryActivity : Activity() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         val sessionToken=state?.getString(CreditEditSession.EXTRA_SESSION) ?: intent.getStringExtra(CreditEditSession.EXTRA_SESSION)
+        unrestoredSessionToken=sessionToken
         try {
             creditSession=if(sessionToken!=null) CreditEditSession.open(filesDir,sessionToken) else {
                 val credits=ImageCredit.read(org.json.JSONArray(state?.getString("document_image_credits")
@@ -58,6 +60,7 @@ class MediaGalleryActivity : Activity() {
                 .setOnCancelListener {finish()}.show()
             return // Keep the original file/intent unchanged for explicit recovery.
         }
+        unrestoredSessionToken=null
         documentCredits=creditSession.credits
         creditsEdited=creditSession.accepted || state?.getBoolean("document_image_credits_edited")==true
         if(creditsEdited) returnEditedCredits()
@@ -261,8 +264,10 @@ class MediaGalleryActivity : Activity() {
     override fun onBackPressed() {if(::web.isInitialized && web.canGoBack()) web.goBack() else super.onBackPressed()}
     private fun preserveCreditDraft() {
         if(!::creditSession.isInitialized)return
-        val draft=creditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
-        try {creditSession.saveDraft(draft)} catch(_: Exception) {
+        try {
+            val draft=creditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
+            creditSession.saveDraft(draft)
+        } catch(_: Exception) {
             LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,
                 creditEditor?.dialog?.window?.decorView)
         }
@@ -270,6 +275,7 @@ class MediaGalleryActivity : Activity() {
     override fun onSaveInstanceState(outState: Bundle) {
         preserveCreditDraft()
         if(::creditSession.isInitialized) creditSession.saveState(outState)
+        else unrestoredSessionToken?.let {outState.putString(CreditEditSession.EXTRA_SESSION,it)}
         if(::web.isInitialized) web.saveState(outState)
         super.onSaveInstanceState(outState)
     }

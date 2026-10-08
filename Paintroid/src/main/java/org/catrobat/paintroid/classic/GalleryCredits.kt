@@ -65,6 +65,14 @@ internal object GalleryCredits {
         onEdit: (String,String)->Unit): EditorSession? = showEditor(activity,credits,draft,onEdit,{})
 
     fun showEditor(activity: Activity, credits: List<ImageCredit>, draft: EditorDraft?,
+        onEdit: (String,String)->Unit, onDismiss: ()->Unit): EditorSession? = try {
+        CreditSessionJson.withResources {buildEditor(activity,credits,draft,onEdit,onDismiss)}
+    } catch(_: java.io.IOException) {
+        LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG)
+        null
+    }
+
+    private fun buildEditor(activity: Activity, credits: List<ImageCredit>, draft: EditorDraft?,
         onEdit: (String,String)->Unit, onDismiss: ()->Unit): EditorSession? {
         val entries=credits.associateBy {it.source}.toMutableMap()
         val sources=entries.keys.sorted()
@@ -82,8 +90,15 @@ internal object GalleryCredits {
         val restoredIndex=draft?.source?.let {sources.indexOf(it)} ?: -1
         var selected=restoredIndex.takeIf {it>=0} ?: 0
         fun save(): Boolean {
-            val source=sources[selected];val text=field.text.toString()
-            try {onEdit(source,text)}
+            val source=sources[selected]
+            val text: String
+            try {
+                // Necessary existing-format check before either the String copy or any caller's
+                // prospective history/metadata serialization. It never changes the raw field.
+                require(CreditSessionJson.fitsInline(field.text,AutosaveStore.MAX_METADATA_BYTES))
+                text=CreditSessionJson.snapshot(source,field.text).text
+                CreditSessionJson.withResources {onEdit(source,text)}
+            }
             catch(_: IllegalArgumentException) {
                 LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_too_large),Toast.LENGTH_LONG,field);return false
             } catch(_: java.io.IOException) {
@@ -92,7 +107,9 @@ internal object GalleryCredits {
             entries[source]=ImageCredit(source,text)
             return true
         }
-        field.setText(if(restoredIndex>=0) draft!!.text else entries.getValue(sources[selected]).text)
+        val initialText=if(restoredIndex>=0) draft!!.text else entries.getValue(sources[selected]).text
+        CreditSessionJson.checkText(initialText)
+        field.setText(initialText)
         // Install the initial choice before the listener, so restoration does not save a field.
         picker.setSelection(selected,false)
         picker.onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
@@ -112,11 +129,11 @@ internal object GalleryCredits {
             fun action(which: Int,tagName: String,run: ()->Unit) {
                 dialog.getButton(which).apply {tag=tagName;setOnClickListener {run()}}
             }
-            action(AlertDialog.BUTTON_NEGATIVE,"gallery_credit_copy") {if(save()) copy(activity,field.text.toString(),field)}
+            action(AlertDialog.BUTTON_NEGATIVE,"gallery_credit_copy") {if(save()) copy(activity,entries.getValue(sources[selected]).text,field)}
             action(AlertDialog.BUTTON_NEUTRAL,"gallery_credit_save") {if(save()) LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT,field)}
             action(AlertDialog.BUTTON_POSITIVE,"gallery_credit_done") {if(save()) dialog.dismiss()}
         }
-        val session=EditorSession(dialog) {EditorDraft(sources[selected],field.text.toString())}
+        val session=EditorSession(dialog) {CreditSessionJson.snapshot(sources[selected],field.text)}
         dialog.setOnDismissListener {if(!session.preserving) onDismiss()}
         dialog.show()
         return session
