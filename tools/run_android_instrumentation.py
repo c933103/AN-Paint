@@ -44,6 +44,41 @@ def declared_tests(directory: Path) -> set[Identity]:
     return expected
 
 
+RESTART_SEED = 'paint.anpaint.android.AcceptedCreditRestartSeedTest'
+RESTART_VERIFY = 'paint.anpaint.android.AcceptedCreditRestartVerifyTest'
+
+
+def restart_partition(expected: set[Identity]) -> tuple[set[Identity], set[Identity], set[Identity]]:
+    """Every app method belongs to exactly one phase, including future classes."""
+    seed = {item for item in expected if item[0] == RESTART_SEED}
+    verify = {item for item in expected if item[0] == RESTART_VERIFY}
+    ordinary = expected - seed - verify
+    if len(seed) != 1 or len(verify) != 1 or not ordinary:
+        raise ValueError('Restart regression requires one seed, one verify and ordinary app tests')
+    return ordinary, seed, verify
+
+
+def verify_restart_reports(expected: set[Identity], reports: list[dict]) -> dict:
+    partitions = restart_partition(expected)
+    if len(reports) != 3:
+        raise ValueError('Three completed app reports are required')
+    completed: set[Identity] = set()
+    for wanted, report, seed_mode in zip(partitions, reports, (False, True, False)):
+        identities = [(case['classname'], case['name']) for case in report['cases']]
+        if (report.get('success') is not True or report.get('leave_target_running') is not seed_mode
+                or report.get('expected_tests') != len(wanted)
+                or report.get('completed_tests') != len(wanted)
+                or any(case['status'] != 'passed' for case in report['cases'])
+                or len(identities) != len(set(identities)) or set(identities) != wanted
+                or completed.intersection(identities)):
+            raise ValueError('App reports do not provide the exact disjoint successful phase inventory')
+        completed.update(identities)
+    if completed != expected:
+        raise ValueError('App reports omit declared source tests')
+    return {'success': True, 'declared_tests': len(expected), 'completed_tests': len(completed),
+            'completed': sorted(completed)}
+
+
 def parse_protocol(output: str, expected: set[Identity], *, returncode: int | None = 0,
                    timed_out: bool = False, run_errors: list[str] | None = None) -> dict:
     """Parse raw `am instrument -w -r` output, rejecting incomplete test runs."""
@@ -220,6 +255,8 @@ def main() -> int:
     parser.add_argument('--suite', required=True)
     parser.add_argument('--component', help='test.package/androidx.test.runner.AndroidJUnitRunner')
     parser.add_argument('--exclude-class', action='append', default=[])
+    parser.add_argument('--leave-target-running', action='store_true',
+                        help='API35 accepted-credit seed only: attach to live app and retain activities')
     parser.add_argument('--timeout-seconds', type=int, default=480)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -230,6 +267,7 @@ def main() -> int:
     errors: list[str] = []
     returncode, timed_out = None, False
     component, target = args.component, None
+    target_pid = None
     try:
         if args.timeout_seconds <= 0:
             raise ValueError('--timeout-seconds must be positive')
@@ -240,6 +278,8 @@ def main() -> int:
         expected = {item for item in expected if item[0] not in args.exclude_class}
         if not expected:
             raise ValueError('Exclusions removed every declared test')
+        if args.leave_target_running and (len(expected) != 1 or {owner for owner, _ in expected} != {RESTART_SEED}):
+            raise ValueError('--leave-target-running is restricted to the one-method accepted-credit seed')
         if not args.apk.is_file():
             raise ValueError(f'Test APK not found: {args.apk}')
         installed = subprocess.run([args.adb, 'install', '-r', '-t', str(args.apk)],
@@ -258,6 +298,15 @@ def main() -> int:
             raise ValueError(f'Instrumentation {component} was not installed; found {sorted(available)}')
         target = available[component]
         command = [args.adb, 'shell', 'am', 'instrument', '-w', '-r']
+        if args.leave_target_running:
+            if target != 'paint.anpaint.android':
+                raise ValueError('Accepted-credit seed must target paint.anpaint.android')
+            live = subprocess.run([args.adb, 'shell', 'pidof', target],
+                                  capture_output=True, text=True, timeout=10, check=True)
+            if not re.fullmatch(r'[1-9][0-9]*', live.stdout.strip()):
+                raise ValueError('Accepted-credit seed requires exactly one already-running target PID')
+            target_pid = int(live.stdout.strip())
+            command += ['--no-restart', '-e', 'waitForActivitiesToComplete', 'false']
         if args.exclude_class:
             command += ['-e', 'notClass', ','.join(args.exclude_class)]
         command.append(component)
@@ -275,6 +324,8 @@ def main() -> int:
                                 timed_out=timed_out, run_errors=errors)
         result['component'] = component
         result['excluded_classes'] = args.exclude_class
+        result['leave_target_running'] = args.leave_target_running
+        result['target_pid_before_instrumentation'] = target_pid
         write_reports(args.output, args.suite, result, time.monotonic() - started)
     print(json.dumps({key: result[key] for key in ('success', 'expected_tests', 'completed_tests', 'errors')}, indent=2))
     return 0 if result['success'] else 1

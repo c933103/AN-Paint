@@ -97,6 +97,7 @@ class EditorDeviceTest {
             if(!isPicker && intent.action!=Intent.ACTION_CHOOSER && !isGallery) return null
             requests.add(Intent(intent))
             val result=if(isPicker || isGallery) nextResult.getAndSet(null) else null
+            if(isGallery && result!=null) intent.getStringExtra("image_credit_session")?.let {result.putExtra("image_credit_session",it)}
             return Instrumentation.ActivityResult(if(result==null) Activity.RESULT_CANCELED else Activity.RESULT_OK,result)
         }
     }

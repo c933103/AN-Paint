@@ -1,10 +1,15 @@
 """Protocol regression checks: adb returning zero is insufficient evidence."""
+import json
+import subprocess
+import sys
 import tempfile
+from unittest.mock import patch
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
-from run_android_instrumentation import declared_tests, parse_protocol, write_reports
+from run_android_instrumentation import (declared_tests, parse_protocol, write_reports, main,
+    RESTART_SEED, RESTART_VERIFY, restart_partition, verify_restart_reports)
 
 OWNER = 'example.EditorTest'
 EXPECTED = {(OWNER, 'draw'), (OWNER, 'save')}
@@ -87,6 +92,89 @@ class ProtocolTest(unittest.TestCase):
             path.write_text('package example\nclass EditorTest {\n@Test val unsupported = 1\n}\n')
             with self.assertRaises(ValueError):
                 declared_tests(Path(directory))
+
+
+class RestartModeTest(unittest.TestCase):
+    def invoke(self, *, seed_mode=True, live='123', excluded=True, truncated=False):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); source=root/'sources'; source.mkdir()
+            for owner, method in ((RESTART_SEED, 'seed'), (RESTART_VERIFY, 'verify'), (OWNER, 'draw')):
+                package, name=owner.rsplit('.',1)
+                (source/(name+'.kt')).write_text(f'package {package}\nclass {name} {{ @Test fun {method}() {{}} }}\n')
+            apk=root/'test.apk';apk.touch()
+            args=['runner','--apk',str(apk),'--source-tests',str(source),'--output',str(root/'report'),
+                  '--suite','seed','--component','test/Runner']
+            if seed_mode:args.append('--leave-target-running')
+            if excluded:args+=['--exclude-class',RESTART_VERIFY,'--exclude-class',OWNER]
+            commands=[]
+            def run(command, **kwargs):
+                commands.append(command)
+                if command[1]=='install':return subprocess.CompletedProcess(command,0,'Success\n','')
+                if command[1:]==['shell','pm','list','instrumentation']:
+                    return subprocess.CompletedProcess(command,0,'instrumentation:test/Runner (target=paint.anpaint.android)\n','')
+                if command[1:]==['shell','pidof','paint.anpaint.android']:
+                    if not live:raise subprocess.CalledProcessError(1,command)
+                    return subprocess.CompletedProcess(command,0,live+'\n','')
+                raise AssertionError(command)
+            def capture(command, log, deadline):
+                commands.append(command)
+                output=''.join(f'INSTRUMENTATION_STATUS: class={RESTART_SEED}\n'
+                               f'INSTRUMENTATION_STATUS: test=seed\n'
+                               f'INSTRUMENTATION_STATUS: numtests=1\nINSTRUMENTATION_STATUS_CODE: {code}\n'
+                               for code in (1,0))
+                log.write_text(output+('' if truncated else 'INSTRUMENTATION_CODE: -1\n'))
+                return 0,False
+            with patch.object(sys,'argv',args), patch('run_android_instrumentation.subprocess.run',side_effect=run), \
+                    patch('run_android_instrumentation.capture_live',side_effect=capture):
+                status=main()
+            return status,commands,json.loads((root/'report/summary.json').read_text())
+
+    def test_seed_emits_both_required_options_and_keeps_strict_complete_report(self):
+        status,commands,report=self.invoke()
+        self.assertEqual(status,0)
+        command=commands[-1]
+        self.assertIn('--no-restart',command)
+        i=command.index('waitForActivitiesToComplete')
+        self.assertEqual(command[i-1:i+2],['-e','waitForActivitiesToComplete','false'])
+        self.assertTrue(report['leave_target_running'])
+        self.assertEqual(report['target_pid_before_instrumentation'],123)
+        self.assertEqual(report['completed_tests'],1)
+
+    def test_normal_mode_preserves_original_command_and_cleanup_defaults(self):
+        status,commands,report=self.invoke(seed_mode=False)
+        self.assertEqual(status,0)
+        self.assertNotIn('--no-restart',commands[-1])
+        self.assertNotIn('waitForActivitiesToComplete',commands[-1])
+        self.assertFalse(report['leave_target_running'])
+
+    def test_seed_mode_rejects_extra_methods_and_unavailable_or_multiple_pids(self):
+        for kwargs in ({'excluded':False},{'live':''},{'live':'123 456'}):
+            with self.subTest(kwargs=kwargs):
+                status,commands,report=self.invoke(**kwargs)
+                self.assertEqual(status,1)
+                self.assertFalse(report['success'])
+                self.assertFalse(any('instrument' in command for command in commands))
+
+    def test_seed_mode_does_not_accept_truncated_success(self):
+        status,_,report=self.invoke(truncated=True)
+        self.assertEqual(status,1)
+        self.assertIn('Missing or unsuccessful final instrumentation result',str(report['errors']))
+
+    def test_partition_covers_future_classes_and_rejects_missing_or_duplicate_phases(self):
+        expected={(OWNER,'draw'),('example.FutureTest','future'),(RESTART_SEED,'seed'),(RESTART_VERIFY,'verify')}
+        parts=restart_partition(expected)
+        reports=[dict(success=True,expected_tests=len(part),completed_tests=len(part),
+                      leave_target_running=(i==1),cases=[dict(classname=owner,name=name,status='passed')
+                                                       for owner,name in sorted(part)])
+                 for i,part in enumerate(parts)]
+        self.assertEqual(verify_restart_reports(expected,reports)['completed_tests'],4)
+        self.assertIn(('example.FutureTest','future'),parts[0])
+        for bad in (reports[:2], [reports[0],reports[1],reports[1]]):
+            with self.assertRaises(ValueError):verify_restart_reports(expected,bad)
+        for missing in (expected-{(RESTART_SEED,'seed')},expected|{(RESTART_VERIFY,'extra')}):
+            with self.assertRaises(ValueError):restart_partition(missing)
+        reports[0]['cases'].pop()
+        with self.assertRaises(ValueError):verify_restart_reports(expected,reports)
 
 
 if __name__ == '__main__':
