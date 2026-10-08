@@ -26,7 +26,16 @@ class AutosaveStore(directory: File) {
         val ioLock=Any()
         var pendingWrites=0
     }
-    companion object { private val states=ConcurrentHashMap<String,FileState>() }
+    companion object {
+        const val MAX_METADATA_BYTES = 256 * 1024
+        private val states=ConcurrentHashMap<String,FileState>()
+        internal fun metadataBytes(metadata: JSONObject): ByteArray {
+            val bytes=metadata.toString().toByteArray(Charsets.UTF_8)
+            require(bytes.size in 1..MAX_METADATA_BYTES) { ui(R.string.ui_invalid_autosave_metadata) }
+            require(metadata.getInt("version")==1) { ui(R.string.ui_invalid_autosave_metadata) }
+            return bytes
+        }
+    }
     val file = File(directory,"classic-autosave.zip")
     private val state=states.getOrPut(file.canonicalPath) {FileState()}
     private val atomic = AtomicFile(file)
@@ -73,13 +82,17 @@ class AutosaveStore(directory: File) {
     }?.sortedByDescending { it.lastModified() } ?: emptyList()
 
     fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(state.ioLock) {
+        // Validate the exact serialized bytes before opening an AtomicFile transaction.
+        // This also protects non-credit metadata (polygon points, names and tool state).
+        val metadataBytes=metadataBytes(metadata)
+        HistoryArchive.validate(history)
         val stream=atomic.startWrite()
         try {
             val zip=ZipOutputStream(stream).apply { setLevel(0) }
             fun entry(name: String, action: () -> Unit) {
                 zip.putNextEntry(ZipEntry(name)); action(); zip.closeEntry()
             }
-            entry("draft.json") { zip.write(metadata.toString().toByteArray(Charsets.UTF_8)) }
+            entry("draft.json") { zip.write(metadataBytes) }
             entry("canvas.png") { if (!image.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_image_encoding_failed)) }
             if (floating != null) entry("floating.png") {
                 if (!floating.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_selection_encoding_failed))
@@ -95,8 +108,8 @@ class AutosaveStore(directory: File) {
         try {
             ZipFile(file).use { zip ->
                 val entry=zip.getEntry("draft.json") ?: throw IOException(ui(R.string.ui_autosave_metadata_is_missing))
-                require(entry.size in 1..262144) { ui(R.string.ui_invalid_autosave_metadata) }
-                val metadata=zip.getInputStream(entry).use { JSONObject(it.bufferedReader().readText()) }
+                require(entry.size in 1..MAX_METADATA_BYTES.toLong()) { ui(R.string.ui_invalid_autosave_metadata) }
+                val metadata=zip.getInputStream(entry).use { JSONObject(BoundedJson.read(it,MAX_METADATA_BYTES)) }
                 require(metadata.getInt("version")==1)
                 fun decode(name: String): Bitmap {
                     val e=zip.getEntry(name) ?: throw IOException(ui(R.string.ui_autosave_pixels_are_missing))
@@ -116,4 +129,3 @@ class AutosaveStore(directory: File) {
         } catch (error: Throwable) { image?.recycle(); floating?.recycle(); throw error }
     }
 }
-
