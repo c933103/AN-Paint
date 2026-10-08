@@ -8,10 +8,12 @@ ROOT=Path(__file__).resolve().parents[1]
 JAVA=ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 
 class NomNotificationSourceTest(unittest.TestCase):
-    def test_current_api_nom_route_does_not_use_a_system_toast_in_a_visible_window(self):
+    def test_current_api_bundled_horizontal_route_keeps_nom_and_includes_wu(self):
         text=(JAVA/'LocaleTypography.kt').read_text()
         self.assertIn('fun showMessage(',text)
-        self.assertIn('Build.VERSION.SDK_INT>=30 && asset()=="fonts/anpaintnomui.ttf"',text)
+        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()',text)
+        self.assertIn('val font=typeface(context)',text)
+        self.assertNotIn('asset()=="fonts/anpaintnomui.ttf"',text)
         self.assertIn('if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return',text)
         self.assertIn('if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}',text)
 

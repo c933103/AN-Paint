@@ -77,6 +77,78 @@ class LocaleNotificationTest {
         assertNull(ShadowToast.getLatestToast())
     }
 
+    @Test fun currentApiWuSaveFeedbackUsesItsBundledSupplementaryGlyph() {
+        val locale=Locale.forLanguageTag("wuu-Hans")
+        Locale.setDefault(locale)
+        val config=Configuration(activity.resources.configuration).apply {setLocale(locale)}
+        // The current canned Wu toast strings contain no supplementary glyph.
+        // A saved filename is user text and can contain the bundled U+20C8E.
+        val filename="𠲎.png"
+        val text=activity.createConfigurationContext(config).getString(R.string.ui_saved,filename)
+        assertTrue(text.contains(filename))
+        show(text)
+        assertNotNull(message())
+        assertEquals(text,message().text.toString())
+        assertEquals("fonts/anpaintwuufallback.ttf",LocaleTypography.asset())
+        assertSame(LocaleTypography.typeface(activity),message().typeface)
+        assertTrue(message().paint.hasGlyph("𠲎"))
+        assertNull(ShadowToast.getLatestToast())
+    }
+
+    @Test fun everyPickerLocaleUsesTheApplicableNotificationRoute() {
+        val bundledHorizontal=setOf("vi-Hani","wuu-Hans")
+        val tags=activity.resources.getStringArray(R.array.app_language_tags).toList()
+        assertTrue(tags.containsAll(bundledHorizontal))
+        for(tag in tags) {
+            Locale.setDefault(Locale.forLanguageTag(tag))
+            ShadowToast.reset()
+            show(tag)
+            if(tag in bundledHorizontal) {
+                assertNotNull(tag,message())
+                assertEquals(tag,message().text.toString())
+                assertSame(tag,LocaleTypography.typeface(activity),message().typeface)
+                assertNull(tag,ShadowToast.getLatestToast())
+                advance(2100)
+                assertNull(tag,notice())
+            } else {
+                // Includes all vertical scripts: do not flatten them into this surface.
+                assertNull(tag,notice())
+                assertEquals(tag,tag,ShadowToast.getTextOfLatestToast())
+            }
+        }
+    }
+
+    @Test fun wuDialogAnchorAndBackgroundFallbackRetainTheirWindowBoundaries() {
+        Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
+        val dialog=Dialog(activity)
+        val anchor=TextView(activity)
+        dialog.setContentView(anchor)
+        try {
+            dialog.show()
+            advance(0)
+            val dialogHost=dialog.window!!.decorView.findViewById<FrameLayout>(android.R.id.content)
+            LocaleTypography.showMessage(activity,"𠲎.png",Toast.LENGTH_SHORT,anchor)
+            val text=dialogHost.findViewWithTag<TextView>("locale_notification_text")
+            assertNotNull(text)
+            assertEquals("𠲎.png",text.text.toString())
+            assertSame(LocaleTypography.typeface(activity),text.typeface)
+            assertNull(notice())
+            assertNull(ShadowToast.getLatestToast())
+            dialog.dismiss()
+            advance(0)
+            assertNull(dialogHost.findViewWithTag<View>("locale_notification"))
+            LocaleTypography.showMessage(activity,"detached",Toast.LENGTH_SHORT,anchor)
+            assertNull(notice())
+            assertEquals("detached",ShadowToast.getTextOfLatestToast())
+            LocaleTypography.showMessage(activity.applicationContext,"application",Toast.LENGTH_SHORT)
+            assertNull(notice())
+            assertEquals("application",ShadowToast.getTextOfLatestToast())
+        } finally {
+            dialog.dismiss()
+            advance(0)
+        }
+    }
+
     @Test fun aPreviousTimeoutCannotRemoveTheReplacement() {
         show("first")
         val first=notice()
