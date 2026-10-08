@@ -36,22 +36,36 @@ internal object GalleryCredits {
         lines.addAll(listOf(author,authorUrl).filter {it.isNotBlank()})
         return lines.joinToString("\n")
     }
-    fun copy(context: Context, text: String, anchor: android.view.View? = null) {
-        (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
-            .setPrimaryClip(ClipData.newPlainText(ui(R.string.ui_image_credits),text))
+    internal var publishClipboard: (Context,ClipData)->Unit = {context,clip ->
+        (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
+    }
+    fun copy(context: Context, text: String, anchor: android.view.View? = null): Boolean {
+        try {publishClipboard(context,ClipData.newPlainText(ui(R.string.ui_image_credits),text))}
+        catch(_: Exception) {
+            // Binder/provider rejection must not roll back an accepted Save or claim Copied.
+            LocaleTypography.showMessage(context,ui(R.string.ui_could_not_complete_the_operation),Toast.LENGTH_LONG,anchor)
+            return false
+        }
         LocaleTypography.showMessage(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT,anchor)
+        return true
     }
 
     /** An open field is a draft until one of the existing explicit save actions runs. */
     data class EditorDraft(val source: String, val text: String)
-    class EditorSession(val dialog: AlertDialog, val snapshot: ()->EditorDraft)
+    class EditorSession(val dialog: AlertDialog, val snapshot: ()->EditorDraft) {
+        internal var preserving=false
+        fun dismissForRecreation() {preserving=true;dialog.dismiss()}
+    }
 
     /** Editing is optional and separate from insertion. Footer stays outside scrolling text. */
     fun showEditor(activity: Activity, credits: List<ImageCredit>, onEdit: (String,String)->Unit): EditorSession? =
         showEditor(activity,credits,null,onEdit)
 
     fun showEditor(activity: Activity, credits: List<ImageCredit>, draft: EditorDraft?,
-        onEdit: (String,String)->Unit): EditorSession? {
+        onEdit: (String,String)->Unit): EditorSession? = showEditor(activity,credits,draft,onEdit,{})
+
+    fun showEditor(activity: Activity, credits: List<ImageCredit>, draft: EditorDraft?,
+        onEdit: (String,String)->Unit, onDismiss: ()->Unit): EditorSession? {
         val entries=credits.associateBy {it.source}.toMutableMap()
         val sources=entries.keys.sorted()
         if(sources.isEmpty()) { LocaleTypography.showMessage(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT);return null }
@@ -63,13 +77,20 @@ internal object GalleryCredits {
             adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,sources.map {Uri.parse(it).lastPathSegment ?: it})
         }
         body.addView(picker)
-        val field=EditText(activity).apply {tag="gallery_credit_text";minLines=6;maxLines=12;gravity=android.view.Gravity.TOP;setTextColor(EditorColours.onSurface);setSelectAllOnFocus(false)}
+        val field=EditText(activity).apply {isSaveEnabled=false;isSaveFromParentEnabled=false;tag="gallery_credit_text";minLines=6;maxLines=12;gravity=android.view.Gravity.TOP;setTextColor(EditorColours.onSurface);setSelectAllOnFocus(false)}
         body.addView(field,LinearLayout.LayoutParams(-1,-2))
         val restoredIndex=draft?.source?.let {sources.indexOf(it)} ?: -1
         var selected=restoredIndex.takeIf {it>=0} ?: 0
-        fun save() {
+        fun save(): Boolean {
             val source=sources[selected];val text=field.text.toString()
-            entries[source]=ImageCredit(source,text);onEdit(source,text)
+            try {onEdit(source,text)}
+            catch(_: IllegalArgumentException) {
+                LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_too_large),Toast.LENGTH_LONG,field);return false
+            } catch(_: java.io.IOException) {
+                LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,field);return false
+            }
+            entries[source]=ImageCredit(source,text)
+            return true
         }
         field.setText(if(restoredIndex>=0) draft!!.text else entries.getValue(sources[selected]).text)
         // Install the initial choice before the listener, so restoration does not save a field.
@@ -78,7 +99,8 @@ internal object GalleryCredits {
             override fun onNothingSelected(parent: AdapterView<*>?)=Unit
             override fun onItemSelected(parent: AdapterView<*>?,view: android.view.View?,position: Int,id: Long) {
                 if(position==selected)return
-                save();selected=position;field.setText(entries.getValue(sources[position]).text)
+                if(!save()) {picker.setSelection(selected,false);return}
+                selected=position;field.setText(entries.getValue(sources[position]).text)
             }
         }
         val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_image_credits))
@@ -90,11 +112,13 @@ internal object GalleryCredits {
             fun action(which: Int,tagName: String,run: ()->Unit) {
                 dialog.getButton(which).apply {tag=tagName;setOnClickListener {run()}}
             }
-            action(AlertDialog.BUTTON_NEGATIVE,"gallery_credit_copy") {save();copy(activity,field.text.toString(),field)}
-            action(AlertDialog.BUTTON_NEUTRAL,"gallery_credit_save") {save();LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT,field)}
-            action(AlertDialog.BUTTON_POSITIVE,"gallery_credit_done") {save();dialog.dismiss()}
+            action(AlertDialog.BUTTON_NEGATIVE,"gallery_credit_copy") {if(save()) copy(activity,field.text.toString(),field)}
+            action(AlertDialog.BUTTON_NEUTRAL,"gallery_credit_save") {if(save()) LocaleTypography.showMessage(activity,ui(R.string.gallery_credit_saved),Toast.LENGTH_SHORT,field)}
+            action(AlertDialog.BUTTON_POSITIVE,"gallery_credit_done") {if(save()) dialog.dismiss()}
         }
+        val session=EditorSession(dialog) {EditorDraft(sources[selected],field.text.toString())}
+        dialog.setOnDismissListener {if(!session.preserving) onDismiss()}
         dialog.show()
-        return EditorSession(dialog) {EditorDraft(sources[selected],field.text.toString())}
+        return session
     }
 }

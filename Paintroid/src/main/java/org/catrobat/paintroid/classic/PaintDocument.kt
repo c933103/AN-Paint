@@ -78,10 +78,42 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
         selection?.credits=if(state?.optBoolean("selection_sources_known")==true) floating
             else (committedCredits.values+floating).distinctBy {it.source}
     }
-    fun editImageCredit(source: String, text: String) {
-        committedCredits[source]?.let {committedCredits[source]=it.copy(text=text)}
-        fun amend(credits: List<ImageCredit>)=credits.map {if(it.source==source) it.copy(text=text) else it}
-        selection?.let {s -> s.credits=amend(s.credits)}
+    /** Explicit archive selection only; validation must finish before any document mutation. */
+    fun attachImageCredit(credit: ImageCredit, validateProjectedState: (org.json.JSONObject)->Unit): Boolean {
+        require(credit.source.isNotBlank())
+        if(imageCredits.any {it.source==credit.source}) return false
+        val projected=imageCreditsState().put("committed",ImageCredit.write(committedCredits.values+credit))
+        validateProjectedState(projected)
+        committedCredits[credit.source]=credit
+        changed()
+        return true
+    }
+
+    // Activities supply their full metadata envelope. Standalone documents still enforce
+    // the same format bound with the minimum envelope, never a smaller attribution cap.
+    internal var validateCreditMetadata: (org.json.JSONObject)->Unit = {state ->
+        AutosaveStore.metadataBytes(org.json.JSONObject().put("version",1).put("image_credits",state));Unit
+    }
+    internal var validatePastedCreditMetadata: (org.json.JSONObject,Int,Int)->Unit = {state,width,height ->
+        AutosaveStore.metadataBytes(org.json.JSONObject().put("version",1).put("image_credits",state)
+            .put("floating_rect",org.json.JSONArray(listOf(0f,0f,width.toFloat(),height.toFloat()))).put("floating_rotation",0.0));Unit
+    }
+    fun validateImageCreditEdits(edits: List<ImageCredit>) {
+        val replacements=edits.associateBy {it.source}
+        fun amend(credits: Collection<ImageCredit>)=credits.map {replacements[it.source] ?: it}
+        HistoryArchive.validate(RasterHistory.Snapshot(
+            undo.map {it.copy(imageCredits=amend(it.imageCredits))},redo.map {it.copy(imageCredits=amend(it.imageCredits))}))
+        validateCreditMetadata(org.json.JSONObject().put("committed",ImageCredit.write(amend(committedCredits.values)))
+            .put("floating",ImageCredit.write(amend(selection?.credits.orEmpty()))).put("selection_sources_known",true))
+    }
+    fun editImageCredit(source: String, text: String) = editImageCredits(listOf(ImageCredit(source,text)))
+    fun editImageCredits(edits: List<ImageCredit>) {
+        validateImageCreditEdits(edits) // All checks precede all mutation, including history/clipboard.
+        val replacements=edits.associateBy {it.source}
+        fun amend(credits: Collection<ImageCredit>)=credits.map {replacements[it.source] ?: it}
+        val committed=amend(committedCredits.values)
+        committedCredits.clear();committed.forEach {committedCredits[it.source]=it}
+        selection?.let {it.credits=amend(it.credits)}
         clipboardCredits=amend(clipboardCredits)
         listOf(undo,redo).forEach {stack ->
             val revised=stack.map {it.copy(imageCredits=amend(it.imageCredits))}
@@ -351,6 +383,13 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     fun paste(image: Bitmap? = clipboard, takeOwnership: Boolean = false, credits: List<ImageCredit> = if(image === clipboard) clipboardCredits else emptyList()): Boolean {
         image ?: return false
+        // Validate before finishSelection commits any existing floating pixels or provenance.
+        val nextCommitted=(committedCredits.values+selection?.credits.orEmpty()).associateBy {it.source}.values
+        val nextCredits=org.json.JSONObject().put("committed",ImageCredit.write(nextCommitted))
+            .put("floating",ImageCredit.write(credits)).put("selection_sources_known",true)
+        validatePastedCreditMetadata(nextCredits,image.width,image.height)
+        HistoryArchive.validate(RasterHistory.Snapshot(undo.toList()+RasterHistory.Entry(
+            java.io.File("unused-credit-preflight"),bitmap.width,bitmap.height,nextCommitted.toList())))
         val copyRequired = !takeOwnership || !image.isMutable || !canonicalPixels(image)
         if (copyRequired) allocationGuard(image.width,image.height)
         val copy = if (copyRequired) copyToCanvasFormat(image,false) else image

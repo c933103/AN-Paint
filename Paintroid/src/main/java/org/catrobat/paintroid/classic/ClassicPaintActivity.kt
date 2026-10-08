@@ -38,6 +38,7 @@ class ClassicPaintActivity : Activity() {
         const val ASSEMBLY_IMAGE = 705
         const val EXPORT_RECOVERY = 706
         const val GALLERY_IMAGE = 707
+        const val LEGACY_CREDITS = 708
         const val SOURCE_ASSET = "local-source/AN-Paint-source.zip"
     }
     lateinit var document: PaintDocument; private set
@@ -103,6 +104,10 @@ class ClassicPaintActivity : Activity() {
     private var paletteExpanded = true
     private var drawingTool = PaintTool.PENCIL
     private val landscape get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    private var imageCreditEditor: GalleryCredits.EditorSession?=null
+    private var imageCreditSession: CreditEditSession?=null
+    private var galleryCreditSessionToken: String?=null
+    private val adoptedCreditSessions=linkedMapOf<String,CreditEditSession.AdoptionReceipt>()
     private lateinit var autosave: AutosaveStore
     private val autosaveHandler = Handler(Looper.getMainLooper())
     private var draftGeneration = 0L
@@ -124,6 +129,9 @@ class ClassicPaintActivity : Activity() {
         super.onCreate(savedInstanceState)
         AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()
         autosave=AutosaveStore(filesDir)
+        galleryCreditSessionToken=savedInstanceState?.getString("gallery_credit_session")
+        // Adoption receipts belong only to this instance's captured document generation.
+        // Replaying them onto a recovered older draft could release credits never saved there.
         recentColours=RecentColours(this)
         val prefs=getSharedPreferences("classic-ui",MODE_PRIVATE)
         val firstArrowLayout=!prefs.getBoolean("arrow_layout_initialized",false)
@@ -201,12 +209,26 @@ class ClassicPaintActivity : Activity() {
                 editAction { document.newImage(r-l-dp(20)-24,b-t-dp(20)-24) };paintCanvas.fit()
             }
         })
+        document.validateCreditMetadata={credits -> AutosaveStore.metadataBytes(draftMetadata().put("image_credits",credits));Unit}
+        document.validatePastedCreditMetadata={credits,width,height ->
+            AutosaveStore.metadataBytes(draftMetadata().apply {
+                put("image_credits",credits);put("floating_rect",JSONArray(listOf(0f,0f,width.toFloat(),height.toFloat())))
+                put("floating_rotation",0.0);remove("selection_outline")
+            });Unit
+        }
         document.changed={ runOnUiThread { if (!isDestroyed) { paintCanvas.invalidate();updateStatus();scheduleAutosave() } } }
         autosaveReady=true;scheduleAutosave()
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
         savedInstanceState?.let {
             exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
             shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
+        }
+        savedInstanceState?.getString("main_credit_session")?.let {token ->
+            runCatching {CreditEditSession.open(filesDir,token)}.getOrNull()?.let {session ->
+                session.draft?.takeIf {field -> document.imageCredits.any {it.source==field.source}}?.let {
+                    imageCreditSession=session;showImageCredits(it)
+                }
+            }
         }
         if(savedInstanceState==null) handleExternalImage(intent)
     }
@@ -836,7 +858,9 @@ class ClassicPaintActivity : Activity() {
             ui(R.string.ui_image_credits) to {showImageCredits()},
             ui(R.string.ui_image_codec_licences) to {LegalInfo.showCodecLicences(this)},
             ui(R.string.ui_font_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_font_licences),"legal/FONT_NOTICES.txt")},
-            ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")})
+            ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")}) +
+            if(ImageCreditArchive.hasRecords(this)) listOf(ui(R.string.legacy_credits_title) to {showLegacyImageCredits()})
+            else emptyList()
         EditorDialogBuilder(this).setTitle(ui(R.string.ui_about_credits23)).setItems(actions.map {it.first}.toTypedArray()) {_,index->actions[index].second()}
             .setNegativeButton(ui(R.string.ui_done),null).show()
     }
@@ -845,9 +869,14 @@ class ClassicPaintActivity : Activity() {
         val sources=listOf(ui(R.string.ui_from_device34))+IllustrationSource.values().map {it.label}
         EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->
             if(index==0) launchOpen(true)
-            else startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
-                .putExtra("gallery_provider",IllustrationSource.values()[index-1].name)
-                .putExtra("document_image_credits",ImageCredit.write(document.imageCredits).toString()),GALLERY_IMAGE)
+            else try {
+                paintCanvas.pauseGesture()
+                val session=CreditEditSession.create(filesDir,document.imageCredits,creditEditContext())
+                galleryCreditSessionToken=session.token
+                startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
+                    .putExtra("gallery_provider",IllustrationSource.values()[index-1].name)
+                    .putExtra(CreditEditSession.EXTRA_SESSION,session.token),GALLERY_IMAGE)
+            } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
         }.setNegativeButton(ui(R.string.ui_cancel),null).show()
     }
 
@@ -1059,7 +1088,8 @@ class ClassicPaintActivity : Activity() {
                 if(exportOptions.format.supportsLossless) savedPrefs.putBoolean("lossless",exportOptions.lossless)
                 savedPrefs.apply()
                 chooseSaveLocation(request.fileName)
-            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export,imageCredits=ImageCredit.text(document.imageCredits)).show()
+            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export,imageCredits=ImageCredit.text(document.imageCredits),
+            legacyCredits=if(ImageCreditArchive.hasRecords(this)) ::showLegacyImageCredits else null).show()
     }
     private fun chooseSaveLocation(proposedName: String=filename) {
         launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
@@ -1104,14 +1134,54 @@ class ClassicPaintActivity : Activity() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != RESULT_OK) { if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
-        if(requestCode==GALLERY_IMAGE) {
-            data?.getStringExtra("document_image_credits")?.let {encoded ->
-                runCatching {ImageCredit.read(JSONArray(encoded))}.getOrDefault(emptyList()).forEach {
-                    document.editImageCredit(it.source,it.text)
-                }
+        if (resultCode != RESULT_OK) {
+            if(requestCode==GALLERY_IMAGE) {
+                galleryCreditSessionToken?.let {token ->runCatching {CreditEditSession.open(filesDir,token)}.getOrNull()?.let {
+                    if(!it.accepted && it.draft==null) it.discard()
+                }}
+                galleryCreditSessionToken=null
             }
-            if(data?.hasExtra("gallery_file")!=true && data?.hasExtra("document_image_credits")==true) return
+            if (requestCode == SAVE_IMAGE) { afterSave = null;shareAfterSave=false }; return }
+        if(requestCode==LEGACY_CREDITS) {
+            attachLegacyImageCredit(data?.getStringExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN));return
+        }
+        if(requestCode==GALLERY_IMAGE) {
+            val token=data?.getStringExtra(CreditEditSession.EXTRA_SESSION)
+            val expectedSession=galleryCreditSessionToken
+            if((expectedSession!=null && token!=expectedSession) ||
+                (expectedSession==null && data?.hasExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)==true)) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            val returnedSession=try {token?.let {CreditEditSession.open(filesDir,it)}} catch(_: Exception) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            // A late accepted result must not rewrite a fresh/replaced editor. A standalone
+            // Gallery may still return an unedited image insertion; it carries no credit edits.
+            if(returnedSession!=null && expectedSession==null &&
+                (returnedSession.accepted || returnedSession.edits.isNotEmpty() || data?.hasExtra("gallery_file")!=true)) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            val encoded=data?.getStringExtra("document_image_credits")
+            if(returnedSession==null && encoded!=null) {
+                message(ui(R.string.gallery_credit_could_not_save));return
+            }
+            if(returnedSession!=null) {
+                try {
+                    val edits=returnedSession.edits
+                    document.editImageCredits(edits) // Validate all sources before mutating any of them.
+                    if(token!=null && returnedSession!=null) {
+                        returnedSession.adoptionReceipt?.let {adoptedCreditSessions[token]=it}
+                        if(!returnedSession.accepted && returnedSession.draft==null) returnedSession.discard()
+                    }
+                } catch(_: IllegalArgumentException) {message(ui(R.string.gallery_credit_too_large));return}
+                  catch(_: org.json.JSONException) {message(ui(R.string.ui_invalid_autosave_metadata));return}
+            }
+            galleryCreditSessionToken=null
+            if(data?.hasExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)==true) {
+                attachLegacyImageCredit(data.getStringExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN))
+                if(data.hasExtra("gallery_file")!=true)return
+            }
+            if(data?.hasExtra("gallery_file")!=true && (returnedSession!=null || encoded!=null)) return
             val file=data?.getStringExtra("gallery_file")?.let {File(cacheDir,it)}
             val source=data?.getStringExtra("gallery_source")
             val provider=IllustrationSource.fromId(data?.getStringExtra("gallery_provider"))
@@ -1315,8 +1385,70 @@ class ClassicPaintActivity : Activity() {
             cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, index+1) else String.format(java.util.Locale.ROOT,ui(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background),index+1,colour and 0xffffff)
         }
     }
-    private fun showImageCredits() {
-        GalleryCredits.showEditor(this,document.imageCredits,document::editImageCredit)
+    private fun showLegacyImageCredits() {
+        startActivityForResult(Intent(this,LegacyImageCreditsActivity::class.java),LEGACY_CREDITS)
+    }
+
+    private fun attachLegacyImageCredit(token: String?) {
+        val credit=ImageCreditArchive.find(this,token) ?: return
+        if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}
+        if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}
+        editAction {
+            val added=try {
+                document.attachImageCredit(credit) {projected ->
+                    AutosaveStore.metadataBytes(draftMetadata().put("image_credits",projected))
+                    HistoryArchive.validate(document.historySnapshot())
+                }
+            } catch(_: IllegalArgumentException) {
+                message(ui(R.string.gallery_credit_too_large));return@editAction
+            }
+            LocaleTypography.showMessage(this,ui(if(added) R.string.legacy_credits_added
+                else R.string.legacy_credits_existing),Toast.LENGTH_SHORT,paintCanvas)
+        }
+    }
+
+    private fun creditEditContext()=CreditEditContext(draftMetadata(),HistoryArchive.manifest(document.historySnapshot()))
+    private fun showImageCredits(draft: GalleryCredits.EditorDraft?=null) {
+        if(imageCreditEditor?.dialog?.isShowing==true)return
+        if(document.imageCredits.isEmpty()) {GalleryCredits.showEditor(this,emptyList(),document::editImageCredit);return}
+        try {
+            val session=imageCreditSession?.takeIf {draft!=null}
+                ?: CreditEditSession.create(filesDir,document.imageCredits,creditEditContext())
+            imageCreditSession=session
+            imageCreditEditor=GalleryCredits.showEditor(this,document.imageCredits,draft,onEdit={source,text ->
+                val edits=listOf(ImageCredit(source,text))
+                document.validateImageCreditEdits(edits)
+                session.edit(source,text) {ImageCreditArchive.retainAccepted(this,it)}
+                document.editImageCredits(edits)
+                session.adoptionReceipt?.let {adoptedCreditSessions[session.token]=it}
+            },onDismiss={
+                try {
+                    session.saveDraft(null)
+                    if(!session.accepted) session.discard()
+                } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
+                imageCreditSession=null
+            })
+        } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
+    }
+    private fun preserveCreditEditor() {
+        val field=imageCreditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
+        try {imageCreditSession?.saveDraft(field)} catch(_: Exception) {
+            LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,
+                imageCreditEditor?.dialog?.window?.decorView)
+        }
+    }
+    private fun creditAdoptionReceipts(metadata: JSONObject,history: RasterHistory.Snapshot): Map<String,CreditEditSession.AdoptionReceipt> {
+        return adoptedCreditSessions.filter {(token,receipt) ->runCatching {
+            val session=CreditEditSession.open(filesDir,token)
+            session.revision==receipt.revision && session.acceptedSnapshot==receipt.snapshotToken && session.representedBy(metadata,history)
+        }.getOrDefault(false)}
+    }
+    private fun retireCreditSessions(receipts: Map<String,CreditEditSession.AdoptionReceipt>) {
+        receipts.forEach {(token,receipt) ->
+            // Release only this immutable accepted snapshot. A newer Save has a different token.
+            runCatching {ImageCreditArchive.releaseAccepted(this,receipt.snapshotToken)}
+            runCatching {CreditEditSession.open(filesDir,token).retireAfterAdoption(receipt.revision)}
+        }
     }
     private fun showCursorHelp() {
         message(ui(R.string.ui_cursor_help31)+"\n\n"+ui(R.string.ui_cursor_tap_hint37)+"\n\n"+ui(R.string.ui_cursor_marker_help31))
@@ -1419,25 +1551,32 @@ class ClassicPaintActivity : Activity() {
         val floating=document.selection?.takeIf { it.floating }?.image
         val metadata=draftMetadata()
         val history=document.historySnapshot()
+        val creditSessions=creditAdoptionReceipts(metadata,history)
         autosaving=true;beginIo()
         autosave.submitWrite(worker) {
             var error: Throwable?=null
             try {
                 autosave.write(image,floating,metadata,history);savedDraftGeneration=generation
+                retireCreditSessions(creditSessions)
                 File(filesDir,"classic-recovery.png").delete()
             } catch (e: Exception) { error=e } catch (e: OutOfMemoryError) { error=e }
             val failure=error
             runOnUiThread { if (!isDestroyed) {
                 autosaving=false
-                if (failure==null) { draftStatus=ui(R.string.ui_draft_saved);lastAutosaveError=null }
+                if (failure==null) { creditSessions.forEach {(token,revision) ->if(adoptedCreditSessions[token]==revision) adoptedCreditSessions.remove(token)};draftStatus=ui(R.string.ui_draft_saved);lastAutosaveError=null }
                 else { failedDraftGeneration=generation;lastAutosaveError=failure.message;draftStatus=ui(R.string.ui_autosave_failed_use_save) }
                 endIo()
             } }
         }
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) {
+        preserveCreditEditor()
+        imageCreditSession?.let {outState.putString("main_credit_session",it.token)}
+        galleryCreditSessionToken?.let {outState.putString("gallery_credit_session",it)}
+        outState.putInt("export_format",exportOptions.format.ordinal);outState.putInt("export_quality",exportOptions.quality);outState.putBoolean("export_lossless",exportOptions.lossless);outState.putBoolean("export_dither",exportOptions.dither);outState.putBoolean("export_tiff_compressed",exportOptions.tiffCompressed);outState.putInt("export_ico_size",exportOptions.icoSize);outState.putInt("export_ascii_columns",exportOptions.asciiColumns);outState.putBoolean("export_ascii_invert",exportOptions.asciiInvert);outState.putBoolean("share_after_save",shareAfterSave);outState.putBoolean("is_exporting",isExporting); super.onSaveInstanceState(outState) }
     override fun onStart() { super.onStart();stopped=false }
     override fun onStop() {
+        preserveCreditEditor()
         super.onStop();stopped=true
         if (::document.isInitialized && autosaveReady) {
             if (!busy) paintCanvas.pauseGesture()
@@ -1446,15 +1585,21 @@ class ClassicPaintActivity : Activity() {
     }
     override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
+        imageCreditEditor?.dismissForRecreation();imageCreditEditor=null
         importSelection?.dispose();importSelection=null
         resizeDialog?.dismiss();resizeDialog=null;pendingImportFile?.delete();pendingImportFile=null
         autosaveReady=false;autosaveHandler.removeCallbacksAndMessages(null);document.changed={}
         val metadata=draftMetadata();val generation=draftGeneration
+        val history=document.historySnapshot()
+        val creditSessions=creditAdoptionReceipts(metadata,history)
         // Join this queued final save from the replacement Activity before it reads
         // the draft. The handover finishes on the worker without a main-thread callback.
         if (!busy && generation==savedDraftGeneration) document.close() else autosave.submitWrite(worker) {
             try {
-                if (!autosaveBlocked && generation!=savedDraftGeneration) autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,document.historySnapshot())
+                if (!autosaveBlocked && generation!=savedDraftGeneration) {
+                    autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,history)
+                    retireCreditSessions(creditSessions)
+                }
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
             finally { document.close() }
         }

@@ -42,8 +42,10 @@ object ExportNames {
 /** One options panel precedes Android's destination picker for every Save as format. */
 class SaveOptionsDialog(private val activity: Activity,private val initial: ExportOptions,
     private val share: Boolean=false,private val confirm: (SaveRequest)->Unit,private val cancel: ()->Unit,
-    private val initialFilename: String="", private val export: Boolean=false, private val imageCredits: String="") {
+    private val initialFilename: String="", private val export: Boolean=false, private val imageCredits: String="",
+    private val legacyCredits: (()->Unit)?=null) {
     fun show(): AlertDialog {
+        lateinit var dialog: AlertDialog
         val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}
         var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
@@ -137,6 +139,11 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             addView(details)
         }
         creditsPanel?.let {body.addView(it)}
+        val legacyButton=legacyCredits?.let {openArchive -> Button(activity).apply {
+            text=ui(R.string.legacy_credits_title);tag="export_legacy_credits";isAllCaps=false
+            setOnClickListener {cancel();dialog.dismiss();openArchive()}
+        }}
+        legacyButton?.let {body.addView(it)}
         update()
         val content: View=if(VerticalText.uiVertical()) {
             val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_save_form"}
@@ -172,11 +179,12 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             // Credits contain original names and URLs. Keep selectable native text in a bounded
             // scrolling column even when the surrounding interface uses vertical text.
             creditsPanel?.let {form.addView(ScrollView(activity).apply {addView(VerticalUi.detach(it))},LinearLayout.LayoutParams((264*d).toInt(),(tall*d).toInt()))}
+            legacyButton?.let {VerticalUi.caption(it,tall);form.addView(VerticalUi.detach(it))}
             form.addView(prose(ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})))
             form.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
             form
         } else ScrollView(activity).apply {addView(body)}
-        val dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
+        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
             .setView(content)
             .setPositiveButton(ui(R.string.ui_choose_location),null)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()
