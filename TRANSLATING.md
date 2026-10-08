@@ -5,8 +5,9 @@
 See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
 
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
-`Paintroid/src/main/res/values/strings.xml`, together with the other translatable
-XML files in `Paintroid/src/main/res/values/`.
+`Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
+plural and string-array in that file so the translation-service source is complete.
+Other default XML files may contain styles, identifiers and non-translatable resources.
 
 Each localized `strings.xml` under `Paintroid/src/main/res/values*/` is a
 **canonical source file**. It is not generated from JSON and must not be overwritten
@@ -42,7 +43,13 @@ earlier/imported work and can be consulted when reviewing terminology.
 
 `crowdin.yml` points directly from the English Android catalogue to localized
 Android `strings.xml` files, so no conversion step is needed for Crowdin or similar
-Android-resource translation systems.
+Android-resource translation systems. There is one source file and one output file
+per locale; do not map multiple source files onto the same localized `strings.xml`.
+Before the first export, upload the existing canonical translations to the
+maintainer-owned project. Review exports in a clean checkout before accepting them:
+keep exact language/script/region directories, reject missing keys or unexpected
+English replacements, and run the checks below. A service export must not silently
+replace newer canonical edits.
 
 ## Correctness rules
 
@@ -69,6 +76,28 @@ Android-resource translation systems.
 - Canvas directions, coordinates, image rotation and physical attachment directions
   describe image geometry. They must not be semantically mirrored merely because
   the surrounding interface is right-to-left.
+
+## Sinitic variety conventions
+
+Several language tags cover varieties for which a script tag alone does not identify
+one universal written standard. AN Paint currently uses these explicit conventions:
+
+- `lzh-Hant`: technical Literary Chinese in Traditional characters. Modern product,
+  codec and computing terms may remain modern where forcing an archaic paraphrase
+  would obscure the operation.
+- `hak-Hant-TW`: Taiwan Sixian Hakka in Han characters.
+- `hak-Latn-TW`: the same Sixian Hakka wording in Pha̍k-fa-sṳ (PFS), not a
+  romanization of Mandarin text.
+- `nan-Hant-TW`: Taiwan Southern Min / Taiwanese Hokkien in Han characters.
+- `nan-Latn-TW`: the same Taiwanese wording in Pe̍h-ōe-jī (POJ), not Mandarin
+  transliteration.
+- `wuu-Hans`: Simplified-script written Wu using Shanghainese as the concrete
+  vernacular basis. `wuu` is a macrolanguage tag and this catalogue must not be
+  described as a standardized pan-Wu written norm.
+
+Han- and Latin-script pairs must stay semantically aligned, but the Latin catalogue
+is a real orthographic rendering of the target variety rather than a character-by-
+character transliteration of Standard Chinese.
 
 ## Validation
 

@@ -93,6 +93,27 @@ class TranslationCatalogueTests(unittest.TestCase):
             r"ỳýỵỷỹ]",
         )
 
+    def test_crowdin_uses_one_canonical_source_and_output(self):
+        config = (translations.ROOT / "crowdin.yml").read_text()
+        # Check the supported simple file-mapping contract without a YAML dependency.
+        sources = re.findall(r"(?m)^\s*-?\s*source:\s*([^\n#]+)", config)
+        outputs = re.findall(r"(?m)^\s*-?\s*translation:\s*([^\n#]+)", config)
+        self.assertEqual(["/Paintroid/src/main/res/values/strings.xml"],
+                         [value.strip().strip("\"'") for value in sources])
+        self.assertEqual(["/Paintroid/src/main/res/values-%android_code%/strings.xml"],
+                         [value.strip().strip("\"'") for value in outputs])
+
+    def test_crowdin_source_contains_all_translatable_default_resources(self):
+        source = translations.RES / "values/strings.xml"
+        uncovered = []
+        for path in sorted((translations.RES / "values").glob("*.xml")):
+            for node in ET.parse(path).getroot():
+                is_text = node.tag in ("string", "plurals", "string-array") or (
+                    node.tag == "item" and node.get("type") == "string")
+                if is_text and node.get("translatable") != "false" and path != source:
+                    uncovered.append(f"{path.name}/{node.tag}/{node.get('name')}")
+        self.assertEqual([], uncovered, "Crowdin cannot export resources outside strings.xml")
+
     def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
         seen = set()
         for path in sorted((translations.RES / "values").glob("*.xml")):
@@ -167,14 +188,57 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
+    def test_completed_lzh_hakka_hokkien_wu_catalogues_are_complete(self):
+        for tag in (
+            "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
+            "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
+        ):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+    def test_catalogues_preserve_literal_tokens(self):
+        defaults = translations.default_resources()[0]
+        for tag, path in translations.catalogue_paths().items():
+            for key, value in translations.read_strings(path).items():
+                if key in defaults:
+                    with self.subTest(tag=tag, key=key):
+                        self.assertEqual(
+                            [], translations.literal_token_errors(key, value, defaults[key]),
+                        )
+
+    def test_literary_assembly_help_describes_image_replacement(self):
+        literary = translations.read_strings(translations.catalogue_paths()["lzh-Hant"])
+        self.assertNotIn("前景替換", literary["ui_add_up_to_20_images_with_android_s"])
+
+    def test_mechanical_word_replacement_corruptions_do_not_return(self):
+        catalogues = translations.catalogue_paths()
+        for tag in ("hak-Hant-TW", "hak-Latn-TW", "lzh-Hant"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            for corrupt in ("主愛", "Chú oi", "肚容", "目个地", "飽與度", "柔與"):
+                self.assertNotIn(corrupt, text, tag)
+
     def test_latin_script_catalogues_do_not_regress_to_other_scripts(self):
         catalogues = translations.catalogue_paths()
-        for tag in ("yue-Latn", "sr-Latn", "uz-Latn", "tt-Latn"):
+        for tag in ("yue-Latn", "hak-Latn-TW", "nan-Latn-TW"):
             text = "".join(translations.read_strings(catalogues[tag]).values())
-            if tag == "yue-Latn":
-                self.assertNotRegex(text, r"[\u3400-\u9fff]")
-            else:
-                self.assertNotRegex(text, r"[\u0400-\u04ff]")
+            self.assertNotRegex(text, r"[\u3400-\u9fff]", tag)
+        for tag in ("sr-Latn", "uz-Latn", "tt-Latn"):
+            text = "".join(translations.read_strings(catalogues[tag]).values())
+            self.assertNotRegex(text, r"[\u0400-\u04ff]", tag)
+
+    def test_simplified_wu_does_not_regress_to_traditional_forms(self):
+        text = "".join(
+            translations.read_strings(
+                translations.catalogue_paths()["wuu-Hans"]
+            ).values()
+        )
+        self.assertNotRegex(
+            text,
+            r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
+        )
 
 
 class GimpProvenanceTests(unittest.TestCase):
