@@ -1483,10 +1483,11 @@ class ClassicPaintActivity : Activity() {
             session.revision==receipt.revision && session.acceptedSnapshot==receipt.snapshotToken && session.representedBy(metadata,history)
         }.getOrDefault(false)}
     }
-    private fun retireCreditSessions(receipts: Map<String,CreditEditSession.AdoptionReceipt>) {
+    private fun retireCreditSessions(receipts: Map<String,CreditEditSession.AdoptionReceipt>,metadata: JSONObject,history: RasterHistory.Snapshot) {
         receipts.forEach {(token,receipt) ->
-            // Release only this immutable accepted snapshot. A newer Save has a different token.
-            runCatching {ImageCreditArchive.releaseAccepted(this,receipt.snapshotToken)}
+            // Only exact values in this successful autosave can release explicitly owned snapshots.
+            // A captured receipt cannot grow to include a newer Save.
+            runCatching {ImageCreditArchive.releaseAfterAdoption(this,receipt,metadata,history)}
             runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false).retireAfterAdoption(receipt.revision)}
         }
     }
@@ -1597,7 +1598,7 @@ class ClassicPaintActivity : Activity() {
             var error: Throwable?=null
             try {
                 autosave.write(image,floating,metadata,history);savedDraftGeneration=generation
-                retireCreditSessions(creditSessions)
+                retireCreditSessions(creditSessions,metadata,history)
                 File(filesDir,"classic-recovery.png").delete()
             } catch (e: Exception) { error=e } catch (e: OutOfMemoryError) { error=e }
             val failure=error
@@ -1646,7 +1647,7 @@ class ClassicPaintActivity : Activity() {
             try {
                 if (!autosaveBlocked && generation!=savedDraftGeneration) {
                     autosave.write(document.bitmap,document.selection?.takeIf { it.floating }?.image,metadata,history)
-                    retireCreditSessions(creditSessions)
+                    retireCreditSessions(creditSessions,metadata,history)
                 }
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
             finally { document.close() }

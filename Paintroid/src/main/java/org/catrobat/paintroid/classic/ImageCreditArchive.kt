@@ -38,6 +38,43 @@ internal object ImageCreditArchive {
         Unit
     }
 
+    /** Worker-only: the caller has durably written these exact metadata/history values.
+     * A replacement acceptance alone never authorizes deleting its predecessor. Only tokens
+     * explicitly owned by this immutable receipt are examined; old unlinked files stay intact. */
+    fun releaseAfterAdoption(context: Context,receipt: CreditEditSession.AdoptionReceipt,
+        metadata: JSONObject,history: RasterHistory.Snapshot) = CreditSessionJson.withResources {
+        // Validate the entire receipt before deleting anything, even if a caller supplies
+        // a malformed predecessor list instead of one reopened from a session.
+        require(receipt.revision>0 && validToken.matches(receipt.snapshotToken))
+        var previousRevision=0L
+        receipt.predecessors.forEach {
+            require(it.revision>previousRevision && it.revision<receipt.revision && validToken.matches(it.snapshotToken))
+            previousRevision=it.revision
+        }
+        val written=CreditEditSession.representedCredits(metadata,history)
+        fun releaseIfRepresented(token: String) {
+            if(!validToken.matches(token))return
+            try {
+                // Snapshots are immutable. A concurrent older cleanup may remove the file,
+                // but it cannot change its contents or introduce a newer token here.
+                val json=CreditSessionJson.read(AtomicFile(file(context,token)),setOf("version","credits"))
+                require(json.getInt("version")==1)
+                val values=json.getJSONArray("credits")
+                val represented=(0 until values.length()).all {index ->
+                    val value=values.getJSONObject(index)
+                    require(value.get("source") is String && value.get("text") is String)
+                    ImageCredit(value.getString("source"),value.getString("text")) in written
+                }
+                if(represented)releaseAccepted(context,token)
+            } catch(_: Exception) {
+                // Missing/already-released, damaged or resource-refused records never imply
+                // adoption. Preserve anything still present and continue other owned tokens.
+            }
+        }
+        receipt.predecessors.forEach {releaseIfRepresented(it.snapshotToken)}
+        releaseIfRepresented(receipt.snapshotToken)
+    }
+
     /** Hash exact UTF-16 code units, including lone surrogates, without a large UTF-8 copy. */
     fun selectionToken(credit: ImageCredit): String {
         val digest=MessageDigest.getInstance("SHA-256")

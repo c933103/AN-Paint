@@ -4,6 +4,7 @@ package org.catrobat.paintroid.classic
 import android.content.Intent
 import android.os.Bundle
 import android.util.AtomicFile
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.util.UUID
@@ -11,7 +12,8 @@ import java.util.UUID
 /** Durable accepted attribution and a separate unfinished field. Tokens never encode filesystem paths. */
 internal class CreditEditSession private constructor(private val directory: File, val token: String,
     var credits: List<ImageCredit>, private var context: CreditEditContext,
-    var draft: GalleryCredits.EditorDraft?=null, var accepted: Boolean=false, var revision: Long=0, var acceptedSnapshot: String?=null, var edits: List<ImageCredit> = emptyList(), private var omittedDraft: Boolean=false) {
+    var draft: GalleryCredits.EditorDraft?=null, var accepted: Boolean=false, var revision: Long=0, var acceptedSnapshot: String?=null, var edits: List<ImageCredit> = emptyList(), private var omittedDraft: Boolean=false,
+    private var previousAcceptedSnapshots: List<AcceptedSnapshot> = emptyList()) {
     private val atomic get()=AtomicFile(resolve(directory,token))
     private val lock get()=locks.getOrPut(resolve(directory,token).absolutePath) {Any()}
     val hasDraft: Boolean get()=draft!=null || omittedDraft
@@ -22,16 +24,20 @@ internal class CreditEditSession private constructor(private val directory: File
         return context.edited(listOf(ImageCredit(source,text)))
     }
     fun validateEdit(source: String,text: String) {CreditSessionJson.withResources {validatedContext(source,text)}}
-    data class AdoptionReceipt(val revision: Long,val snapshotToken: String)
-    val adoptionReceipt: AdoptionReceipt? get()=acceptedSnapshot?.let {AdoptionReceipt(revision,it)}
+    data class AcceptedSnapshot(val revision: Long,val snapshotToken: String)
+    data class AdoptionReceipt(val revision: Long,val snapshotToken: String,val predecessors: List<AcceptedSnapshot> = emptyList())
+    // Every revision replaces this read-only list; an already captured receipt never grows.
+    val adoptionReceipt: AdoptionReceipt? get()=acceptedSnapshot?.let {AdoptionReceipt(revision,it,java.util.Collections.unmodifiableList(previousAcceptedSnapshots))}
     fun edit(source: String,text: String,retainAccepted: (List<ImageCredit>)->String) = synchronized(lock) {CreditSessionJson.withResources {
         val nextContext=validatedContext(source,text)
         val nextCredits=credits.map {if(it.source==source) it.copy(text=text) else it}
         val nextDraft=GalleryCredits.EditorDraft(source,text)
         val nextEdits=(edits.filter {it.source!=source}+ImageCredit(source,text))
+        val previousSnapshots=acceptedSnapshot?.let {previousAcceptedSnapshots+AcceptedSnapshot(revision,it)}
+            ?: previousAcceptedSnapshots
         val snapshotToken=retainAccepted(nextCredits)
-        write(nextCredits,nextContext,nextDraft,true,revision+1,snapshotToken=snapshotToken,changedCredits=nextEdits) // Durability precedes any Saved/Copy/RESULT_OK signal.
-        credits=nextCredits;context=nextContext;draft=nextDraft;accepted=true;revision++;acceptedSnapshot=snapshotToken;edits=nextEdits
+        write(nextCredits,nextContext,nextDraft,true,revision+1,snapshotToken=snapshotToken,changedCredits=nextEdits,predecessors=previousSnapshots) // Durability precedes any Saved/Copy/RESULT_OK signal.
+        credits=nextCredits;context=nextContext;draft=nextDraft;accepted=true;revision++;acceptedSnapshot=snapshotToken;edits=nextEdits;previousAcceptedSnapshots=previousSnapshots
         Unit
     }}
     fun saveDraft(value: GalleryCredits.EditorDraft?) = synchronized(lock) {CreditSessionJson.withResources {
@@ -39,7 +45,8 @@ internal class CreditEditSession private constructor(private val directory: File
         if(value==null && accepted && adopted>=revision) atomic.delete()
     }}
     private fun write(values: List<ImageCredit>,constraints: CreditEditContext,field: GalleryCredits.EditorDraft?,saved: Boolean,
-        nextRevision: Long=revision,adoptedOverride: Long?=null,snapshotToken: String?=acceptedSnapshot,changedCredits: List<ImageCredit> = edits): Long = CreditSessionJson.withResources {
+        nextRevision: Long=revision,adoptedOverride: Long?=null,snapshotToken: String?=acceptedSnapshot,changedCredits: List<ImageCredit> = edits,
+        predecessors: List<AcceptedSnapshot> = previousAcceptedSnapshots): Long = CreditSessionJson.withResources {
         // An autosave worker can mark adoption while the dialog remains open. Preserve that
         // receipt when later raw-field snapshots are written from the UI instance.
         val existing=resolve(directory,token)
@@ -49,6 +56,9 @@ internal class CreditEditSession private constructor(private val directory: File
 
         val json=JSONObject().put("version",1).put("credits",ImageCredit.write(values))
             .put("context",constraints.json()).put("accepted",saved).put("revision",nextRevision).put("adopted_revision",adopted).put("accepted_snapshot",snapshotToken).put("edits",ImageCredit.write(changedCredits))
+            .put("previous_accepted_snapshots",JSONArray().apply {predecessors.forEach {
+                put(JSONObject().put("revision",it.revision).put("snapshot",it.snapshotToken))
+            }})
         field?.let {json.put("draft",JSONObject().put("source",it.source).put("text",it.text))}
         CreditSessionJson.write(atomic,directory,json)
         adopted
@@ -81,9 +91,7 @@ internal class CreditEditSession private constructor(private val directory: File
     }
 
     fun representedBy(metadata: JSONObject,history: RasterHistory.Snapshot): Boolean {
-        val state=metadata.optJSONObject("image_credits")
-        val written=(ImageCredit.read(state?.optJSONArray("committed"))+ImageCredit.read(state?.optJSONArray("floating"))+
-            (history.undo+history.redo).flatMap {it.imageCredits}).toSet()
+        val written=representedCredits(metadata,history)
         return credits.all {it in written}
     }
     /** Only call for explicit discard, or after these accepted credits are durably adopted. */
@@ -102,6 +110,25 @@ internal class CreditEditSession private constructor(private val directory: File
         private val locks=java.util.concurrent.ConcurrentHashMap<String,Any>()
         private val valid=Regex("credit-edit-[0-9a-f-]{36}\\.json")
         fun inline(text: String)=CreditSessionJson.fitsInline(text,INLINE_BYTES)
+        fun representedCredits(metadata: JSONObject,history: RasterHistory.Snapshot): Set<ImageCredit> {
+            val state=metadata.optJSONObject("image_credits")
+            return (ImageCredit.read(state?.optJSONArray("committed"))+ImageCredit.read(state?.optJSONArray("floating"))+
+                (history.undo+history.redo).flatMap {it.imageCredits}).toSet()
+        }
+        private fun previousSnapshots(json: JSONObject): List<AcceptedSnapshot> {
+            if(!json.has("previous_accepted_snapshots"))return emptyList()
+            val values=json.getJSONArray("previous_accepted_snapshots")
+            var previousRevision=0L
+            return List(values.length()) {index ->
+                val value=values.getJSONObject(index)
+                require(value.length()==2 && value.get("snapshot") is String)
+                require(value.get("revision") is Int || value.get("revision") is Long)
+                val revision=value.getLong("revision")
+                require(revision>previousRevision && revision<json.getLong("revision"))
+                previousRevision=revision
+                AcceptedSnapshot(revision,value.getString("snapshot"))
+            }
+        }
         private fun resolve(directory: File,token: String): File {
             require(valid.matches(token))
             return File(directory,token)
@@ -113,12 +140,12 @@ internal class CreditEditSession private constructor(private val directory: File
         }
         fun open(directory: File,token: String,restoreDraft: Boolean=true): CreditEditSession = synchronized(locks.getOrPut(resolve(directory,token).absolutePath) {Any()}) {CreditSessionJson.withResources {
             val json=CreditSessionJson.read(AtomicFile(resolve(directory,token)),if(restoreDraft)null else
-                setOf("version","credits","context","accepted","revision","accepted_snapshot","edits"))
+                setOf("version","credits","context","accepted","revision","accepted_snapshot","edits","previous_accepted_snapshots"))
             require(json.getInt("version")==1)
             CreditEditSession(directory,token,ImageCredit.read(json.getJSONArray("credits")),
                 CreditEditContext.read(json.getJSONObject("context")),json.optJSONObject("draft")?.let {
                     GalleryCredits.EditorDraft(it.getString("source"),it.getString("text"))
-                },json.optBoolean("accepted"),json.optLong("revision"),json.optString("accepted_snapshot").takeIf {it.isNotEmpty()},ImageCredit.read(json.optJSONArray("edits")),!restoreDraft && json.optBoolean("has_draft"))
+                },json.optBoolean("accepted"),json.optLong("revision"),json.optString("accepted_snapshot").takeIf {it.isNotEmpty()},ImageCredit.read(json.optJSONArray("edits")),!restoreDraft && json.optBoolean("has_draft"),previousSnapshots(json))
         }}
     }
 }
