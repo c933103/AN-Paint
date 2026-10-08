@@ -1,0 +1,172 @@
+"""PR #8's two assembly-help regressions in canonical Android XML.
+
+These are source-contract and known-wording guards, not a fluency or rendering
+classifier. Native linguistic and Traditional Mongolian layout acceptance stay
+separate. No translations JSON is an input to this test.
+"""
+from functools import lru_cache
+from pathlib import Path
+import re
+import unittest
+import xml.etree.ElementTree as ET
+
+ROOT = Path(__file__).resolve().parents[1]
+RES = ROOT / "Paintroid/src/main/res"
+CLASSIC = ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic"
+KEY = "ui_add_up_to_20_images_with_android_s"
+CONTRACTS = {
+    "values-b+bo": {
+        "tag": "bo",
+        "post_crop": "གཅོད་པ་དང་",
+        "post_adjustment": "གིས་ཚད་བསྒྱུར་རྗེས་ཀྱི་པར་རིས་ཀྱི་ཆེ་ཆུང",
+        "stale_tray": "གཅོད་ཁུལ་གྱི་ཆེ་ཆུང",
+        "offer": "འདྲ་བཤུས་ཆུང་བ་འདེམས་རྒྱུ་ཡོད་ན་དེ་འདེམས།",
+        "floor": "གྲུབ་འབྲས་ཧ་ཅང་ཆུང་བ་ཞིག་ཀྱང་ཚད་ལས་བརྒལ་ན། ཉེར་སྤྱོད་ཀྱིས་ཆེ་ཆུང་འདེམས་ཆས་ཀྱི་ཚབ་ཏུ་དྲན་ཤེས་ཀྱི་ཉེན་བརྡ་སྟོན།",
+        "stale_output": "གྲུབ་འབྲས་དྲན་ཤེས་ཚད་ལས་བརྒལ་ན་འདྲ་བཤུས་ཆུང་བ་འདེམས།",
+    },
+    "values-b+dz": {
+        "tag": "dz",
+        "post_crop": "བཏོག་ནི་དང་",
+        "post_adjustment": "གིས་ཚད་བསྒྱུར་བའི་ཤུལ་གྱི་གཟུགས་བརྙན་གྱི་ཚད",
+        "stale_tray": "བཏོག་ཚད",
+        "offer": "འདྲ་བཤུས་ཆུང་ཀུ་སེལ་འཐུ་འབད་ནིའི་གདམ་ཁ་བྱིན་པ་ཅིན་སེལ་འཐུ་འབད།",
+        "floor": "གྲུབ་འབྲས་ཆུང་ཤོས་ཡང་དྲན་ཚད་ལས་བརྒལ་བ་ཅིན་ གློག་རིམ་གྱིས་ཚད་སེལ་ཆས་ཀྱི་ཚབ་ལུ་དྲན་ཚད་ཀྱི་ཉེན་བརྡ་སྟོནམ་ཨིན།",
+        "stale_output": "གྲུབ་འབྲས་དྲན་ཚད་ལས་བརྒལ་བ་ཅིན་འདྲ་བཤུས་ཆུང་ཀུ་སེལ་འཐུ་འབད།",
+    },
+    "values-b+mn+Cyrl+MN": {
+        "tag": "mn-Cyrl-MN",
+        "post_crop": "тайралт болон",
+        "post_adjustment": "тохируулгын дараах зургийн хэмжээ",
+        "stale_tray": "тайралтын хэмжээ",
+        "offer": "жижиг гаралтын хуулбар сонгох боломжийг санал болгосон үед сонгоно.",
+        "floor": "Маш жижиг гаралт ч хязгаараас давбал апп хэмжээ сонгогчийн оронд санах ойн анхааруулга харуулна.",
+        "stale_output": "Гаралт санах ойн хязгаараас давбал жижиг хуулбар сонгоно.",
+    },
+    "values-b+mn+Mong": {
+        "tag": "mn-Mong",
+        "post_crop": "ᠣᠭᠲᠣᠯᠣᠯᠲᠠ ᠪᠠ",
+        "post_adjustment": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭᠠᠬᠢ ᠵᠢᠷᠤᠭ ᠤᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+        "stale_tray": "ᠣᠭᠲᠣᠯᠬᠤ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+        "offer": "ᠰᠣᠩᠭᠣᠬᠤ ᠪᠣᠯᠣᠮᠵᠢ ᠣᠯᠭᠣᠭᠰᠠᠨ ᠦᠶ᠎ᠡ ᠳᠦ ᠰᠣᠩᠭᠣᠨ᠎ᠠ᠃",
+        "floor": "ᠮᠠᠰᠢ ᠪᠠᠭ᠎ᠠ ᠭᠠᠷᠭᠠᠯᠲᠠ ᠴᠤ ᠬᠢᠵᠠᠭᠠᠷ ᠠᠴᠠ ᠬᠡᠲᠦᠷᠡᠪᠡᠯ᠂ ᠠᠫᠫ ᠨᠢ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠰᠣᠩᠭᠣᠭᠤᠷ ᠤᠨ ᠣᠷᠣᠨ ᠳᠤ ᠰᠠᠨᠠᠬᠤ ᠣᠢ ᠶᠢᠨ ᠠᠩᠬᠠᠷᠤᠭᠤᠯᠭ᠎ᠠ ᠬᠠᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃",
+        "stale_output": "ᠭᠠᠷᠭᠠᠯᠲᠠ ᠰᠠᠨᠠᠬᠤ ᠣᠢ ᠶᠢᠨ ᠬᠢᠵᠠᠭᠠᠷ ᠠᠴᠠ ᠬᠡᠲᠦᠷᠡᠪᠡᠯ ᠪᠠᠭ᠎ᠠ ᠭᠠᠷᠭᠠᠯᠲᠠ ᠶᠢᠨ ᠬᠠᠭᠤᠯᠪᠤᠷᠢ ᠰᠣᠩᠭᠣᠨ᠎ᠠ᠃",
+    },
+}
+
+
+@lru_cache(maxsize=None)
+def strings(directory):
+    return {e.get("name"): "".join(e.itertext()) for e in
+            ET.parse(RES / directory / "strings.xml").getroot()
+            if e.tag == "string"}
+
+
+def paragraph(directory, index):
+    return re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])[index]
+
+
+class AssemblyHelpPr8Tests(unittest.TestCase):
+    def test_assembly_help_display_route_is_the_platform_alert_dialog(self):
+        activity = (CLASSIC / "AssemblyActivity.kt").read_text()
+        message = activity.split("private fun message(value: String)", 1)[1].split("private fun setBusy", 1)[0]
+        self.assertIn('AlertDialog.Builder(this).setTitle("AN Paint").setMessage(value)', message)
+        self.assertNotIn("VerticalUi", message)
+        self.assertNotIn("VerticalText", message)
+        self.assertNotIn("typeface", message)
+        self.assertIn('<item name="android:fontFamily">sans</item>', (RES / "values/classic.xml").read_text())
+
+    def test_dz_warning_names_the_smallest_output(self):
+        # Reuse an already present local term. This guards literal wording,
+        # not native fluency or an independent execution of the memory policy.
+        prefix = "གྲུབ་འབྲས་ཆུང་ཤོས་ཡང་"
+        self.assertTrue(strings("values-b+dz")["ui_no_resize_fits_decoder_memory"].startswith(prefix))
+        self.assertIn(prefix, paragraph("values-b+dz", 5))
+        self.assertNotIn("གྲུབ་འབྲས་ཆུང་ཀུ་རང་ཨིན་རུང་", paragraph("values-b+dz", 5))
+
+    def test_source_contract_still_matches_the_documented_behaviour(self):
+        activity = (CLASSIC / "AssemblyActivity.kt").read_text()
+        model = (CLASSIC / "ImageAssembly.kt").read_text()
+        renderer = (CLASSIC / "AssemblyRenderer.kt").read_text()
+        self.assertIn("private fun showHelp() = message(ui(R.string." + KEY + "))", activity)
+        self.assertIn('${item.placedSize.width} × ${item.placedSize.height}', activity)
+        placed = model.split("val placedSize:", 1)[1].split("data class SnapTarget", 1)[0]
+        for phrase in ("normalization ?: return croppedSize", "NormalizeAxis.WIDTH", "crop.width()", "crop.height()"):
+            self.assertIn(phrase, placed)
+        self.assertIn("if (!fits(ImageDimensions(1,1))) return null", renderer)
+        self.assertRegex(activity, r"if \(suggested == null\)\s*\{\s*message\(ui\(R.string.ui_assembly_source_memory_floor\)\)\s*return\s*\}")
+        self.assertLess(activity.index("if (suggested == null)"), activity.index("val sizing = DimensionControls(this,renderer.original,suggested"))
+
+    def test_english_contract_and_four_exact_active_catalogues(self):
+        first, output = paragraph("values", 0), paragraph("values", 5)
+        self.assertIn("image dimensions after cropping and any Same width or Same height adjustment", first)
+        self.assertIn("choose a smaller output copy if offered", output)
+        self.assertIn("If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.", output)
+        offered = [node.text for node in ET.parse(RES / "values/app_language_tags.xml").findall(".//item")]
+        for directory, clauses in CONTRACTS.items():
+            with self.subTest(directory=directory):
+                self.assertIn(clauses["tag"], offered)
+                self.assertEqual(7, len(re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])))
+
+
+def make_tray_test(directory, clauses):
+    def test(self):
+        first = paragraph(directory, 0)
+        local = strings(directory)
+        self.assertNotIn(clauses["stale_tray"], first)
+        self.assertIn(clauses["post_crop"], first)
+        self.assertIn(clauses["post_adjustment"], first)
+        # Paragraph 4 already names both controls, so whole-help matching would
+        # falsely accept the original bug. Check paragraph 1 only.
+        for key in ("ui_same_width", "ui_same_height"):
+            self.assertIn("«" + local[key] + "»", first)
+    return test
+
+
+def make_output_test(directory, clauses, name):
+    def test(self):
+        output = paragraph(directory, 5)
+        self.assertNotIn(clauses["stale_output"], output)
+        self.assertIn(clauses[name], output)
+    return test
+
+
+for directory, clauses in CONTRACTS.items():
+    suffix = clauses["tag"].replace("-", "_")
+    setattr(AssemblyHelpPr8Tests, "test_" + suffix + "_tray_post_crop_and_normalization", make_tray_test(directory, clauses))
+    for name in ("offer", "floor"):
+        setattr(AssemblyHelpPr8Tests, "test_" + suffix + "_output_" + name, make_output_test(directory, clauses, name))
+
+
+# Only eleven independently identified suffix gaps in the two new spans are
+# covered. U+202F follows the legacy convention; actual font shaping is untested.
+MONGOLIAN_SUFFIX_BOUNDARIES = (
+    (0, "ᠥᠨᠳᠦᠷ»", "ᠦᠨ", 0),
+    (0, "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ", "ᠶᠢᠨ", 0),
+    (0, "ᠵᠢᠷᠤᠭ", "ᠤᠨ", 0),
+    (5, "ᠣᠢ", "ᠶᠢᠨ", 0),
+    (5, "ᠣᠢ", "ᠶᠢᠨ", 1),
+    (5, "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 0),
+    (5, "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 1),
+    (5, "ᠭᠠᠷᠭᠠᠯᠲᠠ", "ᠶᠢᠨ", 0),
+    (5, "ᠦᠶ᠎ᠡ", "ᠳᠦ", 0),
+    (5, "ᠰᠣᠩᠭᠣᠭᠤᠷ", "ᠤᠨ", 0),
+    (5, "ᠣᠷᠣᠨ", "ᠳᠤ", 0),
+)
+
+
+def make_suffix_separator_test(index, stem, suffix, occurrence):
+    def test(self):
+        value = paragraph("values-b+mn+Mong", index)
+        matches = list(re.finditer(re.escape(stem) + r"([\u0020\u202f\u180e])" + re.escape(suffix), value))
+        self.assertGreater(len(matches), occurrence, (stem, suffix, occurrence))
+        self.assertEqual("\u202f", matches[occurrence][1])
+    return test
+
+
+for number, (index, stem, suffix, occurrence) in enumerate(MONGOLIAN_SUFFIX_BOUNDARIES, 1):
+    setattr(AssemblyHelpPr8Tests, f"test_mn_Mong_suffix_separator_{number:02d}",
+            make_suffix_separator_test(index, stem, suffix, occurrence))
+
+
+if __name__ == "__main__":
+    unittest.main()
