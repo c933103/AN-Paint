@@ -610,6 +610,14 @@ class EditorDeviceTest {
                 (it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
                     .setPrimaryClip(ClipData.newPlainText("test sentinel","not copied"))
             }
+            // Seeding the sentinel also opens the Android 13+ SystemUI preview.
+            // Remove it before real taps so it cannot intercept Expand or Copy.
+            dismissClipboardOverlay(waitForAppearance=true)
+            onMain {
+                val clip=(it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip
+                assertEquals("Dismissing the sentinel preview preserves its value","not copied",clip!!.getItemAt(0).text.toString())
+                assertNotNull("Dismissing the sentinel preview leaves Save/Export open",creditDialogRoot())
+            }
             tapCreditDialogControl("export_toggle_credits")
             onMain {
                 val root=creditDialogRoot()!!
