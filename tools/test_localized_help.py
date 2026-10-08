@@ -60,6 +60,16 @@ class LocalizedHelpTests(unittest.TestCase):
     def setUpClass(cls):
         cls.locales = catalogues()
 
+    def test_mongolian_legacy_assembly_help_preserves_the_image_limit(self):
+        # Check the assembly section of this specific legacy resource. The
+        # separate assembly manual and limit-error labels cannot satisfy it.
+        source = (RES.parent / "java/org/catrobat/paintroid/classic/ImageAssembly.kt").read_text()
+        limit = int(re.search(r"const val MAX_IMAGES = (\d+)", source)[1])
+        manual = self.locales["values-b+mn+Mong"][MANUAL]
+        route = "«ᠹᠠᠶᠢᠯ» > ᠵᠢᠷᠤᠭ ᠨᠡᠶᠢᠯᠡᠭᠦᠯᠬᠦ"
+        section = re.split(r"\\n\\n|\n\s*\n", manual.split(route, 1)[1])[0]
+        self.assertRegex(section, rf"\b{limit}\s+ᠬᠦᠷᠲᠡᠯᠡᠬᠢ\s+ᠵᠢᠷᠤᠭ\b")
+
     def test_active_gallery_routes_name_the_actual_controls(self):
         keys = ("ui_menu_file", "ui_about_credits23", "ui_image_credits")
         for locale, local in self.locales.items():
