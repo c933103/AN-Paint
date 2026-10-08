@@ -41,6 +41,27 @@ class TranslationCatalogueTests(unittest.TestCase):
     def test_canonical_catalogues_are_structurally_valid(self):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
+    def test_crowdin_uses_one_canonical_source_and_output(self):
+        config = (translations.ROOT / "crowdin.yml").read_text()
+        # Check the supported simple file-mapping contract without a YAML dependency.
+        sources = re.findall(r"(?m)^\s*-?\s*source:\s*([^\n#]+)", config)
+        outputs = re.findall(r"(?m)^\s*-?\s*translation:\s*([^\n#]+)", config)
+        self.assertEqual(["/Paintroid/src/main/res/values/strings.xml"],
+                         [value.strip().strip("\"'") for value in sources])
+        self.assertEqual(["/Paintroid/src/main/res/values-%android_code%/strings.xml"],
+                         [value.strip().strip("\"'") for value in outputs])
+
+    def test_crowdin_source_contains_all_translatable_default_resources(self):
+        source = translations.RES / "values/strings.xml"
+        uncovered = []
+        for path in sorted((translations.RES / "values").glob("*.xml")):
+            for node in ET.parse(path).getroot():
+                is_text = node.tag in ("string", "plurals", "string-array") or (
+                    node.tag == "item" and node.get("type") == "string")
+                if is_text and node.get("translatable") != "false" and path != source:
+                    uncovered.append(f"{path.name}/{node.tag}/{node.get('name')}")
+        self.assertEqual([], uncovered, "Crowdin cannot export resources outside strings.xml")
+
     def test_default_catalogue_has_no_duplicate_string_or_plural_keys(self):
         seen = set()
         for path in sorted((translations.RES / "values").glob("*.xml")):
