@@ -35,12 +35,13 @@ internal object LocaleTypography {
         Toast.makeText(context,text,duration).also {toast ->
             if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}
         }
-    /** Use the bundled Nôm font in the visible app window on current Android.
+    /** Use each horizontal locale's bundled UI font in the visible app window.
+     * Vertical scripts need their own column layout, not this horizontal surface.
      * An anchor keeps dialog feedback inside that dialog instead of behind it.
      * Background/application contexts retain a standard, system-rendered text toast.
      */
     fun showMessage(context: Context,text: CharSequence,duration: Int,anchor: View?=null) {
-        if(Build.VERSION.SDK_INT>=30 && asset()=="fonts/anpaintnomui.ttf") {
+        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()) {
             val font=typeface(context)
             if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return
         }
