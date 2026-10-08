@@ -36,6 +36,8 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowContentResolver
 import java.io.File
+import java.io.IOException
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
@@ -92,6 +94,27 @@ class LegacyImageCreditsActivityTest {
         assertEquals(before,preferences.all)
     }
 
+    @Test fun registeredExportProviderWritesAndClosesEveryUtf8Byte() {
+        val original="\uD86D\uDC40\"\\\n".repeat(50_000)
+        val output=File(context.cacheDir,"legacy-credit-resolver-control.txt")
+        val provider=OutputProvider().apply {
+            file=output;attachInfo(this@LegacyImageCreditsActivityTest.context,ProviderInfo().apply {authority="legacy.fixture"})
+        }
+        assertSame(context,provider.context)
+        ShadowContentResolver.registerProviderInternal("legacy.fixture",provider)
+        val resolver=context.contentResolver
+        val executor=Executors.newSingleThreadExecutor()
+        try {
+            // Future.get exposes resolver/write/close failures with their original cause.
+            executor.submit<Unit> {
+                val stream=resolver.openOutputStream(Uri.parse("content://legacy.fixture/text"),"wt")
+                    ?: throw IOException("No output stream")
+                stream.writer(Charsets.UTF_8).use {it.write(original)}
+            }.get(5,TimeUnit.SECONDS)
+            assertArrayEquals(original.toByteArray(Charsets.UTF_8),output.readBytes())
+        } finally {executor.shutdownNow()}
+    }
+
     @Test fun oversizedArchiveRecreationAndExportKeepRawTextOutOfBinderStateAndWriteEveryByte() {
         val oversized="\uD86D\uDC40\"\\\n".repeat(50_000)
         seed(oversized);val before=preferences.all;launch()
@@ -109,7 +132,7 @@ class LegacyImageCreditsActivityTest {
         launch(state);assertEquals(pages.text(1),text().text.toString())
         val output=File(context.cacheDir,"legacy-credit-export.txt")
         val provider=OutputProvider().apply {
-            file=output;attachInfo(context,ProviderInfo().apply {authority="legacy.fixture"})
+            file=output;attachInfo(this@LegacyImageCreditsActivityTest.context,ProviderInfo().apply {authority="legacy.fixture"})
         }
         ShadowContentResolver.registerProviderInternal("legacy.fixture",provider)
         activity.onActivityResult(LegacyImageCreditsActivity.EXPORT_TEXT,Activity.RESULT_OK,

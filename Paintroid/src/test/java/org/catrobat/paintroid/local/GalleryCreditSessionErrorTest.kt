@@ -110,11 +110,13 @@ class GalleryCreditSessionErrorTest {
     @Test fun missingPrivateSessionKeepsNomErrorUntilDone() {
         launch()
         errorDialog().getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        advance() // AlertDialog dispatches the listener through its Handler.
         assertTrue(gallery.isFinishing)
     }
     @Test fun cancellingMissingSessionErrorFinishesWithoutAcceptingAResult() {
         launch()
         errorDialog().cancel()
+        advance() // Dialog sends its cancel message through the paused main looper.
         assertTrue(gallery.isFinishing)
         assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
     }

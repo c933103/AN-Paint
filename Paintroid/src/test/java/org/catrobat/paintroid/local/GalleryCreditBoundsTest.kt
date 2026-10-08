@@ -8,6 +8,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.os.Parcel
 import android.widget.Button
 import android.widget.EditText
@@ -23,14 +24,24 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowAlertDialog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[30,35])
+@LooperMode(LooperMode.Mode.PAUSED)
 class GalleryCreditBoundsTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private fun field(dialog: AlertDialog)=dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text")
-    private fun click(dialog: AlertDialog,tag: String)=dialog.window!!.decorView.findViewWithTag<Button>(tag).performClick()
+    private fun idle()=shadowOf(Looper.getMainLooper()).idle()
+    private fun click(dialog: AlertDialog,tag: String) {
+        // Dialog posts OnShow: wait for the real guarded listeners and tags before clicking.
+        idle()
+        val button=dialog.window!!.decorView.findViewWithTag<Button>(tag)
+        assertNotNull("Missing credit action: $tag",button)
+        assertTrue(button.performClick())
+        idle()
+    }
 
     @Test fun rejectedOversizedFieldSurvivesRecreationThenLargeValidCopyKeepsFullAttribution() {
         val first=ImageCredit("https://example.org/a","Original creator")
@@ -76,13 +87,14 @@ class GalleryCreditBoundsTest {
             val session=CreditEditSession.open(context.filesDir,result.getStringExtra(CreditEditSession.EXTRA_SESSION)!!)
             acceptedSnapshot=session.acceptedSnapshot
             assertEquals(listOf(first.copy(text=largeValid),second),session.credits)
-            dialog.cancel()
+            dialog.cancel();idle() // OnDismiss clears the persisted draft asynchronously.
             val again=Bundle();controller.saveInstanceState(again)
             assertFalse(again.containsKey("image_credit_editor_draft"))
             assertNull(CreditEditSession.open(context.filesDir,token!!).draft)
             assertEquals(largeValid,CreditEditSession.open(context.filesDir,token!!).credits.first().text)
         } finally {
             if(!controller.get().isDestroyed) controller.pause().stop().destroy()
+            idle()
             token?.let {runCatching {CreditEditSession.open(context.filesDir,it).discard()}}
             acceptedSnapshot?.let {ImageCreditArchive.releaseAccepted(context,it)}
         }
@@ -120,6 +132,7 @@ class GalleryCreditBoundsTest {
         } finally {
             GalleryCredits.publishClipboard=previousPublisher
             controller.pause().stop().destroy()
+            idle()
             sessionToken?.let {runCatching {CreditEditSession.open(context.filesDir,it).discard()}}
             acceptedSnapshot?.let {ImageCreditArchive.releaseAccepted(context,it)}
             ShadowToast.reset()
