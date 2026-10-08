@@ -1,6 +1,6 @@
 /* AN Paint, 2026-09-10. AGPL-3.0-or-later.
  * Online illustrations retain their publisher's individual credits and terms.
- * Catrobat, Irasutoya and Openclipart media are not bundled in the application.
+ * Catrobat, Irasutoya, Openclipart and Wikimedia Commons media are not bundled in the application.
  */
 package org.catrobat.paintroid.classic
 
@@ -8,6 +8,7 @@ import org.catrobat.paintroid.R
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -28,6 +29,7 @@ class MediaGalleryActivity : Activity() {
     }
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
     private var pendingSearch: String?=null
+    private var creditSession: GalleryCredits.EditorSession?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
     private val worker=Executors.newSingleThreadExecutor()
@@ -42,7 +44,7 @@ class MediaGalleryActivity : Activity() {
             tag="gallery_description";text=provider.label+"\n"+ui(provider.descriptionId);textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
         }
-        root.addView(ScrollView(this).apply {addView(description)},LinearLayout.LayoutParams(-1,dp(if(resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) 56 else 88)))
+        root.addView(ScrollView(this).apply {tag="gallery_description_scroll";addView(description)},LinearLayout.LayoutParams(-1,dp(if(resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) 56 else 88)))
         status=TextView(this).apply {tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))}
         root.addView(status)
         val row=LinearLayout(this)
@@ -52,7 +54,7 @@ class MediaGalleryActivity : Activity() {
             if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
             else GalleryCredits.copy(this,credits)
         }
-        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {GalleryCredits.showEditor(this)}
+        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {showCredits()}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
         action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
         val navigation=LinearLayout(this)
@@ -99,8 +101,10 @@ class MediaGalleryActivity : Activity() {
                         val page=uri.getQueryParameter("page")?.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: web.url.orEmpty()
                         if(source!=null && provider.allowsImage(source) && (provider==IllustrationSource.CATROBAT || provider.isArtworkPage(Uri.parse(page)))) {
                             val title=uri.getQueryParameter("title").orEmpty().take(512)
-                            if(uri.scheme==GalleryPage.CREDIT_SCHEME) GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page))
-                            else insert(source,page,title)
+                            if(uri.scheme==GalleryPage.CREDIT_SCHEME) {
+                                if(provider==IllustrationSource.COMMONS) copyCommonsCredit(source,page)
+                                else GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page))
+                            } else insert(source,page,title)
                         }
                         return true
                     }
@@ -127,6 +131,42 @@ class MediaGalleryActivity : Activity() {
         }
         root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
+        state?.getString("credit_draft_source")?.let {source ->
+            showCredits(GalleryCredits.EditorDraft(source,state.getString("credit_draft_text").orEmpty()))
+        }
+    }
+    private fun showCredits(draft: GalleryCredits.EditorDraft?=null) {
+        if(creditSession?.dialog?.isShowing==true) return
+        creditSession=GalleryCredits.showEditor(this,draft)
+    }
+
+    private fun commonsCredit(uri: Uri,page: String,checkActive: ()->Unit): CommonsAttribution.Record {
+        val record=CommonsAttribution.fetch(this,uri.toString(),page,openConnection,checkActive) {activeConnection=it}
+        checkActive()
+        CommonsAttribution.cache(this,record)
+        return record
+    }
+
+    /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */
+    private fun copyCommonsCredit(uri: Uri,page: String) {
+        if(downloading || isFinishing || isDestroyed) return
+        downloading=true;showStatus(ui(R.string.ui_image_credits)+"…")
+        worker.execute {
+            try {
+                val record=commonsCredit(uri,page) {
+                    if(isFinishing || isDestroyed || Thread.currentThread().isInterrupted) throw InterruptedIOException()
+                }
+                runOnUiThread {
+                    if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));status.visibility=View.GONE}
+                }
+            } catch(error: Exception) {
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_could_not_load_gallery_image,error.message))}
+            } catch(_: OutOfMemoryError) {
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
+            } catch(_: LinkageError) {
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.colour_converter_unavailable))}
+            } finally {activeConnection?.disconnect();activeConnection=null;downloading=false}
+        }
     }
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
     private fun openExternal(uri: Uri) {
@@ -166,6 +206,9 @@ class MediaGalleryActivity : Activity() {
                 }
                 val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))
                 check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}
+                if(provider==IllustrationSource.COMMONS) require(CommonsAttribution.sameOriginal(uri.toString(),url.toString())) {
+                    "The Commons download redirected to a different original file."
+                }
                 val file=File.createTempFile("gallery-",".image",cacheDir);temporary=file
                 source.inputStream.use {input -> file.outputStream().use {out ->
                     val buffer=ByteArray(65536);var total=0L
@@ -176,6 +219,7 @@ class MediaGalleryActivity : Activity() {
                         out.write(buffer,0,n)
                     }
                 }}
+                source.disconnect();activeConnection=null
                 checkActive()
                 val resultFile: File
                 if(provider==IllustrationSource.COMMONS && uri.path.orEmpty().endsWith(".svg",true)) {
@@ -189,6 +233,10 @@ class MediaGalleryActivity : Activity() {
                     ImportedImage(file,uri.lastPathSegment ?: ui(R.string.ui_gallery_image)) // Validate before returning.
                     resultFile=file
                 }
+                checkActive()
+                // Store only the attribution snapshot here. The editor's onInserted callback
+                // records actual use, so cancellation/failure cannot add a spurious source.
+                if(provider==IllustrationSource.COMMONS) commonsCredit(uri,page,::checkActive)
                 checkActive()
                 runOnUiThread {returnDownloaded(resultFile,uri,page,title)}
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
@@ -209,6 +257,26 @@ class MediaGalleryActivity : Activity() {
 
     @Deprecated("Android legacy activity back callback")
     override fun onBackPressed() {if(web.canGoBack()) web.goBack() else super.onBackPressed()}
-    override fun onSaveInstanceState(outState: Bundle) {web.saveState(outState);super.onSaveInstanceState(outState)}
-    override fun onDestroy() {web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
+    override fun onSaveInstanceState(outState: Bundle) {
+        web.saveState(outState)
+        creditSession?.takeIf {it.dialog.isShowing}?.snapshot?.invoke()?.let {draft ->
+            outState.putString("credit_draft_source",draft.source);outState.putString("credit_draft_text",draft.text)
+        }
+        super.onSaveInstanceState(outState)
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Manifest retains this activity for rotation/screen changes: active download/render,
+        // WebView state and the open credit field survive without a second provider request.
+        window.decorView.findViewWithTag<View>("gallery_description_scroll")?.let {scroll ->
+            scroll.layoutParams=scroll.layoutParams.apply {
+                height=((if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE) 56 else 88)*resources.displayMetrics.density+.5f).toInt()
+            }
+        }
+        creditSession?.resize?.invoke()
+    }
+    override fun onDestroy() {
+        creditSession?.dialog?.dismiss();creditSession=null
+        web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
+    }
 }

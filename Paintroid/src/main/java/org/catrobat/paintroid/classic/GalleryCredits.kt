@@ -18,7 +18,10 @@ internal object GalleryCredits {
     fun sources(context: Context): Set<String> = preferences(context).getStringSet("sources",emptySet()).orEmpty().toSet()
     fun remember(context: Context, source: String,provider: IllustrationSource=IllustrationSource.CATROBAT,page: String="",title: String="") {
         val edit=preferences(context).edit().putStringSet("sources",sources(context)+source)
-        if(provider!=IllustrationSource.CATROBAT || title.isNotBlank()) edit.putString("generated:$source",credit(source,title,provider,page))
+        if(provider!=IllustrationSource.CATROBAT || title.isNotBlank()) {
+            val generated=if(provider==IllustrationSource.COMMONS) CommonsAttribution.cached(context,source)?.text(imported=true) else null
+            edit.putString("generated:$source",generated ?: credit(source,title,provider,page))
+        }
         edit.apply()
     }
     fun credit(source: String, title: String = Uri.parse(source).lastPathSegment.orEmpty().substringBeforeLast('.'),provider: IllustrationSource=IllustrationSource.CATROBAT,page: String=""): String = if(provider==IllustrationSource.CATROBAT) listOf(
@@ -51,10 +54,13 @@ internal object GalleryCredits {
         Toast.makeText(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT).show()
     }
 
-    /** Editing is optional and separate from insertion. Footer stays outside scrolling text. */
-    fun showEditor(activity: Activity) {
+    data class EditorDraft(val source: String,val text: String)
+    class EditorSession(val dialog: Dialog,val snapshot: ()->EditorDraft,val resize: ()->Unit)
+
+    /** An unconfirmed field is restored as a draft, never written to published credits on rotation. */
+    fun showEditor(activity: Activity,draft: EditorDraft?=null): EditorSession? {
         val sources=sources(activity).sorted()
-        if(sources.isEmpty()) { Toast.makeText(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return }
+        if(sources.isEmpty()) { Toast.makeText(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show();return null }
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val dialog=Dialog(activity).apply {requestWindowFeature(Window.FEATURE_NO_TITLE)}
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(12),dp(12),dp(12),dp(8));setBackgroundColor(EditorColours.surface)}
@@ -66,9 +72,11 @@ internal object GalleryCredits {
         body.addView(picker)
         val field=EditText(activity).apply {tag="gallery_credit_text";gravity=android.view.Gravity.TOP;setTextColor(EditorColours.onSurface);setSelectAllOnFocus(false)}
         body.addView(field,LinearLayout.LayoutParams(-1,0,1f))
-        var selected=0
+        val restored=draft?.source?.let {sources.indexOf(it)} ?: -1
+        var selected=restored.takeIf {it>=0} ?: 0
         fun save() {preferences(activity).edit().putString("text:${sources[selected]}",field.text.toString()).apply()}
-        field.setText(sourceText(activity,sources[0]))
+        field.setText(if(restored>=0) draft!!.text else sourceText(activity,sources[selected]))
+        picker.setSelection(selected,false)
         picker.onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?)=Unit
             override fun onItemSelected(parent: AdapterView<*>?,view: android.view.View?,position: Int,id: Long) {
@@ -85,8 +93,8 @@ internal object GalleryCredits {
         action(ui(R.string.ui_done),"gallery_credit_done") {save();dialog.dismiss()}
         body.addView(actions)
         dialog.setContentView(body)
-        dialog.window?.setLayout(-1,(activity.resources.displayMetrics.heightPixels*.85f).toInt())
-        dialog.show()
-        dialog.window?.setLayout(-1,(activity.resources.displayMetrics.heightPixels*.85f).toInt())
+        fun resize() {dialog.window?.setLayout(-1,(activity.resources.displayMetrics.heightPixels*.85f).toInt())}
+        dialog.show();resize()
+        return EditorSession(dialog,{EditorDraft(sources[selected],field.text.toString())},::resize)
     }
 }

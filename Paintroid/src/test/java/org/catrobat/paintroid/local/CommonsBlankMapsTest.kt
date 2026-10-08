@@ -152,7 +152,8 @@ class CommonsBlankMapsTest {
     @Test fun galleryDownloadsAndRendersAtOriginalSizeWithoutAskingForDimensions() {
         val controller=gallery();val activity=controller.get()
         try {
-            activity.openConnection={Connection(it,ByteArrayInputStream(svg.toByteArray()))}
+            activity.openConnection={Connection(it,ByteArrayInputStream((if(it.host=="commons.wikimedia.org")
+                CommonsTestMetadata.response(original,page) else svg).toByteArray()))}
             val web=ReflectionHelpers.getField<WebView>(activity,"web")
             val link=Uri.Builder().scheme(IllustrationPage.USE_SCHEME).authority("insert")
                 .appendQueryParameter("source",original).appendQueryParameter("page",page)
@@ -179,7 +180,8 @@ class CommonsBlankMapsTest {
         bitmap.recycle()
         val controller=gallery();val activity=controller.get()
         try {
-            activity.openConnection={Connection(it,ByteArrayInputStream(bytes))}
+            activity.openConnection={Connection(it,ByteArrayInputStream(if(it.host=="commons.wikimedia.org")
+                CommonsTestMetadata.response(rasterOriginal,rasterPage).toByteArray() else bytes))}
             val web=ReflectionHelpers.getField<WebView>(activity,"web")
             val link=Uri.Builder().scheme(IllustrationPage.USE_SCHEME).authority("insert")
                 .appendQueryParameter("source",rasterOriginal).appendQueryParameter("page",rasterPage)

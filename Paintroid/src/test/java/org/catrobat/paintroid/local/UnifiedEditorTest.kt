@@ -168,7 +168,7 @@ class UnifiedEditorTest {
         assertFalse(names.any {it.contains("Insert image") || it.contains("Catrobat")})
         click("menu_Draw");click("category_INSERT");click("insert_other_images")
         val dialog=ShadowAlertDialog.getLatestAlertDialog()
-        assertEquals(listOf("From device…","Catrobat sticker gallery…","Irasutoya","Openclipart"),
+        assertEquals(listOf("From device…","Catrobat sticker gallery…","Irasutoya","Openclipart","Wikimedia Commons · Blank maps…"),
             (0 until dialog.listView.count).map {dialog.listView.getItemAtPosition(it).toString()})
         dialog.dismiss()
         assertTrue(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org/figures-download/")))

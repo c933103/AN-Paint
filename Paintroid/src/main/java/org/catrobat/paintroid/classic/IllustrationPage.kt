@@ -65,13 +65,15 @@ internal object IllustrationPage {
         (function() {
           var use=${JSONObject.quote(useLabel)}, copy=${JSONObject.quote(copyLabel)};
           function adapt() {
-            if(location.pathname.indexOf('/wiki/File:')!==0 && location.pathname.indexOf('/wiki/File%3A')!==0) return;
+            var page=new URL(location.href), fileTitle;
+            try {fileTitle=page.pathname.indexOf('/wiki/')===0?decodeURIComponent(page.pathname.slice(6)):page.searchParams.get('title')}catch(e){return}
+            if(!fileTitle || fileTitle.indexOf('File:')!==0) return;
             var original=document.querySelector('.fullMedia a.internal[href], .fullMedia a[href*="upload.wikimedia.org"]');
             if(!original) return;
             var u;try {u=new URL(original.href,location.href)}catch(e){return}
-            if(u.protocol!=='https:' || u.hostname!=='upload.wikimedia.org' ||
+            if(u.protocol!=='https:' || u.hostname!=='upload.wikimedia.org' || u.username || u.password || (u.port && u.port!=='443') ||
                u.pathname.indexOf('/wikipedia/commons/')!==0 ||
-               u.pathname.indexOf('/wikipedia/commons/thumb/')===0 ||
+               u.pathname.indexOf('/wikipedia/commons/thumb/')===0 || u.pathname.indexOf('/wikipedia/commons/archive/')===0 ||
                !/\.(svg|png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)${"$"}/i.test(u.pathname)) return;
             var row=document.getElementById('anpaint-commons-actions');
             if(!row) {
