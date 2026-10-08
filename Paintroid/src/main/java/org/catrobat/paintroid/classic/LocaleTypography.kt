@@ -28,14 +28,23 @@ internal object LocaleTypography {
         val asset=asset(locale) ?: return null
         return faces.getOrPut(asset) {Typeface.createFromAsset(context.assets,asset)}
     }
-    /** On API 21–29 toast text lives in its own window, outside Activity roots.
-     * API 30+ standard toasts are system-rendered; their font coverage is a separate limit.
-     */
+    /** Legacy and background text toasts retain Android's normal restrictions. */
     @Suppress("DEPRECATION")
     fun toast(context: Context,text: CharSequence,duration: Int): Toast =
         Toast.makeText(context,text,duration).also {toast ->
             if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}
         }
+    /** Use the bundled Nôm font in the visible app window on current Android.
+     * An anchor keeps dialog feedback inside that dialog instead of behind it.
+     * Background/application contexts retain a standard, system-rendered text toast.
+     */
+    fun showMessage(context: Context,text: CharSequence,duration: Int,anchor: View?=null) {
+        if(Build.VERSION.SDK_INT>=30 && asset()=="fonts/anpaintnomui.ttf") {
+            val font=typeface(context)
+            if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return
+        }
+        toast(context,text,duration).show()
+    }
     /** Spinner popups are separate windows, outside the Activity's view tree. */
     private class TypefaceChoices(private val source: SpinnerAdapter,private val font: Typeface): BaseAdapter() {
         override fun getCount()=source.count
