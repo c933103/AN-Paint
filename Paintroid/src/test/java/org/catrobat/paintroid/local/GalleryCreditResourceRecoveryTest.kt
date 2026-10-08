@@ -141,7 +141,8 @@ class GalleryCreditResourceRecoveryTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java)
         try {
             CreditSessionJson.availableHeap=resourceBudget ?: {64L*1024}
-            controller.create(Bundle().apply {putString("main_credit_session",session.token)}).start().resume().visible();advance()
+            controller.create(Bundle().apply {putString("main_credit_session",session.token)}).start().resume().visible()
+            awaitEditorStartup(controller.get());advance()
             if(expectLoadError) {
                 val error=ShadowAlertDialog.getLatestAlertDialog()
                 assertTrue(error.isShowing)

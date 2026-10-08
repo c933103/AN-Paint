@@ -116,7 +116,7 @@ class EditorDeviceTest {
         assertEquals(ClassicPaintActivity::class.java.name,launch!!.component!!.className)
         scenario=ActivityScenario.launch(launch)
         scenario.onActivity {activity=it}
-        awaitState("initial canvas layout") {it.paintCanvas.width>0 && it.paintCanvas.height>0 && !it.busy}
+        awaitState("initial canvas layout") {it.startupReady && it.paintCanvas.width>0 && it.paintCanvas.height>0 && !it.busy}
         onMain {it.document.newImage(100,100);it.document.markSaved();it.paintCanvas.fit()}
         dismissClipboardOverlay()
     }
@@ -299,7 +299,7 @@ class EditorDeviceTest {
             for(landscape in listOf(false,true)) {
                 val expected=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE else android.content.res.Configuration.ORIENTATION_PORTRAIT
                 onMain {it.requestedOrientation=if(landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}
-                awaitState("responsive toolbox orientation") {it.resources.configuration.orientation==expected && it.paintCanvas.width>0}
+                awaitState("responsive toolbox orientation") {it.startupReady && it.resources.configuration.orientation==expected && it.paintCanvas.width>0}
                 instrumentation.waitForIdleSync()
                 for(category in ToolCategory.values()) {
                     onMain {
@@ -530,7 +530,7 @@ class EditorDeviceTest {
         try {
             chooseAppLanguage("en-XV")
             awaitState("vertical English workspace") {
-                it.resources.configuration.locales[0].toLanguageTag()=="en-XV" &&
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()=="en-XV" &&
                     it.window.decorView.findViewWithTag<View>("vertical_status_rail")?.isShown==true
             }
             onMain {

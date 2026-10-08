@@ -56,7 +56,8 @@ class LegacyImageCreditsUpgradeTest {
     }
     private fun launch() {
         controller=Robolectric.buildActivity(ClassicPaintActivity::class.java)
-        controller!!.create().start().resume().visible();shadowOf(Looper.getMainLooper()).idle()
+        controller!!.create().start().resume().visible();awaitEditorStartup(activity)
+        shadowOf(Looper.getMainLooper()).idle()
     }
     private fun state(credits: List<ImageCredit>)=JSONObject().put("committed",ImageCredit.write(credits))
         .put("floating",ImageCredit.write(emptyList())).put("selection_sources_known",true)

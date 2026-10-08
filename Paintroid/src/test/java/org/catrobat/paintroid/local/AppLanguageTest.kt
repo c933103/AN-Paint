@@ -125,6 +125,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             val index=AppLanguage.tags(activity).indexOf("vi-Hani")+1
             assertTrue(index>0)
@@ -152,6 +153,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             val list=picker.listView
             assertEquals("English (International) [en-001]",list.adapter.getItem(1))
@@ -256,6 +258,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             assertEquals("Use device language",picker.listView.adapter.getItem(0))
             assertNotEquals(activity.getString(R.string.language20_device_default),picker.listView.adapter.getItem(0))
@@ -308,6 +311,7 @@ class AppLanguageTest {
         val controller = Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity = controller.get()
         try {
+            awaitEditorStartup(activity)
             shadowOf(Looper.getMainLooper()).idleFor(50, TimeUnit.MILLISECONDS)
             val document = activity.document
             document.newImage(16, 16)
@@ -355,6 +359,7 @@ class AppLanguageTest {
         val activity = controller.get()
         val original = Configuration(activity.resources.configuration)
         try {
+            awaitEditorStartup(activity)
             val document = activity.document
             document.newImage(16, 16)
             document.foreground = Color.RED; document.fill(2, 2)

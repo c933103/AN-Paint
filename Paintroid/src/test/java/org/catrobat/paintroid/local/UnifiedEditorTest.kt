@@ -40,7 +40,7 @@ class UnifiedEditorTest {
         val context=RuntimeEnvironment.getApplication() as Context
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
         listOf("classic-ui","recent-colours","export").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(100,100);shadowOf(Looper.getMainLooper()).idleFor(50,java.util.concurrent.TimeUnit.MILLISECONDS);board.fit()
     }
     @After fun stop() {controller.pause().stop();waitIo();controller.destroy()}

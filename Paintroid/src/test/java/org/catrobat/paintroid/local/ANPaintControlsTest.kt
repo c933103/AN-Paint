@@ -47,6 +47,7 @@ class ANPaintControlsTest {
         context.getSharedPreferences("classic-custom-colours",Context.MODE_PRIVATE).edit().clear().commit()
         controller = Robolectric.buildActivity(ClassicPaintActivity::class.java)
         activity = controller.setup().get()
+        awaitEditorStartup(activity)
         activity.document.newImage(120,120); activity.paintCanvas.fit()
     }
     @After fun stop() { controller.pause().stop(); waitForIo(); controller.destroy() }

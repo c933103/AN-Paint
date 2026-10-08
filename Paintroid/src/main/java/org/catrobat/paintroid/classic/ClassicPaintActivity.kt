@@ -89,6 +89,12 @@ class ClassicPaintActivity : Activity() {
     private var fullscreen=false
     private var afterSave: (() -> Unit)? = null
     private val worker = Executors.newSingleThreadExecutor()
+    private lateinit var startup: EditorStartup<AutosaveStore.Recovery<RecoveredEditor>>
+    @Volatile var startupReady=false; private set
+    private var startupFailure: String?=null
+    private var initialCanvasSized=false
+    private val pendingStartupEvents=mutableListOf<Bundle>()
+    private var deliveringStartupEvents=false
     @Volatile var busy = false; private set
     private var operationsInFlight = 0
     private var resizeDialog: AlertDialog? = null
@@ -140,55 +146,51 @@ class ClassicPaintActivity : Activity() {
         sidebarExpanded=firstArrowLayout || prefs.getBoolean("sidebar_expanded",true)
         paletteExpanded=firstArrowLayout || prefs.getBoolean("palette_expanded",true)
         prefs.edit().putBoolean("arrow_layout_initialized",true).apply()
-        document = PaintDocument(historyDirectory = File(cacheDir,"classic-history"),
-            allocationGuard = { w,h -> if (::document.isInitialized) checkImageSize(w,h) })
-        var recovered: JSONObject?=null
-        var restored=false
-        if (autosave.exists()) try {
-            val draft=autosave.read(historyReader=document::readHistory) { w,h -> checkImageSize(w,h) }
-            recovered=draft.metadata
-            textSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
-            savedTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
-            document.background=recovered.optInt("background",Color.WHITE)
-            document.replace(draft.image)
-            draft.history?.let {document.restoreHistory(it)}
-            if(draft.historyFailed) {
-                autosave.preserveForRecovery()
-                recoveryNotice=ui(R.string.ui_history_unavailable34)
-            }
-            draft.floating?.let { image ->
-                val r=recovered!!.getJSONArray("floating_rect")
-                document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
-            }
-            document.restoreImageCredits(recovered.optJSONObject("image_credits"))
-            filename=recovered.optString("filename",ui(R.string.ui_recovered_image))
-            document.foreground=recovered.optInt("foreground",Color.BLACK)
-            document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
-            document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
-            document.brushTip=recovered.optInt("brush_tip");document.shapeStyle=recovered.optInt("shape_style")
-            document.tolerance=recovered.optDouble("tolerance",0.0).toFloat()
-            document.watercolorStrength=recovered.optInt("watercolor_strength",50).coerceIn(1,100)
-            document.strokeSmoothing=recovered.optBoolean("stroke_smoothing")
-            document.antialiasing=recovered.optBoolean("antialiasing",false)
-            document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
-            if (recovered.optBoolean("dirty")) document.edited()
-            draftStatus=ui(R.string.ui_draft_restored);restored=true
-        } catch (_: Exception) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_could_not_be_restored)) }
-          catch (_: OutOfMemoryError) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_needs_more_memory_to_reopen)) }
-        if (!restored) {
-            val recovery=File(filesDir,"classic-recovery.png")
-            if (recovery.isFile) try {
-                val bounds=BitmapFactory.Options().apply { inJustDecodeBounds=true }
-                BitmapFactory.decodeFile(recovery.path,bounds);checkImageSize(bounds.outWidth,bounds.outHeight)
-                BitmapFactory.decodeFile(recovery.path,BitmapFactory.Options().apply { inMutable=true;inScaled=false })?.let {
-                    document.replace(it)
-                    val old=getSharedPreferences("classic",MODE_PRIVATE)
-                    filename=old.getString("filename",ui(R.string.ui_recovered_image)) ?: ui(R.string.ui_recovered_image)
-                    if (old.getBoolean("dirty",false)) document.edited()
-                    restored=true;draftStatus=ui(R.string.ui_draft_restored)
-                }
-            } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
+        unrestoredCreditSessionToken=savedInstanceState?.getString("main_credit_session")
+        savedInstanceState?.let {
+            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
+            shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
         }
+        savedInstanceState?.getParcelableArrayList<Bundle>("startup_events")?.let {pendingStartupEvents.addAll(it)}
+        if(savedInstanceState==null && externalImageUri(intent)!=null) enqueueExternalImage(intent)
+        showStartup()
+        startup=EditorStartup(worker,java.util.concurrent.Executor {runOnUiThread(it)},
+            load={recoverEditor(this,autosave)},release={it.value.document.close()},receive=::receiveStartup)
+        startup.start()
+    }
+
+    private fun showStartup() {
+        busy=true
+        val loading=LinearLayout(this).apply {
+            tag="editor_startup";orientation=LinearLayout.VERTICAL;gravity=Gravity.CENTER
+            setBackgroundColor(surface)
+            if(startupFailure==null) addView(ProgressBar(this@ClassicPaintActivity).apply {tag="editor_startup_progress"})
+            addView(FlowTextView(this@ClassicPaintActivity).apply {
+                tag="editor_startup_label";columnHeightDp=(resources.configuration.screenHeightDp-160).coerceIn(96,240)
+                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)
+                gravity=Gravity.CENTER;setPadding(dp(24),dp(24),dp(24),dp(24))
+            })
+        }
+        setContentView(loading);LocaleTypography.install(loading)
+    }
+
+    private fun receiveStartup(result: Result<AutosaveStore.Recovery<RecoveredEditor>>) {
+        val recoveredEditor=result.getOrElse {error ->
+            // Do not install or autosave an empty canvas after unexpected startup failure.
+            lastIoError=error.message ?: ui(R.string.ui_please_try_again)
+            startupFailure=ui(R.string.ui_could_not_complete_the_edit,lastIoError!!);showStartup();return
+        }
+        if(isFinishing || isDestroyed) {worker.execute {recoveredEditor.value.document.close()};return}
+        if(!autosave.isCurrent(recoveredEditor)) {
+            worker.execute {recoveredEditor.value.document.close()};startup.start();return
+        }
+        val recovery=recoveredEditor.value
+        document=recovery.document
+        filename=recovery.filename;textSettings=recovery.textSettings;savedTarget=recovery.savedTarget
+        draftStatus=recovery.draftStatus;autosaveBlocked=recovery.autosaveBlocked
+        lastAutosaveError=recovery.lastAutosaveError;recoveryNotice=recovery.recoveryNotice
+        val recovered=recovery.metadata;val restored=recovery.restored
+        initialCanvasSized=restored
         paintCanvas=PaintCanvas(this,document).apply {
             tag="paint_canvas"
             onStatus={ updateStatus(); scheduleAutosave() }
@@ -208,7 +210,12 @@ class ClassicPaintActivity : Activity() {
             override fun onLayoutChange(view: View,l: Int,t: Int,r: Int,b: Int,ol: Int,ot: Int,or: Int,ob: Int) {
                 if (r-l <= dp(20)+24 || b-t <= dp(20)+24) return
                 view.removeOnLayoutChangeListener(this)
-                editAction { document.newImage(r-l-dp(20)-24,b-t-dp(20)-24) };paintCanvas.fit()
+                try {editAction { document.newImage(r-l-dp(20)-24,b-t-dp(20)-24) };paintCanvas.fit()}
+                finally {
+                    // Removing this listener ends its ownership of initial canvas sizing,
+                    // even if allocation failed. Never resize after accepting deferred input.
+                    initialCanvasSized=true;deliverPendingInputs()
+                }
             }
         })
         document.validateCreditMetadata={credits -> AutosaveStore.metadataBytes(draftMetadata().put("image_credits",credits));Unit}
@@ -219,14 +226,9 @@ class ClassicPaintActivity : Activity() {
             });Unit
         }
         document.changed={ runOnUiThread { if (!isDestroyed) { paintCanvas.invalidate();updateStatus();scheduleAutosave() } } }
-        autosaveReady=true;scheduleAutosave()
+        startupReady=true;busy=false;autosaveReady=true;updateStatus();scheduleAutosave()
         recoveryNotice?.let { notice -> paintCanvas.post { message(notice) } }
-        savedInstanceState?.let {
-            exportOptions=ExportOptions(ImageFormat.values().getOrElse(it.getInt("export_format")) {ImageFormat.PNG},it.getInt("export_quality",95),it.getBoolean("export_lossless",true),it.getBoolean("export_dither",true),it.getBoolean("export_tiff_compressed",true),it.getInt("export_ico_size",256),it.getInt("export_ascii_columns",100),it.getBoolean("export_ascii_invert",false))
-            shareAfterSave=it.getBoolean("share_after_save");isExporting=it.getBoolean("is_exporting")
-        }
-        savedInstanceState?.getString("main_credit_session")?.let {token ->
-            unrestoredCreditSessionToken=token
+        unrestoredCreditSessionToken?.let {token ->
             try {
                 val session=CreditEditSession.open(filesDir,token)
                 val field=session.draft?.takeIf {value -> document.imageCredits.any {it.source==value.source}}
@@ -237,20 +239,28 @@ class ClassicPaintActivity : Activity() {
                     .setPositiveButton(ui(R.string.ui_done),null).show()
             }
         }
-        if(savedInstanceState==null) handleExternalImage(intent)
+        deliverPendingInputs()
     }
 
-    private fun preserveFailedDraft(reason: String) {
+    private fun deferStartupInput() = !startupReady || !initialCanvasSized ||
+        pendingStartupEvents.isNotEmpty() || deliveringStartupEvents
+
+    private fun enqueueExternalImage(incoming: Intent) {
+        pendingStartupEvents.add(Bundle().apply {putString("kind","intent");putParcelable("data",incoming)})
+    }
+
+    private fun deliverPendingInputs() {
+        if(!startupReady || !initialCanvasSized || isFinishing || isDestroyed || deliveringStartupEvents) return
+        // Preserve dispatch order across results/intents and another recreation. Keep a
+        // startup backlog until I/O finishes rather than dropping explicit selections.
+        deliveringStartupEvents=true
         try {
-            autosave.preserveForRecovery()
-            recoveryNotice=ui(R.string.ui_a_separate_recovery_copy_has_been_kept_use, reason)
-            draftStatus=ui(R.string.ui_previous_draft_kept_for_recovery)
-        } catch (_: Exception) {
-            autosaveBlocked=true
-            lastAutosaveError=ui(R.string.ui_the_previous_draft_could_not_be_preserved_separately)
-            draftStatus=ui(R.string.ui_autosave_paused_use_save)
-            recoveryNotice=ui(R.string.ui_autosave_is_paused_to_protect_that_draft_use, reason)
-        }
+            while(!busy && pendingStartupEvents.isNotEmpty()) {
+                val event=pendingStartupEvents.removeAt(0)
+                if(event.getString("kind")=="intent") event.getParcelable<Intent>("data")?.let(::handleExternalImage)
+                else handleActivityResult(event.getInt("request"),event.getInt("result"),event.getParcelable("data"))
+            }
+        } finally {deliveringStartupEvents=false}
     }
 
     private val panelLimit get() = dp(if (landscape) (resources.configuration.screenHeightDp-96).coerceAtLeast(136) else minOf(256, resources.configuration.screenHeightDp / 3))
@@ -497,7 +507,8 @@ class ClassicPaintActivity : Activity() {
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this, newConfig);buildWorkspace()
+        super.onConfigurationChanged(newConfig);AppLanguage.refresh(this,newConfig)
+        if(startupReady) buildWorkspace() else showStartup()
     }
 
     private fun syncPanels() {
@@ -1105,13 +1116,19 @@ class ClassicPaintActivity : Activity() {
             putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))
         },SAVE_IMAGE)
     }
-    override fun onNewIntent(intent: Intent) {super.onNewIntent(intent);setIntent(intent);handleExternalImage(intent)}
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent);setIntent(intent)
+        if(externalImageUri(intent)==null) return
+        if(deferStartupInput()) {enqueueExternalImage(intent);deliverPendingInputs()}
+        else handleExternalImage(intent)
+    }
+    private fun externalImageUri(incoming: Intent): Uri? = when(incoming.action) {
+        Intent.ACTION_SEND -> incoming.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+        Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data
+        else -> null
+    }
     private fun handleExternalImage(incoming: Intent) {
-        val uri=when(incoming.action) {
-            Intent.ACTION_SEND -> incoming.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-            Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data
-            else -> null
-        } ?: return
+        val uri=externalImageUri(incoming) ?: return
         confirmReplacement {readImage(uri,false)}
     }
 
@@ -1140,7 +1157,13 @@ class ClassicPaintActivity : Activity() {
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode,resultCode,data)
+        if(deferStartupInput()) {
+            pendingStartupEvents.add(Bundle().apply {putString("kind","result");putInt("request",requestCode);putInt("result",resultCode);putParcelable("data",data)})
+            deliverPendingInputs()
+        } else handleActivityResult(requestCode,resultCode,data)
+    }
+    private fun handleActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
         if (resultCode != RESULT_OK) {
             if(requestCode==GALLERY_IMAGE) {
                 galleryCreditSessionToken?.let {token ->runCatching {CreditEditSession.open(filesDir,token,restoreDraft=false)}.getOrNull()?.let {
@@ -1377,7 +1400,7 @@ class ClassicPaintActivity : Activity() {
         return uri.lastPathSegment?.substringAfterLast('/') ?: ui(R.string.ui_menu_image)
     }
     private fun beginIo() { operationsInFlight++; busy = true; lastIoError = null; paintCanvas.isEnabled = false; updateStatus() }
-    private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) } }
+    private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) }; if(!busy) deliverPendingInputs() }
     private fun ioFailed(prefix: String, e: Throwable) {
         runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = "$prefix. ${e.message ?: ui(R.string.ui_try_a_different_file_or_location)}"; message(lastIoError!!) } }
     }
@@ -1587,6 +1610,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
     override fun onSaveInstanceState(outState: Bundle) {
+        if(pendingStartupEvents.isNotEmpty()) outState.putParcelableArrayList("startup_events",ArrayList(pendingStartupEvents))
         preserveCreditEditor()
         (imageCreditSession?.token ?: unrestoredCreditSessionToken)?.let {outState.putString("main_credit_session",it)}
         galleryCreditSessionToken?.let {outState.putString("gallery_credit_session",it)}
@@ -1600,8 +1624,14 @@ class ClassicPaintActivity : Activity() {
             scheduleAutosave();autosaveHandler.removeCallbacks(saveDraft);saveDraftIfReady()
         }
     }
-    override fun onBackPressed() { if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
+    override fun onBackPressed() { if(!startupReady) {finish();return}; if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
+        if(!startupReady) {
+            // No placeholder owns the durable draft. The worker releases any unpublished
+            // document after it finishes, without writing or waiting on the main thread.
+            if(::startup.isInitialized) startup.cancel()
+            worker.shutdown();super.onDestroy();return
+        }
         imageCreditEditor?.dismissForRecreation();imageCreditEditor=null
         creditSessionRestoreError?.dismiss();creditSessionRestoreError=null
         importSelection?.dispose();importSelection=null

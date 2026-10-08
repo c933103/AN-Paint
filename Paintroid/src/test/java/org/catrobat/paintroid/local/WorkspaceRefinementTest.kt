@@ -57,7 +57,7 @@ class WorkspaceRefinementTest {
         listOf("classic-recovery.png","classic-autosave.zip","classic-autosave.zip.bak").forEach { File(context.filesDir,it).deleteRecursively() }
         AutosaveStore(context.filesDir).recoveryCopies().forEach { it.delete() }
         listOf("classic-ui","classic-custom-colours").forEach { context.getSharedPreferences(it,Context.MODE_PRIVATE).edit().clear().commit() }
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(200,120);canvas.fit();settle()
     }
     @After fun stop() {
@@ -66,7 +66,7 @@ class WorkspaceRefinementTest {
     private fun saveIdle() { shadowOf(Looper.getMainLooper()).idleFor(2,TimeUnit.SECONDS);waitIo();assertTrue(AutosaveStore(activity.filesDir).file.isFile);assertNull(activity.lastAutosaveError) }
     private fun reopen() {
         controller.pause().stop();waitIo();controller.destroy()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
     }
     private fun single(action: Int,x: Float,y: Float) {
         val event=MotionEvent.obtain(0,10,action,x,y,0);assertTrue(canvas.dispatchTouchEvent(event));event.recycle()
@@ -106,7 +106,7 @@ class WorkspaceRefinementTest {
         saveIdle()
         controller.pause().stop();waitIo();controller.destroy()
         File(activity.cacheDir,"classic-history").deleteRecursively()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         assertTrue(view<View>("undo").isEnabled);assertTrue(view<View>("redo").isEnabled)
         click("redo");assertEquals(Color.BLUE,doc.bitmap.getPixel(0,0))
         click("undo");assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
@@ -207,7 +207,7 @@ class WorkspaceRefinementTest {
             }
         } finally {pixels.recycle()}
         val original=store.file.readBytes()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         assertEquals(1,store.recoveryCopies().size);assertArrayEquals(original,store.recoveryCopies().single().readBytes())
         ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
         doc.newImage(20,10);saveIdle()

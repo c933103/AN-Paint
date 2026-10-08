@@ -56,6 +56,7 @@ class ExportFormatDialogTest {
     private fun create(state: Bundle? = null) {
         controller = Robolectric.buildActivity(ClassicPaintActivity::class.java)
         activity = controller.create(state).start().resume().visible().get()
+        awaitEditorStartup(activity)
         activity.document.newImage(64, 48)
         idle()
     }

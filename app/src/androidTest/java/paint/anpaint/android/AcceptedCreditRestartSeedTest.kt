@@ -172,7 +172,7 @@ internal object AcceptedCreditRestartFixture {
         launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         val scenario=ActivityScenario.launch<ClassicPaintActivity>(launch)
         scenario.onActivity {editor=it}
-        await("ordinary editor ready") {!editor.busy && editor.paintCanvas.width>0}
+        await("ordinary editor ready") {editor.startupReady && !editor.busy && editor.paintCanvas.width>0}
         return scenario
     }
     fun <T: Activity> resumed(type: Class<T>): T {

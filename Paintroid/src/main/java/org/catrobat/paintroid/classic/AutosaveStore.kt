@@ -12,6 +12,9 @@ import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
@@ -23,7 +26,8 @@ data class AutosaveDraft(val image: Bitmap, val floating: Bitmap?, val metadata:
 class AutosaveStore(directory: File) {
     private class FileState {
         val pendingLock=Object()
-        val ioLock=Any()
+        val ioLock=ReentrantLock()
+        val revision=AtomicLong()
         var pendingWrites=0
     }
     companion object {
@@ -46,7 +50,7 @@ class AutosaveStore(directory: File) {
      */
     fun submitWrite(executor: Executor, action: () -> Unit) {
         val completed=AtomicBoolean(false)
-        synchronized(state.pendingLock) {state.pendingWrites++}
+        synchronized(state.pendingLock) {state.pendingWrites++;state.revision.incrementAndGet()}
         fun complete() {
             if(completed.compareAndSet(false,true)) synchronized(state.pendingLock) {
                 state.pendingWrites--;state.pendingLock.notifyAll()
@@ -60,9 +64,32 @@ class AutosaveStore(directory: File) {
         }
     }
 
-    private inline fun <T> afterPendingWrites(action: () -> T): T = synchronized(state.pendingLock) {
-        while(state.pendingWrites>0) state.pendingLock.wait()
-        synchronized(state.ioLock) {action()}
+    private inline fun <T> afterPendingWrites(action: (Long) -> T): T {
+        // A recovery transaction can read and preserve the same snapshot under one I/O lock.
+        if(state.ioLock.isHeldByCurrentThread) return action(state.revision.get())
+        while(true) {
+            synchronized(state.pendingLock) {
+                while(state.pendingWrites>0) state.pendingLock.wait()
+            }
+            state.ioLock.lock()
+            try {
+                // A writer may have registered while recovery was acquiring the I/O lock.
+                // Never hold pendingLock during PNG/history I/O: UI-thread registration of
+                // the final lifecycle handoff must remain quick, even during another read.
+                val revision=synchronized(state.pendingLock) {
+                    if(state.pendingWrites==0) state.revision.get() else null
+                }
+                if(revision!=null) return action(revision)
+            } finally {state.ioLock.unlock()}
+        }
+    }
+
+    internal data class Recovery<T>(val revision: Long,val value: T)
+    internal fun <T> recover(action: () -> T): Recovery<T> = afterPendingWrites {revision ->
+        Recovery(revision,action())
+    }
+    internal fun isCurrent(recovery: Recovery<*>) = synchronized(state.pendingLock) {
+        state.pendingWrites==0 && state.revision.get()==recovery.revision
     }
 
     // AtomicFile's first transaction exists only as .new until finishWrite. Checking
@@ -70,18 +97,27 @@ class AutosaveStore(directory: File) {
     fun exists() = afterPendingWrites {file.isFile || File(file.path+".bak").isFile}
 
     /** Move an unreadable draft aside before allowing a new autosave to replace its name. */
-    fun preserveForRecovery(): File = afterPendingWrites {
+    fun preserveForRecovery(retainOriginal: Boolean = false): File = afterPendingWrites {
         try { atomic.openRead().close() } catch (_: IOException) { }
         val source=File(file.path+".bak").takeIf { it.isFile } ?: file
         val target=File(file.parentFile,"classic-draft-recovery-${System.currentTimeMillis()}-${java.util.UUID.randomUUID()}.zip")
-        if (!source.isFile || !source.renameTo(target)) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
+        if (!source.isFile) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
+        if(retainOriginal) {
+            // Startup may be abandoned after recovery. Keep the source readable for the
+            // successor until an initialized editor commits its replacement autosave.
+            val copy=AtomicFile(target)
+            val output=copy.startWrite()
+            try {source.inputStream().use {it.copyTo(output)};output.fd.sync();copy.finishWrite(output)}
+            catch(error: Throwable) {copy.failWrite(output);throw error}
+        } else if(!source.renameTo(target)) throw IOException(ui(R.string.ui_the_previous_draft_could_not_be_moved_to))
         target
     }
     fun recoveryCopies(): List<File> = file.parentFile?.listFiles()?.filter {
         it.isFile && it.name.startsWith("classic-draft-recovery-") && it.extension=="zip"
     }?.sortedByDescending { it.lastModified() } ?: emptyList()
 
-    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = synchronized(state.ioLock) {
+    fun write(image: Bitmap, floating: Bitmap?, metadata: JSONObject,history: RasterHistory.Snapshot = RasterHistory.Snapshot()) = state.ioLock.withLock {
+        state.revision.incrementAndGet()
         // Validate the exact serialized bytes before opening an AtomicFile transaction.
         // This also protects non-credit metadata (polygon points, names and tool state).
         val metadataBytes=metadataBytes(metadata)
@@ -98,7 +134,8 @@ class AutosaveStore(directory: File) {
                 if (!floating.compress(Bitmap.CompressFormat.PNG,100,zip)) throw IOException(ui(R.string.ui_autosave_selection_encoding_failed))
             }
             HistoryArchive.write(zip,history)
-            zip.finish(); zip.flush(); atomic.finishWrite(stream)
+            // AtomicFile logs some sync failures. Surface them before reporting durable adoption.
+            zip.finish(); zip.flush(); stream.fd.sync(); atomic.finishWrite(stream)
         } catch (error: Throwable) { atomic.failWrite(stream); throw error }
     }
 

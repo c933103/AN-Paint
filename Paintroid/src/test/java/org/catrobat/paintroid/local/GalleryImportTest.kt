@@ -100,6 +100,7 @@ class GalleryImportTest {
         val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java)
         val main=mainController.setup().get()
         try {
+            awaitEditorStartup(main)
             main.document.background=Color.GREEN;main.document.newImage(3,1)
             main.onActivityResult(ClassicPaintActivity.GALLERY_IMAGE,Activity.RESULT_OK,result)
             await { !main.busy };assertNull(main.lastIoError)

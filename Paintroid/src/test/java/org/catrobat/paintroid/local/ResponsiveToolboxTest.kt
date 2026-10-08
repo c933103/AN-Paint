@@ -51,7 +51,7 @@ class ResponsiveToolboxTest {
         val context=RuntimeEnvironment.getApplication() as Context
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
         context.getSharedPreferences("classic-ui",0).edit().clear().commit()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         activity.document.newImage(160,120);activity.paintCanvas.fit();click("menu_Draw")
     }
     @After fun stop() {

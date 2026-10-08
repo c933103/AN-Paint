@@ -40,7 +40,7 @@ class EdgeSelectionControlsTest {
         listOf("classic-recovery.png","classic-autosave.zip","classic-autosave.zip.bak").forEach { File(context.filesDir,it).delete() }
         AutosaveStore(context.filesDir).recoveryCopies().forEach { it.delete() }
         context.getSharedPreferences("classic-ui",Context.MODE_PRIVATE).edit().clear().commit()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(240,240);canvas.fit();settle()
     }
     @After fun stop() { controller.pause().stop();waitIo();controller.destroy() }
@@ -195,7 +195,7 @@ class EdgeSelectionControlsTest {
         val box=RectF(s.rect);val outline=bounds(s.transformedOutline()!!)
         shadowOf(Looper.getMainLooper()).idleFor(2,TimeUnit.SECONDS);waitIo();assertNull(activity.lastAutosaveError)
         controller.pause().stop();waitIo();controller.destroy()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         val recovered=doc.selection!!;assertEquals(box,recovered.rect);assertEquals(90f,recovered.rotation,.001f)
         assertTrue(source.sameAs(recovered.image));source.recycle()
         val recoveredBounds=bounds(recovered.transformedOutline()!!)
