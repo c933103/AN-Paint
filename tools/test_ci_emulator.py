@@ -10,6 +10,7 @@ import unittest
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 VERTICAL = 'paint.anpaint.android.VerticalLocaleDeviceTest'
+GALLERY = 'paint.anpaint.android.GalleryDraftDeviceTest'
 
 
 class EmulatorSuitesTest(unittest.TestCase):
@@ -45,12 +46,12 @@ run_instrumentation_suites
                 with self.subTest(api=api, variant=variant):
                     result, calls = self.run_suites(api=api, variant=variant)
                     self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-                    self.assertEqual(len(calls), 3)
-                    native, editor, vertical = calls
+                    self.assertEqual(len(calls), 4)
+                    native, editor, gallery, vertical = calls
                     value = lambda call, key: call[call.index(key) + 1]
                     self.assertEqual([value(call, '--suite') for call in calls],
-                                     ['Paintroid', 'app', 'app-vertical'])
-                    self.assertEqual([value(call, '--timeout-seconds') for call in calls], ['180'] * 3)
+                                     ['Paintroid', 'app', 'app-gallery', 'app-vertical'])
+                    self.assertEqual([value(call, '--timeout-seconds') for call in calls], ['180'] * 4)
                     self.assertEqual(value(native, '--source-tests'), 'Paintroid/src/androidTest')
                     self.assertEqual(value(native, '--component'),
                                      'org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner')
@@ -63,30 +64,35 @@ run_instrumentation_suites
                         self.assertEqual(native.count('--exclude-class'), 1)
                     else:
                         self.assertNotIn('--exclude-class', native)
-                    for call in (editor, vertical):
+                    for call in (editor, gallery, vertical):
                         self.assertEqual(value(call, '--source-tests'), 'app/src/androidTest')
                         self.assertEqual(value(call, '--component'),
                                          'paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner')
                         self.assertEqual(value(call, '--apk'),
                                          f'build/prebuilt/app/build/outputs/apk/androidTest/{variant}/app-{variant}-androidTest.apk')
                     self.assertEqual(value(editor, '--exclude-class'), VERTICAL)
-                    self.assertEqual(editor.count('--exclude-class'), 1)
+                    self.assertEqual(editor.count('--exclude-class'), 2)
+                    self.assertEqual(editor[editor.index('--exclude-class', editor.index('--exclude-class')+1)+1], GALLERY)
                     self.assertNotIn('--include-class', editor)
+                    self.assertEqual(value(gallery, '--include-class'), GALLERY)
+                    self.assertEqual(gallery.count('--include-class'), 1)
+                    self.assertNotIn('--exclude-class', gallery)
                     self.assertEqual(value(vertical, '--include-class'), VERTICAL)
                     self.assertEqual(vertical.count('--include-class'), 1)
                     self.assertNotIn('--exclude-class', vertical)
                     outputs = [value(call, '--output') for call in calls]
-                    self.assertEqual(len(set(outputs)), 3)
+                    self.assertEqual(len(set(outputs)), 4)
                     self.assertTrue(outputs[0].endswith('/Paintroid/androidTest-results'))
                     self.assertTrue(outputs[1].endswith('/app/androidTest-results'))
-                    self.assertTrue(outputs[2].endswith('/app-vertical/androidTest-results'))
+                    self.assertTrue(outputs[2].endswith('/app-gallery/androidTest-results'))
+                    self.assertTrue(outputs[3].endswith('/app-vertical/androidTest-results'))
 
     def test_failed_suite_is_not_retried_and_does_not_skip_later_suites(self):
-        for failing in ('Paintroid', 'app', 'app-vertical'):
+        for failing in ('Paintroid', 'app', 'app-gallery', 'app-vertical'):
             with self.subTest(failing=failing):
                 result, calls = self.run_suites(failing=failing)
                 self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
-                self.assertEqual(len(calls), 3)
+                self.assertEqual(len(calls), 4)
 
 
 class EmulatorEvidenceTest(unittest.TestCase):

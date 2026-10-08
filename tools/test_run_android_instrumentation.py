@@ -29,9 +29,21 @@ def passing(method, count=2, owner=OWNER):
 FINAL = 'INSTRUMENTATION_RESULT: stream=\nOK (2 tests)\nINSTRUMENTATION_CODE: -1\n'
 VERTICAL = 'paint.anpaint.android.VerticalLocaleDeviceTest'
 VERTICAL_TESTS = {(VERTICAL, name) for name in ('mongolian', 'manchu', 'xibe', 'nanai')}
+GALLERY = 'paint.anpaint.android.GalleryDraftDeviceTest'
 
 
 class ClassSelectionTest(unittest.TestCase):
+    def test_real_app_inventory_is_partitioned_without_losing_or_repeating_methods(self):
+        root = Path(__file__).resolve().parents[1] / 'app/src/androidTest'
+        inventory = declared_tests(root)
+        editor = select_tests(inventory, exclude_classes=[VERTICAL, GALLERY])
+        gallery = select_tests(inventory, include_classes=[GALLERY])
+        vertical = select_tests(inventory, include_classes=[VERTICAL])
+        self.assertEqual(len(gallery), 3)
+        self.assertEqual({owner for owner, _ in editor}, {'paint.anpaint.android.EditorDeviceTest'})
+        self.assertEqual(editor | gallery | vertical, inventory)
+        self.assertFalse(editor & gallery or editor & vertical or gallery & vertical)
+
     def test_complementary_class_runs_have_no_missing_or_duplicate_methods(self):
         inventory = EXPECTED | VERTICAL_TESTS
         editor = select_tests(inventory, exclude_classes=[VERTICAL])

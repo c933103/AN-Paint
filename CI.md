@@ -49,13 +49,22 @@ they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
 has no gain-map API. No test is removed from the current-platform suite.
 
-The app APK runs in two complementary invocations: the existing editor suite
-excludes exactly `paint.anpaint.android.VerticalLocaleDeviceTest`, then the
-vertical-locale suite includes exactly that class. Both selectors are checked
+The app APK runs in three complementary invocations: the existing editor suite
+excludes `paint.anpaint.android.VerticalLocaleDeviceTest` and
+`paint.anpaint.android.GalleryDraftDeviceTest`; the gallery-draft and vertical-locale
+suites each include exactly their own class. All selectors are checked
 against the complete source inventory; unknown or repeated classes, combined
 include/exclude filters and empty selections fail. Host tests check that the
 partition loses and repeats no methods. Each invocation retains its own
 180-second deadline. Native/import checks and their API 30 exclusion are unchanged.
+The gallery suite opens the real gallery over the editor, recreates both activities,
+and lets Android deliver confirmed or cancelled results. Local document and HTML
+fixtures replace external content; only the external destination picker is substituted.
+It checks exact pixels, floating geometry, separate credit ledgers, unsaved multilingual
+text, Save/Export credit panels and clipboard contents, and actual PNG/Base64 output.
+The initial provider page is stopped at CREATED and replaced before any content is
+used; this does not certify gallery network behavior or prohibit an initial request.
+Activity recreation does not establish process-death or physical-device behavior.
 
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
@@ -96,7 +105,7 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  native, editor and vertical-locale instrumentation invocation: 180 seconds.
+  native, editor, gallery-draft and vertical-locale instrumentation invocation: 180 seconds.
   The whole emulator execution step keeps its 15-minute limit. This outer limit
   still applies if multiple installations, startup or invocations consume their
   full individual budgets; their worst-case limits are not an extended allowance.
@@ -109,7 +118,8 @@ log, saves partial output, and writes JUnit XML plus `summary.json`. Success req
 the runner's final result, successful results for every declared method, and no
 missing, unexpected, ignored, failed or aborted tests. An `adb` exit code of zero
 alone is insufficient. No automatic retry hides a failure or doubles a long run.
-Editor results remain in `app/androidTest-results`; vertical-locale results are
+Editor results remain in `app/androidTest-results`; gallery-draft results are in
+`app-gallery/androidTest-results`; vertical-locale results are
 separate in `app-vertical/androidTest-results`. Before emulator shutdown, bounded
 exit cleanup pulls the app's external-files `vertical-locale-evidence` directory
 into `app/vertical-locale-evidence` under the same uploaded emulator report root.

@@ -47,6 +47,7 @@ run_instrumentation_suites() {
   local failed=0
   local extra=()
   local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
+  local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
   if test "$TEST_API" = 30; then
     extra+=(--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest)
   fi
@@ -63,7 +64,14 @@ run_instrumentation_suites() {
     --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
     --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
-    --suite app --timeout-seconds 180 --exclude-class "$vertical_class" || failed=1
+    --suite app --timeout-seconds 180 --exclude-class "$vertical_class" --exclude-class "$gallery_class" || failed=1
+  phase='Gallery draft task-stack instrumentation'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-gallery/androidTest-results" \
+    --suite app-gallery --timeout-seconds 180 --include-class "$gallery_class" || failed=1
   phase='Vertical locale instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
