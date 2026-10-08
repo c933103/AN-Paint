@@ -42,11 +42,19 @@ internal object GalleryCredits {
         LocaleTypography.showMessage(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT,anchor)
     }
 
+    /** An open field is a draft until one of the existing explicit save actions runs. */
+    data class EditorDraft(val source: String, val text: String)
+    class EditorSession(val dialog: AlertDialog, val snapshot: ()->EditorDraft)
+
     /** Editing is optional and separate from insertion. Footer stays outside scrolling text. */
-    fun showEditor(activity: Activity, credits: List<ImageCredit>, onEdit: (String,String)->Unit) {
+    fun showEditor(activity: Activity, credits: List<ImageCredit>, onEdit: (String,String)->Unit): EditorSession? =
+        showEditor(activity,credits,null,onEdit)
+
+    fun showEditor(activity: Activity, credits: List<ImageCredit>, draft: EditorDraft?,
+        onEdit: (String,String)->Unit): EditorSession? {
         val entries=credits.associateBy {it.source}.toMutableMap()
         val sources=entries.keys.sorted()
-        if(sources.isEmpty()) { LocaleTypography.showMessage(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT);return }
+        if(sources.isEmpty()) { LocaleTypography.showMessage(activity,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT);return null }
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(12),dp(12),dp(12),dp(8));setBackgroundColor(EditorColours.surface)}
         body.addView(TextView(activity).apply {text=ui(R.string.gallery_credit_edit_hint);textSize=13f;setTextColor(EditorColours.onSurface)})
@@ -57,12 +65,15 @@ internal object GalleryCredits {
         body.addView(picker)
         val field=EditText(activity).apply {tag="gallery_credit_text";minLines=6;maxLines=12;gravity=android.view.Gravity.TOP;setTextColor(EditorColours.onSurface);setSelectAllOnFocus(false)}
         body.addView(field,LinearLayout.LayoutParams(-1,-2))
-        var selected=0
+        val restoredIndex=draft?.source?.let {sources.indexOf(it)} ?: -1
+        var selected=restoredIndex.takeIf {it>=0} ?: 0
         fun save() {
             val source=sources[selected];val text=field.text.toString()
             entries[source]=ImageCredit(source,text);onEdit(source,text)
         }
-        field.setText(entries.getValue(sources[0]).text)
+        field.setText(if(restoredIndex>=0) draft!!.text else entries.getValue(sources[selected]).text)
+        // Install the initial choice before the listener, so restoration does not save a field.
+        picker.setSelection(selected,false)
         picker.onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?)=Unit
             override fun onItemSelected(parent: AdapterView<*>?,view: android.view.View?,position: Int,id: Long) {
@@ -84,5 +95,6 @@ internal object GalleryCredits {
             action(AlertDialog.BUTTON_POSITIVE,"gallery_credit_done") {save();dialog.dismiss()}
         }
         dialog.show()
+        return EditorSession(dialog) {EditorDraft(sources[selected],field.text.toString())}
     }
 }
