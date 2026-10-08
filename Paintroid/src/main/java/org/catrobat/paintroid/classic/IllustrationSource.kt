@@ -9,7 +9,7 @@ internal enum class IllustrationSource(val home: String,val terms: String,val de
     CATROBAT("https://catrobat.org/figures-download/","https://developer.catrobat.org/pages/legal/licenses/catrobat/",R.string.gallery_description),
     IRASUTOYA("https://www.irasutoya.com/","https://www.irasutoya.com/p/terms.html",R.string.ui_irasutoya_help34),
     OPENCLIPART("https://openclipart.org/","https://openclipart.org/share",R.string.ui_openclipart_help34),
-    COMMONS("https://commons.wikimedia.org/wiki/Category:Blank_maps","https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",R.string.commons_description);
+    COMMONS("https://commons.wikimedia.org/wiki/Category:Blank_maps","https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",R.string.commons_check_file_licence);
 
     val label: String get()=when(this) {CATROBAT->ui(R.string.ui_catrobat_sticker_gallery);IRASUTOYA->"Irasutoya";OPENCLIPART->"Openclipart";COMMONS->ui(R.string.commons_blank_maps)}
     private fun secure(uri: Uri)=uri.scheme=="https" && uri.userInfo==null && uri.port in listOf(-1,443)

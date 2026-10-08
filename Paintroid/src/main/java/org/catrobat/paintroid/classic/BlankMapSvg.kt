@@ -10,22 +10,29 @@ import com.caverock.androidsvg.SVG
 import java.io.File
 import java.io.IOException
 
-/** Rasterise the Commons original SVG at exactly the chosen pixels, on solid white. */
+/** Rasterise the Commons original SVG at its own declared dimensions, on solid white. */
 internal object BlankMapSvg {
-    fun aspectRatio(file: File): Double {
-        val svg=file.inputStream().use {SVG.getFromInputStream(it)}
-        val viewBox=svg.documentViewBox
-        val w=viewBox?.width()?.toDouble()?.takeIf {it.isFinite() && it>0}
-            ?: svg.documentWidth.toDouble().takeIf {it.isFinite() && it>0} ?: 2000.0
-        val h=viewBox?.height()?.toDouble()?.takeIf {it.isFinite() && it>0}
-            ?: svg.documentHeight.toDouble().takeIf {it.isFinite() && it>0} ?: 1000.0
-        return (w/h).coerceIn(0.01,100.0)
+    private fun read(source: File): SVG = source.inputStream().use { SVG.getFromInputStream(it) }.apply {
+        // CSS physical units use 96 px/in, independent of the Android screen density.
+        setRenderDPI(96f)
     }
 
-    fun render(source: File, destination: File, width: Int, height: Int) {
-        require(width>0 && height>0 && width.toLong()*height<=ImageMemoryPolicy.MAX_BITMAP_PIXELS)
-        val svg=source.inputStream().use {SVG.getFromInputStream(it)}
-        val bitmap=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888)
+    private fun originalDimensions(svg: SVG): ImageDimensions {
+        // A viewBox is an internal coordinate system, not a replacement pixel size.
+        // Do not substitute the editor canvas, a thumbnail size or a fixed 2000-pixel default.
+        val pixels=SvgOriginalSize.pixels(svg.documentWidth.toDouble(),svg.documentHeight.toDouble())
+        return ImageDimensions(pixels.width,pixels.height)
+    }
+
+    fun originalDimensions(source: File): ImageDimensions = originalDimensions(read(source))
+
+    /** No target-size argument: this import must not rescale the source to the editor canvas. */
+    fun renderOriginal(source: File,destination: File,policy: ImageMemoryPolicy,residentPixels: Long=0) {
+        val svg=read(source)
+        val size=originalDimensions(svg)
+        // Fail before allocating if the original will not fit. Never silently shrink it.
+        policy.check(size.width,size.height,residentPixels)
+        val bitmap=Bitmap.createBitmap(size.width,size.height,Bitmap.Config.ARGB_8888)
         try {
             bitmap.density=Bitmap.DENSITY_NONE
             bitmap.eraseColor(Color.WHITE)

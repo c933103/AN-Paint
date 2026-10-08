@@ -10,10 +10,12 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Looper
 import android.webkit.WebView
-import android.widget.EditText
 import org.catrobat.paintroid.classic.BlankMapSvg
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.GalleryPage
+import org.catrobat.paintroid.classic.ImageDimensions
+import org.catrobat.paintroid.classic.ImageMemoryPolicy
+import org.catrobat.paintroid.classic.ImageSizeException
 import org.catrobat.paintroid.classic.IllustrationPage
 import org.catrobat.paintroid.classic.IllustrationSource
 import org.catrobat.paintroid.classic.MediaGalleryActivity
@@ -64,34 +66,69 @@ class CommonsBlankMapsTest {
         assertTrue(js.contains(".fullMedia a.internal"))
         assertTrue(js.contains(IllustrationPage.USE_SCHEME))
         assertTrue(js.contains(GalleryPage.CREDIT_SCHEME))
-        // Repeated MutationObserver callbacks must not rewrite text/attributes forever.
         assertTrue(js.contains("if(link.textContent!==label)"))
         assertFalse(js.contains("image/2000px/"))
     }
 
-    @Test fun svgOutputHasExactDimensionsSolidStrokeNoAntiAliasingAndWhiteBackground() {
+    private fun withSvg(contents: String,check: (File)->Unit) {
         val context=RuntimeEnvironment.getApplication() as Context
-        val input=File.createTempFile("blank-map-", ".svg", context.cacheDir)
-        val output=File.createTempFile("blank-map-", ".png", context.cacheDir)
+        val source=File.createTempFile("blank-map-",".svg",context.cacheDir)
+        try {source.writeText(contents);check(source)} finally {source.delete()}
+    }
+
+    @Test fun originalSizeUsesDeclaredWidthAndHeightNotViewBoxCoordinates() =
+        withSvg(svg.replace("viewBox=\"0 0 40 24\"","viewBox=\"0 0 400 240\"")) {source ->
+            assertEquals(ImageDimensions(40,24),BlankMapSvg.originalDimensions(source))
+        }
+
+    @Test fun physicalDimensionsUseCssPixelsRatherThanScreenDensity() =
+        withSvg("""<svg xmlns="http://www.w3.org/2000/svg" width="1in" height="2in" viewBox="0 0 40 24"/>""") {source ->
+            assertEquals(ImageDimensions(96,192),BlankMapSvg.originalDimensions(source))
+        }
+
+    @Test fun unspecifiedOriginalSizeDoesNotBecomeACanvasOrViewBoxPixelSize() =
+        withSvg("""<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 40 24"/>""") {source ->
+            try {BlankMapSvg.originalDimensions(source);fail("A relative viewport must not be invented as an original size")}
+            catch(_: IllegalArgumentException) { }
+        }
+
+    @Test fun svgOutputHasOriginalDimensionsSolidStrokeNoAntiAliasingAndWhiteBackground() = withSvg(svg) {input ->
+        val output=File.createTempFile("blank-map-", ".png", input.parentFile)
         try {
-            input.writeText(svg)
-            assertEquals(40.0/24.0, BlankMapSvg.aspectRatio(input),.01)
-            BlankMapSvg.render(input,output,80,48)
+            assertEquals(ImageDimensions(40,24),BlankMapSvg.originalDimensions(input))
+            BlankMapSvg.renderOriginal(input,output,ImageMemoryPolicy.forRuntime())
             val bitmap=BitmapFactory.decodeFile(output.path)
             assertNotNull(bitmap)
             try {
-                assertEquals(80,bitmap.width);assertEquals(48,bitmap.height)
-                assertEquals(Color.WHITE,bitmap.getPixel(40,24))
-                // The dash array cannot introduce a leak along the top border.
-                assertEquals(Color.BLACK,bitmap.getPixel(40,8))
+                assertEquals(40,bitmap.width);assertEquals(24,bitmap.height)
+                assertEquals(Color.WHITE,bitmap.getPixel(20,12))
+                assertEquals(Color.BLACK,bitmap.getPixel(20,4))
                 for(y in 0 until bitmap.height) for(x in 0 until bitmap.width) {
                     val color=bitmap.getPixel(x,y)
                     assertEquals("Unexpected transparency at ("+x+","+y+")",255,Color.alpha(color))
-                    assertTrue("Anti-aliased fringe at ("+x+","+y+")",
-                        color==Color.BLACK || color==Color.WHITE)
+                    assertTrue("Anti-aliased fringe at ("+x+","+y+")",color==Color.BLACK || color==Color.WHITE)
                 }
             } finally {bitmap.recycle()}
-        } finally {input.delete();output.delete()}
+        } finally {output.delete()}
+    }
+
+    @Test fun originalSizeIsNotClampedToTenThousandPixels() =
+        withSvg("""<svg xmlns="http://www.w3.org/2000/svg" width="12001" height="1"/>""") {input ->
+            val output=File.createTempFile("blank-map-",".png",input.parentFile)
+            try {
+                BlankMapSvg.renderOriginal(input,output,ImageMemoryPolicy.forRuntime())
+                val bitmap=BitmapFactory.decodeFile(output.path)
+                try {assertEquals(12001,bitmap.width);assertEquals(1,bitmap.height)} finally {bitmap.recycle()}
+            } finally {output.delete()}
+        }
+
+    @Test fun insufficientMemoryRejectsTheOriginalInsteadOfShrinkingIt() = withSvg(svg) {input ->
+        val output=File.createTempFile("blank-map-",".png",input.parentFile)
+        try {
+            val policy=ImageMemoryPolicy.calculate(0,0,0,0,false)
+            try {BlankMapSvg.renderOriginal(input,output,policy);fail("Must not silently resize an original SVG")}
+            catch(_: ImageSizeException) {assertEquals(0L,output.length())}
+        } finally {output.delete()}
     }
 
     private class Connection(url: URL,private val data: InputStream): HttpURLConnection(url) {
@@ -104,17 +141,15 @@ class CommonsBlankMapsTest {
 
     private fun await(ready: ()->Boolean) {
         val end=System.nanoTime()+TimeUnit.SECONDS.toNanos(10)
-        while(!ready() && System.nanoTime()<end) {
-            shadowOf(Looper.getMainLooper()).idle();Thread.sleep(5)
-        }
-        shadowOf(Looper.getMainLooper()).idle()
-        assertTrue("Gallery action timed out",ready())
+        while(!ready() && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(5)}
+        shadowOf(Looper.getMainLooper()).idle();assertTrue("Gallery action timed out",ready())
     }
     private fun gallery()=Robolectric.buildActivity(MediaGalleryActivity::class.java,
         Intent(RuntimeEnvironment.getApplication(),MediaGalleryActivity::class.java)
-            .putExtra("gallery_provider",IllustrationSource.COMMONS.name).putExtra("gallery_canvas_width",80)).setup()
+            // Deliberately unrelated to the original. Legacy canvas metadata must not affect rendering.
+            .putExtra("gallery_provider",IllustrationSource.COMMONS.name).putExtra("gallery_canvas_width",12345)).setup()
 
-    @Test fun galleryDownloadsOriginalSvgAndReturnsRenderedPngOnlyAfterChoosingSize() {
+    @Test fun galleryDownloadsAndRendersAtOriginalSizeWithoutAskingForDimensions() {
         val controller=gallery();val activity=controller.get()
         try {
             activity.openConnection={Connection(it,ByteArrayInputStream(svg.toByteArray()))}
@@ -123,21 +158,17 @@ class CommonsBlankMapsTest {
                 .appendQueryParameter("source",original).appendQueryParameter("page",page)
                 .appendQueryParameter("title","Blank test map").build()
             assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,link.toString()))
-            await { !activity.downloading && ShadowAlertDialog.getLatestAlertDialog()?.isShowing==true }
-            assertEquals(Activity.RESULT_CANCELED,shadowOf(activity).resultCode)
-            val dialog=ShadowAlertDialog.getLatestAlertDialog()
-            val width=dialog.window!!.decorView.findViewWithTag<EditText>("commons_svg_width")
-            val height=dialog.window!!.decorView.findViewWithTag<EditText>("commons_svg_height")
-            assertEquals("80",width.text.toString())
-            width.setText("80");height.setText("48")
-            dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
-            await { activity.isFinishing && !activity.downloading }
+            await {activity.isFinishing && !activity.downloading}
+            assertFalse("No size-selection dialog is allowed",ShadowAlertDialog.getLatestAlertDialog()?.isShowing==true)
             assertEquals(Activity.RESULT_OK,shadowOf(activity).resultCode)
             val result=shadowOf(activity).resultIntent
             assertEquals(original,result.getStringExtra("gallery_source"))
             val file=File(activity.cacheDir,result.getStringExtra("gallery_file")!!)
-            assertTrue(file.isFile);assertEquals(0x89,file.readBytes()[0].toInt() and 0xff)
-            file.delete()
+            try {
+                assertTrue(file.isFile)
+                val bitmap=BitmapFactory.decodeFile(file.path)
+                try {assertEquals(40,bitmap.width);assertEquals(24,bitmap.height)} finally {bitmap.recycle()}
+            } finally {file.delete()}
         } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
     }
 
@@ -154,7 +185,7 @@ class CommonsBlankMapsTest {
                 .appendQueryParameter("source",rasterOriginal).appendQueryParameter("page",rasterPage)
                 .appendQueryParameter("title","Raster blank map").build()
             assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,link.toString()))
-            await { activity.isFinishing && !activity.downloading }
+            await {activity.isFinishing && !activity.downloading}
             val result=shadowOf(activity).resultIntent
             val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
             val main=mainController.get()

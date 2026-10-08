@@ -7,10 +7,6 @@ package org.catrobat.paintroid.classic
 import org.catrobat.paintroid.R
 
 import android.app.Activity
-import android.app.AlertDialog
-import android.graphics.Bitmap
-import android.text.InputType
-import kotlin.math.roundToInt
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -32,8 +28,6 @@ class MediaGalleryActivity : Activity() {
     }
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
     private var pendingSearch: String?=null
-    private var pendingVector: File?=null
-    private var vectorDialog: AlertDialog?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
     private val worker=Executors.newSingleThreadExecutor()
@@ -139,7 +133,7 @@ class MediaGalleryActivity : Activity() {
         try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
     }
     private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty()) {
-        if(downloading || pendingVector!=null || isFinishing || isDestroyed)return
+        if(downloading || isFinishing || isDestroyed)return
         if(!provider.allowsImage(uri)) {showStatus(ui(R.string.ui_gallery_unsupported34));return}
         if(provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page))) {showStatus(ui(R.string.ui_open_artwork34));return}
         download(uri,page.take(4096),title.take(512))
@@ -149,6 +143,7 @@ class MediaGalleryActivity : Activity() {
         downloading=true;showStatus(ui(R.string.ui_downloading_image))
         worker.execute {
             var temporary: File?=null
+            var rendered: File?=null
             fun checkActive() {
                 if(isFinishing || isDestroyed || Thread.currentThread().isInterrupted) throw InterruptedIOException()
             }
@@ -182,20 +177,26 @@ class MediaGalleryActivity : Activity() {
                     }
                 }}
                 checkActive()
+                val resultFile: File
                 if(provider==IllustrationSource.COMMONS && uri.path.orEmpty().endsWith(".svg",true)) {
                     check(file.length()<=32L*1024*1024) {ui(R.string.commons_svg_too_large)}
-                    val ratio=BlankMapSvg.aspectRatio(file)
-                    temporary=null
-                    runOnUiThread {if(isFinishing || isDestroyed) file.delete() else askVectorSize(file,uri,page,title,ratio)}
+                    val destination=File.createTempFile("gallery-",".png",cacheDir);rendered=destination
+                    // The SVG declares its own original size. No size dialog, canvas-width default or clamp.
+                    BlankMapSvg.renderOriginal(file,destination,ImageMemoryPolicy.forDevice(this),
+                        intent.getLongExtra("gallery_resident_pixels",0L))
+                    resultFile=destination
                 } else {
                     ImportedImage(file,uri.lastPathSegment ?: ui(R.string.ui_gallery_image)) // Validate before returning.
-                    temporary=null
-                    runOnUiThread {returnDownloaded(file,uri,page,title)}
+                    resultFile=file
                 }
+                checkActive()
+                runOnUiThread {returnDownloaded(resultFile,uri,page,title)}
+                // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
+                if(resultFile===file) temporary=null else rendered=null
             } catch(error: Exception) {failure(ui(R.string.ui_could_not_load_gallery_image, error.message))}
               catch(error: OutOfMemoryError) {failure(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
               catch(error: LinkageError) {failure(ui(R.string.ui_could_not_load_gallery_image,ui(R.string.colour_converter_unavailable)))}
-            finally {activeConnection?.disconnect();activeConnection=null;temporary?.delete();downloading=false}
+            finally {activeConnection?.disconnect();activeConnection=null;temporary?.delete();rendered?.delete();downloading=false}
         }
     }
     private fun returnDownloaded(file: File, uri: Uri, page: String, title: String) {
@@ -206,64 +207,8 @@ class MediaGalleryActivity : Activity() {
         finish()
     }
 
-    /** SVG resolution is chosen before rendering. Non-SVG downloads use existing full-resolution import. */
-    private fun askVectorSize(file: File,uri: Uri,page: String,title: String,ratio: Double) {
-        pendingVector=file
-        val initialWidth=intent.getIntExtra("gallery_canvas_width",2000).coerceIn(1,10000)
-        val initialHeight=(initialWidth/ratio).roundToInt().coerceIn(1,10000)
-        val padding=(16*resources.displayMetrics.density).toInt()
-        val body=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(padding,padding,padding,padding)}
-        body.addView(TextView(this).apply {text=ui(R.string.commons_svg_render_help)})
-        fun dimension(label: String,value: Int,tagName: String): EditText {
-            body.addView(TextView(this).apply {text=label})
-            return EditText(this).apply {
-                tag=tagName;inputType=InputType.TYPE_CLASS_NUMBER;setSingleLine(true);setText(value.toString())
-                body.addView(this)
-            }
-        }
-        val width=dimension(ui(R.string.commons_width_px),initialWidth,"commons_svg_width")
-        val height=dimension(ui(R.string.commons_height_px),initialHeight,"commons_svg_height")
-        val chooser=AlertDialog.Builder(this).setTitle(ui(R.string.commons_svg_resolution)).setView(body)
-            .setPositiveButton(ui(R.string.gallery_use_image),null)
-            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->file.delete();pendingVector=null}
-            .setOnCancelListener {file.delete();pendingVector=null}.create()
-        vectorDialog=chooser
-        chooser.setOnShowListener {
-            chooser.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                val w=width.text.toString().toIntOrNull();val h=height.text.toString().toIntOrNull()
-                if(w==null || w<=0) {width.error=ui(R.string.ui_enter_positive_dimensions);return@setOnClickListener}
-                if(h==null || h<=0) {height.error=ui(R.string.ui_enter_positive_dimensions);return@setOnClickListener}
-                try {
-                    ImageMemoryPolicy.forDevice(this).check(w,h,intent.getLongExtra("gallery_resident_pixels",0L))
-                } catch(error: Exception) {height.error=error.message;showStatus(error.message.orEmpty());return@setOnClickListener}
-                pendingVector=null;vectorDialog=null;chooser.dismiss()
-                renderVector(file,uri,page,title,w,h)
-            }
-        }
-        chooser.show()
-    }
-
-    private fun renderVector(file: File,uri: Uri,page: String,title: String,width: Int,height: Int) {
-        if(downloading || isFinishing || isDestroyed) {file.delete();return}
-        downloading=true;showStatus(ui(R.string.commons_svg_rendering))
-        worker.execute {
-            var output: File?=null
-            try {
-                val destination=File.createTempFile("gallery-", ".png",cacheDir);output=destination
-                BlankMapSvg.render(file,destination,width,height)
-                if(Thread.currentThread().isInterrupted) throw InterruptedIOException()
-                output=null
-                runOnUiThread {returnDownloaded(destination,uri,page,title)}
-            } catch(error: Exception) {
-                runOnUiThread {if(!isFinishing && !isDestroyed)showStatus(ui(R.string.ui_could_not_load_gallery_image,error.message))}
-            } catch(error: OutOfMemoryError) {
-                runOnUiThread {if(!isFinishing && !isDestroyed)showStatus(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
-            } finally {file.delete();output?.delete();downloading=false}
-        }
-    }
-
     @Deprecated("Android legacy activity back callback")
     override fun onBackPressed() {if(web.canGoBack()) web.goBack() else super.onBackPressed()}
     override fun onSaveInstanceState(outState: Bundle) {web.saveState(outState);super.onSaveInstanceState(outState)}
-    override fun onDestroy() {vectorDialog?.dismiss();pendingVector?.delete();pendingVector=null;web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
+    override fun onDestroy() {web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()}
 }
