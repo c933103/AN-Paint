@@ -84,10 +84,11 @@ internal object IllustrationPage {
                 link=document.createElement('a');link.style.cssText='display:inline-block;padding:12px;background:#e9ddff;color:#21005d;border:1px solid #6750a4;border-radius:4px;font:16px sans-serif';
                 row.appendChild(link);
               }
-              link.href=(i===0?'${USE_SCHEME}://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+
+              var target=(i===0?'${USE_SCHEME}://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+
                 '?source='+encodeURIComponent(u.href)+'&page='+encodeURIComponent(location.href)+
                 '&title='+encodeURIComponent(document.title.replace(/ - Wikimedia Commons${"$"}/,''));
-              link.textContent=label;
+              if(link.getAttribute('href')!==target)link.setAttribute('href',target);
+              if(link.textContent!==label)link.textContent=label;
             });
           }
           adapt();

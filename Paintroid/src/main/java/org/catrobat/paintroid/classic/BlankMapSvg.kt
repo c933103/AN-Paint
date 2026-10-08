@@ -30,6 +30,8 @@ internal object BlankMapSvg {
             bitmap.density=Bitmap.DENSITY_NONE
             bitmap.eraseColor(Color.WHITE)
             svg.renderToCanvas(HardEdgeCanvas(bitmap))
+            // Masks/clip effects may clear pixels despite the initial white canvas.
+            Canvas(bitmap).drawColor(Color.WHITE,android.graphics.PorterDuff.Mode.DST_OVER)
             destination.outputStream().use {out ->
                 if(!bitmap.compress(Bitmap.CompressFormat.PNG,100,out)) throw IOException("Could not encode blank map as PNG")
             }

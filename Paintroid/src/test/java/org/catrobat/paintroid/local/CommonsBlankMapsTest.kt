@@ -64,6 +64,8 @@ class CommonsBlankMapsTest {
         assertTrue(js.contains(".fullMedia a.internal"))
         assertTrue(js.contains(IllustrationPage.USE_SCHEME))
         assertTrue(js.contains(GalleryPage.CREDIT_SCHEME))
+        // Repeated MutationObserver callbacks must not rewrite text/attributes forever.
+        assertTrue(js.contains("if(link.textContent!==label)"))
         assertFalse(js.contains("image/2000px/"))
     }
 
