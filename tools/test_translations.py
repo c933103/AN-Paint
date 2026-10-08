@@ -1,4 +1,8 @@
-"""Host checks for canonical locale XML and retained translation provenance."""
+"""Host checks for canonical locale XML and retained translation provenance.
+
+Catalogue structure and key-coverage checks do not establish semantic or
+linguistic correctness, review acceptance, or completion of the required recheck.
+"""
 import ast
 import hashlib
 import json
@@ -42,7 +46,7 @@ class TranslationCatalogueTests(unittest.TestCase):
         self.assertEqual([], translations.validate_all(require_complete=False))
 
 
-    def test_completed_korean_and_vietnamese_catalogues_are_complete(self):
+    def test_korean_and_vietnamese_catalogues_pass_structural_validation(self):
         for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
             self.assertEqual(
                 [],
@@ -188,7 +192,7 @@ class TranslationCatalogueTests(unittest.TestCase):
                 tag,
             )
 
-    def test_completed_lzh_hakka_hokkien_wu_catalogues_are_complete(self):
+    def test_lzh_hakka_hokkien_wu_catalogues_pass_structural_validation(self):
         for tag in (
             "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
             "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
