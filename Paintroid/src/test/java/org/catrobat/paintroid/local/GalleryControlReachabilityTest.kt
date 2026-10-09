@@ -149,7 +149,10 @@ class GalleryControlReachabilityTest {
                     search.setText("map & नदी 山")
                     assertTrue(root.findViewWithTag<View>("gallery_search_go").performClick())
                     assertEquals("map & नदी 山 incategory:\"Blank maps\"",Uri.parse(web.url).getQueryParameter("search"))
-                    search.onEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH)
+                    GalleryControlsLayoutTest.assertSearchConnection("$tag/live search",search)
+                    val keyboard=search.onCreateInputConnection(android.view.inputmethod.EditorInfo())!!
+                    assertTrue(keyboard.performEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH))
+                    shadowOf(Looper.getMainLooper()).idle()
                     assertEquals("map & नदी 山 incategory:\"Blank maps\"",Uri.parse(web.url).getQueryParameter("search"))
                     record(root,tag,"search",rectangles)
                     if(tag=="fr" || tag=="mn-Mong") {

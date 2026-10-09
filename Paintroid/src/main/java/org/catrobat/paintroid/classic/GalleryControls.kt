@@ -5,6 +5,8 @@ import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ScrollView
@@ -90,11 +92,19 @@ internal fun galleryButton(context: Context,label: String,tagName: String,textSi
 }
 
 /** A native editable field can grow to fit its hint and wrapped user input. */
-internal fun gallerySearchField(context: Context,label: String)=EditText(context).apply {
+internal fun gallerySearchField(context: Context,label: String)=object: EditText(context) {
+    override fun onCreateInputConnection(outAttrs: EditorInfo): InputConnection? {
+        val connection=super.onCreateInputConnection(outAttrs)
+        // Android suppresses the enter-key action for multiline fields.
+        // This is a search query: keep its real connection and Search action.
+        outAttrs.imeOptions=outAttrs.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION.inv()
+        return connection
+    }
+}.apply {
     id=View.generateViewId();tag="gallery_search";hint=label;textSize=14f
     inputType=android.text.InputType.TYPE_CLASS_TEXT
     setSingleLine(false);setHorizontallyScrolling(false);maxLines=Int.MAX_VALUE
-    imeOptions=android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
+    imeOptions=EditorInfo.IME_ACTION_SEARCH
     val minimum=(48*resources.displayMetrics.density+.5f).toInt()
     minHeight=minimum;minimumHeight=minimum
 }

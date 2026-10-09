@@ -14,6 +14,7 @@ import android.os.SystemClock
 import android.provider.Settings
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.widget.EditText
 import androidx.test.core.app.ActivityScenario
@@ -114,7 +115,8 @@ class GalleryViewportDeviceTest {
                             .apply {isAccessible=true}.invoke(gallery,message)
                         view
                     }
-                    val search=onMain {gallery.window.decorView.findViewWithTag<EditText>("gallery_search").also {it.setText("viewport query")}}
+                    val query="viewport query ".repeat(8)+"नदी 山"
+                    val search=onMain {gallery.window.decorView.findViewWithTag<EditText>("gallery_search").also {it.setText(query)}}
                     try {
                         for(landscape in listOf(false,true)) {
                             val orientation=if(landscape) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
@@ -130,7 +132,12 @@ class GalleryViewportDeviceTest {
                                 val root=gallery.window.decorView
                                 assertSame(web,descendants(root).filterIsInstance<WebView>().single())
                                 assertSame(search,root.findViewWithTag<EditText>("gallery_search"))
-                                assertEquals("viewport query",search.text.toString())
+                                assertEquals(query,search.text.toString())
+                                assertTrue("Installed query must actually wrap",search.layout.lineCount>1)
+                                val editorInfo=EditorInfo()
+                                assertNotNull("Installed native search connection",search.onCreateInputConnection(editorInfo))
+                                assertEquals(EditorInfo.IME_ACTION_SEARCH,editorInfo.imeOptions and EditorInfo.IME_MASK_ACTION)
+                                assertEquals("Installed keyboard must retain Search",0,editorInfo.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION)
                                 assertEquals(2f,gallery.resources.configuration.fontScale,0f)
                                 val visible=Rect();assertTrue("Real WebView must intersect the screen",web.getGlobalVisibleRect(visible))
                                 assertEquals(web.width,visible.width());assertEquals(web.height,visible.height())
@@ -143,6 +150,8 @@ class GalleryViewportDeviceTest {
                                     .put("orientation",orientation).put("root_width",root.width).put("root_height",root.height)
                                     .put("controls_height",controls.height).put("browser_width",web.width).put("browser_height",web.height)
                                     .put("browser_visible",visible.toString()).put("required_reserve",reserve)
+                                    .put("query_lines",search.layout.lineCount).put("search_ime_options",editorInfo.imeOptions)
+                                    .put("search_input_type",editorInfo.inputType)
                                     .put("provider","real installed WebView; verified rejecting proxy; local HTML").toString())
                             }
                         }

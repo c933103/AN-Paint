@@ -114,10 +114,13 @@ class GalleryControlsLayoutTest {
                             .put("extended_padding_bottom",search.extendedPaddingBottom).put("empty_text_height",search.layout.height).put("total_padding_top",search.totalPaddingTop)
                             .put("total_padding_bottom",search.totalPaddingBottom).put("hint_draw_top",hintDrawTop(search)))
                         assertFullLayout("$tag/$widthDp/search hint",search,search.hint.toString())
+                        assertSearchConnection("$tag/$widthDp/empty search",search)
                         assertNull("An editable field must not mask its live value with a fixed description",search.contentDescription)
                         search.setText("A long editable query ".repeat(12))
                         measure(search,widthDp)
                         assertFullLayout("$tag/$widthDp/search value",search)
+                        assertTrue("Long query must actually wrap",search.layout.lineCount>1)
+                        assertSearchConnection("$tag/$widthDp/wrapped search",search)
                         assertTrue(search.createAccessibilityNodeInfo().isEditable)
                         assertEquals("Accessibility must expose the current editable value",search.text.toString(),search.createAccessibilityNodeInfo().text.toString())
                     }
@@ -157,6 +160,15 @@ class GalleryControlsLayoutTest {
     }
 
     internal companion object {
+        fun assertSearchConnection(label: String,search: android.widget.EditText) {
+            val info=android.view.inputmethod.EditorInfo()
+            assertNotNull("$label native connection",search.onCreateInputConnection(info))
+            assertEquals("$label keyboard Search action",android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH,
+                info.imeOptions and android.view.inputmethod.EditorInfo.IME_MASK_ACTION)
+            assertEquals("$label must not replace Search with newline",0,
+                info.imeOptions and android.view.inputmethod.EditorInfo.IME_FLAG_NO_ENTER_ACTION)
+        }
+
         private fun hintDrawTop(view: TextView)=view.extendedPaddingTop+
             org.robolectric.util.ReflectionHelpers.callInstanceMethod<Int>(view,"getVerticalOffset",
                 org.robolectric.util.ReflectionHelpers.ClassParameter.from(java.lang.Boolean.TYPE,false))-view.scrollY
