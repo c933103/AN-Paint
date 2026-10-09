@@ -59,3 +59,19 @@ The same-Activity regression also rotates French and Mongolian in both direction
 preserving the browser, native editable field and typed query. No extra Activity
 launch or screenshot is added. The final complete combined Python run passed all
 326 tests in 53.372 seconds; its raw log is `logs/host-python-rotation.log`.
+
+## First complete CI and fixture correction
+
+The [first complete candidate run](first-ci-0a2d19d/README.md) passed compilation
+and all 93 installed API35 checks, but failed 12 of 706 JVM checks in the new
+fixture setup; lint was not reached. Its complete case inventory/failure details
+and hash-verified artifact manifest are preserved separately from later results.
+The bounded correction attaches catalogue controls to one reusable Activity per
+API/scale, and synchronizes the simulated Display/ViewRoot during same-Activity
+rotation. All previous label, live-query, reachability and state-retention
+assertions remain; additional actual-node/window diagnostics and fixture sanity
+assertions are added. This adds four lightweight Activity hosts overall, not one
+per catalogue. No production behavior, strings or workflow deadline changes.
+The complete combined Python suite passed again: 326 tests in 50.557 seconds,
+zero failures/errors/skips (`logs/host-python-fixture.log`). Android verification
+of the corrected fixtures remains pending the next CI run.

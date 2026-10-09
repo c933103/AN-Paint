@@ -10,6 +10,8 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Looper
 import android.os.SystemClock
+import android.util.DisplayMetrics
+import android.view.Display
 import android.view.MotionEvent
 import android.view.View
 import android.webkit.WebView
@@ -30,6 +32,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowDisplayManager
 import org.robolectric.util.ReflectionHelpers
 import java.io.File
 import java.util.Locale
@@ -116,13 +119,37 @@ class GalleryControlReachabilityTest {
                     record(root,tag,"search",rectangles)
                     if(tag=="fr" || tag=="mn-Mong") {
                         val original=Configuration(activity.resources.configuration)
+                        val originalMetrics=DisplayMetrics().apply {setTo(activity.resources.displayMetrics)}
                         val rotated=Configuration(original).apply {
                             screenWidthDp=original.screenHeightDp;screenHeightDp=original.screenWidthDp
                             orientation=if(original.orientation==Configuration.ORIENTATION_LANDSCAPE)
                                 Configuration.ORIENTATION_PORTRAIT else Configuration.ORIENTATION_LANDSCAPE
                         }
+                        fun resizeWindow(config: Configuration,metrics: DisplayMetrics,changed: Int,phase: String) {
+                            controller.configurationChange(config,metrics,changed)
+                            layout(root)
+                            // Preserve measured evidence of the former fixture: config/decor
+                            // can change while ViewRoot still clips at the old window size.
+                            recordWindow(root,tag,"$phase-config-only")
+                            val orientation=if(config.orientation==Configuration.ORIENTATION_LANDSCAPE) "land" else "port"
+                            ShadowDisplayManager.changeDisplay(Display.DEFAULT_DISPLAY,
+                                "+w${config.screenWidthDp}dp-h${config.screenHeightDp}dp-$orientation")
+                            // visible() dispatches the Display-backed frame resize and idles
+                            // the paused looper. Never fabricate child sizes or visible rects.
+                            controller.visible();layout(root)
+                            recordWindow(root,tag,"$phase-window-resized")
+                            val visible=Rect();assertTrue(root.getLocalVisibleRect(visible))
+                            assertEquals("Fixture ViewRoot width must match the resized decor",root.width,visible.width())
+                            assertEquals("Fixture ViewRoot height must match the resized decor",root.height,visible.height())
+                            assertEquals(original.fontScale,activity.resources.configuration.fontScale,0f)
+                        }
+                        val rotatedMetrics=DisplayMetrics().apply {
+                            setTo(originalMetrics)
+                            widthPixels=(rotated.screenWidthDp*density+.5f).toInt()
+                            heightPixels=(rotated.screenHeightDp*density+.5f).toInt()
+                        }
                         try {
-                            controller.configurationChange(rotated);layout(root)
+                            resizeWindow(rotated,rotatedMetrics,original.diff(rotated),"rotated")
                             assertSame("Rotation retains the active gallery",activity,controller.get())
                             assertSame("Rotation retains the browser",web,ReflectionHelpers.getField<WebView>(activity,"web"))
                             assertSame("Rotation retains the native edit buffer",search,root.findViewWithTag<EditText>("gallery_search"))
@@ -133,7 +160,7 @@ class GalleryControlReachabilityTest {
                                 assertEveryPartReachable(button,controls)
                             }
                             assertEveryPartReachable(search,controls)
-                        } finally {controller.configurationChange(original);layout(root)}
+                        } finally {resizeWindow(original,originalMetrics,rotated.diff(original),"restored")}
                     }
                     assertTrue(root.findViewWithTag<View>("gallery_back").performClick())
                     assertTrue(root.findViewWithTag<View>("gallery_copy_credits").performClick())
@@ -217,6 +244,40 @@ class GalleryControlReachabilityTest {
         assertEquals("Vertical drag must not move columns sideways",oldX,rail.scrollX)
     }
 
+    private fun windowGeometry(root: View): JSONObject {
+        val window=Rect();root.getWindowVisibleDisplayFrame(window)
+        val display=Rect();root.display.getRectSize(display)
+        val viewRoot=ReflectionHelpers.callInstanceMethod<Any>(root,"getViewRootImpl")
+        val views=JSONArray()
+        for(name in listOf("gallery_controls_scroll","gallery_status","gallery_actions","gallery_navigation",
+            "gallery_copy_credits","gallery_edit_credits","gallery_terms","gallery_done","gallery_legacy_credits",
+            "gallery_back","gallery_search_go","gallery_search")) {
+            val view=root.findViewWithTag<View>(name) ?: continue
+            val visible=Rect();val intersects=view.getLocalVisibleRect(visible)
+            val node=view.createAccessibilityNodeInfo()
+            try {views.put(JSONObject().put("tag",name).put("attached",view.isAttachedToWindow)
+                .put("left",view.left).put("top",view.top).put("width",view.width).put("height",view.height)
+                .put("scroll_x",view.scrollX).put("scroll_y",view.scrollY)
+                .put("intersects",intersects).put("visible",visible.toString())
+                .put("node_class",node.className?.toString() ?: JSONObject.NULL)
+                .put("node_text",node.text?.toString() ?: JSONObject.NULL)
+                .put("node_description",node.contentDescription?.toString() ?: JSONObject.NULL)
+                .put("node_editable",node.isEditable))
+            } finally {node.recycle()}
+        }
+        return JSONObject().put("decor_width",root.width).put("decor_height",root.height)
+            .put("view_root_width",ReflectionHelpers.getField<Int>(viewRoot,"mWidth"))
+            .put("view_root_height",ReflectionHelpers.getField<Int>(viewRoot,"mHeight"))
+            .put("display",display.toString()).put("window",window.toString()).put("views",views)
+    }
+
+    private fun recordWindow(root: View,tag: String,phase: String) {
+        val config=root.resources.configuration
+        val stem="api${RuntimeEnvironment.getApiLevel()}-$tag-font${config.fontScale}-${config.screenWidthDp}x${config.screenHeightDp}-$phase"
+        val folder=File("build/reports/gallery-controls").apply {mkdirs()}
+        File(folder,"$stem.json").writeText(windowGeometry(root).toString(2)+"\n")
+    }
+
     private fun record(root: View,tag: String,phase: String,buttons: JSONArray=JSONArray()) {
         val config=root.resources.configuration
         val stem="api${RuntimeEnvironment.getApiLevel()}-$tag-font${config.fontScale}-${config.screenWidthDp}x${config.screenHeightDp}-$phase"
@@ -225,6 +286,6 @@ class GalleryControlReachabilityTest {
         try {root.draw(Canvas(image));File(folder,"$stem.png").outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))}}
         finally {image.recycle()}
         File(folder,"$stem.json").writeText(JSONObject().put("evidence_kind","Robolectric NATIVE host rendering, not an installed-device capture")
-            .put("locale",tag).put("font_scale",config.fontScale).put("width",root.width).put("height",root.height).put("buttons",buttons).toString(2)+"\n")
+            .put("window_geometry",windowGeometry(root)).put("locale",tag).put("font_scale",config.fontScale).put("width",root.width).put("height",root.height).put("buttons",buttons).toString(2)+"\n")
     }
 }

@@ -1,16 +1,19 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.view.ContextThemeWrapper
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
@@ -36,6 +39,12 @@ class GalleryControlsLayoutTest {
         val started=System.nanoTime()
         var completedCases=0
         val tags=AppLanguage.tags(app)
+        val nodes=org.json.JSONArray()
+        // Android leaves detached View accessibility nodes uninitialized. Reuse
+        // one real window for the entire catalogue matrix, not one per case.
+        val controller=Robolectric.buildActivity(Activity::class.java)
+        val activity=controller.get().apply {setTheme(R.style.ClassicPaintTheme)}
+        controller.setup().visible().windowFocusChanged(true)
         try {
             assertEquals(scale,Resources.getSystem().configuration.fontScale,0f)
             for(tag in tags) {
@@ -61,6 +70,18 @@ class GalleryControlsLayoutTest {
                         it.layoutDirection=context.resources.configuration.layoutDirection;LocaleTypography.install(it)
                     }
                 }
+                val nodeSample=org.json.JSONObject().put("locale",tag)
+                    .put("detached_button",nodeSnapshot(buttons.first()))
+                    .put("detached_search",nodeSnapshot(searches.first()))
+                nodes.put(nodeSample)
+                activity.setContentView(LinearLayout(context).apply {
+                    orientation=LinearLayout.VERTICAL
+                    addView(host)
+                    searches.forEach {addView(it)}
+                })
+                nodeSample.put("attached_button",nodeSnapshot(buttons.first()))
+                    .put("attached_search",nodeSnapshot(searches.first()))
+                assertTrue(host.isAttachedToWindow)
                 for(widthDp in listOf(240,320,640)) {
                     clicks=0
                     measure(host,widthDp)
@@ -70,7 +91,8 @@ class GalleryControlsLayoutTest {
                         assertFullLayout("$tag/$widthDp/button",button)
                         val minimum=(48*context.resources.displayMetrics.density+.5f).toInt()
                         assertTrue(button.width>=minimum);assertTrue(button.height>=minimum)
-                        assertEquals("android.widget.Button",button.createAccessibilityNodeInfo().className.toString())
+                        assertTrue(button.isAttachedToWindow)
+                        assertEquals("android.widget.Button",button.createAccessibilityNodeInfo().className?.toString())
                         assertEquals(button.text.toString(),button.createAccessibilityNodeInfo().text.toString())
                         assertTrue(button.performClick())
                     }
@@ -92,6 +114,9 @@ class GalleryControlsLayoutTest {
                         assertTrue(search.createAccessibilityNodeInfo().isEditable)
                         assertEquals("Accessibility must expose the current editable value",search.text.toString(),search.createAccessibilityNodeInfo().text.toString())
                     }
+                    if(widthDp==240) nodeSample
+                        .put("attached_button",nodeSnapshot(buttons.first()))
+                        .put("attached_search",nodeSnapshot(searches.first()))
                     completedCases++
                 }
             }
@@ -99,10 +124,23 @@ class GalleryControlsLayoutTest {
             val folder=java.io.File("build/reports/gallery-controls-matrix").apply {mkdirs()}
             java.io.File(folder,"api${RuntimeEnvironment.getApiLevel()}-font$scale.json").writeText(org.json.JSONObject()
                 .put("offered_catalogues",tags.size).put("expected_cases",tags.size*3).put("completed_cases",completedCases)
+                .put("accessibility_nodes",nodes)
                 .put("elapsed_seconds",(System.nanoTime()-started)/1e9).put("widths_dp",org.json.JSONArray(listOf(240,320,640)))
                 .put("evidence_kind","Robolectric NATIVE control measurement; separate JUnit result determines success").toString(2)+"\n")
+            activity.finish();controller.pause().stop().destroy()
             AppLanguage.select(app,originalTag);PaintApplication.currentResources=originalResources;Locale.setDefault(originalLocale)
         }
+    }
+
+    private fun nodeSnapshot(view: View): org.json.JSONObject {
+        val node=view.createAccessibilityNodeInfo()
+        return try {org.json.JSONObject().put("attached",view.isAttachedToWindow)
+            .put("width",view.width).put("height",view.height)
+            .put("class",node.className?.toString() ?: org.json.JSONObject.NULL)
+            .put("text",node.text?.toString() ?: org.json.JSONObject.NULL)
+            .put("description",node.contentDescription?.toString() ?: org.json.JSONObject.NULL)
+            .put("editable",node.isEditable).put("clickable",node.isClickable)
+        } finally {node.recycle()}
     }
 
     private fun measure(view: View,widthDp: Int) {
