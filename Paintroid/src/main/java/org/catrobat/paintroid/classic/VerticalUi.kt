@@ -129,6 +129,9 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}
     override fun create(): AlertDialog {
         val dialog=super.create()
+        // API21 AlertController requests window features during onCreate. Let it
+        // finish before decorView installs content; listeners still attach before show.
+        dialog.create()
         dialog.window!!.decorView.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
             override fun onViewDetachedFromWindow(view: View)=Unit
             override fun onViewAttachedToWindow(view: View) {

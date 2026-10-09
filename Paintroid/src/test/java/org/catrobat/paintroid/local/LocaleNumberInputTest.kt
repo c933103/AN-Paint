@@ -6,6 +6,8 @@ import android.app.AlertDialog
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Rect
+import android.util.AndroidRuntimeException
+import org.catrobat.paintroid.R
 import android.os.Looper
 import android.text.InputFilter
 import android.text.InputType
@@ -46,8 +48,10 @@ class LocaleNumberInputTest {
     private fun withActivity(tag: String, check: (Activity) -> Unit) {
         val oldLocale=Locale.getDefault()
         val oldResources=PaintApplication.currentResources
-        val controller=Robolectric.buildActivity(Activity::class.java).setup()
+        val controller=Robolectric.buildActivity(Activity::class.java)
         val activity=controller.get()
+        activity.setTheme(R.style.ClassicPaintTheme)
+        controller.setup()
         val oldConfig=Configuration(activity.resources.configuration)
         try {
             val locale=Locale.forLanguageTag(tag)
@@ -62,6 +66,26 @@ class LocaleNumberInputTest {
             activity.resources.updateConfiguration(oldConfig,activity.resources.displayMetrics)
             PaintApplication.currentResources=oldResources
             Locale.setDefault(oldLocale)
+        }
+    }
+
+    @Test @Config(sdk=[21]) fun api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme() {
+        for(tag in listOf("fr","ar","vi-Hani","mnc-Mong")) withActivity(tag) { activity ->
+            // Exact original lifecycle sequence, independent of numeric filtering:
+            // inspecting decor installs content before API21 AlertController requests its feature.
+            val original=AlertDialog.Builder(activity).setMessage("message").setPositiveButton("OK",null).create()
+            original.window!!.decorView
+            val error=assertThrows(AndroidRuntimeException::class.java) {original.show()}
+            assertTrue(error.message!!.contains("requestFeature() must be called before adding content"))
+            original.dismiss()
+            var clicks=0
+            val repaired=EditorDialogBuilder(activity).setTitle("title").setMessage("message")
+                .setPositiveButton("OK") {_,_->clicks++}.create()
+            assertFalse(repaired.isShowing)
+            repaired.show();idle()
+            assertTrue(repaired.isShowing)
+            repaired.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+            assertEquals(1,clicks);assertFalse(repaired.isShowing)
         }
     }
 
@@ -257,7 +281,7 @@ class LocaleNumberInputTest {
             for(invalid in listOf("۱۲٫۵","-۱۲","۲۱","۰")) {enter(field,invalid);assertFalse(open.isEnabled)}
             enter(field,"۱۲");assertTrue(open.isEnabled)
             assertTrue(field.contentDescription.isNotEmpty())
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();assertFalse(dialog.isShowing)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();idle();assertFalse(dialog.isShowing)
         } finally {selection.dispose();worker.shutdownNow()}
     }
 }

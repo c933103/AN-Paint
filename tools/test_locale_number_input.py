@@ -24,6 +24,11 @@ class LocaleNumberInputSourceTest(unittest.TestCase):
         numeric = [p.name for p in JAVA.glob('*.kt') if 'InputType.TYPE_CLASS_NUMBER' in p.read_text()]
         self.assertEqual(['LocaleNumberInput.kt'], numeric)
 
+    def test_dialog_initialization_precedes_decor_for_api21(self):
+        source = (JAVA / 'VerticalUi.kt').read_text().split('override fun create(): AlertDialog {', 1)[1]
+        self.assertLess(source.index('val dialog=super.create()'), source.index('dialog.create()'))
+        self.assertLess(source.index('dialog.create()'), source.index('dialog.window!!.decorView'))
+
     def test_filter_preserves_syntax_and_ime_restart_order_without_overriding_validation(self):
         source = (JAVA / 'LocaleNumberInput.kt').read_text()
         for text in ('DecimalFormatSymbols(view.resources.configuration.locale)',
