@@ -1,0 +1,249 @@
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt
+index 2780cad..9e6760f 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt
+@@ -5,6 +5,8 @@ import android.content.Context
+ import android.graphics.Rect
+ import android.view.View
+ import android.view.ViewGroup
++import android.view.inputmethod.EditorInfo
++import android.view.inputmethod.InputConnection
+ import android.widget.Button
+ import android.widget.EditText
+ import android.widget.ScrollView
+@@ -90,11 +92,19 @@ internal fun galleryButton(context: Context,label: String,tagName: String,textSi
+ }
+ 
+ /** A native editable field can grow to fit its hint and wrapped user input. */
+-internal fun gallerySearchField(context: Context,label: String)=EditText(context).apply {
++internal fun gallerySearchField(context: Context,label: String)=object: EditText(context) {
++    override fun onCreateInputConnection(outAttrs: EditorInfo): InputConnection? {
++        val connection=super.onCreateInputConnection(outAttrs)
++        // Android suppresses the enter-key action for multiline fields.
++        // This is a search query: keep its real connection and Search action.
++        outAttrs.imeOptions=outAttrs.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION.inv()
++        return connection
++    }
++}.apply {
+     id=View.generateViewId();tag="gallery_search";hint=label;textSize=14f
+     inputType=android.text.InputType.TYPE_CLASS_TEXT
+     setSingleLine(false);setHorizontallyScrolling(false);maxLines=Int.MAX_VALUE
+-    imeOptions=android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
++    imeOptions=EditorInfo.IME_ACTION_SEARCH
+     val minimum=(48*resources.displayMetrics.density+.5f).toInt()
+     minHeight=minimum;minimumHeight=minimum
+ }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt
+index e1409b0..6704e43 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt
+@@ -149,7 +149,10 @@ class GalleryControlReachabilityTest {
+                     search.setText("map & नदी 山")
+                     assertTrue(root.findViewWithTag<View>("gallery_search_go").performClick())
+                     assertEquals("map & नदी 山 incategory:\"Blank maps\"",Uri.parse(web.url).getQueryParameter("search"))
+-                    search.onEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH)
++                    GalleryControlsLayoutTest.assertSearchConnection("$tag/live search",search)
++                    val keyboard=search.onCreateInputConnection(android.view.inputmethod.EditorInfo())!!
++                    assertTrue(keyboard.performEditorAction(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH))
++                    shadowOf(Looper.getMainLooper()).idle()
+                     assertEquals("map & नदी 山 incategory:\"Blank maps\"",Uri.parse(web.url).getQueryParameter("search"))
+                     record(root,tag,"search",rectangles)
+                     if(tag=="fr" || tag=="mn-Mong") {
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt
+index a40c6f6..214d9d8 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt
+@@ -114,10 +114,13 @@ class GalleryControlsLayoutTest {
+                             .put("extended_padding_bottom",search.extendedPaddingBottom).put("empty_text_height",search.layout.height).put("total_padding_top",search.totalPaddingTop)
+                             .put("total_padding_bottom",search.totalPaddingBottom).put("hint_draw_top",hintDrawTop(search)))
+                         assertFullLayout("$tag/$widthDp/search hint",search,search.hint.toString())
++                        assertSearchConnection("$tag/$widthDp/empty search",search)
+                         assertNull("An editable field must not mask its live value with a fixed description",search.contentDescription)
+                         search.setText("A long editable query ".repeat(12))
+                         measure(search,widthDp)
+                         assertFullLayout("$tag/$widthDp/search value",search)
++                        assertTrue("Long query must actually wrap",search.layout.lineCount>1)
++                        assertSearchConnection("$tag/$widthDp/wrapped search",search)
+                         assertTrue(search.createAccessibilityNodeInfo().isEditable)
+                         assertEquals("Accessibility must expose the current editable value",search.text.toString(),search.createAccessibilityNodeInfo().text.toString())
+                     }
+@@ -157,6 +160,15 @@ class GalleryControlsLayoutTest {
+     }
+ 
+     internal companion object {
++        fun assertSearchConnection(label: String,search: android.widget.EditText) {
++            val info=android.view.inputmethod.EditorInfo()
++            assertNotNull("$label native connection",search.onCreateInputConnection(info))
++            assertEquals("$label keyboard Search action",android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH,
++                info.imeOptions and android.view.inputmethod.EditorInfo.IME_MASK_ACTION)
++            assertEquals("$label must not replace Search with newline",0,
++                info.imeOptions and android.view.inputmethod.EditorInfo.IME_FLAG_NO_ENTER_ACTION)
++        }
++
+         private fun hintDrawTop(view: TextView)=view.extendedPaddingTop+
+             org.robolectric.util.ReflectionHelpers.callInstanceMethod<Int>(view,"getVerticalOffset",
+                 org.robolectric.util.ReflectionHelpers.ClassParameter.from(java.lang.Boolean.TYPE,false))-view.scrollY
+diff --git a/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
+index 0f8462c..bc37926 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
+@@ -14,6 +14,7 @@ import android.os.SystemClock
+ import android.provider.Settings
+ import android.view.View
+ import android.view.ViewGroup
++import android.view.inputmethod.EditorInfo
+ import android.webkit.WebView
+ import android.widget.EditText
+ import androidx.test.core.app.ActivityScenario
+@@ -114,7 +115,8 @@ class GalleryViewportDeviceTest {
+                             .apply {isAccessible=true}.invoke(gallery,message)
+                         view
+                     }
+-                    val search=onMain {gallery.window.decorView.findViewWithTag<EditText>("gallery_search").also {it.setText("viewport query")}}
++                    val query="viewport query ".repeat(8)+"नदी 山"
++                    val search=onMain {gallery.window.decorView.findViewWithTag<EditText>("gallery_search").also {it.setText(query)}}
+                     try {
+                         for(landscape in listOf(false,true)) {
+                             val orientation=if(landscape) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
+@@ -130,7 +132,12 @@ class GalleryViewportDeviceTest {
+                                 val root=gallery.window.decorView
+                                 assertSame(web,descendants(root).filterIsInstance<WebView>().single())
+                                 assertSame(search,root.findViewWithTag<EditText>("gallery_search"))
+-                                assertEquals("viewport query",search.text.toString())
++                                assertEquals(query,search.text.toString())
++                                assertTrue("Installed query must actually wrap",search.layout.lineCount>1)
++                                val editorInfo=EditorInfo()
++                                assertNotNull("Installed native search connection",search.onCreateInputConnection(editorInfo))
++                                assertEquals(EditorInfo.IME_ACTION_SEARCH,editorInfo.imeOptions and EditorInfo.IME_MASK_ACTION)
++                                assertEquals("Installed keyboard must retain Search",0,editorInfo.imeOptions and EditorInfo.IME_FLAG_NO_ENTER_ACTION)
+                                 assertEquals(2f,gallery.resources.configuration.fontScale,0f)
+                                 val visible=Rect();assertTrue("Real WebView must intersect the screen",web.getGlobalVisibleRect(visible))
+                                 assertEquals(web.width,visible.width());assertEquals(web.height,visible.height())
+@@ -143,6 +150,8 @@ class GalleryViewportDeviceTest {
+                                     .put("orientation",orientation).put("root_width",root.width).put("root_height",root.height)
+                                     .put("controls_height",controls.height).put("browser_width",web.width).put("browser_height",web.height)
+                                     .put("browser_visible",visible.toString()).put("required_reserve",reserve)
++                                    .put("query_lines",search.layout.lineCount).put("search_ime_options",editorInfo.imeOptions)
++                                    .put("search_input_type",editorInfo.inputType)
+                                     .put("provider","real installed WebView; verified rejecting proxy; local HTML").toString())
+                             }
+                         }
+diff --git a/verification/gallery-layout-2026-10-09/logs/host-python-search-ime.log b/verification/gallery-layout-2026-10-09/logs/host-python-search-ime.log
+new file mode 100644
+index 0000000..f66fec4
+--- /dev/null
++++ b/verification/gallery-layout-2026-10-09/logs/host-python-search-ime.log
+@@ -0,0 +1,64 @@
++......................................................................................................................................................................................................................................................................................................................................
++----------------------------------------------------------------------
++Ran 326 tests in 51.107s
++
++OK
++{
++  "success": true,
++  "expected_tests": 1,
++  "completed_tests": 1,
++  "errors": []
++}
++{
++  "success": true,
++  "expected_tests": 1,
++  "completed_tests": 1,
++  "errors": []
++}
++{
++  "success": false,
++  "expected_tests": 1,
++  "completed_tests": 1,
++  "errors": [
++    "Missing or unsuccessful final instrumentation result: []"
++  ]
++}
++{
++  "success": false,
++  "expected_tests": 3,
++  "completed_tests": 0,
++  "errors": [
++    "--leave-target-running is restricted to the one-method accepted-credit seed",
++    "adb exited with status None",
++    "Missing or unsuccessful final instrumentation result: []",
++    "No tests completed",
++    "Runner test counts [] do not match 3 declared methods",
++    "3 declared test method(s) did not complete"
++  ]
++}
++{
++  "success": false,
++  "expected_tests": 1,
++  "completed_tests": 0,
++  "errors": [
++    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
++    "adb exited with status None",
++    "Missing or unsuccessful final instrumentation result: []",
++    "No tests completed",
++    "Runner test counts [] do not match 1 declared methods",
++    "1 declared test method(s) did not complete"
++  ]
++}
++{
++  "success": false,
++  "expected_tests": 1,
++  "completed_tests": 0,
++  "errors": [
++    "Accepted-credit seed requires exactly one already-running target PID",
++    "adb exited with status None",
++    "Missing or unsuccessful final instrumentation result: []",
++    "No tests completed",
++    "Runner test counts [] do not match 1 declared methods",
++    "1 declared test method(s) did not complete"
++  ]
++}
+diff --git a/verification/gallery-layout-2026-10-09/review-search-ime.md b/verification/gallery-layout-2026-10-09/review-search-ime.md
+new file mode 100644
+index 0000000..8f2b05f
+--- /dev/null
++++ b/verification/gallery-layout-2026-10-09/review-search-ime.md
+@@ -0,0 +1,43 @@
++# Preserve the actual soft-keyboard Search action
++
++[Final configured Code review P2](https://github.com/c933103/AN-Paint/pull/30#discussion_r4230957670)
++at `9bbfad58ff8a8784240a12db4ec96085c030fc05` identified a gap in the original
++listener-only test. Full CI at that head was green, but its test called
++`onEditorAction()` directly and did not inspect what the keyboard receives.
++
++Android's TextView input-connection implementation unconditionally adds
++`IME_FLAG_NO_ENTER_ACTION` for multiline input. Thus merely setting
++`IME_ACTION_SEARCH` on the wrapping query field does not preserve the intended
++soft-keyboard action. This shared field affects every offered language.
++
++- [API30 TextView input connection](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/core/java/android/widget/TextView.java#L8685-L8688)
++- [API35 precise multiline branch](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java#L10057-L10060)
++
++The gallery field now retains the real native EditText connection and clears only
++that conflicting flag after the superclass populates EditorInfo. Text still wraps,
++the field remains editable, native hint/labelFor semantics and live accessibility
++text remain, and no label/font/translation resource changes are needed.
++
++## Regression
++
++- All-catalogue native tests inspect actual EditorInfo with both an empty field and
++  a long query that must wrap. They require IME_ACTION_SEARCH and no
++  IME_FLAG_NO_ENTER_ACTION, alongside the unchanged full layout/accessibility checks.
++- Real Activity tests invoke Search through InputConnection.performEditorAction,
++  then verify the production Commons search URL retains the query. This replaces
++  the shortcut that called the listener-facing TextView method directly.
++- The installed French/Mongolian test uses a long multilingual query that must
++  wrap in portrait and landscape. It inspects the real connection and EditorInfo
++  in each orientation and logs query line count, input type and IME options.
++  All real window/browser/font/cleanup checks and deadlines remain.
++
++This verifies the Android keyboard contract rather than claiming physical-device
++or every third-party keyboard testing. The new P2 stays unresolved until the
++corrected exact head passes CI and fresh configured reviews.
++
++The preceding green CI receipt is preserved independently at source head 9bbfad5;
++its passing tests are not represented as coverage of this newly discovered gap.
++
++Local combined validation: 326 Python tests passed in 51.107 seconds, zero
++failures/errors/skips (`logs/host-python-search-ime.log`). Android native/installed
++EditorInfo assertions require fresh exact-head CI before resolving the finding.

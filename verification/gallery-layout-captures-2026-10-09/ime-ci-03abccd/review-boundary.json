@@ -1,0 +1,23 @@
+{
+  "current_head": "03abccd771c9f3ee3632340e2ce3d3b205274427",
+  "security_review_verified_head": "9bbfad58ff8a8784240a12db4ec96085c030fc05",
+  "security_review_completed_at": "2026-10-09T14:03:13.831184Z",
+  "summary_url": "https://github.com/c933103/AN-Paint/pull/30#issuecomment-6080299456",
+  "current_code_clean_comments": [
+    "https://github.com/c933103/AN-Paint/pull/30#issuecomment-6082737877",
+    "https://github.com/c933103/AN-Paint/pull/30#issuecomment-6082835121"
+  ],
+  "current_security_result_verified": false,
+  "manual_security_requests_result": "Clean Code-labelled responses at current head; Security summary row remains the older head. Do not equate the labels.",
+  "delta_paths": [
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt",
+    "app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt",
+    "verification/gallery-layout-2026-10-09/logs/host-python-search-ime.log",
+    "verification/gallery-layout-2026-10-09/review-search-ime.md"
+  ],
+  "delta_patch_sha256": "42b0dbb899bda559db9b18b706b932812b1b059e79d8e27a8f37a20f89675cbb",
+  "production_scope": "Retain native EditText connection and wrapping; clear only IME_FLAG_NO_ENTER_ACTION after superclass creation. Other changed files are two host regressions, one installed regression, and documentation/log.",
+  "decision_owner": "Root assesses the documented reviewed-head boundary and integration/merge; no further state or review requests solely to alter a summary label."
+}
