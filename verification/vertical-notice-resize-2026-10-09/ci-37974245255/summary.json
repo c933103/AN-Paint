@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "pr": 35,
+  "source_head": "768959d1aa580ed88beb26abf99db597cf998f5d",
+  "tested_merge": "fee98d54e2c27ba4d90bcf16ad37b7566930809b",
+  "tested_tree": "7d4245411d699a3cf59018ce8c6d4cb87940dc60",
+  "run_id": 37974245255,
+  "jvm_tests": 737,
+  "jvm_failures": 0,
+  "jvm_errors": 0,
+  "jvm_skipped": 0,
+  "new_cases": 8,
+  "new_case_seconds": 2.818,
+  "lint_issues": 0,
+  "installed_api35_tests": 94,
+  "device_partitions": [
+    {
+      "path": "Paintroid/androidTest-results/summary.json",
+      "tests": 74,
+      "elapsed_seconds": 79.445008134
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/summary.json",
+      "tests": 1,
+      "elapsed_seconds": 8.890729789999966
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/summary.json",
+      "tests": 1,
+      "elapsed_seconds": 8.841234604000022
+    },
+    {
+      "path": "app/androidTest-results/summary.json",
+      "tests": 18,
+      "elapsed_seconds": 164.986679858
+    }
+  ],
+  "new_characterization": {
+    "30": {
+      "routes": 10,
+      "transition_rows": 80,
+      "event_rows": 10,
+      "pixel_rows": 15,
+      "pngs": 50,
+      "horizontal_no_fit": [
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        }
+      ],
+      "joined_emoji_clipped_ink": {
+        "mn-Mong": 309,
+        "mnc-Mong": 309,
+        "lzh-Hant": 336,
+        "en-XV": 372,
+        "qaa-Zsye-XV": 336
+      },
+      "ordinary_controls_no_clip": 10,
+      "same_text_content_change_requests": 2,
+      "geometry_only_requests": 0,
+      "observer_control_summaries": [
+        {
+          "api": 30,
+          "locale": "mn-Mong",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 4,
+          "toast_count": 0
+        },
+        {
+          "api": 30,
+          "locale": "lzh-Hant",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 4,
+          "toast_count": 0
+        }
+      ]
+    },
+    "35": {
+      "routes": 10,
+      "transition_rows": 80,
+      "event_rows": 8,
+      "pixel_rows": 15,
+      "pngs": 50,
+      "horizontal_no_fit": [
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        }
+      ],
+      "joined_emoji_clipped_ink": {
+        "mn-Mong": 309,
+        "mnc-Mong": 309,
+        "lzh-Hant": 336,
+        "en-XV": 372,
+        "qaa-Zsye-XV": 336
+      },
+      "ordinary_controls_no_clip": 10,
+      "same_text_content_change_requests": 0,
+      "geometry_only_requests": 0,
+      "observer_control_summaries": [
+        {
+          "api": 35,
+          "locale": "mn-Mong",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 3,
+          "toast_count": 0
+        },
+        {
+          "api": 35,
+          "locale": "lzh-Hant",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 3,
+          "toast_count": 0
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Host event requests, not TalkBack utterances or delivery to an installed accessibility service",
+    "New cases are API30/35 compiled-resource Robolectric NATIVE, not installed tests",
+    "94 installed API35 cases are existing regressions",
+    "No production vertical route, resize/dismissal/fallback policy or merge",
+    "API35 same-text silence and geometry silence are bounded observations, not guaranteed platform behavior"
+  ],
+  "visual_review": {
+    "original_images_inspected": [
+      "api30-en-XV-unsupported-zwj-reference.png",
+      "api30-en-XV-unsupported-zwj-parent.png",
+      "api35-lzh-Hant-unsupported-zwj-reference.png",
+      "api35-lzh-Hant-unsupported-zwj-parent.png",
+      "api30-mn-Mong-false-shrink124-reference.png",
+      "api30-mn-Mong-false-shrink124-parent.png",
+      "api35-mnc-Mong-true-shrink124-reference.png",
+      "api35-mnc-Mong-true-shrink124-parent.png"
+    ],
+    "all_100_pngs_decoded_nonempty_rgba": true,
+    "note": "Selected transparent originals inspected; horizontal pairs also displayed on temporary white backing for legibility. Only original bytes are archived."
+  },
+  "original_artifacts": [
+    {
+      "id": 11639345541,
+      "bytes": 32269701,
+      "sha256": "a13de977b3f2fe7ba329a59e0c9aa3a1d8a6a9b4b725d2405aa9073377bd45de"
+    },
+    {
+      "id": 11639280731,
+      "bytes": 1885048,
+      "sha256": "08ac75d3b5dfeda22a3d78f5bc6c39f9036edbd08516f0f8c42d93946d48b786"
+    }
+  ]
+}
