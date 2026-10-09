@@ -97,3 +97,29 @@ The real-provider evidence is the passing installed test, with its actual four
 window/browser records retained in `third-ci-9043849/installed-viewport.json`.
 The full corrected head still requires completed CI, including lint under the
 unchanged deadline and remaining representative reachability/gesture checks.
+
+## Serialize actual installed font transitions
+
+Run 37936204579 at `b37782d` passed all 706 JVM tests, all 1,680 catalogue cases,
+all 72 gallery reachability scenarios and lint with zero issues. Its installed
+ordinary suite finished 18 cases with 17 passes and one setup failure in 174.888s;
+the 74 library cases passed, and restart seed/verify were not reached.
+
+French portrait/landscape measured successfully. The second locale timed out
+returning from 1× to 2×. Logcat records global 1.0 arriving at 13:36:08.145Z after the
+fixture had advanced to its 2.0 wait. The original barrier observed only a
+locale-overridden target Context, which could already report 1.0 before the real
+global transition. This is a test ordering diagnosis, not a production workaround.
+
+The stronger barrier reads the persisted setting, `Resources.getSystem()` and
+target Resources on the main thread, and requires all three to match before the
+next write. It logs before/after state even on failure. Android's
+[ResourcesManager applies global configuration to system Resources](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/app/ResourcesManager.java#L1466-L1467).
+The actual gallery font scale, all window/rotation/browser assertions and exact
+preference cleanup remain. No synthetic Resource override or deadline increase.
+The ten-second transition limit and 180-second ordinary suite limit are unchanged.
+Fresh complete CI is required; the previous passing installed run remains a
+separate historical result, not a substitute for current-head success.
+
+Local combined check after the transition correction: 326 Python tests passed in
+51.014 seconds, zero failures/errors/skips (`logs/host-python-font-transition.log`).

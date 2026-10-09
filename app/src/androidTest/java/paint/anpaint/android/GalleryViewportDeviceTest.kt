@@ -5,6 +5,7 @@ import android.app.LocaleManager
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Build
 import android.os.LocaleList
@@ -192,10 +193,27 @@ class GalleryViewportDeviceTest {
     }
     private fun setFontScale(scale: Float) {
         require(scale.isFinite() && scale>0f)
+        fun state()=onMain {
+            JSONObject().put("requested",scale)
+                .put("setting",Settings.System.getFloat(context.contentResolver,Settings.System.FONT_SCALE,1f))
+                .put("system_resources",Resources.getSystem().configuration.fontScale)
+                .put("target_resources",context.resources.configuration.fontScale)
+        }
+        android.util.Log.i("GalleryViewportDeviceTest","font transition before: ${state()}")
         ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"))
             .bufferedReader().use {it.readText()}
-        await("real system font scale $scale") {kotlin.math.abs(context.resources.configuration.fontScale-scale)<.001f}
-        instrumentation.waitForIdleSync()
+        try {
+            // A locale-overridden target Context can already carry the next value
+            // before the global configuration transition arrives. Wait for the
+            // persisted setting AND both framework resource configurations, so
+            // the next write cannot overtake the previous real system change.
+            await("real system font scale $scale") {onMain {
+                listOf(Settings.System.getFloat(context.contentResolver,Settings.System.FONT_SCALE,1f),
+                    Resources.getSystem().configuration.fontScale,context.resources.configuration.fontScale)
+                    .all {kotlin.math.abs(it-scale)<.001f}
+            }}
+            instrumentation.waitForIdleSync()
+        } finally {android.util.Log.i("GalleryViewportDeviceTest","font transition after: ${state()}")}
     }
     private fun descendants(root: View): List<View> = listOf(root)+if(root is ViewGroup)
         (0 until root.childCount).flatMap {descendants(root.getChildAt(it))} else emptyList()
