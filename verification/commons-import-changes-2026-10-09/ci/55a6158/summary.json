@@ -1,0 +1,3097 @@
+{
+  "source_head": "55a6158a9b651871d0d204e52fb34c0f8a20d2a0",
+  "source_tree": "16c10eaa44608e0cdfb328400506a172f9b867e9",
+  "ci_merge_commit": "55a6158a9b651871d0d204e52fb34c0f8a20d2a0",
+  "ci_merge_tree_matches_source": true,
+  "run_id": 37945787725,
+  "attempt": 1,
+  "all_jobs_result": "success",
+  "original_artifacts": {
+    "checks": {
+      "id": 11624522155,
+      "bytes": 15522241,
+      "sha256": "1260aeaba1c5fcd280ffa552c55c147d9e6e2c3b44710af6f0d97230e3a0b633",
+      "files": 482
+    },
+    "api35": {
+      "id": 11623742746,
+      "bytes": 1697926,
+      "sha256": "4655e4ae12e975debb8638c332cb0cfce040f625b110b29f668c352da0d2c814",
+      "files": 23
+    }
+  },
+  "phase_timings": {
+    "jvm": {
+      "real_seconds": "369.612",
+      "user_seconds": "2.696",
+      "sys_seconds": "0.268",
+      "exit_status": "0"
+    },
+    "lint": {
+      "real_seconds": "295.366",
+      "user_seconds": "1013.883",
+      "sys_seconds": "71.825",
+      "exit_status": "0"
+    },
+    "python": {
+      "real_seconds": "64.778",
+      "user_seconds": "32.400",
+      "sys_seconds": "9.021",
+      "exit_status": "0"
+    }
+  },
+  "lint": {
+    "path": "app/build/reports/lint-results-debug.xml",
+    "issues": 0,
+    "tool": {
+      "format": "6",
+      "by": "lint 8.13.0"
+    }
+  },
+  "profiles": {
+    "build/reports/profile/profile-2026-10-09-14-41-40.html": [
+      [
+        "Description",
+        "Duration"
+      ],
+      [
+        "Total Build Time",
+        "6m9.19s"
+      ],
+      [
+        "Startup",
+        "3.235s"
+      ],
+      [
+        "Settings and buildSrc",
+        "0.670s"
+      ],
+      [
+        "Loading Projects",
+        "0.076s"
+      ],
+      [
+        "Configuring Projects",
+        "5.772s"
+      ],
+      [
+        "Artifact Transforms",
+        "16.094s"
+      ],
+      [
+        "Task Execution",
+        "6m9.14s"
+      ],
+      [
+        "Project",
+        "Duration"
+      ],
+      [
+        "All projects",
+        "5.772s"
+      ],
+      [
+        ":app",
+        "2.720s"
+      ],
+      [
+        ":",
+        "2.547s"
+      ],
+      [
+        ":Paintroid",
+        "0.505s"
+      ],
+      [
+        "Dependencies",
+        "Duration"
+      ],
+      [
+        "All dependencies",
+        "0.665s"
+      ],
+      [
+        "classpath",
+        "0.230s"
+      ],
+      [
+        ":Paintroid:debugUnitTestRuntimeClasspath",
+        "0.168s"
+      ],
+      [
+        "detachedConfiguration1",
+        "0.126s"
+      ],
+      [
+        ":Paintroid:debugCompileClasspath",
+        "0.042s"
+      ],
+      [
+        ":Paintroid:debugUnitTestCompileClasspath",
+        "0.029s"
+      ],
+      [
+        ":Paintroid:androidApis",
+        "0.015s"
+      ],
+      [
+        ":Paintroid:debugRuntimeClasspath",
+        "0.015s"
+      ],
+      [
+        ":Paintroid:kotlinCompilerClasspath",
+        "0.006s"
+      ],
+      [
+        ":Paintroid:debugAnnotationProcessorClasspath",
+        "0.004s"
+      ],
+      [
+        ":Paintroid:debugUnitTestAnnotationProcessorClasspath",
+        "0.004s"
+      ],
+      [
+        "detachedConfiguration2",
+        "0.004s"
+      ],
+      [
+        ":Paintroid:androidJdkImage",
+        "0.003s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration2",
+        "0.003s"
+      ],
+      [
+        ":Paintroid:jacocoAgent",
+        "0.003s"
+      ],
+      [
+        "detachedConfiguration3",
+        "0.003s"
+      ],
+      [
+        "detachedConfiguration4",
+        "0.003s"
+      ],
+      [
+        ":Paintroid:kotlinCompilerPluginClasspathDebug",
+        "0.002s"
+      ],
+      [
+        "detachedConfiguration5",
+        "0.002s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration5",
+        "0.001s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration6",
+        "0.001s"
+      ],
+      [
+        ":Paintroid:kotlinCompilerPluginClasspathDebugUnitTest",
+        "0.001s"
+      ],
+      [
+        "Transform",
+        "Duration"
+      ],
+      [
+        "All transforms",
+        "16.094s"
+      ],
+      [
+        "nativeruntime-dist-compat-1.0.16.jar (org.robolectric:nativeruntime-dist-compat:1.0.16) with JetifyTransform",
+        "2.081s"
+      ],
+      [
+        "core-for-system-modules.jar with JdkImageTransform",
+        "1.842s"
+      ],
+      [
+        "bcprov-jdk18on-1.78.1.jar (org.bouncycastle:bcprov-jdk18on:1.78.1) with JetifyTransform",
+        "1.428s"
+      ],
+      [
+        "icu4j-75.1.jar (com.ibm.icu:icu4j:75.1) with JetifyTransform",
+        "1.173s"
+      ],
+      [
+        "android.jar with MockableJarTransform",
+        "1.169s"
+      ],
+      [
+        "kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with JetifyTransform",
+        "0.816s"
+      ],
+      [
+        "jetified-kotlin-stdlib-1.9.24.jar with ClasspathEntrySnapshotTransform",
+        "0.781s"
+      ],
+      [
+        "guava-33.3.1-android.jar (com.google.guava:guava:33.3.1-jre) with JetifyTransform",
+        "0.749s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with AarResourcesCompilerTransform",
+        "0.743s"
+      ],
+      [
+        "android.jar with ClasspathEntrySnapshotTransform",
+        "0.578s"
+      ],
+      [
+        "shadows-framework-4.14.1.jar (org.robolectric:shadows-framework:4.14.1) with JetifyTransform",
+        "0.438s"
+      ],
+      [
+        "jetified-core-ktx-1.3.2-api.jar with ClasspathEntrySnapshotTransform",
+        "0.289s"
+      ],
+      [
+        "jetified-bcprov-jdk18on-1.78.1.jar with ClasspathEntrySnapshotTransform",
+        "0.245s"
+      ],
+      [
+        "R.jar with ClasspathEntrySnapshotTransform",
+        "0.210s"
+      ],
+      [
+        "jetified-guava-33.3.1-android.jar with ClasspathEntrySnapshotTransform",
+        "0.203s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with JetifyTransform",
+        "0.181s"
+      ],
+      [
+        "appcompat-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.180s"
+      ],
+      [
+        "conscrypt-openjdk-uber-2.5.2.jar (org.conscrypt:conscrypt-openjdk-uber:2.5.2) with JetifyTransform",
+        "0.164s"
+      ],
+      [
+        "jetified-shadows-framework-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.162s"
+      ],
+      [
+        "jetified-icu4j-75.1.jar with ClasspathEntrySnapshotTransform",
+        "0.136s"
+      ],
+      [
+        "resources-4.14.1.jar (org.robolectric:resources:4.14.1) with JetifyTransform",
+        "0.129s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with ExtractAarTransform",
+        "0.112s"
+      ],
+      [
+        "classes.jar with ClasspathEntrySnapshotTransform",
+        "0.104s"
+      ],
+      [
+        "junit-4.13.2.jar (junit:junit:4.13.2) with JetifyTransform",
+        "0.101s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with AarToClassTransform",
+        "0.095s"
+      ],
+      [
+        "core-1.3.2-api.jar with ClasspathEntrySnapshotTransform",
+        "0.093s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with JetifyTransform",
+        "0.089s"
+      ],
+      [
+        "sqlite4java-1.0.392.jar (com.almworks.sqlite4java:sqlite4java:1.0.392) with JetifyTransform",
+        "0.089s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with AarToClassTransform",
+        "0.077s"
+      ],
+      [
+        "snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with JetifyTransform",
+        "0.063s"
+      ],
+      [
+        "aapt2-8.13.0-13719691-linux.jar (com.android.tools.build:aapt2:8.13.0-13719691) with Aapt2Extractor",
+        "0.056s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with JetifyTransform",
+        "0.053s"
+      ],
+      [
+        "annotations-13.0.jar (org.jetbrains:annotations:13.0) with JetifyTransform",
+        "0.050s"
+      ],
+      [
+        "android.jar with PlatformAttrTransform",
+        "0.044s"
+      ],
+      [
+        "asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with JetifyTransform",
+        "0.041s"
+      ],
+      [
+        "asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with JetifyTransform",
+        "0.038s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with AarResourcesCompilerTransform",
+        "0.036s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with ExtractAarTransform",
+        "0.033s"
+      ],
+      [
+        "sandbox-4.14.1.jar (org.robolectric:sandbox:4.14.1) with JetifyTransform",
+        "0.033s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with AarToClassTransform",
+        "0.032s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with AarToClassTransform",
+        "0.032s"
+      ],
+      [
+        "test-parameter-injector-1.18.jar (com.google.testparameterinjector:test-parameter-injector:1.18) with JetifyTransform",
+        "0.028s"
+      ],
+      [
+        "jetified-junit-4.13.2.jar with ClasspathEntrySnapshotTransform",
+        "0.025s"
+      ],
+      [
+        "asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with JetifyTransform",
+        "0.024s"
+      ],
+      [
+        "checker-qual-3.43.0.jar (org.checkerframework:checker-qual:3.43.0) with JetifyTransform",
+        "0.024s"
+      ],
+      [
+        "fragment-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.024s"
+      ],
+      [
+        "robolectric-4.14.1.jar (org.robolectric:robolectric:4.14.1) with JetifyTransform",
+        "0.024s"
+      ],
+      [
+        "jetified-checker-qual-3.43.0.jar with ClasspathEntrySnapshotTransform",
+        "0.023s"
+      ],
+      [
+        "jetified-resources-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.022s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with AarToClassTransform",
+        "0.021s"
+      ],
+      [
+        "jetified-robolectric-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.019s"
+      ],
+      [
+        "utils-4.14.1.jar (org.robolectric:utils:4.14.1) with JetifyTransform",
+        "0.018s"
+      ],
+      [
+        "asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with JetifyTransform",
+        "0.016s"
+      ],
+      [
+        "hamcrest-core-1.3.jar (org.hamcrest:hamcrest-core:1.3) with JetifyTransform",
+        "0.016s"
+      ],
+      [
+        "jetified-androidsvg-aar-1.4-api.jar with ClasspathEntrySnapshotTransform",
+        "0.016s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with ExtractAarTransform",
+        "0.016s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with JetifyTransform",
+        "0.015s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with JetifyTransform",
+        "0.015s"
+      ],
+      [
+        "annotations-4.14.1.jar (org.robolectric:annotations:4.14.1) with JetifyTransform",
+        "0.014s"
+      ],
+      [
+        "asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with JetifyTransform",
+        "0.014s"
+      ],
+      [
+        "monitor-1.7.2-api.jar with ClasspathEntrySnapshotTransform",
+        "0.014s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with AarToClassTransform",
+        "0.013s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with ExtractAarTransform",
+        "0.012s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with AarToClassTransform",
+        "0.012s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with LibrarySymbolTableTransform",
+        "0.010s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with AarToClassTransform",
+        "0.010s"
+      ],
+      [
+        "jetified-annotation-jvm-1.7.0-beta01.jar with ClasspathEntrySnapshotTransform",
+        "0.010s"
+      ],
+      [
+        "jetified-core-1.4.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.010s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with AarToClassTransform",
+        "0.010s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with AarToClassTransform",
+        "0.010s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with AarToClassTransform",
+        "0.010s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with AarToClassTransform",
+        "0.009s"
+      ],
+      [
+        "annotation-1.1.0.jar with ClasspathEntrySnapshotTransform",
+        "0.008s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with ExtractAarTransform",
+        "0.008s"
+      ],
+      [
+        "jetified-annotations-13.0.jar with ClasspathEntrySnapshotTransform",
+        "0.008s"
+      ],
+      [
+        "jetified-sandbox-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.008s"
+      ],
+      [
+        "jetified-sqlite4java-1.0.392.jar with ClasspathEntrySnapshotTransform",
+        "0.008s"
+      ],
+      [
+        "nativeruntime-4.14.1.jar (org.robolectric:nativeruntime:4.14.1) with JetifyTransform",
+        "0.008s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with AarToClassTransform",
+        "0.007s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with AarToClassTransform",
+        "0.007s"
+      ],
+      [
+        "error_prone_annotations-2.28.0.jar (com.google.errorprone:error_prone_annotations:2.28.0) with JetifyTransform",
+        "0.007s"
+      ],
+      [
+        "jetified-nativeruntime-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.007s"
+      ],
+      [
+        "jetified-utils-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.007s"
+      ],
+      [
+        "junit-4.14.1.jar (org.robolectric:junit:4.14.1) with JetifyTransform",
+        "0.007s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with JetifyTransform",
+        "0.007s"
+      ],
+      [
+        "utils-reflector-4.14.1.jar (org.robolectric:utils-reflector:4.14.1) with JetifyTransform",
+        "0.007s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.007s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with AarTransform",
+        "0.006s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with AarToClassTransform",
+        "0.006s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with AarTransform",
+        "0.006s"
+      ],
+      [
+        "jetified-asm-9.7.1.jar with ClasspathEntrySnapshotTransform",
+        "0.006s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.006s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with AarToClassTransform",
+        "0.006s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with AarToClassTransform",
+        "0.006s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with AarToClassTransform",
+        "0.006s"
+      ],
+      [
+        "shadowapi-4.14.1.jar (org.robolectric:shadowapi:4.14.1) with JetifyTransform",
+        "0.006s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with AarToClassTransform",
+        "0.006s"
+      ],
+      [
+        "annotation-jvm-1.7.0-beta01.jar (androidx.annotation:annotation-jvm:1.7.0-beta01) with JetifyTransform",
+        "0.005s"
+      ],
+      [
+        "coordinatorlayout-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with AarResourcesCompilerTransform",
+        "0.005s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with AarToClassTransform",
+        "0.005s"
+      ],
+      [
+        "cursoradapter-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with AarToClassTransform",
+        "0.005s"
+      ],
+      [
+        "javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with JetifyTransform",
+        "0.005s"
+      ],
+      [
+        "jetified-annotations-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "jsr305-3.0.2.jar (com.google.code.findbugs:jsr305:3.0.2) with JetifyTransform",
+        "0.005s"
+      ],
+      [
+        "loader-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "plugins-maven-dependency-resolver-4.14.1.jar (org.robolectric:plugins-maven-dependency-resolver:4.14.1) with JetifyTransform",
+        "0.005s"
+      ],
+      [
+        "versionedparcelable-1.1.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with AarToClassTransform",
+        "0.005s"
+      ],
+      [
+        "viewpager-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.005s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with AarTransform",
+        "0.005s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with ExtractAarTransform",
+        "0.004s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with AarToClassTransform",
+        "0.004s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with ExtractAarTransform",
+        "0.004s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with AarResourcesCompilerTransform",
+        "0.004s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with LibrarySymbolTableTransform",
+        "0.004s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with AarToClassTransform",
+        "0.004s"
+      ],
+      [
+        "customview-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "drawerlayout-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "exifinterface-1.3.2-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with ExtractAarTransform",
+        "0.004s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with ExtractAarTransform",
+        "0.004s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with LibrarySymbolTableTransform",
+        "0.004s"
+      ],
+      [
+        "jetified-asm-tree-9.7.1.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "jetified-asm-util-9.7.1.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "jetified-hamcrest-core-1.3.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "lifecycle-common-2.0.0.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with AarToClassTransform",
+        "0.004s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with AarToClassTransform",
+        "0.004s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "vectordrawable-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.004s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with AarResourcesCompilerTransform",
+        "0.004s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with AarToClassTransform",
+        "0.003s"
+      ],
+      [
+        "auto-value-annotations-1.11.0.jar (com.google.auto.value:auto-value-annotations:1.11.0) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "collection-1.0.0.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with ExtractAarTransform",
+        "0.003s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "documentfile-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "j2objc-annotations-3.0.0.jar (com.google.j2objc:j2objc-annotations:3.0.0) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "jetified-asm-commons-9.7.1.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "jetified-utils-reflector-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar (com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with ExtractAarTransform",
+        "0.003s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with ExtractAarTransform",
+        "0.003s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with AarToClassTransform",
+        "0.003s"
+      ],
+      [
+        "slidingpanelayout-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.003s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with ExtractAarTransform",
+        "0.003s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with ExtractAarTransform",
+        "0.003s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "core-common-2.0.0.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "core-lambda-stubs.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with AarToClassTransform",
+        "0.002s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with LibrarySymbolTableTransform",
+        "0.002s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with LibrarySymbolTableTransform",
+        "0.002s"
+      ],
+      [
+        "error_prone_annotation-2.34.0.jar (com.google.errorprone:error_prone_annotation:2.34.0) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with AarToClassTransform",
+        "0.002s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "jetified-asm-analysis-9.7.1.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "jetified-error_prone_annotations-2.28.0.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "jetified-j2objc-annotations-3.0.0.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "jetified-jsr305-3.0.2.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "jetified-plugins-maven-dependency-resolver-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with ExtractAarTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with AarResourcesCompilerTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with AarToClassTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with AarToClassTransform",
+        "0.002s"
+      ],
+      [
+        "pluginapi-4.14.1.jar (org.robolectric:pluginapi:4.14.1) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "print-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.002s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with AarResourcesCompilerTransform",
+        "0.002s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with AarResourcesCompilerTransform",
+        "0.002s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with LibrarySymbolTableTransform",
+        "0.002s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with ExtractAarTransform",
+        "0.002s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with JetifyTransform",
+        "0.002s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "annotation-jvm-1.7.0-beta01.jar (androidx.annotation:annotation-jvm:1.7.0-beta01) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "asm-commons-9.7.1.jar (org.ow2.asm:asm-commons:9.7.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "asm-tree-9.7.1.jar (org.ow2.asm:asm-tree:9.7.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "core-common-2.0.0.jar (androidx.arch.core:core-common:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "error_prone_annotation-2.34.0.jar (com.google.errorprone:error_prone_annotation:2.34.0) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with AarToClassTransform",
+        "0.001s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "hamcrest-core-1.3.jar (org.hamcrest:hamcrest-core:1.3) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "javax.inject-1.jar (javax.inject:javax.inject:1) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-auto-value-annotations-1.11.0.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-core-ktx-1.4.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-javax.annotation-api-1.3.2.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-javax.inject-1.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-junit-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-pluginapi-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-shadowapi-4.14.1.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "jetified-tracing-1.1.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-common-2.0.0.jar (androidx.lifecycle:lifecycle-common:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar (com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "nativeruntime-dist-compat-1.0.16.jar (org.robolectric:nativeruntime-dist-compat:1.0.16) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "pluginapi-4.14.1.jar (org.robolectric:pluginapi:4.14.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "plugins-maven-dependency-resolver-4.14.1.jar (org.robolectric:plugins-maven-dependency-resolver:4.14.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "resources-4.14.1.jar (org.robolectric:resources:4.14.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "shadowapi-4.14.1.jar (org.robolectric:shadowapi:4.14.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "sqlite4java-1.0.392.jar (com.almworks.sqlite4java:sqlite4java:1.0.392) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with AarToClassTransform",
+        "0.001s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "utils-reflector-4.14.1.jar (org.robolectric:utils-reflector:4.14.1) with IdentityTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with AarResourcesCompilerTransform",
+        "0.001s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with LibrarySymbolTableTransform",
+        "0.001s"
+      ],
+      [
+        "annotation-1.1.0.jar (androidx.annotation:annotation:1.1.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "annotation-1.1.0.jar (androidx.annotation:annotation:1.1.0) with JetifyTransform",
+        "0s"
+      ],
+      [
+        "annotations-13.0.jar (org.jetbrains:annotations:13.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "annotations-4.14.1.jar (org.robolectric:annotations:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "asm-9.7.1.jar (org.ow2.asm:asm:9.7.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "asm-analysis-9.7.1.jar (org.ow2.asm:asm-analysis:9.7.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "asm-util-9.7.1.jar (org.ow2.asm:asm-util:9.7.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "auto-value-annotations-1.11.0.jar (com.google.auto.value:auto-value-annotations:1.11.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "bcprov-jdk18on-1.78.1.jar (org.bouncycastle:bcprov-jdk18on:1.78.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "checker-qual-3.43.0.jar (org.checkerframework:checker-qual:3.43.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "collection-1.0.0.jar (androidx.collection:collection:1.0.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "collection-1.0.0.jar (androidx.collection:collection:1.0.0) with JetifyTransform",
+        "0s"
+      ],
+      [
+        "conscrypt-openjdk-uber-2.5.2.jar (org.conscrypt:conscrypt-openjdk-uber:2.5.2) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "core-common-2.0.0.jar (androidx.arch.core:core-common:2.0.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with LibrarySymbolTableTransform",
+        "0s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with JetifyTransform",
+        "0s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "error_prone_annotations-2.28.0.jar (com.google.errorprone:error_prone_annotations:2.28.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "failureaccess-1.0.2.jar (com.google.guava:failureaccess:1.0.2) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "guava-33.3.1-android.jar (com.google.guava:guava:33.3.1-jre) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "icu4j-75.1.jar (com.ibm.icu:icu4j:75.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "interpolator-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with ExtractAarTransform",
+        "0s"
+      ],
+      [
+        "j2objc-annotations-3.0.0.jar (com.google.j2objc:j2objc-annotations:3.0.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "javax.annotation-api-1.3.2.jar (javax.annotation:javax.annotation-api:1.3.2) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "javax.inject-1.jar (javax.inject:javax.inject:1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "jetified-failureaccess-1.0.2.jar with ClasspathEntrySnapshotTransform",
+        "0s"
+      ],
+      [
+        "jetified-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar with ClasspathEntrySnapshotTransform",
+        "0s"
+      ],
+      [
+        "jsr305-3.0.2.jar (com.google.code.findbugs:jsr305:3.0.2) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "junit-4.13.2.jar (junit:junit:4.13.2) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "junit-4.14.1.jar (org.robolectric:junit:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "kotlin-stdlib-1.9.24.jar (org.jetbrains.kotlin:kotlin-stdlib:1.9.24) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with JetifyTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-common-2.0.0.jar (androidx.lifecycle:lifecycle-common:2.0.0) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0-api.jar with ClasspathEntrySnapshotTransform",
+        "0s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with AarTransform",
+        "0s"
+      ],
+      [
+        "nativeruntime-4.14.1.jar (org.robolectric:nativeruntime:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with LibrarySymbolTableTransform",
+        "0s"
+      ],
+      [
+        "robolectric-4.14.1.jar (org.robolectric:robolectric:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "sandbox-4.14.1.jar (org.robolectric:sandbox:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "shadows-framework-4.14.1.jar (org.robolectric:shadows-framework:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "snakeyaml-2.3.jar (org.yaml:snakeyaml:2.3) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "test-parameter-injector-1.18.jar (com.google.testparameterinjector:test-parameter-injector:1.18) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "utils-4.14.1.jar (org.robolectric:utils:4.14.1) with IdentityTransform",
+        "0s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with JetifyTransform",
+        "0s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with AarResourcesCompilerTransform",
+        "0s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "Task",
+        "Duration",
+        "Result"
+      ],
+      [
+        ":Paintroid",
+        "6m9.14s",
+        "(total)"
+      ],
+      [
+        ":Paintroid:testDebugUnitTest",
+        "4m6.29s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugKotlin",
+        "57.647s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugUnitTestKotlin",
+        "29.850s",
+        ""
+      ],
+      [
+        ":Paintroid:bundleCorrespondingSource",
+        "6.319s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugJavaWithJavac",
+        "6.163s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugUnitTestResources",
+        "5.046s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugUnitTestJavaWithJavac",
+        "4.353s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugUnitTestResources",
+        "2.670s",
+        ""
+      ],
+      [
+        ":Paintroid:packageDebugUnitTestForUnitTest",
+        "2.158s",
+        ""
+      ],
+      [
+        ":Paintroid:packageDebugResources",
+        "2.083s",
+        ""
+      ],
+      [
+        ":Paintroid:parseDebugLocalResources",
+        "1.836s",
+        ""
+      ],
+      [
+        ":Paintroid:checkDebugUnitTestAarMetadata",
+        "1.079s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugLibraryResources",
+        "0.982s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugUnitTestManifest",
+        "0.543s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugUnitTestAssets",
+        "0.505s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugRFile",
+        "0.290s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugAssets",
+        "0.274s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugManifest",
+        "0.215s",
+        ""
+      ],
+      [
+        ":Paintroid:mapDebugUnitTestSourceSetPaths",
+        "0.128s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchHeifSources",
+        "0.079s",
+        ""
+      ],
+      [
+        ":Paintroid:bundleLibRuntimeToJarDebug",
+        "0.078s",
+        ""
+      ],
+      [
+        ":Paintroid:bundleLibCompileToJarDebug",
+        "0.075s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugBuildConfig",
+        "0.068s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchJxlSources",
+        "0.058s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugShaders",
+        "0.055s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchTiffSources",
+        "0.054s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchWebpSources",
+        "0.053s",
+        ""
+      ],
+      [
+        ":Paintroid:checkKotlinGradlePluginConfigurationErrors",
+        "0.032s",
+        ""
+      ],
+      [
+        ":Paintroid:javaPreCompileDebug",
+        "0.028s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugUnitTestConfig",
+        "0.020s",
+        ""
+      ],
+      [
+        ":Paintroid:writeDebugAarMetadata",
+        "0.020s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugJavaRes",
+        "0.017s",
+        ""
+      ],
+      [
+        ":Paintroid:extractDeepLinksDebug",
+        "0.016s",
+        ""
+      ],
+      [
+        ":Paintroid:javaPreCompileDebugUnitTest",
+        "0.016s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugUnitTestJavaRes",
+        "0.012s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugUnitTestResources",
+        "0.009s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugResources",
+        "0.008s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugResValues",
+        "0.004s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugUnitTestResValues",
+        "0.004s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugNavigationResources",
+        "0.004s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugShaders",
+        "0.001s",
+        "NO-SOURCE"
+      ],
+      [
+        ":Paintroid:generateDebugAssets",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:generateDebugUnitTestAssets",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:preBuild",
+        "0s",
+        "Did No Work"
+      ],
+      [
+        ":Paintroid:preDebugBuild",
+        "0s",
+        "Did No Work"
+      ],
+      [
+        ":Paintroid:preDebugUnitTestBuild",
+        "0s",
+        "Did No Work"
+      ],
+      [
+        ":",
+        "0s",
+        "(total)"
+      ],
+      [
+        ":app",
+        "0s",
+        "(total)"
+      ]
+    ],
+    "build/reports/profile/profile-2026-10-09-14-47-50.html": [
+      [
+        "Description",
+        "Duration"
+      ],
+      [
+        "Total Build Time",
+        "4m54.97s"
+      ],
+      [
+        "Startup",
+        "3.443s"
+      ],
+      [
+        "Settings and buildSrc",
+        "0.722s"
+      ],
+      [
+        "Loading Projects",
+        "0.082s"
+      ],
+      [
+        "Configuring Projects",
+        "5.066s"
+      ],
+      [
+        "Artifact Transforms",
+        "1.451s"
+      ],
+      [
+        "Task Execution",
+        "5m56.03s"
+      ],
+      [
+        "Project",
+        "Duration"
+      ],
+      [
+        "All projects",
+        "5.066s"
+      ],
+      [
+        ":app",
+        "2.596s"
+      ],
+      [
+        ":",
+        "1.898s"
+      ],
+      [
+        ":Paintroid",
+        "0.572s"
+      ],
+      [
+        "Dependencies",
+        "Duration"
+      ],
+      [
+        "All dependencies",
+        "0.950s"
+      ],
+      [
+        "classpath",
+        "0.240s"
+      ],
+      [
+        "detachedConfiguration1",
+        "0.153s"
+      ],
+      [
+        ":Paintroid:debugUnitTestCompileClasspath",
+        "0.097s"
+      ],
+      [
+        ":Paintroid:debugUnitTestRuntimeClasspath",
+        "0.079s"
+      ],
+      [
+        ":Paintroid:debugRuntimeClasspath",
+        "0.070s"
+      ],
+      [
+        ":Paintroid:debugAndroidTestCompileClasspath",
+        "0.058s"
+      ],
+      [
+        ":app:debugAndroidTestCompileClasspath",
+        "0.037s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration1",
+        "0.031s"
+      ],
+      [
+        ":Paintroid:debugAndroidTestRuntimeClasspath",
+        "0.030s"
+      ],
+      [
+        ":Paintroid:debugCompileClasspath",
+        "0.024s"
+      ],
+      [
+        ":app:debugAndroidTestRuntimeClasspath",
+        "0.023s"
+      ],
+      [
+        ":app:debugUnitTestCompileClasspath",
+        "0.014s"
+      ],
+      [
+        ":app:detachedConfiguration1",
+        "0.012s"
+      ],
+      [
+        ":app:debugRuntimeClasspath",
+        "0.011s"
+      ],
+      [
+        ":app:debugUnitTestRuntimeClasspath",
+        "0.009s"
+      ],
+      [
+        ":app:debugCompileClasspath",
+        "0.008s"
+      ],
+      [
+        ":Paintroid:kotlinCompilerClasspath",
+        "0.007s"
+      ],
+      [
+        ":Paintroid:androidApis",
+        "0.005s"
+      ],
+      [
+        "detachedConfiguration3",
+        "0.005s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration6",
+        "0.004s"
+      ],
+      [
+        ":app:debugReverseMetadataValues",
+        "0.004s"
+      ],
+      [
+        "detachedConfiguration4",
+        "0.004s"
+      ],
+      [
+        "detachedConfiguration5",
+        "0.004s"
+      ],
+      [
+        ":Paintroid:kotlinCompilerPluginClasspathDebug",
+        "0.003s"
+      ],
+      [
+        ":app:detachedConfiguration2",
+        "0.003s"
+      ],
+      [
+        "detachedConfiguration2",
+        "0.003s"
+      ],
+      [
+        ":Paintroid:androidJdkImage",
+        "0.002s"
+      ],
+      [
+        ":Paintroid:debugAnnotationProcessorClasspath",
+        "0.002s"
+      ],
+      [
+        ":Paintroid:lintPublish",
+        "0.002s"
+      ],
+      [
+        ":app:detachedConfiguration3",
+        "0.002s"
+      ],
+      [
+        ":Paintroid:detachedConfiguration3",
+        "0.001s"
+      ],
+      [
+        ":Paintroid:lintChecks",
+        "0.001s"
+      ],
+      [
+        ":app:debugAnnotationProcessorClasspath",
+        "0.001s"
+      ],
+      [
+        ":app:lintChecks",
+        "0.001s"
+      ],
+      [
+        "Transform",
+        "Duration"
+      ],
+      [
+        "All transforms",
+        "1.451s"
+      ],
+      [
+        "kotlinx-coroutines-core-jvm-1.7.1.jar (org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1) with JetifyTransform",
+        "0.513s"
+      ],
+      [
+        "FakeDependency.jar with D8BackportedMethodsGenerator",
+        "0.359s"
+      ],
+      [
+        "out.aar (project :Paintroid) with ExtractAarTransform",
+        "0.296s"
+      ],
+      [
+        "listenablefuture-1.0.jar (com.google.guava:listenablefuture:1.0) with JetifyTransform",
+        "0.051s"
+      ],
+      [
+        "junit-1.2.1.aar (androidx.test.ext:junit:1.2.1) with JetifyTransform",
+        "0.044s"
+      ],
+      [
+        "core-1.6.1.aar (androidx.test:core:1.6.1) with JetifyTransform",
+        "0.037s"
+      ],
+      [
+        "annotation-experimental-1.4.1.aar (androidx.annotation:annotation-experimental:1.4.1) with JetifyTransform",
+        "0.016s"
+      ],
+      [
+        "webkit-1.12.1.aar (androidx.webkit:webkit:1.12.1) with JetifyTransform",
+        "0.014s"
+      ],
+      [
+        "concurrent-futures-1.1.0.jar (androidx.concurrent:concurrent-futures:1.1.0) with JetifyTransform",
+        "0.013s"
+      ],
+      [
+        "annotations-23.0.0.jar (org.jetbrains:annotations:23.0.0) with JetifyTransform",
+        "0.008s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with ExtractNavigationXmlTransform",
+        "0.008s"
+      ],
+      [
+        "storage-1.5.0.aar (androidx.test.services:storage:1.5.0) with JetifyTransform",
+        "0.008s"
+      ],
+      [
+        "kotlin-stdlib-jdk8-1.8.20.jar (org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20) with JetifyTransform",
+        "0.006s"
+      ],
+      [
+        "core-1.6.1.aar (androidx.test:core:1.6.1) with ExtractAarTransform",
+        "0.005s"
+      ],
+      [
+        "webkit-1.12.1.aar (androidx.webkit:webkit:1.12.1) with ExtractAarTransform",
+        "0.005s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with AarTransform",
+        "0.004s"
+      ],
+      [
+        "runner-1.6.2.aar (androidx.test:runner:1.6.2) with ExtractAarTransform",
+        "0.004s"
+      ],
+      [
+        "concurrent-futures-ktx-1.1.0.jar (androidx.concurrent:concurrent-futures-ktx:1.1.0) with JetifyTransform",
+        "0.003s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with ExtractNavigationXmlTransform",
+        "0.003s"
+      ],
+      [
+        "tracing-1.1.0.aar (androidx.tracing:tracing:1.1.0) with AarTransform",
+        "0.003s"
+      ],
+      [
+        "annotation-experimental-1.4.1.aar (androidx.annotation:annotation-experimental:1.4.1) with ExtractAarTransform",
+        "0.002s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with AarTransform",
+        "0.002s"
+      ],
+      [
+        "uiautomator-2.2.0.aar (androidx.test.uiautomator:uiautomator:2.2.0) with ExtractAarTransform",
+        "0.002s"
+      ],
+      [
+        "appcompat-1.0.0.aar (androidx.appcompat:appcompat:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.3.2.aar (androidx.core:core:1.3.2) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "core-1.4.0.aar (androidx.test:core:1.4.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "core-ktx-1.4.0.aar (androidx.test:core-ktx:1.4.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "exifinterface-1.3.2.aar (androidx.exifinterface:exifinterface:1.3.2) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "junit-1.2.1.aar (androidx.test.ext:junit:1.2.1) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "junit-1.2.1.aar (androidx.test.ext:junit:1.2.1) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "kotlin-stdlib-jdk7-1.8.20.jar (org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "legacy-support-core-ui-1.0.0.aar (androidx.legacy:legacy-support-core-ui:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-common-2.3.1.jar (androidx.lifecycle:lifecycle-common:2.3.1) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "monitor-1.7.2.aar (androidx.test:monitor:1.7.2) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "runner-1.6.2.aar (androidx.test:runner:1.6.2) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "runner-1.6.2.aar (androidx.test:runner:1.6.2) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "slidingpanelayout-1.0.0.aar (androidx.slidingpanelayout:slidingpanelayout:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "storage-1.5.0.aar (androidx.test.services:storage:1.5.0) with ExtractAarTransform",
+        "0.001s"
+      ],
+      [
+        "uiautomator-2.2.0.aar (androidx.test.uiautomator:uiautomator:2.2.0) with JetifyTransform",
+        "0.001s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "versionedparcelable-1.1.0.aar (androidx.versionedparcelable:versionedparcelable:1.1.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with AarTransform",
+        "0.001s"
+      ],
+      [
+        "viewpager-1.0.0.aar (androidx.viewpager:viewpager:1.0.0) with ExtractNavigationXmlTransform",
+        "0.001s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with AarTransform",
+        "0s"
+      ],
+      [
+        "androidsvg-aar-1.4.aar (com.caverock:androidsvg-aar:1.4) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "annotation-experimental-1.4.1.aar (androidx.annotation:annotation-experimental:1.4.1) with AarTransform",
+        "0s"
+      ],
+      [
+        "asynclayoutinflater-1.0.0.aar (androidx.asynclayoutinflater:asynclayoutinflater:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "coordinatorlayout-1.0.0.aar (androidx.coordinatorlayout:coordinatorlayout:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "core-1.6.1.aar (androidx.test:core:1.6.1) with AarTransform",
+        "0s"
+      ],
+      [
+        "core-ktx-1.3.2.aar (androidx.core:core-ktx:1.3.2) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "core-runtime-2.0.0.aar (androidx.arch.core:core-runtime:2.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "cursoradapter-1.0.0.aar (androidx.cursoradapter:cursoradapter:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "customview-1.0.0.aar (androidx.customview:customview:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "documentfile-1.0.0.aar (androidx.documentfile:documentfile:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "drawerlayout-1.0.0.aar (androidx.drawerlayout:drawerlayout:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "espresso-idling-resource-3.6.1.aar (androidx.test.espresso:espresso-idling-resource:3.6.1) with AarTransform",
+        "0s"
+      ],
+      [
+        "fragment-1.0.0.aar (androidx.fragment:fragment:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "interpolator-1.0.0.aar (androidx.interpolator:interpolator:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "legacy-support-core-utils-1.0.0.aar (androidx.legacy:legacy-support-core-utils:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-livedata-2.0.0.aar (androidx.lifecycle:lifecycle-livedata:2.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-livedata-core-2.0.0.aar (androidx.lifecycle:lifecycle-livedata-core:2.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-runtime-2.0.0.aar (androidx.lifecycle:lifecycle-runtime:2.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "lifecycle-viewmodel-2.0.0.aar (androidx.lifecycle:lifecycle-viewmodel:2.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "loader-1.0.0.aar (androidx.loader:loader:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "localbroadcastmanager-1.0.0.aar (androidx.localbroadcastmanager:localbroadcastmanager:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "print-1.0.0.aar (androidx.print:print:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "storage-1.5.0.aar (androidx.test.services:storage:1.5.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "swiperefreshlayout-1.0.0.aar (androidx.swiperefreshlayout:swiperefreshlayout:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "uiautomator-2.2.0.aar (androidx.test.uiautomator:uiautomator:2.2.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "vectordrawable-1.0.0.aar (androidx.vectordrawable:vectordrawable:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with AarTransform",
+        "0s"
+      ],
+      [
+        "vectordrawable-animated-1.0.0.aar (androidx.vectordrawable:vectordrawable-animated:1.0.0) with ExtractNavigationXmlTransform",
+        "0s"
+      ],
+      [
+        "webkit-1.12.1.aar (androidx.webkit:webkit:1.12.1) with AarTransform",
+        "0s"
+      ],
+      [
+        "Task",
+        "Duration",
+        "Result"
+      ],
+      [
+        ":Paintroid",
+        "5m21.55s",
+        "(total)"
+      ],
+      [
+        ":Paintroid:buildCMakeDebug[x86_64][anpaint_heif,anpaint_jxl,etc]",
+        "2m59.37s",
+        ""
+      ],
+      [
+        ":Paintroid:lintAnalyzeDebug",
+        "1m14.55s",
+        ""
+      ],
+      [
+        ":Paintroid:lintAnalyzeDebugUnitTest",
+        "36.544s",
+        ""
+      ],
+      [
+        ":Paintroid:configureCMakeDebug[x86_64]",
+        "13.057s",
+        ""
+      ],
+      [
+        ":Paintroid:lintAnalyzeDebugAndroidTest",
+        "8.965s",
+        ""
+      ],
+      [
+        ":Paintroid:extractDebugAnnotations",
+        "3.323s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugLintModel",
+        "1.133s",
+        ""
+      ],
+      [
+        ":Paintroid:bundleCorrespondingSource",
+        "0.712s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:generateDebugUnitTestLintModel",
+        "0.596s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugNativeLibs",
+        "0.495s",
+        ""
+      ],
+      [
+        ":Paintroid:bundleDebugLocalLintAar",
+        "0.445s",
+        ""
+      ],
+      [
+        ":Paintroid:checkDebugAarMetadata",
+        "0.384s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugKotlin",
+        "0.369s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:stripDebugDebugSymbols",
+        "0.227s",
+        ""
+      ],
+      [
+        ":Paintroid:syncDebugLibJars",
+        "0.193s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugJavaResource",
+        "0.175s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchHeifSources",
+        "0.138s",
+        ""
+      ],
+      [
+        ":Paintroid:copyDebugJniLibsProjectAndLocalJars",
+        "0.135s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugAndroidTestLintModel",
+        "0.125s",
+        ""
+      ],
+      [
+        ":Paintroid:fetchTiffSources",
+        "0.079s",
+        ""
+      ],
+      [
+        ":Paintroid:packageDebugResources",
+        "0.077s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:fetchJxlSources",
+        "0.075s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugRFile",
+        "0.075s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:fetchWebpSources",
+        "0.057s",
+        ""
+      ],
+      [
+        ":Paintroid:mergeDebugJniLibFolders",
+        "0.044s",
+        ""
+      ],
+      [
+        ":Paintroid:createFullJarDebug",
+        "0.040s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugJavaWithJavac",
+        "0.029s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:parseDebugLocalResources",
+        "0.018s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:prepareLintJarForPublish",
+        "0.016s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugLibraryResources",
+        "0.015s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:generateDebugAndroidTestResValues",
+        "0.009s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugJavaRes",
+        "0.008s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:writeDebugLintModelMetadata",
+        "0.007s",
+        ""
+      ],
+      [
+        ":Paintroid:generateDebugBuildConfig",
+        "0.006s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:mergeDebugAssets",
+        "0.006s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:bundleLibRuntimeToJarDebug",
+        "0.004s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:extractDeepLinksDebug",
+        "0.004s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:generateDebugResources",
+        "0.004s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:mergeDebugGeneratedProguardFiles",
+        "0.004s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugManifest",
+        "0.004s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:extractDeepLinksForAarDebug",
+        "0.003s",
+        ""
+      ],
+      [
+        ":Paintroid:extractProguardFiles",
+        "0.003s",
+        ""
+      ],
+      [
+        ":Paintroid:javaPreCompileDebug",
+        "0.003s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:mergeDebugConsumerProguardFiles",
+        "0.003s",
+        ""
+      ],
+      [
+        ":Paintroid:prepareDebugArtProfile",
+        "0.003s",
+        ""
+      ],
+      [
+        ":Paintroid:processDebugNavigationResources",
+        "0.003s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:bundleLibCompileToJarDebug",
+        "0.002s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:mergeDebugShaders",
+        "0.002s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:writeDebugAarMetadata",
+        "0.002s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:checkKotlinGradlePluginConfigurationErrors",
+        "0.001s",
+        ""
+      ],
+      [
+        ":Paintroid:compileDebugShaders",
+        "0.001s",
+        "NO-SOURCE"
+      ],
+      [
+        ":Paintroid:generateDebugResValues",
+        "0.001s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:generateDebugAssets",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:preBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:preDebugAndroidTestBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:preDebugBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":Paintroid:preDebugUnitTestBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":app",
+        "34.484s",
+        "(total)"
+      ],
+      [
+        ":app:lintAnalyzeDebugAndroidTest",
+        "23.035s",
+        ""
+      ],
+      [
+        ":app:mergeDebugResources",
+        "4.613s",
+        ""
+      ],
+      [
+        ":app:processDebugMainManifest",
+        "1.792s",
+        ""
+      ],
+      [
+        ":app:generateDebugAndroidTestLintModel",
+        "1.547s",
+        ""
+      ],
+      [
+        ":app:processDebugResources",
+        "1.214s",
+        ""
+      ],
+      [
+        ":app:lintAnalyzeDebug",
+        "1.174s",
+        ""
+      ],
+      [
+        ":app:lintAnalyzeDebugUnitTest",
+        "0.376s",
+        ""
+      ],
+      [
+        ":app:processDebugManifest",
+        "0.173s",
+        ""
+      ],
+      [
+        ":app:lintReportDebug",
+        "0.121s",
+        ""
+      ],
+      [
+        ":app:processDebugNavigationResources",
+        "0.109s",
+        ""
+      ],
+      [
+        ":app:generateDebugLintReportModel",
+        "0.060s",
+        ""
+      ],
+      [
+        ":app:generateDebugUnitTestLintModel",
+        "0.048s",
+        ""
+      ],
+      [
+        ":app:mapDebugSourceSetPaths",
+        "0.046s",
+        ""
+      ],
+      [
+        ":app:compileDebugNavigationResources",
+        "0.036s",
+        ""
+      ],
+      [
+        ":app:processDebugManifestForPackage",
+        "0.031s",
+        ""
+      ],
+      [
+        ":app:checkDebugAarMetadata",
+        "0.026s",
+        ""
+      ],
+      [
+        ":app:bundleDebugClassesToCompileJar",
+        "0.021s",
+        ""
+      ],
+      [
+        ":app:javaPreCompileDebug",
+        "0.015s",
+        ""
+      ],
+      [
+        ":app:createDebugCompatibleScreenManifests",
+        "0.008s",
+        ""
+      ],
+      [
+        ":app:extractDeepLinksDebug",
+        "0.008s",
+        ""
+      ],
+      [
+        ":app:extractProguardFiles",
+        "0.007s",
+        ""
+      ],
+      [
+        ":app:compileDebugKotlin",
+        "0.006s",
+        "NO-SOURCE"
+      ],
+      [
+        ":app:generateDebugAndroidTestResValues",
+        "0.005s",
+        ""
+      ],
+      [
+        ":app:generateDebugResValues",
+        "0.004s",
+        ""
+      ],
+      [
+        ":app:generateDebugResources",
+        "0.004s",
+        ""
+      ],
+      [
+        ":app:lintDebug",
+        "0.003s",
+        ""
+      ],
+      [
+        ":app:checkKotlinGradlePluginConfigurationErrors",
+        "0.001s",
+        ""
+      ],
+      [
+        ":app:compileDebugJavaWithJavac",
+        "0.001s",
+        "NO-SOURCE"
+      ],
+      [
+        ":app:preBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":app:preDebugAndroidTestBuild",
+        "0s",
+        "SKIPPED"
+      ],
+      [
+        ":app:preDebugBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":app:preDebugUnitTestBuild",
+        "0s",
+        "UP-TO-DATE"
+      ],
+      [
+        ":",
+        "0s",
+        "(total)"
+      ]
+    ]
+  },
+  "installed_invocations": [
+    {
+      "path": "Paintroid/androidTest-results/summary.json",
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "elapsed_seconds": 86.08366760899992,
+      "timed_out": false,
+      "errors": []
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/summary.json",
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "elapsed_seconds": 8.475205121000045,
+      "timed_out": false,
+      "errors": []
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/summary.json",
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "elapsed_seconds": 10.181886990999942,
+      "timed_out": false,
+      "errors": []
+    },
+    {
+      "path": "app/androidTest-results/summary.json",
+      "success": true,
+      "expected_tests": 17,
+      "completed_tests": 17,
+      "elapsed_seconds": 158.05721576899998,
+      "timed_out": false,
+      "errors": []
+    }
+  ],
+  "junit": {
+    "suites": 71,
+    "tests": 700,
+    "failures": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suite_seconds": 235.716
+  },
+  "commons_suites": [
+    {
+      "name": "org.catrobat.paintroid.local.CommonsAttributionTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.431",
+      "timestamp": "2026-10-09T14:45:01.442Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsBlankMapsTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.704",
+      "timestamp": "2026-10-09T14:45:02.880Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.464",
+      "timestamp": "2026-10-09T14:45:03.593Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsImportChangeTranslationTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.941",
+      "timestamp": "2026-10-09T14:45:06.714Z"
+    }
+  ],
+  "profile_caveat": "Actual profile shows CMake native compilation in the lint invocation, not the JVM invocation. The corrected displayed names describe that placement; task coverage and all deadlines remain satisfied. Profile task durations can overlap and must not be added as exclusive wall time.",
+  "postmerge": {
+    "event": "push",
+    "branch": "develop",
+    "terminal_run_status": "completed",
+    "terminal_run_conclusion": "success",
+    "accepted_pr_head": "083cd7b955836f88a0822f86f734edce9bfb6e06",
+    "merge_parents": [
+      "8a75b825131f0b24c55a40a3636e9e70792037a8",
+      "083cd7b955836f88a0822f86f734edce9bfb6e06"
+    ],
+    "tree_matches_accepted_pr_exactly": true,
+    "not_a_synthetic_merge": "This run tests the real merged develop commit55a6158, not a PR synthetic ref."
+  },
+  "archive": {
+    "file": "verified-ci-evidence.zip",
+    "bytes": 216190,
+    "sha256": "36413b7dabe3d4a16ace6ec3dc3e320ec1c64974b094505d9bb73d03bfb2f4fc",
+    "includes": "All JUnit identities/XML, lint reports, complete timing logs and local profile reports, all installed invocation/restart records, full raw jobs and artifact inventories. Unrelated rendered previews and large system logcat are inventoried rather than duplicated."
+  },
+  "limits": "API35 emulator coverage only; API30/35 JVM probes are not two installed-device runs. No new physical-device, TalkBack or layout acceptance. This green run does not erase the two older aggregate timeouts."
+}
