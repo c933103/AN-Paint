@@ -585,7 +585,11 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
             val viewport=RectF(rulerInset,rulerInset,width-bar,height-bar).apply {inset(4*pixels,4*pixels)}
             val caption=VerticalCanvasCaption(ui(R.string.ui_rotate),text,viewport.height(),direction)
             val screen=toScreen(grip.x,grip.y)
-            val origin=caption.beside(screen,viewport,10*pixels)
+            val selection=s.geometry.bounds()
+            val first=toScreen(selection.left,selection.top);val last=toScreen(selection.right,selection.bottom)
+            // Include resize-box half-width, outline stroke and antialias clearance.
+            val avoid=RectF(first.x,first.y,last.x,last.y).apply {inset(-7*pixels,-7*pixels)}
+            val origin=caption.beside(screen,viewport,10*pixels,avoid)
             canvas.save();canvas.translate(grip.x,grip.y);canvas.scale(1/zoom,1/zoom)
             caption.draw(canvas,origin.x-screen.x,origin.y-screen.y)
             canvas.restore()

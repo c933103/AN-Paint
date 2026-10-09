@@ -40,6 +40,8 @@ class VerticalCanvasCaptionSourceTest(unittest.TestCase):
         self.assertIn('typeface=VerticalText.uiTypeface(context)', vertical)
         self.assertIn('val viewport=RectF(rulerInset,rulerInset,width-bar,height-bar)', vertical)
         self.assertIn('val screen=toScreen(grip.x,grip.y)', vertical)
+        self.assertIn('val selection=s.geometry.bounds()', vertical)
+        self.assertIn('val origin=caption.beside(screen,viewport,10*pixels,avoid)', vertical)
         self.assertIn('canvas.save();canvas.translate(grip.x,grip.y);canvas.scale(1/zoom,1/zoom)', vertical)
         self.assertIn('caption.draw(canvas,origin.x-screen.x,origin.y-screen.y)', vertical)
         self.assertIn('canvas.restore()', vertical)

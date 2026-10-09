@@ -34,7 +34,7 @@ internal class VerticalCanvasCaption(text: String,source: Paint,availableHeight:
      * If neither side fits, contain a fitting box without moving the actual grip.
      * Oversized captions keep their text and the caller's existing viewport clip.
      */
-    fun beside(grip: PointF,viewport: RectF,gap: Float): PointF {
+    fun beside(grip: PointF,viewport: RectF,gap: Float,avoid: RectF?=null): PointF {
         val right=grip.x+gap
         val left=grip.x-gap-width
         val preferred=if(direction==TextDirection.VERTICAL_LR) right else left
@@ -48,6 +48,20 @@ internal class VerticalCanvasCaption(text: String,source: Paint,availableHeight:
         }
         val y=if(height<=viewport.height()) (grip.y-height/2).coerceIn(viewport.top,viewport.bottom-height)
             else viewport.centerY()-height/2
-        return PointF(x,y)
+        val origin=PointF(x,y)
+        if(avoid==null || width>viewport.width() || height>viewport.height()) return origin
+        fun box(point: PointF)=RectF(point.x,point.y,point.x+width,point.y+height)
+        if(!RectF.intersects(box(origin),avoid)) return origin
+        // Try nearby positions outside the selection's screen-space bounds.
+        // Keep the visible grip clear too; it must remain readable and reachable.
+        val gripBox=RectF(grip.x-gap,grip.y-gap,grip.x+gap,grip.y+gap)
+        val candidates=listOf(PointF(alternate,y),PointF(x,avoid.top-height),PointF(x,avoid.bottom),
+            PointF(avoid.left-width,y),PointF(avoid.right,y))
+        return candidates.filter {point ->
+            val bounds=box(point)
+            viewport.contains(bounds) && !RectF.intersects(bounds,avoid) && !RectF.intersects(bounds,gripBox)
+        }.minByOrNull {point ->
+            val dx=point.x-x;val dy=point.y-y;dx*dx+dy*dy
+        } ?: origin // No fitting candidate: preserve the bounded placement, never move the grip.
     }
 }

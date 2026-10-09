@@ -146,7 +146,32 @@ class VerticalCanvasCaptionTest {
     @Test fun everyVerticalRotationProfileMatchesTheNativeReferenceAtFitWithoutEditingTheDocument() {
         for(tag in verticalTags) withDocument(language(tag)) {board,document ->
             document.select(RectF(80f,70f,240f,160f));board.fit()
+            if(tag=="mnc-Mong") {
+                val measured=caption(board);val viewport=captionViewport(board);val grip=screenGrip(board)
+                val gap=10*board.resources.displayMetrics.density;val avoid=selectionAvoid(board)
+                val oldOrigin=referenceOrigin(measured,grip,viewport,gap)
+                assertTrue("The Manchu Fit fixture must expose the previous outline overlap",RectF.intersects(captionBox(measured,oldOrigin),avoid))
+                val expectedOrigin=referenceOrigin(measured,grip,viewport,gap,avoid)
+                val expectedBox=captionBox(measured,expectedOrigin)
+                // In this representative scene, the nearest free position is directly above
+                // the selection. These expectations do not call the production caption helper.
+                assertEquals(oldOrigin.x,expectedOrigin.x,.001f)
+                assertEquals(avoid.top,expectedBox.bottom,.001f)
+                assertTrue(expectedOrigin.y<oldOrigin.y)
+                assertTrue(viewport.contains(expectedBox));assertFalse(RectF.intersects(expectedBox,avoid))
+                assertFalse(RectF.intersects(expectedBox,RectF(grip.x-gap,grip.y-gap,grip.x+gap,grip.y+gap)))
+            }
             assertCanvasReference("rotation-fit-$tag",board,saveSuccess=true)
+            if(tag=="mnc-Mong") {
+                document.selection!!.rotation=32f
+                val measured=caption(board);val viewport=captionViewport(board);val grip=screenGrip(board)
+                val avoid=selectionAvoid(board)
+                val origin=referenceOrigin(measured,grip,viewport,10*board.resources.displayMetrics.density,avoid)
+                val box=captionBox(measured,origin)
+                assertTrue("The rotated Manchu caption has room inside the viewport",viewport.contains(box))
+                assertFalse("The rotated Manchu caption must clear the expanded screen-space selection bounds",RectF.intersects(box,avoid))
+                assertCanvasReference("rotation-fit-mnc-Mong-rotated-32",board,saveSuccess=true)
+            }
         }
     }
 
@@ -175,7 +200,7 @@ class VerticalCanvasCaptionTest {
                 assertEquals(referenceSize.height(),measured.bounds.height(),.001f)
                 val viewport=captionViewport(board)
                 val grip=screenGrip(board)
-                val origin=referenceOrigin(measured,grip,viewport,10*d)
+                val origin=referenceOrigin(measured,grip,viewport,10*d,selectionAvoid(board))
                 assertTrue("$tag/$edge horizontal containment",origin.x>=viewport.left-.001f && origin.x+measured.bounds.width()<=viewport.right+.001f)
                 assertTrue("$tag/$edge vertical containment",origin.y>=viewport.top-.001f && origin.y+measured.bounds.height()<=viewport.bottom+.001f)
                 assertCanvasReference("rotation-$tag-$edge-$zoom-grid-$grid",board)
@@ -210,15 +235,32 @@ class VerticalCanvasCaptionTest {
         canvas.restore()
     }
 
-    private fun referenceOrigin(caption: Caption,grip: PointF,viewport: RectF,gap: Float): PointF {
+    private fun captionBox(caption: Caption,origin: PointF)=RectF(origin.x,origin.y,origin.x+caption.bounds.width(),origin.y+caption.bounds.height())
+
+    private fun referenceOrigin(caption: Caption,grip: PointF,viewport: RectF,gap: Float,avoid: RectF?=null): PointF {
         val width=caption.bounds.width();val height=caption.bounds.height()
-        val candidates=if(caption.direction==TextDirection.VERTICAL_LR) listOf(grip.x+gap,grip.x-gap-width)
+        val sides=if(caption.direction==TextDirection.VERTICAL_LR) listOf(grip.x+gap,grip.x-gap-width)
             else listOf(grip.x-gap-width,grip.x+gap)
         val x=if(width>viewport.width()) viewport.centerX()-width/2 else
-            candidates.firstOrNull {it>=viewport.left && it+width<=viewport.right}
-                ?: max(viewport.left,min(viewport.right-width,candidates.first()))
+            sides.firstOrNull {it>=viewport.left && it+width<=viewport.right}
+                ?: max(viewport.left,min(viewport.right-width,sides.first()))
         val y=if(height>viewport.height()) viewport.centerY()-height/2 else max(viewport.top,min(viewport.bottom-height,grip.y-height/2))
-        return PointF(x,y)
+        val original=PointF(x,y)
+        if(avoid==null || width>viewport.width() || height>viewport.height() || !RectF.intersects(captionBox(caption,original),avoid)) return original
+        val gripBox=RectF(grip.x-gap,grip.y-gap,grip.x+gap,grip.y+gap)
+        val alternatives=listOf(PointF(sides[1],y),PointF(x,avoid.top-height),PointF(x,avoid.bottom),
+            PointF(avoid.left-width,y),PointF(avoid.right,y))
+        var nearest: PointF?=null;var distance=Float.POSITIVE_INFINITY
+        for(candidate in alternatives) {
+            val box=captionBox(caption,candidate)
+            if(box.left<viewport.left || box.top<viewport.top || box.right>viewport.right || box.bottom>viewport.bottom ||
+                RectF.intersects(box,avoid) || RectF.intersects(box,gripBox)) continue
+            val dx=candidate.x-x;val dy=candidate.y-y;val movement=dx*dx+dy*dy
+            if(movement<distance) {nearest=candidate;distance=movement}
+        }
+        // Geometrically impossible avoidance remains the original bounded placement; the
+        // separate helper geometry tests cover an obstacle occupying the entire viewport.
+        return nearest ?: original
     }
 
     private fun assemblyReference(board: AssemblyCanvas,legacy: Boolean): Bitmap {
@@ -240,6 +282,13 @@ class VerticalCanvasCaptionTest {
     private fun captionViewport(board: PaintCanvas): RectF {
         val d=board.resources.displayMetrics.density
         return RectF(board.rulerInset+4*d,board.rulerInset+4*d,board.width-24*d,board.height-24*d)
+    }
+
+    private fun selectionAvoid(board: PaintCanvas): RectF {
+        val corners=board.document.selection!!.geometry.corners().map {board.toScreen(it.x,it.y)}
+        val margin=7*board.resources.displayMetrics.density
+        return RectF(corners.minOf {it.x}-margin,corners.minOf {it.y}-margin,
+            corners.maxOf {it.x}+margin,corners.maxOf {it.y}+margin)
     }
 
     private fun caption(board: PaintCanvas): Caption {
@@ -290,14 +339,23 @@ class VerticalCanvasCaptionTest {
 
     private fun canvasReference(board: PaintCanvas,legacyCaption: Boolean): Bitmap {
         val selection=board.document.selection!!
-        // Capture the real viewport/background with the nonfloating selection temporarily hidden.
-        // No gesture or document operation is invoked, and the exact selection object is restored.
+        // This reference models the controlled static scenes below, not every editor overlay.
+        // Reject extra state rather than silently omit it from the exact pixel comparison.
         assertFalse(selection.floating)
-        val field=PaintDocument::class.java.getDeclaredField("selection").apply {isAccessible=true}
-        val bitmap=try {field.set(board.document,null);render(board)} finally {field.set(board.document,selection)}
+        assertNull(selection.mask);assertNull(selection.outline);assertNull(board.trim)
+        assertFalse(board.hasActiveGesture);assertFalse(board.hasPendingEdit)
+        assertFalse(board.cursorMode);assertFalse(board.magnifierVisible)
+        assertNull(board.background);assertNull(board.foreground)
+        assertTrue("These grid scenes have rulers but no per-pixel grid",!board.grid || board.zoom<8f)
+        val bitmap=Bitmap.createBitmap(board.width,board.height,Bitmap.Config.ARGB_8888)
         val canvas=Canvas(bitmap);val density=board.resources.displayMetrics.density;val d=density/board.zoom
+        canvas.drawColor(EditorColours.surfaceDim)
         canvas.save();canvas.clipRect(board.rulerInset,board.rulerInset,board.width-20*density,board.height-20*density)
         canvas.translate(board.panX,board.panY);canvas.scale(board.zoom,board.zoom)
+        val source=board.document.bitmap
+        canvas.drawRect(0f,0f,source.width.toFloat(),source.height.toFloat(),Paint().apply {color=Color.WHITE})
+        val overview=PaintCanvas::class.java.getDeclaredField("bitmapOverview").apply {isAccessible=true}.get(board) as CanvasBitmapOverview
+        overview.draw(canvas,source,board.zoom)
         val corners=selection.geometry.corners()
         val outline=Path().apply {moveTo(corners[0].x,corners[0].y);corners.drop(1).forEach {lineTo(it.x,it.y)};close()}
         canvas.drawPath(outline,Paint().apply {
@@ -316,7 +374,7 @@ class VerticalCanvasCaptionTest {
             canvas.drawText(ui(R.string.ui_rotate),grip.x+10*d,grip.y+4*d,paint)
         } else {
             val caption=caption(board);val screen=board.toScreen(grip.x,grip.y)
-            val origin=referenceOrigin(caption,screen,captionViewport(board),10*density)
+            val origin=referenceOrigin(caption,screen,captionViewport(board),10*density,selectionAvoid(board))
             canvas.save();canvas.translate(grip.x,grip.y);canvas.scale(1/board.zoom,1/board.zoom)
             drawReferenceCaption(canvas,caption,origin.x-screen.x,origin.y-screen.y);canvas.restore()
         }
@@ -325,7 +383,9 @@ class VerticalCanvasCaptionTest {
             canvas.drawRect(rect,fill);canvas.drawRect(rect,edge)
         }
         canvas.restore()
-        // Production draws rulers after selection controls, including their half-pixel boundary ink.
+        // Paint viewport chrome once, in production order. Starting with board.draw() and then
+        // repainting rulers would double their antialiased half-pixel boundary strokes.
+        PaintCanvas::class.java.getDeclaredMethod("drawScrollbars",Canvas::class.java).apply {isAccessible=true}.invoke(board,canvas)
         if(board.grid) PaintCanvas::class.java.getDeclaredMethod("drawRulers",Canvas::class.java).apply {isAccessible=true}.invoke(board,canvas)
         return bitmap
     }

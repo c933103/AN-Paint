@@ -50,6 +50,25 @@ class VerticalCanvasCaptionGeometryTest {
             assertTrue(tiny.x.isFinite());assertTrue(tiny.y.isFinite())
         }
     }
+    @Test fun fittingCaptionsAvoidTheSelectionAndImpossibleCasesKeepTheBoundedFallback() {
+        val paint=Paint().apply {textSize=14f}
+        val viewport=RectF(4f,4f,236f,316f)
+        val grip=PointF(120f,140f)
+        val selection=RectF(50f,160f,200f,250f)
+        for(direction in listOf(TextDirection.VERTICAL_LR,TextDirection.VERTICAL_RL)) {
+            val caption=VerticalCanvasCaption("Rotate slowly",paint,300f,direction)
+            val original=caption.beside(grip,viewport,10f)
+            fun box(point: PointF)=RectF(point.x,point.y,point.x+caption.width,point.y+caption.height)
+            assertTrue("Fixture must exercise an original outline overlap",RectF.intersects(box(original),selection))
+            val origin=caption.beside(grip,viewport,10f,selection)
+            assertTrue(viewport.contains(box(origin)))
+            assertFalse(RectF.intersects(box(origin),selection))
+            assertFalse(RectF.intersects(box(origin),RectF(110f,130f,130f,150f)))
+            // An obstacle covering the whole viewport admits no outside caption.
+            assertEquals(original,caption.beside(grip,viewport,10f,RectF(viewport)))
+        }
+    }
+
     @Test fun screenPixelCaptionSurvivesCounterScalingAtOneBillionthZoom() {
         val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=Color.BLACK;textSize=14f}
         for(direction in listOf(TextDirection.VERTICAL_LR,TextDirection.VERTICAL_RL)) {
