@@ -1,0 +1,90 @@
+[
+  {
+    "font_shell": "timeout -s KILL 0.01s sleep 1",
+    "stdout": "\nANPAINT_FONT_EXIT=137\n",
+    "stderr": "",
+    "remaining_ms": 9959,
+    "timestamp": "10-09 15:50:38.567",
+    "exit_status": 137
+  },
+  {
+    "font_shell": "settings put system font_scale 1.0",
+    "stdout": "\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9931,
+    "timestamp": "10-09 15:50:38.595",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "am wait-for-broadcast-barrier --flush-broadcast-loopers",
+    "stdout": "Loopers drained!\nTest barrier passed\n\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9905,
+    "timestamp": "10-09 15:50:38.621",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "settings put system font_scale 2.0",
+    "stdout": "\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9969,
+    "timestamp": "10-09 15:50:38.652",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "am wait-for-broadcast-barrier --flush-broadcast-loopers",
+    "stdout": "Loopers drained!\nTest barrier failed due to e6b0c5e 3213:com.google.android.apps.messaging/u0a134 runnable at +438ms because NORMAL\nTest barrier passed\n\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9890,
+    "timestamp": "10-09 15:50:38.732",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "settings put system font_scale 1.0",
+    "stdout": "\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9935,
+    "timestamp": "10-09 15:50:40.642",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "am wait-for-broadcast-barrier --flush-broadcast-loopers",
+    "stdout": "Waiting for 3 loopers to drain...\nLoopers drained!\nTest barrier failed due to e6b0c5e 3213:com.google.android.apps.messaging/u0a134 runnable at +180ms because NORMAL\nTest barrier passed\n\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9573,
+    "timestamp": "10-09 15:50:41.004",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "settings put system font_scale 2.0",
+    "stdout": "\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9935,
+    "timestamp": "10-09 15:50:41.075",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "am wait-for-broadcast-barrier --flush-broadcast-loopers",
+    "stdout": "Waiting for 2 loopers to drain...\nLoopers drained!\nTest barrier passed\n\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9650,
+    "timestamp": "10-09 15:50:41.360",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "settings put system font_scale 1.0",
+    "stdout": "\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9908,
+    "timestamp": "10-09 15:50:45.199",
+    "exit_status": 0
+  },
+  {
+    "font_shell": "am wait-for-broadcast-barrier --flush-broadcast-loopers",
+    "stdout": "Loopers drained!\nTest barrier failed due to e6b0c5e 3213:com.google.android.apps.messaging/u0a134 runnable at +439ms because NORMAL\nTest barrier passed\n\nANPAINT_FONT_EXIT=0\n",
+    "stderr": "",
+    "remaining_ms": 9774,
+    "timestamp": "10-09 15:50:45.333",
+    "exit_status": 0
+  }
+]
