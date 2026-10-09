@@ -26,6 +26,19 @@ import java.util.Locale
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[21],shadows=[Api21ViewBackedToast::class])
 class LocaleTypographyApi21Test {
+    @Test fun tooltipSetterDoesNotLinkApi26MethodsOrChangeApi21Interactions() {
+        val previous=Locale.getDefault()
+        try {
+            Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+            val view=android.view.View(RuntimeEnvironment.getApplication()).apply {contentDescription="original"}
+            var clicks=0
+            view.setOnLongClickListener {clicks++;true}
+            for(text in listOf("𡨸喃",null,"")) org.catrobat.paintroid.classic.LocaleTooltip.set(view,text)
+            assertEquals("original",view.contentDescription)
+            assertTrue(view.performLongClick());assertEquals(1,clicks)
+        } finally {Locale.setDefault(previous)}
+    }
+
     @Test fun nomFaceReachesApi21ControlsAndToastWithoutReplacingDrawingChoices() {
         val previous=Locale.getDefault()
         try {

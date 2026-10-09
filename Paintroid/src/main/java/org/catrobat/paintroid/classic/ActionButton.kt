@@ -31,7 +31,7 @@ class ActionButton(context: Context, val icon: EditIcon) : View(context) {
     private val collapseGlyph = if (icon == EditIcon.SIDEBAR) CopyleftIcon(context, R.drawable.breeze_up) else null
     init {
         isClickable = true; isFocusable = true; contentDescription = icon.label
-        if (android.os.Build.VERSION.SDK_INT >= 26) tooltipText = icon.label
+        LocaleTooltip.set(this,icon.label)
     }
     override fun onDraw(c: Canvas) {
         super.onDraw(c)

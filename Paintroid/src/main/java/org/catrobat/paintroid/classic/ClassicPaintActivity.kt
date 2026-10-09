@@ -331,7 +331,7 @@ class ClassicPaintActivity : Activity() {
                     isEnabled=menuActionEnabled();columnHeightDp=112
                     if(name=="View" && index==1) {
                         setOnLongClickListener {message(ui(R.string.ui_pixel_grid_help33));true}
-                        if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=ui(R.string.ui_pixel_grid_help33)
+                        LocaleTooltip.set(this,ui(R.string.ui_pixel_grid_help33))
                     }
                 }
             }
@@ -551,7 +551,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun panelButton(value: String,tagName: String,icon: Int,action: () -> Unit)=PanelToolButton(this).apply {
         text=value;contentDescription=value;tag=tagName;labelledIcon(icon)
-        if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=value
+        LocaleTooltip.set(this,value)
         setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}
     }
 
@@ -675,7 +675,7 @@ class ClassicPaintActivity : Activity() {
             it.visibility=if(paintCanvas.cursorAvailable) View.VISIBLE else View.GONE
             it.text=ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_stop31 else R.string.ui_cursor_start31)
             it.isEnabled=!busy;it.isSelected=paintCanvas.cursorDrawing;it.contentDescription=it.text
-            if(android.os.Build.VERSION.SDK_INT>=26) it.tooltipText=it.text
+            LocaleTooltip.set(it,it.text)
         }
         root.findViewWithTag<PanelToolButton>("command_View_2")?.isSelected=paintCanvas.cursorMode
         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
