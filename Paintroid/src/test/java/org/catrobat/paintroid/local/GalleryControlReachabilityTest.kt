@@ -14,6 +14,7 @@ import android.util.DisplayMetrics
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.EditText
 import android.widget.TextView
@@ -29,20 +30,39 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.Implementation
+import org.robolectric.annotation.Implements
+import org.robolectric.annotation.RealObject
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowAlertDialog
 import org.robolectric.shadows.ShadowDisplayManager
+import org.robolectric.shadows.ShadowWebView
 import org.robolectric.util.ReflectionHelpers
 import java.io.File
 import java.util.Locale
 
 /** Real Activity controls remain reachable by scrolling, focus and clicks in small windows. */
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk=[30,35],qualifiers="w320dp-h640dp-port-xhdpi")
+@Config(sdk=[30,35],qualifiers="w320dp-h640dp-port-xhdpi",shadows=[GalleryControlReachabilityTest.MeasuringWebView::class])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class GalleryControlReachabilityTest {
+    /** Robolectric's provider delegates onMeasure to a no-op proxy. Model only
+     * the parent's measurement contract; installed tests cover the real provider. */
+    @Implements(WebView::class)
+    class MeasuringWebView: ShadowWebView() {
+        @RealObject private lateinit var web: WebView
+        var widthSpec=0; private set
+        var heightSpec=0; private set
+        @Implementation protected fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+            widthSpec=widthMeasureSpec;heightSpec=heightMeasureSpec
+            ReflectionHelpers.callInstanceMethod<Unit>(web,"setMeasuredDimension",
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,View.getDefaultSize(0,widthMeasureSpec)),
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,View.getDefaultSize(0,heightMeasureSpec)))
+        }
+    }
+
     @Test @Config(fontScale=1f)
     fun portraitControlsAtNormalText()=check()
 
@@ -172,6 +192,10 @@ class GalleryControlReachabilityTest {
                     assertTrue(root.findViewWithTag<View>("gallery_legacy_credits").performClick())
                     assertEquals(LegacyImageCreditsActivity::class.java.name,shadowOf(activity).nextStartedActivity.component!!.className)
                     if(VerticalText.uiVertical()) assertSeparateScrollGestures(root,status,controls)
+                    val measured=shadowOf(web) as MeasuringWebView
+                    assertEquals(View.MeasureSpec.EXACTLY,View.MeasureSpec.getMode(measured.widthSpec))
+                    assertEquals(View.MeasureSpec.EXACTLY,View.MeasureSpec.getMode(measured.heightSpec))
+                    recordWindow(root,tag,"after-actions")
                     val visible=Rect()
                     assertTrue("WebView must remain visible",web.getGlobalVisibleRect(visible))
                     assertEquals(web.height,visible.height());assertEquals(web.width,visible.width())
@@ -266,7 +290,17 @@ class GalleryControlReachabilityTest {
                 .put("native_line_count",(view as? TextView)?.layout?.lineCount ?: JSONObject.NULL))
             } finally {node.recycle()}
         }
-        return JSONObject().put("decor_width",root.width).put("decor_height",root.height)
+        fun browser(view: View): WebView? {
+            if(view is WebView) return view
+            if(view is ViewGroup) for(i in 0 until view.childCount) browser(view.getChildAt(i))?.let {return it}
+            return null
+        }
+        val web=browser(root)
+        val webVisible=Rect();val webIntersects=web?.getGlobalVisibleRect(webVisible) ?: false
+        return JSONObject().put("browser_width",web?.width).put("browser_height",web?.height)
+            .put("browser_visible",webVisible.toString()).put("browser_intersects",webIntersects)
+            .put("browser_measurement","Parent MeasureSpecs modeled by a host-only shadow; real provider is checked by GalleryViewportDeviceTest")
+            .put("decor_width",root.width).put("decor_height",root.height)
             .put("view_root_width",ReflectionHelpers.getField<Int>(viewRoot,"mWidth"))
             .put("view_root_height",ReflectionHelpers.getField<Int>(viewRoot,"mHeight"))
             .put("display",display.toString()).put("window",window.toString()).put("views",views)

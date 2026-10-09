@@ -40,6 +40,7 @@ class GalleryControlsLayoutTest {
         var completedCases=0
         val tags=AppLanguage.tags(app)
         val nodes=org.json.JSONArray()
+        val hintMeasurements=org.json.JSONArray()
         // Android leaves detached View accessibility nodes uninitialized. Reuse
         // one real window for the entire catalogue matrix, not one per case.
         val controller=Robolectric.buildActivity(Activity::class.java)
@@ -106,6 +107,12 @@ class GalleryControlsLayoutTest {
                     for(search in searches) {
                         search.setText("")
                         measure(search,widthDp)
+                        val hint=org.robolectric.util.ReflectionHelpers.getField<android.text.Layout>(search,"mHintLayout")
+                        hintMeasurements.put(org.json.JSONObject().put("locale",tag).put("width_dp",widthDp)
+                            .put("hint",search.hint.toString()).put("view_height",search.height).put("hint_height",hint.height)
+                            .put("scroll_y",search.scrollY).put("extended_padding_top",search.extendedPaddingTop)
+                            .put("extended_padding_bottom",search.extendedPaddingBottom).put("empty_text_height",search.layout.height).put("total_padding_top",search.totalPaddingTop)
+                            .put("total_padding_bottom",search.totalPaddingBottom).put("hint_draw_top",hintDrawTop(search)))
                         assertFullLayout("$tag/$widthDp/search hint",search,search.hint.toString())
                         assertNull("An editable field must not mask its live value with a fixed description",search.contentDescription)
                         search.setText("A long editable query ".repeat(12))
@@ -124,7 +131,7 @@ class GalleryControlsLayoutTest {
             val folder=java.io.File("build/reports/gallery-controls-matrix").apply {mkdirs()}
             java.io.File(folder,"api${RuntimeEnvironment.getApiLevel()}-font$scale.json").writeText(org.json.JSONObject()
                 .put("offered_catalogues",tags.size).put("expected_cases",tags.size*3).put("completed_cases",completedCases)
-                .put("accessibility_nodes",nodes)
+                .put("accessibility_nodes",nodes).put("hint_measurements",hintMeasurements)
                 .put("elapsed_seconds",(System.nanoTime()-started)/1e9).put("widths_dp",org.json.JSONArray(listOf(240,320,640)))
                 .put("evidence_kind","Robolectric NATIVE control measurement; separate JUnit result determines success").toString(2)+"\n")
             activity.finish();controller.pause().stop().destroy()
@@ -150,12 +157,24 @@ class GalleryControlsLayoutTest {
     }
 
     internal companion object {
+        private fun hintDrawTop(view: TextView)=view.extendedPaddingTop+
+            org.robolectric.util.ReflectionHelpers.callInstanceMethod<Int>(view,"getVerticalOffset",
+                org.robolectric.util.ReflectionHelpers.ClassParameter.from(java.lang.Boolean.TYPE,false))-view.scrollY
+
         fun assertFullLayout(label: String,view: TextView,expected: String=view.text.toString()) {
             assertNull("$label must not ellipsize",view.ellipsize)
-            val layout=requireNotNull(if(view.text.isEmpty() && view.hint!=null)
+            val showingHint=view.text.isEmpty() && view.hint!=null
+            val layout=requireNotNull(if(showingHint)
                 org.robolectric.util.ReflectionHelpers.getField<android.text.Layout>(view,"mHintLayout") else view.layout)
             assertEquals("$label final characters",expected.length,layout.getLineEnd(layout.lineCount-1))
-            assertTrue("$label measured text height ${layout.height} exceeds ${view.height-view.totalPaddingTop-view.totalPaddingBottom}",
+            if(showingHint) {
+                // TextView.onDraw selects the hint's gravity offset (false).
+                // totalPadding deliberately uses the empty edit buffer (true).
+                val top=hintDrawTop(view)
+                assertTrue("$label hint top $top is clipped",top>=view.extendedPaddingTop)
+                assertTrue("$label hint bottom ${top+layout.height} is clipped at ${view.height-view.extendedPaddingBottom}",
+                    top+layout.height<=view.height-view.extendedPaddingBottom)
+            } else assertTrue("$label measured text height ${layout.height} exceeds ${view.height-view.totalPaddingTop-view.totalPaddingBottom}",
                 layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom)
             for(line in 0 until layout.lineCount) {
                 assertEquals("$label ellipsis at $line",0,layout.getEllipsisCount(line))

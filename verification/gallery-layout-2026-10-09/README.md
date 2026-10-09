@@ -75,3 +75,10 @@ per catalogue. No production behavior, strings or workflow deadline changes.
 The complete combined Python suite passed again: 326 tests in 50.557 seconds,
 zero failures/errors/skips (`logs/host-python-fixture.log`). Android verification
 of the corrected fixtures remains pending the next CI run.
+
+The [second complete run](second-ci-47208ff/README.md) confirmed attached native
+accessibility nodes and correctly resized rotation windows, then failed later
+hint-height/WebView checks. The [framework-contract correction and independent
+installed browser oracle](review-native-contracts.md) preserve those requirements
+while making their evidence boundaries explicit. One new installed case runs under
+the unchanged ordinary-app deadline; its budget fit is not yet established.
