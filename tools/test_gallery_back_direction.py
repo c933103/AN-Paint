@@ -45,7 +45,7 @@ class GalleryBackDirectionContractTest(unittest.TestCase):
         self.assertIn('for((index,tag) in tags.withIndex())', source)
         self.assertIn('controller.pause().stop().saveInstanceState(state).destroy()', source)
         self.assertIn('controller=open(IllustrationSource.COMMONS,state)', source)
-        self.assertIn('syntheticResourceMutationKeepsTheOldLocaleCacheKey', source)
+        self.assertNotIn('syntheticResourceMutationKeepsTheOldLocaleCacheKey', source)
         self.assertIn('browser.pushEntryToHistory', source)
         self.assertIn('assertEquals(1,browser.goBackInvocations)', source)
         self.assertIn('"" to "→"', source)

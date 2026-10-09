@@ -60,3 +60,14 @@ Explicit host recreation establishes save/restore behavior and fresh language wr
 if it passes. It does not independently establish real framework-triggered locale
 recreation. Fresh exact-head compilation and tests are required; the failed original
 result is retained independently.
+
+## Later verified readback
+
+The supported Sediment materialization route subsequently retrieved this exact
+original ZIP and verified its reported SHA256. The unedited gallery JUnit XML and
+140-tag JSONs are now included. Both original failures expected `←` and observed
+`→` on the synthetic helper's return to LTR. All 140 tags completed on both APIs.
+The [second-run record](../second-ci-f226b4d/README.md) corrects the earlier specific
+cache-identity hypothesis: that diagnostic assumption was disproven and removed.
+The raw-log Git blob transfer is still paused independently; its contents are not
+included or repackaged as a substitute.

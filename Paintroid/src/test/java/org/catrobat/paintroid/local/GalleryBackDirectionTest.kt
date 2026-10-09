@@ -4,7 +4,6 @@ package org.catrobat.paintroid.local
 import android.app.LocaleManager
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -128,8 +127,8 @@ class GalleryBackDirectionTest {
             for((tag,expected) in listOf("ar" to "→","en-001" to "←","he" to "→","en-001" to "←")) {
                 val previous=controller.get()
                 val state=Bundle()
-                // configurationChange() mutates cached old Resources in Robolectric. Replay the
-                // save/destroy/create lifecycle with fresh wrapping, without rewriting that cache.
+                // The host configurationChange() path gave a stale arrow on return to LTR.
+                // Replay save/destroy/create with fresh wrapping, without mutating Resources.
                 // This does not establish delivery of a real OS-triggered locale recreation.
                 controller.pause().stop().saveInstanceState(state).destroy()
                 select(tag)
@@ -147,28 +146,6 @@ class GalleryBackDirectionTest {
                 shadowOf(web).pushEntryToHistory("https://example.invalid/second")
             }
         } finally {close(controller)}
-    }
-
-    /** Negative fixture control: a synthetic Resources mutation can poison its old locale key. */
-    @Test @Suppress("DEPRECATION")
-    fun syntheticResourceMutationKeepsTheOldLocaleCacheKey()=withLanguageState {
-        select("en-001")
-        val cached=AppLanguage.wrap(app).resources
-        val original=Configuration(cached.configuration)
-        try {
-            cached.updateConfiguration(Configuration(original).apply {
-                val locale=Locale.forLanguageTag("ar");setLocale(locale);setLayoutDirection(locale)
-            },cached.displayMetrics)
-            val reopened=AppLanguage.wrap(app).resources
-            assertEquals("The selected preference is still English","en-001",AppLanguage.selectedTag(app))
-            assertSame("Host reuses Resources under the original English override key",cached,reopened)
-            assertEquals("The synthetic mutation remains under that stale key","ar",reopened.configuration.locales[0].language)
-            assertEquals(View.LAYOUT_DIRECTION_RTL,reopened.configuration.layoutDirection)
-        } finally {
-            cached.updateConfiguration(original,cached.displayMetrics)
-            assertEquals("en-001",cached.configuration.locales[0].toLanguageTag())
-            assertEquals(View.LAYOUT_DIRECTION_LTR,cached.configuration.layoutDirection)
-        }
     }
 
     private fun select(tag: String) {

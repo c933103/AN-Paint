@@ -54,7 +54,7 @@ conditional and will not be changed merely to accommodate a failing runtime resu
 
 `GalleryBackDirectionTest` runs the production `MediaGalleryActivity` and actual
 Android Button/accessibility/layout code under Robolectric NATIVE API30/35 configurations.
-Its four methods produce eight configured JUnit executions:
+Its three methods produce six configured JUnit executions:
 
 1. Every one of the 140 offered app tags at font scale 2.0, with an independent
    expected RTL set (`ar`, `ckb`, `fa`, `fa-IR`, `he`, `ps`, `sd`, `ug`, `ur`, `yi`).
@@ -69,10 +69,7 @@ Its four methods produce eight configured JUnit executions:
    restoring browser history and checking the new arrow and working Back each time with
    a fresh wrapped locale context. This does not independently establish delivery of a
    real framework-triggered locale recreation or a real OS setting change.
-4. A narrow negative fixture control intentionally mutates cached English Resources
-   to Arabic, checks that reopening the English override reuses the stale cache entry,
-   and restores the exact original configuration in finally. It demonstrates the host
-   resource-key hazard without changing production logic or any navigation assertion.
+
 
 [ShadowWebView](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowWebView.java)
 records load URLs and uses test-populated history. It sends no provider requests.
@@ -112,8 +109,8 @@ regression checks without modifying the completed font-barrier fixture.
 
 See [the preserved first-run record](first-ci-072bb73/README.md). The run compiled
 all app/test APKs and passed lint and all 94 installed API35 checks, but failed two
-of 722 JVM tests at the locale-recreation arrow assertion. The revised host lifecycle
-and negative control require new exact-head CI; the original failure remains a failure.
+of 722 JVM tests at the locale-recreation arrow assertion. The revised host lifecycle passed in the second run. Its auxiliary identity control
+failed and is removed with its counterevidence preserved below; both runs remain failed.
 
 ## Corrected combined-head local checks
 
@@ -121,3 +118,20 @@ All 352 Python tests pass in 51.216 seconds against the accepted Help compositio
 plus corrected fixture (`local/python-tests-corrected-combined.log`).
 Focused source contracts and `git diff --check` pass for this patch. Local Gradle remains unavailable
 for the verified wrapper-network reason above; exact-head hosted tests are required.
+
+## Verified second result and narrow diagnostic removal
+
+The [second-run record](second-ci-f226b4d/README.md) preserves the actual JUnit
+comparisons, complete suite inventory, all 140-locale results per API, and inspected
+RTL/LTR/vertical host captures. Artifact retrieval is resolved via the supported
+Sediment reference route, and both complete source ZIP hashes verify. The raw-log
+Git blob upload remains separately paused.
+
+All six production-view configurations pass. The only two second-run failures are
+an auxiliary Resources-object-identity assertion, which disproves that particular
+mechanism assumption. That diagnostic is removed; no production assertion is
+weakened. The original synthetic helper mismatch is observed, but its precise
+mechanism is not claimed as proven. Fresh exact-head CI/review remain required.
+
+Final local check after removing only the invalid diagnostic: all 352 Python tests
+pass in 50.770 seconds (`local/python-tests-final.log`).
