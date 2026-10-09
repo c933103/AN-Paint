@@ -69,12 +69,25 @@ class AppLanguageTest {
         assertEquals("English (International) [en-001]",AppLanguage.name("en-001"))
         assertEquals("Bahasa Indonesia [id]",AppLanguage.name("id"))
         assertEquals("Nederlands [nl]",AppLanguage.name("nl"))
-        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","tai" to "tdd","tt" to "tt-Cyrl")) {
+        for((before,after) in listOf("en" to "en-001","es" to "es-ES","ko" to "ko-KR","pt" to "pt-PT","ain" to "ain-Latn","cju" to "jje","tai" to "tdd","tt" to "tt-Cyrl","hak-Hant" to "hak-Hant-TW","hak-Latn" to "hak-Latn-TW")) {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",before).commit()
             assertEquals(after,AppLanguage.selectedTag(context))
         }
-        val starterTags=listOf("yue-Hant","yue-Latn","ryu","ain-Kana","ain-Latn","cju","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant","hak-Latn","wuu-Hans")
-        assertEquals(32,starterTags.size)
+        val completeLowResourceTags=listOf("jje","mnc-Mong","ryu","ain-Kana","ain-Latn")
+        assertTrue(tags.containsAll(completeLowResourceTags))
+        for(tag in completeLowResourceTags) {
+            assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
+            assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertNotEquals(listOf("Brush","Save","Cancel"),
+                listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel)))
+        }
+        val starterTags=listOf("yue-Hant","yue-Latn","af","ku","tt-Cyrl","tt-Latn","lv","et","is","la","oc","se","my","shn","km","lo","ceb","jv","bo","ug","za","tdd","mww","nan-Hant-TW","nan-Latn-TW","hak-Hant-TW","hak-Latn-TW","wuu-Hans")
+        assertEquals(28,starterTags.size)
         for(tag in starterTags) {
             assertTrue(tag,tag in tags);assertTrue(AppLanguage.name(tag).endsWith("[$tag]"))
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
@@ -82,8 +95,10 @@ class AppLanguageTest {
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
-            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn","ug","af","bo","lo")) assertNotEquals("File",wrapped.getString(R.string.ui_menu_file))
-            else assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            // A completed catalogue must no longer be pinned to its old English fallback.
+            if(tag in listOf("lv","et","is","oc","my","tt-Cyrl","tt-Latn","yue-Hant","yue-Latn","ug","af","bo","lo",
+                    "nan-Hant-TW","nan-Latn-TW","hak-Hant-TW","hak-Latn-TW","wuu-Hans"))
+                assertNotEquals(tag,"File",wrapped.getString(R.string.ui_menu_file))
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
@@ -104,6 +119,29 @@ class AppLanguageTest {
     }
 
     @Test fun pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode()=checkMongolianPickerRow(16f)
+    @Test fun manchuPickerUsesItsOwnJoinedVerticalAutonym()=checkMongolianPickerRow(16f,"mnc-Mong")
+
+    @Test fun nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom() {
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            awaitEditorStartup(activity)
+            val picker=AppLanguage.showPicker(activity) {}
+            val index=AppLanguage.tags(activity).indexOf("vi-Hani")+1
+            assertTrue(index>0)
+            val row=picker.listView.adapter.getView(index,null,picker.listView) as TextView
+            val font=org.catrobat.paintroid.classic.LocaleTypography.typeface(activity,Locale.forLanguageTag("vi-Hani"))
+            assertNotNull(font)
+            assertSame(font,row.typeface)
+            assertTrue(android.graphics.Paint().apply {typeface=row.typeface}.hasGlyph("𡨸"))
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
+    }
 
     @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
     fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)
@@ -111,21 +149,22 @@ class AppLanguageTest {
     @Test @Config(qualifiers="en-rUS-w900dp-h412dp-land-xhdpi")
     fun landscapePickerFitsTheFoldedMongolianOption()=checkMongolianPickerRow(16f)
 
-    private fun checkMongolianPickerRow(textSize: Float) {
+    private fun checkMongolianPickerRow(textSize: Float,tag: String="mn-Mong") {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             val list=picker.listView
             assertEquals("English (International) [en-001]",list.adapter.getItem(1))
-            val index=AppLanguage.tags(activity).indexOf("mn-Mong")+1
+            val index=AppLanguage.tags(activity).indexOf(tag)+1
             list.setSelectionFromTop(index,0)
             shadowOf(Looper.getMainLooper()).idle()
             val row=list.getChildAt(index-list.firstVisiblePosition) as TextView
             row.textSize=textSize
             shadowOf(Looper.getMainLooper()).idle()
             val layout=row.layout;val last=layout.lineCount-1
-            assertEquals("ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ [mn-Mong]",row.text.toString())
+            assertEquals(AppLanguage.name(tag),row.text.toString())
             assertEquals(row.text.length,layout.getLineEnd(last))
             val span=(row.text as android.text.Spanned).getSpans(0,row.text.length,android.text.style.ReplacementSpan::class.java).single()
             val font=android.graphics.Paint(row.paint).apply {typeface=android.graphics.Typeface.createFromAsset(activity.assets,"fonts/notosansmongolian.ttf")}
@@ -142,7 +181,7 @@ class AppLanguageTest {
             val mark=(row as android.widget.CheckedTextView).checkMarkDrawable.bounds
             assertEquals("Mongolian's radio must align with ordinary language rows",neighbour.checkMarkDrawable.bounds.left,mark.left)
             assertEquals(neighbour.checkMarkDrawable.bounds.right,mark.right)
-            val file=java.io.File("build/reports/classic-preview/language-mn-Mong-code-${textSize.toInt()}-${activity.resources.configuration.orientation}.png");file.parentFile.mkdirs()
+            val file=java.io.File("build/reports/classic-preview/language-$tag-code-${textSize.toInt()}-${activity.resources.configuration.orientation}.png");file.parentFile.mkdirs()
             file.outputStream().use {image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it)};image.recycle()
             val decor=picker.window!!.decorView
             val menu=android.graphics.Bitmap.createBitmap(decor.width,decor.height,android.graphics.Bitmap.Config.ARGB_8888)
@@ -165,6 +204,31 @@ class AppLanguageTest {
         manager.applicationLocales=LocaleList.forLanguageTags("tai")
         assertEquals("tdd",AppLanguage.selectedTag(context))
         assertEquals("tdd",manager.applicationLocales[0].toLanguageTag())
+    }
+
+    @Test @Config(sdk=[30,33]) fun hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends() {
+        for((old,new) in listOf("hak-Hant" to "hak-Hant-TW","hak-Latn" to "hak-Latn-TW")) {
+            context.getSharedPreferences("app-language",0).edit().putString("language-tag",old).commit()
+            if(android.os.Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!
+                .applicationLocales=LocaleList.forLanguageTags(old)
+            assertEquals(new,AppLanguage.selectedTag(context))
+            assertEquals(new,context.getSharedPreferences("app-language",0).getString("language-tag",null))
+        }
+    }
+
+    @Test fun verticalTestLocalesUseExactResourcesAndCanonicalRoundTrips() {
+        for((tag,direction) in listOf("en-XV" to org.catrobat.paintroid.classic.TextDirection.VERTICAL_LR,
+                "qaa-Zsye-XV" to org.catrobat.paintroid.classic.TextDirection.VERTICAL_RL)) {
+            assertTrue(tag in AppLanguage.tags(context))
+            assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
+            AppLanguage.select(context,tag)
+            val selected=AppLanguage.wrap(context)
+            assertEquals(tag,selected.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection())
+            assertTrue(AppLanguage.name(tag).contains("vertical"))
+            if(tag=="en-XV") assertEquals("Save",selected.getString(R.string.ui_save))
+            else assertEquals("💾 Save",selected.getString(R.string.ui_save))
+        }
     }
 
     @Test fun tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources() {
@@ -194,6 +258,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             assertEquals("Use device language",picker.listView.adapter.getItem(0))
             assertNotEquals(activity.getString(R.string.language20_device_default),picker.listView.adapter.getItem(0))
@@ -246,6 +311,7 @@ class AppLanguageTest {
         val controller = Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity = controller.get()
         try {
+            awaitEditorStartup(activity)
             shadowOf(Looper.getMainLooper()).idleFor(50, TimeUnit.MILLISECONDS)
             val document = activity.document
             document.newImage(16, 16)
@@ -293,6 +359,7 @@ class AppLanguageTest {
         val activity = controller.get()
         val original = Configuration(activity.resources.configuration)
         try {
+            awaitEditorStartup(activity)
             val document = activity.document
             document.newImage(16, 16)
             document.foreground = Color.RED; document.fill(2, 2)

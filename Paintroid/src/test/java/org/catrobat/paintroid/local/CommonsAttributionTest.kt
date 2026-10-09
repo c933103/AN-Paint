@@ -3,7 +3,11 @@ package org.catrobat.paintroid.local
 
 import android.content.Context
 import org.catrobat.paintroid.classic.CommonsAttribution
+import org.catrobat.paintroid.classic.CreditEditContext
+import org.catrobat.paintroid.classic.CreditEditSession
 import org.catrobat.paintroid.classic.GalleryCredits
+import org.catrobat.paintroid.classic.ImageCredit
+import org.catrobat.paintroid.classic.ImageCreditArchive
 import org.catrobat.paintroid.classic.IllustrationSource
 import org.junit.Assert.*
 import org.junit.Before
@@ -13,6 +17,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import java.io.IOException
+import java.io.File
 import org.json.JSONObject
 
 @RunWith(RobolectricTestRunner::class)
@@ -60,17 +65,31 @@ class CommonsAttributionTest {
         assertTrue(plain.contains("Author"));assertTrue(plain.contains("https://example.org/name"))
         assertFalse(plain.contains("javascript:"));assertFalse(plain.contains("<a"))
     }
-    @Test fun snapshotAloneDoesNotClaimAnInsertionAndRememberPreservesUserEdits() {
+    @Test fun metadataSnapshotDoesNotClaimInsertionOrOverwriteDocumentCreditEdits() {
         val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
-        CommonsAttribution.cache(context,record)
-        assertTrue(GalleryCredits.sources(context).isEmpty())
-        GalleryCredits.remember(context,source,IllustrationSource.COMMONS,page,"Test")
-        assertEquals(record.text(true),GalleryCredits.text(context))
-        val edited="Edited attribution\nÉmilie · かな\n"+record.text(true)
-        context.getSharedPreferences("image-credits",0).edit().putString("text:$source",edited).commit()
-        CommonsAttribution.cache(context,CommonsAttribution.parse(CommonsTestMetadata.response(source,page,"Updated Mapper"),source))
-        GalleryCredits.remember(context,source,IllustrationSource.COMMONS,page,"Test")
-        assertEquals(edited,GalleryCredits.text(context));assertEquals(setOf(source),GalleryCredits.sources(context))
+        val folder=File(context.filesDir,"commons-credit-${java.util.UUID.randomUUID()}").apply {mkdirs()}
+        var retained: String?=null
+        try {
+            val empty=CreditEditSession.create(folder,emptyList(),CreditEditContext.ledgerOnly(emptyList()))
+            CommonsAttribution.cache(context,record)
+            assertTrue(CreditEditSession.open(folder,empty.token).credits.isEmpty())
+            val original=ImageCredit(source,record.text(true))
+            val session=CreditEditSession.create(folder,listOf(original),CreditEditContext.ledgerOnly(listOf(original)))
+            assertEquals(record.text(true),ImageCredit.text(session.credits))
+            val edited="Edited attribution\nÉmilie · かな\n"+record.text(true)
+            session.edit(source,edited) {ImageCreditArchive.retainAccepted(context,it).also {token ->retained=token}}
+            CommonsAttribution.cache(context,CommonsAttribution.parse(CommonsTestMetadata.response(source,page,"Updated Mapper"),source))
+            val reopened=CreditEditSession.open(folder,session.token)
+            assertEquals(listOf(original.copy(text=edited)),reopened.credits)
+            assertEquals(edited,ImageCredit.text(reopened.credits));assertEquals(listOf(source),reopened.credits.map {it.source})
+            assertTrue(reopened.accepted);assertTrue(CreditEditSession.open(folder,empty.token).credits.isEmpty())
+        } finally {retained?.let {ImageCreditArchive.releaseAccepted(context,it)};folder.deleteRecursively()}
+    }
+    @Test fun commonsFallbackNeverInventsTheLicenceOfAnotherGallery() {
+        val text=GalleryCredits.credit(source,"Test map",IllustrationSource.COMMONS,page)
+        assertTrue(text.contains(source));assertTrue(text.contains(page));assertTrue(text.contains("Wikimedia Commons"))
+        for(invented in listOf("CC0",GalleryCredits.CC_BY_SA,"Irasutoya","Openclipart"))
+            assertFalse("Invented Commons attribution: $invented",text.contains(invented))
     }
     @Test fun sourceMetadataSurvivesReopeningFromPreferences() {
         val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)

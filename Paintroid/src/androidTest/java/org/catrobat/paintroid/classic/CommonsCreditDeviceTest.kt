@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.classic
 
 import android.net.Uri
+import android.graphics.Bitmap
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -15,6 +16,7 @@ import org.junit.runner.RunWith
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
+import java.io.File
 
 /** Native WebView/HTML-parser tests with local fixtures; no Commons requests or artwork downloads. */
 @RunWith(AndroidJUnit4::class)
@@ -45,10 +47,6 @@ class CommonsCreditDeviceTest {
         val context=InstrumentationRegistry.getInstrumentation().targetContext
         val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Native_credit_fixture.svg"
         val page="https://commons.wikimedia.org/wiki/File:Native_credit_fixture.svg"
-        // A repeated installed run must not mistake a previous test fixture for a real insertion.
-        context.getSharedPreferences("image-credits",0).edit()
-            .putStringSet("sources",GalleryCredits.sources(context)-source)
-            .remove("text:$source").remove("generated:$source").commit()
         val metadata=JSONObject()
         fun field(key: String,value: String) {metadata.put(key,JSONObject().put("value",value))}
         field("Artist","<a href=\"/wiki/User:Mapper\">Mapper A</a> &amp; Mapper B")
@@ -61,15 +59,23 @@ class CommonsCreditDeviceTest {
         val query=JSONObject().put("pages",JSONArray().put(file))
         val json=JSONObject().put("query",query).toString()
         val record=CommonsAttribution.parse(json,source)
-        CommonsAttribution.cache(context,record)
-        assertEquals(record,CommonsAttribution.cached(context,source))
-        assertFalse(GalleryCredits.sources(context).contains(source))
-        GalleryCredits.remember(context,source,IllustrationSource.COMMONS,page,"Native fixture")
-        val retained=GalleryCredits.text(context)
-        for(text in listOf("Mapper A & Mapper B","https://commons.wikimedia.org/wiki/User:Mapper",
-            "CC BY-SA 3.0","https://creativecommons.org/licenses/by-sa/3.0/","Custom required attribution","antiAlias=false"))
-            assertTrue("Missing attribution: $text",retained.contains(text))
-        assertFalse(record.text(false).contains("antiAlias=false"))
+        val folder=File(context.cacheDir,"commons-device-credit-${java.util.UUID.randomUUID()}").apply {mkdirs()}
+        val document=PaintDocument(4,4,File(folder,"history"))
+        try {
+            CommonsAttribution.cache(context,record)
+            assertEquals(record,CommonsAttribution.cached(context,source))
+            assertTrue("Metadata caching alone must not associate a source",document.imageCredits.isEmpty())
+            val credit=ImageCredit(source,record.text(true))
+            assertTrue(document.paste(Bitmap.createBitmap(2,2,Bitmap.Config.ARGB_8888),true,listOf(credit)))
+            document.finishSelection()
+            assertEquals(listOf(credit),document.imageCredits)
+            val session=CreditEditSession.create(folder,document.imageCredits,CreditEditContext.ledgerOnly(document.imageCredits))
+            val retained=ImageCredit.text(CreditEditSession.open(folder,session.token).credits)
+            for(text in listOf("Mapper A & Mapper B","https://commons.wikimedia.org/wiki/User:Mapper",
+                "CC BY-SA 3.0","https://creativecommons.org/licenses/by-sa/3.0/","Custom required attribution","antiAlias=false"))
+                assertTrue("Missing attribution: $text",retained.contains(text))
+            assertFalse(record.text(false).contains("antiAlias=false"))
+        } finally {document.close();folder.deleteRecursively()}
     }
 
     private fun adapt(page: String,source: String): JSONArray {

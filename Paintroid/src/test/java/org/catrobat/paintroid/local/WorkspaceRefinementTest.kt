@@ -10,6 +10,7 @@ import android.view.*
 import android.widget.*
 import org.catrobat.paintroid.classic.*
 import org.json.JSONObject
+import org.json.JSONArray
 import org.junit.*
 import org.junit.Assert.*
 import org.junit.runner.RunWith
@@ -20,6 +21,8 @@ import org.robolectric.annotation.*
 import org.robolectric.shadows.*
 import java.io.File
 import java.util.concurrent.TimeUnit
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[33],qualifiers="w412dp-h900dp-port-xhdpi")
@@ -54,14 +57,16 @@ class WorkspaceRefinementTest {
         listOf("classic-recovery.png","classic-autosave.zip","classic-autosave.zip.bak").forEach { File(context.filesDir,it).deleteRecursively() }
         AutosaveStore(context.filesDir).recoveryCopies().forEach { it.delete() }
         listOf("classic-ui","classic-custom-colours").forEach { context.getSharedPreferences(it,Context.MODE_PRIVATE).edit().clear().commit() }
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(200,120);canvas.fit();settle()
     }
-    @After fun stop() { controller.pause().stop();waitIo();controller.destroy() }
+    @After fun stop() {
+        if(::activity.isInitialized && !activity.isDestroyed) { controller.pause().stop();waitIo();controller.destroy() }
+    }
     private fun saveIdle() { shadowOf(Looper.getMainLooper()).idleFor(2,TimeUnit.SECONDS);waitIo();assertTrue(AutosaveStore(activity.filesDir).file.isFile);assertNull(activity.lastAutosaveError) }
     private fun reopen() {
         controller.pause().stop();waitIo();controller.destroy()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
     }
     private fun single(action: Int,x: Float,y: Float) {
         val event=MotionEvent.obtain(0,10,action,x,y,0);assertTrue(canvas.dispatchTouchEvent(event));event.recycle()
@@ -101,7 +106,7 @@ class WorkspaceRefinementTest {
         saveIdle()
         controller.pause().stop();waitIo();controller.destroy()
         File(activity.cacheDir,"classic-history").deleteRecursively()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         assertTrue(view<View>("undo").isEnabled);assertTrue(view<View>("redo").isEnabled)
         click("redo");assertEquals(Color.BLUE,doc.bitmap.getPixel(0,0))
         click("undo");assertEquals(Color.RED,doc.bitmap.getPixel(0,0))
@@ -191,10 +196,18 @@ class WorkspaceRefinementTest {
         controller.pause().stop();waitIo();controller.destroy()
         val store=AutosaveStore(activity.filesDir)
         val pixels=Bitmap.createBitmap(4,3,Bitmap.Config.ARGB_8888).apply { eraseColor(Color.MAGENTA) }
-        // A valid image with unsupported metadata must still be kept for recovery.
-        store.write(pixels,null,JSONObject().put("version",99));pixels.recycle()
+        // Construct an old/foreign malformed archive directly: the normal writer must reject version 99.
+        // Its valid image must still be kept for recovery despite the unsupported metadata.
+        try {
+            ZipOutputStream(store.file.outputStream()).use { zip ->
+                zip.putNextEntry(ZipEntry("draft.json"))
+                zip.write(JSONObject().put("version",99).toString().toByteArray(Charsets.UTF_8));zip.closeEntry()
+                zip.putNextEntry(ZipEntry("canvas.png"))
+                assertTrue(pixels.compress(Bitmap.CompressFormat.PNG,100,zip));zip.closeEntry()
+            }
+        } finally {pixels.recycle()}
         val original=store.file.readBytes()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         assertEquals(1,store.recoveryCopies().size);assertArrayEquals(original,store.recoveryCopies().single().readBytes())
         ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
         doc.newImage(20,10);saveIdle()
@@ -309,7 +322,11 @@ class WorkspaceRefinementTest {
         render(root,"licence-landscape.png");root.findViewWithTag<View>("terms_done").performClick();assertFalse(dialog.isShowing)
     }
     @Test fun allBundledFontsLoadAndDropdownNamesUseTheirOwnTypeface() {
-        val catalog=FontCatalog(activity);assertEquals(11,catalog.fonts.count { it.asset!=null });assertEquals(20,catalog.fonts.size)
+        val catalog=FontCatalog(activity)
+        val inventory=activity.assets.open("fonts/inventory.json").bufferedReader().use {JSONArray(it.readText())}
+        val drawing=(0 until inventory.length()).map {inventory.getJSONObject(it)}.filterNot {it.optBoolean("ui_only")}
+        assertEquals(drawing.map {it.getString("asset")}.sorted(),catalog.fonts.mapNotNull {it.asset}.sorted())
+        assertEquals(catalog.fonts.size,catalog.fonts.map {it.id}.toSet().size)
         val adapter=catalog.adapter();val parent=LinearLayout(activity)
         val widths=mutableSetOf<Int>()
         for (i in catalog.fonts.indices) {

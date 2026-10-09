@@ -573,8 +573,27 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         val grip=rotationHandle(s);val top=s.geometry.point(s.rect.centerX(),s.rect.top)
         canvas.drawLine(top.x,top.y,grip.x,grip.y,edge)
         canvas.drawCircle(grip.x,grip.y,7*d,fill);canvas.drawCircle(grip.x,grip.y,7*d,edge)
-        val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom }
-        canvas.drawText(ui(R.string.ui_rotate),grip.x+10*d,grip.y+4*d,text)
+        val direction=VerticalText.uiDirection()
+        if(direction==TextDirection.HORIZONTAL) {
+            val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity/zoom;typeface=VerticalText.uiTypeface(context) }
+            canvas.drawText(ui(R.string.ui_rotate),grip.x+10*d,grip.y+4*d,text)
+        } else {
+            // The caller is already in document coordinates. Counter-scale only
+            // this caption so even a 1e-9 zoom uses ordinary pixel font metrics.
+            val pixels=resources.displayMetrics.density
+            val text=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=edge.color;textSize=11*resources.displayMetrics.scaledDensity;typeface=VerticalText.uiTypeface(context) }
+            val viewport=RectF(rulerInset,rulerInset,width-bar,height-bar).apply {inset(4*pixels,4*pixels)}
+            val caption=VerticalCanvasCaption(ui(R.string.ui_rotate),text,viewport.height(),direction)
+            val screen=toScreen(grip.x,grip.y)
+            val selection=s.geometry.bounds()
+            val first=toScreen(selection.left,selection.top);val last=toScreen(selection.right,selection.bottom)
+            // Include resize-box half-width, outline stroke and antialias clearance.
+            val avoid=RectF(first.x,first.y,last.x,last.y).apply {inset(-7*pixels,-7*pixels)}
+            val origin=caption.beside(screen,viewport,10*pixels,avoid)
+            canvas.save();canvas.translate(grip.x,grip.y);canvas.scale(1/zoom,1/zoom)
+            caption.draw(canvas,origin.x-screen.x,origin.y-screen.y)
+            canvas.restore()
+        }
         s.geometry.resizeHandles().values.forEach { point ->
             val r=RectF(point.x-5*d,point.y-5*d,point.x+5*d,point.y+5*d)
             canvas.drawRect(r,fill);canvas.drawRect(r,edge)

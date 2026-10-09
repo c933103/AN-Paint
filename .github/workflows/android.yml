@@ -4,7 +4,6 @@ on:
     branches: [develop]
     paths-ignore: ['**/*.md', 'verification/**']
   pull_request:
-    branches: [develop]
     paths-ignore: ['**/*.md', 'verification/**']
   workflow_dispatch:
     inputs:
@@ -52,7 +51,7 @@ jobs:
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
       - name: Run local checks
-        timeout-minutes: 10
+        timeout-minutes: 12
         run: |
           python3 -m unittest discover -s tools -p 'test_*.py'
           ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest :app:lint${BUILD_VARIANT^}

@@ -1,3 +1,37 @@
+# Current translation model (full-catalogue pass) — claims withdrawn
+
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
+Every assertion in the record below is a **withdrawn prior claim requiring full recheck**, including any statement that work was reviewed, implemented, repaired, complete, verified, preserved, or free of further defects. Prior lexical acceptance labels and test outcomes are historical inputs, not current task status.
+
+[Original record at its previous commit](https://github.com/c933103/AN-Paint/blob/e51ab25c0fd4bfe10a8b4907ac3b7b9e30b42a26/translations/README.md).
+
+Related withdrawn original-branch records are also preserved:
+[shared base](https://github.com/c933103/AN-Paint/blob/8cf4ed2e531c17d0ab08b98a3a3f835fc9195ec0/translations/README.md)
+and [PR9's language-specific history](https://github.com/c933103/AN-Paint/blob/97e511dc63f1b2011300ce49fd1582b4de23ce3d/translations/README.md).
+
+<details>
+<summary>Withdrawn historical claim record — no accepted progress</summary>
+
+# Current translation model (full-catalogue pass)
+
+The live Android locale files under `Paintroid/src/main/res/values*/strings.xml` are now canonical source files. They are edited directly and are not regenerated from the JSON/snapshot material in this directory. The files below are retained as provenance, terminology references and historical audit data; their wording is not automatically authoritative for AN Paint. See `TRANSLATING.md` for the current workflow.
+
+The historical notes below describe how the partial catalogues were originally assembled. Statements that localized XML is generated, that English fallback is the intended final state, or that imported wording has precedence describe that older workflow and are not current policy.
+
+The September 2026 integration and continuation repairs are documented in the
+[combined review](../verification/localization-integration-review.md),
+[Ainu semantic audit](AINU_SEMANTIC_AUDIT.md), and
+[Manchu semantic audit](MANCHU_SEMANTIC_AUDIT.md). The known unfinished Ainu and
+Manchu explanatory passages are now translated, including full help text and
+technical controls. These source-assisted repairs are distinct from independent
+native-speaker certification. The completed batch is checked against current
+English resource keys; format names and external labels remain recognizable.
+
+---
+
 # Reused translation vocabulary
 
 AN Paint's View → Languages offers device default and 135 language/region/
@@ -331,3 +365,5 @@ Colours group is removed; Invert colours uses the existing translated command
 under Canvas. Provider names and original artwork titles are retained. Longer
 provider instructions and recovery errors retain English fallback where no
 translation exists; this is not whole-app or website translation completion.
+
+</details>

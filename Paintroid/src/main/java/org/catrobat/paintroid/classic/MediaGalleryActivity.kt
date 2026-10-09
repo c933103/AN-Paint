@@ -23,13 +23,20 @@ import java.util.concurrent.Executors
 class MediaGalleryActivity : Activity() {
     override fun attachBaseContext(base: android.content.Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
     companion object {
+        private const val LEGACY_CREDITS=1
         const val GALLERY="https://catrobat.org/figures-download/"
         const val LICENCE="https://developer.catrobat.org/pages/legal/licenses/catrobat/"
         fun allowed(uri: Uri)=IllustrationSource.CATROBAT.allowsPage(uri)
     }
     private val provider by lazy {IllustrationSource.fromId(intent.getStringExtra("gallery_provider"))}
+    private var documentCredits: List<ImageCredit> = emptyList()
+    private lateinit var creditSession: CreditEditSession
+    private var creditsEdited=false
+    private var sessionHandedBack=false
+    private var creditEditor: GalleryCredits.EditorSession?=null
+    private var creditSessionError: android.app.AlertDialog?=null
+    private var unrestoredSessionToken: String?=null
     private var pendingSearch: String?=null
-    private var creditSession: GalleryCredits.EditorSession?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
     private val worker=Executors.newSingleThreadExecutor()
@@ -38,6 +45,26 @@ class MediaGalleryActivity : Activity() {
     @Volatile internal var downloading=false; private set
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
+        val sessionToken=state?.getString(CreditEditSession.EXTRA_SESSION) ?: intent.getStringExtra(CreditEditSession.EXTRA_SESSION)
+        unrestoredSessionToken=sessionToken
+        try {
+            creditSession=if(sessionToken!=null) CreditEditSession.open(filesDir,sessionToken) else {
+                val credits=ImageCredit.read(org.json.JSONArray(state?.getString("document_image_credits")
+                    ?: intent.getStringExtra("document_image_credits") ?: "[]"))
+                CreditEditSession.create(filesDir,credits,CreditEditContext.ledgerOnly(credits))
+            }
+        } catch(_: Exception) {
+            // Keep the explanation visible until dismissed. Finishing immediately would
+            // detach the app-window Nôm notice before the user could read it.
+            creditSessionError=EditorDialogBuilder(this).setMessage(ui(R.string.gallery_credit_could_not_save))
+                .setPositiveButton(ui(R.string.ui_done)) {_,_->finish()}
+                .setOnCancelListener {finish()}.show()
+            return // Keep the original file/intent unchanged for explicit recovery.
+        }
+        unrestoredSessionToken=null
+        documentCredits=creditSession.credits
+        creditsEdited=creditSession.accepted || state?.getBoolean("document_image_credits_edited")==true
+        if(creditsEdited) returnEditedCredits()
         fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
         val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true;setBackgroundColor(EditorColours.surface)}
         val description=TextView(this).apply {
@@ -50,13 +77,18 @@ class MediaGalleryActivity : Activity() {
         val row=LinearLayout(this)
         fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
-            val credits=GalleryCredits.text(this)
-            if(credits.isBlank()) Toast.makeText(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT).show()
+            val credits=ImageCredit.text(documentCredits)
+            if(credits.isBlank()) LocaleTypography.showMessage(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT)
             else GalleryCredits.copy(this,credits)
         }
-        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {showCredits()}
+        action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {showCreditEditor()}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
         action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
+        if(ImageCreditArchive.hasRecords(this)) root.addView(Button(this).apply {
+            text=ui(R.string.legacy_credits_title);tag="gallery_legacy_credits";isAllCaps=false
+            setOnClickListener {startActivityForResult(Intent(this@MediaGalleryActivity,
+                LegacyImageCreditsActivity::class.java),LEGACY_CREDITS)}
+        },LinearLayout.LayoutParams(-1,-2))
         val navigation=LinearLayout(this)
         navigation.addView(Button(this).apply {text="←";contentDescription=ui(R.string.ui_gallery_back34);tag="gallery_back";setOnClickListener {if(web.canGoBack()) web.goBack() else web.loadUrl(provider.home)}},LinearLayout.LayoutParams(dp(52),dp(48)))
         val search=EditText(this).apply {tag="gallery_search";setSingleLine(true);hint=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34);textSize=14f}
@@ -101,10 +133,13 @@ class MediaGalleryActivity : Activity() {
                         val page=uri.getQueryParameter("page")?.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: web.url.orEmpty()
                         if(source!=null && provider.allowsImage(source) && (provider==IllustrationSource.CATROBAT || provider.isArtworkPage(Uri.parse(page)))) {
                             val title=uri.getQueryParameter("title").orEmpty().take(512)
+                            val author=uri.getQueryParameter("author").orEmpty().take(1024)
+                            val licence=uri.getQueryParameter("licence").orEmpty().take(4096)
+                            val authorUrl=uri.getQueryParameter("author_url").orEmpty().take(4096)
                             if(uri.scheme==GalleryPage.CREDIT_SCHEME) {
                                 if(provider==IllustrationSource.COMMONS) copyCommonsCredit(source,page)
-                                else GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page))
-                            } else insert(source,page,title)
+                                else GalleryCredits.copy(this@MediaGalleryActivity,GalleryCredits.credit(source.toString(),title,provider,page,author,licence,authorUrl))
+                            } else insert(source,page,title,author,licence,authorUrl)
                         }
                         return true
                     }
@@ -114,7 +149,7 @@ class MediaGalleryActivity : Activity() {
                 }
                 override fun onPageFinished(view: WebView,url: String) {
                     if(provider.allowsPage(Uri.parse(url))) {
-                        view.evaluateJavascript(IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
+                        view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)
                         pendingSearch?.let {query ->pendingSearch=null;view.evaluateJavascript(IllustrationPage.searchIrasutoya(query),null)}
                     }
                 }
@@ -129,17 +164,42 @@ class MediaGalleryActivity : Activity() {
                 } else false
             }
         }
-        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root)
+        root.addView(web,LinearLayout.LayoutParams(-1,0,1f));setContentView(root);LocaleTypography.install(root)
         if(state==null) web.loadUrl(provider.home,mapOf("Accept-Language" to AppLanguage.locale(this).toLanguageTag())) else web.restoreState(state)
-        state?.getString("credit_draft_source")?.let {source ->
-            showCredits(GalleryCredits.EditorDraft(source,state.getString("credit_draft_text").orEmpty()))
-        }
+        val editorSource=state?.getString("image_credit_editor_source")
+        val editorText=state?.getString("image_credit_editor_draft")
+        val restoredDraft=if(sessionToken!=null) creditSession.draft
+            else if(editorSource!=null && editorText!=null) GalleryCredits.EditorDraft(editorSource,editorText) else creditSession.draft
+        restoredDraft?.let {showCreditEditor(it)}
     }
-    private fun showCredits(draft: GalleryCredits.EditorDraft?=null) {
-        if(creditSession?.dialog?.isShowing==true) return
-        creditSession=GalleryCredits.showEditor(this,draft)
+    public override fun onActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
+        super.onActivityResult(requestCode,resultCode,data)
+        if(requestCode!=LEGACY_CREDITS || resultCode!=RESULT_OK || !::creditSession.isInitialized)return
+        val token=data?.getStringExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN)
+        if(token==null || !token.matches(Regex("[0-9a-f]{64}")))return
+        // Return only the selected archive identifier. The editor owns atomic validation
+        // against its current complete draft and must not overwrite a modern source.
+        sessionHandedBack=true
+        setResult(RESULT_OK,creditSession.result()
+            .putExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN,token))
+        finish()
     }
 
+    private fun showCreditEditor(draft: GalleryCredits.EditorDraft?=null) {
+        if(creditEditor?.dialog?.isShowing==true)return
+        creditEditor=GalleryCredits.showEditor(this,documentCredits,draft,onEdit={source,text ->
+            creditSession.edit(source,text) {ImageCreditArchive.retainAccepted(this,it)}
+            documentCredits=creditSession.credits
+            creditsEdited=true;returnEditedCredits()
+        },onDismiss={
+            try {creditSession.saveDraft(null)} catch(_: Exception) {
+                LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG)
+            }
+        })
+    }
+    private fun returnEditedCredits() {
+        setResult(RESULT_OK,creditSession.result())
+    }
     private fun commonsCredit(uri: Uri,page: String,checkActive: ()->Unit): CommonsAttribution.Record {
         val record=CommonsAttribution.fetch(this,uri.toString(),page,openConnection,checkActive) {activeConnection=it}
         checkActive()
@@ -168,17 +228,18 @@ class MediaGalleryActivity : Activity() {
             } finally {activeConnection?.disconnect();activeConnection=null;downloading=false}
         }
     }
+
     private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
     private fun openExternal(uri: Uri) {
         try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
     }
-    private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty()) {
+    private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty(),author: String="",licence: String="",authorUrl: String="") {
         if(downloading || isFinishing || isDestroyed)return
         if(!provider.allowsImage(uri)) {showStatus(ui(R.string.ui_gallery_unsupported34));return}
         if(provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page))) {showStatus(ui(R.string.ui_open_artwork34));return}
-        download(uri,page.take(4096),title.take(512))
+        download(uri,page.take(4096),title.take(512),author,licence,authorUrl)
     }
-    private fun download(uri: Uri,page: String,title: String) {
+    private fun download(uri: Uri,page: String,title: String,author: String,licence: String,authorUrl: String) {
         if(downloading || isFinishing || isDestroyed)return
         downloading=true;showStatus(ui(R.string.ui_downloading_image))
         worker.execute {
@@ -234,11 +295,11 @@ class MediaGalleryActivity : Activity() {
                     resultFile=file
                 }
                 checkActive()
-                // Store only the attribution snapshot here. The editor's onInserted callback
-                // records actual use, so cancellation/failure cannot add a spurious source.
+                // Retain metadata without changing the document ledger. The editor associates
+                // this snapshot with the image only after insertion succeeds.
                 if(provider==IllustrationSource.COMMONS) commonsCredit(uri,page,::checkActive)
                 checkActive()
-                runOnUiThread {returnDownloaded(resultFile,uri,page,title)}
+                runOnUiThread {returnDownloaded(resultFile,uri,page,title,author,licence,authorUrl)}
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
                 if(resultFile===file) temporary=null else rendered=null
             } catch(error: Exception) {failure(ui(R.string.ui_could_not_load_gallery_image, error.message))}
@@ -247,36 +308,53 @@ class MediaGalleryActivity : Activity() {
             finally {activeConnection?.disconnect();activeConnection=null;temporary?.delete();rendered?.delete();downloading=false}
         }
     }
-    private fun returnDownloaded(file: File, uri: Uri, page: String, title: String) {
+    private fun returnDownloaded(file: File,uri: Uri,page: String,title: String,author: String,licence: String,authorUrl: String) {
+        // Closing the gallery cancels insertion even after the worker has posted its result.
         if(isFinishing || isDestroyed) {file.delete();return}
-        setResult(RESULT_OK,Intent().putExtra("gallery_file",file.name)
+        sessionHandedBack=true
+        setResult(RESULT_OK,creditSession.result().putExtra("gallery_file",file.name)
             .putExtra("gallery_source",uri.toString()).putExtra("gallery_provider",provider.name)
-            .putExtra("gallery_page",page).putExtra("gallery_title",title))
+            .putExtra("gallery_page",page).putExtra("gallery_title",title)
+            .putExtra("gallery_author",author).putExtra("gallery_licence",licence).putExtra("gallery_author_url",authorUrl))
         finish()
     }
 
     @Deprecated("Android legacy activity back callback")
-    override fun onBackPressed() {if(web.canGoBack()) web.goBack() else super.onBackPressed()}
-    override fun onSaveInstanceState(outState: Bundle) {
-        web.saveState(outState)
-        creditSession?.takeIf {it.dialog.isShowing}?.snapshot?.invoke()?.let {draft ->
-            outState.putString("credit_draft_source",draft.source);outState.putString("credit_draft_text",draft.text)
+    override fun onBackPressed() {if(::web.isInitialized && web.canGoBack()) web.goBack() else super.onBackPressed()}
+    private fun preserveCreditDraft() {
+        if(!::creditSession.isInitialized)return
+        try {
+            val draft=creditEditor?.takeIf {it.dialog.isShowing}?.snapshot?.invoke() ?: return
+            creditSession.saveDraft(draft)
+        } catch(_: Exception) {
+            LocaleTypography.showMessage(this,ui(R.string.gallery_credit_could_not_save),Toast.LENGTH_LONG,
+                creditEditor?.dialog?.window?.decorView)
         }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        preserveCreditDraft()
+        if(::creditSession.isInitialized) creditSession.saveState(outState)
+        else unrestoredSessionToken?.let {outState.putString(CreditEditSession.EXTRA_SESSION,it)}
+        if(::web.isInitialized) web.saveState(outState)
         super.onSaveInstanceState(outState)
     }
+    override fun onStop() {preserveCreditDraft();super.onStop()}
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        // Manifest retains this activity for rotation/screen changes: active download/render,
-        // WebView state and the open credit field survive without a second provider request.
+        // Retain the active download/render, WebView and open credit field across rotation.
+        // The editor remains a draft; only its explicit Save/Copy/Done actions accept edits.
         window.decorView.findViewWithTag<View>("gallery_description_scroll")?.let {scroll ->
             scroll.layoutParams=scroll.layoutParams.apply {
                 height=((if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE) 56 else 88)*resources.displayMetrics.density+.5f).toInt()
             }
         }
-        creditSession?.resize?.invoke()
     }
     override fun onDestroy() {
-        creditSession?.dialog?.dismiss();creditSession=null
-        web.destroy();worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
+        // Dismiss the old window without invoking a save action. A saved draft is restored separately.
+        creditEditor?.dismissForRecreation();creditEditor=null
+        creditSessionError?.dismiss();creditSessionError=null
+        if(::web.isInitialized) web.destroy()
+        if(isFinishing && !sessionHandedBack && ::creditSession.isInitialized && !creditSession.accepted && creditSession.draft==null) creditSession.discard()
+        worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
     }
 }

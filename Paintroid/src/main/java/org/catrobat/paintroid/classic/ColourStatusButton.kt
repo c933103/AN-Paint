@@ -62,7 +62,7 @@ class ColourStatusButton(context: Context) : FrameLayout(context) {
             fun linear(value: Int): Double { val s=value/255.0;return if (s<=.04045) s/12.92 else Math.pow((s+.055)/1.055,2.4) }
             val luminance=.2126*linear(Color.red(colour))+.7152*linear(Color.green(colour))+.0722*linear(Color.blue(colour))
             p.color=if (luminance>.179) Color.BLACK else Color.WHITE
-            p.textSize=11*d;p.typeface=Typeface.DEFAULT_BOLD
+            p.textSize=11*d;p.typeface=Typeface.create(VerticalText.uiTypeface(context) ?: Typeface.DEFAULT,Typeface.BOLD)
             val label="$name ${hex(colour)}"
             p.textSize*=minOf(1f,(colourRight-9*d).coerceAtLeast(1f)/p.measureText(label))
             c.drawText(label,6*d,top+height/4f-(p.ascent()+p.descent())/2,p)

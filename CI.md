@@ -1,6 +1,10 @@
 # Android build and test workflow
 
-Updated 14 September 2026. APK production, regression checks and emulator results
+**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+
+Updated 23 September 2026. APK production, regression checks and emulator results
 are separate outcomes. An emulator must not prevent obtaining an already-built
 APK or completing unrelated work.
 
@@ -8,16 +12,28 @@ APK or completing unrelated work.
 
 | Trigger / choice | Regression and lint | Universal APK | Emulator coverage |
 |---|---|---|---|
-| Code push to `develop`, or pull request targeting it | Yes, independently | Yes | API 35, all native and app checks |
+| Code push to `develop`, or pull request targeting any branch | Yes, independently | Yes | API 35, all native and app checks |
 | Run workflow → `current` | Yes | Yes | API 35 |
 | Run workflow → `full` | Yes | Yes | API 30 and 35 in parallel |
 | Run workflow → `none` | Yes | Yes | Explicitly not run |
 | Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
 
 Direct pushes to a working branch do not duplicate a PR/default-branch run.
+Pull requests targeting another working branch receive the same checks as those
+targeting `develop`. Stacked localization PRs therefore do not need temporary
+CI-only PRs or retargeting to obtain build and regression results.
 New commits cancel obsolete runs for the same branch/PR. Failed emulator matrix
 jobs do not cancel the other platform. A failed test remains a failed check;
 there is no `continue-on-error` or replacement of failures with green results.
+
+Host translation checks cover every Android catalogue, including English and
+resource locales not listed in the picker. They reject equivalent resource
+directories, Android quoting errors, altered syntax/licence identifiers,
+incorrect GIF limit numbers and format-placeholder mismatches. The scoped
+localization batch also has a completeness gate against the current default
+catalogue, so adding an English string requires updating that whole batch.
+These structural checks do not certify linguistic accuracy; semantic review
+remains necessary, especially for minority languages.
 
 The build job uploads `apk-and-source-<commit>` immediately after assembly and
 before compiling instrumented-test APKs. Regression/lint runs in a separate job;
@@ -30,8 +46,11 @@ Artifact availability is not a claim that all tests passed.
 Test APKs are compiled once, after the delivery artifact is available. Emulator
 jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
-API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
-has no gain-map API. No test is removed from the current-platform suite.
+API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
+accepted-credit restart phase classes. API35 runs all declared methods: its
+ordinary app invocation excludes the restart pair, which run separately before
+and after an external force-stop. Their exact disjoint union is checked against
+the full source inventory; an exclusion is never treated as a passed test.
 
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
@@ -72,9 +91,12 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  native/app instrumentation invocation: 180 seconds. These inner budgets fit
-  within the whole emulator execution step's 15-minute limit, leaving time to
-  collect failure reports and shut down.
+  ordinary native/app instrumentation invocation: 180 seconds; each accepted-credit
+  seed/verify invocation: 60 seconds. The existing whole emulator execution step
+  remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
+  that every ceiling can be exhausted in one step. The new phase durations need
+  exact-head API35 measurement; deadline exhaustion fails rather than relaxing
+  a timeout or substituting a weaker restart test.
 - Emulator shutdown and log collection are bounded. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
   evidence, which must not be described as a pass.
@@ -223,3 +245,94 @@ rejects digest mismatches by default. Existing permissions, cache paths, source
 checks, deadlines and test matrix remain in effect. No insecure Node opt-out or
 unsafe fork-checkout option is enabled. See GitHub's
 [Node 20 migration notice](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/).
+
+## Locale UI font inventory check (24 September 2026)
+
+The repaired [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35934972156)
+and [integrated run](https://github.com/c933103/AN-Paint/actions/runs/35935361997)
+passed APK/test-APK compilation, regression tests and lint. Both API 35 runs
+completed all 71 native checks and all 11 editor checks; their sole failure was
+`NativeCodecTest.everyAdvertisedBundledFontLoadsItsActualFontFile`, which expected
+20 drawing font choices but found 21 after the Nôm UI subset was added.
+
+The Nôm asset is a subset for catalogue and picker text, so it has the
+`ui_only` role and is excluded from the drawing-font selector.
+Default Nôm text still uses its glyph coverage, while an explicit drawing font
+keeps the user's selected face. Complete Mongolian remains a drawing choice.
+Font regressions compare selectable entries with the inventory's drawing roles
+instead of freezing catalogue size. The Android test additionally opens, hashes
+and loads every declared asset, including UI-only subsets; hiding a subset from
+the selector does not remove its font-load coverage.
+
+The subsequent [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35937278241)
+at `29ef7eab4587071c59a2d013cd7e88112decd674` and
+[integrated run](https://github.com/c933103/AN-Paint/actions/runs/35937264365)
+at `ee6d2d5e258d9424f8987bb14b11517953019843` passed the full workflow.
+The integrated run reports 307 unit tests, lint, production/test APK compilation,
+all 71 native tests and all 11 editor device tests passing. This verifies the
+font-role and gallery-credit recreation repairs in that snapshot; later changes
+still require their own exact-head checks.
+
+## Literal percent checks in translated resources
+
+The final Ainu completion introduced literal percent signs into translated
+instructions. Strict AAPT2 compilation caught two errors that the old host
+placeholder comparison missed. Static text now explicitly uses
+`formatted="false"`; strings with runtime arguments escape literal percent
+signs as `%%`. The validator applies these checks to every string, plural and
+string-array, including unoffered locales. Disabling AAPT format checking does
+not bypass the check for an unescaped percent mixed with runtime arguments.
+`%%` consumes no argument, so it is excluded from placeholder-count comparisons;
+a translation may use the sign where English spells out “percent”.
+
+## API35 accepted-credit abrupt-process-stop regression
+
+This is one regression split into two one-method app instrumentation classes.
+After the ordinary editor suite passes, the host starts the ordinary launcher and
+records its live PID. The seed-only `--leave-target-running` wrapper option is
+restricted to the seed class and emits both `am instrument --no-restart` and
+`-e waitForActivitiesToComplete false`. Normal invocations, protocol parsing,
+APK installation, missing/ignored/aborted-test rejection and final-result checks
+retain their original behavior.
+
+The seed uses the established synthetic insertion fixture, then removes its
+monitor before opening the actual Gallery from the editor. Both synthetic Gallery
+insertion monitors echo the exact opaque session token supplied by their launch;
+this keeps the existing editor fixtures compatible with result-ownership checks. Real Save accepts
+large mixed Unicode credit text while the parent remains stopped with the known
+original drawing and ledger already autosaved. Read-only ZIP/JSON assertions
+prove the accepted session and retained snapshot are durable and that the original
+drawing was not updated. No accepted archive/session API manufactures acceptance.
+The method deliberately leaves Gallery and its credit dialog open.
+
+Only a complete successful seed report allows the host boundary to proceed. The
+host verifies the original PID still exists and Gallery remains resumed, rechecks
+the PID immediately before a bounded external force-stop, then positively checks
+absence with a protocol that distinguishes `pidof` absence from ADB failure. The
+bootstrap is bounded to 30 seconds; PID, activity-evidence and force-stop commands
+to 10 seconds each. There is no test retry, data clear, main-APK reinstall or
+orderly Gallery dismissal between acceptance and force-stop.
+
+The ordinary verify runner starts a new process. Before launching the editor it
+compares the seed's process identity and exact on-disk digests. It then checks the
+original drawing and ledger, reaches the archive through the actual Save dialog,
+reconstructs all visible credit pages, and confirms browsing leaves association
+unchanged. Production New creates a different blank drawing with no credits.
+Only choosing Add for the exact accepted record attaches that source and text;
+the new drawing's pixels stay unchanged.
+
+Reports remain under the existing API-specific artifact root:
+`app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
+and `coverage.json`. Coverage success requires the ordinary, seed and verify
+reports to contain mutually disjoint completed identities whose union equals all
+app methods declared in source, including future ordinary classes. A failed seed
+or host boundary prevents verification and records it as not run. API30 explicitly
+omits both phase classes and records that this API35 flow was not run.
+
+Local Python/fake-ADB checks establish command ordering, complete-result gating,
+PID/deadline/error propagation and inventory accounting only. They do not establish
+Android compilation or runtime success. The exact-head API35 emulator must first
+prove complete seed success with the same live PID and undelivered Gallery result;
+if that gate fails, diagnose it without claiming Activity recreation or an
+already-dead-process force-stop is equivalent. No workflow YAML, dependency,
+release matrix or outer deadline is changed.

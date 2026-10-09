@@ -7,11 +7,14 @@ import android.graphics.Rect
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.ColorSpace
+import android.graphics.Typeface
 import android.os.Build
 import android.util.Base64
 import androidx.core.graphics.ColorUtils
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import org.json.JSONArray
+import java.security.MessageDigest
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -77,12 +80,27 @@ class NativeCodecTest {
     }
     @Test fun everyAdvertisedBundledFontLoadsItsActualFontFile() {
         val catalog=FontCatalog(context)
-        assertEquals(20,catalog.fonts.size)
-        assertEquals(11,catalog.fonts.count {it.asset!=null})
+        val inventory=context.assets.open("fonts/inventory.json").bufferedReader().use {JSONArray(it.readText())}
+        val rows=(0 until inventory.length()).map {inventory.getJSONObject(it)}
+        val drawing=rows.filterNot {it.optBoolean("ui_only")}
+        assertEquals("Each declared drawing font must be offered exactly once",
+            drawing.map {it.getString("id") to it.getString("asset")}.sortedBy {it.first},
+            catalog.fonts.filter {it.asset!=null}.map {it.id to it.asset!!}.sortedBy {it.first})
+        val systemFamilies=setOf("sans-serif","serif","monospace","sans-serif-light","sans-serif-thin",
+            "sans-serif-condensed","sans-serif-medium","cursive","casual")
+        assertEquals(systemFamilies,catalog.fonts.filter {it.asset==null}.map {it.family}.toSet())
+        assertEquals(systemFamilies.size,catalog.fonts.count {it.asset==null})
+        assertEquals(catalog.fonts.size,catalog.fonts.map {it.id}.toSet().size)
         assertTrue(catalog.fonts.any {it.asset=="fonts/notosansmongolian.ttf"})
-        catalog.fonts.forEachIndexed {index,font ->
-            assertNotNull(font.name,catalog.face(index))
-            font.asset?.let {path -> assertTrue(context.assets.open(path).use {it.readBytes()}.size>1000)}
+        catalog.fonts.forEachIndexed {index,font -> assertNotNull(font.name,catalog.face(index))}
+        // UI-only subsets are still packaged font assets and must load on Android.
+        for(row in rows) {
+            val path=row.getString("asset")
+            val bytes=context.assets.open(path).use {it.readBytes()}
+            assertTrue(path,bytes.size>1000)
+            val digest=MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") {"%02x".format(it.toInt() and 255)}
+            assertEquals(path,row.getString("sha256"),digest)
+            assertNotNull(path,Typeface.createFromAsset(context.assets,path))
         }
     }
     @Test fun losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary() {

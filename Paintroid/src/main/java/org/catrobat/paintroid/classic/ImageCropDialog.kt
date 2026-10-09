@@ -139,7 +139,7 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
         }
         preview.changed = { rect -> displayValues(rect); refresh(false) }
         displayValues(if (images.size == 1) reference.crop else Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh()
-        val dialog = AlertDialog.Builder(activity).setTitle(if (images.size == 1) ui(R.string.ui_crop, reference.name) else ui(R.string.ui_batch_crop_images))
+        val dialog = EditorDialogBuilder(activity).setTitle(if (images.size == 1) ui(R.string.ui_crop, reference.name) else ui(R.string.ui_batch_crop_images))
             .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             try {

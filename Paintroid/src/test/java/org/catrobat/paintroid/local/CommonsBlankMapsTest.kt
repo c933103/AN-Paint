@@ -12,6 +12,7 @@ import android.os.Looper
 import android.webkit.WebView
 import org.catrobat.paintroid.classic.BlankMapSvg
 import org.catrobat.paintroid.classic.ClassicPaintActivity
+import org.catrobat.paintroid.classic.CreditEditSession
 import org.catrobat.paintroid.classic.GalleryPage
 import org.catrobat.paintroid.classic.ImageDimensions
 import org.catrobat.paintroid.classic.ImageMemoryPolicy
@@ -164,6 +165,9 @@ class CommonsBlankMapsTest {
             assertEquals(Activity.RESULT_OK,shadowOf(activity).resultCode)
             val result=shadowOf(activity).resultIntent
             assertEquals(original,result.getStringExtra("gallery_source"))
+            val token=result.getStringExtra(CreditEditSession.EXTRA_SESSION)
+            assertNotNull("Downloaded image must carry its document credit session",token)
+            assertTrue(CreditEditSession.open(activity.filesDir,token!!).credits.isEmpty())
             val file=File(activity.cacheDir,result.getStringExtra("gallery_file")!!)
             try {
                 assertTrue(file.isFile)
@@ -192,6 +196,7 @@ class CommonsBlankMapsTest {
             val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
             val main=mainController.get()
             try {
+                awaitEditorStartup(main)
                 main.document.background=Color.GREEN;main.document.newImage(2,1)
                 main.onActivityResult(ClassicPaintActivity.GALLERY_IMAGE,Activity.RESULT_OK,result)
                 await {!main.busy}
@@ -199,6 +204,10 @@ class CommonsBlankMapsTest {
                 main.document.finishSelection()
                 assertEquals(Color.RED,main.document.bitmap.getPixel(0,0))
                 assertEquals(Color.WHITE,main.document.bitmap.getPixel(1,0))
+                assertEquals(listOf(rasterOriginal),main.document.imageCredits.map {it.source})
+                val credit=main.document.imageCredits.single().text
+                assertTrue(credit.contains(rasterPage));assertTrue(credit.contains("by-sa/3.0/"))
+                assertFalse("Raster import must not claim SVG rasterisation",credit.contains("antiAlias=false"))
             } finally {mainController.pause().stop();await {!main.busy};mainController.destroy()}
         } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
     }
