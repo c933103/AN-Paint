@@ -37,7 +37,31 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("en-US","fr","ja","ar","vi-Hani","mnc-Mong")
+    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","mnc-Mong")
+
+    // Independent reviewed wording oracles for the five newly supplied exact catalogues.
+    private val addedReasons=mapOf(
+        "hak-Hant-TW" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
+            R.string.commons_svg_original_size_too_large to "SVG 个原本大細超出 Android 點陣圖个尺寸上限。並未調大細。"
+        ),
+        "hak-Latn-TW" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG mò thì-kiûng cho-tet yung ke ngièn-pún thai-se. Mò yung cheu fa-pu thai-se kiet-thin ke thai-se lòi chhí-thoi.",
+            R.string.commons_svg_original_size_too_large to "SVG ke ngièn-pún thai-se chhêu chhut Android tiám chhṳn thù ke chhak-chhun song han. Pin vi thiàu thai-se."
+        ),
+        "vi-Hani" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG 空 朱 別 戟 𡱩 㭲 𣎏 体 用. 空 用 戟 𡱩 豫 𨕭 椌 𡳒 抵 𠊝 替.",
+            R.string.commons_svg_original_size_too_large to "戟 𡱩 㭲 𧵑 SVG 越 過 界限 戟 𡱩 bitmap 𧵑 Android. 空 𢷮 戟 𡱩."
+        ),
+        "bo" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ནང་སྤྱོད་རུང་བའི་ཐོག་མའི་ཆེ་ཆུང་བཀོད་མེད། རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ཆེ་ཆུང་ཚབ་ཏུ་མ་སྤྱད།",
+            R.string.commons_svg_original_size_too_large to "SVG ཡི་ཐོག་མའི་ཆེ་ཆུང་ནི་ Android གྱི་ bitmap ཆེ་ཆུང་གི་ཚད་ལས་བརྒལ་ཡོད། ཆེ་ཆུང་མ་བསྒྱུར།"
+        ),
+        "dz" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ནང་ལུ་ ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད། འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ།",
+            R.string.commons_svg_original_size_too_large to "SVG གི་ཚད་ངོ་མ་འདི་ Android གི་ bitmap ཚད་ཀྱི་ཁྱབ་ཁོངས་ལས་བརྒལ་ཡོད། ཚད་བསྒྱུར་མ་འབད།"
+        )
+    )
 
     private class Connection(url: URL,svg: String): HttpURLConnection(url) {
         private val input=ByteArrayInputStream(svg.toByteArray(Charsets.UTF_8))
@@ -106,9 +130,12 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","vi-Hani","mnc-Mong"))
+            if(tag in listOf("en-US","mnc-Mong"))
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
+            addedReasons[tag]?.get(key)?.let {
+                assertEquals("The selected exact catalogue must supply its reviewed wording",it,reason)
+            }
             val expected=activity.getString(R.string.ui_could_not_load_gallery_image,reason)
             var requests=0
             activity.openConnection={url ->

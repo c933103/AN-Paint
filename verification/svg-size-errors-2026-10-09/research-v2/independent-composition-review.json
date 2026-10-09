@@ -1,0 +1,303 @@
+{
+  "review_date_utc": "2026-10-09",
+  "source_head": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
+  "scope": "Independent source-assisted semantic and orthographic review of proposed new SVG errors; no production resource edits.",
+  "source_contract": {
+    "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+    "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+  },
+  "overall_disposition": "Five complete pairs coherent for source-assisted draft inclusion; apply three required corrections to the hak-Latn-TW too-large value. Jeju remains incomplete research only.",
+  "acceptance_limits": [
+    "No native-language acceptance or final localization-completeness claim.",
+    "Whole UI sentences are new editorial compositions. Absence of a dictionary quoting each full sentence is not itself evidence of bad meaning.",
+    "Existing catalogue occurrences are project terminology clues and may themselves contain errors; exact PFS corrections here demonstrate why reuse is not acceptance.",
+    "No Kotlin, Android, font, XML resource build, or runtime check performed in this language review.",
+    "No unrelated catalogue entries were changed or proposed for automatic correction."
+  ],
+  "input_sha256": {
+    "hakka-nom-paraphrase-candidates.json": "75cea3bd0453da56b682b101796497183bd98aa94045b20971261c2b6da07d65",
+    "v2-bo-dz-jje/candidates-and-evidence.json": "e82158caec2cd34b3ccc71e9a69cd79fb4ac0c88230a26d4dd8548e2b1bfa5e3"
+  },
+  "locales": {
+    "hak-Hant-TW": {
+      "disposition": "include_as_source_assisted_draft",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
+        "commons_svg_original_size_too_large": "SVG 个原本大細超出 Android 點陣圖个尺寸上限。並未調大細。"
+      },
+      "required_corrections": [],
+      "clause_review": [
+        "SVG 無提供做得用个原本大細 states that the SVG does not provide usable original size information. 提供 is a coherent ordinary-language alternative to declare in this file context; 做得用 modifies the original size and does not merely claim that any size is absent.",
+        "無用照畫布大細決定个大細來取代 negates using a size determined according to the canvas size as a substitute. The relative clause modifies 大細; it does not say the canvas was changed. 無用 ... 來取代 is read compositionally with a following object and purpose phrase, not as the isolated adjective useless, and does not introduce inability.",
+        "SVG 个原本大細超出 Android 點陣圖个尺寸上限 keeps original SVG size, Android bitmap, a dimensional maximum, and exceeds. It does not substitute a byte-size or available-memory limit.",
+        "並未調大細 reports nonperformance of size adjustment. No automatic-only, shrink-only or future-only qualification is present."
+      ],
+      "remaining_uncertainty": [
+        "The repeated 大細 makes the canvas-derived clause somewhat heavy; a fluent Hakka editor may prefer a shorter formulation, but I found no concrete scope or meaning defect.",
+        "Technical register and whole-sentence idiom are not certified by constituent dictionaries or by existing project terminology."
+      ],
+      "source_ids": [
+        "HAK-PROVIDE",
+        "HAK-CAN",
+        "HAK-ACCORDING",
+        "HAK-DETERMINE",
+        "HAK-REPLACE",
+        "BASE-HAK-HANT"
+      ]
+    },
+    "hak-Latn-TW": {
+      "disposition": "include_as_source_assisted_draft_after_listed_corrections",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG mò thì-kiûng cho-tet yung ke ngièn-pún thai-se. Mò yung cheu fa-pu thai-se kiet-thin ke thai-se lòi chhí-thoi.",
+        "commons_svg_original_size_too_large": "SVG ke ngièn-pún thai-se chhêu chhut Android tiám chhṳn thù ke chhak-chhun song han. Pin vi thiàu thai-se."
+      },
+      "required_corrections": [
+        {
+          "old": "tiam chhṳn thù",
+          "new": "tiám chhṳn thù",
+          "scope": "commons_svg_original_size_too_large",
+          "reason": "The dot/point reading of 點 is Sixian PFS tiám. The unmarked inherited tiam does not preserve that tone.",
+          "source_ids": [
+            "PFS-POINT"
+          ]
+        },
+        {
+          "old": "sông han",
+          "new": "song han",
+          "scope": "commons_svg_original_size_too_large",
+          "reason": "上 in the upper-limit meaning is Sixian PFS song, not sông. 限 remains han.",
+          "source_ids": [
+            "PFS-UPPER",
+            "HAK-UPPER",
+            "PFS-LIMIT"
+          ]
+        },
+        {
+          "old": "Pin vi tiau thai-se.",
+          "new": "Pin vi thiàu thai-se.",
+          "scope": "commons_svg_original_size_too_large",
+          "reason": "Here 調 means adjust/regulate, the thiàu reading. The tiau reading belongs to a different reading/sense set. MOE tiauˇ is its own romanization of /tʰiau11/; an explicit PFS source gives thiàu, so this is not an unverified mechanical system conversion.",
+          "source_ids": [
+            "PFS-ADJUST",
+            "PFS-ADJUST-COMPOUND",
+            "HAK-ADJUST"
+          ]
+        }
+      ],
+      "clause_review": [
+        "The unavailable value pairs with the Han candidate clause by clause, including negated provide, ability-to-use modifier, original size, canvas-based derivation and negated substitution. No required change identified in that value.",
+        "The too-large value has the same semantic structure as the Han candidate, but its inherited point, upper and adjust spellings require the three corrections above.",
+        "kiet-thin is a complete attested PFS word for 決定; thì-kiûng and chhí-thoi also have explicit PFS lexical support. These are not clipped morphemes mechanically reassembled from another romanization system.",
+        "After correction, Pin vi thiàu thai-se retains the unqualified completed non-action meaning. The Han partner 調 need not be changed."
+      ],
+      "remaining_uncertainty": [
+        "Hyphenation is inconsistent in the current catalogue (for example fa pu/fa-pu and sông han/sông-han). This review does not impose a new project-wide orthographic convention. The three required changes concern readings, not cosmetic hyphenation.",
+        "A fluent PFS editor should still review the complete relative clause and technical noun chain. Current catalogue spellings are terminology clues, not accepted linguistic truth."
+      ],
+      "source_ids": [
+        "BASE-HAK-LATN",
+        "PFS-DETERMINE",
+        "PFS-PROVIDE",
+        "PFS-REPLACE",
+        "PFS-POINT",
+        "PFS-UPPER",
+        "PFS-LIMIT",
+        "PFS-ADJUST",
+        "PFS-ADJUST-COMPOUND",
+        "HAK-ADJUST"
+      ]
+    },
+    "vi-Hani": {
+      "disposition": "include_as_source_assisted_draft",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG 空 朱 別 戟 𡱩 㭲 𣎏 体 用. 空 用 戟 𡱩 豫 𨕭 椌 𡳒 抵 𠊝 替.",
+        "commons_svg_original_size_too_large": "戟 𡱩 㭲 𧵑 SVG 越 過 界限 戟 𡱩 bitmap 𧵑 Android. 空 𢷮 戟 𡱩."
+      },
+      "required_corrections": [],
+      "clause_review": [
+        "SVG không cho biết kích thước gốc có thể dùng retains the file-states-information meaning and the usable-original-size restriction. Cho biết is a coherent paraphrase; it does not assert specific XML syntax.",
+        "Không dùng kích thước dựa trên khung vẽ để thay thế explicitly negates use of a canvas-based size as the replacement. Dựa trên attaches to kích thước and để thay thế gives the substitution role; no inability or canvas resizing is claimed.",
+        "Kích thước gốc của SVG vượt quá giới hạn kích thước bitmap của Android preserves original size, exceed, the bitmap dimension limit and Android.",
+        "Không đổi kích thước is the unqualified no-size-change statement in this error-result context. It neither restricts the claim to automatic shrinking nor promises future behavior."
+      ],
+      "additional_evidence": "The current ui_add_up_to_20_images_with_android_s already contains the complete 朱 別 compound in its preview-result sentence, not just 別 in isolation. Keep this catalogue choice rather than replacing it with 别 solely because another dictionary page uses that variant.",
+      "remaining_uncertainty": [
+        "The supplied Quốc-ngữ reading is coherent; final Nôm orthographic/typographic acceptance remains separate.",
+        "Existing mixed word/syllable spacing and the technical Latin token bitmap are preserved. A Nôm reader should still review readability and app font rendering. No font or runtime check was performed."
+      ],
+      "source_ids": [
+        "BASE-VI-HANI",
+        "NOM-KNOW",
+        "NOM-BASED-ON"
+      ]
+    },
+    "bo": {
+      "disposition": "include_as_source_assisted_draft",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG ནང་སྤྱོད་རུང་བའི་ཐོག་མའི་ཆེ་ཆུང་བཀོད་མེད། རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ཆེ་ཆུང་ཚབ་ཏུ་མ་སྤྱད།",
+        "commons_svg_original_size_too_large": "SVG ཡི་ཐོག་མའི་ཆེ་ཆུང་ནི་ Android གྱི་ bitmap ཆེ་ཆུང་གི་ཚད་ལས་བརྒལ་ཡོད། ཆེ་ཆུང་མ་བསྒྱུར།"
+      },
+      "required_corrections": [],
+      "clause_review": [
+        "SVG ནང་ locates the missing information in the SVG. སྤྱོད་རུང་བའི་ modifies ཐོག་མའི་ཆེ་ཆུང་ and བཀོད་མེད expresses no recorded/stated usable original size. This is a coherent declaration paraphrase, not merely an absent display or a claim that SVG cannot have a size.",
+        "རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ modifies the following size as canvas-size-based. ཚབ་ཏུ་ supplies the substitute role and མ་སྤྱད negates past use. It does not say substitution is impossible or request a substitute.",
+        "The second message makes original SVG size the subject and uses ཚད་ལས་བརྒལ་ཡོད for exceeding the bitmap size limit belonging to Android. The explicit size noun prevents replacing the claim with a file-byte limit.",
+        "ཆེ་ཆུང་མ་བསྒྱུར retains no change of size. The past-form phrasing in this result context is consistent with a non-action report rather than a requested resizing operation."
+      ],
+      "remaining_uncertainty": [
+        "The repeated size noun and compact bitmap-size-limit compound deserve fluent-editor polish; I found no concrete semantic weakening.",
+        "No native Tibetan acceptance or official modern technical-sentence certification is claimed. The whole sentence is editorial composition, not a quotation."
+      ],
+      "source_ids": [
+        "BASE-BO",
+        "BO-SUBSTITUTE"
+      ]
+    },
+    "dz": {
+      "disposition": "include_as_source_assisted_draft",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG ནང་ལུ་ ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད། འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ།",
+        "commons_svg_original_size_too_large": "SVG གི་ཚད་ངོ་མ་འདི་ Android གི་ bitmap ཚད་ཀྱི་ཁྱབ་ཁོངས་ལས་བརྒལ་ཡོད། ཚད་བསྒྱུར་མ་འབད།"
+      },
+      "required_corrections": [],
+      "clause_review": [
+        "ལག་ལེན་འཐབ་བཏུབ་མི་ is an ability-to-use relative modifier of ཚད་ངོ་མ་. SVG ནང་ལུ་ and གསལ་བཀོད་འབད་དེ་མེད together express that usable original size has not been specified in the SVG. The specify predicate has independent Dzongkha computing/dimension-setting support.",
+        "འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ denotes a size made on the basis of the canvas size. The object is that derived size, not the canvas. ཚབ་སྦེ་ལག་ལེན་མ་འཐབ negates using it as a substitute in this failure-report context.",
+        "The original SVG size exceeds the range of Android bitmap size. The size-plus-range phrase stays dimensional; no byte count or available-memory-budget qualification is introduced.",
+        "ཚད་བསྒྱུར་མ་འབད states that size adjustment was not performed. It retains the full non-resizing claim and does not use the neighboring Tibetan predicate in its place."
+      ],
+      "remaining_uncertainty": [
+        "The nested relative clause and technical dimension-range noun phrase need fluent Dzongkha idiom/register review. They are compositionally coherent, but no full-sentence native acceptance is claimed.",
+        "Some older LibreOffice Dzongkha surrounding text contains obvious unrelated translation/OCR problems; only the specifically readable matching predicates are supporting evidence."
+      ],
+      "source_ids": [
+        "BASE-DZ",
+        "DZ-SPECIFY-DIMENSION",
+        "DZ-BASE",
+        "DZ-ABILITY-LEDGER",
+        "DZ-NEGATIVE-USE"
+      ]
+    },
+    "jje": {
+      "disposition": "research_only_incomplete_pair",
+      "native_language_acceptance": false,
+      "exact_values": null,
+      "reason": "The input contains only a proposed too-large message. No independently justified unavailable-size/canvas-substitution pair was established in this review. Do not count Jeju as covered or manufacture its missing value."
+    }
+  },
+  "sources": {
+    "HAK-PROVIDE": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=3509",
+      "inspection_and_scope": "Full page opened; provide/supply sense."
+    },
+    "HAK-CAN": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=6&id=16940",
+      "inspection_and_scope": "Full page opened; 做得 ability/possibility sense, with a modifying-clause example."
+    },
+    "HAK-ACCORDING": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=16738",
+      "inspection_and_scope": "Full page opened; 照 has according-to/basis sense."
+    },
+    "HAK-DETERMINE": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=1952",
+      "inspection_and_scope": "Full page opened; complete 決定 word and Sixian pronunciation."
+    },
+    "HAK-REPLACE": {
+      "url": "https://en.wiktionary.org/wiki/取代",
+      "inspection_and_scope": "Indexed entry inspected; substitute/replace and explicit PFS chhí-thoi."
+    },
+    "PFS-DETERMINE": {
+      "url": "https://en.wiktionary.org/wiki/決定",
+      "inspection_and_scope": "Full page opened; explicit Northern Sixian PFS kiet-thin. Southern variant kiat-thin is separately labelled."
+    },
+    "PFS-PROVIDE": {
+      "url": "https://en.wiktionary.org/wiki/提供",
+      "inspection_and_scope": "Full page opened; explicit Sixian PFS thì-kiûng."
+    },
+    "PFS-REPLACE": {
+      "url": "https://en.wiktionary.org/wiki/取代",
+      "inspection_and_scope": "Indexed entry inspected; explicit Sixian PFS chhí-thoi."
+    },
+    "PFS-POINT": {
+      "url": "https://en.wiktionary.org/wiki/點",
+      "inspection_and_scope": "Full page opened; Sixian PFS tiám, HRS diamˋ, /tiam31/ in dot/point reading."
+    },
+    "PFS-UPPER": {
+      "url": "https://en.wiktionary.org/wiki/上",
+      "inspection_and_scope": "Full page opened; upper/above sense has Sixian PFS song, /soŋ55/."
+    },
+    "HAK-UPPER": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=14943",
+      "inspection_and_scope": "Full page opened; upper-segment compound supports Sixian upper reading song55."
+    },
+    "PFS-LIMIT": {
+      "url": "https://en.wiktionary.org/wiki/限",
+      "inspection_and_scope": "Full page opened; Sixian PFS han."
+    },
+    "PFS-ADJUST": {
+      "url": "https://en.wiktionary.org/wiki/調",
+      "inspection_and_scope": "Full page opened; adjust/regulate reading thiàu is distinct from tiau/thiau readings."
+    },
+    "PFS-ADJUST-COMPOUND": {
+      "url": "https://en.wiktionary.org/wiki/調整",
+      "inspection_and_scope": "Full page opened; explicit PFS thiàu-chṳ́n and HRS tiauˇ ziinˋ correspondence."
+    },
+    "HAK-ADJUST": {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=6&id=4909",
+      "inspection_and_scope": "Indexed MOE entry inspected; adjust/put in order sense and Sixian tiau11."
+    },
+    "NOM-KNOW": {
+      "url": "https://chunom.org/pages/5225/",
+      "inspection_and_scope": "Full page opened; 別 has biết reading and cross-reference to 别."
+    },
+    "NOM-BASED-ON": {
+      "url": "https://chunom.org/pages/2856D/",
+      "inspection_and_scope": "Full page opened; explicitly lists 豫𨕭 as dựa trên, based/founded on."
+    },
+    "BO-SUBSTITUTE": {
+      "url": "https://www.gsungrab.org/etdkst/tibetan/entries/ambassador.htm",
+      "inspection_and_scope": "Full page opened; ordinary substitute/representative vocabulary. Only substitution sense used; no claim of computing sentence attestation."
+    },
+    "DZ-SPECIFY-DIMENSION": {
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/00/00000200.html",
+      "inspection_and_scope": "Full page opened; readable height clause uses གསལ་བཀོད་འབད. Surrounding translation defects are not treated as authority."
+    },
+    "DZ-BASE": {
+      "url": "https://help.libreoffice.org/latest/dz/text/scalc/01/04060106.html",
+      "inspection_and_scope": "Full page opened; supports based-on construction. Canonical project dimension normalization independently uses it."
+    },
+    "DZ-ABILITY-LEDGER": {
+      "url": "https://help.libreoffice.org/latest/dz/text/sbasic/shared/03030205.html",
+      "inspection_and_scope": "This reviewer direct open returned cache miss. Candidate ledger reports prior page/index evidence of ability-to-use predicate; not claimed independently full-opened in this pass."
+    },
+    "DZ-NEGATIVE-USE": {
+      "url": "https://www.bhutanaudit.gov.bt/wp-content/uploads/2024/01/AAR-2022-2023-dzongkha-final.pdf",
+      "inspection_and_scope": "Official audit indexed excerpt inspected; negated use in a report of two years of non-use, not only a prohibition. Full PDF/page image not inspected."
+    },
+    "BASE-HAK-HANT": {
+      "url": "https://github.com/c933103/AN-Paint/blob/80f0448f878165213eaa7e9bd5ad286be00e4ce8/Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+      "inspection_and_scope": "Exact current local catalogue inspected; terminology/grammar clues only, not acceptance. SHA-256: af5f5073d2f683f067ea9ddccc6921788d74386aabdd3045b716808d34367fd9"
+    },
+    "BASE-HAK-LATN": {
+      "url": "https://github.com/c933103/AN-Paint/blob/80f0448f878165213eaa7e9bd5ad286be00e4ce8/Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+      "inspection_and_scope": "Exact current local catalogue inspected; terminology/grammar clues only, not acceptance. SHA-256: cf2daba9472744664e2870ee5f4a689a8df38a64b9727e64d3dec074a4461b64"
+    },
+    "BASE-VI-HANI": {
+      "url": "https://github.com/c933103/AN-Paint/blob/80f0448f878165213eaa7e9bd5ad286be00e4ce8/Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "inspection_and_scope": "Exact current local catalogue inspected; terminology/grammar clues only, not acceptance. SHA-256: 4f686b65236fd49877224cd62304a68de9f286e8ec5edef2ea8f162b0d350fc6"
+    },
+    "BASE-BO": {
+      "url": "https://github.com/c933103/AN-Paint/blob/80f0448f878165213eaa7e9bd5ad286be00e4ce8/Paintroid/src/main/res/values-b+bo/strings.xml",
+      "inspection_and_scope": "Exact current local catalogue inspected; terminology/grammar clues only, not acceptance. SHA-256: ef46fb1c78723f0eb838bc2f2d02f448eeaccdd0550b417682ed7a76549a5ef1"
+    },
+    "BASE-DZ": {
+      "url": "https://github.com/c933103/AN-Paint/blob/80f0448f878165213eaa7e9bd5ad286be00e4ce8/Paintroid/src/main/res/values-b+dz/strings.xml",
+      "inspection_and_scope": "Exact current local catalogue inspected; terminology/grammar clues only, not acceptance. SHA-256: 81a2e6313aa3a817f854cc5fc2b0e7029d4121eb8c4bfaa4107be49695bae286"
+    }
+  }
+}
