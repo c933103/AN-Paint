@@ -1,0 +1,1905 @@
+﻿2026-10-09T16:18:59.7464273Z Current runner version: '2.337.0'
+2026-10-09T16:18:59.7481364Z ##[group]Runner Image Provisioner
+2026-10-09T16:18:59.7481983Z Hosted Compute Agent
+2026-10-09T16:18:59.7482360Z Version: 20261002.596
+2026-10-09T16:18:59.7483162Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-09T16:18:59.7483655Z Build Date: 2026-10-02T22:28:27Z
+2026-10-09T16:18:59.7484130Z Worker ID: {c1606976-6728-4c6d-ad1f-7c6116a10a42}
+2026-10-09T16:18:59.7484613Z Region: centralus
+2026-10-09T16:18:59.7484970Z Cloud: Azure
+2026-10-09T16:18:59.7485365Z ##[endgroup]
+2026-10-09T16:18:59.7486346Z ##[group]Operating System
+2026-10-09T16:18:59.7486778Z Ubuntu
+2026-10-09T16:18:59.7487188Z 22.04.5
+2026-10-09T16:18:59.7487524Z LTS
+2026-10-09T16:18:59.7487935Z ##[endgroup]
+2026-10-09T16:18:59.7488299Z ##[group]Runner Image
+2026-10-09T16:18:59.7488700Z Image: ubuntu-22.04
+2026-10-09T16:18:59.7489093Z Version: 20261004.315.1
+2026-10-09T16:18:59.7490007Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261004.315/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-09T16:18:59.7491052Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261004.315
+2026-10-09T16:18:59.7491693Z ##[endgroup]
+2026-10-09T16:18:59.7492419Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T16:18:59.7494169Z Contents: read
+2026-10-09T16:18:59.7494569Z Metadata: read
+2026-10-09T16:18:59.7494945Z ##[endgroup]
+2026-10-09T16:18:59.7496387Z Secret source: Actions
+2026-10-09T16:18:59.7497010Z Cache mode: write
+2026-10-09T16:18:59.7497538Z Prepare workflow directory
+2026-10-09T16:18:59.7881896Z Prepare all required actions
+2026-10-09T16:18:59.7921771Z Getting action download info
+2026-10-09T16:19:00.0662071Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-09T16:19:00.1360900Z Download action repository 'actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c' (SHA:3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c)
+2026-10-09T16:19:00.5213643Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-09T16:19:00.7132138Z Complete job name: Emulator API 35
+2026-10-09T16:19:00.7636712Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-09T16:19:00.7637522Z with:
+2026-10-09T16:19:00.7637924Z   persist-credentials: false
+2026-10-09T16:19:00.7638388Z   repository: c933103/AN-Paint
+2026-10-09T16:19:00.7641929Z   token: ***
+2026-10-09T16:19:00.7642330Z   ssh-strict: true
+2026-10-09T16:19:00.7642905Z   ssh-user: git
+2026-10-09T16:19:00.7643284Z   clean: true
+2026-10-09T16:19:00.7643678Z   sparse-checkout-cone-mode: true
+2026-10-09T16:19:00.7644183Z   fetch-depth: 1
+2026-10-09T16:19:00.7644560Z   fetch-tags: false
+2026-10-09T16:19:00.7644947Z   show-progress: true
+2026-10-09T16:19:00.7645324Z   lfs: false
+2026-10-09T16:19:00.7645704Z   submodules: false
+2026-10-09T16:19:00.7646141Z   set-safe-directory: true
+2026-10-09T16:19:00.7646598Z   allow-unsafe-pr-checkout: false
+2026-10-09T16:19:00.7647214Z env:
+2026-10-09T16:19:00.7647554Z   BUILD_VARIANT: debug
+2026-10-09T16:19:00.7647984Z ##[endgroup]
+2026-10-09T16:19:00.8423467Z Syncing repository: c933103/AN-Paint
+2026-10-09T16:19:00.8425917Z ##[group]Getting Git version info
+2026-10-09T16:19:00.8426988Z Working directory is '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-09T16:19:00.8428373Z [command]/usr/bin/git version
+2026-10-09T16:19:00.8477248Z git version 2.55.0
+2026-10-09T16:19:00.8495056Z ##[endgroup]
+2026-10-09T16:19:00.8501743Z Temporarily overriding HOME='/home/runner/work/_temp/0ec18e72-742a-4243-8c2f-67a2f773ad7a' before making global git config changes
+2026-10-09T16:19:00.8503663Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T16:19:00.8504982Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:19:00.8530776Z Deleting the contents of '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-09T16:19:00.8533423Z ##[group]Determining repository object format
+2026-10-09T16:19:00.8534891Z ##[endgroup]
+2026-10-09T16:19:00.8535943Z ##[group]Initializing the repository
+2026-10-09T16:19:00.8537105Z [command]/usr/bin/git init /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:19:00.8607537Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T16:19:00.8609137Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T16:19:00.8610601Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T16:19:00.8611788Z hint: call:
+2026-10-09T16:19:00.8612468Z hint:
+2026-10-09T16:19:00.8613531Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T16:19:00.8614525Z hint:
+2026-10-09T16:19:00.8615500Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T16:19:00.8616884Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T16:19:00.8618059Z hint:
+2026-10-09T16:19:00.8618828Z hint: 	git branch -m <name>
+2026-10-09T16:19:00.8619692Z hint:
+2026-10-09T16:19:00.8620655Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T16:19:00.8622326Z Initialized empty Git repository in /home/runner/work/AN-Paint/AN-Paint/.git/
+2026-10-09T16:19:00.8625267Z [command]/usr/bin/git remote add origin https://github.com/c933103/AN-Paint
+2026-10-09T16:19:00.8649448Z ##[endgroup]
+2026-10-09T16:19:00.8650355Z ##[group]Disabling automatic garbage collection
+2026-10-09T16:19:00.8651400Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T16:19:00.8704339Z ##[endgroup]
+2026-10-09T16:19:00.8705658Z ##[group]Setting up auth
+2026-10-09T16:19:00.8706631Z Removing SSH command configuration
+2026-10-09T16:19:00.8707793Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:19:00.8711221Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:19:00.8956845Z Removing HTTP extra header
+2026-10-09T16:19:00.8961450Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:19:00.8986246Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:19:00.9141019Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:19:00.9142307Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:19:00.9192422Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:19:00.9335323Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T16:19:00.9360795Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path /home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:00.9387176Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:00.9414307Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:00.9436944Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:00.9456865Z ##[endgroup]
+2026-10-09T16:19:00.9457517Z ##[group]Fetching the repository
+2026-10-09T16:19:00.9461106Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f5d2d3ac79864c5b91a502f24df93b62bdbe4718:refs/remotes/pull/32/merge
+2026-10-09T16:19:02.3635092Z From https://github.com/c933103/AN-Paint
+2026-10-09T16:19:02.3636554Z  * [new ref]         f5d2d3ac79864c5b91a502f24df93b62bdbe4718 -> pull/32/merge
+2026-10-09T16:19:02.3638889Z ##[endgroup]
+2026-10-09T16:19:02.3639667Z ##[group]Determining the checkout info
+2026-10-09T16:19:02.3640310Z ##[endgroup]
+2026-10-09T16:19:02.3642802Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T16:19:02.3686355Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T16:19:02.3717938Z ##[group]Checking out the ref
+2026-10-09T16:19:02.3721019Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/32/merge
+2026-10-09T16:19:02.5079673Z Note: switching to 'refs/remotes/pull/32/merge'.
+2026-10-09T16:19:02.5080164Z 
+2026-10-09T16:19:02.5080470Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-09T16:19:02.5081318Z changes and commit them, and you can discard any commits you make in this
+2026-10-09T16:19:02.5082085Z state without impacting any branches by switching back to a branch.
+2026-10-09T16:19:02.5082474Z 
+2026-10-09T16:19:02.5083024Z If you want to create a new branch to retain commits you create, you may
+2026-10-09T16:19:02.5083802Z do so (now or later) by using -c with the switch command. Example:
+2026-10-09T16:19:02.5084189Z 
+2026-10-09T16:19:02.5084387Z   git switch -c <new-branch-name>
+2026-10-09T16:19:02.5084698Z 
+2026-10-09T16:19:02.5084992Z Or undo this operation with:
+2026-10-09T16:19:02.5085309Z 
+2026-10-09T16:19:02.5085515Z   git switch -
+2026-10-09T16:19:02.5085793Z 
+2026-10-09T16:19:02.5086129Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-09T16:19:02.5086485Z 
+2026-10-09T16:19:02.5086948Z HEAD is now at f5d2d3a Merge 29cbe495b79231df6c1c5e93928fb9821cb6b9e6 into 0b3d737e19448c47d36deee8cebfffd5d40c1ea3
+2026-10-09T16:19:02.5088812Z ##[endgroup]
+2026-10-09T16:19:02.5123226Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T16:19:02.5145030Z f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:19:02.5153186Z ##[group]Removing auth
+2026-10-09T16:19:02.5153766Z Removing SSH command configuration
+2026-10-09T16:19:02.5156266Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:19:02.5181230Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:19:02.5344924Z Removing HTTP extra header
+2026-10-09T16:19:02.5346581Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:19:02.5372468Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:19:02.5527708Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:19:02.5529378Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:19:02.5547983Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-09T16:19:02.5548835Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-09T16:19:02.5549441Z includeif.gitdir:/github/workspace/.git.path
+2026-10-09T16:19:02.5549985Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-09T16:19:02.5554684Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-09T16:19:02.5573244Z /home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:02.5579725Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ada61621\-9de6\-482f\-b811\-74892425c7b5\.config
+2026-10-09T16:19:02.5607782Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-09T16:19:02.5625810Z /home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:02.5638180Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ada61621\-9de6\-482f\-b811\-74892425c7b5\.config
+2026-10-09T16:19:02.5667258Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-09T16:19:02.5685939Z /github/runner_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:02.5692428Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ada61621\-9de6\-482f\-b811\-74892425c7b5\.config
+2026-10-09T16:19:02.5719629Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-09T16:19:02.5738010Z /github/runner_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config
+2026-10-09T16:19:02.5774473Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ada61621\-9de6\-482f\-b811\-74892425c7b5\.config
+2026-10-09T16:19:02.5820395Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:19:02.5978665Z Removing credentials config '/home/runner/work/_temp/git-credentials-ada61621-9de6-482f-b811-74892425c7b5.config'
+2026-10-09T16:19:02.5988175Z ##[endgroup]
+2026-10-09T16:19:02.6237673Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-10-09T16:19:02.6238128Z with:
+2026-10-09T16:19:02.6238460Z   name: apk-and-source-f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:19:02.6238890Z   path: build/prebuilt
+2026-10-09T16:19:02.6239210Z   merge-multiple: false
+2026-10-09T16:19:02.6239517Z   repository: c933103/AN-Paint
+2026-10-09T16:19:02.6239842Z   run-id: 37957075692
+2026-10-09T16:19:02.6240126Z   skip-decompress: false
+2026-10-09T16:19:02.6240488Z   digest-mismatch: error
+2026-10-09T16:19:02.6240766Z env:
+2026-10-09T16:19:02.6241031Z   BUILD_VARIANT: debug
+2026-10-09T16:19:02.6241334Z ##[endgroup]
+2026-10-09T16:19:02.7345720Z Downloading single artifact
+2026-10-09T16:19:02.9242526Z Preparing to download the following artifacts:
+2026-10-09T16:19:02.9244158Z - apk-and-source-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 (ID: 11630120141, Size: 142627455, Expected Digest: sha256:a50733fc64fa6001b9041f3c40c161cde4b8d8fb61cd2abe4163e2a37425f492)
+2026-10-09T16:19:03.2493673Z Redirecting to blob download url: https://productionresultssa15.blob.core.windows.net/actions-results/942e6468-0d43-8eab-84b8-c5991fbc3d6e/workflow-job-run-6bc59d10-9828-5dd7-a48d-4093104ff464/artifacts/cca0d83e8e26b13f5e1a8741c007ab7b7e23450dfd5aac6e291bd55bed55b147.zip
+2026-10-09T16:19:03.2494738Z Starting download of artifact to: /home/runner/work/AN-Paint/AN-Paint/build/prebuilt
+2026-10-09T16:19:03.4515325Z (node:1919) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-09T16:19:03.4516477Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T16:19:06.3251664Z SHA256 digest of downloaded artifact is a50733fc64fa6001b9041f3c40c161cde4b8d8fb61cd2abe4163e2a37425f492
+2026-10-09T16:19:06.3252417Z Artifact download completed successfully.
+2026-10-09T16:19:06.3253294Z Total of 1 artifact(s) downloaded
+2026-10-09T16:19:06.3256206Z Download artifact has finished successfully
+2026-10-09T16:19:06.3383301Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-10-09T16:19:06.3383701Z with:
+2026-10-09T16:19:06.3384164Z   name: instrumentation-apks-f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:19:06.3384620Z   path: build/prebuilt
+2026-10-09T16:19:06.3384875Z   merge-multiple: false
+2026-10-09T16:19:06.3385164Z   repository: c933103/AN-Paint
+2026-10-09T16:19:06.3385433Z   run-id: 37957075692
+2026-10-09T16:19:06.3385732Z   skip-decompress: false
+2026-10-09T16:19:06.3386011Z   digest-mismatch: error
+2026-10-09T16:19:06.3386267Z env:
+2026-10-09T16:19:06.3386509Z   BUILD_VARIANT: debug
+2026-10-09T16:19:06.3386789Z ##[endgroup]
+2026-10-09T16:19:06.4559082Z Downloading single artifact
+2026-10-09T16:19:06.6494432Z Preparing to download the following artifacts:
+2026-10-09T16:19:06.6495657Z - instrumentation-apks-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 (ID: 11630665244, Size: 96042952, Expected Digest: sha256:c1528c1bdeab9ef174e0083cf865bf5abc29dbfc0ca73dff8233e2309662b472)
+2026-10-09T16:19:06.9916473Z Redirecting to blob download url: https://productionresultssa15.blob.core.windows.net/actions-results/942e6468-0d43-8eab-84b8-c5991fbc3d6e/workflow-job-run-6bc59d10-9828-5dd7-a48d-4093104ff464/artifacts/d21a376b1e731c008534a0adb9ce867c5a69e57480456537b34ff2f8dd1ce4b5.zip
+2026-10-09T16:19:06.9917635Z Starting download of artifact to: /home/runner/work/AN-Paint/AN-Paint/build/prebuilt
+2026-10-09T16:19:07.1828971Z (node:1931) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-09T16:19:07.1829801Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T16:19:08.9874710Z SHA256 digest of downloaded artifact is c1528c1bdeab9ef174e0083cf865bf5abc29dbfc0ca73dff8233e2309662b472
+2026-10-09T16:19:08.9875607Z Artifact download completed successfully.
+2026-10-09T16:19:08.9876065Z Total of 1 artifact(s) downloaded
+2026-10-09T16:19:08.9879051Z Download artifact has finished successfully
+2026-10-09T16:19:08.9999250Z ##[group]Run sudo chmod a+rw /dev/kvm
+2026-10-09T16:19:08.9999721Z [36;1msudo chmod a+rw /dev/kvm[0m
+2026-10-09T16:19:09.0000260Z [36;1mtimeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"[0m
+2026-10-09T16:19:09.0448707Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:19:09.0449050Z env:
+2026-10-09T16:19:09.0449424Z   BUILD_VARIANT: debug
+2026-10-09T16:19:09.0449668Z   TEST_API: 35
+2026-10-09T16:19:09.0449894Z ##[endgroup]
+2026-10-09T16:19:13.0001915Z Loading package information...                                                  
+2026-10-09T16:19:13.0762057Z Loading local repository...                                                     
+2026-10-09T16:19:13.0766636Z [                                       ] 3% Loading local repository...        
+2026-10-09T16:19:14.3373193Z [                                       ] 3% Fetch remote repository...         
+2026-10-09T16:19:14.7394885Z [=                                      ] 3% Fetch remote repository...         
+2026-10-09T16:19:14.7788220Z [=                                      ] 4% Fetch remote repository...         
+2026-10-09T16:19:14.8012127Z [=                                      ] 5% Fetch remote repository...         
+2026-10-09T16:19:14.8264056Z [==                                     ] 5% Fetch remote repository...         
+2026-10-09T16:19:14.8889984Z [==                                     ] 6% Fetch remote repository...         
+2026-10-09T16:19:14.9844322Z [==                                     ] 7% Fetch remote repository...         
+2026-10-09T16:19:14.9845381Z [==                                     ] 7% Computing updates...               
+2026-10-09T16:19:14.9906821Z [===                                    ] 8% Computing updates...               
+2026-10-09T16:19:15.0117410Z [===                                    ] 10% Computing updates...              
+2026-10-09T16:19:15.1312193Z [===                                    ] 10% Installing Android Emulator       
+2026-10-09T16:19:15.2219145Z [===                                    ] 10% Downloading emulator-linux_x64-164
+2026-10-09T16:19:15.3010573Z [====                                   ] 10% Downloading emulator-linux_x64-164
+2026-10-09T16:19:15.4712334Z [====                                   ] 11% Downloading emulator-linux_x64-164
+2026-10-09T16:19:15.6398418Z [====                                   ] 12% Downloading emulator-linux_x64-164
+2026-10-09T16:19:15.8135544Z [=====                                  ] 13% Downloading emulator-linux_x64-164
+2026-10-09T16:19:15.9635444Z [=====                                  ] 14% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.0571418Z [=====                                  ] 15% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.1320625Z [======                                 ] 15% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.3005637Z [======                                 ] 16% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.4722404Z [======                                 ] 17% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.6437057Z [=======                                ] 18% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.8121806Z [=======                                ] 19% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.8867593Z [=======                                ] 20% Downloading emulator-linux_x64-164
+2026-10-09T16:19:16.9806357Z [========                               ] 20% Downloading emulator-linux_x64-164
+2026-10-09T16:19:17.0936946Z [========                               ] 21% Downloading emulator-linux_x64-164
+2026-10-09T16:19:17.1763304Z [========                               ] 21% Unzipping...                      
+2026-10-09T16:19:17.1764293Z [========                               ] 21% Unzipping... emulator/            
+2026-10-09T16:19:17.1764949Z [========                               ] 21% Unzipping... emulator/resources/  
+2026-10-09T16:19:17.2115920Z [========                               ] 21% Unzipping... emulator/qsn         
+2026-10-09T16:19:17.3076333Z [========                               ] 21% Unzipping... emulator/emulator    
+2026-10-09T16:19:17.3290933Z [========                               ] 21% Unzipping... emulator/netsimd     
+2026-10-09T16:19:17.4889525Z [========                               ] 22% Unzipping... emulator/netsimd     
+2026-10-09T16:19:17.4890266Z [========                               ] 22% Unzipping... emulator/bin64/      
+2026-10-09T16:19:17.4890587Z [========                               ] 22% Unzipping... emulator/qemu/       
+2026-10-09T16:19:17.4904018Z [========                               ] 22% Unzipping... emulator/NOTICE.txt  
+2026-10-09T16:19:17.5073722Z [========                               ] 22% Unzipping... emulator/crashpad_han
+2026-10-09T16:19:17.5076180Z [========                               ] 22% Unzipping... emulator/source.prope
+2026-10-09T16:19:17.5613479Z [========                               ] 22% Unzipping... emulator/nimble_bridg
+2026-10-09T16:19:17.5615357Z [========                               ] 22% Unzipping... emulator/LICENSE     
+2026-10-09T16:19:17.5615826Z [========                               ] 22% Unzipping... emulator/lib/        
+2026-10-09T16:19:17.5687396Z [========                               ] 22% Unzipping... emulator/qemu-img    
+2026-10-09T16:19:17.5688193Z [========                               ] 22% Unzipping... emulator/include/    
+2026-10-09T16:19:17.5691174Z [========                               ] 22% Unzipping... emulator/NOTICE.csv  
+2026-10-09T16:19:17.5692125Z [========                               ] 22% Unzipping... emulator/lib64/      
+2026-10-09T16:19:17.5834649Z [========                               ] 22% Unzipping... emulator/emulator-che
+2026-10-09T16:19:17.6005944Z [========                               ] 22% Unzipping... emulator/crashreport 
+2026-10-09T16:19:17.6008792Z [========                               ] 22% Unzipping... emulator/mksdcard    
+2026-10-09T16:19:17.6159207Z [========                               ] 22% Unzipping... emulator/resources/To
+2026-10-09T16:19:17.6213271Z [========                               ] 22% Unzipping... emulator/resources/de
+2026-10-09T16:19:17.6214504Z [========                               ] 22% Unzipping... emulator/resources/To
+2026-10-09T16:19:17.7179856Z [========                               ] 22% Unzipping... emulator/resources/de
+2026-10-09T16:19:17.7576277Z [========                               ] 22% Unzipping... emulator/resources/To
+2026-10-09T16:19:17.7577242Z [========                               ] 22% Unzipping... emulator/resources/ma
+2026-10-09T16:19:17.7672906Z [========                               ] 22% Unzipping... emulator/resources/de
+2026-10-09T16:19:17.7673936Z [========                               ] 22% Unzipping... emulator/resources/sk
+2026-10-09T16:19:17.7776562Z [========                               ] 22% Unzipping... emulator/resources/de
+2026-10-09T16:19:17.7777041Z [========                               ] 22% Unzipping... emulator/resources/ma
+2026-10-09T16:19:17.7874239Z [========                               ] 22% Unzipping... emulator/resources/po
+2026-10-09T16:19:17.8089859Z [========                               ] 22% Unzipping... emulator/resources/ma
+2026-10-09T16:19:17.8175803Z [=========                              ] 23% Unzipping... emulator/resources/ma
+2026-10-09T16:19:17.8596953Z [=========                              ] 23% Unzipping... emulator/resources/sk
+2026-10-09T16:19:17.8683855Z [=========                              ] 23% Unzipping... emulator/resources/ma
+2026-10-09T16:19:17.8774480Z [=========                              ] 23% Unzipping... emulator/bin64/e2fsck
+2026-10-09T16:19:17.8875746Z [=========                              ] 23% Unzipping... emulator/bin64/fsck.e
+2026-10-09T16:19:17.8895217Z [=========                              ] 23% Unzipping... emulator/bin64/tune2f
+2026-10-09T16:19:18.0089620Z [=========                              ] 23% Unzipping... emulator/bin64/resize
+2026-10-09T16:19:18.1284013Z [=========                              ] 23% Unzipping... emulator/bin64/mkfs.e
+2026-10-09T16:19:18.7730757Z [=========                              ] 23% Unzipping... emulator/qemu/linux-x
+2026-10-09T16:19:19.6003290Z [=========                              ] 24% Unzipping... emulator/qemu/linux-x
+2026-10-09T16:19:19.9454090Z [=========                              ] 25% Unzipping... emulator/qemu/linux-x
+2026-10-09T16:19:20.4801784Z [==========                             ] 25% Unzipping... emulator/qemu/linux-x
+2026-10-09T16:19:20.5880789Z [==========                             ] 25% Unzipping... emulator/lib/emulator
+2026-10-09T16:19:20.5885052Z [==========                             ] 25% Unzipping... emulator/lib/rtc_serv
+2026-10-09T16:19:20.5887355Z [==========                             ] 25% Unzipping... emulator/lib/advanced
+2026-10-09T16:19:20.5888022Z [==========                             ] 25% Unzipping... emulator/lib/cmake/  
+2026-10-09T16:19:20.5895212Z [==========                             ] 25% Unzipping... emulator/lib/emulator
+2026-10-09T16:19:20.5895837Z [==========                             ] 25% Unzipping... emulator/lib/control_
+2026-10-09T16:19:20.5896322Z [==========                             ] 25% Unzipping... emulator/lib/emulated
+2026-10-09T16:19:20.5896750Z [==========                             ] 25% Unzipping... emulator/lib/rtc_serv
+2026-10-09T16:19:20.5897219Z [==========                             ] 25% Unzipping... emulator/lib/emu-orig
+2026-10-09T16:19:20.5897711Z [==========                             ] 25% Unzipping... emulator/lib/hardware
+2026-10-09T16:19:20.5898217Z [==========                             ] 25% Unzipping... emulator/lib/pkgconfi
+2026-10-09T16:19:20.5898711Z [==========                             ] 25% Unzipping... emulator/lib/pc-bios/
+2026-10-09T16:19:20.5899207Z [==========                             ] 25% Unzipping... emulator/lib/snapshot
+2026-10-09T16:19:20.6983512Z [==========                             ] 25% Unzipping... emulator/lib/adb_serv
+2026-10-09T16:19:20.6987808Z [==========                             ] 25% Unzipping... emulator/lib/hostapd.
+2026-10-09T16:19:20.6989172Z [==========                             ] 25% Unzipping... emulator/lib/grpc_end
+2026-10-09T16:19:20.7004504Z [==========                             ] 25% Unzipping... emulator/lib/ca-bundl
+2026-10-09T16:19:20.7005924Z [==========                             ] 25% Unzipping... emulator/lib/ui_contr
+2026-10-09T16:19:20.7010588Z [==========                             ] 25% Unzipping... emulator/lib/snapshot
+2026-10-09T16:19:20.9226029Z [==========                             ] 25% Unzipping... emulator/lib/ice_conf
+2026-10-09T16:19:20.9322246Z [==========                             ] 25% Unzipping... emulator/lib/libflatb
+2026-10-09T16:19:21.0417255Z [==========                             ] 26% Unzipping... emulator/lib/libflatb
+2026-10-09T16:19:21.0426402Z [==========                             ] 26% Unzipping... emulator/lib/emulator
+2026-10-09T16:19:21.0426828Z [==========                             ] 26% Unzipping... emulator/lib/waterfal
+2026-10-09T16:19:21.1515163Z [==========                             ] 26% Unzipping... emulator/lib/emulated
+2026-10-09T16:19:21.1814577Z [==========                             ] 26% Unzipping... emulator/lib/cmake/fl
+2026-10-09T16:19:21.1909705Z [==========                             ] 26% Unzipping... emulator/lib/pkgconfi
+2026-10-09T16:19:21.4548103Z [==========                             ] 26% Unzipping... emulator/lib/pc-bios/
+2026-10-09T16:19:21.4597260Z [==========                             ] 26% Unzipping... emulator/include/flat
+2026-10-09T16:19:21.4658186Z [==========                             ] 26% Unzipping... emulator/lib64/libgli
+2026-10-09T16:19:21.4765996Z [==========                             ] 26% Unzipping... emulator/lib64/libpro
+2026-10-09T16:19:21.4766921Z [==========                             ] 26% Unzipping... emulator/lib64/qt/   
+2026-10-09T16:19:21.5123519Z [==========                             ] 26% Unzipping... emulator/lib64/liband
+2026-10-09T16:19:21.5749107Z [==========                             ] 26% Unzipping... emulator/lib64/libgfx
+2026-10-09T16:19:21.5749722Z [==========                             ] 26% Unzipping... emulator/lib64/gles_l
+2026-10-09T16:19:21.5756275Z [==========                             ] 26% Unzipping... emulator/lib64/liband
+2026-10-09T16:19:21.5756763Z [==========                             ] 26% Unzipping... emulator/lib64/vulkan
+2026-10-09T16:19:21.5757384Z [==========                             ] 26% Unzipping... emulator/lib64/gles_s
+2026-10-09T16:19:21.5759240Z [==========                             ] 26% Unzipping... emulator/lib64/libemu
+2026-10-09T16:19:21.5866921Z [==========                             ] 26% Unzipping... emulator/lib64/libpro
+2026-10-09T16:19:21.8394295Z [==========                             ] 26% Unzipping... emulator/lib64/liband
+2026-10-09T16:19:21.8410462Z [==========                             ] 26% Unzipping... emulator/lib64/libtcm
+2026-10-09T16:19:21.8412734Z [==========                             ] 26% Unzipping... emulator/lib64/libima
+2026-10-09T16:19:21.8468083Z [==========                             ] 26% Unzipping... emulator/lib64/libc++
+2026-10-09T16:19:21.8704420Z [==========                             ] 26% Unzipping... emulator/lib64/liband
+2026-10-09T16:19:21.8744112Z [==========                             ] 26% Unzipping... emulator/lib64/libabs
+2026-10-09T16:19:21.8744680Z [==========                             ] 26% Unzipping... emulator/lib64/gles_a
+2026-10-09T16:19:21.8809753Z [==========                             ] 26% Unzipping... emulator/lib64/libsha
+2026-10-09T16:19:21.8863805Z [==========                             ] 26% Unzipping... emulator/lib64/libc++
+2026-10-09T16:19:21.8864484Z [==========                             ] 26% Unzipping... emulator/lib64/qt/res
+2026-10-09T16:19:21.8865142Z [==========                             ] 26% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:21.8865808Z [==========                             ] 26% Unzipping... emulator/lib64/qt/tra
+2026-10-09T16:19:21.8866349Z [==========                             ] 26% Unzipping... emulator/lib64/qt/plu
+2026-10-09T16:19:21.8890255Z [==========                             ] 26% Unzipping... emulator/lib64/qt/res
+2026-10-09T16:19:22.0335154Z [==========                             ] 27% Unzipping... emulator/lib64/qt/res
+2026-10-09T16:19:22.2064891Z [==========                             ] 27% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:22.5583608Z [===========                            ] 28% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:22.9246505Z [===========                            ] 29% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:23.9184073Z [===========                            ] 30% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:23.9949951Z [============                           ] 30% Unzipping... emulator/lib64/qt/lib
+2026-10-09T16:19:24.1896197Z [============                           ] 30% Unzipping... emulator/lib64/qt/tra
+2026-10-09T16:19:24.2002868Z [============                           ] 30% Unzipping... emulator/lib64/qt/plu
+2026-10-09T16:19:24.2200763Z [============                           ] 30% Unzipping... emulator/lib64/gles_l
+2026-10-09T16:19:24.2875220Z [============                           ] 31% Unzipping... emulator/lib64/gles_l
+2026-10-09T16:19:24.7011832Z [============                           ] 31% Unzipping... emulator/lib64/vulkan
+2026-10-09T16:19:25.5792352Z [============                           ] 32% Unzipping... emulator/lib64/vulkan
+2026-10-09T16:19:25.6406497Z [============                           ] 32% Unzipping... emulator/lib64/gles_s
+2026-10-09T16:19:25.6927371Z [============                           ] 32% Unzipping... emulator/lib64/gles_a
+2026-10-09T16:19:25.7295775Z [=============                          ] 33% Unzipping... emulator/lib64/gles_a
+2026-10-09T16:19:25.9454526Z [=====================                  ] 55% Unzipping... emulator/lib64/gles_a
+2026-10-09T16:19:26.0445646Z [=====================                  ] 55% Installing Google APIs Intel x86_6
+2026-10-09T16:19:26.3074913Z [=====================                  ] 55% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:26.7704298Z [======================                 ] 55% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:27.8078419Z [======================                 ] 56% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:28.8465644Z [======================                 ] 57% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:29.8887072Z [=======================                ] 58% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:30.8123802Z [=======================                ] 59% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:31.3874869Z [=======================                ] 60% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:31.8493782Z [========================               ] 60% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:32.8850419Z [========================               ] 61% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:33.9189727Z [========================               ] 62% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:34.9550008Z [=========================              ] 63% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:36.0987901Z [=========================              ] 64% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:36.5585385Z [=========================              ] 65% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:37.1311346Z [==========================             ] 65% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:37.8394751Z [==========================             ] 66% Downloading x86_64-35_r09.zip... e
+2026-10-09T16:19:37.8405809Z [==========================             ] 66% Unzipping... emulator/lib64/gles_a
+2026-10-09T16:19:38.0286779Z [==========================             ] 66% Unzipping... x86_64/NOTICE.txt    
+2026-10-09T16:19:38.0287941Z [==========================             ] 66% Unzipping... x86_64/VerifiedBootPa
+2026-10-09T16:19:38.0289001Z [==========================             ] 66% Unzipping... x86_64/advancedFeatur
+2026-10-09T16:19:38.0289930Z [==========================             ] 66% Unzipping... x86_64/build.prop    
+2026-10-09T16:19:38.2684716Z [==========================             ] 66% Unzipping... x86_64/encryptionkey.
+2026-10-09T16:19:38.5105151Z [==========================             ] 66% Unzipping... x86_64/kernel-ranchu 
+2026-10-09T16:19:38.5108876Z [==========================             ] 66% Unzipping... x86_64/kernel_cmdline
+2026-10-09T16:19:38.6190834Z [==========================             ] 66% Unzipping... x86_64/ramdisk.img   
+2026-10-09T16:19:38.6192792Z [==========================             ] 66% Unzipping... x86_64/source.propert
+2026-10-09T16:19:38.7530482Z [==========================             ] 66% Unzipping... x86_64/system.img    
+2026-10-09T16:19:40.1363229Z [==========================             ] 67% Unzipping... x86_64/system.img    
+2026-10-09T16:19:41.4463436Z [===========================            ] 68% Unzipping... x86_64/system.img    
+2026-10-09T16:19:42.4952191Z [===========================            ] 69% Unzipping... x86_64/system.img    
+2026-10-09T16:19:43.1996294Z [===========================            ] 70% Unzipping... x86_64/system.img    
+2026-10-09T16:19:43.7589378Z [============================           ] 70% Unzipping... x86_64/system.img    
+2026-10-09T16:19:45.2139541Z [============================           ] 71% Unzipping... x86_64/system.img    
+2026-10-09T16:19:46.3568717Z [============================           ] 72% Unzipping... x86_64/system.img    
+2026-10-09T16:19:47.5507204Z [=============================          ] 73% Unzipping... x86_64/system.img    
+2026-10-09T16:19:48.9458749Z [=============================          ] 74% Unzipping... x86_64/system.img    
+2026-10-09T16:19:49.7030185Z [=============================          ] 75% Unzipping... x86_64/system.img    
+2026-10-09T16:19:50.2884279Z [==============================         ] 75% Unzipping... x86_64/system.img    
+2026-10-09T16:19:51.7278355Z [==============================         ] 76% Unzipping... x86_64/system.img    
+2026-10-09T16:20:04.4703695Z [==============================         ] 77% Unzipping... x86_64/system.img    
+2026-10-09T16:20:05.3502532Z [==============================         ] 77% Unzipping... x86_64/vendor.img    
+2026-10-09T16:20:05.4285091Z [==============================         ] 77% Unzipping... x86_64/data/empty_dat
+2026-10-09T16:20:05.4286447Z [==============================         ] 77% Unzipping... x86_64/data/local.pro
+2026-10-09T16:20:05.4287957Z [==============================         ] 77% Unzipping... x86_64/data/misc/Gold
+2026-10-09T16:20:05.4289396Z [==============================         ] 77% Unzipping... x86_64/data/misc/apns
+2026-10-09T16:20:05.4291855Z [==============================         ] 77% Unzipping... x86_64/data/misc/emul
+2026-10-09T16:20:05.4298324Z [==============================         ] 77% Unzipping... x86_64/data/misc/mode
+2026-10-09T16:20:05.4304928Z [==============================         ] 77% Unzipping... x86_64/data/misc/pixe
+2026-10-09T16:20:05.6091093Z [==============================         ] 78% Unzipping... x86_64/data/misc/pixe
+2026-10-09T16:20:05.6091686Z [=======================================] 100% Unzipping... x86_64/data/misc/pix
+2026-10-09T16:20:05.6137851Z 
+2026-10-09T16:20:05.6344414Z ##[group]Run bash tools/ci_emulator.sh
+2026-10-09T16:20:05.6344775Z [36;1mbash tools/ci_emulator.sh[0m
+2026-10-09T16:20:05.6381377Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:20:05.6381751Z env:
+2026-10-09T16:20:05.6382096Z   BUILD_VARIANT: debug
+2026-10-09T16:20:05.6382443Z   TEST_API: 35
+2026-10-09T16:20:05.6382834Z ##[endgroup]
+2026-10-09T16:20:05.6473023Z [+0s] Create virtual device
+2026-10-09T16:20:06.3658890Z Loading local repository...                                                     
+2026-10-09T16:20:06.3660397Z [=========                              ] 25% Loading local repository...       
+2026-10-09T16:20:06.3673668Z [=========                              ] 25% Fetch remote repository...        
+2026-10-09T16:20:06.3674466Z [=======================================] 100% Fetch remote repository...       
+2026-10-09T16:20:06.5458561Z Auto-selecting single ABI x86_64
+2026-10-09T16:20:06.5876978Z Do you wish to create a custom hardware profile? [no] [+1s] Launch emulator
+2026-10-09T16:20:06.5890023Z [+1s] Discover ADB device (60s maximum)
+2026-10-09T16:20:06.9625203Z * daemon not running; starting now at tcp:5037
+2026-10-09T16:20:06.9995636Z * daemon started successfully
+2026-10-09T16:20:17.7167936Z [+12s] Android boot
+2026-10-09T16:20:17.7427484Z [+12s] Waiting: Android boot (probe exit 0; 120s remain)
+2026-10-09T16:20:18.7734373Z [+13s] Waiting: Android boot (probe exit 0; 119s remain)
+2026-10-09T16:20:19.8002009Z [+14s] Waiting: Android boot (probe exit 0; 118s remain)
+2026-10-09T16:20:20.8256642Z [+15s] Waiting: Android boot (probe exit 0; 117s remain)
+2026-10-09T16:20:21.8544187Z [+16s] Waiting: Android boot (probe exit 0; 116s remain)
+2026-10-09T16:20:22.8770531Z [+17s] Waiting: Android boot (probe exit 0; 115s remain)
+2026-10-09T16:20:23.9037795Z [+18s] Waiting: Android boot (probe exit 0; 114s remain)
+2026-10-09T16:20:24.9290162Z [+19s] Waiting: Android boot (probe exit 0; 113s remain)
+2026-10-09T16:20:25.9572238Z [+20s] Waiting: Android boot (probe exit 0; 112s remain)
+2026-10-09T16:20:27.0208170Z [+22s] Waiting: Android boot (probe exit 0; 110s remain)
+2026-10-09T16:20:28.0718524Z [+23s] Waiting: Android boot (probe exit 0; 109s remain)
+2026-10-09T16:20:29.1026351Z [+24s] Waiting: Android boot (probe exit 0; 108s remain)
+2026-10-09T16:20:30.1333790Z [+25s] Waiting: Android boot (probe exit 0; 107s remain)
+2026-10-09T16:20:31.1553753Z [+26s] Waiting: Android boot (probe exit 0; 106s remain)
+2026-10-09T16:20:32.1742419Z [+27s] Waiting: Android boot (probe exit 0; 105s remain)
+2026-10-09T16:20:33.1957344Z [+28s] Waiting: Android boot (probe exit 0; 104s remain)
+2026-10-09T16:20:34.2574473Z [+29s] Waiting: Android boot (probe exit 0; 103s remain)
+2026-10-09T16:20:35.2809528Z [+30s] Waiting: Android boot (probe exit 0; 102s remain)
+2026-10-09T16:20:36.3031456Z [+31s] Ready: Android boot
+2026-10-09T16:20:36.3044817Z [+31s] Verify Android API
+2026-10-09T16:20:36.3236898Z [+31s] Ready: Verify Android API
+2026-10-09T16:20:36.3247946Z [+31s] Package manager
+2026-10-09T16:20:36.3575046Z [+31s] Ready: Package manager
+2026-10-09T16:20:36.3598047Z [+31s] Disable window_animation_scale
+2026-10-09T16:20:36.3915786Z [+31s] Ready: Disable window_animation_scale
+2026-10-09T16:20:36.3929719Z [+31s] Disable transition_animation_scale
+2026-10-09T16:20:36.4456101Z [+31s] Ready: Disable transition_animation_scale
+2026-10-09T16:20:36.4468251Z [+31s] Disable animator_duration_scale
+2026-10-09T16:20:36.4772014Z [+31s] Ready: Disable animator_duration_scale
+2026-10-09T16:20:36.4784091Z [+31s] Dismiss keyguard
+2026-10-09T16:20:36.5213684Z [+31s] Ready: Dismiss keyguard
+2026-10-09T16:20:36.5226970Z [+31s] Install main APK (60s maximum)
+2026-10-09T16:20:43.9827843Z Performing Streamed Install
+2026-10-09T16:20:43.9833179Z Success
+2026-10-09T16:20:43.9863110Z [+38s] Native/import instrumentation
+2026-10-09T16:20:55.4111956Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4113137Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:20:55.4114242Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4114779Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4115353Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.4115876Z org.catrobat.paintroid.classic.AnimationImportTest:
+2026-10-09T16:20:55.4116530Z INSTRUMENTATION_STATUS: test=apngImportsItsSeparateDefaultPoster
+2026-10-09T16:20:55.4117120Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:55.4581701Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4583329Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:20:55.4584608Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4585078Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4585452Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:55.4585950Z INSTRUMENTATION_STATUS: test=apngImportsItsSeparateDefaultPoster
+2026-10-09T16:20:55.4586395Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:55.4646858Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4667893Z INSTRUMENTATION_STATUS: current=2
+2026-10-09T16:20:55.4669628Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4670277Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4670736Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.4671373Z INSTRUMENTATION_STATUS: test=gifImportsTheFirstFrame
+2026-10-09T16:20:55.4671862Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:55.4701880Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4702950Z INSTRUMENTATION_STATUS: current=2
+2026-10-09T16:20:55.4704498Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4704935Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4705313Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:55.4705720Z INSTRUMENTATION_STATUS: test=gifImportsTheFirstFrame
+2026-10-09T16:20:55.4706131Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:55.4711788Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4712459Z INSTRUMENTATION_STATUS: current=3
+2026-10-09T16:20:55.4713241Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4713739Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4714251Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.4714776Z INSTRUMENTATION_STATUS: test=apngImportsTheFirstFrameWhenItIsTheDefaultImage
+2026-10-09T16:20:55.4715409Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:55.4750961Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4751658Z INSTRUMENTATION_STATUS: current=3
+2026-10-09T16:20:55.4752299Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4753020Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4753524Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:55.4754080Z INSTRUMENTATION_STATUS: test=apngImportsTheFirstFrameWhenItIsTheDefaultImage
+2026-10-09T16:20:55.4754642Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:55.4812821Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4813591Z INSTRUMENTATION_STATUS: current=4
+2026-10-09T16:20:55.4814254Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4814746Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4815238Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.4815738Z INSTRUMENTATION_STATUS: test=webpImportsTheFirstFrame
+2026-10-09T16:20:55.4816244Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:55.4958717Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.AnimationImportTest
+2026-10-09T16:20:55.4960549Z INSTRUMENTATION_STATUS: current=4
+2026-10-09T16:20:55.4961015Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.4961402Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.4961757Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:55.4962145Z INSTRUMENTATION_STATUS: test=webpImportsTheFirstFrame
+2026-10-09T16:20:55.4963239Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:55.5003468Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:55.5004023Z INSTRUMENTATION_STATUS: current=5
+2026-10-09T16:20:55.5004473Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.5004832Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.5005224Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.5005626Z org.catrobat.paintroid.classic.CommonsCreditDeviceTest:
+2026-10-09T16:20:55.5006302Z INSTRUMENTATION_STATUS: test=nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence
+2026-10-09T16:20:55.5007467Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:55.6133720Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:55.6134702Z INSTRUMENTATION_STATUS: current=5
+2026-10-09T16:20:55.6135160Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.6135689Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.6136120Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:55.6137279Z INSTRUMENTATION_STATUS: test=nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence
+2026-10-09T16:20:55.6138119Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:55.6214241Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:55.6219531Z INSTRUMENTATION_STATUS: current=6
+2026-10-09T16:20:55.6220351Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:55.6221682Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:55.6222196Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:55.6223062Z INSTRUMENTATION_STATUS: test=svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview
+2026-10-09T16:20:55.6223819Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:58.4702304Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:58.4703404Z INSTRUMENTATION_STATUS: current=6
+2026-10-09T16:20:58.4703926Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:58.4704539Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:58.4704988Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:58.4705660Z INSTRUMENTATION_STATUS: test=svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview
+2026-10-09T16:20:58.4706258Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:58.4917084Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:58.4918052Z INSTRUMENTATION_STATUS: current=7
+2026-10-09T16:20:58.4918570Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:58.4919184Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:58.4919623Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:58.4920292Z INSTRUMENTATION_STATUS: test=rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo
+2026-10-09T16:20:58.4920870Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:20:59.7286778Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.CommonsCreditDeviceTest
+2026-10-09T16:20:59.7298089Z INSTRUMENTATION_STATUS: current=7
+2026-10-09T16:20:59.7305197Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:59.7310678Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:59.7311259Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:20:59.7311992Z INSTRUMENTATION_STATUS: test=rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo
+2026-10-09T16:20:59.7312842Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:20:59.7405588Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:20:59.7406333Z INSTRUMENTATION_STATUS: current=8
+2026-10-09T16:20:59.7407490Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:20:59.7408048Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:20:59.7408634Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:20:59.7409147Z org.catrobat.paintroid.classic.GalleryPageDeviceTest:
+2026-10-09T16:20:59.7409965Z INSTRUMENTATION_STATUS: test=galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks
+2026-10-09T16:20:59.7410971Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:00.3756186Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:21:00.3761951Z INSTRUMENTATION_STATUS: current=8
+2026-10-09T16:21:00.3762822Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:00.3763286Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:00.3763655Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:00.3764269Z INSTRUMENTATION_STATUS: test=galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks
+2026-10-09T16:21:00.3764850Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:00.3918764Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:21:00.3919493Z INSTRUMENTATION_STATUS: current=9
+2026-10-09T16:21:00.3920118Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:00.3920597Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:00.3921051Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:00.3921706Z INSTRUMENTATION_STATUS: test=openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap
+2026-10-09T16:21:00.3922305Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:00.8679192Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:21:00.8680244Z INSTRUMENTATION_STATUS: current=9
+2026-10-09T16:21:00.8680792Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:00.8681356Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:00.8681884Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:00.8683121Z INSTRUMENTATION_STATUS: test=openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap
+2026-10-09T16:21:00.8683819Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:00.8712092Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:21:00.8713063Z INSTRUMENTATION_STATUS: current=10
+2026-10-09T16:21:00.8713474Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:00.8713966Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:00.8714432Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:00.8715122Z INSTRUMENTATION_STATUS: test=irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds
+2026-10-09T16:21:00.8715886Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:01.5175088Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.GalleryPageDeviceTest
+2026-10-09T16:21:01.5175892Z INSTRUMENTATION_STATUS: current=10
+2026-10-09T16:21:01.5176461Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:01.5176947Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:01.5177428Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:01.5178182Z INSTRUMENTATION_STATUS: test=irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds
+2026-10-09T16:21:01.5178885Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:01.5282358Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:01.5283362Z INSTRUMENTATION_STATUS: current=11
+2026-10-09T16:21:01.5283858Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:01.5284423Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:01.5284848Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:01.5285371Z org.catrobat.paintroid.classic.HeifCodecTest:
+2026-10-09T16:21:01.5285978Z INSTRUMENTATION_STATUS: test=heicExportKeepsLongOddImageDimensionsAcrossTiles
+2026-10-09T16:21:01.5286603Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:02.9094656Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9095414Z INSTRUMENTATION_STATUS: current=11
+2026-10-09T16:21:02.9095833Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9096221Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9096585Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:02.9097072Z INSTRUMENTATION_STATUS: test=heicExportKeepsLongOddImageDimensionsAcrossTiles
+2026-10-09T16:21:02.9097584Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:02.9105092Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9129750Z INSTRUMENTATION_STATUS: current=12
+2026-10-09T16:21:02.9130243Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9130750Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9131080Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:02.9131928Z INSTRUMENTATION_STATUS: test=colouredHlgUsesActualPrimariesForDisplayLuminance
+2026-10-09T16:21:02.9132517Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:02.9304102Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9304652Z INSTRUMENTATION_STATUS: current=12
+2026-10-09T16:21:02.9305309Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9305761Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9306090Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:02.9306611Z INSTRUMENTATION_STATUS: test=colouredHlgUsesActualPrimariesForDisplayLuminance
+2026-10-09T16:21:02.9307059Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:02.9311706Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9312363Z INSTRUMENTATION_STATUS: current=13
+2026-10-09T16:21:02.9312901Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9313330Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9313738Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:02.9314264Z INSTRUMENTATION_STATUS: test=translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition
+2026-10-09T16:21:02.9314872Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:02.9538683Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9541453Z INSTRUMENTATION_STATUS: current=13
+2026-10-09T16:21:02.9541846Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9542358Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9542917Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:02.9543497Z INSTRUMENTATION_STATUS: test=translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition
+2026-10-09T16:21:02.9544069Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:02.9551055Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9555932Z INSTRUMENTATION_STATUS: current=14
+2026-10-09T16:21:02.9556350Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9556790Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9557172Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:02.9557694Z INSTRUMENTATION_STATUS: test=tenBitLinearAvifConvertsTransferBeforeEightBitQuantization
+2026-10-09T16:21:02.9558277Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:02.9727890Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9731577Z INSTRUMENTATION_STATUS: current=14
+2026-10-09T16:21:02.9732179Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9733292Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9733819Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:02.9734445Z INSTRUMENTATION_STATUS: test=tenBitLinearAvifConvertsTransferBeforeEightBitQuantization
+2026-10-09T16:21:02.9735128Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:02.9742533Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:02.9743374Z INSTRUMENTATION_STATUS: current=15
+2026-10-09T16:21:02.9743829Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:02.9744333Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:02.9744755Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:02.9745339Z INSTRUMENTATION_STATUS: test=commonImporterAndAssemblyUseNativeAvifWithExactCropPixels
+2026-10-09T16:21:02.9746026Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:03.0470260Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:03.0471179Z INSTRUMENTATION_STATUS: current=15
+2026-10-09T16:21:03.0472262Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:03.0473484Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:03.0473971Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:03.0474854Z INSTRUMENTATION_STATUS: test=commonImporterAndAssemblyUseNativeAvifWithExactCropPixels
+2026-10-09T16:21:03.0475516Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:03.0519418Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:03.0541154Z INSTRUMENTATION_STATUS: current=16
+2026-10-09T16:21:03.0542302Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:03.0543094Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:03.0543533Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:03.0544204Z INSTRUMENTATION_STATUS: test=avifTiledRoundTripAndCrossTileCropKeepExactPixels
+2026-10-09T16:21:03.0545222Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:04.2658479Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.2664020Z INSTRUMENTATION_STATUS: current=16
+2026-10-09T16:21:04.2664656Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.2665236Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.2665656Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:04.2666171Z INSTRUMENTATION_STATUS: test=avifTiledRoundTripAndCrossTileCropKeepExactPixels
+2026-10-09T16:21:04.2666728Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:04.2746346Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.2747038Z INSTRUMENTATION_STATUS: current=17
+2026-10-09T16:21:04.2747377Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.2747724Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.2748077Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:04.2748586Z INSTRUMENTATION_STATUS: test=heicAndAvifQualityControlsProduceDecodableOpaqueImages
+2026-10-09T16:21:04.2749114Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:04.8652107Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.8661882Z INSTRUMENTATION_STATUS: current=17
+2026-10-09T16:21:04.8662504Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.8663266Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.8664171Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:04.8664889Z INSTRUMENTATION_STATUS: test=heicAndAvifQualityControlsProduceDecodableOpaqueImages
+2026-10-09T16:21:04.8665588Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:04.8689567Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.8690551Z INSTRUMENTATION_STATUS: current=18
+2026-10-09T16:21:04.8691210Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.8691745Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.8692962Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:04.8693706Z INSTRUMENTATION_STATUS: test=tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb
+2026-10-09T16:21:04.8694441Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:04.9090940Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9091768Z INSTRUMENTATION_STATUS: current=18
+2026-10-09T16:21:04.9092414Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9093130Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9093961Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:04.9094768Z INSTRUMENTATION_STATUS: test=tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb
+2026-10-09T16:21:04.9095398Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:04.9136373Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9141783Z INSTRUMENTATION_STATUS: current=19
+2026-10-09T16:21:04.9143269Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9143818Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9144225Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:04.9144800Z INSTRUMENTATION_STATUS: test=malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing
+2026-10-09T16:21:04.9145385Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:04.9343882Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9346348Z INSTRUMENTATION_STATUS: current=19
+2026-10-09T16:21:04.9351550Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9352382Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9353113Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:04.9354000Z INSTRUMENTATION_STATUS: test=malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing
+2026-10-09T16:21:04.9354584Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:04.9379086Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9380992Z INSTRUMENTATION_STATUS: current=20
+2026-10-09T16:21:04.9382148Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9384362Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9385034Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:04.9385721Z INSTRUMENTATION_STATUS: test=avifLosslessPreservesEveryRgbPixelIncludingOddDimensions
+2026-10-09T16:21:04.9386471Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:04.9792757Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9793821Z INSTRUMENTATION_STATUS: current=20
+2026-10-09T16:21:04.9794441Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9795055Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9795949Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:04.9796505Z INSTRUMENTATION_STATUS: test=avifLosslessPreservesEveryRgbPixelIncludingOddDimensions
+2026-10-09T16:21:04.9797017Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:04.9806798Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:04.9807401Z INSTRUMENTATION_STATUS: current=21
+2026-10-09T16:21:04.9807945Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:04.9808406Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:04.9808997Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:04.9809848Z INSTRUMENTATION_STATUS: test=avifIccProfileAndNclxWideGamutAreConvertedToSrgb
+2026-10-09T16:21:04.9810294Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:05.0090073Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.HeifCodecTest
+2026-10-09T16:21:05.0090633Z INSTRUMENTATION_STATUS: current=21
+2026-10-09T16:21:05.0091152Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0091513Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0091884Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:05.0092392Z INSTRUMENTATION_STATUS: test=avifIccProfileAndNclxWideGamutAreConvertedToSrgb
+2026-10-09T16:21:05.0093056Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:05.0102978Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0103523Z INSTRUMENTATION_STATUS: current=22
+2026-10-09T16:21:05.0103982Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0104411Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0104782Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:05.0105226Z org.catrobat.paintroid.classic.LegacyCodecTest:
+2026-10-09T16:21:05.0105799Z INSTRUMENTATION_STATUS: test=failedBudgetPreservesExistingDestinationAndSourcePixels
+2026-10-09T16:21:05.0106406Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:05.0185552Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0186575Z INSTRUMENTATION_STATUS: current=22
+2026-10-09T16:21:05.0187096Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0187784Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0188305Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:05.0188872Z INSTRUMENTATION_STATUS: test=failedBudgetPreservesExistingDestinationAndSourcePixels
+2026-10-09T16:21:05.0189482Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:05.0201056Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0201666Z INSTRUMENTATION_STATUS: current=23
+2026-10-09T16:21:05.0202055Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0202454Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0203185Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:05.0203775Z INSTRUMENTATION_STATUS: test=bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes
+2026-10-09T16:21:05.0204359Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:05.0338394Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0341353Z INSTRUMENTATION_STATUS: current=23
+2026-10-09T16:21:05.0341743Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0342328Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0342828Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:05.0343644Z INSTRUMENTATION_STATUS: test=bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes
+2026-10-09T16:21:05.0344265Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:05.0351654Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0354562Z INSTRUMENTATION_STATUS: current=24
+2026-10-09T16:21:05.0355132Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0355667Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0356113Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:05.0356710Z INSTRUMENTATION_STATUS: test=bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder
+2026-10-09T16:21:05.0357331Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:05.0597197Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.LegacyCodecTest
+2026-10-09T16:21:05.0600109Z INSTRUMENTATION_STATUS: current=24
+2026-10-09T16:21:05.0600544Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0601059Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0601486Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:05.0601992Z INSTRUMENTATION_STATUS: test=bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder
+2026-10-09T16:21:05.0602850Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:05.0895754Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:05.0898576Z INSTRUMENTATION_STATUS: current=25
+2026-10-09T16:21:05.0899003Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:05.0899443Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:05.0899768Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:05.0900224Z org.catrobat.paintroid.classic.NativeCodecTest:
+2026-10-09T16:21:05.0900808Z INSTRUMENTATION_STATUS: test=lossyEncodingHandlesLongPortraitAndLandscapeImages
+2026-10-09T16:21:05.0901368Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:06.8804114Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:06.8805142Z INSTRUMENTATION_STATUS: current=25
+2026-10-09T16:21:06.8805615Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:06.8806128Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:06.8807094Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:06.8807892Z INSTRUMENTATION_STATUS: test=lossyEncodingHandlesLongPortraitAndLandscapeImages
+2026-10-09T16:21:06.8808756Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:06.8823347Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:06.8824371Z INSTRUMENTATION_STATUS: current=26
+2026-10-09T16:21:06.8825064Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:06.8825707Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:06.8826260Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:06.8826995Z INSTRUMENTATION_STATUS: test=losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary
+2026-10-09T16:21:06.8827705Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:28.8884681Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:28.8886337Z INSTRUMENTATION_STATUS: current=26
+2026-10-09T16:21:28.8886996Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:28.8890189Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:28.8890679Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:28.8891372Z INSTRUMENTATION_STATUS: test=losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary
+2026-10-09T16:21:28.8892349Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:28.8904760Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:28.8908576Z INSTRUMENTATION_STATUS: current=27
+2026-10-09T16:21:28.8914294Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:28.8914805Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:28.8915395Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:28.8916114Z INSTRUMENTATION_STATUS: test=regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput
+2026-10-09T16:21:28.8917144Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:28.9219012Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:28.9222929Z INSTRUMENTATION_STATUS: current=27
+2026-10-09T16:21:28.9223685Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:28.9228074Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:28.9230105Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:28.9230899Z INSTRUMENTATION_STATUS: test=regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput
+2026-10-09T16:21:28.9231575Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:28.9243857Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:28.9244614Z INSTRUMENTATION_STATUS: current=28
+2026-10-09T16:21:28.9246029Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:28.9249351Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:28.9251289Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:28.9253228Z INSTRUMENTATION_STATUS: test=lossyQualityAndReducedDecodeProduceUsableImages
+2026-10-09T16:21:28.9254496Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.0209094Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.0250714Z INSTRUMENTATION_STATUS: current=28
+2026-10-09T16:21:29.0271593Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.0272467Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.0273399Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.0274206Z INSTRUMENTATION_STATUS: test=lossyQualityAndReducedDecodeProduceUsableImages
+2026-10-09T16:21:29.0275170Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.0275767Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.0276819Z INSTRUMENTATION_STATUS: current=29
+2026-10-09T16:21:29.0277474Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.0278229Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.0278867Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.0279787Z INSTRUMENTATION_STATUS: test=tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights
+2026-10-09T16:21:29.0280731Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.1110962Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1115265Z INSTRUMENTATION_STATUS: current=29
+2026-10-09T16:21:29.1115857Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1116337Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1116828Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.1117590Z INSTRUMENTATION_STATUS: test=tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights
+2026-10-09T16:21:29.1118350Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.1133306Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1134085Z INSTRUMENTATION_STATUS: current=30
+2026-10-09T16:21:29.1134781Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1135348Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1136035Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.1136898Z INSTRUMENTATION_STATUS: test=IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground
+2026-10-09T16:21:29.1137849Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.1188517Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1189412Z INSTRUMENTATION_STATUS: current=30
+2026-10-09T16:21:29.1191346Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1192856Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1193536Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.1194185Z INSTRUMENTATION_STATUS: test=IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground
+2026-10-09T16:21:29.1194860Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.1195424Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1200774Z INSTRUMENTATION_STATUS: current=31
+2026-10-09T16:21:29.1201204Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1201988Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1202412Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.1203116Z INSTRUMENTATION_STATUS: test=corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap
+2026-10-09T16:21:29.1203812Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.1247551Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1248275Z INSTRUMENTATION_STATUS: current=31
+2026-10-09T16:21:29.1248704Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1249146Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1249650Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.1250218Z INSTRUMENTATION_STATUS: test=corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap
+2026-10-09T16:21:29.1250943Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.1252186Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.1256264Z INSTRUMENTATION_STATUS: current=32
+2026-10-09T16:21:29.1256934Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.1257431Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.1257925Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.1258431Z INSTRUMENTATION_STATUS: test=everyAdvertisedBundledFontLoadsItsActualFontFile
+2026-10-09T16:21:29.1259080Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.2892066Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.2894859Z INSTRUMENTATION_STATUS: current=32
+2026-10-09T16:21:29.2895352Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.2895765Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.2896204Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.2896656Z INSTRUMENTATION_STATUS: test=everyAdvertisedBundledFontLoadsItsActualFontFile
+2026-10-09T16:21:29.2897160Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.2901757Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.2904313Z INSTRUMENTATION_STATUS: current=33
+2026-10-09T16:21:29.2904933Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.2905344Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.2905755Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.2906413Z INSTRUMENTATION_STATUS: test=nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode
+2026-10-09T16:21:29.2907110Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.7886184Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.7893075Z INSTRUMENTATION_STATUS: current=33
+2026-10-09T16:21:29.7893941Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.7894349Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.7894731Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.7895306Z INSTRUMENTATION_STATUS: test=nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode
+2026-10-09T16:21:29.7895866Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.7903820Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.7904498Z INSTRUMENTATION_STATUS: current=34
+2026-10-09T16:21:29.7904937Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.7905364Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.7905794Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.7906612Z INSTRUMENTATION_STATUS: test=sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization
+2026-10-09T16:21:29.7907217Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.7969388Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.7972912Z INSTRUMENTATION_STATUS: current=34
+2026-10-09T16:21:29.7973355Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.7973766Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.7974157Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.7974680Z INSTRUMENTATION_STATUS: test=sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization
+2026-10-09T16:21:29.7975532Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.7981140Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.7984433Z INSTRUMENTATION_STATUS: current=35
+2026-10-09T16:21:29.7984855Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.7985248Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.7985710Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.7986257Z INSTRUMENTATION_STATUS: test=losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions
+2026-10-09T16:21:29.7986861Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:29.8190447Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.NativeCodecTest
+2026-10-09T16:21:29.8194118Z INSTRUMENTATION_STATUS: current=35
+2026-10-09T16:21:29.8194564Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.8194941Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.8195358Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:29.8195849Z INSTRUMENTATION_STATUS: test=losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions
+2026-10-09T16:21:29.8196433Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:29.8203169Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:29.8205875Z INSTRUMENTATION_STATUS: current=36
+2026-10-09T16:21:29.8206445Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:29.8206828Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:29.8207248Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:29.8207615Z org.catrobat.paintroid.classic.PdfCodecTest:
+2026-10-09T16:21:29.8208504Z INSTRUMENTATION_STATUS: test=malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors
+2026-10-09T16:21:29.8209101Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.0464914Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.0467806Z INSTRUMENTATION_STATUS: current=36
+2026-10-09T16:21:30.0468292Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.0468803Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.0469183Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.0469835Z INSTRUMENTATION_STATUS: test=malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors
+2026-10-09T16:21:30.0470541Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.0493288Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.0494207Z INSTRUMENTATION_STATUS: current=37
+2026-10-09T16:21:30.0494718Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.0495294Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.0495771Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.0496471Z INSTRUMENTATION_STATUS: test=invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput
+2026-10-09T16:21:30.0497236Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.0995097Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.0997896Z INSTRUMENTATION_STATUS: current=37
+2026-10-09T16:21:30.0999175Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.0999527Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.0999969Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.1000676Z INSTRUMENTATION_STATUS: test=invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput
+2026-10-09T16:21:30.1001365Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.1012098Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1013001Z INSTRUMENTATION_STATUS: current=38
+2026-10-09T16:21:30.1013514Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1013955Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1014592Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.1015285Z INSTRUMENTATION_STATUS: test=scalingAndSourcePixelCropRenderWithoutChangingPageOrientation
+2026-10-09T16:21:30.1015968Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.1305433Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1307548Z INSTRUMENTATION_STATUS: current=38
+2026-10-09T16:21:30.1307919Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1308285Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1308697Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.1309192Z INSTRUMENTATION_STATUS: test=scalingAndSourcePixelCropRenderWithoutChangingPageOrientation
+2026-10-09T16:21:30.1309760Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.1313780Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1316347Z INSTRUMENTATION_STATUS: current=39
+2026-10-09T16:21:30.1317580Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1318077Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1318579Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.1319170Z INSTRUMENTATION_STATUS: test=generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions
+2026-10-09T16:21:30.1319841Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.1392303Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1394918Z INSTRUMENTATION_STATUS: current=39
+2026-10-09T16:21:30.1395437Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1395972Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1396451Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.1397071Z INSTRUMENTATION_STATUS: test=generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions
+2026-10-09T16:21:30.1397784Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.1402548Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1405868Z INSTRUMENTATION_STATUS: current=40
+2026-10-09T16:21:30.1406324Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1406893Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1407295Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.1407885Z INSTRUMENTATION_STATUS: test=tileRenderingUsesTheSameCoordinatesAsTheWholePage
+2026-10-09T16:21:30.1408496Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.1680036Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1680678Z INSTRUMENTATION_STATUS: current=40
+2026-10-09T16:21:30.1681043Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1681502Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1681812Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.1682294Z INSTRUMENTATION_STATUS: test=tileRenderingUsesTheSameCoordinatesAsTheWholePage
+2026-10-09T16:21:30.1682997Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.1687733Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1688418Z INSTRUMENTATION_STATUS: current=41
+2026-10-09T16:21:30.1688772Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1689178Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1689498Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.1690095Z INSTRUMENTATION_STATUS: test=assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne
+2026-10-09T16:21:30.1690588Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.1757385Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1758197Z INSTRUMENTATION_STATUS: current=41
+2026-10-09T16:21:30.1758582Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1759194Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1759764Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.1760327Z INSTRUMENTATION_STATUS: test=assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne
+2026-10-09T16:21:30.1760937Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.1786085Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.1786762Z INSTRUMENTATION_STATUS: current=42
+2026-10-09T16:21:30.1787749Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.1788441Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.1790126Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.1790806Z INSTRUMENTATION_STATUS: test=descriptorsCloseAfterRepeatedSuccessAndPageFailures
+2026-10-09T16:21:30.1791586Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2154265Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.2154939Z INSTRUMENTATION_STATUS: current=42
+2026-10-09T16:21:30.2155374Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2155818Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2156237Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2156904Z INSTRUMENTATION_STATUS: test=descriptorsCloseAfterRepeatedSuccessAndPageFailures
+2026-10-09T16:21:30.2157455Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2172461Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.2175459Z INSTRUMENTATION_STATUS: current=43
+2026-10-09T16:21:30.2176003Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2176558Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2177072Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2177676Z INSTRUMENTATION_STATUS: test=selectedPageOpensAsEditablePixelsWithoutChangingThePdf
+2026-10-09T16:21:30.2178257Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2309838Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.2310610Z INSTRUMENTATION_STATUS: current=43
+2026-10-09T16:21:30.2311094Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2311582Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2312078Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2312875Z INSTRUMENTATION_STATUS: test=selectedPageOpensAsEditablePixelsWithoutChangingThePdf
+2026-10-09T16:21:30.2313555Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2333353Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.2334010Z INSTRUMENTATION_STATUS: current=44
+2026-10-09T16:21:30.2334461Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2335012Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2335510Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2336165Z INSTRUMENTATION_STATUS: test=pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection
+2026-10-09T16:21:30.2336882Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2373296Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PdfCodecTest
+2026-10-09T16:21:30.2373862Z INSTRUMENTATION_STATUS: current=44
+2026-10-09T16:21:30.2374196Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2374624Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2375035Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2375577Z INSTRUMENTATION_STATUS: test=pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection
+2026-10-09T16:21:30.2376216Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2395767Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2410246Z INSTRUMENTATION_STATUS: current=45
+2026-10-09T16:21:30.2410771Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2411789Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2412146Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2412887Z org.catrobat.paintroid.classic.PlatformColourImportTest:
+2026-10-09T16:21:30.2413540Z INSTRUMENTATION_STATUS: test=transparentPixelsCompositeAgainstDocumentBackgroundAfterResize
+2026-10-09T16:21:30.2414332Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2450235Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2452015Z INSTRUMENTATION_STATUS: current=45
+2026-10-09T16:21:30.2452935Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2453595Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2454177Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2454780Z INSTRUMENTATION_STATUS: test=transparentPixelsCompositeAgainstDocumentBackgroundAfterResize
+2026-10-09T16:21:30.2455765Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2464302Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2466269Z INSTRUMENTATION_STATUS: current=46
+2026-10-09T16:21:30.2467052Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2467674Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2468126Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2468839Z INSTRUMENTATION_STATUS: test=malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies
+2026-10-09T16:21:30.2469510Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2544073Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2546239Z INSTRUMENTATION_STATUS: current=46
+2026-10-09T16:21:30.2546852Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2547507Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2548031Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2549060Z INSTRUMENTATION_STATUS: test=malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies
+2026-10-09T16:21:30.2549768Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2553331Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2556279Z INSTRUMENTATION_STATUS: current=47
+2026-10-09T16:21:30.2558396Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2559942Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2560536Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2561625Z INSTRUMENTATION_STATUS: test=pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion
+2026-10-09T16:21:30.2562386Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2613126Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2614607Z INSTRUMENTATION_STATUS: current=47
+2026-10-09T16:21:30.2615161Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2615746Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2616134Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2617371Z INSTRUMENTATION_STATUS: test=pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion
+2026-10-09T16:21:30.2618043Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2628802Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2632451Z INSTRUMENTATION_STATUS: current=48
+2026-10-09T16:21:30.2633215Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2633821Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2634271Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2635081Z INSTRUMENTATION_STATUS: test=p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha
+2026-10-09T16:21:30.2635639Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2675350Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2676011Z INSTRUMENTATION_STATUS: current=48
+2026-10-09T16:21:30.2676538Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2676995Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2677434Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2678021Z INSTRUMENTATION_STATUS: test=p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha
+2026-10-09T16:21:30.2678580Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2684770Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2686387Z INSTRUMENTATION_STATUS: current=49
+2026-10-09T16:21:30.2686823Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2689045Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2689672Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2690376Z INSTRUMENTATION_STATUS: test=linear16AndPqPngRenderWithTransferAndHighlightDetail
+2026-10-09T16:21:30.2691064Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2760305Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2761225Z INSTRUMENTATION_STATUS: current=49
+2026-10-09T16:21:30.2761837Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2762323Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2762882Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2763527Z INSTRUMENTATION_STATUS: test=linear16AndPqPngRenderWithTransferAndHighlightDetail
+2026-10-09T16:21:30.2764159Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2768299Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2771661Z INSTRUMENTATION_STATUS: current=50
+2026-10-09T16:21:30.2772264Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2772946Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2773379Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2774115Z INSTRUMENTATION_STATUS: test=colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget
+2026-10-09T16:21:30.2774855Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2804146Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2805023Z INSTRUMENTATION_STATUS: current=50
+2026-10-09T16:21:30.2805528Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2806030Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2806578Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2807891Z INSTRUMENTATION_STATUS: test=colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget
+2026-10-09T16:21:30.2808493Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2815918Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2816611Z INSTRUMENTATION_STATUS: current=51
+2026-10-09T16:21:30.2817174Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2817607Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2817980Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2818413Z INSTRUMENTATION_STATUS: test=jpegAndWebpIccAreConvertedExactlyOnce
+2026-10-09T16:21:30.2818891Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.2941196Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2942922Z INSTRUMENTATION_STATUS: current=51
+2026-10-09T16:21:30.2943437Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2943981Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2944490Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.2945090Z INSTRUMENTATION_STATUS: test=jpegAndWebpIccAreConvertedExactlyOnce
+2026-10-09T16:21:30.2945675Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.2964816Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.2965656Z INSTRUMENTATION_STATUS: current=52
+2026-10-09T16:21:30.2966249Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.2966799Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.2967233Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.2967836Z INSTRUMENTATION_STATUS: test=assemblyCropUsesSameColourConversionAndWhiteBackground
+2026-10-09T16:21:30.2968465Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.3006992Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.PlatformColourImportTest
+2026-10-09T16:21:30.3007724Z INSTRUMENTATION_STATUS: current=52
+2026-10-09T16:21:30.3008319Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3008806Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3009460Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.3010081Z INSTRUMENTATION_STATUS: test=assemblyCropUsesSameColourConversionAndWhiteBackground
+2026-10-09T16:21:30.3010644Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.3015969Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3016561Z INSTRUMENTATION_STATUS: current=53
+2026-10-09T16:21:30.3017132Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3017624Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3018221Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.3018882Z org.catrobat.paintroid.classic.TiffCodecTest:
+2026-10-09T16:21:30.3019500Z INSTRUMENTATION_STATUS: test=associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication
+2026-10-09T16:21:30.3020168Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.3710333Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3711301Z INSTRUMENTATION_STATUS: current=53
+2026-10-09T16:21:30.3711889Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3712455Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3713524Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.3714223Z INSTRUMENTATION_STATUS: test=associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication
+2026-10-09T16:21:30.3714820Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.3725774Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3728012Z INSTRUMENTATION_STATUS: current=54
+2026-10-09T16:21:30.3728375Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3728814Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3729214Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.3730020Z INSTRUMENTATION_STATUS: test=constrainedEncodePreservesDestinationAndSourceAndCanRecover
+2026-10-09T16:21:30.3730716Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.3790507Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3794183Z INSTRUMENTATION_STATUS: current=54
+2026-10-09T16:21:30.3794664Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3795165Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3795512Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.3796083Z INSTRUMENTATION_STATUS: test=constrainedEncodePreservesDestinationAndSourceAndCanRecover
+2026-10-09T16:21:30.3796582Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.3801548Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3802316Z INSTRUMENTATION_STATUS: current=55
+2026-10-09T16:21:30.3803002Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3803543Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3803990Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.3804646Z INSTRUMENTATION_STATUS: test=unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels
+2026-10-09T16:21:30.3805312Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.3907817Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3912057Z INSTRUMENTATION_STATUS: current=55
+2026-10-09T16:21:30.3915708Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3916668Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3917216Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.3918014Z INSTRUMENTATION_STATUS: test=unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels
+2026-10-09T16:21:30.3920037Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.3920765Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.3945299Z INSTRUMENTATION_STATUS: current=56
+2026-10-09T16:21:30.3950350Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.3953889Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.3954860Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.3955675Z INSTRUMENTATION_STATUS: test=independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly
+2026-10-09T16:21:30.3957056Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.4927072Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.4927852Z INSTRUMENTATION_STATUS: current=56
+2026-10-09T16:21:30.4928289Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.4928713Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.4929119Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.4929756Z INSTRUMENTATION_STATUS: test=independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly
+2026-10-09T16:21:30.4930443Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.4949019Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.4949706Z INSTRUMENTATION_STATUS: current=57
+2026-10-09T16:21:30.4950097Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.4950521Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.4950940Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.4951524Z INSTRUMENTATION_STATUS: test=nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile
+2026-10-09T16:21:30.4952126Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.5079284Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.5079924Z INSTRUMENTATION_STATUS: current=57
+2026-10-09T16:21:30.5080323Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.5080698Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.5081063Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.5081573Z INSTRUMENTATION_STATUS: test=nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile
+2026-10-09T16:21:30.5082098Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.5092480Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.5093186Z INSTRUMENTATION_STATUS: current=58
+2026-10-09T16:21:30.5093640Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.5094095Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.5094482Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.5095165Z INSTRUMENTATION_STATUS: test=croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels
+2026-10-09T16:21:30.5095807Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.5492465Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.5493167Z INSTRUMENTATION_STATUS: current=58
+2026-10-09T16:21:30.5493565Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.5493964Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.5494319Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.5494969Z INSTRUMENTATION_STATUS: test=croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels
+2026-10-09T16:21:30.5495572Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.5506599Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.5509050Z INSTRUMENTATION_STATUS: current=59
+2026-10-09T16:21:30.5509435Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.5509917Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.5510266Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.5510799Z INSTRUMENTATION_STATUS: test=jpegCompressedTiffMatchesIndependentHostDecoder
+2026-10-09T16:21:30.5511292Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.5990206Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.5992165Z INSTRUMENTATION_STATUS: current=59
+2026-10-09T16:21:30.5992804Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.5993314Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.5993714Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.5994270Z INSTRUMENTATION_STATUS: test=jpegCompressedTiffMatchesIndependentHostDecoder
+2026-10-09T16:21:30.5994735Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.5999056Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.6002208Z INSTRUMENTATION_STATUS: current=60
+2026-10-09T16:21:30.6002956Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.6003576Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.6003905Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.6004434Z INSTRUMENTATION_STATUS: test=sharedImportRecognizesTiffBySignatureAndUsesFirstPage
+2026-10-09T16:21:30.6004920Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.6882723Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.6883545Z INSTRUMENTATION_STATUS: current=60
+2026-10-09T16:21:30.6884004Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.6884807Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.6885215Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.6886301Z INSTRUMENTATION_STATUS: test=sharedImportRecognizesTiffBySignatureAndUsesFirstPage
+2026-10-09T16:21:30.6886984Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.6888789Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.6889932Z INSTRUMENTATION_STATUS: current=61
+2026-10-09T16:21:30.6891039Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.6891640Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.6892167Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.6893049Z INSTRUMENTATION_STATUS: test=uncompressedAndDeflateExportsPreserveAllOpaquePixels
+2026-10-09T16:21:30.6893811Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.7097355Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.7097980Z INSTRUMENTATION_STATUS: current=61
+2026-10-09T16:21:30.7106727Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.7107450Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.7107915Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.7108577Z INSTRUMENTATION_STATUS: test=uncompressedAndDeflateExportsPreserveAllOpaquePixels
+2026-10-09T16:21:30.7109214Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.7148294Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.7149002Z INSTRUMENTATION_STATUS: current=62
+2026-10-09T16:21:30.7149537Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.7150039Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.7150561Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.7151291Z INSTRUMENTATION_STATUS: test=constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget
+2026-10-09T16:21:30.7151959Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.7787479Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.7791035Z INSTRUMENTATION_STATUS: current=62
+2026-10-09T16:21:30.7791633Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.7792550Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.7793348Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.7794124Z INSTRUMENTATION_STATUS: test=constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget
+2026-10-09T16:21:30.7794843Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.7811270Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.7815940Z INSTRUMENTATION_STATUS: current=63
+2026-10-09T16:21:30.7816715Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.7817417Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.7817923Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.7972437Z INSTRUMENTATION_STATUS: test=packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation
+2026-10-09T16:21:30.7974058Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.8776627Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.8785399Z INSTRUMENTATION_STATUS: current=63
+2026-10-09T16:21:30.8785759Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.8786272Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.8786564Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.8787369Z INSTRUMENTATION_STATUS: test=packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation
+2026-10-09T16:21:30.8787934Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.8788343Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.8788779Z INSTRUMENTATION_STATUS: current=64
+2026-10-09T16:21:30.8789079Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.8802076Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.8802392Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.8803065Z INSTRUMENTATION_STATUS: test=selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels
+2026-10-09T16:21:30.8803860Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.8945608Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.8946941Z INSTRUMENTATION_STATUS: current=64
+2026-10-09T16:21:30.8947266Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.8947587Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.8947864Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.8948419Z INSTRUMENTATION_STATUS: test=selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels
+2026-10-09T16:21:30.8948973Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.8963391Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.8964062Z INSTRUMENTATION_STATUS: current=65
+2026-10-09T16:21:30.8964506Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.8965246Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.8965601Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.8966171Z INSTRUMENTATION_STATUS: test=linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization
+2026-10-09T16:21:30.8966769Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:30.9814128Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.9814643Z INSTRUMENTATION_STATUS: current=65
+2026-10-09T16:21:30.9815016Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.9815391Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.9815692Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:30.9816202Z INSTRUMENTATION_STATUS: test=linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization
+2026-10-09T16:21:30.9816730Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:30.9841121Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:30.9841754Z INSTRUMENTATION_STATUS: current=66
+2026-10-09T16:21:30.9842458Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:30.9843238Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:30.9843813Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:30.9844328Z INSTRUMENTATION_STATUS: test=independentLzwPredictorPackBitsAndCcittFixturesImportExactly
+2026-10-09T16:21:30.9844863Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.0473790Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0476664Z INSTRUMENTATION_STATUS: current=66
+2026-10-09T16:21:31.0477066Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0477443Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0477758Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.0478426Z INSTRUMENTATION_STATUS: test=independentLzwPredictorPackBitsAndCcittFixturesImportExactly
+2026-10-09T16:21:31.0478983Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.0496260Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0496783Z INSTRUMENTATION_STATUS: current=67
+2026-10-09T16:21:31.0497129Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0497538Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0497861Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.0498365Z INSTRUMENTATION_STATUS: test=invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount
+2026-10-09T16:21:31.0498929Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.0851133Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0852350Z INSTRUMENTATION_STATUS: current=67
+2026-10-09T16:21:31.0853000Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0853527Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0853972Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.0854607Z INSTRUMENTATION_STATUS: test=invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount
+2026-10-09T16:21:31.0855291Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.0869492Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0870268Z INSTRUMENTATION_STATUS: current=68
+2026-10-09T16:21:31.0871039Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0871751Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0872113Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.0872578Z INSTRUMENTATION_STATUS: test=transparentEncodeRejectsBeforeOverwritingDestination
+2026-10-09T16:21:31.0873196Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.0895734Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0896218Z INSTRUMENTATION_STATUS: current=68
+2026-10-09T16:21:31.0896550Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0896863Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0897132Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.0897574Z INSTRUMENTATION_STATUS: test=transparentEncodeRejectsBeforeOverwritingDestination
+2026-10-09T16:21:31.0898007Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.0908601Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.0909140Z INSTRUMENTATION_STATUS: current=69
+2026-10-09T16:21:31.0909490Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.0909853Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.0910161Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.0910775Z INSTRUMENTATION_STATUS: test=allEightOrientationsApplyToPixelsDimensionsCropsAndResizing
+2026-10-09T16:21:31.0911324Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.2909387Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.TiffCodecTest
+2026-10-09T16:21:31.2910144Z INSTRUMENTATION_STATUS: current=69
+2026-10-09T16:21:31.2910769Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.2911569Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.2911970Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.2912537Z INSTRUMENTATION_STATUS: test=allEightOrientationsApplyToPixelsDimensionsCropsAndResizing
+2026-10-09T16:21:31.2913224Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.2947200Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.UltraHdrImportTest
+2026-10-09T16:21:31.2947821Z INSTRUMENTATION_STATUS: current=70
+2026-10-09T16:21:31.2948207Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.2948630Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.2949004Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.2949437Z org.catrobat.paintroid.classic.UltraHdrImportTest:
+2026-10-09T16:21:31.2950076Z INSTRUMENTATION_STATUS: test=ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap
+2026-10-09T16:21:31.2950613Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.3039340Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.UltraHdrImportTest
+2026-10-09T16:21:31.3041278Z INSTRUMENTATION_STATUS: current=70
+2026-10-09T16:21:31.3041606Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3042771Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3043097Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.3045016Z INSTRUMENTATION_STATUS: test=ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap
+2026-10-09T16:21:31.3045567Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.3078121Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.3078951Z INSTRUMENTATION_STATUS: current=71
+2026-10-09T16:21:31.3079477Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3079940Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3080607Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.3081089Z org.catrobat.paintroid.classic.WebpCodecTest:
+2026-10-09T16:21:31.3081855Z INSTRUMENTATION_STATUS: test=losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource
+2026-10-09T16:21:31.3082590Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.3430346Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.3432519Z INSTRUMENTATION_STATUS: current=71
+2026-10-09T16:21:31.3432978Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3433343Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3433934Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.3434496Z INSTRUMENTATION_STATUS: test=losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource
+2026-10-09T16:21:31.3435072Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.3449141Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.3452025Z INSTRUMENTATION_STATUS: current=72
+2026-10-09T16:21:31.3453578Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3454551Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3455344Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.3456034Z INSTRUMENTATION_STATUS: test=transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination
+2026-10-09T16:21:31.3456742Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.3496063Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.3496575Z INSTRUMENTATION_STATUS: current=72
+2026-10-09T16:21:31.3496954Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3497316Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3497692Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.3498228Z INSTRUMENTATION_STATUS: test=transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination
+2026-10-09T16:21:31.3498768Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.3499214Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.3499693Z INSTRUMENTATION_STATUS: current=73
+2026-10-09T16:21:31.3500011Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.3500343Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.3500723Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.3501410Z INSTRUMENTATION_STATUS: test=lossyQualityChangesTheFileAndHigherQualityReducesPixelError
+2026-10-09T16:21:31.3501982Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.4051440Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.4054553Z INSTRUMENTATION_STATUS: current=73
+2026-10-09T16:21:31.4057519Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.4057956Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.4058468Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.4059342Z INSTRUMENTATION_STATUS: test=lossyQualityChangesTheFileAndHigherQualityReducesPixelError
+2026-10-09T16:21:31.4062108Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.4078592Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.4079528Z INSTRUMENTATION_STATUS: current=74
+2026-10-09T16:21:31.4079992Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.4080474Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.4080898Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:31.4081589Z INSTRUMENTATION_STATUS: test=memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap
+2026-10-09T16:21:31.4082269Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:31.4178750Z INSTRUMENTATION_STATUS: class=org.catrobat.paintroid.classic.WebpCodecTest
+2026-10-09T16:21:31.4179505Z INSTRUMENTATION_STATUS: current=74
+2026-10-09T16:21:31.4180158Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:31.4180536Z INSTRUMENTATION_STATUS: numtests=74
+2026-10-09T16:21:31.4180873Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:31.4181430Z INSTRUMENTATION_STATUS: test=memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap
+2026-10-09T16:21:31.4182234Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:31.4411062Z INSTRUMENTATION_RESULT: stream=
+2026-10-09T16:21:31.4412190Z 
+2026-10-09T16:21:31.4412303Z Time: 36.01
+2026-10-09T16:21:31.4412431Z 
+2026-10-09T16:21:31.4412522Z OK (74 tests)
+2026-10-09T16:21:31.4412791Z 
+2026-10-09T16:21:31.4412796Z 
+2026-10-09T16:21:31.4412917Z INSTRUMENTATION_CODE: -1
+2026-10-09T16:21:31.4643612Z {
+2026-10-09T16:21:31.4643991Z   "success": true,
+2026-10-09T16:21:31.4644448Z   "expected_tests": 74,
+2026-10-09T16:21:31.4644828Z   "completed_tests": 74,
+2026-10-09T16:21:31.4645427Z   "errors": []
+2026-10-09T16:21:31.4645722Z }
+2026-10-09T16:21:31.4758988Z [+86s] Editor instrumentation
+2026-10-09T16:21:33.0131920Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:21:33.0132424Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:21:33.0132868Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:33.0133173Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:21:33.0133480Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:33.0133757Z paint.anpaint.android.EditorDeviceTest:
+2026-10-09T16:21:33.0134243Z INSTRUMENTATION_STATUS: test=saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel
+2026-10-09T16:21:33.0134707Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:40.0931396Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:21:40.0931831Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:21:40.0932133Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:40.0932413Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:21:40.0932882Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:40.0933288Z INSTRUMENTATION_STATUS: test=saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel
+2026-10-09T16:21:40.0933685Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:40.0968933Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:21:40.0973915Z INSTRUMENTATION_STATUS: current=2
+2026-10-09T16:21:40.0974495Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:40.0974885Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:21:40.0975323Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:40.0975908Z INSTRUMENTATION_STATUS: test=insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish
+2026-10-09T16:21:40.0976450Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:21:53.8751067Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:21:53.8751749Z INSTRUMENTATION_STATUS: current=2
+2026-10-09T16:21:53.8752739Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:53.8753188Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:21:53.8753473Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:21:53.8753902Z INSTRUMENTATION_STATUS: test=insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish
+2026-10-09T16:21:53.8754359Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:21:53.8764274Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:21:53.8783773Z INSTRUMENTATION_STATUS: current=3
+2026-10-09T16:21:53.8784284Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:21:53.8784835Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:21:53.8785451Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:21:53.8785965Z INSTRUMENTATION_STATUS: test=jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker
+2026-10-09T16:21:53.8786482Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:15.0045056Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:15.0045378Z INSTRUMENTATION_STATUS: current=3
+2026-10-09T16:22:15.0045624Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:15.0045846Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:15.0046049Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:15.0046415Z INSTRUMENTATION_STATUS: test=jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker
+2026-10-09T16:22:15.0046788Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:15.0052158Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:15.0056850Z INSTRUMENTATION_STATUS: current=4
+2026-10-09T16:22:15.0058654Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:15.0058945Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:15.0059190Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:15.0059564Z INSTRUMENTATION_STATUS: test=lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage
+2026-10-09T16:22:15.0059877Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:34.1781479Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:34.1782271Z INSTRUMENTATION_STATUS: current=4
+2026-10-09T16:22:34.1782561Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:34.1782997Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:34.1783264Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:34.1783648Z INSTRUMENTATION_STATUS: test=lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage
+2026-10-09T16:22:34.1784031Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:34.1790871Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:34.1791419Z INSTRUMENTATION_STATUS: current=5
+2026-10-09T16:22:34.1791810Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:34.1792163Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:34.1792434Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:34.1793209Z INSTRUMENTATION_STATUS: test=galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor
+2026-10-09T16:22:34.1793756Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:36.4393778Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:36.4394467Z INSTRUMENTATION_STATUS: current=5
+2026-10-09T16:22:36.4394832Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:36.4395164Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:36.4399679Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:36.4400468Z INSTRUMENTATION_STATUS: test=galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor
+2026-10-09T16:22:36.4402370Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:36.4410499Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:36.4411042Z INSTRUMENTATION_STATUS: current=6
+2026-10-09T16:22:36.4411456Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:36.4411843Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:36.4412190Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:36.4423621Z INSTRUMENTATION_STATUS: test=cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing
+2026-10-09T16:22:36.4424347Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:40.2687498Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:40.2687813Z INSTRUMENTATION_STATUS: current=6
+2026-10-09T16:22:40.2690989Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:40.2691300Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:40.2691558Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:40.2692034Z INSTRUMENTATION_STATUS: test=cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing
+2026-10-09T16:22:40.2692475Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:40.2695845Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:40.2696207Z INSTRUMENTATION_STATUS: current=7
+2026-10-09T16:22:40.2696474Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:40.2705988Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:40.2706255Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:40.2706686Z INSTRUMENTATION_STATUS: test=saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser
+2026-10-09T16:22:40.2707145Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:44.0182202Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:44.0182979Z INSTRUMENTATION_STATUS: current=7
+2026-10-09T16:22:44.0183349Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:44.0184146Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:44.0185167Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:44.0185719Z INSTRUMENTATION_STATUS: test=saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser
+2026-10-09T16:22:44.0186163Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:44.0193443Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:44.0194097Z INSTRUMENTATION_STATUS: current=8
+2026-10-09T16:22:44.0194712Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:44.0195034Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:44.0197830Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:44.0198942Z INSTRUMENTATION_STATUS: test=largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard
+2026-10-09T16:22:44.0199433Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:50.5844255Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:50.5844676Z INSTRUMENTATION_STATUS: current=8
+2026-10-09T16:22:50.5844952Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:50.5845279Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:50.5845476Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:50.5845849Z INSTRUMENTATION_STATUS: test=largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard
+2026-10-09T16:22:50.5846228Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:50.5860891Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:50.5861377Z INSTRUMENTATION_STATUS: current=9
+2026-10-09T16:22:50.5861633Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:50.5861883Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:50.5862106Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:50.5862415Z INSTRUMENTATION_STATUS: test=filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas
+2026-10-09T16:22:50.5862912Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:53.3325925Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:53.3326255Z INSTRUMENTATION_STATUS: current=9
+2026-10-09T16:22:53.3326503Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:53.3326722Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:53.3326928Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:53.3327241Z INSTRUMENTATION_STATUS: test=filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas
+2026-10-09T16:22:53.3329517Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:53.3335982Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:53.3336347Z INSTRUMENTATION_STATUS: current=10
+2026-10-09T16:22:53.3338375Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:53.3338917Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:53.3339290Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:53.3339741Z INSTRUMENTATION_STATUS: test=watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer
+2026-10-09T16:22:53.3340208Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:57.6702145Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:57.6702504Z INSTRUMENTATION_STATUS: current=10
+2026-10-09T16:22:57.6702848Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:57.6703083Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:57.6703280Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:57.6706144Z INSTRUMENTATION_STATUS: test=watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer
+2026-10-09T16:22:57.6706572Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:57.6711686Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:57.6712165Z INSTRUMENTATION_STATUS: current=11
+2026-10-09T16:22:57.6712540Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:57.6713027Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:57.6720040Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:57.6720503Z INSTRUMENTATION_STATUS: test=tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot
+2026-10-09T16:22:57.6720834Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:22:59.4019993Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:59.4036749Z INSTRUMENTATION_STATUS: current=11
+2026-10-09T16:22:59.4037107Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:59.4037386Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:59.4037645Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:22:59.4038139Z INSTRUMENTATION_STATUS: test=tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot
+2026-10-09T16:22:59.4038562Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:22:59.4041017Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:22:59.4041528Z INSTRUMENTATION_STATUS: current=12
+2026-10-09T16:22:59.4041762Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:22:59.4041982Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:22:59.4042176Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:22:59.4042515Z INSTRUMENTATION_STATUS: test=deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches
+2026-10-09T16:22:59.4043015Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:23:05.7888916Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:23:05.7889616Z INSTRUMENTATION_STATUS: current=12
+2026-10-09T16:23:05.7889976Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:05.7891640Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:05.7891998Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:23:05.7892520Z INSTRUMENTATION_STATUS: test=deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches
+2026-10-09T16:23:05.7893181Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:23:05.7893632Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:23:05.7894028Z INSTRUMENTATION_STATUS: current=13
+2026-10-09T16:23:05.7894331Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:05.7894649Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:05.7894918Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:23:05.7895388Z INSTRUMENTATION_STATUS: test=responsiveCategoriesOpenBesideTheToolStripInBothOrientations
+2026-10-09T16:23:05.7895883Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:23:11.1211373Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:23:11.1211814Z INSTRUMENTATION_STATUS: current=13
+2026-10-09T16:23:11.1212105Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:11.1212390Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:11.1212770Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:23:11.1213242Z INSTRUMENTATION_STATUS: test=responsiveCategoriesOpenBesideTheToolStripInBothOrientations
+2026-10-09T16:23:11.1213753Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:23:11.1216105Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:23:11.1216374Z INSTRUMENTATION_STATUS: current=14
+2026-10-09T16:23:11.1216584Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:11.1216809Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:11.1217002Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:23:11.1217328Z INSTRUMENTATION_STATUS: test=insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport
+2026-10-09T16:23:11.1217666Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:23:21.4577154Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.EditorDeviceTest
+2026-10-09T16:23:21.4600533Z INSTRUMENTATION_STATUS: current=14
+2026-10-09T16:23:21.4601030Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:21.4601434Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:21.4601759Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:23:21.4602178Z INSTRUMENTATION_STATUS: test=insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport
+2026-10-09T16:23:21.4602818Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:23:21.4610363Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:23:21.4610795Z INSTRUMENTATION_STATUS: current=15
+2026-10-09T16:23:21.4611073Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:21.4611501Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:21.4612145Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:23:21.4612554Z paint.anpaint.android.GalleryDraftDeviceTest:
+2026-10-09T16:23:21.4630762Z INSTRUMENTATION_STATUS: test=savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft
+2026-10-09T16:23:21.4631312Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:23:36.0342527Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:23:36.0343234Z INSTRUMENTATION_STATUS: current=15
+2026-10-09T16:23:36.0343641Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:36.0343933Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:36.0344530Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:23:36.0345004Z INSTRUMENTATION_STATUS: test=savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft
+2026-10-09T16:23:36.0345471Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:23:36.0349727Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:23:36.0350093Z INSTRUMENTATION_STATUS: current=16
+2026-10-09T16:23:36.0350383Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:36.0352890Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:36.0353170Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:23:36.0353608Z INSTRUMENTATION_STATUS: test=cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits
+2026-10-09T16:23:36.0354106Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:23:49.2090467Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:23:49.2093565Z INSTRUMENTATION_STATUS: current=16
+2026-10-09T16:23:49.2094124Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:49.2094466Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:49.2094721Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:23:49.2095177Z INSTRUMENTATION_STATUS: test=cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits
+2026-10-09T16:23:49.2095635Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:23:49.2098236Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:23:49.2098546Z INSTRUMENTATION_STATUS: current=17
+2026-10-09T16:23:49.2100311Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:23:49.2100549Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:23:49.2100747Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:23:49.2101086Z INSTRUMENTATION_STATUS: test=confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor
+2026-10-09T16:23:49.2101420Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:24:03.1374683Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryDraftDeviceTest
+2026-10-09T16:24:03.1375043Z INSTRUMENTATION_STATUS: current=17
+2026-10-09T16:24:03.1375266Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:03.1375484Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:24:03.1377218Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:24:03.1377805Z INSTRUMENTATION_STATUS: test=confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor
+2026-10-09T16:24:03.1378317Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:24:03.1383211Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryViewportDeviceTest
+2026-10-09T16:24:03.1383984Z INSTRUMENTATION_STATUS: current=18
+2026-10-09T16:24:03.1384365Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:03.1384730Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:24:03.1385050Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:24:03.1385361Z paint.anpaint.android.GalleryViewportDeviceTest:
+2026-10-09T16:24:03.1387752Z INSTRUMENTATION_STATUS: test=realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation
+2026-10-09T16:24:03.1388235Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:24:08.6875260Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.GalleryViewportDeviceTest
+2026-10-09T16:24:08.6881197Z INSTRUMENTATION_STATUS: current=18
+2026-10-09T16:24:08.6886967Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:08.6887834Z INSTRUMENTATION_STATUS: numtests=18
+2026-10-09T16:24:08.6888187Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:24:08.6890055Z INSTRUMENTATION_STATUS: test=realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation
+2026-10-09T16:24:08.6891183Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:24:08.7062157Z INSTRUMENTATION_RESULT: stream=
+2026-10-09T16:24:08.7070399Z 
+2026-10-09T16:24:08.7070733Z Time: 155.675
+2026-10-09T16:24:08.7071042Z 
+2026-10-09T16:24:08.7071218Z OK (18 tests)
+2026-10-09T16:24:08.7071528Z 
+2026-10-09T16:24:08.7071539Z 
+2026-10-09T16:24:08.7071899Z INSTRUMENTATION_CODE: -1
+2026-10-09T16:24:08.7833859Z {
+2026-10-09T16:24:08.7834209Z   "success": true,
+2026-10-09T16:24:08.7834472Z   "expected_tests": 18,
+2026-10-09T16:24:08.7835048Z   "completed_tests": 18,
+2026-10-09T16:24:08.7835284Z   "errors": []
+2026-10-09T16:24:08.7835466Z }
+2026-10-09T16:24:08.8342485Z [+243s] Accepted-credit restart: bootstrap live app
+2026-10-09T16:24:10.0389954Z [+245s] Accepted-credit restart: complete seed without activity cleanup
+2026-10-09T16:24:11.2556799Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.AcceptedCreditRestartSeedTest
+2026-10-09T16:24:11.2564344Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:24:11.2564993Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:11.2565428Z INSTRUMENTATION_STATUS: numtests=1
+2026-10-09T16:24:11.2565805Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:24:11.2566241Z paint.anpaint.android.AcceptedCreditRestartSeedTest:
+2026-10-09T16:24:11.2567548Z INSTRUMENTATION_STATUS: test=acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop
+2026-10-09T16:24:11.2568268Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:24:15.9300147Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.AcceptedCreditRestartSeedTest
+2026-10-09T16:24:15.9302928Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:24:15.9303269Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:15.9303607Z INSTRUMENTATION_STATUS: numtests=1
+2026-10-09T16:24:15.9303899Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:24:15.9304411Z INSTRUMENTATION_STATUS: test=acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop
+2026-10-09T16:24:15.9304920Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:24:15.9427517Z INSTRUMENTATION_RESULT: stream=
+2026-10-09T16:24:15.9427834Z 
+2026-10-09T16:24:15.9427925Z Time: 4.68
+2026-10-09T16:24:15.9428056Z 
+2026-10-09T16:24:15.9428139Z OK (1 test)
+2026-10-09T16:24:15.9428259Z 
+2026-10-09T16:24:15.9428262Z 
+2026-10-09T16:24:15.9428374Z INSTRUMENTATION_CODE: -1
+2026-10-09T16:24:15.9743972Z {
+2026-10-09T16:24:15.9773534Z   "success": true,
+2026-10-09T16:24:15.9780101Z   "expected_tests": 1,
+2026-10-09T16:24:15.9797692Z   "completed_tests": 1,
+2026-10-09T16:24:15.9798117Z   "errors": []
+2026-10-09T16:24:15.9798472Z }
+2026-10-09T16:24:16.1697208Z [+251s] Accepted-credit restart: external force-stop of live seed
+2026-10-09T16:24:16.3585887Z [+251s] Accepted-credit restart: fresh-process verification
+2026-10-09T16:24:17.4517516Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.AcceptedCreditRestartVerifyTest
+2026-10-09T16:24:17.4518241Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:24:17.4519041Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:17.4519686Z INSTRUMENTATION_STATUS: numtests=1
+2026-10-09T16:24:17.4520123Z INSTRUMENTATION_STATUS: stream=
+2026-10-09T16:24:17.4520619Z paint.anpaint.android.AcceptedCreditRestartVerifyTest:
+2026-10-09T16:24:17.4521262Z INSTRUMENTATION_STATUS: test=acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation
+2026-10-09T16:24:17.4521902Z INSTRUMENTATION_STATUS_CODE: 1
+2026-10-09T16:24:23.7368429Z INSTRUMENTATION_STATUS: class=paint.anpaint.android.AcceptedCreditRestartVerifyTest
+2026-10-09T16:24:23.7369098Z INSTRUMENTATION_STATUS: current=1
+2026-10-09T16:24:23.7369505Z INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+2026-10-09T16:24:23.7369861Z INSTRUMENTATION_STATUS: numtests=1
+2026-10-09T16:24:23.7370175Z INSTRUMENTATION_STATUS: stream=.
+2026-10-09T16:24:23.7370657Z INSTRUMENTATION_STATUS: test=acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation
+2026-10-09T16:24:23.7371118Z INSTRUMENTATION_STATUS_CODE: 0
+2026-10-09T16:24:23.7560069Z INSTRUMENTATION_RESULT: stream=
+2026-10-09T16:24:23.7560630Z 
+2026-10-09T16:24:23.7560728Z Time: 6.299
+2026-10-09T16:24:23.7560857Z 
+2026-10-09T16:24:23.7560932Z OK (1 test)
+2026-10-09T16:24:23.7561039Z 
+2026-10-09T16:24:23.7561043Z 
+2026-10-09T16:24:23.7578832Z INSTRUMENTATION_CODE: -1
+2026-10-09T16:24:23.8354001Z {
+2026-10-09T16:24:23.8384258Z   "success": true,
+2026-10-09T16:24:23.8393738Z   "expected_tests": 1,
+2026-10-09T16:24:23.8394099Z   "completed_tests": 1,
+2026-10-09T16:24:23.8394422Z   "errors": []
+2026-10-09T16:24:23.8394705Z }
+2026-10-09T16:24:23.8783681Z [+258s] Instrumentation complete (result 0)
+2026-10-09T16:24:23.8797737Z [+258s] Collecting logs and stopping emulator (result 0, phase: Instrumentation complete)
+2026-10-09T16:24:24.6080356Z OK: killing emulator, bye bye
+2026-10-09T16:24:24.6083197Z OK
+2026-10-09T16:24:26.6216044Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-09T16:24:26.6216346Z with:
+2026-10-09T16:24:26.6216506Z   archive: true
+2026-10-09T16:24:26.6216732Z   name: emulator-api-35-f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:24:26.6216999Z   retention-days: 14
+2026-10-09T16:24:26.6217181Z   if-no-files-found: warn
+2026-10-09T16:24:26.6217379Z   path: build/reports/android-api-35/
+2026-10-09T16:24:26.6217588Z   compression-level: 6
+2026-10-09T16:24:26.6217754Z   overwrite: false
+2026-10-09T16:24:26.6217920Z   include-hidden-files: false
+2026-10-09T16:24:26.6218102Z env:
+2026-10-09T16:24:26.6218244Z   BUILD_VARIANT: debug
+2026-10-09T16:24:26.6218400Z ##[endgroup]
+2026-10-09T16:24:26.7297942Z With the provided path, there will be 23 files uploaded
+2026-10-09T16:24:26.7301193Z Artifact name is valid!
+2026-10-09T16:24:26.7301528Z Root directory input is valid!
+2026-10-09T16:24:27.0182257Z Uploading artifact: emulator-api-35-f5d2d3ac79864c5b91a502f24df93b62bdbe4718.zip
+2026-10-09T16:24:27.0242402Z Beginning upload of artifact content to blob storage
+2026-10-09T16:24:27.7017638Z Uploaded bytes 1905435
+2026-10-09T16:24:27.7448317Z Finished uploading artifact content to blob storage!
+2026-10-09T16:24:27.7449041Z SHA256 digest of uploaded artifact is 208f5df132c234589c82980777f63564eb95880423a37d62a550f04629c81e6d
+2026-10-09T16:24:27.7449688Z Finalizing artifact upload
+2026-10-09T16:24:28.0668567Z Artifact emulator-api-35-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 successfully finalized. Artifact ID 11631106111
+2026-10-09T16:24:28.0669468Z Artifact emulator-api-35-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 has been successfully uploaded! Final size is 1905435 bytes. Artifact ID is 11631106111
+2026-10-09T16:24:28.0671142Z Artifact download URL: https://github.com/c933103/AN-Paint/actions/runs/37957075692/artifacts/11631106111
+2026-10-09T16:24:28.0817455Z Post job cleanup.
+2026-10-09T16:24:28.1444295Z [command]/usr/bin/git version
+2026-10-09T16:24:28.1474827Z git version 2.55.0
+2026-10-09T16:24:28.1497386Z Temporarily overriding HOME='/home/runner/work/_temp/ceab500d-23ae-452e-acae-9b7ed44eb347' before making global git config changes
+2026-10-09T16:24:28.1498410Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T16:24:28.1501333Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:24:28.1523010Z Removing SSH command configuration
+2026-10-09T16:24:28.1527496Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:24:28.1551973Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:24:28.1725144Z Removing HTTP extra header
+2026-10-09T16:24:28.1729538Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:24:28.1752815Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:24:28.1905175Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:24:28.1910583Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:24:28.1935343Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:24:28.2220137Z Cleaning up orphan processes
+2026-10-09T16:24:28.2396705Z Terminate orphan process: pid (2135) (adb)
+

@@ -1,0 +1,77 @@
+{
+  "security_reviewed_head": "80914c9e86111ead4f24bf8463dbdeddd0e43646",
+  "current_head": "29cbe495b79231df6c1c5e93928fb9821cb6b9e6",
+  "actual_security_review": "Completed on 80914c9 from normal ready transition; one manual request on 29cbe49 appeared as Code review, not a new Security result. No current-head Security pass claimed.",
+  "production_delta": {
+    "path": "Paintroid/src/main/res/values-ja/strings.xml",
+    "exact_change": "Delete one byte 0x20 between the Japanese Commons closing bracket and があります",
+    "removed_byte_offset": 82644,
+    "old_bytes": 97039,
+    "new_bytes": 97038,
+    "all_other_bytes_equal": true
+  },
+  "other_changed_paths": "Two test files and seven C03 evidence files only. No production Kotlin, Android manifest, dependency, permission, workflow, provider, credit or persistence change.",
+  "paths": [
+    {
+      "path": "Paintroid/src/main/res/values-ja/strings.xml",
+      "kind": "production resource",
+      "before_sha256": "a99a41da72e4a362e3e2f25d9d7ef759aba8d5df30d52bf04b1a3e7fd0ac4828",
+      "after_sha256": "b1b086d497cdc391a88f35490d31a2d97e4011063b151d25ebba4dfdd974edf1"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt",
+      "kind": "test",
+      "before_sha256": "15b3ad7c6d5285b301f545f84db38118ab2dc0a0f24873460abe59f544860bef",
+      "after_sha256": "54b25567d217654cf9b2d41cbd81c7e6d57377b8788e956c9649ec89fb32653e"
+    },
+    {
+      "path": "tools/test_help_commons_provider.py",
+      "kind": "test",
+      "before_sha256": "9d03b1d0b300077084d0a611218aa9c65dad3895d6cfd5633fb80d4aee922b2a",
+      "after_sha256": "48b3742d0ba9b09333c972350a5921bc07ab2bdb7d6953911dde150d8a0f69fe"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/README.md",
+      "kind": "evidence",
+      "before_sha256": "e0d4893b5d27a98f5bb7ea68278be171280bd80a7e4a526f47cc53e2bd5892c3",
+      "after_sha256": "ad9d0759297e8f32db13b4e3d486497d55d569ef4aad90a0c2f2f7ab644a4107"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/boundary-review.json",
+      "kind": "evidence",
+      "before_sha256": null,
+      "after_sha256": "56e8d9207d247bdc5f369736db9569d046b180335747414868fc8136481701f0"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/local/japanese-boundary-after.log",
+      "kind": "evidence",
+      "before_sha256": null,
+      "after_sha256": "52df77972f579635cb628ec877509ab985551de5a93ce995ce155cebeea5a59f"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/local/japanese-boundary-before.log",
+      "kind": "evidence",
+      "before_sha256": null,
+      "after_sha256": "cb9807d8bff2657748e43011685aab8ff6710d41bd79c4ddc04438317fe8338f"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/local/japanese-boundary-python.log",
+      "kind": "evidence",
+      "before_sha256": null,
+      "after_sha256": "e7b0ec139c1d85e5efcce388eb1afc2c63adb5e3598eb53aca8c326bfabeda79"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/source-scope.json",
+      "kind": "evidence",
+      "before_sha256": "8628d03d563921bcf8d1f9d07a5ecc2948ef6f238693b23db29da6d6a0543032",
+      "after_sha256": "c0ee22b1b57605f3b8c5ca34f507cd13a3fa00588b605a293b72c910ea6a0503"
+    },
+    {
+      "path": "verification/help-commons-provider-2026-10-09/translations.json",
+      "kind": "evidence",
+      "before_sha256": "65ef9be5583882884e0d45c21d88945db88ea8a8aa5c6e6f7f17a421c02172a4",
+      "after_sha256": "8bd7faf4ec72843827d0bc5e4effd95bc72a782a69f5f8f4323cc4c8cec3f74a"
+    }
+  ],
+  "limits": "This proves the narrow diff boundary, not that an unrun Security review completed."
+}

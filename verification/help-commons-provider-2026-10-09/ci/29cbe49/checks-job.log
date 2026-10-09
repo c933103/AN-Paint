@@ -1,0 +1,1117 @@
+﻿2026-10-09T16:09:44.4702405Z Current runner version: '2.337.0'
+2026-10-09T16:09:44.4732538Z ##[group]Runner Image Provisioner
+2026-10-09T16:09:44.4733697Z Hosted Compute Agent
+2026-10-09T16:09:44.4734447Z Version: 20261002.596
+2026-10-09T16:09:44.4735417Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-09T16:09:44.4736350Z Build Date: 2026-10-02T22:28:27Z
+2026-10-09T16:09:44.4737597Z Worker ID: {f2643244-5ede-466d-b03f-ca99d657e99a}
+2026-10-09T16:09:44.4738532Z Region: eastus
+2026-10-09T16:09:44.4739224Z Cloud: Azure
+2026-10-09T16:09:44.4740005Z ##[endgroup]
+2026-10-09T16:09:44.4741673Z ##[group]Operating System
+2026-10-09T16:09:44.4742540Z Ubuntu
+2026-10-09T16:09:44.4743212Z 22.04.5
+2026-10-09T16:09:44.4743864Z LTS
+2026-10-09T16:09:44.4744548Z ##[endgroup]
+2026-10-09T16:09:44.4745260Z ##[group]Runner Image
+2026-10-09T16:09:44.4746140Z Image: ubuntu-22.04
+2026-10-09T16:09:44.4746865Z Version: 20261004.315.1
+2026-10-09T16:09:44.4748804Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261004.315/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-09T16:09:44.4750849Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261004.315
+2026-10-09T16:09:44.4752204Z ##[endgroup]
+2026-10-09T16:09:44.4753572Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T16:09:44.4756033Z Contents: read
+2026-10-09T16:09:44.4756797Z Metadata: read
+2026-10-09T16:09:44.4757809Z ##[endgroup]
+2026-10-09T16:09:44.4760274Z Secret source: Actions
+2026-10-09T16:09:44.4761529Z Cache mode: write
+2026-10-09T16:09:44.4762846Z Prepare workflow directory
+2026-10-09T16:09:44.5420041Z Prepare all required actions
+2026-10-09T16:09:44.5480129Z Getting action download info
+2026-10-09T16:09:44.7051797Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-09T16:09:44.8136163Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-10-09T16:09:45.0208598Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-09T16:09:45.2062625Z Complete job name: Regression tests and lint
+2026-10-09T16:09:45.2660264Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-09T16:09:45.2661124Z with:
+2026-10-09T16:09:45.2661478Z   persist-credentials: false
+2026-10-09T16:09:45.2661887Z   repository: c933103/AN-Paint
+2026-10-09T16:09:45.2665171Z   token: ***
+2026-10-09T16:09:45.2665525Z   ssh-strict: true
+2026-10-09T16:09:45.2665871Z   ssh-user: git
+2026-10-09T16:09:45.2666206Z   clean: true
+2026-10-09T16:09:45.2666551Z   sparse-checkout-cone-mode: true
+2026-10-09T16:09:45.2667102Z   fetch-depth: 1
+2026-10-09T16:09:45.2667444Z   fetch-tags: false
+2026-10-09T16:09:45.2667794Z   show-progress: true
+2026-10-09T16:09:45.2668133Z   lfs: false
+2026-10-09T16:09:45.2668445Z   submodules: false
+2026-10-09T16:09:45.2668790Z   set-safe-directory: true
+2026-10-09T16:09:45.2669179Z   allow-unsafe-pr-checkout: false
+2026-10-09T16:09:45.2669769Z env:
+2026-10-09T16:09:45.2670088Z   BUILD_VARIANT: debug
+2026-10-09T16:09:45.2670444Z ##[endgroup]
+2026-10-09T16:09:45.3519520Z Syncing repository: c933103/AN-Paint
+2026-10-09T16:09:45.3521783Z ##[group]Getting Git version info
+2026-10-09T16:09:45.3522656Z Working directory is '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-09T16:09:45.3523929Z [command]/usr/bin/git version
+2026-10-09T16:09:45.3691983Z git version 2.55.0
+2026-10-09T16:09:45.3741013Z ##[endgroup]
+2026-10-09T16:09:45.3749413Z Temporarily overriding HOME='/home/runner/work/_temp/38a619bf-dd1d-4295-b38c-0d2ea4b48adf' before making global git config changes
+2026-10-09T16:09:45.3751326Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T16:09:45.3754161Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:09:45.3789224Z Deleting the contents of '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-09T16:09:45.3792461Z ##[group]Determining repository object format
+2026-10-09T16:09:45.3793818Z ##[endgroup]
+2026-10-09T16:09:45.3794828Z ##[group]Initializing the repository
+2026-10-09T16:09:45.3797766Z [command]/usr/bin/git init /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:09:45.3877873Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T16:09:45.3879428Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T16:09:45.3880773Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T16:09:45.3881827Z hint: call:
+2026-10-09T16:09:45.3882472Z hint:
+2026-10-09T16:09:45.3883264Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T16:09:45.3884178Z hint:
+2026-10-09T16:09:45.3885016Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T16:09:45.3886298Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T16:09:45.3887503Z hint:
+2026-10-09T16:09:45.3888223Z hint: 	git branch -m <name>
+2026-10-09T16:09:45.3888970Z hint:
+2026-10-09T16:09:45.3889887Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T16:09:45.3891102Z Initialized empty Git repository in /home/runner/work/AN-Paint/AN-Paint/.git/
+2026-10-09T16:09:45.3892879Z [command]/usr/bin/git remote add origin https://github.com/c933103/AN-Paint
+2026-10-09T16:09:45.3924625Z ##[endgroup]
+2026-10-09T16:09:45.3925553Z ##[group]Disabling automatic garbage collection
+2026-10-09T16:09:45.3928397Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T16:09:45.3963300Z ##[endgroup]
+2026-10-09T16:09:45.3964184Z ##[group]Setting up auth
+2026-10-09T16:09:45.3964843Z Removing SSH command configuration
+2026-10-09T16:09:45.3969763Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:09:45.4008032Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:09:45.4526114Z Removing HTTP extra header
+2026-10-09T16:09:45.4531556Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:09:45.4567318Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:09:45.4805843Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:09:45.4810122Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:09:45.4858357Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:09:45.5111314Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T16:09:45.5151803Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path /home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:45.5187484Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:45.5221243Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:45.5258041Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:45.5292740Z ##[endgroup]
+2026-10-09T16:09:45.5293704Z ##[group]Fetching the repository
+2026-10-09T16:09:45.5299251Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f5d2d3ac79864c5b91a502f24df93b62bdbe4718:refs/remotes/pull/32/merge
+2026-10-09T16:09:46.7295028Z From https://github.com/c933103/AN-Paint
+2026-10-09T16:09:46.7296562Z  * [new ref]         f5d2d3ac79864c5b91a502f24df93b62bdbe4718 -> pull/32/merge
+2026-10-09T16:09:46.7300479Z ##[endgroup]
+2026-10-09T16:09:46.7301464Z ##[group]Determining the checkout info
+2026-10-09T16:09:46.7302540Z ##[endgroup]
+2026-10-09T16:09:46.7303915Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T16:09:46.7351430Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T16:09:46.7390033Z ##[group]Checking out the ref
+2026-10-09T16:09:46.7391935Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/32/merge
+2026-10-09T16:09:46.8843319Z Note: switching to 'refs/remotes/pull/32/merge'.
+2026-10-09T16:09:46.8844304Z 
+2026-10-09T16:09:46.8845231Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-09T16:09:46.8846412Z changes and commit them, and you can discard any commits you make in this
+2026-10-09T16:09:46.8847640Z state without impacting any branches by switching back to a branch.
+2026-10-09T16:09:46.8848283Z 
+2026-10-09T16:09:46.8848757Z If you want to create a new branch to retain commits you create, you may
+2026-10-09T16:09:46.8849749Z do so (now or later) by using -c with the switch command. Example:
+2026-10-09T16:09:46.8850350Z 
+2026-10-09T16:09:46.8850576Z   git switch -c <new-branch-name>
+2026-10-09T16:09:46.8850983Z 
+2026-10-09T16:09:46.8851154Z Or undo this operation with:
+2026-10-09T16:09:46.8851429Z 
+2026-10-09T16:09:46.8851559Z   git switch -
+2026-10-09T16:09:46.8851774Z 
+2026-10-09T16:09:46.8852169Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-09T16:09:46.8852722Z 
+2026-10-09T16:09:46.8853411Z HEAD is now at f5d2d3a Merge 29cbe495b79231df6c1c5e93928fb9821cb6b9e6 into 0b3d737e19448c47d36deee8cebfffd5d40c1ea3
+2026-10-09T16:09:46.8856260Z ##[endgroup]
+2026-10-09T16:09:46.8899926Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T16:09:46.8930534Z f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:09:46.8940763Z ##[group]Removing auth
+2026-10-09T16:09:46.8941452Z Removing SSH command configuration
+2026-10-09T16:09:46.8944726Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:09:46.8982627Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:09:46.9208145Z Removing HTTP extra header
+2026-10-09T16:09:46.9210911Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:09:46.9255004Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:09:46.9481612Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:09:46.9483586Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:09:46.9513866Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-09T16:09:46.9515700Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-09T16:09:46.9591515Z includeif.gitdir:/github/workspace/.git.path
+2026-10-09T16:09:46.9593067Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-09T16:09:46.9596761Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-09T16:09:46.9600130Z /home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:46.9605189Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ac0a769b\-8d4d\-4252\-ab8c\-6b66921cb342\.config
+2026-10-09T16:09:46.9610226Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-09T16:09:46.9630546Z /home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:46.9639428Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ac0a769b\-8d4d\-4252\-ab8c\-6b66921cb342\.config
+2026-10-09T16:09:46.9680311Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-09T16:09:46.9709104Z /github/runner_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:46.9716626Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ac0a769b\-8d4d\-4252\-ab8c\-6b66921cb342\.config
+2026-10-09T16:09:47.0179091Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-09T16:09:47.0209397Z /github/runner_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config
+2026-10-09T16:09:47.0244068Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ac0a769b\-8d4d\-4252\-ab8c\-6b66921cb342\.config
+2026-10-09T16:09:47.0291354Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:09:47.0521241Z Removing credentials config '/home/runner/work/_temp/git-credentials-ac0a769b-8d4d-4252-ab8c-6b66921cb342.config'
+2026-10-09T16:09:47.0529209Z ##[endgroup]
+2026-10-09T16:09:47.3878297Z ##[group]Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-10-09T16:09:47.3879062Z with:
+2026-10-09T16:09:47.3880514Z   path: ~/.gradle/caches/modules-2
+~/.gradle/wrapper/dists
+Paintroid/build/jxl-source
+Paintroid/build/webp-source
+Paintroid/build/heif-source
+Paintroid/build/tiff-source
+
+2026-10-09T16:09:47.3882790Z   key: android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks
+2026-10-09T16:09:47.3884580Z   restore-keys: android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-
+2026-10-09T16:09:47.3885775Z   enableCrossOsArchive: false
+2026-10-09T16:09:47.3886270Z   fail-on-cache-miss: false
+2026-10-09T16:09:47.3886728Z   lookup-only: false
+2026-10-09T16:09:47.3887341Z   save-always: false
+2026-10-09T16:09:47.3887718Z env:
+2026-10-09T16:09:47.3888047Z   BUILD_VARIANT: debug
+2026-10-09T16:09:47.3888447Z ##[endgroup]
+2026-10-09T16:09:47.5496136Z Cache hit for: android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks
+2026-10-09T16:09:53.6027333Z Received 268435456 of 776575795 (34.6%), 254.7 MBs/sec
+2026-10-09T16:09:54.6029056Z Received 557842432 of 776575795 (71.8%), 265.1 MBs/sec
+2026-10-09T16:09:55.3040459Z Received 776575795 of 776575795 (100.0%), 273.5 MBs/sec
+2026-10-09T16:09:55.3041626Z Cache Size: ~741 MB (776575795 B)
+2026-10-09T16:09:55.3093303Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a7543d21-52e9-4087-98e3-3f09953346d3/cache.tzst -P -C /home/runner/work/AN-Paint/AN-Paint --use-compress-program unzstd
+2026-10-09T16:09:56.7155282Z Cache restored successfully
+2026-10-09T16:09:56.9338998Z Cache restored from key: android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks
+2026-10-09T16:09:56.9618522Z ##[group]Run bash tools/ci_prepare_build.sh
+2026-10-09T16:09:56.9618923Z [36;1mbash tools/ci_prepare_build.sh[0m
+2026-10-09T16:09:56.9961476Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:09:56.9961823Z env:
+2026-10-09T16:09:56.9962023Z   BUILD_VARIANT: debug
+2026-10-09T16:09:56.9962234Z ##[endgroup]
+2026-10-09T16:10:00.6456540Z Loading package information...                                                  
+2026-10-09T16:10:00.7253576Z Loading local repository...                                                     
+2026-10-09T16:10:00.7256351Z [                                       ] 3% Loading local repository...        
+2026-10-09T16:10:01.0106293Z [                                       ] 3% Fetch remote repository...         
+2026-10-09T16:10:01.3938340Z [=                                      ] 3% Fetch remote repository...         
+2026-10-09T16:10:01.4905382Z [=                                      ] 4% Fetch remote repository...         
+2026-10-09T16:10:01.5229837Z [=                                      ] 5% Fetch remote repository...         
+2026-10-09T16:10:01.5609266Z [==                                     ] 5% Fetch remote repository...         
+2026-10-09T16:10:01.6680033Z [==                                     ] 6% Fetch remote repository...         
+2026-10-09T16:10:01.7802471Z [==                                     ] 7% Fetch remote repository...         
+2026-10-09T16:10:01.7827640Z [==                                     ] 7% Computing updates...               
+2026-10-09T16:10:01.7918097Z [===                                    ] 8% Computing updates...               
+2026-10-09T16:10:01.8098486Z [===                                    ] 10% Computing updates...              
+2026-10-09T16:10:01.8359013Z [===                                    ] 10% Installing NDK (Side by side) 27.2
+2026-10-09T16:10:02.1527439Z [===                                    ] 10% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.2369501Z [====                                   ] 10% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.3010215Z [====                                   ] 11% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.3698401Z [====                                   ] 12% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.4248488Z [=====                                  ] 13% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.4908955Z [=====                                  ] 14% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.5373275Z [=====                                  ] 15% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.5621916Z [======                                 ] 15% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.6110741Z [======                                 ] 16% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.6797257Z [======                                 ] 17% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.7335872Z [=======                                ] 18% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.8039219Z [=======                                ] 19% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.8311025Z [=======                                ] 20% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.8591237Z [========                               ] 20% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:02.9468717Z [========                               ] 21% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.0217373Z [========                               ] 22% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.1380785Z [=========                              ] 23% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.2241931Z [=========                              ] 24% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.3044728Z [=========                              ] 25% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.3321250Z [==========                             ] 25% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.4055656Z [==========                             ] 26% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.5145334Z [==========                             ] 27% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.5820637Z [===========                            ] 28% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.6688075Z [===========                            ] 29% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.6967835Z [===========                            ] 30% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.7389342Z [============                           ] 30% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.8009427Z [============                           ] 31% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.8631697Z [============                           ] 32% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:03.8634674Z [============                           ] 33% Downloading android-ndk-r27c-linux
+2026-10-09T16:10:04.3256498Z [============                           ] 33% Unzipping...                      
+2026-10-09T16:10:04.3257530Z [============                           ] 33% Unzipping... android-ndk-r27c/    
+2026-10-09T16:10:04.3271993Z [============                           ] 33% Unzipping... android-ndk-r27c/READ
+2026-10-09T16:10:04.3314217Z [=============                          ] 33% Unzipping... android-ndk-r27c/READ
+2026-10-09T16:10:04.3319512Z [=============                          ] 33% Unzipping... android-ndk-r27c/meta
+2026-10-09T16:10:04.8568773Z [=============                          ] 33% Unzipping... android-ndk-r27c/shad
+2026-10-09T16:10:04.8576016Z [=============                          ] 33% Unzipping... android-ndk-r27c/ndk-
+2026-10-09T16:10:04.8576715Z [=============                          ] 33% Unzipping... android-ndk-r27c/wrap
+2026-10-09T16:10:04.8578761Z [=============                          ] 33% Unzipping... android-ndk-r27c/ndk-
+2026-10-09T16:10:05.1623999Z [=============                          ] 33% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:07.1214376Z [=============                          ] 34% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:07.3376683Z [=============                          ] 35% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:07.4621624Z [==============                         ] 35% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:08.7652425Z [==============                         ] 36% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:09.3654070Z [==============                         ] 37% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:10.0556883Z [===============                        ] 38% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:10.7014195Z [===============                        ] 39% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:10.9914931Z [===============                        ] 40% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:11.4012829Z [================                       ] 40% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:12.0738098Z [================                       ] 41% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:12.6444630Z [================                       ] 42% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:13.6240406Z [=================                      ] 43% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:14.4078334Z [=================                      ] 44% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:15.0416090Z [=================                      ] 45% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:15.2133940Z [==================                     ] 45% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:15.7772750Z [==================                     ] 46% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:16.5110820Z [==================                     ] 47% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:17.1091658Z [===================                    ] 48% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:17.7060213Z [===================                    ] 49% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:17.8764061Z [===================                    ] 50% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:18.0563559Z [====================                   ] 50% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:19.0830938Z [====================                   ] 51% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:19.5531799Z [====================                   ] 52% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:20.3484677Z [=====================                  ] 53% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:20.6709895Z [=====================                  ] 54% Unzipping... android-ndk-r27c/tool
+2026-10-09T16:10:20.7618376Z [=====================                  ] 54% Unzipping... android-ndk-r27c/buil
+2026-10-09T16:10:21.0285557Z [=====================                  ] 54% Unzipping... android-ndk-r27c/sour
+2026-10-09T16:10:21.0305377Z [=====================                  ] 54% Unzipping... android-ndk-r27c/NOTI
+2026-10-09T16:10:21.0306647Z [=====================                  ] 54% Unzipping... android-ndk-r27c/ndk-
+2026-10-09T16:10:21.0319064Z [=====================                  ] 54% Unzipping... android-ndk-r27c/NOTI
+2026-10-09T16:10:21.0444237Z [=====================                  ] 54% Unzipping... android-ndk-r27c/pyth
+2026-10-09T16:10:21.0808678Z [=====================                  ] 54% Unzipping... android-ndk-r27c/preb
+2026-10-09T16:10:21.0809904Z [=====================                  ] 54% Unzipping... android-ndk-r27c/ndk-
+2026-10-09T16:10:21.0811001Z [=====================                  ] 54% Unzipping... android-ndk-r27c/sour
+2026-10-09T16:10:21.1619200Z [=====================                  ] 54% Unzipping... android-ndk-r27c/simp
+2026-10-09T16:10:21.2907775Z [=====================                  ] 55% Unzipping... android-ndk-r27c/simp
+2026-10-09T16:10:21.4127793Z [=====================                  ] 55% Unzipping... android-ndk-r27c/CHAN
+2026-10-09T16:10:21.4128384Z [=======================================] 100% Unzipping... android-ndk-r27c/CHA
+2026-10-09T16:10:21.4945356Z 
+2026-10-09T16:10:22.0455900Z 
+2026-10-09T16:10:22.0472269Z Welcome to Gradle 8.13!
+2026-10-09T16:10:22.0472535Z 
+2026-10-09T16:10:22.0472686Z Here are the highlights of this release:
+2026-10-09T16:10:22.0473126Z  - Daemon JVM auto-provisioning
+2026-10-09T16:10:22.0473548Z  - Enhancements for Scala plugin and JUnit testing
+2026-10-09T16:10:22.0474065Z  - Improvements for build authors and plugin developers
+2026-10-09T16:10:22.0474370Z 
+2026-10-09T16:10:22.0474628Z For more details see https://docs.gradle.org/8.13/release-notes.html
+2026-10-09T16:10:22.0474992Z 
+2026-10-09T16:10:22.1462830Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-10-09T16:10:23.0458625Z Daemon will be stopped at the end of the build 
+2026-10-09T16:10:46.3478153Z > Task :app:writeDependencyInventory
+2026-10-09T16:10:46.3478523Z 
+2026-10-09T16:10:46.3479264Z [Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+2026-10-09T16:10:46.3481242Z 
+2026-10-09T16:10:46.3481891Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+2026-10-09T16:10:46.3482443Z 
+2026-10-09T16:10:46.3483101Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+2026-10-09T16:10:46.3483780Z 
+2026-10-09T16:10:46.3484464Z For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+2026-10-09T16:10:46.3485350Z 
+2026-10-09T16:10:46.3485574Z BUILD SUCCESSFUL in 24s
+2026-10-09T16:10:46.3485969Z 1 actionable task: 1 executed
+2026-10-09T16:10:46.5583774Z Preserved Android NDK 27.2.12479018 LLVM runtime notices: 130424 bytes, SHA-256 f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1
+2026-10-09T16:10:46.5995950Z Preserved TIFF codec notices and source hashes.
+2026-10-09T16:10:46.6722578Z Wrote /home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt: 35 resolved components, 0 packaged notices.
+2026-10-09T16:10:46.9930131Z ##[group]Run bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
+2026-10-09T16:10:46.9930916Z [36;1mbash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'[0m
+2026-10-09T16:10:46.9997889Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:10:46.9998177Z env:
+2026-10-09T16:10:46.9998344Z   BUILD_VARIANT: debug
+2026-10-09T16:10:46.9998553Z   JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-10-09T16:10:46.9998789Z ##[endgroup]
+2026-10-09T16:11:43.7192746Z ...................................................................................................................................................................s..s.....................................................................................................................................................................................
+2026-10-09T16:11:43.7196448Z ----------------------------------------------------------------------
+2026-10-09T16:11:43.7196869Z Ran 348 tests in 56.573s
+2026-10-09T16:11:43.7197192Z 
+2026-10-09T16:11:43.7197282Z OK (skipped=2)
+2026-10-09T16:11:43.7197504Z {
+2026-10-09T16:11:43.7197737Z   "success": true,
+2026-10-09T16:11:43.7197971Z   "expected_tests": 1,
+2026-10-09T16:11:43.7198212Z   "completed_tests": 1,
+2026-10-09T16:11:43.7198450Z   "errors": []
+2026-10-09T16:11:43.7198660Z }
+2026-10-09T16:11:43.7198864Z {
+2026-10-09T16:11:43.7199078Z   "success": true,
+2026-10-09T16:11:43.7199324Z   "expected_tests": 1,
+2026-10-09T16:11:43.7199584Z   "completed_tests": 1,
+2026-10-09T16:11:43.7199842Z   "errors": []
+2026-10-09T16:11:43.7200061Z }
+2026-10-09T16:11:43.7200252Z {
+2026-10-09T16:11:43.7200444Z   "success": false,
+2026-10-09T16:11:43.7200693Z   "expected_tests": 1,
+2026-10-09T16:11:43.7200945Z   "completed_tests": 1,
+2026-10-09T16:11:43.7201193Z   "errors": [
+2026-10-09T16:11:43.7201516Z     "Missing or unsuccessful final instrumentation result: []"
+2026-10-09T16:11:43.7201887Z   ]
+2026-10-09T16:11:43.7202108Z }
+2026-10-09T16:11:43.7202297Z {
+2026-10-09T16:11:43.7202493Z   "success": false,
+2026-10-09T16:11:43.7202738Z   "expected_tests": 3,
+2026-10-09T16:11:43.7202999Z   "completed_tests": 0,
+2026-10-09T16:11:43.7203236Z   "errors": [
+2026-10-09T16:11:43.7203640Z     "--leave-target-running is restricted to the one-method accepted-credit seed",
+2026-10-09T16:11:43.7204112Z     "adb exited with status None",
+2026-10-09T16:11:43.7204493Z     "Missing or unsuccessful final instrumentation result: []",
+2026-10-09T16:11:43.7204880Z     "No tests completed",
+2026-10-09T16:11:43.7205214Z     "Runner test counts [] do not match 3 declared methods",
+2026-10-09T16:11:43.7205602Z     "3 declared test method(s) did not complete"
+2026-10-09T16:11:43.7205919Z   ]
+2026-10-09T16:11:43.7206104Z }
+2026-10-09T16:11:43.7206304Z {
+2026-10-09T16:11:43.7206499Z   "success": false,
+2026-10-09T16:11:43.7206738Z   "expected_tests": 1,
+2026-10-09T16:11:43.7207130Z   "completed_tests": 0,
+2026-10-09T16:11:43.7207372Z   "errors": [
+2026-10-09T16:11:43.7207814Z     "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+2026-10-09T16:11:43.7208343Z     "adb exited with status None",
+2026-10-09T16:11:43.7208732Z     "Missing or unsuccessful final instrumentation result: []",
+2026-10-09T16:11:43.7209121Z     "No tests completed",
+2026-10-09T16:11:43.7209453Z     "Runner test counts [] do not match 1 declared methods",
+2026-10-09T16:11:43.7209840Z     "1 declared test method(s) did not complete"
+2026-10-09T16:11:43.7210157Z   ]
+2026-10-09T16:11:43.7210342Z }
+2026-10-09T16:11:43.7210537Z {
+2026-10-09T16:11:43.7210743Z   "success": false,
+2026-10-09T16:11:43.7210964Z   "expected_tests": 1,
+2026-10-09T16:11:43.7211239Z   "completed_tests": 0,
+2026-10-09T16:11:43.7211490Z   "errors": [
+2026-10-09T16:11:43.7211882Z     "Accepted-credit seed requires exactly one already-running target PID",
+2026-10-09T16:11:43.7212353Z     "adb exited with status None",
+2026-10-09T16:11:43.7213137Z     "Missing or unsuccessful final instrumentation result: []",
+2026-10-09T16:11:43.7213579Z     "No tests completed",
+2026-10-09T16:11:43.7214163Z     "Runner test counts [] do not match 1 declared methods",
+2026-10-09T16:11:43.7214572Z     "1 declared test method(s) did not complete"
+2026-10-09T16:11:43.7214898Z   ]
+2026-10-09T16:11:43.7215093Z }
+2026-10-09T16:11:43.7446462Z ##[group]Run bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
+2026-10-09T16:11:43.7447703Z [36;1mbash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest[0m
+2026-10-09T16:11:43.7508817Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:11:43.7509165Z env:
+2026-10-09T16:11:43.7509332Z   BUILD_VARIANT: debug
+2026-10-09T16:11:43.7509545Z   JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-10-09T16:11:43.7509776Z ##[endgroup]
+2026-10-09T16:11:44.3679719Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-10-09T16:11:45.2635508Z Daemon will be stopped at the end of the build 
+2026-10-09T16:11:54.2668319Z > Task :Paintroid:checkKotlinGradlePluginConfigurationErrors
+2026-10-09T16:11:54.2687552Z > Task :Paintroid:fetchHeifSources
+2026-10-09T16:11:54.3647888Z > Task :Paintroid:fetchJxlSources
+2026-10-09T16:11:54.3651343Z > Task :Paintroid:fetchTiffSources
+2026-10-09T16:11:54.4637120Z > Task :Paintroid:fetchWebpSources
+2026-10-09T16:11:59.6644099Z > Task :Paintroid:bundleCorrespondingSource
+2026-10-09T16:11:59.6661886Z > Task :Paintroid:preBuild
+2026-10-09T16:11:59.6662642Z > Task :Paintroid:preDebugBuild
+2026-10-09T16:11:59.6663181Z > Task :Paintroid:generateDebugBuildConfig
+2026-10-09T16:11:59.6663713Z > Task :Paintroid:generateDebugResValues
+2026-10-09T16:11:59.6664192Z > Task :Paintroid:generateDebugResources
+2026-10-09T16:12:01.3639881Z > Task :Paintroid:packageDebugResources
+2026-10-09T16:12:01.3647846Z > Task :Paintroid:processDebugNavigationResources
+2026-10-09T16:12:02.2649469Z > Task :Paintroid:javaPreCompileDebug
+2026-10-09T16:12:02.2677779Z > Task :Paintroid:preDebugUnitTestBuild
+2026-10-09T16:12:02.2707812Z > Task :Paintroid:writeDebugAarMetadata
+2026-10-09T16:12:02.3644630Z > Task :Paintroid:parseDebugLocalResources
+2026-10-09T16:12:03.0639004Z > Task :Paintroid:checkDebugUnitTestAarMetadata
+2026-10-09T16:12:03.2644569Z > Task :Paintroid:generateDebugRFile
+2026-10-09T16:12:03.8645585Z > Task :Paintroid:compileDebugLibraryResources
+2026-10-09T16:12:06.5688212Z > Task :Paintroid:generateDebugUnitTestResValues
+2026-10-09T16:12:06.6640004Z > Task :Paintroid:mapDebugUnitTestSourceSetPaths
+2026-10-09T16:12:06.6670509Z > Task :Paintroid:generateDebugUnitTestResources
+2026-10-09T16:12:11.1639154Z > Task :Paintroid:mergeDebugUnitTestResources
+2026-10-09T16:12:11.1697916Z > Task :Paintroid:extractDeepLinksDebug
+2026-10-09T16:12:11.3647533Z > Task :Paintroid:processDebugManifest
+2026-10-09T16:12:11.8657468Z 
+2026-10-09T16:12:11.8717954Z > Task :Paintroid:processDebugUnitTestManifest
+2026-10-09T16:12:11.8743369Z [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/8.13/transforms/4c0c74693644e94e33bc27c89cbf9cd0/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
+2026-10-09T16:12:11.8758838Z 	Namespace 'androidx.vectordrawable' is used in multiple modules and/or libraries: androidx.vectordrawable:vectordrawable-animated:1.0.0, androidx.vectordrawable:vectordrawable:1.0.0. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+2026-10-09T16:12:13.8657577Z 
+2026-10-09T16:12:13.8722704Z > Task :Paintroid:processDebugUnitTestResources
+2026-10-09T16:12:13.8751388Z > Task :Paintroid:javaPreCompileDebugUnitTest
+2026-10-09T16:12:13.8777612Z > Task :Paintroid:generateDebugUnitTestAssets UP-TO-DATE
+2026-10-09T16:12:13.9658238Z > Task :Paintroid:mergeDebugShaders
+2026-10-09T16:12:13.9668006Z > Task :Paintroid:compileDebugShaders NO-SOURCE
+2026-10-09T16:12:13.9669054Z > Task :Paintroid:generateDebugAssets UP-TO-DATE
+2026-10-09T16:12:14.1681956Z > Task :Paintroid:mergeDebugAssets
+2026-10-09T16:12:14.5667954Z > Task :Paintroid:mergeDebugUnitTestAssets
+2026-10-09T16:12:16.3636767Z > Task :Paintroid:packageDebugUnitTestForUnitTest
+2026-10-09T16:12:16.3657052Z > Task :Paintroid:generateDebugUnitTestConfig
+2026-10-09T16:12:33.2637588Z > Task :Paintroid:compileDebugKotlin
+2026-10-09T16:12:50.1658684Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt:141:23 Unnecessary non-null assertion (!!) on a non-null receiver of type Bitmap
+2026-10-09T16:12:50.1660616Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:154:29 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1662487Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:260:61 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1664253Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:261:96 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1666050Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1128:40 'getParcelableExtra(String!): T?' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1667929Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1205:39 Condition 'returnedSession!=null' is always 'true'
+2026-10-09T16:12:50.1669630Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1229:21 Unnecessary safe call on a non-null receiver of type Intent?
+2026-10-09T16:12:50.1671317Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1230:21 Unnecessary safe call on a non-null receiver of type Intent?
+2026-10-09T16:12:50.1673095Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1231:21 Unnecessary safe call on a non-null receiver of type Intent?
+2026-10-09T16:12:50.1728264Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:26 'setter for systemUiVisibility: Int' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1788337Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:65 'SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1818168Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:101 'SYSTEM_UI_FLAG_VISIBLE: Int' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1878140Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt:49:112 'scaledDensity: Float' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1908853Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt:130:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+2026-10-09T16:12:50.1911938Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:164:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+2026-10-09T16:12:50.1915091Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:377:102 'onBackPressed(): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1917014Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:578:113 'scaledDensity: Float' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1918643Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:584:113 'scaledDensity: Float' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1920233Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:815:143 'computeBounds(RectF, Boolean): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:12:50.1921929Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/RibbonWidgets.kt:40:15 'setColorFilter(Int, PorterDuff.Mode): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:12:55.0634413Z 
+2026-10-09T16:12:55.0636423Z > Task :Paintroid:compileDebugJavaWithJavac
+2026-10-09T16:12:55.0637239Z > Task :Paintroid:bundleLibRuntimeToJarDebug
+2026-10-09T16:12:55.1648070Z > Task :Paintroid:bundleLibCompileToJarDebug
+2026-10-09T16:12:55.1669946Z > Task :Paintroid:processDebugJavaRes
+2026-10-09T16:13:20.0634454Z 
+2026-10-09T16:13:20.0658253Z > Task :Paintroid:compileDebugUnitTestKotlin
+2026-10-09T16:13:20.0689962Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ANPaintControlsTest.kt:268:66 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0698635Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt:184:159 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0700640Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt:242:62 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0702459Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/AutosaveQueuedRecoveryTest.kt:106:38 Variable 'result' initializer is redundant
+2026-10-09T16:13:20.0704273Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CanvasEditingControlsTest.kt:79:61 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0706262Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:171:82 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0708641Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:178:82 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0710843Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:204:44 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0712899Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:204:104 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0715000Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:238:38 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0717280Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:251:42 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0720029Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:276:57 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0722247Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:276:117 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0724464Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:311:30 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0726506Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:313:61 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0728726Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:314:62 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0730918Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicStartupRecoveryTest.kt:319:71 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0733088Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt:447:67 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0738638Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsBlankMapsTest.kt:222:52 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0740971Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsBlankMapsTest.kt:253:52 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0743273Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCreditFlowTest.kt:113:48 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0745261Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCreditFlowTest.kt:160:64 Unnecessary non-null assertion (!!) on a non-null receiver of type Bitmap
+2026-10-09T16:13:20.0747457Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCreditFlowTest.kt:161:64 Unnecessary non-null assertion (!!) on a non-null receiver of type Bitmap
+2026-10-09T16:13:20.0749535Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCreditSessionIntegrationTest.kt:78:52 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0751723Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt:109:42 Unnecessary safe call on a non-null receiver of type LocaleManager?
+2026-10-09T16:13:20.0753660Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsSvgErrorReadabilityTest.kt:150:68 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0755734Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsSvgErrorTranslationTest.kt:131:48 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0757547Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CursorDrawingTest.kt:130:85 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0759480Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt:111:25 'recycle(): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0761076Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/EdgeSelectionControlsTest.kt:84:61 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0762815Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/EdgeSelectionControlsTest.kt:112:56 'computeBounds(RectF, Boolean): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0764533Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ExportFormatDialogTest.kt:333:65 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0766233Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt:291:41 'getRectSize(Rect!): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0768544Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt:309:29 'recycle(): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0770211Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt:153:25 'recycle(): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0771932Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditBoundsTest.kt:93:69 Unnecessary non-null assertion (!!) on a non-null receiver of type String
+2026-10-09T16:13:20.0773745Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditBoundsTest.kt:94:82 Unnecessary non-null assertion (!!) on a non-null receiver of type String
+2026-10-09T16:13:20.0775620Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryImportTest.kt:88:48 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0777765Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryImportTest.kt:148:48 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0779667Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryImportTest.kt:169:52 'shouldOverrideUrlLoading(WebView!, String!): Boolean' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0793887Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ImageResizeFlowTest.kt:59:51 No cast needed
+2026-10-09T16:13:20.0795362Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ImageResizeFlowTest.kt:183:64 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0797385Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/LegacyBitmapCodecTest.kt:26:52 Parameter 'path' is never used
+2026-10-09T16:13:20.0798881Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/LegacyBitmapCodecTest.kt:26:65 Parameter 'shareable' is never used
+2026-10-09T16:13:20.0800284Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/LegacyBitmapCodecTest.kt:111:17 Unreachable code
+2026-10-09T16:13:20.0801691Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/PixelRegionDecoderShadow.kt:23:65 Parameter 'shareable' is never used
+2026-10-09T16:13:20.0803405Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ResponsiveToolboxTest.kt:131:28 'updateConfiguration(Configuration!, DisplayMetrics!): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0805673Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/ResponsiveToolboxTest.kt:400:61 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0808900Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/SizingAndTrimTest.kt:205:62 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0810581Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/UnifiedEditorTest.kt:206:26 'getParcelableExtra(String!): T?' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0812263Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalCanvasCaptionTest.kt:296:84 'scaledDensity: Float' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0813943Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalCanvasCaptionTest.kt:372:77 'scaledDensity: Float' is deprecated. Deprecated in Java
+2026-10-09T16:13:20.0815610Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalRibbonTest.kt:46:194 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0817331Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/WorkspaceRefinementTest.kt:84:60 Unsafe use of a nullable receiver of type File?
+2026-10-09T16:13:20.0819349Z w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/WorkspaceRefinementTest.kt:289:28 'updateConfiguration(Configuration!, DisplayMetrics!): Unit' is deprecated. Deprecated in Java
+2026-10-09T16:13:22.8637357Z 
+2026-10-09T16:13:22.8667972Z > Task :Paintroid:compileDebugUnitTestJavaWithJavac
+2026-10-09T16:13:22.8668535Z > Task :Paintroid:processDebugUnitTestJavaRes
+2026-10-09T16:13:52.8635415Z > Task :Paintroid:testDebugUnitTest
+2026-10-09T16:14:35.0634287Z 
+2026-10-09T16:14:35.0634783Z --- Failed to create image decoder with message 'unimplemented'
+2026-10-09T16:14:39.9634145Z --- Failed to create image decoder with message 'unimplemented'
+2026-10-09T16:16:17.1633947Z --- Failed to create image decoder with message 'unimplemented'
+2026-10-09T16:16:22.5634316Z --- Failed to create image decoder with message 'unimplemented'
+2026-10-09T16:17:22.1644639Z 
+2026-10-09T16:17:22.1645917Z [Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+2026-10-09T16:17:22.1648915Z 
+2026-10-09T16:17:22.1649424Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+2026-10-09T16:17:22.1650002Z 
+2026-10-09T16:17:22.1650590Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+2026-10-09T16:17:22.1651276Z 
+2026-10-09T16:17:22.1652009Z For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+2026-10-09T16:17:22.1652812Z 
+2026-10-09T16:17:22.1653083Z BUILD SUCCESSFUL in 5m 38s
+2026-10-09T16:17:22.1653502Z 40 actionable tasks: 40 executed
+2026-10-09T16:17:22.2342655Z 
+2026-10-09T16:17:22.2344531Z See the profiling report at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/profile/profile-2026-10-09-16-11-46.html
+2026-10-09T16:17:22.2387156Z A fine-grained performance profile is available: use the --scan option.
+2026-10-09T16:17:22.6009919Z ##[group]Run bash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}
+2026-10-09T16:17:22.6010949Z [36;1mbash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}[0m
+2026-10-09T16:17:22.6110053Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T16:17:22.6110350Z env:
+2026-10-09T16:17:22.6110528Z   BUILD_VARIANT: debug
+2026-10-09T16:17:22.6110767Z   JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-10-09T16:17:22.6111015Z ##[endgroup]
+2026-10-09T16:17:23.2379555Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-10-09T16:17:24.1350849Z Daemon will be stopped at the end of the build 
+2026-10-09T16:17:33.2355866Z > Task :Paintroid:fetchHeifSources
+2026-10-09T16:17:33.2356226Z > Task :Paintroid:fetchJxlSources
+2026-10-09T16:17:33.3376652Z > Task :Paintroid:fetchTiffSources
+2026-10-09T16:17:33.3397740Z > Task :Paintroid:fetchWebpSources
+2026-10-09T16:17:33.8365575Z > Task :Paintroid:bundleCorrespondingSource UP-TO-DATE
+2026-10-09T16:17:33.8370887Z > Task :Paintroid:preBuild UP-TO-DATE
+2026-10-09T16:17:33.8380338Z > Task :Paintroid:preDebugBuild UP-TO-DATE
+2026-10-09T16:17:34.2364919Z > Task :Paintroid:checkDebugAarMetadata
+2026-10-09T16:17:36.9349640Z 
+2026-10-09T16:17:36.9350341Z > Task :Paintroid:configureCMakeDebug[x86_64]
+2026-10-09T16:17:36.9350817Z C/C++: -- Compiler is not EMSCRIPTEN
+2026-10-09T16:17:39.1348255Z C/C++: --- aom_configure: Detected CPU: generic
+2026-10-09T16:17:39.1349131Z C/C++: Running C compiler test: pie_check
+2026-10-09T16:17:39.2346276Z C/C++: CONFIG_PIC enabled for position independent executable (PIE) build
+2026-10-09T16:17:39.2347658Z C/C++: Running C compiler test: unistd_check
+2026-10-09T16:17:39.2348057Z C/C++: Running CXX compiler test: unistd_check
+2026-10-09T16:17:39.3346177Z C/C++: Running C compiler test: fenv_check
+2026-10-09T16:17:39.3347128Z C/C++: Checking C compiler flag support for: -std=c11
+2026-10-09T16:17:39.4346133Z C/C++: Checking C++ compiler flag support for: -std=c++17
+2026-10-09T16:17:39.4346804Z C/C++: Checking C compiler flag support for: -Wall
+2026-10-09T16:17:39.4347871Z C/C++: Checking C++ compiler flag support for: -Wall
+2026-10-09T16:17:39.5347175Z C/C++: Checking C compiler flag support for: -Wdisabled-optimization
+2026-10-09T16:17:39.5347803Z C/C++: Checking C++ compiler flag support for: -Wdisabled-optimization
+2026-10-09T16:17:39.6345777Z C/C++: Checking C compiler flag support for: -Wextra
+2026-10-09T16:17:39.6349267Z C/C++: Checking C++ compiler flag support for: -Wextra
+2026-10-09T16:17:39.6349790Z C/C++: Checking C compiler flag support for: -Wextra-semi
+2026-10-09T16:17:39.7346797Z C/C++: Checking C++ compiler flag support for: -Wextra-semi
+2026-10-09T16:17:39.7348050Z C/C++: Checking C compiler flag support for: -Wextra-semi-stmt
+2026-10-09T16:17:39.8359706Z C/C++: Checking C++ compiler flag support for: -Wextra-semi-stmt
+2026-10-09T16:17:39.8360157Z C/C++: Checking C compiler flag support for: -Wfloat-conversion
+2026-10-09T16:17:39.8360503Z C/C++: Checking C++ compiler flag support for: -Wfloat-conversion
+2026-10-09T16:17:39.9346700Z C/C++: Checking C compiler flag support for: -Wformat=2
+2026-10-09T16:17:39.9347518Z C/C++: Checking C++ compiler flag support for: -Wformat=2
+2026-10-09T16:17:40.0346026Z C/C++: Checking C compiler flag support for: -Wimplicit-function-declaration
+2026-10-09T16:17:40.0347058Z C/C++: Checking C compiler flag support for: -Wlogical-op
+2026-10-09T16:17:40.0347578Z C/C++: Checking C++ compiler flag support for: -Wlogical-op
+2026-10-09T16:17:40.1347693Z C/C++: Checking C compiler flag support for: -Wmissing-declarations
+2026-10-09T16:17:40.1348672Z C/C++: Checking C++ compiler flag support for: -Wmissing-declarations
+2026-10-09T16:17:40.2346101Z C/C++: Checking C compiler flag support for: -Wmissing-prototypes
+2026-10-09T16:17:40.2347137Z C/C++: Checking C++ compiler flag support for: -Wmissing-prototypes
+2026-10-09T16:17:40.3345900Z C/C++: Checking C compiler flag support for: -Wpointer-arith
+2026-10-09T16:17:40.3346507Z C/C++: Checking C++ compiler flag support for: -Wpointer-arith
+2026-10-09T16:17:40.3347103Z C/C++: Checking C compiler flag support for: -Wshadow
+2026-10-09T16:17:40.4346123Z C/C++: Checking C++ compiler flag support for: -Wshadow
+2026-10-09T16:17:40.4346702Z C/C++: Checking C compiler flag support for: -Wshorten-64-to-32
+2026-10-09T16:17:40.5346105Z C/C++: Checking C++ compiler flag support for: -Wshorten-64-to-32
+2026-10-09T16:17:40.5346658Z C/C++: Checking C compiler flag support for: -Wsign-compare
+2026-10-09T16:17:40.6345838Z C/C++: Checking C++ compiler flag support for: -Wsign-compare
+2026-10-09T16:17:40.6346545Z C/C++: Checking C compiler flag support for: -Wstring-conversion
+2026-10-09T16:17:40.7347227Z C/C++: Checking C++ compiler flag support for: -Wstring-conversion
+2026-10-09T16:17:40.7347825Z C/C++: Checking C compiler flag support for: -Wtype-limits
+2026-10-09T16:17:40.8346443Z C/C++: Checking C++ compiler flag support for: -Wtype-limits
+2026-10-09T16:17:40.8347384Z C/C++: Checking C compiler flag support for: -Wundef
+2026-10-09T16:17:40.8348008Z C/C++: Checking C++ compiler flag support for: -Wundef
+2026-10-09T16:17:40.9346180Z C/C++: Checking C compiler flag support for: -Wuninitialized
+2026-10-09T16:17:40.9346708Z C/C++: Checking C++ compiler flag support for: -Wuninitialized
+2026-10-09T16:17:41.0345994Z C/C++: Checking C compiler flag support for: -Wunreachable-code-aggressive
+2026-10-09T16:17:41.0347109Z C/C++: Checking C++ compiler flag support for: -Wunreachable-code-aggressive
+2026-10-09T16:17:41.1345981Z C/C++: Checking C compiler flag support for: -Wunused
+2026-10-09T16:17:41.1346489Z C/C++: Checking C++ compiler flag support for: -Wunused
+2026-10-09T16:17:41.1347086Z C/C++: Checking C compiler flag support for: -Wvla
+2026-10-09T16:17:41.2345762Z C/C++: Checking C++ compiler flag support for: -Wvla
+2026-10-09T16:17:41.2346147Z C/C++: Checking C compiler flag support for: -Wc23-extensions
+2026-10-09T16:17:41.3345835Z C/C++: Checking C++ compiler flag support for: -Wc++20-extensions
+2026-10-09T16:17:41.3346667Z C/C++: Checking C++ compiler flag support for: -Wc++23-extensions
+2026-10-09T16:17:41.3347630Z C/C++: Checking C compiler flag support for: -Wstack-usage=100000
+2026-10-09T16:17:41.4346559Z C/C++: Checking C++ compiler flag support for: -Wstack-usage=240000
+2026-10-09T16:17:41.4347494Z C/C++: Checking C compiler flag support for: -D_LARGEFILE_SOURCE
+2026-10-09T16:17:41.6346367Z C/C++: Checking C++ compiler flag support for: -D_LARGEFILE_SOURCE
+2026-10-09T16:17:41.6346807Z C/C++: Checking C compiler flag support for: -D_FILE_OFFSET_BITS=64
+2026-10-09T16:17:41.6347477Z C/C++: Checking C++ compiler flag support for: -D_FILE_OFFSET_BITS=64
+2026-10-09T16:17:41.7346138Z C/C++: Checking C compiler flag support for: -flax-vector-conversions=none
+2026-10-09T16:17:41.7346610Z C/C++: Checking C++ compiler flag support for: -flax-vector-conversions=none
+2026-10-09T16:17:42.2345668Z C/C++: === Summary of compiled codecs ===
+2026-10-09T16:17:42.2346436Z C/C++: libde265 HEVC decoder                 : + built-in
+2026-10-09T16:17:42.2355573Z C/C++: FFMPEG HEVC decoder (HW acc)          : - disabled
+2026-10-09T16:17:42.2356147Z C/C++: WebCodecs HEVC decoder (experimental) : - disabled
+2026-10-09T16:17:42.2356608Z C/C++: x265 HEVC encoder                     : - disabled
+2026-10-09T16:17:42.2357194Z C/C++: Kvazaar HEVC encoder                  : + built-in
+2026-10-09T16:17:42.2357625Z C/C++: AOM AV1 decoder                       : + built-in
+2026-10-09T16:17:42.2358039Z C/C++: AOM AV1 encoder                       : + built-in
+2026-10-09T16:17:42.2358439Z C/C++: Dav1d AV1 decoder                     : - disabled
+2026-10-09T16:17:42.2359177Z C/C++: SVT AV1 encoder                       : - disabled
+2026-10-09T16:17:42.2359607Z C/C++: Rav1e AV1 encoder                     : - disabled
+2026-10-09T16:17:42.2360039Z C/C++: JPEG decoder                          : - disabled
+2026-10-09T16:17:42.2360457Z C/C++: JPEG encoder                          : - disabled
+2026-10-09T16:17:42.2360860Z C/C++: x264 AVC encoder                      : - disabled
+2026-10-09T16:17:42.2361264Z C/C++: OpenH264 decoder                      : - disabled
+2026-10-09T16:17:42.2361857Z C/C++: OpenJPEG J2K decoder                  : - disabled
+2026-10-09T16:17:42.2362279Z C/C++: OpenJPEG J2K encoder                  : - disabled
+2026-10-09T16:17:42.2397569Z C/C++: OpenJPH HT-J2K encoder                : - disabled
+2026-10-09T16:17:42.2417572Z C/C++: uvg266 VVC encoder                    : - disabled
+2026-10-09T16:17:42.2418073Z C/C++: vvenc VVC encoder                     : - disabled
+2026-10-09T16:17:42.2418538Z C/C++: vvdec VVC decoder                     : - disabled
+2026-10-09T16:17:42.2418946Z C/C++: === Supported formats ===
+2026-10-09T16:17:42.2419295Z C/C++: format        decoding   encoding
+2026-10-09T16:17:42.2419633Z C/C++: AVC             NO         NO 
+2026-10-09T16:17:42.2419969Z C/C++: AVIF            YES        YES
+2026-10-09T16:17:42.2420292Z C/C++: HEIC            YES        YES
+2026-10-09T16:17:42.2420613Z C/C++: JPEG            NO         NO 
+2026-10-09T16:17:42.2420825Z C/C++: JPEG2000        NO         NO 
+2026-10-09T16:17:42.2421051Z C/C++: JPEG2000-HT     NO         NO 
+2026-10-09T16:17:42.2421258Z C/C++: Uncompressed    NO         NO 
+2026-10-09T16:17:42.2421459Z C/C++: VVC             NO         NO 
+2026-10-09T16:17:42.2421665Z C/C++: libsharpyuv: disabled
+2026-10-09T16:17:42.3346344Z C/C++: === Active input formats for heif-enc ===
+2026-10-09T16:17:42.3346817Z C/C++: JPEG: ------ (libjpeg not found)
+2026-10-09T16:17:42.3347363Z C/C++: PNG:  ------ (libpng not found)
+2026-10-09T16:17:42.3351292Z C/C++: WEBP:  ------ (libwebp not found)
+2026-10-09T16:17:42.3351674Z C/C++: TIFF: ------ (libtiff not found)
+2026-10-09T16:17:42.3351939Z C/C++: Not compiling 'x265' backend
+2026-10-09T16:17:42.3352212Z C/C++: Compiling 'libde265' as built-in backend
+2026-10-09T16:17:42.3352470Z C/C++: Not compiling 'dav1d' backend
+2026-10-09T16:17:42.3352723Z C/C++: Compiling 'aomdec' as built-in backend
+2026-10-09T16:17:42.3352971Z C/C++: Compiling 'aomenc' as built-in backend
+2026-10-09T16:17:42.3353207Z C/C++: Not compiling 'svtenc' backend
+2026-10-09T16:17:42.3353438Z C/C++: Not compiling 'rav1e' backend
+2026-10-09T16:17:42.3353661Z C/C++: Not compiling 'jpegdec' backend
+2026-10-09T16:17:42.3353884Z C/C++: Not compiling 'jpegenc' backend
+2026-10-09T16:17:42.3354095Z C/C++: Not compiling 'j2kdec' backend
+2026-10-09T16:17:42.3354300Z C/C++: Not compiling 'j2kenc' backend
+2026-10-09T16:17:42.3354541Z C/C++: Compiling 'kvazaar' as built-in backend
+2026-10-09T16:17:42.3354795Z C/C++: Not compiling 'ffmpegdec' backend
+2026-10-09T16:17:42.3355015Z C/C++: Not compiling 'jphenc' backend
+2026-10-09T16:17:42.3355226Z C/C++: Not compiling 'uvg266' backend
+2026-10-09T16:17:42.3355461Z C/C++: Not compiling 'vvdec' backend
+2026-10-09T16:17:42.3355876Z C/C++: Not compiling 'vvenc' backend
+2026-10-09T16:17:42.3356203Z C/C++: Not compiling 'x264' backend
+2026-10-09T16:17:42.3356735Z C/C++: Not compiling 'openh264dec' backend
+2026-10-09T16:17:42.3357291Z C/C++: Not compiling 'libsharpyuv'
+2026-10-09T16:17:50.6427701Z 
+2026-10-09T16:17:50.6501419Z > Task :Paintroid:buildCMakeDebug[x86_64][anpaint_heif,anpaint_jxl,etc]
+2026-10-09T16:17:50.6517564Z C/C++: ninja: Entering directory `/home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64'
+2026-10-09T16:17:50.7347711Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.7425554Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1165:1: warning: stack frame size (5944) exceeds limit (5632) in 'skcms_private::baseline::Exec_xyz_to_lab(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.7467512Z C/C++:  1165 | STAGE(xyz_to_lab, NoCtx) {
+2026-10-09T16:17:50.7477476Z C/C++:       | ^
+2026-10-09T16:17:50.7537921Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.7567673Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.7627529Z C/C++:       |         ^
+2026-10-09T16:17:50.7628772Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.7629795Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.7630331Z C/C++:       |                 ^
+2026-10-09T16:17:50.7630985Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:64:1: note: expanded from here
+2026-10-09T16:17:50.7631985Z C/C++:    64 | Exec_xyz_to_lab
+2026-10-09T16:17:50.7632302Z C/C++:       | ^
+2026-10-09T16:17:50.7633000Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.7635157Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1188:1: warning: stack frame size (6104) exceeds limit (5632) in 'skcms_private::baseline::Exec_gamma_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.7637199Z C/C++:  1188 | STAGE(gamma_rgb, const skcms_TransferFunction* tf) {
+2026-10-09T16:17:50.7637626Z C/C++:       | ^
+2026-10-09T16:17:50.7638345Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.7640557Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.7641152Z C/C++:       |         ^
+2026-10-09T16:17:50.7641943Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.7642948Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.7643465Z C/C++:       |                 ^
+2026-10-09T16:17:50.7644111Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:99:1: note: expanded from here
+2026-10-09T16:17:50.7644796Z C/C++:    99 | Exec_gamma_rgb
+2026-10-09T16:17:50.7645087Z C/C++:       | ^
+2026-10-09T16:17:50.7645780Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.7648048Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1199:1: warning: stack frame size (7208) exceeds limit (5632) in 'skcms_private::baseline::Exec_tf_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.7649845Z C/C++:  1199 | STAGE(tf_rgb, const skcms_TransferFunction* tf) {
+2026-10-09T16:17:50.7687419Z C/C++:       | ^
+2026-10-09T16:17:50.7747877Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.7787665Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.7807774Z C/C++:       |         ^
+2026-10-09T16:17:50.7867946Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.7869002Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.7869537Z C/C++:       |                 ^
+2026-10-09T16:17:50.7870573Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:134:1: note: expanded from here
+2026-10-09T16:17:50.7871282Z C/C++:   134 | Exec_tf_rgb
+2026-10-09T16:17:50.7871574Z C/C++:       | ^
+2026-10-09T16:17:50.7872291Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.7874460Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1205:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_r(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.7876354Z C/C++:  1205 | STAGE(pq_r, const skcms_TransferFunction* tf) { r = apply_pq(tf, r); }
+2026-10-09T16:17:50.7876867Z C/C++:       | ^
+2026-10-09T16:17:50.7877740Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.7878795Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.7879368Z C/C++:       |         ^
+2026-10-09T16:17:50.7880149Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.7881156Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.7881665Z C/C++:       |                 ^
+2026-10-09T16:17:50.7882336Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:141:1: note: expanded from here
+2026-10-09T16:17:50.7883029Z C/C++:   141 | Exec_pq_r
+2026-10-09T16:17:50.7883306Z C/C++:       | ^
+2026-10-09T16:17:50.7884011Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.7886188Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1206:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_g(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.7888209Z C/C++:  1206 | STAGE(pq_g, const skcms_TransferFunction* tf) { g = apply_pq(tf, g); }
+2026-10-09T16:17:50.7888693Z C/C++:       | ^
+2026-10-09T16:17:50.7889395Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.7890348Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.7890827Z C/C++:       |         ^
+2026-10-09T16:17:50.7891517Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.7907510Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.7937325Z C/C++:       |                 ^
+2026-10-09T16:17:50.7997752Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:148:1: note: expanded from here
+2026-10-09T16:17:50.8047442Z C/C++:   148 | Exec_pq_g
+2026-10-09T16:17:50.8117914Z C/C++:       | ^
+2026-10-09T16:17:50.8177894Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.8208751Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1207:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_b(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.8237500Z C/C++:  1207 | STAGE(pq_b, const skcms_TransferFunction* tf) { b = apply_pq(tf, b); }
+2026-10-09T16:17:50.8297413Z C/C++:       | ^
+2026-10-09T16:17:50.8358019Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.8417939Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.8477442Z C/C++:       |         ^
+2026-10-09T16:17:50.8507972Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.8535686Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.8547087Z C/C++:       |                 ^
+2026-10-09T16:17:50.8587815Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:155:1: note: expanded from here
+2026-10-09T16:17:50.8588539Z C/C++:   155 | Exec_pq_b
+2026-10-09T16:17:50.8588822Z C/C++:       | ^
+2026-10-09T16:17:50.8589519Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.8591712Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1208:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_a(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.8593546Z C/C++:  1208 | STAGE(pq_a, const skcms_TransferFunction* tf) { a = apply_pq(tf, a); }
+2026-10-09T16:17:50.8594048Z C/C++:       | ^
+2026-10-09T16:17:50.8594725Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.8595722Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.8596279Z C/C++:       |         ^
+2026-10-09T16:17:50.8597225Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.8598252Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.8598778Z C/C++:       |                 ^
+2026-10-09T16:17:50.8599453Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:162:1: note: expanded from here
+2026-10-09T16:17:50.8600127Z C/C++:   162 | Exec_pq_a
+2026-10-09T16:17:50.8600403Z C/C++:       | ^
+2026-10-09T16:17:50.8601105Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.8603530Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1210:1: warning: stack frame size (15800) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.8605366Z C/C++:  1210 | STAGE(pq_rgb, const skcms_TransferFunction* tf) {
+2026-10-09T16:17:50.8617384Z C/C++:       | ^
+2026-10-09T16:17:50.8647958Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.8667820Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.8717343Z C/C++:       |         ^
+2026-10-09T16:17:50.8747863Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.8767634Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.8797505Z C/C++:       |                 ^
+2026-10-09T16:17:50.8837776Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:169:1: note: expanded from here
+2026-10-09T16:17:50.8847437Z C/C++:   169 | Exec_pq_rgb
+2026-10-09T16:17:50.8897694Z C/C++:       | ^
+2026-10-09T16:17:50.8907858Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.8954478Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1221:1: warning: stack frame size (9752) exceeds limit (5632) in 'skcms_private::baseline::Exec_hlg_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.8987471Z C/C++:  1221 | STAGE(hlg_rgb, const skcms_TransferFunction* tf) {
+2026-10-09T16:17:50.9007413Z C/C++:       | ^
+2026-10-09T16:17:50.9039025Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.9077648Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.9107368Z C/C++:       |         ^
+2026-10-09T16:17:50.9108253Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.9137576Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.9138138Z C/C++:       |                 ^
+2026-10-09T16:17:50.9138828Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:204:1: note: expanded from here
+2026-10-09T16:17:50.9139541Z C/C++:   204 | Exec_hlg_rgb
+2026-10-09T16:17:50.9139832Z C/C++:       | ^
+2026-10-09T16:17:50.9140561Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+2026-10-09T16:17:50.9142743Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1253:1: warning: stack frame size (7928) exceeds limit (5632) in 'skcms_private::baseline::Exec_hlginv_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+2026-10-09T16:17:50.9144556Z C/C++:  1253 | STAGE(hlginv_rgb, const skcms_TransferFunction* tf) {
+2026-10-09T16:17:50.9144995Z C/C++:       | ^
+2026-10-09T16:17:50.9145732Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+2026-10-09T16:17:50.9147132Z C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+2026-10-09T16:17:50.9147697Z C/C++:       |         ^
+2026-10-09T16:17:50.9148881Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+2026-10-09T16:17:50.9149931Z C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+2026-10-09T16:17:50.9150442Z C/C++:       |                 ^
+2026-10-09T16:17:50.9151093Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:246:1: note: expanded from here
+2026-10-09T16:17:50.9152064Z C/C++:   246 | Exec_hlginv_rgb
+2026-10-09T16:17:50.9152372Z C/C++:       | ^
+2026-10-09T16:17:50.9152635Z C/C++: 10 warnings generated.
+2026-10-09T16:17:54.6401371Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:22:
+2026-10-09T16:17:54.6407960Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+2026-10-09T16:17:54.6438847Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (10136) exceeds limit (5632) in 'jxl::N_SSE4::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:17:54.6497680Z C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+2026-10-09T16:17:54.6527395Z C/C++:       |                      ^
+2026-10-09T16:17:54.6617744Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:22:
+2026-10-09T16:17:54.6647786Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:17:54.6649873Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (12888) exceeds limit (5632) in 'jxl::N_AVX2::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:17:54.6651670Z C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+2026-10-09T16:17:54.6652184Z C/C++:       |                      ^
+2026-10-09T16:17:54.6653757Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (10136) exceeds limit (5632) in 'jxl::N_SSE2::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:17:54.6655519Z C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+2026-10-09T16:17:54.6656029Z C/C++:       |                      ^
+2026-10-09T16:17:54.6656355Z C/C++: 3 warnings generated.
+2026-10-09T16:17:56.5398946Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:28:
+2026-10-09T16:17:56.5438040Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+2026-10-09T16:17:56.5487946Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:29:
+2026-10-09T16:17:56.5547885Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+2026-10-09T16:17:56.5610989Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8440) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE4::DemoteTo<hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+2026-10-09T16:17:56.5658010Z C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+2026-10-09T16:17:56.5717440Z C/C++:       |                   ^
+2026-10-09T16:17:56.5777879Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:29:
+2026-10-09T16:17:56.5779044Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+2026-10-09T16:17:56.5859097Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8408) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE2::DemoteTo<hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+2026-10-09T16:17:56.5897552Z C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+2026-10-09T16:17:56.5898037Z C/C++:       |                   ^
+2026-10-09T16:17:56.5898361Z C/C++: 2 warnings generated.
+2026-10-09T16:18:05.0370589Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/encoding/encoding.cc:149:8: warning: stack frame size (8040) exceeds limit (5632) in 'jxl::Status jxl::detail::DecodeModularChannelMAANS<true>(jxl::BitReader*, jxl::ANSSymbolReader*, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>> const&, std::__ndk1::vector<jxl::PropertyDecisionNode, std::__ndk1::allocator<jxl::PropertyDecisionNode>> const&, jxl::weighted::Header const&, int, unsigned long, jxl::TreeLut<unsigned char, false, false>&, jxl::Image*, unsigned int&, unsigned int&)' [-Wframe-larger-than]
+2026-10-09T16:18:05.0427648Z C/C++:   149 | Status DecodeModularChannelMAANS(BitReader *br, ANSSymbolReader *reader,
+2026-10-09T16:18:05.0497545Z C/C++:       |        ^
+2026-10-09T16:18:05.0549795Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/encoding/encoding.cc:149:8: warning: stack frame size (15272) exceeds limit (5632) in 'jxl::Status jxl::detail::DecodeModularChannelMAANS<false>(jxl::BitReader*, jxl::ANSSymbolReader*, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>> const&, std::__ndk1::vector<jxl::PropertyDecisionNode, std::__ndk1::allocator<jxl::PropertyDecisionNode>> const&, jxl::weighted::Header const&, int, unsigned long, jxl::TreeLut<unsigned char, false, false>&, jxl::Image*, unsigned int&, unsigned int&)' [-Wframe-larger-than]
+2026-10-09T16:18:05.0607395Z C/C++: 2 warnings generated.
+2026-10-09T16:18:07.2347363Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:26:
+2026-10-09T16:18:07.2350854Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+2026-10-09T16:18:07.2363177Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (6056) exceeds limit (5632) in 'jxl::N_SSE4::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:18:07.2385978Z C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+2026-10-09T16:18:07.2467517Z C/C++:       |                               ^
+2026-10-09T16:18:07.2468445Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:26:
+2026-10-09T16:18:07.2497796Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:07.2528883Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (17080) exceeds limit (5632) in 'jxl::N_AVX2::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:18:07.2530553Z C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+2026-10-09T16:18:07.2547460Z C/C++:       |                               ^
+2026-10-09T16:18:07.2588548Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (6056) exceeds limit (5632) in 'jxl::N_SSE2::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:18:07.2607447Z C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+2026-10-09T16:18:07.2637375Z C/C++:       |                               ^
+2026-10-09T16:18:07.2647610Z C/C++: 3 warnings generated.
+2026-10-09T16:18:13.0348541Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:26:
+2026-10-09T16:18:13.0417948Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:13.0469759Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:225:10: warning: stack frame size (10008) exceeds limit (5632) in 'jxl::N_AVX2::EPF1Stage::ProcessRow(std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:18:13.0527586Z C/C++:   225 |   Status ProcessRow(const RowInfo& input_rows, const RowInfo& output_rows,
+2026-10-09T16:18:13.0557324Z C/C++:       |          ^
+2026-10-09T16:18:13.0589716Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:416:10: warning: stack frame size (8696) exceeds limit (5632) in 'jxl::N_AVX2::EPF2Stage::ProcessRow(std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long) const' [-Wframe-larger-than]
+2026-10-09T16:18:13.0647535Z C/C++:   416 |   Status ProcessRow(const RowInfo& input_rows, const RowInfo& output_rows,
+2026-10-09T16:18:13.0677489Z C/C++:       |          ^
+2026-10-09T16:18:13.0677858Z C/C++: 2 warnings generated.
+2026-10-09T16:18:19.8388412Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:37:
+2026-10-09T16:18:19.8418634Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+2026-10-09T16:18:19.8447757Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+2026-10-09T16:18:19.8507745Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+2026-10-09T16:18:19.8549448Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1570:14: warning: stack frame size (9272) exceeds limit (5632) in 'void hwy::N_SSE4::StoreInterleaved3<hwy::N_SSE4::Simd<unsigned short, 8ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), hwy::N_SSE4::Simd<unsigned short, 8ul, -1>, hwy::N_SSE4::Simd<unsigned short, 8ul, -1>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8552075Z C/C++:  1570 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+2026-10-09T16:18:19.8627563Z C/C++:       |              ^
+2026-10-09T16:18:19.8629885Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8536) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE4::DemoteTo<hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+2026-10-09T16:18:19.8631975Z C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+2026-10-09T16:18:19.8632441Z C/C++:       |                   ^
+2026-10-09T16:18:19.8633163Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:37:
+2026-10-09T16:18:19.8634241Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:19.8635299Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+2026-10-09T16:18:19.8636352Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+2026-10-09T16:18:19.8639183Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1522:14: warning: stack frame size (9096) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<unsigned char, 32ul, -2>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), hwy::N_AVX2::Simd<unsigned char, 32ul, -2>, hwy::N_AVX2::Simd<unsigned char, 32ul, -2>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8641596Z C/C++:  1522 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+2026-10-09T16:18:19.8642073Z C/C++:       |              ^
+2026-10-09T16:18:19.8644413Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1432:14: warning: stack frame size (13192) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<unsigned short, 16ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), hwy::N_AVX2::Simd<unsigned short, 16ul, -1>, hwy::N_AVX2::Simd<unsigned short, 16ul, -1>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8647119Z C/C++:  1432 | HWY_API void StoreInterleaved3(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2, D d,
+2026-10-09T16:18:19.8647659Z C/C++:       |              ^
+2026-10-09T16:18:19.8649760Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1482:14: warning: stack frame size (8280) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<float, 8ul, 0>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), hwy::N_AVX2::Simd<float, 8ul, 0>, hwy::N_AVX2::Simd<float, 8ul, 0>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8652022Z C/C++:  1482 | HWY_API void StoreInterleaved3(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2, D d,
+2026-10-09T16:18:19.8652728Z C/C++:       |              ^
+2026-10-09T16:18:19.8654864Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1734:14: warning: stack frame size (8376) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved4<hwy::N_AVX2::Simd<float, 8ul, 0>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), hwy::N_AVX2::Simd<float, 8ul, 0>, hwy::N_AVX2::Simd<float, 8ul, 0>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8687799Z C/C++:  1734 | HWY_API void StoreInterleaved4(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2,
+2026-10-09T16:18:19.8688354Z C/C++:       |              ^
+2026-10-09T16:18:19.8689071Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+2026-10-09T16:18:19.8690175Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+2026-10-09T16:18:19.8692973Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1637:14: warning: stack frame size (11880) exceeds limit (5632) in 'void hwy::N_SSE2::StoreInterleaved3<hwy::N_SSE2::Simd<unsigned char, 16ul, -2>, (void*)0, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), hwy::N_SSE2::Simd<unsigned char, 16ul, -2>, hwy::N_SSE2::Simd<unsigned char, 16ul, -2>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8695520Z C/C++:  1637 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+2026-10-09T16:18:19.8695995Z C/C++:       |              ^
+2026-10-09T16:18:19.8698545Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1570:14: warning: stack frame size (19928) exceeds limit (5632) in 'void hwy::N_SSE2::StoreInterleaved3<hwy::N_SSE2::Simd<unsigned short, 8ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), hwy::N_SSE2::Simd<unsigned short, 8ul, -1>, hwy::N_SSE2::Simd<unsigned short, 8ul, -1>::T*)' [-Wframe-larger-than]
+2026-10-09T16:18:19.8701176Z C/C++:  1570 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+2026-10-09T16:18:19.8701653Z C/C++:       |              ^
+2026-10-09T16:18:19.8703567Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8424) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE2::DemoteTo<hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+2026-10-09T16:18:19.8705649Z C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+2026-10-09T16:18:19.8706133Z C/C++:       |                   ^
+2026-10-09T16:18:19.8706450Z C/C++: 9 warnings generated.
+2026-10-09T16:18:22.8408300Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/butteraugli/butteraugli.cc:45:
+2026-10-09T16:18:22.8457915Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:22.8500993Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/butteraugli/butteraugli.cc:754:8: warning: stack frame size (7320) exceeds limit (5632) in 'decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())) jxl::N_AVX2::MaltaUnit<hwy::N_AVX2::Simd<float, 8ul, 0>>(jxl::MaltaTag, hwy::N_AVX2::Simd<float, 8ul, 0>, float const*, long)' [-Wframe-larger-than]
+2026-10-09T16:18:22.8577535Z C/C++:   754 | Vec<D> MaltaUnit(MaltaTag /*tag*/, const D df,
+2026-10-09T16:18:22.8637387Z C/C++:       |        ^
+2026-10-09T16:18:22.8697363Z C/C++: 1 warning generated.
+2026-10-09T16:18:29.4349048Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:19:
+2026-10-09T16:18:29.4368189Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+2026-10-09T16:18:29.4396754Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9864) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4398286Z C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+2026-10-09T16:18:29.4467628Z C/C++:       |                     ^
+2026-10-09T16:18:29.4498430Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9576) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4501005Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9800) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4528291Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9512) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4530572Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6440) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4578461Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6152) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4580748Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6440) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4608461Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6152) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4637849Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:19:
+2026-10-09T16:18:29.4647823Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:29.4678282Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (18232) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4697547Z C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+2026-10-09T16:18:29.4707417Z C/C++:       |                     ^
+2026-10-09T16:18:29.4738728Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (17944) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4768301Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (18008) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4788293Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (17720) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4798231Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11608) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4818398Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11320) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4848408Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11608) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4878297Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11320) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4885111Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9864) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4917531Z C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+2026-10-09T16:18:29.4937391Z C/C++:       |                     ^
+2026-10-09T16:18:29.4968370Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9576) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.4978302Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9800) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5008314Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9512) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5028360Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6424) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5030741Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6136) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5058349Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6424) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5108764Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6136) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+2026-10-09T16:18:29.5119825Z C/C++: 24 warnings generated.
+2026-10-09T16:18:38.2348271Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_modular_simd.cc:25:
+2026-10-09T16:18:38.2377799Z C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+2026-10-09T16:18:38.2408381Z C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_modular_simd.cc:62:17: warning: stack frame size (8184) exceeds limit (5632) in 'jxl::N_AVX2::EstimateCost(jxl::Image const&)' [-Wframe-larger-than]
+2026-10-09T16:18:38.2427604Z C/C++:    62 | StatusOr<float> EstimateCost(const Image& img) {
+2026-10-09T16:18:38.2457497Z C/C++:       |                 ^
+2026-10-09T16:18:38.2467355Z C/C++: 1 warning generated.
+2026-10-09T16:19:53.4345087Z 
+2026-10-09T16:19:53.4346488Z > Task :Paintroid:mergeDebugJniLibFolders
+2026-10-09T16:19:53.5371455Z > Task :Paintroid:checkKotlinGradlePluginConfigurationErrors
+2026-10-09T16:19:53.5397491Z > Task :Paintroid:generateDebugBuildConfig UP-TO-DATE
+2026-10-09T16:19:53.5417535Z > Task :Paintroid:generateDebugResValues UP-TO-DATE
+2026-10-09T16:19:53.5457590Z > Task :Paintroid:generateDebugResources UP-TO-DATE
+2026-10-09T16:19:53.5487531Z > Task :Paintroid:packageDebugResources UP-TO-DATE
+2026-10-09T16:19:53.6358130Z > Task :Paintroid:processDebugNavigationResources UP-TO-DATE
+2026-10-09T16:19:53.6387770Z > Task :Paintroid:parseDebugLocalResources UP-TO-DATE
+2026-10-09T16:19:53.6395342Z > Task :Paintroid:generateDebugRFile UP-TO-DATE
+2026-10-09T16:19:53.9347478Z > Task :Paintroid:mergeDebugNativeLibs
+2026-10-09T16:19:53.9367697Z > Task :Paintroid:compileDebugKotlin UP-TO-DATE
+2026-10-09T16:19:54.2345093Z > Task :Paintroid:stripDebugDebugSymbols
+2026-10-09T16:19:57.1388074Z > Task :Paintroid:extractDebugAnnotations
+2026-10-09T16:19:57.1447520Z > Task :Paintroid:extractDeepLinksForAarDebug
+2026-10-09T16:19:57.1467509Z > Task :Paintroid:mergeDebugShaders UP-TO-DATE
+2026-10-09T16:19:57.1513267Z > Task :Paintroid:compileDebugShaders NO-SOURCE
+2026-10-09T16:19:57.1525487Z > Task :Paintroid:generateDebugAssets UP-TO-DATE
+2026-10-09T16:19:57.1526404Z > Task :Paintroid:mergeDebugAssets UP-TO-DATE
+2026-10-09T16:19:57.1526831Z > Task :Paintroid:javaPreCompileDebug UP-TO-DATE
+2026-10-09T16:19:57.1527434Z > Task :Paintroid:compileDebugJavaWithJavac UP-TO-DATE
+2026-10-09T16:19:57.1527908Z > Task :Paintroid:mergeDebugGeneratedProguardFiles
+2026-10-09T16:19:57.1528375Z > Task :Paintroid:mergeDebugConsumerProguardFiles
+2026-10-09T16:19:57.1528785Z > Task :Paintroid:prepareDebugArtProfile
+2026-10-09T16:19:57.2398007Z > Task :Paintroid:prepareLintJarForPublish
+2026-10-09T16:19:57.2422147Z > Task :Paintroid:processDebugManifest UP-TO-DATE
+2026-10-09T16:19:57.2447403Z > Task :Paintroid:copyDebugJniLibsProjectAndLocalJars
+2026-10-09T16:19:57.2447916Z > Task :Paintroid:processDebugJavaRes UP-TO-DATE
+2026-10-09T16:19:57.2448384Z > Task :Paintroid:writeDebugAarMetadata UP-TO-DATE
+2026-10-09T16:19:57.2448881Z > Task :app:checkKotlinGradlePluginConfigurationErrors
+2026-10-09T16:19:57.2449327Z > Task :app:preBuild UP-TO-DATE
+2026-10-09T16:19:57.2449700Z > Task :app:preDebugBuild UP-TO-DATE
+2026-10-09T16:19:57.2450064Z > Task :app:checkDebugAarMetadata
+2026-10-09T16:19:57.3349676Z > Task :Paintroid:mergeDebugJavaResource
+2026-10-09T16:19:57.3350189Z > Task :app:processDebugNavigationResources
+2026-10-09T16:19:57.4345337Z > Task :Paintroid:syncDebugLibJars
+2026-10-09T16:19:57.8346470Z > Task :Paintroid:bundleDebugLocalLintAar
+2026-10-09T16:19:57.8348918Z > Task :app:compileDebugNavigationResources
+2026-10-09T16:19:57.9363726Z > Task :app:generateDebugResValues
+2026-10-09T16:19:57.9377914Z > Task :app:mapDebugSourceSetPaths
+2026-10-09T16:19:57.9397643Z > Task :app:generateDebugResources
+2026-10-09T16:19:59.8352399Z > Task :app:createDebugCompatibleScreenManifests
+2026-10-09T16:19:59.8373926Z > Task :app:extractDeepLinksDebug
+2026-10-09T16:19:59.8397477Z > Task :Paintroid:extractDeepLinksDebug UP-TO-DATE
+2026-10-09T16:20:01.1346718Z 
+2026-10-09T16:20:01.1401015Z > Task :app:processDebugMainManifest
+2026-10-09T16:20:01.1420793Z [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/8.13/transforms/4c0c74693644e94e33bc27c89cbf9cd0/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
+2026-10-09T16:20:01.1468852Z 	Namespace 'androidx.vectordrawable' is used in multiple modules and/or libraries: androidx.vectordrawable:vectordrawable-animated:1.0.0, androidx.vectordrawable:vectordrawable:1.0.0. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+2026-10-09T16:20:01.1497548Z /home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+2026-10-09T16:20:01.1527806Z 	application@android:icon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+2026-10-09T16:20:01.1557527Z /home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+2026-10-09T16:20:01.1558579Z 	application@android:roundIcon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+2026-10-09T16:20:01.2344566Z 
+2026-10-09T16:20:01.2367806Z > Task :app:processDebugManifest
+2026-10-09T16:20:01.2385779Z > Task :app:processDebugManifestForPackage
+2026-10-09T16:20:01.3346830Z > Task :Paintroid:compileDebugLibraryResources UP-TO-DATE
+2026-10-09T16:20:01.3357612Z > Task :Paintroid:bundleLibCompileToJarDebug UP-TO-DATE
+2026-10-09T16:20:01.3358223Z > Task :app:javaPreCompileDebug
+2026-10-09T16:20:01.3358690Z > Task :app:preDebugAndroidTestBuild SKIPPED
+2026-10-09T16:20:01.3359259Z > Task :app:generateDebugAndroidTestResValues
+2026-10-09T16:20:01.3359822Z > Task :Paintroid:bundleLibRuntimeToJarDebug UP-TO-DATE
+2026-10-09T16:20:01.3360336Z > Task :app:mergeDebugResources
+2026-10-09T16:20:01.4356323Z > Task :Paintroid:createFullJarDebug
+2026-10-09T16:20:01.5347186Z > Task :Paintroid:writeDebugLintModelMetadata
+2026-10-09T16:20:01.5377839Z > Task :app:extractProguardFiles
+2026-10-09T16:20:01.5407373Z > Task :Paintroid:extractProguardFiles
+2026-10-09T16:20:02.4346027Z > Task :Paintroid:generateDebugLintModel
+2026-10-09T16:20:02.4346635Z > Task :app:preDebugUnitTestBuild UP-TO-DATE
+2026-10-09T16:20:02.4347237Z > Task :app:processDebugResources
+2026-10-09T16:20:03.1346636Z > Task :app:compileDebugKotlin NO-SOURCE
+2026-10-09T16:20:03.1347644Z > Task :app:compileDebugJavaWithJavac NO-SOURCE
+2026-10-09T16:20:03.1348358Z > Task :app:bundleDebugClassesToCompileJar
+2026-10-09T16:20:05.5349117Z > Task :app:generateDebugAndroidTestLintModel
+2026-10-09T16:20:05.6358108Z > Task :app:generateDebugLintReportModel
+2026-10-09T16:20:05.6387600Z > Task :app:generateDebugUnitTestLintModel
+2026-10-09T16:20:21.7354672Z > Task :app:lintAnalyzeDebugAndroidTest
+2026-10-09T16:20:21.9358324Z > Task :app:lintAnalyzeDebugUnitTest
+2026-10-09T16:20:21.9359466Z > Task :Paintroid:preDebugAndroidTestBuild UP-TO-DATE
+2026-10-09T16:20:21.9360107Z > Task :Paintroid:generateDebugAndroidTestResValues
+2026-10-09T16:20:22.2368305Z > Task :Paintroid:generateDebugAndroidTestLintModel
+2026-10-09T16:20:22.2377774Z > Task :Paintroid:preDebugUnitTestBuild UP-TO-DATE
+2026-10-09T16:20:22.6345562Z > Task :Paintroid:generateDebugUnitTestLintModel
+2026-10-09T16:20:28.8368119Z > Task :Paintroid:lintAnalyzeDebugAndroidTest
+2026-10-09T16:20:32.4346575Z > Task :Paintroid:lintAnalyzeDebug
+2026-10-09T16:20:57.2345268Z > Task :Paintroid:lintAnalyzeDebugUnitTest
+2026-10-09T16:20:59.3355606Z > Task :app:lintAnalyzeDebug
+2026-10-09T16:20:59.4358979Z > Task :app:lintReportDebug
+2026-10-09T16:20:59.4359602Z > Task :app:lintDebug
+2026-10-09T16:20:59.5344706Z 
+2026-10-09T16:20:59.5345695Z [Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+2026-10-09T16:20:59.5347233Z 
+2026-10-09T16:20:59.5347983Z Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+2026-10-09T16:20:59.5348822Z 
+2026-10-09T16:20:59.5349547Z You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+2026-10-09T16:20:59.5350651Z 
+2026-10-09T16:20:59.5351435Z For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+2026-10-09T16:20:59.5352323Z 
+2026-10-09T16:20:59.5352603Z BUILD SUCCESSFUL in 3m 36s
+2026-10-09T16:20:59.5353111Z 77 actionable tasks: 57 executed, 20 up-to-date
+2026-10-09T16:20:59.5353538Z 
+2026-10-09T16:20:59.5354201Z See the profiling report at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/profile/profile-2026-10-09-16-17-25.html
+2026-10-09T16:20:59.5355261Z A fine-grained performance profile is available: use the --scan option.
+2026-10-09T16:20:59.8484165Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-09T16:20:59.8484508Z with:
+2026-10-09T16:20:59.8484686Z   archive: true
+2026-10-09T16:20:59.8484955Z   name: regression-and-lint-f5d2d3ac79864c5b91a502f24df93b62bdbe4718
+2026-10-09T16:20:59.8485281Z   retention-days: 14
+2026-10-09T16:20:59.8485706Z   path: Paintroid/build/test-results/
+Paintroid/build/reports/
+app/build/reports/
+build/reports/ci-phases/
+build/reports/profile/
+
+2026-10-09T16:20:59.8486160Z   if-no-files-found: warn
+2026-10-09T16:20:59.8486357Z   compression-level: 6
+2026-10-09T16:20:59.8486553Z   overwrite: false
+2026-10-09T16:20:59.8486735Z   include-hidden-files: false
+2026-10-09T16:20:59.8487120Z env:
+2026-10-09T16:20:59.8487288Z   BUILD_VARIANT: debug
+2026-10-09T16:20:59.8487506Z   JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-10-09T16:20:59.8487743Z ##[endgroup]
+2026-10-09T16:21:00.9909769Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/landscape-vertical-file-lzh-Hant.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9911054Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/landscape-vertical-file-mn-Mong.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9993266Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/vertical-file-en-XV.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9994465Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/vertical-file-lzh-Hant.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9995639Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/vertical-file-mn-Mong.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9996786Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/vertical-file-mnc-Mong.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:00.9998802Z Uploads are case insensitive: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/reports/classic-preview/vertical-file-qaa-Zsye-XV.png was detected that it will be overwritten by another file with the same path
+2026-10-09T16:21:01.0281732Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-09T16:21:01.0283429Z The least common ancestor is /home/runner/work/AN-Paint/AN-Paint. This will be the root directory of the artifact
+2026-10-09T16:21:01.0284135Z With the provided path, there will be 998 files uploaded
+2026-10-09T16:21:01.0284718Z Artifact name is valid!
+2026-10-09T16:21:01.0285073Z Root directory input is valid!
+2026-10-09T16:21:01.2605283Z Uploading artifact: regression-and-lint-f5d2d3ac79864c5b91a502f24df93b62bdbe4718.zip
+2026-10-09T16:21:01.2637549Z Beginning upload of artifact content to blob storage
+2026-10-09T16:21:01.9415133Z Uploaded bytes 8388608
+2026-10-09T16:21:02.1266354Z Uploaded bytes 16777216
+2026-10-09T16:21:02.4940134Z Uploaded bytes 25165824
+2026-10-09T16:21:02.5993305Z Uploaded bytes 30537610
+2026-10-09T16:21:02.6130637Z Finished uploading artifact content to blob storage!
+2026-10-09T16:21:02.6133284Z SHA256 digest of uploaded artifact is 2c3179518b738226d84ae0c01b2c857ba9119d5657a5568cf6ec38be74b65e10
+2026-10-09T16:21:02.6134883Z Finalizing artifact upload
+2026-10-09T16:21:02.8464866Z Artifact regression-and-lint-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 successfully finalized. Artifact ID 11631225564
+2026-10-09T16:21:02.8466221Z Artifact regression-and-lint-f5d2d3ac79864c5b91a502f24df93b62bdbe4718 has been successfully uploaded! Final size is 30537610 bytes. Artifact ID is 11631225564
+2026-10-09T16:21:02.8469920Z Artifact download URL: https://github.com/c933103/AN-Paint/actions/runs/37957075692/artifacts/11631225564
+2026-10-09T16:21:04.7423439Z Post job cleanup.
+2026-10-09T16:21:04.8504548Z Cache hit occurred on the primary key android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks, not saving cache.
+2026-10-09T16:21:04.8632194Z Post job cleanup.
+2026-10-09T16:21:04.9386870Z [command]/usr/bin/git version
+2026-10-09T16:21:04.9431611Z git version 2.55.0
+2026-10-09T16:21:04.9460141Z Temporarily overriding HOME='/home/runner/work/_temp/4da3e4b5-554a-401c-a8a4-795ae9fc9e37' before making global git config changes
+2026-10-09T16:21:04.9461330Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T16:21:04.9464479Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-09T16:21:04.9495125Z Removing SSH command configuration
+2026-10-09T16:21:04.9500271Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T16:21:04.9535234Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T16:21:05.0009786Z Removing HTTP extra header
+2026-10-09T16:21:05.0014651Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T16:21:05.0066789Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T16:21:05.0301375Z Removing includeIf entries pointing to credentials config files
+2026-10-09T16:21:05.0307176Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T16:21:05.0342753Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T16:21:05.0725170Z Cleaning up orphan processes
+
