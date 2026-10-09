@@ -1,0 +1,1061 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-09",
+  "source_commit": "8a75b825131f0b24c55a40a3636e9e70792037a8",
+  "input_path": "verification/commons-import-changes-2026-10-09/translations.json",
+  "input_sha256": "8de8cabfb1c756128d575e243b4781bad37f65900df49c8b5c15ee5768e2e2f9",
+  "scope": "48 proposed locale pairs, 96 messages, excluding all 11 manifest-blocked locales and all 81 unscoped picker tags.",
+  "review_type": "Independent model-assisted whole-message semantic/grammar review, with targeted primary dictionary/vendor evidence. Not native-speaker or comprehensive language certification.",
+  "summary": {
+    "pairs_reviewed": 48,
+    "messages_reviewed": 96,
+    "svg_changes_recommended": 0,
+    "raster_clarity_revisions_recommended": 7,
+    "unchanged_pairs": 41,
+    "confirmed_literal_corruptions": 0,
+    "confirmed_source_operation_reversals": 0
+  },
+  "semantic_baseline": "Raster compositing combines source/background pixels according to their transparency. Do not replace this with changing opacity, removing a channel, or SVG-to-PNG rasterization. A transparency-based local paraphrase is permitted.",
+  "evidence_limits": [
+    "All 96 strings were read against the exact source; linguistic assessments are model judgements. No native speakers were consulted.",
+    "Technical documentation establishes the intended computation, not the fluency of every translation.",
+    "Dictionary constituent support and project terminology consistency do not establish whole-message idiomaticity.",
+    "Seven revisions improve explicitness; they are not seven proven defects. A failed or empty terminology search is not evidence that a term is invalid.",
+    "No production catalogue, manifest, source message, key, or blocked-locale status was edited.",
+    "No Android compilation, CI, font, bidirectional display, vertical-layout, or on-device test was performed in this review."
+  ],
+  "sources": {
+    "gimp-compositing": {
+      "url": "https://developer.gimp.org/core/algorithm/compositing/",
+      "supports": "Technical meaning: pixels from layers and their backgrounds are combined using alpha values; not a statement about deleting a channel.",
+      "does_not_establish": "Fluency or the preferred translation in any target language."
+    },
+    "imagemagick-compositing": {
+      "url": "https://imagemagick.org/compose/",
+      "supports": "Technical meaning: pixel opacity affects each pixel color’s contribution when composited.",
+      "does_not_establish": "The project’s implementation or target-language terminology."
+    },
+    "revo-komponi": {
+      "url": "https://reta-vortaro.de/revo/art/kompon.html",
+      "supports": "komponi includes artistic composition and putting constituents together; kunmeti is used in the explanation.",
+      "does_not_establish": "That alfa-komponado is wrong, or that the proposed full Esperanto clause is externally approved."
+    },
+    "eki-transparency": {
+      "url": "https://sonaveeb.ee/search/unif/est/eki%2Cesterm/l%C3%A4bipaistvus/1/est",
+      "supports": "The literal see-through meaning and inflected forms of läbipaistvus, including läbipaistvust.",
+      "does_not_establish": "An established Estonian alpha-compositing term or the whole proposed sentence."
+    },
+    "gimp-fi-layers": {
+      "url": "https://docs.gimp.org/2.10/fi/gimp-image-combining.html",
+      "supports": "Finnish image-combining vocabulary and explanations of transparency and colors being combined with lower layers.",
+      "does_not_establish": "An attested term alfakoostaminen; the glossary examined separately largely falls back to English."
+    },
+    "microsoft-id-alpha": {
+      "url": "https://learn.microsoft.com/id-id/windows/win32/gdi/alpha-blending",
+      "supports": "Indonesian vendor explanation connects transparency components and alpha blending; uses transparansi and perpaduan alfa.",
+      "does_not_establish": "Native-speaker verification or endorsement of the proposed penggabungan phrase."
+    },
+    "dbp-gubahan": {
+      "url": "https://prpmv1.dbp.gov.my/Search.aspx?k=gubahan",
+      "supports": "Lexical composition/arrangement contexts for gubahan.",
+      "does_not_establish": "A specialized Malay compositing standard. The direct compositing lookup was inaccessible."
+    },
+    "microsoft-ms-transparency": {
+      "url": "https://explore.microsoft.com/ms-my/edge/features/edge-for-game-bar?form=MT0160",
+      "supports": "Malay ketelusan is used for a widget whose transparency reveals the game behind it.",
+      "does_not_establish": "The complete proposed Malay raster clause or any preferred alpha-compositing name."
+    },
+    "mongol-supply": {
+      "url": "https://mongoltoli.mn/dictionary/detail/62248",
+      "supports": "нийлүүлэлт is a result noun with supply-related examples; this explains possible ambiguity in the tentative phrase.",
+      "does_not_establish": "That нийлүүлэлт can never mean combination."
+    },
+    "mongol-combine": {
+      "url": "https://mongoltoli.mn/dictionary/detail/65225",
+      "supports": "нэгтгэх has the sense of making separate things one.",
+      "does_not_establish": "A conventional graphics term or full-sentence acceptance."
+    },
+    "mongol-transparent": {
+      "url": "https://mongoltoli.mn/dictionary/detail/89712",
+      "supports": "тунгалаг has a literal see-through/clear sense.",
+      "does_not_establish": "A complete computing-register translation."
+    },
+    "adobe-vi-vocabulary": {
+      "url": "https://helpx.adobe.com/vn_vi/photoshop/desktop/text-typography/get-started-with-text/update-cjk-text-layers.html",
+      "supports": "Adobe’s Vietnamese navigation uses ghép ảnh and độ trong suốt in image-editing contexts.",
+      "does_not_establish": "An exact alpha-compositing equivalent. This is constituent vocabulary evidence only."
+    },
+    "taiwanese-transparent": {
+      "url": "https://sutian.moe.edu.tw/zh-hant/siannuntiau/tiau/3/au/thau3/%E9%80%8F/",
+      "supports": "MOE gives 透明 as Tâi-lô thàu-bîng; the project’s POJ thàu-bêng is an editorial orthographic conversion.",
+      "does_not_establish": "Verbatim MOE endorsement of POJ or the whole technical phrase."
+    },
+    "taiwanese-combine": {
+      "url": "https://pedia.cloud.edu.tw/Entry/Detail?search=%E5%90%88%E6%88%90&title=%E5%90%88%E6%88%90",
+      "supports": "Education Cloud’s MOE Taiwanese entry gives 合成 as Tâi-lô ha̍p-sîng, corresponding to project POJ ha̍p-sêng.",
+      "does_not_establish": "Full technical-clause fluency."
+    },
+    "taiwanese-degree": {
+      "url": "https://sutian.moe.edu.tw/zh-hant/su/4859/",
+      "supports": "度 tōo includes degree or extent; POJ tō͘ preserves that reading.",
+      "does_not_establish": "An attested whole entry for 透明度 in the proposed clause."
+    },
+    "cantonese-according": {
+      "url": "https://words.hk/zidin/%E6%8C%89%E7%85%A7",
+      "supports": "按 on3 in 按照 has the according-to sense.",
+      "does_not_establish": "A graphics-specific usage example."
+    },
+    "cantonese-transparent": {
+      "url": "https://words.hk/zidin/%E9%80%8F%E6%98%8E%E5%BA%A6",
+      "supports": "透明度 is tau3 ming4 dou6 and has a literal transparency sense.",
+      "does_not_establish": "The whole phrase’s independent acceptance."
+    },
+    "cantonese-combine": {
+      "url": "https://words.hk/zidin/%E5%90%88%E6%88%90",
+      "supports": "合成 is hap6 sing4 and can describe combining media, including images.",
+      "does_not_establish": "A specialized alpha-compositing standard."
+    },
+    "gimp-ru-compositing": {
+      "url": "https://docs.gimp.org/3.0/ru/gimp-layer-new.html",
+      "supports": "Russian explanation distinguishes blending from compositing and describes combining with regard to each pixel’s transparency.",
+      "does_not_establish": "That only one Russian term is acceptable; no replacement is required solely because GIMP uses совмещение."
+    }
+  },
+  "review": [
+    {
+      "locale": "af",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; oorspronklike grootte; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa-samestelling)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; oorspronklike grootte; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa-samestelling)."
+      },
+      "svg_review": "oorspronklike grootte identifies the original dimensions; the adjectival agreement is ordinary for this fragment.",
+      "raster_review": "alfa-samestelling denotes alpha composition; it does not assert alpha removal. Exact specialist-term preference was not independently attested.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ar",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; الحجم الأصلي; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (تركيب ألفا)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; الحجم الأصلي; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (تركيب ألفا)."
+      },
+      "svg_review": "الحجم الأصلي is a definite original-size noun phrase; source-to-destination SVG arrow and all setting tokens remain literal.",
+      "raster_review": "تركيب ألفا denotes alpha composition. Mixed RTL/LTR rendering still needs an actual display check; no text-level reversal is found.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ceb",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; orihinal nga gidak-on; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (paghiusa pinaagi sa alpha)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; orihinal nga gidak-on; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (paghiusa pinaagi sa alpha)."
+      },
+      "svg_review": "orihinal nga gidak-on retains the original-size meaning and the nga linker.",
+      "raster_review": "paghiusa pinaagi sa alpha expresses combining by means of alpha. No false claim of changing opacity or rasterizing the bitmap is added; specialist idiomaticity is not certified.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "de",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; Originalgröße; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha-Komposition)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; Originalgröße; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha-Komposition)."
+      },
+      "svg_review": "Originalgröße is a suitable original-dimensions label in this technical list.",
+      "raster_review": "Alpha-Komposition is semantically legible. There is no requirement to copy GIMP’s preferred wording to be accurate.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "el",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; αρχικό μέγεθος; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (σύνθεση άλφα)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; αρχικό μέγεθος; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (σύνθεση άλφα)."
+      },
+      "svg_review": "αρχικό μέγεθος keeps the original/initial dimensions rather than file weight.",
+      "raster_review": "σύνθεση άλφα expresses alpha composition; no removal or opacity-setting verb is introduced.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-001",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-AU",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-CA",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-GB",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-IN",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-SG",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-US",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. No regional vocabulary distinction is required by either message.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "en-XV",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alpha compositing)."
+      },
+      "svg_review": "Exactly equals the supplied English source, including the original-size clause.",
+      "raster_review": "Exactly equals the supplied English source. Vertical-English layout fixture; this pass does not test its layout.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "eo",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; origina grando; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa-komponado)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; origina grando; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (kunmetado laŭ travidebleco)."
+      },
+      "svg_review": "origina grando is a grammatical adjectival size fragment.",
+      "raster_review": "alfa-komponado is interpretable, but a transparent explanation is preferable for this short notice.",
+      "revision_reason": "Prefer an explicit combining-according-to-transparency explanation over a tentative technical compound. ReVo does not prove the original is erroneous.",
+      "evidence": [
+        "gimp-compositing",
+        "revo-komponi"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "es-419",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamaño original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composición alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamaño original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composición alfa)."
+      },
+      "svg_review": "tamaño original is neutral Latin-American Spanish and works as a fragment in the semicolon list.",
+      "raster_review": "composición alfa communicates the intended operation; no regional distinction is needed in this phrase.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "es-ES",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamaño original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composición alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamaño original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composición alfa)."
+      },
+      "svg_review": "tamaño original is also suitable for Spain; no tense or address form occurs.",
+      "raster_review": "composición alfa communicates the intended operation; same text as es-419 is justified by this specific wording.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "et",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; algne suurus; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfakomposiitimine)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; algne suurus; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (ühendamine läbipaistvust arvestades)."
+      },
+      "svg_review": "algne suurus is a grammatical original-size phrase.",
+      "raster_review": "Recommend the explicit transparency-based combination paraphrase instead of relying on the tentative dense coinage.",
+      "revision_reason": "The dense alfakomposiitimine coinage was not established by consulted lexical sources. The proposed phrase says combining while accounting for transparency.",
+      "evidence": [
+        "gimp-compositing",
+        "eki-transparency"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "fi",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; alkuperäinen koko; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfakoostaminen)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; alkuperäinen koko; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (yhdistäminen läpinäkyvyyden perusteella)."
+      },
+      "svg_review": "alkuperäinen koko is a grammatical original-size phrase.",
+      "raster_review": "Recommend the explicit transparency-based combination paraphrase; no inference that the old compound is categorically invalid.",
+      "revision_reason": "The short compound alfakoostaminen is understandable as a construction but not established here as standard graphics terminology. The paraphrase explicitly names combining and transparency.",
+      "evidence": [
+        "gimp-compositing",
+        "gimp-fi-layers"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "fr",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composition alpha)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composition alpha)."
+      },
+      "svg_review": "taille d’origine preserves original size; the typographic apostrophe does not need Android ASCII quote escaping.",
+      "raster_review": "composition alpha is a clear nominal description; it does not mean removing the alpha channel.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "hu",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; eredeti méret; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa-kompozitálás)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; eredeti méret; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa-kompozitálás)."
+      },
+      "svg_review": "eredeti méret keeps original dimensions; no comparative or resized meaning is introduced.",
+      "raster_review": "alfa-kompozitálás is semantically recognizable technical wording; this pass does not settle publisher-specific hyphenation preferences.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "id",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; ukuran asli; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (pengomposisian alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; ukuran asli; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (penggabungan berdasarkan transparansi)."
+      },
+      "svg_review": "ukuran asli is a grammatical original-size fragment and does not use the Malay saiz form.",
+      "raster_review": "Recommend the plain combining-based-on-transparency phrase; retain Indonesian berdasarkan/transparansi wording.",
+      "revision_reason": "Prefer combining based on transparency over the tentative pengomposisian alfa nominalization. The vendor source supports the technical meaning and transparency vocabulary.",
+      "evidence": [
+        "gimp-compositing",
+        "microsoft-id-alpha"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "it",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; dimensioni originali; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composizione alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; dimensioni originali; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composizione alfa)."
+      },
+      "svg_review": "dimensioni originali uses a natural plural for dimensions, preserving original size.",
+      "raster_review": "composizione alfa communicates alpha composition; pluralizing the SVG dimensions does not require changing this operation noun.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ja",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 元のサイズ; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (アルファ合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 元のサイズ; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (アルファ合成)."
+      },
+      "svg_review": "元のサイズ is a normal original-size fragment.",
+      "raster_review": "アルファ合成 conveys alpha compositing. It does not use an opacity-change or channel-deletion expression.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ko-KP",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 본래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 합성)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 본래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 합성)."
+      },
+      "svg_review": "본래 크기 preserves original size. Regional dictionary/technical-register acceptance for DPRK is not established by this model pass.",
+      "raster_review": "알파 합성 conveys the intended combination at the Korean semantic level; regional register and spacing conventions remain qualification points.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ko-KR",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 원래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 합성)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 원래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 합성)."
+      },
+      "svg_review": "원래 크기 is a grammatical original-size fragment.",
+      "raster_review": "알파 합성 communicates the intended operation; the Korean label contains no unsupported rasterization claim.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ko-Kore-KR",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 원래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 원래 크기; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (알파 合成)."
+      },
+      "svg_review": "원래 크기 is shared with the Hangul variant, retaining Korean grammar.",
+      "raster_review": "合成 corresponds to 합성, so 알파 合成 preserves the ko-KR operation while following the existing mixed-script convention; no Chinese syntax is introduced.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "lt",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; pradinis dydis; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa komponavimas)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; pradinis dydis; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa komponavimas)."
+      },
+      "svg_review": "pradinis dydis retains original/initial size in the terse list.",
+      "raster_review": "alfa komponavimas is interpretable as alpha composition. The GIMP page’s English fallback is not treated as Lithuanian language evidence; exact specialist preference remains unverified.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "lv",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; sākotnējais izmērs; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa kompozīcija)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; sākotnējais izmērs; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa kompozīcija)."
+      },
+      "svg_review": "sākotnējais izmērs is a grammatical original-size fragment.",
+      "raster_review": "alfa kompozīcija conveys alpha composition at the nominal level; this is not independently established as the preferred Latvian graphics term.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "lzh-Hant",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原寸; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (依透明度合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原寸; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (依透明度合成)."
+      },
+      "svg_review": "原寸 is a compact original-size expression suited to the project’s technical Literary Chinese register.",
+      "raster_review": "依透明度合成 explicitly says to combine according to transparency. Modern technical vocabulary in a literary-style interface is not evidence of historical classical attestation.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "mn-Cyrl-MN",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; анхны хэмжээ; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (альфа нийлүүлэлт)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; анхны хэмжээ; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (тунгалаг байдлыг харгалзан нэгтгэх)."
+      },
+      "svg_review": "анхны хэмжээ retains original size and is a grammatical noun phrase.",
+      "raster_review": "Recommend the dictionary-assisted transparency-based combination paraphrase; do not infer approval of the separate traditional-script locale.",
+      "revision_reason": "Prefer combining with consideration of transparency over the weakly supported альфа нийлүүлэлт, whose result noun also commonly denotes supply. Grammar/register is a model judgement with constituent dictionary support.",
+      "evidence": [
+        "gimp-compositing",
+        "mongol-supply",
+        "mongol-combine",
+        "mongol-transparent"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ms",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; saiz asal; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (penggubahan alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; saiz asal; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (penggabungan mengikut ketelusan)."
+      },
+      "svg_review": "saiz asal is Malay original-size wording and remains distinct from Indonesian ukuran asli.",
+      "raster_review": "Recommend the plain combining-according-to-transparency phrase; do not treat penggubahan as an independently attested graphics standard.",
+      "revision_reason": "Prefer combining according to transparency over penggubahan, which can suggest artistic composition or arrangement. This is a clarity recommendation, not proof that a specialist never uses that term.",
+      "evidence": [
+        "gimp-compositing",
+        "dbp-gubahan",
+        "microsoft-ms-transparency"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "nan-Hant-TW",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大細; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (照透明度合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大細; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (照透明度合成)."
+      },
+      "svg_review": "原本大細 is paired with goân-pún tōa-sè, retaining the Taiwanese size expression.",
+      "raster_review": "照透明度合成 is semantically paired with the POJ expression. Dictionary entries establish constituent readings, not whole-message native acceptance.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing",
+        "taiwanese-transparent",
+        "taiwanese-combine",
+        "taiwanese-degree"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "nan-Latn-TW",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; goân-pún tōa-sè; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (chiàu thàu-bêng-tō͘ ha̍p-sêng)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; goân-pún tōa-sè; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (chiàu thàu-bêng-tō͘ ha̍p-sêng)."
+      },
+      "svg_review": "goân-pún tōa-sè is the POJ counterpart of 原本大細; the diacritics and hyphenation remain intact.",
+      "raster_review": "chiàu thàu-bêng-tō͘ ha̍p-sêng matches 照透明度合成. Do not change bêng/sêng to bîng/sîng solely from MOE’s Tâi-lô display; the project uses POJ.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing",
+        "taiwanese-transparent",
+        "taiwanese-combine",
+        "taiwanese-degree"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "nl",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; oorspronkelijke grootte; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfacompositie)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; oorspronkelijke grootte; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfacompositie)."
+      },
+      "svg_review": "oorspronkelijke grootte uses the expected inflected adjective in the original-size label.",
+      "raster_review": "alfacompositie is semantically transparent; no necessity to substitute English alpha compositing or alpha removal.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "pt-BR",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamanho original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composição alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamanho original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composição alfa)."
+      },
+      "svg_review": "tamanho original is suitable in Brazilian Portuguese.",
+      "raster_review": "composição alfa is grammatical and retains the technical operation; no BR-specific change is necessary here.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "pt-PT",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamanho original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composição alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; tamanho original; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (composição alfa)."
+      },
+      "svg_review": "tamanho original is also suitable in European Portuguese.",
+      "raster_review": "composição alfa retains the technical operation; this exact terse phrase does not require a regional difference.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "qaa-Zsye-XV",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 📏 original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (🧩 alpha compositing)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 📏 original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (🧩 alpha compositing)."
+      },
+      "svg_review": "The size emoji supplements the exact English phrase; it does not replace the original-size meaning.",
+      "raster_review": "The puzzle emoji supplements exact English alpha compositing. This tag is a layout fixture, not a natural-language translation.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "ru",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; исходный размер; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (альфа-композиция)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; исходный размер; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (альфа-композиция)."
+      },
+      "svg_review": "исходный размер correctly refers to source/original size.",
+      "raster_review": "альфа-композиция is semantically understandable. GIMP explains the same concept with совмещение; that difference alone is not a defect. A stylistic альфа-смешивание change is unnecessary.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing",
+        "gimp-ru-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "sw",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; ukubwa asili; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (uchanganyaji kwa alfa)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; ukubwa asili; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (uchanganyaji kwa alfa)."
+      },
+      "svg_review": "ukubwa asili carries original size in a short label; no claim of scaling or changing dimensions is added.",
+      "raster_review": "uchanganyaji kwa alfa states combining by alpha. Exact specialist terminology and the terse size-label style lack independent native review.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "tl",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; orihinal na laki; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (pagsasama gamit ang alpha)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; orihinal na laki; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (pagsasama gamit ang alpha)."
+      },
+      "svg_review": "orihinal na laki retains original size with the na linker.",
+      "raster_review": "pagsasama gamit ang alpha means combining using alpha; no deletion, opacity-change, or vector-conversion claim is introduced.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "tr",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; özgün boyut; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa birleştirme)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; özgün boyut; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (alfa birleştirme)."
+      },
+      "svg_review": "özgün boyut retains the original-size concept in this context; the source-format arrow fixes the conversion direction.",
+      "raster_review": "alfa birleştirme denotes combining using alpha. No compelling semantic reason to replace the existing size label was found.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "vi",
+      "status": "recommended_clarity_revision_as_proposal",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; kích thước gốc; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (tổng hợp alpha)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; kích thước gốc; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (ghép ảnh theo độ trong suốt)."
+      },
+      "svg_review": "kích thước gốc is a natural original-dimensions phrase.",
+      "raster_review": "Recommend the explicit combining-images-by-transparency phrase rather than relying on generic tổng hợp; no opacity alteration is claimed.",
+      "revision_reason": "Prefer combining images according to transparency over the generic synthesis/aggregation noun tổng hợp. It does not say to change the transparency value.",
+      "evidence": [
+        "gimp-compositing",
+        "adobe-vi-vocabulary"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "wuu-Hans",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原来大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (照透明度合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原来大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (照透明度合成)."
+      },
+      "svg_review": "原来大小 retains original size in the project’s simplified written Wu convention.",
+      "raster_review": "照透明度合成 is an explicit transparency-based combining phrase. Shared technical Han vocabulary alone does not establish a pan-Wu standard or independent dialect fluency.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "yue-Hant",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (按透明度合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (按透明度合成)."
+      },
+      "svg_review": "原本大小 preserves original dimensions and pairs with Jyutping jyun4 bun2 daai6 siu2.",
+      "raster_review": "按透明度合成 explicitly describes combining according to transparency and pairs with the checked Jyutping constituents.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing",
+        "cantonese-according",
+        "cantonese-transparent",
+        "cantonese-combine"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "yue-Latn",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; jyun4 bun2 daai6 siu2; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (on3 tau3 ming4 dou6 hap6 sing4)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; jyun4 bun2 daai6 siu2; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (on3 tau3 ming4 dou6 hap6 sing4)."
+      },
+      "svg_review": "jyun4 bun2 daai6 siu2 preserves the Han counterpart’s size phrase and the project’s spaced Jyutping convention.",
+      "raster_review": "on3 tau3 ming4 dou6 hap6 sing4 matches 按透明度合成. Dictionary evidence supports the new transparency/combine readings; full-message acceptance remains a separate claim.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing",
+        "cantonese-according",
+        "cantonese-transparent",
+        "cantonese-combine"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "zh-CN",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原始大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (阿尔法合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原始大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (阿尔法合成)."
+      },
+      "svg_review": "原始大小 retains source/original dimensions in Simplified Chinese.",
+      "raster_review": "阿尔法合成 is a comprehensible alpha-compositing expression; the operation is not described as deleting the alpha channel.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "zh-HK",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha 合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原本大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha 合成)."
+      },
+      "svg_review": "原本大小 is an appropriate original-size fragment in Hong Kong Traditional Chinese.",
+      "raster_review": "Alpha 合成 preserves a technical Latin loan plus the compositing noun; retaining Alpha does not make the whole notice an English placeholder.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    },
+    {
+      "locale": "zh-TW",
+      "status": "no_required_change_in_bounded_text_review",
+      "original": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原始大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha 合成)."
+      },
+      "recommended": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 原始大小; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (Alpha 合成)."
+      },
+      "svg_review": "原始大小 is an appropriate original-size fragment in Taiwan Traditional Chinese.",
+      "raster_review": "Alpha 合成 conveys alpha compositing with a customary technical Latin loan; no action concerning opacity settings is added.",
+      "revision_reason": null,
+      "evidence": [
+        "gimp-compositing"
+      ],
+      "native_speaker_verified": false
+    }
+  ]
+}

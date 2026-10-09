@@ -2,6 +2,10 @@
 package org.catrobat.paintroid.local
 
 import android.content.Context
+import org.catrobat.paintroid.classic.AppLanguage
+import org.catrobat.paintroid.classic.PaintApplication
+import org.catrobat.paintroid.R
+import java.util.Locale
 import org.catrobat.paintroid.classic.CommonsAttribution
 import org.catrobat.paintroid.classic.CreditEditContext
 import org.catrobat.paintroid.classic.CreditEditSession
@@ -29,6 +33,48 @@ class CommonsAttributionTest {
     @Before fun clear() {
         context.getSharedPreferences("image-credits",0).edit().clear().commit()
         context.getSharedPreferences("commons-attribution-v1",0).edit().clear().commit()
+    }
+    private fun withLanguage(tag: String,check: ()->Unit) {
+        val previousTag=AppLanguage.selectedTag(context)
+        val previousLocale=Locale.getDefault()
+        val previousResources=PaintApplication.currentResources
+        try {
+            AppLanguage.select(context,tag)
+            PaintApplication.currentResources=AppLanguage.wrap(context).resources
+            check()
+        } finally {
+            AppLanguage.select(context,previousTag)
+            PaintApplication.currentResources=previousResources
+            Locale.setDefault(previousLocale)
+        }
+    }
+    @Test fun importedNotesUseWholeLocalizedMessagesAndLeaveProviderValuesUntouched() = withLanguage("fr") {
+        val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
+        val metadataOnly=record.text(false)
+        val imported=record.text(true)
+        val expected="AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF."
+        assertEquals(1,imported.lines().count {it==expected})
+        assertEquals(metadataOnly,imported.lines().filterNot {it==expected}.joinToString("\n"))
+        for((key,value) in record.metadata.filterKeys {it!="ObjectName"}.filterValues {it.isNotBlank()}) {
+            assertTrue("Provider field $key must remain verbatim",imported.contains("$key: $value"))
+        }
+        assertEquals(source,record.source);assertEquals(page,record.page)
+        CommonsAttribution.cache(context,record)
+        assertEquals(record,CommonsAttribution.cached(context,source))
+    }
+    @Test fun svgNoteClassificationUsesCaseInsensitiveUriPathNotQueryOrFragment() = withLanguage("en-US") {
+        val metadata=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source).metadata
+        for((url,svg) in listOf(source to true,source.replace(".svg",".SVG?download=1#preview") to true,
+            source.replace(".svg",".png?name=file.svg#file.svg") to false,source.replace(".svg",".svg.png") to false)) {
+            val record=CommonsAttribution.Record(url,page,"Map",metadata)
+            val expected=PaintApplication.currentResources.getString(if(svg) R.string.commons_import_svg_changes
+                else R.string.commons_import_raster_changes)
+            val unexpected=PaintApplication.currentResources.getString(if(svg) R.string.commons_import_raster_changes
+                else R.string.commons_import_svg_changes)
+            assertEquals(1,record.text(true).lines().count {it==expected})
+            assertFalse(record.text(true).lines().contains(unexpected))
+            assertFalse(record.text(false).lines().any {it==expected || it==unexpected})
+        }
     }
     @Test fun keepsCreatorsCreatorLinksLicenceVersionAndCustomAttribution() {
         val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
@@ -79,10 +125,12 @@ class CommonsAttributionTest {
             val edited="Edited attribution\nÉmilie · かな\n"+record.text(true)
             session.edit(source,edited) {ImageCreditArchive.retainAccepted(context,it).also {token ->retained=token}}
             CommonsAttribution.cache(context,CommonsAttribution.parse(CommonsTestMetadata.response(source,page,"Updated Mapper"),source))
-            val reopened=CreditEditSession.open(folder,session.token)
-            assertEquals(listOf(original.copy(text=edited)),reopened.credits)
-            assertEquals(edited,ImageCredit.text(reopened.credits));assertEquals(listOf(source),reopened.credits.map {it.source})
-            assertTrue(reopened.accepted);assertTrue(CreditEditSession.open(folder,empty.token).credits.isEmpty())
+            withLanguage("ja") {
+                val reopened=CreditEditSession.open(folder,session.token)
+                assertEquals(listOf(original.copy(text=edited)),reopened.credits)
+                assertEquals(edited,ImageCredit.text(reopened.credits));assertEquals(listOf(source),reopened.credits.map {it.source})
+                assertTrue(reopened.accepted);assertTrue(CreditEditSession.open(folder,empty.token).credits.isEmpty())
+            }
         } finally {retained?.let {ImageCreditArchive.releaseAccepted(context,it)};folder.deleteRecursively()}
     }
     @Test fun commonsFallbackNeverInventsTheLicenceOfAnotherGallery() {

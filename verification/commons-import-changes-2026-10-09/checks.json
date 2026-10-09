@@ -1,0 +1,41 @@
+{
+  "source_commit": "8a75b825131f0b24c55a40a3636e9e70792037a8",
+  "state": "host_complete_android_CI_pending",
+  "initial_host_tests": {
+    "run": 330,
+    "failures": 16,
+    "errors": 0,
+    "reason": "Every failure is the unchanged scoped-completeness gate while the 11 separately researched locale pairs are absent.",
+    "log": "host-tests-initial.log"
+  },
+  "focused_contracts": {
+    "tests": 4,
+    "result": "passed"
+  },
+  "existing_font_cmap": {
+    "tests": 4,
+    "result": "passed"
+  },
+  "structural_catalogue_validation": "passed (does not assert complete scoped keys or linguistic acceptance)",
+  "android_local": {
+    "result": "blocked_before_compilation",
+    "reason": "Gradle distribution download: Network is unreachable",
+    "log": "local-android-attempt.log"
+  },
+  "production_diff": "exactly the two hardcoded string expressions replaced with ui resource lookups; all other source bytes unchanged",
+  "layout_acceptance": "not claimed; no Gallery/shared-widget production changes",
+  "final_host_tests": {
+    "run": 330,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 50.264,
+    "result": "passed",
+    "log": "host-tests-full.log"
+  },
+  "bounded_language_review": {
+    "first_48": "research-review/independent-review-48.json",
+    "specialist_11": "research-composition/review.json",
+    "native_speaker_acceptance": false
+  },
+  "font_change_required": false
+}

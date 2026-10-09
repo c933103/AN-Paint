@@ -17,6 +17,9 @@ import android.widget.EditText
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.After
+import java.util.Locale
+import android.content.res.Resources
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
@@ -45,7 +48,23 @@ class CommonsCreditFlowTest {
     private val page="https://commons.wikimedia.org/wiki/File:Test_map.svg"
     private val svg="""<svg xmlns="http://www.w3.org/2000/svg" width="40" height="24"><rect x="4" y="4" width="30" height="16" fill="none" stroke="black"/></svg>"""
     private val context get()=RuntimeEnvironment.getApplication() as Context
+    private lateinit var previousTag: String
+    private lateinit var previousLocale: Locale
+    private lateinit var previousResources: Resources
+    private fun selectLanguage(tag: String) {
+        AppLanguage.select(context,tag)
+        PaintApplication.currentResources=AppLanguage.wrap(context).resources
+    }
+    @After fun restoreLanguage() {
+        AppLanguage.select(context,previousTag)
+        PaintApplication.currentResources=previousResources
+        Locale.setDefault(previousLocale)
+    }
     @Before fun clear() {
+        previousTag=AppLanguage.selectedTag(context)
+        previousLocale=Locale.getDefault()
+        previousResources=PaintApplication.currentResources
+        selectLanguage("en-US")
         context.getSharedPreferences("image-credits",0).edit().clear().commit()
         context.getSharedPreferences("commons-attribution-v1",0).edit().clear().commit()
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-") || it.name.startsWith("credit-edit-")}
@@ -105,6 +124,7 @@ class CommonsCreditFlowTest {
         return ImageCredit(source,record.text(true))
     }
     @Test fun copyFromFileFetchesOnlyMetadataAndDoesNotRecordInsertion() {
+        selectLanguage("fr")
         val controller=gallery();val activity=controller.get();var count=0
         try {
             activity.openConnection={url ->
@@ -114,12 +134,15 @@ class CommonsCreditFlowTest {
             select(activity,copy=true);await {!activity.downloading}
             assertEquals(1,count);assertTrue(clipboard().contains("Mapper A"));assertTrue(clipboard().contains("by-sa/3.0/"))
             assertFalse(clipboard().contains("antiAlias=false"));assertTrue(session(activity).credits.isEmpty())
+            assertFalse(clipboard().contains("AN Paint:"));assertFalse(clipboard().contains("background=#FFFFFF"))
+            assertEquals(CommonsAttribution.cached(context,source)!!.text(false),clipboard())
             assertFalse(session(activity).accepted);assertFalse(activity.isFinishing)
             assertTrue(activity.cacheDir.listFiles()!!.none {it.name.startsWith("gallery-")})
             assertEquals(Activity.RESULT_CANCELED,shadowOf(activity).resultCode)
         } finally {controller.pause().stop().destroy()}
     }
     @Test fun actualGalleryToEditorInsertionRetainsCopyableCreditsAfterReopening() {
+        selectLanguage("fr")
         val controller=gallery();val activity=controller.get()
         try {
             fixtureConnections(activity)
@@ -139,7 +162,11 @@ class CommonsCreditFlowTest {
                 assertEquals(listOf(source),main.document.imageCredits.map {it.source})
                 val credit=ImageCredit.text(main.document.imageCredits)
                 for(text in listOf("Mapper A","Mapper B","by-sa/3.0/",source,page,"antiAlias=false")) assertTrue(credit.contains(text))
+                assertTrue(credit.lines().contains("AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF."))
                 main.document.finishSelection()
+                // A later UI language does not rewrite the document's already generated credit.
+                selectLanguage("ja")
+                AppLanguage.refresh(main)
                 val reopened=gallery(main)
                 try {
                     reopened.get().openConnection={error("Stored credits must copy offline")}
@@ -256,6 +283,8 @@ class CommonsCreditFlowTest {
                 main.onActivityResult(ClassicPaintActivity.GALLERY_IMAGE,Activity.RESULT_OK,shadowOf(controller.get()).resultIntent)
                 assertEquals(listOf(original.copy(text=edited)),main.document.imageCredits)
             } finally {controller.pause().stop().destroy()}
+            selectLanguage("ja")
+            AppLanguage.refresh(main)
             val reinserted=gallery(main)
             try {
                 val token=reinserted.get().intent.getStringExtra(CreditEditSession.EXTRA_SESSION)

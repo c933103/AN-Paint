@@ -50,11 +50,18 @@ jobs:
       - name: Prepare build tools and notices
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
-      - name: Run local checks
+      - name: Run Python contracts
+        if: ${{ !cancelled() }}
+        timeout-minutes: 2
+        run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
+      - name: Run JVM regression tests
+        if: ${{ !cancelled() }}
         timeout-minutes: 12
-        run: |
-          python3 -m unittest discover -s tools -p 'test_*.py'
-          ./gradlew --no-daemon --max-workers=2 --console=plain --continue -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest :app:lint${BUILD_VARIANT^}
+        run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
+      - name: Run Android lint and native dependencies
+        if: ${{ !cancelled() }}
+        timeout-minutes: 6
+        run: bash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -65,6 +72,8 @@ jobs:
             Paintroid/build/test-results/
             Paintroid/build/reports/
             app/build/reports/
+            build/reports/ci-phases/
+            build/reports/profile/
 
   build:
     name: Build APK and corresponding source
