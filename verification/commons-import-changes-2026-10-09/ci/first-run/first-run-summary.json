@@ -1,0 +1,77 @@
+{
+  "source_head": "b0cc76430727bacefee71faf0f0a33d0b12ada0f",
+  "source_tree": "7630701b9ab9193bdde9a20e33c0e425eaa7f56f",
+  "ci_merge_commit": "5a9514f09c5c2a134ca742444329904e04555265",
+  "ci_merge_tree_matches_source": true,
+  "run_id": 37934848967,
+  "attempt": 1,
+  "regression_job_id": 113834224680,
+  "job_outcome": "failure",
+  "cause": "12-minute Run local checks step timeout during lint analysis; no lint completion report",
+  "original_artifact": {
+    "id": 11617763152,
+    "bytes": 15495432,
+    "sha256": "4679cd075708e89d0e68476cf4564b092fae0d279afd9eab162ac9af8e08945f",
+    "files": 462
+  },
+  "junit": {
+    "suites": 71,
+    "tests": 700,
+    "failures": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "commons_suites": [
+    {
+      "name": "org.catrobat.paintroid.local.CommonsAttributionTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.632",
+      "timestamp": "2026-10-09T13:19:48.892Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsBlankMapsTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.696",
+      "timestamp": "2026-10-09T13:19:50.533Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.298",
+      "timestamp": "2026-10-09T13:19:51.240Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsImportChangeTranslationTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.039",
+      "timestamp": "2026-10-09T13:19:54.465Z"
+    }
+  ],
+  "lint": "not completed; no lint report in the artifact",
+  "cache": {
+    "dependency_and_native_source_cache": "exact key hit",
+    "key": "android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks",
+    "x86_64_native_compilation": "fresh rebuild in checks job; no compiler-object cache configured there",
+    "compiled_java_kotlin_apk_cache": "not restored",
+    "rerun_expectation": "fresh runner and fresh compiled outputs; do not presume warm compiled caches"
+  },
+  "retry_policy": "One same-head retry of only failed regression/lint job, unchanged 12-minute limit. A repeated overrun requires task-cost investigation.",
+  "archive": {
+    "file": "first-run-junit-log-evidence.zip",
+    "bytes": 133757,
+    "sha256": "57b8892aa2fe971ca68d819497ab5bf3872012fd39b980d6a2a5568f2e154adc",
+    "contents": "All 71 JUnit XML suites, all 700 test identities, full regression job log, task/cache timestamps and a SHA-256 inventory of all 462 original artifact files. Unrelated rendered PNG/HTML files are inventoried but not copied into this bounded archive."
+  }
+}
