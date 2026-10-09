@@ -9,7 +9,7 @@ The PR remains draft pending fresh-head review and CI.
 
 Analysis base: `5bf82b67199aaecbd341a8b150a887f8d60b5567`.
 Publication base: merged #28, `4b615ce2d9e27814df84812b90858b5f676ce51a`.
-The latest six-pair revision follows `ea60a00001d766674cbd6b91da791894af5ea624`;
+The six-pair revision followed `ea60a00001d766674cbd6b91da791894af5ea624`;
 its language-picker changes remain untouched. This continues the bounded
 [AN-W05-C01 inventory](https://github.com/c933103/AN-Paint/pull/20#issuecomment-6077456325).
 
@@ -72,7 +72,7 @@ checks; they use only temporary fixtures and do not require fontTools in CI.
 ## Actual local results and pending runtime evidence
 
 [checks.json](checks.json) records **321 host tests passed, zero failures, errors
-or skips**, with the [complete log](host-tests-v3.log). Negative instrumentation
+or skips**, with the [latest complete log](host-tests-v4.log). Negative instrumentation
 fixtures intentionally print simulated failure payloads; the unittest run itself
 exits zero. All existing scoped completeness gates remain intact. XML,
 placeholders, Android string syntax, font coverage/preservation and whitespace
@@ -90,11 +90,23 @@ New [readability checks](readability/README.md) use the real activity at 320×64
 assert full lines and ancestor visibility for long, RTL, Nôm, Tibetan and Dzongkha
 messages. Mongolian/Manchu cases record explicit diagnostic PNG/JSON captures
 without claiming vertical acceptance. These tests have **not run locally**: this
-workspace has no Android SDK or Gradle cache. Existing CI selects them and archives
-outputs; compilation, execution and visual inspection are still pending.
+workspace has no Android SDK or Gradle cache. At c73ad1a, CI compiled and executed
+them, but all four readability executions stopped at the 2× Activity-scale
+precondition (observed 1×). Eight actual 1× French/Mongolian captures and full
+JUnit results are [preserved here](readability/c73ad1a/README.md). The six real SVG
+translation-error executions passed. Lint, APK/test-APK build and existing API35
+device tests passed separately. The overall regression run failed (686 JVM tests,
+four failures), so it is not a complete pass.
+
+The revised fixture selects each scale through method-level `@Config` before
+application/resources exist, instead of mutating scale with cached wrapped
+resources alive. Production `fontScale=0f` preserves inherited configuration.
+System/application/wrapper/Activity checks and actual glyph enlargement remain
+required; no status text size is injected or assertion weakened. The revised
+setup and its expanded capture matrix await fresh compilation/runtime evidence.
 
 The SVG errors use persistent `gallery_status` text, not Toast. Android's two-line
-Toast cap does not govern them. A separate **AN-W04 source-confirmed layout gap**
+Toast cap does not govern them. A separate **AN-W04 source- and host-capture-confirmed layout gap**
 remains: this native status never receives the app's vertical renderer. A proper
 failing regression candidate is isolated outside automatic source sets for that
 separate fix. Capturing horizontal text in a vertical locale is not a vertical

@@ -3,6 +3,8 @@ package org.catrobat.paintroid.local
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -10,6 +12,7 @@ import android.net.Uri
 import android.os.Looper
 import android.text.Spanned
 import android.text.style.ReplacementSpan
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.webkit.WebView
 import android.widget.TextView
@@ -42,17 +45,29 @@ import java.util.concurrent.TimeUnit
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class CommonsSvgErrorReadabilityTest {
-    @Test fun verticalGalleryErrorsProduceDiagnosticCapturesWithoutLayoutAcceptance() {
-        // AN-W04 owns the missing vertical status renderer. Keep recording the
-        // actual resource/failure path and pixels before that separate fix.
-        // A successful capture is NOT a vertical readability or clipping pass.
-        GallerySvgReadabilityFixture.check(listOf("mn-Mong","mnc-Mong")) {_,_ -> Unit}
+    // Configure scale before PaintApplication and any locale-derived Resources
+    // exist. setFontScale inside a loop leaves cached wrapped contexts stale.
+    @Test @Config(fontScale=1f)
+    fun verticalGalleryErrorsProduceNormalTextDiagnosticCapturesWithoutLayoutAcceptance()=checkVertical(1f)
+
+    @Test @Config(fontScale=2f)
+    fun verticalGalleryErrorsProduceLargeTextDiagnosticCapturesWithoutLayoutAcceptance()=checkVertical(2f)
+
+    @Test @Config(fontScale=1f)
+    fun horizontalGalleryErrorsWrapWithoutClippingAtNormalText()=checkHorizontal(1f)
+
+    @Test @Config(fontScale=2f)
+    fun horizontalGalleryErrorsWrapWithoutClippingAtLargeText()=checkHorizontal(2f)
+
+    private fun checkVertical(scale: Float) {
+        // AN-W04 owns the missing vertical status renderer. A successful capture
+        // is NOT a vertical readability or clipping pass.
+        GallerySvgReadabilityFixture.check(listOf("mn-Mong","mnc-Mong"),scale) {_,_ -> Unit}
     }
 
-    @Test fun horizontalGalleryErrorsWrapWithoutClippingAtNormalAndLargeText() {
+    private fun checkHorizontal(scale: Float) {
         // Long Latin, mixed RTL/Latin, supplementary Nôm, Tibetan and Dzongkha.
-        // Vertical locales have a separate, unaccepted AN-W04 diagnostic candidate.
-        GallerySvgReadabilityFixture.check(listOf("fr","hak-Latn-TW","ar","vi-Hani","bo","dz")) {
+        GallerySvgReadabilityFixture.check(listOf("fr","hak-Latn-TW","ar","vi-Hani","bo","dz"),scale) {
                 tag,status ->
             GallerySvgReadabilityFixture.assertEntireMessageVisible(status)
             if(tag=="ar") assertEquals("Arabic status must inherit RTL layout",View.LAYOUT_DIRECTION_RTL,status.layoutDirection)
@@ -90,19 +105,20 @@ internal object GallerySvgReadabilityFixture {
         shadowOf(Looper.getMainLooper()).idle()
         assertTrue("The real gallery failure must finish within 8 seconds",done())
     }
-    fun check(tags: List<String>,assertReadability: (String,TextView)->Unit) {
+    fun check(tags: List<String>,scale: Float=RuntimeEnvironment.getFontScale(),assertReadability: (String,TextView)->Unit) {
         val context=RuntimeEnvironment.getApplication() as Context
         val originalTag=AppLanguage.selectedTag(context)
         val originalLocale=Locale.getDefault()
         val originalResources=PaintApplication.currentResources
-        val originalScale=RuntimeEnvironment.getFontScale()
         val failures=mutableListOf<String>()
-        val normalTextSizes=mutableMapOf<String,Float>()
         try {
-            for(tag in tags) for(scale in listOf(1f,2f)) {
-                RuntimeEnvironment.setFontScale(scale)
+            assertEquals("Robolectric must establish system scale before app creation",scale,Resources.getSystem().configuration.fontScale,0f)
+            assertEquals("PaintApplication wrapping must preserve system scale",scale,context.resources.configuration.fontScale,0f)
+            for(tag in tags) {
                 AppLanguage.select(context,tag)
-                PaintApplication.currentResources=AppLanguage.wrap(context).resources
+                val wrapped=AppLanguage.wrap(context).resources
+                assertEquals("Language wrapping must preserve inherited system scale for $tag",scale,wrapped.configuration.fontScale,0f)
+                PaintApplication.currentResources=wrapped
                 val controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,
                     Intent(context,MediaGalleryActivity::class.java)
                         .putExtra("gallery_provider",IllustrationSource.COMMONS.name))
@@ -111,7 +127,12 @@ internal object GallerySvgReadabilityFixture {
                 try {
                     assertEquals("The real Activity must receive the requested font scale",scale,activity.resources.configuration.fontScale,0f)
                     val status=activity.window.decorView.findViewWithTag<TextView>("gallery_status")
-                    if(scale==1f) normalTextSizes[tag]=status.textSize
+                    // Only the independent normal-size reference uses an override.
+                    // Never mutate the Activity/resources/status being measured.
+                    val normalContext=activity.createConfigurationContext(Configuration().apply {fontScale=1f})
+                    val theme=activity.packageManager.getActivityInfo(activity.componentName,0).themeResource
+                    val normalTextSize=TextView(ContextThemeWrapper(normalContext,theme)).textSize
+                    assertEquals("Reference construction must not change the measured Activity",scale,activity.resources.configuration.fontScale,0f)
                     val web=ReflectionHelpers.getField<WebView>(activity,"web")
                     for((key,svg) in cases) {
                         val name=activity.resources.getResourceEntryName(key)
@@ -132,7 +153,7 @@ internal object GallerySvgReadabilityFixture {
                             // Persist pixels and geometry before assertions, including any clipping.
                             record(activity.window.decorView,status,tag,scale,label)
                             assertEquals(expected,status.text.toString())
-                            if(scale>1f) assertTrue("Large system text must enlarge the actual status glyphs",status.textSize>normalTextSizes.getValue(tag))
+                            if(scale>1f) assertTrue("Large system text must enlarge the actual status glyphs",status.textSize>normalTextSize)
                             assertTrue(status.isAttachedToWindow)
                             assertNull("SVG failures must not rely on a system Toast",ShadowToast.getLatestToast())
                             assertFalse(activity.isFinishing)
@@ -152,7 +173,6 @@ internal object GallerySvgReadabilityFixture {
                 }
             }
         } finally {
-            RuntimeEnvironment.setFontScale(originalScale)
             AppLanguage.select(context,originalTag)
             PaintApplication.currentResources=originalResources
             Locale.setDefault(originalLocale)
@@ -206,6 +226,9 @@ internal object GallerySvgReadabilityFixture {
         val vertical=VerticalText.uiDirection(Locale.forLanguageTag(tag))!=TextDirection.HORIZONTAL
         val report=JSONObject().put("evidence_kind","Robolectric NATIVE host rendering; not a device capture")
             .put("api",RuntimeEnvironment.getApiLevel()).put("locale",tag).put("font_scale",scale)
+            .put("activity_font_scale",root.resources.configuration.fontScale)
+            .put("application_font_scale",RuntimeEnvironment.getApplication().resources.configuration.fontScale)
+            .put("system_font_scale",Resources.getSystem().configuration.fontScale)
             .put("viewport_width",root.width).put("viewport_height",root.height)
             .put("message",status.text.toString()).put("view_class",status.javaClass.name)
             .put("text_size_px",status.textSize).put("status_width",status.width).put("status_height",status.height)

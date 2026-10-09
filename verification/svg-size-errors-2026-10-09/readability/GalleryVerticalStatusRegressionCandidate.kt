@@ -18,8 +18,14 @@ import org.robolectric.annotation.LooperMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class GalleryVerticalStatusRegressionCandidate {
-    @Test fun verticalGalleryErrorsUseColumnsAndRemainCompletelyReachable() {
-        GallerySvgReadabilityFixture.check(listOf("mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
+    @Test @Config(fontScale=1f)
+    fun verticalGalleryErrorsUseColumnsAtNormalText()=check(1f)
+
+    @Test @Config(fontScale=2f)
+    fun verticalGalleryErrorsUseColumnsAtLargeText()=check(2f)
+
+    private fun check(scale: Float) {
+        GallerySvgReadabilityFixture.check(listOf("mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV"),scale) {
                 tag,status ->
             assertTrue("$tag gallery_status lacks vertical rendering",GallerySvgReadabilityFixture.hasVerticalRenderer(status))
             // A scrollable-column fix needs a reachability assertion for every column;
