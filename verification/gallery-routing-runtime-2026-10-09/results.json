@@ -1,0 +1,72 @@
+{
+  "head_sha": "a1f9d6d8cf4062c4f764c3436a73ecec21a59d9a",
+  "tested_commit": "cc061ffb8a8982632e06bf46c29b8d2d76c7e8ad",
+  "verified_identical_tree": "3ac89e305f168a12f55bcf1c2ca898229e8e41a6",
+  "installed_total": 93,
+  "installed_gallery": 3,
+  "installed_breakdown": {
+    "native-summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "elapsed_seconds": 66.18176118199997
+    },
+    "app-summary.json": {
+      "success": true,
+      "expected_tests": 17,
+      "completed_tests": 17,
+      "elapsed_seconds": 164.55211515699997
+    },
+    "restart-seed-summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "elapsed_seconds": 7.902446773000008
+    },
+    "restart-verify-summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "elapsed_seconds": 8.986810359000003
+    }
+  },
+  "jvm": {
+    "tests": 675,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint_issues": 0,
+  "local_python": {
+    "total": 315,
+    "passed": 315,
+    "skipped": 0
+  },
+  "ci_python": {
+    "total": 315,
+    "passed": 313,
+    "skipped": 2,
+    "note": "CI log reports two skips without individual names; source has optional Pillow and Node skip sites. No installed test is skipped."
+  },
+  "gallery_lifecycle_lines": 153,
+  "gallery_tasks": [
+    "36",
+    "38",
+    "40"
+  ],
+  "gallery_proxy_observations": [
+    "10-09 11:08:33.481  4237  4254 I GalleryDraftDeviceTest: local_proxy_requests=CONNECT gallery-fixture.invalid:443 HTTP/1.1 | CONNECT catrobat.org:443 HTTP/1.1",
+    "10-09 11:08:47.734  4237  4254 I GalleryDraftDeviceTest: local_proxy_requests=CONNECT gallery-fixture.invalid:443 HTTP/1.1 | CONNECT catrobat.org:443 HTTP/1.1",
+    "10-09 11:09:02.767  4237  4254 I GalleryDraftDeviceTest: local_proxy_requests=CONNECT gallery-fixture.invalid:443 HTTP/1.1 | CONNECT catrobat.org:443 HTTP/1.1"
+  ],
+  "ordinary_app_deadline_seconds": 180,
+  "ordinary_app_headroom_seconds": 15.447884843000026,
+  "claims_excluded": [
+    "physical device",
+    "API30",
+    "live provider",
+    "linguistic acceptance",
+    "universal application network isolation",
+    "repeat-run stability guarantee"
+  ]
+}
