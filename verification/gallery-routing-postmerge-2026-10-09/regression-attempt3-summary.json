@@ -1,0 +1,22 @@
+{
+  "run_id": 37922913129,
+  "attempt": 3,
+  "job_id": 113806322138,
+  "status": "cancelled",
+  "cancelled_log_at": "2026-10-09T11:56:29Z",
+  "source_commit": "2fc36a811a6c04d02760bb1da4d62af71653503a",
+  "retry_basis": "AN29 run 37924730965 completed same dependency/workflow configuration successfully; original two failures retained.",
+  "ci_host": {
+    "total": 315,
+    "skipped": 2
+  },
+  "completed_regression_lint": false,
+  "newer_develop_commit": "8a75b825131f0b24c55a40a3636e9e70792037a8",
+  "pr29_merged_at": "2026-10-09T11:55:55Z",
+  "successor_run": 37926785579,
+  "successor_created_at": "2026-10-09T11:55:58Z",
+  "concurrency_group": "android-${{ github.head_ref || github.ref }}",
+  "cancel_in_progress": true,
+  "interpretation": "Supersession by the newer develop run is supported by timing and existing concurrency policy; the job log itself only says the operation was canceled. This is not a test pass, production defect or user refusal.",
+  "action": "Do not restart the superseded commit and compete with current develop. Continue verification on the combined successor run via its existing owner."
+}

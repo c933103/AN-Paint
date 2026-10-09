@@ -18,3 +18,11 @@ Attempt 2, [job 113800736562](https://github.com/c933103/AN-Paint/actions/runs/3
 Further retries pause at this dependency-access blocker. No repository mirror, credential, source, timeout or CI architecture change was made. The completed pre-merge regression/lint result remains valid for the identical source tree, but the post-merge workflow is still failed. Its separate APK and 93-case installed results remain passed. Physical/API30 gaps and the tighter pre-merge 15.4-second ordinary-app margin remain explicit.
 
 Read-only diagnosis checked the [official status](https://status.maven.org/) and [403 guidance](https://central.sonatype.org/faq/403-error-central/): no reported general outage, and no specific rationale in the CI response. The concurrent AN29 combined run uses unchanged dependency/workflow declarations; its regression result was still pending at diagnosis time. This is an upstream HTTP response, not a tool-policy denial or user refusal. See `dependency-access-diagnosis.json`.
+
+## Successful comparison and supersession
+
+[AN29 combined regression job 113800831714](https://github.com/c933103/AN-Paint/actions/runs/37924730965/job/113800831714) succeeded at 11:49:02 UTC with unchanged dependency/workflow declarations and the same restored dependency-cache key. This supports successful same-configuration resolution/execution; it does not reveal individual cache/network responses or establish the original 403 cause. It justified one further unchanged failed-job retry.
+
+Attempt 3 was then cancelled at 11:56:29 UTC, shortly after AN29 merged into develop (`8a75b825131f0b24c55a40a3636e9e70792037a8`, 11:55:55) and [successor run 37926785579](https://github.com/c933103/AN-Paint/actions/runs/37926785579) started (11:55:58). The existing workflow groups by branch ref and cancels in-progress runs. That supports supersession as the explanation; the log itself only states cancellation. It supplies no completed regression/lint result and is neither a test failure nor user refusal.
+
+Do not rerun the superseded PR19 merge and compete with current develop. The newer combined source is being verified by the existing AN29 run owner. Pre-merge exact-tree success, both completed reviews, two independent 93-case installed passes, original timeout/403 and subsequent cancellation remain distinctly recorded.

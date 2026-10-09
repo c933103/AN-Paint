@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-09T11:45:00Z",
+  "checked_at": "2026-10-09T11:51:33Z",
   "failure_detail_available": "Gradle logs show only HTTP 403 Forbidden; no response headers/body or named rate-limit/outage/policy rationale. URLs use valid pinned versions, no unexpanded variables.",
   "official_status": {
     "url": "https://status.maven.org/",
@@ -15,7 +15,9 @@
     "base": "2fc36a811a6c04d02760bb1da4d62af71653503a",
     "run_id": 37924730965,
     "dependency_and_workflow_declarations_unchanged": true,
-    "observed": "APK build succeeded; regression still running. Successful dependency resolution has not yet been established from its completed regression logs."
+    "observed": "Regression and lint succeeded at 11:49:02Z. This job and PR19 failed retry restored the same immutable cache key android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-build; unchanged dependency/workflow declarations. Successful resolution/execution established, but logs do not expose per-request cache use or HTTP response bodies.",
+    "regression_job_id": 113800831714,
+    "conclusion": "success"
   },
-  "action": "Read-only diagnosis only. Await comparison before considering another unchanged failed-job retry. No alternate repository, credentials, network settings or workflow modification."
+  "action": "The successful same-configuration AN29 comparison supported one unchanged failed-job retry; it was later cancelled after a newer develop push. No cause for the original HTTP 403 was established. The superseded run is not restarted."
 }

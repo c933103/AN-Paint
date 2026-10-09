@@ -16,12 +16,13 @@
   },
   "postmerge_ci": {
     "run_id": 37922913129,
-    "result": "failure",
+    "result": "cancelled on attempt 3; original failures retained",
     "apk_result": "success",
     "installed_passed": 93,
     "ordinary_app_seconds": 152.915044424,
     "regression_attempt1": "675 passing JVM cases; unchanged 12-minute step timeout during lint, no completed lint report",
-    "regression_attempt2": "Dependency POM downloads received HTTP 403; no JVM/lint reports or new artifact"
+    "regression_attempt2": "Dependency POM downloads received HTTP 403; no JVM/lint reports or new artifact",
+    "regression_attempt3": "Cancelled after newer AN29 develop merge; no completed regression/lint result. Existing per-ref cancellation explains supersession."
   },
   "postmerge_full_regression_lint_pass": false,
   "unverified": [
@@ -32,5 +33,11 @@
     "universal network isolation",
     "repeat-run stability"
   ],
-  "next_step": "Reconcile Maven Central access for a later failed-regression-only attempt; preserve existing source, tests and deadlines. No new runtime fix is justified by these two failures."
+  "next_step": "Current combined develop commit 8a75b825131f0b24c55a40a3636e9e70792037a8 is being verified by successor run 37926785579. Preserve the older timeout, HTTP 403 and cancellation without further competing retries.",
+  "comparison": {
+    "pr29_head": "d601dba3821fafa254b02172eee350428b28a0f4",
+    "run": 37924730965,
+    "regression_result": "success",
+    "dependency_workflow_declarations_unchanged": true
+  }
 }
