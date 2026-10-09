@@ -1,0 +1,53 @@
+{
+  "base": "4b615ce2d9e27814df84812b90858b5f676ce51a",
+  "original_pr19_head": "dc518e7663ee3173f81ee6a931e15fb4ab9c467f",
+  "historical_evidence_commit": "977ec6a272413b2e0508966638f68211aeebfbc8",
+  "source_sha256": {
+    "app/build.gradle": "9b29c38d03439b587f90e0420dab12679ce3ee79cf43eb0e58def0c51d208383",
+    "app/src/androidTest/java/paint/anpaint/android/GalleryDraftDeviceTest.kt": "6b6ec4d1a7896eac0a9874662e95a8906ca2c9b55ac288675c80da35dcfd562a",
+    "app/src/androidTest/java/paint/anpaint/android/LocalRejectingProxy.java": "216f67c5d096fdee67e0f0f796aadcc920e6cb8ec87e6a7ce73d36b654ad2ca3",
+    "tools/test_gallery_task_routing.py": "eb2906cc45d71c1972da56cf1061ad21235c1e0c8b5083ae6b238c3a0dc041b6"
+  },
+  "host_checks": {
+    "all": {
+      "tests": 315,
+      "result": "passed",
+      "seconds": 49.554
+    },
+    "focused_gallery": {
+      "tests": 5,
+      "result": "passed"
+    },
+    "existing_runner": {
+      "tests": 13,
+      "result": "passed"
+    }
+  },
+  "new_android_execution": false,
+  "kotlin_compile": "not run: Android SDK/Gradle unavailable locally",
+  "lint": "not run",
+  "installed_api35": "not run",
+  "physical_device": "not run",
+  "runner_changes": [],
+  "production_changes": [],
+  "pr29_overlap_paths": [],
+  "initial_compiler_attempts": [
+    "Host sink check initially required missing javac launcher.",
+    "Java compiler module available; --release 17 unsupported because historical ct.sym is missing.",
+    "Final host fixture compiles Java-17 syntax/bytecode against Java 21 module APIs; Android compatibility remains a separate build gate."
+  ],
+  "candidate_inventory": {
+    "native_import": 74,
+    "ordinary_app": 17,
+    "restart_seed": 1,
+    "restart_verify": 1,
+    "total_api35_declared": 93,
+    "execution": "not run"
+  },
+  "native_acquisition_boundary": "Existing gallery openConnection seam replaced at PRE_ON_CREATE with a rejecting counter; zero attempts required.",
+  "log_sha256": {
+    "logs/host-all.log": "ab903f7df42f776add56392c398670f3e38510bb362d4a7488186246e6e561f8",
+    "logs/host-gallery.log": "4a0b8546b75d7a3be970352248c7f049756375b77cc7951cba099e43f76642b7",
+    "logs/host-runner.log": "03d3ff8380e79dcbf9b245ec9943ff6608b29e1fa3d7432accb1c3ab9b81e4e4"
+  }
+}
