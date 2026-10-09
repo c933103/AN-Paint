@@ -7,7 +7,7 @@ tested merge `1964b005a454593ad9b8e1727a2ba2fb12c9aecf`, whose complete tree
 
 - APK, corresponding source and instrumentation APK compilation passed.
 - JVM: 706 tests, 12 failures, zero errors/skips. The 4 new vertical-status and
-  8 existing full SVG-status tests passed. Lint was **not reached** after JVM failure.
+  8 existing full SVG-status tests passed. Lint **completed with zero issues** despite JVM failure (`--continue`).
 - API35 installed: 74 library + 17 ordinary app + 1 restart seed + 1 restart
   verification = 93 passed. Ordinary app: 143.188 seconds under the unchanged
   180-second limit. Other invocations: 36.757, 4.564 and 6.466 seconds respectively.

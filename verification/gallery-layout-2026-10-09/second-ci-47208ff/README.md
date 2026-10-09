@@ -6,7 +6,7 @@ tested merge `e7344d010af9bcdd4af411070dd4a735bc48b71e`, tree
 `47208ff518f3ddd990e152ae2395f9887aade18a`.
 
 - APK/source/instrumentation compilation passed.
-- JVM: 706 tests, 12 failures, zero errors/skips; lint not reached. These are
+- JVM: 706 tests, 12 failures, zero errors/skips; lint completed with zero issues. These are
   later checks than the first run, not repeat failures of the corrected setup.
 - Attached nodes now expose native Button/EditText classes and live values.
   Normal-scale matrix executions completed 6 cases each before the Ainu hint

@@ -48,18 +48,33 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class GalleryControlReachabilityTest {
-    /** Robolectric's provider delegates onMeasure to a no-op proxy. Model only
-     * the parent's measurement contract; installed tests cover the real provider. */
+    /** Robolectric's provider delegates measurement/frame updates to a no-op proxy.
+     * Honor only parent specs/coordinates; installed tests cover the real provider. */
     @Implements(WebView::class)
     class MeasuringWebView: ShadowWebView() {
         @RealObject private lateinit var web: WebView
         var widthSpec=0; private set
         var heightSpec=0; private set
+        var parentFrame=Rect(); private set
+        private val privateAccess by lazy {
+            ReflectionHelpers.callConstructor(Class.forName("android.webkit.WebView\$PrivateAccess"),
+                ReflectionHelpers.ClassParameter.from(WebView::class.java,web))
+        }
         @Implementation protected fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
             widthSpec=widthMeasureSpec;heightSpec=heightMeasureSpec
             ReflectionHelpers.callInstanceMethod<Unit>(web,"setMeasuredDimension",
                 ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,View.getDefaultSize(0,widthMeasureSpec)),
                 ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,View.getDefaultSize(0,heightMeasureSpec)))
+        }
+        @Implementation protected fun setFrame(left: Int,top: Int,right: Int,bottom: Int): Boolean {
+            parentFrame=Rect(left,top,right,bottom)
+            // This is the framework's provider callback to WebView.super.setFrame.
+            // Do not supply alternate sizes or write geometry fields directly.
+            return ReflectionHelpers.callInstanceMethod(privateAccess,"super_setFrame",
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,left),
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,top),
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,right),
+                ReflectionHelpers.ClassParameter.from(java.lang.Integer.TYPE,bottom))
         }
     }
 
@@ -296,10 +311,14 @@ class GalleryControlReachabilityTest {
             return null
         }
         val web=browser(root)
+        val measured=web?.let {shadowOf(it) as MeasuringWebView}
         val webVisible=Rect();val webIntersects=web?.getGlobalVisibleRect(webVisible) ?: false
         return JSONObject().put("browser_width",web?.width).put("browser_height",web?.height)
+            .put("browser_measured_width",web?.measuredWidth).put("browser_measured_height",web?.measuredHeight)
+            .put("browser_width_spec",measured?.widthSpec).put("browser_height_spec",measured?.heightSpec)
+            .put("browser_parent_frame",measured?.parentFrame.toString())
             .put("browser_visible",webVisible.toString()).put("browser_intersects",webIntersects)
-            .put("browser_measurement","Parent MeasureSpecs modeled by a host-only shadow; real provider is checked by GalleryViewportDeviceTest")
+            .put("browser_measurement","Parent MeasureSpecs and frame forwarded by a host-only shadow; real provider is checked by GalleryViewportDeviceTest")
             .put("decor_width",root.width).put("decor_height",root.height)
             .put("view_root_width",ReflectionHelpers.getField<Int>(viewRoot,"mWidth"))
             .put("view_root_height",ReflectionHelpers.getField<Int>(viewRoot,"mHeight"))

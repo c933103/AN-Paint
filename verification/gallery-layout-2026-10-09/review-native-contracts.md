@@ -73,3 +73,27 @@ initialize those preferences, then restores and asserts the snapshot. Font/local
 restoration uses nested finally blocks so either failure still attempts the other.
 The complete Python suite after this isolation follow-up passed all 326 tests in
 51.618 seconds, zero failures/errors/skips (`logs/host-python-viewport-isolation.log`).
+
+## Complete the host frame contract
+
+The [third complete run](third-ci-9043849/README.md) passed all 1,680 native control
+cases and the independent installed real-browser check. Its eight host reachability
+failures still recorded zero browser width/height. The missing step was the frame:
+`WebView.setFrame` delegates entirely to the same no-op provider. Measurement alone
+does not update View's laid-out rectangle.
+
+The test shadow now forwards the actual parent's `left/top/right/bottom` through
+`WebView.PrivateAccess.super_setFrame`, Android's own provider-to-superclass bridge.
+It supplies no alternate geometry. JSON records incoming frame, MeasureSpecs and
+measured/actual dimensions, and all full-visible/reserve assertions remain intact.
+
+Exact framework sources:
+- [API30 setFrame delegate](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/core/java/android/webkit/WebView.java#L2937-L2943)
+- [API30 superclass bridge](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r1/core/java/android/webkit/WebView.java#L2428-L2430)
+- [API35 setFrame delegate](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/webkit/WebView.java#L2992-L2998)
+- [API35 superclass bridge](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/webkit/WebView.java#L2450-L2452)
+
+The real-provider evidence is the passing installed test, with its actual four
+window/browser records retained in `third-ci-9043849/installed-viewport.json`.
+The full corrected head still requires completed CI, including lint under the
+unchanged deadline and remaining representative reachability/gesture checks.

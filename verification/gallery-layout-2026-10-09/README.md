@@ -64,7 +64,7 @@ launch or screenshot is added. The final complete combined Python run passed all
 
 The [first complete candidate run](first-ci-0a2d19d/README.md) passed compilation
 and all 93 installed API35 checks, but failed 12 of 706 JVM checks in the new
-fixture setup; lint was not reached. Its complete case inventory/failure details
+fixture setup; lint completed with zero issues. Its complete case inventory/failure details
 and hash-verified artifact manifest are preserved separately from later results.
 The bounded correction attaches catalogue controls to one reusable Activity per
 API/scale, and synchronizes the simulated Display/ViewRoot during same-Activity
@@ -82,3 +82,11 @@ hint-height/WebView checks. The [framework-contract correction and independent
 installed browser oracle](review-native-contracts.md) preserve those requirements
 while making their evidence boundaries explicit. One new installed case runs under
 the unchanged ordinary-app deadline; its budget fit is not yet established.
+
+The [third complete run](third-ci-9043849/README.md) passed all 1,680 control cases
+(22.003s), vertical/status checks, and 94 installed API35 checks. The expanded
+ordinary suite fits the unchanged 180-second budget at 154.988s. Eight host
+reachability cases still failed at the no-op WebView frame boundary; lint analysis
+then hit the unchanged 12-minute step deadline. The test-only frame correction is
+source-backed and retains every visibility/reserve assertion. Fresh complete CI
+and representative native-capture review remain required.
