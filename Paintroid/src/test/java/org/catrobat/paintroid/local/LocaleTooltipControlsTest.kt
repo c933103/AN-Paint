@@ -79,7 +79,7 @@ class LocaleTooltipControlsTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get();awaitEditorStartup(activity)
         controller.visible().windowFocusChanged(true);settle()
-        fun view(tag: String)=activity.window.decorView.findViewWithTag<View>(tag)
+        fun view(tag: String)=requireNotNull(activity.window.decorView.findViewWithTag<View>(tag)) {"Missing control $tag"}
         fun click(tag: String) {EditorTestNavigation.click(activity,tag);settle()}
         try {
             click("menu_Draw")
@@ -110,7 +110,9 @@ class LocaleTooltipControlsTest {
             assertTrue(grid.performLongClick());settle()
             assertTrue(ShadowAlertDialog.getLatestAlertDialog().isShowing);assertNull(LocaleTooltipWindowTest.popup(grid))
             ShadowAlertDialog.getLatestAlertDialog().dismiss()
-            check(view("command_View_0"),view("command_View_0").contentDescription.toString(),"vi-Hani")
+            val panel=view("command_View_3")
+            assertTrue(panel is PanelToolButton)
+            check(panel,ui(R.string.ui_magnifier33),"vi-Hani")
             click("command_View_2");click("cursor_mode_enabled")
             val cursor=view("cursor_draw_toggle")
             check(cursor,ui(R.string.ui_cursor_start31),"vi-Hani")
