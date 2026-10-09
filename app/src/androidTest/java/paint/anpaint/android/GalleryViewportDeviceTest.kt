@@ -36,6 +36,7 @@ import org.junit.runner.RunWith
 import java.util.Locale
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
@@ -202,27 +203,89 @@ class GalleryViewportDeviceTest {
     }
     private fun setFontScale(scale: Float) {
         require(scale.isFinite() && scale>0f)
+        val deadline=SystemClock.uptimeMillis()+10000
         fun state()=onMain {
             JSONObject().put("requested",scale)
                 .put("setting",Settings.System.getFloat(context.contentResolver,Settings.System.FONT_SCALE,1f))
                 .put("system_resources",Resources.getSystem().configuration.fontScale)
                 .put("target_resources",context.resources.configuration.fontScale)
         }
+        fun matches()=onMain {
+            listOf(Settings.System.getFloat(context.contentResolver,Settings.System.FONT_SCALE,1f),
+                Resources.getSystem().configuration.fontScale,context.resources.configuration.fontScale)
+                .all {kotlin.math.abs(it-scale)<.001f}
+        }
         android.util.Log.i("GalleryViewportDeviceTest","font transition before: ${state()}")
-        ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"))
-            .bufferedReader().use {it.readText()}
         try {
-            // A locale-overridden target Context can already carry the next value
-            // before the global configuration transition arrives. Wait for the
-            // persisted setting AND both framework resource configurations, so
-            // the next write cannot overtake the previous real system change.
-            await("real system font scale $scale") {onMain {
-                listOf(Settings.System.getFloat(context.contentResolver,Settings.System.FONT_SCALE,1f),
-                    Resources.getSystem().configuration.fontScale,context.resources.configuration.fontScale)
-                    .all {kotlin.math.abs(it-scale)<.001f}
-            }}
+            if(Build.VERSION.SDK_INT>=34) {
+                // Verify the actual target utility, including decimal duration and
+                // hard-kill support, before relying on it for a system-server wait.
+                if(!fontShellVerified) {
+                    val probe=fontShell("timeout -s KILL 0.01s sleep 1",deadline)
+                    assertEquals("Target timeout must accept decimal seconds and KILL",137,probe)
+                    fontShellVerified=true
+                }
+                assertEquals("Real font setting write succeeded",0,
+                    fontShell("settings put system font_scale $scale",deadline))
+            } else {
+                // API30-33 do not expose the system-looper flush command. This
+                // retains the older real-setting check, not an equivalent barrier.
+                android.util.Log.i("GalleryViewportDeviceTest","system-looper barrier unavailable on API${Build.VERSION.SDK_INT}; legacy synchronization only")
+                ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"))
+                    .bufferedReader().use {android.util.Log.i("GalleryViewportDeviceTest","legacy font shell stdout: ${it.readText()}")}
+            }
+            awaitUntil("real system font scale $scale",deadline,::matches)
+            if(Build.VERSION.SDK_INT>=34) {
+                // ATMS can distribute the new configuration before its queued
+                // Settings write-back executes on DisplayThread. Flush that queue
+                // before another transition can overwrite the pending snapshot.
+                assertEquals("System configuration write-back barrier succeeded",0,
+                    fontShell("am wait-for-broadcast-barrier --flush-broadcast-loopers",deadline))
+            }
             instrumentation.waitForIdleSync()
+            assertTrue("Font transition exceeded its original 10s deadline",SystemClock.uptimeMillis()<deadline)
+            assertTrue("Font setting and real resources must still agree after the barrier",matches())
         } finally {android.util.Log.i("GalleryViewportDeviceTest","font transition after: ${state()}")}
+    }
+
+    private var fontShellVerified=false
+
+    /** API34+ has public stdin/stdout/stderr pipes; no Runtime.exec shell quoting. */
+    @androidx.annotation.RequiresApi(34)
+    private fun fontShell(command: String,deadline: Long): Int {
+        val remaining=deadline-SystemClock.uptimeMillis()
+        assertTrue("No time remains for font shell: $command",remaining>0)
+        val seconds=String.format(Locale.ROOT,"%.3f",remaining/1000.0)
+        android.util.Log.i("GalleryViewportDeviceTest",JSONObject().put("font_shell_start",command)
+            .put("remaining_ms",remaining).toString())
+        val pipes=instrumentation.uiAutomation.executeShellCommandRwe("sh")
+        val readers=Executors.newFixedThreadPool(2)
+        try {
+            val output=readers.submit<String> {ParcelFileDescriptor.AutoCloseInputStream(pipes[0]).bufferedReader().use {it.readText()}}
+            val error=readers.submit<String> {ParcelFileDescriptor.AutoCloseInputStream(pipes[2]).bufferedReader().use {it.readText()}}
+            // Commands are fixed fixture strings plus a finite positive float.
+            // Feeding stdin avoids assuming Runtime.exec interprets shell quotes.
+            ParcelFileDescriptor.AutoCloseOutputStream(pipes[1]).bufferedWriter().use {
+                it.write("timeout -s KILL ${seconds}s $command\nresult=$?\nprintf '\\nANPAINT_FONT_EXIT=%s\\n' \"${'$'}result\"\n")
+            }
+            fun remainingTime(): Long=(deadline-SystemClock.uptimeMillis()).also {
+                assertTrue("Font shell exceeded the shared 10s deadline",it>0)
+            }
+            val stdout=output.get(remainingTime(),TimeUnit.MILLISECONDS)
+            val stderr=error.get(remainingTime(),TimeUnit.MILLISECONDS)
+            android.util.Log.i("GalleryViewportDeviceTest",JSONObject().put("font_shell",command)
+                .put("stdout",stdout).put("stderr",stderr).put("remaining_ms",deadline-SystemClock.uptimeMillis()).toString())
+            val exit=Regex("(?m)^ANPAINT_FONT_EXIT=([0-9]+)$").findAll(stdout).toList()
+            assertEquals("Font shell must report one exit status",1,exit.size)
+            assertTrue("Font shell exceeded the shared 10s deadline",SystemClock.uptimeMillis()<deadline)
+            return exit.single().groupValues[1].toInt()
+        } catch(failure: Throwable) {
+            android.util.Log.e("GalleryViewportDeviceTest","Font shell failed within shared deadline: $command",failure)
+            throw failure
+        } finally {
+            pipes.forEach {try {it.close()} catch(_: java.io.IOException) {}}
+            readers.shutdownNow()
+        }
     }
     private fun descendants(root: View): List<View> = listOf(root)+if(root is ViewGroup)
         (0 until root.childCount).flatMap {descendants(root.getChildAt(it))} else emptyList()
@@ -236,7 +299,9 @@ class GalleryViewportDeviceTest {
         error.get()?.let {throw it};return value.get()
     }
     private fun await(label: String,condition: ()->Boolean) {
-        val deadline=SystemClock.uptimeMillis()+10000
+        awaitUntil(label,SystemClock.uptimeMillis()+10000,condition)
+    }
+    private fun awaitUntil(label: String,deadline: Long,condition: ()->Boolean) {
         while(SystemClock.uptimeMillis()<deadline) {
             if(condition()) return
             SystemClock.sleep(25)
