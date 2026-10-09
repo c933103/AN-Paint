@@ -59,7 +59,7 @@ class DeviceLanguagePickerTest {
             system.updateConfiguration(oldSystem,system.displayMetrics)
             activity.resources.updateConfiguration(oldActivity,activity.resources.displayMetrics)
             activity.getSharedPreferences("app-language",0).edit().clear().commit()
-            if(oldPlatformLocales!=null) manager!!.applicationLocales=oldPlatformLocales
+            if(oldPlatformLocales!=null) manager.applicationLocales=oldPlatformLocales
             PaintApplication.currentResources=oldResources
             Locale.setDefault(oldLocale)
         }
@@ -91,11 +91,21 @@ class DeviceLanguagePickerTest {
         assertEquals(tag,if(vertical) 1 else 0,spans(row).size)
         if(!vertical) LocaleTypography.typeface(activity,locale)?.let {assertSame(tag,it,row.typeface)}
         assertTrue(tag,row is CheckedTextView)
+    }
+
+    private fun checkAccessibility(row: TextView,tag: String,label: String) {
         val info=row.createAccessibilityNodeInfo()
         try {
             assertEquals(tag,label,info.text.toString())
             assertTrue(tag,info.isCheckable)
         } finally {info.recycle()}
+    }
+
+    private fun firstMountedRow(picker: AlertDialog): TextView {
+        // Opening a single-choice list scrolls to the checked app override, not row 0.
+        picker.listView.setSelectionFromTop(0,0);idle()
+        assertEquals(0,picker.listView.firstVisiblePosition)
+        return picker.listView.getChildAt(0) as TextView
     }
 
     @Test fun originalFirstRowSequenceLeavesDeviceScriptUnformatted()=withActivity { activity ->
@@ -113,6 +123,7 @@ class DeviceLanguagePickerTest {
                 assertTrue("The original row has no vertical span",spans(control).isEmpty())
                 val repaired=picker.listView.adapter.getView(0,null,picker.listView) as TextView
                 checkRow(activity,repaired,tag,expected)
+                checkAccessibility(repaired,tag,expected)
             } finally {picker.dismiss();idle()}
         }
     }
@@ -126,6 +137,10 @@ class DeviceLanguagePickerTest {
                 try {
                     val row=picker.listView.adapter.getView(0,null,picker.listView) as TextView
                     checkRow(activity,row,tag,expectedLabel(activity,tag))
+                    // API21 node initialization dereferences real attachment state.
+                    val mounted=firstMountedRow(picker)
+                    checkRow(activity,mounted,tag,expectedLabel(activity,tag))
+                    checkAccessibility(mounted,tag,expectedLabel(activity,tag))
                     if(tag=="mn-Mong" || tag=="mnc-Mong")
                         assertNotEquals(activity.getString(R.string.language20_device_default),row.text.toString())
                     assertEquals(appTag,AppLanguage.selectedTag(activity))
@@ -144,10 +159,12 @@ class DeviceLanguagePickerTest {
                 val list=picker.listView
                 val explicit=list.adapter.getView(tags.indexOf(tag)+1,null,list) as TextView
                 checkRow(activity,explicit,tag,AppLanguage.name(tag))
+                checkAccessibility(explicit,tag,AppLanguage.name(tag))
                 // The adapter deliberately does not recycle script-specific row geometry.
                 val first=list.adapter.getView(0,explicit,list) as TextView
                 assertNotSame(tag,explicit,first)
                 checkRow(activity,first,tag,expectedLabel(activity,tag))
+                checkAccessibility(first,tag,expectedLabel(activity,tag))
                 assertEquals(tag,"ja",AppLanguage.selectedTag(activity))
             } finally {picker.dismiss();idle()}
         }
@@ -158,7 +175,9 @@ class DeviceLanguagePickerTest {
             languages(activity,tag,"ja")
             val picker=AppLanguage.showPicker(activity) {}
             try {
-                checkRow(activity,picker.listView.adapter.getView(0,null,picker.listView) as TextView,tag,expectedLabel(activity,tag))
+                val row=picker.listView.adapter.getView(0,null,picker.listView) as TextView
+                checkRow(activity,row,tag,expectedLabel(activity,tag))
+                checkAccessibility(row,tag,expectedLabel(activity,tag))
                 assertEquals("ja",AppLanguage.selectedTag(activity))
                 if(tag=="zz-Zzzz-ZZ") assertEquals("Use device language",picker.listView.adapter.getItem(0))
             } finally {picker.dismiss();idle()}
@@ -171,12 +190,13 @@ class DeviceLanguagePickerTest {
                 languages(activity,tag,appTag)
                 val picker=AppLanguage.showPicker(activity) {}
                 try {
-                    idle()
-                    val row=picker.listView.getChildAt(0) as TextView
+                    val row=firstMountedRow(picker)
                     row.textSize=if(index==1) 24f else 16f
                     idle()
                     val label=expectedLabel(activity,tag)
                     checkRow(activity,row,tag,label)
+                    checkAccessibility(row,tag,label)
+                    assertSame("Measured row must remain mounted",row,picker.listView.getChildAt(0))
                     assertTrue("$tag/$appTag row must retain a 48dp touch target",row.height>=48*activity.resources.displayMetrics.density)
                     val layout=requireNotNull(row.layout)
                     assertEquals(label.length,layout.getLineEnd(layout.lineCount-1))
@@ -187,7 +207,7 @@ class DeviceLanguagePickerTest {
                         try {
                             row.draw(Canvas(image))
                             val file=File("build/reports/classic-preview/device-language-$tag-api${Build.VERSION.SDK_INT}.png")
-                            file.parentFile.mkdirs();file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)}
+                            requireNotNull(file.parentFile).mkdirs();file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)}
                         } finally {image.recycle()}
                     }
                 } finally {picker.dismiss();idle()}
