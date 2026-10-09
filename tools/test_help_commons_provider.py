@@ -74,6 +74,13 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertTrue(rows['fi']['after_segment'].endswith('”Wikimedia Commons · Ääriviivakartat…” -valinnan'))
         self.assertTrue(rows['vi-Hani']['after_segment'].endswith('吧 「Wikimedia Commons · 版圖 𤿰…」'))
 
+    def test_complete_japanese_provider_sentence_joins_label_and_particle(self):
+        help_text = catalogues.read_strings(catalogues.RES / 'values-ja/strings.xml')[KEY]
+        expected = ('［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、'
+                    'いらすとや、Openclipart、［Wikimedia Commons · 白地図…］があります。')
+        self.assertIn(expected, help_text)
+        self.assertNotIn('白地図…］ があります', help_text)
+
     def test_android_resource_test_uses_same_explicit_scope(self):
         source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt').read_text()
         tags = re.search(r'private val scopedTags=listOf\((.*?)\n    \)', source, re.S).group(1)

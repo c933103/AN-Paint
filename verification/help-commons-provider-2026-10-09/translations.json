@@ -470,12 +470,12 @@
     "ja": {
       "catalogue": "Paintroid/src/main/res/values-ja/strings.xml",
       "caption": "Wikimedia Commons · 白地図…",
-      "before_segment": "いらすとや、Openclipart",
-      "after_segment": "いらすとや、Openclipart、［Wikimedia Commons · 白地図…］",
+      "before_segment": "いらすとや、Openclipart があります。",
+      "after_segment": "いらすとや、Openclipart、［Wikimedia Commons · 白地図…］があります。",
       "before_help_sha256": "0a0b2f3272442673efebb88b2d538c18521ee52eaa68578cce753cece6855305",
-      "after_help_sha256": "9123c9a1ca2c84313ad94560f2c254e32fbbeb5ef167c5e8777da089bede2b6a",
+      "after_help_sha256": "63dea3214606c45cf043bac4658fb1e249054fa8ca780df97ad6c8f3fc280fa3",
       "before_context": "び、［保存］は同じ設定と場所へ再度書き込みます。［形式を指定してエクスポート］では ICO、ASCII アート、Base64 テキストを作成しますが、描画を保存済み扱いにはしません。［保存して共有］はコピーを保存してから Android の共有画面を開き、現在の［保存］先は維持します。［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、いらすとや、Openclipart があります。挿入した画像は選択状態のままとなり、キャンバス外にある場合もハンドルが表示されます。［画像をキャンバスに合わせる］は配置サイズを変更し、［元のサイズ］は元画像の寸法へ戻します。アプリを再",
-      "after_context": "び、［保存］は同じ設定と場所へ再度書き込みます。［形式を指定してエクスポート］では ICO、ASCII アート、Base64 テキストを作成しますが、描画を保存済み扱いにはしません。［保存して共有］はコピーを保存してから Android の共有画面を開き、現在の［保存］先は維持します。［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、いらすとや、Openclipart、［Wikimedia Commons · 白地図…］ があります。挿入した画像は選択状態のままとなり、キャンバス外にある場合もハンドルが表示されます。［画像をキャンバスに合わせる］は配置サイズを変更し、［元のサイズ］は元画像の寸法へ戻します。アプリを再",
+      "after_context": "び、［保存］は同じ設定と場所へ再度書き込みます。［形式を指定してエクスポート］では ICO、ASCII アート、Base64 テキストを作成しますが、描画を保存済み扱いにはしません。［保存して共有］はコピーを保存してから Android の共有画面を開き、現在の［保存］先は維持します。［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、いらすとや、Openclipart、［Wikimedia Commons · 白地図…］があります。挿入した画像は選択状態のままとなり、キャンバス外にある場合もハンドルが表示されます。［画像をキャンバスに合わせる］は配置サイズを変更し、［元のサイズ］は元画像の寸法へ戻します。アプリを再",
       "status": "bounded_editorial_and_source_assisted_review_no_native_fluency_claim"
     },
     "jje": {
@@ -839,6 +839,7 @@
       "jje",
       "ryu",
       "vi-Hani"
-    ]
+    ],
+    "codex_follow_up": "Final Code review of 80914c9 identified an inherited Japanese ASCII space before the predicate, missed by the prior bounded editorial pass and segment-only tests. One space is removed within the same ui_help23 provider sentence. Both host and JVM oracles now include the complete resulting Japanese provider sentence. Independent reread of all 60 quote/particle/punctuation joins found no further concrete join issue; language-specific spaces are preserved. See boundary-review.json."
   }
 }

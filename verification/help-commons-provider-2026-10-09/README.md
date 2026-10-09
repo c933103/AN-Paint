@@ -63,10 +63,10 @@ not claimed.
 
 ## Validation boundary
 
-- Five new Python contracts cover exact scope, genuine absence in the other 81
+- Six new Python contracts cover exact scope, genuine absence in the other 81
   catalogues, reverse-hash preservation of the complete surrounding Help text,
   provider inventory, route wiring, caption identity, formatting and the two
-  punctuation corrections.
+  punctuation corrections and the complete Japanese provider sentence.
 - New Robolectric tests resolve all 59 scoped Help/caption pairs and all 81 real
   fallbacks on API30 and API35. Independent representative full-passage oracles
   cover English, French, Japanese, Nôm, Estonian and Finnish.
@@ -83,7 +83,32 @@ not claimed.
   started: its wrapper could not download `gradle-8.13-bin.zip` because the local
   network returned `Network is unreachable`. This is not a compilation or runtime pass.
 
-All 341 Python tests passed in 52.368 seconds after the review correction. The full raw result and local Gradle
+The initial scope passed 341 Python tests in 52.368 seconds, and its integration
+with accepted PR30 passed 347 tests. The Japanese boundary follow-up adds one
+complete-sentence contract; its fresh combined result is 348 passing tests in 53.021 seconds. The full raw result and local Gradle
 limitation are recorded under `local/`.
 Android compilation, lint, packaged resources, JVM execution and installed checks
 must be evaluated from the exact published-head CI run before acceptance.
+
+## Final Code-review boundary correction
+
+The final Code review on `80914c9` found the inherited Japanese space in
+`］ があります`. The prior independent editorial pass and inserted-segment oracles
+had missed it. The correction removes exactly one ASCII space in the same
+`ui_help23` provider sentence. Both host and JVM expectations now include the
+complete resulting sentence, not merely the inserted list segment. The new host
+oracle fails against the prior text; that red result is retained in `local/`.
+
+An independent second pass re-read quote/particle/punctuation boundaries across
+all 60 replacements. No further concrete join issue was identified. Korean and
+Ryukyuan attached particles, Han-script full stops, Tibetan-script predicate
+separators, and the distinct Ainu, Mongolian/Manchu, Jeju, Finnish, Hungarian,
+Turkish and Nôm spacing conventions
+are retained. `boundary-review.json` records exact following context per tag and
+the remaining fluency limits. This preserves the one-key scope and does not
+globally strip spaces. The green `80914c9` CI receipt remains historical evidence;
+the corrected head needs fresh review and complete CI.
+
+The independent post-fix check confirmed the exact one-space Japanese XML delta,
+all 60 manifest/scope hashes, and the complete Python/JVM sentence oracles.
+The fresh combined local suite passed all 348 tests in 53.021 seconds.
