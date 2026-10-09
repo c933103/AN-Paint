@@ -54,11 +54,11 @@ jobs:
         if: ${{ !cancelled() }}
         timeout-minutes: 2
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
-      - name: Run JVM regression tests and native build
+      - name: Run JVM regression tests
         if: ${{ !cancelled() }}
         timeout-minutes: 12
         run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
-      - name: Run Android lint
+      - name: Run Android lint and native dependencies
         if: ${{ !cancelled() }}
         timeout-minutes: 6
         run: bash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}

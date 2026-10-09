@@ -18,8 +18,8 @@ STEPS = {
 }
 PHASES = {
     'Run Python contracts': ('python', 2),
-    'Run JVM regression tests and native build': ('jvm', 12),
-    'Run Android lint': ('lint', 6),
+    'Run JVM regression tests': ('jvm', 12),
+    'Run Android lint and native dependencies': ('lint', 6),
 }
 
 
