@@ -1,0 +1,105 @@
+{
+  "source_head": "b0cc76430727bacefee71faf0f0a33d0b12ada0f",
+  "source_tree": "7630701b9ab9193bdde9a20e33c0e425eaa7f56f",
+  "ci_merge_commit": "5a9514f09c5c2a134ca742444329904e04555265",
+  "ci_merge_tree_matches_source": true,
+  "run_id": 37934848967,
+  "attempt": 2,
+  "regression_job_id": 113842099293,
+  "job_outcome": "failure",
+  "cause": "12-minute Run local checks step timeout during lint analysis; no lint completion report",
+  "original_artifact": {
+    "id": 11620266362,
+    "bytes": 15495025,
+    "sha256": "96d8b556da81587c85f18257c624cd9683f0c4318241cc23e3462aad2d9f2ef7",
+    "files": 462
+  },
+  "junit": {
+    "suites": 71,
+    "tests": 700,
+    "failures": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suite_seconds": 277.804,
+    "first_suite_timestamp": "2026-10-09T13:38:18.178000+00:00",
+    "last_suite_end": "2026-10-09T13:42:56.717000+00:00",
+    "suite_wall_span_seconds": 278.539
+  },
+  "commons_suites": [
+    {
+      "name": "org.catrobat.paintroid.local.CommonsAttributionTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.508",
+      "timestamp": "2026-10-09T13:40:02.892Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsBlankMapsTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.764",
+      "timestamp": "2026-10-09T13:40:04.408Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.278",
+      "timestamp": "2026-10-09T13:40:05.188Z"
+    },
+    {
+      "name": "org.catrobat.paintroid.local.CommonsImportChangeTranslationTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.07",
+      "timestamp": "2026-10-09T13:40:08.237Z"
+    }
+  ],
+  "lint": "not completed; no lint report in the artifact",
+  "cache": {
+    "dependency_and_native_source_cache": "exact same key hit in attempts 1 and 2 and PR30 reference",
+    "key": "android-deps-v1-Linux-3e89dbc8caa9f4c204ec67d5edbc4e22b75fcdfbf3a4bb344dfc355672ee7ee2-checks",
+    "x86_64_native_compilation": "fresh rebuild; no compiler-object cache configured in checks job",
+    "compiled_java_kotlin_apk_cache": "not restored",
+    "pr29_reference": "restore-prefix fallback to same hash with -build suffix; no native object or JVM output cache"
+  },
+  "reference_jobs": [
+    {
+      "head": "b37782de025e0994831cce3c19b8615a89092fc8",
+      "run_id": 37936204579,
+      "job_id": 113838776101,
+      "checks_outcome": "success",
+      "overall_run_outcome": "failure in separate installed test",
+      "junit": {
+        "tests": 706,
+        "suite_seconds": 301.829,
+        "first_suite_timestamp": "2026-10-09T13:28:22.238000+00:00",
+        "last_suite_end": "2026-10-09T13:33:24.641000+00:00",
+        "artifact_id": 11618109644,
+        "artifact_sha256": "9b70e9c95b3510ee43710557151e070f0ff7528805c9a7f4aad10ef52d68a12d"
+      }
+    },
+    {
+      "run_id": 37926785579,
+      "job_id": 113807716496,
+      "checks_outcome": "success",
+      "overall_run_outcome": "success"
+    }
+  ],
+  "phase_timing_limits": "Raw timestamps are log-emission markers; Gradle tasks overlap and output may be buffered. They are not isolated task durations or proof of runner slowness. Fresh runner identities differ.",
+  "next_action": "Implement separately reviewed CI phase split: Python2m, JVM/native12m, lint6m; unchanged20m outer job, all commands/assertions required, no continue-on-error, gather later phase diagnostics unless canceled. Re-run CI and review at new source head.",
+  "archive": {
+    "file": "retry-junit-log-evidence.zip",
+    "bytes": 175744,
+    "sha256": "320fa153afbcb29fd78d54ab5aae92a37e441013a539da3b339ec4e73f5ccba1",
+    "contents": "All71 JUnit XML suites and700 test identities; full retry log; every task/cache timestamp; original462-file hash inventory; PR30 and PR29 reference raw logs and derived log-marker comparison. Unrelated rendered PNG/HTML files inventoried but not duplicated."
+  }
+}
