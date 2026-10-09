@@ -693,29 +693,86 @@ class EditorDeviceTest {
     private fun chooseAppLanguage(tag: String) {
         menu("View",activityText(R.string.ui_languages23))
         val bounds=Rect()
+        var expectedIndex=-1
+        var label=""
+        val receivedPosition=AtomicReference<Int?>()
         onMain {
             val tags=it.resources.getStringArray(R.array.app_language_tags).toList()
             assertTrue("Requested locale is selectable: $tag",tag.isEmpty() || tag in tags)
-            val index=if(tag.isEmpty()) 0 else tags.indexOf(tag)+1
+            expectedIndex=if(tag.isEmpty()) 0 else tags.indexOf(tag)+1
             val list=localePickerList(tags.size+1)
-            list.setSelection(index)
+            // Observe the original listener; never synthesize a click or change the selection.
+            val original=requireNotNull(list.onItemClickListener)
+            list.setOnItemClickListener {parent,view,position,id ->
+                receivedPosition.set(position)
+                android.util.Log.i("LanguagePickerTest","received position=$position label=${(view as? TextView)?.text}")
+                original.onItemClick(parent,view,position,id)
+            }
+            list.setSelection(expectedIndex)
         }
         instrumentation.waitForIdleSync()
         onMain {
             val tags=it.resources.getStringArray(R.array.app_language_tags).toList()
-            val index=if(tag.isEmpty()) 0 else tags.indexOf(tag)+1
             val list=localePickerList(tags.size+1)
-            val row=list.getChildAt(index-list.firstVisiblePosition)
+            val row=list.getChildAt(expectedIndex-list.firstVisiblePosition)
             assertNotNull("Locale picker row: $tag",row)
-            assertTrue("Exact requested locale row: $tag",tag.isEmpty() || (row as TextView).text.toString().endsWith("[$tag]"))
+            label=(row as TextView).text.toString()
+            assertTrue("Exact requested locale row: $tag",tag.isEmpty() || label.endsWith("[$tag]"))
             assertTrue(row.getGlobalVisibleRect(bounds))
             offsetToScreen(row,bounds)
+            android.util.Log.i("LanguagePickerTest","requested=$tag index=$expectedIndex first=${list.firstVisiblePosition} native=$bounds height=${row.height} label=$label")
         }
-        assertTrue("Choose the visible locale row",device.click(bounds.centerX(),bounds.centerY()))
-        instrumentation.waitForIdleSync()
+        // Resolve the exact label again through accessibility, with current screen bounds.
+        val choice=device.findObject(UiSelector().className("android.widget.CheckedTextView").text(label))
+        assertTrue("Exact accessible locale row: $tag",choice.waitForExists(5000))
+        val accessibleBounds=choice.visibleBounds
+        assertTrue("Native and accessibility targets agree",Rect.intersects(bounds,accessibleBounds))
+        android.util.Log.i("LanguagePickerTest","requested=$tag accessible=$accessibleBounds")
+        assertTrue("Choose the visible locale row",choice.click())
+        // A no-sync injected touch and an idle queue do not establish the delayed list callback.
+        // Observe the actual transition without re-tapping or writing the preference ourselves.
+        awaitState("real picker selected $tag") {
+            receivedPosition.get()==expectedIndex &&
+                it.getSharedPreferences("app-language",0).getString("language-tag",null)==tag
+        }
         onMain {
             assertEquals("The real picker selected the requested locale",tag,
                 it.getSharedPreferences("app-language",0).getString("language-tag",null))
+            assertEquals("The requested adapter row received the tap",expectedIndex,receivedPosition.get())
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=33)
+    fun deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches() {
+        // The repository's emulator fixture boots in en-US. Keep this oracle independent
+        // of AppLanguage.deviceDefaultLabel and the app-overridden resource context.
+        assertEquals("Controlled emulator device locale","en-US",
+            context.getSystemService(LocaleManager::class.java).systemLocales[0].toLanguageTag())
+        for(tag in listOf("ja","ar","en-001")) {
+            chooseAppLanguage(tag)
+            awaitState("resource override $tag") {
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()==tag
+            }
+            menu("View",activityText(R.string.ui_languages23))
+            onMain {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                localePickerList(count).setSelectionFromTop(0,0)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                val list=localePickerList(count)
+                assertEquals(0,list.firstVisiblePosition)
+                val row=list.getChildAt(0) as TextView
+                assertEquals("Device label while app uses $tag","Use device language",row.text.toString())
+                assertEquals("en-US",row.textLocale.toLanguageTag())
+                android.util.Log.i("LanguagePickerTest","device=en-US app=$tag first=${list.firstVisiblePosition} label=${row.text}")
+            }
+            instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+            awaitState("picker dismissed after $tag") {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                try {localePickerList(count);false} catch(_: AssertionError) {true}
+            }
         }
     }
 
