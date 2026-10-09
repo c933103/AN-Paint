@@ -39,6 +39,7 @@ class MediaGalleryActivity : Activity() {
     private var pendingSearch: String?=null
     private lateinit var web: WebView
     private lateinit var status: TextView
+    private lateinit var statusHost: View
     private val worker=Executors.newSingleThreadExecutor()
     internal var openConnection: (URL)->HttpURLConnection = { it.openConnection() as HttpURLConnection }
     @Volatile private var activeConnection: HttpURLConnection?=null
@@ -70,10 +71,21 @@ class MediaGalleryActivity : Activity() {
         val description=TextView(this).apply {
             tag="gallery_description";text=provider.label+"\n"+ui(provider.descriptionId);textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
+            VerticalUi.caption(this,64)
         }
-        root.addView(ScrollView(this).apply {tag="gallery_description_scroll";addView(description)},LinearLayout.LayoutParams(-1,dp(if(resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) 56 else 88)))
-        status=TextView(this).apply {tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))}
-        root.addView(status)
+        val descriptionContent=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+            tag="gallery_description_columns";addView(description)
+        } else description
+        root.addView(ScrollView(this).apply {tag="gallery_description_scroll";addView(descriptionContent)},LinearLayout.LayoutParams(-1,dp(if(resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) 56 else 88)))
+        status=TextView(this).apply {
+            tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))
+            accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
+            VerticalUi.caption(this,144)
+        }
+        statusHost=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+            tag="gallery_status_columns";visibility=View.GONE;addView(status)
+        } else status
+        root.addView(statusHost)
         val row=LinearLayout(this)
         fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
@@ -217,7 +229,7 @@ class MediaGalleryActivity : Activity() {
                     if(isFinishing || isDestroyed || Thread.currentThread().isInterrupted) throw InterruptedIOException()
                 }
                 runOnUiThread {
-                    if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));status.visibility=View.GONE}
+                    if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));hideStatus()}
                 }
             } catch(error: Exception) {
                 runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_could_not_load_gallery_image,error.message))}
@@ -229,7 +241,11 @@ class MediaGalleryActivity : Activity() {
         }
     }
 
-    private fun showStatus(message: String) {status.text=message;status.visibility=View.VISIBLE}
+    private fun showStatus(message: String) {
+        status.text=message;status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
+        (statusHost as? ColumnScrollView)?.resetToReadingStart()
+    }
+    private fun hideStatus() {status.visibility=View.GONE;statusHost.visibility=View.GONE}
     private fun openExternal(uri: Uri) {
         try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
     }
