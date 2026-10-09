@@ -97,5 +97,4 @@ internal fun gallerySearchField(context: Context,label: String)=EditText(context
     imeOptions=android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
     val minimum=(48*resources.displayMetrics.density+.5f).toInt()
     minHeight=minimum;minimumHeight=minimum
-    contentDescription=label
 }

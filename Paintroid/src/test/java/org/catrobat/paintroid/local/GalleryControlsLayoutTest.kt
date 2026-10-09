@@ -85,10 +85,12 @@ class GalleryControlsLayoutTest {
                         search.setText("")
                         measure(search,widthDp)
                         assertFullLayout("$tag/$widthDp/search hint",search,search.hint.toString())
+                        assertNull("An editable field must not mask its live value with a fixed description",search.contentDescription)
                         search.setText("A long editable query ".repeat(12))
                         measure(search,widthDp)
                         assertFullLayout("$tag/$widthDp/search value",search)
                         assertTrue(search.createAccessibilityNodeInfo().isEditable)
+                        assertEquals("Accessibility must expose the current editable value",search.text.toString(),search.createAccessibilityNodeInfo().text.toString())
                     }
                     completedCases++
                 }
