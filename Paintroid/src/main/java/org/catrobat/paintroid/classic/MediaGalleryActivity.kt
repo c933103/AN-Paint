@@ -40,6 +40,7 @@ class MediaGalleryActivity : Activity() {
     private lateinit var web: WebView
     private lateinit var status: TextView
     private lateinit var statusHost: View
+    private lateinit var controlsScroll: GalleryControlsScroll
     private val worker=Executors.newSingleThreadExecutor()
     internal var openConnection: (URL)->HttpURLConnection = { it.openConnection() as HttpURLConnection }
     @Volatile private var activeConnection: HttpURLConnection?=null
@@ -68,6 +69,9 @@ class MediaGalleryActivity : Activity() {
         if(creditsEdited) returnEditedCredits()
         fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
         val root=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;fitsSystemWindows=true;setBackgroundColor(EditorColours.surface)}
+        val controls=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="gallery_controls"}
+        controlsScroll=GalleryControlsScroll(this).apply {tag="gallery_controls_scroll";addView(controls)}
+        root.addView(controlsScroll,LinearLayout.LayoutParams(-1,-2))
         val description=TextView(this).apply {
             tag="gallery_description";text=provider.label+"\n"+ui(provider.descriptionId);textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
@@ -76,7 +80,7 @@ class MediaGalleryActivity : Activity() {
         val descriptionContent=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
             tag="gallery_description_columns";addView(description)
         } else description
-        root.addView(ScrollView(this).apply {tag="gallery_description_scroll";addView(descriptionContent)},LinearLayout.LayoutParams(-1,dp(if(resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) 56 else 88)))
+        controls.addView(descriptionContent,LinearLayout.LayoutParams(-1,-2))
         status=TextView(this).apply {
             tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))
             accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
@@ -85,9 +89,14 @@ class MediaGalleryActivity : Activity() {
         statusHost=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
             tag="gallery_status_columns";visibility=View.GONE;addView(status)
         } else status
-        root.addView(statusHost)
-        val row=LinearLayout(this)
-        fun action(label: String,tagName: String,run: ()->Unit) {row.addView(Button(this).apply {text=label;tag=tagName;isAllCaps=false;minWidth=0;minimumWidth=0;textSize=12f;setOnClickListener {run()}},LinearLayout.LayoutParams(0,dp(48),1f))}
+        controls.addView(statusHost)
+        val row=GalleryActions(this).apply {tag="gallery_actions"}
+        fun action(label: String,tagName: String,run: ()->Unit) {
+            row.addView(galleryButton(this,label,tagName,12f,run=run))
+        }
+        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+            addView(actions)
+        } else actions
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
             val credits=ImageCredit.text(documentCredits)
             if(credits.isBlank()) LocaleTypography.showMessage(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT)
@@ -95,16 +104,33 @@ class MediaGalleryActivity : Activity() {
         }
         action(ui(R.string.gallery_edit_credits),"gallery_edit_credits") {showCreditEditor()}
         action(ui(R.string.ui_credits_terms),"gallery_terms") {openExternal(Uri.parse(provider.terms))}
-        action(ui(R.string.ui_done),"gallery_done") {finish()};root.addView(row)
-        if(ImageCreditArchive.hasRecords(this)) root.addView(Button(this).apply {
-            text=ui(R.string.legacy_credits_title);tag="gallery_legacy_credits";isAllCaps=false
-            setOnClickListener {startActivityForResult(Intent(this@MediaGalleryActivity,
-                LegacyImageCreditsActivity::class.java),LEGACY_CREDITS)}
-        },LinearLayout.LayoutParams(-1,-2))
-        val navigation=LinearLayout(this)
-        navigation.addView(Button(this).apply {text="←";contentDescription=ui(R.string.ui_gallery_back34);tag="gallery_back";setOnClickListener {if(web.canGoBack()) web.goBack() else web.loadUrl(provider.home)}},LinearLayout.LayoutParams(dp(52),dp(48)))
-        val search=EditText(this).apply {tag="gallery_search";setSingleLine(true);hint=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34);textSize=14f}
-        navigation.addView(search,LinearLayout.LayoutParams(0,dp(48),1f))
+        action(ui(R.string.ui_done),"gallery_done") {finish()};controls.addView(actionRow(row))
+        if(ImageCreditArchive.hasRecords(this)) {
+            val legacy=GalleryActions(this).apply {
+                addView(galleryButton(this@MediaGalleryActivity,ui(R.string.legacy_credits_title),"gallery_legacy_credits") {
+                    startActivityForResult(Intent(this@MediaGalleryActivity,LegacyImageCreditsActivity::class.java),LEGACY_CREDITS)
+                })
+            }
+            controls.addView(actionRow(legacy))
+        }
+        val navigation=GalleryActions(this).apply {tag="gallery_navigation"}
+        navigation.addView(galleryButton(this,"←","gallery_back",verticalCaption=false) {
+            if(web.canGoBack()) web.goBack() else web.loadUrl(provider.home)
+        }.apply {contentDescription=ui(R.string.ui_gallery_back34)})
+        val searchLabel=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34)
+        val search=gallerySearchField(this,searchLabel)
+        if(VerticalText.uiVertical()) {
+            // Keep editing in Android's native field; the label uses the same
+            // script-aware columns as the rest of the surrounding app controls.
+            val caption=TextView(this).apply {
+                text=searchLabel;labelFor=search.id;tag="gallery_search_label"
+                setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),0)
+                VerticalUi.caption(this,96)
+            }
+            search.hint=null
+            controls.addView(ColumnScrollView(this).apply {addView(caption)})
+        }
+        controls.addView(search,LinearLayout.LayoutParams(-1,-2))
         fun searchNow() {
             val query=search.text.toString().trim().take(512);if(query.isEmpty())return
             when(provider) {
@@ -122,9 +148,9 @@ class MediaGalleryActivity : Activity() {
                     .appendQueryParameter("title","Special:MediaSearch").build().toString())
             }
         }
-        navigation.addView(Button(this).apply {text=ui(R.string.ui_search34);isAllCaps=false;tag="gallery_search_go";setOnClickListener {searchNow()}},LinearLayout.LayoutParams(-2,dp(48)))
+        navigation.addView(galleryButton(this,ui(R.string.ui_search34),"gallery_search_go") {searchNow()})
         search.setOnEditorActionListener {_,_,_->searchNow();true}
-        root.addView(navigation)
+        controls.addView(actionRow(navigation))
         web=WebView(this).apply {
             settings.javaScriptEnabled=true;settings.allowFileAccess=false;settings.allowContentAccess=false
             settings.domStorageEnabled=true;settings.mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
@@ -244,6 +270,7 @@ class MediaGalleryActivity : Activity() {
     private fun showStatus(message: String) {
         status.text=message;status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
         (statusHost as? ColumnScrollView)?.resetToReadingStart()
+        controlsScroll.revealStart(statusHost)
     }
     private fun hideStatus() {status.visibility=View.GONE;statusHost.visibility=View.GONE}
     private fun openExternal(uri: Uri) {
@@ -365,11 +392,9 @@ class MediaGalleryActivity : Activity() {
         super.onConfigurationChanged(newConfig)
         // Retain the active download/render, WebView and open credit field across rotation.
         // The editor remains a draft; only its explicit Save/Copy/Done actions accept edits.
-        window.decorView.findViewWithTag<View>("gallery_description_scroll")?.let {scroll ->
-            scroll.layoutParams=scroll.layoutParams.apply {
-                height=((if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE) 56 else 88)*resources.displayMetrics.density+.5f).toInt()
-            }
-        }
+        // The controls use the live window bounds; no orientation-specific
+        // fixed rectangle remains. Keep the existing native search/editor views.
+        if(::controlsScroll.isInitialized) controlsScroll.requestLayout()
     }
     override fun onDestroy() {
         // Dismiss the old window without invoking a save action. A saved draft is restored separately.

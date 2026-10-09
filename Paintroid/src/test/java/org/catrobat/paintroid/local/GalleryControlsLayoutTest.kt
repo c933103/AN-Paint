@@ -1,0 +1,126 @@
+/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+package org.catrobat.paintroid.local
+
+import android.content.Context
+import android.content.res.Resources
+import android.view.ContextThemeWrapper
+import android.view.View
+import android.widget.TextView
+import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.*
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
+import java.util.Locale
+
+/** Every offered catalogue uses the actual native controls at the real system font scale. */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk=[30,35],qualifiers="w320dp-h640dp-port-xhdpi")
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+class GalleryControlsLayoutTest {
+    @Test @Config(fontScale=1f)
+    fun everyCatalogueKeepsFullLabelsAtNormalScale()=check(1f)
+
+    @Test @Config(fontScale=2f)
+    fun everyCatalogueKeepsFullLabelsAtLargeScale()=check(2f)
+
+    private fun check(scale: Float) {
+        val app=RuntimeEnvironment.getApplication() as Context
+        val originalTag=AppLanguage.selectedTag(app)
+        val originalLocale=Locale.getDefault()
+        val originalResources=PaintApplication.currentResources
+        val started=System.nanoTime()
+        var completedCases=0
+        val tags=AppLanguage.tags(app)
+        try {
+            assertEquals(scale,Resources.getSystem().configuration.fontScale,0f)
+            for(tag in tags) {
+                AppLanguage.select(app,tag)
+                val wrapped=AppLanguage.wrap(app)
+                val info=app.packageManager.getActivityInfo(android.content.ComponentName(app,MediaGalleryActivity::class.java),0)
+                val context=ContextThemeWrapper(wrapped,info.themeResource)
+                assertEquals(scale,context.resources.configuration.fontScale,0f)
+                PaintApplication.currentResources=context.resources
+                val row=GalleryActions(context)
+                val keys=listOf(R.string.ui_copy_all,R.string.gallery_edit_credits,R.string.ui_credits_terms,
+                    R.string.ui_done,R.string.ui_search34,R.string.legacy_credits_title)
+                var clicks=0
+                val buttons=keys.mapIndexed {index,key ->
+                    galleryButton(context,context.getString(key),"test_$key",if(index<4) 12f else null) {clicks++}.also {row.addView(it)}
+                }
+                val originalTextSizes=buttons.map {it.textSize}
+                val host: View=if(VerticalText.uiVertical()) ColumnScrollView(context).apply {addView(row)} else row
+                if(!VerticalText.uiVertical()) host.layoutDirection=context.resources.configuration.layoutDirection
+                LocaleTypography.install(host)
+                val searches=listOf(R.string.ui_search34,R.string.ui_search_english34).map {key ->
+                    gallerySearchField(context,context.getString(key)).also {
+                        it.layoutDirection=context.resources.configuration.layoutDirection;LocaleTypography.install(it)
+                    }
+                }
+                for(widthDp in listOf(240,320,640)) {
+                    clicks=0
+                    measure(host,widthDp)
+                    for((index,button) in buttons.withIndex()) {
+                        assertEquals("$tag/$widthDp must not shrink text to fit",originalTextSizes[index],button.textSize,0f)
+                        if(scale>1f && index<4) assertTrue(button.textSize>12*context.resources.displayMetrics.density)
+                        assertFullLayout("$tag/$widthDp/button",button)
+                        val minimum=(48*context.resources.displayMetrics.density+.5f).toInt()
+                        assertTrue(button.width>=minimum);assertTrue(button.height>=minimum)
+                        assertEquals("android.widget.Button",button.createAccessibilityNodeInfo().className.toString())
+                        assertEquals(button.text.toString(),button.createAccessibilityNodeInfo().text.toString())
+                        assertTrue(button.performClick())
+                    }
+                    assertEquals(buttons.size,clicks)
+                    // No two labels may overlap after wrapping into additional rows.
+                    for(a in buttons.indices) for(b in a+1 until buttons.size) {
+                        val first=android.graphics.Rect(buttons[a].left,buttons[a].top,buttons[a].right,buttons[a].bottom)
+                        val second=android.graphics.Rect(buttons[b].left,buttons[b].top,buttons[b].right,buttons[b].bottom)
+                        assertFalse("$tag/$widthDp overlapping actions",android.graphics.Rect.intersects(first,second))
+                    }
+                    for(search in searches) {
+                        search.setText("")
+                        measure(search,widthDp)
+                        assertFullLayout("$tag/$widthDp/search hint",search,search.hint.toString())
+                        search.setText("A long editable query ".repeat(12))
+                        measure(search,widthDp)
+                        assertFullLayout("$tag/$widthDp/search value",search)
+                        assertTrue(search.createAccessibilityNodeInfo().isEditable)
+                    }
+                    completedCases++
+                }
+            }
+        } finally {
+            val folder=java.io.File("build/reports/gallery-controls-matrix").apply {mkdirs()}
+            java.io.File(folder,"api${RuntimeEnvironment.getApiLevel()}-font$scale.json").writeText(org.json.JSONObject()
+                .put("offered_catalogues",tags.size).put("expected_cases",tags.size*3).put("completed_cases",completedCases)
+                .put("elapsed_seconds",(System.nanoTime()-started)/1e9).put("widths_dp",org.json.JSONArray(listOf(240,320,640)))
+                .put("evidence_kind","Robolectric NATIVE control measurement; separate JUnit result determines success").toString(2)+"\n")
+            AppLanguage.select(app,originalTag);PaintApplication.currentResources=originalResources;Locale.setDefault(originalLocale)
+        }
+    }
+
+    private fun measure(view: View,widthDp: Int) {
+        val width=(widthDp*view.resources.displayMetrics.density+.5f).toInt()
+        view.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+        view.layout(0,0,width,view.measuredHeight)
+    }
+
+    internal companion object {
+        fun assertFullLayout(label: String,view: TextView,expected: String=view.text.toString()) {
+            assertNull("$label must not ellipsize",view.ellipsize)
+            val layout=requireNotNull(if(view.text.isEmpty() && view.hint!=null)
+                org.robolectric.util.ReflectionHelpers.getField<android.text.Layout>(view,"mHintLayout") else view.layout)
+            assertEquals("$label final characters",expected.length,layout.getLineEnd(layout.lineCount-1))
+            assertTrue("$label measured text height ${layout.height} exceeds ${view.height-view.totalPaddingTop-view.totalPaddingBottom}",
+                layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom)
+            for(line in 0 until layout.lineCount) {
+                assertEquals("$label ellipsis at $line",0,layout.getEllipsisCount(line))
+                assertTrue("$label horizontal ink bounds",layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f)
+            }
+        }
+    }
+}
