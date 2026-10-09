@@ -893,6 +893,8 @@ class ClassicPaintActivity : Activity() {
                 galleryCreditSessionToken=session.token
                 startActivityForResult(Intent(this,MediaGalleryActivity::class.java)
                     .putExtra("gallery_provider",IllustrationSource.values()[index-1].name)
+                    .putExtra("gallery_canvas_width",document.bitmap.width)
+                    .putExtra("gallery_resident_pixels",document.residentPixels)
                     .putExtra(CreditEditSession.EXTRA_SESSION,session.token),GALLERY_IMAGE)
             } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}
         }.setNegativeButton(ui(R.string.ui_cancel),null).show()
@@ -1219,11 +1221,16 @@ class ClassicPaintActivity : Activity() {
             val page=data?.getStringExtra("gallery_page").orEmpty()
             val title=data?.getStringExtra("gallery_title").orEmpty().take(512)
             if(file==null || file.parentFile!=cacheDir || !file.name.startsWith("gallery-") || !file.isFile || source==null || !provider.allowsImage(Uri.parse(source)) || (provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page)))) {message(ui(R.string.ui_the_gallery_image_is_unavailable));return}
-            val credit=document.imageCredits.firstOrNull {it.source==source} ?: ImageCredit(source,GalleryCredits.credit(source,title,provider,page,
+            // Retain an existing user edit on reinsertion. Metadata alone is not a
+            // document association: paste() adopts the credit only after decoding succeeds.
+            val importedCredit=if(provider==IllustrationSource.COMMONS)
+                CommonsAttribution.cached(this,source)?.text(imported=true) else null
+            val credit=document.imageCredits.firstOrNull {it.source==source} ?: ImageCredit(source,importedCredit ?: GalleryCredits.credit(source,title,provider,page,
                 data?.getStringExtra("gallery_author").orEmpty().take(1024),
                 data?.getStringExtra("gallery_licence").orEmpty().take(4096),
                 data?.getStringExtra("gallery_author_url").orEmpty().take(4096)))
-            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,credits=listOf(credit));return
+            readImage(Uri.fromFile(file),true,deleteAfterCopy=true,credits=listOf(credit),
+                whiteBacking=provider==IllustrationSource.COMMONS);return
         }
         if (requestCode == ASSEMBLY_IMAGE) {
             val name = data?.getStringExtra("assembly_output")
@@ -1247,7 +1254,7 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,credits: List<ImageCredit> = emptyList()) {
+    private fun readImage(uri: Uri, import: Boolean, asEdit: Boolean = false, deleteAfterCopy: Boolean = false,credits: List<ImageCredit> = emptyList(),whiteBacking: Boolean = false) {
         beginIo()
         worker.execute {
             var temporary: File? = null
@@ -1266,8 +1273,8 @@ class ClassicPaintActivity : Activity() {
                             selected={source ->
                                 importSelection=null;pendingImportFile=source.file
                                 val plan=ImportPlan.create(source.dimensions,source.dimensions)
-                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,credits)
-                                else askToResize(source,import,asEdit=asEdit,credits=credits)
+                                if(source.accepts(ImageMemoryPolicy.forDevice(this),plan,document.residentPixels)) decodeImage(source,import,source.dimensions,asEdit,credits,whiteBacking)
+                                else askToResize(source,import,asEdit=asEdit,credits=credits,whiteBacking=whiteBacking)
                             },cancelled={importSelection=null;endIo()},failed={error ->
                                 importSelection=null;ioFailed(ui(R.string.ui_could_not_open_image),error)
                             })
@@ -1280,23 +1287,25 @@ class ClassicPaintActivity : Activity() {
         }
     }
 
-    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
+    private fun askToResize(source: ImportedImage, import: Boolean, previousAttempt: ImageDimensions? = null, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList(),whiteBacking: Boolean = false) {
         if (isDestroyed || isFinishing) { source.file.delete(); return }
         resizeDialog = ImageResizeDialog(this,source.dimensions,document.residentPixels,
             { ImageMemoryPolicy.forDevice(this) },previousAttempt,
-            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,credits) },
+            resize = { size -> resizeDialog = null; decodeImage(source,import,size,asEdit,credits,whiteBacking) },
             cancel = { resizeDialog = null; source.file.delete(); pendingImportFile=null; if (!isDestroyed) endIo() },
             memoryRequirements = source.memoryRequirements
         ).show()
     }
 
-    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList()) {
+    private fun decodeImage(source: ImportedImage, import: Boolean, target: ImageDimensions, asEdit: Boolean = false,credits: List<ImageCredit> = emptyList(),whiteBacking: Boolean = false) {
         worker.execute {
             try {
                 val plan = ImportPlan.create(source.dimensions,target)
                 val policy=ImageMemoryPolicy.forDevice(this)
                 source.checkImport(policy,plan,document.residentPixels)
                 val bitmap = source.decode(plan,policy.workingBytes,document.residentPixels)
+                // White fills transparent areas *in place* without altering opaque raster pixels or resampling.
+                if(whiteBacking) android.graphics.Canvas(bitmap).drawColor(android.graphics.Color.WHITE,android.graphics.PorterDuff.Mode.DST_OVER)
                 source.file.delete()
                 runOnUiThread {
                     pendingImportFile=null
@@ -1325,10 +1334,10 @@ class ClassicPaintActivity : Activity() {
                 }
             } catch (_: ImageSizeException) {
                 // Device memory may change while the user considers the proposed size.
-                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits,whiteBacking) }
             } catch (_: OutOfMemoryError) {
                 // A budget is an estimate, not a guarantee. Offer a smaller copy after an allocation failure too.
-                runOnUiThread { askToResize(source,import,target,asEdit,credits) }
+                runOnUiThread { askToResize(source,import,target,asEdit,credits,whiteBacking) }
             } catch (e: Exception) { source.file.delete(); ioFailed(ui(R.string.ui_could_not_open_image), e) }
         }
     }
@@ -1655,4 +1664,3 @@ class ClassicPaintActivity : Activity() {
         worker.shutdown();super.onDestroy()
     }
 }
-

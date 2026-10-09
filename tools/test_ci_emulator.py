@@ -214,9 +214,12 @@ run_credit_restart_regression || exit "$?"
                 # GNU timeout creates child process groups. Kill this isolated test
                 # session, not just its shell, so inherited output pipes cannot hang.
                 killed=[]
-                for entry in sorted(Path('/proc').iterdir(),key=lambda p:p.name,reverse=True):
-                    if not entry.name.isdigit():continue
-                    pid=int(entry.name)
+                # Some executors expose a /proc PID view different from Popen's
+                # namespace. Always include our known child; discovery supplements
+                # it, and the exact session check still gates every signal.
+                candidates={int(entry.name) for entry in Path('/proc').iterdir() if entry.name.isdigit()}
+                if process.pid>0:candidates.add(process.pid)
+                for pid in sorted(candidates,reverse=True):
                     try:
                         if os.getsid(pid)==process.pid:
                             os.kill(pid,signal.SIGKILL);killed.append(pid)
@@ -357,13 +360,40 @@ run_credit_restart_regression || exit "$?"
     def test_host_watchdog_retains_events_and_phase_diagnostics(self):
         with patch(__name__+'.HARNESS_WATCHDOG_SECONDS',0.01):
             with self.assertRaises(AssertionError) as raised:
-                self.run_boundary('timeout')
+                # Keep the child alive until cleanup. An immediate exit 124 can
+                # finish between TimeoutExpired and the /proc scan on a busy host.
+                self.run_boundary('hung_pid')
         retained=Path(str(raised.exception).split('Retained evidence: ',1)[1].splitlines()[0])
         try:
             self.assertTrue((retained/'watchdog.json').is_file())
             self.assertTrue((retained/'stdout.log').is_file())
             self.assertTrue((retained/'stderr.log').is_file())
             self.assertTrue(json.loads((retained/'watchdog.json').read_text())['killed_session_pids'])
+        finally:shutil.rmtree(retained)
+
+    def test_host_watchdog_cleans_known_child_when_proc_omits_its_pid(self):
+        process=Mock(pid=123456789)
+        process.communicate.side_effect=[
+            subprocess.TimeoutExpired('synthetic harness',60),
+            ('known child output','known child error')]
+        original_iterdir=Path.iterdir
+        def visible_entries(path):
+            return iter(()) if path==Path('/proc') else original_iterdir(path)
+        with patch(__name__+'.subprocess.Popen',return_value=process), \
+             patch.object(Path,'iterdir',visible_entries), \
+             patch(__name__+'.os.getsid',return_value=process.pid) as getsid, \
+             patch(__name__+'.os.kill') as kill:
+            with self.assertRaises(AssertionError) as raised:
+                self.run_boundary('hung_pid')
+        retained=Path(str(raised.exception).split('Retained evidence: ',1)[1].splitlines()[0])
+        try:
+            getsid.assert_called_once_with(process.pid)
+            kill.assert_called_once_with(process.pid,signal.SIGKILL)
+            metadata=json.loads((retained/'watchdog.json').read_text())
+            self.assertEqual(metadata['killed_session_pids'],[process.pid])
+            self.assertFalse(metadata['cleanup_timed_out'])
+            self.assertEqual((retained/'stdout.log').read_text(),'known child output')
+            self.assertEqual((retained/'stderr.log').read_text(),'known child error')
         finally:shutil.rmtree(retained)
 
     def test_api30_omission_and_phase_deadlines_are_explicit(self):

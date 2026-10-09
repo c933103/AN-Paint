@@ -8,26 +8,37 @@ import org.catrobat.paintroid.R
 internal enum class IllustrationSource(val home: String,val terms: String,val descriptionId: Int) {
     CATROBAT("https://catrobat.org/figures-download/","https://developer.catrobat.org/pages/legal/licenses/catrobat/",R.string.gallery_description),
     IRASUTOYA("https://www.irasutoya.com/","https://www.irasutoya.com/p/terms.html",R.string.ui_irasutoya_help34),
-    OPENCLIPART("https://openclipart.org/","https://openclipart.org/share",R.string.ui_openclipart_help34);
+    OPENCLIPART("https://openclipart.org/","https://openclipart.org/share",R.string.ui_openclipart_help34),
+    COMMONS("https://commons.wikimedia.org/wiki/Category:Blank_maps","https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",R.string.commons_check_file_licence);
 
-    val label: String get()=when(this) {CATROBAT->ui(R.string.ui_catrobat_sticker_gallery);IRASUTOYA->"Irasutoya";OPENCLIPART->"Openclipart"}
+    val label: String get()=when(this) {CATROBAT->ui(R.string.ui_catrobat_sticker_gallery);IRASUTOYA->"Irasutoya";OPENCLIPART->"Openclipart";COMMONS->ui(R.string.commons_blank_maps)}
     private fun secure(uri: Uri)=uri.scheme=="https" && uri.userInfo==null && uri.port in listOf(-1,443)
     fun allowsPage(uri: Uri): Boolean=secure(uri) && when(this) {
         CATROBAT->uri.host in catrobatHosts
         IRASUTOYA->uri.host in setOf("irasutoya.com","www.irasutoya.com") || (uri.host=="cse.google.com" && uri.path=="/cse")
         OPENCLIPART->uri.host in setOf("openclipart.org","www.openclipart.org")
+        COMMONS->uri.host=="commons.wikimedia.org"
     }
     fun allowsImage(uri: Uri): Boolean=secure(uri) && when(this) {
         CATROBAT->uri.host in catrobatHosts && raster.matches(uri.path.orEmpty())
         IRASUTOYA->uri.host in irasutoyaImageHosts && raster.matches(uri.path.orEmpty())
         OPENCLIPART->uri.host in setOf("openclipart.org","www.openclipart.org") &&
             (Regex("/image/(400|800|2000)px/[0-9]+/?").matches(uri.path.orEmpty()) || raster.matches(uri.path.orEmpty()))
+        // Accept Commons original SVG or raster files, never server-generated SVG preview thumbnails.
+        COMMONS->uri.host=="upload.wikimedia.org" && uri.path.orEmpty().let { path ->
+            path.startsWith("/wikipedia/commons/") &&
+                !path.startsWith("/wikipedia/commons/thumb/") &&
+                !path.startsWith("/wikipedia/commons/archive/") &&
+                (raster.matches(path) || path.endsWith(".svg",true))
+        }
     }
     fun allowsDownload(uri: Uri)=allowsImage(uri)
     fun isArtworkPage(uri: Uri)=allowsPage(uri) && when(this) {
         CATROBAT->true
         IRASUTOYA->uri.host!="cse.google.com" && Regex("/[0-9]{4}/[0-9]{2}/[^/]+\\.html").matches(uri.path.orEmpty())
         OPENCLIPART->uri.path.orEmpty().startsWith("/detail/")
+        COMMONS->uri.path.orEmpty().startsWith("/wiki/File:") ||
+            (uri.path=="/w/index.php" && uri.getQueryParameter("title")?.startsWith("File:")==true)
     }
     companion object {
         val catrobatHosts=setOf("catrobat.org","www.catrobat.org","catrobatblog.files.wordpress.com","catrobatblog.wpcomstaging.com")

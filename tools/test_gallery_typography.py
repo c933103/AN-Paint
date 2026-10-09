@@ -10,8 +10,11 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 
 
-def script(name, replacements):
-    source = (SOURCE / name).read_text().split('"""', 2)[1]
+def script(name, replacements, declaration=None):
+    source = (SOURCE / name).read_text()
+    if declaration is not None:
+        source = source.split(declaration, 1)[1]
+    source = source.split('"""', 2)[1]
     for before, after in replacements.items():
         source = source.replace(before, after)
     return source
@@ -24,15 +27,18 @@ class GalleryTypographyTests(unittest.TestCase):
             '${JSONObject.quote(useLabel)}': json.dumps('𡨸 Use'),
             '${JSONObject.quote(copyLabel)}': json.dumps('ᠮᠠᠨᠵᡠ Copy'),
             '${IllustrationPage.USE_SCHEME}': 'anpaint-gallery-use',
+            '${USE_SCHEME}': 'anpaint-gallery-use',
             '$USE_SCHEME': 'anpaint-gallery-use',
             '${GalleryPage.CREDIT_SCHEME}': 'anpaint-gallery-credit',
             '$CREDIT_SCHEME': 'anpaint-gallery-credit',
             "${'$'}": '$',
+            '${"$"}': '$',
         }
         scripts = {
             'CATROBAT': script('GalleryPage.kt', common),
             'IRASUTOYA': script('IllustrationPage.kt', common | {'${JSONObject.quote(provider.name)}': '"IRASUTOYA"'}),
             'OPENCLIPART': script('IllustrationPage.kt', common | {'${JSONObject.quote(provider.name)}': '"OPENCLIPART"'}),
+            'COMMONS': script('IllustrationPage.kt', common, 'private fun commonsScript'),
         }
         runner = r'''
 const assert=require('assert');const vm=require('vm');
@@ -48,19 +54,26 @@ for(const [provider,script] of Object.entries(scripts)) {
     querySelector(query){if(query==='img')return {alt:'Original title'};return this.children.find(x=>x.hasAttribute('data-anpaint-credit'))||null;}
   }
   const parent=new Element(),anchor=new Element(),title=new Element(),prose=new Element();parent.appendChild(anchor);
-  const paths={CATROBAT:['https://catrobat.org/art.png','/figures-download/'],IRASUTOYA:['https://blogger.googleusercontent.com/art.png','/2026/01/art.html'],OPENCLIPART:['https://openclipart.org/image/2000px/123','/detail/123/art']};
+  const paths={CATROBAT:['https://catrobat.org/art.png','/figures-download/'],IRASUTOYA:['https://blogger.googleusercontent.com/art.png','/2026/01/art.html'],OPENCLIPART:['https://openclipart.org/image/2000px/123','/detail/123/art'],COMMONS:['https://upload.wikimedia.org/wikipedia/commons/1/12/Map.svg','/wiki/File:Map.svg']};
   anchor.href=paths[provider][0];const originalTitle=title.textContent,originalProse=prose.textContent;
-  const document={body:{},querySelectorAll:()=>[anchor],querySelector:()=>title,getElementById:()=>title,createElement:()=>new Element()};
+  const originalAnchorText=anchor.textContent,originalAnchorHref=anchor.href;
+  const document={body:{},title:'Original map - Wikimedia Commons',querySelectorAll:()=>[anchor],querySelector:q=>q.startsWith('.fullMedia ')?anchor:title,getElementById:id=>id==='anpaint-commons-actions'?(parent.children.find(x=>x.id===id)||null):title,createElement:()=>new Element()};
   const window={};const sandbox={document,window,URL,encodeURIComponent,location:{href:'https://publisher.example'+paths[provider][1],pathname:paths[provider][1]},MutationObserver:class {constructor(callback){this.callback=callback;}observe(){}disconnect(){}}};
   vm.runInNewContext(script,sandbox);
   let controls=provider==='CATROBAT'?[anchor,parent.children[1]]:anchor.nextElementSibling.children;
   assert.equal(controls.length,2);
   for(const item of controls)assert.equal(item.getAttribute('data-anpaint-action'),'true');
   const count=parent.children.length;
-  (window.anPaintGalleryObserver||window.anPaintIllustrationObserver).callback();
+  for(const item of controls)delete item.attributes['data-anpaint-action'];
+  (window.anPaintGalleryObserver||window.anPaintIllustrationObserver||window.anPaintCommonsObserver).callback();
   assert.equal(parent.children.length,count,'No duplicate buttons on page mutation');
+  for(const item of controls)assert.equal(item.getAttribute('data-anpaint-action'),'true','Reused actions retain typography');
   assert.equal(title.textContent,originalTitle);assert.equal(prose.textContent,originalProse);
   assert.deepEqual(parent.style,{});assert.equal(parent.getAttribute('data-anpaint-action'),null);
+  if(provider==='COMMONS') {
+    assert.equal(anchor.textContent,originalAnchorText);assert.equal(anchor.href,originalAnchorHref);
+    assert.equal(anchor.getAttribute('data-anpaint-action'),null);assert.deepEqual(anchor.style,{});
+  }
 }
 '''
         node = shutil.which('node')

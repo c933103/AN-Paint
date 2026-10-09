@@ -21,6 +21,14 @@ internal object GalleryCredits {
             lines.add(ui(R.string.gallery_credit_source,source))
             lines.add(ui(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY))
             lines.add(ui(R.string.gallery_credit_licence,licence.ifBlank {CC_BY_SA}))
+        } else if(provider==IllustrationSource.COMMONS) {
+            // The source file has its own terms; never inherit another provider's default licence.
+            lines.add("Wikimedia Commons")
+            lines.add(ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home))
+            lines.add(ui(R.string.gallery_credit_source,source))
+            if(licence.isNotBlank()) lines.add(licence)
+            lines.add(ui(R.string.commons_check_file_licence))
+            lines.add(provider.terms)
         } else {
             lines.add(when {
                 author.isNotBlank() -> provider.label

@@ -8,6 +8,7 @@ internal object IllustrationPage {
     const val USE_SCHEME="anpaint-gallery-use"
     fun script(provider: IllustrationSource,useLabel: String,copyLabel: String): String {
         if(provider==IllustrationSource.CATROBAT) return GalleryPage.script(useLabel,copyLabel)
+        if(provider==IllustrationSource.COMMONS) return commonsScript(useLabel,copyLabel)
         return """
             (function() {
               var provider=${JSONObject.quote(provider.name)}, use=${JSONObject.quote(useLabel)}, copy=${JSONObject.quote(copyLabel)};
@@ -60,6 +61,47 @@ internal object IllustrationPage {
             })();
         """.trimIndent()
     }
+
+    /** Only the original download link on a Commons File page gets AN Paint actions. */
+    private fun commonsScript(useLabel: String, copyLabel: String): String = """
+        (function() {
+          var use=${JSONObject.quote(useLabel)}, copy=${JSONObject.quote(copyLabel)};
+          function adapt() {
+            var page=new URL(location.href), fileTitle;
+            try {fileTitle=page.pathname.indexOf('/wiki/')===0?decodeURIComponent(page.pathname.slice(6)):page.searchParams.get('title')}catch(e){return}
+            if(!fileTitle || fileTitle.indexOf('File:')!==0) return;
+            var original=document.querySelector('.fullMedia a.internal[href], .fullMedia a[href*="upload.wikimedia.org"]');
+            if(!original) return;
+            var u;try {u=new URL(original.href,location.href)}catch(e){return}
+            if(u.protocol!=='https:' || u.hostname!=='upload.wikimedia.org' || u.username || u.password || (u.port && u.port!=='443') ||
+               u.pathname.indexOf('/wikipedia/commons/')!==0 ||
+               u.pathname.indexOf('/wikipedia/commons/thumb/')===0 || u.pathname.indexOf('/wikipedia/commons/archive/')===0 ||
+               !/\.(svg|png|jpe?g|webp|gif|jxl|bmp|dib|ico|tiff?|heic|avif)${"$"}/i.test(u.pathname)) return;
+            var row=document.getElementById('anpaint-commons-actions');
+            if(!row) {
+              row=document.createElement('div');row.id='anpaint-commons-actions';
+              row.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin:10px 0';
+              original.insertAdjacentElement('afterend',row);
+            }
+            [use,copy].forEach(function(label,i) {
+              var link=row.children[i];if(!link) {
+                link=document.createElement('a');link.style.cssText='display:inline-block;padding:12px;background:#e9ddff;color:#21005d;border:1px solid #6750a4;border-radius:4px;font:16px sans-serif';
+                row.appendChild(link);
+              }
+              if(link.getAttribute('data-anpaint-action')!=='true')link.setAttribute('data-anpaint-action','true');
+              var target=(i===0?'${USE_SCHEME}://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+
+                '?source='+encodeURIComponent(u.href)+'&page='+encodeURIComponent(location.href)+
+                '&title='+encodeURIComponent(document.title.replace(/ - Wikimedia Commons${"$"}/,''));
+              if(link.getAttribute('href')!==target)link.setAttribute('href',target);
+              if(link.textContent!==label)link.textContent=label;
+            });
+          }
+          adapt();
+          if(window.anPaintCommonsObserver)window.anPaintCommonsObserver.disconnect();
+          window.anPaintCommonsObserver=new MutationObserver(adapt);
+          window.anPaintCommonsObserver.observe(document.body,{childList:true,subtree:true});
+        })();
+    """.trimIndent()
 
     /** Reuse Irasutoya's own English-search form, including its submit handler and current parameters. */
     fun searchIrasutoya(query: String): String="""
