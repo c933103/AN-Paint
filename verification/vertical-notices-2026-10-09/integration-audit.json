@@ -1,0 +1,735 @@
+{
+  "schema": 1,
+  "audit_date_utc": "2026-10-09",
+  "repository": "c933103/AN-Paint",
+  "measured_commit": "3f8bb0f64cfad485a1e725223d3475d8d60f9e5b",
+  "integration_base_commit": "748a03d496b6b053f9dba1835a11f7d9748275f7",
+  "integration_base_tree": "546c044d26c0916ac0b09d59a7db17f96f54f649",
+  "recovery": {
+    "source_tree": "11f20aea52a7758ef1e54ac17fe5adf13dddb432",
+    "tree_use": "Read-only recovery of 42 original artifact blobs; never used as the integration base.",
+    "verified_original_files": 42,
+    "publication_byte_exact_original_files": 38,
+    "new_recovery_revisions": [
+      "README.md",
+      "artifact-manifest.json",
+      "probes/check_evidence.py",
+      "provenance.json"
+    ],
+    "new_files": [
+      "integration-audit.json"
+    ],
+    "unavailable_revision": "A later 43-file metadata/integration revision was not recovered. Its missing bytes/hashes are not reconstructed or represented as original artifacts. This audit and four revised files are newly authored recovery material.",
+    "native_rerun": false,
+    "historical_artifacts": [
+      {
+        "path": "README.md",
+        "bytes": 14550,
+        "git_blob": "03536462c4b8d8d113af1101dfb55665655885f7",
+        "sha256": "9ab09f7ea85f2278f359f6b2e3db52f00b25727079c1b84faa625f76054a3533",
+        "publication_classification": "new recovery revision from exact historical file"
+      },
+      {
+        "path": "artifact-manifest.json",
+        "bytes": 6052,
+        "git_blob": "87319c16f41dbce9b01e3dc2a1c6acd8979854c0",
+        "sha256": "e1a5f3b665f6bbd3a509568a7f2c49ecd3d9d3573c12982a773874445cb55c80",
+        "publication_classification": "new recovery revision from exact historical file"
+      },
+      {
+        "path": "data/host-api30.tsv.gz",
+        "bytes": 9472,
+        "git_blob": "22e40b153922280fe4a66f487786da176513156e",
+        "sha256": "933cf23b700db3d9ea355740d8ac2e2be745bbee1c2de80eba01261045dd2989",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/host-api35.tsv.gz",
+        "bytes": 9595,
+        "git_blob": "de76b68e32853b83c159731f21a3e65736332768",
+        "sha256": "b993634f91bbdd035b6b8b32396e7934d0def1982beee71a3c63ed8aaf90f579",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/measurements-api30.tsv.gz",
+        "bytes": 35384,
+        "git_blob": "ad5a7df7e9b9ec72e36403a9097b6c5d4d6ef293",
+        "sha256": "91c1cad8b1ce17dc119d40c7b1b7967743269deb1c2e97f85f282cc959d1185f",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/measurements-api35.tsv.gz",
+        "bytes": 35303,
+        "git_blob": "b31f17d3aba6d8c8f0cddf1fa01cee220cbc209c",
+        "sha256": "c1d0336d403ccc8543b44944c5895abd61cbbd7695055abb7626d5b6e0776f47",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/routes-api30.tsv.gz",
+        "bytes": 658,
+        "git_blob": "2e4e1bcf3863e2301147890bddfad800c0dbbc10",
+        "sha256": "1aea27da613da75a799218a45bfeadc0b033be4ea5e900c257d2213fcb7bbf8f",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/routes-api35.tsv.gz",
+        "bytes": 658,
+        "git_blob": "2e4e1bcf3863e2301147890bddfad800c0dbbc10",
+        "sha256": "1aea27da613da75a799218a45bfeadc0b033be4ea5e900c257d2213fcb7bbf8f",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/transitions-api30.tsv.gz",
+        "bytes": 347,
+        "git_blob": "13172b12c8451c81eaa7044ae975c76f861e4204",
+        "sha256": "d307deec9d6cb02a4d14e77ac91b6a3cd8ade7ed0704966ee48a69610d1a5654",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "data/transitions-api35.tsv.gz",
+        "bytes": 346,
+        "git_blob": "19c292bdfe8a975dd430883a8819b3eca75c500a",
+        "sha256": "a3d4f4c43006508555e45477d84f223993ec54bfc41eb33e26a4747af36eab5e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "dependencies.json",
+        "bytes": 12953,
+        "git_blob": "50666a4e0c118dac28d38481341d65e0bcd25f3c",
+        "sha256": "388d27e06ebb9d1306f36e6f6c8b6a8a9f1d9ab4aa7b11fb077bf424baa53694",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "execution.json",
+        "bytes": 1027,
+        "git_blob": "b01861d2efbb0b442b303e8703bac57d881df726",
+        "sha256": "dbe0681ca4122586bbdf3bd8288210dcc9bd46fad12d43a7a597a2c34f816163",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "fixture-ledger.json",
+        "bytes": 16626,
+        "git_blob": "9d6408759c341f6a309a785fc7a86deed840f6fe",
+        "sha256": "fdc1122f6c3332da3dbb00c0ad958479fbc8acc92c27c388556be46174d9e053",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "images/api30-en-xv-clipped.png",
+        "bytes": 5476,
+        "git_blob": "3154aa567f1cff65dc635195cf8daedc59772e74",
+        "sha256": "0d3e42caaeb04b92aaa8a9e91495f9b688729f345402a3fce503f51c22f29af8",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "images/api30-en-xv-reference.png",
+        "bytes": 4172,
+        "git_blob": "5eabc7bb4aa496fbe968cd38c1164a4ec4f3d6ed",
+        "sha256": "7da96d6416bd0bf86fcebc9f3a776351d35b13ed159b2faf5a03376eaadcf987",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "images/api35-lzh-clipped.png",
+        "bytes": 4882,
+        "git_blob": "6cd9edf81ce2bfd884646d55e9ed54b9427ec175",
+        "sha256": "d216c09c6b3d20ca2346fc06059d0e36de49572b2a108753d68a0233261b3474",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "images/api35-lzh-reference.png",
+        "bytes": 3525,
+        "git_blob": "e68f20dfccdc5cb43f600fd9e24ee347f2c39213",
+        "sha256": "4f321b266a15b55c86928137ad4104007da2f002b8c2aafa49a3f781446f554f",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "inputs.json",
+        "bytes": 2509,
+        "git_blob": "ee4db3ef35b6a6fe136590334d92e2d20f737136",
+        "sha256": "c71cd3f49b9c9443fd7e2f38f0da4b67240e24b74e5e9039c3802d0733ea488e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/compile.log",
+        "bytes": 201,
+        "git_blob": "eff33069554267a1fb7e5f633e7f040828685f7c",
+        "sha256": "82354e0ac1016547893ae662068ec04f1e9f9f040a76e171839fd8f39496a2d2",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/host-api30.log",
+        "bytes": 52,
+        "git_blob": "7e80e4aa5fe0c1c5c69cef1b35cfef3fa90f57bd",
+        "sha256": "7eec183ad7468264891cd8413275660c895ac19d99fe6ddf988d912fe7262776",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/host-api35.log",
+        "bytes": 53,
+        "git_blob": "a364c92447d2ae5d623da184ae22d28672fef6fd",
+        "sha256": "68f5c9df44746cd83679ad263eb1726ea4d67e4f4b86df4348f6662d9dac6a96",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/host-python.log",
+        "bytes": 1960,
+        "git_blob": "8e3b54b67ae4731c2db06a5c7dd222849cf4bba3",
+        "sha256": "c2c6e495b39a6c69421f77fc070f8967a2342a8c137696f7ba8ca44f7e7f318e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/lifecycle-api30.log",
+        "bytes": 24,
+        "git_blob": "e147a2c0428c220e904a3f7cbaf0d37a33a62ba0",
+        "sha256": "915ea5b2d67e291a0ce8c09d5ee4f499c5c76e54fdda30abb5e03f4bd57d2c7e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/lifecycle-api35.log",
+        "bytes": 24,
+        "git_blob": "e147a2c0428c220e904a3f7cbaf0d37a33a62ba0",
+        "sha256": "915ea5b2d67e291a0ce8c09d5ee4f499c5c76e54fdda30abb5e03f4bd57d2c7e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/measurement-api30.log",
+        "bytes": 50,
+        "git_blob": "34bab80e07a3e18ba453218dc98cc7ff09190e86",
+        "sha256": "c04aa345441fa980e150d53b564c37f5fc807a1d217462e1023f4ac4f96cb3c4",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/measurement-api35.log",
+        "bytes": 50,
+        "git_blob": "702661ca77a4422441aa3d87ea9b9d8b3512d7bb",
+        "sha256": "420405570dc0690876960b5dd1ea05f0232e6100515cfaaefbcbd16d76e8b1ca",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/transitions-api30.log",
+        "bytes": 50,
+        "git_blob": "5dba4f95d8d269edd18f1c396129751db28ef2ca",
+        "sha256": "53f7045a820c5446158a69c5d2bcdce5068eeb7f0f06077cb603acca7930d56b",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "logs/transitions-api35.log",
+        "bytes": 50,
+        "git_blob": "98f2e31b527828378775bf4ff8d7935bd3ef513e",
+        "sha256": "fd846ba0a0c6ac501426b6c00a75489506f2fe894c20b6b210c5328332a02097",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probe-sources.json",
+        "bytes": 1626,
+        "git_blob": "33d9e9d4afbcc59054c67a139f279ca3e304a8c7",
+        "sha256": "4fc131b9042c12876aff697f8b56355a64bf6d2cd0a4cbc4d52b0fd5e47f0c74",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/NoticeColours.kt",
+        "bytes": 300,
+        "git_blob": "e7684441c71a7e0629ab01726e988bd62859e6d2",
+        "sha256": "83aa1fcdee7da22e7fd66e6421012293d9d17d76a99a5ea07f2b9ec575fbae6a",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/NoticeTransitionProbe.kt",
+        "bytes": 6395,
+        "git_blob": "96163dc1ebd0209120acedf30eb3f2e9d0d151fe",
+        "sha256": "a5e19fcd1a730619f0dc0eac94c1aabb02d5f453e454363239144abcfb0bbd6f",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/ProbeSubsetRunner.kt",
+        "bytes": 952,
+        "git_blob": "e01466be53428bb18f62b7a597cb9eb1f5d014aa",
+        "sha256": "9f297726a51271b3754287bfec33b0483f3a91e7831d7fe59056178487cdd839",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/VerticalNoticeHostProbe.kt",
+        "bytes": 17176,
+        "git_blob": "721aa18375f9061de01fe2de39809eb17728206a",
+        "sha256": "a68f06df6c6f9281d610faf528f3bd283685c3bd4b888f636f560bd3a7ec6962",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/VerticalNoticeMeasurementProbe.kt",
+        "bytes": 6585,
+        "git_blob": "d202289a400baa78b1fe7a9fc3fa9ee9e46df9be",
+        "sha256": "ff814fd6c464718c9c0756248e57e6307d0b2d333cec77003ffd64070b05ed58",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/check_evidence.py",
+        "bytes": 2633,
+        "git_blob": "88fad0486be3c0cb2a7361996bb84a11bbac4592",
+        "sha256": "96faa34b8f3419d14fb15dc0fb0a2cc6d4103829bc1f9a10099b2f948870c75b",
+        "publication_classification": "new recovery revision from exact historical file"
+      },
+      {
+        "path": "probes/check_runner_inputs.py",
+        "bytes": 1968,
+        "git_blob": "0317143dcb3238ef0f7a9b6e79cc493b3292fc45",
+        "sha256": "f243013872004fbc95c9849ea0cb9109106c0deb39437dc3de717f7de1b40ab2",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "probes/run.py",
+        "bytes": 10335,
+        "git_blob": "ff9a56f157988898d521f24bb8a9b10fd29059c0",
+        "sha256": "98affb9392b677579b9937d356c532107c2329dd6899b78c6daec26f9a63dfaa",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "provenance.json",
+        "bytes": 1076,
+        "git_blob": "8c333cee529eab5b77c06dc730b8af56b8f27f11",
+        "sha256": "dd60a8e109c4ac65b23281032970c8991f25b027bc872d1f077ed7a17cf77aab",
+        "publication_classification": "new recovery revision from exact historical file"
+      },
+      {
+        "path": "run-plan.json",
+        "bytes": 182,
+        "git_blob": "186c9a219cb1950bef3a666461048388baab4eff",
+        "sha256": "9d28d2ce8457534191a0fcfcea8a746a126a8928261c496a99cf2f1aefb2681e",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "run-status.json",
+        "bytes": 75,
+        "git_blob": "f2820c599acb9964eea75d2db67fb0024c7d8211",
+        "sha256": "d698edefbdbe8a200f14155fea421427e7b4c94ca24a1f735bed70ba002771b5",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "runner-input-checks.json",
+        "bytes": 454,
+        "git_blob": "a120af97b47153b097f22f66c050b353d1ab96cc",
+        "sha256": "a75f6e2969afab2fc6547ad7d4fbeb10c9d7c11ecbe2a926336bae92041f6c12",
+        "publication_classification": "byte-exact historical artifact"
+      },
+      {
+        "path": "summary.json",
+        "bytes": 12700,
+        "git_blob": "943f7cd2507895d8971701beac3896005d6fc3dc",
+        "sha256": "ad8e93236ba59f471c6e3b739b1704fa02c1e54ad107231251adf24f65b0c54b",
+        "publication_classification": "byte-exact historical artifact"
+      }
+    ]
+  },
+  "source_delta": {
+    "changed_repository_paths": 86,
+    "measured_input_files": 15,
+    "identical_measured_input_files": 9,
+    "changed_measured_input_files": 6,
+    "inputs": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "frozen_sha256": "719d9623b9ec7d05c14ea2cb03a3070275926127a9783f079f3e9b0eaf3a625f",
+        "integration_sha256": "30e4dba469b7e7fb1fd6b04b5ad58f8ba1dca3cb9e30ad6ce8b015a0e99a5adb",
+        "frozen_git_blob": "ab23ab3e3683d8cb4062d3f8ac641cd9216da78b",
+        "integration_git_blob": "4691bdab21b96df65bf3a34faf01ac1f7eba2df4",
+        "identical": false,
+        "projection": {
+          "kind": "exact-caller-line",
+          "text": "if(on) LocaleTypography.showMessage(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+\"\\n\"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG)",
+          "occurrences": 1
+        },
+        "delta_scope": "Gallery attribution, dimensions, white-backing decode propagation and trailing whitespace. The measured cursor caller is byte-identical; this source is inspected for fixtures, not compiled by the isolated harness."
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+mn+Mong/strings.xml",
+        "frozen_sha256": "c4be89578b177068de95d8f86ae76a6928509dad29219b5fe374441c31f623af",
+        "integration_sha256": "3c4e0017ec8eed9a423a927319ed02fac13ca66052ebeb170221474cdf2691ba",
+        "frozen_git_blob": "45fb3c7170ae7cd3684aabb8fe86651faa1b958d",
+        "integration_git_blob": "d7ca7826e495b0cd581ca920e4ea89013bef9fac",
+        "identical": false,
+        "changed_catalogue_keys": [
+          "commons_blank_maps",
+          "commons_check_file_licence",
+          "commons_svg_too_large",
+          "ui_autosave_is_paused_to_protect_that_draft_use"
+        ],
+        "projection": {
+          "kind": "catalogue-values",
+          "keys": [
+            "ui_cursor_pan_move32",
+            "ui_cursor_pan_draw32",
+            "ui_cursor_tap_hint37",
+            "ui_undo",
+            "ui_redo",
+            "ui_assembly_saved",
+            "ui_added_palette23",
+            "ui_full_text_copied",
+            "ui_saved"
+          ],
+          "sha256": "7951c9c5cf410b0f4c83a5ec798c0fd7e930ec8d0c4aec2cc721efc435b779af"
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+        "frozen_sha256": "b999dc311b6841ab2a4e46a542a5417bc7e3f21eb247bd397afe443e29304a4d",
+        "integration_sha256": "af20ca3c03de20f17d497c34f34815faa1124d13e3ee2913b8bfbcc27a408978",
+        "frozen_git_blob": "6f37a4ab1abb0e416a2cad3ca8b64a694e921fb0",
+        "integration_git_blob": "eb6330c2c6b603ab395f71f4053e7f944c821af8",
+        "identical": false,
+        "changed_catalogue_keys": [
+          "commons_blank_maps",
+          "commons_check_file_licence",
+          "commons_svg_too_large",
+          "ui_autosave_is_paused_to_protect_that_draft_use"
+        ],
+        "projection": {
+          "kind": "catalogue-values",
+          "keys": [
+            "ui_cursor_pan_move32",
+            "ui_cursor_pan_draw32",
+            "ui_cursor_tap_hint37",
+            "ui_undo",
+            "ui_redo",
+            "ui_assembly_saved",
+            "ui_added_palette23",
+            "ui_full_text_copied",
+            "ui_saved"
+          ],
+          "sha256": "50e9aeaeaeacb22faba51559740043b7dddf29414b70d04d5b37a10e6172310a"
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+lzh+Hant/strings.xml",
+        "frozen_sha256": "c62530bb1648b16d4de903e31d0a8f9ee1cb7dfedfbfb7aafffff3c1280aa05f",
+        "integration_sha256": "f07242eb52ee84b7ac0f3e118dbeba3b1ef6a6c561713f317d9d015ac3e1cc74",
+        "frozen_git_blob": "f12daab8d2abca78b8ae219b5834d65b488a557d",
+        "integration_git_blob": "3a75f2c9b803cc0aeb341ef8052bfb811e6644e3",
+        "identical": false,
+        "changed_catalogue_keys": [
+          "commons_blank_maps",
+          "commons_check_file_licence",
+          "commons_svg_too_large",
+          "ui_autosave_is_paused_to_protect_that_draft_use"
+        ],
+        "projection": {
+          "kind": "catalogue-values",
+          "keys": [
+            "ui_cursor_pan_move32",
+            "ui_cursor_pan_draw32",
+            "ui_cursor_tap_hint37",
+            "ui_undo",
+            "ui_redo",
+            "ui_assembly_saved",
+            "ui_added_palette23",
+            "ui_full_text_copied",
+            "ui_saved"
+          ],
+          "sha256": "bbdd588f2b69baee7e3a7d126611d9e3c250e4236c3435983463d2db8cb4e9a3"
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+en+XV/strings.xml",
+        "frozen_sha256": "1cc82f6d3101413645d490b2ee64c29c35e3d93466bbbc33b08f6a76e639aa9e",
+        "integration_sha256": "e09a60b17068f01a8e268f3d55695659b83de5ef0c9fffb836e71faefb5fca67",
+        "frozen_git_blob": "769811992fb94dafd9dc4af7aa81c6c276e7475b",
+        "integration_git_blob": "87b8c017546945fbd50460aadded3f6fc8fba8c4",
+        "identical": false,
+        "changed_catalogue_keys": [
+          "commons_blank_maps",
+          "commons_check_file_licence",
+          "commons_svg_too_large",
+          "ui_autosave_is_paused_to_protect_that_draft_use"
+        ],
+        "projection": {
+          "kind": "catalogue-values",
+          "keys": [
+            "ui_cursor_pan_move32",
+            "ui_cursor_pan_draw32",
+            "ui_cursor_tap_hint37",
+            "ui_undo",
+            "ui_redo",
+            "ui_assembly_saved",
+            "ui_added_palette23",
+            "ui_full_text_copied",
+            "ui_saved"
+          ],
+          "sha256": "bf94a018ae438de0f9f14fe0313b4a54ba2da5db42205ee1745bb99f8afda810"
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+        "frozen_sha256": "808514f2158d24d885a272b2a5ef71b5b569b6d871cda3357847c3f1ccf16827",
+        "integration_sha256": "76a204a7ca8de21d6ac4ecc2152a575c6ede75bf160fba59fcb087272a121ad7",
+        "frozen_git_blob": "bf51ec7a5db87104fe30341581987c04af5071b7",
+        "integration_git_blob": "d10ca4e0f377e256a260a379054372bd3a6fc78d",
+        "identical": false,
+        "changed_catalogue_keys": [
+          "commons_blank_maps",
+          "commons_check_file_licence",
+          "commons_svg_too_large",
+          "ui_autosave_is_paused_to_protect_that_draft_use"
+        ],
+        "projection": {
+          "kind": "catalogue-values",
+          "keys": [
+            "ui_cursor_pan_move32",
+            "ui_cursor_pan_draw32",
+            "ui_cursor_tap_hint37",
+            "ui_undo",
+            "ui_redo",
+            "ui_assembly_saved",
+            "ui_added_palette23",
+            "ui_full_text_copied",
+            "ui_saved"
+          ],
+          "sha256": "fc8c8cab81f938ac6be3219c1b545d3fd8c3ef666ea9e42650e644c934e49eb1"
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values/app_language_tags.xml",
+        "frozen_sha256": "ecdcf0e37e70dcd5578854d462e203053bbb53c45d73a119b13ebe5b19181bb3",
+        "integration_sha256": "ecdcf0e37e70dcd5578854d462e203053bbb53c45d73a119b13ebe5b19181bb3",
+        "frozen_git_blob": "6237d1c0eca01b64ff31f14c550ef0d802a9957f",
+        "integration_git_blob": "6237d1c0eca01b64ff31f14c550ef0d802a9957f",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/fonts/anpaintnomui.ttf",
+        "frozen_sha256": "1c809021f3c74ce27bb7cbe73e63339f46fa66f5b85252db504f4f62405701b9",
+        "integration_sha256": "1c809021f3c74ce27bb7cbe73e63339f46fa66f5b85252db504f4f62405701b9",
+        "frozen_git_blob": "8cfabaab858145c3fce7d5c63b51c9b91b2a3805",
+        "integration_git_blob": "8cfabaab858145c3fce7d5c63b51c9b91b2a3805",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/fonts/anpaintwuufallback.ttf",
+        "frozen_sha256": "f7aba8cc5f520aac6d63b1c79d6a9e0b2a4dfcfc18e272dea4e3263fd9f930df",
+        "integration_sha256": "f7aba8cc5f520aac6d63b1c79d6a9e0b2a4dfcfc18e272dea4e3263fd9f930df",
+        "frozen_git_blob": "79d107751a8e6fb45c4c39e1e5e3481fa3580894",
+        "integration_git_blob": "79d107751a8e6fb45c4c39e1e5e3481fa3580894",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/fonts/notosansmongolian.ttf",
+        "frozen_sha256": "805a55e10492c547ccadc1ad04faabdef61a74a5c02ecce69748378d66ef032d",
+        "integration_sha256": "805a55e10492c547ccadc1ad04faabdef61a74a5c02ecce69748378d66ef032d",
+        "frozen_git_blob": "f168d25fb2d57396bcf673aff55d140914dab58b",
+        "integration_git_blob": "f168d25fb2d57396bcf673aff55d140914dab58b",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt",
+        "frozen_sha256": "131c65644982ecb163fe9c29271d5d4174279468e8f3decf3a12366dc74916e6",
+        "integration_sha256": "131c65644982ecb163fe9c29271d5d4174279468e8f3decf3a12366dc74916e6",
+        "frozen_git_blob": "030b07cccec83ca37446754ea971ce2d425017a7",
+        "integration_git_blob": "030b07cccec83ca37446754ea971ce2d425017a7",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt",
+        "frozen_sha256": "1e16a15cfde3b0b1d12426607b65a75ab7098beb90571fbd17536cd955a888cc",
+        "integration_sha256": "1e16a15cfde3b0b1d12426607b65a75ab7098beb90571fbd17536cd955a888cc",
+        "frozen_git_blob": "d8196b3861cb3c08f0ced7212be8c05ddb6339bd",
+        "integration_git_blob": "d8196b3861cb3c08f0ced7212be8c05ddb6339bd",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt",
+        "frozen_sha256": "b98fb076ae4d9e9ea28a35ecd046503d4f420dcac04828444c4a58f434ea857e",
+        "integration_sha256": "b98fb076ae4d9e9ea28a35ecd046503d4f420dcac04828444c4a58f434ea857e",
+        "frozen_git_blob": "6476630147d589edbbe2e953b93519d5979d5e74",
+        "integration_git_blob": "6476630147d589edbbe2e953b93519d5979d5e74",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNotificationTest.kt",
+        "frozen_sha256": "1f0cada87ce41ec37338c0ebbbd54f562df1c000259ec3cf9701c21af9e658d2",
+        "integration_sha256": "1f0cada87ce41ec37338c0ebbbd54f562df1c000259ec3cf9701c21af9e658d2",
+        "frozen_git_blob": "807b8867e31937be4748f3cbc7a84683b715dd2c",
+        "integration_git_blob": "807b8867e31937be4748f3cbc7a84683b715dd2c",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "frozen_sha256": "ab58ffc6bd8eeb8f3b147fff7f15f6a4639b78d481934432bff4957354e8e777",
+        "integration_sha256": "ab58ffc6bd8eeb8f3b147fff7f15f6a4639b78d481934432bff4957354e8e777",
+        "frozen_git_blob": "e77f1fd01d9e7d9d9f59c37f40d4d1ea6f166a22",
+        "integration_git_blob": "e77f1fd01d9e7d9d9f59c37f40d4d1ea6f166a22",
+        "identical": true
+      }
+    ]
+  },
+  "fresh_validation": {
+    "kind": "normal host Python suite only",
+    "source_commit": "748a03d496b6b053f9dba1835a11f7d9748275f7",
+    "command": "python -m unittest discover -s tools -p 'test_*.py'",
+    "exit_code": 0,
+    "tests": 307,
+    "failures": 0,
+    "skips": 0,
+    "log_sha256": "7efa53468caad0b0e1b2a66c29eac76b303f5c5741547699357331cba955a3e9",
+    "log": "...................................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 307 tests in 47.882s\n\nOK\n{\n  \"success\": true,\n  \"expected_tests\": 1,\n  \"completed_tests\": 1,\n  \"errors\": []\n}\n{\n  \"success\": true,\n  \"expected_tests\": 1,\n  \"completed_tests\": 1,\n  \"errors\": []\n}\n{\n  \"success\": false,\n  \"expected_tests\": 1,\n  \"completed_tests\": 1,\n  \"errors\": [\n    \"Missing or unsuccessful final instrumentation result: []\"\n  ]\n}\n{\n  \"success\": false,\n  \"expected_tests\": 3,\n  \"completed_tests\": 0,\n  \"errors\": [\n    \"--leave-target-running is restricted to the one-method accepted-credit seed\",\n    \"adb exited with status None\",\n    \"Missing or unsuccessful final instrumentation result: []\",\n    \"No tests completed\",\n    \"Runner test counts [] do not match 3 declared methods\",\n    \"3 declared test method(s) did not complete\"\n  ]\n}\n{\n  \"success\": false,\n  \"expected_tests\": 1,\n  \"completed_tests\": 0,\n  \"errors\": [\n    \"Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.\",\n    \"adb exited with status None\",\n    \"Missing or unsuccessful final instrumentation result: []\",\n    \"No tests completed\",\n    \"Runner test counts [] do not match 1 declared methods\",\n    \"1 declared test method(s) did not complete\"\n  ]\n}\n{\n  \"success\": false,\n  \"expected_tests\": 1,\n  \"completed_tests\": 0,\n  \"errors\": [\n    \"Accepted-credit seed requires exactly one already-running target PID\",\n    \"adb exited with status None\",\n    \"Missing or unsuccessful final instrumentation result: []\",\n    \"No tests completed\",\n    \"Runner test counts [] do not match 1 declared methods\",\n    \"1 declared test method(s) did not complete\"\n  ]\n}\n",
+    "scope": "Fresh recovery-time result. Does not rerun the historical 32 native executions, build an APK, run lint or establish device acceptance. Expected negative-fixture JSON in this successful test log is not an Android runtime failure."
+  },
+  "interpretation": "Native measurements remain frozen at the measured commit. Exact compiled sources, fonts, picker tags and lifecycle tests are unchanged at the integration base. Changed catalogue values are outside the nine measured keys; the actual one-newline cursor caller is unchanged. This input audit is not a whole-current-application native test rerun.",
+  "checker_revision": "New explicit-failure validator with safe unique manifest paths, complete fixed package inventory and normal/-O self-tests. Historical checker assertions were replaced only in this newly authored recovery checker; frozen native probes and results remain unchanged.",
+  "checker_self_tests": {
+    "kind": "Fresh recovery checker tests; not native tests",
+    "command": "python verification/vertical-notices-2026-10-09/probes/check_evidence.py --self-test",
+    "cases": [
+      {
+        "case": "baseline",
+        "optimized": false,
+        "expected": "pass",
+        "exit_code": 0,
+        "passed": true
+      },
+      {
+        "case": "baseline",
+        "optimized": true,
+        "expected": "pass",
+        "exit_code": 0,
+        "passed": true
+      },
+      {
+        "case": "changed-bytes",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "changed-bytes",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "truncated-bytes",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "truncated-bytes",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "omitted-entry",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "omitted-entry",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "duplicate-entry",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "duplicate-entry",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "unsafe-path",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "unsafe-path",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "missing-file",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "missing-file",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "source-mismatch",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "source-mismatch",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "stage-status",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "stage-status",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "stage-execution",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "stage-execution",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "count-metadata",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "count-metadata",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      }
+    ],
+    "interpretation": "Two positive and twenty expected rejection executions, using normal and optimized Python. Stage/count corruption updates its temporary manifest hash so the semantic consistency failure is tested separately from byte mismatch."
+  }
+}
