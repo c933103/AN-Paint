@@ -198,11 +198,14 @@ class FlowTextView(context: Context): TextView(context) {
 /** Start at the first reading column in right-to-left vertical scripts. */
 internal class ColumnScrollView(context: Context): android.widget.HorizontalScrollView(context) {
     private var positioned=false
+    /** A replaced persistent message starts at its first reading column again. */
+    fun resetToReadingStart() {positioned=false;requestLayout()}
     override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {
         super.onLayout(changed,left,top,right,bottom)
         if(!positioned && childCount>0 && width>0) {
             positioned=true
             if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) scrollTo((getChildAt(0).width-width+paddingLeft+paddingRight).coerceAtLeast(0),0)
+            else scrollTo(0,0)
         }
     }
 }
