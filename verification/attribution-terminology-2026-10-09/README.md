@@ -101,6 +101,8 @@ Purpose: About action/title displaying legal/GIMP_TRANSLATION_NOTICES.txt.
 
 Purpose: Catrobat guidance containing the exact About → Image credits path.
 
+Reachability qualification from the bounded wording review: this is a retained guidance resource; its live UI reachability is not established. The current Catrobat provider description selects `gallery_description`.
+
 - `Névjegy, licencek és jóváírások` → `Névjegy, licencek és forrásmegjelölések` (1 occurrence(s))
 - `Képjóváírások` → `Képek forrásmegjelölései` (1 occurrence(s))
 
@@ -134,6 +136,8 @@ Purpose: Assembly Help final sentence referring to the shared Catrobat/AGPL and 
 ### AN-W05-C05-HU-17: `ui_the_arrow_on_the_left_directly_below_the`
 
 Purpose: Detailed Help: quoted Terms/About/Image credits labels, bundled-font attributions and the About panel’s asset/font-attribution content.
+
+Reachability qualification from the bounded wording review: this is a retained detailed Help resource; its live UI reachability is not established. The current main Help action selects `ui_help23`.
 
 - `Jóváírások és feltételek` → `Forrásmegjelölések és feltételek` (1 occurrence(s))
 - `Névjegy, licencek és jóváírások` → `Névjegy, licencek és forrásmegjelölések` (3 occurrence(s))
@@ -174,3 +178,7 @@ On the unchanged pinned snapshot:
 ## Follow-up refinement and C03 successor impact
 
 HU-16 has been refined to keep the explicit Catrobat/AGPL attribution sense. See [test-impact-plan.md](test-impact-plan.md) for the strict successor plan for C05-HU-15, which intentionally changes the historical C03 Help hash. The review-only successor manifest and an in-memory 60-case/seven-negative-mutation proof are retained here. Historical C03 evidence and application resources remain unchanged.
+
+## Bounded wording review
+
+The [9 October contextual wording review](wording-review.md) supports the 17 proposed replacements within their individual source contexts, with [structured per-item dispositions](wording-review-dispositions.json). It identifies no required wording correction and explicitly qualifies HU-12/HU-17 as retained resources whose live reachability is not established. This is not native-speaker acceptance, catalogue sign-off or runtime approval. All proposed string bytes and original proof artifacts are preserved; implementation still waits for the settled C04 base.

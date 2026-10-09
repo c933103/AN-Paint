@@ -1,0 +1,652 @@
+{
+  "schema_version": 1,
+  "task": "AN-W05-C05",
+  "review_date": "2026-10-09",
+  "review_status": "bounded_contextual_review_complete_proposal_not_applied",
+  "proposal_commit": "7bbb788b667b4b7fac22fc074e41267bd1fdfd0f",
+  "proposal_blob_sha": "f635b7c3ffa001406caceec4967bd70b998f712d",
+  "source_baseline_commit": "43148951ac6bd23687e66685855909ac538ba004",
+  "source_baseline_tree": "ab5ff7fe6d04d5e22348b979c9e0054eef9b1c0f",
+  "publication_base_commit": "7bbb788b667b4b7fac22fc074e41267bd1fdfd0f",
+  "publication_base_tree": "9e0b81d589f6d0936226614294c30d2ff57b7c4b",
+  "result": {
+    "items_reviewed": 17,
+    "supported_contextual_proposals": 17,
+    "required_wording_changes": 0,
+    "reachability_qualifications": [
+      "AN-W05-C05-HU-12",
+      "AN-W05-C05-HU-17"
+    ]
+  },
+  "scope": "Review only the 17 explicitly proposed Hungarian attribution-family resources and their actual source context. No blanket credits replacement, broader catalogue acceptance, production implementation or legal-body change.",
+  "terminology_boundary": "Forrásmegjelölés is supported for these reused-material source/author acknowledgement contexts. Contributor rolls and generic acknowledgements require their own contextual translation; financial credit is a distinct meaning.",
+  "primary_sources": [
+    {
+      "id": "hu_official_source_attribution",
+      "title": "Hungarian Intellectual Property Office journal, October 2022, printed page 174",
+      "url": "https://sztnh.gov.hu/sw/static/file/202210-szemle.pdf#page=174",
+      "supports": "Observed use of forrásmegjelölés for identifying reused audiovisual material's source.",
+      "limits": "Terminology-domain evidence; not an exact UI translation or catalogue acceptance."
+    },
+    {
+      "id": "creative_commons_hungarian",
+      "title": "Creative Commons BY-SA 4.0 Hungarian summary",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.hu",
+      "supports": "Attribution involves identifying the creator, linking the licence and indicating changes.",
+      "limits": "The summary does not supply the exact proposed UI phrases. This is terminology evidence, not a legal-compliance assessment."
+    },
+    {
+      "id": "hu_official_financial_credit",
+      "title": "Hungarian National Bank: payment-account terminology list",
+      "url": "https://mnb.hu/penzforgalom/fizetesi-szamla-iranyelv-pad",
+      "supports": "Observed use of jóváírás for funds credited to an account.",
+      "limits": "Supports the financial distinction; does not prove that every conceivable use is exclusively financial."
+    }
+  ],
+  "provenance_verification": {
+    "cached_proposal_exactly_matches_github": true,
+    "inspected_files": [
+      {
+        "path": "Paintroid/src/main/res/values-hu/strings.xml",
+        "baseline_blob_sha": "e2a14a01cf2135e8d598da95dbe05c10d8233176",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+        "baseline_blob_sha": "7c01b3fe57630349e954aee8449342f88033bb96",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "baseline_blob_sha": "4691bdab21b96df65bf3a34faf01ac1f7eba2df4",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "baseline_blob_sha": "6196d6676332053d0ddd78880d8a22c0243c6ac2",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+        "baseline_blob_sha": "06efe53d117568af8ef453ff8f5e2b964ce1335c",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/legal/ASSET_CREDITS.txt",
+        "baseline_blob_sha": "118f5c8278672f038902d358a01c2bcbaadb452a",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt",
+        "baseline_blob_sha": "7736b60363ca63eb6a564b09ca4572b0856fb80b",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt",
+        "baseline_blob_sha": "8e1cbf4167101573982c84fa598786cd9d1cbdc8",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt",
+        "baseline_blob_sha": "962469b547f1e2bce767295742fd06a38e8fa45a",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "baseline_blob_sha": "e77f1fd01d9e7d9d9f59c37f40d4d1ea6f166a22",
+        "local_git_blob_sha_matches_github": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "baseline_blob_sha": "7391229f13d4bc53702c0be60da57c6dbe344d99",
+        "local_git_blob_sha_matches_github": true
+      }
+    ]
+  },
+  "checks": {
+    "all_current_values_match_pinned_hungarian_catalogue": true,
+    "all_declared_replacements_and_counts_reproduce_proposed_values": true,
+    "placeholder_signatures_preserved": true,
+    "escaped_newline_counts_preserved": true,
+    "android_quoting_and_format_contracts_pass": true,
+    "provider_and_licence_literals_preserved": true,
+    "all_changed_embedded_labels_match_proposed_resources": true
+  },
+  "limitations": [
+    "Contextual terminology and grammar review is not native-speaker or competent-language acceptance.",
+    "Android compilation, runtime behaviour, screen fit and accessibility rendering were not tested in this review.",
+    "HU-12 and HU-17 remain in scope as retained resources, but static inspection did not establish live UI reachability.",
+    "Exact proposed wording is contextual analysis, not an official quotation from the cited terminology sources.",
+    "Implementation remains held until the C04 integration base is settled."
+  ],
+  "items": [
+    {
+      "id": "AN-W05-C05-HU-01",
+      "key": "gallery_copy_credit",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Forrásmegjelölés másolása",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírás másolása",
+          "proposed_phrase": "Forrásmegjelölés másolása",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L49",
+      "scope": "Injected beside gallery artwork and on the attribution editor Copy button.",
+      "rationale": "The label names copying one attribution record. The selected editor record is saved before copying. Singular forrásmegjelölés fits the copied text; the action does not copy image pixels or account credit.",
+      "context_evidence": [
+        {
+          "title": "Clipboard action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L49-L58"
+        },
+        {
+          "title": "Editor actions",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L131-L145"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-02",
+      "key": "gallery_description",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Azonnali beszúráshoz koppintson a Kép használata elemre. A kép melletti Forrásmegjelölés másolása kimásolja a címet, kiadót, forrást és licencet a közzétételhez. A Catrobat eredeti alkotásai CC BY-SA 4.0 alatt állnak; őrizze meg a külön megnevezett készítőket, szerzői jogi és egyéb forrásközleményeket. Írja le módosításait, és a módosított alkotásokat CC BY-SA 4.0 vagy kompatibilis licenc alatt ossza meg. A Forrásmegjelölések szerkesztése segítségével hozzáadhatja ezeket az adatokat; a beszúrt források megmaradnak a Fájl → Névjegy, licencek és forrásmegjelölések → Képek forrásmegjelölései alatt.",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírás másolása",
+          "proposed_phrase": "Forrásmegjelölés másolása",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Jóváírások szerkesztése",
+          "proposed_phrase": "Forrásmegjelölések szerkesztése",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L609",
+      "scope": "Gallery instructions quoting the Copy, Edit, About and Image credits labels.",
+      "rationale": "All four substitutions reproduce the corresponding proposed labels exactly. The sentence still explains title, publisher, source and licence; creator/copyright and modification guidance remains intact.",
+      "context_evidence": [
+        {
+          "title": "Provider description display",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L75-L83"
+        },
+        {
+          "title": "Provider description mapping",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt#L8-L12"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-03",
+      "key": "gallery_edit_credits",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Forrásmegjelölések szerkesztése",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírások szerkesztése",
+          "proposed_phrase": "Forrásmegjelölések szerkesztése",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L610",
+      "scope": "Gallery action that opens the image-attribution editor.",
+      "rationale": "The plural Forrásmegjelölések fits an editor containing the document's collection of attribution entries, even though one entry is selected at a time.",
+      "context_evidence": [
+        {
+          "title": "Gallery edit action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L105-L111"
+        },
+        {
+          "title": "Entry collection and picker",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L88-L100"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-04",
+      "key": "gallery_credit_copied",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Forrásmegjelölés másolva",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírás másolva",
+          "proposed_phrase": "Forrásmegjelölés másolva",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L611",
+      "scope": "Clipboard-success notice after attribution text is copied.",
+      "rationale": "Forrásmegjelölés másolva is a concise, grammatically coherent success notice following successful clipboard publication.",
+      "context_evidence": [
+        {
+          "title": "Clipboard success/error sequence",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L49-L58"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-05",
+      "key": "gallery_credit_saved",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "A forrásmegjelölés szövege mentve",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírási szöveg mentve",
+          "proposed_phrase": "A forrásmegjelölés szövege mentve",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L618",
+      "scope": "Confirmation after the attribution editor accepts Save.",
+      "rationale": "A forrásmegjelölés szövege mentve explicitly identifies the saved text. The singular possessive construction fits Save for the selected entry.",
+      "context_evidence": [
+        {
+          "title": "Selected-entry Save action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L142-L145"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-06",
+      "key": "ui_image_credits",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Képek forrásmegjelölései",
+      "replacements": [
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L328",
+      "scope": "Image-attribution panel/editor title, export-section label, clipboard clip label and Commons metadata-loading status.",
+      "rationale": "Képek forrásmegjelölései is a coherent plural collection label for the About entry, editor title, clipboard label and export disclosure. It also remains meaningful as the Commons loading-status prefix.",
+      "context_evidence": [
+        {
+          "title": "About chooser",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L869-L882"
+        },
+        {
+          "title": "Clipboard label",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L49-L51"
+        },
+        {
+          "title": "Editor title",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L131-L135"
+        },
+        {
+          "title": "Export disclosure",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L122-L139"
+        },
+        {
+          "title": "Commons loading status",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L253-L263"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-07",
+      "key": "ui_about_credits23",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Névjegy, licencek és forrásmegjelölések",
+      "replacements": [
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L133",
+      "scope": "File-menu entry and About/licences/attribution chooser title.",
+      "rationale": "Névjegy, licencek és forrásmegjelölések covers the actual source/author acknowledgements alongside licences. This contextual result must not be generalized to an unrelated contributor-list screen.",
+      "context_evidence": [
+        {
+          "title": "About chooser destinations",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L868-L883"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-08",
+      "key": "ui_credits_terms",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Forrásmegjelölések és feltételek",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírások és feltételek",
+          "proposed_phrase": "Forrásmegjelölések és feltételek",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L228",
+      "scope": "Gallery button opening the selected provider’s attribution/terms page.",
+      "rationale": "Forrásmegjelölések és feltételek fits the provider-specific attribution/terms destination and preserves the separate terms concept.",
+      "context_evidence": [
+        {
+          "title": "Terms action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L110-L111"
+        },
+        {
+          "title": "Provider destinations",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt#L8-L12"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-09",
+      "key": "ui_icons_fonts_artwork_credits",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Ikonok, betűtípusok és alkotások forrásmegjelölései",
+      "replacements": [
+        {
+          "current_phrase": "Ikonok, betűtípusok és alkotások jóváírásai",
+          "proposed_phrase": "Ikonok, betűtípusok és alkotások forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L325",
+      "scope": "About action/title displaying legal/ASSET_CREDITS.txt.",
+      "rationale": "Ikonok, betűtípusok és alkotások forrásmegjelölései names attribution for the actual materials. The plural possessive ending fits the coordinated list. The destination independently supports source/copyright acknowledgements beyond gallery images.",
+      "context_evidence": [
+        {
+          "title": "Asset attribution and notice content",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/assets/legal/ASSET_CREDITS.txt#L1-L80"
+        },
+        {
+          "title": "Asset-notice action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L874"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-10",
+      "key": "ui_open_source_credits_and_notices",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Nyílt forráskódú összetevők forrásmegjelölései és közleményei",
+      "replacements": [
+        {
+          "current_phrase": "Nyílt forráskódú jóváírások és közlemények",
+          "proposed_phrase": "Nyílt forráskódú összetevők forrásmegjelölései és közleményei",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L364",
+      "scope": "Title displaying legal/THIRD_PARTY_NOTICES.txt.",
+      "rationale": "Nyílt forráskódú összetevők forrásmegjelölései és közleményei supplies the subject, components, and coordinates their attributions and notices. The actual file identifies components, publishers, contributors and licences.",
+      "context_evidence": [
+        {
+          "title": "Component inventory and notices",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt#L95-L108"
+        },
+        {
+          "title": "Notice title wiring",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L872"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-11",
+      "key": "ui_gimp_translations31",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Fordítások forrásmegjelölései és licencei",
+      "replacements": [
+        {
+          "current_phrase": "Fordítási jóváírások és licencek",
+          "proposed_phrase": "Fordítások forrásmegjelölései és licencei",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L649",
+      "scope": "About action/title displaying legal/GIMP_TRANSLATION_NOTICES.txt.",
+      "rationale": "Fordítások forrásmegjelölései és licencei is supported because the destination documents reused translations' source, revision, translator/copyright headers and licences. It is not merely a list thanking current app contributors. Both possessive forms are aligned. Original headers and legal text must remain unchanged.",
+      "context_evidence": [
+        {
+          "title": "Translation provenance and preserved headers",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/assets/legal/GIMP_TRANSLATION_NOTICES.txt#L1-L24"
+        },
+        {
+          "title": "Translation-notice action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L875"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-12",
+      "key": "ui_catrobat_s_own_artwork_uses_cc_by_sa",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "A Catrobat saját alkotásai CC BY-SA 4.0 licencet használnak. Tartsa meg a készítő megjelölését, és ugyanilyen licenc alatt ossza meg a módosításokat. Ellenőrizze a forrásoldalt az esetleges külön forrásmegjelölésekért. A forrás URL-címe a Fájl > Névjegy, licencek és forrásmegjelölések > Képek forrásmegjelölései alatt marad.",
+      "replacements": [
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L191",
+      "scope": "Catrobat guidance containing the exact About → Image credits path.",
+      "rationale": "The two substitutions update the literal About → Image credits path and leave existing creator-credit wording intact. This is retained Catrobat guidance: current Catrobat provider routing selects gallery_description instead. Static inspection did not establish this retained resource's live reachability.",
+      "context_evidence": [
+        {
+          "title": "Current provider routing",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt#L8-L12"
+        }
+      ],
+      "reachability": "retained_resource_live_reachability_not_established",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-13",
+      "key": "ui_irasutoya_help34",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Nyisson meg egy alkotásoldalt és koppintson a Kép használata elemre. Kereshet angolul vagy japánul; az alkotások címei és a webhely szövege japán marad. Az ingyenes használatra az Irasutoya feltételei vonatkoznak: a 21 vagy több elemet használó kereskedelmi tervek díjkötelesek. Különleges együttműködésekre eltérő feltételek vonatkozhatnak. A forrásoldalak és forrásmegjelölések a Fájl → Névjegy, licencek és forrásmegjelölések → Képek forrásmegjelölései alatt maradnak.",
+      "replacements": [
+        {
+          "current_phrase": "A forrásoldalak és jóváírások",
+          "proposed_phrase": "A forrásoldalak és forrásmegjelölések",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L670",
+      "scope": "Irasutoya guidance on retained source pages/attributions and the exact About → Image credits path.",
+      "rationale": "A forrásoldalak és forrásmegjelölések distinguishes retained pages from attribution records and retains suitable plural agreement. Both embedded navigation labels match. The financial 21-or-more-items/fee statement is unchanged.",
+      "context_evidence": [
+        {
+          "title": "Irasutoya description mapping",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt#L10"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-14",
+      "key": "ui_openclipart_help34",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Nyisson meg egy alkotásoldalt és koppintson a Kép használata elemre a Large PNG letöltése mellett. Az Openclipart CC0 alatt teszi közzé az alkotásokat. A forrásoldal és licenc a Fájl → Névjegy, licencek és forrásmegjelölések → Képek forrásmegjelölései alatt marad.",
+      "replacements": [
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L671",
+      "scope": "Openclipart guidance containing the exact About → Image credits path.",
+      "rationale": "Only the two literal navigation labels change. Openclipart, CC0, Large PNG and the source-page/licence semantics are preserved.",
+      "context_evidence": [
+        {
+          "title": "Openclipart description mapping",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/IllustrationSource.kt#L11"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-15",
+      "key": "ui_help23",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Válasszon lapot a vezérlők megjelenítéséhez. A Nézet a Navigációval kezdődik; a Rajzolás tartalmazza a Rajzolás, Kijelölés és Beszúrás csoportokat. A Navigáció rajzolás nélkül pásztáz; két ujját közelítve vagy távolítva kicsinyíthet vagy nagyíthat. A lapok melletti nyíl összecsukja a panelt. Minden eszköznek van címkéje. A Szerkesztés módosítja a kijelölést, a vászonhatárokat, a méreteket vagy a képet. A Szín kiválasztja az előtér- és háttérszínt; a Színek felcserélése megcseréli, a Fekete / fehér pedig visszaállítja őket. A színválasztó azonnal előnézetet mutat. A Szín használata megerősíti, a Mégse visszaállítja az előző színt. A Szín hozzáadása vagy egy üres mentett hely koppintása színt választ és ment. Egy mentett szín hosszan nyomva szerkeszthető vagy eltávolítható. A Speciális részletes szerkesztőt nyit a Fekete / fehér mellett. A képpontrács képpontvonalzókat is mutat; a kurzoros rajzolás élő x/y értéket mutat a nagyítás mellett. A Mentés másként képformátumot, tömörítési beállításokat és helyet választ; a Mentés ugyanoda ír újra ezekkel a beállításokkal. Az Exportálás másként ICO-t, ASCII-grafikát vagy Base64-szöveget hoz létre anélkül, hogy a rajzot mentettnek jelölné. A Mentés és megosztás másolatot ment, majd megnyitja az Android megosztást. A jelenlegi Mentési cél változatlan marad. A Rajzolás > Beszúrás > Egyéb képek eszközfájlokat, Catrobatot, Irasutoyát, Openclipartot és a „Wikimedia Commons · Vaktérképek…” menüpontot tartalmaz. A beszúrt képek kijelölve maradnak; a nézet a vásznon kívül is mutatja fogantyúikat. A Kép illesztése a vászonhoz módosítja az elhelyezést; az Eredeti méret visszaállítja a forrás méreteit. Az automatikus mentés az alkalmazás újranyitásakor visszaállítja a piszkozatot és a visszavonás/újra mindkét veremét. A Fájl tartalmazza a Képösszeállítást, Használatot és a Névjegy, licencek és forrásmegjelölések részt is. A Szöveg beszúrása vízszintes és függőleges írást támogat.",
+      "replacements": [
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L545",
+      "scope": "Main Help summary quoting the About chooser label; Commons text and all other instructions retained.",
+      "rationale": "The single About-label substitution remains grammatical before részt, matches the proposed menu label, and preserves all Commons/provider instructions. This is the actual main Help resource.",
+      "context_evidence": [
+        {
+          "title": "Main Help action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1576"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-16",
+      "key": "ui_add_up_to_20_images_with_android_s",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Legfeljebb 20 képet adhat hozzá az Android fájlválasztójával. Az alsó tálca bélyegképeket, fájlneveket, a képek vágás és az esetleges „Azonos szélesség” vagy „Azonos magasság” beállítás utáni méreteit és fájlmódosítási időket jelenít meg, ha a szolgáltató biztosítja ezeket. Rendezés fájlnév vagy módosítási idő szerint; a rendezés nem rendezi át a már elhelyezett képeket.\\n\\nKoppintson egy bélyegképre a kijelöléséhez. A Kép vágása az adott képet vágja; a Kötegelt vágás képpont- vagy százalékos margókat alkalmaz a kijelölt képekre. Húzza a vágófogantyúkat vagy írja be az értékeket. A Vágás visszaállítása visszaállítja az eredeti széleket. A vágás nem destruktív és visszavonható.\\n\\nTartson lenyomva egy bélyegképet, vagy húzzon egy már a munkaterületen lévő képet, majd ejtse egy kiemelt szélre. Az áttetsző előnézet a pontos illesztett eredményt mutatja. Jobbra csatoláskor a felső élek, alulra csatoláskor a bal élek igazodnak. Egy bélyegképre, majd egy + célra is koppinthat. Az első kép az origónál kezdődik. A meglévő csatolások elmozdulnak, ha a szülőkép vágása változik. Az átfedés nem megengedett.\\n\\nAz Azonos szélesség és Azonos magasság közös méretet ad minden bemenetnek, miközben minden kép saját képaránya megmarad. Válasszon képpontot, százalékot, Legkisebb vagy Legnagyobb értéket. Az Eredeti méretek visszaállítása megszünteti a normalizálást, de megtartja a vágásokat.\\n\\nAz Elhelyezés megszüntetése csak a kijelölt képet küldi vissza a tálcára. A következő képek kitöltik a rést, de elhelyezve maradnak. Az Eltávolítás csak az adott bemenetet törli. A Visszavonás/Újra műveletek visszaállítják ezeket a változtatásokat. Húzza az elhelyezett képet az átrendezéshez; az üres terület húzásával pásztázhat. Két ujját közelítve vagy távolítva kicsinyíthet vagy nagyíthat. Az Összes megjelenítése úgy nagyít, hogy az egész összeállítás látható legyen; a kimeneti méreteket nem módosítja.\\n\\nA PNG mentése közvetlenül menti az összeállított képet. A Szerkesztés a Paintben visszavonható cserének adja át a fő szerkesztőnek. Ha a kimenet túllépi a memóriakeretet, válasszon kisebb kimeneti másolatot, ha az alkalmazás felajánlja. Ha még egy nagyon kicsi kimenet is túllépi a keretet, az alkalmazás a méretválasztó helyett memóriafigyelmeztetést jelenít meg. Az eredeti forrásfájlok változatlanok maradnak. Az aktuális összeállítás helyileg tárolódik és visszatéréskor újra megnyílik.\\n\\nEz a mód ugyanazokat a Catrobat/AGPL-re és a felhasznált elemekre vonatkozó forrásmegjelöléseket használja, amelyek a fő szerkesztő «Fájl > Névjegy, licencek és forrásmegjelölések» paneljén szerepelnek.",
+      "replacements": [
+        {
+          "current_phrase": "Ez a mód ugyanazokat a Catrobat/AGPL- és eszközjóváírásokat használja, amelyek a fő szerkesztő «Fájl > Névjegy, licencek és jóváírások» paneljén szerepelnek.",
+          "proposed_phrase": "Ez a mód ugyanazokat a Catrobat/AGPL-re és a felhasznált elemekre vonatkozó forrásmegjelöléseket használja, amelyek a fő szerkesztő «Fájl > Névjegy, licencek és forrásmegjelölések» paneljén szerepelnek.",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L149",
+      "scope": "Assembly Help final sentence referring to the shared Catrobat/AGPL and asset-attribution notices.",
+      "rationale": "The refined sentence explicitly retains Catrobat/AGPL and uses a felhasznált elemekre vonatkozó forrásmegjelöléseket for asset attribution. Catrobat/AGPL-re and elemekre are compatible with vonatkozó; ugyanazokat … forrásmegjelöléseket preserves plural agreement. The About label remains exact.",
+      "context_evidence": [
+        {
+          "title": "Assembly Help action",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L341"
+        }
+      ],
+      "reachability": "direct_static_production_reference_observed_runtime_not_tested",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    },
+    {
+      "id": "AN-W05-C05-HU-17",
+      "key": "ui_the_arrow_on_the_left_directly_below_the",
+      "disposition": "supported_contextual_proposal",
+      "proposed_value": "Az eszköztár alatt balra lévő nyíl összecsukja vagy visszaállítja az eszközöket: felfelé összecsuk, lefelé kibont. Álló módban az eszközsáv vízszintesen fut az eszköztár alatt; pöccintsen további eszközök eléréséhez. Fekvő módban bal oldalon marad. Az Ecset csoport a Ceruzát, Ecsetet, Akvarellt és Festékszórót tartalmazza. A Kijelölés a téglalapos és szabadkézi kijelöléseket foglalja össze. A Beszúrás vonalakat, alakzatokat és szöveget tartalmaz. Koppintson egy kategóriára az eszközök és beállítások kibontásához álló módban a sáv alatt, fekvő módban pedig annak jobb oldalán. Újbóli koppintással összecsukható; a nyíl megfordul. A kategóriák megjegyzik a bennük legutóbb használt eszközt. Görgesse a korlátozott beállításpanelt további beállításokért és szerkesztési vezérlőkért. Az elrendezés első indításakor mindkét panel kibontva indul; a későbbi választások megmaradnak. Fekvő módban a felső vezérlők egy soron vannak, középen a fájlnévvel. Forrásmegjelölések és feltételek: «Fájl > Névjegy, licencek és forrásmegjelölések».\\n\\nAz ET/HT színjelző bal alul, a paletta mellett rögzítve marad. A paletta ugyanazon a soron közvetlenül jobbra nyílik. Nyila a jobb szélen van: balra összecsuk, jobbra kibont. Az összecsukás elrejti a további színmintákat a jelző mozgatása nélkül. A színdoboz koppintása is váltja a palettát. Koppintson egy mintára az előtérhez, vagy tartsa lenyomva a háttérhez. Az ET/HT megnyitja a Paletta, Méhsejt és Speciális lehetőségeket. A Speciális spektrum-, kerék-, RGB-, HSV-, HSL- és hatjegyű hex vezérlőket tartalmaz. A jobb szélső négy cella megőrzi a legutóbbi színeket; koppintás előtérhez, hosszan nyomás háttérhez. Az egyéni színek kezdetben Halványlila #5B67FF, Arany #FFD700, Ezüst #C0C0C0 és Réz #B87333. Egyéni színminta cseréjéhez tartsa lenyomva. A fő szerkesztő átlátszatlan színeket használ; az áttetsző importok a jelenlegi HT-színre kerülnek. Az eredeti forrásfájlok változatlanok maradnak.\\n\\nA Navigáció felváltja a nagyító eszközt: egy ujjal húzva pásztázzon, két ujját közelítve vagy távolítva kicsinyítsen vagy nagyítson, együtt mozgatva pedig pásztázzon. Koppintson ismét a Navigáció vagy Rajzolás újra elemre a rajzoláshoz való visszatéréshez. A kétujjas navigáció rajzeszközök használatakor is működik nyom hagyása nélkül. A jobb alsó csúszkán 100%-nál középvonal van. A nagyítás/kicsinyítés gombok megállnak 100%-nál, ha egy lépés átlépné; folytatáshoz nyomja meg újra. A mellette lévő Illesztés gomb a vásznat a nézethez illeszti és középre igazítja. A Nézet 100%-ot és képpontrácsot is kínál.\\n\\nAz automatikus mentés rövid szerkesztési szünet után és az alkalmazás elhagyásakor rögzíti a jelenlegi piszkozatot. Az állapot Piszkozat mentve üzenetet vagy automatikus mentési hibát mutat. Újranyitáskor visszaáll a piszkozat, fájlnév, eszközbeállítások, lebegő kijelölés és befejezetlen geometria. Az automatikus mentés privát munkapiszkozatot tart fenn. A Fájl PNG-t, állítható minőségű JPEG-et és HEIC-et, továbbá veszteségmentes vagy veszteséges JPEG XL-t, WebP-t és AVIF-et kínál. A Mentés másként paranccsal választható ki a kép formátuma, beállításai és mentési helye; a Mentés ismét erre a helyre ír. Az Exportálás másként és a Mentés és megosztás másolatot ír a jelenlegi mentési hely módosítása nélkül, és nem jelöli mentettnek a rajzot. A Mentés és megosztás ezután megnyitja az Android megosztást. A fájlnév melletti csillag azt jelzi, hogy a rajzon mentetlen módosítások vannak. Az automatikus mentés soha nem írja felül a forrásképeket.\\n\\nKijelölések: rajzoljon téglalapos vagy szabadkézi körvonalat. Belül húzva mozgassa, a négyzetes sarok- vagy szélső középponti fogantyúval méretezze át, a kerek Forgatás fogantyúval forgassa. Az Arányok zárolása alapértelmezetten be van kapcsolva; kapcsolja ki a szélesség és magasság egymástól független nyújtásához. A szélfogantyúk a kijelölt oldal mentén méreteznek. A szabadkézi kijelölések megőrzik alakjukat az átalakítási dobozban, forgatás és automatikus mentés után is. A méretek és szög az oldalsávban jelennek meg. A Kijelölés alkalmazása egyetlen visszavonható kijelölési szerkesztésként alkalmazza az eredményt; az automatikus mentés megőrzi a befejezetlen átalakításokat. A Másolás, Kivágás és Vágás a kijelölésre az átalakított képet használja. Az Összes kijelölése a szerkesztési ikonok második sorában van, és külső billentyűzeten a Ctrl+A is működik. A Kivágás/Másolás és Beillesztés/Összes kijelölése két sort alkot a Használat alatt. A kijelölési maszkok megőrzik a kijelölt alakot; maga a dokumentum átlátszatlan marad.\\n\\nVászonhatárok: húzza a fogantyúkat befelé a vágáshoz vagy kifelé bármely oldal bővítéséhez, majd alkalmazza a Határok alkalmazása parancsot. Az új terület HT-t használ; a meglévő képpontok nem skálázódnak. A Mégse és Visszavonás elérhető. A Kép átméretezése, Vászon mérete és Új kép képpont- vagy százalékértékeket is fogad opcionális képarányzárral.\\n\\nGörbe: rajzoljon vonalat és kétszer húzva hajlítsa meg. Sokszög: koppintson csúcspontokra, majd az utolsóra duplán, vagy használja a Sokszög befejezése parancsot. Kapcsolja ki a Sokszög bezárása lehetőséget összekapcsolt nyitott szakaszok rajzolásához. Lekerekített téglalap: állítsa a Sugár (px) értéket a csúszkával; minden alakzatnál a sugár a rövidebb oldal felére korlátozott. Szöveg: koppintson a vászonra, válasszon a saját stílusában megjelenített betűtípust, és használja az élő előnézetet. A lehetőségek között méret, félkövér, dőlt, aláhúzás, áthúzás, igazítás, sorköz és HT-színű szövegdoboz található. Az Akvarell az Ecset kategóriában, az Ecset és Festékszóró mellett található; az Erősséggel lágyabb vonásokat állíthat be. A ceruza, ecset és eszköz méretcsúszkái 100 képpontig mennek. A Ceruza 1 képponttal indul és megjegyzi saját szélességét. A megjelenített számra koppintva pontos érték írható be. A Szív, Csillag és Nyíl ugyanazokat a körvonal-/kitöltési választásokat kínálja, mint más alakzatok. A Nézet > Kurzoros rajzolás kibontja az engedélyező kapcsolót, kurzorformát és nagyítóbeállításokat. Húzza a kurzort helyre, koppintson a képernyő rajzgombjára, majd pásztázzon a rajzoláshoz. Újra koppintva leáll. Az ecset- és vonásbeállítások a Rajzolás > Rajzolás alatt maradnak. A Nézet > Nagyított előnézet állítható nagyítással mutatja a kurzort vagy rajzpontot. A Rajzbeállítások élsimítást és vonássimítást is kínálnak. Tizenegy további betűtípus van beépítve; a Betűtípuslicencek tartalmazza forrásmegjelöléseiket és teljes feltételeiket.\\n\\nA Fájl > Kép megnyitása az Android választóján keresztül lecseréli a vásznat. A «Rajzolás > Beszúrás > Egyéb képek > Eszközről» útvonalon lebegő kijelölésként adhat hozzá képet. A «Rajzolás > Beszúrás > Egyéb képek» menüben található Catrobat matricagaléria online figurákat kínál; letölthető képet koppintással vagy hosszan nyomva szúrhat be. A Fájl > Névjegy, licencek és forrásmegjelölések > Képek forrásmegjelölései megőrzi a forráshivatkozásokat és licencközleményt. Az eszköz memóriakeretébe beleférő képek eredeti felbontással töltődnek be. Szükség esetén az átméretezési választóablak méreteket, képpontszámot és memóriabecsléseket mutat, képpont/százalék méretezéssel és opcionális képarányzárral. Az eredeti fájl változatlan marad.\\n\\nA Fájl > Képösszeállítás külön munkaterületet nyit legfeljebb 20 képhez. Rendezze a bélyegképeket fájlnév vagy idő szerint. Vágjon egy képet vagy kötegelten többet. Az Azonos szélesség / Azonos magasság minden betöltött képet normalizál a képarányok megtartásával. Húzza a bélyegképeket vagy elhelyezett képeket jobbra a felső élek igazításával, vagy alulra a bal élek igazításával történő csatoláshoz. Az Elhelyezés megszüntetése csak a kijelölt elhelyezést távolítja el és zárja a rést. Az Összes megjelenítése csak a nézet nagyítását módosítja. A PNG mentése exportálja az összeállítást; a Szerkesztés a Paintben visszavonható szerkesztésként adja át. Az alkalmazás egy átlátszatlan képszerkesztőt használ. A Képösszeállítás külön elrendezési munkaterület.\\n\\nA «Fájl > Névjegy, licencek és forrásmegjelölések» panel tartalmazza az eredeti szerzői jogot, a felhasznált elemek és betűtípusok forrásmegjelöléseit, teljes licencszöveget és a verzió teljes forrását. A licencszöveg a rögzített Összes másolása, Egyéb feltételek és Kész gomboktól függetlenül görgethető.",
+      "replacements": [
+        {
+          "current_phrase": "Jóváírások és feltételek",
+          "proposed_phrase": "Forrásmegjelölések és feltételek",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "Névjegy, licencek és jóváírások",
+          "proposed_phrase": "Névjegy, licencek és forrásmegjelölések",
+          "occurrences": 3
+        },
+        {
+          "current_phrase": "Képjóváírások",
+          "proposed_phrase": "Képek forrásmegjelölései",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "jóváírásaikat",
+          "proposed_phrase": "forrásmegjelöléseiket",
+          "occurrences": 1
+        },
+        {
+          "current_phrase": "eszköz-/betűtípus-jóváírásokat",
+          "proposed_phrase": "a felhasznált elemek és betűtípusok forrásmegjelöléseit",
+          "occurrences": 1
+        }
+      ],
+      "resource_source_url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/res/values-hu/strings.xml#L443",
+      "scope": "Detailed Help: quoted Terms/About/Image credits labels, bundled-font attributions and the About panel’s asset/font-attribution content.",
+      "rationale": "All Terms/About/Image credits references match the proposed labels. Forrásmegjelöléseiket refers back to the bundled fonts. A felhasznált elemek és betűtípusok forrásmegjelöléseit identifies asset/font attributions and takes the accusative required by tartalmazza. Static inspection found catalogue/test references but no direct production reference to this retained resource key; live reachability is not established.",
+      "context_evidence": [
+        {
+          "title": "Current main Help selects ui_help23",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1576"
+        },
+        {
+          "title": "Font notice content",
+          "url": "https://github.com/c933103/AN-Paint/blob/43148951ac6bd23687e66685855909ac538ba004/Paintroid/src/main/assets/legal/ASSET_CREDITS.txt#L78-L80"
+        }
+      ],
+      "reachability": "retained_resource_live_reachability_not_established",
+      "required_wording_change": null,
+      "preservation_check": "pass_exact_declared_replacements_placeholders_newlines_android_format_provider_literals_and_embedded_labels"
+    }
+  ]
+}
