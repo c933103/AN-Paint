@@ -30,8 +30,8 @@ internal object CommonsAttribution {
                 metadata[key]?.takeIf { it.isNotBlank() }?.let { lines.add("$key: $it") }
             }
             if (imported) lines.add(if (Uri.parse(source).path.orEmpty().endsWith(".svg", true))
-                "AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF."
-                else "AN Paint: background=#FFFFFF (alpha compositing).")
+                ui(R.string.commons_import_svg_changes)
+                else ui(R.string.commons_import_raster_changes))
             // CommonsMetadata itself warns that machine-readable metadata can be incomplete,
             // especially for multiple licences. Never invent CC0/CC-BY-SA or call this verified permission.
             lines.add(ui(R.string.commons_check_file_licence))
