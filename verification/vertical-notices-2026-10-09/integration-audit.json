@@ -570,10 +570,10 @@
     "scope": "Fresh recovery-time result. Does not rerun the historical 32 native executions, build an APK, run lint or establish device acceptance. Expected negative-fixture JSON in this successful test log is not an Android runtime failure."
   },
   "interpretation": "Native measurements remain frozen at the measured commit. Exact compiled sources, fonts, picker tags and lifecycle tests are unchanged at the integration base. Changed catalogue values are outside the nine measured keys; the actual one-newline cursor caller is unchanged. This input audit is not a whole-current-application native test rerun.",
-  "checker_revision": "New explicit-failure validator with safe unique manifest paths, complete fixed package inventory and normal/-O self-tests. Historical checker assertions were replaced only in this newly authored recovery checker; frozen native probes and results remain unchanged.",
+  "checker_revision": "Explicit-failure validator with safe unique manifest paths, complete fixed package inventory, and one coherent 15-file frozen or integration input revision. Hybrid inputs are rejected. All checks remain active under optimized Python; frozen native probes/results are unchanged.",
   "checker_self_tests": {
     "kind": "Fresh recovery checker tests; not native tests",
-    "command": "python verification/vertical-notices-2026-10-09/probes/check_evidence.py --self-test",
+    "command": "python verification/vertical-notices-2026-10-09/probes/check_evidence.py --self-test --alternate-source-root /path/to/frozen-checkout",
     "cases": [
       {
         "case": "baseline",
@@ -728,8 +728,55 @@
         "expected": "reject",
         "exit_code": 1,
         "passed": true
+      },
+      {
+        "case": "coherent-alternate",
+        "optimized": false,
+        "expected": "pass",
+        "exit_code": 0,
+        "passed": true
+      },
+      {
+        "case": "coherent-alternate",
+        "optimized": true,
+        "expected": "pass",
+        "exit_code": 0,
+        "passed": true
+      },
+      {
+        "case": "hybrid-primary",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "hybrid-primary",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "hybrid-alternate",
+        "optimized": false,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
+      },
+      {
+        "case": "hybrid-alternate",
+        "optimized": true,
+        "expected": "reject",
+        "exit_code": 1,
+        "passed": true
       }
     ],
-    "interpretation": "Two positive and twenty expected rejection executions, using normal and optimized Python. Stage/count corruption updates its temporary manifest hash so the semantic consistency failure is tested separately from byte mismatch."
+    "interpretation": "Four positive and twenty-four expected rejection executions, using normal and optimized Python. Both coherent source input sets pass; both hybrid directions fail. Stage/count corruption updates its temporary manifest hash so semantic consistency is tested separately from byte mismatch."
+  },
+  "review_followup": {
+    "reviewed_commit": "0156bca33b6251e28877f5e0cd5240e6416a98d2",
+    "finding": "https://github.com/c933103/AN-Paint/pull/26#discussion_r4226776125",
+    "change": "Select one measured-input revision by intersecting per-file matches; require a single coherent revision and reject hybrid source roots. Add both coherent input-set positives and both hybrid directions under normal/optimized Python."
   }
 }

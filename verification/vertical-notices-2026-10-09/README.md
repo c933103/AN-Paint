@@ -120,11 +120,17 @@ record its own input hashes; do not overwrite or relabel the historical results.
 Run `python verification/vertical-notices-2026-10-09/probes/check_evidence.py`
 from the publication checkout for a fresh evidence-integrity check. To check the
 same package against the frozen source instead, pass `--source-root /path/to/frozen-checkout`.
-The checker accepts only the exact frozen bytes or exact integration bytes in the
-audit and independently rechecks measured catalogue values and the cursor caller.
+The checker selects one coherent 15-file measured-input revision: all frozen
+bytes or all audited integration bytes. It rejects hybrids, independently rechecks
+measured catalogue values and the cursor caller, and reports the selected input
+revision. This checks the recorded input subset, not every unrelated file in a checkout.
 Its checks remain active under `python -O`. Add `--self-test` to run its isolated
 normal/optimized positive and corruption-rejection tests; those tests change only
-temporary copies and do not execute native tests.
+temporary copies and do not execute native tests. Supply
+`--self-test --alternate-source-root /path/to/frozen-checkout` from the integration
+checkout to run the full 28-execution matrix, including both coherent input sets
+and both hybrid directions. Without the alternate checkout, the original 22
+checker executions run; the hybrid cases are not claimed.
 
 
 Use Linux x86_64/OpenJDK21 (recorded build 21.0.12.1+1-1-deb13u1-Debian), Python3.12 and Kotlin compiler 1.9.24, Robolectric 4.14.1/JUnit4.13.2 and the exact dependency JARs listed in `dependencies.json`, including Maven coordinates and compiler/runtime/framework roles. Include the extracted AndroidX monitor/idling AAR class JARs. Place the two uninstrumented Android framework JARs in one directory. The runner requires a new/empty output directory, rejects directory/empty entries in supplied classpaths, and verifies dependency filenames and SHA-256 digests before compilation. This prevents cached application classes from silently satisfying missing inputs. The output status must say `completed`; prepared, interrupted, failed or partial stages are not accepted.

@@ -133,13 +133,18 @@ def verify(root, repo):
     require(len(audited) == len(records) == len(frozen) == 15 and
             set(audited) == {item['path'] for item in frozen},
             'Source inventory mismatch')
+    matching_revisions = {'frozen', 'integration'}
     for item in frozen:
         path = str(safe_path(item['path']))
         record = audited[path]
         require(record['frozen_sha256'] == item['sha256'], 'Frozen source metadata mismatch: ' + path)
         data = (repo / path).read_bytes()
-        require(digest(data) in {item['sha256'], record['integration_sha256']},
-                'Unaudited source bytes: ' + path)
+        actual_digest = digest(data)
+        matching_file_revisions = {revision for revision, expected in
+                                   (('frozen', item['sha256']), ('integration', record['integration_sha256']))
+                                   if actual_digest == expected}
+        require(matching_file_revisions, 'Unaudited source bytes: ' + path)
+        matching_revisions &= matching_file_revisions
         projection = record.get('projection')
         if projection and projection['kind'] == 'catalogue-values':
             values = {e.attrib['name']: ''.join(e.itertext()) for e in ET.fromstring(data) if e.tag == 'string'}
@@ -151,6 +156,9 @@ def verify(root, repo):
                     'Cursor caller projection mismatch: ' + path)
         elif projection:
             raise InvalidEvidence('Unknown source projection: ' + path)
+
+    require(len(matching_revisions) == 1, 'Hybrid or ambiguous source input set; require one coherent audited revision')
+    selected_revision = FROZEN_COMMIT if matching_revisions == {'frozen'} else INTEGRATION_COMMIT
 
     status = read_json(root, 'run-status.json')
     execution = read_json(root, 'execution.json')
@@ -230,10 +238,15 @@ def verify(root, repo):
         require(len(data) == item['bytes'] and digest(data) == item['sha256'] and blob == item['git_blob'],
                 'Preserved historical artifact changed: ' + item['path'])
 
+    return selected_revision
 
-def self_test(repo):
+def self_test(repo, alternate_repo=None):
     """Changes only temporary copies; every child runs the same published checker."""
     results = []
+    if alternate_repo is not None:
+        primary_revision = verify(ROOT, repo)
+        alternate_revision = verify(ROOT, alternate_repo)
+        require(primary_revision != alternate_revision, '--alternate-source-root must identify the other audited source input set')
     cases = [('baseline', None), ('changed-bytes', 'Artifact byte/hash mismatch'),
              ('truncated-bytes', 'Artifact byte/hash mismatch'),
              ('omitted-entry', 'Incomplete or unexpected manifest entries'),
@@ -244,12 +257,27 @@ def self_test(repo):
              ('stage-status', 'Incomplete historical stage status'),
              ('stage-execution', 'Inconsistent historical stage execution'),
              ('count-metadata', 'Inconsistent shaping count')]
+    if alternate_repo is not None:
+        cases += [('coherent-alternate', None),
+                  ('hybrid-primary', 'Hybrid or ambiguous source input set'),
+                  ('hybrid-alternate', 'Hybrid or ambiguous source input set')]
     for name, expected_error in cases:
         with tempfile.TemporaryDirectory(prefix='an-evidence-check-') as directory:
             temp = Path(directory)
             package = temp / 'package'
             shutil.copytree(ROOT, package)
-            source = repo
+            source = alternate_repo if name == 'coherent-alternate' else repo
+            if name in ('hybrid-primary', 'hybrid-alternate'):
+                primary, other = (repo, alternate_repo) if name == 'hybrid-primary' else (alternate_repo, repo)
+                source = temp / 'hybrid-source'
+                for item in read_json(ROOT, 'inputs.json'):
+                    path = str(safe_path(item['path']))
+                    destination = source / path; destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(primary / path, destination)
+                # This file changed between audited revisions. Leave every catalogue
+                # from primary in place while replacing the editor with the other revision.
+                path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt'
+                shutil.copyfile(other / path, source / path)
             def write_json(path, value):
                 (package / path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
             def refresh_manifest(path):
@@ -303,12 +331,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-root', type=Path, default=ROOT.parents[1])
     parser.add_argument('--self-test', action='store_true')
+    parser.add_argument('--alternate-source-root', type=Path, help='Other audited input revision; adds coherent-alternate and two hybrid rejection cases to --self-test')
     args = parser.parse_args()
+    if args.alternate_source_root and not args.self_test:
+        parser.error('--alternate-source-root requires --self-test')
     try:
-        verify(ROOT, args.source_root.resolve())
+        selected_revision = verify(ROOT, args.source_root.resolve())
         if args.self_test:
-            print(json.dumps(self_test(args.source_root.resolve()), indent=2))
+            alternate = args.alternate_source_root.resolve() if args.alternate_source_root else None
+            print(json.dumps(self_test(args.source_root.resolve(), alternate), indent=2))
         else:
+            print('Audited source input set: ' + selected_revision)
             print('Recorded historical evidence verified (not a native rerun): 304 host tests, 32 selected native test executions, 8640 shaping rows, 1120 attached-host rows, 280 route checks and 40 transition rows.')
     except (InvalidEvidence, OSError, ValueError, KeyError, TypeError, AttributeError, ET.ParseError, EOFError) as error:
         print('Evidence validation failed: ' + str(error), file=sys.stderr)
