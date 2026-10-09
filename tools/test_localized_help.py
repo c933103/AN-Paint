@@ -113,6 +113,31 @@ class LocalizedHelpTests(unittest.TestCase):
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(local["ui_cursor_help31"]), route_pattern(rendered, keys))
 
+    def test_protected_draft_warning_names_recovery_and_save_as_routes(self):
+        # recoverEditor() blocks autosave only when preserving the old draft
+        # separately fails. The File menu exports that ZIP; Save as opens the
+        # current image's format chooser. ProtectedDraftWarningTest exercises
+        # those real handlers, including both PNG/JPEG choices and cancellation.
+        # This guard checks every translated warning, not locale-wide fluency.
+        resource = "ui_autosave_is_paused_to_protect_that_draft_use"
+        for locale, local in self.locales.items():
+            if resource not in local:
+                continue
+            rendered = {**self.locales["values"], **local}
+            text = displayed(local[resource])
+            with self.subTest(locale=locale):
+                self.assertEqual(["%1$s"], re.findall(r"%\d+\$[a-zA-Z]", local[resource]))
+                recovery = re.search(route_pattern(rendered, ("ui_menu_file", "ui_export_recovery_copy")), text)
+                save = re.search(route_pattern(rendered, ("ui_menu_file", "save20_title")), text)
+                self.assertIsNotNone(recovery, "Missing protected-draft export route")
+                self.assertIsNotNone(save, "Missing current-work Save as route")
+                self.assertLess(recovery.end(), save.start())
+                # The recommended formats must follow Save as, rather than
+                # being mistaken for part of the recovery ZIP export command.
+                formats = text[save.end():]
+                self.assertIn("png", formats)
+                self.assertIn("jpeg", formats)
+
     def test_selection_hint_does_not_quote_the_resize_dialog_checkbox(self):
         # Selection uses ui_lock_proportions; ui_lock_aspect_ratio belongs to
         # the size dialog. A native paraphrase need not quote either caption.
