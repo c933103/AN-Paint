@@ -249,7 +249,7 @@ class GalleryControlReachabilityTest {
         val display=Rect();root.display.getRectSize(display)
         val viewRoot=ReflectionHelpers.callInstanceMethod<Any>(root,"getViewRootImpl")
         val views=JSONArray()
-        for(name in listOf("gallery_controls_scroll","gallery_status","gallery_actions","gallery_navigation",
+        for(name in listOf("gallery_controls_scroll","gallery_description","gallery_status","gallery_actions","gallery_navigation",
             "gallery_copy_credits","gallery_edit_credits","gallery_terms","gallery_done","gallery_legacy_credits",
             "gallery_back","gallery_search_go","gallery_search")) {
             val view=root.findViewWithTag<View>(name) ?: continue
@@ -262,7 +262,8 @@ class GalleryControlReachabilityTest {
                 .put("node_class",node.className?.toString() ?: JSONObject.NULL)
                 .put("node_text",node.text?.toString() ?: JSONObject.NULL)
                 .put("node_description",node.contentDescription?.toString() ?: JSONObject.NULL)
-                .put("node_editable",node.isEditable))
+                .put("node_editable",node.isEditable)
+                .put("native_line_count",(view as? TextView)?.layout?.lineCount ?: JSONObject.NULL))
             } finally {node.recycle()}
         }
         return JSONObject().put("decor_width",root.width).put("decor_height",root.height)

@@ -38,3 +38,11 @@ substitution/persistence checks remain intact.
 Native-host rendering must be run in CI and visually inspected after publication.
 Compilation, physical-device gestures, TalkBack and fluent-language acceptance are
 not established by source review or the local Python checks.
+
+## Candidate visual-review correction
+
+The first full candidate captures exposed repeated painting of the provider
+caption because its inserted newline crossed one atomic vertical span. The
+[gallery-only separator correction and native paragraph regression](review-description-paragraph.md)
+remain part of this finding. Passing status tests alone did not establish the
+separate description's visual acceptance.

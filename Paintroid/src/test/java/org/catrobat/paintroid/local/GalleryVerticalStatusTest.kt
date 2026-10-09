@@ -33,6 +33,14 @@ class GalleryVerticalStatusTest {
         GallerySvgReadabilityFixture.check(listOf("mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV"),scale,
             reportDirectory="gallery-vertical-status") {tag,status ->
             assertVerticalStatus(status,tag)
+            val description=status.rootView.findViewWithTag<TextView>("gallery_description")
+            val expected=IllustrationSource.COMMONS.label+" "+status.context.getString(IllustrationSource.COMMONS.descriptionId)
+            assertEquals("All provider/description wording must remain",expected,description.text.toString())
+            assertEquals("Accessibility must expose the same full description once",expected,description.createAccessibilityNodeInfo().text.toString())
+            val styled=description.text as Spanned
+            assertEquals(1,styled.getSpans(0,styled.length,ReplacementSpan::class.java).size)
+            assertEquals("An atomic vertical span must occupy one native paragraph, not paint twice",1,description.layout.lineCount)
+            GalleryControlsLayoutTest.assertFullLayout("$tag/description",description)
         }
     }
 

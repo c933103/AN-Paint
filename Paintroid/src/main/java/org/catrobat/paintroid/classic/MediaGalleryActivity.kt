@@ -73,7 +73,12 @@ class MediaGalleryActivity : Activity() {
         controlsScroll=GalleryControlsScroll(this).apply {tag="gallery_controls_scroll";addView(controls)}
         root.addView(controlsScroll,LinearLayout.LayoutParams(-1,-2))
         val description=TextView(this).apply {
-            tag="gallery_description";text=provider.label+"\n"+ui(provider.descriptionId);textSize=13f
+            tag="gallery_description"
+            // The shared caption is one atomic span: a literal paragraph break
+            // would make TextView draw that entire span once for each paragraph.
+            // Keep every word, using a space only for the vertical column run.
+            text=provider.label+(if(VerticalText.uiVertical()) " " else "\n")+ui(provider.descriptionId)
+            textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
             VerticalUi.caption(this,64)
         }
