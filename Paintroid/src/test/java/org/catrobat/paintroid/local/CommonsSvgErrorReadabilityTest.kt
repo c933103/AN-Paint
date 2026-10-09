@@ -105,7 +105,7 @@ internal object GallerySvgReadabilityFixture {
         shadowOf(Looper.getMainLooper()).idle()
         assertTrue("The real gallery failure must finish within 8 seconds",done())
     }
-    fun check(tags: List<String>,scale: Float=RuntimeEnvironment.getFontScale(),assertReadability: (String,TextView)->Unit) {
+    fun check(tags: List<String>,scale: Float=RuntimeEnvironment.getFontScale(),reportDirectory: String="svg-error-readability",assertReadability: (String,TextView)->Unit) {
         val context=RuntimeEnvironment.getApplication() as Context
         val originalTag=AppLanguage.selectedTag(context)
         val originalLocale=Locale.getDefault()
@@ -151,7 +151,7 @@ internal object GallerySvgReadabilityFixture {
                             await {!activity.downloading && status.text.toString()==expected}
                             layout(activity.window.decorView)
                             // Persist pixels and geometry before assertions, including any clipping.
-                            record(activity.window.decorView,status,tag,scale,label)
+                            record(activity.window.decorView,status,tag,scale,label,reportDirectory)
                             assertEquals(expected,status.text.toString())
                             if(scale>1f) assertTrue("Large system text must enlarge the actual status glyphs",status.textSize>normalTextSize)
                             assertTrue(status.isAttachedToWindow)
@@ -208,8 +208,8 @@ internal object GallerySvgReadabilityFixture {
     fun hasVerticalRenderer(status: TextView)=status is FlowTextView ||
         status.getTag(R.id.vertical_caption_installed)==true
 
-    private fun record(root: View,status: TextView,tag: String,scale: Float,label: String) {
-        val folder=File("build/reports/svg-error-readability").apply {mkdirs()}
+    private fun record(root: View,status: TextView,tag: String,scale: Float,label: String,reportDirectory: String) {
+        val folder=File("build/reports/$reportDirectory").apply {mkdirs()}
         val bitmap=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
         try {
             root.draw(Canvas(bitmap))
@@ -240,7 +240,9 @@ internal object GallerySvgReadabilityFixture {
             .put("content_height",status.height-status.totalPaddingTop-status.totalPaddingBottom)
             .put("layout_direction",status.layoutDirection).put("vertical_expected",vertical)
             .put("vertical_renderer_present",hasVerticalRenderer(status)).put("replacement_span_count",spans.size)
-            .put("vertical_acceptance",if(vertical) "pending separate AN-W04 regression; this capture is not acceptance" else "not applicable")
+            .put("vertical_acceptance",if(!vertical) "not applicable" else if(reportDirectory=="gallery-vertical-status")
+                "Consult exact-head GalleryVerticalStatusTest JUnit result; capture alone is not acceptance"
+                else "pending separate AN-W04 regression; this capture is not acceptance")
             .put("lines",lines)
         File(folder,"$label.json").writeText(report.toString(2)+"\n")
     }
