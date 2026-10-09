@@ -7,16 +7,17 @@ import kotlin.math.ceil
 internal object SvgOriginalSize {
     data class Pixels(val width: Int, val height: Int)
 
+    // Keep this dimension-only helper independent of Android resources. The gallery
+    // translates these app-authored failures at the user-facing error boundary.
+    enum class Reason { UNUSABLE_ORIGINAL_SIZE, EXCEEDS_BITMAP_DIMENSIONS }
+    class SizeException(val reason: Reason) : IllegalArgumentException()
+
     fun pixels(width: Double, height: Double): Pixels {
         fun dimension(value: Double): Int {
-            require(value.isFinite() && value > 0) {
-                "The SVG does not declare a usable original size. No canvas-based size was substituted."
-            }
+            if (!value.isFinite() || value <= 0) throw SizeException(Reason.UNUSABLE_ORIGINAL_SIZE)
             // Bitmap dimensions are integral. Cover a fractional final pixel instead of clipping it.
             val pixels = ceil(value)
-            require(pixels <= Int.MAX_VALUE.toDouble()) {
-                "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
-            }
+            if (pixels > Int.MAX_VALUE.toDouble()) throw SizeException(Reason.EXCEEDS_BITMAP_DIMENSIONS)
             return pixels.toInt()
         }
         return Pixels(dimension(width), dimension(height))
