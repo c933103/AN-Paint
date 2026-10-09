@@ -1,0 +1,1659 @@
+{
+  "schema_version": 1,
+  "purpose": "Proposed translations and bounded review evidence only; not canonical resources or acceptance.",
+  "source_commit": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+  "source_file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SvgOriginalSize.kt",
+  "source_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/java/org/catrobat/paintroid/classic/SvgOriginalSize.kt",
+  "source_messages": {
+    "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+    "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+  },
+  "scope": {
+    "tag_count": 59,
+    "complete_proposal_pairs": 48,
+    "withheld_pairs": 11
+  },
+  "semantic_constraints": [
+    "Preserve unavailable usable declared original size, not merely missing SVG or zero size.",
+    "Preserve absence of any canvas-based substitute; do not claim the canvas size changed.",
+    "Preserve the Android bitmap dimension limit, not memory budget, file bytes, or SVG byte limit.",
+    "Preserve no resizing at all; do not introduce automatic-only or shrinking-only scope.",
+    "Retain SVG and Android technical identities.",
+    "No placeholders."
+  ],
+  "validation": {
+    "scope_matches_all_59": true,
+    "complete_proposed_strings": 96,
+    "withheld_strings": 22,
+    "all_proposals_have_SVG": true,
+    "all_size_limit_proposals_have_Android": true,
+    "no_placeholders_or_percent": true,
+    "xml_escaped_payload_parse": true,
+    "no_unescaped_ascii_apostrophes": true,
+    "language_acceptance": false,
+    "android_build_or_runtime_check": false
+  },
+  "locales": {
+    "ja": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "この SVG には、使用可能な元のサイズが指定されていません。キャンバスに基づくサイズへの置き換えは行っていません。",
+        "commons_svg_original_size_too_large": "SVG の元のサイズが Android のビットマップの寸法上限を超えています。サイズ変更は行っていません。"
+      },
+      "terminology": {
+        "canvas": "キャンバス",
+        "original_size": "元のサイズ"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-ja/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-ja/strings.xml",
+        "catalogue_sha256": "1725f0637c8d7cf8b779f3162c9578d070f88b2e6b0dad896a999366ed6861e3",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses キャンバス / 元のサイズ / ビットマップ. サイズ変更 preserves any resizing, rather than copying the narrower existing 自動的な縮小 (automatic shrinking).",
+      "independent_language_acceptance": false
+    },
+    "zh-HK": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "此 SVG 未指定可用的原本大小。並未改用以畫布為依據的大小。",
+        "commons_svg_original_size_too_large": "SVG 的原本大小超出 Android 點陣圖的尺寸上限。並未調整大小。"
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原本大小"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-zh-rHK/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-zh-rHK/strings.xml",
+        "catalogue_sha256": "6f36f86b55c23bafcbf7fd166264913477d86006ad54cea77496e634fad4e2ee",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses 原本大小 from the exact original-size action; 畫布 and 點陣圖 from catalogue. Explicit 尺寸上限 disambiguates the source limit.",
+      "independent_language_acceptance": false
+    },
+    "zh-TW": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "此 SVG 未指定可用的原始大小。並未改用以畫布為依據的大小。",
+        "commons_svg_original_size_too_large": "SVG 的原始大小超出 Android 點陣圖的尺寸上限。並未調整大小。"
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原始大小"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-zh-rTW/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-zh-rTW/strings.xml",
+        "catalogue_sha256": "f4004057f3a087636cd13b8c413400e4634072c1f3ae77d340a11ed98a8fa272",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses 原始大小 from the exact original-size action, rather than the older 原本大小 restore label. 畫布 / 點陣圖 retained.",
+      "independent_language_acceptance": false
+    },
+    "zh-CN": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "此 SVG 未指定可用的原始大小。并未改用以画布为依据的大小。",
+        "commons_svg_original_size_too_large": "SVG 的原始大小超出 Android 点阵图的尺寸上限。并未调整大小。"
+      },
+      "terminology": {
+        "canvas": "画布",
+        "original_size": "原始大小"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-zh-rCN/strings.xml",
+        "catalogue_sha256": "37280e90cc6dd5b3e5b3adf88b127bf2d8f0cc5786f1312d51c1bca8bbe58508",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses 原始大小 / 画布 / 点阵图 in Simplified script. No Mandarin content is used for distinct Sinitic varieties.",
+      "independent_language_acceptance": false
+    },
+    "yue-Hant": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "呢個 SVG 冇指定可用嘅原本大小。冇改用按畫布定出嘅大小。",
+        "commons_svg_original_size_too_large": "SVG 嘅原本大小超出 Android 點陣圖嘅尺寸上限。冇調整大小。"
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原本大小"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+        "catalogue_sha256": "5ee9c7075f7c4d055924a92179f510f9ee35c0da3bd1b39d4dcc50d08f8296fe",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Cantonese 冇 / 嘅 / 呢個 retained; both sentences align with the Jyutping proposal. 按畫布定出 preserves derivation, not an assertion that the canvas changed.",
+      "independent_language_acceptance": false
+    },
+    "yue-Latn": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Ni1 go3 SVG mou5 zi2 ding6 ho2 jung6 ge3 jyun4 bun2 daai6 siu2. Mou5 goi2 jung6 on3 waa2 bou3 ding6 ceot1 ge3 daai6 siu2.",
+        "commons_svg_original_size_too_large": "SVG ge3 jyun4 bun2 daai6 siu2 ciu1 ceot1 Android dim2 zan6 tou4 ge3 cek3 cyun3 soeng6 haan6. Mou5 tiu4 zing2 daai6 siu2."
+      },
+      "terminology": {
+        "canvas": "Waa2 bou3",
+        "original_size": "Jyun4 bun2 daai6 siu2"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+yue+Latn/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+yue+Latn/strings.xml",
+        "catalogue_sha256": "561fb77becd4ab3a680fca17737789c15c5433fbe8acea088540e77674706c65",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Jyutping with numeric tones; exactly paired to yue-Hant. SVG and Android remain technical identities; no Han fallback.",
+      "independent_language_acceptance": false
+    },
+    "tl": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Walang nakasaad na magagamit na orihinal na laki sa SVG. Walang ipinalit na laki na batay sa lona.",
+        "commons_svg_original_size_too_large": "Lampas sa limitasyon ng mga sukat ng bitmap sa Android ang orihinal na laki ng SVG. Hindi binago ang laki."
+      },
+      "terminology": {
+        "canvas": "Lona",
+        "original_size": "Orihinal na laki"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-tl/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-tl/strings.xml",
+        "catalogue_sha256": "8f3c2ce8d659020251f549cfba351f12f215cb5ef89a278f9a836fd6c52989ef",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses lona from the exact canvas action rather than older canvas size terminology; orihinal na laki / bitmap retained. A declaration must specify a usable size.",
+      "independent_language_acceptance": false
+    },
+    "ceb": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Walay gipiho nga magamit nga orihinal nga gidak-on sa SVG. Walay gipuli nga gidak-on nga gibase sa canvas.",
+        "commons_svg_original_size_too_large": "Ang orihinal nga gidak-on sa SVG milapas sa limitasyon sa mga dimensiyon sa bitmap sa Android. Wala usba ang gidak-on."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Orihinal nga gidak-on"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ceb/strings.xml",
+        "catalogue_sha256": "29ec3437aa101bd7aae5ba6384b1601f5a3b5b6a976f5088328fbb4b170630c8",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Canvas / orihinal nga gidak-on / dimensiyon retained. “magamit” preserves usable; no resizing is not narrowed to automatic resizing.",
+      "independent_language_acceptance": false
+    },
+    "ms": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG tidak menyatakan saiz asal yang boleh digunakan. Tiada saiz berasaskan kanvas digunakan sebagai ganti.",
+        "commons_svg_original_size_too_large": "Saiz asal SVG melebihi had dimensi peta bit Android. Tiada perubahan saiz dilakukan."
+      },
+      "terminology": {
+        "canvas": "Kanvas",
+        "original_size": "Saiz asal"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-ms/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-ms/strings.xml",
+        "catalogue_sha256": "c606c5247ada922f2382cf8a98a80a6911ca366fc598ecddd4270d949406f47a",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Kanvas / saiz asal / peta bit retained. “boleh digunakan” preserves usable rather than merely present.",
+      "independent_language_acceptance": false
+    },
+    "id": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG tidak menentukan ukuran asli yang dapat digunakan. Tidak ada ukuran berbasis kanvas yang digunakan sebagai pengganti.",
+        "commons_svg_original_size_too_large": "Ukuran asli SVG melebihi batas dimensi bitmap Android. Ukuran tidak diubah."
+      },
+      "terminology": {
+        "canvas": "Kanvas",
+        "original_size": "Ukuran asli"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-in/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-in/strings.xml",
+        "catalogue_sha256": "02be556c9b14ce7c390ee543f3b5f3c66186a817da8251a211ae35a752405183",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Kanvas / ukuran asli / bitmap retained; no substitution and no resizing are separate completed non-actions.",
+      "independent_language_acceptance": false
+    },
+    "sw": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG haijabainisha ukubwa asili unaoweza kutumika. Hakuna ukubwa unaotegemea turubai uliotumika badala yake.",
+        "commons_svg_original_size_too_large": "Ukubwa asili wa SVG unazidi mipaka ya vipimo vya bitmap ya Android. Ukubwa haukubadilishwa."
+      },
+      "terminology": {
+        "canvas": "Turubai",
+        "original_size": "Ukubwa asili"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-sw/strings.xml",
+        "catalogue_sha256": "9189faa1cf9743e548d9b0b17d1e608f998f250b9a95ccb4cc32a44826ef2b7c",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Turubai / ukubwa asili / bitmap retained. The canvas-derived size was not used as a replacement; no resize of any kind asserted.",
+      "independent_language_acceptance": false
+    },
+    "fi": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG ei määritä käyttökelpoista alkuperäistä kokoa. Tilalle ei asetettu kankaaseen perustuvaa kokoa.",
+        "commons_svg_original_size_too_large": "SVG:n alkuperäinen koko ylittää Androidin bittikartoille sallimat mitat. Kokoa ei muutettu."
+      },
+      "terminology": {
+        "canvas": "Kangas",
+        "original_size": "Alkuperäinen koko"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-fi/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-fi/strings.xml",
+        "catalogue_sha256": "fbb7c6be578989f1708dc7edefa5e51cf830cd0caf12381ffc8a0ff3dbcbafb1",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Kangas / alkuperäinen koko / bittikartta retained. Androidin bittikartoille sallimat mitat names allowable dimensions rather than a memory budget.",
+      "independent_language_acceptance": false
+    },
+    "hu": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Az SVG nem ad meg használható eredeti méretet. Nem helyettesítettük vászonalapú mérettel.",
+        "commons_svg_original_size_too_large": "Az SVG eredeti mérete meghaladja az Android bittérképeinek méretkorlátait. Átméretezés nem történt."
+      },
+      "terminology": {
+        "canvas": "Vászon",
+        "original_size": "Eredeti méret"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-hu/strings.xml",
+        "catalogue_sha256": "689885e218d1db2e7d4099c298ffbda4c2101e8bf20aef9b2f3839c61cc809d5",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Vászon / eredeti méret / bittérkép retained; átméretezés covers any size change.",
+      "independent_language_acceptance": false
+    },
+    "af": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Die SVG spesifiseer nie ’n bruikbare oorspronklike grootte nie. Geen doekgebaseerde grootte is in die plek daarvan gebruik nie.",
+        "commons_svg_original_size_too_large": "Die oorspronklike SVG-grootte oorskry Android se limiete vir bitmapafmetings. Geen grootteverandering is toegepas nie."
+      },
+      "terminology": {
+        "canvas": "Doek",
+        "original_size": "Oorspronklike grootte"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+af/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+af/strings.xml",
+        "catalogue_sha256": "93fa4bef9030b5119bbb8151aabf577a1c1f33c6a5f82130eab63d863c60ab86",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Doek / oorspronklike grootte retained. Curly apostrophe in ’n avoids an unescaped Android ASCII apostrophe.",
+      "independent_language_acceptance": false
+    },
+    "nl": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "De SVG geeft geen bruikbare oorspronkelijke grootte op. Er is geen op het canvas gebaseerde grootte voor in de plaats gebruikt.",
+        "commons_svg_original_size_too_large": "De oorspronkelijke SVG-grootte overschrijdt de limieten voor bitmapafmetingen van Android. Er is geen groottewijziging toegepast."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Oorspronkelijke grootte"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-nl/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-nl/strings.xml",
+        "catalogue_sha256": "83263d2aaa7167f8b467e023ffe5f5d186962edb94d213ca49e3569717c5a045",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Groottewijziging covers resizing in either direction rather than the old narrower automatisch verkleind.",
+      "independent_language_acceptance": false
+    },
+    "et": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG-s ei ole määratud kasutatavat algset suurust. Seda ei asendatud lõuendipõhise suurusega.",
+        "commons_svg_original_size_too_large": "SVG algne suurus ületab Androidi rasterpildi mõõtmete piiranguid. Suurust ei muudetud."
+      },
+      "terminology": {
+        "canvas": "Lõuend",
+        "original_size": "Algne suurus"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+et/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+et/strings.xml",
+        "catalogue_sha256": "beaaf91ad363014f45550b599061151d1b265e4c2af3f88fe4dbd84ec2155a27",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Lõuend / algne suurus / rasterpilt retained. No automatic-only qualifier added.",
+      "independent_language_acceptance": false
+    },
+    "lv": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG nav norādīts izmantojams sākotnējais izmērs. Tā vietā netika izmantots uz audekla balstīts izmērs.",
+        "commons_svg_original_size_too_large": "SVG sākotnējais izmērs pārsniedz Android bitkartes izmēru ierobežojumus. Izmēra maiņa netika veikta."
+      },
+      "terminology": {
+        "canvas": "Audekls",
+        "original_size": "Sākotnējais izmērs"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+lv/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+lv/strings.xml",
+        "catalogue_sha256": "e75f0a5d0c366d41fcbd3d4d6dc67ffd22ac6dedef46489823c7f46fc5e173b7",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Audekls / sākotnējais izmērs / bitkarte retained. izmēra maiņa covers any resizing.",
+      "independent_language_acceptance": false
+    },
+    "lt": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG nenurodo tinkamo naudoti pradinio dydžio. Jis nebuvo pakeistas pagal drobę nustatytu dydžiu.",
+        "commons_svg_original_size_too_large": "Pradinis SVG dydis viršija Android rastrinio vaizdo matmenų ribas. Dydis nebuvo pakeistas."
+      },
+      "terminology": {
+        "canvas": "Drobė",
+        "original_size": "Pradinis dydis"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-lt/strings.xml",
+        "catalogue_sha256": "26b5bac5729678a1f3f76dc226f9d6cf6a3a4d5309dce8d7865a394fe91755b6",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Drobė / pradinis dydis / rastrinis vaizdas retained; matmenų ribas preserves the dimensional limit.",
+      "independent_language_acceptance": false
+    },
+    "es-ES": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "El SVG no especifica un tamaño original utilizable. No se ha sustituido por un tamaño basado en el lienzo.",
+        "commons_svg_original_size_too_large": "El tamaño original del SVG supera los límites de dimensiones de los mapas de bits de Android. No se ha aplicado ningún cambio de tamaño."
+      },
+      "terminology": {
+        "canvas": "Lienzo",
+        "original_size": "Tamaño original"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+es+ES/strings.xml",
+        "catalogue_sha256": "ce12814f3ef1a3fa1c2dfaeacb1149ac92035d13326d4164f1a30974ed388668",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Lienzo / tamaño original / mapa de bits retained; peninsular-style present perfect used for the completed non-actions.",
+      "independent_language_acceptance": false
+    },
+    "es-419": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "El SVG no especifica un tamaño original utilizable. No se sustituyó por un tamaño basado en el lienzo.",
+        "commons_svg_original_size_too_large": "El tamaño original del SVG supera los límites de dimensiones de los mapas de bits de Android. No se aplicó ningún cambio de tamaño."
+      },
+      "terminology": {
+        "canvas": "Lienzo",
+        "original_size": "Tamaño original"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+es+419/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+es+419/strings.xml",
+        "catalogue_sha256": "c8ad5499f6de263cb6d3353816f44a9ccd4043420ff6028cd2ef87fc6ec28cd8",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Lienzo / tamaño original / mapa de bits retained; preterite used for the completed non-actions.",
+      "independent_language_acceptance": false
+    },
+    "fr": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Le SVG ne définit pas de taille d’origine utilisable. Aucune taille basée sur le canevas n’a été utilisée à la place.",
+        "commons_svg_original_size_too_large": "La taille d’origine du SVG dépasse les limites de dimensions des bitmaps d’Android. Aucun redimensionnement n’a été appliqué."
+      },
+      "terminology": {
+        "canvas": "Canevas",
+        "original_size": "Taille d’origine"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-fr/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-fr/strings.xml",
+        "catalogue_sha256": "9dd9187a39b1ef487a139aa40bae44d955584f7c08844a211a71064e6b1c7e20",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Canevas / taille d’origine / bitmap retained. Typographic apostrophes avoid Android ASCII quoting issues.",
+      "independent_language_acceptance": false
+    },
+    "de": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Das SVG gibt keine nutzbare Originalgröße an. Es wurde keine von der Leinwand abgeleitete Größe als Ersatz verwendet.",
+        "commons_svg_original_size_too_large": "Die Originalgröße des SVG überschreitet die zulässigen Bitmap-Abmessungen von Android. Es wurde keine Größenänderung vorgenommen."
+      },
+      "terminology": {
+        "canvas": "Leinwand",
+        "original_size": "Originalgröße"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-de/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-de/strings.xml",
+        "catalogue_sha256": "eaca610291ca458bac9528f1ac38db46fa1c2d5366d1eb5bb6731dea170c4372",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Leinwand / Originalgröße / Bitmap retained. The negative substitute clause explicitly describes a derived canvas size.",
+      "independent_language_acceptance": false
+    },
+    "ru": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "В SVG не указан пригодный для использования исходный размер. Вместо него не подставлялся размер на основе холста.",
+        "commons_svg_original_size_too_large": "Исходный размер SVG превышает ограничения Android на размеры растрового изображения. Изменение размера не применялось."
+      },
+      "terminology": {
+        "canvas": "Холст",
+        "original_size": "Исходный размер"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-ru/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-ru/strings.xml",
+        "catalogue_sha256": "9eeafef31d5d9b3f1f14f74ad3014c71b9b274c322d3837141b0b57517fbd4b4",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Холст / исходный размер / растровое изображение retained; limits concern image dimensions, not memory allocation.",
+      "independent_language_acceptance": false
+    },
+    "ar": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "لا يحدد SVG حجمًا أصليًا صالحًا للاستخدام. لم يُستخدم حجم يستند إلى لوحة الرسم بديلًا عنه.",
+        "commons_svg_original_size_too_large": "يتجاوز الحجم الأصلي لـ SVG حدود أبعاد الصور النقطية في Android. لم يُطبَّق أي تغيير للحجم."
+      },
+      "terminology": {
+        "canvas": "لوحة الرسم",
+        "original_size": "الحجم الأصلي"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-ar/strings.xml",
+        "catalogue_sha256": "bfd43c0cd32966499f2fadeb58876a3701bdfc02b814292a79b50c1f149243b0",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses لوحة الرسم / الحجم الأصلي / الصور النقطية. SVG and Android remain Latin; no geometry or negation reversal under RTL.",
+      "independent_language_acceptance": false
+    },
+    "eo": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "La SVG ne specifas uzeblan originan grandon. Neniu grando bazita sur la tolo estis uzita anstataŭe.",
+        "commons_svg_original_size_too_large": "La origina grando de la SVG superas la dimensiajn limojn de rastrumbildoj en Android. Neniu regrandigo estis aplikita."
+      },
+      "terminology": {
+        "canvas": "Tolo",
+        "original_size": "Origina grando"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+eo/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+eo/strings.xml",
+        "catalogue_sha256": "3bf0df4dc9ad89617fc131d0207f4e66ead90b61b2454e3dc34a63e8372894af",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Tolo / origina grando / rastrumbildo retained; regrandigo covers resizing, not only shrinking.",
+      "independent_language_acceptance": false
+    },
+    "lzh-Hant": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG 未明定可用之原寸。未以據畫布而定之寸代之。",
+        "commons_svg_original_size_too_large": "SVG 原寸逾 Android 位圖尺寸之限。未改其大小。"
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原寸"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+lzh+Hant/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+lzh+Hant/strings.xml",
+        "catalogue_sha256": "f07242eb52ee84b7ac0f3e118dbeba3b1ef6a6c561713f317d9d015ac3e1cc74",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Technical Literary Chinese: 原寸 / 畫布 / 位圖, with explicit 未 negation for both non-actions. Modern technical names retained.",
+      "independent_language_acceptance": false
+    },
+    "hak-Hant-TW": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原本大細"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+        "catalogue_sha256": "acf62a9bfcbb23990807e6b91591c26256f433edacdbd245aeff3f26f12b59cf",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The known Sixian terms 畫布 / 原本大細 / 做毋得 do not establish an idiomatic technical clause for “does not declare a usable original size” or the passive substitution clause. A complete paired Han/PFS proposal is withheld rather than adapting Mandarin syntax or leaving the Latin member unverified.",
+      "independent_language_acceptance": false
+    },
+    "hak-Latn-TW": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "Fa pu",
+        "original_size": "Ngièn-pún thai-se"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+        "catalogue_sha256": "2bd48557e3eecd49b11250d0bceb8afc725761694366f33679361608dbbba231",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "PFS readings and tone marks for the new declaration/substitution predicates have not been verified in Sixian context. Existing Fa pu / Ngièn-pún thai-se and the prior contextual-reading report are terminology evidence only; Mandarin transliteration would be invalid.",
+      "independent_language_acceptance": false
+    },
+    "nan-Hant-TW": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG 無表明會當用的原本大細。無用照畫布定的大細來代替。",
+        "commons_svg_original_size_too_large": "SVG 原本的大細超過 Android 點陣圖的尺寸上限。無調整大細。"
+      },
+      "terminology": {
+        "canvas": "畫布",
+        "original_size": "原本大細"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml",
+        "catalogue_sha256": "3ea083a93fc842092676df4f1c6fad2069adfd625f6920dddf6df9d95e4e14ff",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Taiwanese clauses use 無 / 會當用 / 的 / 來代替, semantically paired with POJ. Independent sentence review remains open; dictionary entries support constituents, not the complete UI text.",
+      "independent_language_acceptance": false,
+      "additional_lexical_evidence": [
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=piau2",
+          "scope": "MOE Taiwanese entry list gives 表明 piáu-bîng; POJ piáu-bêng is editorial conversion, not quoted MOE orthography."
+        },
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/su/8475/",
+          "scope": "MOE Taiwanese 替 includes 代替 tāi-thè; constituent evidence only."
+        },
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/su/11377/",
+          "scope": "MOE Taiwanese 調整 tiâu-tsíng; POJ tiâu-chéng is editorial conversion, not quoted MOE orthography."
+        }
+      ]
+    },
+    "nan-Latn-TW": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG bô piáu-bêng ē-tàng ēng ê goân-pún tōa-sè. Bô ēng chiàu ōe-pò͘ tēng ê tōa-sè lâi tāi-thè.",
+        "commons_svg_original_size_too_large": "SVG goân-pún ê tōa-sè chhiau-kòe Android tiám-tīn-tô͘ ê chhioh-chhùn siōng-hān. Bô tiâu-chéng tōa-sè."
+      },
+      "terminology": {
+        "canvas": "Ōe-pò͘",
+        "original_size": "Goân-pún tōa-sè"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml",
+        "catalogue_sha256": "cbec17083f938cefcececa004c38a41397233b65bfedd8b2b76bdeee9a174ae2",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "POJ pair: 表明 piáu-bêng (MOE Tâi-lô piáu-bîng), 代替 tāi-thè, 調整 tiâu-chéng (MOE Tâi-lô tiâu-tsíng); the POJ rendering is editorial, not a verbatim MOE spelling. Existing ōe-pò͘ / goân-pún tōa-sè / tiám-tīn-tô͘ retained.",
+      "independent_language_acceptance": false,
+      "additional_lexical_evidence": [
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/tshiau/?lui=tai_su&tsha=piau2",
+          "scope": "MOE Taiwanese entry list gives 表明 piáu-bîng; POJ piáu-bêng is editorial conversion, not quoted MOE orthography."
+        },
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/su/8475/",
+          "scope": "MOE Taiwanese 替 includes 代替 tāi-thè; constituent evidence only."
+        },
+        {
+          "url": "https://sutian.moe.edu.tw/zh-hant/su/11377/",
+          "scope": "MOE Taiwanese 調整 tiâu-tsíng; POJ tiâu-chéng is editorial conversion, not quoted MOE orthography."
+        }
+      ]
+    },
+    "wuu-Hans": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG 呒没标明能用个原来大小。呒没拿照画布定个大小来替代。",
+        "commons_svg_original_size_too_large": "SVG 个原来大小超出 Android 位图个尺寸上限。呒没调整大小。"
+      },
+      "terminology": {
+        "canvas": "画布",
+        "original_size": "原来大小"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+wuu+Hans/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+wuu+Hans/strings.xml",
+        "catalogue_sha256": "3148abbc179ba7e54cf4bc359b16e2d7c653944b2fea1c25a1c5aa4eb051c8e4",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Simplified written Wu with Shanghainese basis: 呒没 / 个 / 拿. Not presented as a standardized pan-Wu norm; new technical clauses remain proposals.",
+      "independent_language_acceptance": false
+    },
+    "en-001": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+en+001/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+en+001/strings.xml",
+        "catalogue_sha256": "dab5d9c4636d9a2bac16f060e46c29c1ee7d6082ab52098c614689d55a509a32",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-AU": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rAU/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rAU/strings.xml",
+        "catalogue_sha256": "dc8b31e7a8875fa4e9e0114373b0a49e08d6742e138f4bd71f6b8353763284f0",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-CA": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rCA/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rCA/strings.xml",
+        "catalogue_sha256": "a085918abcb2b7c26f2c93dccdc52f8fbe9296738fb37ed8475310c5774de046",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-GB": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rGB/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rGB/strings.xml",
+        "catalogue_sha256": "93aee7229dad8ae78bf888e172b2d56e070ff587a62e5485939ef6fa2dfa0392",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-IN": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rIN/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rIN/strings.xml",
+        "catalogue_sha256": "0f2c63a317b713ed3aed082d07bd2287a34bb4c389340bd556d4dc20d7fa6a0a",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-SG": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rSG/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rSG/strings.xml",
+        "catalogue_sha256": "4258802937720faf31db8c6181e029b51f3ba2941552936183026107e56a5ce4",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "en-US": {
+      "status": "source_english",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-en-rUS/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-en-rUS/strings.xml",
+        "catalogue_sha256": "718722a9a5cbceddfba084a914f1842ed3ecdb8052a2d1ef8bfaea8e5e048356",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Both complete source-English messages retained verbatim; no regional lexical differences occur in these sentences.",
+      "independent_language_acceptance": false
+    },
+    "pt-PT": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "O SVG não especifica um tamanho original utilizável. Não foi utilizado um tamanho baseado na tela em sua substituição.",
+        "commons_svg_original_size_too_large": "O tamanho original do SVG excede os limites das dimensões dos bitmaps do Android. Não foi aplicado qualquer redimensionamento."
+      },
+      "terminology": {
+        "canvas": "Tela",
+        "original_size": "Tamanho original"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+        "catalogue_sha256": "87df107cf9ca12455013f61047bcba721c3fe43eedbc8916cc312b5be5a7edb4",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses Tela from the exact canvas action, instead of the older área de trabalho size label; PT-PT Não foi ... qualquer wording retained.",
+      "independent_language_acceptance": false
+    },
+    "pt-BR": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "O SVG não especifica um tamanho original utilizável. Não foi usado um tamanho baseado na tela em seu lugar.",
+        "commons_svg_original_size_too_large": "O tamanho original do SVG excede os limites das dimensões dos bitmaps do Android. Nenhum redimensionamento foi aplicado."
+      },
+      "terminology": {
+        "canvas": "Tela",
+        "original_size": "Tamanho original"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-pt-rBR/strings.xml",
+        "catalogue_sha256": "db563822776d9fd87c8ec73fe2c4e5331fefefddb42556ae8d557a58d8b36eb9",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses tela and Nenhum ... foi aplicado from the BR catalogue. Both clauses preserve source meaning.",
+      "independent_language_acceptance": false
+    },
+    "it": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "L’SVG non specifica dimensioni originali utilizzabili. Non sono state sostituite con dimensioni basate sulla tela.",
+        "commons_svg_original_size_too_large": "Le dimensioni originali dell’SVG superano i limiti delle dimensioni delle bitmap di Android. Non è stato applicato alcun ridimensionamento."
+      },
+      "terminology": {
+        "canvas": "Tela",
+        "original_size": "Dimensioni originali"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-it/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-it/strings.xml",
+        "catalogue_sha256": "55297a4c21f85b0202989826c27f13b2b710a9c1b3aead8a2c543203f48b3398",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses tela from the exact canvas action, rather than the older superficie size label. Plural dimensioni agrees with both new clauses.",
+      "independent_language_acceptance": false
+    },
+    "el": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "Το SVG δεν ορίζει αξιοποιήσιμο αρχικό μέγεθος. Δεν αντικαταστάθηκε με μέγεθος που βασίζεται στον καμβά.",
+        "commons_svg_original_size_too_large": "Το αρχικό μέγεθος του SVG υπερβαίνει τα όρια διαστάσεων bitmap του Android. Δεν εφαρμόστηκε αλλαγή μεγέθους."
+      },
+      "terminology": {
+        "canvas": "Καμβάς",
+        "original_size": "Αρχικό μέγεθος"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-el/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-el/strings.xml",
+        "catalogue_sha256": "6719b69d3d2c8fac034408d409bf5f068eee23e97b8b0a5616e54eae5ffc616e",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Καμβάς / αρχικό μέγεθος / bitmap retained. Explicit όρια διαστάσεων preserves dimension limits, not a storage-size limit.",
+      "independent_language_acceptance": false
+    },
+    "tr": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG kullanılabilir bir özgün boyut belirtmiyor. Yerine tuvale dayalı bir boyut kullanılmadı.",
+        "commons_svg_original_size_too_large": "SVG’nin özgün boyutu Android bitmap boyut sınırlarını aşıyor. Yeniden boyutlandırma uygulanmadı."
+      },
+      "terminology": {
+        "canvas": "Tuval",
+        "original_size": "Özgün boyut"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-tr/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-tr/strings.xml",
+        "catalogue_sha256": "8f429369d184699f21368f5095d9aaef00868505e1c8815b1bcae4227829366b",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Tuval / özgün boyut / bitmap retained; no resizing in either direction. Typographic possessive apostrophe avoids Android ASCII escaping.",
+      "independent_language_acceptance": false
+    },
+    "bo": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "རས་གཞི།",
+        "original_size": "ཐོག་མའི་ཆེ་ཆུང་།"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+bo/strings.xml",
+        "catalogue_sha256": "0e94f7b06f39f19755e5e50fb0913d41be9c49d4a2869356be094008620c87a8",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing རས་གཞི། / ཐོག་མའི་ཆེ་ཆུང་། and the bitmap warning do not establish the technical “declared usable original size” and “canvas-based size substituted” constructions. Tibetan case/negation scope for these new clauses remains unverified.",
+      "independent_language_acceptance": false
+    },
+    "dz": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "འབྲི་གཞི།",
+        "original_size": "ཚད་ངོ་མ།"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+dz/strings.xml",
+        "catalogue_sha256": "66db71e4da63c2d03493fe8f3691f92345448cd3faa4b7c13b8752118aecffb3",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The new declaration and substitution clauses require Dzongkha grammar and terminology that cannot be established from འབྲི་གཞི། / ཚད་ངོ་མ། or the warning alone. A Tibetan substitution would not satisfy this locale.",
+      "independent_language_acceptance": false
+    },
+    "mn-Cyrl-MN": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG файлд ашиглаж болох анхны хэмжээг заагаагүй байна. Зургийн талбарт үндэслэсэн хэмжээг орлуулан ашиглаагүй.",
+        "commons_svg_original_size_too_large": "SVG-ийн анхны хэмжээ Android-ийн bitmap-ийн хэмжээсийн хязгаараас давсан. Хэмжээг өөрчлөөгүй."
+      },
+      "terminology": {
+        "canvas": "Зургийн талбар",
+        "original_size": "Анхны хэмжээ"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+        "catalogue_sha256": "98a34ef4c8ac9ef22ab0160e6cea711c7492ebd75d44a0fef11630d9a76ca118",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses Зургийн талбар from the exact canvas action; анхны хэмжээ and retained bitmap match source terminology. Traditional-script counterpart is withheld rather than mechanically transliterated.",
+      "independent_language_acceptance": false
+    },
+    "mn-Mong": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ",
+        "original_size": "ᠠᠩᠬᠠᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+mn+Mong/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+mn+Mong/strings.xml",
+        "catalogue_sha256": "3c4e0017ec8eed9a423a927319ed02fac13ca66052ebeb170221474cdf2691ba",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing traditional Mongolian terms establish canvas and original size, but the new finite/passive clauses and traditional-script suffix forms have not been verified. Mechanical Cyrillic transliteration would not establish correct written Mongolian.",
+      "independent_language_acceptance": false
+    },
+    "jje": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "캔버스",
+        "original_size": "원래 크기"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+jje/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+jje/strings.xml",
+        "catalogue_sha256": "b1ffe234ca8d14af678840483c61bc6af822b693f8aaa0ebdba222a89016c5d8",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The catalogue gives Jeju endings and terms, but they do not establish authentic Jeju predicates for declaration, usability, and canvas-derived substitution. Merely changing South Korean sentence endings would be unsupported.",
+      "independent_language_acceptance": false
+    },
+    "mnc-Mong": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "ᠨᡳᡵᡠᡵᡝ ᠪᠠ",
+        "original_size": "ᡩᠠᠴᡳ ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+        "catalogue_sha256": "af20ca3c03de20f17d497c34f34815faa1124d13e3ee2913b8bfbcc27a408978",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing Manchu terms for drawing area and original size are available; the syntax and technical wording for usable declared dimensions, substitution, and Android bitmap limits are not verified. Mongolian text or invented script strings are not proposed.",
+      "independent_language_acceptance": false
+    },
+    "ain-Kana": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "カㇺピソ",
+        "original_size": "ホㇱキ ポロル"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+        "catalogue_sha256": "3affa0831678a91c710f7d7e7eae10c1db5fdf072821c555de4f321a89f6b7ac",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The paired catalogue supplies カㇺピソ / ホㇱキ ポロル and an existing no-automatic-resize phrase. The argument structure for an SVG declaring dimensions and passive substitution is not established; Japanese clauses written in kana would be invalid.",
+      "independent_language_acceptance": false
+    },
+    "ain-Latn": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "Kampiso",
+        "original_size": "Hoski pororu"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+        "catalogue_sha256": "6668e2bb2a6a45f052560e4b5ca85b06995a42a21492c83301d760551919d241",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The paired catalogue supplies Kampiso / Hoski pororu and the existing size-warning scaffold. New predicate valency and negative substitution syntax are unverified; a wordwise conversion from Japanese or a guessed Latin sentence is withheld.",
+      "independent_language_acceptance": false
+    },
+    "ryu": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "キャンバス",
+        "original_size": "元ぬサイズ"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ryu/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ryu/strings.xml",
+        "catalogue_sha256": "7b1a7c9d86f56edc10f69604f844425d6af7c15621f3febb890f4977ce3927da",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing Okinawan 元ぬサイズ and no-resize wording do not establish the new declaration and canvas-based substitution predicates. Standard Japanese with a few Okinawan particles/endings would not be a responsibly supported translation.",
+      "independent_language_acceptance": false
+    },
+    "ko-KR": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG에 사용 가능한 원래 크기가 지정되어 있지 않습니다. 캔버스를 기준으로 한 크기로 대체하지 않았습니다.",
+        "commons_svg_original_size_too_large": "SVG의 원래 크기가 Android 비트맵의 크기 한도를 초과합니다. 크기 조절은 적용하지 않았습니다."
+      },
+      "terminology": {
+        "canvas": "캔버스",
+        "original_size": "원래 크기"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ko+KR/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ko+KR/strings.xml",
+        "catalogue_sha256": "a25c0f6ff6f1f311e4488b3b207ae7b09c6dadba268c0d83479a23236cf5849e",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses original-size 원래 크기, 캔버스 and 비트맵; removes 自動/automatic scope from the existing no-resize warning.",
+      "independent_language_acceptance": false
+    },
+    "ko-KP": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG에 리용 가능한 본래 크기가 지정되여 있지 않습니다. 화판을 기준으로 한 크기로 대체하지 않았습니다.",
+        "commons_svg_original_size_too_large": "SVG의 본래 크기가 Android 비트맵의 크기 한도를 초과합니다. 크기 조절은 적용하지 않았습니다."
+      },
+      "terminology": {
+        "canvas": "화판",
+        "original_size": "본래 크기"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ko+KP/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ko+KP/strings.xml",
+        "catalogue_sha256": "1ac851e3d8c9f14a20feccb06b68013c0d1425bebabe8dba0a40ac171313dcd7",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses 본래 크기 and 화판 from the exact newer actions, rather than older 원래 / 그림판 labels; 리용 and 지정되여 retain regional spelling. Independent DPRK technical-register review remains open.",
+      "independent_language_acceptance": false
+    },
+    "ko-Kore-KR": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG에 使用 가능한 원래 크기가 指定되어 있지 않습니다. 캔버스를 基準으로 한 크기로 代替하지 않았습니다.",
+        "commons_svg_original_size_too_large": "SVG의 원래 크기가 Android 비트맵의 크기 限度를 超過합니다. 크기 調節은 適用하지 않았습니다."
+      },
+      "terminology": {
+        "canvas": "캔버스",
+        "original_size": "원래 크기"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml",
+        "catalogue_sha256": "31a4b6dfdcc2461b95f3f55dab7b5f0e06a92117ded7e810124bbfa153aba5fc",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Mixed Hangul/Hanja follows catalogue convention (使用, 基準, 限度, 適用); remains Korean grammar, not a Han-only conversion. Hanja selection remains an editorial proposal.",
+      "independent_language_acceptance": false
+    },
+    "vi": {
+      "status": "catalogue_assisted_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG không khai báo kích thước gốc có thể sử dụng. Không dùng kích thước dựa trên khung vẽ để thay thế.",
+        "commons_svg_original_size_too_large": "Kích thước gốc của SVG vượt quá giới hạn kích thước bitmap của Android. Không thay đổi kích thước."
+      },
+      "terminology": {
+        "canvas": "Khung vẽ",
+        "original_size": "Kích thước gốc"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-vi/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-vi/strings.xml",
+        "catalogue_sha256": "7d19e0bf9f99b7fe47fbdc9865ea550d8bd1ce7782a6e23854267f999d68b5ac",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Uses kích thước gốc / khung vẽ / bitmap. khai báo is the SVG declaration, and no resize is broader than the old no-automatic-resize phrase.",
+      "independent_language_acceptance": false
+    },
+    "vi-Hani": {
+      "status": "withheld_unverified_language_or_script",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": null
+      },
+      "terminology": {
+        "canvas": "椌 𡳒",
+        "original_size": "戟 𡱩 㭲"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+        "catalogue_sha256": "ce8dcfa78304642a2f4beffe384e72e8925c21da40c16756a4df0e4407bd2a5a",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "The known Nôm terms 椌 𡳒 / 戟 𡱩 㭲 and existing bitmap sentence are insufficient to verify the characters/readings for khai báo, dựa trên, and thay thế in these complete clauses. Mechanical Han substitution or Quốc Ngữ fallback is not proposed.",
+      "independent_language_acceptance": false
+    },
+    "en-XV": {
+      "status": "layout_fixture_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "Canvas",
+        "original_size": "Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+en+XV/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+en+XV/strings.xml",
+        "catalogue_sha256": "e09a60b17068f01a8e268f3d55695659b83de5ef0c9fffb836e71faefb5fca67",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing vertical-English fixture keeps source English without decoration; both sentences retained verbatim.",
+      "independent_language_acceptance": false
+    },
+    "qaa-Zsye-XV": {
+      "status": "layout_fixture_proposal",
+      "translations": {
+        "commons_svg_original_size_unavailable": "📏 The SVG does not declare a usable original size. No canvas-based size was substituted.",
+        "commons_svg_original_size_too_large": "📏 The original SVG size exceeds Android bitmap dimensions. No resizing was applied."
+      },
+      "terminology": {
+        "canvas": "🧪 Canvas",
+        "original_size": "📏 Original size"
+      },
+      "evidence": {
+        "catalogue_path": "Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+        "catalogue_url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+        "catalogue_sha256": "76a204a7ca8de21d6ac4ecc2152a575c6ede75bf160fba59fcb087272a121ad7",
+        "keys": [
+          "ui_canvas_size_30460e",
+          "ui_restore_original_sizes",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current",
+          "ui_choose_dimensions_no_larger_than_the_original",
+          "ui_android_could_not_decode_this_image",
+          "ui_edit_canvas33",
+          "ui_original_size34"
+        ]
+      },
+      "review_note": "Existing emoji layout fixture retains exact English hints with an emoji prefix. 📏 selected consistently with other size strings; not a natural-language translation.",
+      "independent_language_acceptance": false
+    }
+  }
+}

@@ -23,4 +23,20 @@ class SvgOriginalSizeTest {
             assertTrue(runCatching {SvgOriginalSize.pixels(40.0,bad)}.exceptionOrNull() is IllegalArgumentException)
         }
     }
+
+    @Test fun classifiesBothDimensionsWithoutChangingTheOriginalBounds() {
+        for(bad in listOf(-1.0,0.0,Double.NaN,Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY)) {
+            for((width,height) in listOf(bad to 24.0,40.0 to bad)) {
+                val error=assertThrows(SvgOriginalSize.SizeException::class.java) {SvgOriginalSize.pixels(width,height)}
+                assertEquals(SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE,error.reason)
+            }
+        }
+        for(bad in listOf(Int.MAX_VALUE.toDouble()+.5,Int.MAX_VALUE.toDouble()+1,Double.MAX_VALUE)) {
+            for((width,height) in listOf(bad to 24.0,40.0 to bad)) {
+                val error=assertThrows(SvgOriginalSize.SizeException::class.java) {SvgOriginalSize.pixels(width,height)}
+                assertEquals(SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS,error.reason)
+            }
+        }
+        assertEquals(SvgOriginalSize.Pixels(Int.MAX_VALUE,1),SvgOriginalSize.pixels(Int.MAX_VALUE.toDouble(),.5))
+    }
 }

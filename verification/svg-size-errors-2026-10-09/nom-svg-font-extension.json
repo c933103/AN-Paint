@@ -1,0 +1,171 @@
+{
+  "scope": "Only additive U+8C6B for the Nôm SVG size-error translation. No rendering, device or linguistic acceptance claim.",
+  "toolchain": {
+    "python": "3.12.14",
+    "fonttools": "4.61.1"
+  },
+  "source": {
+    "url": "https://github.com/nomfoundation/font/releases/download/v5.18/NomNaTong-Regular.ttf",
+    "release": "v5.18",
+    "sha256": "37bd8506257d0905d499395e7f0bc2b6a2ae619dbb635a82ea0905b75b2ff5f3",
+    "bytes": 15927512
+  },
+  "base": {
+    "commit": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
+    "path": "Paintroid/src/main/assets/fonts/anpaintnomui.ttf",
+    "sha256": "1c809021f3c74ce27bb7cbe73e63339f46fa66f5b85252db504f4f62405701b9",
+    "bytes": 274664,
+    "codepoints": 733,
+    "glyphs": 735
+  },
+  "output": {
+    "path": "Paintroid/src/main/assets/fonts/anpaintnomui.ttf",
+    "sha256": "797ac4ef00f0dd8a982d5216dbd78db3edda07b578b9f8642d0156add90bd526",
+    "bytes": 275312,
+    "codepoints": 734,
+    "glyphs": 736
+  },
+  "addition": {
+    "codepoint": "U+8C6B",
+    "character": "豫",
+    "glyph_name": "uni8C6B",
+    "glyph_id": 735,
+    "outline_sha256": "8a0b83f725e65a7b7331cebc7cbcecb59681d81f5757c91f085ba5c60e604646",
+    "outline_bytes": 622,
+    "metrics": [
+      1000,
+      36
+    ],
+    "identical_to_pinned_source": true
+  },
+  "preservation": {
+    "table_tags": [
+      "OS/2",
+      "cmap",
+      "glyf",
+      "head",
+      "hhea",
+      "hmtx",
+      "loca",
+      "maxp",
+      "name",
+      "post"
+    ],
+    "old_order_outlines_metrics_preserved": true,
+    "cmaps": [
+      {
+        "platform": 3,
+        "encoding": 1,
+        "format": 4,
+        "before_count": 576,
+        "after_count": 577,
+        "old_mapping_and_glyph_ids_preserved": true,
+        "added_mapping": {
+          "codepoint": "U+8C6B",
+          "glyph_id": 735
+        }
+      },
+      {
+        "platform": 3,
+        "encoding": 10,
+        "format": 12,
+        "before_count": 733,
+        "after_count": 734,
+        "old_mapping_and_glyph_ids_preserved": true,
+        "added_mapping": {
+          "codepoint": "U+8C6B",
+          "glyph_id": 735
+        }
+      }
+    ],
+    "unchanged_tables_sha256": {
+      "OS/2": "13f7eea06eb7596e00a98e475c41f6ae723b8f7aacb299420df9c5f2ed93e0b2",
+      "hhea": "6db8a5471b82c0dfaf3bf9d68fb6bdf7fbe4ed32e80a34cf004341f55725f776",
+      "name": "6caea60e57b8443d9a328071aafdf27a4fbb5e307c4442aa38e5f470909c6edc",
+      "post": "d2a06577c3662ff94a395808f45473b30b6a6b7e682739725e43f6fc47996705"
+    },
+    "unchanged_table_prefixes": {
+      "glyf": {
+        "preserved_bytes": 256275,
+        "preserved_sha256": "d6589552c9ddcbb3dd5ed425f7ef7696c9d856260ef6cab1b16a7a635ac627d2",
+        "output_bytes": 256897
+      },
+      "hmtx": {
+        "preserved_bytes": 2486,
+        "preserved_sha256": "110b108d8c3ba54ae22788da4db869f5442c8df1a0753d185084a5241cc95435",
+        "output_bytes": 2488
+      },
+      "loca": {
+        "preserved_bytes": 2944,
+        "preserved_sha256": "26d5a42050817c19c341a68b88f29c949e0f431def3e80a893f5623794e7bc71",
+        "output_bytes": 2948
+      }
+    },
+    "unchanged_except_fields": {
+      "head": {
+        "excluded_byte_range": [
+          8,
+          12
+        ],
+        "preserved_sha256": "a1a69cf08d75e8d5643187cf0c715e19c4931be0010d61a082ca127d600acf4e"
+      },
+      "maxp": {
+        "excluded_byte_range": [
+          4,
+          6
+        ],
+        "preserved_sha256": "1e6e4afda7db3954205c9c6a926096068abd331fe85e8dd3fe4d4b2b1879d55a"
+      }
+    },
+    "output_cmap_sha256": "652e809c1821f7bf71cc150d53191a1a59a37d65a493f70f8defca32fb5e964a"
+  },
+  "reproducibility": {
+    "independent_generations": 2,
+    "byte_identical": true,
+    "sha256": "797ac4ef00f0dd8a982d5216dbd78db3edda07b578b9f8642d0156add90bd526",
+    "original_helper_default_base_sha256": "399798cabc8de4d86e219ab92934bbac4fc9587e547487761ee7cf30167110aa",
+    "original_helper_default_additions": [
+      "U+651D",
+      "U+671D"
+    ]
+  },
+  "negative_checks": [
+    {
+      "case": "wrong source hash",
+      "result": "rejected",
+      "message": "Unexpected Nom Na Tong v5.18 source"
+    },
+    {
+      "case": "wrong base hash",
+      "result": "rejected",
+      "message": "Unexpected pre-extension AN Paint Nom UI subset"
+    },
+    {
+      "case": "overwrite pinned base",
+      "result": "rejected",
+      "message": "Output must not overwrite either pinned input"
+    },
+    {
+      "case": "already present codepoint",
+      "result": "rejected",
+      "message": "Additions must be absent from the pre-extension subset"
+    },
+    {
+      "case": "duplicate requested codepoint",
+      "result": "rejected",
+      "message": "Expected distinct BMP codepoints for the existing cmap formats"
+    }
+  ],
+  "licence": {
+    "status": "Existing renamed combined-font OFL-1.1 distribution and retained Nom Na Tong MIT notice remain applicable: the only additional outline comes from the identical pinned MIT source; names, embedded licence metadata and all bundled notices remain unchanged.",
+    "notices_sha256": {
+      "Paintroid/src/main/assets/legal/fonts/anpaintnomui-NOTICE.txt": "532c5f2df245e3876855c869e61cc8f3474c84369098e9891af6c3006a4cb124",
+      "Paintroid/src/main/assets/legal/FONT_NOTICES.txt": "16e42e3d0e8e4a1c429b7df4e0565693ddb41b616396251d37dda482adcd3d46",
+      "Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt": "d8f3c14a57bcfd2f47a577bbcac15a31219a523a68cae5ed0cbc3c69711e997e"
+    }
+  },
+  "verification_limits": [
+    "No Android build, emulator or device rendering was run for this font-only check.",
+    "Font coverage and binary preservation do not establish linguistic correctness."
+  ]
+}

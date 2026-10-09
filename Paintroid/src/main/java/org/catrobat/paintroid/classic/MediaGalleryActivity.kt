@@ -302,7 +302,13 @@ class MediaGalleryActivity : Activity() {
                 runOnUiThread {returnDownloaded(resultFile,uri,page,title,author,licence,authorUrl)}
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
                 if(resultFile===file) temporary=null else rendered=null
-            } catch(error: Exception) {failure(ui(R.string.ui_could_not_load_gallery_image, error.message))}
+            } catch(error: Exception) {
+                val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {
+                    SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable
+                    SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large
+                }) else error.message
+                failure(ui(R.string.ui_could_not_load_gallery_image,reason))
+            }
               catch(error: OutOfMemoryError) {failure(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
               catch(error: LinkageError) {failure(ui(R.string.ui_could_not_load_gallery_image,ui(R.string.colour_converter_unavailable)))}
             finally {activeConnection?.disconnect();activeConnection=null;temporary?.delete();rendered?.delete();downloading=false}

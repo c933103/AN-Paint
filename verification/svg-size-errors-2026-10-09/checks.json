@@ -1,0 +1,145 @@
+{
+  "schema_version": 4,
+  "revision_from_head": "c73ad1afc91b492f27b063f9a7107cb104d87f61",
+  "publication_base": "4b615ce2d9e27814df84812b90858b5f676ce51a",
+  "default_messages": 2,
+  "proposed_offered_catalogues": 59,
+  "proposed_values": 118,
+  "blocked_scoped_catalogues": [],
+  "blocked_scoped_values": 0,
+  "other_incomplete_offered_catalogues": 81,
+  "source_structure": "passed",
+  "full_host_tests": {
+    "run": 321,
+    "reported_failure_records": 0,
+    "errors": 0,
+    "skips": 0,
+    "status": "passed",
+    "log": "host-tests-v4.log",
+    "log_sha256": "92c806743290f0d79a444004624a81e4d158f9cdf566e99bc8cad78f33311c35",
+    "note": "Includes unchanged scoped completeness gates. Negative instrumentation-command fixtures intentionally print their simulated failure payloads; the unittest process exits zero."
+  },
+  "strict_completeness": {
+    "affected_offered_catalogues": 81,
+    "reports": 162,
+    "status": "failed",
+    "scope": "The other 81 offered catalogues remain outside the scoped translation batch."
+  },
+  "composition_review": {
+    "coherent_new_pairs": 6,
+    "artifacts": [
+      "research-v3/jeju-independent-review.json",
+      "research-v3/five-locale-independent-review.json"
+    ],
+    "native_acceptance": false
+  },
+  "font_extension": {
+    "added_codepoint": "U+8C6B",
+    "old_glyphs_preserved": 735,
+    "old_codepoints_preserved": 733,
+    "byte_identical_reproductions": 2,
+    "sha256": "797ac4ef00f0dd8a982d5216dbd78db3edda07b578b9f8642d0156add90bd526",
+    "preservation_evidence": "nom-svg-font-extension.json",
+    "rendering_acceptance": false
+  },
+  "android_build": "not_run_locally",
+  "jvm_robolectric": "revised_fixture_not_run_locally",
+  "new_head_ci": "not_run_before_publication",
+  "linguistic_acceptance": false,
+  "physical_device_acceptance": false,
+  "gallery_readability": {
+    "source_path": "persistent gallery_status TextView; not Toast",
+    "host_native_render_tests": "Prior c73ad1a compiled and ran; 4 precondition failures. Revised sandbox-scale setup awaits fresh CI.",
+    "horizontal_assertion_tags": [
+      "fr",
+      "hak-Latn-TW",
+      "ar",
+      "vi-Hani",
+      "bo",
+      "dz"
+    ],
+    "vertical_capture_tags": [
+      "mn-Mong",
+      "mnc-Mong"
+    ],
+    "font_scales": [
+      1.0,
+      2.0
+    ],
+    "api_levels": [
+      30,
+      35
+    ],
+    "viewport_dp": [
+      320,
+      640
+    ],
+    "vertical_acceptance": false,
+    "separate_follow_up": "AN-W04 missing vertical renderer now confirmed in actual API30/35 native-host Mongolian captures at 1x; other scripts/large text remain pending."
+  },
+  "previous_local_snapshot": "history/c73ad1a-checks.json",
+  "previous_53_pair_remote_ci": {
+    "head": "ea60a00001d766674cbd6b91da791894af5ea624",
+    "run_id": 37914105355,
+    "overall_conclusion": "failure",
+    "host": {
+      "run": 316,
+      "failures": 7,
+      "skips": 2,
+      "job_id": 113765993298,
+      "jvm_lint_executed": false,
+      "log": "ci-host-tests-ea60a00.log.gz",
+      "log_sha256": "95423c0364db1666fc6c8adcee0de1512054e6ff180568dec42bcd1a1000455b",
+      "uncompressed_log_sha256": "a63477cf66eed4e257718c9665e5a7b63f0b338be9c3cdd51c845c2253703095"
+    },
+    "apk_source_build": {
+      "conclusion": "success",
+      "job_id": 113765992939
+    },
+    "api35_device": {
+      "conclusion": "success",
+      "job_id": 113767964256,
+      "codec_tests": 74,
+      "editor_tests": 14,
+      "credit_seed_tests": 1,
+      "credit_restart_tests": 1
+    },
+    "note": "Previous-head build/device passes do not execute the new readability or JVM failure-path checks."
+  },
+  "current_delta_source_review": {
+    "concrete_findings": 0,
+    "scope": "Method-level pre-application font-scale setup; retained real-Activity/geometry/glyph/persistence checks; no production change",
+    "readability_file_sha256": "a91cab169573497bab2ffea32229d30927c8f28cd62867a2bf38b4ff88e9c8ce",
+    "runtime_execution": false,
+    "language_acceptance": false
+  },
+  "previous_59_pair_remote_ci": {
+    "head": "c73ad1afc91b492f27b063f9a7107cb104d87f61",
+    "run_id": 37917916033,
+    "overall_conclusion": "failure",
+    "host": {
+      "run": 321,
+      "failures": 0,
+      "skips": 2
+    },
+    "jvm": {
+      "run": 686,
+      "failures": 4,
+      "svg_translation_executions": 6,
+      "svg_translation_failures": 0,
+      "failure": "Readability Activity fontScale precondition expected2 but observed1 during in-place scale change"
+    },
+    "lint": "passed",
+    "apk_test_apk_build": "passed",
+    "api35_device": {
+      "conclusion": "success",
+      "codec_tests": 74,
+      "editor_tests": 14,
+      "credit_seed_tests": 1,
+      "credit_restart_tests": 1
+    },
+    "code_review": "https://github.com/c933103/AN-Paint/pull/29#issuecomment-6079201324",
+    "native_host_artifacts": "readability/c73ad1a/results.json",
+    "revised_fixture_runtime": "pending"
+  }
+}
