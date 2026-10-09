@@ -24,12 +24,13 @@ class LocaleNumberInputSourceTest(unittest.TestCase):
         numeric = [p.name for p in JAVA.glob('*.kt') if 'InputType.TYPE_CLASS_NUMBER' in p.read_text()]
         self.assertEqual(['LocaleNumberInput.kt'], numeric)
 
-    def test_filter_preserves_syntax_and_ime_mode_without_overriding_validation(self):
+    def test_filter_preserves_syntax_and_ime_restart_order_without_overriding_validation(self):
         source = (JAVA / 'LocaleNumberInput.kt').read_text()
         for text in ('DecimalFormatSymbols(view.resources.configuration.locale)',
                      'symbols.zeroDigit', 'symbols.decimalSeparator', 'symbols.minusSign',
-                     '"0123456789.+-"', 'view.keyListener = DigitsKeyListener.getInstance(accepted)',
-                     'view.setRawInputType(InputType.TYPE_CLASS_NUMBER or if (decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0)'):
+                     '"0123456789.+-"', 'view.keyListener = object : NumberKeyListener()',
+                     'val keyboardType = InputType.TYPE_CLASS_NUMBER or if (decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0',
+                     'override fun getInputType() = keyboardType', 'override fun getAcceptedChars() = accepted'):
             self.assertIn(text, source)
         for forbidden in ('setText(', 'contentDescription', 'setOn', 'uiNumber(', 'toIntOrNull(', 'inputType ='):
             self.assertNotIn(forbidden, source)

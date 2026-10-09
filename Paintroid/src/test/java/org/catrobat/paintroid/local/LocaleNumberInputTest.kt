@@ -9,7 +9,10 @@ import android.graphics.Rect
 import android.os.Looper
 import android.text.InputFilter
 import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
@@ -20,7 +23,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.Implementation
+import org.robolectric.annotation.Implements
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowInputMethodManager
 import java.io.File
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -88,6 +94,7 @@ class LocaleNumberInputTest {
                     field.filters=arrayOf(limit)
                     LocaleNumberInput.configure(field,decimal)
                     assertEquals(tag,InputType.TYPE_CLASS_NUMBER or if(decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0,field.inputType)
+                    assertEquals(tag,field.inputType,field.keyListener.inputType)
                     assertEquals("numeric purpose",field.contentDescription)
                     assertTrue(field.filters.contains(limit))
                     for((text,expected) in listOf(digits("125") to 125.0,(digits("12")+symbols.decimalSeparator+digits("5")) to 12.5,"12.5" to 12.5)) {
@@ -102,6 +109,34 @@ class LocaleNumberInputTest {
                 }
             }
         } finally {Locale.setDefault(old)}
+    }
+
+    @Test @Config(shadows=[NumericRestartInputShadow::class])
+    fun focusedUnitSwitchRestartsInputWithTheFinalNumericMode() = withActivity("fr") { activity ->
+        val field=EditText(activity).apply {tag="numeric_restart_probe"}
+        activity.setContentView(field)
+        field.requestFocus()
+        activity.getSystemService(android.content.Context.INPUT_METHOD_SERVICE)
+        idle()
+        assertTrue(field.hasFocus())
+        // Reproduce the first-head ordering: the restart sees the listener's
+        // integer/text mode before the later raw decimal type is assigned.
+        NumericRestartInputShadow.types.clear()
+        field.keyListener=DigitsKeyListener.getInstance("0123456789.,+-")
+        field.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
+        assertTrue(NumericRestartInputShadow.types.isNotEmpty())
+        assertNotEquals(field.inputType,NumericRestartInputShadow.types.last())
+        for(decimal in listOf(false,true,false,true,true)) {
+            NumericRestartInputShadow.types.clear()
+            LocaleNumberInput.configure(field,decimal)
+            val expected=InputType.TYPE_CLASS_NUMBER or if(decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0
+            assertTrue("Framework must restart input",NumericRestartInputShadow.types.isNotEmpty())
+            assertTrue("Every restart must already see the final mode",NumericRestartInputShadow.types.all {it==expected})
+            val info=EditorInfo()
+            assertNotNull(field.onCreateInputConnection(info))
+            assertEquals(expected,info.inputType)
+            enter(field,"12,5")
+        }
     }
 
     @Test fun dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges() = withActivity("fr") { activity ->
@@ -224,5 +259,15 @@ class LocaleNumberInputTest {
             assertTrue(field.contentDescription.isNotEmpty())
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();assertFalse(dialog.isShowing)
         } finally {selection.dispose();worker.shutdownNow()}
+    }
+}
+
+/** Records the type seen at the framework restart boundary; no real keyboard is launched. */
+@Implements(InputMethodManager::class)
+class NumericRestartInputShadow : ShadowInputMethodManager() {
+    companion object {val types=mutableListOf<Int>()}
+    @Implementation
+    override fun restartInput(view: View) {
+        if(view.tag=="numeric_restart_probe") types.add((view as EditText).inputType)
     }
 }
