@@ -51,7 +51,23 @@ class GalleryViewportDeviceTest {
         val preferences=context.getSharedPreferences("app-language",0)
         val oldTag=if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
             else preferences.getString("language-tag","").orEmpty()
+        val hadPreferenceTag=preferences.contains("language-tag")
+        val oldPreferenceTag=preferences.getString("language-tag",null)
+        val hadInitialization=preferences.contains("platform-initialized")
+        val oldInitialization=preferences.getBoolean("platform-initialized",false)
         val oldLocale=Locale.getDefault()
+        fun restorePreferenceSnapshot() {
+            onMain {
+                preferences.edit().apply {
+                    if(hadPreferenceTag) putString("language-tag",oldPreferenceTag) else remove("language-tag")
+                    if(hadInitialization) putBoolean("platform-initialized",oldInitialization) else remove("platform-initialized")
+                }.commit()
+                assertEquals(hadPreferenceTag,preferences.contains("language-tag"))
+                assertEquals(oldPreferenceTag,preferences.getString("language-tag",null))
+                assertEquals(hadInitialization,preferences.contains("platform-initialized"))
+                assertEquals(oldInitialization,preferences.getBoolean("platform-initialized",false))
+            }
+        }
         val network=LocalRejectingProxy()
         val browsers=mutableListOf<WebView>()
         val galleries=mutableListOf<MediaGalleryActivity>()
@@ -141,7 +157,13 @@ class GalleryViewportDeviceTest {
                     onMain {galleries.toList().filterNot {it.isDestroyed}.forEach {it.finish()}}
                     await("all gallery windows destroyed") {onMain {galleries.all {it.isDestroyed}}}
                 } finally {
-                    selectLanguage(oldTag);setFontScale(oldScale);Locale.setDefault(oldLocale)
+                    // Configuration callbacks can initialize migration preferences.
+                    // Settle those first, then restore exact original key presence.
+                    try {selectLanguage(oldTag)} finally {
+                        try {setFontScale(oldScale)} finally {
+                            Locale.setDefault(oldLocale);restorePreferenceSnapshot()
+                        }
+                    }
                 }
             } finally {
                 try {

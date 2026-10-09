@@ -61,3 +61,15 @@ acceptance is claimed.
 Local combined validation: 326 Python tests passed in 49.981 seconds, zero
 failures/errors/skips (`logs/host-python-native-contract.log`). Android compilation
 and the expanded installed case still require the next exact-head CI run.
+
+## Installed-test preference isolation
+
+Source review identified that the initial cleanup always wrote
+`platform-initialized=true` and left a `language-tag` key. The former controls
+AppLanguage's migration, so absence/false is meaningful. Cleanup now captures and
+restores both keys' exact presence/value, independently from the original platform
+locale list. It first settles real locale/font callbacks, which can otherwise
+initialize those preferences, then restores and asserts the snapshot. Font/locale
+restoration uses nested finally blocks so either failure still attempts the other.
+The complete Python suite after this isolation follow-up passed all 326 tests in
+51.618 seconds, zero failures/errors/skips (`logs/host-python-viewport-isolation.log`).
