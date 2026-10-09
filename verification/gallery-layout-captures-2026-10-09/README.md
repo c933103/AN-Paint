@@ -57,3 +57,7 @@ provenance and scoped visual evidence; it does not authorize PR #30 merge.
 
 [Fourth-run complete host evidence and installed transition failure](fourth-ci-b37782d/README.md)
 adds 21 reviewed action/search captures, all case identities and artifact hashes.
+
+[Final passing exact-head receipt](final-ci-9bbfad5/README.md): 706 JVM tests, lint
+zero issues and 94 installed tests, with verified capture equivalence and real
+font transition/browser records. Historical failures remain preserved.
