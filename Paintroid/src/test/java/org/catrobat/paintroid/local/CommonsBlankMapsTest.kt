@@ -10,6 +10,8 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Looper
 import android.webkit.WebView
+import com.caverock.androidsvg.SVG
+import com.caverock.androidsvg.SVGParseException
 import org.catrobat.paintroid.classic.BlankMapSvg
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.CreditEditSession
@@ -93,6 +95,73 @@ class CommonsBlankMapsTest {
             catch(_: IllegalArgumentException) { }
         }
 
+    @Test fun internalEntitiesCannotProvideOriginalDimensionsOrProduceAnImage() = withSvg("""
+        <!DOCTYPE svg [
+          <!ENTITY digit "4">
+          <!ENTITY originalWidth "&digit;0">
+        ]>
+        <svg xmlns="http://www.w3.org/2000/svg" width="&originalWidth;" height="24"/>
+    """.trimIndent()) {input ->
+        val output=File.createTempFile("blank-map-",".png",input.parentFile)
+        val previous=SVG.isInternalEntitiesEnabled()
+        fun rejected(action: ()->Unit) {
+            // Reproduce the library's permissive default before each production entry point.
+            // Expansion is deliberately tiny: it would only produce the valid width "40".
+            SVG.setInternalEntitiesEnabled(true)
+            try {action();fail("Custom entities must not supply an original SVG dimension")}
+            catch(_: SVGParseException) { }
+            catch(error: IllegalArgumentException) {
+                assertFalse("A memory-policy refusal does not prove entity parsing is disabled",error is ImageSizeException)
+            }
+            assertFalse("Import must disable the parser's internal-entity expansion",SVG.isInternalEntitiesEnabled())
+        }
+        try {
+            rejected {BlankMapSvg.originalDimensions(input)}
+            rejected {BlankMapSvg.renderOriginal(input,output,ImageMemoryPolicy.forRuntime())}
+            assertEquals("Rejected SVG must not leave a rendered image",0L,output.length())
+        } finally {SVG.setInternalEntitiesEnabled(previous);output.delete()}
+    }
+
+    @Test fun nestedInternalEntityMarkupCannotAddPixelsToTheBlankMap() {
+        // Four small red rectangles exercise nested expansion with a bounded fixture.
+        // With entities enabled, the inserted rectangles turn the white map/background red.
+        val declarations="""
+            <!DOCTYPE svg [
+              <!ENTITY red "<rect x='0' y='0' width='40' height='24' fill='#ff0000'/>">
+              <!ENTITY twice "&red;&red;">
+              <!ENTITY four "&twice;&twice;">
+            ]>
+        """.trimIndent()
+        withSvg(declarations+"\n"+svg.replace("<rect","&four;\n<rect")) {input ->
+            val output=File.createTempFile("blank-map-",".png",input.parentFile)
+            val previous=SVG.isInternalEntitiesEnabled()
+            try {
+                SVG.setInternalEntitiesEnabled(true)
+                var rejected=false
+                try {BlankMapSvg.renderOriginal(input,output,ImageMemoryPolicy.forRuntime())}
+                catch(_: SVGParseException) {rejected=true}
+                assertFalse("Import must disable the parser's internal-entity expansion",SVG.isInternalEntitiesEnabled())
+                if(rejected) assertEquals("Rejected SVG must not leave a rendered image",0L,output.length())
+                else {
+                    val bitmap=BitmapFactory.decodeFile(output.path)
+                    assertNotNull(bitmap)
+                    try {assertOriginalHardEdges(bitmap)} finally {bitmap.recycle()}
+                }
+            } finally {SVG.setInternalEntitiesEnabled(previous);output.delete()}
+        }
+    }
+
+    private fun assertOriginalHardEdges(bitmap: Bitmap) {
+        assertEquals(40,bitmap.width);assertEquals(24,bitmap.height)
+        assertEquals(Color.WHITE,bitmap.getPixel(20,12))
+        assertEquals(Color.BLACK,bitmap.getPixel(20,4))
+        for(y in 0 until bitmap.height) for(x in 0 until bitmap.width) {
+            val color=bitmap.getPixel(x,y)
+            assertEquals("Unexpected transparency at ("+x+","+y+")",255,Color.alpha(color))
+            assertTrue("Unexpected colour or anti-aliased fringe at ("+x+","+y+")",color==Color.BLACK || color==Color.WHITE)
+        }
+    }
+
     @Test fun svgOutputHasOriginalDimensionsSolidStrokeNoAntiAliasingAndWhiteBackground() = withSvg(svg) {input ->
         val output=File.createTempFile("blank-map-", ".png", input.parentFile)
         try {
@@ -100,16 +169,7 @@ class CommonsBlankMapsTest {
             BlankMapSvg.renderOriginal(input,output,ImageMemoryPolicy.forRuntime())
             val bitmap=BitmapFactory.decodeFile(output.path)
             assertNotNull(bitmap)
-            try {
-                assertEquals(40,bitmap.width);assertEquals(24,bitmap.height)
-                assertEquals(Color.WHITE,bitmap.getPixel(20,12))
-                assertEquals(Color.BLACK,bitmap.getPixel(20,4))
-                for(y in 0 until bitmap.height) for(x in 0 until bitmap.width) {
-                    val color=bitmap.getPixel(x,y)
-                    assertEquals("Unexpected transparency at ("+x+","+y+")",255,Color.alpha(color))
-                    assertTrue("Anti-aliased fringe at ("+x+","+y+")",color==Color.BLACK || color==Color.WHITE)
-                }
-            } finally {bitmap.recycle()}
+            try {assertOriginalHardEdges(bitmap)} finally {bitmap.recycle()}
         } finally {output.delete()}
     }
 

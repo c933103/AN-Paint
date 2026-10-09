@@ -88,6 +88,7 @@ internal object IllustrationPage {
                 link=document.createElement('a');link.style.cssText='display:inline-block;padding:12px;background:#e9ddff;color:#21005d;border:1px solid #6750a4;border-radius:4px;font:16px sans-serif';
                 row.appendChild(link);
               }
+              if(link.getAttribute('data-anpaint-action')!=='true')link.setAttribute('data-anpaint-action','true');
               var target=(i===0?'${USE_SCHEME}://insert':'${GalleryPage.CREDIT_SCHEME}://copy')+
                 '?source='+encodeURIComponent(u.href)+'&page='+encodeURIComponent(location.href)+
                 '&title='+encodeURIComponent(document.title.replace(/ - Wikimedia Commons${"$"}/,''));

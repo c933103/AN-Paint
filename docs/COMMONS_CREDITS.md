@@ -8,6 +8,8 @@ The retained snapshot includes the title, artist(s), creator/source links, requi
 
 The imported credit records AN Paint's conversion/white-backing operation. Source-only copying does not claim an import or modification. SVG handling still uses the document's declared original dimensions, with no canvas-size substitution, size prompt or silent shrinking; normal raster import remains supported.
 
+Internal XML entity expansion is disabled before every downloaded SVG parse. The raw-file limit does not bound expanded XML, so the parser policy also applies when inspecting original dimensions, before bitmap allocation. This addresses Codex discussion `4226218829`.
+
 ## Lifecycle
 
 `MediaGalleryActivity` now handles orientation, screen-size and keyboard-hidden changes without recreation. Downloads/rendering, WebView state and open credit fields survive those changes without another provider request; header and credit-dialog sizing adapt. This addresses Codex discussion `4213568191` even though the old SVG size chooser has already been removed.
@@ -16,9 +18,11 @@ For an actual activity recreation, the accepted base's durable `CreditEditSessio
 
 Gallery results retain the opaque session token and the editor's existing ownership checks. An independently accepted credit edit is preserved even if a later Commons import fails. Metadata-only copying does not accept a draft or claim an image transformation.
 
+Commons Use/Copy links carry the same action marker as other gallery providers, so scoped native-font and writing-direction CSS reaches them without restyling publisher content. Reused links regain a missing marker; unchanged links do not cause repeated attribute mutations.
+
 ## Integration with the current default branch
 
-The repository's default and PR target is `develop`. The 9 October integration merges `3f8bb0f64cfad485a1e725223d3475d8d60f9e5b`, including the already merged PR #15 credit/session architecture and PRs #21–#24. Those accepted changes are preserved. Draft PR #19 and its independent commits are not merged or copied into this branch.
+The repository's default and PR target is `develop`. The 9 October integration merges `841e19b033d602ec3215bc53fd4822775116e10e`, including the already merged PR #15 credit/session architecture and PRs #21–#25. Those accepted changes are preserved. Draft PR #19 and its independent commits are not merged or copied into this branch.
 
 This supersedes the original PR's global-credit-library description. Commons now follows the current base's per-document credit, export-panel and recovery behavior; embedding attribution into every exported file format is not claimed. Six unused strings describing the removed SVG size chooser are removed, and the live Commons labels retain the existing catalogue completeness gate.
 
@@ -42,3 +46,4 @@ Baseline head `29281a9`, workflow `37711392421`: universal APK/source and API 35
 
 - https://www.mediawiki.org/wiki/API:Imageinfo
 - https://www.mediawiki.org/wiki/Extension:CommonsMetadata
+- https://bigbadaboom.github.io/androidsvg/doc/com/caverock/androidsvg/SVG.html#setInternalEntitiesEnabled-boolean-

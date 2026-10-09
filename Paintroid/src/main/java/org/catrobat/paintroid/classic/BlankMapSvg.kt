@@ -12,9 +12,13 @@ import java.io.IOException
 
 /** Rasterise the Commons original SVG at its own declared dimensions, on solid white. */
 internal object BlankMapSvg {
-    private fun read(source: File): SVG = source.inputStream().use { SVG.getFromInputStream(it) }.apply {
-        // CSS physical units use 96 px/in, independent of the Android screen density.
-        setRenderDPI(96f)
+    private fun read(source: File): SVG {
+        // Download limits do not bound expanded XML. Disable entities before every untrusted parse.
+        SVG.setInternalEntitiesEnabled(false)
+        return source.inputStream().use { SVG.getFromInputStream(it) }.apply {
+            // CSS physical units use 96 px/in, independent of the Android screen density.
+            setRenderDPI(96f)
+        }
     }
 
     private fun originalDimensions(svg: SVG): ImageDimensions {
