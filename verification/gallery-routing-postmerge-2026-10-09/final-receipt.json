@@ -1,0 +1,36 @@
+{
+  "pr": "https://github.com/c933103/AN-Paint/pull/19",
+  "merged_at": "2026-10-09T11:18:25Z",
+  "merge_commit": "2fc36a811a6c04d02760bb1da4d62af71653503a",
+  "tested_tree": "3ac89e305f168a12f55bcf1c2ca898229e8e41a6",
+  "reviewed_head": "a1f9d6d8cf4062c4f764c3436a73ecec21a59d9a",
+  "preserved_original_head": "dc518e7663ee3173f81ee6a931e15fb4ab9c467f",
+  "code_security_reviews": "Both completed at reviewed head; no inline findings, positive bot PR reaction. Summary issuecomment-6050350385.",
+  "premerge_ci": {
+    "run_id": 37920356727,
+    "result": "success",
+    "jvm_passed": 675,
+    "lint_issues": 0,
+    "installed_passed": 93,
+    "ordinary_app_seconds": 164.55211515699997
+  },
+  "postmerge_ci": {
+    "run_id": 37922913129,
+    "result": "failure",
+    "apk_result": "success",
+    "installed_passed": 93,
+    "ordinary_app_seconds": 152.915044424,
+    "regression_attempt1": "675 passing JVM cases; unchanged 12-minute step timeout during lint, no completed lint report",
+    "regression_attempt2": "Dependency POM downloads received HTTP 403; no JVM/lint reports or new artifact"
+  },
+  "postmerge_full_regression_lint_pass": false,
+  "unverified": [
+    "physical device",
+    "API30",
+    "live provider",
+    "linguistic acceptance",
+    "universal network isolation",
+    "repeat-run stability"
+  ],
+  "next_step": "Reconcile Maven Central access for a later failed-regression-only attempt; preserve existing source, tests and deadlines. No new runtime fix is justified by these two failures."
+}

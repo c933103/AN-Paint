@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-09T11:45:00Z",
+  "failure_detail_available": "Gradle logs show only HTTP 403 Forbidden; no response headers/body or named rate-limit/outage/policy rationale. URLs use valid pinned versions, no unexpanded variables.",
+  "official_status": {
+    "url": "https://status.maven.org/",
+    "observed": "All systems operational; no incident reported for 9 October 2026. This does not diagnose a specific runner."
+  },
+  "official_403_reference": {
+    "url": "https://central.sonatype.org/faq/403-error-central/",
+    "observed": "Distinguishes 403 blocking from 429 rate limiting and notes shared-egress misclassification is possible. No attribution of misuse or a specific blocking reason is justified by this job log."
+  },
+  "comparison": {
+    "pr": 29,
+    "head": "d601dba3821fafa254b02172eee350428b28a0f4",
+    "base": "2fc36a811a6c04d02760bb1da4d62af71653503a",
+    "run_id": 37924730965,
+    "dependency_and_workflow_declarations_unchanged": true,
+    "observed": "APK build succeeded; regression still running. Successful dependency resolution has not yet been established from its completed regression logs."
+  },
+  "action": "Read-only diagnosis only. Await comparison before considering another unchanged failed-job retry. No alternate repository, credentials, network settings or workflow modification."
+}

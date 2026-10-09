@@ -9,4 +9,12 @@ The automatic [push workflow 37922913129](https://github.com/c933103/AN-Paint/ac
 - The downloaded emulator/regression ZIPs matched official artifact SHA-256 digests recorded in `provenance.json`. Only focused reports, derived JUnit totals/hashes and the original timeout excerpt are preserved here; full ZIPs/APKs are not copied.
 - The post-merge logcat file ends in boot output and contains no gallery test tag. Its hash/extent are recorded in `logcat-capture-limits.json`. The three installed gallery cases passed their assertions, but this capture supplies no new lifecycle/proxy trace. The complete 153-line pre-merge trace for the identical tree remains in `verification/gallery-routing-runtime-2026-10-09`.
 
-No physical-device, API30, live-provider, linguistic or universal-network-isolation claim is added. No timeout, test partition, inventory, production code or CI workflow was weakened. Retry outcome is recorded separately after it finishes.
+No physical-device, API30, live-provider, linguistic or universal-network-isolation claim is added. No timeout, test partition, inventory, production code or CI workflow was weakened. Retry outcome is recorded below and in `final-receipt.json`.
+
+## Failed-job retry outcome
+
+Attempt 2, [job 113800736562](https://github.com/c933103/AN-Paint/actions/runs/37922913129/job/113800736562), failed during dependency resolution: `repo.maven.apache.org` returned HTTP 403 for existing Robolectric and lint transitive dependency POMs. It produced no JVM/lint reports and uploaded no new regression artifact. The original failure excerpt and exact dependencies are preserved separately. The cause of the server 403 is not established.
+
+Further retries pause at this dependency-access blocker. No repository mirror, credential, source, timeout or CI architecture change was made. The completed pre-merge regression/lint result remains valid for the identical source tree, but the post-merge workflow is still failed. Its separate APK and 93-case installed results remain passed. Physical/API30 gaps and the tighter pre-merge 15.4-second ordinary-app margin remain explicit.
+
+Read-only diagnosis checked the [official status](https://status.maven.org/) and [403 guidance](https://central.sonatype.org/faq/403-error-central/): no reported general outage, and no specific rationale in the CI response. The concurrent AN29 combined run uses unchanged dependency/workflow declarations; its regression result was still pending at diagnosis time. This is an upstream HTTP response, not a tool-policy denial or user refusal. See `dependency-access-diagnosis.json`.
