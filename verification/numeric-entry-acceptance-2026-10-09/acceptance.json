@@ -1,0 +1,156 @@
+{
+  "head": "4f2eb8c5ad090dc3590f3f21db82ff2aa9c72abd",
+  "base": "f68807257ec61c71ac119425d26c109124a18792",
+  "head_tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
+  "ci_tested_merge": "c7ba3e7ccd7e069292032b87e537a41e36230dd2",
+  "ci_tested_tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
+  "workflow_run": 37893883069,
+  "workflow_conclusion": "success",
+  "host_python": {
+    "tests": 310,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "jvm": {
+    "tests": 661,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "focused_jvm": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sdk": [
+      21,
+      25,
+      30,
+      35
+    ]
+  },
+  "lint_issues": 0,
+  "api35": {
+    "tests": 89,
+    "missing": 0,
+    "unexpected": 0,
+    "errors": 0,
+    "partitions": {
+      "Paintroid": 74,
+      "app": 13,
+      "restart_seed": 1,
+      "restart_verify": 1
+    }
+  },
+  "artifacts": [
+    {
+      "id": 11599264983,
+      "kind": "regression_and_lint",
+      "sha256": "e040b2d4f20a2166ecc1dc2ab3b7c3bd6194b6a5c890845c2afd11f70b61f560",
+      "downloaded_and_verified": true
+    },
+    {
+      "id": 11599203948,
+      "kind": "api35",
+      "sha256": "c63aa30af03d1968872b244582ca017121b84e35402e604f4f405b3a9b69a4c8",
+      "downloaded_and_verified": true
+    },
+    {
+      "id": 11599434131,
+      "kind": "apk_and_corresponding_source",
+      "sha256": "e85a1f8068c86e67209c3dbec819759cd01b810839c21af07090b150200d3970",
+      "downloaded_and_verified": false
+    }
+  ],
+  "reviews": {
+    "code_clean_before_ready": "https://github.com/c933103/AN-Paint/pull/27#issuecomment-6075701399",
+    "after_ready": {
+      "summary": "https://github.com/c933103/AN-Paint/pull/27#issuecomment-6075105519",
+      "head": "4f2eb8c5ad090dc3590f3f21db82ff2aa9c72abd",
+      "code_completed_at": "2026-10-09T06:45:57.433829Z",
+      "security_completed_at": "2026-10-09T06:47:12.664798Z",
+      "clean_reaction_at": "2026-10-09T06:47:17Z",
+      "clean_reaction_id": 555992029,
+      "unresolved_threads": 0
+    }
+  },
+  "limits": [
+    "No physical-device or real-IME acceptance.",
+    "API21 lifecycle test models Typeface identity with a narrowly scoped source-backed shadow; it does not rasterize native glyphs.",
+    "New locale-specific numeric cases are Robolectric tests, not new installed-device tests.",
+    "140-tag engineering applicability is not translation fluency or all-language layout acceptance.",
+    "APK/source build success was observed; delivery archive was not independently downloaded or signed for an upgrade release.",
+    "Automatic post-merge run 37895625554 was still running at this receipt; no post-merge pass or release is claimed."
+  ],
+  "files": [
+    {
+      "path": "unit-and-lint-xml.zip",
+      "bytes": 59472,
+      "sha256": "2d3dce74ffc2a0330d4d01896d1128f9405adab4a7683d6546923337f87c4e11",
+      "git_blob": "f8917a1c44b1bcb01d175779874151e909f8903d"
+    },
+    {
+      "path": "unit-and-lint-manifest.json",
+      "bytes": 15743,
+      "sha256": "1f54997c451f8067376ad9ae8a7bfa307ace0674350eb2746b1b38c83949c713",
+      "git_blob": "df1184c39be414ec8e2282c6fc81388714af7a36"
+    },
+    {
+      "path": "device-results.zip",
+      "bytes": 14796,
+      "sha256": "43bb7dc4499f96e4fab281e6f0473cdd45abed3cedd6ae1da733368fb690b2fc",
+      "git_blob": "18493fa7dae724acd87a50bee734e177837f734f"
+    },
+    {
+      "path": "device-manifest.json",
+      "bytes": 2086,
+      "sha256": "61ae6932beb31bb899865629fa6df845d03efb73ba3c7b586ea4a3d4f6868407",
+      "git_blob": "4756bbbe0bc5414f77900d0237ab2bd2b29295e1"
+    },
+    {
+      "path": "all-device-cases.json",
+      "bytes": 24313,
+      "sha256": "fc31cfd7085187c08f5fe09e2ef1ca42ba5962a3ea5ae7066500ad8d23c06cb0",
+      "git_blob": "df837eba7d941107661630c92c7ad8ddc12ff3ca"
+    },
+    {
+      "path": "focused-unit-cases.json",
+      "bytes": 9561,
+      "sha256": "741832191133b6835881196ffbade65282e80d450168c543ec78b64df3731a84",
+      "git_blob": "620d309358f17a95656189e889ab4cc57e4a8e5c"
+    },
+    {
+      "path": "reviews.json",
+      "bytes": 7825,
+      "sha256": "a0a6c5987b03ae2eb513d14228338f954ca1eac42fa96d9cbf9f8096394dfd18",
+      "git_blob": "89325c58671baa39ad9389701341c560bf944fb3"
+    },
+    {
+      "path": "ci-jobs.json",
+      "bytes": 11036,
+      "sha256": "856f49392a24d3e21dc2736d6a997e17ff92dcfdc8387042bd38ead7c9a19377",
+      "git_blob": "cc519c6925036098d17f768127e73b4bda321038"
+    },
+    {
+      "path": "host-python.log",
+      "bytes": 1965,
+      "sha256": "95dfcc26a5ff0cd0ee197e013b60320fc5d3ad0e1308cc14732b00ab454e27bb",
+      "git_blob": "cfa2d7d46f0c71dd090174fc8b316e2748cbfa8f"
+    }
+  ],
+  "recorded_at": "2026-10-09T06:49:46Z",
+  "merge": {
+    "sha": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+    "tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
+    "parents": [
+      "f68807257ec61c71ac119425d26c109124a18792",
+      "4f2eb8c5ad090dc3590f3f21db82ff2aa9c72abd"
+    ],
+    "merged_at": "2026-10-09T06:50:08Z",
+    "tree_verified": true,
+    "post_merge_run": 37895625554,
+    "post_merge_status": "in_progress",
+    "observed_at": "2026-10-09T06:50:40Z"
+  }
+}
