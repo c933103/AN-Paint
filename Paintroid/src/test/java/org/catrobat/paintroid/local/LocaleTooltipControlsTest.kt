@@ -61,8 +61,9 @@ class LocaleTooltipControlsTest {
     }
     private fun settle()=shadowOf(Looper.getMainLooper()).idleFor(32,TimeUnit.MILLISECONDS)
     private fun check(view: View,expected: String,tag: String) {
-        assertEquals(expected,view.tooltipText.toString())
-        val spans=(view.tooltipText as? Spanned)?.getSpans(0,view.tooltipText.length,MetricAffectingSpan::class.java).orEmpty()
+        val text=requireNotNull(view.tooltipText)
+        assertEquals(expected,text.toString())
+        val spans=(text as? Spanned)?.getSpans(0,text.length,MetricAffectingSpan::class.java).orEmpty()
         if(tag in setOf("vi-Hani","wuu-Hans")) {
             val paint=TextPaint();spans.single().updateMeasureState(paint)
             assertSame(LocaleTypography.typeface(view.context),paint.typeface)

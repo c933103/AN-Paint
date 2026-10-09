@@ -38,7 +38,10 @@ class LocaleTooltipTest {
     @Before fun remember() {previous=Locale.getDefault()}
     @After fun restore() {Locale.setDefault(previous)}
     private fun select(tag: String) {Locale.setDefault(Locale.forLanguageTag(tag))}
-    private fun spans(text: CharSequence)= (text as? Spanned)?.getSpans(0,text.length,MetricAffectingSpan::class.java).orEmpty()
+    private fun spans(text: CharSequence?): Array<out MetricAffectingSpan> {
+        val value=requireNotNull(text)
+        return (value as? Spanned)?.getSpans(0,value.length,MetricAffectingSpan::class.java).orEmpty()
+    }
     private fun paint(style: Int)=TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         typeface=Typeface.create(Typeface.SERIF,style);textSize=31f;color=Color.MAGENTA
         textScaleX=1.2f;textSkewX=-.1f;isFakeBoldText=true;letterSpacing=.04f
