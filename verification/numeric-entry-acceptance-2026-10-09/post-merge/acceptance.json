@@ -1,0 +1,133 @@
+{
+  "head": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+  "base": "f68807257ec61c71ac119425d26c109124a18792",
+  "head_tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
+  "ci_tested_merge": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+  "ci_tested_tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
+  "workflow_run": 37895625554,
+  "workflow_conclusion": "success",
+  "jvm": {
+    "tests": 661,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "focused_jvm": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "sdk": [
+      21,
+      25,
+      30,
+      35
+    ]
+  },
+  "lint_issues": 0,
+  "api35": {
+    "tests": 89,
+    "missing": 0,
+    "unexpected": 0,
+    "errors": 0,
+    "partitions": {
+      "Paintroid": 74,
+      "app": 13,
+      "restart_seed": 1,
+      "restart_verify": 1
+    }
+  },
+  "artifacts": {
+    "regression": {
+      "id": 11601090017,
+      "name": "regression-and-lint-5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "size_bytes": 9795316,
+      "digest": "sha256:47f542cd6a361cd40284163c0ffb53623857c9da9b886da57117cab1f18484d0",
+      "head": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "downloaded_and_verified": true
+    },
+    "api35": {
+      "id": 11600453657,
+      "name": "emulator-api-35-5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "size_bytes": 1599783,
+      "digest": "sha256:10567000c68d88b59dafbede36e685aec6fe83e6f659eb8e700c3f8221116086",
+      "head": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "downloaded_and_verified": true
+    },
+    "instrumentation_apks": {
+      "id": 11600298226,
+      "name": "instrumentation-apks-5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "size_bytes": 94692886,
+      "digest": "sha256:fcd33c0744c0c104c16b65f3744e62caca5c24bbd3bdd0e3ea20bbda13bdf212",
+      "head": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "downloaded_and_verified": false
+    },
+    "apk_source": {
+      "id": 11599988933,
+      "name": "apk-and-source-5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "size_bytes": 140179549,
+      "digest": "sha256:f8172c6765e8ae694c34af09841f03af4f3efbef6c68543ebf0035556a7688a3",
+      "head": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
+      "downloaded_and_verified": false
+    }
+  },
+  "reviews": {
+    "reviewed_pr_head": "4f2eb8c5ad090dc3590f3f21db82ff2aa9c72abd",
+    "tree_identical_to_accepted_merge": true,
+    "receipt": "../reviews.json"
+  },
+  "limits": [
+    "No physical-device or real-IME acceptance.",
+    "API21 lifecycle test models Typeface identity with a narrowly scoped source-backed shadow; it does not rasterize native glyphs.",
+    "New locale-specific numeric cases are Robolectric tests, not new installed-device tests.",
+    "140-tag engineering applicability is not translation fluency or all-language layout acceptance.",
+    "APK/source build success was observed; delivery archive was not independently downloaded or signed for an upgrade release.",
+    "This is automatic post-merge debug/API35 verification; it does not constitute a release or physical-device acceptance."
+  ],
+  "files": [
+    {
+      "path": "unit-and-lint-xml.zip",
+      "bytes": 59549,
+      "sha256": "507e5b67045b9983842cd9668396f954c54002c110302b98d004dd2faa9c0851",
+      "git_blob": "67cafbd46af21e1396c4cf0d78e3200b2c24bfa6"
+    },
+    {
+      "path": "unit-and-lint-manifest.json",
+      "bytes": 15743,
+      "sha256": "156809af87eab80f1fcb6787d5642d73d5215d628ea33669a2a1daf4e9a4aad6",
+      "git_blob": "244de906defb176fc899dc3e37fd8fe0b2031b67"
+    },
+    {
+      "path": "device-results.zip",
+      "bytes": 23083,
+      "sha256": "27601decfe9f2b2de591beea1e1175040e8e42712110f90fed775aee67f36491",
+      "git_blob": "2a444e1b40b5ee6dd5ee03b0f19efe7866380b1b"
+    },
+    {
+      "path": "device-manifest.json",
+      "bytes": 2586,
+      "sha256": "18f360aa04f29e1eef9ed74992bfe4d7e41e14c3981cf7031d829dbc080c1f51",
+      "git_blob": "b81a90550efed9687dc39c913bb075cb17b49d36"
+    },
+    {
+      "path": "all-device-cases.json",
+      "bytes": 24292,
+      "sha256": "ad3ae8687ecc071d638dfb476f7bf02a9c65dacffb407c266997ac77e370eb97",
+      "git_blob": "9d1c39ec601c5cfb9db16eb78ed4c120227c8c91"
+    },
+    {
+      "path": "focused-unit-cases.json",
+      "bytes": 9559,
+      "sha256": "ca39fd9edad86debe70e654b78f91be3f32bea2c7d6de2d23056965223b31cad",
+      "git_blob": "6a70674243814371abb63871680ef65cc73409b2"
+    },
+    {
+      "path": "ci-jobs.json",
+      "bytes": 11036,
+      "sha256": "ea3423b88186f97a95c72ca23e21098c3265c56420386660fbc429b9d86918d5",
+      "git_blob": "2c26fdeea99208e5f87c29c437dbe1400343d48e"
+    }
+  ],
+  "recorded_at": "2026-10-09T07:07:06Z",
+  "case_identities_match_pr_run": true
+}

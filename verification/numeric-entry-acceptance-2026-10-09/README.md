@@ -6,7 +6,9 @@ without changing its reviewed code head. It was merged at
 `5bf82b67199aaecbd341a8b150a887f8d60b5567` (06:50:08 UTC). The accepted merge
 tree equals the candidate and tested-merge tree below. The automatic
 [post-merge run 37895625554](https://github.com/c933103/AN-Paint/actions/runs/37895625554)
-was still running at 06:50:40 UTC; its outcome is separate from these PR results.
+was still running at the initial receipt. It subsequently passed all three jobs
+at 07:05:07 UTC: 661 JVM tests, lint 0, and 89 installed API35 cases. Its separately
+verified archives and full evidence are retained in the [post-merge receipt](post-merge/README.md).
 
 ## Exact source and outcomes
 
@@ -75,5 +77,5 @@ changed. This is source-backed host modelling, not native glyph rasterization.
 New locale-specific entry checks use Robolectric. Direct framework probes use
 host locale data. Neither establishes physical-device, real-IME, linguistic or
 all-language layout acceptance. The built APK/source artifact was observed but
-was not independently downloaded or upgrade-signed. This receipt does not claim
-a completed post-merge run or release. Broader AN-W04 work remains open.
+was not independently downloaded or upgrade-signed. The separate post-merge receipt establishes the completed automatic run; no
+release is claimed. Broader AN-W04 work remains open.
