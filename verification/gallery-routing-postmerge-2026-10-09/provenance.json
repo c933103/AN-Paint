@@ -1,0 +1,79 @@
+{
+  "run_id": 37922913129,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/37922913129",
+  "attempt": 1,
+  "commit": "2fc36a811a6c04d02760bb1da4d62af71653503a",
+  "tree": "3ac89e305f168a12f55bcf1c2ca898229e8e41a6",
+  "apk_job": {
+    "id": 113794897553,
+    "result": "success"
+  },
+  "regression_job": {
+    "id": 113794897145,
+    "result": "failure",
+    "step_timeout_minutes": 12
+  },
+  "emulator_job": {
+    "id": 113798063433,
+    "result": "success"
+  },
+  "artifacts": [
+    {
+      "id": 11613107729,
+      "bytes": 10021186,
+      "official_sha256": "280d85605a9ebc0abdd03fba11705f7e451a28c5df083abd4d2231a28777c1cb",
+      "download_hash_verified": true
+    },
+    {
+      "id": 11612953601,
+      "bytes": 69457,
+      "official_sha256": "005c8158c8d1728edabd0c9a94423653e1a59128f611d3f272773e5f798b236b",
+      "download_hash_verified": true
+    }
+  ],
+  "preserved_sources": [
+    {
+      "artifact_id": 11612953601,
+      "member": "Paintroid/androidTest-results/summary.json",
+      "preserved_path": "installed/native-summary.json",
+      "sha256": "6dad79ae9e8eb5e67645eef640ba08ed58c17011b91437e981f6e30c5f9548a6"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/androidTest-results/summary.json",
+      "preserved_path": "installed/app-summary.json",
+      "sha256": "bf19d3c76720cb20cf1a9454a0a9ddda4c03060871b34a1ea8d30a6e9018b60d"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/androidTest-results/TEST-app.xml",
+      "preserved_path": "installed/app-junit.xml",
+      "sha256": "b85902650a3345f2493daa0c50dbc609fa8cbb47c9d05f02c842463ba9e5486a"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/androidTest-results/instrumentation.log",
+      "preserved_path": "installed/app-instrumentation.log",
+      "sha256": "8aa99e61a2f40cd08f0fa94d35f6a0ef8f4a2e2a4d9e8a19095de1d09c5a89a4"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/accepted-credit-restart/coverage.json",
+      "preserved_path": "installed/restart-coverage.json",
+      "sha256": "d7a78650c01d4428eae4750e5bc3f24b5e39eb9ef130f5730eeca8608fc0662a"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/accepted-credit-restart/seed/summary.json",
+      "preserved_path": "installed/restart-seed-summary.json",
+      "sha256": "8a9048282dd4f892d5fae880a6ffc3e90a03039c574abab8ce28f23e47fa5686"
+    },
+    {
+      "artifact_id": 11612953601,
+      "member": "app/accepted-credit-restart/verify/summary.json",
+      "preserved_path": "installed/restart-verify-summary.json",
+      "sha256": "07ebb9e7394dcce6b3e67f86bbc2435c150e2c858fc620a066d7652a454b8a30"
+    }
+  ],
+  "retry": "One failed-job-only regression retry requested after inspecting this timeout. No source or timeout changes. Its outcome is recorded separately."
+}
