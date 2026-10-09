@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "pr": 35,
+  "source_head": "768959d1aa580ed88beb26abf99db597cf998f5d",
+  "tested_merge": "7e8a0d2377693a35cd9392f2082ef88548a6f67f",
+  "tested_tree": "7d4245411d699a3cf59018ce8c6d4cb87940dc60",
+  "run_id": 37978574286,
+  "jvm_tests": 737,
+  "jvm_failures": 0,
+  "jvm_errors": 0,
+  "jvm_skipped": 0,
+  "new_cases": 8,
+  "new_case_seconds": 3.125,
+  "lint_issues": 0,
+  "installed_api35_tests": 94,
+  "device_partitions": [
+    {
+      "path": "Paintroid/androidTest-results/summary.json",
+      "tests": 74,
+      "elapsed_seconds": 49.201717481
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/summary.json",
+      "tests": 1,
+      "elapsed_seconds": 6.380928336000011
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/summary.json",
+      "tests": 1,
+      "elapsed_seconds": 7.853063787999986
+    },
+    {
+      "path": "app/androidTest-results/summary.json",
+      "tests": 18,
+      "elapsed_seconds": 150.81389107799998
+    }
+  ],
+  "new_characterization": {
+    "30": {
+      "routes": 10,
+      "transition_rows": 80,
+      "event_rows": 10,
+      "pixel_rows": 15,
+      "pngs": 50,
+      "horizontal_no_fit": [
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        }
+      ],
+      "joined_emoji_clipped_ink": {
+        "mn-Mong": 309,
+        "mnc-Mong": 309,
+        "lzh-Hant": 336,
+        "en-XV": 372,
+        "qaa-Zsye-XV": 336
+      },
+      "ordinary_controls_no_clip": 10,
+      "same_text_content_change_requests": 2,
+      "geometry_only_requests": 0,
+      "observer_control_summaries": [
+        {
+          "api": 30,
+          "locale": "mn-Mong",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 4,
+          "toast_count": 0
+        },
+        {
+          "api": 30,
+          "locale": "lzh-Hant",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 4,
+          "toast_count": 0
+        }
+      ]
+    },
+    "35": {
+      "routes": 10,
+      "transition_rows": 80,
+      "event_rows": 8,
+      "pixel_rows": 15,
+      "pngs": 50,
+      "horizontal_no_fit": [
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mn-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 437
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": false,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        },
+        {
+          "locale": "mnc-Mong",
+          "edge_to_edge": true,
+          "phase": "shrink124",
+          "body_height": 92,
+          "complete_horizontal_height": 101,
+          "clipped_ink_pixels": 518
+        }
+      ],
+      "joined_emoji_clipped_ink": {
+        "mn-Mong": 309,
+        "mnc-Mong": 309,
+        "lzh-Hant": 336,
+        "en-XV": 372,
+        "qaa-Zsye-XV": 336
+      },
+      "ordinary_controls_no_clip": 10,
+      "same_text_content_change_requests": 0,
+      "geometry_only_requests": 0,
+      "observer_control_summaries": [
+        {
+          "api": 35,
+          "locale": "mn-Mong",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 3,
+          "toast_count": 0
+        },
+        {
+          "api": 35,
+          "locale": "lzh-Hant",
+          "record_kind": "observer-controls",
+          "explicit_announcement_observed": true,
+          "real_text_mutation_observed": true,
+          "event_count": 3,
+          "toast_count": 0
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Host event requests, not TalkBack utterances or delivery to an installed accessibility service",
+    "New cases are API30/35 compiled-resource Robolectric NATIVE, not installed tests",
+    "94 installed API35 cases are existing regressions",
+    "No production vertical route or resize/dismissal/fallback policy change; this is a distinct post-merge verification cohort",
+    "API35 same-text silence and geometry silence are bounded observations, not guaranteed platform behavior"
+  ],
+  "visual_review": {
+    "inspected_originals": [
+      "api30-en-XV-unsupported-zwj-reference.png",
+      "api30-en-XV-unsupported-zwj-parent.png",
+      "api35-lzh-Hant-unsupported-zwj-reference.png",
+      "api35-lzh-Hant-unsupported-zwj-parent.png",
+      "api30-mn-Mong-false-shrink124-reference.png",
+      "api30-mn-Mong-false-shrink124-parent.png",
+      "api35-mnc-Mong-true-shrink124-reference.png",
+      "api35-mnc-Mong-true-shrink124-parent.png"
+    ],
+    "decoded_nonempty_rgba": 100,
+    "byte_identical_to_premerge": 100,
+    "comparison_run": 37974245255,
+    "observation": "Selected new original captures show the same clipped vertical edges and horizontal lower line; no source-language correctness certification.",
+    "previews_created": false
+  },
+  "original_artifacts": [
+    {
+      "artifact_id": 11641121530,
+      "name": "regression-and-lint-7e8a0d2377693a35cd9392f2082ef88548a6f67f",
+      "bytes": 32269727,
+      "sha256": "cf5cbd6a6f0c25963540695008283dd9ed7aa4f6cf1cc71bfed50b07d3cf197f",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/37978574286/artifacts/11641121530",
+      "downloaded": true,
+      "crc_checked": true
+    },
+    {
+      "artifact_id": 11640646738,
+      "name": "emulator-api-35-7e8a0d2377693a35cd9392f2082ef88548a6f67f",
+      "bytes": 1925447,
+      "sha256": "85dd7f63a6dfe2436080c6993df503f6d3fff70c558658cf0e2a590fa8335602",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/37978574286/artifacts/11640646738",
+      "downloaded": true,
+      "crc_checked": true
+    }
+  ],
+  "cohort": "post-merge push run; independent execution from premerge run 37974245255",
+  "run_attempt": 1
+}
