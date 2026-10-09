@@ -2,8 +2,10 @@
 
 ## Confirmed scope
 
-Base: accepted develop `0b3d737e19448c47d36deee8cebfffd5d40c1ea3`, tree
-`9a456494701a1e9fe46c401f389d16891f674311`.
+Initial base: accepted develop `0b3d737e19448c47d36deee8cebfffd5d40c1ea3`, tree
+`9a456494701a1e9fe46c401f389d16891f674311`. The corrected fixture also integrates
+actual PR32 merge `43148951ac6bd23687e66685855909ac538ba004`, tree
+`ab5ff7fe6d04d5e22348b979c9e0054eef9b1c0f`, preserving every disjoint accepted Help path.
 
 The [production gallery button](https://github.com/c933103/AN-Paint/blob/0b3d737e19448c47d36deee8cebfffd5d40c1ea3/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L121-L124)
 used a literal left arrow. The existing [Arabic host capture](https://github.com/c933103/AN-Paint/blob/29e04086e42c464585057bad119e0c50837fef34/verification/gallery-layout-captures-2026-10-09/fourth-ci-b37782d/reviewed-captures/api30-ar-font2.0-640x320-search.png)
@@ -52,7 +54,7 @@ conditional and will not be changed merely to accommodate a failing runtime resu
 
 `GalleryBackDirectionTest` runs the production `MediaGalleryActivity` and actual
 Android Button/accessibility/layout code under Robolectric NATIVE API30/35 configurations.
-Its three methods produce six configured JUnit executions:
+Its four methods produce eight configured JUnit executions:
 
 1. Every one of the 140 offered app tags at font scale 2.0, with an independent
    expected RTL set (`ar`, `ckb`, `fa`, `fa-IR`, `he`, `ps`, `sd`, `ug`, `ur`, `yi`).
@@ -63,10 +65,14 @@ Its three methods produce six configured JUnit executions:
 2. Arabic device-language configuration with explicit English, device default,
    Hebrew, then English app selection. This distinguishes device language from
    the effective app locale.
-3. Actual Activity lifecycle recreation for English→Arabic→English→Hebrew→English,
-   restoring the browser history and checking the new arrow and working Back each time.
-   Robolectric's LocaleManager only stores application locales, so the test explicitly
-   delivers the configuration lifecycle. It does not claim a real OS setting change.
+3. Explicit save/destroy/create Activity lifecycle for English→Arabic→English→Hebrew→English,
+   restoring browser history and checking the new arrow and working Back each time with
+   a fresh wrapped locale context. This does not independently establish delivery of a
+   real framework-triggered locale recreation or a real OS setting change.
+4. A narrow negative fixture control intentionally mutates cached English Resources
+   to Arabic, checks that reopening the English override reuses the stale cache entry,
+   and restores the exact original configuration in finally. It demonstrates the host
+   resource-key hazard without changing production logic or any navigation assertion.
 
 [ShadowWebView](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowWebView.java)
 records load URLs and uses test-populated history. It sends no provider requests.
@@ -85,7 +91,7 @@ application text resources and process locale.
 conditional, preserved listener/accessible description, recreation manifest and
 test coverage. They are not runtime tests.
 
-## Local status before publication
+## Initial local status before publication
 
 - Four focused source contracts pass: `local/source-contracts.log`.
 - All 346 Python tests pass in 50.566 seconds: `local/python-tests.log`.
@@ -101,3 +107,17 @@ Reproduction: `python3 -m unittest discover -s tools -p 'test_*.py'`, then
 `./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.GalleryBackDirectionTest`.
 The normal exact-head PR workflow supplies the broader existing JVM/lint/build/API35
 regression checks without modifying the completed font-barrier fixture.
+
+## First hosted result and fixture correction
+
+See [the preserved first-run record](first-ci-072bb73/README.md). The run compiled
+all app/test APKs and passed lint and all 94 installed API35 checks, but failed two
+of 722 JVM tests at the locale-recreation arrow assertion. The revised host lifecycle
+and negative control require new exact-head CI; the original failure remains a failure.
+
+## Corrected combined-head local checks
+
+All 352 Python tests pass in 51.216 seconds against the accepted Help composition
+plus corrected fixture (`local/python-tests-corrected-combined.log`).
+Focused source contracts and `git diff --check` pass for this patch. Local Gradle remains unavailable
+for the verified wrapper-network reason above; exact-head hosted tests are required.

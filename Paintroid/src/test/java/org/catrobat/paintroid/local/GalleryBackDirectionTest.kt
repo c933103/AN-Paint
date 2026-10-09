@@ -9,6 +9,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Build
+import android.os.Bundle
 import android.text.Spanned
 import android.text.style.ReplacementSpan
 import android.view.View
@@ -116,9 +117,9 @@ class GalleryBackDirectionTest {
         }
     }
 
-    @Test fun localeConfigurationChangesRecreateArrowAndRestoreBrowserHistory()=withLanguageState {
+    @Test fun localeSwitchRecreationUpdatesArrowAndRestoresBrowserHistory()=withLanguageState {
         select("en-001")
-        val controller=open(IllustrationSource.COMMONS)
+        var controller=open(IllustrationSource.COMMONS)
         try {
             assertBack(controller.get(),"←")
             val initialWeb=ReflectionHelpers.getField<WebView>(controller.get(),"web")
@@ -126,16 +127,15 @@ class GalleryBackDirectionTest {
             shadowOf(initialWeb).pushEntryToHistory("https://example.invalid/second")
             for((tag,expected) in listOf("ar" to "→","en-001" to "←","he" to "→","en-001" to "←")) {
                 val previous=controller.get()
-                val old=Configuration(previous.resources.configuration)
+                val state=Bundle()
+                // configurationChange() mutates cached old Resources in Robolectric. Replay the
+                // save/destroy/create lifecycle with fresh wrapping, without rewriting that cache.
+                // This does not establish delivery of a real OS-triggered locale recreation.
+                controller.pause().stop().saveInstanceState(state).destroy()
                 select(tag)
-                val next=Configuration(old).apply {
-                    val locale=Locale.forLanguageTag(tag);setLocale(locale);setLayoutDirection(locale)
-                }
-                // LocaleManager's host shadow stores the selection but sends no framework callback.
-                // Deliver the real locale/layout configuration lifecycle explicitly, retaining state.
-                controller.configurationChange(next,previous.resources.displayMetrics,old.diff(next))
-                    .visible().windowFocusChanged(true)
-                assertNotSame("Gallery does not handle locale changes in place",previous,controller.get())
+                controller=open(IllustrationSource.COMMONS,state)
+                assertTrue(previous.isDestroyed)
+                assertNotSame("Recreation constructs fresh locale-aware gallery views",previous,controller.get())
                 val button=assertBack(controller.get(),expected)
                 val web=ReflectionHelpers.getField<WebView>(controller.get(),"web")
                 assertNotSame(initialWeb,web)
@@ -149,15 +149,37 @@ class GalleryBackDirectionTest {
         } finally {close(controller)}
     }
 
+    /** Negative fixture control: a synthetic Resources mutation can poison its old locale key. */
+    @Test @Suppress("DEPRECATION")
+    fun syntheticResourceMutationKeepsTheOldLocaleCacheKey()=withLanguageState {
+        select("en-001")
+        val cached=AppLanguage.wrap(app).resources
+        val original=Configuration(cached.configuration)
+        try {
+            cached.updateConfiguration(Configuration(original).apply {
+                val locale=Locale.forLanguageTag("ar");setLocale(locale);setLayoutDirection(locale)
+            },cached.displayMetrics)
+            val reopened=AppLanguage.wrap(app).resources
+            assertEquals("The selected preference is still English","en-001",AppLanguage.selectedTag(app))
+            assertSame("Host reuses Resources under the original English override key",cached,reopened)
+            assertEquals("The synthetic mutation remains under that stale key","ar",reopened.configuration.locales[0].language)
+            assertEquals(View.LAYOUT_DIRECTION_RTL,reopened.configuration.layoutDirection)
+        } finally {
+            cached.updateConfiguration(original,cached.displayMetrics)
+            assertEquals("en-001",cached.configuration.locales[0].toLanguageTag())
+            assertEquals(View.LAYOUT_DIRECTION_LTR,cached.configuration.layoutDirection)
+        }
+    }
+
     private fun select(tag: String) {
         AppLanguage.select(app,tag)
         // Match the production application resource refresh before the new gallery attaches.
         PaintApplication.currentResources=AppLanguage.wrap(app).resources
     }
 
-    private fun open(provider: IllustrationSource)=Robolectric.buildActivity(MediaGalleryActivity::class.java,
+    private fun open(provider: IllustrationSource,state: Bundle?=null)=Robolectric.buildActivity(MediaGalleryActivity::class.java,
         Intent(app,MediaGalleryActivity::class.java).putExtra("gallery_provider",provider.name))
-        .setup().visible().windowFocusChanged(true)
+        .let {if(state==null) it.setup() else it.setup(state)}.visible().windowFocusChanged(true)
 
     private fun close(controller: ActivityController<MediaGalleryActivity>) {
         controller.get().finish();controller.close()
