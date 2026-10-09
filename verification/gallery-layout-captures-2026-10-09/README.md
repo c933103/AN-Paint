@@ -54,3 +54,6 @@ Mongolian 2× portrait/landscape test, not the blank browser area in these PNGs.
 
 The source branch remains separate from this evidence branch. This record is
 provenance and scoped visual evidence; it does not authorize PR #30 merge.
+
+[Fourth-run complete host evidence and installed transition failure](fourth-ci-b37782d/README.md)
+adds 21 reviewed action/search captures, all case identities and artifact hashes.

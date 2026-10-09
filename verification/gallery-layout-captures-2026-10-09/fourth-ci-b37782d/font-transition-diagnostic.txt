@@ -1,0 +1,48 @@
+10-09 13:36:04.982   574   601 I ActivityTaskManager: Config changes=40000000 {2.0 310mcc260mnc [en_US] ldltr sw320dp w320dp h640dp 160dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 320, 640) mAppBounds=Rect(0, 0 - 320, 640) mMaxBounds=Rect(0, 0 - 320, 640) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.187 fontWeightAdjustment=0}
+10-09 13:36:05.915  4127  4127 I GalleryViewportDeviceTest: {"locale":"fr","font_scale":2,"orientation":1,"root_width":320,"root_height":640,"controls_height":472,"browser_width":320,"browser_height":120,"browser_visible":"Rect(0, 496 - 320, 616)","required_reserve":120,"provider":"real installed WebView; verified rejecting proxy; local HTML"}
+10-09 13:36:06.090   574  1919 I ActivityTaskManager: Config changes=20000480 {2.0 310mcc260mnc [en_US] ldltr sw320dp w640dp h320dp 160dpi nrml long land finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 640, 320) mAppBounds=Rect(0, 0 - 640, 320) mMaxBounds=Rect(0, 0 - 640, 320) mDisplayRotation=ROTATION_90 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_90} as.2 s.250 fontWeightAdjustment=0}
+10-09 13:36:06.375  4127  4127 I GalleryViewportDeviceTest: {"locale":"fr","font_scale":2,"orientation":2,"root_width":640,"root_height":320,"controls_height":182,"browser_width":640,"browser_height":90,"browser_visible":"Rect(0, 206 - 640, 296)","required_reserve":90,"provider":"real installed WebView; verified rejecting proxy; local HTML"}
+10-09 13:36:06.395   574   678 I ActivityTaskManager: Config changes=20000480 {2.0 310mcc260mnc [en_US] ldltr sw320dp w320dp h640dp 160dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 320, 640) mAppBounds=Rect(0, 0 - 320, 640) mMaxBounds=Rect(0, 0 - 320, 640) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.313 fontWeightAdjustment=0}
+10-09 13:36:08.145   574   601 I ActivityTaskManager: Config changes=40000000 {1.0 310mcc260mnc [en_US] ldltr sw320dp w320dp h640dp 160dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 320, 640) mAppBounds=Rect(0, 0 - 320, 640) mMaxBounds=Rect(0, 0 - 320, 640) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.378 fontWeightAdjustment=0}
+10-09 13:36:18.247  4127  4156 E TestRunner: failed: realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation(paint.anpaint.android.GalleryViewportDeviceTest)
+10-09 13:36:18.248  4127  4156 E TestRunner: ----- begin exception -----
+10-09 13:36:18.248  4127  4156 E TestRunner: java.lang.AssertionError: Timed out: real system font scale 2.0
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.Assert.fail(Assert.java:89)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.Assert.assertTrue(Assert.java:42)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at paint.anpaint.android.GalleryViewportDeviceTest.await(GalleryViewportDeviceTest.kt:217)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at paint.anpaint.android.GalleryViewportDeviceTest.setFontScale(GalleryViewportDeviceTest.kt:197)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at paint.anpaint.android.GalleryViewportDeviceTest.realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation(GalleryViewportDeviceTest.kt:94)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+10-09 13:36:18.248  4127  4156 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+10-09 13:36:18.248  4127  4156 E TestRunner: ----- end exception -----
