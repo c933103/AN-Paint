@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "source_commit": "7e8a0d2377693a35cd9392f2082ef88548a6f67f",
+  "source_tree": "7d4245411d699a3cf59018ce8c6d4cb87940dc60",
+  "exact_count": 12,
+  "counts": {
+    "commons_metadata_or_cache": 10,
+    "metadata_reachable_copy_and_insert": 9,
+    "download_redirect_insertion_only": 1,
+    "png_encoding_svg_insertion_only": 1,
+    "defensive_with_conditional_insertion_route": 1
+  },
+  "classification_basis": "Source route tracing, not newly executed Android runtime coverage.",
+  "rows": [
+    {
+      "id": "M01",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 44,
+      "method": "requestUrl",
+      "source_literal": "Not a Commons file page",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L44",
+      "classification": "application-authored",
+      "reachability": "conditional insertion via page truncation; Copy credit precondition guarded",
+      "trigger": "requestUrl rejects a non-artwork page. Copy credit validates the same page first. Insertion validates the full page, then page.take(4096) can remove a late title=File: query parameter from an otherwise valid /w/index.php artwork URL before requestUrl.",
+      "current_exception": "IllegalArgumentException",
+      "proposed_resource_key": "commons_metadata_not_file_page",
+      "proposed_default": "Not a Commons file page",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Direct requestUrl(non-file page); normal invalid-page action rejected with zero requests; then a valid index.php artwork URL with title=File: after offset 4096 through the real insertion callback, fake successful original image response, and assert the localized requestUrl precondition failure after page truncation. This is route characterization, not a validation change.",
+      "status": "open; inventory and plan only; no implementation or translation applied",
+      "classification_detail": "Application-authored defensive precondition, not universally unreachable: source-traced conditional insertion path exists."
+    },
+    {
+      "id": "M02",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 69,
+      "method": "fetch",
+      "source_literal": "Commons metadata: HTTP $status",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L69",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "HTTP status is not exactly 200, including redirects because automatic redirect following is disabled.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_http_error",
+      "proposed_default": "Commons metadata: HTTP %1$s",
+      "placeholders": {
+        "%1$s": "HTTP response status: status.toString(), preserve ASCII protocol code"
+      },
+      "protected_tokens": [
+        "Commons",
+        "HTTP"
+      ],
+      "planned_test": "Fake metadata HTTP 503 and 302; no inputStream read, disconnect, localized reason with the exact status digits.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M03",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 76,
+      "method": "fetch",
+      "source_literal": "Commons metadata exceeds the response limit",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L76",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "Accumulated response byte count would exceed 2 * 1024 * 1024.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_response_too_large",
+      "proposed_default": "Commons metadata exceeds the response limit",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Boundary stream of 2 MiB vs 2 MiB + 1 bytes, valid padded JSON at the accepted boundary, disconnect and no clipboard/result mutation on excess.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M04",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 88,
+      "method": "parse",
+      "source_literal": "Commons metadata query failed",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L88",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "Parsed top-level JSON has an error member. The remote error object text is not surfaced.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_query_failed",
+      "proposed_default": "Commons metadata query failed",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Valid JSON with error containing foreign-language text and percent tokens; show only the localized app-authored reason.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M05",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 90,
+      "method": "parse",
+      "source_literal": "Commons metadata returned an ambiguous file",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L90",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "query.pages length is not 1, including both zero and multiple pages.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_ambiguous_file",
+      "proposed_default": "Commons metadata returned an ambiguous file",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Zero and two query.pages entries; do not translate this as only multiple matches.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M06",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 92,
+      "method": "parse",
+      "source_literal": "Commons file metadata is unavailable",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L92",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "The single page has missing=true or namespace ns is not 6 (including absent ns).",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_unavailable",
+      "proposed_default": "Commons file metadata is unavailable",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Separate missing=true, wrong namespace and absent namespace cases.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M07",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 95,
+      "method": "parse",
+      "source_literal": "Commons attribution does not match the selected original file",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L95",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "Returned image URL fails sameOriginal(expectedSource, source).",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_original_mismatch",
+      "proposed_default": "Commons attribution does not match the selected original file",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Different valid original path fails; equivalent percent-encoded source names still pass; do not alter identity validation.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M08",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 97,
+      "method": "parse",
+      "source_literal": "Invalid Commons attribution page",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L97",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "Returned descriptionurl is not a supported Commons artwork page.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_invalid_page",
+      "proposed_default": "Invalid Commons attribution page",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Category/non-file description page fails; supported /wiki/File: and /w/index.php?title=File: pages pass.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M09",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 116,
+      "method": "plain",
+      "source_literal": "Commons attribution field exceeds the text limit",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L116",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "One extmetadata field HTML value exceeds 64 * 1024 Kotlin String UTF-16 code units before HTML decoding.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_field_too_large",
+      "proposed_default": "Commons attribution field exceeds the text limit",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Exactly 65,536 code units passes this guard; 65,537 fails, including supplementary-character counting. Do not describe this as a byte limit.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M10",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "line": 137,
+      "method": "cache",
+      "source_literal": "Could not retain Commons attribution",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L137",
+      "classification": "application-authored",
+      "reachability": "both",
+      "trigger": "SharedPreferences commit for the metadata snapshot returns false.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_metadata_cache_failed",
+      "proposed_default": "Could not retain Commons attribution",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Use a test-only preferences/editor shadow or Context wrapper to return false; real cache call fails without clipboard success or image result. No production failure hook.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M11",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "line": 321,
+      "method": "download",
+      "source_literal": "The Commons download redirected to a different original file.",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L321",
+      "classification": "application-authored",
+      "reachability": "insertion only",
+      "trigger": "After a successful final image response, its URL fails sameOriginal against the selected Commons original.",
+      "current_exception": "IllegalArgumentException",
+      "proposed_resource_key": "commons_download_original_mismatch",
+      "proposed_default": "The Commons download redirected to a different original file.",
+      "placeholders": {},
+      "protected_tokens": [
+        "Commons"
+      ],
+      "planned_test": "Fake 302 to a different allowed original followed by 200; failure before image body/temp file/metadata request. Same-original redirect remains accepted; disallowed destinations retain their existing separate message.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    },
+    {
+      "id": "M12",
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt",
+      "line": 47,
+      "method": "renderOriginal",
+      "source_literal": "Could not encode blank map as PNG",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/7e8a0d2377693a35cd9392f2082ef88548a6f67f/Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt#L47",
+      "classification": "application-authored",
+      "reachability": "SVG insertion only",
+      "trigger": "Bitmap.compress(PNG, 100, output) returns false after rendering at the original size.",
+      "current_exception": "IOException",
+      "proposed_resource_key": "commons_svg_png_encode_failed",
+      "proposed_default": "Could not encode blank map as PNG",
+      "placeholders": {},
+      "protected_tokens": [
+        "PNG"
+      ],
+      "planned_test": "Force compress=false through a test-only Robolectric Bitmap shadow, then use the real gallery import route; bitmap recycled, streams closed, temporary SVG/PNG removed, no metadata fetch/result success. A stream exception is a different untyped failure.",
+      "status": "open; inventory and plan only; no implementation or translation applied"
+    }
+  ]
+}
