@@ -43,7 +43,9 @@ object LegalInfo {
 
             Interface colours use the Material Design 3 baseline light palette. Palette data: Copyright © 2022 The Android Open Source Project, Apache-2.0. Exact upstream tokens and their licence are preserved in artwork/material3 in the source; full terms are in Third-party notices. Image pixels and colour swatches keep their actual colour values.
 
-            The rounded paintbrush launcher and coral/blue paint stroke are original vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. The Save and Fit shortcut glyphs are also original AN Paint vector artwork under AGPL-3.0-or-later. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. Optional online images retain their own source and terms under Image credits: Catrobat original artwork uses CC BY-SA 4.0; Irasutoya is copyright Takashi Mifune under its conditional free-use terms; Openclipart publishes CC0 artwork. No gallery image is bundled in the app.
+            The rounded paintbrush launcher and coral/blue paint stroke are original vector artwork by AN Paint contributors, AGPL-3.0-or-later, with editable source. The Save and Fit shortcut glyphs are also original AN Paint vector artwork under AGPL-3.0-or-later. Colour controls, selection/crop handles and zoom marks are application drawing code. Android supplies platform widget artwork. Imported images and assembly thumbnails belong to their respective creators. Optional online images retain their own source and terms under Image credits: Catrobat original artwork uses CC BY-SA 4.0; Irasutoya is copyright Takashi Mifune under its conditional free-use terms; Openclipart publishes CC0 artwork. Wikimedia Commons blank maps have individually specified creators and licences; consult each file page. No gallery image is bundled in the app.
+
+            SVG rendering: AndroidSVG by Paul LeBeau, Apache License 2.0 (https://github.com/BigBadaboom/androidsvg).
 
             Common UI translations: Android Open Source Project (Apache-2.0), with pinned Android 15 action vocabulary, and Catrobat/Paintroid translators and contributors, AGPL-3.0-or-later. The exact upstream revision, unchanged translation source files and reused-key mapping are preserved under translations in the corresponding source. Untranslated terms fall back to English.
 
@@ -93,9 +95,9 @@ object LegalInfo {
             val b=FlowButton(activity).apply { columnHeightDp=96;this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;setPadding(dp(3),0,dp(3),0);setOnClickListener { run(this) } }
             actions.addView(b,LinearLayout.LayoutParams(0,if(VerticalText.uiVertical()) -2 else dp(48),1f))
         }
-        action(ui(R.string.ui_copy_all),"terms_copy") {
+        action(ui(R.string.ui_copy_all),"terms_copy") { button ->
             (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))
-            LocaleTypography.toast(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT).show()
+            LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)
         }
         action(ui(R.string.ui_other_terms),"terms_more") { _ ->
             val options=listOf(ui(R.string.ui_about_copyright),ui(R.string.ui_agpl_licence),ui(R.string.ui_third_party_notices),ui(R.string.ui_font_licences),ui(R.string.ui_icons_artwork),ui(R.string.ui_icon_licences),ui(R.string.ui_jpeg_xl_codec_licences),ui(R.string.ui_webp_codec_licences),ui(R.string.ui_heic_avif_codec_licences))

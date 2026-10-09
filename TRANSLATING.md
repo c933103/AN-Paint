@@ -5,8 +5,9 @@
 See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
 
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
-`Paintroid/src/main/res/values/strings.xml`, together with the other translatable
-XML files in `Paintroid/src/main/res/values/`.
+`Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
+plural and string-array in that file so the translation-service source is complete.
+Other default XML files may contain styles, identifiers and non-translatable resources.
 
 Each localized `strings.xml` under `Paintroid/src/main/res/values*/` is a
 **canonical source file**. It is not generated from JSON and must not be overwritten
@@ -42,7 +43,13 @@ earlier/imported work and can be consulted when reviewing terminology.
 
 `crowdin.yml` points directly from the English Android catalogue to localized
 Android `strings.xml` files, so no conversion step is needed for Crowdin or similar
-Android-resource translation systems.
+Android-resource translation systems. There is one source file and one output file
+per locale; do not map multiple source files onto the same localized `strings.xml`.
+Before the first export, upload the existing canonical translations to the
+maintainer-owned project. Review exports in a clean checkout before accepting them:
+keep exact language/script/region directories, reject missing keys or unexpected
+English replacements, and run the checks below. A service export must not silently
+replace newer canonical edits.
 
 ## Correctness rules
 

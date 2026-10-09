@@ -1,20 +1,22 @@
 """Protocol regression checks: adb returning zero is insufficient evidence."""
 import json
 import subprocess
+import sys
 import tempfile
+from unittest.mock import patch
 from pathlib import Path
 import unittest
-from unittest import mock
 import xml.etree.ElementTree as ET
 
-from run_android_instrumentation import declared_tests, main, parse_protocol, select_tests, write_reports
+from run_android_instrumentation import (declared_tests, parse_protocol, write_reports, main,
+    RESTART_SEED, RESTART_VERIFY, restart_partition, verify_restart_reports)
 
 OWNER = 'example.EditorTest'
 EXPECTED = {(OWNER, 'draw'), (OWNER, 'save')}
 
 
-def event(method, code, count=2, stack=None, owner=OWNER):
-    output = (f'INSTRUMENTATION_STATUS: class={owner}\n'
+def event(method, code, count=2, stack=None):
+    output = (f'INSTRUMENTATION_STATUS: class={OWNER}\n'
               f'INSTRUMENTATION_STATUS: test={method}\n'
               f'INSTRUMENTATION_STATUS: numtests={count}\n')
     if stack:
@@ -22,122 +24,11 @@ def event(method, code, count=2, stack=None, owner=OWNER):
     return output + f'INSTRUMENTATION_STATUS_CODE: {code}\n'
 
 
-def passing(method, count=2, owner=OWNER):
-    return event(method, 1, count, owner=owner) + event(method, 0, count, owner=owner)
+def passing(method, count=2):
+    return event(method, 1, count) + event(method, 0, count)
 
 
 FINAL = 'INSTRUMENTATION_RESULT: stream=\nOK (2 tests)\nINSTRUMENTATION_CODE: -1\n'
-VERTICAL = 'paint.anpaint.android.VerticalLocaleDeviceTest'
-VERTICAL_TESTS = {(VERTICAL, name) for name in ('mongolian', 'manchu', 'xibe', 'nanai')}
-GALLERY = 'paint.anpaint.android.GalleryDraftDeviceTest'
-
-
-class ClassSelectionTest(unittest.TestCase):
-    def test_real_app_inventory_is_partitioned_without_losing_or_repeating_methods(self):
-        root = Path(__file__).resolve().parents[1] / 'app/src/androidTest'
-        inventory = declared_tests(root)
-        editor = select_tests(inventory, exclude_classes=[VERTICAL, GALLERY])
-        gallery = select_tests(inventory, include_classes=[GALLERY])
-        vertical = select_tests(inventory, include_classes=[VERTICAL])
-        self.assertEqual(len(gallery), 3)
-        self.assertEqual({owner for owner, _ in editor}, {'paint.anpaint.android.EditorDeviceTest'})
-        self.assertEqual(editor | gallery | vertical, inventory)
-        self.assertFalse(editor & gallery or editor & vertical or gallery & vertical)
-
-    def test_complementary_class_runs_have_no_missing_or_duplicate_methods(self):
-        inventory = EXPECTED | VERTICAL_TESTS
-        editor = select_tests(inventory, exclude_classes=[VERTICAL])
-        vertical = select_tests(inventory, include_classes=[VERTICAL])
-        self.assertEqual(editor, EXPECTED)
-        self.assertEqual(vertical, VERTICAL_TESTS)
-        self.assertEqual(editor | vertical, inventory)
-        self.assertFalse(editor & vertical)
-        self.assertEqual(select_tests(inventory), inventory)
-        self.assertEqual(select_tests(inventory, include_classes=[OWNER, VERTICAL]), inventory)
-
-    def test_invalid_or_ambiguous_class_selectors_are_rejected(self):
-        inventory = EXPECTED | VERTICAL_TESTS
-        for options in (
-            {'include_classes': ['example.Typo']},
-            {'exclude_classes': ['example.Typo']},
-            {'include_classes': [VERTICAL + '#mongolian']},
-            {'include_classes': [OWNER + ',' + VERTICAL]},
-            {'include_classes': [VERTICAL, VERTICAL]},
-            {'exclude_classes': [VERTICAL, VERTICAL]},
-            {'include_classes': [VERTICAL], 'exclude_classes': [OWNER]},
-            {'exclude_classes': [OWNER, VERTICAL]},
-        ):
-            with self.subTest(options=options), self.assertRaises(ValueError):
-                select_tests(inventory, **options)
-
-    def test_empty_inventory_cannot_be_selected(self):
-        with self.assertRaises(ValueError):
-            select_tests(set())
-
-    def test_cli_selection_matches_adb_filter_and_report_inventory(self):
-        for flag, selected, argument in (
-            ('--include-class', VERTICAL_TESTS, 'class'),
-            ('--exclude-class', EXPECTED, 'notClass'),
-        ):
-            with self.subTest(flag=flag), tempfile.TemporaryDirectory() as directory:
-                root = Path(directory)
-                source = root / 'source'
-                source.mkdir()
-                for owner, methods in ((OWNER, ['draw', 'save']),
-                                       (VERTICAL, ['mongolian', 'manchu', 'xibe', 'nanai'])):
-                    package, _, name = owner.rpartition('.')
-                    (source / (name + '.kt')).write_text(
-                        f'package {package}\nclass {name} {{\n' +
-                        '\n'.join(f'@Test fun {method}() {{}}' for method in methods) + '\n}\n')
-                apk = root / 'tests.apk'
-                apk.touch()
-                output = root / 'reports'
-                component = 'example.test/androidx.test.runner.AndroidJUnitRunner'
-                argv = ['runner', '--adb', 'test-adb', '--apk', str(apk),
-                        '--source-tests', str(source), '--output', str(output),
-                        '--suite', 'selected', '--component', component,
-                        '--timeout-seconds', '180', flag, VERTICAL]
-
-                def capture(command, log, deadline):
-                    log.write_text(''.join(passing(name, len(selected), owner=owner)
-                                           for owner, name in sorted(selected)) +
-                                   'INSTRUMENTATION_CODE: -1\n')
-                    return 0, False
-
-                responses = [subprocess.CompletedProcess([], 0, 'Success\n', ''),
-                             subprocess.CompletedProcess([], 0,
-                                 f'instrumentation:{component} (target=example)\n', '')]
-                with mock.patch('sys.argv', argv), \
-                        mock.patch('run_android_instrumentation.subprocess.run', side_effect=responses), \
-                        mock.patch('run_android_instrumentation.capture_live', side_effect=capture) as run, \
-                        mock.patch('builtins.print'):
-                    self.assertEqual(main(), 0)
-                self.assertEqual(run.call_args.args, (
-                    ['test-adb', 'shell', 'am', 'instrument', '-w', '-r',
-                     '-e', argument, VERTICAL, component], output / 'instrumentation.log', 180))
-                report = json.loads((output / 'summary.json').read_text())
-                self.assertTrue(report['success'], report)
-                self.assertEqual(report['expected_tests'], len(selected))
-                self.assertEqual({(case['classname'], case['name']) for case in report['cases']}, selected)
-                self.assertEqual(report['included_classes'], [VERTICAL] if argument == 'class' else [])
-                self.assertEqual(report['excluded_classes'], [VERTICAL] if argument == 'notClass' else [])
-
-    def test_unknown_class_fails_before_adb_and_still_writes_reports(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            (root / 'EditorTest.kt').write_text('package example\nclass EditorTest {\n@Test fun draw() {}\n}\n')
-            output = root / 'reports'
-            with mock.patch('sys.argv', ['runner', '--apk', str(root / 'tests.apk'),
-                    '--source-tests', str(root), '--output', str(output), '--suite', 'selected',
-                    '--include-class', 'example.Typo']), \
-                    mock.patch('run_android_instrumentation.subprocess.run') as adb, \
-                    mock.patch('builtins.print'):
-                self.assertEqual(main(), 1)
-            adb.assert_not_called()
-            report = json.loads((output / 'summary.json').read_text())
-            self.assertFalse(report['success'])
-            self.assertIn('Included class not found in source inventory', '\n'.join(report['errors']))
-            self.assertTrue((output / 'TEST-selected.xml').is_file())
 
 
 class ProtocolTest(unittest.TestCase):
@@ -201,6 +92,89 @@ class ProtocolTest(unittest.TestCase):
             path.write_text('package example\nclass EditorTest {\n@Test val unsupported = 1\n}\n')
             with self.assertRaises(ValueError):
                 declared_tests(Path(directory))
+
+
+class RestartModeTest(unittest.TestCase):
+    def invoke(self, *, seed_mode=True, live='123', excluded=True, truncated=False):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); source=root/'sources'; source.mkdir()
+            for owner, method in ((RESTART_SEED, 'seed'), (RESTART_VERIFY, 'verify'), (OWNER, 'draw')):
+                package, name=owner.rsplit('.',1)
+                (source/(name+'.kt')).write_text(f'package {package}\nclass {name} {{ @Test fun {method}() {{}} }}\n')
+            apk=root/'test.apk';apk.touch()
+            args=['runner','--apk',str(apk),'--source-tests',str(source),'--output',str(root/'report'),
+                  '--suite','seed','--component','test/Runner']
+            if seed_mode:args.append('--leave-target-running')
+            if excluded:args+=['--exclude-class',RESTART_VERIFY,'--exclude-class',OWNER]
+            commands=[]
+            def run(command, **kwargs):
+                commands.append(command)
+                if command[1]=='install':return subprocess.CompletedProcess(command,0,'Success\n','')
+                if command[1:]==['shell','pm','list','instrumentation']:
+                    return subprocess.CompletedProcess(command,0,'instrumentation:test/Runner (target=paint.anpaint.android)\n','')
+                if command[1:]==['shell','pidof','paint.anpaint.android']:
+                    if not live:raise subprocess.CalledProcessError(1,command)
+                    return subprocess.CompletedProcess(command,0,live+'\n','')
+                raise AssertionError(command)
+            def capture(command, log, deadline):
+                commands.append(command)
+                output=''.join(f'INSTRUMENTATION_STATUS: class={RESTART_SEED}\n'
+                               f'INSTRUMENTATION_STATUS: test=seed\n'
+                               f'INSTRUMENTATION_STATUS: numtests=1\nINSTRUMENTATION_STATUS_CODE: {code}\n'
+                               for code in (1,0))
+                log.write_text(output+('' if truncated else 'INSTRUMENTATION_CODE: -1\n'))
+                return 0,False
+            with patch.object(sys,'argv',args), patch('run_android_instrumentation.subprocess.run',side_effect=run), \
+                    patch('run_android_instrumentation.capture_live',side_effect=capture):
+                status=main()
+            return status,commands,json.loads((root/'report/summary.json').read_text())
+
+    def test_seed_emits_both_required_options_and_keeps_strict_complete_report(self):
+        status,commands,report=self.invoke()
+        self.assertEqual(status,0)
+        command=commands[-1]
+        self.assertIn('--no-restart',command)
+        i=command.index('waitForActivitiesToComplete')
+        self.assertEqual(command[i-1:i+2],['-e','waitForActivitiesToComplete','false'])
+        self.assertTrue(report['leave_target_running'])
+        self.assertEqual(report['target_pid_before_instrumentation'],123)
+        self.assertEqual(report['completed_tests'],1)
+
+    def test_normal_mode_preserves_original_command_and_cleanup_defaults(self):
+        status,commands,report=self.invoke(seed_mode=False)
+        self.assertEqual(status,0)
+        self.assertNotIn('--no-restart',commands[-1])
+        self.assertNotIn('waitForActivitiesToComplete',commands[-1])
+        self.assertFalse(report['leave_target_running'])
+
+    def test_seed_mode_rejects_extra_methods_and_unavailable_or_multiple_pids(self):
+        for kwargs in ({'excluded':False},{'live':''},{'live':'123 456'}):
+            with self.subTest(kwargs=kwargs):
+                status,commands,report=self.invoke(**kwargs)
+                self.assertEqual(status,1)
+                self.assertFalse(report['success'])
+                self.assertFalse(any('instrument' in command for command in commands))
+
+    def test_seed_mode_does_not_accept_truncated_success(self):
+        status,_,report=self.invoke(truncated=True)
+        self.assertEqual(status,1)
+        self.assertIn('Missing or unsuccessful final instrumentation result',str(report['errors']))
+
+    def test_partition_covers_future_classes_and_rejects_missing_or_duplicate_phases(self):
+        expected={(OWNER,'draw'),('example.FutureTest','future'),(RESTART_SEED,'seed'),(RESTART_VERIFY,'verify')}
+        parts=restart_partition(expected)
+        reports=[dict(success=True,expected_tests=len(part),completed_tests=len(part),
+                      leave_target_running=(i==1),cases=[dict(classname=owner,name=name,status='passed')
+                                                       for owner,name in sorted(part)])
+                 for i,part in enumerate(parts)]
+        self.assertEqual(verify_restart_reports(expected,reports)['completed_tests'],4)
+        self.assertIn(('example.FutureTest','future'),parts[0])
+        for bad in (reports[:2], [reports[0],reports[1],reports[1]]):
+            with self.assertRaises(ValueError):verify_restart_reports(expected,bad)
+        for missing in (expected-{(RESTART_SEED,'seed')},expected|{(RESTART_VERIFY,'extra')}):
+            with self.assertRaises(ValueError):restart_partition(missing)
+        reports[0]['cases'].pop()
+        with self.assertRaises(ValueError):verify_restart_reports(expected,reports)
 
 
 if __name__ == '__main__':

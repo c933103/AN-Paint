@@ -13,7 +13,6 @@ import android.graphics.drawable.GradientDrawable
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.text.method.DigitsKeyListener
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -21,7 +20,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.graphics.ColorUtils
 import java.util.Locale
-import java.text.DecimalFormatSymbols
 import kotlin.math.*
 
 class ColourValue(initial: Int) {
@@ -190,13 +188,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             val wrap = column(); wrap.addView(label(hintText))
             val edit = EditText(activity).apply {
                 tag = "colour_$key"; contentDescription = hintText; textSize = 13f
-                inputType = if (key == "hex") InputType.TYPE_CLASS_TEXT else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-                if (key != "hex") {
-                    @Suppress("DEPRECATION")
-                    val symbols = DecimalFormatSymbols(resources.configuration.locale)
-                    val digits = (0..9).map { (symbols.zeroDigit.code + it).toChar() }.joinToString("")
-                    keyListener = DigitsKeyListener.getInstance(("0123456789." + digits + symbols.decimalSeparator).toSet().joinToString(""))
-                }
+                if (key == "hex") inputType = InputType.TYPE_CLASS_TEXT
+                else LocaleNumberInput.configure(this, decimal = true)
                 isSingleLine = true; setSelectAllOnFocus(true)
                 addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
@@ -270,7 +263,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
     }
     private fun saveCustom() {
         if(fields.values.any {it.error!=null}) return
-        fun changed() {refreshCustom();paletteChanged();LocaleTypography.toast(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT).show()}
+        fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}
         if(paletteStore.add(value.colour)) changed() else {
             val entries=paletteStore.entries()
             EditorDialogBuilder(activity).setTitle(ui(R.string.ui_replace_palette23))

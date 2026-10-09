@@ -333,7 +333,7 @@ class AssemblyActivity : Activity() {
         setBusy(true)
         worker.execute {
             try { contentResolver.openOutputStream(uri,"wt")?.use { output -> file.inputStream().use { it.copyTo(output,64*1024) } } ?: throw IOException(ui(R.string.ui_the_selected_location_is_not_writable))
-                runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); LocaleTypography.toast(this,ui(R.string.ui_assembly_saved),Toast.LENGTH_SHORT).show() } }
+                runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); LocaleTypography.showMessage(this,ui(R.string.ui_assembly_saved),Toast.LENGTH_SHORT) } }
             } catch (error: Exception) { runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); message(ui(R.string.ui_could_not_save_the_assembly, error.message)) } } }
             finally { file.delete() }
         }

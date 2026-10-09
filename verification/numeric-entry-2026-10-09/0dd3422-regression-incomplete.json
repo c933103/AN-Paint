@@ -1,0 +1,19 @@
+{
+  "head": "0dd3422adf92b67b30c06401df7bc8013b460498",
+  "tested_pr_merge": "4119131c87d244a93065e1da7abeb64d4da2053d",
+  "run_id": 37891446276,
+  "job_id": 113693365629,
+  "artifact_id": 11599255698,
+  "artifact_sha256": "1349aced7095059d5d62bc1fa75bc02c1673c61ee02b9248c36ea507b7de5a9d",
+  "status": "failed: OutOfMemoryError followed by unchanged 12-minute step timeout",
+  "junit_xml_available": false,
+  "final_case_total": null,
+  "recorded_log_lines": [
+    "2026-10-09T06:16:01.4060291Z LocaleNumberInputTest > api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme FAILED",
+    "2026-10-09T06:16:01.4061179Z     java.lang.OutOfMemoryError at null:-1",
+    "2026-10-09T06:16:39.2188217Z ##[error]The action 'Run local checks' has timed out after 12 minutes.",
+    "2026-10-09T06:16:41.1710200Z SHA256 digest of uploaded artifact is 1349aced7095059d5d62bc1fa75bc02c1673c61ee02b9248c36ea507b7de5a9d",
+    "2026-10-09T06:16:41.5602508Z Artifact regression-and-lint-4119131c87d244a93065e1da7abeb64d4da2053d successfully finalized. Artifact ID 11599255698"
+  ],
+  "diagnostic_limit": "Partial artifact contains no allocation trace or completed JUnit XML. The Typeface identity mismatch is source-backed; the narrow shadow correction requires a fresh full run."
+}

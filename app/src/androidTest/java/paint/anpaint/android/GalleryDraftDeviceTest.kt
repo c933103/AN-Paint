@@ -18,6 +18,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Build
 import android.os.SystemClock
+import android.util.AtomicFile
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -43,29 +44,38 @@ import androidx.test.runner.lifecycle.Stage
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Until
+import androidx.webkit.ProxyConfig
+import androidx.webkit.ProxyController
+import androidx.webkit.WebViewFeature
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageCredit
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.ToolCategoryButton
-import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicReference
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Android launches, recreates and finishes the real gallery above the real editor.
  * No gallery ActivityResult or lifecycle callback is synthesized by the test.
- * Only document fixtures, WebView HTML and the external document picker are local.
- * This is installed emulator coverage, not process-death or physical-device proof.
+ * A verified process-local rejecting proxy is applied before any gallery launch;
+ * local document/HTML fixtures and external document destinations keep this selected
+ * flow independent of live providers. No native image/metadata acquisition is used.
+ * This exercises activity recreation, not process death or physical devices.
  */
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion=30)
@@ -75,9 +85,15 @@ class GalleryDraftDeviceTest {
     private val device get()=UiDevice.getInstance(instrumentation)
     private lateinit var scenario: ActivityScenario<ClassicPaintActivity>
     private lateinit var destinations: LocalDestinations
+    private lateinit var network: LocalRejectingProxy
+    private var proxyApplied=false
+    private var probe: WebView?=null
+    private val nativeAcquisitions=AtomicInteger()
     @Volatile private var editor: ClassicPaintActivity?=null
     @Volatile private var gallery: MediaGalleryActivity?=null
     private val editors=mutableListOf<ClassicPaintActivity>() // Main-thread only.
+    private val galleries=mutableListOf<MediaGalleryActivity>() // Main-thread only.
+    private val galleryWebViews=mutableListOf<WebView>() // Main-thread only.
     private val fixtures=mutableListOf<File>()
     private val sourceA=ImageCredit("https://catrobat.org/wp-content/uploads/2025/01/A_canvas.png",
         "Canvas 作品\nArtist A\nCC BY-SA 4.0\nhttps://example.org/artist-a")
@@ -90,16 +106,26 @@ class GalleryDraftDeviceTest {
     private val lifecycle=ActivityLifecycleCallback { activity,stage ->
         if(activity is ClassicPaintActivity || activity is MediaGalleryActivity) android.util.Log.i(
             "GalleryDraftDeviceTest","${activity.javaClass.simpleName}@${System.identityHashCode(activity)} $stage task=${activity.taskId}")
+        if(activity is MediaGalleryActivity && stage==Stage.PRE_ON_CREATE) {
+            // Existing production test seam, installed before onCreate. These credit-
+            // editing flows must never use the separate Java acquisition path.
+            // Refuse before any connection and require zero attempts, even on failure.
+            val reject: (URL)->HttpURLConnection = {
+                nativeAcquisitions.incrementAndGet()
+                throw java.io.IOException("Native acquisition is outside this local routing fixture")
+            }
+            MediaGalleryActivity::class.java.getDeclaredField("openConnection").apply {isAccessible=true}.set(activity,reject)
+        }
         if(stage==Stage.CREATED) when(activity) {
             is ClassicPaintActivity -> {editor=activity;editors.add(activity)}
             is MediaGalleryActivity -> {
-                gallery=activity
-                // Do not wait for, inspect or depend on the provider's initial page.
-                // Replace it on every real instance, including Android recreation.
-                // Subsequent network loads are blocked; no image download is used.
+                gallery=activity;galleries.add(activity)
+                // The process-local proxy was positively verified before launch.
+                // Allow the FIRST normal home load to reach that rejecting sink;
+                // only then replace its content. Recreated local pages stay local.
                 val web=descendants(activity.window.decorView).filterIsInstance<WebView>().single()
-                web.stopLoading();web.settings.blockNetworkLoads=true
-                web.loadData("<html><body>Local gallery draft fixture</body></html>","text/html","UTF-8")
+                galleryWebViews.add(web)
+                if(galleries.size>1) localPage(web)
             }
         }
     }
@@ -120,14 +146,15 @@ class GalleryDraftDeviceTest {
     }
 
     @Before fun launchEditorWithLocalDocument() {
+        establishNetworkBoundary()
         onMain {ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(lifecycle)}
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
-        listOf("classic-ui","recent-colours","export").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
+        listOf("classic-ui","recent-colours","export","app-language").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
         destinations=LocalDestinations();instrumentation.addMonitor(destinations)
         val launch=checkNotNull(context.packageManager.getLaunchIntentForPackage(context.packageName))
         assertEquals(ClassicPaintActivity::class.java.name,launch.component!!.className)
         scenario=ActivityScenario.launch(launch)
-        await("editor layout") {currentEditor().paintCanvas.width>0 && !currentEditor().busy}
+        await("editor startup and layout") {currentEditor().startupReady && currentEditor().paintCanvas.width>0 && !currentEditor().busy}
         onMain {
             val a=currentEditor();val root=a.window.decorView
             click(root,"menu_Draw")
@@ -164,6 +191,21 @@ class GalleryDraftDeviceTest {
             if(::destinations.isInitialized) instrumentation.removeMonitor(destinations)
             onMain {ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(lifecycle)}
             fixtures.forEach {it.delete()}
+            // All real gallery WebViews are destroyed by their Activities first.
+            // If cleanup fails, retain the proxy override (fail closed) rather than
+            // making any surviving WebView able to contact a provider.
+            try {
+                onMain {
+                    probe?.let {it.stopLoading();it.destroy()};probe=null
+                    assertTrue("Every gallery destroyed before proxy restoration",galleries.all {it.isDestroyed})
+                    assertTrue("Every gallery WebView detached",galleryWebViews.none {it.isAttachedToWindow})
+                }
+                instrumentation.waitForIdleSync()
+                assertEquals("No native image or metadata acquisition was attempted",0,nativeAcquisitions.get())
+                if(proxyApplied) awaitProxyChange {done ->ProxyController.getInstance().clearProxyOverride(Executor {it.run()},done)}
+            } finally {
+                if(::network.isInitialized) network.close()
+            }
         }
     }
 
@@ -174,6 +216,7 @@ class GalleryDraftDeviceTest {
     @Test fun savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft() = roundTrip(confirm=false,saveFirst=true)
 
     private fun roundTrip(confirm: Boolean,saveFirst: Boolean) {
+        network.assertHealthy()
         val original=currentEditor()
         val task=onMain {original.taskId}
         onMain {click(original.window.decorView,"insert_other_images")}
@@ -185,11 +228,20 @@ class GalleryDraftDeviceTest {
         await("real gallery resumed over stopped editor") {
             gallery?.let {stage(it)==Stage.RESUMED}==true && stage(currentEditor())==Stage.STOPPED
         }
+        await("initial production home load reached only the rejecting loopback sink") {
+            network.assertHealthy()
+            network.requests().any {it.startsWith("CONNECT catrobat.org:443 ")}
+        }
+        onMain {localPage(galleryWebViews.last())}
         awaitReady() // Drain the editor's real onStop autosave before testing recovery.
+        var sessionToken=""
         onMain {
             assertEquals(task,currentGallery().taskId)
-            assertEquals(listOf(sourceA,sourceB),ImageCredit.read(JSONArray(
-                currentGallery().intent.getStringExtra("document_image_credits"))))
+            sessionToken=checkNotNull(currentGallery().intent.getStringExtra("image_credit_session"))
+            assertTrue(sessionToken.matches(Regex("credit-edit-[0-9a-f-]{36}\\.json")))
+            assertFalse("Production launch keeps the ledger out of Binder",currentGallery().intent.hasExtra("document_image_credits"))
+            assertSession(sessionToken,listOf(sourceA,sourceB),null,false)
+            assertGalleryOwner(sessionToken)
             assertEquals(1,editors.count {!it.isDestroyed})
         }
         assertEquals(1,destinations.requests.count {it.component?.className==MediaGalleryActivity::class.java.name})
@@ -209,6 +261,11 @@ class GalleryDraftDeviceTest {
         val pending=if(saveFirst) "" else revisedA
         onMain {creditRoot()!!.findViewWithTag<EditText>("gallery_credit_text").setText(pending)}
         recreateGallery(pending,if(saveFirst) 1 else 0)
+        onMain {
+            assertEquals(sessionToken,currentGallery().intent.getStringExtra("image_credit_session"))
+            assertSession(sessionToken,listOf(if(saveFirst) sourceA.copy(text=revisedA) else sourceA,sourceB),
+                (if(saveFirst) sourceB.source else sourceA.source) to pending,saveFirst)
+        }
 
         // Recreate the actual covered Activity; ActivityScenario.recreate() assumes
         // its Activity is resumed. Android, not a direct onActivityResult call,
@@ -221,6 +278,7 @@ class GalleryDraftDeviceTest {
         awaitReady()
         onMain {
             assertEquals(task,currentEditor().taskId);assertEquals(task,currentGallery().taskId)
+            assertGalleryOwner(sessionToken)
             assertEquals(1,editors.count {!it.isDestroyed})
             assertDocument(listOf(sourceA,sourceB)) // No result has been delivered yet.
             assertEquals(pending,creditRoot()!!.findViewWithTag<EditText>("gallery_credit_text").text.toString())
@@ -237,6 +295,12 @@ class GalleryDraftDeviceTest {
             currentGallery()!==oldGallery && oldGallery.isDestroyed && stage(currentGallery())==Stage.RESUMED
         }
         onMain {assertNull(creditRoot())}
+        onMain {
+            assertSession(sessionToken,listOf(if(confirm || saveFirst) sourceA.copy(text=revisedA) else sourceA,sourceB),null,confirm || saveFirst)
+            assertGalleryOwner(sessionToken)
+            assertFalse("No native downloader action was started",MediaGalleryActivity::class.java
+                .getDeclaredField("downloading").apply {isAccessible=true}.getBoolean(currentGallery()))
+        }
         val resultRecipient=currentEditor()
         tap {currentGallery().window.decorView.findViewWithTag("gallery_done")}
         await("Android returns to the same recovered editor") {
@@ -254,6 +318,8 @@ class GalleryDraftDeviceTest {
         awaitReady()
         onMain {assertDocument(expected)}
         checkSaveAndExport(expected)
+        network.assertHealthy()
+        android.util.Log.i("GalleryDraftDeviceTest","local_proxy_requests=${network.requests().joinToString(" | ")}")
     }
 
     private fun recreateGallery(pending: String,index: Int) {
@@ -281,12 +347,21 @@ class GalleryDraftDeviceTest {
                 assertEquals(View.GONE,root.findViewWithTag<View>("export_credit_details").visibility)
                 clipboard().setPrimaryClip(ClipData.newPlainText("sentinel","not copied"))
             }
+            dismissClipboardOverlay()
+            onMain {
+                assertEquals("not copied",clipboard().primaryClip!!.getItemAt(0).text.toString())
+                assertNotNull("Sentinel preview dismissal preserves the dialog",saveRoot())
+            }
             tap {saveRoot()!!.findViewWithTag("export_toggle_credits")}
             onMain {assertEquals(text,saveRoot()!!.findViewWithTag<TextView>("export_credit_text").text.toString())}
             tap {saveRoot()!!.findViewWithTag("export_copy_credits")}
             onMain {assertEquals(text,clipboard().primaryClip!!.getItemAt(0).text.toString())}
             // Keep SystemUI's clipboard preview out of the next native button tap.
             dismissClipboardOverlay()
+            onMain {
+                assertEquals(text,clipboard().primaryClip!!.getItemAt(0).text.toString())
+                assertNotNull("Copied preview dismissal preserves the dialog",saveRoot())
+            }
             tap {saveRoot()!!.findViewById(android.R.id.button2)}
             await("Save/Export cancelled") {saveRoot()==null}
             onMain {assertDocument(expected)}
@@ -411,7 +486,51 @@ class GalleryDraftDeviceTest {
     private fun awaitReady()=await("actual autosave writer idle") {
         val a=currentEditor()
         fun counter(name: String)=ClassicPaintActivity::class.java.getDeclaredField(name).apply {isAccessible=true}.getLong(a)
-        !a.busy && counter("draftGeneration")==counter("savedDraftGeneration")
+        a.startupReady && !a.busy && counter("draftGeneration")==counter("savedDraftGeneration")
+    }
+
+    private fun localPage(web: WebView) {
+        web.stopLoading();web.settings.blockNetworkLoads=true
+        web.loadData("<html><body>Local gallery draft fixture</body></html>","text/html","UTF-8")
+    }
+    private fun assertGalleryOwner(token: String) {
+        assertEquals("Recovered editor retains exact outstanding gallery ownership",token,
+            ClassicPaintActivity::class.java.getDeclaredField("galleryCreditSessionToken").apply {isAccessible=true}.get(currentEditor()))
+    }
+    private fun assertSession(token: String,credits: List<ImageCredit>,draft: Pair<String,String>?,accepted: Boolean) {
+        val json=AtomicFile(File(context.filesDir,token)).openRead().bufferedReader(Charsets.UTF_8).use {JSONObject(it.readText())}
+        assertEquals(credits,ImageCredit.read(json.getJSONArray("credits")))
+        assertEquals(accepted,json.getBoolean("accepted"))
+        if(draft==null) assertTrue("No unfinished field remains",json.isNull("draft"))
+        else {
+            assertEquals(draft.first,json.getJSONObject("draft").getString("source"))
+            assertEquals(draft.second,json.getJSONObject("draft").getString("text"))
+        }
+    }
+    private fun awaitProxyChange(change: (Runnable)->Unit) {
+        val done=CountDownLatch(1)
+        onMain {change(Runnable {done.countDown()})}
+        assertTrue("WebView proxy change applied before continuing",done.await(10,TimeUnit.SECONDS))
+    }
+    private fun establishNetworkBoundary() {
+        onMain {
+            assertTrue("A supported WebView proxy is required; no direct fallback or skip",
+                WebViewFeature.isFeatureSupported(WebViewFeature.PROXY_OVERRIDE))
+        }
+        network=LocalRejectingProxy()
+        val config=ProxyConfig.Builder().addProxyRule(network.rule()).removeImplicitRules().build()
+        // Mark before waiting so cleanup remains fail closed if the callback fails.
+        proxyApplied=true
+        awaitProxyChange {done ->ProxyController.getInstance().setProxyOverride(config,Executor {it.run()},done)}
+        onMain {
+            probe=WebView(context).also {it.loadUrl("https://gallery-fixture.invalid/preflight")}
+        }
+        await("positive HTTPS CONNECT evidence at local rejecting proxy before gallery launch") {
+            network.assertHealthy()
+            network.requests().any {it.startsWith("CONNECT gallery-fixture.invalid:443 ")}
+        }
+        onMain {probe!!.stopLoading();probe!!.destroy();probe=null}
+        instrumentation.waitForIdleSync()
     }
     private fun <T> onMain(action: ()->T): T {
         val result=AtomicReference<T>();val failure=AtomicReference<Throwable?>()

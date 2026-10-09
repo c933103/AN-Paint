@@ -6,7 +6,6 @@ import org.catrobat.paintroid.R
 import android.app.Activity
 import android.app.AlertDialog
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
@@ -24,7 +23,7 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
         val body = LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL; setPadding(dp(18),dp(6),dp(18),dp(8)) }
         body.addView(TextView(activity).apply { text=ui(if (isWidth) R.string.ui_normalize_width_intro else R.string.ui_normalize_height_intro, sizes.size) })
         val units = RadioGroup(activity).apply { orientation=LinearLayout.HORIZONTAL }
-        val input = EditText(activity).apply { tag="normalize_value"; isSingleLine=true; setSelectAllOnFocus(true); inputType=InputType.TYPE_CLASS_NUMBER; setText(largest.toString()) }
+        val input = EditText(activity).apply { tag="normalize_value"; isSingleLine=true; setSelectAllOnFocus(true); LocaleNumberInput.configure(this); setText(largest.toString()) }
         val info = TextView(activity).apply { tag="normalize_info"; setPadding(0,dp(8),0,dp(8)) }
         var percent = false
         fun value(): Int? {
@@ -53,7 +52,7 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
                 id=View.generateViewId(); tag="normalize_${if(index==0) "pixels" else "percent"}"; text=label; isChecked=index==0
                 setOnClickListener {
                     val old=value(); units.check(id); percent=index==1
-                    input.inputType=InputType.TYPE_CLASS_NUMBER or if (percent) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0
+                    LocaleNumberInput.configure(input, decimal = percent)
                     input.contentDescription=if (percent) ui(if (isWidth) R.string.ui_normalize_width_input_percent else R.string.ui_normalize_height_input_percent, largest) else ui(if (isWidth) R.string.ui_width else R.string.ui_height, "px")
                     old?.let { display(it) }; refresh()
                 }

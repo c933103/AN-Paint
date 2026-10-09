@@ -1,0 +1,473 @@
+{
+  "meaning": "Successful diagnostics reproduce a proposed vertical-body fit failure. Production routing is unchanged.",
+  "source_commit": "3f8bb0f64cfad485a1e725223d3475d8d60f9e5b",
+  "normal_host_tests": 304,
+  "selected_native_test_executions": 32,
+  "runner_input_rejection_checks": 3,
+  "shaping_sweep": {
+    "30": {
+      "rows": 4320,
+      "profiles": [
+        "en-XV",
+        "lzh-Hant",
+        "mn-Mong",
+        "mnc-Mong",
+        "qaa-Zsye-XV"
+      ],
+      "fixtures": 80,
+      "synthetic_geometries": [
+        "already-fitted",
+        "cutout",
+        "dialog",
+        "ime",
+        "landscape",
+        "portrait"
+      ],
+      "nominal_fits": 3613,
+      "ink_outside_nominal_box": 795,
+      "real_14sp_pixels": [
+        {
+          "scale": 1.0,
+          "density": 1.0,
+          "pixels": 14.0
+        },
+        {
+          "scale": 1.0,
+          "density": 2.5,
+          "pixels": 35.0
+        },
+        {
+          "scale": 1.3,
+          "density": 1.0,
+          "pixels": 18.199999
+        },
+        {
+          "scale": 1.3,
+          "density": 2.5,
+          "pixels": 45.5
+        },
+        {
+          "scale": 2.0,
+          "density": 1.0,
+          "pixels": 28.0
+        },
+        {
+          "scale": 2.0,
+          "density": 2.5,
+          "pixels": 70.0
+        }
+      ]
+    },
+    "35": {
+      "rows": 4320,
+      "profiles": [
+        "en-XV",
+        "lzh-Hant",
+        "mn-Mong",
+        "mnc-Mong",
+        "qaa-Zsye-XV"
+      ],
+      "fixtures": 80,
+      "synthetic_geometries": [
+        "already-fitted",
+        "cutout",
+        "dialog",
+        "ime",
+        "landscape",
+        "portrait"
+      ],
+      "nominal_fits": 3640,
+      "ink_outside_nominal_box": 799,
+      "real_14sp_pixels": [
+        {
+          "scale": 1.0,
+          "density": 1.0,
+          "pixels": 14.0
+        },
+        {
+          "scale": 1.0,
+          "density": 2.5,
+          "pixels": 35.0
+        },
+        {
+          "scale": 1.3,
+          "density": 1.0,
+          "pixels": 18.8
+        },
+        {
+          "scale": 1.3,
+          "density": 2.5,
+          "pixels": 47.0
+        },
+        {
+          "scale": 2.0,
+          "density": 1.0,
+          "pixels": 26.0
+        },
+        {
+          "scale": 2.0,
+          "density": 2.5,
+          "pixels": 65.0
+        }
+      ]
+    }
+  },
+  "attached_host": {
+    "30": {
+      "rows": 560,
+      "nominal_fits": 390,
+      "actually_clipped_fitting_cases": 72,
+      "clipped_fixture_groups": [
+        "unsupported-zwj-file"
+      ],
+      "ordinary_fitting_cases_without_clipping": 318,
+      "scope": "Direct-helper diagnostic; bypasses current production route. Full-width direction-aligned test body in attached Notice. Real inset calculation uses supplied WM state."
+    },
+    "35": {
+      "rows": 560,
+      "nominal_fits": 420,
+      "actually_clipped_fitting_cases": 78,
+      "clipped_fixture_groups": [
+        "unsupported-zwj-file"
+      ],
+      "ordinary_fitting_cases_without_clipping": 342,
+      "scope": "Direct-helper diagnostic; bypasses current production route. Full-width direction-aligned test body in attached Notice. Real inset calculation uses supplied WM state."
+    }
+  },
+  "routes": {
+    "30": {
+      "picker_tags": 140,
+      "foreground_horizontal": [
+        "vi-Hani",
+        "wuu-Hans"
+      ],
+      "system_toast_count": 138,
+      "vertical_profiles_remain_system_owned": true
+    },
+    "35": {
+      "picker_tags": 140,
+      "foreground_horizontal": [
+        "vi-Hani",
+        "wuu-Hans"
+      ],
+      "system_toast_count": 138,
+      "vertical_profiles_remain_system_owned": true
+    }
+  },
+  "transitions": {
+    "30": {
+      "rows": 20,
+      "scope": "Existing horizontal node through direct helper; hypothetical expanded vertical-profile foreground route, not production behavior.",
+      "resized_rows": [
+        {
+          "sdk": "30",
+          "tag": "mn-Mong",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "92",
+          "horizontalCompleteH": "101",
+          "horizontalFits": "false",
+          "verticalNominalW": "343.0",
+          "verticalNominalH": "91.0",
+          "verticalNominalFits": "false"
+        },
+        {
+          "sdk": "30",
+          "tag": "mnc-Mong",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "92",
+          "horizontalCompleteH": "101",
+          "horizontalFits": "false",
+          "verticalNominalW": "416.5",
+          "verticalNominalH": "68.0",
+          "verticalNominalFits": "false"
+        },
+        {
+          "sdk": "30",
+          "tag": "lzh-Hant",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "59",
+          "horizontalCompleteH": "59",
+          "horizontalFits": "true",
+          "verticalNominalW": "114.84375",
+          "verticalNominalH": "65.625",
+          "verticalNominalFits": "true"
+        },
+        {
+          "sdk": "30",
+          "tag": "en-XV",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "75",
+          "horizontalCompleteH": "75",
+          "horizontalFits": "true",
+          "verticalNominalW": "229.6875",
+          "verticalNominalH": "60.0",
+          "verticalNominalFits": "true"
+        },
+        {
+          "sdk": "30",
+          "tag": "qaa-Zsye-XV",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "75",
+          "horizontalCompleteH": "75",
+          "horizontalFits": "true",
+          "verticalNominalW": "229.6875",
+          "verticalNominalH": "65.0",
+          "verticalNominalFits": "true"
+        }
+      ]
+    },
+    "35": {
+      "rows": 20,
+      "scope": "Existing horizontal node through direct helper; hypothetical expanded vertical-profile foreground route, not production behavior.",
+      "resized_rows": [
+        {
+          "sdk": "35",
+          "tag": "mn-Mong",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "92",
+          "horizontalCompleteH": "101",
+          "horizontalFits": "false",
+          "verticalNominalW": "343.0",
+          "verticalNominalH": "92.0",
+          "verticalNominalFits": "false"
+        },
+        {
+          "sdk": "35",
+          "tag": "mnc-Mong",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "92",
+          "horizontalCompleteH": "101",
+          "horizontalFits": "false",
+          "verticalNominalW": "416.5",
+          "verticalNominalH": "68.0",
+          "verticalNominalFits": "false"
+        },
+        {
+          "sdk": "35",
+          "tag": "lzh-Hant",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "64",
+          "horizontalCompleteH": "64",
+          "horizontalFits": "true",
+          "verticalNominalW": "114.84375",
+          "verticalNominalH": "65.625",
+          "verticalNominalFits": "true"
+        },
+        {
+          "sdk": "35",
+          "tag": "en-XV",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "75",
+          "horizontalCompleteH": "75",
+          "horizontalFits": "true",
+          "verticalNominalW": "229.6875",
+          "verticalNominalH": "60.0",
+          "verticalNominalFits": "true"
+        },
+        {
+          "sdk": "35",
+          "tag": "qaa-Zsye-XV",
+          "phase": "resized",
+          "hostW": "420",
+          "hostH": "124",
+          "noticeBottomPadding": "0",
+          "horizontalMeasuredH": "75",
+          "horizontalCompleteH": "75",
+          "horizontalFits": "true",
+          "verticalNominalW": "229.6875",
+          "verticalNominalH": "65.0",
+          "verticalNominalFits": "true"
+        }
+      ]
+    }
+  },
+  "counterexample": {
+    "filename": "😀‍😀‍😀‍😀‍😀‍😀.png",
+    "validated_by": "Exact extracted ExportNames.valid/withExtension implementation with ImageFormat.PNG",
+    "representative_rows": [
+      {
+        "sdk": "30",
+        "tag": "mn-Mong",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "mn-Mong",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "168",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "24.5",
+        "nominalH": "143.5",
+        "fits": "true",
+        "outsideBodyPixels": "309",
+        "drawnInkPixels": "1574",
+        "leftInk": "-24",
+        "topInk": "19",
+        "rightInk": "79",
+        "bottomInk": "154"
+      },
+      {
+        "sdk": "30",
+        "tag": "lzh-Hant",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "lzh-Hant",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "109",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "16.40625",
+        "nominalH": "84.21875",
+        "fits": "true",
+        "outsideBodyPixels": "336",
+        "drawnInkPixels": "1312",
+        "leftInk": "311",
+        "topInk": "14",
+        "rightInk": "414",
+        "bottomInk": "93"
+      },
+      {
+        "sdk": "30",
+        "tag": "en-XV",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "en-XV",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "114",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "16.40625",
+        "nominalH": "89.40625",
+        "fits": "true",
+        "outsideBodyPixels": "372",
+        "drawnInkPixels": "1328",
+        "leftInk": "-28",
+        "topInk": "12",
+        "rightInk": "75",
+        "bottomInk": "98"
+      },
+      {
+        "sdk": "35",
+        "tag": "mn-Mong",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "mn-Mong",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "168",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "24.5",
+        "nominalH": "143.5",
+        "fits": "true",
+        "outsideBodyPixels": "309",
+        "drawnInkPixels": "1574",
+        "leftInk": "-24",
+        "topInk": "19",
+        "rightInk": "79",
+        "bottomInk": "154"
+      },
+      {
+        "sdk": "35",
+        "tag": "lzh-Hant",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "lzh-Hant",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "109",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "16.40625",
+        "nominalH": "84.21875",
+        "fits": "true",
+        "outsideBodyPixels": "336",
+        "drawnInkPixels": "1312",
+        "leftInk": "311",
+        "topInk": "14",
+        "rightInk": "414",
+        "bottomInk": "93"
+      },
+      {
+        "sdk": "35",
+        "tag": "en-XV",
+        "key": "unsupported-zwj-file",
+        "surface": "portrait",
+        "scale": "1.0",
+        "density": "1.0",
+        "textSizePx": "14.0",
+        "paintLocales": "en-XV",
+        "hostW": "420",
+        "hostH": "624",
+        "bodyW": "388",
+        "bodyH": "114",
+        "safeW": "356",
+        "safeH": "568",
+        "target": "240.0",
+        "nominalW": "16.40625",
+        "nominalH": "89.40625",
+        "fits": "true",
+        "outsideBodyPixels": "372",
+        "drawnInkPixels": "1328",
+        "leftInk": "-28",
+        "topInk": "12",
+        "rightInk": "75",
+        "bottomInk": "98"
+      }
+    ]
+  }
+}
