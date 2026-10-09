@@ -1,0 +1,51 @@
+{
+  "reviewed_manifest_sha256": "60ece8093ea30833641ecd098972d92b7b2f3dd0c542e3f5dd5d70ccd5bfec67",
+  "post_correction_manifest_sha256": "65ef9be5583882884e0d45c21d88945db88ea8a8aa5c6e6f7f17a421c02172a4",
+  "review_type": "independent editorial/source-consistency review; not native-speaker acceptance",
+  "scope": "All60 exact replacements, existing Commons captions, decoded hashes and file bytes outside ui_help23 compared against55a6158; provider order matches real menu; no new licensing/availability claims.",
+  "finding": {
+    "tag": "vi-Hani",
+    "before": "Irasutoya, Openclipart 吧「Wikimedia Commons · 版圖 𤿰…」",
+    "after": "Irasutoya, Openclipart 吧 「Wikimedia Commons · 版圖 𤿰…」",
+    "reason": "Space before quoted label matches same-catalogue ui_autosave_is_paused_to_protect_that_draft_use and historical Help typography.",
+    "disposition": "Applied; exact expected passage in host and JVM tests.",
+    "resource_delta": "Exactly one U+0020 added between 吧 and 「; Commons caption unchanged."
+  },
+  "remaining_uncertainty_tags": [
+    "ain-Kana",
+    "ain-Latn",
+    "hak-Hant-TW",
+    "hak-Latn-TW",
+    "mn-Cyrl-MN",
+    "mn-Mong",
+    "mnc-Mong",
+    "bo",
+    "dz",
+    "jje",
+    "ryu",
+    "vi-Hani"
+  ],
+  "limits": "Limited composition/conjunction consistency evidence only for priority languages; full-sentence naturalness and native fluency are not established. Android/runtime acceptance is separate.",
+  "sources": [
+    {
+      "url": "https://teatmik.eki.ee/teatmik/jutumargid/",
+      "supports": "Estonian quotation form"
+    },
+    {
+      "url": "https://kielitoimistonohjepankki.fi/ohje/yhdysmerkki-sanaliiton-sisaltavissa-yhdyssanoissa-avaimet-kateen-sopimus/",
+      "supports": "Finnish multiword quoted-label compound spacing"
+    },
+    {
+      "url": "https://kielitoimistonohjepankki.fi/ohje/lainausmerkit/",
+      "supports": "Finnish quotation marks"
+    },
+    {
+      "url": "https://ainu-upopoy.go.jp/program/upoponewarimuse/",
+      "supports": "Limited Ainu newa/ネワ conjunction consistency"
+    },
+    {
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=4&id=11325",
+      "supports": "Limited Hakka 摎/lâu conjunction consistency"
+    }
+  ]
+}
