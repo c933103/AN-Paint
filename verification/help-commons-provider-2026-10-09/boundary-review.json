@@ -1,0 +1,385 @@
+{
+  "reviewed_source_head": "80914c9e86111ead4f24bf8463dbdeddd0e43646",
+  "finding_url": "https://github.com/c933103/AN-Paint/pull/32#discussion_r4232066980",
+  "finding": "Japanese caption closing bracket retained the old Latin-provider separator before があります. Prior bounded independent review and inserted-segment tests missed this boundary.",
+  "resource_correction": {
+    "tag": "ja",
+    "key": "ui_help23",
+    "before": "いらすとや、Openclipart、［Wikimedia Commons · 白地図…］ があります。",
+    "after": "いらすとや、Openclipart、［Wikimedia Commons · 白地図…］があります。",
+    "delta": "Delete exactly one U+0020 between the closing full-width bracket and Japanese predicate; exact Commons caption unchanged."
+  },
+  "regression": "Complete resulting Japanese provider sentence in Python and JVM tests. New Python oracle fails on 80914c9 before the XML correction.",
+  "independent_reread": "All 60 immediate closing-quote/particle/punctuation joins re-read independently; Japanese is the only additional concrete join defect identified. This does not establish full-sentence native fluency.",
+  "post_correction_manifest_sha256": "8bd7faf4ec72843827d0bc5e4effd95bc72a782a69f5f8f4323cc4c8cec3f74a",
+  "rows": [
+    {
+      "tag": "af",
+      "caption": "Wikimedia Commons · Blanko kaarte…",
+      "following_context": "”. Ingevoegde beelde bly gekies; die aansig wys hul handvatsels s",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "ain-Kana",
+      "caption": "Wikimedia Commons · レタㇻ シンルノカ…",
+      "following_context": "」 コㇿ ノカ オマレ エアㇱカイ. エオマレ ノカ アナㇰ ヌㇺケㇷ゚ ネ アン. ヌㇺケㇷ゚ コㇿ シッケウ ネワ ペㇱ オㇿ",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "ain-Latn",
+      "caption": "Wikimedia Commons · Retar sinrunoka…",
+      "following_context": "」 kor noka omare easkay. E=omare noka anak numkep ne an. Numkep k",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "ar",
+      "caption": "Wikimedia Commons · خرائط صماء…",
+      "following_context": "». تبقى الصور المدرجة محددة؛ ويعرض المنظر مقابضها حتى خارج لوحة ا",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "bo",
+      "caption": "Wikimedia Commons · ས་ཁྲ་སྟོང་པ…",
+      "following_context": "» ཡོད། རང་ཉར་གྱིས་སྤྱོད་ཆས་བསྐྱར་ཕྱེ་སྐབས་ཟིན་བྲིས་དང་ཕྱིར་ལོག/ཡང",
+      "boundary_check": "Preserve the catalogue’s established separator between closing quote and Tibetan-script predicate"
+    },
+    {
+      "tag": "ceb",
+      "caption": "Wikimedia Commons · Mga blangkong mapa…",
+      "following_context": "”. Ang gisulod nga mga hulagway magpabilin nga napili; makita ang",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "de",
+      "caption": "Wikimedia Commons · Umrisskarten…",
+      "following_context": "“. Eingefügte Bilder bleiben ausgewählt; ihre Griffe werden auch ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "default",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "dz",
+      "caption": "Wikimedia Commons · ས་ཁྲ་སྟོངམ…",
+      "following_context": "» ཡོད། རང་སྲུང་གིས་སྤྱོད་ཆས་ལོག་ཁ་ཕྱེ་སྐབས་ཟིན་བྲིས་དང་ལོག་བཤོལ/ལ",
+      "boundary_check": "Preserve the catalogue’s established separator between closing quote and Tibetan-script predicate"
+    },
+    {
+      "tag": "el",
+      "caption": "Wikimedia Commons · Λευκοί χάρτες…",
+      "following_context": "». Οι εισαγόμενες εικόνες παραμένουν επιλεγμένες· η προβολή δείχν",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-001",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-AU",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-CA",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-GB",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-IN",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-SG",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-US",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "en-XV",
+      "caption": "Wikimedia Commons · Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "eo",
+      "caption": "Wikimedia Commons · Konturmapoj…",
+      "following_context": "». Enmetitaj bildoj restas elektitaj; la vido montras iliajn teni",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "es-419",
+      "caption": "Wikimedia Commons · Mapas mudos…",
+      "following_context": "». Las imágenes insertadas permanecen seleccionadas; la vista mue",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "es-ES",
+      "caption": "Wikimedia Commons · Mapas mudos…",
+      "following_context": "». Las imágenes insertadas permanecen seleccionadas; la vista mue",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "et",
+      "caption": "Wikimedia Commons · Kontuurkaardid…",
+      "following_context": "“. Lisatud pildid jäävad valituks; vaade näitab nende pidemeid is",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "fi",
+      "caption": "Wikimedia Commons · Ääriviivakartat…",
+      "following_context": "” -valinnan. Lisätyt kuvat pysyvät valittuina; näkymä näyttää nii",
+      "boundary_check": "Inflected head noun after quoted menu label; preserve language-specific spacing/hyphen"
+    },
+    {
+      "tag": "fr",
+      "caption": "Wikimedia Commons · Cartes muettes…",
+      "following_context": " ». Les images insérées restent sélectionnées ; la vue affiche le",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "hak-Hant-TW",
+      "caption": "Wikimedia Commons · 空白地圖…",
+      "following_context": "」。插入个圖像還係揀等个，控制點就算在畫布外背也會顯示。「使圖像符合畫布」會改圖像个放法；「原本大細」會還原來源个尺寸。過打開程式",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "hak-Latn-TW",
+      "caption": "Wikimedia Commons · Khûng-pha̍k thi-thù…",
+      "following_context": "”. Chhap-ngi̍p ke thù-siong hàn he kién tén ke, khúng-chṳ tiam ch",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "hu",
+      "caption": "Wikimedia Commons · Vaktérképek…",
+      "following_context": "” menüpontot tartalmaz. A beszúrt képek kijelölve maradnak; a néz",
+      "boundary_check": "Inflected head noun after quoted menu label; preserve language-specific spacing/hyphen"
+    },
+    {
+      "tag": "id",
+      "caption": "Wikimedia Commons · Peta buta…",
+      "following_context": "”. Gambar yang disisipkan tetap terseleksi; tampilannya menunjukk",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "it",
+      "caption": "Wikimedia Commons · Carte mute…",
+      "following_context": "». Le immagini inserite restano selezionate; la vista mostra le m",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "ja",
+      "caption": "Wikimedia Commons · 白地図…",
+      "following_context": "］があります。挿入した画像は選択状態のままとなり、キャンバス外にある場合もハンドルが表示されます。［画像をキャンバスに合わせる］は",
+      "boundary_check": "Full resulting sentence has attached predicate: ］があります。"
+    },
+    {
+      "tag": "jje",
+      "caption": "Wikimedia Commons · 백지도…",
+      "following_context": "」 그림을 가져올 수 이수다. 넣은 이미지는 계속 골라진 채로 이수다. 캔버스 밖에 나가도 화면에서 그 이미지의 손잡",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "ko-KP",
+      "caption": "Wikimedia Commons · 백지도…",
+      "following_context": "」가 있습니다. 삽입한 화상은 선택 상태를 유지하며 그림판 밖에 있어도 핸들을 표시합니다. 「화상을 그림판에 맞추기」",
+      "boundary_check": "Attached Korean particle after closing quote: 」가; preserved"
+    },
+    {
+      "tag": "ko-KR",
+      "caption": "Wikimedia Commons · 백지도…",
+      "following_context": "」가 있습니다. 삽입한 이미지는 선택 상태를 유지하며 캔버스 밖에 있어도 핸들을 표시합니다. 「이미지를 캔버스에 맞추",
+      "boundary_check": "Attached Korean particle after closing quote: 」가; preserved"
+    },
+    {
+      "tag": "ko-Kore-KR",
+      "caption": "Wikimedia Commons · 白地圖…",
+      "following_context": "」가 있습니다. 揷入한 이미지는 選擇 상태를 유지하며 캔버스 밖에 있어도 핸들을 表示합니다. 「이미지를 캔버스에 맞추",
+      "boundary_check": "Attached Korean particle after closing quote: 」가; preserved"
+    },
+    {
+      "tag": "lt",
+      "caption": "Wikimedia Commons · Kontūriniai žemėlapiai…",
+      "following_context": "“. Įterpti vaizdai lieka pažymėti; rodinys rodo jų rankenėles net",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "lv",
+      "caption": "Wikimedia Commons · Kontūrkartes…",
+      "following_context": "”. Ievietotie attēli paliek atlasīti; skats rāda to rokturus pat ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "lzh-Hant",
+      "caption": "Wikimedia Commons · 空白輿圖…",
+      "following_context": "」。置入之圖仍為所選；控柄雖在畫布外，亦可見。「縮放圖以合畫布」改其置法；「原寸」復來源之尺寸。重啟程式，自存可復草稿及撤前／復行",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "mn-Cyrl-MN",
+      "caption": "Wikimedia Commons · Хоосон газрын зураг…",
+      "following_context": "» байна. Оруулсан зураг сонгогдсон хэвээр үлдэж, зургийн талбараа",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "mn-Mong",
+      "caption": "Wikimedia Commons · ᠬᠣᠭᠣᠰᠣᠨ ᠭᠠᠵᠠᠷ ᠤᠨ ᠵᠢᠷᠤᠭ…",
+      "following_context": "» ᠡᠴᠡ ᠠᠪᠴᠤ ᠪᠣᠯᠣᠨ᠎ᠠ᠃ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠭᠳᠠᠭᠰᠠᠨ ᠬᠡᠪ ᠢᠶᠡᠷ ᠦᠯᠡᠳᠡ",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "mnc-Mong",
+      "caption": "Wikimedia Commons · ᡧᠠᠨᠶᠠᠨ ᠨᡳᡵᡠᡤᠠᠨ…",
+      "following_context": "» ᠪᡳ. ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠰᠣᠨᠵᠣᡥᠣ ᠰᠣᠩᡴᠣᡳ ᠪᡳ. ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᠴᡳ ᡨᡠᠯᡝ ᠪᡳᠴᡳ",
+      "boundary_check": "Word-separated language: preserve space between closing quote and following word"
+    },
+    {
+      "tag": "ms",
+      "caption": "Wikimedia Commons · Peta kosong…",
+      "following_context": "”. Imej yang disisipkan kekal dipilih; paparan menunjukkan pemega",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "nan-Hant-TW",
+      "caption": "Wikimedia Commons · 空白地圖…",
+      "following_context": "」。插入的圖片猶是選取的狀態，控制點就算佇畫布外口嘛會顯示。「使圖片符合畫布」會改圖片的囥法；「原本大細」會恢復來源的尺寸。閣開程",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "nan-Latn-TW",
+      "caption": "Wikimedia Commons · Khàng-pe̍h tē-tô͘…",
+      "following_context": "”. Chhah-ji̍p ê tô͘-phìⁿ iáu sī soán-chhú ê chōng-thài, khòng-chè",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "nl",
+      "caption": "Wikimedia Commons · Blanco kaarten…",
+      "following_context": "”. Ingevoegde afbeeldingen blijven geselecteerd; de weergave toon",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "pt-BR",
+      "caption": "Wikimedia Commons · Mapas mudos…",
+      "following_context": "». As imagens inseridas permanecem selecionadas; a vista mostra a",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "pt-PT",
+      "caption": "Wikimedia Commons · Mapas mudos…",
+      "following_context": "». As imagens inseridas permanecem selecionadas; a vista mostra a",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "qaa-Zsye-XV",
+      "caption": "Wikimedia Commons · 🗺️ Blank maps…",
+      "following_context": "”. Inserted images remain selected; the view shows their handles ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "ru",
+      "caption": "Wikimedia Commons · Контурные карты…",
+      "following_context": "». Вставленные изображения остаются выделенными; их маркеры отобр",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "ryu",
+      "caption": "Wikimedia Commons · 白地図…",
+      "following_context": "」ぬ あいびーん。入れーたる画像や 選択さっとーるまま やいびーん。キャンバスぬ外んかい あてぃん、画像ぬハンドルや 画面んかい ",
+      "boundary_check": "Attached Ryukyuan particle after closing quote: 」ぬ; later word spacing preserved"
+    },
+    {
+      "tag": "sw",
+      "caption": "Wikimedia Commons · Ramani tupu…",
+      "following_context": "”. Picha zilizoingizwa hubaki zimechaguliwa; mwonekano huonyesha ",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "tl",
+      "caption": "Wikimedia Commons · Mga blangkong mapa…",
+      "following_context": "”. Nananatiling napili ang mga naipasok na larawan; ipinapakita n",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "tr",
+      "caption": "Wikimedia Commons · Dilsiz haritalar…",
+      "following_context": "” seçeneğini içerir. Eklenen görüntüler seçili kalır; görünüm, tu",
+      "boundary_check": "Inflected head noun after quoted menu label; preserve language-specific spacing/hyphen"
+    },
+    {
+      "tag": "vi",
+      "caption": "Wikimedia Commons · Bản đồ trống…",
+      "following_context": "”. Ảnh đã chèn vẫn được chọn; khung nhìn hiển thị tay nắm của chú",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "vi-Hani",
+      "caption": "Wikimedia Commons · 版圖 𤿰…",
+      "following_context": "」. 影 㐌 㙻 吻 得 譔; 椌 𥆾 顯示 𢬣 捻 𧵑 衆 𣦍 𪥘 欺 㑲 外 椌 𡳒. 「𣃣 影 貝 椌 𡳒」 𠊝 𢷮 戟 𡱩",
+      "boundary_check": "Space before opening quote matches this Nôm catalogue; closing quote/full stop retained"
+    },
+    {
+      "tag": "wuu-Hans",
+      "caption": "Wikimedia Commons · 空白地图…",
+      "following_context": "」。插入个图片还是选中个，控制点就算辣画布外头也看得着。「使图片符合画布」会调摆放，「原来大小」恢复源图片个尺寸。重新开应用，自动",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "yue-Hant",
+      "caption": "Wikimedia Commons · 空白地圖…",
+      "following_context": "」。插入嘅圖片會維持揀選狀態，即使控制點喺畫布外亦會顯示。「將圖片縮放到畫布範圍」會改擺位大小；「原本大小」會還原來源尺寸。再打開",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "yue-Latn",
+      "caption": "Wikimedia Commons · Hung1 baak6 dei6 tou4…",
+      "following_context": "”. Caap3 jap6 ge3 tou4 pin2 wui5 wai4 ci4 gaan2 syun2 zong6 taai3",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "zh-CN",
+      "caption": "Wikimedia Commons · 空白地图…",
+      "following_context": "」。插入的图片会维持选择状态，即使控制点位于画布外也会显示。「使图片适合画布」会改变放置大小；「原始大小」会还原来源尺寸。重新打开",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "zh-HK",
+      "caption": "Wikimedia Commons · 空白地圖…",
+      "following_context": "」。插入的圖片會維持選取狀態，即使控制點位於畫布外亦會顯示。「使圖片符合畫布」會改變放置大小；「原本大小」會還原來源尺寸。重新開啟",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    },
+    {
+      "tag": "zh-TW",
+      "caption": "Wikimedia Commons · 空白地圖…",
+      "following_context": "」。插入的圖片會維持選取狀態，即使控制點位於畫布外也會顯示。「使圖片符合畫布」會改變放置大小；「原始大小」會還原來源尺寸。重新開啟",
+      "boundary_check": "Closing quote immediately followed by sentence punctuation; local quotation convention preserved"
+    }
+  ],
+  "independent_post_fix_verification": {
+    "reviewed_manifest_sha256": "31bf976e4bcb0ae2f755da0d74f94a4cf9bdab65d1e69a7fc7d6e467baaca94f",
+    "published_manifest_sha256": "8bd7faf4ec72843827d0bc5e4effd95bc72a782a69f5f8f4323cc4c8cec3f74a",
+    "metadata_only_delta": "After independent review, inserted ordinary word spaces in the English review note: of80914c9 to of 80914c9 and all60 to all 60. Reversing exactly those metadata edits reconstructs the reviewed manifest hash; all resource values and hashes are unchanged.",
+    "result": "Verified Japanese whole XML differs from 80914c9 only by deleting one U+0020; caption unchanged. Rechecked all 60 manifest replacements, decoded before/after hashes and source-scope whole-file hashes. Python AST and JVM source contain the exact complete provider sentence. No further resource correction identified; language uncertainty remains.",
+    "local_python_tests": 348,
+    "local_python_seconds": 53.021
+  }
+}
