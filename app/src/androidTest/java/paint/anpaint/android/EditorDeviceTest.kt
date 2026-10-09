@@ -742,6 +742,40 @@ class EditorDeviceTest {
         }
     }
 
+    @Test @SdkSuppress(minSdkVersion=33)
+    fun deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches() {
+        // The repository's emulator fixture boots in en-US. Keep this oracle independent
+        // of AppLanguage.deviceDefaultLabel and the app-overridden resource context.
+        assertEquals("Controlled emulator device locale","en-US",
+            context.getSystemService(LocaleManager::class.java).systemLocales[0].toLanguageTag())
+        for(tag in listOf("ja","ar","en-001")) {
+            chooseAppLanguage(tag)
+            awaitState("resource override $tag") {
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()==tag
+            }
+            menu("View",activityText(R.string.ui_languages23))
+            onMain {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                localePickerList(count).setSelectionFromTop(0,0)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                val list=localePickerList(count)
+                assertEquals(0,list.firstVisiblePosition)
+                val row=list.getChildAt(0) as TextView
+                assertEquals("Device label while app uses $tag","Use device language",row.text.toString())
+                assertEquals("en-US",row.textLocale.toLanguageTag())
+                android.util.Log.i("LanguagePickerTest","device=en-US app=$tag first=${list.firstVisiblePosition} label=${row.text}")
+            }
+            instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+            awaitState("picker dismissed after $tag") {
+                val count=it.resources.getStringArray(R.array.app_language_tags).size+1
+                try {localePickerList(count);false} catch(_: AssertionError) {true}
+            }
+        }
+    }
+
     private fun restoreOriginalLanguage() {
         instrumentation.runOnMainSync {
             context.getSharedPreferences("app-language",0).edit().putString("language-tag",originalLanguageTag)

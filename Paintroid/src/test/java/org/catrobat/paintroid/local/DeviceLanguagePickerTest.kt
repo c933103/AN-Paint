@@ -184,6 +184,46 @@ class DeviceLanguagePickerTest {
         }
     }
 
+    // Literal source-catalogue oracles must not share the production context-resolution path.
+    private val deviceLabels=mapOf(
+        "en-US" to "Use device language", "ar" to "استخدام لغة النظام",
+        "vi-Hani" to "用 言語 系統", "wuu-Hans" to "使用系统语言",
+        "mn-Mong" to "ᠲᠥᠬᠥᠭᠡᠷᠦᠮᠵᠢ ᠶᠢᠨ ᠬᠡᠯᠡ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ",
+        "mnc-Mong" to "ᠠᡤᡡᡵᠠ ᡳ ᡤᡳᠰᡠᠨ ᠪᡝ ᠪᠠᡳᡨᠠᠯᠠᡵᠠ",
+        "lzh-Hant" to "從系統之語言", "en-XV" to "Use device language",
+        "qaa-Zsye-XV" to "🌐 Use device language"
+    )
+
+    @Test fun realEditorOverrideSwitchesKeepTheIndependentEnglishDeviceLabel() {
+        val context=org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>()
+        val oldLocale=Locale.getDefault()
+        val oldResources=PaintApplication.currentResources
+        AppLanguage.select(context,"en-001")
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            awaitEditorStartup(activity)
+            assertEquals("en-US",locale(Resources.getSystem().configuration).toLanguageTag())
+            for(appTag in listOf("ja","ar","en-001")) {
+                AppLanguage.select(activity,appTag);AppLanguage.refresh(activity)
+                val picker=AppLanguage.showPicker(activity) {}
+                try {
+                    val row=firstMountedRow(picker)
+                    checkRow(activity,row,"en-US","Use device language")
+                    checkAccessibility(row,"en-US","Use device language")
+                } finally {picker.dismiss();idle()}
+            }
+        } finally {
+            controller.pause().stop()
+            val until=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<until) {idle();Thread.sleep(10)}
+            controller.destroy()
+            AppLanguage.select(context,"")
+            context.getSharedPreferences("app-language",0).edit().clear().commit()
+            PaintApplication.currentResources=oldResources;Locale.setDefault(oldLocale)
+        }
+    }
+
     @Test fun repeatedOpenAndAppOverrideSwitchKeepMountedLabelsAccessibleAndTouchSized()=withActivity { activity ->
         for(tag in listOf("en-US","ar","vi-Hani","wuu-Hans","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
             for((index,appTag) in listOf("ja","ar","en-001").withIndex()) {
@@ -193,7 +233,7 @@ class DeviceLanguagePickerTest {
                     val row=firstMountedRow(picker)
                     row.textSize=if(index==1) 24f else 16f
                     idle()
-                    val label=expectedLabel(activity,tag)
+                    val label=deviceLabels.getValue(tag)
                     checkRow(activity,row,tag,label)
                     checkAccessibility(row,tag,label)
                     assertSame("Measured row must remain mounted",row,picker.listView.getChildAt(0))
