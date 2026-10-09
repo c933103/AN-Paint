@@ -34,6 +34,11 @@ import java.util.Locale
 @Config(sdk=[30,35], qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class DeviceLanguagePickerTest {
+    class PickerActivity: Activity() {
+        override fun attachBaseContext(base: android.content.Context) {
+            super.attachBaseContext(AppLanguage.wrap(base))
+        }
+    }
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     @Suppress("DEPRECATION")
     private fun locale(config: Configuration)=if(Build.VERSION.SDK_INT>=24) config.locales[0] else config.locale
@@ -41,18 +46,23 @@ class DeviceLanguagePickerTest {
         ?.getSpans(0,row.text.length,ReplacementSpan::class.java).orEmpty()
 
     @Suppress("DEPRECATION")
-    private fun withActivity(check: (Activity) -> Unit) {
+    private fun withActivity(deviceTag: String?=null,appTag: String?=null,check: (Activity) -> Unit) {
         val oldLocale=Locale.getDefault()
         val oldResources=PaintApplication.currentResources
         val system=Resources.getSystem()
         val oldSystem=Configuration(system.configuration)
-        val controller=Robolectric.buildActivity(Activity::class.java)
+        val context=org.robolectric.RuntimeEnvironment.getApplication()
+        val manager=if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java) else null
+        val oldPlatformLocales=manager?.applicationLocales
+        if(deviceTag!=null) system.updateConfiguration(Configuration(oldSystem).apply {
+            val locale=Locale.forLanguageTag(deviceTag);setLocale(locale);setLayoutDirection(locale)
+        },system.displayMetrics)
+        if(appTag!=null) AppLanguage.select(context,appTag)
+        val controller=Robolectric.buildActivity(PickerActivity::class.java)
         val activity=controller.get()
         activity.setTheme(R.style.ClassicPaintTheme)
         controller.setup()
         val oldActivity=Configuration(activity.resources.configuration)
-        val manager=if(Build.VERSION.SDK_INT>=33) activity.getSystemService(LocaleManager::class.java) else null
-        val oldPlatformLocales=manager?.applicationLocales
         try {check(activity)} finally {
             ShadowAlertDialog.getLatestAlertDialog()?.dismiss();idle()
             controller.pause().stop().destroy()
@@ -195,7 +205,7 @@ class DeviceLanguagePickerTest {
     )
 
     @Test fun realEditorOverrideSwitchesKeepTheIndependentEnglishDeviceLabel() {
-        val context=org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>()
+        val context=org.robolectric.RuntimeEnvironment.getApplication()
         val oldLocale=Locale.getDefault()
         val oldResources=PaintApplication.currentResources
         AppLanguage.select(context,"en-001")
@@ -224,33 +234,37 @@ class DeviceLanguagePickerTest {
         }
     }
 
-    @Test fun repeatedOpenAndAppOverrideSwitchKeepMountedLabelsAccessibleAndTouchSized()=withActivity { activity ->
-        for(tag in listOf("en-US","ar","vi-Hani","wuu-Hans","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
-            for((index,appTag) in listOf("ja","ar","en-001").withIndex()) {
-                languages(activity,tag,appTag)
-                val picker=AppLanguage.showPicker(activity) {}
-                try {
-                    val row=firstMountedRow(picker)
-                    row.textSize=if(index==1) 24f else 16f
-                    idle()
-                    val label=deviceLabels.getValue(tag)
-                    checkRow(activity,row,tag,label)
-                    checkAccessibility(row,tag,label)
-                    assertSame("Measured row must remain mounted",row,picker.listView.getChildAt(0))
-                    assertTrue("$tag/$appTag row must retain a 48dp touch target",row.height>=48*activity.resources.displayMetrics.density)
-                    val layout=requireNotNull(row.layout)
-                    assertEquals(label.length,layout.getLineEnd(layout.lineCount-1))
-                    assertEquals(0,layout.getEllipsisCount(layout.lineCount-1))
-                    assertTrue("$tag/$appTag layout ${layout.height} in row ${row.height}",layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
-                    if(index==1) {
-                        val image=Bitmap.createBitmap(row.width,row.height,Bitmap.Config.ARGB_8888)
-                        try {
-                            row.draw(Canvas(image))
-                            val file=File("build/reports/classic-preview/device-language-$tag-api${Build.VERSION.SDK_INT}.png")
-                            requireNotNull(file.parentFile).mkdirs();file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)}
-                        } finally {image.recycle()}
-                    }
-                } finally {picker.dismiss();idle()}
+    @Test fun repeatedOpenAcrossAppOverridesKeepsMountedLabelsAccessibleAndTouchSized() {
+        for(tag in deviceLabels.keys) for((index,appTag) in listOf("ja","ar","en-001").withIndex()) {
+            // A fresh wrapped context has the chosen override from attachment. Mutating one
+            // bare Activity's Resources in place can poison Robolectric's cached locale key.
+            // Real in-place switches are checked separately with ClassicPaintActivity and ADB.
+            withActivity(tag,appTag) { activity ->
+                repeat(2) {opening ->
+                    val picker=AppLanguage.showPicker(activity) {}
+                    try {
+                        val row=firstMountedRow(picker)
+                        row.textSize=if(index==1) 24f else 16f
+                        idle()
+                        val label=deviceLabels.getValue(tag)
+                        checkRow(activity,row,tag,label)
+                        checkAccessibility(row,tag,label)
+                        assertSame("Measured row must remain mounted",row,picker.listView.getChildAt(0))
+                        assertTrue("$tag/$appTag row must retain a 48dp touch target",row.height>=48*activity.resources.displayMetrics.density)
+                        val layout=requireNotNull(row.layout)
+                        assertEquals(label.length,layout.getLineEnd(layout.lineCount-1))
+                        assertEquals(0,layout.getEllipsisCount(layout.lineCount-1))
+                        assertTrue("$tag/$appTag layout ${layout.height} in row ${row.height}",layout.height<=row.height-row.totalPaddingTop-row.totalPaddingBottom)
+                        if(index==1 && opening==1) {
+                            val image=Bitmap.createBitmap(row.width,row.height,Bitmap.Config.ARGB_8888)
+                            try {
+                                row.draw(Canvas(image))
+                                val file=File("build/reports/classic-preview/device-language-$tag-api${Build.VERSION.SDK_INT}.png")
+                                requireNotNull(file.parentFile).mkdirs();file.outputStream().use {image.compress(Bitmap.CompressFormat.PNG,100,it)}
+                            } finally {image.recycle()}
+                        }
+                    } finally {picker.dismiss();idle()}
+                }
             }
         }
     }
