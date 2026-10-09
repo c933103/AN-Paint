@@ -37,9 +37,9 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","mnc-Mong")
+    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am")
 
-    // Independent reviewed wording oracles for the five newly supplied exact catalogues.
+    // Independent reviewed wording oracles for the eleven later exact catalogue additions.
     private val addedReasons=mapOf(
         "hak-Hant-TW" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
@@ -60,6 +60,30 @@ class CommonsSvgErrorTranslationTest {
         "dz" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG ནང་ལུ་ ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད། འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ།",
             R.string.commons_svg_original_size_too_large to "SVG གི་ཚད་ངོ་མ་འདི་ Android གི་ bitmap ཚད་ཀྱི་ཁྱབ་ཁོངས་ལས་བརྒལ་ཡོད། ཚད་བསྒྱུར་མ་འབད།"
+        ),
+        "ain-Kana" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG オㇿ タ アヌイェ ホㇱキ ポロル アナㇰ イサㇺ ヘネ アエイワンケ エアイカㇷ゚ ヘネ キ. カㇺピソ コㇿ ポロル アニ アカㇻ ポロル アニ ホㇱキ ポロル アイタサレ カ ソモ キ.",
+            R.string.commons_svg_original_size_too_large to "SVG コㇿ ホㇱキ ポロル アナㇰ Android Bitmap コㇿ パラル ネワ リル アアヌ エアㇱカイ パㇰノ カス. ノカ コㇿ ポロル アシンナレ カ ソモ キ."
+        ),
+        "ain-Latn" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG or ta a=nuye hoski pororu anak isam hene a=eywanke eaykap hene ki. Kampiso kor pororu ani a=kar pororu ani hoski pororu a=itasare ka somo ki.",
+            R.string.commons_svg_original_size_too_large to "SVG kor hoski pororu anak Android Bitmap kor pararu newa riru a=anu easkay pakno kasu. Noka kor pororu a=sinnare ka somo ki."
+        ),
+        "jje" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG에 적어진 쓸 수 있는 원래 크기가 엇수다. 캔버스 크기를 기준으로 헌 크기를 대신 쓰지 아니허엿수다.",
+            R.string.commons_svg_original_size_too_large to "SVG의 원래 크기가 Android 비트맵 크기 한도를 넘엇수다. 크기 조절은 아니 허엿수다."
+        ),
+        "mn-Mong" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ᠨᠢ ᠠᠰᠢᠭᠯᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠠᠩᠬᠠᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠵᠢᠭᠠᠭ᠎ᠠ ᠦᠭᠡᠢ᠃ ᠲᠡᠭᠦᠨ ᠦ ᠣᠷᠣᠨ ᠳᠤ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠶᠢᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠳᠦ ᠦᠨᠳᠦᠰᠦᠯᠡᠭᠰᠡᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠰᠢᠭᠯᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃",
+            R.string.commons_svg_original_size_too_large to "SVG ᠵᠢᠷᠤᠭ ᠤᠨ ᠠᠩᠬᠠᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ Android ᠤᠨ bitmap ᠵᠢᠷᠤᠭ ᠤᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢᠨ ᠬᠢᠵᠠᠭᠠᠷ ᠠᠴᠠ ᠬᠡᠲᠦᠷᠡᠪᠡ᠃ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠰᠡᠨ ᠦᠭᠡᠢ᠃"
+        ),
+        "mnc-Mong" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ᡩᡝ ᠠᡵᠠᡥᠠ ᠪᠠᡳᡨᠠᠯᠠᠮᡝ ᠮᡠᡨᡝᡵᡝ ᡩᠠ ᡴᡝᠮᡠᠨ ᠠᡴᡡ. ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᡳ ᡴᡝᠮᡠᠨ ᡳ ᠰᠣᠩᡴᠣᡳ ᡨᠣᡴᡨᠣᠪᡠᡥᠠ ᡴᡝᠮᡠᠨ ᠪᡝ ᡩᠠ ᡴᡝᠮᡠᠨ ᡳ ᡶᡠᠨᡩᡝ ᠪᠠᡳᡨᠠᠯᠠᡥᠠᡴᡡ.",
+            R.string.commons_svg_original_size_too_large to "SVG ᡳ ᡩᠠ ᡴᡝᠮᡠᠨ Android ᡳ bitmap ᡳ ᡴᡝᠮᡠᠨ ᡳ ᡩᠠᠯᠪᠠ ᠪᡝ ᡩᠠᠪᠠᠯᡳᡥᠠ. ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ ᠪᡝ ᡥᠠᠯᠠᡥᠠᡴᡡ."
+        ),
+        "ryu" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVGんかいや、ちかーりーる元ぬサイズぬ 書かっとーいびらん。キャンバスぬサイズっし ちわみたるサイズや、元ぬサイズぬ代わりんかい ちかやびらんたん。",
+            R.string.commons_svg_original_size_too_large to "SVGぬ元ぬサイズや、Androidぬビットマップぬ寸法ぬ上限やか まぎさいびーん。サイズけーゆしや さびらんたん。"
         )
     )
 
@@ -130,7 +154,7 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","mnc-Mong"))
+            if(tag in listOf("en-US","am"))
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
             addedReasons[tag]?.get(key)?.let {

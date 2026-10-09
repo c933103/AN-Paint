@@ -14,7 +14,6 @@ import copy
 import hashlib
 import json
 from pathlib import Path
-from fontTools.ttLib import TTFont
 
 PRIMARY_SHA = '37bd8506257d0905d499395e7f0bc2b6a2ae619dbb635a82ea0905b75b2ff5f3'
 BASE_SHA = '399798cabc8de4d86e219ab92934bbac4fc9587e547487761ee7cf30167110aa'
@@ -23,7 +22,9 @@ ADDITIONS = (0x651D, 0x671D)
 
 def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions=ADDITIONS):
     primary_path, base_path, output_path = map(Path, (primary_path, base_path, output_path))
-    if output_path.resolve() in (primary_path.resolve(), base_path.resolve()):
+    inputs = (primary_path, base_path)
+    if (output_path.resolve() in tuple(path.resolve() for path in inputs)
+            or output_path.exists() and any(output_path.samefile(path) for path in inputs)):
         raise ValueError('Output must not overwrite either pinned input')
     additions = tuple(additions)
     if not additions or len(set(additions)) != len(additions) or any(cp < 0 or cp > 0xffff for cp in additions):
@@ -32,6 +33,7 @@ def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions
         raise ValueError('Unexpected Nom Na Tong v5.18 source')
     if hashlib.sha256(base_path.read_bytes()).hexdigest() != base_sha:
         raise ValueError('Unexpected pre-extension AN Paint Nom UI subset')
+    from fontTools.ttLib import TTFont
     # Preserve raw outlines and font timestamps. The added glyphs fit the existing
     # global bounds/maxima; verify that explicitly rather than broad recalculation.
     source = TTFont(primary_path, recalcBBoxes=False, recalcTimestamp=False)

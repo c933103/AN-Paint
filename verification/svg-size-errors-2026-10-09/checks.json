@@ -1,52 +1,37 @@
 {
-  "schema_version": 2,
-  "revision_from_head": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
+  "schema_version": 3,
+  "revision_from_head": "ea60a00001d766674cbd6b91da791894af5ea624",
   "publication_base": "4b615ce2d9e27814df84812b90858b5f676ce51a",
   "default_messages": 2,
-  "proposed_offered_catalogues": 53,
-  "proposed_values": 106,
-  "blocked_scoped_catalogues": [
-    "ain-Kana",
-    "ain-Latn",
-    "jje",
-    "mn-Mong",
-    "mnc-Mong",
-    "ryu"
-  ],
-  "blocked_scoped_values": 12,
+  "proposed_offered_catalogues": 59,
+  "proposed_values": 118,
+  "blocked_scoped_catalogues": [],
+  "blocked_scoped_values": 0,
   "other_incomplete_offered_catalogues": 81,
   "source_structure": "passed",
-  "focused_host_tests": {
-    "run": 32,
-    "failures": 0,
-    "errors": 0,
-    "skips": 0,
-    "log": "nom-svg-font-tests.log",
-    "log_sha256": "dded9e4b9017dc8a0da94374e4d048f14f23b7a3a81de964dc313d79abc295ee",
-    "scope": "Font coverage/preservation, locale typeface routing and five SVG resource contracts"
-  },
   "full_host_tests": {
-    "run": 316,
-    "reported_failure_records": 7,
+    "run": 321,
+    "reported_failure_records": 0,
     "errors": 0,
     "skips": 0,
-    "status": "failed",
-    "diagnosis": "Six existing main scoped-completeness subtests and one overlapping mn-Mong PR8 subtest reject the same 12 missing strings. No other failures remain.",
-    "log": "host-tests-v2.log",
-    "log_sha256": "ba8337348e46a16d43a7505832f03c83b5a6e2336312fd45143357dcebe3697a"
+    "status": "passed",
+    "log": "host-tests-v3.log",
+    "log_sha256": "5973f536c849b67fcdcb7a1e493c772a6a91cf5365bdba1189d47f77231de1f5",
+    "note": "Includes unchanged scoped completeness gates. Negative instrumentation-command fixtures intentionally print their simulated failure payloads; the unittest process exits zero."
   },
   "strict_completeness": {
-    "affected_offered_catalogues": 87,
-    "reports": 168,
-    "status": "failed"
-  },
-  "before_font_extension": {
-    "run": 315,
-    "reported_failure_records": 8,
+    "affected_offered_catalogues": 81,
+    "reports": 162,
     "status": "failed",
-    "diagnosis": "Seven scoped-completeness records plus the missing Nôm UI glyph U+8C6B.",
-    "log": "host-tests-v2-before-font.log",
-    "log_sha256": "a3ff53df4b804db1af632c70f6e413ff16e657d87662e2e036505f1901f4f1a9"
+    "scope": "The other 81 offered catalogues remain outside the scoped translation batch."
+  },
+  "composition_review": {
+    "coherent_new_pairs": 6,
+    "artifacts": [
+      "research-v3/jeju-independent-review.json",
+      "research-v3/five-locale-independent-review.json"
+    ],
+    "native_acceptance": false
   },
   "font_extension": {
     "added_codepoint": "U+8C6B",
@@ -57,116 +42,76 @@
     "preservation_evidence": "nom-svg-font-extension.json",
     "rendering_acceptance": false
   },
-  "composition_review": {
-    "coherent_new_pairs": 5,
-    "artifact": "research-v2/independent-composition-review.json",
-    "native_acceptance": false
-  },
-  "current_delta_source_review": {
-    "concrete_findings": 0,
-    "scope": "Five resource pairs/Kotlin oracles, pinned font helper/wrapper, font binary preservation/inventory, additive font regression guards",
-    "independent_font_binary_comparison": true,
-    "kotlin_runtime_executed": false,
-    "android_rendering_executed": false
-  },
   "android_build": "not_run_locally",
   "jvm_robolectric": "not_run_locally",
   "new_head_ci": "not_run_before_publication",
   "linguistic_acceptance": false,
   "physical_device_acceptance": false,
-  "initial_48_pair_local_snapshot": {
-    "source_base": "5bf82b67199aaecbd341a8b150a887f8d60b5567",
-    "base_tree": "05f9f6aa330f2f1432264938d5d0e41dfe8d86ee",
-    "default_messages": 2,
-    "proposed_offered_catalogues": 48,
-    "proposed_values": 96,
-    "blocked_scoped_catalogues": [
-      "hak-Hant-TW",
+  "gallery_readability": {
+    "source_path": "persistent gallery_status TextView; not Toast",
+    "host_native_render_tests": "authored; not run locally",
+    "horizontal_assertion_tags": [
+      "fr",
       "hak-Latn-TW",
+      "ar",
+      "vi-Hani",
       "bo",
-      "dz",
-      "mn-Mong",
-      "jje",
-      "mnc-Mong",
-      "ain-Kana",
-      "ain-Latn",
-      "ryu",
-      "vi-Hani"
+      "dz"
     ],
-    "blocked_scoped_values": 22,
-    "other_incomplete_offered_catalogues": 81,
-    "source_structure": "passed",
-    "focused_host_tests": {
-      "run": 5,
-      "failures": 0,
-      "errors": 0,
-      "skips": 0
-    },
-    "full_host_tests": {
-      "run": 315,
-      "reported_failure_records": 16,
-      "errors": 0,
-      "skips": 0,
-      "status": "failed",
-      "diagnosis": "All 16 failure records are existing completeness gates rejecting the same 22 withheld values in 11 scoped catalogues."
-    },
-    "strict_completeness": {
-      "affected_offered_catalogues": 92,
-      "reports": 173,
-      "status": "failed"
-    },
-    "android_build": "not_run_locally",
-    "jvm_robolectric": "not_run_locally",
-    "device_runtime": "not_run_locally",
-    "linguistic_acceptance": false,
-    "physical_device_acceptance": false,
-    "host_log_sha256": "dfa61f0104c1d462e8d873f5850d5de5e931405bf441aff7a713047aa5448206",
-    "publication_base": "4b615ce2d9e27814df84812b90858b5f676ce51a",
-    "publication_base_tree": "84107dd03e8ac96ed953afd95bf6cbe5b72f84c4",
-    "rebased_full_host_tests": {
-      "run": 315,
-      "reported_failure_records": 16,
-      "errors": 0,
-      "skips": 0,
-      "status": "failed",
-      "diagnosis": "All 16 failure records are existing completeness gates rejecting the same 22 withheld values in 11 scoped catalogues.",
-      "log_sha256": "e166c3aeb364a4524e9d50ce2a8007eb89a112532ba0ef24863c12558aaea567"
-    },
-    "source_review": {
-      "finding_count": 0,
-      "scope": "Two changed production files and both changed/new Kotlin test files",
-      "runtime_verification": false
-    }
+    "vertical_capture_tags": [
+      "mn-Mong",
+      "mnc-Mong"
+    ],
+    "font_scales": [
+      1.0,
+      2.0
+    ],
+    "api_levels": [
+      30,
+      35
+    ],
+    "viewport_dp": [
+      320,
+      640
+    ],
+    "vertical_acceptance": false,
+    "separate_follow_up": "AN-W04 source-confirmed missing vertical renderer; runtime measurement pending"
   },
-  "initial_48_pair_remote_ci": {
-    "head": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
-    "run_id": 37908873594,
+  "previous_local_snapshot": "history/ea60a00-checks.json",
+  "previous_53_pair_remote_ci": {
+    "head": "ea60a00001d766674cbd6b91da791894af5ea624",
+    "run_id": 37914105355,
     "overall_conclusion": "failure",
     "host": {
-      "run": 315,
-      "failures": 16,
+      "run": 316,
+      "failures": 7,
       "skips": 2,
-      "job_id": 113748906149,
+      "job_id": 113765993298,
       "jvm_lint_executed": false,
-      "log": "ci-host-tests-80f0448.log.gz",
-      "log_sha256": "756922cbbda01bf90c5883f925fac2c4805872814a38cb44f417a6de9811a626",
-      "log_encoding": "gzip of exact fetched UTF-8 job log; no whitespace stripping",
-      "uncompressed_log_sha256": "9f82e7b809c95fec786468750ea198552c52819209e57f00eb5390a36cb44d44"
+      "log": "ci-host-tests-ea60a00.log.gz",
+      "log_sha256": "95423c0364db1666fc6c8adcee0de1512054e6ff180568dec42bcd1a1000455b",
+      "uncompressed_log_sha256": "a63477cf66eed4e257718c9665e5a7b63f0b338be9c3cdd51c845c2253703095"
     },
     "apk_source_build": {
       "conclusion": "success",
-      "job_id": 113748906512
+      "job_id": 113765992939
     },
     "api35_device": {
       "conclusion": "success",
-      "job_id": 113751929927,
+      "job_id": 113767964256,
       "codec_tests": 74,
       "editor_tests": 14,
       "credit_seed_tests": 1,
       "credit_restart_tests": 1
     },
-    "code_review_url": "https://github.com/c933103/AN-Paint/pull/29#issuecomment-6077903997",
-    "security_triggered_response_url": "https://github.com/c933103/AN-Paint/pull/29#issuecomment-6077959383",
-    "security_result_limit": "Bot labeled the response Code Review, so no separately labeled security attestation is inferred."
+    "note": "Previous-head build/device passes do not execute the new readability or JVM failure-path checks."
+  },
+  "current_delta_source_review": {
+    "concrete_findings": 0,
+    "scope": "Six exact resource pairs/oracles and both real-gallery test classes; no production Kotlin/workflow change",
+    "readability_file_sha256": "2a71f5659b7f846a88272491d8b51c481d6d5829a556d0babd3f8f570b0be771",
+    "api_reference": "https://raw.githubusercontent.com/robolectric/robolectric/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/RuntimeEnvironment.java",
+    "runtime_execution": false,
+    "language_acceptance": false
   }
 }
