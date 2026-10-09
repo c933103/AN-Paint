@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.Typeface
 import android.util.AndroidRuntimeException
 import org.catrobat.paintroid.R
 import android.os.Looper
@@ -69,7 +70,20 @@ class LocaleNumberInputTest {
         }
     }
 
-    @Test @Config(sdk=[21]) fun api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme() {
+    @Test @Config(sdk=[21]) fun legacyTypefaceShadowDoesNotModelTheFrameworkIdentityCache() {
+        val context=RuntimeEnvironment.getApplication()
+        for(asset in listOf("fonts/anpaintnomui.ttf","fonts/notosansmongolian.ttf")) {
+            val face=Typeface.createFromAsset(context.assets,asset)
+            val first=Typeface.create(face,Typeface.BOLD)
+            val second=Typeface.create(face,Typeface.BOLD)
+            assertNotSame(first,second)
+            assertEquals(first,second)
+            assertEquals(Typeface.BOLD,first.style)
+            assertEquals(shadowOf(face).fontDescription.familyName,shadowOf(first).fontDescription.familyName)
+        }
+    }
+
+    @Test @Config(sdk=[21],shadows=[CachedApi21TypefaceShadow::class]) fun api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme() {
         for(tag in listOf("fr","ar","vi-Hani","mnc-Mong")) withActivity(tag) { activity ->
             // Exact original lifecycle sequence, independent of numeric filtering:
             // inspecting decor installs content before API21 AlertController requests its feature.
@@ -78,6 +92,18 @@ class LocaleNumberInputTest {
             val error=assertThrows(AndroidRuntimeException::class.java) {original.show()}
             assertTrue(error.message!!.contains("requestFeature() must be called before adding content"))
             original.dismiss()
+            val uiFace=LocaleTypography.typeface(activity)
+            uiFace?.let {
+                assertSame(it,Typeface.create(it,it.style))
+                val bold=Typeface.create(it,Typeface.BOLD)
+                val italic=Typeface.create(it,Typeface.ITALIC)
+                assertSame(bold,Typeface.create(it,Typeface.BOLD))
+                assertSame(italic,Typeface.create(it,Typeface.ITALIC))
+                assertNotSame(it,bold);assertNotSame(bold,italic)
+                assertEquals(Typeface.BOLD,bold.style);assertEquals(Typeface.ITALIC,italic.style)
+                assertEquals(shadowOf(it).fontDescription.familyName,shadowOf(bold).fontDescription.familyName)
+                assertEquals(shadowOf(it).fontDescription.familyName,shadowOf(italic).fontDescription.familyName)
+            }
             var clicks=0
             val repaired=EditorDialogBuilder(activity).setTitle("title").setMessage("message")
                 .setPositiveButton("OK") {_,_->clicks++}.create()
