@@ -268,6 +268,11 @@ class CommonsBlankMapsTest {
                 val credit=main.document.imageCredits.single().text
                 assertTrue(credit.contains(rasterPage));assertTrue(credit.contains("by-sa/3.0/"))
                 assertFalse("Raster import must not claim SVG rasterisation",credit.contains("antiAlias=false"))
+                assertFalse(credit.contains("SVG → PNG"));assertFalse(credit.contains("strokeDashArray=none"))
+                val rasterNote=org.catrobat.paintroid.classic.PaintApplication.currentResources
+                    .getString(org.catrobat.paintroid.R.string.commons_import_raster_changes)
+                assertEquals(1,credit.lines().count {it==rasterNote})
+                assertTrue(rasterNote.contains("background=#FFFFFF"))
             } finally {mainController.pause().stop();await {!main.busy};mainController.destroy()}
         } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
     }
