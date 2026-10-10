@@ -1,0 +1,13 @@
+# Frozen PR34 cancellation-budget preparation
+
+Candidate tree: `db713bbf28abdf45311454329b6435b1ce24b62d`, based on PR34 `739a3dcf1a59785d98a5f5a00f4b76a1b00e6472`. This budget-only source is not published to PR34 and does not fix the newly observed API30 evidence-collection failure.
+
+The six-path source correction retains every original Android/JVM source, runner byte, shell executable statement and prior host-test identifier. It changes the emulator execution/job hard caps to 36/46 minutes and host Python/checks-job caps to 4/22. All inner instrumentation deadlines are unchanged. Configured-path arithmetic and explicitly unbounded work are documented in the proposal and source; these are cancellation ceilings, not runtime targets or universal liveness guarantees.
+
+Checks: 468 host tests passed normally in 166.253 seconds and 468 under PYTHONOPTIMIZE in 225.711 seconds, zero failures/errors/skips. Focused 39 tests passed in normal/-O/PYTHONOPTIMIZE modes (90.181/83.961/115.724 seconds). Three verified-source PR7/PR9 historical replays passed with identical output SHA256 `02c069604c6dfb0894bae53081d0c1efe128249a4bd2f4228c407758aaa70af4`. Shell syntax, compileall, source/method inventory and staged/unstaged whitespace checks passed. No local Android SDK or installed validation is claimed.
+
+Run 38073935029 remains failed. Actions timed out the Python step after two minutes, despite the retained process later reporting 462 tests in 176.348 seconds with two inherited optional-Pillow skips and exit 0. Its source-bound 793 JVM methods and lint passed. API30 completed its 73+22 union but could not pull the app-owned screenshot directory (Permission denied); no screenshot acceptance. API35 completed 74+25 and independent raw/report/source/96-image/eight-receipt/28-drag checks; visual review is not yet credited for that run. Exact logs, hashes and separate receipts are included. None of this is acceptance for the future transport correction.
+
+The original inherited host rename remains attributed to accepted aa266c2c: FontShellProtocolTest.test_public_pipe_api_is_gated_and_older_path_is_not_called_equivalent became test_public_pipe_api_is_gated_and_older_path_requires_display_ack. That file is unchanged by this preparation. The initial composition's accepted source union and archive remain separate at a9bec3406779600d47c2c8a3ab36e743138f07a9.
+
+Next: implement/review a narrowly scoped test-owned export of synthetic evidence using supported MediaStore Downloads ownership APIs; preserve production configuration, every original method body/identity and all inner timeouts; run all local controls and fresh release API30/API35 CI and Codex review. Keep merge held.
