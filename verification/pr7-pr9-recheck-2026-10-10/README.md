@@ -1,7 +1,12 @@
 # PR7 / PR9 bounded normalization and reset recheck
 
-Date: 10 October 2026. Source base: `eab28203893ffba45f14a7f96df6d19cf4d19d3b`,
-tree `537185be479023d1567ab583d808ffaa7a4d3db8`.
+Date: 10 October 2026. Original resource/Android evidence base:
+`eab28203893ffba45f14a7f96df6d19cf4d19d3b`, tree
+`537185be479023d1567ab583d808ffaa7a4d3db8`. The candidate now incorporates
+current develop `80c14372b0504bc44f9f2809ad477247fdc8100b` (PR36), including
+its SDK-aware inventory fixes. The host log below was rerun on that integrated
+checkout with the receipt-validation repair; the archived Android XML remains
+explicitly historical exact-eab2820 evidence.
 
 This continuation adds the two missing normalization-resource scope tests to the
 current source. It preserves all current translations, app behavior and numeric
@@ -21,10 +26,13 @@ obligations. Their descriptions and three unresolved review threads are unchange
 - Both guards pass. Removing each required key individually from each locale
   read and from the default read makes the corresponding guard fail:
   PR7 has 78 negative controls; PR9 has 36. All 114 are recorded individually.
-- Full current-checkout Python discovery passes **360 tests**, no failures.
-  The preserved log includes intentional failure diagnostics from runner tests;
-  its unittest result is `OK`. The focused subsets pass 32 translation tests,
-  eight localized-help tests and the two new guards.
+- Full Python discovery on the recorded repair snapshot passed **371 tests**, zero failures,
+  errors or skips. The regenerated `host-tests.log` includes PR36's eight added
+  test methods and this repair's three receipt-validation methods. It includes
+  intentional failure diagnostics from runner tests; its unittest result is
+  `OK`. The original eab2820-based candidate had 360 tests; that earlier count
+  is not presented as the integrated checkout's result. The original focused
+  subsets passed 32 translation tests, eight localized-help tests and both guards.
 - The existing Android workflow already discovers `tools/test_*.py`. No workflow
   edit, new bypass or reduced gate is needed for these guards.
 - Fresh serialized-element comparisons confirm all **135** historical PR7
@@ -66,7 +74,7 @@ following exact cases were inspected against their current source assertions:
   installed-device control/orientation.
 
 The recorded run's overall conclusion is **failure**, caused by the separate
-API30 source-inventory mismatch now being corrected in PR36. We do not relabel
+API30 source-inventory mismatch corrected by the now-merged PR36. We do not relabel
 that run green. The copied XML is exact-base unit evidence, not a new candidate
 CI run, new installed-device test execution, or linguistic certification.
 PR18's separately owned installed vertical matrix remains separate work.
@@ -154,7 +162,7 @@ validated separately from the outstanding language acceptance work.
 - **S7:** `VerticalText.uiDirection` is script-based (`Mong` → `VERTICAL_LR`),
   `LocaleTypography` supplies the Mong font and `AppLanguage.showPicker` delegates
   each row to `VerticalUi.languageChoice`.
-- **T1:** `host-tests.log`, 360-test discovery including the 32 translation and
+- **T1:** `host-tests.log`, recorded 371-test repair-snapshot discovery including the 32 translation and
   eight localized-help cases. This is host execution only.
 - **T2:** two original guard files plus the individually recorded 114 missing-key
   negative controls in `source-results.json`.
@@ -202,3 +210,47 @@ verifies guard identity, tests omission sensitivity, checks current catalogue
 identity/structure and inspects the archived exact-base XML. A later replay
 reports its current file hashes rather than declaring them the recorded base.
 It performs no network calls or Android execution and changes no resource files.
+
+## Receipt integrity follow-up
+
+The delayed exact-head review of the first candidate correctly found that the
+verifier originally assigned the recorded base to the XML result without reading
+the receipt. The original archive had been externally downloaded and checked,
+but that relationship was not enforced by the replay script.
+
+The repaired verifier now validates the receipt's source base, GitHub run URL,
+artifact ID/digest, workflow run/repository/head identity, and exact XML archive
+member. The XML SHA-256 is bound to the receipt and to the independently verified
+archive's pinned extracted-file hash. Substituting both XML and its receipt hash
+therefore also fails. The emitted head comes from the validated artifact receipt.
+This is offline integrity checking of that recorded evidence, not a fresh GitHub
+query or a new Android execution.
+
+`tools/test_pr7_pr9_evidence_receipt.py` is included in ordinary CI discovery.
+It checks valid evidence, separately rejects edits to twelve identity/binding
+fields, and rejects changed XML both with and without a changed receipt hash.
+The three test methods exercise fourteen negative cases. Original catalogue
+results, original guard bytes and reset acceptance statuses remain unchanged.
+
+## Integrated host-log correction
+
+The subsequent exact-head review correctly identified that the original bundled
+360-test log did not cover the eight host methods added by PR36. The log has
+been regenerated from the recorded repair snapshot on parent
+`2bff92308143e2fb9e9711e6e309bd5d700cf18f` plus the three executable/input
+changes identified below. That run passed 371 methods, including the eight PR36
+checks and all three new receipt tests. All other test/implementation/resource
+files are identical to that parent. README, regenerated source-results and host
+log changes are evidence documentation. This is an immutable recorded result,
+not a claim about the test count of any later checkout.
+
+| Changed test source/input | Git blob SHA |
+| --- | --- |
+| `tools/test_pr7_pr9_evidence_receipt.py` | `30852224a2f109ace267b947bac5218c90ce1d56` |
+| `verification/pr7-pr9-recheck-2026-10-10/verify_scope.py` | `f33baad8d880a90ef23b169e3426ab2d065d5436` |
+| `verification/pr7-pr9-recheck-2026-10-10/ci-receipt.json` | `a8b7d5c733397671b1aca709ff8f43764673beab` |
+
+The exact discovery command and this source/input manifest are also in the log.
+Python and optional Pillow versions are recorded in the log. CI may omit Pillow
+and report its two independent-decoder tests as skipped; a CI skip must be
+reported as such rather than relabelled as a pass.

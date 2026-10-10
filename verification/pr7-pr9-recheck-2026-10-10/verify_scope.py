@@ -23,6 +23,11 @@ import translation_catalogues as translations
 
 BASE = "eab28203893ffba45f14a7f96df6d19cf4d19d3b"
 BASE_TREE = "537185be479023d1567ab583d808ffaa7a4d3db8"
+BASE_RUN_ID = 38013637833
+BASE_ARTIFACT_ID = 11654898336
+BASE_ARTIFACT_SHA256 = "8834a80a9d7fb6bb34ad66cefe662e04d3daf6262183bd70679d4229bca0a21a"
+BASE_XML_SHA256 = "5897e328b0fb2ed082fbae2036f68e713bba5c8b13a7d54ad665a34bc3670853"
+BASE_XML_MEMBER = "Paintroid/build/test-results/testReleaseUnitTest/TEST-org.catrobat.paintroid.local.AppLanguageTest.xml"
 HISTORY = {
     7: ("b528c9d2a1eeb950143386154cedfcd38c4350af", "730319aea40eb205d18c894c496e500d6f660ac6"),
     9: ("97e511dc63f1b2011300ce49fd1582b4de23ce3d", "a0afe1cfed363b65c3880c9875034b0460f811a2"),
@@ -37,6 +42,39 @@ def guard_result(module):
     result = unittest.TestResult()
     unittest.defaultTestLoader.loadTestsFromModule(module).run(result)
     return result
+
+
+def validate_base_android_receipt(receipt, xml_bytes):
+    """Bind the archived XML to the fixed, independently downloaded CI receipt.
+
+    This is an offline integrity check of recorded evidence. It does not fetch
+    GitHub or claim that metadata supplied by an arbitrary receipt is authentic.
+    Both the artifact identity/digest and the extracted XML digest are pinned to
+    the archive checked during this recheck, so editing both the XML and receipt
+    hash cannot silently relabel replacement XML as exact-base evidence.
+    """
+    artifact = receipt["artifact"]
+    workflow = artifact["workflow_run"]
+    binding = receipt["xml_binding"]
+    expected = {
+        "source_base": (receipt["source_base"], BASE),
+        "run_url": (receipt["run_url"], f"https://github.com/c933103/AN-Paint/actions/runs/{BASE_RUN_ID}"),
+        "artifact.id": (artifact["id"], BASE_ARTIFACT_ID),
+        "artifact.digest": (artifact["digest"], "sha256:" + BASE_ARTIFACT_SHA256),
+        "artifact.workflow_run.id": (workflow["id"], BASE_RUN_ID),
+        "artifact.workflow_run.repository_id": (workflow["repository_id"], 1362702425),
+        "artifact.workflow_run.head_repository_id": (workflow["head_repository_id"], 1362702425),
+        "artifact.workflow_run.head_sha": (workflow["head_sha"], BASE),
+        "xml_binding.file": (binding["file"], "AppLanguageTest-eab2820.xml"),
+        "xml_binding.archive_member": (binding["archive_member"], BASE_XML_MEMBER),
+        "xml_binding.archive_sha256": (binding["archive_sha256"], BASE_ARTIFACT_SHA256),
+        "xml_binding.sha256": (binding["sha256"], BASE_XML_SHA256),
+        "XML bytes": (sha256(xml_bytes), binding["sha256"]),
+    }
+    for field, (actual, required) in expected.items():
+        if actual != required:
+            raise ValueError(f"Archived Android evidence mismatch: {field}")
+    return ET.fromstring(xml_bytes)
 
 
 def main():
@@ -134,14 +172,18 @@ def main():
             "guard_byte_identical": True, "changed_elements": len(rows), "rows": rows}
     assert [out["historical_resource_deltas"][str(pr)]["changed_elements"] for pr in (7, 9)] == [135, 97]
 
-    xml = ET.parse(Path(__file__).with_name("AppLanguageTest-eab2820.xml")).getroot()
+    receipt = json.loads(Path(__file__).with_name("ci-receipt.json").read_text())
+    xml_bytes = Path(__file__).with_name("AppLanguageTest-eab2820.xml").read_bytes()
+    xml = validate_base_android_receipt(receipt, xml_bytes)
     assert xml.get("tests") == "19" and all(xml.get(k) == "0" for k in ("skipped", "failures", "errors"))
     required = ("regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues", "manchuPickerUsesItsOwnJoinedVerticalAutonym")
     for name in required:
         cases = [n for n in xml.findall("testcase") if n.get("name") == name]
         assert len(cases) == 1 and not list(cases[0])
-    out["base_android_unit_evidence"] = {"head": BASE, "tests": 19, "failures": 0, "errors": 0, "skipped": 0,
-        "inspected_cases": list(required), "xml_sha256": sha256(Path(__file__).with_name("AppLanguageTest-eab2820.xml").read_bytes()),
+    out["base_android_unit_evidence"] = {"head": receipt["artifact"]["workflow_run"]["head_sha"],
+        "artifact_id": receipt["artifact"]["id"], "receipt_and_xml_binding_validated": True,
+        "tests": 19, "failures": 0, "errors": 0, "skipped": 0,
+        "inspected_cases": list(required), "xml_sha256": sha256(xml_bytes),
         "note": "Executed on source base eab2820; not a fresh candidate CI run or an installed-device matrix"}
     print(json.dumps(out, ensure_ascii=False, indent=2))
 
