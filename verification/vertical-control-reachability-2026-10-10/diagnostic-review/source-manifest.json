@@ -1,0 +1,79 @@
+{
+  "status": "frozen combined test-only candidate; unpublished; no CI triggered",
+  "base_head": "7549abdcc9a65945ec18bbab6a25d54b4ce0bce8",
+  "base_tree": "735c79b8dd14a243c62447a8de337b05ed16cbbc",
+  "candidate_tree": "e92d6da029405fcfd9751b91411d0a550299427f",
+  "patch_sha256": "bc96fd29748602ceec3a48b28714a8ff99e2f8620206f24d689d9676d3e7620a",
+  "files": [
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/LocalRejectingProxy.java",
+      "bytes": 4615,
+      "sha256": "1a684645a3b2aabd24770a37b704ac517b407cd1216caefc5a0a6ce742b4ee0c",
+      "blob_sha": "710c6766bb37a921e4e19a21dca740a592179e7f"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt",
+      "bytes": 26748,
+      "sha256": "4f97b9a6fb3aa39db50e80441242e5590bf39127879a56f129c8791a03fdb4bc",
+      "blob_sha": "3d22528f7b9e4d4bb7e131db9fb87b3723da1f07"
+    },
+    {
+      "path": "tools/test_gallery_sink_shutdown.py",
+      "bytes": 6892,
+      "sha256": "550260fc0603a63d075c4d340fc6d147694e7d3347d2cc11b1416fb7c7db0260",
+      "blob_sha": "2a29c9dc5f6973ba1e0af1f21b8add5dfc5f39dd"
+    },
+    {
+      "path": "tools/test_vertical_control_reachability.py",
+      "bytes": 14035,
+      "sha256": "430e8e3a7f061f8a344ebd0be78dcc426694e6217e09bb97dab783913279cc38",
+      "blob_sha": "2ac5854cdcb1d00baaf24a14aa6c463766da4a4f"
+    },
+    {
+      "path": "verification/vertical-control-reachability-2026-10-10/diagnostic-proposal.md",
+      "bytes": 4480,
+      "sha256": "34e68485f8fca5c9cfd46385b79b1b043b3d7e0adc249e221819befc430628e2",
+      "blob_sha": "f668f6fbf877d1a4cc4d72602f880b39990f40d9"
+    }
+  ],
+  "reviewed_components": {
+    "diagnostic_tree": "f07a03eb38b86e7a3ecc78fed273b678d935da1b",
+    "diagnostic_patch_sha256": "64503e77767cc03d34f79598c60ecd8766c49c019edcd86e3712ef4cab854854",
+    "gallery_patch_sha256": "4e567cdac53320345cc75719be2bf6062eacaeeddaf7d6aa3bb0e914eed95836",
+    "diagnostic_files_byte_identical": true
+  },
+  "checks": {
+    "full_host": "396 passed in56.135s, exit0, no skips; one run on final worktree",
+    "targeted_trace": "10 passed0.037s, exit0",
+    "targeted_budget": "4 passed0.928s, exit0",
+    "bash_syntax": "passed",
+    "diff_check": "passed against exact tested tree",
+    "unstaged_or_untracked_files": false,
+    "production_changed": false,
+    "workflows_changed": false,
+    "deadlines_changed": false,
+    "android_compile": "not run for this combined candidate",
+    "API35_runtime": "not run for this combined candidate"
+  },
+  "logs": {
+    "full-host-tests.log": {
+      "sha256": "0e7fe5e6b0e62710121ec96825ad2e1278bc4245c2e42d1a1497f0e72bd2db52",
+      "bytes": 3664
+    },
+    "targeted-trace-tests.log": {
+      "sha256": "ee4ebca229699a6127b9c926fe8eb905606438bfe17d045524914c402957cf99",
+      "bytes": 2223
+    },
+    "targeted-budget-tests.log": {
+      "sha256": "3c9b483a217068fc715b0332aa8f820323079c9fb1ef5c8e748e0aad160dd2a8",
+      "bytes": 818
+    }
+  },
+  "previous_results_preserved": {
+    "initial_native_drag_run": 38027075427,
+    "all_four_portrait_failures_retained": true,
+    "landscape_and_actions_unexecuted": true,
+    "diagnostic3_host_failure_log": "retained separately; not reclassified",
+    "minimal_failed_evidence_commit": "69a36a16d3d5e03473607333e1fc0974fc16831a"
+  }
+}
