@@ -359,3 +359,64 @@ removed or relaxed.
 
 AndroidX precedence and bounds:
 https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+
+
+## Current-base installed four-locale matrix (PR18 continuation)
+
+The historical PR18 test class was intentionally excluded from the later PR19
+reconciliation. Its ancestry and old API35 run do not prove coverage in accepted
+develop. This continuation adapts those four installed native-input tests to the
+current startup, locale picker and autosave behavior; it changes no production UI.
+
+The class covers `mnc-Mong`, `lzh-Hant`, `en-XV` and `qaa-Zsye-XV`, each in portrait
+and landscape. Picker viewport positioning is fixture setup; the exact row is
+selected through native accessibility input and its real callback is observed.
+The tests follow replacement activities, wait for `startupReady`, preserve two
+sentinel pixels, select all five tabs, use native overflow swipes and select Line
+before Arrow. Arrow input waits for the real scheduled autosave generation to
+finish rather than suppressing autosave or retrying a missed tap. Save checks
+include initial LR/RL column position, native JPEG popup selection, filename,
+quality reachability, no lossless control, Cancel/reopen with PNG and native Back.
+No external save/share destination may be launched. Prior orientation and locale
+are restored; monitors/listeners are removed at teardown.
+
+The current direct-ADB runner remains the implementation for every invocation.
+The ordinary app suite excludes the vertical class and both accepted-credit
+restart classes. A separate `app-vertical` invocation selects the vertical class
+by excluding all other declared classes, including future additions. Its deadline
+is 180 seconds, matching the unchanged native/ordinary deadlines. The accepted-credit
+seed and verify retain their separate 60-second deadlines, live-PID checks,
+undelivered Gallery state and external force-stop. The whole emulator execution
+step remains capped at 15 minutes; no test is retried and no failed step is ignored.
+
+`tools/vertical_locale_matrix.py` verifies the exact disjoint SDK-specific union
+of ordinary, vertical, seed and verify reports on API35. On API30 it verifies
+ordinary plus vertical and records both restart methods as explicitly excluded,
+never passed. AndroidX SDK-suppressed methods remain separate from these explicit
+class omissions. Every selected method must complete successfully exactly once;
+a missing phase, duplicate identity, skip, missing/non-integer/mismatched device
+SDK or incomplete report fails the gate. Every phase must capture the same SDK
+selected for the run; the captured SDK is validated before source eligibility is
+computed, preserving PR36's minimum/maximum SDK-bound accepted-credit fix. The full receipt is `app/coverage.json`; API35 also retains the
+accepted-credit coverage path for existing evidence consumers.
+
+Fresh matrix screenshots and summaries are cleared before invocation. Bounded
+EXIT cleanup pulls screenshots before emulator shutdown, including after failure
+or timeout. A successful run requires exactly 32 PNGs: four locales × two
+orientations × workspace / initial Save / format popup / JPEG quality. The host
+receipt records filename, dimensions, size and SHA-256 after checking PNG headers
+and rejecting exact duplicate content across required states. Popup capture waits
+for stable native-window geometry, a committed render frame and two subsequent
+frame callbacks, and rejects a byte-identical repeat of the closed Save frame.
+Missing collection or inventory makes an otherwise successful job fail. This is
+an inventory/integrity check, not visual review; inspect all 32 rendered images
+before concluding the installed matrix is verified.
+
+Reports are under `app-vertical/androidTest-results`, screenshots under
+`app/vertical-locale-evidence`, and the screenshot receipt is
+`vertical-locale-screenshots.json`, inside the existing API-specific artifact.
+Host/fake-ADB checks establish selection, accounting, cleanup and failure behavior
+only. Fresh exact-head compilation, API35 XML/logs, measured phase durations and
+visual screenshot review are required. Use the full API30/API35 matrix for release
+verification or a diagnosed cross-version risk; no new full-matrix default or
+workflow transplant is introduced here.

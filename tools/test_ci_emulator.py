@@ -12,6 +12,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 from run_android_instrumentation import declared_tests, restart_partition
+from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, app_partition
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -97,6 +98,7 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             root=Path(directory)
             (root/'tools').mkdir()
             shutil.copyfile(SCRIPT.with_name('run_android_instrumentation.py'),root/'tools/run_android_instrumentation.py')
+            shutil.copyfile(SCRIPT.with_name('vertical_locale_matrix.py'),root/'tools/vertical_locale_matrix.py')
             source=root/'app/src/androidTest';source.mkdir(parents=True)
             for name,method in (('EditorDeviceTest','ordinary'),('FutureTest','future'),
                                 ('AcceptedCreditRestartSeedTest','seed'),('AcceptedCreditRestartVerifyTest','verify')):
@@ -104,8 +106,15 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
                 (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test {annotation}fun {method}() {{}} }}\n')
             apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
             apk.parent.mkdir(parents=True);apk.touch()
+            (source/'VerticalLocaleDeviceTest.kt').write_text('package paint.anpaint.android\nclass VerticalLocaleDeviceTest {\n'+
+                ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(VERTICAL_METHODS))+'}\n')
             report=root/'report/app/androidTest-results';report.mkdir(parents=True)
-            ordinary=restart_partition(declared_tests(source,sdk_level=35))[0]
+            parts=app_partition(declared_tests(source,sdk_level=35),35)
+            ordinary=parts['ordinary']
+            vertical=root/'report/app-vertical/androidTest-results';vertical.mkdir(parents=True)
+            (vertical/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
+                expected_tests=4,completed_tests=4,cases=[dict(classname=owner,name=name,status='passed')
+                                                       for owner,name in sorted(parts['vertical'])])))
             (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
                 expected_tests=len(ordinary),completed_tests=len(ordinary),
                 cases=[dict(classname=owner,name=name,status='passed') for owner,name in ordinary])))
@@ -163,6 +172,7 @@ if args[:3]==['shell','am','instrument']:
     excludes=args[args.index('notClass')+1].split(',')
     assert 'paint.anpaint.android.FutureTest' in excludes
     assert 'paint.anpaint.android.EditorDeviceTest' in excludes
+    assert 'paint.anpaint.android.VerticalLocaleDeviceTest' in excludes
     if seed:assert args[args.index('waitForActivitiesToComplete')+1]=='false'
     else:
         assert state()=='absent'
@@ -207,6 +217,7 @@ report="$CI_TEST_DIR/report"
 adb="$CI_TEST_DIR/adb"
 variant=debug
 run_credit_restart_regression || exit "$?"
+python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/androidTest --sdk 35 --root "$report"
 '''
             started=time.monotonic()
             process=subprocess.Popen(['bash','-c',command],cwd=root,text=True,stdout=subprocess.PIPE,
@@ -263,10 +274,11 @@ run_credit_restart_regression || exit "$?"
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],3)
-                self.assertEqual(coverage['completed_tests'],3)
+                self.assertEqual(coverage['declared_tests'],7)
+                self.assertEqual(coverage['completed_tests'],7)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
+                self.assertEqual(coverage['phases'],dict(ordinary=1,vertical=4,seed=1,verify=1))
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -276,7 +288,7 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],4)
+        self.assertEqual(coverage['completed_tests'],8)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -345,13 +357,13 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],4)
-        self.assertEqual(coverage['completed_tests'],4)
+        self.assertEqual(coverage['declared_tests'],8)
+        self.assertEqual(coverage['completed_tests'],8)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),
             ('paint.anpaint.android.AcceptedCreditRestartSeedTest','seed'),
-            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')})
+            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS})
 
     def test_secondary_cleanup_timeout_still_retains_partial_diagnostics(self):
         process=Mock(pid=-1)
@@ -415,7 +427,7 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('if test "$TEST_API" = 35',source)
         self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
-        self.assertEqual(source.count('--timeout-seconds 180'),2)
+        self.assertEqual(source.count('--timeout-seconds 180'),3)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 
 
