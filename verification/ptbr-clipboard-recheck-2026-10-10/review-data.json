@@ -1,0 +1,289 @@
+[
+  [
+    "C01",
+    "ui_cut",
+    "Header action; tooltip; accessibility label; long-press label",
+    "ActionButton.kt:12-35;ClassicPaintActivity.kt:558-585;PaintDocument.kt:379-381",
+    "Correct: Recortar is the normal Brazilian command for moving a selection to the clipboard. Handler first copies the transformed selection, then removes it; it is not the crop command."
+  ],
+  [
+    "C02",
+    "ui_copy",
+    "Header action; tooltip; accessibility label; long-press label",
+    "ActionButton.kt:12-35;ClassicPaintActivity.kt:558-585;PaintDocument.kt:348-370",
+    "Correct: Copiar duplicates the transformed selected pixels and associated credits into the document's internal bitmap clipboard, leaving the source selection in place."
+  ],
+  [
+    "C03",
+    "ui_paste",
+    "Header action; tooltip; accessibility label; long-press label",
+    "ActionButton.kt:12-35;ClassicPaintActivity.kt:558-585;ClassicPaintActivity.kt:910-913;PaintDocument.kt:384-402",
+    "Correct: Colar inserts the internal clipboard as a floating selection. This does not read Android's system text clipboard."
+  ],
+  [
+    "C04",
+    "ui_select_an_area_first",
+    "Cut with no selection",
+    "ClassicPaintActivity.kt:908;PaintDocument.kt:367-381",
+    "Correct: Selecione primeiro uma área gives the actual precondition; copy failure prevents removal."
+  ],
+  [
+    "C05",
+    "ui_select_an_area_first",
+    "Copy with no selection",
+    "ClassicPaintActivity.kt:909;PaintDocument.kt:367-370",
+    "Correct: selection is required before pixels can be copied. Area means the selected canvas area, not a download folder."
+  ],
+  [
+    "C06",
+    "ui_paste_hint34",
+    "Paste with empty internal clipboard",
+    "ClassicPaintActivity.kt:910-913;ClassicPaintActivity.kt:285-309;ClassicPaintActivity.kt:821-822;ClassicPaintActivity.kt:883-899;ToolCategoryButton.kt:13-18",
+    "Correct: Copie uma área is a natural imperative. Desenhar → Inserir → Outras imagens matches the actual alternative import route and captions."
+  ],
+  [
+    "C07",
+    "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+    "Non-native large-image resize explanation",
+    "ImageResizeDialog.kt:27-35;PaintDocument.kt:149-152;ImageImport.kt:29-29;ImageImport.kt:76-80;ClassicPaintActivity.kt:1292-1294",
+    "Correct: área de transferência names the resident internal bitmap clipboard counted by residentPixels and the estimate, not a download area. atuais agrees with tela and área; smaller-copy and opaque-background clauses preserve the English meaning."
+  ],
+  [
+    "C08",
+    "ui_copy_all",
+    "About/licence dialogs: fixed Copy all button",
+    "LegalInfo.kt:81-100",
+    "Correct: Copiar tudo copies the complete displayed legal/about text to Android's system clipboard, independent of text scrolling. It does not select or copy the drawing."
+  ],
+  [
+    "C09",
+    "ui_full_text_copied",
+    "About/licence copy success toast",
+    "LegalInfo.kt:98-100",
+    "Correct: Texto completo copiado reports completion after setPrimaryClip. There is no localized failure catch in this handler; this is not a runtime robustness assessment."
+  ],
+  [
+    "C10",
+    "ui_copy_all",
+    "Gallery footer: copy all document credits",
+    "MediaGalleryActivity.kt:100-109",
+    "Correct: Copiar tudo copies ImageCredit.text(documentCredits), not every image currently visible on the external website."
+  ],
+  [
+    "C11",
+    "ui_no_gallery_images_have_been_inserted",
+    "Gallery footer Copy all with no document credits; empty credit editor",
+    "MediaGalleryActivity.kt:105-108;GalleryCredits.kt:87",
+    "Correct for the intended empty-gallery-credit state: Ainda não foram inseridas imagens da galeria. The text does not claim the system clipboard itself is empty."
+  ],
+  [
+    "C12",
+    "ui_copy_all",
+    "Save as credit-details button",
+    "SaveOptionsDialog.kt:122-131;ClassicPaintActivity.kt:1101-1112",
+    "Correct: Copiar tudo copies attribution text only; its listener does not initiate saving. The panel exists only for nonblank credits and starts collapsed."
+  ],
+  [
+    "C13",
+    "ui_copy_all",
+    "Export as credit-details button",
+    "SaveOptionsDialog.kt:122-131;ClassicPaintActivity.kt:832;ClassicPaintActivity.kt:1101-1112",
+    "Correct: same credit-copy control and handler as Save as. No export is initiated by Copy all."
+  ],
+  [
+    "C14",
+    "ui_copy_all",
+    "Save and share credit-details button",
+    "SaveOptionsDialog.kt:122-131;ClassicPaintActivity.kt:833;ClassicPaintActivity.kt:1101-1112",
+    "Correct: same credit-copy control and handler; the clipboard action does not launch Android sharing."
+  ],
+  [
+    "C15",
+    "gallery_copy_credit",
+    "Image-credit editor negative button",
+    "GalleryCredits.kt:130-143",
+    "Correct: Copiar crédito saves the selected source's edited credit through the existing validation path, then copies that entry. A singular credit is the selected attribution record, which may have several lines."
+  ],
+  [
+    "C16",
+    "gallery_copy_credit",
+    "Catrobat injected webpage action",
+    "MediaGalleryActivity.kt:184-197;IllustrationPage.kt:9-11;GalleryPage.kt:25-37",
+    "Correct: Copiar crédito is passed as the button text; CREDIT_SCHEME routes to attribution generation and system clipboard copy, not image insertion."
+  ],
+  [
+    "C17",
+    "gallery_copy_credit",
+    "Irasutoya injected webpage action",
+    "MediaGalleryActivity.kt:184-197;IllustrationPage.kt:31-43",
+    "Correct: Copiar crédito copies generated attribution for that image. Publisher webpage prose and titles are not translated by this app label."
+  ],
+  [
+    "C18",
+    "gallery_copy_credit",
+    "Openclipart injected webpage action",
+    "MediaGalleryActivity.kt:184-197;IllustrationPage.kt:31-43",
+    "Correct: same label and attribution-copy route; Large PNG is the source link to which the separate Use image action applies."
+  ],
+  [
+    "C19",
+    "gallery_copy_credit",
+    "Wikimedia Commons injected webpage action",
+    "MediaGalleryActivity.kt:184-197;MediaGalleryActivity.kt:254-274;IllustrationPage.kt:67-103",
+    "Correct action label: Copiar crédito fetches attribution metadata, then copies it. Current error routing is separately defective; see E12-E14 and PR34."
+  ],
+  [
+    "C20",
+    "gallery_credit_copied",
+    "Success toast from all GalleryCredits.copy callers",
+    "GalleryCredits.kt:50-58",
+    "Correct: Crédito copiado. In Copy all this singular can refer collectively to the copied attribution text; no need to mechanically pluralize it or change a working shared label."
+  ],
+  [
+    "C21",
+    "ui_image_credits",
+    "Android ClipData description for credit copies; Commons loading status",
+    "GalleryCredits.kt:51;MediaGalleryActivity.kt:257",
+    "Correct: Créditos das imagens describes the clipboard payload/status subject. The actual credit body retains its source language."
+  ],
+  [
+    "C22",
+    "ui_could_not_complete_the_operation",
+    "Clipboard publication failure toast",
+    "GalleryCredits.kt:50-55",
+    "Correct: Não foi possível concluir a operação truthfully reports rejected ClipboardManager/Binder publication. Success is not shown on this branch."
+  ],
+  [
+    "C23",
+    "gallery_description",
+    "Active Catrobat help: Copy credit sentence",
+    "IllustrationSource.kt:9;MediaGalleryActivity.kt:74-82;GalleryCredits.kt:16-43",
+    "Correct within the copy sentence: Copiar crédito identifies the actual button; copia seu título, publicador, origem e licença describes the generated attribution payload. The publisher is not silently promoted to author. This is not a full licensing-advice audit."
+  ],
+  [
+    "C24",
+    "ui_copy_an_area_or_use_file_insert_image",
+    "Retained duplicate paste hint; no production consumer found",
+    "ClassicPaintActivity.kt:910-913",
+    "Correct wording and current route, matching ui_paste_hint34. Its historical resource ID mentions File but the displayed text correctly names Draw. Kept separate from active-use evidence."
+  ],
+  [
+    "C25",
+    "ui_the_arrow_on_the_left_directly_below_the",
+    "Retained legacy manual: transformed-copy sentence",
+    "PaintDocument.kt:348-381;PaintDocument.kt:461-465",
+    "Correct clipboard terminology: Copiar and Recortar use the transformed image. Crop to selection is a separate geometry operation; sharing the everyday word recortar is not evidence of a wrong clipboard command. Manual has no production consumer found."
+  ],
+  [
+    "C26",
+    "ui_the_arrow_on_the_left_directly_below_the",
+    "Retained legacy manual: clipboard-control placement sentence",
+    "ClassicPaintActivity.kt:564-585;ClassicPaintActivity.kt:838-844",
+    "Terms correct but placement stale in both English and pt-BR: claims Cut/Copy and Paste/Select all are two rows below How to use. Current clipboard icons are in the header; Select all is in Edit. No production consumer found. Broader legacy-manual correction remains open; no selective pt-BR rewrite made here."
+  ],
+  [
+    "C27",
+    "ui_the_arrow_on_the_left_directly_below_the",
+    "Retained legacy manual: fixed Copy all in legal panel",
+    "LegalInfo.kt:81-100",
+    "Correct clipboard clause: Copiar tudo is the actual fixed legal-dialog button. Text scrolls independently. No production consumer found for this manual resource."
+  ],
+  [
+    "E01",
+    "ui_the_draft_is_saving_try_again_shortly",
+    "Cut/Copy/Paste rejected while autosaving",
+    "ClassicPaintActivity.kt:915-916",
+    "Correct: draft is saving; retry shortly. Header actions silently ignore busy state separately; there is no additional clipboard caption there."
+  ],
+  [
+    "E02",
+    "ui_there_is_not_enough_memory_for_this_operation",
+    "Shared edit wrapper catches clipboard bitmap allocation OOM",
+    "ClassicPaintActivity.kt:915-931",
+    "Correct source meaning: insufficient memory at original resolution and no automatic resize. No new clipboard term occurs."
+  ],
+  [
+    "E03",
+    "ui_could_not_complete_the_edit",
+    "Shared edit wrapper for clipboard IOException/IllegalArgumentException",
+    "ClassicPaintActivity.kt:915-931",
+    "Correct localized wrapper; preserves %1$s for the exception reason. Arbitrary OS/dependency exception-message localization is not certified by this catalogue review."
+  ],
+  [
+    "E04",
+    "ui_please_try_again",
+    "Fallback reason when shared edit exception has no message",
+    "ClassicPaintActivity.kt:929-931",
+    "Correct: Tente novamente."
+  ],
+  [
+    "E05",
+    "ui_selection_dimensions_are_too_large",
+    "Copy/cut transformed selection has out-of-range dimensions",
+    "PaintDocument.kt:349-355",
+    "Meaning correct: selected dimensions are too large. demasiado is understandable Portuguese but less customary in Brazil than grandes demais; a stylistic preference alone is not a verified clipboard mistranslation, so no unrelated rewrite."
+  ],
+  [
+    "E06",
+    "ui_enter_positive_image_dimensions",
+    "Shared allocation guard rejects invalid dimensions",
+    "ImageMemoryPolicy.kt:43-44",
+    "Correct: positive image dimensions required. Generic image-size resource, recorded because clipboard rendering calls the guard."
+  ],
+  [
+    "E07",
+    "ui_d_d_pixels_2f_mp_exceeds_the_current",
+    "Shared bitmap-memory admission failure during copy/paste",
+    "ImageMemoryPolicy.kt:43-50;ClassicPaintActivity.kt:924-931;PaintDocument.kt:355;PaintDocument.kt:394",
+    "Correct meaning and positional numeric placeholders: operation exceeds safe editing budget, is stopped before the large allocation, and is not automatically resized. This is resource review, not allocation-failure execution."
+  ],
+  [
+    "E08",
+    "ui_invalid_autosave_metadata",
+    "Paste preflights credit metadata/history before mutation",
+    "PaintDocument.kt:386-392;ClassicPaintActivity.kt:221-226;AutosaveStore.kt:36-40;HistoryArchive.kt:18-34",
+    "Correct localized invalid-autosave-metadata reason when these guards reject the enlarged record. It can appear after the localized edit-failure wrapper; clipboard terminology adds no special noun here."
+  ],
+  [
+    "E09",
+    "gallery_credit_too_large",
+    "Credit editor Copy credit preflight failure",
+    "GalleryCredits.kt:109-120;GalleryCredits.kt:142",
+    "Correct: modified credits would make the drawing too large to restore, with prior drawing and credits kept; copy does not run after failure."
+  ],
+  [
+    "E10",
+    "gallery_credit_could_not_save",
+    "Credit editor Copy credit save/restore failure",
+    "GalleryCredits.kt:116-120;GalleryCredits.kt:142",
+    "Correct: prior saved credits remain and retry is offered; copy runs only after successful save."
+  ],
+  [
+    "E11",
+    "ui_image_credits",
+    "Commons metadata-only Copy credit progress text",
+    "MediaGalleryActivity.kt:254-265",
+    "Correct subject label: Créditos das imagens plus an ellipsis; this is attribution lookup, not a bitmap download."
+  ],
+  [
+    "E12",
+    "ui_could_not_load_gallery_image",
+    "Commons metadata-only Copy credit Exception catch",
+    "MediaGalleryActivity.kt:267-268",
+    "Translation matches English, but operation wording is wrong: no image-load operation was requested. Owned by PR34 at 209098ae341d28a6ca3279c5c1ed53476d84ee99; do not duplicate the fix."
+  ],
+  [
+    "E13",
+    "ui_not_enough_memory_to_inspect_the_gallery_image",
+    "Commons metadata-only Copy credit OOM catch",
+    "MediaGalleryActivity.kt:269-270",
+    "Translation matches English; image-inspection wording is misleading for this metadata-copy action. Dedicated copy-credit OOM message is owned by PR34."
+  ],
+  [
+    "E14",
+    "colour_converter_unavailable",
+    "Commons metadata-only Copy credit LinkageError catch",
+    "MediaGalleryActivity.kt:271-272",
+    "Translation matches English; incorrectly suggests an image colour converter/import operation. Dedicated copy-credit failure message is owned by PR34."
+  ]
+]
