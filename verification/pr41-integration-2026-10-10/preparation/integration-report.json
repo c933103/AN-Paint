@@ -1,0 +1,55 @@
+{
+  "candidate_tree": "fd9ccb67bba4d053eda1d939738b7af3b7c77ccb",
+  "inputs": {
+    "merge_base": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88",
+    "pr41_head": "107376cbd9a0eafcd3cedbae0365802702b525ff",
+    "new_pr18": "66c6fd8411dd799c2d2ceb9250c1de500346f3f5",
+    "candidate_tree": "fd9ccb67bba4d053eda1d939738b7af3b7c77ccb"
+  },
+  "source_composition": "Exact conflict-free disjoint union, no additional changes.",
+  "paths": {
+    "total": 1370,
+    "pr41": 37,
+    "upstream": 7
+  },
+  "patches": {
+    "pr41-integration.patch": "44ce236c52039ec4e28d5297a2386afa6bf2da21e52abf1f9f8d75e610cc6ca0",
+    "pr41-scope.patch": "c143adace30603827fa3a8e4f1c3d98b76281614bcf84f621e8bebd264223277"
+  },
+  "focused_host_tests": {
+    "reachability": 11,
+    "redraw": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "static_checks": {
+    "current_integration_diff": "passed",
+    "source_diff_excluding_historical_patch_files": "passed",
+    "shell_syntax": "passed",
+    "python_compileall": "passed",
+    "whole_pr41_diff": "17 pre-existing whitespace warnings in three byte-identical archived .patch evidence files; preserved."
+  },
+  "actual_history_replay": {
+    "modes": [
+      "normal",
+      "-O",
+      "PYTHONOPTIMIZE=1"
+    ],
+    "all_passed": true,
+    "all_byte_identical_to_recorded_source_results": true,
+    "sha256": "b7ebadb5eb9d13a4f95bb5499ccce4f5efa493764f5eaf2f1d17105187c7a016",
+    "history_repository": "Already-materialized local AN-Paint Git history",
+    "first_local_partial_clone_attempt": "Failed lazy fetch with GitHub CONNECT 403; unchanged source succeeded against already-materialized local history."
+  },
+  "full_host_suite": {
+    "command": "python3 -m unittest discover -s tools -p 'test_*.py'",
+    "passed": 419,
+    "elapsed_seconds": 179.311,
+    "summary": "OK",
+    "failed": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "android_runtime": "Not run locally: no Android SDK, adb, installed Gradle or cached Gradle distribution. New exact-head CI remains required after authorized publication.",
+  "publication": "Evidence-only preparation record. No PR41 source branch mutation or CI launch. Await confirmed PR18 merge and recompute against real develop before source publication."
+}
