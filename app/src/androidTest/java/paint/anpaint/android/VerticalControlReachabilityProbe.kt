@@ -8,6 +8,9 @@ import android.graphics.Point
 import android.graphics.Rect
 import android.os.SystemClock
 import android.view.View
+import android.view.MotionEvent
+import android.view.ViewTreeObserver
+import android.widget.SeekBar
 import android.widget.EditText
 import android.widget.HorizontalScrollView
 import android.widget.ScrollView
@@ -192,18 +195,109 @@ internal class VerticalControlReachabilityProbe(
             assertTrue("Requested endpoint is a visible native touch target",visibleBounds(slider).contains(end.x,end.y))
             Triple(start,end,current)
         }
-        assertTrue("Native drag to JPEG quality $value",device.swipe(arrayOf(first,last,last,last),12))
-        instrumentation.waitForIdleSync()
-        waitUntil("native quality equals $value") {quality().slider.progress+quality().minimum==value}
-        assertDraft();assertQualityGeometry()
-        onMain {
-            assertEquals("Visible numeric readout matches actual native value",
-                activity().getString(R.string.ui_numeric_slider_value,quality().name,value),quality().number.text.toString())
-            observations.put(JSONObject().put("kind","endpoint").put("before",before).put("value",value)
-                .put("from",JSONArray().put(first.x).put(first.y)).put("to",JSONArray().put(last.x).put(last.y))
-                .put("geometry",geometry(quality())).put("seekbar",geometry(quality().slider)).put("thumb",rect(thumbBounds())))
+        observeNativeDrag(value,first,last) {trace ->
+            assertTrue("Native drag to JPEG quality $value",device.swipe(arrayOf(first,last,last,last),12))
+            instrumentation.waitForIdleSync()
+            onMain {trace.record.put("after_injection",dragState(trace.slider))}
+            writeReceipt()
+            waitUntil("native quality equals $value") {quality().slider.progress+quality().minimum==value}
+            assertDraft();assertQualityGeometry()
+            onMain {
+                assertEquals("Visible numeric readout matches actual native value",
+                    activity().getString(R.string.ui_numeric_slider_value,quality().name,value),quality().number.text.toString())
+                observations.put(JSONObject().put("kind","endpoint").put("before",before).put("value",value)
+                    .put("from",JSONArray().put(first.x).put(first.y)).put("to",JSONArray().put(last.x).put(last.y))
+                    .put("geometry",geometry(quality())).put("seekbar",geometry(quality().slider)).put("thumb",rect(thumbBounds())))
+            }
+            writeReceipt()
         }
+    }
+
+    /** Observes the existing gesture without claiming it or changing native routing.
+     * NumericSlider has no production OnTouchListener; its value listener stays intact.
+     * Listener observations occur BEFORE SeekBar.onTouchEvent handles that event.
+     */
+    private fun observeNativeDrag(value: Int,first: Point,last: Point,action: (NativeDragTrace)->Unit) {
+        val trace=onMain {NativeDragTrace(quality().slider,value,first,last).also {observations.put(it.record)}}
+        // Persist requested geometry before injection, even if input later fails.
         writeReceipt()
+        var failure: Throwable?=null
+        try {
+            onMain {trace.attach()}
+            action(trace)
+            onMain {assertEquals("Native diagnostic observers completed",0,trace.errors.length())
+                trace.record.put("outcome","passed")}
+        } catch(error: Throwable) {
+            failure=error
+            onMain {trace.record.put("outcome","failed").put("failure",error.toString())}
+            throw error
+        } finally {
+            // A diagnostic cleanup failure must not hide the endpoint assertion.
+            try {onMain {trace.detach();trace.record.put("after",dragState(trace.slider))};writeReceipt()}
+            catch(error: Throwable) {if(failure!=null) failure.addSuppressed(error) else throw error}
+        }
+    }
+
+    private fun dragState(slider: SeekBar): JSONObject=JSONObject()
+        .put("uptime_ms",SystemClock.uptimeMillis()).put("quality",slider.progress+quality().minimum)
+        .put("readout",quality().number.text.toString())
+        .put("filename",saveRoot().findViewWithTag<EditText>("export_filename").text.toString())
+        .put("geometry",geometry(quality()))
+        .put("seekbar",geometry(slider)).put("thumb",rect(thumbBounds()))
+        .put("padding",JSONArray().put(slider.paddingLeft).put(slider.paddingTop)
+            .put(slider.paddingRight).put(slider.paddingBottom))
+        .put("thumb_offset",slider.thumbOffset).put("layout_direction",slider.layoutDirection)
+        .put("touch_slop",android.view.ViewConfiguration.get(context).scaledTouchSlop)
+        .put("enabled",slider.isEnabled).put("pressed",slider.isPressed)
+        .put("window_focus",slider.hasWindowFocus())
+
+    private inner class NativeDragTrace(val slider: SeekBar,value: Int,first: Point,last: Point) {
+        val events=JSONArray()
+        val scrollChanges=JSONArray()
+        val errors=JSONArray()
+        val record=JSONObject().put("kind","native-drag-trace").put("schema",1)
+            .put("requested_quality",value).put("outcome","pending")
+            .put("from",JSONArray().put(first.x).put(first.y))
+            .put("to",JSONArray().put(last.x).put(last.y))
+            .put("before",dragState(slider)).put("events",events).put("scroll_changes",scrollChanges)
+            .put("errors",errors).put("dropped_events",0).put("dropped_scroll_changes",0)
+        private val observer=slider.viewTreeObserver
+        private var attached=false
+        private val touch=View.OnTouchListener {_,event ->
+            try {
+                if(events.length()<128) {
+                    events.put(JSONObject().put("action",MotionEvent.actionToString(event.action))
+                        .put("action_masked",event.actionMasked).put("event_time_ms",event.eventTime)
+                        .put("down_time_ms",event.downTime).put("source",event.source)
+                        .put("pointer_count",event.pointerCount).put("history_size",event.historySize)
+                        .put("local",JSONArray().put(event.x.toDouble()).put(event.y.toDouble()))
+                        .put("screen",JSONArray().put(event.rawX.toDouble()).put(event.rawY.toDouble()))
+                        .put("phase","before-widget-handler").put("state",dragState(slider)))
+                } else record.put("dropped_events",record.getInt("dropped_events")+1)
+            } catch(error: Throwable) {errors.put("touch: $error")}
+            false // Never consume DOWN, MOVE, UP or CANCEL.
+        }
+        private val scroll=ViewTreeObserver.OnScrollChangedListener {
+            try {
+                if(scrollChanges.length()<64) scrollChanges.put(dragState(slider))
+                else record.put("dropped_scroll_changes",record.getInt("dropped_scroll_changes")+1)
+            } catch(error: Throwable) {errors.put("scroll: $error")}
+        }
+        fun attach() {
+            // No listener replaces the production OnSeekBarChangeListener.
+            attached=true
+            observer.addOnScrollChangedListener(scroll)
+            slider.setOnTouchListener(touch)
+        }
+        fun detach() {
+            if(attached) {
+                slider.setOnTouchListener(null)
+                if(observer.isAlive) observer.removeOnScrollChangedListener(scroll)
+                else slider.viewTreeObserver.removeOnScrollChangedListener(scroll)
+                attached=false
+            }
+            record.put("observers_removed",true)
+        }
     }
 
     /** Full bounds, not the old center/minimum-tap-area visibility criterion. */
@@ -341,7 +435,10 @@ internal class VerticalControlReachabilityProbe(
         bounds.offset(location[0],location[1]);return bounds
     }
     private fun rect(value: Rect)=JSONArray().put(value.left).put(value.top).put(value.right).put(value.bottom)
-    private fun writeReceipt() {File(directory,"$name.json").writeText(receipt.toString(2)+"\n")}
+    private fun writeReceipt() {
+        val contents=onMain {receipt.toString(2)+"\n"}
+        File(directory,"$name.json").writeText(contents)
+    }
     private fun recordFailure(failure: Throwable) {
         receipt.put("failure",failure.toString());writeReceipt()
         try {device.takeScreenshot(File(directory,"$name-failure.png"))} catch(capture: Throwable) {failure.addSuppressed(capture)}

@@ -128,7 +128,10 @@ class ReachabilityReceiptTest(unittest.TestCase):
     def test_proposed_native_probe_has_no_programmatic_input_substitutes(self):
         source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
         for forbidden in ('.performClick(','.requestRectangleOnScreen(','.scrollTo(','.scrollBy(',
-                          '.setProgress(','.progress=', '.setOnSeekBarChangeListener(','.setSelection('):
+                          '.setProgress(','.progress=', '.setOnSeekBarChangeListener(','.setSelection(',
+                          '.requestDisallowInterceptTouchEvent(','.setNestedScrollingEnabled(',
+                          '.isNestedScrollingEnabled=', '.setOnScrollChangeListener(',
+                          '.setHorizontalScrollBarEnabled(','.isHorizontalScrollBarEnabled='):
             self.assertNotIn(forbidden,source)
         for required in ('device.swipe(', 'device.click(', 'visible.contains(raw)', 'canvas.sameAs(',
                          'assertNotEquals("Endpoint requires a real value change"', 'thumbBounds()',
@@ -137,6 +140,57 @@ class ReachabilityReceiptTest(unittest.TestCase):
         driver=(ROOT/'tools/ci_emulator.sh').read_text()
         self.assertIn('--suite app-vertical --timeout-seconds 180',driver)
         self.assertIn('tools/vertical_control_reachability.py',driver)
+
+    def test_diagnostic_touch_listener_is_non_consuming_and_does_not_replace_value_listener(self):
+        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
+        production=(ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt').read_text()
+        # This is a source contract, not an Android event-delivery claim.
+        self.assertNotIn('setOnTouchListener',production)
+        dialog=(ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt').read_text()
+        self.assertNotIn('setOnTouchListener',dialog)
+        self.assertIn('NumericSlider(activity,ui(R.string.ui_quality),quality,1,100)',dialog)
+        self.assertIn('slider.setOnSeekBarChangeListener(',production)
+        def check(text):
+            listener=text.split('private val touch=View.OnTouchListener',1)[1].split('private val scroll=',1)[0]
+            self.assertIn('false // Never consume DOWN, MOVE, UP or CANCEL.',listener)
+            self.assertNotIn('true // Never consume',listener)
+            self.assertIn('slider.setOnTouchListener(null)',text)
+            self.assertIn('observer.removeOnScrollChangedListener(scroll)',text)
+            self.assertNotIn('setOnSeekBarChangeListener(',text)
+        check(source)
+        with self.assertRaises(AssertionError):
+            check(source.replace('false // Never consume','true // Never consume'))
+
+    def test_diagnostic_failure_keeps_requested_delivered_and_final_geometry(self):
+        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
+        wrapper=source.split('private fun observeNativeDrag',1)[1].split('private fun dragState',1)[0]
+        self.assertLess(wrapper.index('writeReceipt()'),wrapper.index('trace.attach()'))
+        self.assertLess(wrapper.index('trace.attach()'),wrapper.index('action(trace)'))
+        self.assertIn('finally {',wrapper)
+        self.assertIn('trace.detach();trace.record.put("after",dragState(trace.slider))',wrapper)
+        self.assertIn('throw error',wrapper)
+        self.assertIn('failure.addSuppressed(error)',wrapper)
+        for field in ('requested_quality','before','after_injection','after','outcome','event_time_ms',
+                      'down_time_ms','action_masked','local','screen','source','pointer_count',
+                      'history_size','before-widget-handler','touch_slop','padding','thumb_offset',
+                      'layout_direction','window_focus','scroll_changes','errors','observers_removed'):
+            self.assertIn('"'+field+'"',source)
+        self.assertIn('val contents=onMain {receipt.toString(2)',source)
+        self.assertIn('events.length()<128',source)
+        self.assertIn('scrollChanges.length()<64',source)
+        self.assertIn('record.getInt("dropped_events")+1',source)
+        self.assertIn('record.getInt("dropped_scroll_changes")+1',source)
+
+    def test_diagnostic_preserves_original_gesture_endpoint_wait_and_assertions(self):
+        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
+        self.assertIn('device.swipe(arrayOf(first,last,last,last),12)',source)
+        self.assertIn('waitUntil("native quality equals $value") {quality().slider.progress+quality().minimum==value}',source)
+        self.assertIn('SystemClock.uptimeMillis()+15000',source)
+        self.assertIn('assertDraft();assertQualityGeometry()',source)
+        self.assertIn('assertNotEquals("Endpoint requires a real value change",value,current)',source)
+        self.assertIn('assertNotEquals("Cancel must discard a genuinely changed draft"',source)
+        self.assertIn('"Visible numeric readout matches actual native value"',source)
+        self.assertEqual(1,source.count('device.click(')) # Existing Choose location only, no tap fallback.
 
 
 if __name__=='__main__': unittest.main()
