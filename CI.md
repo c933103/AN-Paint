@@ -88,9 +88,10 @@ jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
 accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the three gallery-draft methods and the restart
-pair. The unchanged gallery-draft class runs in a separate 90-second invocation;
-the restart pair runs separately before and after an external force-stop. The
+ordinary app invocation excludes the three gallery-draft methods, four vertical
+methods and the restart pair. The unchanged gallery-draft class runs separately
+with a 90-second ceiling; the vertical methods run in two 180-second shards. The
+restart pair runs separately before and after an external force-stop. The
 exact disjoint union is checked against the full SDK-aware source inventory on
 both APIs; an exclusion is never treated as a passed test.
 
@@ -133,14 +134,16 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  ordinary native/app instrumentation invocation: 180 seconds; the separate
-  gallery-draft invocation: 90 seconds; each accepted-credit seed/verify invocation:
-  60 seconds. Splitting the former ordinary app coverage explicitly increases its
-  aggregate ceiling from 180 to 270 seconds. All app invocations together have a
-  270-second API30 / 390-second API35 ceiling (previously 180 / 300 seconds).
-  The existing whole emulator execution step remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
+  native and ordinary-app instrumentation: 180 seconds each; gallery-draft:
+  90 seconds; each of two vertical shards: 180 seconds; accepted-credit seed
+  and verify: 60 seconds each. App-only ceilings sum to 630 seconds on API30
+  and 750 seconds on API35. Including native instrumentation gives 810 / 930
+  seconds, before installation, discovery, startup, boundary and collection.
+  The unchanged whole emulator step is 900 seconds. API35 inner ceilings already
+  exceed that outer limit; actual combined CI must demonstrate feasibility.
+  Inner command budgets are ceilings, not a promise
   that every ceiling can be exhausted in one step. The new phase durations need
-  exact-head API35 measurement; deadline exhaustion fails rather than relaxing
+  exact-head combined API30/API35 measurement; deadline exhaustion fails rather than relaxing
   a timeout or substituting a weaker restart test.
 - Emulator shutdown and log collection are bounded. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
@@ -370,12 +373,12 @@ the new drawing's pixels stay unchanged.
 
 Reports remain under the existing API-specific artifact root:
 `app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
-and `coverage.json`. Coverage success requires the ordinary, gallery-draft, seed and verify
+and `coverage.json`. Coverage success requires the ordinary, gallery-draft, both vertical shards, seed and verify
 reports to contain mutually disjoint completed identities whose union equals all
 SDK-eligible app methods declared in source, including future ordinary classes.
 The full union is written to `app/ordinary-gallery-coverage.json` and the existing
 API35 restart coverage location only after every required phase passes. Both
-receipts describe the complete PR34 app union, not only the restart pair. A failed seed
+receipts describe the complete composed app union, not only the restart pair. A failed seed
 or host boundary prevents verification and records it as not run. API30 explicitly
 omits both phase classes and records that this API35 flow was not run.
 
@@ -409,6 +412,186 @@ removed or relaxed.
 
 AndroidX precedence and bounds:
 https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+
+
+## Current-base installed four-locale matrix (PR18 continuation)
+
+The historical PR18 test class was intentionally excluded from the later PR19
+reconciliation. Its ancestry and old API35 run do not prove coverage in accepted
+develop. This continuation adapts those four installed native-input tests to the
+current startup, locale picker and autosave behavior; it changes no production UI.
+
+The class covers `mnc-Mong`, `lzh-Hant`, `en-XV` and `qaa-Zsye-XV`, each in portrait
+and landscape. Picker viewport positioning is fixture setup; the exact row is
+selected through native accessibility input and its real callback is observed.
+The tests follow replacement activities, wait for `startupReady`, preserve two
+sentinel pixels, select all five tabs, use native overflow swipes and select Line
+before Arrow. Arrow input waits for the real scheduled autosave generation to
+finish rather than suppressing autosave or retrying a missed tap. Save checks
+include initial LR/RL column position, native JPEG popup selection, filename,
+quality reachability, no lossless control, Cancel/reopen with PNG and native Back.
+No external save/share destination may be launched. Prior orientation and locale
+are restored; monitors/listeners are removed at teardown.
+
+The current direct-ADB runner remains the implementation for every invocation.
+The ordinary app suite excludes the vertical class and both accepted-credit
+restart classes. Two explicit vertical invocations select these original methods:
+
+- `app-vertical-english-manchu`: vertical English and Manchu
+- `app-vertical-literary-chinese-emoji`: Literary Chinese and vertical emoji
+
+Each invocation uses repeatable `--include-test CLASS#METHOD` selectors and keeps
+its 180-second instrumentation ceiling. This provisions 360 seconds of aggregate
+vertical instrumentation allowance, increased from the original 180 seconds.
+It also adds a separate test-APK installation and SDK/runner discovery. This is
+coverage provisioning, not an optimization or a claim that the old deadline was
+met. Both shards execute once even if the first fails; aggregate failure is
+retained. The accepted-credit seed and verify retain their separate 60-second
+deadlines, live-PID checks, undelivered Gallery state and external force-stop.
+The whole emulator execution step remains capped at 15 minutes, independently of
+the inner ceilings. The ceilings do not promise that all phases can exhaust their
+budgets in that outer window. No test is retried and no failed step is ignored.
+
+`tools/vertical_locale_matrix.py` verifies the exact disjoint SDK-specific union
+of ordinary, both vertical shards, seed and verify reports on API35. On API30 it
+verifies ordinary plus both vertical shards and records both restart methods as
+explicitly excluded, never passed. AndroidX SDK-suppressed methods remain separate
+from these explicit class omissions. Every selected method must complete
+successfully exactly once. A missing, duplicated, swapped, unexpected or obsolete
+monolithic shard report fails. Every report must record the exact selected methods,
+unchanged invocation ceiling, and a SHA-256 binding of all Kotlin test-source
+relative paths and bytes. The binding identifies the checked-out test inputs; APK
+provenance continues to come from the workflow's exact-source build and artifacts.
+A source mismatch, timeout, error, skip, missing/non-integer/mismatched device SDK
+or incomplete report fails the gate, regardless of a reported success flag. Each
+phase must capture the SDK selected for the run before source eligibility is
+computed, preserving minimum/maximum SDK bounds. Unknown, duplicate, malformed,
+class-conflicting or SDK-ineligible method requests fail before installation or
+instrumentation; none can be silently omitted. The full receipt is
+`app/coverage.json`; API35 also retains the accepted-credit coverage path. Old
+union receipts are removed before verification so failure cannot retain a stale
+success receipt.
+
+Fresh matrix screenshots and summaries are cleared once before both invocations.
+The shared device screenshot directory is not cleared between the two shards. Bounded
+EXIT cleanup pulls screenshots before emulator shutdown, including after failure
+or timeout. A successful run requires exactly 32 PNGs: four locales × two
+orientations × workspace / initial Save / format popup / JPEG quality. The host
+receipt records filename, dimensions, size and SHA-256 after checking PNG headers
+and rejecting exact duplicate content across required states. Popup capture waits
+for stable native-window geometry, a committed render frame and two subsequent
+frame callbacks, and rejects a byte-identical repeat of the closed Save frame.
+Missing collection or inventory makes an otherwise successful job fail. This is
+an inventory/integrity check, not visual review; inspect all 32 rendered images
+before concluding the installed matrix is verified.
+
+Reports are under `app-vertical/english-manchu/androidTest-results` and
+`app-vertical/literary-chinese-emoji/androidTest-results`, screenshots under
+`app/vertical-locale-evidence`, and the screenshot receipt is
+`vertical-locale-screenshots.json`, inside the existing API-specific artifact.
+Host/fake-ADB checks establish selection, accounting, cleanup and failure behavior
+only. Fresh exact-head compilation, API35 XML/logs, measured phase durations and
+visual screenshot review are required. Use the full API30/API35 matrix for release
+verification or a diagnosed cross-version risk; no new full-matrix default or
+workflow transplant is introduced here.
+
+## Draft control-reachability follow-up to PR18
+
+This additive test proposal starts at exact head
+`66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88`, tree
+`a90cdf84be34e6a08ab7a9d25b46cdce2f71b776`. The prior 98 installed passes and
+32 capture-state images remain evidence of that source only. They do not prove
+these new checks passed. The accepted evidence and the unresolved checklist at
+[PR18 comment 6093775811](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6093775811)
+remain unchanged.
+
+`VerticalControlReachabilityProbe` adds assertions inside each existing locale /
+orientation case. The original phase inventory, all previous assertions, original
+32-image collector, 180-second vertical phase deadline and 15-minute enclosing
+execution limit remain intact. There is no new phase or workflow change.
+
+The probe first records the currently clipped viewport, then uses native swipes
+to reveal the complete quality widget, readout, native SeekBar and thumb. It drags
+the actual thumb to quality 1 and 100, requiring each input to change the previous
+value and checking both native progress and displayed value. It separately reveals
+the complete filename field/preview, JPEG explanation and Cancel action. Geometry
+receipts contain raw / ancestor-clipped screen bounds and ancestor scroll offsets.
+Reveal gestures match the missing edge plus native touch slop instead of relying
+on a fixed long swipe that could overshoot a reachable control. No progress setter,
+scroll setter, callback replacement or programmatic click establishes success.
+
+After the original Cancel/reopen/Back and no-external-request assertions, a distinct
+native Save flow selects JPEG again and uses Choose location. The existing
+ActivityMonitor intercepts exactly one ACTION_CREATE_DOCUMENT request and returns
+RESULT_CANCELED before opening a provider. Its MIME, filename and persisted quality
+must match. Portrait commits quality 1 and landscape commits 100. No external
+storage destination, grant, encoding, real file write or sharing is exercised.
+Cancel must not persist the changed draft quality. Draft filename, document
+filename, every canvas pixel and selected tool are checked for preservation.
+
+`app/vertical-locale-evidence/reachability/` holds eight case receipts and 64 fresh
+PNG captures: before, minimum, maximum, filename, description, cancel-ready,
+choose-ready and returned. These cannot replace the original top-level 32 states.
+EXIT collection still runs before emulator shutdown and failure stays failed.
+The new independent receipt checker rejects missing / extra files, failed or
+partial cases, clipped endpoint/thumb/readout bounds, unchanged endpoint input,
+wrong values, filename/state loss, missing native scroll movement and byte-identical
+minimum/maximum captures. Header, inventory and state receipts do not certify
+rendered pixels: reviewers must open every actual image after an installed run.
+
+The candidate is a probe, not a production repair or broad usability acceptance.
+A failure needs diagnosis: distinguish a real inaccessible control from a bad
+coordinate / native-scroll oracle or a phase-budget failure. Preserve the failing
+exact-source evidence. Do not weaken full-bound assertions or extend timeouts to
+turn a failure green. Run current-platform API35 only after reviewed publication;
+API30/full matrix remains for release verification or diagnosed cross-version risk.
+
+### Reviewed probe-oracle corrections
+
+The first unpublished proposal could finish the landscape Cancel draft at the
+same endpoint remembered from portrait. Revision 2 ensures a different value
+using another native endpoint gesture when needed, records both remembered and
+draft values, asserts the distinction immediately before Cancel, and rejects an
+equal-value receipt. Both endpoint screenshots remain required.
+
+Revision 2 also hardens both test-only geometry helpers: a false
+`getGlobalVisibleRect` result returns a fresh empty Rect, because Android leaves
+its output undefined on false. Each helper has an installed negative fixture that
+writes a nonempty rectangle and returns false; a regression of the guard must fail
+that fixture. Host checks validate the source/fixture contracts but do not execute
+Android/Kotlin. The actual installed negatives remain unexecuted until reviewed CI.
+
+This changes one pre-existing visibility-return line, so "every original line
+unchanged" is no longer an exact claim. Existing assertions and their thresholds,
+production source, workflow and deadlines are preserved. No prior screenshot is
+overwritten or retroactively revalidated by this test-oracle correction.
+
+
+### Explicit vertical workload provisioning (10 October 2026)
+
+[API35 run 38031416670](https://github.com/c933103/AN-Paint/actions/runs/38031416670)
+at PR41 head `f22ff7a206b6e871e54fec4b0e02ae32f7cc4700`, tree
+`d21df4db395b12aeac71600d73394323fa040d51`, failed the original single
+vertical invocation at 180.636 seconds. English, Manchu and emoji completed;
+Literary Chinese began but was terminated during initial portrait navigation.
+The original failed run and incomplete evidence remain failed. Splitting future
+coverage cannot retroactively pass that run or establish fresh installed timing.
+
+This test-only scheduling change preserves all four original Kotlin methods,
+native gestures, stationary anti-fling tails, assertions, screenshot frame waits
+and both orientation paths byte-for-byte. The original 32 screenshots plus all
+64 reachability images and eight receipts remain mandatory, collected once by
+the existing bounded EXIT cleanup. No production/redraw code, evidence pixels,
+workflow YAML, ordinary/restart test boundary or outer deadline changes here.
+The independent rendered-text defect and its production repair require separate
+review; the extra vertical budget cannot repair or certify those pixels.
+
+Host/fake-ADB checks cover strict selection and SDK exclusions, source binding,
+exact disjoint report union, timeout/failure propagation, one execution per shard,
+one shared cleanup and preservation of existing boundaries. These checks do not
+compile Android/Kotlin, measure real two-shard device timing or certify images.
+Fresh reviewed exact-source API35 compilation, installed reports, all original
+image/receipt inventories and visual review are still required.
 
 ## API30 font write-back synchronization and bounded lint preparation
 
@@ -514,3 +697,36 @@ and inspect ordinary/gallery elapsed times with a target of at least 30/20 secon
 of margin respectively. These are acceptance targets, not increased timeouts or
 claims from host tests. If margin is inadequate, diagnose that run rather than
 rerun unchanged source to select a faster sample.
+
+## Composed PR34 / PR41 phase contract (10 October 2026)
+
+The preceding PR34 and PR41 sections retain their historical standalone scope,
+including the failed 180-second vertical run. Their standalone successes do not
+establish that this composition fits its enclosing deadline.
+
+The driver now selects ordinary + gallery-draft + English/Manchu vertical +
+Literary Chinese/emoji vertical + API35 seed/external-stop/verify. The direct-ADB
+runner, all original Kotlin methods and their assertions remain unchanged from
+the accepted source union. API30 requires 15 + 3 + 2 + 2 = 22 app methods, with
+one SDK-suppressed method and two explicit restart exclusions. API35 requires
+16 + 3 + 2 + 2 + 1 + 1 = 25 app methods. A failed ordinary/gallery phase blocks
+the restart boundary; independent vertical shards still collect diagnostic
+coverage, and every failure remains failed.
+
+`tools/app_instrumentation_matrix.py` is the single authoritative source-bound
+verifier for all phases. The former vertical verification command delegates to
+it. Exact report-path inventory spans all three app report roots; stale, extra,
+missing, duplicate, failed, skipped, timed-out or wrong-source/SDK reports fail.
+`app/coverage.json`, `app/ordinary-gallery-coverage.json`,
+`app/vertical-coverage.json` and API35 `app/accepted-credit-restart/coverage.json`
+are separately retained byte-identical receipts of the complete composed union.
+All are removed before validation; no subset checker can overwrite a full pass.
+The original 32 locale captures plus 64 reachability captures, eight receipts,
+native input checks and rendered-image review remain separate required evidence.
+
+The 930-second API35 inner instrumentation ceiling exceeds the unchanged
+900-second outer execution limit before overhead. No ceiling, assertion or test
+is relaxed to fit. Final current-base release-configured API30/API35 CI must
+measure actual complete execution, preserving the ordinary/gallery 30/20-second
+margin targets and every existing artifact/provenance/review gate. Missing SDK
+locally means host/fake-ADB checks only; standalone CI is not combined acceptance.

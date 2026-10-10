@@ -11,8 +11,10 @@ import time
 import unittest
 from unittest.mock import Mock, patch
 
-from run_android_instrumentation import declared_tests, source_tests_sha256
-from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, PHASE_TIMEOUTS, app_partition
+from run_android_instrumentation import declared_tests, restart_partition, source_tests_sha256
+from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, app_partition, report_paths
+from test_vertical_locale_matrix import report_for
+from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -98,6 +100,7 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             root=Path(directory)
             (root/'tools').mkdir()
             shutil.copyfile(SCRIPT.with_name('run_android_instrumentation.py'),root/'tools/run_android_instrumentation.py')
+            shutil.copyfile(SCRIPT.with_name('vertical_locale_matrix.py'),root/'tools/vertical_locale_matrix.py')
             shutil.copyfile(SCRIPT.with_name('app_instrumentation_matrix.py'),root/'tools/app_instrumentation_matrix.py')
             source=root/'app/src/androidTest';source.mkdir(parents=True)
             for name,method in (('EditorDeviceTest','ordinary'),('FutureTest','future'),
@@ -106,20 +109,17 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
                 (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test {annotation}fun {method}() {{}} }}\n')
             apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
             apk.parent.mkdir(parents=True);apk.touch()
+            (source/'VerticalLocaleDeviceTest.kt').write_text('package paint.anpaint.android\nclass VerticalLocaleDeviceTest {\n'+
+                ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(VERTICAL_METHODS))+'}\n')
             (source/'GalleryDraftDeviceTest.kt').write_text('package paint.anpaint.android\nclass GalleryDraftDeviceTest {\n'+
                 ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(GALLERY_METHODS))+'}\n')
-            expected=declared_tests(source,sdk_level=35)
-            suppressed=[list(item) for item in sorted(declared_tests(source)-expected)]
-            parts=app_partition(expected,35)
-            for phase,relative in (('ordinary','app/androidTest-results'),('gallery-draft','app-gallery-draft/androidTest-results')):
-                report=root/'report'/relative;report.mkdir(parents=True)
-                wanted=parts[phase]
-                (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
-                    source_tests_sha256=source_tests_sha256(source),sdk_suppressed_tests=suppressed,
-                    included_tests=sorted(f'{owner}#{name}' for owner,name in wanted) if phase=='gallery-draft' else [],
-                    timeout_seconds=PHASE_TIMEOUTS[phase],timed_out=False,returncode=0,errors=[],missing=[],unexpected=[],
-                    expected_tests=len(wanted),completed_tests=len(wanted),
-                    cases=[dict(classname=owner,name=name,status='passed') for owner,name in sorted(wanted)])))
+            report=root/'report/app/androidTest-results';report.mkdir(parents=True)
+            parts=app_partition(declared_tests(source,sdk_level=35),35)
+            for phase, path in report_paths(root/'report', 35).items():
+                if phase in ('seed', 'verify'): continue
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(report_for(phase, parts[phase], 35, source_tests_sha256(source),
+                    declared_tests(source)-declared_tests(source,sdk_level=35))))
             stale=root/'report/app/accepted-credit-restart/verify'
             stale.mkdir(parents=True)
             (stale/'summary.json').write_text('{"success":true}')
@@ -174,6 +174,7 @@ if args[:3]==['shell','am','instrument']:
     excludes=args[args.index('notClass')+1].split(',')
     assert 'paint.anpaint.android.FutureTest' in excludes
     assert 'paint.anpaint.android.EditorDeviceTest' in excludes
+    assert 'paint.anpaint.android.VerticalLocaleDeviceTest' in excludes
     if seed:assert args[args.index('waitForActivitiesToComplete')+1]=='false'
     else:
         assert state()=='absent'
@@ -275,11 +276,12 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],7)
-                self.assertEqual(coverage['sdk_eligible_tests'],6)
-                self.assertEqual(coverage['completed_tests'],6)
+                self.assertEqual(coverage['declared_tests'],11)
+                self.assertEqual(coverage['sdk_eligible_tests'],10)
+                self.assertEqual(coverage['completed_tests'],10)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, **{phase:2 for phase in VERTICAL_SHARDS}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -289,7 +291,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],7)
+        self.assertEqual(coverage['completed_tests'],11)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -358,13 +360,13 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],7)
-        self.assertEqual(coverage['completed_tests'],7)
+        self.assertEqual(coverage['declared_tests'],11)
+        self.assertEqual(coverage['completed_tests'],11)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),
             ('paint.anpaint.android.AcceptedCreditRestartSeedTest','seed'),
-            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(GALLERY_DRAFT,method) for method in GALLERY_METHODS})
+            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS} | {(GALLERY_DRAFT,name) for name in GALLERY_METHODS})
 
     def test_secondary_cleanup_timeout_still_retains_partial_diagnostics(self):
         process=Mock(pid=-1)
@@ -428,7 +430,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('if test "$TEST_API" = 35',source)
         self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
-        self.assertEqual(source.count('--timeout-seconds 180'),2)
+        self.assertEqual(source.count('--timeout-seconds 180'),4)
         self.assertEqual(source.count('--timeout-seconds 90'),1)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 

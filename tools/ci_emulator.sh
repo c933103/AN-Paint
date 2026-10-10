@@ -144,8 +144,43 @@ SEED_REPORT
     return 1
   fi
   printf 'COMPLETED: see strict verify summary\n' > "$phase_root/verify-status.txt"
-  # The main driver verifies the complete ordinary/gallery-draft/seed/verify
-  # union after all selected phases. A restart-only pass is not full app coverage.
+  # The main driver checks the disjoint ordinary/gallery/vertical-shards/seed/verify union only
+  # after every selected invocation. The process boundary itself is unchanged.
+}
+
+run_vertical_locale_matrix() {
+  local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
+  local failed=0
+  # Never reuse screenshots or a successful summary from a previous invocation.
+  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
+  timeout --kill-after=3s 10s "$adb" shell rm -rf \
+    /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence || return
+  vertical_started=1
+  # Two disjoint invocations provision 360s aggregate vertical time (formerly
+  # 180s). Each keeps the existing 180s ceiling; the outer 15m limit is unchanged.
+  # Each original method runs once, with its native input and both orientations.
+  phase='Vertical locale native-input matrix: English + Manchu'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/english-manchu/androidTest-results" \
+    --suite app-vertical-english-manchu --timeout-seconds 180 \
+    --include-test "$vertical_class#verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  # A failed first shard remains failed; the second is distinct coverage, never
+  # a retry. Preserve all partial evidence for the existing EXIT collector.
+  phase='Vertical locale native-input matrix: Literary Chinese + emoji'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/literary-chinese-emoji/androidTest-results" \
+    --suite app-vertical-literary-chinese-emoji --timeout-seconds 180 \
+    --include-test "$vertical_class#literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  return "$failed"
 }
 
 # Same unchanged class, fixtures and method bodies, now a separate ordinary
@@ -171,6 +206,25 @@ cleanup() {
   set +e
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
   timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1
+  if (( ${vertical_started:-0} )); then
+    mkdir -p "$report/app"
+    if ! timeout --kill-after=3s 15s "$adb" pull \
+        /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence \
+        "$report/app/vertical-locale-evidence" > "$report/vertical-locale-pull.log" 2>&1; then
+      progress 'FAILED: could not collect vertical locale screenshots' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_locale_matrix.py verify-screenshots \
+        "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \
+        > "$report/vertical-locale-inventory.log" 2>&1; then
+      progress 'FAILED: incomplete vertical locale screenshot matrix' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_control_reachability.py \
+        "$report/app/vertical-locale-evidence/reachability" --sdk "$TEST_API" --output "$report/vertical-control-reachability.json" \
+        > "$report/vertical-control-reachability.log" 2>&1; then
+      progress 'FAILED: incomplete native control-reachability evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    fi
+  fi
   timeout --kill-after=3s 10s "$adb" emu kill
   if test -n "$emulator_pid"; then
     kill "$emulator_pid" 2>/dev/null
@@ -180,6 +234,7 @@ cleanup() {
     done
     kill -KILL "$emulator_pid" 2>/dev/null || true
   fi
+  exit "$status"
 }
 
 main() {
@@ -192,6 +247,9 @@ main() {
   report="build/reports/android-api-$TEST_API"
   mkdir -p "$report"
   emulator_pid=''
+  vertical_started=0
+  rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
+    "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
   phase='Create virtual device'
   trap cleanup EXIT
   trap 'progress "Interrupted during $phase"; exit 124' TERM INT
@@ -237,7 +295,7 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app" "$report/app-gallery-draft"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-vertical"
   editor_failed=0
   phase='Editor instrumentation'
   progress "$phase"
@@ -248,9 +306,13 @@ main() {
     --suite app --timeout-seconds 180 \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
+    --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
     --exclude-class paint.anpaint.android.GalleryDraftDeviceTest || editor_failed=1
   run_gallery_draft_regression || editor_failed=1
   if (( editor_failed )); then failed=1; fi
+  phase='Vertical locale native-input matrix'
+  progress "$phase"
+  run_vertical_locale_matrix || failed=1
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
@@ -263,6 +325,8 @@ main() {
     printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API30\n' \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
+  phase='Verify complete SDK-specific app phase inventory'
+  progress "$phase"
   python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest \
     --sdk "$TEST_API" --root "$report" || failed=1
   phase='Instrumentation complete'

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact SDK-aware union for bounded ordinary/gallery-draft/restart invocations.
+"""Exact SDK-aware union for ordinary/gallery/vertical-shards/restart invocations.
 
 Uses the selector, source-digest and report conventions already reviewed in PR41.
 No successful phase substitutes for a missing, skipped or failed method elsewhere.
@@ -14,13 +14,17 @@ import re
 from run_android_instrumentation import (Identity, RESTART_SEED, RESTART_VERIFY,
                                          declared_tests, source_tests_sha256)
 
+from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS
+
 GALLERY_DRAFT = 'paint.anpaint.android.GalleryDraftDeviceTest'
 GALLERY_METHODS = {
     'cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits',
     'confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor',
     'savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft',
 }
-PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'seed': 60, 'verify': 60}
+PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90,
+                  **{phase: 180 for phase in VERTICAL_SHARDS}, 'seed': 60, 'verify': 60}
+SELECTED_PHASES = {'gallery-draft', *VERTICAL_SHARDS}
 
 
 def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]:
@@ -30,12 +34,18 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     gallery = {item for item in expected if item[0] == GALLERY_DRAFT}
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
-    ordinary = expected - gallery - seed - verify
+    vertical = {item for item in expected if item[0] == VERTICAL}
+    ordinary = expected - gallery - vertical - seed - verify
+    shards = list(VERTICAL_SHARDS.values())
+    if (vertical != {(VERTICAL, name) for name in VERTICAL_METHODS}
+            or len(shards) != 2 or any(len(part) != 2 for part in shards)
+            or shards[0] & shards[1] or set.union(*shards) != vertical):
+        raise ValueError('Vertical shards must be an exact disjoint two-by-two source inventory')
     if gallery != {(GALLERY_DRAFT, method) for method in GALLERY_METHODS} or not ordinary:
         raise ValueError('The exact three gallery-draft methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
-    parts = {'ordinary': ordinary, 'gallery-draft': gallery}
+    parts = {'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS}
     if sdk == 35:
         parts.update(seed=seed, verify=verify)
     return parts
@@ -53,7 +63,7 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
     for phase, wanted in parts.items():
         report = reports[phase]
         identities = [(case['classname'], case['name']) for case in report['cases']]
-        requested = sorted(f'{owner}#{name}' for owner, name in wanted) if phase == 'gallery-draft' else []
+        requested = sorted(f'{owner}#{name}' for owner, name in wanted) if phase in SELECTED_PHASES else []
         if (report.get('success') is not True or type(report.get('device_sdk')) is not int
                 or report['device_sdk'] != sdk or report.get('source_tests_sha256') != source_digest
                 or report.get('sdk_suppressed_tests') != [list(item) for item in sorted(suppressed)]
@@ -76,6 +86,8 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
     return dict(success=True, device_sdk=sdk, source_tests_sha256=source_digest,
                 timeout_seconds_by_phase={phase: PHASE_TIMEOUTS[phase] for phase in parts},
                 ordinary_and_gallery_total_timeout_seconds=270,
+                vertical_timeout_seconds_per_shard=180, vertical_total_timeout_seconds=360,
+                receipt_scope="complete-composed-app-union",
                 all_app_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts),
                 declared_tests=len(expected | suppressed), sdk_eligible_tests=len(expected),
                 sdk_suppressed_tests=sorted(suppressed),
@@ -88,30 +100,45 @@ def report_paths(root: Path, sdk: int) -> dict[str, Path]:
         raise ValueError('The emulator matrix supports SDK 30 or 35')
     paths = {'ordinary': root/'app/androidTest-results/summary.json',
              'gallery-draft': root/'app-gallery-draft/androidTest-results/summary.json'}
+    paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
+                  for phase in VERTICAL_SHARDS})
     if sdk == 35:
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
                       for phase in ('seed', 'verify')})
     return paths
 
 
-def verify_reports(source: Path, root: Path, sdk: int) -> dict:
-    output = root/'app/ordinary-gallery-coverage.json'
-    restart_output = root/'app/accepted-credit-restart/coverage.json'
-    output.unlink(missing_ok=True)
-    restart_output.unlink(missing_ok=True)
+def read_app_reports(root: Path, sdk: int) -> dict[str, dict]:
     paths = report_paths(root, sdk)
     wanted = set(paths.values())
-    actual = set((root/'app').rglob('summary.json')) | set((root/'app-gallery-draft').rglob('summary.json'))
+    actual = set().union(*((root/name).rglob('summary.json')
+                          for name in ('app', 'app-gallery-draft', 'app-vertical')))
     if actual != wanted:
-        raise ValueError(f'Exact app report inventory required: missing={sorted(map(str, wanted-actual))}, '
+        raise ValueError(f'Exact composed app report inventory required: missing={sorted(map(str, wanted-actual))}, '
                          f'unexpected={sorted(map(str, actual-wanted))}')
-    reports = {phase: json.loads(path.read_text()) for phase, path in paths.items()}
+    return {phase: json.loads(path.read_text()) for phase, path in paths.items()}
+
+
+def coverage_paths(root: Path) -> list[Path]:
+    # All compatibility receipts attest the SAME complete union, never an
+    # independently accepted subset. Clear all four before any validation.
+    return [root/'app/coverage.json', root/'app/ordinary-gallery-coverage.json',
+            root/'app/vertical-coverage.json', root/'app/accepted-credit-restart/coverage.json']
+
+
+def verify_reports(source: Path, root: Path, sdk: int) -> dict:
+    outputs = coverage_paths(root)
+    for output in outputs:
+        output.unlink(missing_ok=True)
+    reports = read_app_reports(root, sdk)
     expected = declared_tests(source, sdk_level=sdk)
     result = verify_app_reports(expected, sdk, reports, source_tests_sha256(source),
                                 declared_tests(source) - expected)
-    output.write_text(json.dumps(result, indent=2)+'\n')
-    if sdk == 35:
-        restart_output.write_text(output.read_text())
+    content = json.dumps(result, indent=2)+'\n'
+    selected_outputs = outputs if sdk == 35 else outputs[:-1]
+    for output in selected_outputs:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(content)
     return result
 
 

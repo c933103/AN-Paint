@@ -1,0 +1,254 @@
+diff --git a/CI.md b/CI.md
+index 06183ad..42b54d5 100644
+--- a/CI.md
++++ b/CI.md
+@@ -471,3 +471,23 @@ coordinate / native-scroll oracle or a phase-budget failure. Preserve the failin
+ exact-source evidence. Do not weaken full-bound assertions or extend timeouts to
+ turn a failure green. Run current-platform API35 only after reviewed publication;
+ API30/full matrix remains for release verification or diagnosed cross-version risk.
++
++### Reviewed probe-oracle corrections
++
++The first unpublished proposal could finish the landscape Cancel draft at the
++same endpoint remembered from portrait. Revision 2 ensures a different value
++using another native endpoint gesture when needed, records both remembered and
++draft values, asserts the distinction immediately before Cancel, and rejects an
++equal-value receipt. Both endpoint screenshots remain required.
++
++Revision 2 also hardens both test-only geometry helpers: a false
++`getGlobalVisibleRect` result returns a fresh empty Rect, because Android leaves
++its output undefined on false. Each helper has an installed negative fixture that
++writes a nonempty rectangle and returns false; a regression of the guard must fail
++that fixture. Host checks validate the source/fixture contracts but do not execute
++Android/Kotlin. The actual installed negatives remain unexecuted until reviewed CI.
++
++This changes one pre-existing visibility-return line, so "every original line
++unchanged" is no longer an exact claim. Existing assertions and their thresholds,
++production source, workflow and deadlines are preserved. No prior screenshot is
++overwritten or retroactively revalidated by this test-oracle correction.
+diff --git a/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt b/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt
+index 8757b9e..562f67c 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt
+@@ -49,8 +49,10 @@ internal class VerticalControlReachabilityProbe(
+     private val tool=onMain {activity().paintCanvas.tool}
+     private val rememberedQuality=context.getSharedPreferences("export",0).getInt("quality",95)
+     private var nativeSwipes=0
++    private var cancelledDraftQuality=0
+ 
+     init {
++        assertFailedVisibilityIsEmpty()
+         assertTrue("Reachability evidence directory",directory.isDirectory || directory.mkdirs())
+         receipt.put("filename",draftName).put("remembered_quality_before_cancel",rememberedQuality)
+         writeReceipt()
+@@ -76,14 +78,27 @@ internal class VerticalControlReachabilityProbe(
+             revealComplete("JPEG explanation") {saveRoot().findViewWithTag<View>("export_description")}
+             assertDraft()
+             snapshot("description")
++            // The previous orientation may have committed an endpoint. Never
++            // let Cancel's draft equal that remembered value: such a precondition
++            // could not detect an erroneous commit performed only on Cancel.
++            if(onMain {quality().slider.progress+quality().minimum}==rememberedQuality)
++                dragTo(if(rememberedQuality==1) 100 else 1)
+             revealComplete("Cancel action") {saveRoot().findViewById<View>(android.R.id.button2)}
++            cancelledDraftQuality=onMain {quality().slider.progress+quality().minimum}
++            assertNotEquals("Cancel must discard a genuinely changed draft",rememberedQuality,cancelledDraftQuality)
++            receipt.put("cancel_draft_quality",cancelledDraftQuality)
+             snapshot("cancel-ready")
++            onMain {
++                assertEquals("Cancel precondition remains unchanged",cancelledDraftQuality,quality().slider.progress+quality().minimum)
++                assertNotEquals("Cancel input must distinguish draft from remembered quality",rememberedQuality,cancelledDraftQuality)
++            }
+             receipt.put("endpoint_values",JSONArray().put(1).put(100))
+             writeReceipt()
+         } catch(failure: Throwable) {recordFailure(failure);throw failure}
+     }
+ 
+     fun assertCancelledDraftWasNotCommitted() {
++        assertTrue("Cancel observed a valid distinct draft",cancelledDraftQuality in 1..100 && cancelledDraftQuality!=rememberedQuality)
+         assertEquals("Cancelled native quality is not persisted",rememberedQuality,
+             context.getSharedPreferences("export",0).getInt("quality",95))
+         assertCanvasAndDocument()
+@@ -309,8 +324,19 @@ internal class VerticalControlReachabilityProbe(
+         val location=IntArray(2);view.getLocationOnScreen(location)
+         return Rect(location[0],location[1],location[0]+view.width,location[1]+view.height)
+     }
++    /** Installed negative: Android may leave nonempty output on a false result. */
++    private fun assertFailedVisibilityIsEmpty()=onMain {
++        var observed=false
++        val fullyClipped=object: View(context) {
++            override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean {
++                observed=true;bounds.set(10,20,110,120);return false
++            }
++        }
++        assertTrue("False visibility cannot credit nonempty output",visibleBounds(fullyClipped).isEmpty)
++        assertTrue("False/nonempty native visibility fixture was called",observed)
++    }
+     private fun visibleBounds(view: View): Rect {
+-        val bounds=Rect();if(!view.getGlobalVisibleRect(bounds)) return bounds
++        val bounds=Rect();if(!view.getGlobalVisibleRect(bounds)) return Rect()
+         val location=IntArray(2);view.rootView.getLocationOnScreen(location)
+         bounds.offset(location[0],location[1]);return bounds
+     }
+diff --git a/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
+index 8706d4f..2fc7f5b 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
+@@ -88,6 +88,7 @@ class VerticalLocaleDeviceTest {
+ 
+     @Before fun launchInstalledApp() {
+         assertEquals("paint.anpaint.android",context.packageName)
++        assertFailedVisibilityIsEmpty()
+         originalLanguageTag=if(Build.VERSION.SDK_INT>=33)
+             context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
+         else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
+@@ -393,9 +394,20 @@ class VerticalLocaleDeviceTest {
+     }
+ 
+     /** Return screen-space bounds, intersected with all parent clipping. */
++    /** Installed negative: Android may leave nonempty output on a false result. */
++    private fun assertFailedVisibilityIsEmpty()=onMain {
++        var observed=false
++        val fullyClipped=object: View(context) {
++            override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean {
++                observed=true;bounds.set(10,20,110,120);return false
++            }
++        }
++        assertTrue("False visibility cannot credit nonempty output",visibleBounds(fullyClipped).isEmpty)
++        assertTrue("False/nonempty native visibility fixture was called",observed)
++    }
+     private fun visibleBounds(view: View): Rect {
+         val bounds=Rect()
+-        if(!view.getGlobalVisibleRect(bounds)) return bounds
++        if(!view.getGlobalVisibleRect(bounds)) return Rect()
+         val location=IntArray(2);view.rootView.getLocationOnScreen(location)
+         bounds.offset(location[0],location[1]);return bounds
+     }
+diff --git a/tools/test_vertical_control_reachability.py b/tools/test_vertical_control_reachability.py
+index ffa27bc..00c712e 100644
+--- a/tools/test_vertical_control_reachability.py
++++ b/tools/test_vertical_control_reachability.py
+@@ -25,7 +25,8 @@ def fixture(directory):
+         observations += [dict(kind='scroll-before',geometry=dict(geometry,parents=[dict(scroll_x=0,scroll_y=0)])),
+                          dict(kind='scroll-after',geometry=geometry)]
+         receipt=dict(case=case,success=True,device_sdk=35,filename='fixture.jpg',endpoint_values=[1,100],
+-                     cancel_preserved_quality=True,canvas_and_document_preserved=True,
++                     cancel_preserved_quality=True,remembered_quality_before_cancel=95,cancel_draft_quality=100,
++                     canvas_and_document_preserved=True,
+                      confirmed_quality=100 if case.endswith('-landscape') else 1,destination_requests=1,
+                      destination_action='android.intent.action.CREATE_DOCUMENT',destination_mime='image/jpeg',
+                      destination_filename='fixture.jpg',native_scroll_gestures=1,observations=observations,
+@@ -54,6 +55,9 @@ class ReachabilityReceiptTest(unittest.TestCase):
+     def test_failure_missing_endpoint_clipping_lost_state_and_fake_motion_fail_closed(self):
+         mutations=[lambda r:r.update(success=False),lambda r:r.update(failure='failed'),
+             lambda r:r.update(endpoint_values=[1]),lambda r:r.update(device_sdk='35'),
++            lambda r:r.update(remembered_quality_before_cancel=100),
++            lambda r:r.update(cancel_draft_quality=95),
++            lambda r:r.update(cancel_draft_quality=50),
+             lambda r:r.update(cancel_preserved_quality=False),lambda r:r.update(canvas_and_document_preserved=False),
+             lambda r:r.update(destination_filename='lost.jpg'),lambda r:r.update(destination_requests=2),
+             lambda r:r.update(confirmed_quality=50),lambda r:r.update(native_scroll_gestures=0),
+@@ -76,6 +80,37 @@ class ReachabilityReceiptTest(unittest.TestCase):
+                     with self.assertRaises(ValueError): verify(directory)
+             path.write_text(json.dumps(good));self.assertTrue(verify(directory)['success'])
+ 
++    def test_distinct_cancel_receipt_rejects_equal_landscape_endpoint_preconditions(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            directory=Path(tmp);fixture(directory)
++            case='mnc-Mong-landscape';path=directory/f'{case}.json'
++            good=json.loads(path.read_text())
++            good.update(remembered_quality_before_cancel=1,cancel_draft_quality=100)
++            path.write_text(json.dumps(good));self.assertTrue(verify(directory)['success'])
++            # Reproduce the reviewed hole: remembered1 and draft1 even though
++            # endpoint movement 1/100 and every other receipt claim looks valid.
++            bad=copy.deepcopy(good);bad['cancel_draft_quality']=1
++            next(o for o in bad['observations'] if o.get('state')=='cancel-ready')['quality']=1
++            path.write_text(json.dumps(bad))
++            with self.assertRaisesRegex(ValueError,'Incomplete successful'): verify(directory)
++
++    def test_both_visibility_helpers_discard_false_nonempty_output_and_have_installed_negatives(self):
++        def check(source):
++            self.assertIn('if(!view.getGlobalVisibleRect(bounds)) return Rect()',source)
++            self.assertIn('override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean',source)
++            self.assertIn('observed=true;bounds.set(10,20,110,120);return false',source)
++            self.assertIn('visibleBounds(fullyClipped).isEmpty',source)
++            self.assertIn('assertFailedVisibilityIsEmpty()',source)
++        for name in ('VerticalControlReachabilityProbe','VerticalLocaleDeviceTest'):
++            source=(ROOT/f'app/src/androidTest/java/paint/anpaint/android/{name}.kt').read_text()
++            with self.subTest(helper=name):
++                check(source)
++                # This is a source/negative-fixture contract, not execution of
++                # Android/Kotlin. The actual fake-View negative runs installed.
++                with self.assertRaises(AssertionError):
++                    check(source.replace('if(!view.getGlobalVisibleRect(bounds)) return Rect()',
++                                         'if(!view.getGlobalVisibleRect(bounds)) return bounds'))
++
+     def test_missing_extra_corrupt_identical_endpoint_and_wrong_orientation_images_fail(self):
+         with tempfile.TemporaryDirectory() as tmp:
+             directory=Path(tmp);fixture(directory);case=sorted(CASES)[0]
+diff --git a/tools/vertical_control_reachability.py b/tools/vertical_control_reachability.py
+index d6eb76e..69e61f7 100644
+--- a/tools/vertical_control_reachability.py
++++ b/tools/vertical_control_reachability.py
+@@ -40,6 +40,11 @@ def verify(directory: Path, sdk: int | None = None) -> dict:
+                 or type(receipt.get('device_sdk')) is not int or receipt['device_sdk'] not in (30,35)
+                 or receipt.get('endpoint_values') != [1,100]
+                 or receipt.get('cancel_preserved_quality') is not True
++                or type(receipt.get('remembered_quality_before_cancel')) is not int
++                or not 1 <= receipt['remembered_quality_before_cancel'] <= 100
++                or type(receipt.get('cancel_draft_quality')) is not int
++                or not 1 <= receipt['cancel_draft_quality'] <= 100
++                or receipt['cancel_draft_quality'] == receipt['remembered_quality_before_cancel']
+                 or receipt.get('canvas_and_document_preserved') is not True
+                 or type(receipt.get('confirmed_quality')) is not int or receipt['confirmed_quality'] != confirmed
+                 or type(receipt.get('destination_requests')) is not int or receipt['destination_requests'] != 1
+@@ -71,6 +76,8 @@ def verify(directory: Path, sdk: int | None = None) -> dict:
+         captures={o.get('state'):o for o in observations if o.get('kind')=='capture'}
+         if set(captures) != set(STATES)-{'returned'}:
+             raise ValueError(f'Missing capture-time state observations: {case}')
++        if captures['cancel-ready'].get('quality') != receipt['cancel_draft_quality']:
++            raise ValueError(f'Cancel screenshot does not show the distinct draft quality: {case}')
+         if any(o.get('filename') != receipt['filename'] for o in captures.values()):
+             raise ValueError(f'Draft filename lost: {case}')
+         for state,value in (('minimum',1),('maximum',100)):
+diff --git a/verification/vertical-control-reachability-2026-10-10/README.md b/verification/vertical-control-reachability-2026-10-10/README.md
+index e8d6964..d16cb09 100644
+--- a/verification/vertical-control-reachability-2026-10-10/README.md
++++ b/verification/vertical-control-reachability-2026-10-10/README.md
+@@ -63,3 +63,36 @@ Coordinate review reference: the Android platform's
+ positions the drawable using left padding minus thumb offset and applies RTL
+ mirroring in touch tracking. The probe observes the installed drawable bounds and
+ verifies the resulting native value; source review is not runtime certification.
++
++## Independent review corrections, revision 2
++
++The initial unpublished proposal is preserved at candidate tree
++`8a45b54bbbb975d4d7331d8a6ceb62b85eadbffc`, patch SHA-256
++`4296f8a6ae8a9d6d576161eea5b54e70396866def2c7783acb0fd0b2b220e01b`.
++Independent review identified two test-oracle gaps:
++
++1. Portrait confirmation persisted quality 1. The landscape endpoint sequence
++   could finish at 1, making its Cancel draft indistinguishable from remembered
++   quality. Revision 2 performs another real endpoint gesture when necessary,
++   asserts distinct values immediately before Cancel and stores both values.
++   The receipt verifier and a focused negative reject that exact equal-value
++   landscape precondition, including when the screenshot state reports 1.
++2. Both geometry helpers returned Android's undefined output rectangle when
++   `getGlobalVisibleRect` returned false. Revision 2 returns a fresh empty Rect
++   in both helpers. Both installed negative fixtures deliberately write a
++   nonempty rectangle before returning false. Host source/fixture contracts
++   reject removal of either guard; they do not substitute for installed execution.
++
++The Android 15 contract explicitly leaves the output undefined on a false result:
++[View.getGlobalVisibleRect](https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-15.0.0_r1/core/java/android/view/View.java).
++
++One pre-existing helper line is deliberately hardened. The claim that every
++original line is unchanged is therefore withdrawn for revision 2. All original
++assertions and thresholds remain, and production source, workflow and phase
++budgets are unchanged. No prior screenshot or accepted evidence is overwritten
++or retroactively revalidated. The original 32-state capture evidence remains a
++bounded claim about its exact old source, independently of this proposed probe.
++
++The additional native drag and 64-frame probe duration remain unmeasured inside
++the unchanged 180-second phase. A timeout stays failed. A drag-specific failure
++also does not prove that every native endpoint tap route is inaccessible.
