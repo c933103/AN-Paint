@@ -62,8 +62,9 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
-          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}
+          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-checks-x86_64
           restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-
             native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
             native-ccache-v1-ubuntu22-4.5.1-
       - name: Install pinned compiler cache
@@ -169,8 +170,9 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
-          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}
+          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-universal
           restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-
             native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
             native-ccache-v1-ubuntu22-4.5.1-
       - name: Install pinned compiler cache

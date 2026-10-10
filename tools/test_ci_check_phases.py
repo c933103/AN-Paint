@@ -54,7 +54,10 @@ class CheckPhaseContracts(unittest.TestCase):
         def cache_step(block):
             return block.split('      - name: Set native compiler cache directory', 1)[1].split(
                 '      - name: Prepare build tools and notices', 1)[0]
-        self.assertEqual(cache_step(CHECKS), cache_step(build))
+        # Preserve all shared restore and compiler-safety settings; only producers'
+        # immutable save keys differ, preventing checks from occupying the universal key.
+        self.assertEqual(cache_step(CHECKS).replace('-checks-x86_64\n', '-ROLE\n'),
+                         cache_step(build).replace('-universal\n', '-ROLE\n'))
         self.assertLess(CHECKS.index('Prepare lint native dependencies'), CHECKS.index('Run Android lint'))
         self.assertNotIn(' -x ', CHECKS)
 
