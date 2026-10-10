@@ -1,0 +1,60 @@
+{
+  "scope": "PR43 regression raw-report parser rehearsal only; not postmerge release verification",
+  "run_id": 38094001589,
+  "head": "0c782ef533f246ee5b6676451e09c51a00e4ae61",
+  "jvm_tests": 804,
+  "jvm_suites": 85,
+  "historical_feature_selectors_present": 17,
+  "superseded_historical_selectors": [
+    {
+      "historical_selector": [
+        "regression",
+        "org.catrobat.paintroid.local.CursorDrawingTest",
+        "movingAndTappingNeverToggleInkAndCancelRollsBack"
+      ],
+      "reason": "Cursor taps now toggle ink; off-cursor positioning and cancelled gestures remain non-painting.",
+      "current": [
+        [
+          "regression",
+          "org.catrobat.paintroid.local.CursorDrawingTest",
+          "touchesAwayFromTheCursorNeverToggleInkAndCancelRollsBack"
+        ],
+        [
+          "regression",
+          "org.catrobat.paintroid.local.CursorDrawingTest",
+          "tappingTheCursorTogglesInkWithoutPaintingAndDraggingItStillDraws"
+        ],
+        [
+          "regression",
+          "org.catrobat.paintroid.local.CursorDrawingTest",
+          "cancelledCursorTapDoesNotEnableInkAndCancelledCursorDragRestoresTheImage"
+        ]
+      ]
+    },
+    {
+      "historical_selector": [
+        "regression",
+        "org.catrobat.paintroid.local.ViewportAndVerticalTextTest",
+        "canvasDisplayDoesNotBlendNeighbouringPixelsWhenZoomedInOrOut"
+      ],
+      "reason": "Reduced previews now filter neighbouring pixels; magnified pixels stay crisp and source pixels remain unchanged.",
+      "current": [
+        [
+          "regression",
+          "org.catrobat.paintroid.local.ViewportAndVerticalTextTest",
+          "canvasDisplayFiltersOnlyReducedPreviewsAndPreservesSourcePixels"
+        ],
+        [
+          "regression",
+          "org.catrobat.paintroid.local.CanvasBitmapOverviewTest",
+          "onePixelStrokesRemainVisibleAtReducedScalesWithoutChangingSourcePixels"
+        ],
+        [
+          "regression",
+          "org.catrobat.paintroid.local.CanvasBitmapOverviewTest",
+          "magnifiedPixelsStayCrispAndCachedOverviewRefreshesAfterAnEdit"
+        ]
+      ]
+    }
+  ]
+}
