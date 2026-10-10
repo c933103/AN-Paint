@@ -1,0 +1,364 @@
+{
+  "decision": "accepted for bounded API35 screenshot capture-state evidence",
+  "reviewed_at_utc": "2026-10-10T04:19:30Z",
+  "scope": "Independent inspection of all 32 original PNGs individually; not broad vertical-layout, usability, linguistic or release acceptance.",
+  "head": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88",
+  "tested_merge": "f2162094bec001f13970ae7cf79621aec94c6e3a",
+  "tree": "a90cdf84be34e6a08ab7a9d25b46cdce2f71b776",
+  "run_id": 38022416053,
+  "attempt": 1,
+  "job_id": 114127351184,
+  "artifact_id": 11659005722,
+  "zip_sha256": "cbb0326a2ce6a5e25325bb2fbdc6844d4bb0ac7f99d3eec3ffbbd77a894e0577",
+  "source_receipt_sha256": "8ccafa9bb18e2ee60b8a47732b83cab87fb61cc822babba192cfc36e198d0796",
+  "verified": {
+    "zip_digest_matches": true,
+    "all_pngs_match_zip_and_receipt": true,
+    "all_32_individually_opened": true,
+    "all_32_fully_decoded": true,
+    "all_dimensions_match_orientation": true,
+    "byte_unique_count": 32,
+    "decoded_pixel_unique_count": 32,
+    "open_popup_count": 8,
+    "production_screenshot_verifier": "passed",
+    "installed_xml_passed": 98,
+    "installed_xml_failed_error_skipped": 0,
+    "production_24_method_phase_union": "passed"
+  },
+  "fixed_failure": {
+    "state": "en-XV-landscape-format-popup.png",
+    "popup_sha256": "012ff064658059aba3420efd909aee308656318e6f9a387ff5e205a17a5da11d",
+    "closed_save_sha256": "8232cf80c376769ed71f47da68e89de2c2399fc9235ac033188c793fadabf5ca",
+    "observation": "Popup is visibly open, unlike the retained previous attempt. Difference is actual format-list pixels, not merely an incidental clock/status change."
+  },
+  "limits": [
+    "Horizontal scrolling leaves partial/offscreen labels and neighboring columns; this review does not certify absence of clipping.",
+    "Manchu landscape JPEG slider thumb is partially clipped at the right viewport edge; complete thumb visibility and full-range interaction are not established.",
+    "Shown glyph/emoji appearance does not certify wording, grammar, language quality, all strings or all glyphs.",
+    "Screenshots demonstrate captured states; they do not independently prove all actions or comprehensive usability. Installed test assertions have their separately verified scope.",
+    "API35 emulator only; API30 and physical devices are not certified.",
+    "The earlier failed pair remains a failed historical attempt; this acceptance applies only to the bound new artifact."
+  ],
+  "files": [
+    {
+      "name": "en-XV-landscape-format-popup.png",
+      "bytes": 34353,
+      "width": 640,
+      "height": 320,
+      "sha256": "012ff064658059aba3420efd909aee308656318e6f9a387ff5e205a17a5da11d",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native format popup is unmistakably visible over Save, with PNG/JPEG and subsequent formats. This is the previously failing capture state."
+    },
+    {
+      "name": "en-XV-landscape-jpeg-quality.png",
+      "bytes": 22391,
+      "width": 640,
+      "height": 320,
+      "sha256": "ed4990c07c150738278a529adf956f3ebcc1096d25736362461ceec56eb16414",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "JPEG, Untitled.jpg, Quality (%) 95 and slider are visible together."
+    },
+    {
+      "name": "en-XV-landscape-save-initial.png",
+      "bytes": 27699,
+      "width": 640,
+      "height": 320,
+      "sha256": "8232cf80c376769ed71f47da68e89de2c2399fc9235ac033188c793fadabf5ca",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form visibly shows PNG and Untitled.png; no popup is drawn."
+    },
+    {
+      "name": "en-XV-landscape-workspace.png",
+      "bytes": 26821,
+      "width": 640,
+      "height": 320,
+      "sha256": "90c22c2a7cd6bc5cfedab3414e346d80eb7cd4a0bc3e85815fc91b89f03b0a92",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and white canvas with colored sentinel points are visible; ribbon and status text occupy the landscape columns."
+    },
+    {
+      "name": "en-XV-portrait-format-popup.png",
+      "bytes": 38096,
+      "width": 320,
+      "height": 640,
+      "sha256": "a4244603b3fee6ebfb1e0938e3606e06983b8823f49cbc68dac952dc54163491",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Native format popup visibly overlays Save; PNG/JPEG and further format labels are visible. The filename is partially outside the horizontal viewport."
+    },
+    {
+      "name": "en-XV-portrait-jpeg-quality.png",
+      "bytes": 23141,
+      "width": 320,
+      "height": 640,
+      "sha256": "7de3612e6823123f9cc9cff026331fbc8c12530aa90e2b357cb326064a5bef27",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Quality (%) 95 label and slider are visible after horizontal reveal; earlier filename/format columns are outside the shown viewport."
+    },
+    {
+      "name": "en-XV-portrait-save-initial.png",
+      "bytes": 27896,
+      "width": 320,
+      "height": 640,
+      "sha256": "dc6119764a13e576857c0fc63ff830d09d70d72db74535d5f7deee0688278ca0",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed initial Save form and Untitled.png field are visible; later format columns are outside this initial horizontal viewport."
+    },
+    {
+      "name": "en-XV-portrait-workspace.png",
+      "bytes": 35045,
+      "width": 320,
+      "height": 640,
+      "sha256": "e8b3e6615d3933f43334ba60e0712e9a34158b7fa6d1c25536f2a51e5e573de8",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained white canvas with colored sentinel points are visible; vertical English labels render in the shown viewport."
+    },
+    {
+      "name": "lzh-Hant-landscape-format-popup.png",
+      "bytes": 36804,
+      "width": 640,
+      "height": 320,
+      "sha256": "d8ecc866f63de16145ad7ad4f4c9a61dbae4ca852f692fea395f5382943e5ec0",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native format popup visibly overlays Save, with JPEG and further formats visible."
+    },
+    {
+      "name": "lzh-Hant-landscape-jpeg-quality.png",
+      "bytes": 37214,
+      "width": 640,
+      "height": 320,
+      "sha256": "7b66fd5277c35dcfdb1252922112fa967f02c349badd93ae5aaec7a6720cc050",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "JPEG, quality readout 95 and slider are visible; filename field is partly outside the right horizontal viewport and explanatory text reaches the lower viewport boundary."
+    },
+    {
+      "name": "lzh-Hant-landscape-save-initial.png",
+      "bytes": 31113,
+      "width": 640,
+      "height": 320,
+      "sha256": "dfa7eeb31df3a787723653315dcda5be4a7b2421866dd8b9de7fc56c80966c05",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form shows PNG, Untitled.png and upright Chinese explanatory/title columns."
+    },
+    {
+      "name": "lzh-Hant-landscape-workspace.png",
+      "bytes": 29166,
+      "width": 640,
+      "height": 320,
+      "sha256": "36cc687a0d6fee730a3e0f72e23cc16e18977bd402d275c459f69f1adccf74f3",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained canvas with colored sentinel points are visible; shown Chinese glyphs remain upright in vertical columns."
+    },
+    {
+      "name": "lzh-Hant-portrait-format-popup.png",
+      "bytes": 42904,
+      "width": 320,
+      "height": 640,
+      "sha256": "9bae91933cb6c080490823fac965cb27f68308ea2f619beb5645baf7cf779085",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native popup is visibly drawn with JPEG and subsequent format labels. Neighboring help and filename columns are clipped at viewport edges."
+    },
+    {
+      "name": "lzh-Hant-portrait-jpeg-quality.png",
+      "bytes": 41833,
+      "width": 320,
+      "height": 640,
+      "sha256": "7881b79acf678d226250eabca189c4e9b29ba052793c37068baa8f7be28a01f2",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Quality slider and explanatory text are visible; the quality-label/readout column is only partly visible at the right viewport edge."
+    },
+    {
+      "name": "lzh-Hant-portrait-save-initial.png",
+      "bytes": 30341,
+      "width": 320,
+      "height": 640,
+      "sha256": "3f0a42c48f3f031466005793dc48f0d00ebda6ef26080b49a048a3617bcf79e2",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form, Untitled.png, right-hand title and filename columns are visible; further format controls lie outside this horizontal viewport."
+    },
+    {
+      "name": "lzh-Hant-portrait-workspace.png",
+      "bytes": 36135,
+      "width": 320,
+      "height": 640,
+      "sha256": "7e7552feab2f064d3fa8f452a2b69f9070e64117f106d076a2e8801422af39d9",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained canvas with colored sentinel points are visible; shown Chinese glyphs are upright in vertical columns."
+    },
+    {
+      "name": "mnc-Mong-landscape-format-popup.png",
+      "bytes": 38400,
+      "width": 640,
+      "height": 320,
+      "sha256": "ff5302ce6274c4cf622269ca9b6d33b6fc9df6190cd641ff3a4f0fb92585894b",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native format popup visibly overlays Save; PNG/JPEG and further entries are present."
+    },
+    {
+      "name": "mnc-Mong-landscape-jpeg-quality.png",
+      "bytes": 26126,
+      "width": 640,
+      "height": 320,
+      "sha256": "2d5d2c7b6ec225ece16066bdc483c63c009b5125b95c767ea32a1ed06b51e762",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "JPEG, Untitled.jpg and quality readout 95 are visible. Slider track reaches the right content-viewport boundary and its thumb is partially clipped there; complete thumb/full-range reachability is not established."
+    },
+    {
+      "name": "mnc-Mong-landscape-save-initial.png",
+      "bytes": 31876,
+      "width": 640,
+      "height": 320,
+      "sha256": "0e95fc1e7aedf9f339d2e17e81a56eb35e973453367ea2671b6d194563f06569",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form visibly shows PNG, Untitled.png and vertical-script explanatory columns."
+    },
+    {
+      "name": "mnc-Mong-landscape-workspace.png",
+      "bytes": 28000,
+      "width": 640,
+      "height": 320,
+      "sha256": "d0a57f410cccd84296c7525b2895139faf8cac97d2dae487a51cc8069657a6d2",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained canvas with colored sentinel points are visible; Manchu-shaped glyph runs appear in the shown vertical columns."
+    },
+    {
+      "name": "mnc-Mong-portrait-format-popup.png",
+      "bytes": 33016,
+      "width": 320,
+      "height": 640,
+      "sha256": "511bfc243751b5fb663640a760aacaf11f73743ea38aea4e11442e187c66c886",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native popup shows PNG/JPEG and further formats; filename text is partially outside the horizontal viewport."
+    },
+    {
+      "name": "mnc-Mong-portrait-jpeg-quality.png",
+      "bytes": 24966,
+      "width": 320,
+      "height": 640,
+      "sha256": "e1b9914b178a073b03e946cd89c9c0e43d3d07946a322865e10216559ff8f48e",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "JPEG, quality readout 95, Manchu-script quality label and slider are visible."
+    },
+    {
+      "name": "mnc-Mong-portrait-save-initial.png",
+      "bytes": 31154,
+      "width": 320,
+      "height": 640,
+      "sha256": "9a998612bf4c1ba73133a0a84e782c8f0c9e295688738ac4c249dd99a74b3502",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form and Untitled.png are visible; columns to the right are partially outside the horizontal viewport."
+    },
+    {
+      "name": "mnc-Mong-portrait-workspace.png",
+      "bytes": 38172,
+      "width": 320,
+      "height": 640,
+      "sha256": "47f5a0e1961fd6ee0bf27bba2e74a93346e07f2122c3fe158985846f5f0c9163",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection, white canvas and colored sentinel points are visible; connected Manchu-shaped vertical glyph runs appear. Some neighboring control text is clipped at viewport edges."
+    },
+    {
+      "name": "qaa-Zsye-XV-landscape-format-popup.png",
+      "bytes": 35391,
+      "width": 640,
+      "height": 320,
+      "sha256": "38dcb9c3c577249e3ab68acfd2d2daef434b832456cf4de64c76fc716b85dcf5",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native popup visibly overlays Save with JPEG and later format names."
+    },
+    {
+      "name": "qaa-Zsye-XV-landscape-jpeg-quality.png",
+      "bytes": 29157,
+      "width": 640,
+      "height": 320,
+      "sha256": "f221498491176ac65732aa4833fa8e7454bbf75eb36c40aa0f7d834fdc125c0f",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "JPEG, quality readout 95 and slider are visible; filename column is outside the shown horizontal viewport and help text reaches its viewport boundary."
+    },
+    {
+      "name": "qaa-Zsye-XV-landscape-save-initial.png",
+      "bytes": 29165,
+      "width": 640,
+      "height": 320,
+      "sha256": "885e8f8712d8bbdc008c1a4225df944074b448c7ed3938b55d4d7abd0954b5b2",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form shows PNG, Untitled.png, emoji-labelled columns and footer actions."
+    },
+    {
+      "name": "qaa-Zsye-XV-landscape-workspace.png",
+      "bytes": 29972,
+      "width": 640,
+      "height": 320,
+      "sha256": "026d6c26391b867d8bea974977eaf7c533ce47e4271c756e0eb1882fb05a1e29",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained canvas with colored sentinel points are visible; emoji and Latin vertical-label columns render."
+    },
+    {
+      "name": "qaa-Zsye-XV-portrait-format-popup.png",
+      "bytes": 42822,
+      "width": 320,
+      "height": 640,
+      "sha256": "f317d9df9f7157653e319ce790ed665e410f4752e3a5b17713ff83697e6aceb1",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Open native popup shows JPEG and later formats; neighboring filename/help text is partially outside the horizontal viewport."
+    },
+    {
+      "name": "qaa-Zsye-XV-portrait-jpeg-quality.png",
+      "bytes": 38435,
+      "width": 320,
+      "height": 640,
+      "sha256": "5fd32b51104306cf3e93b1e0fdf7d81ab96dcff3744a5a436773d3bab85f2f36",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Quality slider and explanatory text are visible; the emoji quality-label/readout column is partly clipped at the right viewport edge."
+    },
+    {
+      "name": "qaa-Zsye-XV-portrait-save-initial.png",
+      "bytes": 32948,
+      "width": 320,
+      "height": 640,
+      "sha256": "7cf125ed523e8c99a7674d3a11f2252447c09f7d6437eaaec6caedf4bf66931a",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Closed Save form shows emoji labels, title, Untitled.png and footer actions; format control lies outside the initial horizontal viewport."
+    },
+    {
+      "name": "qaa-Zsye-XV-portrait-workspace.png",
+      "bytes": 40087,
+      "width": 320,
+      "height": 640,
+      "sha256": "ba03815b77e9ee777376742cde90a9828d159e243da47ce5741adbaf58dc1568",
+      "individually_opened": true,
+      "capture_state": "observed",
+      "observation": "Arrow selection and retained canvas with colored sentinel points are visible; colorful emoji and rotated Latin labels render. Neighboring control columns are partial."
+    }
+  ]
+}

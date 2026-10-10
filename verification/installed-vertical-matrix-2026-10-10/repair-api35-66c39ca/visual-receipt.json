@@ -1,0 +1,1412 @@
+{
+  "head": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88",
+  "tree": "a90cdf84be34e6a08ab7a9d25b46cdce2f71b776",
+  "parent": "dc47456df0eea18f106d6e0af056f01af1ba6c20",
+  "run_id": 38022416053,
+  "tested_merge": "f2162094bec001f13970ae7cf79621aec94c6e3a",
+  "remote_blobs_verified": 1341,
+  "review_comment": "https://github.com/c933103/AN-Paint/pull/18#issuecomment-6093537154",
+  "manifest_sha256": "77157c2073d48fde46144a02cb93b37b23b80d05d599dee91da22df80ac71c71",
+  "attempt": 1,
+  "job_id": 114127351184,
+  "artifact_id": 11659005722,
+  "zip_sha256": "cbb0326a2ce6a5e25325bb2fbdc6844d4bb0ac7f99d3eec3ffbbd77a894e0577",
+  "xml": [
+    {
+      "phase": "native",
+      "path": "Paintroid/androidTest-results/TEST-Paintroid.xml",
+      "tests": 74,
+      "seconds": 79.585,
+      "sha256": "d63d749e78b4c392c7df22fe3f97a2cdab8d289f207f7f600b13b33478828a11"
+    },
+    {
+      "phase": "ordinary",
+      "path": "app/androidTest-results/TEST-app.xml",
+      "tests": 18,
+      "seconds": 165.967,
+      "sha256": "089cfd390aa97e0513a3a990912fd7da58fcd463922a274cb0953681d05432eb"
+    },
+    {
+      "phase": "vertical",
+      "path": "app-vertical/androidTest-results/TEST-app-vertical.xml",
+      "tests": 4,
+      "seconds": 121.531,
+      "sha256": "c9be547b46355d9790d46426dbf5634a28bc08d8a52ddf5858c3fcb17426c83e"
+    },
+    {
+      "phase": "seed",
+      "path": "app/accepted-credit-restart/seed/TEST-app-credit-restart-seed.xml",
+      "tests": 1,
+      "seconds": 8.08,
+      "sha256": "07454b52e2ffe552f84489aaf739f9039f24c7555598abbc60405416495f660b"
+    },
+    {
+      "phase": "verify",
+      "path": "app/accepted-credit-restart/verify/TEST-app-credit-restart-verify.xml",
+      "tests": 1,
+      "seconds": 9.252,
+      "sha256": "90787f2db4a620de54cfc69e7c9d8de2e22d0839dce0aa0b3ad93951f1ab3d26"
+    }
+  ],
+  "runtime_cases": 98,
+  "coverage": {
+    "success": true,
+    "device_sdk": 35,
+    "declared_tests": 24,
+    "selected_tests": 24,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 24,
+    "phases": {
+      "ordinary": 18,
+      "vertical": 4,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ]
+  },
+  "images": {
+    "success": true,
+    "expected_screenshots": 32,
+    "files": [
+      {
+        "name": "en-XV-landscape-format-popup.png",
+        "bytes": 34353,
+        "width": 640,
+        "height": 320,
+        "sha256": "012ff064658059aba3420efd909aee308656318e6f9a387ff5e205a17a5da11d"
+      },
+      {
+        "name": "en-XV-landscape-jpeg-quality.png",
+        "bytes": 22391,
+        "width": 640,
+        "height": 320,
+        "sha256": "ed4990c07c150738278a529adf956f3ebcc1096d25736362461ceec56eb16414"
+      },
+      {
+        "name": "en-XV-landscape-save-initial.png",
+        "bytes": 27699,
+        "width": 640,
+        "height": 320,
+        "sha256": "8232cf80c376769ed71f47da68e89de2c2399fc9235ac033188c793fadabf5ca"
+      },
+      {
+        "name": "en-XV-landscape-workspace.png",
+        "bytes": 26821,
+        "width": 640,
+        "height": 320,
+        "sha256": "90c22c2a7cd6bc5cfedab3414e346d80eb7cd4a0bc3e85815fc91b89f03b0a92"
+      },
+      {
+        "name": "en-XV-portrait-format-popup.png",
+        "bytes": 38096,
+        "width": 320,
+        "height": 640,
+        "sha256": "a4244603b3fee6ebfb1e0938e3606e06983b8823f49cbc68dac952dc54163491"
+      },
+      {
+        "name": "en-XV-portrait-jpeg-quality.png",
+        "bytes": 23141,
+        "width": 320,
+        "height": 640,
+        "sha256": "7de3612e6823123f9cc9cff026331fbc8c12530aa90e2b357cb326064a5bef27"
+      },
+      {
+        "name": "en-XV-portrait-save-initial.png",
+        "bytes": 27896,
+        "width": 320,
+        "height": 640,
+        "sha256": "dc6119764a13e576857c0fc63ff830d09d70d72db74535d5f7deee0688278ca0"
+      },
+      {
+        "name": "en-XV-portrait-workspace.png",
+        "bytes": 35045,
+        "width": 320,
+        "height": 640,
+        "sha256": "e8b3e6615d3933f43334ba60e0712e9a34158b7fa6d1c25536f2a51e5e573de8"
+      },
+      {
+        "name": "lzh-Hant-landscape-format-popup.png",
+        "bytes": 36804,
+        "width": 640,
+        "height": 320,
+        "sha256": "d8ecc866f63de16145ad7ad4f4c9a61dbae4ca852f692fea395f5382943e5ec0"
+      },
+      {
+        "name": "lzh-Hant-landscape-jpeg-quality.png",
+        "bytes": 37214,
+        "width": 640,
+        "height": 320,
+        "sha256": "7b66fd5277c35dcfdb1252922112fa967f02c349badd93ae5aaec7a6720cc050"
+      },
+      {
+        "name": "lzh-Hant-landscape-save-initial.png",
+        "bytes": 31113,
+        "width": 640,
+        "height": 320,
+        "sha256": "dfa7eeb31df3a787723653315dcda5be4a7b2421866dd8b9de7fc56c80966c05"
+      },
+      {
+        "name": "lzh-Hant-landscape-workspace.png",
+        "bytes": 29166,
+        "width": 640,
+        "height": 320,
+        "sha256": "36cc687a0d6fee730a3e0f72e23cc16e18977bd402d275c459f69f1adccf74f3"
+      },
+      {
+        "name": "lzh-Hant-portrait-format-popup.png",
+        "bytes": 42904,
+        "width": 320,
+        "height": 640,
+        "sha256": "9bae91933cb6c080490823fac965cb27f68308ea2f619beb5645baf7cf779085"
+      },
+      {
+        "name": "lzh-Hant-portrait-jpeg-quality.png",
+        "bytes": 41833,
+        "width": 320,
+        "height": 640,
+        "sha256": "7881b79acf678d226250eabca189c4e9b29ba052793c37068baa8f7be28a01f2"
+      },
+      {
+        "name": "lzh-Hant-portrait-save-initial.png",
+        "bytes": 30341,
+        "width": 320,
+        "height": 640,
+        "sha256": "3f0a42c48f3f031466005793dc48f0d00ebda6ef26080b49a048a3617bcf79e2"
+      },
+      {
+        "name": "lzh-Hant-portrait-workspace.png",
+        "bytes": 36135,
+        "width": 320,
+        "height": 640,
+        "sha256": "7e7552feab2f064d3fa8f452a2b69f9070e64117f106d076a2e8801422af39d9"
+      },
+      {
+        "name": "mnc-Mong-landscape-format-popup.png",
+        "bytes": 38400,
+        "width": 640,
+        "height": 320,
+        "sha256": "ff5302ce6274c4cf622269ca9b6d33b6fc9df6190cd641ff3a4f0fb92585894b"
+      },
+      {
+        "name": "mnc-Mong-landscape-jpeg-quality.png",
+        "bytes": 26126,
+        "width": 640,
+        "height": 320,
+        "sha256": "2d5d2c7b6ec225ece16066bdc483c63c009b5125b95c767ea32a1ed06b51e762"
+      },
+      {
+        "name": "mnc-Mong-landscape-save-initial.png",
+        "bytes": 31876,
+        "width": 640,
+        "height": 320,
+        "sha256": "0e95fc1e7aedf9f339d2e17e81a56eb35e973453367ea2671b6d194563f06569"
+      },
+      {
+        "name": "mnc-Mong-landscape-workspace.png",
+        "bytes": 28000,
+        "width": 640,
+        "height": 320,
+        "sha256": "d0a57f410cccd84296c7525b2895139faf8cac97d2dae487a51cc8069657a6d2"
+      },
+      {
+        "name": "mnc-Mong-portrait-format-popup.png",
+        "bytes": 33016,
+        "width": 320,
+        "height": 640,
+        "sha256": "511bfc243751b5fb663640a760aacaf11f73743ea38aea4e11442e187c66c886"
+      },
+      {
+        "name": "mnc-Mong-portrait-jpeg-quality.png",
+        "bytes": 24966,
+        "width": 320,
+        "height": 640,
+        "sha256": "e1b9914b178a073b03e946cd89c9c0e43d3d07946a322865e10216559ff8f48e"
+      },
+      {
+        "name": "mnc-Mong-portrait-save-initial.png",
+        "bytes": 31154,
+        "width": 320,
+        "height": 640,
+        "sha256": "9a998612bf4c1ba73133a0a84e782c8f0c9e295688738ac4c249dd99a74b3502"
+      },
+      {
+        "name": "mnc-Mong-portrait-workspace.png",
+        "bytes": 38172,
+        "width": 320,
+        "height": 640,
+        "sha256": "47f5a0e1961fd6ee0bf27bba2e74a93346e07f2122c3fe158985846f5f0c9163"
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-format-popup.png",
+        "bytes": 35391,
+        "width": 640,
+        "height": 320,
+        "sha256": "38dcb9c3c577249e3ab68acfd2d2daef434b832456cf4de64c76fc716b85dcf5"
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-jpeg-quality.png",
+        "bytes": 29157,
+        "width": 640,
+        "height": 320,
+        "sha256": "f221498491176ac65732aa4833fa8e7454bbf75eb36c40aa0f7d834fdc125c0f"
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-save-initial.png",
+        "bytes": 29165,
+        "width": 640,
+        "height": 320,
+        "sha256": "885e8f8712d8bbdc008c1a4225df944074b448c7ed3938b55d4d7abd0954b5b2"
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-workspace.png",
+        "bytes": 29972,
+        "width": 640,
+        "height": 320,
+        "sha256": "026d6c26391b867d8bea974977eaf7c533ce47e4271c756e0eb1882fb05a1e29"
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-format-popup.png",
+        "bytes": 42822,
+        "width": 320,
+        "height": 640,
+        "sha256": "f317d9df9f7157653e319ce790ed665e410f4752e3a5b17713ff83697e6aceb1"
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-jpeg-quality.png",
+        "bytes": 38435,
+        "width": 320,
+        "height": 640,
+        "sha256": "5fd32b51104306cf3e93b1e0fdf7d81ab96dcff3744a5a436773d3bab85f2f36"
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-save-initial.png",
+        "bytes": 32948,
+        "width": 320,
+        "height": 640,
+        "sha256": "7cf125ed523e8c99a7674d3a11f2252447c09f7d6437eaaec6caedf4bf66931a"
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-workspace.png",
+        "bytes": 40087,
+        "width": 320,
+        "height": 640,
+        "sha256": "ba03815b77e9ee777376742cde90a9828d159e243da47ce5741adbaf58dc1568"
+      }
+    ]
+  },
+  "full_png_decode": true,
+  "pixel_duplicates": false,
+  "logs": [
+    {
+      "path": "Paintroid/androidTest-results/summary.json",
+      "bytes": 15688,
+      "sha256": "e346fadad3ea7ec641c0483a6883b07564b5061a48b68d172492155e0b9f999f"
+    },
+    {
+      "path": "Paintroid/androidTest-results/instrumentation.log",
+      "bytes": 51865,
+      "sha256": "4ba496a8acf941341bedaa277fd92fd7cc4707fa7681c355ade66ca1acdde1e0"
+    },
+    {
+      "path": "Paintroid/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+    },
+    {
+      "path": "app/androidTest-results/summary.json",
+      "bytes": 4315,
+      "sha256": "191861274a62a75f3c33b0e833e4c0a2d1d7193c6d07276537b853da861d72de"
+    },
+    {
+      "path": "app/androidTest-results/instrumentation.log",
+      "bytes": 12620,
+      "sha256": "5516e3f61f833445c4f913ca2c0f628161aace8330082370a50ad0c59d72312c"
+    },
+    {
+      "path": "app/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+    },
+    {
+      "path": "app-vertical/androidTest-results/summary.json",
+      "bytes": 1596,
+      "sha256": "ae87e3220f0002c8bbdd30458d1de47b6b753db752846043ce9f62e74c4424a7"
+    },
+    {
+      "path": "app-vertical/androidTest-results/instrumentation.log",
+      "bytes": 2966,
+      "sha256": "29f1666c376402efa03bb9ebc62b5d1126a73957b90faa7c5516609aeedc7e28"
+    },
+    {
+      "path": "app-vertical/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/summary.json",
+      "bytes": 939,
+      "sha256": "2463c0c4e034b92151c90c29a3df8724a5ad4977d10c30c6701981c29f809128"
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/instrumentation.log",
+      "bytes": 836,
+      "sha256": "bf69f45bf3fbaf461d72719a210db1990a7ce48f2ffed5c267a3691dc2649069"
+    },
+    {
+      "path": "app/accepted-credit-restart/seed/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/summary.json",
+      "bytes": 941,
+      "sha256": "b72894c985f4dcc510df453ad95680606c23ed4946bcb01f60a272330c678a72"
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/instrumentation.log",
+      "bytes": 845,
+      "sha256": "74c36fd049a2fd1d19d95eab0821a76ca05d87b7999761fb9665e151cf60e0b6"
+    },
+    {
+      "path": "app/accepted-credit-restart/verify/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+    },
+    {
+      "path": "startup.log",
+      "bytes": 2518,
+      "sha256": "1c97edc7402838673961e1b95c791fc85ab18b3ac4739360f5d2bc99ba57e6d9"
+    },
+    {
+      "path": "app/accepted-credit-restart/boundary.log",
+      "bytes": 40426,
+      "sha256": "0a7c32c6e3b5c0cf89506478cf42761c52fce9d1aa0b2e0619a7b917dea41d7e"
+    },
+    {
+      "path": "app/accepted-credit-restart/verify-status.txt",
+      "bytes": 37,
+      "sha256": "13b055f8e1e03d6a2677e0ad53718937ae520ce74005cca5be3b350a167031b5"
+    },
+    {
+      "path": "vertical-locale-pull.log",
+      "bytes": 140,
+      "sha256": "bdb1dc3844731297552ee1c5bf469f604df54385582b7ac9e06a120e83665c68"
+    },
+    {
+      "path": "vertical-locale-inventory.log",
+      "bytes": 46,
+      "sha256": "f847e99c8bfb687e39784af8867a5e67619bd79a42b21ed65fd6262582d01e37"
+    },
+    {
+      "path": "vertical-locale-screenshots.json",
+      "bytes": 6813,
+      "sha256": "2c263396782f5586d16d7a443433a5c5a5aaecc0b074f8f7abbe9f60acf1a757"
+    },
+    {
+      "path": "app/coverage.json",
+      "bytes": 3568,
+      "sha256": "3f275e8a1b1f4540cbea96ed43e6f192ae9bf0c4a9e356f264c6fee55f090626"
+    }
+  ],
+  "visual_review": {
+    "status": "all 32 individually inspected; expected capture states observed, bounded viewport limitations retained",
+    "inspected_pngs": 32,
+    "open_native_popups_observed": 8,
+    "formerly_failed_popup": "en-XV-landscape-format-popup.png now shows the open native popup",
+    "all_byte_and_pixel_content_distinct": true,
+    "by_image": [
+      {
+        "name": "en-XV-landscape-format-popup.png",
+        "sha256": "012ff064658059aba3420efd909aee308656318e6f9a387ff5e205a17a5da11d",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format. The previously failed closed-form capture is corrected in this exact-source run."
+      },
+      {
+        "name": "en-XV-landscape-jpeg-quality.png",
+        "sha256": "ed4990c07c150738278a529adf956f3ebcc1096d25736362461ceec56eb16414",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "en-XV-landscape-save-initial.png",
+        "sha256": "8232cf80c376769ed71f47da68e89de2c2399fc9235ac033188c793fadabf5ca",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "en-XV-landscape-workspace.png",
+        "sha256": "90c22c2a7cd6bc5cfedab3414e346d80eb7cd4a0bc3e85815fc91b89f03b0a92",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "en-XV-portrait-format-popup.png",
+        "sha256": "a4244603b3fee6ebfb1e0938e3606e06983b8823f49cbc68dac952dc54163491",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "en-XV-portrait-jpeg-quality.png",
+        "sha256": "7de3612e6823123f9cc9cff026331fbc8c12530aa90e2b357cb326064a5bef27",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "en-XV-portrait-save-initial.png",
+        "sha256": "dc6119764a13e576857c0fc63ff830d09d70d72db74535d5f7deee0688278ca0",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "en-XV-portrait-workspace.png",
+        "sha256": "e8b3e6615d3933f43334ba60e0712e9a34158b7fa6d1c25536f2a51e5e573de8",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "lzh-Hant-landscape-format-popup.png",
+        "sha256": "d8ecc866f63de16145ad7ad4f4c9a61dbae4ca852f692fea395f5382943e5ec0",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "lzh-Hant-landscape-jpeg-quality.png",
+        "sha256": "7b66fd5277c35dcfdb1252922112fa967f02c349badd93ae5aaec7a6720cc050",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "lzh-Hant-landscape-save-initial.png",
+        "sha256": "dfa7eeb31df3a787723653315dcda5be4a7b2421866dd8b9de7fc56c80966c05",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "lzh-Hant-landscape-workspace.png",
+        "sha256": "36cc687a0d6fee730a3e0f72e23cc16e18977bd402d275c459f69f1adccf74f3",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "lzh-Hant-portrait-format-popup.png",
+        "sha256": "9bae91933cb6c080490823fac965cb27f68308ea2f619beb5645baf7cf779085",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "lzh-Hant-portrait-jpeg-quality.png",
+        "sha256": "7881b79acf678d226250eabca189c4e9b29ba052793c37068baa8f7be28a01f2",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "lzh-Hant-portrait-save-initial.png",
+        "sha256": "3f0a42c48f3f031466005793dc48f0d00ebda6ef26080b49a048a3617bcf79e2",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "lzh-Hant-portrait-workspace.png",
+        "sha256": "7e7552feab2f064d3fa8f452a2b69f9070e64117f106d076a2e8801422af39d9",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "mnc-Mong-landscape-format-popup.png",
+        "sha256": "ff5302ce6274c4cf622269ca9b6d33b6fc9df6190cd641ff3a4f0fb92585894b",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "mnc-Mong-landscape-jpeg-quality.png",
+        "sha256": "2d5d2c7b6ec225ece16066bdc483c63c009b5125b95c767ea32a1ed06b51e762",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped. The slider extends to the right viewport edge; full thumb/track visibility is not established by this image."
+      },
+      {
+        "name": "mnc-Mong-landscape-save-initial.png",
+        "sha256": "0e95fc1e7aedf9f339d2e17e81a56eb35e973453367ea2671b6d194563f06569",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "mnc-Mong-landscape-workspace.png",
+        "sha256": "d0a57f410cccd84296c7525b2895139faf8cac97d2dae487a51cc8069657a6d2",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "mnc-Mong-portrait-format-popup.png",
+        "sha256": "511bfc243751b5fb663640a760aacaf11f73743ea38aea4e11442e187c66c886",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "mnc-Mong-portrait-jpeg-quality.png",
+        "sha256": "e1b9914b178a073b03e946cd89c9c0e43d3d07946a322865e10216559ff8f48e",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "mnc-Mong-portrait-save-initial.png",
+        "sha256": "9a998612bf4c1ba73133a0a84e782c8f0c9e295688738ac4c249dd99a74b3502",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "mnc-Mong-portrait-workspace.png",
+        "sha256": "47f5a0e1961fd6ee0bf27bba2e74a93346e07f2122c3fe158985846f5f0c9163",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-format-popup.png",
+        "sha256": "38dcb9c3c577249e3ab68acfd2d2daef434b832456cf4de64c76fc716b85dcf5",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-jpeg-quality.png",
+        "sha256": "f221498491176ac65732aa4833fa8e7454bbf75eb36c40aa0f7d834fdc125c0f",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-save-initial.png",
+        "sha256": "885e8f8712d8bbdc008c1a4225df944074b448c7ed3938b55d4d7abd0954b5b2",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "qaa-Zsye-XV-landscape-workspace.png",
+        "sha256": "026d6c26391b867d8bea974977eaf7c533ce47e4271c756e0eb1882fb05a1e29",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-format-popup.png",
+        "sha256": "f317d9df9f7157653e319ce790ed665e410f4752e3a5b17713ff83697e6aceb1",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Open native image-format popup visibly present; list extends beyond its viewport, so this does not certify simultaneous visibility of every format."
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-jpeg-quality.png",
+        "sha256": "5fd32b51104306cf3e93b1e0fdf7d81ab96dcff3744a5a436773d3bab85f2f36",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "JPEG quality state and quality control visible in the captured viewport; some neighboring columns and portions of labels are cropped."
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-save-initial.png",
+        "sha256": "7cf125ed523e8c99a7674d3a11f2252447c09f7d6437eaaec6caedf4bf66931a",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Initial Save form and .png filename visible; visible column direction matches the captured locale state, with neighboring columns outside some viewports."
+      },
+      {
+        "name": "qaa-Zsye-XV-portrait-workspace.png",
+        "sha256": "ba03815b77e9ee777376742cde90a9828d159e243da47ce5741adbaf58dc1568",
+        "opened_individually": true,
+        "expected_capture_state_observed": true,
+        "observation": "Workspace and retained canvas with two colored sentinel pixels visible; horizontal viewport leaves some neighboring controls or labels partial."
+      }
+    ],
+    "bounds": [
+      "Visible Manchu joining, upright Literary Chinese glyphs and displayed emoji are viewport observations, not linguistic certification.",
+      "Horizontally scrolling forms intentionally show a viewport; several adjacent columns/labels are partial.",
+      "Manchu landscape JPEG quality slider reaches the right viewport edge; this capture does not establish complete control visibility.",
+      "Runtime native-input and reachable-control assertions passed, but these images do not establish broad usability, physical-device behavior or API30 behavior."
+    ],
+    "independent_visual_acceptance": "Accepted bounded capture states for all 32 actual PNGs; viewport/full-range-control follow-up remains unresolved.",
+    "independent_receipt_sha256": "87064698c974e234dca4daa32885f82861c39cbd593462766f89fdca2f9c17e0"
+  },
+  "ci_host": {
+    "tests_run": 382,
+    "skipped": 2,
+    "seconds": 71.537,
+    "note": "Two optional Pillow-dependent independent decoder checks are skipped in CI; local and independent host runs had zero skips.",
+    "skipped_test_ids": [
+      "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+      "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    ]
+  },
+  "regression": {
+    "xml_files": 77,
+    "total": {
+      "tests": 737,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lint": [
+      {
+        "path": "app/build/reports/lint-results-debug.xml",
+        "issues": 0,
+        "sha256": "9bb42b0dda1d361b9662aa9e79b1da9081a3e0a127e3cae77d5f772b8aba8d3c"
+      }
+    ],
+    "xml": [
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ANPaintControlsTest.xml",
+        "sha256": "71479442d06e2f09d3f9dd39ab3673c24506818e01593c281d35e685cd68640c",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AppLanguageTest.xml",
+        "sha256": "63337fc979921ce0294a7a5f6399a7b8b34856090a3a91cc46603636acdd07e4",
+        "tests": 19,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AssemblyActivityTest.xml",
+        "sha256": "4fcd63f97172042abf8d759e4f6fcc9ca6198ad2b06a1464458bb3bf2755b80f",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AssemblyModelTest.xml",
+        "sha256": "9344bd3edc60426b0539ec2f7953834f4f50b34da9a722ac73f3441d901eb1d8",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AutosaveInFlightRecoveryTest.xml",
+        "sha256": "d8ff9394dda14e70958aa9808c15e9c478eb3c2244c94d5951afd8c3dac88b30",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AutosaveMetadataBoundsTest.xml",
+        "sha256": "1d8aba2e1ad6fc4c9f569357c5fbc8757bfb8ad1f513f5f0ac3888b704cffe07",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AutosaveQueuedRecoveryTest.xml",
+        "sha256": "337f373eb19f43432b4b70cc4ea2b566b66728022f65bb17b37e89e82f96d929",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AutosaveStartupRecoveryTest.xml",
+        "sha256": "d1ce3ef8544224ece3eeefc794e9a09ef80c329c6105b2bff24fce6542ecd64e",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CanvasBitmapOverviewTest.xml",
+        "sha256": "894155419f8ea3339204d6ddf4175adeea37050b7240e039603fbb298bd70dc9",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CanvasColourBoundaryTest.xml",
+        "sha256": "f5c56950a399a0407a774696e1b376fc195ebf230909fc40391253e8aae57828",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CanvasEditingControlsTest.xml",
+        "sha256": "195ee611069439dfe28860de47a7b0d674c1e8051ade493d0645556774d5718f",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ClassicStartupRecoveryTest.xml",
+        "sha256": "13de5718c7cf6361517c673190d29d775f74fa6ed612edb5ec620d732107d395",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ClassicWorkspaceTest.xml",
+        "sha256": "f4f0a3ef330b65da70de172abe15c6df2ca62ed7205de5adc0452f04fc5b4e8e",
+        "tests": 38,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsAttributionTest.xml",
+        "sha256": "6b06652b5fd7515215908cb03c6ddbc66a0b651a99b599e4bf20da02bc9b2ff1",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsBlankMapsTest.xml",
+        "sha256": "51dab4f0943a053ee7b2d07b7c42a36e3d2b3a0e0ef05604cf03a7c993df75e7",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsCreditFlowTest.xml",
+        "sha256": "2682d6fdc6ff5a72b9e4fd105925edfafa9a8a910eee0b8f25ae6ce5ad8171f2",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsCreditSessionIntegrationTest.xml",
+        "sha256": "bd42ccca25dc86d113f7042f6fc9f285aae039117eca326551be5edf7744781f",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsHelpProviderTranslationTest.xml",
+        "sha256": "eb2b0c4db921cb3917ed39e8a599dabd23af41a0b094e31393f420d1f9bf9aa6",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsImportChangeTranslationTest.xml",
+        "sha256": "2a3a437007dfaeafce93fa8d3de7963c6b3cca64cbff8884b5103b816f9932e4",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsSvgErrorReadabilityTest.xml",
+        "sha256": "2119a0ac3adb3785750cb21c2602e7a9f5a9ad72b257196d04bb3c6468f2df4f",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsSvgErrorTranslationTest.xml",
+        "sha256": "b2e42186ed94253ab31eb958463494823ca6f0197d685fa0ccbed8f987205573",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CreditEditAtomicityTest.xml",
+        "sha256": "94c30080dfeb106757cc23beeb6046f26baa0ab816ee7c0bb6941c44edd84160",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CreditEditSessionTest.xml",
+        "sha256": "0c658337d93369fc88bb0377628cc72dd59686eb77109426e6828ccf5e67e186",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CreditSessionResourcesTest.xml",
+        "sha256": "0c115a57c1e1fd848bb410c37a8f056596d97e827faa299c4c83895b4882ef13",
+        "tests": 34,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CreditSnapshotLifetimeTest.xml",
+        "sha256": "8a3ba54bd121bb114429b43b3b1ff79e6ec08fc009b56187878b720bfb754569",
+        "tests": 32,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+        "sha256": "d3065eafd8a5b6e54a0122a03135a5b936ff3b6ab99c7097333ca2b5f242b018",
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.DerivedExportStateTest.xml",
+        "sha256": "3c96497c6ced2a27dde01798583a7e25dcc20e6f792acc8569cf39f02a8f1965",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.DeviceLanguagePickerTest.xml",
+        "sha256": "6b1cc9930b8b73ce6f544ec3a5774f568b6dcdb54fed6a3d72580f004567e575",
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.DraftHistoryTest.xml",
+        "sha256": "9f7aa8c8e93c36fcce133d3f5aa49de7bab65f3e69e9fb5b3c6a20eb0fb56fc6",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.EdgeSelectionControlsTest.xml",
+        "sha256": "ea7e66347e7f34d2a9464882ec529180a4c614651ea7e99f433b08ad7f6d88f8",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.EditorStartupTest.xml",
+        "sha256": "a447639229c2ba9d00954888b304ec505f2a12527969e485b9498930c5b4a079",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ExportFormatDialogTest.xml",
+        "sha256": "ef5c50839c3af3f9ffb6bb53255603f6d9788d98e2e27427e347cfefb9369397",
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.FullResolutionStorageTest.xml",
+        "sha256": "f50f3d7af629c3d7168bd0d956e3e4125b9624052e183dbcbe574c1fcaf96318",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryBackDirectionTest.xml",
+        "sha256": "977ec623198f5cac2c69fa7b23c061fc821c9b767954b92738d9dc8500cbe5c0",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryControlReachabilityTest.xml",
+        "sha256": "b0e5d555ed698b633c9be0041f39e3c8cd9222539692a6d4c99bc889a9328968",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryControlsLayoutTest.xml",
+        "sha256": "f193f86527da12cb68e31dfe1dc3ade374debcd144f03b021fcb5a90fa897aa7",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryCreditBoundsTest.xml",
+        "sha256": "c5feb5b2837e8457deb1bcae24f84cdff57b610fb47a615c17af26d4cdc476a1",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryCreditNotificationRecoveryTest.xml",
+        "sha256": "9dc64f93b2a395d13d056f1bb174155d02178cef661b588b084a8da34dcdfd30",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryCreditResourceRecoveryTest.xml",
+        "sha256": "a3d36e5e045da770d0d83e4128625ebfd2d9a42b80c84a26a8147e19b773d40a",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryCreditSessionErrorTest.xml",
+        "sha256": "ff013467a29c7f079eea79606fe0b019caae0300a7551a95a581d30d8911d2db",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryImportTest.xml",
+        "sha256": "9c65480dc8a5a46f80ed49770111533dca0a6731b5c8ed1fdd045344e69f9621",
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryTypographyTest.xml",
+        "sha256": "2b868a632d3e58fde145d35666a2b1a254c2800cd2bf7a688647c55d8b7b02dc",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryVerticalStatusTest.xml",
+        "sha256": "009e196968d9339972352082c2d8dd47399ac3575758cadd1cb6961999dc41ec",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.IcoCodecTest.xml",
+        "sha256": "4332c8c6233dceb74dd1814205d75c815a46ba4da6ae96dabab880da7016eb92",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageCreditArchiveTest.xml",
+        "sha256": "71cf4da1c4381d07edc448b5752d0de3fc661db95f92f448fd06094eeaeada3d",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageCreditLifecycleTest.xml",
+        "sha256": "427ff1967eb84f3573e21ab8e40b04f3f982dec9467c4b2fe459a91d8381227e",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageCreditTextPagesTest.xml",
+        "sha256": "b31da9a86a596f58a99bb586b7ffe7f3be93c6bc68ced1b65c205fea35d42e10",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageMemoryPolicyTest.xml",
+        "sha256": "b3dff4080ffc96c3a74a083c558621aa86390a38daa79daae64de91c55e3cf99",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageResizeFlowTest.xml",
+        "sha256": "a45b9af35880d3c6f3b465872f32af5254ce275ff80d7048ed1f8215798b8661",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImportMemoryIntegrationTest.xml",
+        "sha256": "6b7aaad1cb1682f9dd3c6250929d0005686d4ac4efda1d3f5a1f3a38f9830849",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImportSelectionFlowTest.xml",
+        "sha256": "c2eec1fd7242a4cc6d2ff92c6b3cc5e3788504d49f335b7162d162a01db23d4c",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LegacyBitmapCodecTest.xml",
+        "sha256": "f2fc4168a4f00e4face5c8a3ac0b69654464acdda02e6575c52bb2e90eb0ca87",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LegacyImageCreditsActivityTest.xml",
+        "sha256": "5890d0c15b09c204d3c9f97b8575ce0e37c6a2d2eeec06e693cd893ca8b21c60",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LegacyImageCreditsTest.xml",
+        "sha256": "dc34d948aa25bff28a69751a4c37d95aeb86ff31be0fe310ad2a98b372083527",
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LegacyImageCreditsUpgradeTest.xml",
+        "sha256": "4003cd89448721de9118467b4bd7084791dfde080bf350510b9986713e25f328",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleNotificationTest.xml",
+        "sha256": "67dc28ebab3a5b9bccdaf41675fc8edf8111872d284b58f7b2e4f09e51ce5764",
+        "tests": 30,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleNumberInputTest.xml",
+        "sha256": "40e008c977e8df61b1df389b16619ae2a2e54e2849bfca04f9e3a1c9e0952ecc",
+        "tests": 35,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleTooltipControlsTest.xml",
+        "sha256": "7993b696d7ac2df8a6e4e506f4d106f82ddbdc48bb879e2a014c6d8a87321e4c",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleTooltipTest.xml",
+        "sha256": "bcceb1af9fb9134280b75ea330fc6f48aab64f430bfd416d27603169e47a6920",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleTooltipWindowTest.xml",
+        "sha256": "8a4ad239399207913da6d83eba2329b62844c8de0a154cc17896a6fb3d070334",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleTypographyApi21Test.xml",
+        "sha256": "4f79a0a7f7c2790e95aa7a38a6c45975f85c0c4f4bbfaa0bf9c8823716eb7960",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocaleTypographyTest.xml",
+        "sha256": "84fec4f15db176e306d2984e803d9c802d34a881b5a439e02f0bf8762ba27588",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.PencilWidthTest.xml",
+        "sha256": "975b700a88af1bf7f1f1d2985da0493fb23ccfa0c3a8f1290f0abf25baba316a",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ProtectedDraftWarningTest.xml",
+        "sha256": "f971d4db53ced2cfa0ba83974bc68fd62324e46663d04d04fc99a849cc3e2812",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ResponsiveToolboxTest.xml",
+        "sha256": "8c74fc211a38f24a7f68a448ec6b703058d2fc759f217a5cdaaa69b84eca75d2",
+        "tests": 19,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.SavedImageSettingsTest.xml",
+        "sha256": "bcbd7dd97cebc589a7c007f3862e2d7db76a6c5be87b201ec710116e0f330edc",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.SizingAndTrimTest.xml",
+        "sha256": "67457666da86f23d2a22877af4d4d09476858be90a29eac7c5e2188e01a113ce",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.SvgOriginalSizeTest.xml",
+        "sha256": "37522f0bf6d806404f0fd29f816781024d748f8754ce45cd61ef126d5432beff",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TextImageCodecTest.xml",
+        "sha256": "5d09ded82779a85a1c76e94db5dc40520aa91cf4b1e0762d7782a8d18e305223",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TranslationReadinessTest.xml",
+        "sha256": "dbf5861274a095a42e45c449377568d0129db85d034b2ff2314afa190426f350",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.UnifiedEditorTest.xml",
+        "sha256": "25fec8d6a7ede8af477747c2b95170110eb80ff81385924adabaf4fcb4292bf2",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.VerticalCanvasCaptionGeometryTest.xml",
+        "sha256": "be3b669c03844dab17370cfb4986f1b718f5225ac545d3ca3a2830e27a84d741",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.VerticalCanvasCaptionTest.xml",
+        "sha256": "7c5ac0ca3854e8489e41d3fe20f6e830bab23c4468f5fe5f448714d75f75e5c6",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.VerticalNoticeResizeCharacterizationTest.xml",
+        "sha256": "da6caf696bef7b8ba05ad67c3e6004adbd7d22f99a69e9ba95ddddb0f7d39883",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.VerticalRibbonTest.xml",
+        "sha256": "73b5b2187bd5a001dcd1db2355e38f4d650663d7251666385f1b5e66cded1570",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ViewportAndVerticalTextTest.xml",
+        "sha256": "2cdadc253f1e431758687249f6ed8eef57aae889e43928a42799f3aad454c2ea",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.WorkspaceRefinementTest.xml",
+        "sha256": "2f7dcf9736fba4af69617ad4f7fde797cc01c33dee5acfde69b2b156fe154308",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "artifact_metadata": {
+    "id": 11659005722,
+    "name": "emulator-api-35-f2162094bec001f13970ae7cf79621aec94c6e3a",
+    "size_in_bytes": 3292946,
+    "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11659005722",
+    "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11659005722/zip",
+    "expired": false,
+    "created_at": "2026-10-10T04:13:55Z",
+    "expires_at": "2026-10-24T04:13:55Z",
+    "updated_at": "2026-10-10T04:13:55Z",
+    "digest": "sha256:cbb0326a2ce6a5e25325bb2fbdc6844d4bb0ac7f99d3eec3ffbbd77a894e0577",
+    "workflow_run": {
+      "id": 38022416053,
+      "repository_id": 1362702425,
+      "head_repository_id": 1362702425,
+      "head_branch": "test/native-vertical-locale-input-20261007",
+      "head_sha": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88"
+    }
+  }
+}
