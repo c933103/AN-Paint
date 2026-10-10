@@ -14,6 +14,7 @@ from unittest.mock import Mock, patch
 from run_android_instrumentation import declared_tests, restart_partition, source_tests_sha256
 from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, app_partition, report_paths
 from test_vertical_locale_matrix import report_for
+from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -100,6 +101,7 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             (root/'tools').mkdir()
             shutil.copyfile(SCRIPT.with_name('run_android_instrumentation.py'),root/'tools/run_android_instrumentation.py')
             shutil.copyfile(SCRIPT.with_name('vertical_locale_matrix.py'),root/'tools/vertical_locale_matrix.py')
+            shutil.copyfile(SCRIPT.with_name('app_instrumentation_matrix.py'),root/'tools/app_instrumentation_matrix.py')
             source=root/'app/src/androidTest';source.mkdir(parents=True)
             for name,method in (('EditorDeviceTest','ordinary'),('FutureTest','future'),
                                 ('AcceptedCreditRestartSeedTest','seed'),('AcceptedCreditRestartVerifyTest','verify')):
@@ -109,12 +111,15 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             apk.parent.mkdir(parents=True);apk.touch()
             (source/'VerticalLocaleDeviceTest.kt').write_text('package paint.anpaint.android\nclass VerticalLocaleDeviceTest {\n'+
                 ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(VERTICAL_METHODS))+'}\n')
+            (source/'GalleryDraftDeviceTest.kt').write_text('package paint.anpaint.android\nclass GalleryDraftDeviceTest {\n'+
+                ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(GALLERY_METHODS))+'}\n')
             report=root/'report/app/androidTest-results';report.mkdir(parents=True)
             parts=app_partition(declared_tests(source,sdk_level=35),35)
             for phase, path in report_paths(root/'report', 35).items():
                 if phase in ('seed', 'verify'): continue
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text(json.dumps(report_for(phase, parts[phase], 35, source_tests_sha256(source))))
+                path.write_text(json.dumps(report_for(phase, parts[phase], 35, source_tests_sha256(source),
+                    declared_tests(source)-declared_tests(source,sdk_level=35))))
             stale=root/'report/app/accepted-credit-restart/verify'
             stale.mkdir(parents=True)
             (stale/'summary.json').write_text('{"success":true}')
@@ -214,7 +219,7 @@ report="$CI_TEST_DIR/report"
 adb="$CI_TEST_DIR/adb"
 variant=debug
 run_credit_restart_regression || exit "$?"
-python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/androidTest --sdk 35 --root "$report"
+python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest --sdk 35 --root "$report"
 '''
             started=time.monotonic()
             process=subprocess.Popen(['bash','-c',command],cwd=root,text=True,stdout=subprocess.PIPE,
@@ -271,11 +276,12 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],7)
-                self.assertEqual(coverage['completed_tests'],7)
+                self.assertEqual(coverage['declared_tests'],11)
+                self.assertEqual(coverage['sdk_eligible_tests'],10)
+                self.assertEqual(coverage['completed_tests'],10)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],{'ordinary':1, **{phase:2 for phase in VERTICAL_SHARDS}, 'seed':1, 'verify':1})
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, **{phase:2 for phase in VERTICAL_SHARDS}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -285,7 +291,7 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],8)
+        self.assertEqual(coverage['completed_tests'],11)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -354,13 +360,13 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],8)
-        self.assertEqual(coverage['completed_tests'],8)
+        self.assertEqual(coverage['declared_tests'],11)
+        self.assertEqual(coverage['completed_tests'],11)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),
             ('paint.anpaint.android.AcceptedCreditRestartSeedTest','seed'),
-            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS})
+            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS} | {(GALLERY_DRAFT,name) for name in GALLERY_METHODS})
 
     def test_secondary_cleanup_timeout_still_retains_partial_diagnostics(self):
         process=Mock(pid=-1)
@@ -425,6 +431,7 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
         self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
         self.assertEqual(source.count('--timeout-seconds 180'),4)
+        self.assertEqual(source.count('--timeout-seconds 90'),1)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 
 

@@ -18,6 +18,46 @@ APK or completing unrelated work.
 | Run workflow → `none` | Yes | Yes | Explicitly not run |
 | Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
 
+A PR with the `ci:full-android` label uses the existing API 30/35 matrix on its
+next normal opened/synchronized/reopened run. Apply the label before publishing
+the code update that needs cross-version coverage, then verify the run's actual
+matrix. Applying/removing the label alone does not trigger or cancel a workflow.
+This opt-in is for a diagnosed cross-version risk, not the default for routine
+edits. It adds no new test runner and does not waive ordinary test inventory,
+timeouts, artifact provenance or release requirements.
+
+For premerge release-variant verification, the `ci:release-android` PR label
+selects release host checks, APKs, instrumentation and the API 30/35 matrix on
+the next normal opened/synchronized/reopened run. This label includes full
+coverage; `ci:full-android` alone retains the debug variant. Verify the label
+before publishing the reviewed source update, then inspect both actual emulator
+jobs and `build-info.json`'s `build_variant` for that exact source. A label change
+alone does not start a run, and rerunning an earlier debug run is not release
+verification. The existing `-PciReleaseSigning` path uses the temporary CI debug
+key for these release-configured APKs; it does not access the private upgrade key
+or publish a release. No credentials, security settings or release-publication
+triggers are changed by this opt-in.
+
+The independent **Exact-script resource generation** job runs the pinned Gradle
+8.13/AGP 8.13 toolchain in a disposable exact-HEAD worktree. It verifies clean
+debug/release resource merges (including release-first after another clean),
+generation before each direct resource consumer, byte-identical XML output,
+an unchanged up-to-date run, an input-change rerun, and stale-output removal.
+Its only excluded task is `:Paintroid:bundleCorrespondingSource`, whose native
+source download/bundling graph is tested by the ordinary build. No resource
+producer/consumer is excluded. The harmless temporary XML comment and stale
+output fixture never change the checkout or the published translations.
+Logs, task outcomes, input/output hashes and a strict success summary are in
+`exact-script-generation-<commit>`. A missing or failed report is not a pass.
+
+`EditorDeviceTest.mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation`
+uses the installed app's visible picker for mixed-script Korean → ordinary
+Korean → mixed-script Korean. It checks fixed Save/Copy-credit text, public
+preference/platform/Java locale identity and the private configured resource
+tag before and after a real orientation/dimension change. Per-phase JSON is
+logged under `ExactScriptResourceTest` in the retained emulator logcat. This is
+complementary to API30/API35 native-resource JVM tests, not linguistic acceptance.
+
 Direct pushes to a working branch do not duplicate a PR/default-branch run.
 Pull requests targeting another working branch receive the same checks as those
 targeting `develop`. Stacked localization PRs therefore do not need temporary
@@ -48,9 +88,12 @@ jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
 accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the restart pair, which run separately before
-and after an external force-stop. Their exact disjoint union is checked against
-the full source inventory; an exclusion is never treated as a passed test.
+ordinary app invocation excludes the three gallery-draft methods, four vertical
+methods and the restart pair. The unchanged gallery-draft class runs separately
+with a 90-second ceiling; the vertical methods run in two 180-second shards. The
+restart pair runs separately before and after an external force-stop. The
+exact disjoint union is checked against the full SDK-aware source inventory on
+both APIs; an exclusion is never treated as a passed test.
 
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
@@ -70,7 +113,7 @@ took 17m1s for universal assembly. The final
 took 3m54s, with 2,666 hits from 3,058 cacheable compiler calls (87.18%). These
 are observed run timings, not a controlled benchmark or a guarantee for future
 changes. Direct mode stayed disabled; these were preprocessed cache hits.
-Regression and emulator jobs do not depend on this cache. References: the official
+Cache misses do not bypass compilation; emulator jobs do not use this cache. References: the official
 [CMake 3.22 launcher documentation](https://cmake.org/cmake/help/v3.22/envvar/CMAKE_LANG_COMPILER_LAUNCHER.html),
 [ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
 [Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).
@@ -84,22 +127,29 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
 
 ## Deadlines and evidence
 
-- Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
+- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 35 minutes;
+  each emulator job: 46 minutes, including a 36-minute execution step.
+  These are hard cancellation ceilings, not target runtimes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
   60 seconds; boot and Android service readiness share 120 seconds; main APK
   installation: 60 seconds. Readiness probes have a maximum 10-second attempt
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  ordinary native/app instrumentation invocation: 180 seconds; each of the two
-  vertical locale invocations: 180 seconds (360 seconds aggregate vertical
-  instrumentation allowance, increased from 180); each accepted-credit
-  seed/verify invocation: 60 seconds. The existing whole emulator execution step
-  remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
-  that every ceiling can be exhausted in one step. The new phase durations need
-  exact-head API35 measurement; deadline exhaustion fails rather than relaxing
-  a timeout or substituting a weaker restart test.
-- Emulator shutdown and log collection are bounded. Failure reports upload with
+  native and ordinary-app instrumentation: 180 seconds each; gallery-draft:
+  90 seconds; each of two vertical shards: 180 seconds; accepted-credit seed
+  and verify: 60 seconds each. App-only ceilings sum to 630 seconds on API30
+  and 750 seconds on API35. Including native instrumentation gives 810 / 930
+  seconds, before installation, discovery, startup, boundary and collection.
+  The original composed head retained a 900-second outer step, which was
+  structurally insufficient. The corrected 36-minute step admits the existing
+  controlled subprocess paths plus explicit processing/cleanup allowances; the
+  detailed source-bound model is below. Exact-head combined API30/API35 runtime
+  remains required. Deadline exhaustion fails without relaxing an inner timeout
+  or substituting a weaker restart test.
+- Emulator shutdown and log-collection ADB commands have individual deadlines.
+  Local parsing/file I/O have only the outer step/job cancellation authority; no
+  universal subprocess or filesystem liveness guarantee is claimed. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
   evidence, which must not be described as a pass.
 
@@ -190,8 +240,10 @@ component remains `org.catrobat.paintroid.test`.
 A `develop` code commit whose subject starts with `Release ` selects the release
 variant and the full API 30/35 matrix. Alternatively choose `build_type: release`
 when manually running the workflow. Release always overrides `device_tests: none`.
-Other code pushes and PRs retain the debug/API 35 defaults. Both release host
-regressions/lint and instrumentation compile against the release variant.
+Other code pushes and unlabeled PRs retain the debug/API 35 defaults; `ci:full-android`
+PRs use debug/API 30+35, and `ci:release-android` PRs use release/API 30+35 as
+described above. Both release host regressions/lint and instrumentation compile
+against the release variant.
 The shipped manifest is not debuggable. Code shrinking is disabled in both
 modules, so the tested Java/Kotlin code is preserved. Native release compilation
 uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
@@ -325,9 +377,12 @@ the new drawing's pixels stay unchanged.
 
 Reports remain under the existing API-specific artifact root:
 `app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
-and `coverage.json`. Coverage success requires the ordinary, seed and verify
+and `coverage.json`. Coverage success requires the ordinary, gallery-draft, both vertical shards, seed and verify
 reports to contain mutually disjoint completed identities whose union equals all
-app methods declared in source, including future ordinary classes. A failed seed
+SDK-eligible app methods declared in source, including future ordinary classes.
+The full union is written to `app/ordinary-gallery-coverage.json` and the existing
+API35 restart coverage location only after every required phase passes. Both
+receipts describe the complete composed app union, not only the restart pair. A failed seed
 or host boundary prevents verification and records it as not run. API30 explicitly
 omits both phase classes and records that this API35 flow was not run.
 
@@ -541,3 +596,285 @@ one shared cleanup and preservation of existing boundaries. These checks do not
 compile Android/Kotlin, measure real two-shard device timing or certify images.
 Fresh reviewed exact-source API35 compilation, installed reports, all original
 image/receipt inventories and visual review are still required.
+
+## API30 font write-back synchronization and bounded lint preparation
+
+Release verification run [38018126008](https://github.com/c933103/AN-Paint/actions/runs/38018126008)
+at `80c14372b0504bc44f9f2809ad477247fdc8100b` passed APK/test-APK building and
+API35. API30 reached the correct SDK-aware test inventory, but the gallery
+viewport fixture failed its second 1.0-to-2.0 system font transition. Its log
+shows setting, system resources and target resources briefly agreeing on 1.0;
+the following request for 2.0 finished its original 10-second deadline with all
+three still at 1.0. This is consistent with the pending ATMS configuration
+snapshot overwriting the subsequent setting write. It does not establish a
+production gallery layout defect.
+
+On API30-33, the fixture now follows three-way agreement with a unique
+DisplayManager display-added/removal acknowledgment. In the inspected AOSP API30 source,
+ATMS's persistence message and DisplayManager's display-event messages use
+DisplayThread. The fixture registers a listener, creates a temporary private
+1-by-1 own-content-only virtual display without a Surface, waits for that exact
+ID's added callback, releases it, then requires its removed callback. Under normal
+FIFO delivery with no intervening synchronization barrier, the second acknowledgment
+also covers a snapshot posted while the earlier configuration message was still
+running. DMS messages are asynchronous; ATMS messages are ordinary. A MessageQueue
+synchronization barrier can therefore let both DMS acknowledgments bypass an older
+ATMS persistence message. This is not a portable queue-drain guarantee. The host
+model includes that counterexample, and a callback alone never replaces the real
+font/layout assertions or exact-device verification. Display/listener cleanup
+remains in `finally`. No content is captured, mirrored, presented or drawn on the
+temporary display. The API34+ shell flush remains.
+All waits share the original 10-second transition deadline, including the legacy
+shell output read. Both real 1.0-to-2.0 transitions, the actual setting/system/app
+checks, and every installed gallery/font/viewport oracle remain required.
+The queue model is host-only ordering evidence; exact-head Android compilation
+and API30 runtime verification are still required before calling this repaired.
+
+Source references for the API30 ordering (Android 11.0.0_r27):
+- [AMS supplies DisplayThread to ATMS](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/am/ActivityManagerService.java#L2651-L2653)
+- [ATMS queues configuration persistence](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/wm/ActivityTaskManagerService.java#L5153-L5294)
+- [DisplayManager uses DisplayThread](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L334)
+- [Display creation queues the added event](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L804-L825)
+- [Display event queue and delivery](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L1632-L1669)
+- [Public virtual display API and flags](https://developer.android.com/reference/android/hardware/display/DisplayManager)
+
+The same run's regression job completed Python and JVM checks; JVM elapsed time
+was 518.454 seconds. Its six-minute combined native/lint step built the native
+libraries, entered lint analysis, then stopped without a completed lint result.
+Native preparation and lint now have separate required six-minute steps and
+separate logs/profiles. Lint still runs the complete original task with no task
+exclusions. The checks job reuses the build job's pinned ccache and identical
+content-checking configuration to avoid redundant native compilation. Cached
+classes, linked libraries, APKs and CMake directories remain forbidden; cache
+misses compile normally. The outer 20-minute regression-job limit, all test and
+release gates, and independent APK delivery remain unchanged. The new timing
+must be measured on the next exact-source run; no performance claim is inferred
+from the host contracts.
+
+
+## PR34 ordinary-app timing partition (10 October 2026)
+
+The exact release-configured run at `5703a613` completed its 19-method API35
+ordinary invocation in 178.579 seconds against the unchanged 180-second deadline.
+The retained timing investigation found no demonstrated redundant wait. No test
+body, assertion, fixture synchronization or production behavior is changed here.
+
+`GalleryDraftDeviceTest` now runs its same three complete methods in a separate
+ordinary instrumentation process with a 90-second ceiling. Its historical method
+intervals totaled 41.549 seconds; that is a planning observation from the old
+single invocation, not a measured new-partition duration or guaranteed savings.
+The remaining ordinary invocation keeps its original 180-second ceiling and
+includes the mixed-script Korean picker/rotation check and real font/viewport
+check. API30 selects 15 ordinary + 3 gallery methods; API35 selects 16 ordinary +
+3 gallery + 1 seed + 1 verify. API30 separately records its one SDK-ineligible
+method and the two explicit API35 restart exclusions, none as passes.
+
+The gallery fixture establishes and verifies its own process-local rejecting
+proxy before launching any gallery, prepares each local document/preferences,
+and tears down its own activities, WebViews, monitors, files and proxy. It has no
+dependency on an earlier test method creating those fixtures. New cold-process
+behavior and cross-phase configuration restoration still require exact-source
+emulator validation. A failed ordinary or gallery phase prevents the restart
+boundary; the other independent phase is still attempted for diagnostic evidence.
+
+The repeated exact `--include-test CLASS#METHOD` selector and source-digest/report
+fields are reused byte-for-byte from reviewed PR41 head `107376cb`. No PR41 test
+or branch is imported or modified. `tools/app_instrumentation_matrix.py` requires
+one report per phase, captured matching integer SDKs, exact test-source hashes,
+unchanged declared budgets, complete successful protocol evidence, exact selectors,
+and a disjoint union. New gallery methods, missing/extra/duplicate/skipped cases,
+stale extra report paths, source/SDK mismatches and timeout/failure evidence fail
+closed. Future ordinary methods remain required automatically. Test source hashes
+identify checked-out input bytes; the workflow's exact-source APK provenance must
+still be checked separately. Later PR41 integration must compose both partition
+inventories rather than replace either union check. It needs one authoritative
+composed verifier for ordinary + gallery-draft + both vertical shards + seed/verify,
+writing the combined canonical `app/coverage.json`. Distinct receipt filenames
+alone do not make the current independent PR34/PR41 checkers compatible.
+
+The additional 90-second invocation and its bounded install/discovery overhead are
+explicit extra aggregate work; the 15-minute emulator step and 25-minute job caps,
+180-second native/ordinary and 60-second seed/verify ceilings are unchanged. No
+retry is added. Before accepting the timing fix, measure both API30/API35 release
+jobs on the integrated exact source, require every method and existing oracle,
+and inspect ordinary/gallery elapsed times with a target of at least 30/20 seconds
+of margin respectively. These are acceptance targets, not increased timeouts or
+claims from host tests. If margin is inadequate, diagnose that run rather than
+rerun unchanged source to select a faster sample.
+
+## Composed PR34 / PR41 phase contract (10 October 2026)
+
+The preceding PR34 and PR41 sections retain their historical standalone scope,
+including the failed 180-second vertical run. Their standalone successes do not
+establish that this composition fits its enclosing deadline.
+
+The driver now selects ordinary + gallery-draft + English/Manchu vertical +
+Literary Chinese/emoji vertical + API35 seed/external-stop/verify. The direct-ADB
+runner, all original Kotlin methods and their assertions remain unchanged from
+the accepted source union. API30 requires 15 + 3 + 2 + 2 = 22 app methods, with
+one SDK-suppressed method and two explicit restart exclusions. API35 requires
+16 + 3 + 2 + 2 + 1 + 1 = 25 app methods. A failed ordinary/gallery phase blocks
+the restart boundary; independent vertical shards still collect diagnostic
+coverage, and every failure remains failed.
+
+`tools/app_instrumentation_matrix.py` is the single authoritative source-bound
+verifier for all phases. The former vertical verification command delegates to
+it. Exact report-path inventory spans all three app report roots; stale, extra,
+missing, duplicate, failed, skipped, timed-out or wrong-source/SDK reports fail.
+`app/coverage.json`, `app/ordinary-gallery-coverage.json`,
+`app/vertical-coverage.json` and API35 `app/accepted-credit-restart/coverage.json`
+are separately retained byte-identical receipts of the complete composed union.
+All are removed before validation; no subset checker can overwrite a full pass.
+The original 32 locale captures plus 64 reachability captures, eight receipts,
+native input checks and rendered-image review remain separate required evidence.
+
+The first composed head retained the historical 900-second outer limit despite
+930 seconds of API35 instrumentation ceilings before overhead. Codex identified
+this structural inconsistency. The correction below changes only enclosing CI
+cancellation budgets; every inner deadline, assertion and method is retained.
+Final current-base release-configured API30/API35 CI must
+measure actual complete execution, preserving the ordinary/gallery 30/20-second
+margin targets and every existing artifact/provenance/review gate. Missing SDK
+locally means host/fake-ADB checks only; standalone CI is not combined acceptance.
+
+
+## Corrected composed cancellation budgets (10 October 2026)
+
+The historical sections above describe their original 15-minute / 25-minute
+limits. Those values are superseded for the current combined driver by **36
+minutes for emulator execution and 46 minutes for each emulator job**. Neither
+is a target runtime. The unchanged inner instrumentation ceilings total 930
+seconds on API35 and 810 on API30. The direct-ADB runner and all source tests
+are unchanged by this budget correction.
+
+The source-bound model is checked by `tools/test_ci_timeout_budget.py`. References
+in the following model name functions so that comment-only line shifts do not
+invalidate the explanation:
+
+| API35 controlled component | Seconds | Source |
+|---|---:|---|
+| AVD create, ADB discovery, one shared readiness budget, main APK install | 270 | `ci_emulator.sh:main`: 30 + 60 + 120 + 60 |
+| Seven instrumentation phases | 930 | `main`, gallery, two vertical shards, restart seed and verify |
+| Seven SDK-query / test-APK-install / runner-discovery preparations | 630 | `run_android_instrumentation.py:main`: 7 × (15 + 60 + 15) |
+| Seed-only runner live-PID query | 10 | runner `--leave-target-running` path, distinct from shell PID checks |
+| External restart boundary | 90 | `run_credit_restart_regression`: launcher 30 + four PID checks 10 each + dumpsys 10 + force-stop 10 |
+| Vertical evidence-directory reset | 10 | `run_vertical_locale_matrix`, once before both shards |
+| Seven capture tails | 35 | `capture_live`: 7 × 5; its normal process wait uses the remaining instrumentation deadline |
+| One collection/shutdown path | 54 | `cleanup`: logcat 10+3, pull 15+3, emulator kill 10+3, ten one-second polls |
+| Four possible timeout recoveries while still attempting all seven phases | 40 | native, both vertical shards and verify: runner target force-stop 10 each |
+| Controlled-path envelope | **2,069** | Sum of the preceding rows |
+| Processing/scheduling allowance | **60** | Inventory, protocol/report and visual-evidence processing plus normal local I/O |
+
+Rounding 2,129 seconds upward gives 36 minutes (2,160 seconds). The job retains
+its existing 6-minute image-install step and 4-minute checkout/download/upload
+allowance: 36 + 6 + 4 = 46. The SDK image command remains 5 minutes plus its
+15-second kill grace and is outside the script; it is not counted twice.
+
+The all-success controlled path is 2,029 seconds. The maximum continuing failed
+path is 2,069, and must remain failed. Ordinary/gallery failure skips the entire
+410-second restart portion; allowing five recoveries gives 1,669. Seed failure
+skips the final 50 seconds of external boundary and the 155-second verify
+invocation, giving at most 1,864 with four recoveries. A failure at the last
+external PID check adds its 1-second kill grace but skips verify, giving at most
+1,905. Earlier failures are shorter. API30 has no restart portion and its five
+possible recoveries produce the same 1,669-second envelope.
+
+Startup timeout kill graces terminate a prefix and skip all later tests. The
+readiness probes share one 120-second budget; their retries are not separate
+120-second allowances. Vertical-reset timeout grace skips both shards. Capture
+failure has mutually exclusive suffixes: either 5-second tail + 10-second
+recovery, or exceptional 5-second tail + 5-second final wait. In the latter case
+`capture_live` never returns its tuple, so main's `timed_out` remains false and
+the extra recovery does not run. Cleanup is counted once; pull failure skips
+both visual verifiers, and screenshot failure skips reachability.
+
+This is a configured-path model, not a universal liveness proof. Python inventory,
+union and image-verification processes, file/log I/O, process creation and OS
+termination can stall outside the inner monotonic checks. They have the Actions
+outer cancellation authority, not separate proven deadlines. The 60-second
+processing reserve is an operational allowance. Forced cancellation may leave
+partial evidence, which never becomes a pass.
+
+Historical observations inform these allowances without proving composition:
+PR41 run `38069153905` reached main completion at +547 seconds and completed the
+step in 549; its job overhead excluding the step and image install was 11 seconds.
+PR34 run `38064577479` steps took 274 / 174 seconds on API35 / API30, with residual
+job overhead of 29 / 19 seconds. Their phase results and earlier timeouts remain
+separate historical receipts. Actual corrected combined CI is still required.
+
+The first composed run `38073935029` reported exactly: “The action 'Run Python
+contracts' has timed out after 2 minutes.” Its retained process artifact later
+reported 462 tests in 176.348 seconds, with two inherited optional-Pillow ICO
+checks skipped and wrapper exit 0 at 176.752 seconds. That late artifact does not
+override the failed Actions step. The final local composed suite required 167.102 seconds, versus 144.499 in an
+earlier full run. A 3-minute cap would leave only 12.898 seconds above the higher
+sample, less than the observed 22.603-second spread; 4 minutes is the first whole
+minute covering both. No test is removed and unexpected failures remain failures.
+The checks job moves from 20 to 22 minutes only to preserve its previous aggregate
+allowance after the Python increase. Its step maxima now total 38 minutes before
+untimed overhead, so **22 does not structurally admit every maximum**. That is a
+separate inherited aggregate policy risk, not a solved timeout theorem.
+
+Merge still requires fresh exact-source review and release-configured API30/35
+CI, all original methods and receipts, ordinary/gallery 30/20-second margin
+targets, and the existing source/APK/visual-evidence gates. A larger outer cap
+cannot make an inner timeout or missing method acceptable.
+
+## App-owned vertical evidence export (10 October 2026)
+
+The first combined release run `38073935029` passed API30's 73 native and 22 app
+method union, then failed `adb pull` of its app-specific Android/data screenshot
+directory with `Permission denied`. API35 could collect that exact release
+source's evidence. The API30 union pass and collection failure remain separate;
+no screenshots are accepted from that missing archive. Debug/API30 behavior was
+not measured by that run.
+
+`VerticalEvidenceExportRule` is instrumentation-only. It wraps the four unchanged
+vertical test methods, removes only their exact old synthetic source files and
+owned MediaStore rows, then exports the already-captured bytes after the original
+test and cleanup. The original method bodies, capture-state/native-input
+assertions, release/debug flags, production manifest and strict direct-ADB runner
+are unchanged. Original test failures and export/cleanup errors are retained
+together using suppressed exceptions.
+
+The app uses its own `MediaStore.Downloads` entries under
+`Download/anpaint-ci-vertical-evidence/`; Android 10+ supports access to an app's
+own Downloads entries without new storage permissions. See the
+[Android shared-storage documentation](https://developer.android.com/training/data-storage/shared/media).
+No root, broad storage permission, shell permission adoption or production
+provider is introduced. Clearing files on the host does not clear MediaStore
+rows, so the rule separately queries/deletes only its own exact locale ZIP row,
+including pending rows, with a 16-row duplicate sanity limit. Owner, relative
+path, literal filename and `IS_PENDING` are verified around publication. A pending
+ZIP is read back and byte-hashed before it is made visible; provider SIZE metadata
+is not treated as proof of flushed bytes. Failed pending rows are removed.
+
+Four locale ZIPs each contain 26 unchanged data files plus a bounded manifest:
+eight original screenshots, sixteen reachability screenshots and two JSON
+receipts. The manifests bind the SDK, method identity, exact paths, byte lengths
+and SHA256 values. Partial exports remain diagnostics and cannot satisfy the
+complete marker. Files are limited to 2 MiB, each locale to 8 MiB uncompressed and
+8 MiB ZIP, the combined data to 32 MiB, and each manifest to 64 KiB. The preceding
+API35 release sample had 104 data files totaling 7,127,121 bytes; its largest was
+a 605,630-byte JSON receipt. Size checks precede large content allocation and
+copying uses bounded chunks.
+
+The host resets only this public synthetic export directory inside the existing
+10-second reset deadline, and pulls it inside the existing 15-second collection
+deadline. `vertical_evidence_transport.py` validates every archive and its exact
+allowlisted members before staging into a fresh destination, then atomically
+publishes the original host layout. Missing/extra/duplicate/renamed or swapped
+ZIPs, traversal, symlinks, encrypted entries, wrong SDK/method/owner, unknown
+manifest fields/duplicate JSON keys, partial markers, size/hash mismatches and
+truncation fail closed. Existing screenshot and native reachability validators
+still run afterward and every prior failure status is retained.
+
+Export work stays inside each unchanged 180-second vertical invocation. The
+36/46-minute outer hard ceilings and all other phase/reset/pull limits remain
+unchanged. Host parsing/export checks are covered by the stated outer processing
+allowance, not by a new universal liveness claim. Host corruption fixtures and
+source contracts cannot prove MediaStore behavior on a device: fresh exact-source
+release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
+source/APK provenance and rendered-image review remain required. Debug is covered
+by the same source path and host selection checks; installed debug compatibility
+must be reported explicitly rather than inferred from release results.

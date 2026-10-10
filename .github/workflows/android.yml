@@ -18,7 +18,7 @@ on:
         options: [current, full, none]
         default: current
 env:
-  BUILD_VARIANT: ${{ inputs.build_type || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ') && 'release' || 'debug') }}
+  BUILD_VARIANT: ${{ inputs.build_type || (((github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && 'release' || 'debug') }}
 permissions:
   contents: read
 concurrency:
@@ -31,7 +31,16 @@ jobs:
   checks:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    # Aggregate stop; individual phase maxima are not a guaranteed combined runtime.
+    timeout-minutes: 22
+    env:
+      CCACHE_MAXSIZE: 2G
+      CCACHE_COMPILERCHECK: content
+      CCACHE_SLOPPINESS: ''
+      CCACHE_NODEPEND: '1'
+      CCACHE_NODIRECT: '1'
+      CMAKE_C_COMPILER_LAUNCHER: ccache
+      CMAKE_CXX_COMPILER_LAUNCHER: ccache
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -47,21 +56,45 @@ jobs:
             Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-checks
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Set native compiler cache directory
+        run: echo "CCACHE_DIR=$RUNNER_TEMP/anpaint-ccache" >> "$GITHUB_ENV"
+      - name: Restore content-checked native compiler cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-checks-x86_64
+          restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
+            native-ccache-v1-ubuntu22-4.5.1-
+      - name: Install pinned compiler cache
+        timeout-minutes: 2
+        run: |
+          timeout --kill-after=5s 90s sudo apt-get install -y --no-install-recommends ccache=4.5.1-1
+          ccache --version
+          ccache --zero-stats
       - name: Prepare build tools and notices
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
       - name: Run Python contracts
         if: ${{ !cancelled() }}
-        timeout-minutes: 2
+        timeout-minutes: 4
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}
         timeout-minutes: 12
         run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
-      - name: Run Android lint and native dependencies
+      - name: Prepare lint native dependencies
+        if: ${{ !cancelled() }}
+        timeout-minutes: 6
+        run: bash tools/ci_run_timed.sh native ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:externalNativeBuild${BUILD_VARIANT^}
+      - name: Run Android lint
         if: ${{ !cancelled() }}
         timeout-minutes: 6
         run: bash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}
+      - name: Report native compiler cache statistics
+        if: always()
+        run: if command -v ccache >/dev/null; then ccache --show-stats; fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -74,6 +107,35 @@ jobs:
             app/build/reports/
             build/reports/ci-phases/
             build/reports/profile/
+
+  exact-script-resources:
+    name: Exact-script resource generation
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+          key: android-resource-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Prepare build tools and notices
+        timeout-minutes: 8
+        run: bash tools/ci_prepare_build.sh
+      - name: Check clean and incremental resource graph in a disposable worktree
+        timeout-minutes: 10
+        run: python3 tools/verify_exact_script_generation.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          archive: true
+          name: exact-script-generation-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: build/reports/exact-script-generation/
 
   build:
     name: Build APK and corresponding source
@@ -108,8 +170,9 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
-          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}
+          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-universal
           restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}-${{ env.BUILD_VARIANT }}-
             native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
             native-ccache-v1-ubuntu22-4.5.1-
       - name: Install pinned compiler cache
@@ -123,10 +186,24 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Build universal APK
         timeout-minutes: 22
-        run: ./gradlew --no-daemon --max-workers=2 --console=plain :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
+        run: bash tools/ci_run_timed.sh apk ./gradlew --no-daemon --max-workers=2 --console=plain --profile :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
       - name: Report native compiler cache statistics
         if: always()
         run: if command -v ccache >/dev/null; then ccache --show-stats; fi
+      # A killed assemble step must still leave inspectable partial build output.
+      # This is diagnostic evidence, never a substitute for APK/device acceptance.
+      - name: Upload build diagnostics even on failure
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          archive: true
+          name: build-diagnostics-${{ github.sha }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            build/reports/ci-phases/
+            build/reports/profile/
       - name: Record build identity and extract matching source
         run: |
           python3 - <<'PY'
@@ -181,11 +258,12 @@ jobs:
     needs: build
     if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-22.04
-    timeout-minutes: 25
+    # 36-minute execution + 6-minute image step + existing 4-minute job overhead.
+    timeout-minutes: 46
     strategy:
       fail-fast: false
       matrix:
-        api: ${{ fromJSON((inputs.device_tests == 'full' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
+        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -206,7 +284,9 @@ jobs:
           sudo chmod a+rw /dev/kvm
           timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"
       - name: Run prebuilt tests with deadlines and live logs
-        timeout-minutes: 15
+        # 2,069s controlled path + 60s processing allowance, rounded up; see CI.md.
+        # Hard cancellation ceiling, not a target runtime or universal liveness bound.
+        timeout-minutes: 36
         env:
           TEST_API: ${{ matrix.api }}
         run: bash tools/ci_emulator.sh

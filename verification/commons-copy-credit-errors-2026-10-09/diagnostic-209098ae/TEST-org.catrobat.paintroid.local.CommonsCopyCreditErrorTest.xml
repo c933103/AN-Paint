@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" tests="14" skipped="0" failures="1" errors="0" timestamp="2026-10-10T02:38:04.153Z" hostname="runnervmwvtoz" time="8.712">
+  <properties/>
+  <testcase name="copyCreditMessagesRemainReadableInRepresentativeScriptsAtNormalScale" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="4.078"/>
+  <testcase name="rejectedClipboardRetainsExistingGenericFailureAndNeverClaimsCopied" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.311"/>
+  <testcase name="oversizedMetadataResponseAndAttributionFieldKeepTheirExistingReasons" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.285"/>
+  <testcase name="metadataQueryAndValidationFailuresKeepTheirExistingReasons" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.494"/>
+  <testcase name="providerAndFrameworkDetailIsInsertedVerbatimOnce" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.129"/>
+  <testcase name="metadataMemoryFailureDoesNotClaimImageInspection" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.159"/>
+  <testcase name="missingEmptyAndWhitespaceOnlyReasonsUseReasonlessCreditMessage" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.451"/>
+  <testcase name="duplicateTapWhileMetadataIsPendingStartsOnlyOneRequest" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.095"/>
+  <testcase name="httpFailureNamesCopyCreditAndDisconnectsWithoutFetchingAnImage" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.112"/>
+  <testcase name="metadataLinkageFailureDoesNotClaimAnImageColourConverterFailure" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.127"/>
+  <testcase name="copyCreditMessagesRemainReadableInRepresentativeScriptsAtLargeScale" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="2.118"/>
+  <testcase name="malformedMetadataKeepsFrameworkDetailWithoutAnExceptionClassName" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.123"/>
+  <testcase name="persistedMixedScriptKoreanSelectionUsesItsExactCopyCreditMessageInTheGallery" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.102">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;이미지 크레딧을 [複寫]할 수 없습니다: Commons me...&gt; but was:&lt;이미지 크레딧을 [복사]할 수 없습니다: Commons me...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;이미지 크레딧을 [複寫]할 수 없습니다: Commons me...&gt; but was:&lt;이미지 크레딧을 [복사]할 수 없습니다: Commons me...&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.CommonsCopyCreditErrorTest$checkFailure$1.invoke(CommonsCopyCreditErrorTest.kt:121)
+	at org.catrobat.paintroid.local.CommonsCopyCreditErrorTest$checkFailure$1.invoke(CommonsCopyCreditErrorTest.kt:115)
+	at org.catrobat.paintroid.local.CommonsCopyCreditErrorTest.withGallery(CommonsCopyCreditErrorTest.kt:92)
+	at org.catrobat.paintroid.local.CommonsCopyCreditErrorTest.checkFailure(CommonsCopyCreditErrorTest.kt:115)
+	at org.catrobat.paintroid.local.CommonsCopyCreditErrorTest.persistedMixedScriptKoreanSelectionUsesItsExactCopyCreditMessageInTheGallery(CommonsCopyCreditErrorTest.kt:174)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="destroyedGalleryDoesNotPublishPendingMetadataFailure" classname="org.catrobat.paintroid.local.CommonsCopyCreditErrorTest" time="0.127"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
