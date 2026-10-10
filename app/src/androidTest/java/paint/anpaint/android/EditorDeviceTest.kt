@@ -812,7 +812,8 @@ class EditorDeviceTest {
                     .put("platform_tag",if(Build.VERSION.SDK_INT>=33)
                         it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags() else org.json.JSONObject.NULL)
                     .put("orientation",config.orientation).put("screen_width_dp",config.screenWidthDp)
-                    .put("screen_height_dp",config.screenHeightDp).put("strings",org.json.JSONObject(values)).toString())
+                    .put("screen_height_dp",config.screenHeightDp)
+                    .put("strings",org.json.JSONObject().apply {values.forEach { (key,value) -> put(key,value) }}).toString())
             }
         }
         try {
