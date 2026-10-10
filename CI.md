@@ -359,3 +359,38 @@ removed or relaxed.
 
 AndroidX precedence and bounds:
 https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+
+## Android 5.0 and 7.0 compatibility — manually triggered only
+
+The separate [Android legacy compatibility workflow](.github/workflows/android-legacy.yml)
+has **only** `workflow_dispatch`. It does not run on pushes, pull requests,
+routine `current` runs or `full` runs. It does not change the regular API 35
+or full API 30/35 matrix, and its result is not an implicit release gate.
+
+From **Actions → Android legacy compatibility (manual) → Run workflow**, choose
+`versions` = `both` (default), `21` (Android 5.0) or `24` (Android 7.0);
+choose `abis` = `both` (default), `x86` (32-bit) or `x86_64`.
+The default dispatch runs four independent emulator jobs. Alternatively,
+from an authenticated local GitHub CLI:
+
+```sh
+gh workflow run android-legacy.yml --ref develop -f versions=both -f abis=both
+```
+
+The build job produces **one identical universal debug APK** plus both test APKs.
+Each selected emulator installs those exact binaries and invokes the existing
+strict test-inventory/protocol runner. A failed install, boot, test, test-inventory
+check or timeout is a failed device job, not a reported success. Each device
+job uploads startup, emulator, logcat and instrumentation reports even if it
+fails. Android 5.0 uses `pm path` for its older package-manager shell, and
+does not attempt the unsupported `wm dismiss-keyguard` command; all first-boot
+emulators use an unprotected lock screen. The native/import and normal editor
+suites still run. Ultra HDR (API 34+) and the separate API35-only gallery
+force-stop phases are explicitly excluded as in existing lower-API runs.
+
+Passing these emulator checks establishes only the recorded emulator/API/ABI
+coverage. It does not prove compatibility with physical ARMv7/ARM64 Android 5/7
+devices, manufacturer document pickers, all native codec variants, or constrained
+RAM. Failures should be corrected and verified in a fresh **manual** dispatch,
+rather than quietly weakening tests or automatically adding legacy device jobs
+to release or push/PR CI.
