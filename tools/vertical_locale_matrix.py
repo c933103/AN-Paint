@@ -6,9 +6,11 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import struct
 
-from run_android_instrumentation import Identity, RESTART_SEED, RESTART_VERIFY, declared_tests
+from run_android_instrumentation import (Identity, RESTART_SEED, RESTART_VERIFY,
+                                         declared_tests, source_tests_sha256)
 
 VERTICAL = 'paint.anpaint.android.VerticalLocaleDeviceTest'
 VERTICAL_METHODS = {
@@ -16,6 +18,16 @@ VERTICAL_METHODS = {
     'literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations',
     'verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations',
     'verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations',
+}
+VERTICAL_SHARDS = {
+    'vertical-english-manchu': {
+        (VERTICAL, 'verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations'),
+        (VERTICAL, 'manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations'),
+    },
+    'vertical-literary-chinese-emoji': {
+        (VERTICAL, 'literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations'),
+        (VERTICAL, 'verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations'),
+    },
 }
 LOCALES = ('mnc-Mong', 'lzh-Hant', 'en-XV', 'qaa-Zsye-XV')
 ORIENTATIONS = ('portrait', 'landscape')
@@ -34,7 +46,11 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     ordinary = expected - vertical - seed - verify
     if vertical != {(VERTICAL, name) for name in VERTICAL_METHODS} or not ordinary:
         raise ValueError('The complete four-locale matrix and ordinary app tests are required')
-    partitions = {'ordinary': ordinary, 'vertical': vertical}
+    shards = list(VERTICAL_SHARDS.values())
+    if (len(shards) != 2 or any(len(part) != 2 for part in shards) or shards[0] & shards[1]
+            or set.union(*shards) != vertical):
+        raise ValueError('Vertical shards must be an exact disjoint two-by-two source inventory')
+    partitions = {'ordinary': ordinary, **VERTICAL_SHARDS}
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if sdk == 35:
@@ -46,7 +62,9 @@ def app_sdk(reports: dict[str, dict], requested_sdk: int) -> int:
     """Use one captured integer SDK for every phase and its source inventory."""
     if type(requested_sdk) is not int or requested_sdk not in (30, 35):
         raise ValueError('The emulator matrix supports SDK 30 or 35')
-    phases = {'ordinary', 'vertical', 'seed', 'verify'} if requested_sdk == 35 else {'ordinary', 'vertical'}
+    phases = {'ordinary', *VERTICAL_SHARDS}
+    if requested_sdk == 35:
+        phases.update(('seed', 'verify'))
     if set(reports) != phases:
         raise ValueError('Completed reports must match every selected app phase exactly')
     captured = [report.get('device_sdk') for report in reports.values()]
@@ -55,7 +73,10 @@ def app_sdk(reports: dict[str, dict], requested_sdk: int) -> int:
     return captured[0]
 
 
-def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dict]) -> dict:
+def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dict],
+                       source_digest: str) -> dict:
+    if not isinstance(source_digest, str) or not re.fullmatch(r'[0-9a-f]{64}', source_digest):
+        raise ValueError('Exact Kotlin test source digest is required')
     sdk = app_sdk(reports, sdk)
     partitions = app_partition(expected, sdk)
     if set(reports) != set(partitions):
@@ -65,7 +86,13 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
     for phase, wanted in partitions.items():
         report = reports[phase]
         identities = [(case['classname'], case['name']) for case in report['cases']]
+        requested = sorted(f'{owner}#{name}' for owner, name in wanted) if phase in VERTICAL_SHARDS else []
         if (report.get('success') is not True or report.get('device_sdk') != sdk
+                or report.get('source_tests_sha256') != source_digest
+                or report.get('included_tests') != requested
+                or report.get('timeout_seconds') != (60 if phase in ('seed', 'verify') else 180)
+                or report.get('timed_out') is not False or report.get('returncode') != 0
+                or report.get('errors') != [] or report.get('missing') != [] or report.get('unexpected') != []
                 or report.get('leave_target_running') is not (phase == 'seed')
                 or report.get('expected_tests') != len(wanted)
                 or report.get('completed_tests') != len(wanted)
@@ -78,9 +105,31 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
     excluded = {item for item in expected if sdk == 30 and item[0] in (RESTART_SEED, RESTART_VERIFY)}
     if completed != expected - excluded:
         raise ValueError('App reports omit selected SDK-eligible source tests')
-    return dict(success=True, device_sdk=sdk, declared_tests=len(expected),
+    return dict(success=True, device_sdk=sdk, source_tests_sha256=source_digest,
+                vertical_timeout_seconds_per_shard=180, vertical_total_timeout_seconds=360,
+                declared_tests=len(expected),
                 selected_tests=len(expected-excluded), explicitly_excluded_tests=sorted(excluded),
                 completed_tests=len(completed), phases=counts, completed=sorted(completed))
+
+
+def report_paths(root: Path, sdk: int) -> dict[str, Path]:
+    paths = {'ordinary': root/'app/androidTest-results/summary.json'}
+    paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
+                  for phase in VERTICAL_SHARDS})
+    if sdk == 35:
+        paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
+                      for phase in ('seed', 'verify')})
+    return paths
+
+
+def read_app_reports(root: Path, sdk: int) -> dict[str, dict]:
+    paths = report_paths(root, sdk)
+    wanted = {paths[phase] for phase in VERTICAL_SHARDS}
+    actual = set((root/'app-vertical').rglob('summary.json'))
+    if actual != wanted:
+        raise ValueError(f'Exact vertical shard report inventory required: '
+                         f'missing={sorted(map(str, wanted-actual))}, unexpected={sorted(map(str, actual-wanted))}')
+    return {phase: json.loads(path.read_text()) for phase, path in paths.items()}
 
 
 def verify_screenshots(directory: Path) -> dict:
@@ -111,8 +160,6 @@ def verify_screenshots(directory: Path) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    exclude = commands.add_parser('exclude-other-classes')
-    exclude.add_argument('--source-tests', type=Path, required=True)
     reports = commands.add_parser('verify-reports')
     reports.add_argument('--source-tests', type=Path, required=True)
     reports.add_argument('--sdk', type=int, choices=(30, 35), required=True)
@@ -121,26 +168,20 @@ def main() -> None:
     screenshots.add_argument('directory', type=Path)
     screenshots.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    if args.command == 'exclude-other-classes':
-        expected = declared_tests(args.source_tests)
-        if {name for owner, name in expected if owner == VERTICAL} != VERTICAL_METHODS:
-            raise ValueError('Complete vertical class is missing from source inventory')
-        print('\n'.join(sorted({owner for owner, _ in expected if owner != VERTICAL})))
-    elif args.command == 'verify-reports':
-        paths = {'ordinary': args.root/'app/androidTest-results/summary.json',
-                 'vertical': args.root/'app-vertical/androidTest-results/summary.json'}
-        if args.sdk == 35:
-            paths.update({phase: args.root/f'app/accepted-credit-restart/{phase}/summary.json'
-                          for phase in ('seed', 'verify')})
-        completed = {phase: json.loads(path.read_text()) for phase, path in paths.items()}
+    if args.command == 'verify-reports':
+        output = args.root/'app/coverage.json'
+        restart_output = args.root/'app/accepted-credit-restart/coverage.json'
+        # A failed verification must not leave an earlier successful union receipt.
+        output.unlink(missing_ok=True)
+        restart_output.unlink(missing_ok=True)
+        completed = read_app_reports(args.root, args.sdk)
         sdk = app_sdk(completed, args.sdk)
         expected = declared_tests(args.source_tests, sdk_level=sdk)
-        result = verify_app_reports(expected, sdk, completed)
-        output = args.root/'app/coverage.json'
+        result = verify_app_reports(expected, sdk, completed, source_tests_sha256(args.source_tests))
         output.write_text(json.dumps(result, indent=2)+'\n')
         # Retain the accepted-credit evidence location for existing consumers.
         if args.sdk == 35:
-            (args.root/'app/accepted-credit-restart/coverage.json').write_text(output.read_text())
+            restart_output.write_text(output.read_text())
         print(json.dumps(result))
     else:
         result = verify_screenshots(args.directory)

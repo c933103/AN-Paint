@@ -91,7 +91,9 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  ordinary native/app instrumentation invocation: 180 seconds; each accepted-credit
+  ordinary native/app instrumentation invocation: 180 seconds; each of the two
+  vertical locale invocations: 180 seconds (360 seconds aggregate vertical
+  instrumentation allowance, increased from 180); each accepted-credit
   seed/verify invocation: 60 seconds. The existing whole emulator execution step
   remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
   that every ceiling can be exhausted in one step. The new phase durations need
@@ -382,25 +384,45 @@ are restored; monitors/listeners are removed at teardown.
 
 The current direct-ADB runner remains the implementation for every invocation.
 The ordinary app suite excludes the vertical class and both accepted-credit
-restart classes. A separate `app-vertical` invocation selects the vertical class
-by excluding all other declared classes, including future additions. Its deadline
-is 180 seconds, matching the unchanged native/ordinary deadlines. The accepted-credit
-seed and verify retain their separate 60-second deadlines, live-PID checks,
-undelivered Gallery state and external force-stop. The whole emulator execution
-step remains capped at 15 minutes; no test is retried and no failed step is ignored.
+restart classes. Two explicit vertical invocations select these original methods:
+
+- `app-vertical-english-manchu`: vertical English and Manchu
+- `app-vertical-literary-chinese-emoji`: Literary Chinese and vertical emoji
+
+Each invocation uses repeatable `--include-test CLASS#METHOD` selectors and keeps
+its 180-second instrumentation ceiling. This provisions 360 seconds of aggregate
+vertical instrumentation allowance, increased from the original 180 seconds.
+It also adds a separate test-APK installation and SDK/runner discovery. This is
+coverage provisioning, not an optimization or a claim that the old deadline was
+met. Both shards execute once even if the first fails; aggregate failure is
+retained. The accepted-credit seed and verify retain their separate 60-second
+deadlines, live-PID checks, undelivered Gallery state and external force-stop.
+The whole emulator execution step remains capped at 15 minutes, independently of
+the inner ceilings. The ceilings do not promise that all phases can exhaust their
+budgets in that outer window. No test is retried and no failed step is ignored.
 
 `tools/vertical_locale_matrix.py` verifies the exact disjoint SDK-specific union
-of ordinary, vertical, seed and verify reports on API35. On API30 it verifies
-ordinary plus vertical and records both restart methods as explicitly excluded,
-never passed. AndroidX SDK-suppressed methods remain separate from these explicit
-class omissions. Every selected method must complete successfully exactly once;
-a missing phase, duplicate identity, skip, missing/non-integer/mismatched device
-SDK or incomplete report fails the gate. Every phase must capture the same SDK
-selected for the run; the captured SDK is validated before source eligibility is
-computed, preserving PR36's minimum/maximum SDK-bound accepted-credit fix. The full receipt is `app/coverage.json`; API35 also retains the
-accepted-credit coverage path for existing evidence consumers.
+of ordinary, both vertical shards, seed and verify reports on API35. On API30 it
+verifies ordinary plus both vertical shards and records both restart methods as
+explicitly excluded, never passed. AndroidX SDK-suppressed methods remain separate
+from these explicit class omissions. Every selected method must complete
+successfully exactly once. A missing, duplicated, swapped, unexpected or obsolete
+monolithic shard report fails. Every report must record the exact selected methods,
+unchanged invocation ceiling, and a SHA-256 binding of all Kotlin test-source
+relative paths and bytes. The binding identifies the checked-out test inputs; APK
+provenance continues to come from the workflow's exact-source build and artifacts.
+A source mismatch, timeout, error, skip, missing/non-integer/mismatched device SDK
+or incomplete report fails the gate, regardless of a reported success flag. Each
+phase must capture the SDK selected for the run before source eligibility is
+computed, preserving minimum/maximum SDK bounds. Unknown, duplicate, malformed,
+class-conflicting or SDK-ineligible method requests fail before installation or
+instrumentation; none can be silently omitted. The full receipt is
+`app/coverage.json`; API35 also retains the accepted-credit coverage path. Old
+union receipts are removed before verification so failure cannot retain a stale
+success receipt.
 
-Fresh matrix screenshots and summaries are cleared before invocation. Bounded
+Fresh matrix screenshots and summaries are cleared once before both invocations.
+The shared device screenshot directory is not cleared between the two shards. Bounded
 EXIT cleanup pulls screenshots before emulator shutdown, including after failure
 or timeout. A successful run requires exactly 32 PNGs: four locales × two
 orientations × workspace / initial Save / format popup / JPEG quality. The host
@@ -412,7 +434,8 @@ Missing collection or inventory makes an otherwise successful job fail. This is
 an inventory/integrity check, not visual review; inspect all 32 rendered images
 before concluding the installed matrix is verified.
 
-Reports are under `app-vertical/androidTest-results`, screenshots under
+Reports are under `app-vertical/english-manchu/androidTest-results` and
+`app-vertical/literary-chinese-emoji/androidTest-results`, screenshots under
 `app/vertical-locale-evidence`, and the screenshot receipt is
 `vertical-locale-screenshots.json`, inside the existing API-specific artifact.
 Host/fake-ADB checks establish selection, accounting, cleanup and failure behavior
@@ -491,3 +514,30 @@ This changes one pre-existing visibility-return line, so "every original line
 unchanged" is no longer an exact claim. Existing assertions and their thresholds,
 production source, workflow and deadlines are preserved. No prior screenshot is
 overwritten or retroactively revalidated by this test-oracle correction.
+
+
+### Explicit vertical workload provisioning (10 October 2026)
+
+[API35 run 38031416670](https://github.com/c933103/AN-Paint/actions/runs/38031416670)
+at PR41 head `f22ff7a206b6e871e54fec4b0e02ae32f7cc4700`, tree
+`d21df4db395b12aeac71600d73394323fa040d51`, failed the original single
+vertical invocation at 180.636 seconds. English, Manchu and emoji completed;
+Literary Chinese began but was terminated during initial portrait navigation.
+The original failed run and incomplete evidence remain failed. Splitting future
+coverage cannot retroactively pass that run or establish fresh installed timing.
+
+This test-only scheduling change preserves all four original Kotlin methods,
+native gestures, stationary anti-fling tails, assertions, screenshot frame waits
+and both orientation paths byte-for-byte. The original 32 screenshots plus all
+64 reachability images and eight receipts remain mandatory, collected once by
+the existing bounded EXIT cleanup. No production/redraw code, evidence pixels,
+workflow YAML, ordinary/restart test boundary or outer deadline changes here.
+The independent rendered-text defect and its production repair require separate
+review; the extra vertical budget cannot repair or certify those pixels.
+
+Host/fake-ADB checks cover strict selection and SDK exclusions, source binding,
+exact disjoint report union, timeout/failure propagation, one execution per shard,
+one shared cleanup and preservation of existing boundaries. These checks do not
+compile Android/Kotlin, measure real two-shard device timing or certify images.
+Fresh reviewed exact-source API35 compilation, installed reports, all original
+image/receipt inventories and visual review are still required.

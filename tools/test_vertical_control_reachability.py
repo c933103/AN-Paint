@@ -138,7 +138,8 @@ class ReachabilityReceiptTest(unittest.TestCase):
                          'registerFrameCommitCallback', 'destination_requests'):
             self.assertIn(required,source)
         driver=(ROOT/'tools/ci_emulator.sh').read_text()
-        self.assertIn('--suite app-vertical --timeout-seconds 180',driver)
+        for shard in ('english-manchu', 'literary-chinese-emoji'):
+            self.assertIn(f'--suite app-vertical-{shard} --timeout-seconds 180',driver)
         self.assertIn('tools/vertical_control_reachability.py',driver)
 
     def test_diagnostic_touch_listener_is_non_consuming_and_does_not_replace_value_listener(self):

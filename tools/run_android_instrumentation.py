@@ -8,6 +8,7 @@ determines success. Reports are written even after installation/runner failures.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -85,6 +86,38 @@ def declared_tests(directory: Path, *, sdk_level: int | None = None) -> set[Iden
     if not seen:
         raise ValueError(f'No declared test methods in {directory}')
     return expected
+
+
+def source_tests_sha256(directory: Path) -> str:
+    """Bind reports to the exact relative paths and bytes of the Kotlin test inputs.
+
+    This identifies the checked-out test source, not the APK's build provenance.
+    The workflow still supplies the already-built APKs from its exact-source build.
+    """
+    files = [(path.relative_to(directory).as_posix(), hashlib.sha256(path.read_bytes()).hexdigest())
+             for path in sorted(directory.rglob('*.kt'))]
+    if not files:
+        raise ValueError(f'No Kotlin test source in {directory}')
+    return hashlib.sha256(json.dumps(files, separators=(',', ':')).encode('utf-8')).hexdigest()
+
+
+def requested_tests(values: list[str], declared: set[Identity], excluded: list[str]) -> set[Identity]:
+    """Reject ambiguous, duplicate, undeclared or conflicting method selectors."""
+    requested: set[Identity] = set()
+    identifier = r'[A-Za-z_$][A-Za-z0-9_$]*'
+    for value in values:
+        if not re.fullmatch(identifier + r'(?:\.' + identifier + r')*#' + identifier, value):
+            raise ValueError(f'--include-test requires one literal CLASS#METHOD identity: {value!r}')
+        owner, method = value.split('#')
+        identity = (owner, method)
+        if identity in requested:
+            raise ValueError(f'Duplicate --include-test identity: {value}')
+        if identity not in declared:
+            raise ValueError(f'Included test not found in source inventory: {value}')
+        if owner in excluded:
+            raise ValueError(f'Included test conflicts with --exclude-class: {value}')
+        requested.add(identity)
+    return requested
 
 
 RESTART_SEED = 'paint.anpaint.android.AcceptedCreditRestartSeedTest'
@@ -308,6 +341,8 @@ def main() -> int:
     parser.add_argument('--suite', required=True)
     parser.add_argument('--component', help='test.package/androidx.test.runner.AndroidJUnitRunner')
     parser.add_argument('--exclude-class', action='append', default=[])
+    parser.add_argument('--include-test', action='append', default=[], metavar='CLASS#METHOD',
+                        help='Run only these exact declared, SDK-eligible methods; repeat for each method')
     parser.add_argument('--leave-target-running', action='store_true',
                         help='API35 accepted-credit seed only: attach to live app and retain activities')
     parser.add_argument('--timeout-seconds', type=int, default=480)
@@ -323,13 +358,16 @@ def main() -> int:
     target_pid = None
     sdk_level = None
     sdk_suppressed: set[Identity] = set()
+    source_digest = None
     try:
         if args.timeout_seconds <= 0:
             raise ValueError('--timeout-seconds must be positive')
         expected = declared_tests(args.source_tests)
+        source_digest = source_tests_sha256(args.source_tests)
         unknown_exclusions = set(args.exclude_class) - {owner for owner, _ in expected}
         if unknown_exclusions:
             raise ValueError(f'Excluded class not found in source inventory: {sorted(unknown_exclusions)}')
+        requested = requested_tests(args.include_test, expected, args.exclude_class)
         device_sdk = subprocess.run([args.adb, 'shell', 'getprop', 'ro.build.version.sdk'],
                                     capture_output=True, text=True, timeout=15, check=True)
         if not re.fullmatch(r'[1-9][0-9]*', device_sdk.stdout.strip()):
@@ -337,7 +375,11 @@ def main() -> int:
         sdk_level = int(device_sdk.stdout.strip())
         eligible = declared_tests(args.source_tests, sdk_level=sdk_level)
         sdk_suppressed = expected - eligible
+        if requested - eligible:
+            raise ValueError(f'Included tests are not eligible for device SDK {sdk_level}: {sorted(requested-eligible)}')
         expected = {item for item in eligible if item[0] not in args.exclude_class}
+        if args.include_test:
+            expected = requested
         if not expected:
             raise ValueError('Exclusions removed every declared test')
         if args.leave_target_running and (len(expected) != 1 or {owner for owner, _ in expected} != {RESTART_SEED}):
@@ -371,6 +413,8 @@ def main() -> int:
             command += ['--no-restart', '-e', 'waitForActivitiesToComplete', 'false']
         if args.exclude_class:
             command += ['-e', 'notClass', ','.join(args.exclude_class)]
+        if args.include_test:
+            command += ['-e', 'class', ','.join(sorted(args.include_test))]
         command.append(component)
         returncode, timed_out = capture_live(command, log, args.timeout_seconds)
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
@@ -386,6 +430,9 @@ def main() -> int:
                                 timed_out=timed_out, run_errors=errors)
         result['component'] = component
         result['excluded_classes'] = args.exclude_class
+        result['included_tests'] = sorted(args.include_test)
+        result['source_tests_sha256'] = source_digest
+        result['timeout_seconds'] = args.timeout_seconds
         result['device_sdk'] = sdk_level
         result['sdk_suppressed_tests'] = sorted(sdk_suppressed)
         result['leave_target_running'] = args.leave_target_running

@@ -11,8 +11,9 @@ import time
 import unittest
 from unittest.mock import Mock, patch
 
-from run_android_instrumentation import declared_tests, restart_partition
-from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, app_partition
+from run_android_instrumentation import declared_tests, restart_partition, source_tests_sha256
+from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, app_partition, report_paths
+from test_vertical_locale_matrix import report_for
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -110,14 +111,10 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
                 ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(VERTICAL_METHODS))+'}\n')
             report=root/'report/app/androidTest-results';report.mkdir(parents=True)
             parts=app_partition(declared_tests(source,sdk_level=35),35)
-            ordinary=parts['ordinary']
-            vertical=root/'report/app-vertical/androidTest-results';vertical.mkdir(parents=True)
-            (vertical/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
-                expected_tests=4,completed_tests=4,cases=[dict(classname=owner,name=name,status='passed')
-                                                       for owner,name in sorted(parts['vertical'])])))
-            (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
-                expected_tests=len(ordinary),completed_tests=len(ordinary),
-                cases=[dict(classname=owner,name=name,status='passed') for owner,name in ordinary])))
+            for phase, path in report_paths(root/'report', 35).items():
+                if phase in ('seed', 'verify'): continue
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(report_for(phase, parts[phase], 35, source_tests_sha256(source))))
             stale=root/'report/app/accepted-credit-restart/verify'
             stale.mkdir(parents=True)
             (stale/'summary.json').write_text('{"success":true}')
@@ -278,7 +275,7 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
                 self.assertEqual(coverage['completed_tests'],7)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],dict(ordinary=1,vertical=4,seed=1,verify=1))
+                self.assertEqual(coverage['phases'],{'ordinary':1, **{phase:2 for phase in VERTICAL_SHARDS}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -427,7 +424,7 @@ python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/an
         self.assertIn('if test "$TEST_API" = 35',source)
         self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
-        self.assertEqual(source.count('--timeout-seconds 180'),3)
+        self.assertEqual(source.count('--timeout-seconds 180'),4)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 
 
