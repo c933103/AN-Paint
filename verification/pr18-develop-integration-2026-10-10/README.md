@@ -1,36 +1,41 @@
-# PR18 current-develop integration evidence
+# PR18 current-develop integration: accepted bounded evidence
 
-This evidence-only branch records source/host acceptance for PR18 head `66c6fd8411dd799c2d2ceb9250c1de500346f3f5`, tree `2ca29f84ce77e8d3be1aa2b7602fa6cca0ca6c31`. It is not an executed source head and adds no production, test, workflow, or historical-evidence changes. The tested PR head remains unchanged.
+Source head `66c6fd8411dd799c2d2ceb9250c1de500346f3f5`, accepted tree `2ca29f84ce77e8d3be1aa2b7602fa6cca0ca6c31`. This is an evidence-only branch; none of its added files changes the tested source head. All original 1,344 source paths are preserved byte/mode-identically.
 
-## Exact composition
+## Exact integration and merge
 
-- PR18 original head: `66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88`.
-- Accepted develop after PR37: `699f3cb0d3e0fe932fbf39779f852c2b5e9dbf3c`.
-- Real merge base: `ff2db040272fa522226da60744316bfeb8695cf0`.
-- The source commit has the PR18 and develop commits as its ordered parents, retaining both histories without force.
-- PR18's 44 delta paths and develop's seven later delta paths are disjoint. The source union is conflict-free and contains exactly 1,344 tracked file entries.
-- Every candidate blob/mode/type equals the PR18 entry for its intended delta or the accepted develop entry otherwise. All accepted production, JVM tests, workflow YAML, PR37 optimized validation/evidence, and PR42 title correction are preserved.
-- Both input manifests were checked against fresh remote recursive trees (1,341 original PR18 and 1,303 develop file entries). All 1,344 remote candidate entries were compared before branch publication. The parent independently recomputed and accepted the exact union.
-- Full composition manifest: `composition.json`, SHA-256 `eca6b2ecd8071a2a90cdc11cfe58cb54fb0f298694c6665dff06a2ba3e3935ec`.
+Original PR18 `66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88` and accepted develop `699f3cb0d3e0fe932fbf39779f852c2b5e9dbf3c` share real merge base `ff2db040272fa522226da60744316bfeb8695cf0`. PR18's 44 changed paths and develop's seven later changed paths are disjoint. The conflict-free 1,344-path union is recorded in `composition.json`, independently recomputed and checked against every remote blob/mode/type before the non-force continuation. PR37 optimized evidence validation and PR42's warning title are preserved.
 
-## Host checks
+PR18 merged as `8b9ce13a4d011abadedb8069f81800f156886846`. Readback verified that exact accepted tree and parents `699f3cb0` and `66c6fd84`. This archival branch does not change develop or perform another merge.
 
-Command from the exact candidate checkout:
+## Exact premerge run and source bytes
 
-`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'`
+[Run 38067267565](https://github.com/c933103/AN-Paint/actions/runs/38067267565), attempt1, passed all three jobs. Artifact/build-info identity proves the actual executed merge was `5c791111d6b29035a59267125d0a6e02e4603e0b`, captured against former PR37 head `dbd4d22e` while retargeting completed. That merge has exactly tree `2ca29f84`; new PR18 head already includes accepted develop `699f3cb0`. The post-retarget synthetic ref `c60c1b79503cebeb4e28bd0b9d9b381aad455fa2` has the same tree and current develop/head parents, but was not the ref executed by this run.
 
-Result: **390 tests passed, zero failures/errors/skips, 143.318 seconds**. `host-tests.log` SHA-256: `eb37ca97a46fa0f773acc157b4355db0faf31286249ea06ed223e7b09b96bb7e`. Deliberately unsuccessful protocol fixtures printed after the unittest summary are negative controls, not test failures or Android runtime observations.
+- Build artifact11676230206: SHA256 `da34ecfc6fe0d73744f8a7b6d94d90f3c3aaf9eef1c20153207498f5596a9dc1`.
+- Regression artifact11675312130: SHA256 `ea1c0b355fbc89dafa805d6fe25a6b33e723e39ab8644b86279c1d030656fa91`.
+- API35 artifact11675547516: 3,255,413 bytes; SHA256 `edd6706eb5851cf90a5503c75b1b2794846d8a0e25f8e1a1146f1a90280637b9`.
 
-`bash -n tools/ci_emulator.sh`, staged and unstaged `git diff --check` passed. The source tree was rechecked after tests. No local Android SDK/ADB was present, so Android compilation and runtime are delegated to the existing exact-head CI; no local Android pass is claimed.
+Production and instrumentation APK compilation passed. Delivered APK/source digests match build-info; APK-embedded and delivered source ZIPs are identical. All1,341 included tracked blobs match the accepted tree. Only two gitignores and one IDEA code-style file are omitted. Four declared native dependency source trees are additionally bundled; this tracked-source comparison does not recertify each upstream blob. See `build-receipt.json`.
 
-The preserved PR37 mode suite exercises 23 invalid prerequisites in each of normal Python, `-O`, and `PYTHONOPTIMIZE=1`, plus valid controls and receipt regressions. Actual historical `verify_scope.py` replay was also run in all three modes. Each output matches the accepted `verification/pr7-pr9-recheck-2026-10-10/source-results.json` byte-for-byte. One identical copy is retained as `replay-normal.json`; all three SHA-256 values are `b7ebadb5eb9d13a4f95bb5499ccce4f5efa493764f5eaf2f1d17105187c7a016`.
+## Host and runtime checks
 
-The SDK-specific source inventories remain API35: 18 ordinary + 4 vertical + 1 seed + 1 verify = 24; API30: 17 ordinary + 4 vertical = 21, with the two restart methods explicitly omitted and one ordinary method separately SDK-suppressed. Omissions are not passes.
+Local command: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'`. Result:390 passed, zero failures/errors/skips,143.318s; complete output is `host-tests.log`. Bash syntax and staged/unstaged whitespace checks passed. Actual historical verifier replay in normal Python, `-O`, and `PYTHONOPTIMIZE=1` is byte-identical to accepted source-results.json; the identical retained copy is `replay-normal.json`. The preserved mode suite covers23 invalid prerequisites in all three modes plus valid controls and receipt regressions.
 
-## Pending exact-head acceptance
+CI Python discovered390, passed388 with two optional Pillow decoder skips,92.660s, within the unchanged120s step deadline. JVM XML:746 cases in78 suites, zero failures/errors/skips. Lint:zero issues. See `regression-receipt.json`.
 
-[Run 38067267565](https://github.com/c933103/AN-Paint/actions/runs/38067267565) is the fresh PR run for head `66c6fd8411dd799c2d2ceb9250c1de500346f3f5`. Artifact identity established the actual tested merge as `5c791111d6b29035a59267125d0a6e02e4603e0b`, with former PR37 head `dbd4d22e1f140618f726d43f830bde178cfa589d` and new PR18 head `66c6fd8411dd799c2d2ceb9250c1de500346f3f5` as parents. This ref was captured before retargeting completed. Its exact tree is `2ca29f84ce77e8d3be1aa2b7602fa6cca0ca6c31`; the new PR18 head already includes accepted develop `699f3cb0`. After retargeting, the current synthetic merge ref `c60c1b79503cebeb4e28bd0b9d9b381aad455fa2` has the same tree and current develop/head parents. Both were fetched and verified. The synthetic current ref is not the ref executed by this run. Its completion, artifacts and 32 fresh screenshot states are not yet accepted by this source/host receipt.
+API35 raw instrumentation was reparsed against exact source inventories and cross-checked with JSON/XML. All98 installed cases passed:74 native,18 ordinary,4 vertical,1 seed,1 verify. Exact24-method app union and the complete live-PID/Gallery/external-force-stop/verified-absence/fresh-verify sequence passed. Phase seconds:82.912 native,160.731 ordinary,122.538 vertical,6.899 seed,8.399 verify. The runner completed at+428s. Existing180s/60s phase ceilings and15-minute outer cap were unchanged.
 
-A normal draft-to-ready transition triggered Code and Security reviews for exact head `66c6fd8`; both were verified running. No duplicate manual request was sent. Existing CI deadlines, including the 120-second Python step and 180-second ordinary/vertical invocations, were not changed. The local host timing exceeds that CI step limit; fresh CI must establish its own timing and any failure must be retained and diagnosed.
+## Fresh reviews and actual images
 
-Earlier PR18 screenshots remain historical evidence for their exact old tree. Full-range control reachability remains PR41's separate follow-up. PR34/PR43, original localization reset obligations, linguistic correctness, API30/release certification and private upgrade signing are not completed by this integration.
+The [verified Codex summary6050354262](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6050354262) names exact head66c6fd84 and completed Code/Security reviews. Separately, Codex added PR reaction558844329 (+1) at16:30:33Z after completion. No inline threads or review findings existed at acceptance. See `codex-review-receipt.json`; the reaction is distinct evidence from the summary badge.
+
+All32 original PNGs are retained individually under `screenshots/`. Each matched the downloaded ZIP/receipt hash, fully decoded, and was individually viewed. All eight native format popups visibly show the open list, including the previously stale English-landscape state. Workspace, initial Save, open-popup and JPEG-quality captures are distinct; no duplicate file or decoded-pixel content remains. The parent separately viewed eight originals, recorded unchanged in `parent-visual-sample.json`.
+
+Acceptance is limited to the API35 capture-state matrix. Manchu landscape slider thumb and several portrait labels/neighboring columns remain clipped. The five questioned dialog regions are pixel-identical to prior accepted66c39ca captures; see `prior-visual-comparison.json`. PR18's visible-center/minimum32dp oracle does not establish whole controls or full-range native gestures. PR41 separately demonstrated ancestor interception and corrected slider ownership and vertical-text redraw; its [prior exact-source evidence](https://github.com/c933103/AN-Paint/pull/41#issuecomment-6095226895) does not retroactively make those fixes present in PR18. No broad usability, linguistic/all-glyph, API30, physical-device, alternate-route or release acceptance is claimed.
+
+## Archive status and later verification
+
+The original API35 ZIP was fully downloaded and digest-checked before acceptance. Its small binary archival parts and the regression-essential ZIP are being added to this same evidence branch; until their manifest is published, only the individual PNGs and the receipts above are claimed durable here. This explicit archival status does not change the completed checks or source.
+
+The independently completed postmerge verification is preserved separately in [postmerge evidence9ec5c371](https://github.com/c933103/AN-Paint/tree/9ec5c3718b3ed0e5359f9a2adf2b44618cae91b7) and [receipt6100769642](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6100769642). This premerge archival continuation does not duplicate that work.
