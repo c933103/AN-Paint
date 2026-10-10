@@ -1,0 +1,145 @@
+Command: python3 -m unittest discover -s tools -p 'test_*.py'
+Recorded PR parent: ff2db040272fa522226da60744316bfeb8695cf0
+Integrated develop: 165a6a503529736527c689e3ac1b5432253d19ee
+Clean two-parent integration tree before the source changes below: 7c31bcba9cb29572bfe29d772ddf39c66dbb075c
+Changed test source/input Git blobs:
+  tools/test_pr7_pr9_evidence_validation.py: 013c9c1801cace2db01ab154fa5eadca71c38498
+  verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: d588ba13f5a897b0710f67bbd93b07b740983151
+All other test/implementation/resource files match that integrated tree.
+Python: 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+Pillow: 12.3.0
+Result: 379 tests passed; zero failures, errors or skips.
+Includes 23 invalid-evidence fixtures in each of normal, -O and PYTHONOPTIMIZE=1 modes.
+This is a recorded result, not an assertion about future checkouts.
+README and this host log are non-executable evidence changes.
+
+...........................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 379 tests in 120.861s
+
+OK
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+
+Post-discovery actual-history replay checks (same executable/input snapshot):
+python3 verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+python3 -O verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+PYTHONOPTIMIZE=1 python3 verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+All three JSON outputs compare byte-identical with each other and source-results.json.
+Output SHA-256: b7ebadb5eb9d13a4f95bb5499ccce4f5efa493764f5eaf2f1d17105187c7a016
+Required historical objects were materialized before these completed replays.

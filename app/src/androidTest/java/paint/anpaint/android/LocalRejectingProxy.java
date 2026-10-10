@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.ProtocolException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -50,7 +51,7 @@ public final class LocalRejectingProxy implements AutoCloseable {
                     int remaining = 65536 - request.length();
                     for (String header = line(input); header != null && !header.isEmpty(); header = line(input)) {
                         remaining -= header.length();
-                        if (remaining < 0) throw new IOException("Proxy fixture header budget exceeded");
+                        if (remaining < 0) throw new ProtocolException("Proxy fixture header budget exceeded");
                     }
                     requests.add(request);
                     // Reject HTTP and HTTPS CONNECT alike. There is no upstream socket,
@@ -70,7 +71,9 @@ public final class LocalRejectingProxy implements AutoCloseable {
                 }
             }
         } catch (IOException error) {
-            if (!closed) failure.compareAndSet(null, error);
+            // Shutdown may race the budget failure after the client socket closes.
+            // Protocol violations remain failures even when close() has begun.
+            if (!closed || error instanceof ProtocolException) failure.compareAndSet(null, error);
         }
     }
 
@@ -82,7 +85,7 @@ public final class LocalRejectingProxy implements AutoCloseable {
             if (value == '\n') return bytes.toString("US-ASCII").replaceFirst("\\r$", "");
             bytes.write(value);
         }
-        throw new IOException("Proxy fixture request line too long");
+        throw new ProtocolException("Proxy fixture request line too long");
     }
 
     @Override public void close() throws IOException, InterruptedException {
