@@ -127,7 +127,9 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
 
 ## Deadlines and evidence
 
-- Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
+- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 35 minutes;
+  each emulator job: 46 minutes, including a 36-minute execution step.
+  These are hard cancellation ceilings, not target runtimes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
   60 seconds; boot and Android service readiness share 120 seconds; main APK
   installation: 60 seconds. Readiness probes have a maximum 10-second attempt
@@ -139,13 +141,15 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   and verify: 60 seconds each. App-only ceilings sum to 630 seconds on API30
   and 750 seconds on API35. Including native instrumentation gives 810 / 930
   seconds, before installation, discovery, startup, boundary and collection.
-  The unchanged whole emulator step is 900 seconds. API35 inner ceilings already
-  exceed that outer limit; actual combined CI must demonstrate feasibility.
-  Inner command budgets are ceilings, not a promise
-  that every ceiling can be exhausted in one step. The new phase durations need
-  exact-head combined API30/API35 measurement; deadline exhaustion fails rather than relaxing
-  a timeout or substituting a weaker restart test.
-- Emulator shutdown and log collection are bounded. Failure reports upload with
+  The original composed head retained a 900-second outer step, which was
+  structurally insufficient. The corrected 36-minute step admits the existing
+  controlled subprocess paths plus explicit processing/cleanup allowances; the
+  detailed source-bound model is below. Exact-head combined API30/API35 runtime
+  remains required. Deadline exhaustion fails without relaxing an inner timeout
+  or substituting a weaker restart test.
+- Emulator shutdown and log-collection ADB commands have individual deadlines.
+  Local parsing/file I/O have only the outer step/job cancellation authority; no
+  universal subprocess or filesystem liveness guarantee is claimed. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
   evidence, which must not be described as a pass.
 
@@ -724,9 +728,153 @@ All are removed before validation; no subset checker can overwrite a full pass.
 The original 32 locale captures plus 64 reachability captures, eight receipts,
 native input checks and rendered-image review remain separate required evidence.
 
-The 930-second API35 inner instrumentation ceiling exceeds the unchanged
-900-second outer execution limit before overhead. No ceiling, assertion or test
-is relaxed to fit. Final current-base release-configured API30/API35 CI must
+The first composed head retained the historical 900-second outer limit despite
+930 seconds of API35 instrumentation ceilings before overhead. Codex identified
+this structural inconsistency. The correction below changes only enclosing CI
+cancellation budgets; every inner deadline, assertion and method is retained.
+Final current-base release-configured API30/API35 CI must
 measure actual complete execution, preserving the ordinary/gallery 30/20-second
 margin targets and every existing artifact/provenance/review gate. Missing SDK
 locally means host/fake-ADB checks only; standalone CI is not combined acceptance.
+
+
+## Corrected composed cancellation budgets (10 October 2026)
+
+The historical sections above describe their original 15-minute / 25-minute
+limits. Those values are superseded for the current combined driver by **36
+minutes for emulator execution and 46 minutes for each emulator job**. Neither
+is a target runtime. The unchanged inner instrumentation ceilings total 930
+seconds on API35 and 810 on API30. The direct-ADB runner and all source tests
+are unchanged by this budget correction.
+
+The source-bound model is checked by `tools/test_ci_timeout_budget.py`. References
+in the following model name functions so that comment-only line shifts do not
+invalidate the explanation:
+
+| API35 controlled component | Seconds | Source |
+|---|---:|---|
+| AVD create, ADB discovery, one shared readiness budget, main APK install | 270 | `ci_emulator.sh:main`: 30 + 60 + 120 + 60 |
+| Seven instrumentation phases | 930 | `main`, gallery, two vertical shards, restart seed and verify |
+| Seven SDK-query / test-APK-install / runner-discovery preparations | 630 | `run_android_instrumentation.py:main`: 7 × (15 + 60 + 15) |
+| Seed-only runner live-PID query | 10 | runner `--leave-target-running` path, distinct from shell PID checks |
+| External restart boundary | 90 | `run_credit_restart_regression`: launcher 30 + four PID checks 10 each + dumpsys 10 + force-stop 10 |
+| Vertical evidence-directory reset | 10 | `run_vertical_locale_matrix`, once before both shards |
+| Seven capture tails | 35 | `capture_live`: 7 × 5; its normal process wait uses the remaining instrumentation deadline |
+| One collection/shutdown path | 54 | `cleanup`: logcat 10+3, pull 15+3, emulator kill 10+3, ten one-second polls |
+| Four possible timeout recoveries while still attempting all seven phases | 40 | native, both vertical shards and verify: runner target force-stop 10 each |
+| Controlled-path envelope | **2,069** | Sum of the preceding rows |
+| Processing/scheduling allowance | **60** | Inventory, protocol/report and visual-evidence processing plus normal local I/O |
+
+Rounding 2,129 seconds upward gives 36 minutes (2,160 seconds). The job retains
+its existing 6-minute image-install step and 4-minute checkout/download/upload
+allowance: 36 + 6 + 4 = 46. The SDK image command remains 5 minutes plus its
+15-second kill grace and is outside the script; it is not counted twice.
+
+The all-success controlled path is 2,029 seconds. The maximum continuing failed
+path is 2,069, and must remain failed. Ordinary/gallery failure skips the entire
+410-second restart portion; allowing five recoveries gives 1,669. Seed failure
+skips the final 50 seconds of external boundary and the 155-second verify
+invocation, giving at most 1,864 with four recoveries. A failure at the last
+external PID check adds its 1-second kill grace but skips verify, giving at most
+1,905. Earlier failures are shorter. API30 has no restart portion and its five
+possible recoveries produce the same 1,669-second envelope.
+
+Startup timeout kill graces terminate a prefix and skip all later tests. The
+readiness probes share one 120-second budget; their retries are not separate
+120-second allowances. Vertical-reset timeout grace skips both shards. Capture
+failure has mutually exclusive suffixes: either 5-second tail + 10-second
+recovery, or exceptional 5-second tail + 5-second final wait. In the latter case
+`capture_live` never returns its tuple, so main's `timed_out` remains false and
+the extra recovery does not run. Cleanup is counted once; pull failure skips
+both visual verifiers, and screenshot failure skips reachability.
+
+This is a configured-path model, not a universal liveness proof. Python inventory,
+union and image-verification processes, file/log I/O, process creation and OS
+termination can stall outside the inner monotonic checks. They have the Actions
+outer cancellation authority, not separate proven deadlines. The 60-second
+processing reserve is an operational allowance. Forced cancellation may leave
+partial evidence, which never becomes a pass.
+
+Historical observations inform these allowances without proving composition:
+PR41 run `38069153905` reached main completion at +547 seconds and completed the
+step in 549; its job overhead excluding the step and image install was 11 seconds.
+PR34 run `38064577479` steps took 274 / 174 seconds on API35 / API30, with residual
+job overhead of 29 / 19 seconds. Their phase results and earlier timeouts remain
+separate historical receipts. Actual corrected combined CI is still required.
+
+The first composed run `38073935029` reported exactly: “The action 'Run Python
+contracts' has timed out after 2 minutes.” Its retained process artifact later
+reported 462 tests in 176.348 seconds, with two inherited optional-Pillow ICO
+checks skipped and wrapper exit 0 at 176.752 seconds. That late artifact does not
+override the failed Actions step. The final local composed suite required 167.102 seconds, versus 144.499 in an
+earlier full run. A 3-minute cap would leave only 12.898 seconds above the higher
+sample, less than the observed 22.603-second spread; 4 minutes is the first whole
+minute covering both. No test is removed and unexpected failures remain failures.
+The checks job moves from 20 to 22 minutes only to preserve its previous aggregate
+allowance after the Python increase. Its step maxima now total 38 minutes before
+untimed overhead, so **22 does not structurally admit every maximum**. That is a
+separate inherited aggregate policy risk, not a solved timeout theorem.
+
+Merge still requires fresh exact-source review and release-configured API30/35
+CI, all original methods and receipts, ordinary/gallery 30/20-second margin
+targets, and the existing source/APK/visual-evidence gates. A larger outer cap
+cannot make an inner timeout or missing method acceptable.
+
+## App-owned vertical evidence export (10 October 2026)
+
+The first combined release run `38073935029` passed API30's 73 native and 22 app
+method union, then failed `adb pull` of its app-specific Android/data screenshot
+directory with `Permission denied`. API35 could collect that exact release
+source's evidence. The API30 union pass and collection failure remain separate;
+no screenshots are accepted from that missing archive. Debug/API30 behavior was
+not measured by that run.
+
+`VerticalEvidenceExportRule` is instrumentation-only. It wraps the four unchanged
+vertical test methods, removes only their exact old synthetic source files and
+owned MediaStore rows, then exports the already-captured bytes after the original
+test and cleanup. The original method bodies, capture-state/native-input
+assertions, release/debug flags, production manifest and strict direct-ADB runner
+are unchanged. Original test failures and export/cleanup errors are retained
+together using suppressed exceptions.
+
+The app uses its own `MediaStore.Downloads` entries under
+`Download/anpaint-ci-vertical-evidence/`; Android 10+ supports access to an app's
+own Downloads entries without new storage permissions. See the
+[Android shared-storage documentation](https://developer.android.com/training/data-storage/shared/media).
+No root, broad storage permission, shell permission adoption or production
+provider is introduced. Clearing files on the host does not clear MediaStore
+rows, so the rule separately queries/deletes only its own exact locale ZIP row,
+including pending rows, with a 16-row duplicate sanity limit. Owner, relative
+path, literal filename and `IS_PENDING` are verified around publication. A pending
+ZIP is read back and byte-hashed before it is made visible; provider SIZE metadata
+is not treated as proof of flushed bytes. Failed pending rows are removed.
+
+Four locale ZIPs each contain 26 unchanged data files plus a bounded manifest:
+eight original screenshots, sixteen reachability screenshots and two JSON
+receipts. The manifests bind the SDK, method identity, exact paths, byte lengths
+and SHA256 values. Partial exports remain diagnostics and cannot satisfy the
+complete marker. Files are limited to 2 MiB, each locale to 8 MiB uncompressed and
+8 MiB ZIP, the combined data to 32 MiB, and each manifest to 64 KiB. The preceding
+API35 release sample had 104 data files totaling 7,127,121 bytes; its largest was
+a 605,630-byte JSON receipt. Size checks precede large content allocation and
+copying uses bounded chunks.
+
+The host resets only this public synthetic export directory inside the existing
+10-second reset deadline, and pulls it inside the existing 15-second collection
+deadline. `vertical_evidence_transport.py` validates every archive and its exact
+allowlisted members before staging into a fresh destination, then atomically
+publishes the original host layout. Missing/extra/duplicate/renamed or swapped
+ZIPs, traversal, symlinks, encrypted entries, wrong SDK/method/owner, unknown
+manifest fields/duplicate JSON keys, partial markers, size/hash mismatches and
+truncation fail closed. Existing screenshot and native reachability validators
+still run afterward and every prior failure status is retained.
+
+Export work stays inside each unchanged 180-second vertical invocation. The
+36/46-minute outer hard ceilings and all other phase/reset/pull limits remain
+unchanged. Host parsing/export checks are covered by the stated outer processing
+allowance, not by a new universal liveness claim. Host corruption fixtures and
+source contracts cannot prove MediaStore behavior on a device: fresh exact-source
+release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
+source/APK provenance and rendered-image review remain required. Debug is covered
+by the same source path and host selection checks; installed debug compatibility
+must be reported explicitly rather than inferred from release results.

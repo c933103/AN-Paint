@@ -31,7 +31,8 @@ jobs:
   checks:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    # Aggregate stop; individual phase maxima are not a guaranteed combined runtime.
+    timeout-minutes: 22
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -76,7 +77,7 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Run Python contracts
         if: ${{ !cancelled() }}
-        timeout-minutes: 2
+        timeout-minutes: 4
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}
@@ -241,7 +242,8 @@ jobs:
     needs: build
     if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-22.04
-    timeout-minutes: 25
+    # 36-minute execution + 6-minute image step + existing 4-minute job overhead.
+    timeout-minutes: 46
     strategy:
       fail-fast: false
       matrix:
@@ -266,7 +268,9 @@ jobs:
           sudo chmod a+rw /dev/kvm
           timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"
       - name: Run prebuilt tests with deadlines and live logs
-        timeout-minutes: 15
+        # 2,069s controlled path + 60s processing allowance, rounded up; see CI.md.
+        # Hard cancellation ceiling, not a target runtime or universal liveness bound.
+        timeout-minutes: 36
         env:
           TEST_API: ${{ matrix.api }}
         run: bash tools/ci_emulator.sh

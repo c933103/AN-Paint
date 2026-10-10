@@ -133,8 +133,9 @@ class AppPartitionTest(unittest.TestCase):
         self.assertLess(main.index('run_gallery_draft_regression'),main.index('run_credit_restart_regression'))
         self.assertLess(main.index('run_credit_restart_regression'),main.index('tools/app_instrumentation_matrix.py'))
         workflow=(ROOT/'.github/workflows/android.yml').read_text()
-        self.assertIn('timeout-minutes: 25',workflow)
-        self.assertIn('timeout-minutes: 15',workflow)
+        # Identifier retained; inner phase deadlines remain unchanged under the corrected outer cap.
+        self.assertIn('timeout-minutes: 46',workflow)
+        self.assertIn('timeout-minutes: 36',workflow)
 
 
 class ComposedDriverTest(unittest.TestCase):

@@ -152,13 +152,13 @@ run_vertical_locale_matrix() {
   local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
   local failed=0
   # Never reuse screenshots or a successful summary from a previous invocation.
-  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
-  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
-  timeout --kill-after=3s 10s "$adb" shell rm -rf \
-    /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence || return
+  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence" "$report/vertical-locale-export"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json" "$report/vertical-locale-export.json"
+  timeout --kill-after=3s 10s "$adb" shell \
+    'rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence' || return
   vertical_started=1
   # Two disjoint invocations provision 360s aggregate vertical time (formerly
-  # 180s). Each keeps the existing 180s ceiling; the outer 15m limit is unchanged.
+  # 180s). Each keeps the existing 180s ceiling; CI.md models the enclosing budget.
   # Each original method runs once, with its native input and both orientations.
   phase='Vertical locale native-input matrix: English + Manchu'
   progress "$phase"
@@ -185,7 +185,7 @@ run_vertical_locale_matrix() {
 
 # Same unchanged class, fixtures and method bodies, now a separate ordinary
 # instrumentation process. The explicit 90s budget adds to (never extends) the
-# existing 180s ordinary-app ceiling; the outer 15-minute step is unchanged.
+# existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
 run_gallery_draft_regression() {
   local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
   phase='Gallery-draft instrumentation (90s maximum)'
@@ -209,9 +209,14 @@ cleanup() {
   if (( ${vertical_started:-0} )); then
     mkdir -p "$report/app"
     if ! timeout --kill-after=3s 15s "$adb" pull \
-        /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence \
-        "$report/app/vertical-locale-evidence" > "$report/vertical-locale-pull.log" 2>&1; then
+        /sdcard/Download/anpaint-ci-vertical-evidence \
+        "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
       progress 'FAILED: could not collect vertical locale screenshots' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_evidence_transport.py "$report/vertical-locale-export" \
+        --sdk "$TEST_API" --output "$report/app/vertical-locale-evidence" \
+        --receipt "$report/vertical-locale-export.json" > "$report/vertical-locale-export.log" 2>&1; then
+      progress 'FAILED: incomplete or corrupt app-owned vertical evidence export' >&2
       if (( status == 0 )); then status=1; fi
     elif ! python3 tools/vertical_locale_matrix.py verify-screenshots \
         "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \

@@ -44,6 +44,7 @@ import org.catrobat.paintroid.classic.ToolCategoryButton
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
@@ -63,6 +64,7 @@ import java.util.concurrent.atomic.AtomicReference
 @SdkSuppress(minSdkVersion=29)
 class VerticalLocaleDeviceTest {
     private val instrumentation=InstrumentationRegistry.getInstrumentation()
+    @get:Rule val evidenceExport=VerticalEvidenceExportRule(instrumentation)
     private val context get()=instrumentation.targetContext
     private val device get()=UiDevice.getInstance(instrumentation)
     private lateinit var scenario: ActivityScenario<ClassicPaintActivity>

@@ -313,7 +313,7 @@ sys.path.insert(0, 'tools')
 from vertical_locale_matrix import VERTICAL_SHARDS, VERTICAL
 args=sys.argv[1:]
 with open('events', 'a') as out: out.write(json.dumps(args)+'\n')
-if args[:3]==['shell','rm','-rf']: sys.exit(0)
+if args==['shell','rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence']: sys.exit(0)
 if args[:3]==['shell','am','force-stop']: sys.exit(0)
 if args[0]=='install': print('Success'); sys.exit(0)
 if args==['shell','getprop','ro.build.version.sdk']: print(os.environ['TEST_SDK']); sys.exit(0)
@@ -342,14 +342,17 @@ raise SystemExit('Unexpected command: '+repr(args))
 ''')
                     fake.chmod(0o700)
                     # Keep the production driver and runner untouched. Only this host
-                    # harness shortens capture_live's wait to 1s after asserting that
-                    # the real call requested its unchanged 180s ceiling.
+                    # harness shortens only the deliberately sleeping first shard.
+                    # Successful cases keep the production deadline and the existing
+                    # 15s whole-harness watchdog, avoiding a false 1s startup timeout.
                     shim = root/'runner-harness.py'
-                    shim.write_text("import sys\nfrom unittest.mock import patch\nsys.path.insert(0, 'tools')\n"
+                    shim.write_text("import os, sys\nfrom unittest.mock import patch\nsys.path.insert(0, 'tools')\n"
                         "import run_android_instrumentation as runner\n"
                         "sys.argv = sys.argv[1:]\noriginal = runner.capture_live\n"
                         "def capture(command, log, seconds):\n"
-                        "    assert seconds == 180\n    return original(command, log, 1)\n"
+                        "    if seconds != 180: raise AssertionError('Changed production phase deadline')\n"
+                        "    intentional = os.environ['TEST_FAILURE'] == 'timeout' and any('manchuPickerRibbon' in arg for arg in command)\n"
+                        "    return original(command, log, 1 if intentional else seconds)\n"
                         "with patch.object(runner, 'capture_live', side_effect=capture):\n"
                         "    raise SystemExit(runner.main())\n")
                     command = ('source "$CI_SCRIPT"; '
@@ -372,9 +375,10 @@ raise SystemExit('Unexpected command: '+repr(args))
                     calls = [event for event in events if event[:3]==['shell','am','instrument']]
                     self.assertEqual(len(calls), 2)
                     self.assertNotEqual(calls[0], calls[1])
-                    self.assertEqual(sum(event[:3]==['shell','rm','-rf'] for event in events), 1)
+                    reset=['shell','rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence']
+                    self.assertEqual(events.count(reset), 1)
                     self.assertEqual(sum(event[:3]==['shell','am','force-stop'] for event in events), 1 if failure=='timeout' else 0)
-                    self.assertEqual(events[0][:3], ['shell','rm','-rf'])
+                    self.assertEqual(events[0], reset)
 
     def test_cleanup_collects_before_shutdown_and_never_turns_a_failure_green(self):
         for start, fault, expected_status in ((0, '', 0), (0, 'pull', 1), (0, 'missing', 1),
@@ -391,13 +395,15 @@ raise SystemExit('Unexpected command: '+repr(args))
                     if fault=='reachability_missing': receipt.unlink()
                     else:
                         data=json.loads(receipt.read_text());data['success']=False;receipt.write_text(json.dumps(data))
+                from test_vertical_evidence_transport import export_fixture
+                export_fixture(root/'exports',35,root/'device')
                 fake = root/'adb'
                 fake.write_text('#!'+sys.executable+'\n'+r'''
 import json, os, shutil, sys
 with open('events','a') as out: out.write(json.dumps(sys.argv[1:])+'\n')
 if sys.argv[1]=='pull':
     if os.environ['TEST_FAULT']=='pull': sys.exit(1)
-    shutil.copytree('device',sys.argv[3])
+    shutil.copytree('exports',sys.argv[3])
 ''')
                 fake.chmod(0o700)
                 command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; TEST_API=35; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
@@ -407,7 +413,7 @@ if sys.argv[1]=='pull':
                 events = [json.loads(line) for line in (root/'events').read_text().splitlines()]
                 self.assertLess(next(i for i, event in enumerate(events) if event[0]=='pull'),
                                 next(i for i, event in enumerate(events) if event[:2]==['emu','kill']))
-                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), fault not in ('pull','missing'))
+                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), fault not in ('pull','missing','reachability_missing'))
                 self.assertEqual((root/'report/vertical-control-reachability.json').exists(), not fault)
 
 
