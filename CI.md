@@ -88,9 +88,11 @@ jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
 accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the restart pair, which run separately before
-and after an external force-stop. Their exact disjoint union is checked against
-the full source inventory; an exclusion is never treated as a passed test.
+ordinary app invocation excludes the three gallery-draft methods and the restart
+pair. The unchanged gallery-draft class runs in a separate 90-second invocation;
+the restart pair runs separately before and after an external force-stop. The
+exact disjoint union is checked against the full SDK-aware source inventory on
+both APIs; an exclusion is never treated as a passed test.
 
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
@@ -131,9 +133,12 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  ordinary native/app instrumentation invocation: 180 seconds; each accepted-credit
-  seed/verify invocation: 60 seconds. The existing whole emulator execution step
-  remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
+  ordinary native/app instrumentation invocation: 180 seconds; the separate
+  gallery-draft invocation: 90 seconds; each accepted-credit seed/verify invocation:
+  60 seconds. Splitting the former ordinary app coverage explicitly increases its
+  aggregate ceiling from 180 to 270 seconds. All app invocations together have a
+  270-second API30 / 390-second API35 ceiling (previously 180 / 300 seconds).
+  The existing whole emulator execution step remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
   that every ceiling can be exhausted in one step. The new phase durations need
   exact-head API35 measurement; deadline exhaustion fails rather than relaxing
   a timeout or substituting a weaker restart test.
@@ -365,9 +370,12 @@ the new drawing's pixels stay unchanged.
 
 Reports remain under the existing API-specific artifact root:
 `app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
-and `coverage.json`. Coverage success requires the ordinary, seed and verify
+and `coverage.json`. Coverage success requires the ordinary, gallery-draft, seed and verify
 reports to contain mutually disjoint completed identities whose union equals all
-app methods declared in source, including future ordinary classes. A failed seed
+SDK-eligible app methods declared in source, including future ordinary classes.
+The full union is written to `app/ordinary-gallery-coverage.json` and the existing
+API35 restart coverage location only after every required phase passes. Both
+receipts describe the complete PR34 app union, not only the restart pair. A failed seed
 or host boundary prevents verification and records it as not run. API30 explicitly
 omits both phase classes and records that this API35 flow was not run.
 
@@ -455,3 +463,54 @@ misses compile normally. The outer 20-minute regression-job limit, all test and
 release gates, and independent APK delivery remain unchanged. The new timing
 must be measured on the next exact-source run; no performance claim is inferred
 from the host contracts.
+
+
+## PR34 ordinary-app timing partition (10 October 2026)
+
+The exact release-configured run at `5703a613` completed its 19-method API35
+ordinary invocation in 178.579 seconds against the unchanged 180-second deadline.
+The retained timing investigation found no demonstrated redundant wait. No test
+body, assertion, fixture synchronization or production behavior is changed here.
+
+`GalleryDraftDeviceTest` now runs its same three complete methods in a separate
+ordinary instrumentation process with a 90-second ceiling. Its historical method
+intervals totaled 41.549 seconds; that is a planning observation from the old
+single invocation, not a measured new-partition duration or guaranteed savings.
+The remaining ordinary invocation keeps its original 180-second ceiling and
+includes the mixed-script Korean picker/rotation check and real font/viewport
+check. API30 selects 15 ordinary + 3 gallery methods; API35 selects 16 ordinary +
+3 gallery + 1 seed + 1 verify. API30 separately records its one SDK-ineligible
+method and the two explicit API35 restart exclusions, none as passes.
+
+The gallery fixture establishes and verifies its own process-local rejecting
+proxy before launching any gallery, prepares each local document/preferences,
+and tears down its own activities, WebViews, monitors, files and proxy. It has no
+dependency on an earlier test method creating those fixtures. New cold-process
+behavior and cross-phase configuration restoration still require exact-source
+emulator validation. A failed ordinary or gallery phase prevents the restart
+boundary; the other independent phase is still attempted for diagnostic evidence.
+
+The repeated exact `--include-test CLASS#METHOD` selector and source-digest/report
+fields are reused byte-for-byte from reviewed PR41 head `107376cb`. No PR41 test
+or branch is imported or modified. `tools/app_instrumentation_matrix.py` requires
+one report per phase, captured matching integer SDKs, exact test-source hashes,
+unchanged declared budgets, complete successful protocol evidence, exact selectors,
+and a disjoint union. New gallery methods, missing/extra/duplicate/skipped cases,
+stale extra report paths, source/SDK mismatches and timeout/failure evidence fail
+closed. Future ordinary methods remain required automatically. Test source hashes
+identify checked-out input bytes; the workflow's exact-source APK provenance must
+still be checked separately. Later PR41 integration must compose both partition
+inventories rather than replace either union check. It needs one authoritative
+composed verifier for ordinary + gallery-draft + both vertical shards + seed/verify,
+writing the combined canonical `app/coverage.json`. Distinct receipt filenames
+alone do not make the current independent PR34/PR41 checkers compatible.
+
+The additional 90-second invocation and its bounded install/discovery overhead are
+explicit extra aggregate work; the 15-minute emulator step and 25-minute job caps,
+180-second native/ordinary and 60-second seed/verify ceilings are unchanged. No
+retry is added. Before accepting the timing fix, measure both API30/API35 release
+jobs on the integrated exact source, require every method and existing oracle,
+and inspect ordinary/gallery elapsed times with a target of at least 30/20 seconds
+of margin respectively. These are acceptance targets, not increased timeouts or
+claims from host tests. If margin is inadequate, diagnose that run rather than
+rerun unchanged source to select a faster sample.

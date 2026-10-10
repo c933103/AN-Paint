@@ -144,18 +144,25 @@ SEED_REPORT
     return 1
   fi
   printf 'COMPLETED: see strict verify summary\n' > "$phase_root/verify-status.txt"
-  python3 - "$report/app/androidTest-results/summary.json" "$phase_root" <<'COVERAGE'
-import json, sys
-from pathlib import Path
-sys.path.insert(0, 'tools')
-from run_android_instrumentation import declared_tests, restart_sdk, verify_restart_reports
-root = Path(sys.argv[2])
-reports = [json.loads(path.read_text()) for path in
-           (Path(sys.argv[1]), root/'seed/summary.json', root/'verify/summary.json')]
-sdk_level = restart_sdk(reports)
-coverage = verify_restart_reports(declared_tests(Path('app/src/androidTest'), sdk_level=sdk_level), reports)
-(root/'coverage.json').write_text(json.dumps(coverage, indent=2)+'\n')
-COVERAGE
+  # The main driver verifies the complete ordinary/gallery-draft/seed/verify
+  # union after all selected phases. A restart-only pass is not full app coverage.
+}
+
+# Same unchanged class, fixtures and method bodies, now a separate ordinary
+# instrumentation process. The explicit 90s budget adds to (never extends) the
+# existing 180s ordinary-app ceiling; the outer 15-minute step is unchanged.
+run_gallery_draft_regression() {
+  local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
+  phase='Gallery-draft instrumentation (90s maximum)'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-gallery-draft/androidTest-results" \
+    --suite app-gallery-draft --timeout-seconds 90 \
+    --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
+    --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
+    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
 }
 
 cleanup() {
@@ -230,7 +237,7 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app/accepted-credit-restart"
+  rm -rf "$report/app" "$report/app-gallery-draft"
   editor_failed=0
   phase='Editor instrumentation'
   progress "$phase"
@@ -240,12 +247,14 @@ main() {
     --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
     --suite app --timeout-seconds 180 \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
-    --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest || editor_failed=1
+    --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
+    --exclude-class paint.anpaint.android.GalleryDraftDeviceTest || editor_failed=1
+  run_gallery_draft_regression || editor_failed=1
   if (( editor_failed )); then failed=1; fi
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
-      printf 'NOT RUN: ordinary editor suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
+      printf 'NOT RUN: ordinary editor or gallery-draft suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
     else
       run_credit_restart_regression || failed=1
     fi
@@ -254,6 +263,8 @@ main() {
     printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API30\n' \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
+  python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest \
+    --sdk "$TEST_API" --root "$report" || failed=1
   phase='Instrumentation complete'
   progress "$phase (result $failed)"
   exit "$failed"

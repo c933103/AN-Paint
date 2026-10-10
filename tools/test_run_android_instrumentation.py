@@ -1,5 +1,7 @@
 """Protocol regression checks: adb returning zero is insufficient evidence."""
 import copy
+import contextlib
+import io
 import json
 import subprocess
 import sys
@@ -10,7 +12,8 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from run_android_instrumentation import (declared_tests, parse_protocol, write_reports, main,
-    RESTART_SEED, RESTART_VERIFY, restart_partition, verify_restart_reports)
+    RESTART_SEED, RESTART_VERIFY, restart_partition, verify_restart_reports,
+    requested_tests, source_tests_sha256, capture_live)
 
 OWNER = 'example.EditorTest'
 EXPECTED = {(OWNER, 'draw'), (OWNER, 'save')}
@@ -161,6 +164,126 @@ class SdkInventoryTest(unittest.TestCase):
         actual35 = passing('draw') + passing('save') + FINAL
         self.assertTrue(parse_protocol(actual35, self.inventory(body, 35))['success'])
         self.assertFalse(parse_protocol(actual35, self.inventory(body, 30))['success'])
+
+
+class MethodSelectionTest(unittest.TestCase):
+    def invoke(self, includes=(), excludes=(), *, sdk='35', timed_out=False, output_methods=None):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); source = root/'sources'; source.mkdir()
+            (source/'EditorTest.kt').write_text('package example\nclass EditorTest {\n'
+                '@Test fun draw() {}\n@Test @SdkSuppress(minSdkVersion=33) fun save() {}\n}\n')
+            apk = root/'test.apk'; apk.touch()
+            args = ['runner', '--apk', str(apk), '--source-tests', str(source), '--output', str(root/'report'),
+                    '--suite', 'selection', '--component', 'test/Runner', '--timeout-seconds', '180']
+            for value in includes: args += ['--include-test', value]
+            for value in excludes: args += ['--exclude-class', value]
+            commands = []
+            def run(command, **kwargs):
+                commands.append(command)
+                if command[1:] == ['shell', 'getprop', 'ro.build.version.sdk']:
+                    return subprocess.CompletedProcess(command, 0, sdk+'\n', '')
+                if command[1] == 'install': return subprocess.CompletedProcess(command, 0, 'Success\n', '')
+                if command[1:] == ['shell', 'pm', 'list', 'instrumentation']:
+                    return subprocess.CompletedProcess(command, 0, 'instrumentation:test/Runner (target=example)\n', '')
+                if command[1:] == ['shell', 'am', 'force-stop', 'example']:
+                    return subprocess.CompletedProcess(command, 0, '', '')
+                raise AssertionError(command)
+            def capture(command, log, deadline):
+                commands.append(command)
+                self.assertEqual(deadline, 180)
+                methods = output_methods if output_methods is not None else (
+                    [value.split('#')[1] for value in includes] if includes else
+                    (['draw', 'save'] if int(sdk) >= 33 else ['draw']))
+                log.write_text(''.join(passing(method, len(methods)) for method in methods)+'INSTRUMENTATION_CODE: -1\n')
+                return 0, timed_out
+            with patch.object(sys, 'argv', args), patch('run_android_instrumentation.subprocess.run', side_effect=run), \
+                    patch('run_android_instrumentation.capture_live', side_effect=capture), contextlib.redirect_stdout(io.StringIO()):
+                status = main()
+            return status, commands, json.loads((root/'report/summary.json').read_text()), source_tests_sha256(source)
+
+    def test_repeatable_selection_emits_exact_sorted_class_method_argument(self):
+        for includes in ((OWNER+'#save', OWNER+'#draw'), (OWNER+'#draw',)):
+            status, commands, report, digest = self.invoke(includes)
+            self.assertEqual(status, 0, report)
+            command = commands[-1]
+            index = command.index('class')
+            self.assertEqual(command[index-1:index+2], ['-e', 'class', ','.join(sorted(includes))])
+            self.assertNotIn('notClass', command)
+            self.assertNotIn('--no-restart', command)
+            self.assertNotIn('waitForActivitiesToComplete', command)
+            self.assertEqual(report['included_tests'], sorted(includes))
+            self.assertEqual(report['expected_tests'], len(includes))
+            self.assertEqual(report['source_tests_sha256'], digest)
+
+    def test_unknown_duplicate_malformed_and_conflicting_requests_fail_before_install(self):
+        bad = [((OWNER+'#missing',), ()), (('example.Missing#draw',), ()),
+               ((OWNER+'#draw', OWNER+'#draw'), ()), ((OWNER+'#draw',), (OWNER,))]
+        bad += [((value,), ()) for value in ('', OWNER, '#draw', OWNER+'#', OWNER+'#draw#other',
+                    OWNER+'#draw,'+OWNER+'#save', OWNER+'#draw;echo bad', OWNER+'#draw\n', ' '+OWNER+'#draw')]
+        for includes, excludes in bad:
+            with self.subTest(includes=includes, excludes=excludes):
+                status, commands, report, _ = self.invoke(includes, excludes)
+                self.assertEqual(status, 1)
+                self.assertFalse(report['success'])
+                self.assertFalse(any(command[1]=='install' or 'instrument' in command for command in commands))
+
+    def test_sdk_ineligible_requested_method_is_failure_not_silent_omission(self):
+        for includes in ((OWNER+'#save',), (OWNER+'#save', OWNER+'#draw')):
+            status, commands, report, _ = self.invoke(includes, sdk='30')
+            self.assertEqual(status, 1)
+            self.assertIn('not eligible for device SDK 30', str(report['errors']))
+            self.assertEqual(report['sdk_suppressed_tests'], [[OWNER, 'save']])
+            self.assertFalse(any(command[1]=='install' or 'instrument' in command for command in commands))
+        status, _, report, _ = self.invoke((OWNER+'#draw',), sdk='30')
+        self.assertEqual(status, 0)
+        self.assertEqual(report['sdk_suppressed_tests'], [[OWNER, 'save']])
+
+    def test_no_selection_retains_sdk_eligible_full_inventory(self):
+        for sdk, count in (('30', 1), ('35', 2)):
+            status, commands, report, _ = self.invoke(sdk=sdk)
+            self.assertEqual(status, 0)
+            self.assertEqual(report['included_tests'], [])
+            self.assertEqual(report['expected_tests'], count)
+            self.assertNotIn('class', commands[-1])
+
+    def test_selection_cannot_hide_extra_missing_or_duplicate_actual_results(self):
+        for methods in ([], ['save'], ['draw', 'save'], ['draw', 'draw']):
+            status, _, report, _ = self.invoke((OWNER+'#draw',), output_methods=methods)
+            self.assertEqual(status, 1, report)
+            self.assertFalse(report['success'])
+
+    def test_timeout_fails_even_with_complete_success_output_and_stops_target_once(self):
+        status, commands, report, _ = self.invoke((OWNER+'#draw',), timed_out=True)
+        self.assertEqual(status, 1)
+        self.assertTrue(report['timed_out'])
+        self.assertEqual(report['completed_tests'], 1)
+        self.assertEqual(sum('instrument' in command for command in commands), 1)
+        self.assertEqual(sum(command[1:]==['shell', 'am', 'force-stop', 'example'] for command in commands), 1)
+        self.assertIn('Instrumentation exceeded its deadline', report['errors'])
+
+    def test_capture_enforces_live_deadline_and_preserves_partial_log(self):
+        with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stdout(io.StringIO()):
+            log = Path(directory)/'partial.log'
+            status, timed_out = capture_live([sys.executable, '-u', '-c',
+                'import time; print("partial before deadline"); time.sleep(30)'], log, 1)
+            self.assertTrue(timed_out)
+            self.assertNotEqual(status, 0)
+            self.assertIn('partial before deadline', log.read_text())
+
+    def test_source_digest_binds_paths_and_bytes_independent_of_absolute_checkout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            roots = [Path(directory)/name for name in ('first', 'second')]
+            for root in roots:
+                root.mkdir(); (root/'Example.kt').write_text('original')
+            digest = source_tests_sha256(roots[0])
+            self.assertEqual(digest, source_tests_sha256(roots[1]))
+            (roots[1]/'Example.kt').write_text('changed')
+            self.assertNotEqual(digest, source_tests_sha256(roots[1]))
+            (roots[1]/'Example.kt').write_text('original')
+            (roots[1]/'Example.kt').rename(roots[1]/'Renamed.kt')
+            self.assertNotEqual(digest, source_tests_sha256(roots[1]))
+            (roots[1]/'Renamed.kt').unlink()
+            with self.assertRaises(ValueError): source_tests_sha256(roots[1])
 
 
 class RestartModeTest(unittest.TestCase):

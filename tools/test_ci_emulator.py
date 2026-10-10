@@ -11,7 +11,8 @@ import time
 import unittest
 from unittest.mock import Mock, patch
 
-from run_android_instrumentation import declared_tests, restart_partition
+from run_android_instrumentation import declared_tests, source_tests_sha256
+from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, PHASE_TIMEOUTS, app_partition
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -97,6 +98,7 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             root=Path(directory)
             (root/'tools').mkdir()
             shutil.copyfile(SCRIPT.with_name('run_android_instrumentation.py'),root/'tools/run_android_instrumentation.py')
+            shutil.copyfile(SCRIPT.with_name('app_instrumentation_matrix.py'),root/'tools/app_instrumentation_matrix.py')
             source=root/'app/src/androidTest';source.mkdir(parents=True)
             for name,method in (('EditorDeviceTest','ordinary'),('FutureTest','future'),
                                 ('AcceptedCreditRestartSeedTest','seed'),('AcceptedCreditRestartVerifyTest','verify')):
@@ -104,11 +106,20 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
                 (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test {annotation}fun {method}() {{}} }}\n')
             apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
             apk.parent.mkdir(parents=True);apk.touch()
-            report=root/'report/app/androidTest-results';report.mkdir(parents=True)
-            ordinary=restart_partition(declared_tests(source,sdk_level=35))[0]
-            (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
-                expected_tests=len(ordinary),completed_tests=len(ordinary),
-                cases=[dict(classname=owner,name=name,status='passed') for owner,name in ordinary])))
+            (source/'GalleryDraftDeviceTest.kt').write_text('package paint.anpaint.android\nclass GalleryDraftDeviceTest {\n'+
+                ''.join(f'@Test fun {method}() {{}}\n' for method in sorted(GALLERY_METHODS))+'}\n')
+            expected=declared_tests(source,sdk_level=35)
+            suppressed=[list(item) for item in sorted(declared_tests(source)-expected)]
+            parts=app_partition(expected,35)
+            for phase,relative in (('ordinary','app/androidTest-results'),('gallery-draft','app-gallery-draft/androidTest-results')):
+                report=root/'report'/relative;report.mkdir(parents=True)
+                wanted=parts[phase]
+                (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
+                    source_tests_sha256=source_tests_sha256(source),sdk_suppressed_tests=suppressed,
+                    included_tests=sorted(f'{owner}#{name}' for owner,name in wanted) if phase=='gallery-draft' else [],
+                    timeout_seconds=PHASE_TIMEOUTS[phase],timed_out=False,returncode=0,errors=[],missing=[],unexpected=[],
+                    expected_tests=len(wanted),completed_tests=len(wanted),
+                    cases=[dict(classname=owner,name=name,status='passed') for owner,name in sorted(wanted)])))
             stale=root/'report/app/accepted-credit-restart/verify'
             stale.mkdir(parents=True)
             (stale/'summary.json').write_text('{"success":true}')
@@ -207,6 +218,7 @@ report="$CI_TEST_DIR/report"
 adb="$CI_TEST_DIR/adb"
 variant=debug
 run_credit_restart_regression || exit "$?"
+python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest --sdk 35 --root "$report"
 '''
             started=time.monotonic()
             process=subprocess.Popen(['bash','-c',command],cwd=root,text=True,stdout=subprocess.PIPE,
@@ -263,8 +275,9 @@ run_credit_restart_regression || exit "$?"
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],3)
-                self.assertEqual(coverage['completed_tests'],3)
+                self.assertEqual(coverage['declared_tests'],7)
+                self.assertEqual(coverage['sdk_eligible_tests'],6)
+                self.assertEqual(coverage['completed_tests'],6)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
 
@@ -276,7 +289,7 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],4)
+        self.assertEqual(coverage['completed_tests'],7)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -345,13 +358,13 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],4)
-        self.assertEqual(coverage['completed_tests'],4)
+        self.assertEqual(coverage['declared_tests'],7)
+        self.assertEqual(coverage['completed_tests'],7)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),
             ('paint.anpaint.android.AcceptedCreditRestartSeedTest','seed'),
-            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')})
+            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(GALLERY_DRAFT,method) for method in GALLERY_METHODS})
 
     def test_secondary_cleanup_timeout_still_retains_partial_diagnostics(self):
         process=Mock(pid=-1)
@@ -416,6 +429,7 @@ run_credit_restart_regression || exit "$?"
         self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
         self.assertEqual(source.count('--timeout-seconds 180'),2)
+        self.assertEqual(source.count('--timeout-seconds 90'),1)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 
 
