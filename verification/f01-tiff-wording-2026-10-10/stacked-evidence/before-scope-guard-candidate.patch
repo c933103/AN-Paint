@@ -1,0 +1,966 @@
+diff --git a/Paintroid/src/main/res/values-ar/strings.xml b/Paintroid/src/main/res/values-ar/strings.xml
+index 15ff6df..9d5a625 100644
+--- a/Paintroid/src/main/res/values-ar/strings.xml
++++ b/Paintroid/src/main/res/values-ar/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">حتى أصغر ناتج لا يسمح لذواكر عمل مفكك الترميز لهذه الصورة بالبقاء ضمن حد الذاكرة الحالي. ألغِ واستخدم صورة مصدر أصغر.</string>
+     <string name="formats22_base64_label">نص Base64</string>
+     <string name="formats22_tiff_compression">ضغط دون فقدان (Deflate)</string>
+-    <string name="formats22_tiff_description">يحفظ صفحة RGB واحدة. يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.</string>
++    <string name="formats22_tiff_description">يحفظ صفحة RGB واحدة. قد يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.</string>
+     <string name="formats22_dib_description">يحفظ Windows DIB غير مضغوط بعمق 24 بت. استخدم BMP إذا كان التطبيق المستقبِل يحتاج إلى ترويسة ملف BMP.</string>
+     <string name="formats22_dib_size_limit">تتجاوز الصورة حد حجم ملف DIB.</string>
+     <string name="formats22_import_limit">يتجاوز هذا الملف حد الاستيراد البالغ 512 MiB. اختر ملفًا أصغر.</string>
+diff --git a/Paintroid/src/main/res/values-b+af/strings.xml b/Paintroid/src/main/res/values-b+af/strings.xml
+index ed09626..4bb46f6 100644
+--- a/Paintroid/src/main/res/values-b+af/strings.xml
++++ b/Paintroid/src/main/res/values-b+af/strings.xml
+@@ -566,7 +566,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Selfs die kleinste uitvoer kan nie hierdie beeld se dekodeerder-werkbuffers binne die huidige geheuelimiet pas nie. Kanselleer en gebruik ’n kleiner bronbeeld.</string>
+     <string name="formats22_base64_label">Base64-teks</string>
+     <string name="formats22_tiff_compression">Lossless kompressie (Deflate)</string>
+-    <string name="formats22_tiff_description">Stoor een RGB-bladsy. Kompressie verklein die lêer sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.</string>
++    <string name="formats22_tiff_description">Stoor een RGB-bladsy. Kompressie kan die lêer verklein sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.</string>
+     <string name="formats22_dib_description">Stoor ’n ongekomprimeerde 24-bis Windows DIB. Gebruik BMP as die ontvangende toepassing ’n BMP-lêerkop benodig.</string>
+     <string name="formats22_dib_size_limit">Die beeld oorskry die DIB-lêergroottelimiet.</string>
+     <string name="formats22_import_limit">Hierdie lêer oorskry die invoerlimiet van 512 MiB. Kies ’n kleiner lêer.</string>
+diff --git a/Paintroid/src/main/res/values-b+en+001/strings.xml b/Paintroid/src/main/res/values-b+en+001/strings.xml
+index 24c52ca..0293a55 100644
+--- a/Paintroid/src/main/res/values-b+en+001/strings.xml
++++ b/Paintroid/src/main/res/values-b+en+001/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-b+en+XV/strings.xml b/Paintroid/src/main/res/values-b+en+XV/strings.xml
+index 0ad75f3..73717fe 100644
+--- a/Paintroid/src/main/res/values-b+en+XV/strings.xml
++++ b/Paintroid/src/main/res/values-b+en+XV/strings.xml
+@@ -582,7 +582,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-b+eo/strings.xml b/Paintroid/src/main/res/values-b+eo/strings.xml
+index 70a1018..e20bccf 100644
+--- a/Paintroid/src/main/res/values-b+eo/strings.xml
++++ b/Paintroid/src/main/res/values-b+eo/strings.xml
+@@ -564,7 +564,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Eĉ la plej malgranda eligo ne ebligas al la laborbufroj de la malkodilo de ĉi tiu bildo konveni en la nuna memorolimo. Nuligu kaj uzu pli malgrandan fontbildon.</string>
+     <string name="formats22_base64_label">Base64-teksto</string>
+     <string name="formats22_tiff_compression">Senperda kunpremo (Deflate)</string>
+-    <string name="formats22_tiff_description">Konservas unu RGB-paĝon. Kunpremo malgrandigas la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.</string>
++    <string name="formats22_tiff_description">Konservas unu RGB-paĝon. Kunpremo povas malgrandigi la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.</string>
+     <string name="formats22_dib_description">Konservas nekunpremitan 24-bitan Windows-DIB. Uzu BMP se la ricevanta programo postulas BMP-dosierkapon.</string>
+     <string name="formats22_dib_size_limit">La bildo superas la DIB-dosiergrandan limon.</string>
+     <string name="formats22_import_limit">Ĉi tiu dosiero superas la enportan limon de 512 MiB. Elektu pli malgrandan dosieron.</string>
+diff --git a/Paintroid/src/main/res/values-b+es+419/strings.xml b/Paintroid/src/main/res/values-b+es+419/strings.xml
+index ff3a99e..61ecf63 100644
+--- a/Paintroid/src/main/res/values-b+es+419/strings.xml
++++ b/Paintroid/src/main/res/values-b+es+419/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Ni siquiera la salida más pequeña permite que los búferes de trabajo del decodificador de esta imagen quepan en el límite de memoria actual. Cancela y usa una imagen de origen más pequeña.</string>
+     <string name="formats22_base64_label">Texto Base64</string>
+     <string name="formats22_tiff_compression">Compresión sin pérdida (Deflate)</string>
+-    <string name="formats22_tiff_description">Guarda una página RGB. La compresión reduce el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.</string>
++    <string name="formats22_tiff_description">Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.</string>
+     <string name="formats22_dib_description">Guarda un DIB de Windows de 24 bits sin comprimir. Usa BMP si la aplicación receptora necesita una cabecera de archivo BMP.</string>
+     <string name="formats22_dib_size_limit">La imagen supera el límite de tamaño de archivo DIB.</string>
+     <string name="formats22_import_limit">Este archivo supera el límite de importación de 512 MiB. Elige un archivo más pequeño.</string>
+diff --git a/Paintroid/src/main/res/values-b+es+ES/strings.xml b/Paintroid/src/main/res/values-b+es+ES/strings.xml
+index 2c7f638..961f5f6 100644
+--- a/Paintroid/src/main/res/values-b+es+ES/strings.xml
++++ b/Paintroid/src/main/res/values-b+es+ES/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Ni siquiera la salida más pequeña permite que los búferes de trabajo del decodificador de esta imagen quepan en el límite de memoria actual. Cancela y usa una imagen de origen más pequeña.</string>
+     <string name="formats22_base64_label">Texto Base64</string>
+     <string name="formats22_tiff_compression">Compresión sin pérdida (Deflate)</string>
+-    <string name="formats22_tiff_description">Guarda una página RGB. La compresión reduce el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.</string>
++    <string name="formats22_tiff_description">Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.</string>
+     <string name="formats22_dib_description">Guarda un DIB de Windows de 24 bits sin comprimir. Usa BMP si la aplicación receptora necesita una cabecera de archivo BMP.</string>
+     <string name="formats22_dib_size_limit">La imagen supera el límite de tamaño de archivo DIB.</string>
+     <string name="formats22_import_limit">Este archivo supera el límite de importación de 512 MiB. Elige un archivo más pequeño.</string>
+diff --git a/Paintroid/src/main/res/values-b+et/strings.xml b/Paintroid/src/main/res/values-b+et/strings.xml
+index 22bd494..e6ca226 100644
+--- a/Paintroid/src/main/res/values-b+et/strings.xml
++++ b/Paintroid/src/main/res/values-b+et/strings.xml
+@@ -564,7 +564,7 @@
+     <string name="formats22_base64_label">Base64-tekst</string>
+     <string name="formats22_ascii_label">ASCII-kunst</string>
+     <string name="formats22_tiff_compression">Kadudeta tihendus (Deflate)</string>
+-    <string name="formats22_tiff_description">Salvestab ühe RGB-lehe. Tihendus vähendab failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.</string>
++    <string name="formats22_tiff_description">Salvestab ühe RGB-lehe. Tihendus võib vähendada failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.</string>
+     <string name="formats22_dib_description">Salvestab tihendamata 24-bitise Windows DIB-i. Kasuta BMP-d, kui vastuvõttev rakendus vajab BMP-failipäist.</string>
+     <string name="formats22_dib_size_limit">Pilt ületab DIB-faili suuruse piirangu.</string>
+     <string name="formats22_import_limit">Fail ületab 512 MiB impordipiiri. Vali väiksem fail.</string>
+diff --git a/Paintroid/src/main/res/values-b+ko+KP/strings.xml b/Paintroid/src/main/res/values-b+ko+KP/strings.xml
+index d89c2e6..b952dd4 100644
+--- a/Paintroid/src/main/res/values-b+ko+KP/strings.xml
++++ b/Paintroid/src/main/res/values-b+ko+KP/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">가장 작은 출력도 이 화상의 해독기 작업 버퍼를 현재 기억기 한도 안에 넣을 수 없습니다. 취소하고 더 작은 원본 화상을 리용하세요.</string>
+     <string name="formats22_base64_label">Base64 텍스트</string>
+     <string name="formats22_tiff_compression">무손실 압축(Deflate)</string>
+-    <string name="formats22_tiff_description">RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄입니다. 압축하지 않은 TIFF로 보관하려면 끄세요.</string>
++    <string name="formats22_tiff_description">RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 보관하려면 끄세요.</string>
+     <string name="formats22_dib_description">압축하지 않은 24비트 Windows DIB로 보관합니다. 받는 응용프로그람이 BMP 파일 헤더를 요구하면 BMP를 리용하세요.</string>
+     <string name="formats22_dib_size_limit">화상이 DIB 파일 크기 한도를 초과합니다.</string>
+     <string name="formats22_import_limit">이 파일은 512 MiB 가져오기 한도를 초과합니다. 더 작은 파일을 선택하세요.</string>
+diff --git a/Paintroid/src/main/res/values-b+ko+KR/strings.xml b/Paintroid/src/main/res/values-b+ko+KR/strings.xml
+index 1cbd938..821a094 100644
+--- a/Paintroid/src/main/res/values-b+ko+KR/strings.xml
++++ b/Paintroid/src/main/res/values-b+ko+KR/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">가장 작은 출력도 이 이미지의 디코더 작업 버퍼를 현재 메모리 한도 안에 넣을 수 없습니다. 취소하고 더 작은 원본 이미지를 사용하세요.</string>
+     <string name="formats22_base64_label">Base64 텍스트</string>
+     <string name="formats22_tiff_compression">무손실 압축(Deflate)</string>
+-    <string name="formats22_tiff_description">RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄입니다. 압축하지 않은 TIFF로 저장하려면 끄세요.</string>
++    <string name="formats22_tiff_description">RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장하려면 끄세요.</string>
+     <string name="formats22_dib_description">압축하지 않은 24비트 Windows DIB로 저장합니다. 받는 앱이 BMP 파일 헤더를 요구하면 BMP를 사용하세요.</string>
+     <string name="formats22_dib_size_limit">이미지가 DIB 파일 크기 한도를 초과합니다.</string>
+     <string name="formats22_import_limit">이 파일은 512 MiB 가져오기 한도를 초과합니다. 더 작은 파일을 선택하세요.</string>
+diff --git a/Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml b/Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml
+index d33669a..4dddcb8 100644
+--- a/Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml
++++ b/Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">가장 작은 出力도 이 이미지의 디코더 作業 버퍼를 現在 메모리 限度 안에 넣을 수 없습니다. 取消하고 더 작은 原本 이미지를 使用하세요.</string>
+     <string name="formats22_base64_label">Base64 텍스트</string>
+     <string name="formats22_tiff_compression">無損失 壓縮(Deflate)</string>
+-    <string name="formats22_tiff_description">RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄입니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.</string>
++    <string name="formats22_tiff_description">RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.</string>
+     <string name="formats22_dib_description">壓縮하지 않은 24비트 Windows DIB로 貯藏합니다. 받는 앱이 BMP 파일 헤더를 요구하면 BMP를 使用하세요.</string>
+     <string name="formats22_dib_size_limit">이미지가 DIB 파일 크기 限度를 초과합니다.</string>
+     <string name="formats22_import_limit">이 파일은 512 MiB 가져오기 限度를 초과합니다. 더 작은 파일을 選擇하세요.</string>
+diff --git a/Paintroid/src/main/res/values-b+lv/strings.xml b/Paintroid/src/main/res/values-b+lv/strings.xml
+index 54b97db..c478fdd 100644
+--- a/Paintroid/src/main/res/values-b+lv/strings.xml
++++ b/Paintroid/src/main/res/values-b+lv/strings.xml
+@@ -564,7 +564,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Pat mazākā izvade nevar ietilpināt šī attēla dekodētāja darba buferus pašreizējā atmiņas limitā. Atceliet un izmantojiet mazāku avota attēlu.</string>
+     <string name="formats22_base64_label">Base64 teksts</string>
+     <string name="formats22_tiff_compression">Bezzudumu saspiešana (Deflate)</string>
+-    <string name="formats22_tiff_description">Saglabā vienu RGB lapu. Saspiešana samazina faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.</string>
++    <string name="formats22_tiff_description">Saglabā vienu RGB lapu. Saspiešana var samazināt faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.</string>
+     <string name="formats22_dib_description">Saglabā nesaspiestu 24 bitu Windows DIB. Izmantojiet BMP, ja saņēmēja lietotnei vajadzīga BMP faila galvene.</string>
+     <string name="formats22_dib_size_limit">Attēls pārsniedz DIB faila izmēra ierobežojumu.</string>
+     <string name="formats22_import_limit">Fails pārsniedz 512 MiB importa ierobežojumu. Izvēlieties mazāku failu.</string>
+diff --git a/Paintroid/src/main/res/values-b+pt+PT/strings.xml b/Paintroid/src/main/res/values-b+pt+PT/strings.xml
+index 75411c0..d416552 100644
+--- a/Paintroid/src/main/res/values-b+pt+PT/strings.xml
++++ b/Paintroid/src/main/res/values-b+pt+PT/strings.xml
+@@ -568,7 +568,7 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_no_resize_fits_decoder_memory">Mesmo a menor saída não consegue acomodar os buffers de trabalho do descodificador desta imagem no limite de memória atual. Cancele e use uma imagem de origem menor.</string>
+     <string name="formats22_base64_label">Texto Base64</string>
+     <string name="formats22_tiff_compression">Compressão sem perdas (Deflate)</string>
+-    <string name="formats22_tiff_description">Guarda uma página RGB. A compressão reduz o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.</string>
++    <string name="formats22_tiff_description">Guarda uma página RGB. A compressão pode reduzir o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.</string>
+     <string name="formats22_dib_description">Guarda um DIB do Windows de 24 bits não comprimido. Use BMP se a aplicação recetora exigir um cabeçalho de ficheiro BMP.</string>
+     <string name="formats22_dib_size_limit">A imagem excede o limite de tamanho de ficheiro DIB.</string>
+     <string name="formats22_import_limit">Este ficheiro excede o limite de importação de 512 MiB. Escolha um ficheiro mais pequeno.</string>
+diff --git a/Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml b/Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml
+index 48e7c26..02f3adc 100644
+--- a/Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml
++++ b/Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml
+@@ -582,7 +582,7 @@
+     <string name="formats22_base64_label">🔤 Base64 text</string>
+     <string name="formats22_ascii_label">🧪 ASCII art</string>
+     <string name="formats22_tiff_compression">🧪 Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">💾 Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">💾 Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">💾 Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">📁 The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">📁 This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-de/strings.xml b/Paintroid/src/main/res/values-de/strings.xml
+index b7b357d..d07409d 100644
+--- a/Paintroid/src/main/res/values-de/strings.xml
++++ b/Paintroid/src/main/res/values-de/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Selbst die kleinste Ausgabe lässt die Arbeitspuffer des Decoders für dieses Bild nicht in das aktuelle Speicherlimit passen. Brechen Sie ab und verwenden Sie ein kleineres Quellbild.</string>
+     <string name="formats22_base64_label">Base64-Text</string>
+     <string name="formats22_tiff_compression">Verlustfreie Komprimierung (Deflate)</string>
+-    <string name="formats22_tiff_description">Speichert eine RGB-Seite. Komprimierung verkleinert die Datei, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.</string>
++    <string name="formats22_tiff_description">Speichert eine RGB-Seite. Komprimierung kann die Datei verkleinern, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.</string>
+     <string name="formats22_dib_description">Speichert ein unkomprimiertes 24-Bit-Windows-DIB. Verwenden Sie BMP, wenn die empfangende App einen BMP-Dateikopf benötigt.</string>
+     <string name="formats22_dib_size_limit">Das Bild überschreitet die DIB-Dateigrößenbegrenzung.</string>
+     <string name="formats22_import_limit">Diese Datei überschreitet die Importgrenze von 512 MiB. Wählen Sie eine kleinere Datei.</string>
+diff --git a/Paintroid/src/main/res/values-el/strings.xml b/Paintroid/src/main/res/values-el/strings.xml
+index 8e4af7d..2c80f70 100644
+--- a/Paintroid/src/main/res/values-el/strings.xml
++++ b/Paintroid/src/main/res/values-el/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Ακόμη και η μικρότερη έξοδος δεν χωρά τα buffer εργασίας του αποκωδικοποιητή αυτής της εικόνας στο τρέχον όριο μνήμης. Ακυρώστε και χρησιμοποιήστε μικρότερη εικόνα προέλευσης.</string>
+     <string name="formats22_base64_label">Κείμενο Base64</string>
+     <string name="formats22_tiff_compression">Συμπίεση χωρίς απώλειες (Deflate)</string>
+-    <string name="formats22_tiff_description">Αποθηκεύει μία σελίδα RGB. Η συμπίεση μειώνει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.</string>
++    <string name="formats22_tiff_description">Αποθηκεύει μία σελίδα RGB. Η συμπίεση μπορεί να μειώσει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.</string>
+     <string name="formats22_dib_description">Αποθηκεύει ασυμπίεστο Windows DIB 24-bit. Χρησιμοποιήστε BMP αν η εφαρμογή προορισμού απαιτεί κεφαλίδα αρχείου BMP.</string>
+     <string name="formats22_dib_size_limit">Η εικόνα υπερβαίνει το όριο μεγέθους αρχείου DIB.</string>
+     <string name="formats22_import_limit">Αυτό το αρχείο υπερβαίνει το όριο εισαγωγής των 512 MiB. Επιλέξτε μικρότερο αρχείο.</string>
+diff --git a/Paintroid/src/main/res/values-en-rAU/strings.xml b/Paintroid/src/main/res/values-en-rAU/strings.xml
+index cc38679..2601350 100644
+--- a/Paintroid/src/main/res/values-en-rAU/strings.xml
++++ b/Paintroid/src/main/res/values-en-rAU/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-en-rCA/strings.xml b/Paintroid/src/main/res/values-en-rCA/strings.xml
+index 025b4b1..16c4817 100644
+--- a/Paintroid/src/main/res/values-en-rCA/strings.xml
++++ b/Paintroid/src/main/res/values-en-rCA/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-en-rGB/strings.xml b/Paintroid/src/main/res/values-en-rGB/strings.xml
+index 7479f3d..e3fadb0 100644
+--- a/Paintroid/src/main/res/values-en-rGB/strings.xml
++++ b/Paintroid/src/main/res/values-en-rGB/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-en-rIN/strings.xml b/Paintroid/src/main/res/values-en-rIN/strings.xml
+index 43cce82..22ff1af 100644
+--- a/Paintroid/src/main/res/values-en-rIN/strings.xml
++++ b/Paintroid/src/main/res/values-en-rIN/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-en-rSG/strings.xml b/Paintroid/src/main/res/values-en-rSG/strings.xml
+index 18c6683..a6afac6 100644
+--- a/Paintroid/src/main/res/values-en-rSG/strings.xml
++++ b/Paintroid/src/main/res/values-en-rSG/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-en-rUS/strings.xml b/Paintroid/src/main/res/values-en-rUS/strings.xml
+index 26b09b0..704e3b9 100644
+--- a/Paintroid/src/main/res/values-en-rUS/strings.xml
++++ b/Paintroid/src/main/res/values-en-rUS/strings.xml
+@@ -555,7 +555,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/main/res/values-fi/strings.xml b/Paintroid/src/main/res/values-fi/strings.xml
+index e6cd75c..c3efac8 100644
+--- a/Paintroid/src/main/res/values-fi/strings.xml
++++ b/Paintroid/src/main/res/values-fi/strings.xml
+@@ -568,7 +568,7 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_no_resize_fits_decoder_memory">Pieninkään tuloste ei mahdu tämän kuvan purkajan työpuskureineen nykyiseen muistirajaan. Peruuta ja käytä pienempää lähdekuvaa.</string>
+     <string name="formats22_base64_label">Base64-teksti</string>
+     <string name="formats22_tiff_compression">Häviötön pakkaus (Deflate)</string>
+-    <string name="formats22_tiff_description">Tallentaa yhden RGB-sivun. Pakkaus pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.</string>
++    <string name="formats22_tiff_description">Tallentaa yhden RGB-sivun. Pakkaus voi pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.</string>
+     <string name="formats22_dib_description">Tallentaa pakkaamattoman 24-bittisen Windows DIB:n. Käytä BMP:tä, jos vastaanottava sovellus tarvitsee BMP-tiedosto-otsakkeen.</string>
+     <string name="formats22_dib_size_limit">Kuva ylittää DIB-tiedoston kokorajan.</string>
+     <string name="formats22_import_limit">Tiedosto ylittää 512 MiB:n tuontirajan. Valitse pienempi tiedosto.</string>
+diff --git a/Paintroid/src/main/res/values-fr/strings.xml b/Paintroid/src/main/res/values-fr/strings.xml
+index c695869..f8d1f36 100644
+--- a/Paintroid/src/main/res/values-fr/strings.xml
++++ b/Paintroid/src/main/res/values-fr/strings.xml
+@@ -587,7 +587,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Même la plus petite sortie ne permet pas aux tampons de travail du décodeur de cette image de respecter la limite mémoire actuelle. Annulez et utilisez une image source plus petite.</string>
+     <string name="formats22_base64_label">Texte Base64</string>
+     <string name="formats22_tiff_compression">Compression sans perte (Deflate)</string>
+-    <string name="formats22_tiff_description">Enregistre une page RGB. La compression réduit la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.</string>
++    <string name="formats22_tiff_description">Enregistre une page RGB. La compression peut réduire la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.</string>
+     <string name="formats22_dib_description">Enregistre un DIB Windows 24 bits non compressé. Utilisez BMP si l’application destinataire exige un en-tête de fichier BMP.</string>
+     <string name="formats22_dib_size_limit">L’image dépasse la limite de taille des fichiers DIB.</string>
+     <string name="formats22_import_limit">Ce fichier dépasse la limite d’importation de 512 Mio. Choisissez un fichier plus petit.</string>
+diff --git a/Paintroid/src/main/res/values-hu/strings.xml b/Paintroid/src/main/res/values-hu/strings.xml
+index 0e47625..9bfa6a5 100644
+--- a/Paintroid/src/main/res/values-hu/strings.xml
++++ b/Paintroid/src/main/res/values-hu/strings.xml
+@@ -568,7 +568,7 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_no_resize_fits_decoder_memory">Még a legkisebb kimenet sem fér el ennek a képnek a dekóder-munkapuffereivel a jelenlegi memóriakeretben. Szakítsa meg és használjon kisebb forrásképet.</string>
+     <string name="formats22_base64_label">Base64-szöveg</string>
+     <string name="formats22_tiff_compression">Veszteségmentes tömörítés (Deflate)</string>
+-    <string name="formats22_tiff_description">Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkenti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.</string>
++    <string name="formats22_tiff_description">Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkentheti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.</string>
+     <string name="formats22_dib_description">Tömörítetlen 24 bites Windows DIB-et ment. Használjon BMP-t, ha a fogadó alkalmazás BMP-fájlfejlécet igényel.</string>
+     <string name="formats22_dib_size_limit">A kép meghaladja a DIB-fájl méretkorlátját.</string>
+     <string name="formats22_import_limit">A fájl meghaladja az 512 MiB importkorlátot. Válasszon kisebb fájlt.</string>
+diff --git a/Paintroid/src/main/res/values-in/strings.xml b/Paintroid/src/main/res/values-in/strings.xml
+index 7d5e66d..4a1c2b0 100644
+--- a/Paintroid/src/main/res/values-in/strings.xml
++++ b/Paintroid/src/main/res/values-in/strings.xml
+@@ -588,7 +588,7 @@
+     <string name="formats22_base64_label">Teks Base64</string>
+     <string name="formats22_ascii_label">Seni ASCII</string>
+     <string name="formats22_tiff_compression">Kompresi tanpa kehilangan data (Deflate)</string>
+-    <string name="formats22_tiff_description">Simpan satu halaman RGB. Kompresi mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.</string>
++    <string name="formats22_tiff_description">Simpan satu halaman RGB. Kompresi dapat mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.</string>
+     <string name="formats22_dib_description">Simpan Windows DIB 24-bit tanpa kompresi. Gunakan BMP jika aplikasi penerima memerlukan header berkas BMP.</string>
+     <string name="formats22_dib_size_limit">Gambar melebihi batas ukuran berkas DIB.</string>
+     <string name="formats22_import_limit">Berkas ini melebihi batas impor 512 MiB. Pilih berkas yang lebih kecil.</string>
+diff --git a/Paintroid/src/main/res/values-it/strings.xml b/Paintroid/src/main/res/values-it/strings.xml
+index cc53ae6..9769518 100644
+--- a/Paintroid/src/main/res/values-it/strings.xml
++++ b/Paintroid/src/main/res/values-it/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Nemmeno l’uscita più piccola consente ai buffer di lavoro del decoder di questa immagine di rientrare nel limite di memoria corrente. Annulla e usa un’immagine sorgente più piccola.</string>
+     <string name="formats22_base64_label">Testo Base64</string>
+     <string name="formats22_tiff_compression">Compressione senza perdita (Deflate)</string>
+-    <string name="formats22_tiff_description">Salva una pagina RGB. La compressione riduce le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.</string>
++    <string name="formats22_tiff_description">Salva una pagina RGB. La compressione può ridurre le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.</string>
+     <string name="formats22_dib_description">Salva un DIB Windows a 24 bit non compresso. Usa BMP se l’app ricevente richiede un’intestazione file BMP.</string>
+     <string name="formats22_dib_size_limit">L’immagine supera il limite di dimensione file DIB.</string>
+     <string name="formats22_import_limit">Questo file supera il limite di importazione di 512 MiB. Scegli un file più piccolo.</string>
+diff --git a/Paintroid/src/main/res/values-lt/strings.xml b/Paintroid/src/main/res/values-lt/strings.xml
+index 04f80be..2cfb372 100644
+--- a/Paintroid/src/main/res/values-lt/strings.xml
++++ b/Paintroid/src/main/res/values-lt/strings.xml
+@@ -568,7 +568,7 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_no_resize_fits_decoder_memory">Net mažiausia išvestis su šio vaizdo dekoderio darbo buferiais netelpa dabartinėje atminties riboje. Atšaukite ir naudokite mažesnį šaltinio vaizdą.</string>
+     <string name="formats22_base64_label">Base64 tekstas</string>
+     <string name="formats22_tiff_compression">Glaudinimas be nuostolių (Deflate)</string>
+-    <string name="formats22_tiff_description">Išsaugo vieną RGB puslapį. Glaudinimas sumažina failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.</string>
++    <string name="formats22_tiff_description">Išsaugo vieną RGB puslapį. Glaudinimas gali sumažinti failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.</string>
+     <string name="formats22_dib_description">Išsaugo nesuglaudintą 24 bitų Windows DIB. Naudokite BMP, jei priimanti programa reikalauja BMP failo antraštės.</string>
+     <string name="formats22_dib_size_limit">Vaizdas viršija DIB failo dydžio ribą.</string>
+     <string name="formats22_import_limit">Failas viršija 512 MiB importo ribą. Pasirinkite mažesnį failą.</string>
+diff --git a/Paintroid/src/main/res/values-ms/strings.xml b/Paintroid/src/main/res/values-ms/strings.xml
+index 7b1dd04..fb7fd0c 100644
+--- a/Paintroid/src/main/res/values-ms/strings.xml
++++ b/Paintroid/src/main/res/values-ms/strings.xml
+@@ -589,7 +589,7 @@
+     <string name="formats22_base64_label">Teks Base64</string>
+     <string name="formats22_ascii_label">Seni ASCII</string>
+     <string name="formats22_tiff_compression">Mampatan tanpa kehilangan (Deflate)</string>
+-    <string name="formats22_tiff_description">Menyimpan satu halaman RGB. Mampatan mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.</string>
++    <string name="formats22_tiff_description">Menyimpan satu halaman RGB. Mampatan mungkin mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.</string>
+     <string name="formats22_dib_description">Menyimpan Windows DIB 24-bit tanpa mampatan. Gunakan BMP jika aplikasi penerima memerlukan pengepala fail BMP.</string>
+     <string name="formats22_dib_size_limit">Imej melebihi had saiz fail DIB.</string>
+     <string name="formats22_import_limit">Fail ini melebihi had import 512 MiB. Pilih fail yang lebih kecil.</string>
+diff --git a/Paintroid/src/main/res/values-nl/strings.xml b/Paintroid/src/main/res/values-nl/strings.xml
+index b16ce12..149510e 100644
+--- a/Paintroid/src/main/res/values-nl/strings.xml
++++ b/Paintroid/src/main/res/values-nl/strings.xml
+@@ -568,7 +568,7 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_no_resize_fits_decoder_memory">Zelfs bij de kleinste uitvoer passen de werkbuffers van de decoder voor deze afbeelding niet binnen de huidige geheugenlimiet. Annuleer en gebruik een kleinere bronafbeelding.</string>
+     <string name="formats22_base64_label">Base64-tekst</string>
+     <string name="formats22_tiff_compression">Lossless compressie (Deflate)</string>
+-    <string name="formats22_tiff_description">Slaat één RGB-pagina op. Compressie verkleint het bestand zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.</string>
++    <string name="formats22_tiff_description">Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.</string>
+     <string name="formats22_dib_description">Slaat een ongecomprimeerde 24-bits Windows DIB op. Gebruik BMP als de ontvangende app een BMP-bestandskop vereist.</string>
+     <string name="formats22_dib_size_limit">De afbeelding overschrijdt de bestandsgroottelimiet van DIB.</string>
+     <string name="formats22_import_limit">Dit bestand overschrijdt de importlimiet van 512 MiB. Kies een kleiner bestand.</string>
+diff --git a/Paintroid/src/main/res/values-pt-rBR/strings.xml b/Paintroid/src/main/res/values-pt-rBR/strings.xml
+index d54d22b..560740f 100644
+--- a/Paintroid/src/main/res/values-pt-rBR/strings.xml
++++ b/Paintroid/src/main/res/values-pt-rBR/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Mesmo a menor saída não consegue acomodar os buffers de trabalho do decodificador desta imagem no limite de memória atual. Cancele e use uma imagem de origem menor.</string>
+     <string name="formats22_base64_label">Texto Base64</string>
+     <string name="formats22_tiff_compression">Compressão sem perdas (Deflate)</string>
+-    <string name="formats22_tiff_description">Salva uma página RGB. A compressão reduz o tamanho do arquivo sem alterar os pixels; desative-a para criar um TIFF sem compressão.</string>
++    <string name="formats22_tiff_description">Salva uma página RGB. A compressão pode reduzir o tamanho do arquivo sem alterar os pixels; desative-a para criar um TIFF sem compressão.</string>
+     <string name="formats22_dib_description">Salva um DIB do Windows de 24 bits sem compressão. Use BMP se o aplicativo de destino exigir um cabeçalho de arquivo BMP.</string>
+     <string name="formats22_dib_size_limit">A imagem excede o limite de tamanho de arquivo DIB.</string>
+     <string name="formats22_import_limit">Este arquivo excede o limite de importação de 512 MiB. Escolha um arquivo menor.</string>
+diff --git a/Paintroid/src/main/res/values-ru/strings.xml b/Paintroid/src/main/res/values-ru/strings.xml
+index 9617739..f35ed44 100644
+--- a/Paintroid/src/main/res/values-ru/strings.xml
++++ b/Paintroid/src/main/res/values-ru/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Даже самый маленький результат не позволяет разместить рабочие буферы декодера этого изображения в текущем лимите памяти. Отмените операцию и используйте меньшее исходное изображение.</string>
+     <string name="formats22_base64_label">Текст Base64</string>
+     <string name="formats22_tiff_compression">Сжатие без потерь (Deflate)</string>
+-    <string name="formats22_tiff_description">Сохраняет одну RGB-страницу. Сжатие уменьшает размер файла без изменения пикселей; отключите его для несжатого TIFF.</string>
++    <string name="formats22_tiff_description">Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.</string>
+     <string name="formats22_dib_description">Сохраняет несжатый 24-битный Windows DIB. Используйте BMP, если принимающему приложению нужен заголовок BMP.</string>
+     <string name="formats22_dib_size_limit">Изображение превышает ограничение размера файла DIB.</string>
+     <string name="formats22_import_limit">Файл превышает лимит импорта 512 МиБ. Выберите файл меньшего размера.</string>
+diff --git a/Paintroid/src/main/res/values-sw/strings.xml b/Paintroid/src/main/res/values-sw/strings.xml
+index 0a5e768..60f0f87 100644
+--- a/Paintroid/src/main/res/values-sw/strings.xml
++++ b/Paintroid/src/main/res/values-sw/strings.xml
+@@ -562,7 +562,7 @@
+     <string name="formats22_base64_label">Maandishi ya Base64</string>
+     <string name="formats22_ascii_label">Sanaa ya ASCII</string>
+     <string name="formats22_tiff_compression">Mgandamizo usio na upotevu (Deflate)</string>
+-    <string name="formats22_tiff_description">Huhifadhi ukurasa mmoja wa RGB. Mgandamizo hupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.</string>
++    <string name="formats22_tiff_description">Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.</string>
+     <string name="formats22_dib_description">Huhifadhi Windows DIB ya biti 24 isiyogandamizwa. Tumia BMP ikiwa programu inayopokea inahitaji kichwa cha faili cha BMP.</string>
+     <string name="formats22_dib_size_limit">Picha inazidi kikomo cha ukubwa wa faili cha DIB.</string>
+     <string name="formats22_import_limit">Faili hii inazidi kikomo cha kuingiza cha 512 MiB. Chagua faili ndogo.</string>
+diff --git a/Paintroid/src/main/res/values-tl/strings.xml b/Paintroid/src/main/res/values-tl/strings.xml
+index 31c607c..428bab5 100644
+--- a/Paintroid/src/main/res/values-tl/strings.xml
++++ b/Paintroid/src/main/res/values-tl/strings.xml
+@@ -588,7 +588,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Nagse-save ng isang RGB page. Binabawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Nagse-save ng uncompressed na 24-bit Windows DIB. Gumamit ng BMP kung nangangailangan ang tumatanggap na app ng BMP file header.</string>
+     <string name="formats22_dib_size_limit">Lumampas ang larawan sa limitasyon ng laki ng DIB file.</string>
+     <string name="formats22_import_limit">Lumampas ang file na ito sa 512 MiB import limit. Pumili ng mas maliit na file.</string>
+diff --git a/Paintroid/src/main/res/values-tr/strings.xml b/Paintroid/src/main/res/values-tr/strings.xml
+index b8d94a2..de01e3f 100644
+--- a/Paintroid/src/main/res/values-tr/strings.xml
++++ b/Paintroid/src/main/res/values-tr/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">En küçük çıktı bile bu görüntünün kod çözücü çalışma arabelleklerini geçerli bellek sınırına sığdıramıyor. İptal edin ve daha küçük bir kaynak görüntü kullanın.</string>
+     <string name="formats22_base64_label">Base64 metni</string>
+     <string name="formats22_tiff_compression">Kayıpsız sıkıştırma (Deflate)</string>
+-    <string name="formats22_tiff_description">Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltır; sıkıştırılmamış TIFF için kapatın.</string>
++    <string name="formats22_tiff_description">Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.</string>
+     <string name="formats22_dib_description">Sıkıştırılmamış 24 bit Windows DIB kaydeder. Alan uygulama BMP dosya başlığı gerektiriyorsa BMP kullanın.</string>
+     <string name="formats22_dib_size_limit">Görüntü DIB dosya boyutu sınırını aşıyor.</string>
+     <string name="formats22_import_limit">Bu dosya 512 MiB içe aktarma sınırını aşıyor. Daha küçük bir dosya seçin.</string>
+diff --git a/Paintroid/src/main/res/values-vi/strings.xml b/Paintroid/src/main/res/values-vi/strings.xml
+index 6807159..fb9d8f9 100644
+--- a/Paintroid/src/main/res/values-vi/strings.xml
++++ b/Paintroid/src/main/res/values-vi/strings.xml
+@@ -590,7 +590,7 @@
+     <string name="ui_no_resize_fits_decoder_memory">Ngay cả đầu ra nhỏ nhất cũng không thể chứa các bộ đệm làm việc của bộ giải mã ảnh này trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.</string>
+     <string name="formats22_base64_label">Văn bản Base64</string>
+     <string name="formats22_tiff_compression">Nén không mất dữ liệu (Deflate)</string>
+-    <string name="formats22_tiff_description">Lưu một trang RGB. Nén làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén.</string>
++    <string name="formats22_tiff_description">Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén.</string>
+     <string name="formats22_dib_description">Lưu Windows DIB 24 bit không nén. Dùng BMP nếu ứng dụng nhận yêu cầu đầu tệp BMP.</string>
+     <string name="formats22_dib_size_limit">Ảnh vượt giới hạn kích thước tệp DIB.</string>
+     <string name="formats22_import_limit">Tệp này vượt giới hạn nhập 512 MiB. Hãy chọn tệp nhỏ hơn.</string>
+diff --git a/Paintroid/src/main/res/values/strings.xml b/Paintroid/src/main/res/values/strings.xml
+index 7d63127..e470639 100644
+--- a/Paintroid/src/main/res/values/strings.xml
++++ b/Paintroid/src/main/res/values/strings.xml
+@@ -562,7 +562,7 @@
+     <string name="formats22_base64_label">Base64 text</string>
+     <string name="formats22_ascii_label">ASCII art</string>
+     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
+-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
++    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
+     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
+     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
+     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt
+new file mode 100644
+index 0000000..15e0bba
+--- /dev/null
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt
+@@ -0,0 +1,186 @@
++/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
++package org.catrobat.paintroid.local
++
++import android.app.Activity
++import android.app.AlertDialog
++import android.content.res.Resources
++import android.os.Looper
++import android.view.View
++import android.widget.CheckBox
++import android.widget.Spinner
++import android.widget.TextView
++import org.catrobat.paintroid.R
++import org.catrobat.paintroid.classic.*
++import org.junit.After
++import org.junit.Assert.*
++import org.junit.Before
++import org.junit.Test
++import org.junit.runner.RunWith
++import org.robolectric.Robolectric
++import org.robolectric.RobolectricTestRunner
++import org.robolectric.Shadows.shadowOf
++import org.robolectric.android.controller.ActivityController
++import org.robolectric.annotation.Config
++import org.robolectric.annotation.GraphicsMode
++import java.util.Locale
++
++/** F01: production resources and SaveOptionsDialog, without invoking an encoder. */
++@RunWith(RobolectricTestRunner::class)
++@Config(sdk = [33], qualifiers = "w412dp-h900dp-port-xhdpi")
++@GraphicsMode(GraphicsMode.Mode.NATIVE)
++class TiffDescriptionDialogTest {
++    private lateinit var controller: ActivityController<Activity>
++    private lateinit var activity: Activity
++    private lateinit var previousLocale: Locale
++    private lateinit var previousTag: String
++    private lateinit var previousResources: Resources
++    private var currentDialog: AlertDialog? = null
++    private val requests = mutableListOf<SaveRequest>()
++    private var cancellations = 0
++
++    @Before fun start() {
++        controller = Robolectric.buildActivity(Activity::class.java)
++        activity = controller.setup().get()
++        previousLocale = Locale.getDefault()
++        previousTag = AppLanguage.selectedTag(activity)
++        previousResources = PaintApplication.currentResources
++    }
++
++    @After fun stop() {
++        currentDialog?.dismiss()
++        idle()
++        AppLanguage.select(activity, previousTag)
++        PaintApplication.currentResources = previousResources
++        Locale.setDefault(previousLocale)
++        if (!activity.isDestroyed) controller.pause().stop().destroy()
++    }
++
++    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
++
++    private fun open(tag: String, compressed: Boolean): AlertDialog {
++        assertFalse(currentDialog?.isShowing == true)
++        requests.clear(); cancellations = 0
++        AppLanguage.select(activity, tag)
++        AppLanguage.refresh(activity)
++        assertEquals(tag, AppLanguage.selectedTag(activity))
++        return SaveOptionsDialog(activity, ExportOptions(ImageFormat.TIFF, tiffCompressed = compressed),
++            confirm = { requests += it }, cancel = { cancellations++ }, initialFilename = "scan.tif")
++            .show().also { currentDialog = it; idle() }
++    }
++
++    private fun AlertDialog.compression(): CheckBox =
++        window!!.decorView.findViewWithTag("export_tiff_compressed")
++
++    private fun AlertDialog.description(): TextView =
++        window!!.decorView.findViewWithTag("export_description")
++
++    private fun AlertDialog.format(): Spinner =
++        window!!.decorView.findViewWithTag("export_format")
++
++    private fun assertTiff(dialog: AlertDialog, expected: String, compressed: Boolean) {
++        assertTrue(dialog.isShowing)
++        assertEquals("TIFF", dialog.format().selectedItem.toString())
++        assertEquals(View.VISIBLE, dialog.description().visibility)
++        assertEquals(expected, dialog.description().text.toString())
++        assertEquals(View.VISIBLE, dialog.compression().visibility)
++        assertEquals(compressed, dialog.compression().isChecked)
++        assertTrue(requests.isEmpty())
++        assertEquals(0, cancellations)
++    }
++
++    private fun confirm(dialog: AlertDialog, compressed: Boolean) {
++        assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick())
++        idle()
++        assertFalse(dialog.isShowing)
++        assertEquals(1, requests.size)
++        assertEquals(ExportOptions(ImageFormat.TIFF, lossless = false, tiffCompressed = compressed), requests.single().options)
++        assertEquals("scan.tif", requests.single().fileName)
++        assertEquals(0, cancellations)
++    }
++
++    private fun expected(tag: String) = if (tag == "pt-BR") PORTUGUESE else ENGLISH
++
++    @Test fun sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices() {
++        for (tag in listOf("en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US")) {
++            for (compressed in listOf(false, true)) {
++                val dialog = open(tag, compressed)
++                assertTiff(dialog, ENGLISH, compressed)
++                assertEquals("Lossless compression (Deflate)", dialog.compression().text.toString())
++                confirm(dialog, compressed)
++            }
++        }
++    }
++
++    @Test fun brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices() {
++        for (compressed in listOf(false, true)) {
++            val dialog = open("pt-BR", compressed)
++            assertTiff(dialog, PORTUGUESE, compressed)
++            assertEquals("Compressão sem perdas (Deflate)", dialog.compression().text.toString())
++            confirm(dialog, compressed)
++        }
++    }
++
++    @Test fun welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices() {
++        for (compressed in listOf(false, true)) {
++            val dialog = open("cy", compressed)
++            assertTiff(dialog, ENGLISH, compressed)
++            confirm(dialog, compressed)
++        }
++    }
++
++    @Test fun verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription() {
++        for ((tag, text) in listOf("en-XV" to ENGLISH, "qaa-Zsye-XV" to "💾 $ENGLISH")) {
++            for (compressed in listOf(false, true)) {
++                val dialog = open(tag, compressed)
++                assertNotNull(dialog.window!!.decorView.findViewWithTag<View>("vertical_save_form"))
++                assertTiff(dialog, text, compressed)
++                confirm(dialog, compressed)
++            }
++        }
++    }
++
++    @Test fun togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag() {
++        for (tag in listOf("en-US", "pt-BR", "cy")) for (initial in listOf(false, true)) {
++            val dialog = open(tag, initial)
++            assertTiff(dialog, expected(tag), initial)
++            dialog.compression().performClick(); idle()
++            assertTiff(dialog, expected(tag), !initial)
++            confirm(dialog, !initial)
++        }
++    }
++
++    @Test fun switchingFormatsRestoresDescriptionAndRetainsCompressionChoice() {
++        for (tag in listOf("en-GB", "pt-BR", "cy")) for (compressed in listOf(false, true)) {
++            val dialog = open(tag, compressed)
++            EditorTestNavigation.format(dialog.format(), ImageFormat.DIB)
++            assertEquals(View.GONE, dialog.compression().visibility)
++            assertEquals(ui(R.string.formats22_dib_description), dialog.description().text.toString())
++            assertNotEquals(expected(tag), dialog.description().text.toString())
++            EditorTestNavigation.format(dialog.format(), ImageFormat.TIFF)
++            assertTiff(dialog, expected(tag), compressed)
++            confirm(dialog, compressed)
++        }
++    }
++
++    @Test fun buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice() {
++        for (tag in listOf("en-US", "pt-BR", "cy")) for (compressed in listOf(false, true)) {
++            for (cancelEvent in listOf(false, true)) {
++                val dialog = open(tag, compressed)
++                assertTiff(dialog, expected(tag), compressed)
++                if (cancelEvent) dialog.cancel()
++                else assertTrue(dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick())
++                idle()
++                assertFalse(dialog.isShowing)
++                assertTrue(requests.isEmpty())
++                assertEquals(1, cancellations)
++            }
++        }
++    }
++
++    companion object {
++        private const val ENGLISH = "Saves one RGB page. Compression may reduce file size without changing " +
++            "pixels; turn it off for uncompressed TIFF."
++        private const val PORTUGUESE = "Salva uma página RGB. A compressão pode reduzir o tamanho do arquivo " +
++            "sem alterar os pixels; desative-a para criar um TIFF sem compressão."
++    }
++}
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionLocaleTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionLocaleTest.kt
+new file mode 100644
+index 0000000..f7abb6c
+--- /dev/null
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionLocaleTest.kt
+@@ -0,0 +1,148 @@
++/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
++package org.catrobat.paintroid.local
++
++import android.app.Activity
++import android.app.AlertDialog
++import android.content.res.Resources
++import android.os.Looper
++import android.view.View
++import android.widget.CheckBox
++import android.widget.Spinner
++import android.widget.TextView
++import org.catrobat.paintroid.R
++import org.catrobat.paintroid.classic.*
++import org.junit.After
++import org.junit.Assert.*
++import org.junit.Before
++import org.junit.Test
++import org.junit.runner.RunWith
++import org.robolectric.Robolectric
++import org.robolectric.RobolectricTestRunner
++import org.robolectric.Shadows.shadowOf
++import org.robolectric.android.controller.ActivityController
++import org.robolectric.annotation.Config
++import org.robolectric.annotation.GraphicsMode
++import java.util.Locale
++
++/** F01 expansion: actual locale routing and dialog callbacks, not installed visual acceptance. */
++@RunWith(RobolectricTestRunner::class)
++@Config(sdk = [33], qualifiers = "w412dp-h900dp-port-xhdpi")
++@GraphicsMode(GraphicsMode.Mode.NATIVE)
++class TiffDescriptionLocaleTest {
++    private lateinit var controller: ActivityController<Activity>
++    private lateinit var activity: Activity
++    private lateinit var previousLocale: Locale
++    private lateinit var previousTag: String
++    private lateinit var previousResources: Resources
++    private var currentDialog: AlertDialog? = null
++    private val requests = mutableListOf<SaveRequest>()
++    private var cancellations = 0
++
++    @Before fun start() {
++        controller = Robolectric.buildActivity(Activity::class.java)
++        activity = controller.setup().get()
++        previousLocale = Locale.getDefault()
++        previousTag = AppLanguage.selectedTag(activity)
++        previousResources = PaintApplication.currentResources
++    }
++
++    @After fun stop() {
++        currentDialog?.dismiss(); idle()
++        AppLanguage.select(activity, previousTag)
++        PaintApplication.currentResources = previousResources
++        Locale.setDefault(previousLocale)
++        if (!activity.isDestroyed) controller.pause().stop().destroy()
++    }
++
++    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
++
++    private fun open(tag: String, compressed: Boolean): AlertDialog {
++        assertFalse(currentDialog?.isShowing == true)
++        requests.clear(); cancellations = 0
++        AppLanguage.select(activity, tag); AppLanguage.refresh(activity)
++        assertEquals(tag, AppLanguage.selectedTag(activity))
++        return SaveOptionsDialog(activity, ExportOptions(ImageFormat.TIFF, tiffCompressed = compressed),
++            confirm = { requests += it }, cancel = { cancellations++ }, initialFilename = "scan.tif")
++            .show().also { currentDialog = it; idle() }
++    }
++
++    private fun AlertDialog.compression(): CheckBox = window!!.decorView.findViewWithTag("export_tiff_compressed")
++    private fun AlertDialog.description(): TextView = window!!.decorView.findViewWithTag("export_description")
++    private fun AlertDialog.format(): Spinner = window!!.decorView.findViewWithTag("export_format")
++
++    private fun assertDescription(dialog: AlertDialog, expected: String, compressed: Boolean) {
++        assertTrue(dialog.isShowing)
++        assertEquals("TIFF", dialog.format().selectedItem.toString())
++        assertEquals(expected, ui(R.string.formats22_tiff_description))
++        assertEquals(View.VISIBLE, dialog.description().visibility)
++        assertEquals(expected, dialog.description().text.toString())
++        assertEquals(View.VISIBLE, dialog.compression().visibility)
++        assertEquals(compressed, dialog.compression().isChecked)
++        assertTrue(requests.isEmpty()); assertEquals(0, cancellations)
++    }
++
++    @Test fun allTwentySixLocalesUseTheirQualifiedDescriptionForBothCompressionChoices() {
++        assertEquals(26, EXPECTED.size)
++        for ((tag, expected) in EXPECTED) for (compressed in listOf(false, true)) {
++            val dialog = open(tag, compressed)
++            assertDescription(dialog, expected, compressed)
++            assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()); idle()
++            assertFalse(dialog.isShowing)
++            assertEquals(listOf(SaveRequest(ExportOptions(ImageFormat.TIFF, lossless = false,
++                tiffCompressed = compressed), "scan.tif")), requests)
++            assertEquals(0, cancellations)
++        }
++    }
++
++    @Test fun allTwentySixLocalesRetainDescriptionThroughToggleFormatSwitchAndCancel() {
++        for ((index, entry) in EXPECTED.entries.withIndex()) {
++            val (tag, expected) = entry
++            val dialog = open(tag, true)
++            dialog.compression().performClick(); idle()
++            assertDescription(dialog, expected, false)
++            EditorTestNavigation.format(dialog.format(), ImageFormat.DIB)
++            assertEquals(View.GONE, dialog.compression().visibility)
++            assertEquals(ui(R.string.formats22_dib_description), dialog.description().text.toString())
++            assertNotEquals(expected, dialog.description().text.toString())
++            EditorTestNavigation.format(dialog.format(), ImageFormat.TIFF)
++            assertDescription(dialog, expected, false)
++            if (index % 2 == 0) dialog.cancel()
++            else assertTrue(dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick())
++            idle()
++            assertFalse(dialog.isShowing)
++            assertTrue(requests.isEmpty()); assertEquals(1, cancellations)
++        }
++    }
++
++    companion object {
++        // Independent reviewed wording oracles; do not read expected text back from resources.
++        private val EXPECTED = linkedMapOf(
++            "ar" to "يحفظ صفحة RGB واحدة. قد يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.",
++            "af" to "Stoor een RGB-bladsy. Kompressie kan die lêer verklein sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.",
++            "eo" to "Konservas unu RGB-paĝon. Kunpremo povas malgrandigi la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.",
++            "es-419" to "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
++            "es-ES" to "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
++            "et" to "Salvestab ühe RGB-lehe. Tihendus võib vähendada failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.",
++            "ko-KP" to "RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 보관하려면 끄세요.",
++            "ko-KR" to "RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장하려면 끄세요.",
++            "ko-Kore-KR" to "RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.",
++            "lv" to "Saglabā vienu RGB lapu. Saspiešana var samazināt faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.",
++            "pt-PT" to "Guarda uma página RGB. A compressão pode reduzir o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.",
++            "de" to "Speichert eine RGB-Seite. Komprimierung kann die Datei verkleinern, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.",
++            "el" to "Αποθηκεύει μία σελίδα RGB. Η συμπίεση μπορεί να μειώσει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.",
++            "fi" to "Tallentaa yhden RGB-sivun. Pakkaus voi pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.",
++            "fr" to "Enregistre une page RGB. La compression peut réduire la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.",
++            "hu" to "Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkentheti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.",
++            "id" to "Simpan satu halaman RGB. Kompresi dapat mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.",
++            "it" to "Salva una pagina RGB. La compressione può ridurre le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.",
++            "lt" to "Išsaugo vieną RGB puslapį. Glaudinimas gali sumažinti failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.",
++            "ms" to "Menyimpan satu halaman RGB. Mampatan mungkin mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.",
++            "nl" to "Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
++            "ru" to "Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.",
++            "sw" to "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
++            "tl" to "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
++            "tr" to "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.",
++            "vi" to "Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén."
++        )
++    }
++}
+diff --git a/tools/test_tiff_additional_locale_wording.py b/tools/test_tiff_additional_locale_wording.py
+new file mode 100644
+index 0000000..2a7cb9b
+--- /dev/null
++++ b/tools/test_tiff_additional_locale_wording.py
+@@ -0,0 +1,59 @@
++"""F01: exact independently reviewed modal wording for 26 additional catalogues.
++
++These are bounded wording oracles, not a semantic classifier or locale acceptance.
++"""
++from pathlib import Path
++import unittest
++import xml.etree.ElementTree as ET
++
++RES = Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
++KEY = "formats22_tiff_description"
++EXPECTED = {
++    "values-ar": "يحفظ صفحة RGB واحدة. قد يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.",
++    "values-b+af": "Stoor een RGB-bladsy. Kompressie kan die lêer verklein sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.",
++    "values-b+eo": "Konservas unu RGB-paĝon. Kunpremo povas malgrandigi la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.",
++    "values-b+es+419": "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
++    "values-b+es+ES": "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
++    "values-b+et": "Salvestab ühe RGB-lehe. Tihendus võib vähendada failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.",
++    "values-b+ko+KP": "RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 보관하려면 끄세요.",
++    "values-b+ko+KR": "RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장하려면 끄세요.",
++    "values-b+ko+Kore+KR": "RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.",
++    "values-b+lv": "Saglabā vienu RGB lapu. Saspiešana var samazināt faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.",
++    "values-b+pt+PT": "Guarda uma página RGB. A compressão pode reduzir o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.",
++    "values-de": "Speichert eine RGB-Seite. Komprimierung kann die Datei verkleinern, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.",
++    "values-el": "Αποθηκεύει μία σελίδα RGB. Η συμπίεση μπορεί να μειώσει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.",
++    "values-fi": "Tallentaa yhden RGB-sivun. Pakkaus voi pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.",
++    "values-fr": "Enregistre une page RGB. La compression peut réduire la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.",
++    "values-hu": "Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkentheti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.",
++    "values-in": "Simpan satu halaman RGB. Kompresi dapat mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.",
++    "values-it": "Salva una pagina RGB. La compressione può ridurre le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.",
++    "values-lt": "Išsaugo vieną RGB puslapį. Glaudinimas gali sumažinti failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.",
++    "values-ms": "Menyimpan satu halaman RGB. Mampatan mungkin mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.",
++    "values-nl": "Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
++    "values-ru": "Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.",
++    "values-sw": "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
++    "values-tl": "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
++    "values-tr": "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.",
++    "values-vi": "Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén."
++}
++
++
++class TiffAdditionalLocaleWordingTests(unittest.TestCase):
++    def test_every_reviewed_catalogue_matches_its_individual_modal_oracle(self):
++        self.assertEqual(26, len(EXPECTED))
++        for folder, expected in EXPECTED.items():
++            with self.subTest(folder=folder):
++                nodes = ET.parse(RES / folder / "strings.xml").findall(f"./string[@name='{KEY}']")
++                self.assertEqual(1, len(nodes))
++                self.assertEqual(expected, "".join(nodes[0].itertext()))
++
++    def test_reviewed_descriptions_remain_argument_free(self):
++        for folder in EXPECTED:
++            with self.subTest(folder=folder):
++                node = ET.parse(RES / folder / "strings.xml").find(f"./string[@name='{KEY}']")
++                self.assertIsNotNone(node)
++                self.assertNotIn("%", "".join(node.itertext()))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/test_tiff_description_wording.py b/tools/test_tiff_description_wording.py
+new file mode 100644
+index 0000000..e6c5bd7
+--- /dev/null
++++ b/tools/test_tiff_description_wording.py
+@@ -0,0 +1,68 @@
++"""F01 wording/resource guards; dialog execution is TiffDescriptionDialogTest.
++
++These exact oracles cover only the eleven reviewed entries, not language acceptance.
++"""
++from pathlib import Path
++import unittest
++import xml.etree.ElementTree as ET
++
++ROOT = Path(__file__).resolve().parents[1]
++RES = ROOT / "Paintroid/src/main/res"
++KEY = "formats22_tiff_description"
++ENGLISH = ("Saves one RGB page. Compression may reduce file size without changing "
++           "pixels; turn it off for uncompressed TIFF.")
++PORTUGUESE = ("Salva uma página RGB. A compressão pode reduzir o tamanho do arquivo "
++              "sem alterar os pixels; desative-a para criar um TIFF sem compressão.")
++ENGLISH_VARIANTS = (
++    "values-b+en+001", "values-en-rAU", "values-en-rCA", "values-en-rGB",
++    "values-en-rIN", "values-en-rSG", "values-en-rUS",
++)
++
++
++def strings(folder):
++    entries = {}
++    for path in (RES / folder).glob("*.xml"):
++        for node in ET.parse(path).getroot().findall("string"):
++            name = node.get("name")
++            if name in entries:
++                raise AssertionError(f"Duplicate string in {folder}: {name}")
++            entries[name] = "".join(node.itertext())
++    return entries
++
++
++class TiffDescriptionWordingTests(unittest.TestCase):
++    def test_default_source_qualifies_size_but_keeps_pixels_and_unchecked_instruction(self):
++        self.assertEqual(ENGLISH, strings("values")[KEY])
++
++    def test_each_separate_english_catalogue_uses_the_reviewed_qualification(self):
++        for folder in ENGLISH_VARIANTS:
++            with self.subTest(folder=folder):
++                self.assertEqual(ENGLISH, strings(folder)[KEY])
++
++    def test_brazilian_portuguese_qualifies_size_and_preserves_its_own_wording(self):
++        self.assertEqual(PORTUGUESE, strings("values-pt-rBR")[KEY])
++        self.assertEqual("Compressão sem perdas (Deflate)",
++                         strings("values-pt-rBR")["formats22_tiff_compression"])
++
++    def test_vertical_layout_fixtures_retain_english_meaning_and_emoji_prefix(self):
++        self.assertEqual(ENGLISH, strings("values-b+en+XV")[KEY])
++        self.assertEqual("💾 " + ENGLISH, strings("values-b+qaa+Zsye+XV")[KEY])
++
++    def test_all_eleven_descriptions_remain_argument_free(self):
++        folders = ("values", *ENGLISH_VARIANTS, "values-b+en+XV",
++                   "values-b+qaa+Zsye+XV", "values-pt-rBR")
++        self.assertEqual(11, len(set(folders)))
++        for folder in folders:
++            with self.subTest(folder=folder):
++                self.assertNotIn("%", strings(folder)[KEY])
++
++    def test_welsh_dialog_fixture_exercises_a_missing_key_not_a_new_translation(self):
++        self.assertNotIn(KEY, strings("values-b+cy"))
++        self.assertEqual(ENGLISH, strings("values")[KEY])
++        offered = ET.parse(RES / "values/app_language_tags.xml").findall(
++            "./string-array[@name='app_language_tags']/item")
++        self.assertIn("cy", [node.text for node in offered])
++
++
++if __name__ == "__main__":
++    unittest.main()

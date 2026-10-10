@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-10",
+  "disposition": "Accepted for exact-source publication and candidate-specific CI within the bounded source/test review; Android execution acceptance remains pending.",
+  "blocking_source_findings": [],
+  "identity": {
+    "schema_version": 1,
+    "reviewed_tree": "04a84df1535297f13a314c521b55647f6d15a678",
+    "dependency_head": "5703a61394791f18e9f2597272d908d9840599af",
+    "dependency_tree": "f2333d9ee7aa6e55c584b306e7363bde83dbbf43",
+    "post_test_identity_check": true,
+    "excluded_workspace_only_files": "Git metadata and nine ignored Python bytecode-cache files; no source exclusion",
+    "files": 1389,
+    "unchanged_dependency_files": 1346,
+    "modified_existing_files": 38,
+    "added_files": 5,
+    "removed_files": [],
+    "changed_resources": 37,
+    "changed_inherited_tests": 1,
+    "added_f01_tests": 4,
+    "added_scope_fixtures": 1,
+    "changes_since_first_stack": [
+      "tools/fixtures/tiff_size_wording_scope.json",
+      "tools/test_commons_copy_credit_errors.py",
+      "tools/test_tiff_description_wording.py"
+    ],
+    "exact_resource_substitutions_verified": 37,
+    "fixture_pairs_match_previously_reviewed_clauses": true,
+    "canonical_private_routing_and_generator_workflow_unchanged": true,
+    "historical_source_hash_manifest_unchanged": true
+  },
+  "scope": {
+    "paths_changed_from_pinned_pr34": 43,
+    "canonical_resource_single_line_edits": 37,
+    "new_f01_test_files": 4,
+    "inherited_test_files_changed": 1,
+    "new_scope_fixture": 1,
+    "total_files": 1389,
+    "unchanged_dependency_files": 1346,
+    "removed": 0,
+    "mode_changes": 0,
+    "source_since_first_stack": "All 37 resources, both Kotlin tests, production routing, encoders, Gradle generator, workflow and historical evidence files remain byte-identical to first stack 405d57e43038f184fa11b63421094feea5a142fd. Only the new fixture, inherited scope guard and additional composition tests changed."
+  },
+  "resolved_composition_finding": {
+    "first_stack_tree": "405d57e43038f184fa11b63421094feea5a142fd",
+    "observed_result": "408 host methods, one assertion failure in the inherited Copy-credit whole-catalogue scope guard.",
+    "diagnosis": "Exactly 37 of the 60 historical catalogue hashes differed because the guard knew only the earlier three Copy-credit additions. Reversing each approved TIFF line in memory restored all 60 original hashes.",
+    "repair": "An exact SHA-256-pinned fixture permits only the reviewed 37 before/after lines. The inherited guard strips exactly one of each original Copy-credit addition, reverses exactly one approved current TIFF line for each scoped path, and compares against its original historical hash. The separate exact Copy-credit value assertions remain unchanged.",
+    "fixture_sha256": "9cead98f8f826c5c853f4b0dc6cd6b80f8760274770a00f600c690d44fba0ac1",
+    "historical_hashes_changed": false,
+    "oracle_weakening": false,
+    "new_scope_verified": "37 unique independent-oracle paths, one exact XML string key and line, no child XML, original differs from replacement; all pairs independently match the earlier approved clause map."
+  },
+  "executed_host_checks": {
+    "full_host": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'",
+      "tests": 412,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 53.317,
+      "log": "stacked-final-host.log",
+      "sha256": "f9b61c897c997f27062ad50b4d7f330998519ff1bf908250a0dbe51529b5049b",
+      "interpretation": "Printed success:false instrumentation JSON records are deliberately rejected mocked fixtures from passing host tests, not Android device executions."
+    },
+    "translation_catalogues": {
+      "result": "Canonical translation catalogues are structurally valid",
+      "log": "stacked-final-structural.log",
+      "sha256": "7c652ab12e74ee09f33bbdefa3d25108ea0f93d324f96a321efac83ba01e886c"
+    },
+    "focused_composition_and_initial_wording": {
+      "methods": 10,
+      "result": "pass",
+      "seconds": 0.261,
+      "log": "stacked-final-composition-tests.log",
+      "sha256": "4f6ca603fd58104d9e513840632f918f85358a38f6824a07028470e77ea65345"
+    },
+    "embedded_assertion_negative_controls": {
+      "total": 212,
+      "unrelated_ui_save_mutations_all_catalogues": 60,
+      "each_37_tiff_lines_revert_corrupt_missing_duplicate": 148,
+      "emoji_prefix_removal": 1,
+      "missing_duplicate_extra_xml_fixture_mutations": 3,
+      "status": "All reject by expected AssertionError while positive controls pass; executed in the independent full and focused runs."
+    },
+    "supplementary_copy_credit_mutations": {
+      "count": 3,
+      "assertion_failures": 3,
+      "errors": 0,
+      "positive_before_after": true,
+      "source_untouched": true,
+      "log": "stacked-final-copy-credit-negative-controls.json",
+      "sha256": "198505e1854a92c2e4d4b2d3a2b203cf3b335280a10e385c5970bc91ffe85fd4"
+    },
+    "original_41_controls": "Previously independently passed on unchanged F01 resource values and original exact-value tests; deliberately not rerun wholesale. Historical evidence retained."
+  },
+  "korean_routing_dependency": {
+    "pinned_head": "5703a61394791f18e9f2597272d908d9840599af",
+    "tree": "f2333d9ee7aa6e55c584b306e7363bde83dbbf43",
+    "policy": "Public and persisted ko-Kore-KR identity remains canonical. Only internal resource queries map to ko-Kore-KR-anpaint. The sole editable mixed-script catalogue remains values-b+ko+Kore+KR; the unchanged Gradle Sync generator copies the whole catalogue under build/generated/exactScriptResources. No checked-in private duplicate.",
+    "strict_hanja_and_public_identity_assertions": "Unchanged in the new tests; no test-only context bypass or Hangul oracle substitution.",
+    "source_review": "All pinned dependency files/modes recomputed against the supplied fresh remote-tree manifest, then final candidate tree recomputed after execution. Source mirroring is not execution of the generator."
+  },
+  "historical_initial_pr43_ci": {
+    "head": "d3ada3e55fb60a6926e7f6c8eede242f3c1f140e",
+    "tree": "bde13ca4bbd9a45198ab4da9cadd85d900aaa594",
+    "run": 38047199955,
+    "outcome": "failure",
+    "junit": {
+      "tests": 746,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "seven_dialog_methods": "pass",
+      "two_26_locale_methods": "fail at strict Hanja resource assertion for ko-Kore-KR; each loop stops at the ninth locale, so later 17 locales are not established"
+    },
+    "all_nine_compiled_and_executed": true,
+    "interpretation": "The pinned old base lacks the production resource-routing dependency already diagnosed in PR34. This genuine initial failure is retained and is not reclassified as a test defect.",
+    "other_outcomes": "Initial exact-source lint/build/source archive and API35 codec/import/20-method application validation passed; those results do not establish the newly stacked source.",
+    "report": "pr43-first-ci-review.json",
+    "sha256": "02904c367ba043fb2991570a0e3ab2b8afd3772e60217ea031a034d26c53b790"
+  },
+  "pending_exact_stacked_execution": {
+    "new_robolectric_methods": [
+      "TiffDescriptionDialogTest.sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionDialogTest.brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionDialogTest.welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices",
+      "TiffDescriptionDialogTest.verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription",
+      "TiffDescriptionDialogTest.togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag",
+      "TiffDescriptionDialogTest.switchingFormatsRestoresDescriptionAndRetainsCompressionChoice",
+      "TiffDescriptionDialogTest.buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice",
+      "TiffDescriptionLocaleTest.allTwentySixLocalesUseTheirQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionLocaleTest.allTwentySixLocalesRetainDescriptionThroughToggleFormatSwitchAndCancel"
+    ],
+    "status": "None of the nine Kotlin methods has been compiled or run on this revised stacked tree locally. Historical old-tree results remain separate.",
+    "local_environment": "Uncached Gradle 8.13 download and no usable Android SDK prevent local Gradle/Android verification.",
+    "required": [
+      "Verify published commit/merge-ref tree equals 04a84df1535297f13a314c521b55647f6d15a678.",
+      "Execute all nine new Kotlin methods and full JUnit, lint and APK/test APK build on that source.",
+      "Run inherited seven-stage Gradle resource-generation checks and compiled canonical/private Korean parity for all 695 entries.",
+      "Complete exact-source API30/API35 real picker, rotation, public-identity and applicable native/application tests, retaining inventories and raw results.",
+      "Reconcile final artifact provenance, source archive and APK identities."
+    ],
+    "limits": "Robolectric dialog text, state, callbacks and fallback checks are distinct from installed-device visual layout/accessibility and native-speaker linguistic attestation. Neither host models nor prior PR34 passing runtime evidence substitute for the new candidate execution. Existing API35 timing margin remains a risk; no deadline waiver."
+  },
+  "inventory_and_closure": {
+    "exact_explicit_definitions_verified": 60,
+    "corrected": 37,
+    "unchanged": 23,
+    "unchanged_probable": 12,
+    "unchanged_uncertain": 4,
+    "unchanged_already_qualified": 7,
+    "missing_key_offered_locales": 81,
+    "fallback_limit": "Corrected default fallback is source-predicted; no runtime proof for all 81 locales.",
+    "F01": "Open",
+    "parent_total": 475,
+    "parent_structural_complete": 3,
+    "parent_pending": 472,
+    "scope_limit": "No parent row, full-language obligation, original-scope reconciliation or 81-locale completion is closed."
+  },
+  "preserved_findings": {
+    "checkbox_api_contract": "Earlier invalid performClick return assertions were a source/API-contract finding, not an executed runtime failure; their corrected checked-state and callback tests remain unchanged.",
+    "original_full_host": "374/no skips and 41 assertion negatives retained in source-test-review.json.",
+    "initial_ci": "Genuine two-method Korean failure retained in pr43-first-ci-review.json.",
+    "first_stack_full_host": "408/one inherited scope-guard failure retained in stacked-first-host.log and stacked-first-source-review.json."
+  },
+  "reviewed_manifest": {
+    "path": "stacked-final-reviewed-manifest.json",
+    "sha256": "feede8352ae881696caf2c01588134cb23cddce8bc3130a7c612029e9bbbdb1e"
+  },
+  "reviewer_actions": "Source reads, independent hashing, host tests, temporary-copy negative controls and local review evidence only; no candidate edits, publication, remote writes or CI dispatch."
+}

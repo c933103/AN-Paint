@@ -2,6 +2,10 @@
 
 10 October 2026. [Draft PR43](https://github.com/c933103/AN-Paint/pull/43) publishes exactly the independently reviewed 37 catalogue substitutions and four new test files. This evidence-only supplement does not modify that source tree.
 
+## Current stack publication
+
+Draft PR43 now has head `4f9082aa687a5c36b559061bcc10d0e39331610f`, tree `04a84df1535297f13a314c521b55647f6d15a678`, on the exact unmerged PR34 dependency. The [43-path stack evidence and independent review](stacked-evidence/README.md) records 412 host passes and the narrow historical-guard composition repair. [Release-configured run 38049772357](https://github.com/c933103/AN-Paint/actions/runs/38049772357) is pending at this checkpoint. Earlier failures remain retained below; they are not replaced with successful results.
+
 ## First-head CI update
 
 The first run completed with two strict mixed-Korean JVM failures; all seven initial F01 dialog methods, build/lint and API35 passed. Read the [retained failure and dependency diagnosis](first-ci-evidence/README.md) and [proposed exact stack](integration-proposal/README.md). The source-head history below remains the initial publication snapshot. The evidence-files.json manifest pins the original packet at commit3981b84e; later additions and this updated index have their own commits/manifests.
