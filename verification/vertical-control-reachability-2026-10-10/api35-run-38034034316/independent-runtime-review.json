@@ -1,0 +1,73 @@
+{
+  "result": "accepted for the tested API35 vertical-control reachability and rendered-text scope",
+  "run_id": 38034034316,
+  "run_attempt": 1,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38034034316",
+  "head_commit": "107376cbd9a0eafcd3cedbae0365802702b525ff",
+  "tested_merge": "d21d5f467a72c9dd222c57c98c5bfe8bdf5b7ecb",
+  "reviewed_tree": "52901eb86069390da168b6c86b99b67d3e1db8f5",
+  "api35_artifact": {
+    "id": 11663376109,
+    "bytes": 4866626,
+    "sha256": "30c7dec8fa5f8fd8b95e36e5c6ba3f6e564e6a96ea7a079a0719c9589992062c"
+  },
+  "regression_artifact": {
+    "id": 11663420081,
+    "bytes": 32274243,
+    "sha256": "0d6292ce072d4f3c2864e8b9b4e14694842efbe933705e0059a664b54df29048"
+  },
+  "independent_checks": {
+    "artifact_bytes_hashes_and_remote_metadata": true,
+    "head_and_merge_equal_reviewed_tree": true,
+    "build_emulator_checkout_and_apk_artifact_chain": true,
+    "jvm_cases": 755,
+    "jvm_xml_files": 79,
+    "redraw_jvm_cases": 6,
+    "slider_jvm_cases": 12,
+    "jvm_failures_errors_skips": 0,
+    "lint_issues": 0,
+    "installed_methods": 98,
+    "installed_failures_errors_skips": 0,
+    "source_bound_app_union_methods": 24,
+    "source_bound_native_methods": 74,
+    "matching_stored_image_and_reachability_manifests": true,
+    "case_receipts": 8,
+    "fully_decoded_pngs": 96,
+    "original_matrix_pngs": 32,
+    "reachability_pngs": 64,
+    "native_traces": 28,
+    "native_trace_actions": "Every trace has DOWN, MOVE, UP and no CANCEL",
+    "stable_ancestor_offsets": "Every event, scroll snapshot, post-injection and final state checked",
+    "trace_errors_drops": 0,
+    "observers_removed": true,
+    "quality_endpoints": [
+      1,
+      100
+    ],
+    "distinct_cancel_draft_preserved": true,
+    "state_preservation_and_reopen_back": true,
+    "choose_location": "One canceled ACTION_CREATE_DOCUMENT request per case, image/jpeg, filename matches; observed by test interception"
+  },
+  "visual_review": {
+    "images_inspected": 96,
+    "method": "Eight full-resolution, non-rescaled 12-image contact sheets, plus an original Literary Chinese portrait maximum image opened directly",
+    "result": "All eight cases visibly show correct 1 and 100 readouts/thumb endpoints and Untitled.jpg filename previews after JPEG selection. Intended filename, description, Cancel and Choose-location targets visible in their captures. No remaining blocker found in this bounded matrix."
+  },
+  "timing": {
+    "vertical_shard_seconds": [
+      113.10806805400006,
+      107.346131732
+    ],
+    "runner_completion_seconds": 467,
+    "per_shard_ceiling_seconds": 180,
+    "aggregate_vertical_allowance_seconds": 360,
+    "outer_minutes": 15
+  },
+  "limits": [
+    "API35 only; no new installed API30 acceptance",
+    "No claim about untested alternate input routes or physical devices",
+    "System file picker completion is intercepted and canceled; this is not a completed filesystem export test",
+    "Historical runs 38027075427, 38029694670 and 38031416670 retain their failed outcomes"
+  ],
+  "checks_log_sha256": "345621c0a07b9339dacdbd9b5268740b894928f307ba61c4b8a7f65612dc3225"
+}
