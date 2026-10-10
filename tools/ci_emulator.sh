@@ -215,6 +215,11 @@ main() {
     progress "FAILED: expected API $TEST_API, received $ready_output" >&2
     exit 1
   fi
+  wait_until_ready 'Verify native ABI' '*' shell getprop ro.product.cpu.abi
+  if [[ "$ready_output" != "$emulator_abi" ]]; then
+    progress "FAILED: expected emulator ABI $emulator_abi, received $ready_output" >&2
+    exit 1
+  fi
   if (( TEST_API < 30 )); then
     # Android 5/7 predates some modern `cmd package` entry points.
     wait_until_ready 'Package manager' 'package:*' shell pm path android
@@ -270,7 +275,7 @@ main() {
     fi
   else
     mkdir -p "$report/app/accepted-credit-restart"
-    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API $TEST_API\n' \
+    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API %s\n' "$TEST_API" \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
   phase='Instrumentation complete'
