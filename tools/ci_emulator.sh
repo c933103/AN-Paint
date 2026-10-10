@@ -176,8 +176,10 @@ cleanup() {
 }
 
 main() {
-  : "${TEST_API:?Set TEST_API to 30 or 35}"
-  case "$TEST_API" in 30|35) ;; *) exit 2;; esac
+  : "${TEST_API:?Set TEST_API to 21, 24, 30, or 35}"
+  case "$TEST_API" in 21|24|30|35) ;; *) exit 2;; esac
+  emulator_abi="${EMULATOR_ABI:-x86_64}"
+  case "$emulator_abi" in x86|x86_64) ;; *) exit 2;; esac
   variant="${BUILD_VARIANT:-debug}"
   case "$variant" in debug|release) ;; *) exit 2;; esac
   export ANDROID_SERIAL=emulator-5554
@@ -189,9 +191,9 @@ main() {
   trap cleanup EXIT
   trap 'progress "Interrupted during $phase"; exit 124' TERM INT
   trap 'status=$?; progress "FAILED: $phase (exit $status): $BASH_COMMAND" >&2; exit "$status"' ERR
-  progress "$phase"
+  progress "$phase (API $TEST_API, $emulator_abi)"
   timeout --kill-after=5s 30s "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd \
-    --force --name "codec$TEST_API" --package "system-images;android-$TEST_API;google_apis;x86_64" <<< no
+    --force --name "codec$TEST_API" --package "system-images;android-$TEST_API;google_apis;$emulator_abi" <<< no
   phase='Launch emulator'
   progress "$phase"
   "$ANDROID_HOME/emulator/emulator" -avd "codec$TEST_API" -port 5554 \
@@ -201,26 +203,48 @@ main() {
   phase='Discover ADB device (60s maximum)'
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" wait-for-device
-  readiness_deadline=$((SECONDS + 120))
+  # Legacy system images need more time to finish first-boot services.
+  if (( TEST_API < 30 )); then
+    readiness_deadline=$((SECONDS + 180))
+  else
+    readiness_deadline=$((SECONDS + 120))
+  fi
   wait_until_ready 'Android boot' 1 shell getprop sys.boot_completed
   wait_until_ready 'Verify Android API' '*' shell getprop ro.build.version.sdk
   if [[ "$ready_output" != "$TEST_API" ]]; then
     progress "FAILED: expected API $TEST_API, received $ready_output" >&2
     exit 1
   fi
-  wait_until_ready 'Package manager' 'package:*' shell cmd package path android
+  wait_until_ready 'Verify native ABI' '*' shell getprop ro.product.cpu.abi
+  if [[ "$ready_output" != "$emulator_abi" ]]; then
+    progress "FAILED: expected emulator ABI $emulator_abi, received $ready_output" >&2
+    exit 1
+  fi
+  if (( TEST_API < 30 )); then
+    # Android 5/7 predates some modern `cmd package` entry points.
+    wait_until_ready 'Package manager' 'package:*' shell pm path android
+  else
+    wait_until_ready 'Package manager' 'package:*' shell cmd package path android
+  fi
   for setting in window_animation_scale transition_animation_scale animator_duration_scale; do
     wait_until_ready "Disable $setting" '*' shell settings put global "$setting" 0
   done
   # A synthetic MENU key can wait for a launcher window that has not appeared
   # yet, triggering an input-dispatch ANR during first boot. Dismiss directly.
-  wait_until_ready 'Dismiss keyguard' '*' shell wm dismiss-keyguard
+  if (( TEST_API >= 23 )); then
+    wait_until_ready 'Dismiss keyguard' '*' shell wm dismiss-keyguard
+  else
+    # Android 5 predates `wm dismiss-keyguard`; the fresh emulator has no secure lock.
+    # Do not send MENU during boot: it can stall waiting for input dispatch.
+    progress 'Android 5: no wm dismiss-keyguard; proceeding on unprotected emulator'
+  fi
   phase='Install main APK (60s maximum)'
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" install -r -t "build/prebuilt/app/build/outputs/apk/$variant/app-$variant.apk"
   failed=0
   extra=()
-  if test "$TEST_API" = 30; then
+  if (( TEST_API < 35 )); then
+    # Gain-map decoding needs API 34; the API35 run remains responsible for it.
     extra+=(--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest)
   fi
   phase='Native/import instrumentation'
@@ -251,7 +275,7 @@ main() {
     fi
   else
     mkdir -p "$report/app/accepted-credit-restart"
-    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API30\n' \
+    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API %s\n' "$TEST_API" \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
   phase='Instrumentation complete'
