@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr34-parent-ci-9b621934/verify_ci.py", line 303, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/shared/anpaint-pr34-parent-ci-9b621934/verify_ci.py", line 298, in main
+    result=device(args.directory,args.source,args.sdk) if args.kind=='device' else (generator if args.kind=='generator' else regression)(args.directory,args.source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr34-parent-ci-9b621934/verify_ci.py", line 169, in device
+    'application_log_oracles':application_log_oracles(directory,sdk),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr34-parent-ci-9b621934/verify_ci.py", line 181, in application_log_oracles
+    require([row['phase'] for row in korean]==['mixed-selected','mixed-after-rotation','ordinary-selected','mixed-reselected'], 'Exact four Korean picker/rotation phases required')
+  File "/workspace/shared/anpaint-pr34-parent-ci-9b621934/verify_ci.py", line 22, in require
+    raise ValueError(message)
+ValueError: Exact four Korean picker/rotation phases required
