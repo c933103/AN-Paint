@@ -18,6 +18,25 @@ KEYS = {
 }
 
 
+def catalogue_before_copy_credit_and_f01(path, text):
+    """Reverse only the two reviewed resource deltas; keep the original full-file hash."""
+    for key in KEYS:
+        text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
+        if count != 1:
+            raise AssertionError(f"{path}: expected one Copy-credit entry for {key}")
+    fixture_bytes = (ROOT / 'tools/fixtures/tiff_size_wording_scope.json').read_bytes()
+    if hashlib.sha256(fixture_bytes).hexdigest() != '9cead98f8f826c5c853f4b0dc6cd6b80f8760274770a00f600c690d44fba0ac1':
+        raise AssertionError('The independently reviewed 37-line F01 scope fixture changed')
+    fixture = json.loads(fixture_bytes)
+    changes = {row['path']: row for row in fixture['entries']}
+    if path in changes:
+        change = changes[path]
+        if text.count(change['after']) != 1:
+            raise AssertionError(f"{path}: expected exactly one approved F01 description")
+        text = text.replace(change['after'], change['before'], 1)
+    return text
+
+
 class CommonsCopyCreditErrorContracts(unittest.TestCase):
     def test_default_and_exact_59_catalogues_match_review_manifest(self):
         data = json.loads((EVIDENCE / 'translations.json').read_text())
@@ -53,10 +72,8 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
         self.assertEqual(60, len(scope['catalogues']))
         for row in scope['catalogues']:
             text = (ROOT / row['path']).read_text()
-            for key in KEYS:
-                text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
-                self.assertEqual(1, count)
-            self.assertEqual(row['before_sha256'], hashlib.sha256(text.encode()).hexdigest())
+            text = catalogue_before_copy_credit_and_f01(row['path'], text)
+            self.assertEqual(row['before_sha256'], hashlib.sha256(text.encode()).hexdigest(), row['path'])
 
     def test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim(self):
         text = (JAVA / 'MediaGalleryActivity.kt').read_text()
