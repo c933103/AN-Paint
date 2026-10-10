@@ -170,6 +170,8 @@ class CommonsCopyCreditErrorTest {
             catch(error: org.json.JSONException) {requireNotNull(error.message)}
         checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,reason)}) {response(it,body)}
     }
+    @Test fun persistedMixedScriptKoreanSelectionUsesItsExactCopyCreditMessageInTheGallery() =
+        checkFailure("ko-Kore-KR",{"이미지 크레딧을 複寫할 수 없습니다: Commons metadata: HTTP 503"}) {response(it,code=503)}
     @Test fun metadataMemoryFailureDoesNotClaimImageInspection() =
         checkFailure(expected={it.getString(R.string.commons_credit_copy_out_of_memory)}) {throw OutOfMemoryError("fixture")}
     @Test fun metadataLinkageFailureDoesNotClaimAnImageColourConverterFailure() =

@@ -94,3 +94,20 @@ The Hungarian `gallery_copy_credit` label is currently `Jóváírás másolása`
 This is an inherited label issue, left unchanged here and recorded as a separate
 open terminology correction. The new C04 failure messages correctly use
 `forrásmegjelölés`; they should not be changed to match that inherited label.
+
+## Verified RTL base integration and exact-language diagnostic
+
+PR33 is now merged at `b9a79613b088c9ff54f2c225f6ae53d5b8d8ae61`, tree
+`eea34eac70c8e425648fd6e1370af9643c710bf3`. The combined tree retains its
+navigation change, tests and all evidence without alteration, plus completed Help.
+The original C04 source/translation boundary is unchanged.
+
+The [first hosted evidence](first-ci-1cd0eea/README.md) is retained, including the
+failed exact `ko-Kore-KR` resource oracle. The next run selects every tag through
+persisted `AppLanguage.select` and `AppLanguage.wrap`, verifies the persisted and
+configured tag, records all expected/actual scoped strings, and still requires
+the exact manifest text. A fourteenth API35 method also requires mixed-script
+Korean in the real gallery failure status. Ordinary Korean is not accepted as a
+substitute and no production locale-routing change has been made at this stage.
+This diagnostic integration must establish whether the earlier raw-configuration
+fixture bypassed relevant application setup or exposed a production-route defect.

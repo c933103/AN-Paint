@@ -4,6 +4,12 @@ package org.catrobat.paintroid.local
 import android.content.Context
 import android.content.res.Configuration
 import android.os.LocaleList
+import android.os.Build
+import android.app.LocaleManager
+import org.catrobat.paintroid.classic.PaintApplication
+import org.junit.Before
+import org.junit.After
+import java.util.Locale
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.AppLanguage
 import org.junit.Assert.*
@@ -106,21 +112,51 @@ class CommonsCopyCreditTranslationTest {
     private val defaultMessages=listOf("Could not copy image credit.", "Could not copy image credit: %1\$s", "Not enough memory to copy image credit.")
     private val keys=listOf(R.string.commons_credit_copy_failed,R.string.commons_credit_copy_failed_reason,
         R.string.commons_credit_copy_out_of_memory)
-    private fun resourcesFor(tag: String)=context.createConfigurationContext(Configuration().apply {
-        setLocales(LocaleList.forLanguageTags(tag))
-    }).resources
+    private var previousTag: String?=null
+    private var previousInitialized: Boolean?=null
+    private var previousPlatform: LocaleList?=null
+    private lateinit var previousLocale: Locale
+    private lateinit var previousResources: android.content.res.Resources
+    @Before fun saveLanguageState() {
+        val preferences=context.getSharedPreferences("app-language",Context.MODE_PRIVATE)
+        previousTag=preferences.getString("language-tag",null)
+        previousInitialized=if(preferences.contains("platform-initialized")) preferences.getBoolean("platform-initialized",false) else null
+        if(Build.VERSION.SDK_INT>=33) previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales
+        previousLocale=Locale.getDefault();previousResources=PaintApplication.currentResources
+    }
+    @After fun restoreLanguageState() {
+        if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!
+        context.getSharedPreferences("app-language",Context.MODE_PRIVATE).edit().apply {
+            if(previousTag==null) remove("language-tag") else putString("language-tag",previousTag)
+            if(previousInitialized==null) remove("platform-initialized") else putBoolean("platform-initialized",previousInitialized!!)
+        }.commit()
+        PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+    }
+    private fun resourcesFor(tag: String): android.content.res.Resources {
+        AppLanguage.select(context,tag)
+        assertEquals("Persist the exact requested application tag",tag,AppLanguage.selectedTag(context))
+        val wrapped=AppLanguage.wrap(context)
+        assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+        PaintApplication.currentResources=wrapped.resources
+        return wrapped.resources
+    }
     @Test fun all59ExactCataloguesResolveWholeMessagesAndKeepReasonArgumentVerbatim() {
-        val english=resourcesFor("en-GB")
         val reason="Provider 50%: %1\$s · détails\nTry again."
+        val mismatches=mutableListOf<String>()
+        val observations=org.json.JSONArray()
         for(tag in scopedTags) {
             val resources=resourcesFor(tag)
-            assertEquals("$tag exact manifest messages, not merely a non-English fallback",
-                expectedMessages.getValue(tag),keys.map {resources.getString(it)})
+            val actual=keys.map {resources.getString(it)}
+            observations.put(org.json.JSONObject().put("requested_tag",tag)
+                .put("persisted_tag",AppLanguage.selectedTag(context))
+                .put("resource_tag",resources.configuration.locales[0].toLanguageTag())
+                .put("expected",org.json.JSONArray(expectedMessages.getValue(tag)))
+                .put("actual",org.json.JSONArray(actual)))
+            if(expectedMessages.getValue(tag)!=actual)
+                mismatches.add("$tag expected ${expectedMessages.getValue(tag)} but was $actual")
             for(key in keys) {
                 val text=resources.getString(key)
                 assertTrue("$tag nonempty resource",text.isNotBlank())
-                if(!tag.startsWith("en-") && tag!="qaa-Zsye-XV")
-                    assertNotEquals("$tag must not be an English-filled exact override",english.getString(key),text)
             }
             val template=resources.getString(R.string.commons_credit_copy_failed_reason)
             assertEquals(1,template.windowed(4).count {it=="%1\$s"})
@@ -128,6 +164,10 @@ class CommonsCopyCreditTranslationTest {
             assertFalse(resources.getString(R.string.commons_credit_copy_failed).contains("%"))
             assertFalse(resources.getString(R.string.commons_credit_copy_out_of_memory).contains("%"))
         }
+        val report=java.io.File("build/reports/commons-copy-credit-resolution").apply {mkdirs()}
+        java.io.File(report,"api${RuntimeEnvironment.getApiLevel()}.json").writeText(observations.toString(2)+"\n")
+        assertTrue("Every exact manifest message must resolve through persisted app-language selection:\n"+
+            mismatches.joinToString("\n"),mismatches.isEmpty())
     }
     @Test fun remaining81OfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}

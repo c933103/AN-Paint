@@ -119,7 +119,9 @@ class MediaGalleryActivity : Activity() {
             controls.addView(actionRow(legacy))
         }
         val navigation=GalleryActions(this).apply {tag="gallery_navigation"}
-        navigation.addView(galleryButton(this,"←","gallery_back",verticalCaption=false) {
+        // Use the app locale's horizontal navigation direction, not a vertical column order.
+        val backArrow=if(resources.configuration.layoutDirection==View.LAYOUT_DIRECTION_RTL) "→" else "←"
+        navigation.addView(galleryButton(this,backArrow,"gallery_back",verticalCaption=false) {
             if(web.canGoBack()) web.goBack() else web.loadUrl(provider.home)
         }.apply {contentDescription=ui(R.string.ui_gallery_back34)})
         val searchLabel=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34)
