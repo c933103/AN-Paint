@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "repository": "c933103/AN-Paint",
+  "key": "formats22_tiff_description",
+  "review_type": "bounded primary-source linguistic follow-up; evidence only",
+  "reviewed_source_commit": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+  "evidence_parent_commit": "9606b613e802bebd46ddb57d44cda9ce4a09eb0d",
+  "semantic_disposition": "unresolved",
+  "cases": [
+    {
+      "id": "F01-C004",
+      "tag": "ain-Kana",
+      "path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "line": 558,
+      "source_commit": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "source_blob": "3b312cc293e7cd8fbe84b729dd5fc5eb1a18144b",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/4f9082aa687a5c36b559061bcc10d0e39331610f/Paintroid/src/main/res/values-b%2Bain%2BKana/strings.xml#L558",
+      "original_text": "シネ RGB ソㇱ アアマ. チヌイェㇷ゚ アポンテ ヤッカ pixel アシンナレ カ ソモ キ. TIFF チヌイェㇷ゚ ソモ ポンテ ノ アマ クス タン イヤヌ アイカㇷ゚テ ヤン.",
+      "retained_text": "シネ RGB ソㇱ アアマ. チヌイェㇷ゚ アポンテ ヤッカ pixel アシンナレ カ ソモ キ. TIFF チヌイェㇷ゚ ソモ ポンテ ノ アマ クス タン イヤヌ アイカㇷ゚テ ヤン.",
+      "category": "linguistically-uncertain",
+      "status": "open",
+      "closure": "Not closed",
+      "resource_action": "unchanged",
+      "proposed_replacement": null,
+      "assessment": "Primary sources establish make-small plus a hypothetical/factual concessive construction. Categorical size assurance and unequivocal possibility qualification are both unestablished in this UI context."
+    },
+    {
+      "id": "F01-C005",
+      "tag": "ain-Latn",
+      "path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "line": 558,
+      "source_commit": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "source_blob": "2bcff550416f01511c2d8894b29157ed060ea33a",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/4f9082aa687a5c36b559061bcc10d0e39331610f/Paintroid/src/main/res/values-b%2Bain%2BLatn/strings.xml#L558",
+      "original_text": "Sine RGB sos a=ama. Cinuyep a=ponte yakka pixel a=sinnare ka somo ki. TIFF cinuyep somo ponte no ama kusu tan iyanu aykapte yan.",
+      "retained_text": "Sine RGB sos a=ama. Cinuyep a=ponte yakka pixel a=sinnare ka somo ki. TIFF cinuyep somo ponte no ama kusu tan iyanu aykapte yan.",
+      "category": "linguistically-uncertain",
+      "status": "open",
+      "closure": "Not closed",
+      "resource_action": "unchanged",
+      "proposed_replacement": null,
+      "assessment": "Primary sources establish make-small plus a hypothetical/factual concessive construction. Categorical size assurance and unequivocal possibility qualification are both unestablished in this UI context."
+    }
+  ],
+  "grammatical_subclaims": [
+    {
+      "id": "G1",
+      "claim": "yakka has hypothetical and factual concessive readings.",
+      "confidence": "high",
+      "evidence_status": "proven within cited source descriptions",
+      "sources": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "id": "G2",
+      "claim": "ponte has an ordinary make-small meaning.",
+      "confidence": "high for lexical meaning; computing-specific use not established",
+      "evidence_status": "supported by indexed primary dictionary passage",
+      "sources": [
+        "S3"
+      ]
+    },
+    {
+      "id": "G3",
+      "claim": "VP + ka somo ki is a negative construction; here it follows the pixel predicate, rather than qualifying the earlier size predicate.",
+      "confidence": "high for construction; application of the analysis is model linguistic interpretation",
+      "evidence_status": "source-backed grammatical analysis",
+      "sources": [
+        "S4"
+      ]
+    },
+    {
+      "id": "G4",
+      "claim": "The Latin and Kana originals contain the same targeted a=ponte / アポンテ, yakka / ヤッカ and ka somo ki / カ ソモ キ construction.",
+      "confidence": "high for exact source correspondence",
+      "evidence_status": "direct repository read",
+      "sources": []
+    }
+  ],
+  "analytical_gloss": {
+    "text": "Even if/although one makes the file smaller, the pixels are not changed.",
+    "label": "Analytical working gloss of the middle sentence only; not an accepted full translation.",
+    "limits": "The glossary terms, complete string, naturalness and computational terminology were not independently accepted. This is not native-speaker attestation."
+  },
+  "reasoning_summary": "The size-reduction clause precedes yakka; the following clause supplies the pixel-preservation assertion. The hypothetical reading does not guarantee reduction; the factual concessive reading may assume it. The cited descriptions do not select one reading for this UI. A bare make-small verb or absence of an explicit possibility auxiliary is insufficient to prove the F01 categorical-size defect. Conversely, yakka alone does not prove an unequivocal may-reduce qualification.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Tamura Suzuko, Ainu-go Saru hōgen jiten (1996), yakka entry, National Ainu Museum Ainu Archive",
+      "url": "https://ainugo.nam.go.jp/dic?word=upas",
+      "locator": "yakka entry; primary dictionary text reproduced by the museum",
+      "access": "Opened successfully on 2026-10-10",
+      "supports": "Both hypothetical and factual concessive readings; short English gloss: even if; although."
+    },
+    {
+      "id": "S2",
+      "title": "Foundation for Research and Promotion of Ainu Culture, Intermediate Ainu: Saru (March 2014)",
+      "url": "https://www.ff-ainu.or.jp/web/potal_site/files/saru_tyukyu.pdf#page=92",
+      "locator": "Printed p. 91 (PDF page 92), step 37, 接続助詞を用いた表現２",
+      "access": "Official PDF text opened; screenshot request failed. The text extraction reverses word order on some lines; no reversed extraction is reproduced as a quotation.",
+      "supports": "Identifies yakka as a concessive connective."
+    },
+    {
+      "id": "S3",
+      "title": "Chiri, 人間編Ⅱ §021 (33), and Kayano corresponding dictionary entry, National Ainu Museum Ainu Archive",
+      "url": "https://ainugo.nam.go.jp/dic?word=a",
+      "locator": "arke ciyasa arke ci-ponte kane an; arke ci=yasa arke ci=ponte",
+      "access": "Indexed institutional result read on 2026-10-10; direct opening of this results page failed. Direct ponte query routes also failed.",
+      "supports": "The Chiri analysis gives ponte as 小さくした. Kayano's corresponding entry supports the ordinary make-small interpretation, not a computing-specific compression term."
+    },
+    {
+      "id": "S4",
+      "title": "Nurmi, Jussi (2024), Contrastive Negation in Ainu, 言語科学研究 1, 57–80",
+      "url": "https://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/91818/1/1_06-NURMI.pdf#page=8",
+      "locator": "Printed pp. 63–64, section 4 and example (5); DOI 10.14943/110403",
+      "access": "Hokkaido University institutional full-text PDF opened successfully on 2026-10-10",
+      "supports": "Explains VP + ka somo ki as negation through dummy verb ki; cautions that the construction's emphatic status needs further study."
+    }
+  ],
+  "limitations": [
+    "No native speaker reviewed this UI sentence.",
+    "Dictionary examples were inspected as published examples; their audio or underlying recordings were not independently checked.",
+    "The S3 ponte passage was available only in an indexed institutional result; direct page opening failed.",
+    "Full-string accuracy, dialect/register suitability, computing terminology, script-wide correctness and rendering remain unverified.",
+    "The contextual choice between hypothetical and factual concession remains unresolved.",
+    "No replacement, completed-language acceptance or F01 closure is claimed."
+  ],
+  "next_action": "Obtain a supported contextual judgment on whether this exact UI construction presupposes successful file-size reduction before proposing any replacement; retain both cases open and unchanged.",
+  "scope_controls": {
+    "resources_changed": false,
+    "tests_changed": false,
+    "application_code_changed": false,
+    "workflow_changed": false,
+    "completion_counts_changed": false,
+    "pr43_source_branch_changed": false,
+    "other_inventory_cases_reclassified": false,
+    "external_contacts": false,
+    "native_speaker_attestation": false
+  },
+  "related_evidence": {
+    "inventory": "../combined-evidence/all-language-inventory.json",
+    "pr43_discussion": "https://github.com/c933103/AN-Paint/pull/43#issuecomment-6097687952",
+    "pr7_discussion": "https://github.com/c933103/AN-Paint/pull/7#issuecomment-6097689369"
+  }
+}
