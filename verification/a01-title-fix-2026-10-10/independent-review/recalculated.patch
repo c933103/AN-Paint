@@ -1,0 +1,366 @@
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt
+index 592812e..d8d3451 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt
+@@ -91,7 +91,7 @@ class ImportSelection(private val activity: Activity,private val worker: Executo
+         val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else
+             ui(R.string.formats22_animation_message,info.format,frames)+"\n\n"+
+                 ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)
+-        dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_animation_title)).setMessage(message)
++        dialog=EditorDialogBuilder(activity).setTitle(ui(if(info.frameCount<2) R.string.formats22_open_still else R.string.formats22_animation_title)).setMessage(message)
+             .setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}
+             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.show()
+     }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt
+new file mode 100644
+index 0000000..c795c04
+--- /dev/null
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt
+@@ -0,0 +1,266 @@
++/* AN Paint, 2026. GNU AGPL-3.0-or-later. */
++package org.catrobat.paintroid.local
++
++import android.app.Activity
++import android.app.AlertDialog
++import android.os.Looper
++import org.catrobat.paintroid.R
++import org.catrobat.paintroid.classic.*
++import org.junit.After
++import org.junit.Assert.*
++import org.junit.Before
++import org.junit.Test
++import org.junit.runner.RunWith
++import org.robolectric.Robolectric
++import org.robolectric.RobolectricTestRunner
++import org.robolectric.Shadows.shadowOf
++import org.robolectric.android.controller.ActivityController
++import org.robolectric.annotation.Config
++import org.robolectric.annotation.GraphicsMode
++import org.robolectric.shadows.ShadowAlertDialog
++import java.io.ByteArrayOutputStream
++import java.io.File
++import java.util.Base64
++import java.util.Locale
++import java.util.concurrent.AbstractExecutorService
++import java.util.concurrent.TimeUnit
++
++/** A01: exercise the production scanner -> dialog -> decision path, not a copied title function. */
++@RunWith(RobolectricTestRunner::class)
++@Config(sdk = [33])
++@GraphicsMode(GraphicsMode.Mode.NATIVE)
++class ImportSelectionTitleTest {
++    private lateinit var controller: ActivityController<Activity>
++    private lateinit var activity: Activity
++    private lateinit var directory: File
++    private lateinit var worker: QueuedWorker
++    private lateinit var previousLocale: Locale
++    private lateinit var previousTag: String
++    private lateinit var previousResources: android.content.res.Resources
++    private var selection: ImportSelection? = null
++    private var selected: ImportedImage? = null
++    private var selectedCalls = 0
++    private var cancelled = 0
++    private var failure: Throwable? = null
++
++    @Before fun start() {
++        controller = Robolectric.buildActivity(Activity::class.java)
++        activity = controller.setup().get()
++        previousLocale = Locale.getDefault()
++        previousTag = AppLanguage.selectedTag(activity)
++        previousResources = PaintApplication.currentResources
++        language("en-US")
++        directory = File(activity.cacheDir, "import-title-${System.nanoTime()}").apply { mkdirs() }
++        worker = QueuedWorker()
++    }
++
++    @After fun stop() {
++        selection?.dispose()
++        ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
++        worker.drain()
++        AppLanguage.select(activity, previousTag)
++        PaintApplication.currentResources = previousResources
++        Locale.setDefault(previousLocale)
++        if (!activity.isDestroyed) controller.pause().stop().destroy()
++        directory.deleteRecursively()
++    }
++
++    private fun language(tag: String) {
++        AppLanguage.select(activity, tag)
++        AppLanguage.refresh(activity)
++    }
++
++    private fun begin(bytes: ByteArray, expectedInfo: AnimationInfo?): File {
++        selection?.dispose()
++        selected = null; selectedCalls = 0; cancelled = 0; failure = null
++        val file = File.createTempFile("source-", ".unrelated-extension", directory).apply { writeBytes(bytes) }
++        assertEquals("Fixture must exercise the intended production scanner state", expectedInfo, AnimationInfo.inspect(file))
++        selection = ImportSelection(activity, worker, { 0L },
++            { selected = it; selectedCalls++ }, { cancelled++ }, { failure = it })
++        selection!!.start(file, "provider-name.bin")
++        worker.runNext()
++        assertNull(failure)
++        return file
++    }
++
++    private fun warning(title: String, message: String, positive: String = "Open still image"): AlertDialog {
++        val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
++        assertTrue(dialog.isShowing)
++        assertEquals(title, shadowOf(dialog).title.toString())
++        assertEquals(message, shadowOf(dialog).message.toString())
++        assertEquals(positive, dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
++        assertEquals(ui(R.string.ui_cancel), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
++        assertNull("No selection before a decision", selected)
++        assertEquals(0, selectedCalls)
++        return dialog
++    }
++
++    private fun confirmedMessage(format: String, count: String, poster: Boolean = false) =
++        ui(R.string.formats22_animation_message, format, count) + "\n\n" +
++            ui(if (poster) R.string.formats22_animation_poster else R.string.formats22_animation_still)
++
++    private fun cancel(dialog: AlertDialog, file: File, dismiss: Boolean = false) {
++        if (dismiss) dialog.cancel() else dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
++        worker.drain()
++        assertFalse(dialog.isShowing)
++        assertEquals(1, cancelled)
++        assertEquals(0, selectedCalls)
++        assertNull(selected)
++        assertNull(failure)
++        assertFalse(file.exists())
++    }
++
++    @Test fun zeroAndOneProvenFramesUseNeutralTitleAndOnlyTheUncertainBody() {
++        val fixtures = listOf(
++            cappedGif(0) to AnimationInfo("GIF", 0, false, false),
++            cappedGif(1) to AnimationInfo("GIF", 1, false, false),
++            cappedPng() to AnimationInfo("PNG", 0, false, false)
++        )
++        for ((bytes, info) in fixtures) {
++            val file = begin(bytes, info)
++            val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, info.format))
++            cancel(dialog, file, dismiss = info.frameCount == 1)
++        }
++    }
++
++    @Test fun exactGifAndWebpKeepTheConfirmedTitleAndOpenFirstImageExactlyOnce() {
++        for ((format, encoded) in listOf("GIF" to GIF, "WebP" to WEBP)) {
++            val file = begin(decode(encoded), AnimationInfo(format, 3, true, false))
++            val dialog = warning("Animated image", confirmedMessage(format, "3"))
++            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
++            worker.drain(); worker.drain()
++            assertEquals(1, selectedCalls)
++            assertEquals(0, selected!!.pageIndex)
++            assertEquals(file, selected!!.file)
++            assertEquals(0, cancelled)
++            assertNull(failure)
++            assertFalse(dialog.isShowing)
++            selection!!.dispose()
++            assertTrue("Ownership has transferred to the selected-image caller", file.exists())
++        }
++    }
++
++    @Test fun provenLowerBoundKeepsConfirmedTitleAndAtLeastCount() {
++        val file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
++        cancel(warning("Animated image", confirmedMessage("GIF", ui(R.string.formats22_at_least_frames, 2))), file)
++    }
++
++    @Test fun bothApngDefaultImageOutcomesKeepConfirmedTitleAndTheirOwnBody() {
++        for ((poster, encoded) in listOf(false to APNG, true to APNG_POSTER)) {
++            val file = begin(decode(encoded), AnimationInfo("APNG", 3, true, poster))
++            cancel(warning("Animated image", confirmedMessage("APNG", "3", poster)), file)
++        }
++    }
++
++    @Test fun brazilianPortugueseUsesTheExistingNeutralAndConfirmedTitles() {
++        language("pt-BR")
++        var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
++        cancel(warning("Abrir imagem estática", ui(R.string.formats22_animation_unknown, "GIF"), "Abrir imagem estática"), file)
++        file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
++        cancel(warning("Imagem animada", confirmedMessage("APNG", "3", true), "Abrir imagem estática"), file)
++    }
++
++    @Test fun incompleteWelshCatalogueRetainsDefaultEnglishFallback() {
++        // cy is offered but has no animation-warning keys at this candidate's base.
++        language("cy")
++        val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
++        val message = "This PNG is too complex to confirm whether it contains multiple frames. " +
++            "AN Paint will open only a still image and will not preserve any animation."
++        cancel(warning("Open still image", message), file)
++    }
++
++    @Test fun ordinarySingleFrameInputsStillBypassTheWarning() {
++        for (encoded in listOf(STILL_GIF, STILL_PNG)) {
++            val file = begin(decode(encoded), null)
++            worker.drain()
++            assertFalse(ShadowAlertDialog.getLatestAlertDialog()?.isShowing == true)
++            assertEquals(1, selectedCalls)
++            assertEquals(0, selected!!.pageIndex)
++            assertEquals(file, selected!!.file)
++            assertEquals(0, cancelled)
++            assertNull(failure)
++        }
++    }
++
++    @Test fun uncertainOpenStillTransfersTheFirstImageExactlyOnce() {
++        val file = begin(cappedGif(1), AnimationInfo("GIF", 1, false, false))
++        val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, "GIF"))
++        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
++        worker.drain(); worker.drain()
++        assertEquals(1, selectedCalls)
++        assertEquals(0, selected!!.pageIndex)
++        assertEquals(file, selected!!.file)
++        assertEquals(0, cancelled)
++        assertNull(failure)
++        selection!!.dispose()
++        assertTrue(file.exists())
++    }
++
++    @Test fun disposalAfterUncertainApprovalSuppressesQueuedSelection() {
++        val file = begin(cappedGif(1), AnimationInfo("GIF", 1, false, false))
++        val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, "GIF"))
++        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
++        selection!!.dispose()
++        worker.drain()
++        assertEquals(0, selectedCalls)
++        assertEquals(0, cancelled)
++        assertNull(failure)
++        assertFalse(file.exists())
++    }
++
++    private fun cappedGif(provenFrames: Int): ByteArray = ByteArrayOutputStream().apply {
++        write(decode(GIF_HEADER))
++        repeat(provenFrames) { write(decode(GIF_FRAME)) }
++        // The real scanner's work cap is 100,000 blocks, not a mocked result.
++        repeat(100_001) { write(byteArrayOf(0x21, 0xfe.toByte(), 1, 0x78, 0)) }
++        repeat((2 - provenFrames).coerceAtLeast(0)) { write(decode(GIF_FRAME)) }
++        write(0x3b)
++    }.toByteArray()
++
++    private fun cappedPng(): ByteArray = ByteArrayOutputStream().apply {
++        val still = decode(STILL_PNG)
++        write(still, 0, 33) // signature and IHDR
++        // Empty ancillary tEXt chunks; CRC is real, though skipped by the scanner.
++        repeat(100_001) { write(byteArrayOf(0, 0, 0, 0, 0x74, 0x45, 0x58, 0x74, 0x96.toByte(), 0x42, 0xc5.toByte(), 0x85.toByte())) }
++        write(still, 33, still.size - 33)
++    }.toByteArray()
++
++    private fun decode(encoded: String) = Base64.getDecoder().decode(encoded)
++
++    private class QueuedWorker : AbstractExecutorService() {
++        private val queue = java.util.ArrayDeque<Runnable>()
++        private var stopped = false
++        override fun execute(command: Runnable) { check(!stopped); queue.addLast(command) }
++        override fun shutdown() { stopped = true }
++        override fun shutdownNow(): MutableList<Runnable> = queue.toMutableList().also { queue.clear(); stopped = true }
++        override fun isShutdown() = stopped
++        override fun isTerminated() = stopped && queue.isEmpty()
++        override fun awaitTermination(timeout: Long, unit: TimeUnit) = isTerminated()
++        fun runNext() {
++            assertFalse("Expected queued import work", queue.isEmpty())
++            val job = queue.removeFirst()
++            var error: Throwable? = null
++            val thread = Thread { try { job.run() } catch (caught: Throwable) { error = caught } }
++            thread.start(); thread.join(10_000)
++            assertFalse("Import worker did not finish", thread.isAlive)
++            error?.let { throw AssertionError("Import worker failed", it) }
++            shadowOf(Looper.getMainLooper()).idle()
++        }
++        fun drain() {
++            shadowOf(Looper.getMainLooper()).idle()
++            repeat(20) { if (queue.isEmpty()) return; runNext() }
++            fail("Import worker did not settle")
++        }
++    }
++
++    companion object {
++        private const val GIF_HEADER = "R0lGODlhAQABAIAAAAAAAP///w=="
++        private const val GIF_FRAME = "LAAAAAABAAEAAAICRAEA"
++        private const val STILL_GIF = "R0lGODlhAQABAIAAAAAAAP///yH5BAAKAAAALAAAAAABAAEAAAICRAEAOw=="
++        private const val STILL_PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/iZk9HQAAAABJRU5ErkJggg=="
++        private const val GIF = "R0lGODlhAQABAIAAAAAAAP///yH5BAAKAAAALAAAAAABAAEAgAAAAP///wICRAEAIfkEAAoAAAAsAAAAAAEAAQCAAAAA////AgJMAQAh+QQACgAAACwAAAAAAQABAIAAAAD///8CAkQBADs="
++        private const val APNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACGFjVEwAAAADAAAAAM7tusAAAAAaZmNUTAAAAAAAAAABAAAAAQAAAAAAAAAAAAEACgAAWn8w0AAAAA1JREFUeJxj+M/A8B8ABQAB/4mZPR0AAAAaZmNUTAAAAAEAAAABAAAAAQAAAAAAAAAAAAEACgAAwQzaBAAAABFmZEFUAAAAAnicY2Bg+P8fAAMCAf/1e6XXAAAAGmZjVEwAAAADAAAAAQAAAAEAAAAAAAAAAAABAAoAACyaCe0AAAARZmRBVAAAAAR4nGP4z8DwHwAFAAH/YlfY0gAAAABJRU5ErkJggg=="
++        private const val APNG_POSTER = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACGFjVEwAAAADAAAAAM7tusAAAAANSURBVHicY2D4z/AfAAQBAf9x60flAAAAGmZjVEwAAAAAAAAAAQAAAAEAAAAAAAAAAAABAAoAAFp/MNAAAAARZmRBVAAAAAF4nGP4z8DwHwAFAAH/5vS2vwAAABpmY1RMAAAAAgAAAAEAAAABAAAAAAAAAAAAAQAKAAC36eM5AAAAEWZkQVQAAAADeJxjYGD4/x8AAwIB/2h0RKEAAAAaZmNUTAAAAAQAAAABAAAAAQAAAAAAAAAAAAEACgAAWiORQwAAABFmZEFUAAAABXicY/jPwPAfAAUAAf//WDmkAAAAAElFTkSuQmCC"
++        private const val WEBP = "UklGRrQAAABXRUJQVlA4WAoAAAACAAAAAAAAAAAAQU5JTQYAAAAAAAAAAABBTk1GKAAAAAAAAAAAAAAAAAAAAGQAAAJWUDhMDwAAAC8AAAAABxD9j/4HIqL/AQBBTk1GKAAAAAAAAAAAAAAAAAAAAGQAAAJWUDhMDwAAAC8AAAAABxDR//4HIqL/AQBBTk1GKAAAAAAAAAAAAAAAAAAAAGQAAAJWUDhMDwAAAC8AAAAABxD9j/4HIqL/AQA="
++    }
++}
+diff --git a/tools/test_animation_warning_title.py b/tools/test_animation_warning_title.py
+new file mode 100644
+index 0000000..95d31ca
+--- /dev/null
++++ b/tools/test_animation_warning_title.py
+@@ -0,0 +1,75 @@
++#!/usr/bin/env python3
++"""A01 source/resource wiring guards only; dialog execution is ImportSelectionTitleTest."""
++from pathlib import Path
++import re
++import unittest
++import xml.etree.ElementTree as ET
++
++ROOT = Path(__file__).resolve().parents[1]
++SOURCE = ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
++RES = ROOT / "Paintroid/src/main/res"
++
++
++def strings(directory):
++    values = {}
++    for path in directory.glob("*.xml"):
++        values.update((node.attrib["name"], "".join(node.itertext()))
++                      for node in ET.parse(path).getroot().findall("string"))
++    return values
++
++
++class AnimationWarningTitleSourceTest(unittest.TestCase):
++    def test_real_dialog_uses_count_threshold_and_existing_localized_title_keys(self):
++        source = SOURCE.read_text()
++        animation = source.split("private fun showAnimation(info: AnimationInfo) {", 1)[1].split("private fun showPages", 1)[0]
++        compact = re.sub(r"\s+", "", animation)
++        self.assertEqual(1, compact.count(
++            ".setTitle(ui(if(info.frameCount<2)R.string.formats22_open_stillelseR.string.formats22_animation_title))"))
++        self.assertNotIn('"Open still image"', animation)
++        self.assertNotIn('"Animated image"', animation)
++
++    def test_body_count_apng_action_and_null_probe_routes_remain_present(self):
++        source = re.sub(r"\s+", "", SOURCE.read_text())
++        for expected in (
++            "valframes=if(info.frameCountExact)info.frameCount.toString()elseui(R.string.formats22_at_least_frames,info.frameCount)",
++            "valmessage=if(info.frameCount<2)ui(R.string.formats22_animation_unknown,info.format)else",
++            "ui(if(info.pngDefaultImageSeparate)R.string.formats22_animation_posterelseR.string.formats22_animation_still)",
++            ".setPositiveButton(ui(R.string.formats22_open_still)){_,_->finishSelection(0)}",
++            ".setNegativeButton(ui(R.string.ui_cancel)){_,_->cancel()}.setOnCancelListener{cancel()}",
++            "elseif(animation!=null)showAnimation(animation)elsefinishSelection(0)",
++        ):
++            self.assertIn(expected, source)
++
++    def test_english_and_portuguese_titles_have_independent_wording_oracles(self):
++        for folder, expected in (
++            ("values", ("Open still image", "Animated image")),
++            ("values-pt-rBR", ("Abrir imagem estática", "Imagem animada")),
++        ):
++            values = strings(RES / folder)
++            self.assertEqual(expected[0], values["formats22_open_still"])
++            self.assertEqual(expected[1], values["formats22_animation_title"])
++
++    def test_existing_catalogue_title_keys_are_nonempty_and_require_no_arguments(self):
++        examined = 0
++        for folder in RES.glob("values*"):
++            values = strings(folder)
++            for key in ("formats22_open_still", "formats22_animation_title"):
++                if key not in values:
++                    continue  # Catalogue absence is not language completeness.
++                examined += 1
++                self.assertTrue(values[key].strip(), (folder.name, key))
++                self.assertNotRegex(values[key], r"%(?:\d+\$)?[a-zA-Z]", (folder.name, key))
++        self.assertGreater(examined, 2)
++
++    def test_welsh_fixture_exercises_real_default_resource_fallback(self):
++        values = strings(RES / "values-b+cy")
++        for key in ("formats22_open_still", "formats22_animation_title", "formats22_animation_unknown"):
++            self.assertNotIn(key, values)
++            self.assertIn(key, strings(RES / "values"))
++        arrays = ET.parse(RES / "values/app_language_tags.xml").getroot()
++        offered = arrays.find("string-array[@name='app_language_tags']")
++        self.assertIn("cy", [node.text for node in offered])
++
++
++if __name__ == "__main__":
++    unittest.main()

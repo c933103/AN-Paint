@@ -1,0 +1,156 @@
+{
+  "scope": "Production Java scanner only. Base64 constants taken directly from new Kotlin source; capped fixtures constructed equivalently in Python. Kotlin helpers, dialogs and image decoding were not executed.",
+  "passed": 25,
+  "results": [
+    {
+      "fixture": "GIF",
+      "expected": "GIF|3|true|false",
+      "actual": "GIF|3|true|false",
+      "bytes": 107
+    },
+    {
+      "fixture": "WEBP",
+      "expected": "WebP|3|true|false",
+      "actual": "WebP|3|true|false",
+      "bytes": 188
+    },
+    {
+      "fixture": "APNG",
+      "expected": "APNG|3|true|false",
+      "actual": "APNG|3|true|false",
+      "bytes": 262
+    },
+    {
+      "fixture": "APNG_POSTER",
+      "expected": "APNG|3|true|true",
+      "actual": "APNG|3|true|true",
+      "bytes": 291
+    },
+    {
+      "fixture": "STILL_GIF",
+      "expected": "none",
+      "actual": "none",
+      "bytes": 43
+    },
+    {
+      "fixture": "STILL_PNG",
+      "expected": "none",
+      "actual": "none",
+      "bytes": 70
+    },
+    {
+      "fixture": "cappedGIF0",
+      "expected": "GIF|0|false|false",
+      "actual": "GIF|0|false|false",
+      "bytes": 500055
+    },
+    {
+      "fixture": "cappedGIF1",
+      "expected": "GIF|1|false|false",
+      "actual": "GIF|1|false|false",
+      "bytes": 500055
+    },
+    {
+      "fixture": "cappedGIF2",
+      "expected": "GIF|2|false|false",
+      "actual": "GIF|2|false|false",
+      "bytes": 500055
+    },
+    {
+      "fixture": "exactGIF2",
+      "expected": "GIF|2|true|false",
+      "actual": "GIF|2|true|false",
+      "bytes": 50
+    },
+    {
+      "fixture": "cappedPNG",
+      "expected": "PNG|0|false|false",
+      "actual": "PNG|0|false|false",
+      "bytes": 1200082
+    },
+    {
+      "fixture": "cappedAPNG0",
+      "expected": "APNG|0|false|false",
+      "actual": "APNG|0|false|false",
+      "bytes": 1200274
+    },
+    {
+      "fixture": "cappedAPNG1",
+      "expected": "APNG|1|false|false",
+      "actual": "APNG|1|false|false",
+      "bytes": 1200274
+    },
+    {
+      "fixture": "cappedAPNG2",
+      "expected": "APNG|2|false|false",
+      "actual": "APNG|2|false|false",
+      "bytes": 1200274
+    },
+    {
+      "fixture": "exactAPNG2",
+      "expected": "APNG|2|true|false",
+      "actual": "APNG|2|true|false",
+      "bytes": 195
+    },
+    {
+      "fixture": "cappedAPNG_POSTER0",
+      "expected": "APNG|0|false|false",
+      "actual": "APNG|0|false|false",
+      "bytes": 1200303
+    },
+    {
+      "fixture": "cappedAPNG_POSTER1",
+      "expected": "APNG|1|false|true",
+      "actual": "APNG|1|false|true",
+      "bytes": 1200303
+    },
+    {
+      "fixture": "cappedAPNG_POSTER2",
+      "expected": "APNG|2|false|true",
+      "actual": "APNG|2|false|true",
+      "bytes": 1200303
+    },
+    {
+      "fixture": "exactAPNG_POSTER2",
+      "expected": "APNG|2|true|true",
+      "actual": "APNG|2|true|true",
+      "bytes": 224
+    },
+    {
+      "fixture": "exactWEBP2",
+      "expected": "WebP|2|true|false",
+      "actual": "WebP|2|true|false",
+      "bytes": 140
+    },
+    {
+      "fixture": "cappedWEBP0",
+      "expected": "WebP|0|false|false",
+      "actual": "WebP|0|false|false",
+      "bytes": 800196
+    },
+    {
+      "fixture": "cappedWEBP1",
+      "expected": "WebP|1|false|false",
+      "actual": "WebP|1|false|false",
+      "bytes": 800196
+    },
+    {
+      "fixture": "cappedWEBP2",
+      "expected": "WebP|2|false|false",
+      "actual": "WebP|2|false|false",
+      "bytes": 800196
+    },
+    {
+      "fixture": "malformedGIF",
+      "expected": "none",
+      "actual": "none",
+      "bytes": 106
+    },
+    {
+      "fixture": "unknownContainer",
+      "expected": "none",
+      "actual": "none",
+      "bytes": 35
+    }
+  ]
+}

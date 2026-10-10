@@ -1,0 +1,52 @@
+{
+  "candidate_tree": "5d7ce333311c452cd7587fd871cdf45d6b6a72ca",
+  "python": "3.12.14",
+  "java": "openjdk version \"21.0.12.1\" 2026-08-18\nOpenJDK Runtime Environment (build 21.0.12.1+1-1-deb13u1-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-deb13u1-Debian, mixed mode, sharing)",
+  "checks": [
+    {
+      "name": "animation metadata and title source/resource guards",
+      "command": "python3 -m unittest discover -s tools -p 'test_animation*py' -v",
+      "passed": 16,
+      "log": "animation-host-tests.log",
+      "limits": "11 production Java scanner tests plus 5 source/resource guards; no Android dialog execution."
+    },
+    {
+      "name": "translation contracts",
+      "command": "python3 -m unittest discover -s tools -p 'test_translations.py' -v",
+      "passed": 32,
+      "log": "translation-host-tests.log",
+      "limits": "Host contracts only, not full semantic or native-language acceptance."
+    },
+    {
+      "name": "negative controls",
+      "expected_failures": 3,
+      "log": "source-negative-controls.log",
+      "limits": "Original unconditional title, <=2 boundary and always-neutral confirmed title are rejected by source wiring guard. Kotlin/Android mutants were not run."
+    },
+    {
+      "name": "new Kotlin fixture inputs against production Java scanner",
+      "passed": 10,
+      "log": "kotlin-fixture-scanner-results.json",
+      "limits": "Kotlin constants plus equivalent cap-fixture bytes; Kotlin helper execution and dialog behavior unrun."
+    }
+  ],
+  "blocked": [
+    {
+      "command": "GRADLE_USER_HOME=/tmp/anpaint-a01-gradle-offline ./gradlew --offline --no-daemon --max-workers=2 :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.ImportSelectionTitleTest --tests org.catrobat.paintroid.local.ImportSelectionFlowTest -PnativeAbis=x86_64",
+      "exit": 1,
+      "stage": "Gradle wrapper bootstrap, before Gradle tasks or Kotlin compilation",
+      "reason": "No cached Gradle 8.13 distribution; request to https://services.gradle.org/distributions/gradle-8.13-bin.zip failed with java.net.SocketException: Network is unreachable.",
+      "log": "robolectric-attempt.log",
+      "additional_environment_limits": "No Android SDK, Gradle distribution or Kotlin compiler discovered. Current installed JDK is 21, while repository build notes call for JDK 17."
+    }
+  ],
+  "not_run": [
+    "Kotlin compilation",
+    "9 new Robolectric methods",
+    "existing ImportSelectionFlowTest",
+    "Android build",
+    "emulator or physical-device validation",
+    "rendered localization/layout/accessibility review"
+  ],
+  "publication": "No remote source or executable published. Candidate frozen for independent review; F01 unchanged."
+}
