@@ -18,7 +18,7 @@ on:
         options: [current, full, none]
         default: current
 env:
-  BUILD_VARIANT: ${{ inputs.build_type || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ') && 'release' || 'debug') }}
+  BUILD_VARIANT: ${{ inputs.build_type || (((github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && 'release' || 'debug') }}
 permissions:
   contents: read
 concurrency:
@@ -216,7 +216,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
+        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

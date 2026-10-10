@@ -26,6 +26,18 @@ This opt-in is for a diagnosed cross-version risk, not the default for routine
 edits. It adds no new test runner and does not waive ordinary test inventory,
 timeouts, artifact provenance or release requirements.
 
+For premerge release-variant verification, the `ci:release-android` PR label
+selects release host checks, APKs, instrumentation and the API 30/35 matrix on
+the next normal opened/synchronized/reopened run. This label includes full
+coverage; `ci:full-android` alone retains the debug variant. Verify the label
+before publishing the reviewed source update, then inspect both actual emulator
+jobs and `build-info.json`'s `build_variant` for that exact source. A label change
+alone does not start a run, and rerunning an earlier debug run is not release
+verification. The existing `-PciReleaseSigning` path uses the temporary CI debug
+key for these release-configured APKs; it does not access the private upgrade key
+or publish a release. No credentials, security settings or release-publication
+triggers are changed by this opt-in.
+
 Direct pushes to a working branch do not duplicate a PR/default-branch run.
 Pull requests targeting another working branch receive the same checks as those
 targeting `develop`. Stacked localization PRs therefore do not need temporary
@@ -196,8 +208,10 @@ component remains `org.catrobat.paintroid.test`.
 A `develop` code commit whose subject starts with `Release ` selects the release
 variant and the full API 30/35 matrix. Alternatively choose `build_type: release`
 when manually running the workflow. Release always overrides `device_tests: none`.
-Other code pushes and PRs retain the debug/API 35 defaults. Both release host
-regressions/lint and instrumentation compile against the release variant.
+Other code pushes and unlabeled PRs retain the debug/API 35 defaults; `ci:full-android`
+PRs use debug/API 30+35, and `ci:release-android` PRs use release/API 30+35 as
+described above. Both release host regressions/lint and instrumentation compile
+against the release variant.
 The shipped manifest is not debuggable. Code shrinking is disabled in both
 modules, so the tested Java/Kotlin code is preserved. Native release compilation
 uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
