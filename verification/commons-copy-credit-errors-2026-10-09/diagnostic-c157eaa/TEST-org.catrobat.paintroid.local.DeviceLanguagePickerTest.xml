@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.DeviceLanguagePickerTest" tests="14" skipped="0" failures="2" errors="0" timestamp="2026-10-10T03:19:23.408Z" hostname="runnervmwvtoz" time="28.86">
+  <properties/>
+  <testcase name="legacyDeviceRowsUseDeviceResourcesAndSharedTypographyWithoutAppOverrideLeakage[21]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="4.406"/>
+  <testcase name="legacyDeviceRowsUseDeviceResourcesAndSharedTypographyWithoutAppOverrideLeakage" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="5.529"/>
+  <testcase name="realEditorOverrideSwitchesKeepTheIndependentEnglishDeviceLabel[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.656"/>
+  <testcase name="realEditorOverrideSwitchesKeepTheIndependentEnglishDeviceLabel" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.934"/>
+  <testcase name="regionalAndUnsupportedDeviceTagsRetainFrameworkResourceFallback[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.188"/>
+  <testcase name="regionalAndUnsupportedDeviceTagsRetainFrameworkResourceFallback" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.263"/>
+  <testcase name="everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="2.126">
+    <failure message="org.junit.ComparisonFailure: ko-Kore-KR expected:&lt;시스템 [언어 사용]&gt; but was:&lt;시스템 [言語 使用]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: ko-Kore-KR expected:&lt;시스템 [언어 사용]&gt; but was:&lt;시스템 [言語 使用]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.checkRow(DeviceLanguagePickerTest.kt:99)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.access$checkRow(DeviceLanguagePickerTest.kt:33)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest$everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices$1.invoke(DeviceLanguagePickerTest.kt:176)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest$everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices$1.invoke(DeviceLanguagePickerTest.kt:162)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.withActivity(DeviceLanguagePickerTest.kt:66)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.withActivity$default(DeviceLanguagePickerTest.kt:49)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices(DeviceLanguagePickerTest.kt:162)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="3.292">
+    <failure message="org.junit.ComparisonFailure: ko-Kore-KR expected:&lt;시스템 [언어 사용]&gt; but was:&lt;시스템 [言語 使用]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: ko-Kore-KR expected:&lt;시스템 [언어 사용]&gt; but was:&lt;시스템 [言語 使用]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.checkRow(DeviceLanguagePickerTest.kt:99)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.access$checkRow(DeviceLanguagePickerTest.kt:33)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest$everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices$1.invoke(DeviceLanguagePickerTest.kt:176)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest$everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices$1.invoke(DeviceLanguagePickerTest.kt:162)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.withActivity(DeviceLanguagePickerTest.kt:66)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.withActivity$default(DeviceLanguagePickerTest.kt:49)
+	at org.catrobat.paintroid.local.DeviceLanguagePickerTest.everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices(DeviceLanguagePickerTest.kt:162)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.
+</failure>
+  </testcase>
+  <testcase name="repeatedOpenAcrossAppOverridesKeepsMountedLabelsAccessibleAndTouchSized[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="5.188"/>
+  <testcase name="repeatedOpenAcrossAppOverridesKeepsMountedLabelsAccessibleAndTouchSized" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="5.59"/>
+  <testcase name="originalFirstRowSequenceLeavesDeviceScriptUnformatted[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.111"/>
+  <testcase name="originalFirstRowSequenceLeavesDeviceScriptUnformatted" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.181"/>
+  <testcase name="cancelDefaultAndExplicitSelectionsKeepTheirOriginalMeaning[30]" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.157"/>
+  <testcase name="cancelDefaultAndExplicitSelectionsKeepTheirOriginalMeaning" classname="org.catrobat.paintroid.local.DeviceLanguagePickerTest" time="0.237"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

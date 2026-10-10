@@ -1,0 +1,100 @@
+{
+  "head": "c157eaaee6e13f416ae76b9827c51d6ed3fe4782",
+  "tree": "226fc014cc13f47322c60fcd5e4d7aec8fdfb12b",
+  "tested_merge": "2c444ec99f8a4721ac58c34d7e290399e7e66c74",
+  "develop": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+  "run_id": 38019693421,
+  "url": "https://github.com/c933103/AN-Paint/actions/runs/38019693421",
+  "build": "passed",
+  "lint": "passed",
+  "python_tests": {
+    "discovered": 376,
+    "passed": 374,
+    "skipped": 2,
+    "failed": 0,
+    "seconds": 67.626,
+    "source": "ci-phases/python.log; OK (skipped=2)",
+    "skipped_methods": [
+      "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+      "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    ]
+  },
+  "jvm": {
+    "total": 766,
+    "passed": 762,
+    "failed": 4,
+    "errors": 0,
+    "skipped": 0,
+    "new_routing_cases": 11,
+    "new_routing_failed": 0,
+    "copy_credit_route_cases": 14,
+    "copy_credit_route_failed": 0,
+    "copy_credit_translation_cases": 4,
+    "copy_credit_translation_failed": 0
+  },
+  "resolution": {
+    "general_api30": {
+      "rows": 28,
+      "mismatches": 0
+    },
+    "general_api35": {
+      "rows": 28,
+      "mismatches": 0
+    },
+    "copy-credit_api30": {
+      "rows": 59,
+      "mismatches": 0
+    },
+    "copy-credit_api35": {
+      "rows": 59,
+      "mismatches": 0
+    }
+  },
+  "installed_api35": {
+    "paintroid": {
+      "expected": 74,
+      "completed": 74,
+      "success": true
+    },
+    "app": {
+      "expected": 18,
+      "completed": 18,
+      "success": true
+    },
+    "seed": {
+      "expected": 1,
+      "completed": 1,
+      "success": true
+    },
+    "verify": {
+      "expected": 1,
+      "completed": 1,
+      "success": true
+    }
+  },
+  "installed_api30": "not run",
+  "strict_new_installed_picker_case": "not in this head; local candidate only",
+  "generated_clean_incremental_probes": "not run; local candidate only",
+  "review": "Codex usage limit after one request; no retries",
+  "review_url": "https://github.com/c933103/AN-Paint/pull/34#issuecomment-6093180539",
+  "artifacts": [
+    {
+      "name": "apk",
+      "id": 11657469314,
+      "bytes": 148568429,
+      "sha256": "13a4ac692ab95c19ed63e2bb2eae532fd0d95b91a9059478fbe953edb168e046"
+    },
+    {
+      "name": "regression",
+      "id": 11658365556,
+      "bytes": 34164178,
+      "sha256": "217eadabd180ce1eca30729d6bbef882f84fa8e246239784ec5dadc4a8aae5c0"
+    },
+    {
+      "name": "installed",
+      "id": 11658415397,
+      "bytes": 1930691,
+      "sha256": "5c5af0b1345268744f44628754cd79fd0c7a237036d470bb5b55c477c2a7b920"
+    }
+  ]
+}

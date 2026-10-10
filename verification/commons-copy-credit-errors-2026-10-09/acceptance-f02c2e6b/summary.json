@@ -1,0 +1,85 @@
+{
+  "head": "f02c2e6bfd51eda81b6d16db10322e1f623dcaec",
+  "tree": "e27d7c346452912082089f58278e57dcef46a3ab",
+  "tested_merge": "d4d9db1b83bd6edf4ccc35a0df48aebed866d0af",
+  "run": 38022221410,
+  "overall": "failed: inherited API30 viewport/font-transition test",
+  "python": {
+    "discovered": 384,
+    "passed": 382,
+    "skipped_optional_pillow": 2,
+    "failed": 0,
+    "seconds": 59.39
+  },
+  "local_python": {
+    "passed": 384,
+    "skipped": 0,
+    "seconds": 52.132
+  },
+  "jvm": {
+    "passed": 766,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": "passed",
+  "apk_and_test_compilation": "passed",
+  "generator_stages": 7,
+  "generator_result": "passed",
+  "api30": {
+    "native_passed": 73,
+    "app_eligible": 18,
+    "app_passed": 17,
+    "app_failed": 1,
+    "korean_picker_rotation": "passed; all four phases retained"
+  },
+  "api35": {
+    "native_passed": 74,
+    "app_passed": 19,
+    "seed_passed": 1,
+    "verify_passed": 1,
+    "korean_picker_rotation": "passed; all four phases retained"
+  },
+  "artifacts": [
+    {
+      "name": "apk",
+      "id": 11658958767,
+      "bytes": 148728077,
+      "sha256": "6c7b733db323b1a97e857b9425ca0575df4270f29adbac0b11838b049b3822f8"
+    },
+    {
+      "name": "regression",
+      "id": 11658934407,
+      "bytes": 34735840,
+      "sha256": "b1d68b95d88df269bc130aa07a425a1e0b97355680bcdeeaa3383c3e21c41a00"
+    },
+    {
+      "name": "generator",
+      "id": 11658528463,
+      "bytes": 6174,
+      "sha256": "bb4d1d757efd95cdf8572070a502183db96f2bb94532830a246606e534997b4a"
+    },
+    {
+      "name": "api30",
+      "id": 11658564582,
+      "bytes": 591251,
+      "sha256": "d6c6eaac8eb73ba9ea70c48816e76745652fcf1e44dee1b6a64bd0cca8a8743e"
+    },
+    {
+      "name": "api35",
+      "id": 11659165195,
+      "bytes": 1929570,
+      "sha256": "731019dc85d227c92a43fa07363bcdd4b6a89f028eee1f952fd5b053061b94f2"
+    }
+  ],
+  "api30_failure": {
+    "class": "paint.anpaint.android.GalleryViewportDeviceTest",
+    "method": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+    "message": "Timed out: real system font scale 2.0",
+    "fixture_blob_unchanged_from_develop80c": "d6f3a60a74625172c4c78ef4f3cdd869dac98fd2",
+    "owner": "PR38",
+    "candidate_head": "e97c85186973ad69589ff1adf380df3e378bce84",
+    "candidate_limit": "DisplayThread callback ordering is conditional on normal FIFO with no intervening synchronization barrier; real oracles and shared deadline remain required"
+  },
+  "status": "Historical f02c2e6b result. The separately documented PR38 integration candidate has no combined Android results yet."
+}
