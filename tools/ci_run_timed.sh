@@ -4,7 +4,7 @@
 set -euo pipefail
 phase=${1:?Expected a phase name followed by a command}
 shift
-case "$phase" in python|jvm|lint) ;; *) echo "Unknown CI phase: $phase" >&2; exit 2 ;; esac
+case "$phase" in python|jvm|native|lint) ;; *) echo "Unknown CI phase: $phase" >&2; exit 2 ;; esac
 if (( $# == 0 )); then echo 'Expected a command' >&2; exit 2; fi
 directory=build/reports/ci-phases
 mkdir -p "$directory"
