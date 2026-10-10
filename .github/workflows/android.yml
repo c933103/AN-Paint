@@ -184,10 +184,24 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Build universal APK
         timeout-minutes: 22
-        run: ./gradlew --no-daemon --max-workers=2 --console=plain :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
+        run: bash tools/ci_run_timed.sh apk ./gradlew --no-daemon --max-workers=2 --console=plain --profile :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
       - name: Report native compiler cache statistics
         if: always()
         run: if command -v ccache >/dev/null; then ccache --show-stats; fi
+      # A killed assemble step must still leave inspectable partial build output.
+      # This is diagnostic evidence, never a substitute for APK/device acceptance.
+      - name: Upload build diagnostics even on failure
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          archive: true
+          name: build-diagnostics-${{ github.sha }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            build/reports/ci-phases/
+            build/reports/profile/
       - name: Record build identity and extract matching source
         run: |
           python3 - <<'PY'
