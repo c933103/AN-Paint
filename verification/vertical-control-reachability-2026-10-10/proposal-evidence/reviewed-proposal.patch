@@ -1,0 +1,973 @@
+diff --git a/CI.md b/CI.md
+index 2980012..42b54d5 100644
+--- a/CI.md
++++ b/CI.md
+@@ -420,3 +420,74 @@ only. Fresh exact-head compilation, API35 XML/logs, measured phase durations and
+ visual screenshot review are required. Use the full API30/API35 matrix for release
+ verification or a diagnosed cross-version risk; no new full-matrix default or
+ workflow transplant is introduced here.
++
++## Draft control-reachability follow-up to PR18
++
++This additive test proposal starts at exact head
++`66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88`, tree
++`a90cdf84be34e6a08ab7a9d25b46cdce2f71b776`. The prior 98 installed passes and
++32 capture-state images remain evidence of that source only. They do not prove
++these new checks passed. The accepted evidence and the unresolved checklist at
++[PR18 comment 6093775811](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6093775811)
++remain unchanged.
++
++`VerticalControlReachabilityProbe` adds assertions inside each existing locale /
++orientation case. The original phase inventory, all previous assertions, original
++32-image collector, 180-second vertical phase deadline and 15-minute enclosing
++execution limit remain intact. There is no new phase or workflow change.
++
++The probe first records the currently clipped viewport, then uses native swipes
++to reveal the complete quality widget, readout, native SeekBar and thumb. It drags
++the actual thumb to quality 1 and 100, requiring each input to change the previous
++value and checking both native progress and displayed value. It separately reveals
++the complete filename field/preview, JPEG explanation and Cancel action. Geometry
++receipts contain raw / ancestor-clipped screen bounds and ancestor scroll offsets.
++Reveal gestures match the missing edge plus native touch slop instead of relying
++on a fixed long swipe that could overshoot a reachable control. No progress setter,
++scroll setter, callback replacement or programmatic click establishes success.
++
++After the original Cancel/reopen/Back and no-external-request assertions, a distinct
++native Save flow selects JPEG again and uses Choose location. The existing
++ActivityMonitor intercepts exactly one ACTION_CREATE_DOCUMENT request and returns
++RESULT_CANCELED before opening a provider. Its MIME, filename and persisted quality
++must match. Portrait commits quality 1 and landscape commits 100. No external
++storage destination, grant, encoding, real file write or sharing is exercised.
++Cancel must not persist the changed draft quality. Draft filename, document
++filename, every canvas pixel and selected tool are checked for preservation.
++
++`app/vertical-locale-evidence/reachability/` holds eight case receipts and 64 fresh
++PNG captures: before, minimum, maximum, filename, description, cancel-ready,
++choose-ready and returned. These cannot replace the original top-level 32 states.
++EXIT collection still runs before emulator shutdown and failure stays failed.
++The new independent receipt checker rejects missing / extra files, failed or
++partial cases, clipped endpoint/thumb/readout bounds, unchanged endpoint input,
++wrong values, filename/state loss, missing native scroll movement and byte-identical
++minimum/maximum captures. Header, inventory and state receipts do not certify
++rendered pixels: reviewers must open every actual image after an installed run.
++
++The candidate is a probe, not a production repair or broad usability acceptance.
++A failure needs diagnosis: distinguish a real inaccessible control from a bad
++coordinate / native-scroll oracle or a phase-budget failure. Preserve the failing
++exact-source evidence. Do not weaken full-bound assertions or extend timeouts to
++turn a failure green. Run current-platform API35 only after reviewed publication;
++API30/full matrix remains for release verification or diagnosed cross-version risk.
++
++### Reviewed probe-oracle corrections
++
++The first unpublished proposal could finish the landscape Cancel draft at the
++same endpoint remembered from portrait. Revision 2 ensures a different value
++using another native endpoint gesture when needed, records both remembered and
++draft values, asserts the distinction immediately before Cancel, and rejects an
++equal-value receipt. Both endpoint screenshots remain required.
++
++Revision 2 also hardens both test-only geometry helpers: a false
++`getGlobalVisibleRect` result returns a fresh empty Rect, because Android leaves
++its output undefined on false. Each helper has an installed negative fixture that
++writes a nonempty rectangle and returns false; a regression of the guard must fail
++that fixture. Host checks validate the source/fixture contracts but do not execute
++Android/Kotlin. The actual installed negatives remain unexecuted until reviewed CI.
++
++This changes one pre-existing visibility-return line, so "every original line
++unchanged" is no longer an exact claim. Existing assertions and their thresholds,
++production source, workflow and deadlines are preserved. No prior screenshot is
++overwritten or retroactively revalidated by this test-oracle correction.
+diff --git a/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt b/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt
+new file mode 100644
+index 0000000..562f67c
+--- /dev/null
++++ b/app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt
+@@ -0,0 +1,363 @@
++/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
++package paint.anpaint.android
++
++import android.app.Instrumentation
++import android.content.Intent
++import android.graphics.Bitmap
++import android.graphics.Point
++import android.graphics.Rect
++import android.os.SystemClock
++import android.view.View
++import android.widget.EditText
++import android.widget.HorizontalScrollView
++import android.widget.ScrollView
++import android.widget.Spinner
++import androidx.test.uiautomator.UiDevice
++import org.catrobat.paintroid.R
++import org.catrobat.paintroid.classic.ClassicPaintActivity
++import org.catrobat.paintroid.classic.NumericSlider
++import org.junit.Assert.*
++import org.json.JSONArray
++import org.json.JSONObject
++import java.io.File
++import java.util.concurrent.CountDownLatch
++import java.util.concurrent.TimeUnit
++import java.util.concurrent.atomic.AtomicReference
++
++/** Additional real-input assertions, separate from the accepted capture-state matrix.
++ * No production listeners, progress values, scroll offsets or dialog callbacks are replaced.
++ * Read-only view/model observations supply coordinates and verify native input effects.
++ */
++internal class VerticalControlReachabilityProbe(
++    private val instrumentation: Instrumentation,
++    private val activity: ()->ClassicPaintActivity,
++    private val saveRoot: ()->View,
++    private val name: String
++) {
++    private val device=UiDevice.getInstance(instrumentation)
++    private val context get()=instrumentation.targetContext
++    private val directory=File(context.getExternalFilesDir(null),"vertical-locale-evidence/reachability")
++    private val observations=JSONArray()
++    private val screenshots=JSONArray()
++    private val receipt=JSONObject().put("case",name).put("success",false)
++        .put("device_sdk",android.os.Build.VERSION.SDK_INT)
++        .put("observations",observations).put("screenshots",screenshots)
++    private val documentNameField=ClassicPaintActivity::class.java.getDeclaredField("filename").apply {isAccessible=true}
++    private val draftName=onMain {saveRoot().findViewWithTag<EditText>("export_filename").text.toString()}
++    private val documentName=onMain {documentNameField.get(activity()) as String}
++    private val canvas: Bitmap=onMain {activity().document.bitmap.copy(Bitmap.Config.ARGB_8888,false)}
++    private val tool=onMain {activity().paintCanvas.tool}
++    private val rememberedQuality=context.getSharedPreferences("export",0).getInt("quality",95)
++    private var nativeSwipes=0
++    private var cancelledDraftQuality=0
++
++    init {
++        assertFailedVisibilityIsEmpty()
++        assertTrue("Reachability evidence directory",directory.isDirectory || directory.mkdirs())
++        receipt.put("filename",draftName).put("remembered_quality_before_cancel",rememberedQuality)
++        writeReceipt()
++    }
++
++    fun exerciseBothEndpointsAndCancelRoute() {
++        try {
++            snapshot("before")
++            revealComplete("quality label and readout") {quality().number}
++            revealComplete("complete quality control") {quality()}
++            assertQualityGeometry()
++            // Each target differs from the preceding value, including a persisted
++            // endpoint from the first orientation. A missed gesture cannot pass.
++            val endpoints=if(onMain {quality().slider.progress}==0) listOf(100,1) else listOf(1,100)
++            for(value in endpoints) {
++                dragTo(value)
++                snapshot(if(value==1) "minimum" else "maximum")
++            }
++            revealComplete("filename field") {saveRoot().findViewWithTag<EditText>("export_filename")}
++            revealComplete("filename preview") {saveRoot().findViewWithTag<View>("vertical_filename_preview")}
++            assertDraft()
++            snapshot("filename")
++            revealComplete("JPEG explanation") {saveRoot().findViewWithTag<View>("export_description")}
++            assertDraft()
++            snapshot("description")
++            // The previous orientation may have committed an endpoint. Never
++            // let Cancel's draft equal that remembered value: such a precondition
++            // could not detect an erroneous commit performed only on Cancel.
++            if(onMain {quality().slider.progress+quality().minimum}==rememberedQuality)
++                dragTo(if(rememberedQuality==1) 100 else 1)
++            revealComplete("Cancel action") {saveRoot().findViewById<View>(android.R.id.button2)}
++            cancelledDraftQuality=onMain {quality().slider.progress+quality().minimum}
++            assertNotEquals("Cancel must discard a genuinely changed draft",rememberedQuality,cancelledDraftQuality)
++            receipt.put("cancel_draft_quality",cancelledDraftQuality)
++            snapshot("cancel-ready")
++            onMain {
++                assertEquals("Cancel precondition remains unchanged",cancelledDraftQuality,quality().slider.progress+quality().minimum)
++                assertNotEquals("Cancel input must distinguish draft from remembered quality",rememberedQuality,cancelledDraftQuality)
++            }
++            receipt.put("endpoint_values",JSONArray().put(1).put(100))
++            writeReceipt()
++        } catch(failure: Throwable) {recordFailure(failure);throw failure}
++    }
++
++    fun assertCancelledDraftWasNotCommitted() {
++        assertTrue("Cancel observed a valid distinct draft",cancelledDraftQuality in 1..100 && cancelledDraftQuality!=rememberedQuality)
++        assertEquals("Cancelled native quality is not persisted",rememberedQuality,
++            context.getSharedPreferences("export",0).getInt("quality",95))
++        assertCanvasAndDocument()
++        receipt.put("cancel_preserved_quality",true)
++        writeReceipt()
++    }
++
++    /** Called only after the original Cancel/reopen/Back/no-request assertions. */
++    fun confirmViaNativeAction(value: Int,requests: List<Intent>) {
++        try {
++            assertTrue("Only this new Choose location action may request a destination",requests.isEmpty())
++            assertDraft()
++            revealComplete("confirmation quality") {quality()}
++            assertQualityGeometry()
++            // Establish a different endpoint with real input when necessary.
++            if(onMain {quality().slider.progress+quality().minimum}==value) dragTo(if(value==1) 100 else 1)
++            dragTo(value)
++            revealComplete("Choose location action") {saveRoot().findViewById<View>(android.R.id.button1)}
++            assertDraft()
++            snapshot("choose-ready")
++            val bounds=onMain {completeBounds(saveRoot().findViewById<View>(android.R.id.button1))
++                ?: throw AssertionError("Choose location moved before native tap")}
++            assertTrue("Native Choose location tap",device.click(bounds.centerX(),bounds.centerY()))
++            instrumentation.waitForIdleSync()
++            waitUntil("single intercepted destination request") {requests.size==1}
++            val request=requests.single()
++            assertEquals(Intent.ACTION_CREATE_DOCUMENT,request.action)
++            assertEquals("image/jpeg",request.type)
++            assertEquals("Native filename survives scrolling, endpoints and action",draftName,request.getStringExtra(Intent.EXTRA_TITLE))
++            assertEquals("Native quality reaches the real Save callback",value,
++                context.getSharedPreferences("export",0).getInt("quality",-1))
++            assertCanvasAndDocument()
++            // ActivityMonitor returns RESULT_CANCELED, so no actual provider,
++            // file, permission grant, save encoding or external destination runs.
++            snapshot("returned",dialog=false)
++            receipt.put("confirmed_quality",value).put("destination_requests",1)
++                .put("destination_action",request.action).put("destination_mime",request.type)
++                .put("destination_filename",request.getStringExtra(Intent.EXTRA_TITLE))
++                .put("canvas_and_document_preserved",true).put("native_scroll_gestures",nativeSwipes)
++                .put("success",true)
++            writeReceipt()
++        } catch(failure: Throwable) {recordFailure(failure);throw failure}
++        finally {canvas.recycle()}
++    }
++
++    private fun quality()=saveRoot().findViewWithTag<NumericSlider>("export_quality")
++    private fun assertDraft()=onMain {
++        assertEquals("JPEG still selected", "JPEG",saveRoot().findViewWithTag<Spinner>("export_format").selectedItem.toString())
++        assertEquals("Draft filename unchanged",draftName,saveRoot().findViewWithTag<EditText>("export_filename").text.toString())
++        assertCanvasAndDocument()
++    }
++    private fun assertCanvasAndDocument()=onMain {
++        assertTrue("All canvas pixels retained",canvas.sameAs(activity().document.bitmap))
++        assertEquals("Document filename retained",documentName,documentNameField.get(activity()))
++        assertEquals("Selected tool retained",tool,activity().paintCanvas.tool)
++        assertNull(activity().lastIoError)
++    }
++    private fun assertQualityGeometry()=onMain {
++        val quality=quality()
++        assertEquals("JPEG minimum",1,quality.minimum);assertEquals("JPEG maximum",100,quality.maximum)
++        assertEquals("Native SeekBar full range",99,quality.slider.max)
++        for((label,view) in listOf("quality" to quality,"readout" to quality.number,"seekbar" to quality.slider))
++            assertNotNull("Complete $label must fit the current clipped viewport: ${geometry(view)}",completeBounds(view))
++        val thumb=thumbBounds()
++        assertTrue("The complete native thumb is inside the SeekBar viewport: $thumb",visibleBounds(quality.slider).contains(thumb))
++    }
++    private fun thumbBounds(): Rect {
++        val slider=quality().slider
++        val raw=rawBounds(slider)
++        return Rect(requireNotNull(slider.thumb).bounds).apply {
++            offset(raw.left+slider.paddingLeft-slider.thumbOffset,raw.top+slider.paddingTop)
++        }
++    }
++    private fun dragTo(value: Int) {
++        revealComplete("quality endpoint $value") {quality()}
++        assertQualityGeometry()
++        val (first,last,before)=onMain {
++            val quality=quality();val slider=quality.slider;val raw=rawBounds(slider)
++            val current=slider.progress+quality.minimum
++            assertNotEquals("Endpoint requires a real value change",value,current)
++            val minimumAtRight=slider.layoutDirection==View.LAYOUT_DIRECTION_RTL
++            val right=(value==100) != minimumAtRight
++            // One pixel into the padded end guarantees the exact boundary,
++            // independent of AbsSeekBar's touch/thumb rounding offset.
++            val x=(if(right) raw.right-slider.paddingRight+1 else raw.left+slider.paddingLeft-1)
++                .coerceIn(raw.left,raw.right-1)
++            val thumb=thumbBounds()
++            val start=Point(thumb.centerX(),thumb.centerY())
++            val end=Point(x,raw.centerY())
++            assertTrue("Current thumb is a visible native touch target",visibleBounds(slider).contains(start.x,start.y))
++            assertTrue("Requested endpoint is a visible native touch target",visibleBounds(slider).contains(end.x,end.y))
++            Triple(start,end,current)
++        }
++        assertTrue("Native drag to JPEG quality $value",device.swipe(arrayOf(first,last,last,last),12))
++        instrumentation.waitForIdleSync()
++        waitUntil("native quality equals $value") {quality().slider.progress+quality().minimum==value}
++        assertDraft();assertQualityGeometry()
++        onMain {
++            assertEquals("Visible numeric readout matches actual native value",
++                activity().getString(R.string.ui_numeric_slider_value,quality().name,value),quality().number.text.toString())
++            observations.put(JSONObject().put("kind","endpoint").put("before",before).put("value",value)
++                .put("from",JSONArray().put(first.x).put(first.y)).put("to",JSONArray().put(last.x).put(last.y))
++                .put("geometry",geometry(quality())).put("seekbar",geometry(quality().slider)).put("thumb",rect(thumbBounds())))
++        }
++        writeReceipt()
++    }
++
++    /** Full bounds, not the old center/minimum-tap-area visibility criterion. */
++    private fun completeBounds(view: View): Rect? {
++        if(!view.isShown || view.width<=0 || view.height<=0) return null
++        val raw=rawBounds(view);val visible=visibleBounds(view)
++        return raw.takeIf {visible.contains(raw)}
++    }
++    private fun revealComplete(label: String,target: ()->View) {
++        val seen=mutableSetOf<String>()
++        repeat(24) {
++            instrumentation.waitForIdleSync()
++            if(onMain {completeBounds(target())!=null}) {
++                onMain {observations.put(JSONObject().put("kind","reachable").put("label",label).put("geometry",geometry(target())))}
++                assertDraft();writeReceipt();return
++            }
++            val gesture=onMain {
++                val view=target();val raw=rawBounds(view)
++                assertTrue("Shown target $label",view.isShown)
++                var parent=view.parent as? View
++                var found: Triple<View,Rect,Int>?=null
++                while(parent!=null && found==null) {
++                    val candidate=parent;val visible=visibleBounds(candidate)
++                    val horizontal=candidate is HorizontalScrollView
++                    if(!visible.isEmpty && (horizontal || candidate is ScrollView)) {
++                        val direction=if(horizontal) when {
++                            raw.left<visible.left -> -1
++                            raw.right>visible.right -> 1
++                            else -> 0
++                        } else when {
++                            raw.top<visible.top -> -1
++                            raw.bottom>visible.bottom -> 1
++                            else -> 0
++                        }
++                        if(direction!=0 && (if(horizontal) candidate.canScrollHorizontally(direction) else candidate.canScrollVertically(direction)))
++                            found=Triple(candidate,visible,direction)
++                    }
++                    parent=candidate.parent as? View
++                }
++                found ?: throw AssertionError("No native scroll route to complete $label: ${geometry(view)}")
++            }
++            val (scroll,bounds,direction)=gesture
++            val before=onMain {"${scroll.scrollX},${scroll.scrollY},${rawBounds(target())}"}
++            assertTrue("Native scrolling must not loop for $label: $before",seen.add(before))
++            val horizontal=scroll is HorizontalScrollView
++            val raw=onMain {rawBounds(target())}
++            val hidden=if(horizontal) {
++                if(direction<0) bounds.left-raw.left else raw.right-bounds.right
++            } else if(direction<0) bounds.top-raw.top else raw.bottom-bounds.bottom
++            val span=if(horizontal) bounds.width() else bounds.height()
++            val slop=android.view.ViewConfiguration.get(context).scaledTouchSlop
++            // Match the missing edge plus native touch slop. A fixed long swipe
++            // can alternate across a control that actually fits the viewport.
++            val distance=(hidden+slop+2).coerceIn(slop+1,span*3/5)
++            val low=if(horizontal) bounds.left+bounds.width()/5 else bounds.top+bounds.height()/5
++            val high=if(horizontal) bounds.right-bounds.width()/5 else bounds.bottom-bounds.height()/5
++            // Use the bottom of the content viewport, away from the top-aligned
++            // native SeekBar. Never use a programmatic scroll or progress setter.
++            val lane=if(horizontal) bounds.bottom-maxOf(2,(4*context.resources.displayMetrics.density).toInt()) else bounds.centerX()
++            val start=if(direction>0) high else low
++            val end=if(direction>0) start-distance else start+distance
++            val first=if(horizontal) Point(start,lane) else Point(lane,start)
++            val last=if(horizontal) Point(end,lane) else Point(lane,end)
++            onMain {observations.put(JSONObject().put("kind","scroll-before").put("label",label).put("geometry",geometry(target())))}
++            assertTrue("Native reveal gesture $label",device.swipe(arrayOf(first,last,last,last),20))
++            nativeSwipes++
++            settle(target)
++            onMain {observations.put(JSONObject().put("kind","scroll-after").put("label",label).put("geometry",geometry(target())))}
++            assertDraft();writeReceipt()
++        }
++        throw AssertionError("Complete $label was not reached within the native gesture bound")
++    }
++    private fun settle(target: ()->View) {
++        var previous="";var changedAt=SystemClock.uptimeMillis()
++        waitUntil("native scroll settled") {
++            val signature=geometry(target()).toString()
++            if(signature!=previous || target().isLayoutRequested) {previous=signature;changedAt=SystemClock.uptimeMillis();false}
++            else SystemClock.uptimeMillis()-changedAt>=150
++        }
++    }
++    private fun snapshot(state: String,dialog: Boolean=true) {
++        val root=onMain {if(dialog) saveRoot() else activity().window.decorView}
++        settle {root}
++        val complete=CountDownLatch(1)
++        val second=Runnable {complete.countDown()}
++        val first=Runnable {root.postOnAnimation(second)}
++        val committed=Runnable {root.postOnAnimation(first)}
++        val observer=onMain {root.viewTreeObserver.also {
++            assertTrue("Screenshot window is hardware accelerated",root.isHardwareAccelerated)
++            it.registerFrameCommitCallback(committed);root.invalidate()
++        }}
++        try {assertTrue("Reachability screenshot frame committed",complete.await(3,TimeUnit.SECONDS))}
++        finally {onMain {if(observer.isAlive) observer.unregisterFrameCommitCallback(committed);root.removeCallbacks(first);root.removeCallbacks(second)}}
++        val file=File(directory,"$name-$state.png")
++        assertTrue("Fresh reachability screenshot",device.takeScreenshot(file));assertTrue(file.length()>0)
++        screenshots.put(file.name)
++        if(dialog) onMain {
++            observations.put(JSONObject().put("kind","capture").put("state",state)
++                .put("quality",quality().slider.progress+quality().minimum)
++                .put("filename",saveRoot().findViewWithTag<EditText>("export_filename").text.toString())
++                .put("geometry",geometry(quality())).put("seekbar",geometry(quality().slider))
++                .put("readout",geometry(quality().number)).put("thumb",rect(thumbBounds())))
++        }
++        writeReceipt()
++    }
++    private fun geometry(view: View): JSONObject {
++        val parents=JSONArray();var parent=view.parent as? View
++        while(parent!=null) {
++            if(parent is HorizontalScrollView || parent is ScrollView) parents.put(JSONObject()
++                .put("class",parent.javaClass.name).put("scroll_x",parent.scrollX).put("scroll_y",parent.scrollY)
++                .put("raw",rect(rawBounds(parent))).put("visible",rect(visibleBounds(parent))))
++            parent=parent.parent as? View
++        }
++        return JSONObject().put("raw",rect(rawBounds(view))).put("visible",rect(visibleBounds(view)))
++            .put("fully_visible",completeBounds(view)!=null).put("parents",parents)
++    }
++    private fun rawBounds(view: View): Rect {
++        val location=IntArray(2);view.getLocationOnScreen(location)
++        return Rect(location[0],location[1],location[0]+view.width,location[1]+view.height)
++    }
++    /** Installed negative: Android may leave nonempty output on a false result. */
++    private fun assertFailedVisibilityIsEmpty()=onMain {
++        var observed=false
++        val fullyClipped=object: View(context) {
++            override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean {
++                observed=true;bounds.set(10,20,110,120);return false
++            }
++        }
++        assertTrue("False visibility cannot credit nonempty output",visibleBounds(fullyClipped).isEmpty)
++        assertTrue("False/nonempty native visibility fixture was called",observed)
++    }
++    private fun visibleBounds(view: View): Rect {
++        val bounds=Rect();if(!view.getGlobalVisibleRect(bounds)) return Rect()
++        val location=IntArray(2);view.rootView.getLocationOnScreen(location)
++        bounds.offset(location[0],location[1]);return bounds
++    }
++    private fun rect(value: Rect)=JSONArray().put(value.left).put(value.top).put(value.right).put(value.bottom)
++    private fun writeReceipt() {File(directory,"$name.json").writeText(receipt.toString(2)+"\n")}
++    private fun recordFailure(failure: Throwable) {
++        receipt.put("failure",failure.toString());writeReceipt()
++        try {device.takeScreenshot(File(directory,"$name-failure.png"))} catch(capture: Throwable) {failure.addSuppressed(capture)}
++    }
++    private fun waitUntil(label: String,condition: ()->Boolean) {
++        val until=SystemClock.uptimeMillis()+15000
++        while(SystemClock.uptimeMillis()<until) {
++            if(onMain(condition)) return
++            SystemClock.sleep(25)
++        }
++        throw AssertionError("Timed out: $label")
++    }
++    private fun <T> onMain(action: ()->T): T {
++        if(android.os.Looper.myLooper()==android.os.Looper.getMainLooper()) return action()
++        val result=AtomicReference<T>();val failure=AtomicReference<Throwable?>()
++        instrumentation.runOnMainSync {try {result.set(action())} catch(error: Throwable) {failure.set(error)}}
++        failure.get()?.let {throw it};return result.get()
++    }
++}
+diff --git a/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
+index a280af2..2fc7f5b 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt
+@@ -88,6 +88,7 @@ class VerticalLocaleDeviceTest {
+ 
+     @Before fun launchInstalledApp() {
+         assertEquals("paint.anpaint.android",context.packageName)
++        assertFailedVisibilityIsEmpty()
+         originalLanguageTag=if(Build.VERSION.SDK_INT>=33)
+             context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
+         else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
+@@ -227,8 +228,11 @@ class VerticalLocaleDeviceTest {
+                 // offscreen column alone would not establish reachability.
+                 reveal("JPEG quality") {saveRoot()!!.findViewWithTag<View>("export_quality")}
+                 screenshot("jpeg-quality")
++                val reachability=VerticalControlReachabilityProbe(instrumentation,{activity},{saveRoot()!!},evidenceName)
++                reachability.exerciseBothEndpointsAndCancelRoute()
+                 tap("Cancel Save") {saveRoot()!!.findViewById<View>(android.R.id.button2)}
+                 awaitState("native Cancel dismissed Save") {saveRoot()==null}
++                reachability.assertCancelledDraftWasNotCommitted()
+                 assertCanvas(tag)
+                 openSave()
+                 onMain {assertEquals("Cancelled format is not persisted","PNG",saveRoot()!!.findViewWithTag<Spinner>("export_format").selectedItem.toString())}
+@@ -236,6 +240,21 @@ class VerticalLocaleDeviceTest {
+                 awaitState("native Back dismissed reopened Save") {saveRoot()==null}
+                 assertCanvas(tag)
+                 assertTrue("Navigation and cancellation launch no external destination",externalRequests.isEmpty())
++                // A distinct, monitored Choose location flow proves the positive
++                // action and its real Save callback without visiting a provider.
++                openSave()
++                tap("native format spinner for confirmation") {saveRoot()!!.findViewWithTag<View>("export_format")}
++                awaitState("native confirmation format popup") {formatList()!=null}
++                tapJpeg()
++                awaitState("confirmation JPEG selected") {
++                    saveRoot()?.findViewWithTag<Spinner>("export_format")?.selectedItem?.toString()=="JPEG"
++                }
++                reachability.confirmViaNativeAction(if(landscape) 100 else 1,externalRequests)
++                awaitState("Choose location dismissed Save after intercepted cancellation") {saveRoot()==null}
++                assertCanvas(tag)
++                // Exactly one request was checked and retained in this case's
++                // receipt. Start the next orientation's no-request oracle fresh.
++                externalRequests.clear()
+             }
+             assertTrue("The locale matrix exercised a genuinely offscreen tool with native swipes",overflowToolSwipes>0)
+         } catch(failure: Throwable) {
+@@ -375,9 +394,20 @@ class VerticalLocaleDeviceTest {
+     }
+ 
+     /** Return screen-space bounds, intersected with all parent clipping. */
++    /** Installed negative: Android may leave nonempty output on a false result. */
++    private fun assertFailedVisibilityIsEmpty()=onMain {
++        var observed=false
++        val fullyClipped=object: View(context) {
++            override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean {
++                observed=true;bounds.set(10,20,110,120);return false
++            }
++        }
++        assertTrue("False visibility cannot credit nonempty output",visibleBounds(fullyClipped).isEmpty)
++        assertTrue("False/nonempty native visibility fixture was called",observed)
++    }
+     private fun visibleBounds(view: View): Rect {
+         val bounds=Rect()
+-        if(!view.getGlobalVisibleRect(bounds)) return bounds
++        if(!view.getGlobalVisibleRect(bounds)) return Rect()
+         val location=IntArray(2);view.rootView.getLocationOnScreen(location)
+         bounds.offset(location[0],location[1]);return bounds
+     }
+diff --git a/tools/ci_emulator.sh b/tools/ci_emulator.sh
+index 57d9321..f5b23e8 100644
+--- a/tools/ci_emulator.sh
++++ b/tools/ci_emulator.sh
+@@ -153,7 +153,7 @@ run_vertical_locale_matrix() {
+   local -a excluded=()
+   # Never reuse screenshots or a successful summary from a previous invocation.
+   rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
+-  rm -f "$report/vertical-locale-screenshots.json"
++  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
+   classes=$(python3 tools/vertical_locale_matrix.py exclude-other-classes \
+     --source-tests app/src/androidTest) || return
+   while IFS= read -r owner; do excluded+=(--exclude-class "$owner"); done <<< "$classes"
+@@ -185,6 +185,11 @@ cleanup() {
+         > "$report/vertical-locale-inventory.log" 2>&1; then
+       progress 'FAILED: incomplete vertical locale screenshot matrix' >&2
+       if (( status == 0 )); then status=1; fi
++    elif ! python3 tools/vertical_control_reachability.py \
++        "$report/app/vertical-locale-evidence/reachability" --sdk "$TEST_API" --output "$report/vertical-control-reachability.json" \
++        > "$report/vertical-control-reachability.log" 2>&1; then
++      progress 'FAILED: incomplete native control-reachability evidence' >&2
++      if (( status == 0 )); then status=1; fi
+     fi
+   fi
+   timeout --kill-after=3s 10s "$adb" emu kill
+diff --git a/tools/test_vertical_control_reachability.py b/tools/test_vertical_control_reachability.py
+new file mode 100644
+index 0000000..00c712e
+--- /dev/null
++++ b/tools/test_vertical_control_reachability.py
+@@ -0,0 +1,142 @@
++"""Host receipt/collector contracts. Synthetic headers are never rendered evidence."""
++import copy
++import json
++from pathlib import Path
++import struct
++import tempfile
++import unittest
++from vertical_control_reachability import CASES, LABELS, STATES, complete, contains, verify
++
++ROOT=Path(__file__).resolve().parents[1]
++
++
++def fixture(directory):
++    directory.mkdir(parents=True,exist_ok=True)
++    geometry=dict(raw=[20,20,120,70],visible=[20,20,120,70],fully_visible=True,
++                  parents=[dict(scroll_x=100,scroll_y=0)])
++    for case in CASES:
++        captures=[dict(kind='capture',state=s,filename='fixture.jpg',
++                       quality=1 if s=='minimum' else 100,geometry=geometry,seekbar=geometry,
++                       readout=geometry,thumb=[20,20,30,30]) for s in STATES if s!='returned']
++        endpoints=[dict(kind='endpoint',before=100 if v==1 else 1,value=v,
++                        **{'from':[25,25],'to':[30,30]},geometry=geometry,seekbar=geometry,
++                        thumb=[20,20,30,30]) for v in (1,100)]
++        observations=[dict(kind='reachable',label=label,geometry=geometry) for label in LABELS]+endpoints+captures
++        observations += [dict(kind='scroll-before',geometry=dict(geometry,parents=[dict(scroll_x=0,scroll_y=0)])),
++                         dict(kind='scroll-after',geometry=geometry)]
++        receipt=dict(case=case,success=True,device_sdk=35,filename='fixture.jpg',endpoint_values=[1,100],
++                     cancel_preserved_quality=True,remembered_quality_before_cancel=95,cancel_draft_quality=100,
++                     canvas_and_document_preserved=True,
++                     confirmed_quality=100 if case.endswith('-landscape') else 1,destination_requests=1,
++                     destination_action='android.intent.action.CREATE_DOCUMENT',destination_mime='image/jpeg',
++                     destination_filename='fixture.jpg',native_scroll_gestures=1,observations=observations,
++                     screenshots=[f'{case}-{s}.png' for s in STATES])
++        (directory/f'{case}.json').write_text(json.dumps(receipt))
++        for state in STATES:
++            dimensions=(240,120) if case.endswith('-landscape') else (120,240)
++            (directory/f'{case}-{state}.png').write_bytes(b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR'+
++                struct.pack('>II',*dimensions)+b'\0'*9+(case+state).encode())
++
++
++class ReachabilityReceiptTest(unittest.TestCase):
++    def test_complete_eight_case_inventory_and_file_hashes(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            directory=Path(tmp);fixture(directory);result=verify(directory)
++            self.assertEqual(8,len(result['cases']));self.assertEqual(64,result['screenshots'])
++            self.assertEqual(72,len(result['files']))
++            with self.assertRaisesRegex(ValueError,'device SDK'): verify(directory,30)
++
++    def test_visibility_requires_all_four_bounds_and_positive_area(self):
++        self.assertTrue(contains([0,0,100,100],[1,1,99,99]))
++        for raw in ([-1,0,99,99],[0,0,101,99],[0,-1,99,99],[0,0,99,101],[1,1,1,2]):
++            self.assertFalse(complete(dict(raw=raw,visible=[0,0,100,100],fully_visible=True)))
++        self.assertFalse(complete(dict(raw=[1,1,2,2],visible=[0,0,100,100],fully_visible=False)))
++
++    def test_failure_missing_endpoint_clipping_lost_state_and_fake_motion_fail_closed(self):
++        mutations=[lambda r:r.update(success=False),lambda r:r.update(failure='failed'),
++            lambda r:r.update(endpoint_values=[1]),lambda r:r.update(device_sdk='35'),
++            lambda r:r.update(remembered_quality_before_cancel=100),
++            lambda r:r.update(cancel_draft_quality=95),
++            lambda r:r.update(cancel_draft_quality=50),
++            lambda r:r.update(cancel_preserved_quality=False),lambda r:r.update(canvas_and_document_preserved=False),
++            lambda r:r.update(destination_filename='lost.jpg'),lambda r:r.update(destination_requests=2),
++            lambda r:r.update(confirmed_quality=50),lambda r:r.update(native_scroll_gestures=0),
++            lambda r:r['screenshots'].pop(),
++            lambda r:r.update(observations=[o for o in r['observations'] if o.get('label')!='Cancel action']),
++            lambda r:r.update(observations=[o for o in r['observations'] if o.get('value')!=1]),
++            lambda r:next(o for o in r['observations'] if o['kind']=='endpoint').update(before=1),
++            lambda r:next(o for o in r['observations'] if o['kind']=='endpoint').update(to=[0,0]),
++            lambda r:next(o for o in r['observations'] if o['kind']=='endpoint').update(thumb=[0,0,25,25]),
++            lambda r:next(o for o in r['observations'] if o.get('state')=='minimum').update(quality=95),
++            lambda r:next(o for o in r['observations'] if o.get('state')=='maximum')['readout'].update(visible=[20,20,110,70]),
++            lambda r:next(o for o in r['observations'] if o['kind']=='capture').update(filename='lost.jpg'),
++            lambda r:next(o for o in r['observations'] if o['kind']=='scroll-before').update(
++                geometry=next(o['geometry'] for o in r['observations'] if o['kind']=='scroll-after'))]
++        with tempfile.TemporaryDirectory() as tmp:
++            directory=Path(tmp);fixture(directory);path=directory/f'{sorted(CASES)[0]}.json';good=json.loads(path.read_text())
++            for mutate in mutations:
++                with self.subTest(mutation=mutate):
++                    broken=copy.deepcopy(good);mutate(broken);path.write_text(json.dumps(broken))
++                    with self.assertRaises(ValueError): verify(directory)
++            path.write_text(json.dumps(good));self.assertTrue(verify(directory)['success'])
++
++    def test_distinct_cancel_receipt_rejects_equal_landscape_endpoint_preconditions(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            directory=Path(tmp);fixture(directory)
++            case='mnc-Mong-landscape';path=directory/f'{case}.json'
++            good=json.loads(path.read_text())
++            good.update(remembered_quality_before_cancel=1,cancel_draft_quality=100)
++            path.write_text(json.dumps(good));self.assertTrue(verify(directory)['success'])
++            # Reproduce the reviewed hole: remembered1 and draft1 even though
++            # endpoint movement 1/100 and every other receipt claim looks valid.
++            bad=copy.deepcopy(good);bad['cancel_draft_quality']=1
++            next(o for o in bad['observations'] if o.get('state')=='cancel-ready')['quality']=1
++            path.write_text(json.dumps(bad))
++            with self.assertRaisesRegex(ValueError,'Incomplete successful'): verify(directory)
++
++    def test_both_visibility_helpers_discard_false_nonempty_output_and_have_installed_negatives(self):
++        def check(source):
++            self.assertIn('if(!view.getGlobalVisibleRect(bounds)) return Rect()',source)
++            self.assertIn('override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean',source)
++            self.assertIn('observed=true;bounds.set(10,20,110,120);return false',source)
++            self.assertIn('visibleBounds(fullyClipped).isEmpty',source)
++            self.assertIn('assertFailedVisibilityIsEmpty()',source)
++        for name in ('VerticalControlReachabilityProbe','VerticalLocaleDeviceTest'):
++            source=(ROOT/f'app/src/androidTest/java/paint/anpaint/android/{name}.kt').read_text()
++            with self.subTest(helper=name):
++                check(source)
++                # This is a source/negative-fixture contract, not execution of
++                # Android/Kotlin. The actual fake-View negative runs installed.
++                with self.assertRaises(AssertionError):
++                    check(source.replace('if(!view.getGlobalVisibleRect(bounds)) return Rect()',
++                                         'if(!view.getGlobalVisibleRect(bounds)) return bounds'))
++
++    def test_missing_extra_corrupt_identical_endpoint_and_wrong_orientation_images_fail(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            directory=Path(tmp);fixture(directory);case=sorted(CASES)[0]
++            path=directory/f'{case}-minimum.png';original=path.read_bytes();path.unlink()
++            with self.assertRaises(ValueError): verify(directory)
++            path.write_bytes(b'broken')
++            with self.assertRaises(ValueError): verify(directory)
++            path.write_bytes((directory/f'{case}-maximum.png').read_bytes())
++            with self.assertRaisesRegex(ValueError,'Identical'): verify(directory)
++            path.write_bytes(original);extra=directory/'unexpected.png';extra.write_bytes(original)
++            with self.assertRaises(ValueError): verify(directory)
++            extra.unlink();bad=bytearray(original);bad[16:24]=original[20:24]+original[16:20];path.write_bytes(bad)
++            with self.assertRaisesRegex(ValueError,'orientation'): verify(directory)
++
++    def test_proposed_native_probe_has_no_programmatic_input_substitutes(self):
++        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
++        for forbidden in ('.performClick(','.requestRectangleOnScreen(','.scrollTo(','.scrollBy(',
++                          '.setProgress(','.progress=', '.setOnSeekBarChangeListener(','.setSelection('):
++            self.assertNotIn(forbidden,source)
++        for required in ('device.swipe(', 'device.click(', 'visible.contains(raw)', 'canvas.sameAs(',
++                         'assertNotEquals("Endpoint requires a real value change"', 'thumbBounds()',
++                         'registerFrameCommitCallback', 'destination_requests'):
++            self.assertIn(required,source)
++        driver=(ROOT/'tools/ci_emulator.sh').read_text()
++        self.assertIn('--suite app-vertical --timeout-seconds 180',driver)
++        self.assertIn('tools/vertical_control_reachability.py',driver)
++
++
++if __name__=='__main__': unittest.main()
+diff --git a/tools/test_vertical_locale_matrix.py b/tools/test_vertical_locale_matrix.py
+index 8506454..1dc9113 100644
+--- a/tools/test_vertical_locale_matrix.py
++++ b/tools/test_vertical_locale_matrix.py
+@@ -12,6 +12,7 @@ import tempfile
+ import unittest
+ 
+ from run_android_instrumentation import RESTART_SEED, RESTART_VERIFY, declared_tests
++from test_vertical_control_reachability import fixture as reachability_fixture
+ from vertical_locale_matrix import (VERTICAL, VERTICAL_METHODS, EXPECTED_SCREENSHOTS,
+                                    app_partition, verify_app_reports, verify_screenshots)
+ 
+@@ -253,12 +254,19 @@ raise SystemExit('Unexpected command: '+repr(args))
+ 
+     def test_cleanup_collects_before_shutdown_and_never_turns_a_failure_green(self):
+         for start, fault, expected_status in ((0, '', 0), (0, 'pull', 1), (0, 'missing', 1),
+-                                              (7, 'pull', 7), (7, 'missing', 7)):
++                                              (7, 'pull', 7), (7, 'missing', 7), (0, 'reachability_missing', 1),
++                                              (0, 'reachability_failed', 1), (7, 'reachability_failed', 7)):
+             with self.subTest(start=start, fault=fault), tempfile.TemporaryDirectory() as directory:
+                 root = Path(directory); (root/'report').mkdir()
+                 shutil.copytree(ROOT/'tools', root/'tools', ignore=shutil.ignore_patterns('__pycache__'))
+                 screenshot_fixture(root/'device')
++                reachability_fixture(root/'device/reachability')
+                 if fault == 'missing': (root/'device'/sorted(EXPECTED_SCREENSHOTS)[0]).unlink()
++                if fault.startswith('reachability_'):
++                    receipt=next((root/'device/reachability').glob('*.json'))
++                    if fault=='reachability_missing': receipt.unlink()
++                    else:
++                        data=json.loads(receipt.read_text());data['success']=False;receipt.write_text(json.dumps(data))
+                 fake = root/'adb'
+                 fake.write_text('#!'+sys.executable+'\n'+r'''
+ import json, os, shutil, sys
+@@ -268,14 +276,15 @@ if sys.argv[1]=='pull':
+     shutil.copytree('device',sys.argv[3])
+ ''')
+                 fake.chmod(0o700)
+-                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
++                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; TEST_API=35; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
+                 result = subprocess.run(['bash','-c',command], cwd=root, capture_output=True, text=True, timeout=15,
+                     env={**os.environ, 'CI_SCRIPT': str(ROOT/'tools/ci_emulator.sh'), 'INITIAL_STATUS': str(start), 'TEST_FAULT': fault})
+                 self.assertEqual(result.returncode, expected_status, result.stdout+result.stderr)
+                 events = [json.loads(line) for line in (root/'events').read_text().splitlines()]
+                 self.assertLess(next(i for i, event in enumerate(events) if event[0]=='pull'),
+                                 next(i for i, event in enumerate(events) if event[:2]==['emu','kill']))
+-                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), not fault)
++                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), fault not in ('pull','missing'))
++                self.assertEqual((root/'report/vertical-control-reachability.json').exists(), not fault)
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/tools/vertical_control_reachability.py b/tools/vertical_control_reachability.py
+new file mode 100644
+index 0000000..69e61f7
+--- /dev/null
++++ b/tools/vertical_control_reachability.py
+@@ -0,0 +1,123 @@
++#!/usr/bin/env python3
++"""Fail-closed receipts for native vertical Save reachability; not pixel review."""
++from __future__ import annotations
++import argparse
++import hashlib
++import json
++from pathlib import Path
++import struct
++from vertical_locale_matrix import LOCALES, ORIENTATIONS
++
++STATES = ('before', 'minimum', 'maximum', 'filename', 'description', 'cancel-ready', 'choose-ready', 'returned')
++CASES = {f'{locale}-{orientation}' for locale in LOCALES for orientation in ORIENTATIONS}
++LABELS = {'quality label and readout', 'complete quality control', 'filename field',
++          'filename preview', 'JPEG explanation', 'Cancel action', 'Choose location action'}
++
++
++def contains(outer, inner):
++    if (not isinstance(outer, list) or not isinstance(inner, list) or len(outer) != 4 or len(inner) != 4
++            or any(type(v) is not int for v in outer+inner)):
++        return False
++    l,t,r,b = outer; il,it,ir,ib = inner
++    return l <= il < ir <= r and t <= it < ib <= b
++
++
++def complete(geometry):
++    return (isinstance(geometry, dict) and geometry.get('fully_visible') is True
++            and contains(geometry.get('visible'), geometry.get('raw')))
++
++
++def verify(directory: Path, sdk: int | None = None) -> dict:
++    expected = {f'{case}-{state}.png' for case in CASES for state in STATES} | {f'{case}.json' for case in CASES}
++    actual = {p.name for p in directory.iterdir()} if directory.is_dir() else set()
++    if actual != expected:
++        raise ValueError(f'Reachability inventory mismatch: missing={sorted(expected-actual)}, unexpected={sorted(actual-expected)}')
++    files=[]; result=[]
++    for case in sorted(CASES):
++        path=directory/f'{case}.json'; receipt=json.loads(path.read_text())
++        confirmed=100 if case.endswith('-landscape') else 1
++        if (receipt.get('case') != case or receipt.get('success') is not True or 'failure' in receipt
++                or type(receipt.get('device_sdk')) is not int or receipt['device_sdk'] not in (30,35)
++                or receipt.get('endpoint_values') != [1,100]
++                or receipt.get('cancel_preserved_quality') is not True
++                or type(receipt.get('remembered_quality_before_cancel')) is not int
++                or not 1 <= receipt['remembered_quality_before_cancel'] <= 100
++                or type(receipt.get('cancel_draft_quality')) is not int
++                or not 1 <= receipt['cancel_draft_quality'] <= 100
++                or receipt['cancel_draft_quality'] == receipt['remembered_quality_before_cancel']
++                or receipt.get('canvas_and_document_preserved') is not True
++                or type(receipt.get('confirmed_quality')) is not int or receipt['confirmed_quality'] != confirmed
++                or type(receipt.get('destination_requests')) is not int or receipt['destination_requests'] != 1
++                or receipt.get('destination_action') != 'android.intent.action.CREATE_DOCUMENT'
++                or receipt.get('destination_mime') != 'image/jpeg'
++                or not isinstance(receipt.get('filename'),str) or not receipt['filename'].endswith('.jpg')
++                or receipt.get('destination_filename') != receipt['filename']
++                or set(receipt.get('screenshots',[])) != {f'{case}-{s}.png' for s in STATES}
++                or len(receipt['screenshots']) != len(STATES)):
++            raise ValueError(f'Incomplete successful native-flow receipt: {case}')
++        observations=receipt.get('observations',[])
++        reached=[o for o in observations if o.get('kind')=='reachable']
++        if not LABELS <= {o.get('label') for o in reached} or any(not complete(o.get('geometry')) for o in reached):
++            raise ValueError(f'Complete control/label bounds not proved: {case}')
++        endpoints=[o for o in observations if o.get('kind')=='endpoint']
++        if not {1,100} <= {o.get('value') for o in endpoints}:
++            raise ValueError(f'Both native quality endpoints not proved: {case}')
++        for e in endpoints:
++            if (e.get('value') not in (1,100) or type(e.get('before')) is not int
++                    or not 1 <= e['before'] <= 100 or e['before']==e['value']
++                    or not complete(e.get('geometry')) or not complete(e.get('seekbar'))
++                    or not contains(e['seekbar']['visible'],e.get('thumb'))):
++                raise ValueError(f'Endpoint input/effect/full-thumb bounds not proved: {case}')
++            for key in ('from','to'):
++                p=e.get(key,[])
++                if (not isinstance(p,list) or len(p)!=2 or any(type(v) is not int for v in p)
++                        or not contains(e['seekbar']['visible'],[p[0],p[1],p[0]+1,p[1]+1])):
++                    raise ValueError(f'Native endpoint touch outside visible control: {case}')
++        captures={o.get('state'):o for o in observations if o.get('kind')=='capture'}
++        if set(captures) != set(STATES)-{'returned'}:
++            raise ValueError(f'Missing capture-time state observations: {case}')
++        if captures['cancel-ready'].get('quality') != receipt['cancel_draft_quality']:
++            raise ValueError(f'Cancel screenshot does not show the distinct draft quality: {case}')
++        if any(o.get('filename') != receipt['filename'] for o in captures.values()):
++            raise ValueError(f'Draft filename lost: {case}')
++        for state,value in (('minimum',1),('maximum',100)):
++            c=captures[state]
++            if (c.get('quality')!=value or not complete(c.get('geometry')) or not complete(c.get('seekbar'))
++                    or not complete(c.get('readout')) or not contains(c['seekbar']['visible'],c.get('thumb'))):
++                raise ValueError(f'Endpoint capture not complete: {case}/{state}')
++        before=[o for o in observations if o.get('kind')=='scroll-before']
++        after=[o for o in observations if o.get('kind')=='scroll-after']
++        if (type(receipt.get('native_scroll_gestures')) is not int or receipt['native_scroll_gestures']<1
++                or receipt['native_scroll_gestures']!=len(before) or len(before)!=len(after)
++                or not any(b.get('geometry')!=a.get('geometry') for b,a in zip(before,after))):
++            raise ValueError(f'Native scroll motion not proved: {case}')
++        hashes={}
++        for state in STATES:
++            name=f'{case}-{state}.png'; data=(directory/name).read_bytes()
++            if (len(data)<33 or data[:16]!=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR'):
++                raise ValueError(f'Invalid PNG header: {name}')
++            w,h=struct.unpack('>II',data[16:24])
++            if not w or not h or (w>h)!=case.endswith('-landscape'):
++                raise ValueError(f'Unexpected screenshot orientation: {name}')
++            hashes[state]=hashlib.sha256(data).hexdigest()
++            files.append(dict(name=name,bytes=len(data),width=w,height=h,sha256=hashes[state]))
++        if hashes['minimum']==hashes['maximum']:
++            raise ValueError(f'Identical minimum/maximum captures: {case}')
++        files.append(dict(name=path.name,bytes=path.stat().st_size,sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
++        result.append(dict(case=case,device_sdk=receipt['device_sdk'],confirmed_quality=confirmed))
++    if len({c['device_sdk'] for c in result}) != 1 or (sdk is not None and any(c['device_sdk'] != sdk for c in result)):
++        raise ValueError('Reachability cases disagree on requested device SDK')
++    return dict(success=True,cases=result,screenshots=len(CASES)*len(STATES),files=files,
++                scope='Native input/state/bounds receipts. Every actual PNG still requires independent visual review.')
++
++
++def main():
++    parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('directory',type=Path);parser.add_argument('--output',type=Path,required=True)
++    parser.add_argument('--sdk',type=int,choices=(30,35),required=True)
++    args=parser.parse_args();result=verify(args.directory,args.sdk)
++    args.output.write_text(json.dumps(result,indent=2)+'\n')
++    print(json.dumps(dict(success=True,cases=len(result['cases']),screenshots=result['screenshots'])))
++
++
++if __name__=='__main__': main()
+diff --git a/verification/vertical-control-reachability-2026-10-10/README.md b/verification/vertical-control-reachability-2026-10-10/README.md
+new file mode 100644
+index 0000000..d16cb09
+--- /dev/null
++++ b/verification/vertical-control-reachability-2026-10-10/README.md
+@@ -0,0 +1,98 @@
++# Native vertical Save reachability: proposed probe
++
++Status: **unexecuted Android test proposal**. No production defect, completed
++reachability verification or broad usability acceptance is claimed.
++
++Base: `66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88`, tree
++`a90cdf84be34e6a08ab7a9d25b46cdce2f71b776`.
++
++The source snapshot was independently compared with the remote tree: all 1,341
++existing path/blob/mode identities matched before changes. PR18 and its accepted
++[evidence-only continuation](https://github.com/c933103/AN-Paint/tree/5f16192207161dd828bf9f37becb7eda9f205365/verification/installed-vertical-matrix-2026-10-10/repair-api35-66c39ca)
++remain untouched. Work concerns the distinct unresolved
++[control-reachability checklist](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6093775811).
++
++## Why this probe
++
++The original helper accepts a target when its center and a minimum 32dp tap area
++are visible. JPEG selection exposes a `NumericSlider` with range 1–100 and a native
++100dp-wide SeekBar, inside a 176dp quality column. The accepted test captured that
++state but did not change native progress or establish full thumb/end visibility.
++Actual Manchu landscape pixels clip the thumb; Literary Chinese / vertical emoji
++portrait pixels show partial columns. Scrolling might resolve these observations,
++so clipping alone is not classified as a defect.
++
++## Frozen intended coverage
++
++- All four vertical locales, portrait and landscape, through the real native Save flow.
++- Native horizontal reveal of the complete quality widget/readout/SeekBar/thumb,
++  filename field/preview, JPEG explanation, and dialog actions. Record geometry
++  and scroll offsets before and after gestures.
++- Native thumb movement to 1 and 100, each from a different value; verify progress,
++  display, complete thumb bounds, filename, all canvas pixels and selected tool.
++- Original Cancel/reopen/Back flow unchanged; cancelled quality cannot persist.
++- Native Choose location on a fresh JPEG form, with one intercepted/cancelled
++  document-provider request. Check actual callback quality and request filename/MIME.
++- Eight JSON receipts and 64 new rendered frames in a separate evidence subdirectory;
++  existing 32-state captures and their validator remain independently required.
++- Existing source inventory, collector deadlines, phase budgets and all prior
++  assertions remain. No source-production edit or settings/credential change.
++
++## Review and execution gates
++
++1. Root/source review of the complete frozen diff and host checks.
++2. Publish only to a separate draft test branch based on this exact head, after
++   review. Compare remote tree, including modes and any removals, before CI.
++3. Compile and run the existing current-platform API35 workflow. A failed new
++   assertion or deadline is retained as failure, not retried without diagnosis.
++4. Verify exact source/run/merge-tree/artifact binding, all XML and raw logs,
++   receipt checks and actual pixels. The preexisting 180-second phase had 121.531
++   seconds on the accepted run; the additional probe duration is unknown until run.
++5. Classify native reachability per locale/orientation and control. If an assertion
++   fails, determine whether it is a reproducible production limitation or a probe
++   problem before proposing any production change. No broad UI redesign.
++
++Local host/source checks cannot substitute for Kotlin compilation, installed
++native input, a measured runtime budget or independent visual review. Local
++compilation was attempted but the Gradle 8.13 distribution was unavailable and
++its download failed with `java.net.SocketException: Network is unreachable`.
++No Android compile or runtime pass is claimed.
++
++Coordinate review reference: the Android platform's
++[AbsSeekBar implementation](https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/widget/AbsSeekBar.java)
++positions the drawable using left padding minus thumb offset and applies RTL
++mirroring in touch tracking. The probe observes the installed drawable bounds and
++verifies the resulting native value; source review is not runtime certification.
++
++## Independent review corrections, revision 2
++
++The initial unpublished proposal is preserved at candidate tree
++`8a45b54bbbb975d4d7331d8a6ceb62b85eadbffc`, patch SHA-256
++`4296f8a6ae8a9d6d576161eea5b54e70396866def2c7783acb0fd0b2b220e01b`.
++Independent review identified two test-oracle gaps:
++
++1. Portrait confirmation persisted quality 1. The landscape endpoint sequence
++   could finish at 1, making its Cancel draft indistinguishable from remembered
++   quality. Revision 2 performs another real endpoint gesture when necessary,
++   asserts distinct values immediately before Cancel and stores both values.
++   The receipt verifier and a focused negative reject that exact equal-value
++   landscape precondition, including when the screenshot state reports 1.
++2. Both geometry helpers returned Android's undefined output rectangle when
++   `getGlobalVisibleRect` returned false. Revision 2 returns a fresh empty Rect
++   in both helpers. Both installed negative fixtures deliberately write a
++   nonempty rectangle before returning false. Host source/fixture contracts
++   reject removal of either guard; they do not substitute for installed execution.
++
++The Android 15 contract explicitly leaves the output undefined on a false result:
++[View.getGlobalVisibleRect](https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-15.0.0_r1/core/java/android/view/View.java).
++
++One pre-existing helper line is deliberately hardened. The claim that every
++original line is unchanged is therefore withdrawn for revision 2. All original
++assertions and thresholds remain, and production source, workflow and phase
++budgets are unchanged. No prior screenshot or accepted evidence is overwritten
++or retroactively revalidated. The original 32-state capture evidence remains a
++bounded claim about its exact old source, independently of this proposed probe.
++
++The additional native drag and 64-frame probe duration remain unmeasured inside
++the unchanged 180-second phase. A timeout stays failed. A drag-specific failure
++also does not prove that every native endpoint tap route is inaccessible.

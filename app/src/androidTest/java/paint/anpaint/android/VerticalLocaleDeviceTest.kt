@@ -88,6 +88,7 @@ class VerticalLocaleDeviceTest {
 
     @Before fun launchInstalledApp() {
         assertEquals("paint.anpaint.android",context.packageName)
+        assertFailedVisibilityIsEmpty()
         originalLanguageTag=if(Build.VERSION.SDK_INT>=33)
             context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
         else context.getSharedPreferences("app-language",0).getString("language-tag","").orEmpty()
@@ -227,8 +228,11 @@ class VerticalLocaleDeviceTest {
                 // offscreen column alone would not establish reachability.
                 reveal("JPEG quality") {saveRoot()!!.findViewWithTag<View>("export_quality")}
                 screenshot("jpeg-quality")
+                val reachability=VerticalControlReachabilityProbe(instrumentation,{activity},{saveRoot()!!},evidenceName)
+                reachability.exerciseBothEndpointsAndCancelRoute()
                 tap("Cancel Save") {saveRoot()!!.findViewById<View>(android.R.id.button2)}
                 awaitState("native Cancel dismissed Save") {saveRoot()==null}
+                reachability.assertCancelledDraftWasNotCommitted()
                 assertCanvas(tag)
                 openSave()
                 onMain {assertEquals("Cancelled format is not persisted","PNG",saveRoot()!!.findViewWithTag<Spinner>("export_format").selectedItem.toString())}
@@ -236,6 +240,21 @@ class VerticalLocaleDeviceTest {
                 awaitState("native Back dismissed reopened Save") {saveRoot()==null}
                 assertCanvas(tag)
                 assertTrue("Navigation and cancellation launch no external destination",externalRequests.isEmpty())
+                // A distinct, monitored Choose location flow proves the positive
+                // action and its real Save callback without visiting a provider.
+                openSave()
+                tap("native format spinner for confirmation") {saveRoot()!!.findViewWithTag<View>("export_format")}
+                awaitState("native confirmation format popup") {formatList()!=null}
+                tapJpeg()
+                awaitState("confirmation JPEG selected") {
+                    saveRoot()?.findViewWithTag<Spinner>("export_format")?.selectedItem?.toString()=="JPEG"
+                }
+                reachability.confirmViaNativeAction(if(landscape) 100 else 1,externalRequests)
+                awaitState("Choose location dismissed Save after intercepted cancellation") {saveRoot()==null}
+                assertCanvas(tag)
+                // Exactly one request was checked and retained in this case's
+                // receipt. Start the next orientation's no-request oracle fresh.
+                externalRequests.clear()
             }
             assertTrue("The locale matrix exercised a genuinely offscreen tool with native swipes",overflowToolSwipes>0)
         } catch(failure: Throwable) {
@@ -375,9 +394,20 @@ class VerticalLocaleDeviceTest {
     }
 
     /** Return screen-space bounds, intersected with all parent clipping. */
+    /** Installed negative: Android may leave nonempty output on a false result. */
+    private fun assertFailedVisibilityIsEmpty()=onMain {
+        var observed=false
+        val fullyClipped=object: View(context) {
+            override fun getGlobalVisibleRect(bounds: Rect,offset: Point?): Boolean {
+                observed=true;bounds.set(10,20,110,120);return false
+            }
+        }
+        assertTrue("False visibility cannot credit nonempty output",visibleBounds(fullyClipped).isEmpty)
+        assertTrue("False/nonempty native visibility fixture was called",observed)
+    }
     private fun visibleBounds(view: View): Rect {
         val bounds=Rect()
-        if(!view.getGlobalVisibleRect(bounds)) return bounds
+        if(!view.getGlobalVisibleRect(bounds)) return Rect()
         val location=IntArray(2);view.rootView.getLocationOnScreen(location)
         bounds.offset(location[0],location[1]);return bounds
     }

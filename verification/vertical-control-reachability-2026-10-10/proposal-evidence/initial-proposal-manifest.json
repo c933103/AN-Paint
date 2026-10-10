@@ -1,0 +1,90 @@
+{
+  "status": "Retained proposal evidence; Android compilation and installed runtime were unexecuted when this record was prepared.",
+  "base_commit": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88",
+  "base_tree": "a90cdf84be34e6a08ab7a9d25b46cdce2f71b776",
+  "base_blob_count": 1341,
+  "candidate_tree": "8a45b54bbbb975d4d7331d8a6ceb62b85eadbffc",
+  "branch": "draft/pr18-control-reachability-20261010",
+  "files": [
+    {
+      "path": "CI.md",
+      "mode": "100644",
+      "blob_sha": "06183ad0aca70115b794395e3ab2dafda835cb95",
+      "bytes": 31306,
+      "sha256": "f8da7dfb7b4de66f3d893dfbe7167dfaf4388c68b41d5dd6790e345eb1224b2b"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt",
+      "mode": "100644",
+      "blob_sha": "8757b9e17c8804fd74726f76afffc2b07156355d",
+      "bytes": 19600,
+      "sha256": "aeea06edf34daa701d657b7901f0c6f2d01a476c19716cf9779e9e15f0b31eb8"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt",
+      "mode": "100644",
+      "blob_sha": "8706d4fd9e128b8c766f5b3bf845658b876cb139",
+      "bytes": 32529,
+      "sha256": "883b97ad05f164248cbc12d0955d6e5da074a794e9a655e87cc66a9e4ccbf79f"
+    },
+    {
+      "path": "tools/ci_emulator.sh",
+      "mode": "100644",
+      "blob_sha": "f5b23e87856570aadf63d856927005d2ce3c4255",
+      "bytes": 15568,
+      "sha256": "13b6e4ecfef298a02e165d60352704f85de53bcf7bb75d6b87b4d227896f264d"
+    },
+    {
+      "path": "tools/test_vertical_control_reachability.py",
+      "mode": "100644",
+      "blob_sha": "ffa27bcf80a360479745c0f005483e92dc46803c",
+      "bytes": 7428,
+      "sha256": "def3f4653e3046d971b6d1b09d7029cda2b84ecfdfebda66a196d4f8b73e9ad4"
+    },
+    {
+      "path": "tools/test_vertical_locale_matrix.py",
+      "mode": "100644",
+      "blob_sha": "1dc9113a6463598d5eb8bd5cf0c6682100f79498",
+      "bytes": 18233,
+      "sha256": "51851ff6a252d31d2f48901fc20f0fb948897f5438dd57acf5f27a85bfed6795"
+    },
+    {
+      "path": "tools/vertical_control_reachability.py",
+      "mode": "100644",
+      "blob_sha": "d6eb76e1889431d16c0539e68163436f31f9a093",
+      "bytes": 7503,
+      "sha256": "a81efca085cc72e3709aab7078475a3eec952910c0025ba4c485806a5b37ff2a"
+    },
+    {
+      "path": "verification/vertical-control-reachability-2026-10-10/README.md",
+      "mode": "100644",
+      "blob_sha": "e8d69642113112fe372f4d6aaa60626f76f48a36",
+      "bytes": 4107,
+      "sha256": "30a043286e5b7e4622528af12c70091607a99e049f6a73abef08637784abcbd9"
+    }
+  ],
+  "patch_sha256": "4296f8a6ae8a9d6d576161eea5b54e70396866def2c7783acb0fd0b2b220e01b",
+  "proof": {
+    "unaffected_base_blobs_modes_preserved": 1337,
+    "existing_installed_test_all_lines_preserved_in_order": true,
+    "production_files_changed": 0,
+    "workflows_changed": 0,
+    "old_screenshot_validator_changed": false
+  },
+  "validation": {
+    "targeted_host": "26 passed",
+    "full_host": "387 passed on exact frozen tree, zero skips",
+    "bash_syntax": "passed",
+    "diff_check": "passed",
+    "android_compile": "blocked before compilation: Gradle 8.13 download network unreachable",
+    "installed_run": "not run",
+    "runtime_budget": "unchanged, new duration unknown",
+    "remote_publication": "none",
+    "full_host_log_sha256": "163f5201cf6cb17eff9eb3c5aa21d8ac8b5564fb8adc0146e7074e9bf3e94543"
+  },
+  "known_review_concerns": [
+    "New visibleBounds helper should return a fresh empty Rect when getGlobalVisibleRect returns false; not yet amended because root requested candidate preservation during review.",
+    "Added runtime unknown in unchanged 180-second phase; deadline failure must remain failure.",
+    "Drag-specific endpoint failure must not be interpreted as proof that every native tap route is inaccessible."
+  ]
+}

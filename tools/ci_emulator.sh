@@ -144,27 +144,43 @@ SEED_REPORT
     return 1
   fi
   printf 'COMPLETED: see strict verify summary\n' > "$phase_root/verify-status.txt"
-  # The main driver checks the disjoint ordinary/vertical/seed/verify union only
+  # The main driver checks the disjoint ordinary/vertical-shards/seed/verify union only
   # after every selected invocation. The process boundary itself is unchanged.
 }
 
 run_vertical_locale_matrix() {
-  local classes owner
-  local -a excluded=()
+  local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
+  local failed=0
   # Never reuse screenshots or a successful summary from a previous invocation.
   rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
-  rm -f "$report/vertical-locale-screenshots.json"
-  classes=$(python3 tools/vertical_locale_matrix.py exclude-other-classes \
-    --source-tests app/src/androidTest) || return
-  while IFS= read -r owner; do excluded+=(--exclude-class "$owner"); done <<< "$classes"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
   timeout --kill-after=3s 10s "$adb" shell rm -rf \
     /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence || return
   vertical_started=1
+  # Two disjoint invocations provision 360s aggregate vertical time (formerly
+  # 180s). Each keeps the existing 180s ceiling; the outer 15m limit is unchanged.
+  # Each original method runs once, with its native input and both orientations.
+  phase='Vertical locale native-input matrix: English + Manchu'
+  progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
     --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
     --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
-    --source-tests app/src/androidTest --output "$report/app-vertical/androidTest-results" \
-    --suite app-vertical --timeout-seconds 180 "${excluded[@]}"
+    --source-tests app/src/androidTest --output "$report/app-vertical/english-manchu/androidTest-results" \
+    --suite app-vertical-english-manchu --timeout-seconds 180 \
+    --include-test "$vertical_class#verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  # A failed first shard remains failed; the second is distinct coverage, never
+  # a retry. Preserve all partial evidence for the existing EXIT collector.
+  phase='Vertical locale native-input matrix: Literary Chinese + emoji'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/literary-chinese-emoji/androidTest-results" \
+    --suite app-vertical-literary-chinese-emoji --timeout-seconds 180 \
+    --include-test "$vertical_class#literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  return "$failed"
 }
 
 cleanup() {
@@ -184,6 +200,11 @@ cleanup() {
         "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \
         > "$report/vertical-locale-inventory.log" 2>&1; then
       progress 'FAILED: incomplete vertical locale screenshot matrix' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_control_reachability.py \
+        "$report/app/vertical-locale-evidence/reachability" --sdk "$TEST_API" --output "$report/vertical-control-reachability.json" \
+        > "$report/vertical-control-reachability.log" 2>&1; then
+      progress 'FAILED: incomplete native control-reachability evidence' >&2
       if (( status == 0 )); then status=1; fi
     fi
   fi

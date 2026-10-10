@@ -27,6 +27,12 @@ open class FlowButton(context: Context): Button(context) {
         if(!VerticalText.uiVertical()) setCompoundDrawables(null,icon,null,null)
         compoundDrawablePadding=dp(3);requestLayout();invalidate()
     }
+    override fun onTextChanged(text: CharSequence?,start: Int,lengthBefore: Int,lengthAfter: Int) {
+        super.onTextChanged(text,start,lengthBefore,lengthAfter)
+        // Vertical measurement/drawing bypass TextView's native Layout, whose
+        // presence normally makes setText request layout and invalidate its ink.
+        if(VerticalText.uiVertical()) {requestLayout();invalidate()}
+    }
     protected open fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat())
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
@@ -177,6 +183,12 @@ class RibbonTab(context: Context,private val sideLayout: Boolean=false): FlowBut
 class FlowTextView(context: Context): TextView(context) {
     var columnHeightDp=240
     init {VerticalText.uiTypeface(context)?.let {typeface=it};setTextColor(EditorColours.onSurface)}
+    override fun onTextChanged(text: CharSequence?,start: Int,lengthBefore: Int,lengthAfter: Int) {
+        super.onTextChanged(text,start,lengthBefore,lengthAfter)
+        // Vertical measurement/drawing bypass TextView's native Layout, whose
+        // presence normally makes setText request layout and invalidate its ink.
+        if(VerticalText.uiVertical()) {requestLayout();invalidate()}
+    }
     private fun caption(height: Int)=VerticalText.wrapLabel(text.toString(),paint,height.toFloat().coerceAtLeast(paint.fontSpacing))
     private var columnHeight=0
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
