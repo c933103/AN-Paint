@@ -1,0 +1,40 @@
+{
+  "source_tree": "e92d6da029405fcfd9751b91411d0a550299427f",
+  "full_host": {
+    "command": "python -m unittest discover -s tools -p 'test_*.py'",
+    "tests": 396,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 56.135,
+    "exit_code": 0,
+    "runs": 1,
+    "log_sha256": "0e7fe5e6b0e62710121ec96825ad2e1278bc4245c2e42d1a1497f0e72bd2db52"
+  },
+  "targeted": [
+    {
+      "suite": "vertical_control_reachability",
+      "tests": 10,
+      "seconds": 0.037,
+      "exit_code": 0
+    },
+    {
+      "suite": "gallery_sink_shutdown",
+      "tests": 4,
+      "seconds": 0.928,
+      "exit_code": 0
+    }
+  ],
+  "source_diff_and_bash_syntax": "passed",
+  "previous_diagnostic_host_run": {
+    "tests": 392,
+    "passed": 391,
+    "failures": 1,
+    "seconds": 55.535,
+    "log_sha256": "9e138927055cde695b87fb00a1b46b67c2a798b2a53c45d3275eda7d8af9e4ec",
+    "preserved": true
+  },
+  "android_compile_and_installed_probe": "pending for new source; host/source checks do not certify Android behavior",
+  "retained_failed_API35_run": 38027075427,
+  "privacy_scope": "bounded synthetic test summary and source hashes only; no complete logs or archives"
+}
