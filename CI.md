@@ -26,6 +26,18 @@ This opt-in is for a diagnosed cross-version risk, not the default for routine
 edits. It adds no new test runner and does not waive ordinary test inventory,
 timeouts, artifact provenance or release requirements.
 
+For premerge release-variant verification, the `ci:release-android` PR label
+selects release host checks, APKs, instrumentation and the API 30/35 matrix on
+the next normal opened/synchronized/reopened run. This label includes full
+coverage; `ci:full-android` alone retains the debug variant. Verify the label
+before publishing the reviewed source update, then inspect both actual emulator
+jobs and `build-info.json`'s `build_variant` for that exact source. A label change
+alone does not start a run, and rerunning an earlier debug run is not release
+verification. The existing `-PciReleaseSigning` path uses the temporary CI debug
+key for these release-configured APKs; it does not access the private upgrade key
+or publish a release. No credentials, security settings or release-publication
+triggers are changed by this opt-in.
+
 The independent **Exact-script resource generation** job runs the pinned Gradle
 8.13/AGP 8.13 toolchain in a disposable exact-HEAD worktree. It verifies clean
 debug/release resource merges (including release-first after another clean),
@@ -98,7 +110,7 @@ took 17m1s for universal assembly. The final
 took 3m54s, with 2,666 hits from 3,058 cacheable compiler calls (87.18%). These
 are observed run timings, not a controlled benchmark or a guarantee for future
 changes. Direct mode stayed disabled; these were preprocessed cache hits.
-Regression and emulator jobs do not depend on this cache. References: the official
+Cache misses do not bypass compilation; emulator jobs do not use this cache. References: the official
 [CMake 3.22 launcher documentation](https://cmake.org/cmake/help/v3.22/envvar/CMAKE_LANG_COMPILER_LAUNCHER.html),
 [ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
 [Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).
@@ -216,8 +228,10 @@ component remains `org.catrobat.paintroid.test`.
 A `develop` code commit whose subject starts with `Release ` selects the release
 variant and the full API 30/35 matrix. Alternatively choose `build_type: release`
 when manually running the workflow. Release always overrides `device_tests: none`.
-Other code pushes and PRs retain the debug/API 35 defaults. Both release host
-regressions/lint and instrumentation compile against the release variant.
+Other code pushes and unlabeled PRs retain the debug/API 35 defaults; `ci:full-android`
+PRs use debug/API 30+35, and `ci:release-android` PRs use release/API 30+35 as
+described above. Both release host regressions/lint and instrumentation compile
+against the release variant.
 The shipped manifest is not debuggable. Code shrinking is disabled in both
 modules, so the tested Java/Kotlin code is preserved. Native release compilation
 uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
@@ -387,3 +401,57 @@ removed or relaxed.
 
 AndroidX precedence and bounds:
 https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+
+## API30 font write-back synchronization and bounded lint preparation
+
+Release verification run [38018126008](https://github.com/c933103/AN-Paint/actions/runs/38018126008)
+at `80c14372b0504bc44f9f2809ad477247fdc8100b` passed APK/test-APK building and
+API35. API30 reached the correct SDK-aware test inventory, but the gallery
+viewport fixture failed its second 1.0-to-2.0 system font transition. Its log
+shows setting, system resources and target resources briefly agreeing on 1.0;
+the following request for 2.0 finished its original 10-second deadline with all
+three still at 1.0. This is consistent with the pending ATMS configuration
+snapshot overwriting the subsequent setting write. It does not establish a
+production gallery layout defect.
+
+On API30-33, the fixture now follows three-way agreement with a unique
+DisplayManager display-added/removal acknowledgment. In the inspected AOSP API30 source,
+ATMS's persistence message and DisplayManager's display-event messages use
+DisplayThread. The fixture registers a listener, creates a temporary private
+1-by-1 own-content-only virtual display without a Surface, waits for that exact
+ID's added callback, releases it, then requires its removed callback. Under normal
+FIFO delivery with no intervening synchronization barrier, the second acknowledgment
+also covers a snapshot posted while the earlier configuration message was still
+running. DMS messages are asynchronous; ATMS messages are ordinary. A MessageQueue
+synchronization barrier can therefore let both DMS acknowledgments bypass an older
+ATMS persistence message. This is not a portable queue-drain guarantee. The host
+model includes that counterexample, and a callback alone never replaces the real
+font/layout assertions or exact-device verification. Display/listener cleanup
+remains in `finally`. No content is captured, mirrored, presented or drawn on the
+temporary display. The API34+ shell flush remains.
+All waits share the original 10-second transition deadline, including the legacy
+shell output read. Both real 1.0-to-2.0 transitions, the actual setting/system/app
+checks, and every installed gallery/font/viewport oracle remain required.
+The queue model is host-only ordering evidence; exact-head Android compilation
+and API30 runtime verification are still required before calling this repaired.
+
+Source references for the API30 ordering (Android 11.0.0_r27):
+- [AMS supplies DisplayThread to ATMS](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/am/ActivityManagerService.java#L2651-L2653)
+- [ATMS queues configuration persistence](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/wm/ActivityTaskManagerService.java#L5153-L5294)
+- [DisplayManager uses DisplayThread](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L334)
+- [Display creation queues the added event](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L804-L825)
+- [Display event queue and delivery](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-11.0.0_r27/services/core/java/com/android/server/display/DisplayManagerService.java#L1632-L1669)
+- [Public virtual display API and flags](https://developer.android.com/reference/android/hardware/display/DisplayManager)
+
+The same run's regression job completed Python and JVM checks; JVM elapsed time
+was 518.454 seconds. Its six-minute combined native/lint step built the native
+libraries, entered lint analysis, then stopped without a completed lint result.
+Native preparation and lint now have separate required six-minute steps and
+separate logs/profiles. Lint still runs the complete original task with no task
+exclusions. The checks job reuses the build job's pinned ccache and identical
+content-checking configuration to avoid redundant native compilation. Cached
+classes, linked libraries, APKs and CMake directories remain forbidden; cache
+misses compile normally. The outer 20-minute regression-job limit, all test and
+release gates, and independent APK delivery remain unchanged. The new timing
+must be measured on the next exact-source run; no performance claim is inferred
+from the host contracts.

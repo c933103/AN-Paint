@@ -18,7 +18,7 @@ on:
         options: [current, full, none]
         default: current
 env:
-  BUILD_VARIANT: ${{ inputs.build_type || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ') && 'release' || 'debug') }}
+  BUILD_VARIANT: ${{ inputs.build_type || (((github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && 'release' || 'debug') }}
 permissions:
   contents: read
 concurrency:
@@ -32,6 +32,14 @@ jobs:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
     timeout-minutes: 20
+    env:
+      CCACHE_MAXSIZE: 2G
+      CCACHE_COMPILERCHECK: content
+      CCACHE_SLOPPINESS: ''
+      CCACHE_NODEPEND: '1'
+      CCACHE_NODIRECT: '1'
+      CMAKE_C_COMPILER_LAUNCHER: ccache
+      CMAKE_CXX_COMPILER_LAUNCHER: ccache
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -47,6 +55,22 @@ jobs:
             Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-checks
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Set native compiler cache directory
+        run: echo "CCACHE_DIR=$RUNNER_TEMP/anpaint-ccache" >> "$GITHUB_ENV"
+      - name: Restore content-checked native compiler cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-${{ hashFiles('Paintroid/src/main/cpp/**', 'tools/fetch_*_sources.py') }}
+          restore-keys: |
+            native-ccache-v1-ubuntu22-4.5.1-${{ hashFiles('Paintroid/build.gradle', 'tools/ci_prepare_build.sh') }}-
+            native-ccache-v1-ubuntu22-4.5.1-
+      - name: Install pinned compiler cache
+        timeout-minutes: 2
+        run: |
+          timeout --kill-after=5s 90s sudo apt-get install -y --no-install-recommends ccache=4.5.1-1
+          ccache --version
+          ccache --zero-stats
       - name: Prepare build tools and notices
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
@@ -58,10 +82,17 @@ jobs:
         if: ${{ !cancelled() }}
         timeout-minutes: 12
         run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
-      - name: Run Android lint and native dependencies
+      - name: Prepare lint native dependencies
+        if: ${{ !cancelled() }}
+        timeout-minutes: 6
+        run: bash tools/ci_run_timed.sh native ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:externalNativeBuild${BUILD_VARIANT^}
+      - name: Run Android lint
         if: ${{ !cancelled() }}
         timeout-minutes: 6
         run: bash tools/ci_run_timed.sh lint ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :app:lint${BUILD_VARIANT^}
+      - name: Report native compiler cache statistics
+        if: always()
+        run: if command -v ccache >/dev/null; then ccache --show-stats; fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -214,7 +245,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
+        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:release-android')) || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
