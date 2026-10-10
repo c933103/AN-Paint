@@ -38,6 +38,12 @@ def sha256(value):
     return hashlib.sha256(value).hexdigest()
 
 
+def require_evidence(condition, detail):
+    """Keep evidence validation active with -O and PYTHONOPTIMIZE."""
+    if not condition:
+        raise ValueError(f"Scope evidence validation failed: {detail}")
+
+
 def guard_result(module):
     result = unittest.TestResult()
     unittest.defaultTestLoader.loadTestsFromModule(module).run(result)
@@ -92,7 +98,9 @@ def main():
     for pr in HISTORY:
         module = importlib.import_module(f"test_normalization_scope_pr{pr}")
         result = guard_result(module)
-        assert result.testsRun == 1 and result.wasSuccessful()
+        require_evidence(result.testsRun == 1 and result.wasSuccessful(),
+                         f"PR{pr} positive guard: tests={result.testsRun}, "
+                         f"failures={result.failures}, errors={result.errors}")
         original_read = translations.read_strings
         mutations = []
         targets = {"default": translations.RES / "values/strings.xml", **{tag: paths[tag] for tag in module.SCOPE}}
@@ -101,12 +109,15 @@ def main():
                 def damaged_read(path, target=target, key=key):
                     values = original_read(path)
                     if path == target:
-                        assert key in values
+                        require_evidence(key in values,
+                                         f"PR{pr} mutation input missing: tag={tag}, key={key}")
                         values.pop(key)
                     return values
                 with patch.object(translations, "read_strings", damaged_read):
                     negative = guard_result(module)
-                assert len(negative.failures) == 1 and not negative.errors, (pr, tag, key)
+                require_evidence(len(negative.failures) == 1 and not negative.errors,
+                                 f"PR{pr} omission control: tag={tag}, key={key}, "
+                                 f"failures={negative.failures}, errors={negative.errors}")
                 mutations.append({"tag": tag, "missing_key": key, "detected": True})
         out["guards"][str(pr)] = {"positive_tests": result.testsRun,
             "sha256": sha256((ROOT / f"tools/test_normalization_scope_pr{pr}.py").read_bytes()),
@@ -115,8 +126,9 @@ def main():
             values = translations.read_strings(paths[tag])
             plurals = translations.read_plurals(paths[tag])
             errors = translations.validate_catalogue(tag, require_complete=True)
-            assert not errors, (tag, errors)
-            assert tags.count(tag) == 1
+            require_evidence(not errors, f"Catalogue {tag}: {errors}")
+            require_evidence(tags.count(tag) == 1,
+                             f"Catalogue registration {tag}: count={tags.count(tag)}")
             out["catalogues"][tag] = {"path": str(paths[tag].relative_to(ROOT)),
                 "sha256": sha256(paths[tag].read_bytes()), "registered_once": True,
                 "string_count": len(values), "plural_count": len(plurals),
@@ -124,11 +136,14 @@ def main():
                 "missing_translatable_plurals": sorted(plural_keys - plurals.keys()),
                 "validation_errors": errors}
 
-    assert not translations.validate_resource_directories()
+    directory_errors = translations.validate_resource_directories()
+    require_evidence(not directory_errors, f"Resource directories: {directory_errors}")
     pt_config = translations.resource_configuration("values-pt-rPT")
-    assert pt_config == translations.resource_configuration("values-b+pt+PT")
+    require_evidence(pt_config == translations.resource_configuration("values-b+pt+PT"),
+                     "Portuguese resource configurations are not equivalent")
     matches = [p.parent.name for p in paths.values() if translations.resource_configuration(p.parent.name) == pt_config]
-    assert matches == ["values-b+pt+PT"], matches
+    require_evidence(matches == ["values-b+pt+PT"],
+                     f"Portuguese canonical directories: {matches}")
     with tempfile.TemporaryDirectory() as directory:
         fake_res = Path(directory)
         for folder in ("values-pt-rPT", "values-b+pt+PT"):
@@ -136,14 +151,17 @@ def main():
             (fake_res / folder / "strings.xml").write_text('<resources><string name="x">x</string></resources>')
         with patch.object(translations, "RES", fake_res):
             duplicate_errors = translations.validate_resource_directories()
-        assert len(duplicate_errors) == 1 and "equivalent resource directories" in duplicate_errors[0]
+        require_evidence(len(duplicate_errors) == 1 and "equivalent resource directories" in duplicate_errors[0],
+                         f"Equivalent-directory negative control: {duplicate_errors}")
     out["portuguese_configuration"] = {"canonical_directories": matches, "equivalent_duplicate_fixture_rejected": True,
         "fixture_error": duplicate_errors[0]}
     names = ET.parse(translations.RES / "values/app_language_names.xml")
     def array(name):
         return [n.text for n in names.findall(f".//string-array[@name='{name}']/item")]
     aliases = dict(zip(array("app_language_aliases"), array("app_language_alias_targets"), strict=True))
-    assert tags.count("jje") == 1 and "cju" not in tags and aliases["cju"] == "jje"
+    require_evidence(tags.count("jje") == 1 and "cju" not in tags and aliases.get("cju") == "jje",
+                     f"Jeju registration: jje count={tags.count('jje')}, "
+                     f"cju registered={'cju' in tags}, alias={aliases.get('cju')}")
     out["jeju_registration"] = {"jje_registration_count": tags.count("jje"), "cju_registered": "cju" in tags,
                                  "legacy_alias": {"cju": aliases["cju"]}}
     out["default_language_note"] = all_defaults["language20_translation_note"]
@@ -155,31 +173,38 @@ def main():
     for pr, (baseline, head) in HISTORY.items():
         rows = []
         original_guard = git("show", f"{head}:tools/test_normalization_scope_pr{pr}.py")
-        assert original_guard == (ROOT / f"tools/test_normalization_scope_pr{pr}.py").read_bytes()
+        require_evidence(original_guard == (ROOT / f"tools/test_normalization_scope_pr{pr}.py").read_bytes(),
+                         f"PR{pr} historical guard bytes differ")
         for path in git("diff", "--name-only", baseline, head).decode().splitlines():
             if "/res/values" not in path or not path.endswith("/strings.xml"):
                 continue
             old, proposed = (elements(git("show", f"{ref}:{path}")) for ref in (baseline, head))
             current = elements((ROOT / path).read_bytes())
-            assert not old.keys() - proposed.keys(), (pr, path, "removed keys")
+            require_evidence(not old.keys() - proposed.keys(),
+                             f"PR{pr} historical removed keys: path={path}, "
+                             f"keys={sorted(old.keys() - proposed.keys())}")
             for key, value in proposed.items():
                 if old.get(key) == value:
                     continue
-                assert current.get(key) == value, (pr, path, key)
+                require_evidence(current.get(key) == value,
+                                 f"PR{pr} historical element differs: path={path}, key={key}")
                 rows.append({"path": path, "key": key, "proposed_sha256": sha256(value.encode()),
                              "current_sha256": sha256(current[key].encode()), "equal": True})
         out["historical_resource_deltas"][str(pr)] = {"baseline": baseline, "head": head,
             "guard_byte_identical": True, "changed_elements": len(rows), "rows": rows}
-    assert [out["historical_resource_deltas"][str(pr)]["changed_elements"] for pr in (7, 9)] == [135, 97]
+    changed_counts = [out["historical_resource_deltas"][str(pr)]["changed_elements"] for pr in (7, 9)]
+    require_evidence(changed_counts == [135, 97], f"Historical changed-element counts: {changed_counts}")
 
     receipt = json.loads(Path(__file__).with_name("ci-receipt.json").read_text())
     xml_bytes = Path(__file__).with_name("AppLanguageTest-eab2820.xml").read_bytes()
     xml = validate_base_android_receipt(receipt, xml_bytes)
-    assert xml.get("tests") == "19" and all(xml.get(k) == "0" for k in ("skipped", "failures", "errors"))
+    require_evidence(xml.get("tests") == "19" and all(xml.get(k) == "0" for k in ("skipped", "failures", "errors")),
+                     f"Archived Android suite results: {xml.attrib}")
     required = ("regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues", "manchuPickerUsesItsOwnJoinedVerticalAutonym")
     for name in required:
         cases = [n for n in xml.findall("testcase") if n.get("name") == name]
-        assert len(cases) == 1 and not list(cases[0])
+        require_evidence(len(cases) == 1 and not list(cases[0]),
+                         f"Archived Android required case: {name}, matches={len(cases)}")
     out["base_android_unit_evidence"] = {"head": receipt["artifact"]["workflow_run"]["head_sha"],
         "artifact_id": receipt["artifact"]["id"], "receipt_and_xml_binding_validated": True,
         "tests": 19, "failures": 0, "errors": 0, "skipped": 0,
