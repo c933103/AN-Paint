@@ -75,6 +75,35 @@ jobs:
             build/reports/ci-phases/
             build/reports/profile/
 
+  exact-script-resources:
+    name: Exact-script resource generation
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+          key: android-resource-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Prepare build tools and notices
+        timeout-minutes: 8
+        run: bash tools/ci_prepare_build.sh
+      - name: Check clean and incremental resource graph in a disposable worktree
+        timeout-minutes: 10
+        run: python3 tools/verify_exact_script_generation.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          archive: true
+          name: exact-script-generation-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: build/reports/exact-script-generation/
+
   build:
     name: Build APK and corresponding source
     runs-on: ubuntu-22.04
@@ -185,7 +214,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: ${{ fromJSON((inputs.device_tests == 'full' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
+        api: ${{ fromJSON((inputs.device_tests == 'full' || contains(github.event.pull_request.labels.*.name, 'ci:full-android') || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) && '[30,35]' || '[35]') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

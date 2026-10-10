@@ -18,6 +18,34 @@ APK or completing unrelated work.
 | Run workflow → `none` | Yes | Yes | Explicitly not run |
 | Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
 
+A PR with the `ci:full-android` label uses the existing API 30/35 matrix on its
+next normal opened/synchronized/reopened run. Apply the label before publishing
+the code update that needs cross-version coverage, then verify the run's actual
+matrix. Applying/removing the label alone does not trigger or cancel a workflow.
+This opt-in is for a diagnosed cross-version risk, not the default for routine
+edits. It adds no new test runner and does not waive ordinary test inventory,
+timeouts, artifact provenance or release requirements.
+
+The independent **Exact-script resource generation** job runs the pinned Gradle
+8.13/AGP 8.13 toolchain in a disposable exact-HEAD worktree. It verifies clean
+debug/release resource merges (including release-first after another clean),
+generation before each direct resource consumer, byte-identical XML output,
+an unchanged up-to-date run, an input-change rerun, and stale-output removal.
+Its only excluded task is `:Paintroid:bundleCorrespondingSource`, whose native
+source download/bundling graph is tested by the ordinary build. No resource
+producer/consumer is excluded. The harmless temporary XML comment and stale
+output fixture never change the checkout or the published translations.
+Logs, task outcomes, input/output hashes and a strict success summary are in
+`exact-script-generation-<commit>`. A missing or failed report is not a pass.
+
+`EditorDeviceTest.mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation`
+uses the installed app's visible picker for mixed-script Korean → ordinary
+Korean → mixed-script Korean. It checks fixed Save/Copy-credit text, public
+preference/platform/Java locale identity and the private configured resource
+tag before and after a real orientation/dimension change. Per-phase JSON is
+logged under `ExactScriptResourceTest` in the retained emulator logcat. This is
+complementary to API30/API35 native-resource JVM tests, not linguistic acceptance.
+
 Direct pushes to a working branch do not duplicate a PR/default-branch run.
 Pull requests targeting another working branch receive the same checks as those
 targeting `develop`. Stacked localization PRs therefore do not need temporary
