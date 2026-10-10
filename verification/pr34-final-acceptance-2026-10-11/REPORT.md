@@ -1,0 +1,15 @@
+# PR34 final-head acceptance and merge
+
+11 October 2026, 07:15 UTC+08. PR34 merged as6522ea6857230671847e53e25afd17095ef0f70d after final head2339a73f0842e4026e859742b40960bade7238bf passed Code review6103023677, explicit Security review6103132134 and all five jobs of38092648113. All four corrected review threads are resolved. Merge/develop readback and exact treead6cbc4458cc60ec3f0cb3273f6aaed4733bba70 confirmed; parents are actual prior developa758daceda1d4fc37c605e50715f892557da9fc8 and2339a73f.
+
+Tested merged37d3d3c0ee92c8915da2d7d35dbbc1952170a9c has the same tree/parents. Independent checks bind1,485 included repository source blobs, three documented metadata omissions, delivered source identical to APK-embedded source, all793 JVM cases in83 suites equal the accepted-parent union (no failures/errors/skips), lint0 and seven real generator probes with source/log/canonical-output checks.
+
+Universal release build436.177 seconds, exit0. Cache3246/3762 hits86.28%,516 misses; strict content/compiler/header settings and all four ABIs retained. A faster warm-cache run does not retrospectively validate earlier timed-out builds.
+
+API30 passes73 native+22 app methods: ordinary83.310/180s, gallery33.809/90s, vertical98.985 and88.723/180s, native13.737/180s. API35 passes74 native+25 app methods: ordinary128.533/180s, gallery47.759/90s, vertical110.060 and103.555/180s, seed5.155 and verify7.242/60s, native30.602/180s. Both strict artifact checks pass exact raw/JUnit/source method unions, four Korean routing/rotation rows, viewport and restart oracles, own-MediaStore export reconstruction,96 decoded PNGs,8 reachability receipts and28 native drag traces each. No auxiliary bypass is used.
+
+Final2339 differs from620 only in CI.md. Actual-pixel acceptance remains the bounded parent inspection of192 images on executable/resource/test-identical620, durably recorded at449e3e8241d17e343e0c3b8d08474a4eae83c47e. These final artifacts were independently decoded and their structured evidence verified; a second final-head visual inspection is not claimed. Initial clipping, full-fit, native-language, accessibility and broader image-format dialog coverage remain open. No language register item is promoted.
+
+Full current receipts, exact expected JVM inventory, verifier and original archive hashes are preserved here. The original ZIPs remain14-day Actions artifacts/local temporary files, not permanently archived by this text commit. Run: https://github.com/c933103/AN-Paint/actions/runs/38092648113 . Final acceptance: https://github.com/c933103/AN-Paint/pull/34#issuecomment-6103155774 . Prior complete620 replay: https://github.com/c933103/AN-Paint/blob/449e3e8241d17e343e0c3b8d08474a4eae83c47e/verification/pr34-cold-build-runtime-2026-10-11/REPORT.md . Earlier failures and9b missing auxiliary rows retain their original scope.
+
+Postmerge run38093916668 is running at this checkpoint; this document does not claim it passed or establish private upgrade-signed release completion. PR43 integration is separate.
