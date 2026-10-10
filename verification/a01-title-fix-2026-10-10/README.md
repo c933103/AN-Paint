@@ -1,8 +1,18 @@
 # A01 title correction: frozen source and independent review
 
-Date: 10 October 2026. [Draft PR42](https://github.com/c933103/AN-Paint/pull/42) implements the bounded correction tracked in [PR7 comment 6095494460](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6095494460).
+Date: 10 October 2026. [PR42](https://github.com/c933103/AN-Paint/pull/42) implements the bounded correction tracked in [PR7 comment 6095494460](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6095494460).
 
-## Terminal update, 10 October 2026
+## Current status: merged and post-merge verified
+
+[PR42](https://github.com/c933103/AN-Paint/pull/42) merged at 15:24:12 UTC as `165a6a503529736527c689e3ac1b5432253d19ee` after the [clean exact-head Codex review](https://github.com/c933103/AN-Paint/pull/42#issuecomment-6099030308). The actual merge has the same reviewed and tested tree `5d7ce333311c452cd7587fd871cdf45d6b6a72ca`.
+
+[Post-merge push CI 38063463830](https://github.com/c933103/AN-Paint/actions/runs/38063463830) passed all three jobs on attempt 1. Independent artifact readback confirms 746 JVM methods, all 9 title and 5 import-flow methods, zero lint issues, Python 369 passed plus 2 optional skips, and 94 installed API35 methods. All four archive hashes match GitHub metadata. APK/source identity, every bundled tracked source file and all raw instrumentation method identities were verified.
+
+[Full post-merge evidence](post-merge/README.md) preserves identities, qualifications and selected raw results. Title rendering is still only tested in API33 Robolectric; installed-device title layout/accessibility and broader localization remain open. No release was published. The historical quota block below was superseded by the renewed successful review; A01 wider acceptance and parent counts are unchanged.
+
+## Historical pre-merge update, 10 October 2026
+
+The following section preserves the result as recorded before the renewed review and merge. Current status is above.
 
 **[CI run 38041522544](https://github.com/c933103/AN-Paint/actions/runs/38041522544) completed successfully on attempt 1.** [Independent exact-source artifact review](independent-review/pr42-runtime-review.md) confirms the same reviewed tree, 9/9 new title tests, 5/5 existing flow tests, 746 JVM tests with no failures/errors/skips, zero lint issues, and all 94 declared API35 methods (74 native/import + 18 editor + two restart phases). Python recorded 369 passes and two optional Pillow skips; skips are not passes.
 
