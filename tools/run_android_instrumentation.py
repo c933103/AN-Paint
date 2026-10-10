@@ -21,47 +21,115 @@ import xml.etree.ElementTree as ET
 Identity = tuple[str, str]
 
 
-def declared_tests(directory: Path) -> set[Identity]:
+ANNOTATIONS = r'(?:@[\w.]+(?:\([^()]*\))?\s*)+'
+SDK_ANNOTATION = r'@(?:[\w.]+\.)?SdkSuppress\b'
+
+
+def sdk_bounds(annotations: str, path: Path) -> tuple[int, int] | None:
+    """Support literal stable-SDK bounds; reject unsupported syntax rather than omit tests."""
+    matches = list(re.finditer(r'@([\w.]+)(?:\(([^()]*)\))?', annotations))
+    sdk = [match for match in matches if match.group(1).split('.')[-1] == 'SdkSuppress']
+    if not sdk:
+        return None
+    if len(sdk) != 1 or sdk[0].group(1) not in ('SdkSuppress', 'androidx.test.filters.SdkSuppress'):
+        raise ValueError(f'Unsupported SdkSuppress annotation in {path}')
+    arguments = sdk[0].group(2)
+    if arguments is None or not arguments.strip():
+        raise ValueError(f'SdkSuppress must declare literal SDK bounds in {path}')
+    bounds = {}
+    for argument in arguments.split(','):
+        match = re.fullmatch(r'\s*(minSdkVersion|maxSdkVersion)\s*=\s*([1-9][0-9]*)\s*', argument)
+        if not match or match.group(1) in bounds:
+            raise ValueError(f'Unsupported or duplicate SdkSuppress argument in {path}')
+        bounds[match.group(1)] = int(match.group(2))
+    minimum, maximum = bounds.get('minSdkVersion', 1), bounds.get('maxSdkVersion', 2147483647)
+    if minimum > maximum:
+        raise ValueError(f'Contradictory SdkSuppress bounds in {path}')
+    return minimum, maximum
+
+
+def declared_tests(directory: Path, *, sdk_level: int | None = None) -> set[Identity]:
+    if sdk_level is not None and (type(sdk_level) is not int or sdk_level < 1):
+        raise ValueError('SDK level must be a positive integer')
     expected: set[Identity] = set()
+    seen: set[Identity] = set()
     for path in sorted(directory.rglob('*.kt')):
         source = path.read_text()
         package = re.search(r'^package\s+([\w.]+)', source, re.M)
-        owner = re.search(r'^(?:(?:internal|public|open|abstract)\s+)*class\s+(\w+)', source, re.M)
-        methods = re.findall(
-            r'@Test\b(?:\([^)]*\))?\s*(?:@[\w.]+(?:\([^)]*\))?\s*)*'
-            r'(?:(?:public|internal|suspend)\s+)*fun\s+(`[^`]+`|\w+)\s*\(', source)
+        owner = re.search(r'^[ \t]*(?P<annotations>' + ANNOTATIONS + r')?'
+                          r'(?:(?:internal|public|open|abstract)\s+)*class\s+(?P<owner>\w+)', source, re.M)
+        annotated = list(re.finditer(r'(?P<annotations>' + ANNOTATIONS + r')'
+                                    r'(?:(?:public|internal|suspend)\s+)*fun\s+(?P<method>`[^`]+`|\w+)\s*\(', source))
+        methods = [match for match in annotated if re.search(r'@Test\b', match.group('annotations'))]
         if len(methods) != len(re.findall(r'@Test\b', source)):
             raise ValueError(f'Unparsed @Test in {path}; update the test inventory parser')
         if methods and not (package and owner):
             raise ValueError(f'Cannot identify the test class in {path}')
-        for method in methods:
-            identity = (package.group(1) + '.' + owner.group(1), method.strip('`'))
-            if identity in expected:
+        class_annotations = (owner.group('annotations') or '') if owner else ''
+        class_bounds = sdk_bounds(class_annotations, path)
+        parsed_sdk = len(re.findall(SDK_ANNOTATION, class_annotations))
+        for match in methods:
+            annotations = match.group('annotations')
+            method_bounds = sdk_bounds(annotations, path)
+            parsed_sdk += len(re.findall(SDK_ANNOTATION, annotations))
+            identity = (package.group(1) + '.' + owner.group('owner'), match.group('method').strip('`'))
+            if identity in seen:
                 raise ValueError(f'Duplicate declared test: {identity}')
-            expected.add(identity)
-    if not expected:
+            seen.add(identity)
+            # AndroidJUnitRunner gives the method annotation precedence over the class.
+            bounds = method_bounds if method_bounds is not None else class_bounds
+            if sdk_level is None or bounds is None or bounds[0] <= sdk_level <= bounds[1]:
+                expected.add(identity)
+        if parsed_sdk != len(re.findall(SDK_ANNOTATION, source)):
+            raise ValueError(f'Unparsed SdkSuppress in {path}; update the test inventory parser')
+    if not seen:
         raise ValueError(f'No declared test methods in {directory}')
     return expected
 
 
-def select_tests(expected: set[Identity], *, include_classes: list[str] | None = None,
-                 exclude_classes: list[str] | None = None) -> set[Identity]:
-    """Select whole classes only; typos or empty selections must never pass CI."""
-    included, excluded = include_classes or [], exclude_classes or []
-    if included and excluded:
-        raise ValueError('Use either --include-class or --exclude-class, not both')
-    owners = {owner for owner, _ in expected}
-    for label, classes in (('Included', included), ('Excluded', excluded)):
-        if len(classes) != len(set(classes)):
-            raise ValueError(f'{label} class supplied more than once')
-        unknown = set(classes) - owners
-        if unknown:
-            raise ValueError(f'{label} class not found in source inventory: {sorted(unknown)}')
-    selected = {item for item in expected
-                if (not included or item[0] in included) and item[0] not in excluded}
-    if not selected:
-        raise ValueError('Class selection removed every declared test')
-    return selected
+RESTART_SEED = 'paint.anpaint.android.AcceptedCreditRestartSeedTest'
+RESTART_VERIFY = 'paint.anpaint.android.AcceptedCreditRestartVerifyTest'
+
+
+def restart_partition(expected: set[Identity]) -> tuple[set[Identity], set[Identity], set[Identity]]:
+    """Every app method belongs to exactly one phase, including future classes."""
+    seed = {item for item in expected if item[0] == RESTART_SEED}
+    verify = {item for item in expected if item[0] == RESTART_VERIFY}
+    ordinary = expected - seed - verify
+    if len(seed) != 1 or len(verify) != 1 or not ordinary:
+        raise ValueError('Restart regression requires one seed, one verify and ordinary app tests')
+    return ordinary, seed, verify
+
+
+def restart_sdk(reports: list[dict]) -> int:
+    """Accepted-credit restart evidence must come from one captured API35 device."""
+    if len(reports) != 3 or any(type(report.get('device_sdk')) is not int
+                                or report['device_sdk'] != 35 for report in reports):
+        raise ValueError('Three phase reports with the captured API35 SDK are required')
+    return 35
+
+
+def verify_restart_reports(expected: set[Identity], reports: list[dict]) -> dict:
+    sdk_level = restart_sdk(reports)
+    partitions = restart_partition(expected)
+    if len(reports) != 3:
+        raise ValueError('Three completed app reports are required')
+    completed: set[Identity] = set()
+    for wanted, report, seed_mode in zip(partitions, reports, (False, True, False)):
+        identities = [(case['classname'], case['name']) for case in report['cases']]
+        if (report.get('success') is not True or report.get('leave_target_running') is not seed_mode
+                or report.get('expected_tests') != len(wanted)
+                or report.get('completed_tests') != len(wanted)
+                or any(case['status'] != 'passed' for case in report['cases'])
+                or len(identities) != len(set(identities)) or set(identities) != wanted
+                or completed.intersection(identities)):
+            raise ValueError('App reports do not provide the exact disjoint successful phase inventory')
+        completed.update(identities)
+    if completed != expected:
+        raise ValueError('App reports omit declared source tests')
+    return {'success': True, 'device_sdk': sdk_level,
+            'declared_tests': len(expected), 'completed_tests': len(completed),
+            'completed': sorted(completed)}
 
 
 def parse_protocol(output: str, expected: set[Identity], *, returncode: int | None = 0,
@@ -239,9 +307,9 @@ def main() -> int:
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--suite', required=True)
     parser.add_argument('--component', help='test.package/androidx.test.runner.AndroidJUnitRunner')
-    parser.add_argument('--include-class', action='append', default=[],
-                        help='Run exactly this declared class (repeatable; no method selectors)')
     parser.add_argument('--exclude-class', action='append', default=[])
+    parser.add_argument('--leave-target-running', action='store_true',
+                        help='API35 accepted-credit seed only: attach to live app and retain activities')
     parser.add_argument('--timeout-seconds', type=int, default=480)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -252,12 +320,28 @@ def main() -> int:
     errors: list[str] = []
     returncode, timed_out = None, False
     component, target = args.component, None
+    target_pid = None
+    sdk_level = None
+    sdk_suppressed: set[Identity] = set()
     try:
         if args.timeout_seconds <= 0:
             raise ValueError('--timeout-seconds must be positive')
-        expected = select_tests(declared_tests(args.source_tests),
-                                include_classes=args.include_class,
-                                exclude_classes=args.exclude_class)
+        expected = declared_tests(args.source_tests)
+        unknown_exclusions = set(args.exclude_class) - {owner for owner, _ in expected}
+        if unknown_exclusions:
+            raise ValueError(f'Excluded class not found in source inventory: {sorted(unknown_exclusions)}')
+        device_sdk = subprocess.run([args.adb, 'shell', 'getprop', 'ro.build.version.sdk'],
+                                    capture_output=True, text=True, timeout=15, check=True)
+        if not re.fullmatch(r'[1-9][0-9]*', device_sdk.stdout.strip()):
+            raise ValueError('Device SDK query did not return a positive integer')
+        sdk_level = int(device_sdk.stdout.strip())
+        eligible = declared_tests(args.source_tests, sdk_level=sdk_level)
+        sdk_suppressed = expected - eligible
+        expected = {item for item in eligible if item[0] not in args.exclude_class}
+        if not expected:
+            raise ValueError('Exclusions removed every declared test')
+        if args.leave_target_running and (len(expected) != 1 or {owner for owner, _ in expected} != {RESTART_SEED}):
+            raise ValueError('--leave-target-running is restricted to the one-method accepted-credit seed')
         if not args.apk.is_file():
             raise ValueError(f'Test APK not found: {args.apk}')
         installed = subprocess.run([args.adb, 'install', '-r', '-t', str(args.apk)],
@@ -276,8 +360,15 @@ def main() -> int:
             raise ValueError(f'Instrumentation {component} was not installed; found {sorted(available)}')
         target = available[component]
         command = [args.adb, 'shell', 'am', 'instrument', '-w', '-r']
-        if args.include_class:
-            command += ['-e', 'class', ','.join(args.include_class)]
+        if args.leave_target_running:
+            if target != 'paint.anpaint.android':
+                raise ValueError('Accepted-credit seed must target paint.anpaint.android')
+            live = subprocess.run([args.adb, 'shell', 'pidof', target],
+                                  capture_output=True, text=True, timeout=10, check=True)
+            if not re.fullmatch(r'[1-9][0-9]*', live.stdout.strip()):
+                raise ValueError('Accepted-credit seed requires exactly one already-running target PID')
+            target_pid = int(live.stdout.strip())
+            command += ['--no-restart', '-e', 'waitForActivitiesToComplete', 'false']
         if args.exclude_class:
             command += ['-e', 'notClass', ','.join(args.exclude_class)]
         command.append(component)
@@ -294,8 +385,11 @@ def main() -> int:
         result = parse_protocol(log.read_text(errors='replace'), expected, returncode=returncode,
                                 timed_out=timed_out, run_errors=errors)
         result['component'] = component
-        result['included_classes'] = args.include_class
         result['excluded_classes'] = args.exclude_class
+        result['device_sdk'] = sdk_level
+        result['sdk_suppressed_tests'] = sorted(sdk_suppressed)
+        result['leave_target_running'] = args.leave_target_running
+        result['target_pid_before_instrumentation'] = target_pid
         write_reports(args.output, args.suite, result, time.monotonic() - started)
     print(json.dumps({key: result[key] for key in ('success', 'expected_tests', 'completed_tests', 'errors')}, indent=2))
     return 0 if result['success'] else 1
@@ -303,3 +397,4 @@ def main() -> int:
 
 if __name__ == '__main__':
     raise SystemExit(main())
+

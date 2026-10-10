@@ -5,7 +5,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.Gravity
 import android.widget.*
@@ -103,7 +102,7 @@ class ImportSelection(private val activity: Activity,private val worker: Executo
         if(kind=="PDF") body.addView(TextView(activity).apply {text=ui(R.string.formats22_pdf_raster_hint)})
         val row=LinearLayout(activity).apply {gravity=Gravity.CENTER_VERTICAL}
         val previous=Button(activity).apply {text="‹";contentDescription=ui(R.string.formats22_previous_page);tag="import_previous_page"}
-        val field=EditText(activity).apply {tag="import_page_number";inputType=InputType.TYPE_CLASS_NUMBER;setSingleLine(true);contentDescription=ui(R.string.formats22_page_number);setText("1");selectAll()}
+        val field=EditText(activity).apply {tag="import_page_number";LocaleNumberInput.configure(this);setSingleLine(true);contentDescription=ui(R.string.formats22_page_number);setText("1");selectAll()}
         val next=Button(activity).apply {text="›";contentDescription=ui(R.string.formats22_next_page);tag="import_next_page"}
         val buttonWidth=(56*activity.resources.displayMetrics.density).toInt()
         row.addView(previous,LinearLayout.LayoutParams(buttonWidth,-2));row.addView(field,LinearLayout.LayoutParams(0,-2,1f));row.addView(next,LinearLayout.LayoutParams(buttonWidth,-2));body.addView(row)

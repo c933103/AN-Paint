@@ -39,7 +39,7 @@ class VerticalRibbonTest {
         context.getSharedPreferences("classic-ui",0).edit().clear().commit()
         val old=Locale.getDefault();AppLanguage.select(context,tag)
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java)
-        val activity=controller.setup().get()
+        val activity=controller.setup().get();awaitEditorStartup(activity)
         fun idle()=shadowOf(Looper.getMainLooper()).idle()
         fun render(view: View,name: String) {
             val image=Bitmap.createBitmap(view.width,view.height,Bitmap.Config.ARGB_8888);view.draw(Canvas(image))

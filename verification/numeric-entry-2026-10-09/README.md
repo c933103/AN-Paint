@@ -1,0 +1,83 @@
+# Selected-locale numeric entry propagation
+
+Base: `develop` at `f68807257ec61c71ac119425d26c109124a18792`, 9 October 2026.
+
+## Reproduced inconsistency
+
+The existing numeric slider and advanced colour editor installed explicit localized digit filters, but dimensions, crop margins, normalization, text styling and import page selection only selected a numeric input type. On Android API21–25 that selects the framework's ASCII-only numeric filter. Before `uiNumber` or the integer parser can validate the value, French `12,5` becomes `125`, while Arabic `١٢٫٥` and Persian `۱۲٫۵` become empty. Parsing support alone does not repair an input filter.
+
+`FrameworkFilterProbe.java` executes unchanged `DigitsKeyListener`, `NumberKeyListener` and `SpannedString` classes from the pinned API21 and API25 Android framework artifacts directly on this host. Single-character insertions avoid Android VM-only array operations; no shim is installed. The committed TSV files and summaries preserve the complete 140-picker-tag matrix. With this host JDK's locale symbols, 11 integer examples and 73 decimal examples lose input under each original framework filter; all 140 examples retain the candidate syntax and parse correctly with the explicit character set. The two matrices agree. These counts describe this host-symbol cohort, not all Android locale databases or languages' linguistic conventions.
+
+The probe's candidate character construction mirrors the helper, but it does **not** instantiate the app's `EditText` or execute Kotlin production code. Real app bindings, input modes, editable insertion and validation are covered by the separately committed Robolectric tests; their results must be checked in current-head CI. This is not emulator, physical-device, keyboard/IME or accessibility-service validation.
+
+## Bounded shared correction
+
+`LocaleNumberInput.configure` uses the field's configured app locale, ASCII digits, locale decimal digits, ASCII decimal dot, the locale decimal separator and ASCII/locale sign characters. It installs a single shared filter in all seven current numeric-entry routes in the classic application. The existing hexadecimal colour editor remains a text field.
+
+Both integer and decimal fields retain pasted fractions and signs until their existing validators can reject them, rather than deleting punctuation and turning the entry into a different valid integer. The numeric key listener itself distinguishes integer from decimal IME entry; it does not request a signed keyboard. `TextView.setKeyListener` therefore sees the final mode before restarting an active input connection. No parser, valid range, rounding rule, translation, label or resource changes.
+
+| Route | Keyboard mode | Existing validation preserved |
+| --- | --- | --- |
+| Numeric slider | Integer | Integer parser and caller minimum/maximum |
+| Colour numeric components | Decimal | `uiNumber` and component range; hexadecimal remains text |
+| Dimensions | Integer pixels / decimal percent | Positive whole pixels, percent rounding, maximum dimension and aspect lock |
+| Crop margins | Decimal | Whole nonnegative pixel margins / fractional percentages, crop bounds |
+| Normalize size | Integer pixels / decimal percent | Positive whole pixels / fractional percent, output dimension bounds |
+| Text size / spacing | Decimal | Size 1–1024, spacing 50–300 |
+| Import page | Integer | Integer parser and 1–page-count bounds |
+
+The same path applies to all 140 offered tags, including horizontal, RTL, bundled-font and five vertical profiles. ASCII-symbol profiles retain their entry characters. Locale-specific digit/decimal profiles gain the missing filter propagation. This is numeric-entry applicability, not catalogue completeness or translation acceptance. Unrelated technical serialization, drawing text and filenames are untouched.
+
+## Regression and verification record
+
+- Local full Python host suite: **310 passed**, no failures/errors/skips, 48.759 seconds. This includes three new source guards requiring the seven caller routes and distinct IME modes. Source guards do not prove runtime behavior. This is the rerun after the focused-IME, API21 dialog-lifecycle and narrow legacy-shadow repairs.
+- Local whitespace check: passed.
+- Controlled direct framework probes: API21 and API25 each completed all 140 tags; original-loss and candidate-preservation results are in the adjacent TSV/summary files.
+- New `LocaleNumberInputTest` exercises actual editable insertion, not `setText` alone: all 140 offered tags with integer/decimal IME modes on API21/25/30/35; original/fixed framework comparison on API21/25; actual dimensions, crop, normalization, text-style, slider, colour and page controls on API21/25/35. It covers fractions, signs, ranges, repeated unit switching, cancel/reopen, control descriptions and existing input-filter preservation. A custom InputMethodManager shadow records the input type at each real TextView restart call and EditorInfo reports the final mode; this is not a real-IME test.
+- The page test opens the actual private page form without staging/decoding a document. It validates input and button enablement, not the import decoder or preview route.
+- Android compilation, all unit tests, lint, APK builds and the existing API35 installed suite are **pending current-head CI at publication**. The local host has Java21 but no configured Android SDK/NDK, so no local Android build is claimed.
+- No production vertical-notice change and no duplicate of draft PR19. Broader AN-W04 remains open.
+
+## Reproduction dependencies
+
+These are public Maven Central Android framework bytecode artifacts; binaries are not vendored here.
+
+- API21: `org.robolectric:android-all:5.0.2_r3-robolectric-r0`, SHA-256 `5e63d4c7f2c691afed648bf0675e0b0a76d19f0e23d93705f4faf9ed3b2734de`.
+- API25: `org.robolectric:android-all:7.1.0_r7-robolectric-r1`, SHA-256 `6eb4a8049ff343cace89469441215ee14a1ee90295059729ece51821c078248d`.
+- Host: OpenJDK 21.0.12.1, Debian x86_64. Java locale data is host-supplied.
+
+From the repository root, substitute the verified local jar path:
+
+```sh
+java -cp /path/to/android-all.jar verification/numeric-entry-2026-10-09/FrameworkFilterProbe.java Paintroid/src/main/res/values/app_language_tags.xml
+```
+
+The command writes the TSV to stdout and its bounded summary to stderr. Failure in any candidate retention/parse check exits unsuccessfully. It uses the unchanged real framework filter for both the old numeric constructor and the explicit-character NumberKeyListener; it does not test live input-method delivery.
+
+## First-head Codex finding: focused IME restart ordering
+
+[Review of a9b7577](https://github.com/c933103/AN-Paint/pull/27#discussion_r4227029924) found that assigning the string-based listener restarts an active IME before a subsequent `setRawInputType` call. The later property value alone is insufficient. API21 bytecode inspection confirms `TextView.setKeyListener` obtains the listener's input type, then calls `InputMethodManager.restartInput`; the explicit-string DigitsKeyListener on API21 advertises integer mode, not decimal mode. The initial report's blanket “text keyboard” description was too broad; the relevant defect is a restart with the wrong mode.
+
+The correction uses a NumberKeyListener that advertises the final numeric mode immediately. The new restart-boundary regression reproduces the first-head misordering before checking repeated corrected transitions and EditorInfo. Framework-filter output is unchanged by this listener-type correction. Fresh review and current-head Android CI are required; no actual keyboard result is inferred from the shadow.
+
+## Distinct API21 dialog-lifecycle finding and test timing correction
+
+First-head [run 37890089921](https://github.com/c933103/AN-Paint/actions/runs/37890089921) compiled production/tests and built the universal APK. Regression results were **656 cases, eight failures, zero errors/skips**; lint reported zero issues. The API35 emulator job was subsequently cancelled by the next published head; no completed device pass is claimed. Artifact 11597968619 was downloaded and SHA-256 verified as `114ecd68237cc3258c2e9d61236ec06c45e6a9daee4a0ae49fbfbd9bb266e093`. The exact eight failure traces and test identity are retained in `first-head-regression-failures.json`.
+
+Six failures establish an API21 dialog-creation problem in the previously existing shared EditorDialogBuilder: it accesses `window.decorView` before AlertDialog's onCreate. Pinned API21 framework bytecode shows AlertController.installContent unconditionally requesting FEATURE_NO_TITLE before installing its content; PhoneWindow.requestFeature unconditionally throws if decor inspection has already installed a content parent. This ordering is independent of the numeric filter. The controlled regression reproduces the original sequence, then tests the repaired builder using the actual ClassicPaintTheme for French, Arabic, Nôm and Manchu. Existing API21 numeric-route assertions remain; no test is skipped.
+
+The minimal repair explicitly calls `dialog.create()` before inspecting decor. The locale/vertical attach listener is still registered before show; caller OnShow handlers and button callbacks remain owned by callers. This initializes dialog content without showing the window. The paired lifecycle regression and all affected app-route tests require final-head CI acceptance.
+
+The other two first-head failures were test timing: the page-form test checked dismissal immediately after Android queued its negative-button click. It now idles the main looper before the same dismissal assertion. This is separately tracked as a fixture correction, not a numeric or page-production defect. The fixture now explicitly applies the real app theme before Activity creation.
+
+## API21 lifecycle-control OOM: test-shadow repair
+
+Candidate `0dd3422` compiled and built; [run 37891446276](https://github.com/c933103/AN-Paint/actions/runs/37891446276) passed the existing API35 installed job. Its host regression job failed: the new API21 real-theme lifecycle control reported OutOfMemoryError, then reached the unchanged 12-minute step limit. Its partial artifact 11599255698 has SHA-256 `1349aced7095059d5d62bc1fa75bc02c1673c61ee02b9248c36ea507b7de5a9d` and contains no completed JUnit XML, so no final case total or lint pass is claimed for that run.
+
+Source inspection found a legacy-shadow identity mismatch that can continuously retrigger the locale font installer's global-layout callback. [AOSP API21 Typeface](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-5.0.2_r3/graphics/java/android/graphics/Typeface.java) returns the input face for the same style and caches other results by native family identity/style. [Robolectric 4.14.1 ShadowLegacyTypeface](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowLegacyTypeface.java) instead creates a fresh styled object on each call. Exact source byte counts, Git blob identities and SHA-256 values are retained in `typeface-source-identities.json`; the Maven sources jar matches the pinned Robolectric source.
+
+The existing production installer compares typeface identity before assigning, so the shadow's new identity repeatedly requests a layout. The identified source mechanism explains the added attached-font control's unbounded allocations; the partial CI artifact does not provide an allocation trace. A separate control now demonstrates the default legacy shadow returning equal-but-distinct styled faces. The affected API21 lifecycle control alone uses `CachedApi21TypefaceShadow`, keyed by input-family object identity and requested style, preserving the existing shadow's family/style creation. It reproduces same-style identity and derived-style caching from the real platform. Its assertions check bold versus italic identity and actual style/family properties.
+
+Both the original-order failing dialog and repaired dialog run under that same narrow shadow with the actual application theme. Font installation, layouts and locales remain exercised. There is no production typography change, removed test/locale, changed heap, relaxed timeout or general shadow override. A final fresh CI run must confirm the diagnosis and the fixture repair; native glyph rendering and physical IME acceptance remain outside this control.
+
+Local JavaCompiler check of CachedApi21TypefaceShadow against pinned API21 Android classes and Robolectric 4.14.1 binary artifacts passes. The first compiler invocation used an unexpanded wildcard classpath and could not resolve dependencies; supplying the explicit jar paths corrected the harness invocation without editing the shadow. This is compilation, not Robolectric execution.

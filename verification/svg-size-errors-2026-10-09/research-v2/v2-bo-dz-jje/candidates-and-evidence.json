@@ -1,0 +1,357 @@
+{
+  "schema_version": 2,
+  "purpose": "New source-assisted compositional candidates for review only. Does not modify v1 proposals.json or production resources.",
+  "published_incomplete_draft": "https://github.com/c933103/AN-Paint/pull/29",
+  "published_head": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
+  "summary": {
+    "complete_review_candidate_pairs": 2,
+    "single_message_review_candidates": 1,
+    "accepted_pairs": 0
+  },
+  "sources": [
+    {
+      "id": "BO-BELL",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/English-Tibetan_colloquial_dictionary_%28IA_englishtibetanco00bellrich%29.pdf",
+      "identity": "Charles Bell, English-Tibetan Colloquial Dictionary, historical primary lexicon, public scan",
+      "retrieval": "Indexed text inspected; no full-file or page-image verification",
+      "supports": "The noun substitute is ཚབ. This is ordinary substitution vocabulary, not an attestation of the complete SVG sentence.",
+      "does_not_support": "Modern technical declaration register, size terminology, or complete negative substitution clause."
+    },
+    {
+      "id": "BO-GSUNGRAB",
+      "url": "https://www.gsungrab.org/etdkst/tibetan/entries/ambassador.htm",
+      "identity": "English-Tibetan Dictionary of Key Spiritual Terms, author-published entry",
+      "retrieval": "Indexed entry inspected",
+      "supports": "The entry discusses ཚབ and attests an in-place-of use. Only the ordinary substitution sense is relevant; its religious/representative sense is not imported.",
+      "does_not_support": "No computing meaning or full UI sentence certification."
+    },
+    {
+      "id": "BO-UVA",
+      "url": "https://mandala.library.virginia.edu/terms/212455/nojs",
+      "identity": "University of Virginia Tibetan term collection",
+      "retrieval": "Direct fetch returned 403 Forbidden; indexed result indicates state/declare",
+      "supports": "A dictionary lead only. Not used as verified text for the candidate.",
+      "does_not_support": "The full entry could not be read; no exact-word or grammatical claim based on this inaccessible page."
+    },
+    {
+      "id": "BO-UVA-ALT",
+      "url": "https://terms.kmaps.virginia.edu/features/212455",
+      "identity": "University of Virginia alternate term endpoint",
+      "retrieval": "Web tool reported URL not accessible",
+      "supports": "No additional verified entry evidence.",
+      "does_not_support": "Unretrieved content is not used."
+    },
+    {
+      "id": "BO-IT-LEAD",
+      "url": "https://www.sfemt.fr/liens/ressources/dictionnaires-en-ligne/",
+      "identity": "Société Française d’Études du Monde Tibétain bibliography/resource page",
+      "retrieval": "Page/index content inspected",
+      "supports": "Identifies Standardizing Tibetan Terms of IT, China Tibetology Research Center 2006, and its old source URL.",
+      "does_not_support": "A bibliography is not lexical validation."
+    },
+    {
+      "id": "BO-IT-PDF",
+      "url": "http://digitaltibetan.org/images/e/e0/Standardizing_Tibetan_Terms_of_IT-China_Tibetology_Research_Center-2006.pdf",
+      "identity": "Old public URL for the 2006 Tibetan IT glossary",
+      "retrieval": "Web tool could not access the redirected HTTPS URL",
+      "supports": "No verified entry text.",
+      "does_not_support": "No glossary spelling is copied from inaccessible or corrupted OCR."
+    },
+    {
+      "id": "BO-STEINERT",
+      "url": "https://dictionary.christian-steinert.de/",
+      "identity": "Named Tibetan dictionary aggregator, listing its constituent dictionaries",
+      "retrieval": "Landing page fetch returned zero textual lines; index identifies IT glossary provenance",
+      "supports": "Further lookup route identified.",
+      "does_not_support": "No actual dictionary query/entry was recovered, so not lexical confirmation."
+    },
+    {
+      "id": "DZ-DDC-2023",
+      "url": "https://www.dzongkha.gov.bt/uploads/files/publications/Eng-Dzo_Dictionary_2023_3ead53caad0798894c3908a9aedceb84.pdf",
+      "identity": "Dzongkha Development Commission, English-Dzongkha Dictionary 2023",
+      "retrieval": "Full PDF fetch timed out; indexed entries inspected: substitute printed p.1594, specify p.1555, base p.125",
+      "supports": "Indexed substitute entry gives ཚབ་བཙུགས་ནི; specification/declaration can use ordinary specify vocabulary rather than a new XML term.",
+      "does_not_support": "No byte hash/page-image verification; isolated headwords do not certify the proposed negative sentence or idiomatic relative-clause composition."
+    },
+    {
+      "id": "DZ-DDC-POCKET",
+      "url": "https://www.dzongkha.gov.bt/uploads/files/publications/English-Dzongkha_Pocket_Dictionary_fcbe977ea0f17fa3c90a8cd9a0b6c4f1.pdf",
+      "identity": "Dzongkha Development Commission, English-Dzongkha Pocket Dictionary",
+      "retrieval": "Full fetch failed; indexed entries inspected: usable p.981, specify p.861, base p.56",
+      "supports": "Usable is distinguished from merely present/available; base and specify have lexical entries. The proposed Dzongkha ability phrase is a paraphrase, not a quotation of these headwords.",
+      "does_not_support": "No inspection of PDF glyphs; no blanket claim that the old dictionary register is ideal for this app."
+    },
+    {
+      "id": "DZ-DCT",
+      "url": "https://panl10n.cle.org.pk/outputs/DCT.pdf",
+      "identity": "DzongkhaLinux Team, Dzongkha Computer Terms, CRULP/NUCES/IDRC primary glossary",
+      "retrieval": "Full PDF fetch timed out; indexed specify/specification/specified entries at printed p.183 inspected",
+      "supports": "The computing predicate specify is གསལ་བཀོད་འབད, independently supporting the new declaration paraphrase.",
+      "does_not_support": "Other PDF OCR contains malformed glyphs; no entry is silently reconstructed from corruption. Does not prove complete proposed clauses."
+    },
+    {
+      "id": "DZ-DDC-IT2018",
+      "url": "https://www.dzongkha.gov.bt/uploads/files/publications/1.computer_term_text_e53071b6528a9081cabd770fda7a26c4.pdf",
+      "identity": "Dzongkha Development Commission, Eng-Dzo Basic Computer Terminology 2018",
+      "retrieval": "Title/index verified; full fetch timed out",
+      "supports": "A relevant official terminology source was identified.",
+      "does_not_support": "No desired term was verified in it."
+    },
+    {
+      "id": "DZ-LO-HEIGHT",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/00/00000200.html",
+      "identity": "LibreOffice official Dzongkha help",
+      "retrieval": "Page/index text inspected",
+      "supports": "Uses specify predicate for height: མཐོ་ཚད་འདི་གསལ་བཀོད་འབདཝ་ཨིན། This supports a dimensions-setting context rather than a political proclamation.",
+      "does_not_support": "Surrounding older translations have apparent semantic problems, so they are supporting context only and not authority for a complete new sentence."
+    },
+    {
+      "id": "DZ-LO-USE",
+      "url": "https://help.libreoffice.org/latest/dz/text/sbasic/shared/03030205.html",
+      "identity": "LibreOffice official Dzongkha TimeSerial help",
+      "retrieval": "Page/index text inspected",
+      "supports": "Uses ལག་ལེན་འཐབ་བཏུབ for a value that can be used. This supports paraphrasing usable with an ability predicate.",
+      "does_not_support": "The proposed relative clause around size remains a new editorial composition requiring linguistic review."
+    },
+    {
+      "id": "DZ-LO-BASE",
+      "url": "https://help.libreoffice.org/latest/dz/text/scalc/01/04060106.html",
+      "identity": "LibreOffice official Dzongkha numeric-function help",
+      "retrieval": "Page/index text inspected",
+      "supports": "Uses a based-on construction with ལུ་གཞི་བཞག་སྟེ; canonical AN Paint normalization messages independently use the same construction for a dimension basis.",
+      "does_not_support": "Numeric logarithm context is not copied into the SVG message; no math-base semantics is added."
+    },
+    {
+      "id": "JJE-YANG2020",
+      "url": "https://www.mlsk1984.com/articles/pdf/0zWo/mlsk-2020-036-01-5.pdf",
+      "identity": "Sejung Yang (2020), Pedagogical Application of a Linguistic Analysis of Negation in Jejueo, Journal of Studies in Language 36(1), 73–92",
+      "retrieval": "Full publisher PDF parsed, 20 pages; relevant PDF pp.4–7 and 13",
+      "supports": "Describes short negation, noun/light-verb placement, aspectual/negative scope and the Jeju 아녀다 versus Korean 않다 distinction. Supports proposing plain non-action rather than inability and avoiding automatic-only/shrinking-only language.",
+      "does_not_support": "Does not provide technical declare/specify or a canvas-derived substitution phrase. Does not certify all orthographic variants or the newly composed UI sentence."
+    },
+    {
+      "id": "JJE-HAWAII",
+      "url": "https://sites.google.com/a/hawaii.edu/jejueo/a-sketch-grammar-of-jejueo",
+      "identity": "Yang/Yang/O’Grady research site, A Sketch Grammar of Jejueo",
+      "retrieval": "Author/institution site opened and its Google Drive PDF link followed; Drive returned a viewer with no readable PDF body",
+      "supports": "Primary grammar resource identified, linked to Cambridge Handbook chapter provenance.",
+      "does_not_support": "No unseen PDF text is claimed read."
+    },
+    {
+      "id": "JJE-DRIVE",
+      "url": "https://drive.google.com/file/d/1TblUXsKF0oM1oYCDb52LGJq5VylRoLod/view?usp=drive_link",
+      "identity": "A Sketch Grammar of Jejueo-2024_2.pdf, linked by the authors’ site",
+      "retrieval": "Viewer accessible, content not recovered by web tool",
+      "supports": "Verified next-step resource.",
+      "does_not_support": "No entry/grammar claim based on unretrieved pages."
+    },
+    {
+      "id": "JJE-CORPUS",
+      "url": "https://www.jeju.go.kr/jedu/map/record.htm?page=16",
+      "identity": "Jeju Special Self-Governing Province / Jeju Studies Research Center oral corpus",
+      "retrieval": "Official page/index text inspected",
+      "supports": "Attests actual speech with negative completed-action polite ending, including ᄀᆞᆯ앗수다 in a negative context. This is register evidence, not the new SVG wording.",
+      "does_not_support": "Does not attest declaration of machine-readable dimensions or derived substitutes."
+    },
+    {
+      "id": "JJE-DISS",
+      "url": "https://deepblue.lib.umich.edu/bitstream/handle/2027.42/174521/moiras_1.pdf?isAllowed=y&sequence=1",
+      "identity": "University of Michigan dissertation repository, A History of Jejueo",
+      "retrieval": "Direct PDF fetch returned 403 Forbidden",
+      "supports": "No new verified grammar evidence.",
+      "does_not_support": "No content from the blocked full text used."
+    }
+  ],
+  "locales": {
+    "bo": {
+      "status": "complete_compositional_review_candidate",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG ནང་སྤྱོད་རུང་བའི་ཐོག་མའི་ཆེ་ཆུང་བཀོད་མེད། རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ཆེ་ཆུང་ཚབ་ཏུ་མ་སྤྱད།",
+        "commons_svg_original_size_too_large": "SVG ཡི་ཐོག་མའི་ཆེ་ཆུང་ནི་ Android གྱི་ bitmap ཆེ་ཆུང་གི་ཚད་ལས་བརྒལ་ཡོད། ཆེ་ཆུང་མ་བསྒྱུར།"
+      },
+      "independent_language_acceptance": false,
+      "production_ready": false,
+      "canonical_evidence": {
+        "path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+        "url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+bo/strings.xml",
+        "sha256": "0e94f7b06f39f19755e5e50fb0913d41be9c49d4a2869356be094008620c87a8",
+        "entries": {
+          "ui_original_size34": "ཐོག་མའི་ཆེ་ཆུང་།",
+          "ui_edit_canvas33": "རས་གཞི།",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current": "%1$d × %2$d པིག་སེལ (%3$.2f MP) ནི་ད་ལྟའི་བདེ་འཇགས་རྩོམ་སྒྲིག་ཚད་ %4$.2f MP ལས་བརྒལ། AN Paint ཡིས་པར་རིས་ཆ་ཚང་དྲན་ཤེས་ནང་ཉར་ཞིང་བསྒྱུར་བ་དང་འདེམས་ཁུལ་ལ་སྟོང་ཆ་སྔོན་ཉར་བྱེད། ཚད་འདི་སྤྱོད་རུང་དྲན་ཤེས་ལས་ཐག་གཅོད། bitmap ཧ་ཅང་ཆེ་བ་བཟོ་གོང་བྱ་སྤྱོད་མཚམས་བཞག་ཡོད། རང་འགུལ་གྱིས་ཆེ་ཆུང་མ་བསྒྱུར།",
+          "ui_the_normalized_image_dimensions_are_outside_android_s": "ཚད་གཅིག་བཟོས་པའི་པར་རིས་ཆེ་ཆུང་ Android གྱི་ཁྱབ་ཁོངས་ཕྱིར་ཡོད།",
+          "ui_there_is_not_enough_memory_for_this_operation": "བྱ་སྤྱོད་འདི་ཐོག་མའི་གསལ་ཚད་ཐོག་བྱེད་པར་དྲན་ཤེས་མི་འདང་། རང་འགུལ་གྱིས་ཆེ་ཆུང་མ་བསྒྱུར།",
+          "ui_original_decoded_image_rgba_4_bytes_pixel_estimated": "མ་རིས: %1$s\\nགསང་བཤད་ཟིན་པའི་པར་རིས: %2$s (RGBA, པིག་སེལ་རེར་4 bytes)\\nཆེ་ཆུང་མ་བསྒྱུར་བའི་རྩོམ་སྒྲིག་དྲན་ཤེས་ཚོད་རྩིས: %3$s",
+          "ui_normalize_width_input_percent": "%1$d px གཞིར་བཟུང་བའི་བརྒྱ་ཆས་མཚོན་པའི་ཐུན་མོང་གི་ཞེང་ཚད།",
+          "ui_normalize_width_info": "པར་རིས་རེ་རེའི་ཞེང་ཚད: %1$d px\\nམཐོ་ཚད: %2$d–%3$d px\\nབརྒྱ་ཆ་ནི་ད་ལྟའི་ཞེང་ཚད་ཆེ་ཤོས་ %4$d px གཞིར་བཟུང་ནས་རྩིས་རྒྱག ས་སྟོང་བཟོ་བའི་ཆེད་དུ་བཀོད་ཟིན་པའི་པར་རིས་རྣམས་བསྐྱར་དུ་སྒྲིག",
+          "formats22_animation_poster": "PNG འདིར་སོ་སོའི་སྔོན་སྒྲིག་པར་རིས་ཡོད། འགུལ་རིས་སྒྲོམ་གྱི་ཚབ་ཏུ་པར་རིས་དེ་ནང་འཇུག་བྱེད། ཉར་ན་འགུལ་མེད་པར་རིས་ཆགས།",
+          "ui_gallery_artwork_catrobat_and_its_credited_creators_cc": "འགྲེམས་ཁང་གི་བརྩམས་ཆོས: Catrobat དང་གསལ་བཤད་ནང་མིང་བཀོད་པའི་རྩོམ་པ་པོ། མ་ཁུངས་ནས་ཆ་རྐྱེན་གཞན་མ་བཀོད་ན་ CC BY-SA 4.0། བཅོས་པའི་བརྩམས་ཆོས་སྤེལ་སྐབས་མ་བརྩམས་ཀྱི་གསལ་བཤད་ཉར་ཞིང་བསྒྱུར་བ་གསལ་བཤད་བྱོས།\\n\\n"
+        }
+      },
+      "external_source_ids": [
+        "BO-BELL",
+        "BO-GSUNGRAB",
+        "BO-UVA",
+        "BO-UVA-ALT",
+        "BO-IT-LEAD",
+        "BO-IT-PDF",
+        "BO-STEINERT"
+      ],
+      "clause_mapping": [
+        {
+          "clause": "usable declared original size",
+          "candidate_segment": "སྤྱོད་རུང་བའི་ཐོག་མའི་ཆེ་ཆུང་བཀོད་མེད",
+          "meaning": "No usable original size is recorded in the SVG.",
+          "support": "Canonical usable-memory and original-size terms plus recorded/stated use of བཀོད in gallery source-condition text. Ordinary recorded-in-file paraphrase; no political proclamation term used.",
+          "review_gate": "Check naturalness of the size-modifying relative clause and the stative negative བཀོད་མེད in this file context."
+        },
+        {
+          "clause": "no canvas-based substitute",
+          "candidate_segment": "རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ཆེ་ཆུང་ཚབ་ཏུ་མ་སྤྱད",
+          "meaning": "A size based on the canvas size was not used as a substitute.",
+          "support": "The exact based-on dimensional construction occurs in normalization resources; ཚབ་ཏུ occurs in the animation poster replacement sentence, with independent ཚབ lexical evidence.",
+          "review_gate": "Confirm that the assembled clause reads as a non-action, not inability, a prohibition or a suggestion."
+        },
+        {
+          "clause": "Android bitmap dimensional limit",
+          "meaning": "Original SVG size exceeds the limit on Android bitmap dimensions.",
+          "support": "Subject original-size label; existing Android range, bitmap noun and ཚད་ལས་བརྒལ limit construction.",
+          "review_gate": "Confirm the new nested bitmap-size-limit phrase is idiomatic and unambiguously dimensions rather than bytes."
+        },
+        {
+          "clause": "no resizing",
+          "candidate_segment": "ཆེ་ཆུང་མ་བསྒྱུར།",
+          "meaning": "Size was not changed.",
+          "support": "Existing memory warning after removing only the automatic adverb; independently present in without-resizing/cursor clauses.",
+          "review_gate": "No narrowing to shrink, automatic resize or future behavior."
+        }
+      ]
+    },
+    "dz": {
+      "status": "complete_compositional_review_candidate",
+      "translations": {
+        "commons_svg_original_size_unavailable": "SVG ནང་ལུ་ ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད། འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ།",
+        "commons_svg_original_size_too_large": "SVG གི་ཚད་ངོ་མ་འདི་ Android གི་ bitmap ཚད་ཀྱི་ཁྱབ་ཁོངས་ལས་བརྒལ་ཡོད། ཚད་བསྒྱུར་མ་འབད།"
+      },
+      "independent_language_acceptance": false,
+      "production_ready": false,
+      "canonical_evidence": {
+        "path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+        "url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+dz/strings.xml",
+        "sha256": "66db71e4da63c2d03493fe8f3691f92345448cd3faa4b7c13b8752118aecffb3",
+        "entries": {
+          "ui_original_size34": "ཚད་ངོ་མ།",
+          "ui_edit_canvas33": "འབྲི་གཞི།",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current": "%1$d × %2$d པིག་སེལསི (%3$.2f MP) འདི་ད་ལྟོའི་ཉེན་མེད་བསྒྱུར་བཅོས་ཚད་ %4$.2f MP ལས་བརྒལ་ཡོད། AN Paint གིས་གཟུགས་བརྙན་ཆ་ཚང་དྲན་ཚད་ནང་བཞག་སྟེ་བསྒྱུར་བཅོས་དང་སེལ་འཐུ་གི་དོན་ལུ་ས་སྟོང་བཞགཔ་ཨིན། ཚད་འདི་དྲན་ཚད་ཐོབ་ཚུགས་མི་དང་འཁྲིལ་གཏན་འཁེལ་འབདཝ་ཨིན། bitmap ཚད་ལས་བརྒལ་མི་བཟོ་བའི་ཧེ་མ་བྱ་བ་མཚམས་འཇོག་འབད་ཡོད། རང་འགུལ་ཚད་བསྒྱུར་མ་འབད།",
+          "ui_the_normalized_image_dimensions_are_outside_android_s": "ཚད་གཅིག་བཟོས་པའི་གཟུགས་བརྙན་ཚད་ Android གི་ཁྱབ་ཁོངས་ཕྱི་ཁར་ཡོད།",
+          "ui_there_is_not_enough_memory_for_this_operation": "བྱ་བ་འདི་ཚད་ངོ་མ་ནང་འབད་ནི་དྲན་ཚད་མི་ལང་། རང་འགུལ་ཚད་བསྒྱུར་མ་འབད།",
+          "ui_original_decoded_image_rgba_4_bytes_pixel_estimated": "ངོ་མ: %1$s\\nཨང་བཤད་འབད་ཚར་བའི་གཟུགས་བརྙན: %2$s (RGBA, པིག་སེལ་རེར་4 bytes)\\nཚད་མ་བསྒྱུར་བའི་བསྒྱུར་བཅོས་དྲན་ཚད་ཚོད་རྩིས: %3$s",
+          "ui_normalize_width_input_percent": "%1$d px ལུ་གཞི་བཞག་སྟེ་ བརྒྱ་ཆའི་ཐོག་ལུ་སྟོན་མི་རྒྱ་ཚད་གཅིག་པ།",
+          "ui_normalize_width_info": "གཟུགས་བརྙན་རེ་རེ་གི་རྒྱ་ཚད: %1$d px\\nམཐོ་ཚད: %2$d–%3$d px\\nབརྒྱ་ཆ་འདི་ ད་ལྟོའི་རྒྱ་ཚད་སྦོམ་ཤོས་ %4$d px ལུ་གཞི་བཞག་སྟེ་རྩིས་རྐྱབ་ཨིན། ས་སྟོང་བཟོ་ནིའི་དོན་ལུ་ བཞག་ཚར་མི་གཟུགས་བརྙན་ཚུ་ལོག་བསྒྲིགཔ་ཨིན།",
+          "formats22_animation_poster": "PNG འདི་ལུ་སོ་སོའི་སྔོན་སྒྲིག་གཟུགས་བརྙན་ཡོད། འགུལ་རིས་སྒྲོམ་གྱི་ཚབ་ལུ་གཟུགས་བརྙན་དེ་ནང་འཇུག་འབད། སྲུང་བཞག་འབད་བ་ཅིན་འགུལ་མེད་གཟུགས་བརྙན་བཟོཝ་ཨིན།",
+          "ui_gallery_artwork_catrobat_and_its_credited_creators_cc": "སྟོན་ཁང་གི་རི་མོ: Catrobat དང་གསལ་བཤད་ནང་མིང་བཀོད་མི་བཟོ་མི་ཚུ། འབྱུང་ཁུངས་ཀྱིས་གནས་ཚིག་གཞན་མ་བཀོད་པ་ཅིན CC BY-SA 4.0། བསྒྱུར་བཅོས་འབད་མི་བགོ་བཤའ་རྐྱབ་སྐབས་རི་མོའི་གསལ་བཤད་བཞག་སྟེ་ཁྱོད་རའི་བསྒྱུར་བཅོས་བཤད།\\n\\n"
+        }
+      },
+      "external_source_ids": [
+        "DZ-DDC-2023",
+        "DZ-DDC-POCKET",
+        "DZ-DCT",
+        "DZ-DDC-IT2018",
+        "DZ-LO-HEIGHT",
+        "DZ-LO-USE",
+        "DZ-LO-BASE"
+      ],
+      "clause_mapping": [
+        {
+          "clause": "usable declared original size",
+          "candidate_segment": "ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད",
+          "meaning": "In the SVG, an original size that can be used has not been specified.",
+          "support": "Independent computing specify predicate, a can-be-used value construction, and exact original-size term; Dzongkha-specific ནང་ལུ / འབད / བཏུབ / མི composition.",
+          "review_gate": "Verify relative-clause attachment and negative result-state register; no claim that the full new sentence is quoted from a dictionary."
+        },
+        {
+          "clause": "no canvas-based substitute",
+          "candidate_segment": "འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ",
+          "meaning": "A size made/determined on the basis of the canvas size was not used as a substitute.",
+          "support": "Canonical dimensional normalization uses ལུ་གཞི་བཞག་སྟེ; replacement vocabulary is independently attested in DDC and in app animation text; ལག་ལེན་མ་འཐབ is negative past use.",
+          "review_gate": "Confirm natural relative-clause composition and that “made on the basis of” does not suggest the canvas itself was resized."
+        },
+        {
+          "clause": "Android bitmap dimensional limit",
+          "meaning": "Original SVG size exceeds the range of Android bitmap dimensions.",
+          "support": "Existing normalized-image-outside-Android-range message and too-large limit warning, with bitmap retained as the existing technical loan.",
+          "review_gate": "Verify nested dimension-range phrase and keep file-byte/memory-budget interpretations excluded."
+        },
+        {
+          "clause": "no resizing",
+          "candidate_segment": "ཚད་བསྒྱུར་མ་འབད།",
+          "meaning": "No size change was performed.",
+          "support": "Exact existing negative action after removing only automatic; does not borrow the Tibetan predicate.",
+          "review_gate": "No narrowing of the non-action."
+        }
+      ]
+    },
+    "jje": {
+      "status": "partial_compositional_review_candidate",
+      "translations": {
+        "commons_svg_original_size_unavailable": null,
+        "commons_svg_original_size_too_large": "SVG의 원래 크기가 Android 비트맵 크기 한도를 넘엇수다. 크기 조절은 아니 허엿수다."
+      },
+      "independent_language_acceptance": false,
+      "production_ready": false,
+      "canonical_evidence": {
+        "path": "Paintroid/src/main/res/values-b+jje/strings.xml",
+        "url": "https://github.com/c933103/AN-Paint/blob/5bf82b67199aaecbd341a8b150a887f8d60b5567/Paintroid/src/main/res/values-b+jje/strings.xml",
+        "sha256": "b1ffe234ca8d14af678840483c61bc6af822b693f8aaa0ebdba222a89016c5d8",
+        "entries": {
+          "ui_original_size34": "원래 크기",
+          "ui_edit_canvas33": "캔버스",
+          "ui_d_d_pixels_2f_mp_exceeds_the_current": "%1$d × %2$d 픽셀(%3$.2f MP)은 지금 안전허게 편집헐 수 있는 한도 %4$.2f MP를 넘엇수다. AN Paint는 이미지 몬딱 메모리에 놔두곡 변형이영 영역 고르기에 쓸 자리도 따로 남겨둡네다. 이 한도는 지금 쓸 수 있는 메모리에 따라 정해집네다. 너무 큰 비트맵 자리를 잡기 전에 작업을 멈추엇수다. 크기를 저절로 줄이지는 않앗수다.",
+          "ui_the_normalized_image_dimensions_are_outside_android_s": "같게 맞춘 이미지 치수가 Android에서 쓸 수 있는 범위를 넘엇수다.",
+          "ui_there_is_not_enough_memory_for_this_operation": "원래 해상도에서 이 작업을 헐 만큼 메모리가 엇수다. 크기를 저절로 줄이지는 않앗수다.",
+          "ui_original_decoded_image_rgba_4_bytes_pixel_estimated": "원본: %1$s\\n디코딩된 이미지: %2$s(RGBA, 픽셀당 4바이트)\\n크기 조절 없이 예상 편집 메모리: %3$s",
+          "ui_normalize_width_input_percent": "공통 너비 (%1$d px 기준 백분율)",
+          "ui_normalize_width_info": "이미지마다 너비: %1$d px\\n높이: %2$d–%3$d px\\n백분율은 지금 가장 큰 너비를 기준으로 헙네다. 기준값: %4$d px. 자리를 내려고 놓여 있는 이미지덜을 다시 배치헙네다.",
+          "formats22_animation_poster": "이 PNG에는 따로 된 기본 이미지가 이수다. 애니메이션 프레임 말앙 그 이미지를 가져옵네다. 저장헌 뒤에는 움직이지 않는 이미지가 뒙네다.",
+          "ui_gallery_artwork_catrobat_and_its_credited_creators_cc": "갤러리 그림을 만든 사름: Catrobat이영 출처에 이름 적힌 제작자. 원본에 딴 조건이 엇으민 CC BY-SA 4.0이우다. 고친 그림을 나눌 때는 누가 만든 그림인지 적곡 무시걸 고쳣는지도 적읍서.\\n\\n"
+        }
+      },
+      "external_source_ids": [
+        "JJE-YANG2020",
+        "JJE-HAWAII",
+        "JJE-DRIVE",
+        "JJE-CORPUS",
+        "JJE-DISS"
+      ],
+      "clause_mapping": [
+        {
+          "clause": "usable declared original size and no canvas-based substitute",
+          "meaning": null,
+          "support": "General negation and genuine completed-action register are now externally supported.",
+          "review_gate": "No sufficiently supported record/specify predicate and no natural compound relative clause for a canvas-derived replacement has been established. A Korean sentence with suffix changes is not supplied."
+        },
+        {
+          "clause": "Android bitmap dimensional limit",
+          "candidate_segment": "SVG의 원래 크기가 Android 비트맵 크기 한도를 넘엇수다.",
+          "meaning": "Original SVG size exceeded Android bitmap-size limit.",
+          "support": "Canonical subject/bitmap terms and exactly attested limit-exceeded predicate; no invented geometry or byte count.",
+          "review_gate": "The noun-chain and existing spelling/register require independent Jeju review."
+        },
+        {
+          "clause": "no resizing",
+          "candidate_segment": "크기 조절은 아니 허엿수다.",
+          "meaning": "Size adjustment was not done.",
+          "support": "Canonical 크기 조절 from without-resizing label; canonical 허엿수다 ending; Yang supports noun + short negation + light verb, so no Korean contracted 않다 is introduced.",
+          "review_gate": "Confirm modern spelling 허 versus historical  and the composite tense/politeness form. This is a review-only composition, not a verbatim corpus sentence."
+        }
+      ]
+    }
+  },
+  "validation": {
+    "retains_SVG_Android": true,
+    "no_placeholders": true,
+    "independent_fluency_review": false,
+    "native_acceptance": false,
+    "runtime_check": false
+  }
+}

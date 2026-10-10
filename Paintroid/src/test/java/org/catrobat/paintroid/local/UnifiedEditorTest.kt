@@ -40,7 +40,7 @@ class UnifiedEditorTest {
         val context=RuntimeEnvironment.getApplication() as Context
         context.filesDir.listFiles()?.filter {it.name.startsWith("classic-")}?.forEach {it.delete()}
         listOf("classic-ui","recent-colours","export").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(100,100);shadowOf(Looper.getMainLooper()).idleFor(50,java.util.concurrent.TimeUnit.MILLISECONDS);board.fit()
     }
     @After fun stop() {controller.pause().stop();waitIo();controller.destroy()}
@@ -168,7 +168,7 @@ class UnifiedEditorTest {
         assertFalse(names.any {it.contains("Insert image") || it.contains("Catrobat")})
         click("menu_Draw");click("category_INSERT");click("insert_other_images")
         val dialog=ShadowAlertDialog.getLatestAlertDialog()
-        assertEquals(listOf("From device…","Catrobat sticker gallery…","Irasutoya","Openclipart"),
+        assertEquals(listOf("From device…","Catrobat sticker gallery…","Irasutoya","Openclipart","Wikimedia Commons · Blank maps…"),
             (0 until dialog.listView.count).map {dialog.listView.getItemAtPosition(it).toString()})
         dialog.dismiss()
         assertTrue(MediaGalleryActivity.allowed(Uri.parse("https://catrobat.org/figures-download/")))

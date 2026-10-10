@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-09",
+  "source_base": "b9a79613b088c9ff54f2c225f6ae53d5b8d8ae61",
+  "base_tree": "eea34eac70c8e425648fd6e1370af9643c710bf3",
+  "verified_base_leaves": 1281,
+  "python_full_suite": {
+    "command": "python -m unittest discover -s tools -p 'test_*.py'",
+    "exit_code": 0,
+    "tests": 358,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 50.789,
+    "log": "logs/host-python.log",
+    "note": "Printed unsuccessful instrumentation summaries are intentional runner negative fixtures, not Android executions."
+  },
+  "focused_structural_checks": {
+    "tests": 6,
+    "modes": [
+      "python",
+      "python -O"
+    ],
+    "passed_in_both_modes": true,
+    "control_removal_mutations": 8,
+    "scope": "Source/fixture checks only; no Kotlin compilation or native execution."
+  },
+  "android_local_attempt": {
+    "command": "./gradlew --no-daemon --max-workers=2 --console=plain -PnativeAbis=x86_64 :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.VerticalNoticeResizeCharacterizationTest",
+    "exit_code": 1,
+    "stage": "Gradle wrapper distribution download",
+    "error": "java.net.SocketException: Network is unreachable",
+    "compiled": false,
+    "junit_executions": 0,
+    "log": "logs/local-gradle-bootstrap.log"
+  },
+  "hosted_ci": "pending",
+  "new_api30_api35_characterization": "pending",
+  "new_pngs": "not generated",
+  "talkback_or_installed_device_validation": "not performed",
+  "production_changes": false,
+  "policy_selected": false,
+  "files": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalNoticeResizeCharacterizationTest.kt",
+      "bytes": 34559,
+      "sha256": "b690c9b28834823a27839c4833401b6069cfc2a22a571fe2ba3f2a48e2476d5f",
+      "git_blob": "1558d01e72213fec8e13b35d3ae468820232016e"
+    },
+    {
+      "path": "Paintroid/src/test/resources/vertical-notice-resize/expected-resources.json",
+      "bytes": 1783,
+      "sha256": "60d5df06730ad557436c4cc61c6695297d8e52f4c15f1dd987e52a8e908217b3",
+      "git_blob": "22598455e6c19a45dfc706ab4031c8d49f47f431"
+    },
+    {
+      "path": "tools/test_vertical_notice_characterization.py",
+      "bytes": 8157,
+      "sha256": "a4d7e99ded5fb114ae8cc1e3008714c769e14ebd8233f856272e9bd06026401f",
+      "git_blob": "44bb6fc00643b333c1ac4c72095f51cfa54cbe0f"
+    },
+    {
+      "path": "verification/vertical-notice-resize-2026-10-09/logs/host-python.log",
+      "bytes": 2013,
+      "sha256": "6cf97c917b1356336e26f2eda6a838dad9a9de545b82bfa650436638f5d123be",
+      "git_blob": "dd2e853f4a03b794681cf20916ea07b63b547038"
+    },
+    {
+      "path": "verification/vertical-notice-resize-2026-10-09/logs/local-gradle-bootstrap.log",
+      "bytes": 2780,
+      "sha256": "d7fe1df93fac843c9e6e2ca0af6677c560e23e677f650f135546689af31097ac",
+      "git_blob": "ce3e6e01f28c059ad17e6a6597ead15de0dc6cb6"
+    }
+  ]
+}

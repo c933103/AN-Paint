@@ -1,4 +1,7 @@
-"""Host checks for canonical locale XML and retained translation provenance."""
+"""Host checks for canonical locale XML and retained translation provenance.
+
+Catalogue structure and key-coverage checks do not establish semantic or
+linguistic correctness, review acceptance, or completion of the required recheck."""
 import ast
 import hashlib
 import json
@@ -289,6 +292,47 @@ class TranslationCatalogueTests(unittest.TestCase):
             text,
             r"[檔儲臺灣應顯覽繪權闊邊關雙讀譜譯擴圖選擇顏調盤開記憶體導縮點擊載還復長寬]",
         )
+
+
+    def test_korean_and_vietnamese_catalogues_pass_structural_validation(self):
+        for tag in ("ko-KR", "ko-KP", "ko-Kore-KR", "vi", "vi-Hani"):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
+
+    def test_crowdin_uses_one_canonical_source_and_output(self):
+        config = (translations.ROOT / "crowdin.yml").read_text()
+        # Check the supported simple file-mapping contract without a YAML dependency.
+        sources = re.findall(r"(?m)^\s*-?\s*source:\s*([^\n#]+)", config)
+        outputs = re.findall(r"(?m)^\s*-?\s*translation:\s*([^\n#]+)", config)
+        self.assertEqual(["/Paintroid/src/main/res/values/strings.xml"],
+                         [value.strip().strip("\"'") for value in sources])
+        self.assertEqual(["/Paintroid/src/main/res/values-%android_code%/strings.xml"],
+                         [value.strip().strip("\"'") for value in outputs])
+
+    def test_crowdin_source_contains_all_translatable_default_resources(self):
+        source = translations.RES / "values/strings.xml"
+        uncovered = []
+        for path in sorted((translations.RES / "values").glob("*.xml")):
+            for node in ET.parse(path).getroot():
+                is_text = node.tag in ("string", "plurals", "string-array") or (
+                    node.tag == "item" and node.get("type") == "string")
+                if is_text and node.get("translatable") != "false" and path != source:
+                    uncovered.append(f"{path.name}/{node.tag}/{node.get('name')}")
+        self.assertEqual([], uncovered, "Crowdin cannot export resources outside strings.xml")
+
+    def test_lzh_hakka_hokkien_wu_catalogues_pass_structural_validation(self):
+        for tag in (
+            "lzh-Hant", "hak-Hant-TW", "hak-Latn-TW",
+            "nan-Hant-TW", "nan-Latn-TW", "wuu-Hans",
+        ):
+            self.assertEqual(
+                [],
+                translations.validate_catalogue(tag, require_complete=True),
+                tag,
+            )
 
 
 class AndroidResourceValidationTests(unittest.TestCase):

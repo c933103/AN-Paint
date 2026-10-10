@@ -104,8 +104,7 @@ internal object AppLanguage {
     }
 
     /** Resolve against the device language, without inheriting the app's override. */
-    internal fun deviceDefaultLabel(context: Context): String {
-        val chosen=deviceLocale(context)
+    internal fun deviceDefaultLabel(context: Context, chosen: Locale=deviceLocale(context)): String {
         val config=Configuration().apply {
             fontScale=0f
             if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(chosen)) else setLocale(chosen)
@@ -123,7 +122,9 @@ internal object AppLanguage {
 
     fun showPicker(activity: Activity, changed: () -> Unit): AlertDialog {
         val choices = listOf("") + tags(activity)
-        val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity) else name(it) }
+        // Use one device-locale snapshot for both the label and its row typography.
+        val deviceLanguage=deviceLocale(activity)
+        val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity,deviceLanguage) else name(it) }
         val note = TextView(activity).apply {
             text = ui(R.string.language20_translation_note)
             val padding = (20 * resources.displayMetrics.density).toInt()
@@ -137,12 +138,9 @@ internal object AppLanguage {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.
                     val view=super.getView(position,null,parent) as TextView
-                    if(position==0) view.textLocale=deviceLocale(activity)
-                    if(position>0) {
-                        val locale=Locale.forLanguageTag(choices[position])
-                        view.textLocale=locale
-                        VerticalUi.languageChoice(view,locale)
-                    }
+                    val locale=if(position==0) deviceLanguage else Locale.forLanguageTag(choices[position])
+                    view.textLocale=locale
+                    VerticalUi.languageChoice(view,locale)
                     return view
                 }
             }, choices.indexOf(selectedTag(activity))) { dialog, which ->

@@ -1,0 +1,20 @@
+[
+  {
+    "check": "nonempty-output",
+    "expected_rejection": "--out must be a new or empty directory",
+    "exit_code": 2,
+    "passed": true
+  },
+  {
+    "check": "empty-classpath-entry",
+    "expected_rejection": "Empty classpath components are forbidden",
+    "exit_code": 2,
+    "passed": true
+  },
+  {
+    "check": "dependency-digest-mismatch",
+    "expected_rejection": "Dependency digest mismatch",
+    "exit_code": 2,
+    "passed": true
+  }
+]

@@ -37,7 +37,7 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
         val catalog=FontCatalog(activity)
         val font=Spinner(activity).apply { tag="text_font";contentDescription=ui(R.string.ui_font_family);adapter=catalog.adapter();setSelection(initial.font.coerceIn(catalog.fonts.indices)) }
         body.addView(label(ui(R.string.ui_font)));body.addView(font,LinearLayout.LayoutParams(-1,dp(48)))
-        fun number(value: String,tagName: String)=EditText(activity).apply { tag=tagName;inputType=InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL;setText(value);setSelectAllOnFocus(true);isSingleLine=true }
+        fun number(value: String,tagName: String)=EditText(activity).apply { tag=tagName;LocaleNumberInput.configure(this, decimal = true);setText(value);setSelectAllOnFocus(true);isSingleLine=true }
         val size=number(initial.size.toInt().toString(),"text_size")
         val spacing=number((initial.spacing*100).toInt().toString(),"text_spacing")
         val sizes=LinearLayout(activity)

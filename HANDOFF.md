@@ -1,3 +1,51 @@
+# AN Paint 0.0.38 — SDK-aware release test inventory
+
+The first exact-source release run for eab28203893ffba45f14a7f96df6d19cf4d19d3b
+passed universal APK/source assembly, all 737 regression tests, zero lint issues
+and all 94 API35 tests. API30 completed 90 successful tests but failed strict
+completeness because the source inventory counted an existing API33-only picker
+test that AndroidJUnitRunner correctly suppressed. The test and its annotation
+are retained. The inventory now follows the device SDK and AndroidX method-over-
+class precedence, records SDK-ineligible methods separately and rejects unknown
+annotation syntax. No eligible test, skip check or assertion is removed.
+
+Historical run (failed):
+https://github.com/c933103/AN-Paint/actions/runs/38013637833
+The signed eab2820 candidate is retained as historical, not a fully verified
+release. Its APK SHA-256 is
+cf9661810ef0f735ed5cdcd4c45f0ddc87047b2beeec5b0c698b14ce065b7cdc.
+Version 0.0.38/code 95 and the original signing lineage remain unchanged.
+The corrected source requires a fresh release build, full API30/35 verification,
+source verification and private signing before publication.
+
+---
+
+# AN Paint 0.0.38 — release verification of accepted develop
+
+Release candidate version 0.0.38/code 95 retains the existing package and upgrade
+signing lineage. It includes the accepted develop changes through
+7e8a0d2377693a35cd9392f2082ef88548a6f67f, including gallery credit/autosave
+recovery, Commons imports, script-aware gallery controls, localized numeric
+entry, native tooltip fonts, device-language picker presentation, protected-draft
+warning routes, scoped Commons Help/import notes, and vertical-notice test
+characterization. The unmerged PR #34 is not included.
+
+This release-preparation commit changes no application behavior or version
+identity. Its `Release ` subject selects the existing release-variant build and
+full API 30/35 verification matrix. All exact-source release results remain
+pending until that run completes; earlier debug results do not substitute for
+release verification. Localization coverage and language accuracy remain scoped
+to the current evidence register, not a blanket completion claim.
+
+After the build, privately align/sign the exact CI APK with the retained original
+upgrade key, verify the package/version, four ABIs, 16 KB alignment, certificate,
+unchanged non-signature payload and matching corresponding source, then prepare
+the existing public signing patch and release request. Keep the key and private
+backup outside GitHub. The active request is intentionally unchanged until those
+checks and artifact hashes exist. See CI.md and the 0.0.38 release notes.
+
+---
+
 # AN Paint 0.0.38 — actual lens enlargement and restored controls
 
 Release candidate version code 95; signed development build code 94.
@@ -493,3 +541,4 @@ verification reports. Keep that backup private; GitHub receives only public
 release assets and public signature/alignment bytes, never the key.
 
 Snapshot: 2026-09-14T01:25:39.390893+00:00
+

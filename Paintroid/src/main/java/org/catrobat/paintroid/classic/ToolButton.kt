@@ -8,7 +8,7 @@ import org.catrobat.paintroid.R
 
 /** KDE Breeze artwork under LGPL-3.0-or-later; see artwork/breeze and Icon licences. */
 class ToolButton(context: Context, val tool: PaintTool) : PanelToolButton(context) {
-    init {text=tool.label;contentDescription=tool.label;labelledIcon(toolIcon(tool));if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=tool.label}
+    init {text=tool.label;contentDescription=tool.label;labelledIcon(toolIcon(tool));LocaleTooltip.set(this,tool.label)}
 }
 
 internal fun toolIcon(tool: PaintTool): Int = when(tool) {

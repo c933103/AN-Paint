@@ -8,7 +8,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.*
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
@@ -114,7 +113,7 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 val column = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
                 column.addView(TextView(activity).apply { text = name; textSize = 13f })
                 val field = EditText(activity).apply {
-                    tag = "crop_$key"; contentDescription = ui(R.string.ui_trim_in_pixels, name); inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL; isSingleLine = true; setSelectAllOnFocus(true)
+                    tag = "crop_$key"; contentDescription = ui(R.string.ui_trim_in_pixels, name); LocaleNumberInput.configure(this, decimal = true); isSingleLine = true; setSelectAllOnFocus(true)
                     addTextChangedListener(object : TextWatcher {
                         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
                         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { if (fields.size == 4) refresh() }

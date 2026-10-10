@@ -51,6 +51,36 @@ def mapped_codepoints(path):
 
 
 class LocaleFontCoverageTest(unittest.TestCase):
+    def test_nom_svg_extension_preserves_the_frozen_font_data(self):
+        evidence = json.loads((ROOT / 'verification/svg-size-errors-2026-10-09/nom-svg-font-extension.json').read_text())
+        data = (ASSETS / 'fonts/anpaintnomui.ttf').read_bytes()
+        tables = {}
+        for index in range(struct.unpack_from('>H', data, 4)[0]):
+            tag, _, offset, length = struct.unpack_from('>4sIII', data, 12 + index * 16)
+            tables[tag.decode('ascii')] = data[offset:offset + length]
+        sha256 = lambda value: hashlib.sha256(value).hexdigest()
+        expected = evidence['preservation']
+        self.assertEqual(expected['table_tags'], sorted(tables))
+        self.assertEqual(evidence['output']['sha256'], sha256(data))
+        self.assertEqual(evidence['output']['bytes'], len(data))
+        for tag, digest in expected['unchanged_tables_sha256'].items():
+            self.assertEqual(digest, sha256(tables[tag]), tag)
+        for tag, record in expected['unchanged_table_prefixes'].items():
+            self.assertEqual(record['output_bytes'], len(tables[tag]), tag)
+            self.assertEqual(record['preserved_sha256'], sha256(tables[tag][:record['preserved_bytes']]), tag)
+        for tag, record in expected['unchanged_except_fields'].items():
+            start, end = record['excluded_byte_range']
+            self.assertEqual(record['preserved_sha256'], sha256(tables[tag][:start] + tables[tag][end:]), tag)
+        self.assertEqual(expected['output_cmap_sha256'], sha256(tables['cmap']))
+        self.assertEqual(736, struct.unpack_from('>H', tables['maxp'], 4)[0])
+        self.assertEqual(1, struct.unpack_from('>h', tables['head'], 50)[0])
+        start, end = struct.unpack_from('>II', tables['loca'], 735 * 4)
+        self.assertEqual(evidence['addition']['outline_sha256'], sha256(tables['glyf'][start:end]))
+        self.assertEqual([1000, 36], evidence['addition']['metrics'])
+        full_metrics = struct.unpack_from('>H', tables['hhea'], 34)[0]
+        self.assertEqual(1000, struct.unpack_from('>H', tables['hmtx'], (full_metrics - 1) * 4)[0])
+        self.assertEqual(36, struct.unpack_from('>h', tables['hmtx'], len(tables['hmtx']) - 2)[0])
+
     def test_every_nom_catalogue_ideograph_is_bundled(self):
         font = ASSETS / 'fonts/anpaintnomui.ttf'
         points = mapped_codepoints(font)
@@ -59,8 +89,8 @@ class LocaleFontCoverageTest(unittest.TestCase):
         # Guard punctuation and Latin UI text as well as every Han plane.
         # XML layout line breaks are not glyphs; ordinary spaces remain covered.
         required = {ord(c) for c in text if c not in '\n\r\t'}
-        # Retain the two independently validated additive Nôm glyphs.
-        required.update((0x651D, 0x671D))
+        # Retain normalization glyphs and the additive SVG error glyph 豫.
+        required.update((0x651D, 0x671D, 0x8C6B))
         self.assertTrue(any(cp > 0xffff for cp in required))
         self.assertEqual([], [f'U+{cp:04X}' for cp in sorted(required - points)])
         # The review's uncommon Extension-F glyph remains a regression sample.

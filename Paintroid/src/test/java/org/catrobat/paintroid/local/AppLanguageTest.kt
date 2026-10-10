@@ -121,6 +121,28 @@ class AppLanguageTest {
     @Test fun pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode()=checkMongolianPickerRow(16f)
     @Test fun manchuPickerUsesItsOwnJoinedVerticalAutonym()=checkMongolianPickerRow(16f,"mnc-Mong")
 
+    @Test fun nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom() {
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get()
+        try {
+            awaitEditorStartup(activity)
+            val picker=AppLanguage.showPicker(activity) {}
+            val index=AppLanguage.tags(activity).indexOf("vi-Hani")+1
+            assertTrue(index>0)
+            val row=picker.listView.adapter.getView(index,null,picker.listView) as TextView
+            val font=org.catrobat.paintroid.classic.LocaleTypography.typeface(activity,Locale.forLanguageTag("vi-Hani"))
+            assertNotNull(font)
+            assertSame(font,row.typeface)
+            assertTrue(android.graphics.Paint().apply {typeface=row.typeface}.hasGlyph("𡨸"))
+            picker.dismiss()
+        } finally {
+            controller.pause().stop()
+            val end=System.nanoTime()+10_000_000_000L
+            while(activity.busy && System.nanoTime()<end) {shadowOf(Looper.getMainLooper()).idle();Thread.sleep(10)}
+            controller.destroy()
+        }
+    }
+
     @Test @Config(qualifiers="en-rUS-w320dp-h640dp-port-xhdpi")
     fun narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize()=checkMongolianPickerRow(24f)
 
@@ -131,6 +153,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             val list=picker.listView
             assertEquals("English (International) [en-001]",list.adapter.getItem(1))
@@ -235,6 +258,7 @@ class AppLanguageTest {
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity=controller.get()
         try {
+            awaitEditorStartup(activity)
             val picker=AppLanguage.showPicker(activity) {}
             assertEquals("Use device language",picker.listView.adapter.getItem(0))
             assertNotEquals(activity.getString(R.string.language20_device_default),picker.listView.adapter.getItem(0))
@@ -287,6 +311,7 @@ class AppLanguageTest {
         val controller = Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
         val activity = controller.get()
         try {
+            awaitEditorStartup(activity)
             shadowOf(Looper.getMainLooper()).idleFor(50, TimeUnit.MILLISECONDS)
             val document = activity.document
             document.newImage(16, 16)
@@ -334,6 +359,7 @@ class AppLanguageTest {
         val activity = controller.get()
         val original = Configuration(activity.resources.configuration)
         try {
+            awaitEditorStartup(activity)
             val document = activity.document
             document.newImage(16, 16)
             document.foreground = Color.RED; document.fill(2, 2)

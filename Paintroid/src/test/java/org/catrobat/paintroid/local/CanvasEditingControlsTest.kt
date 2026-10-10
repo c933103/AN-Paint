@@ -40,7 +40,7 @@ class CanvasEditingControlsTest {
         listOf("classic-recovery.png","classic-autosave.zip","classic-autosave.zip.bak").forEach { File(context.filesDir,it).delete() }
         AutosaveStore(context.filesDir).recoveryCopies().forEach { it.delete() }
         context.getSharedPreferences("classic-ui",Context.MODE_PRIVATE).edit().clear().commit()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity)
         doc.newImage(240,240);canvas.fit();settle()
     }
     @After fun stop() { controller.pause().stop();waitIo();controller.destroy() }
@@ -217,7 +217,7 @@ class CanvasEditingControlsTest {
         val rect=RectF(doc.selection!!.rect)
         shadowOf(Looper.getMainLooper()).idleFor(2,TimeUnit.SECONDS);waitIo();assertNull(activity.lastAutosaveError)
         controller.pause().stop();waitIo();controller.destroy()
-        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();settle()
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);activity=controller.setup().get();awaitEditorStartup(activity);settle()
         assertEquals(27f,doc.cornerRadius,0f);assertEquals(90f,doc.selection!!.rotation,.001f);assertEquals(rect,doc.selection!!.rect)
         assertFalse(canvas.lockSelectionAspect);assertFalse(view<CheckBox>("selection_lock_aspect").isChecked)
         click("apply");assertEquals(Color.RED,doc.bitmap.getPixel(90,65));assertEquals(Color.BLUE,doc.bitmap.getPixel(90,105))

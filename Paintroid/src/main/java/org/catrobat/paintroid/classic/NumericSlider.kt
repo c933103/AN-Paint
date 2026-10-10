@@ -5,9 +5,6 @@ import org.catrobat.paintroid.R
 
 import android.app.AlertDialog
 import android.content.Context
-import android.text.InputType
-import android.text.method.DigitsKeyListener
-import java.text.DecimalFormatSymbols
 import android.view.Gravity
 import android.widget.*
 
@@ -31,14 +28,8 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
             override fun onStopTrackingTouch(bar: SeekBar?)=Unit
         })
         number.setOnClickListener {
-            @Suppress("DEPRECATION")
-            val zeroDigit=DecimalFormatSymbols(resources.configuration.locale).zeroDigit
-            val acceptedDigits=("0123456789"+(0..9).map { (zeroDigit.code+it).toChar() }.joinToString("")).toSet().joinToString("")
             val input=EditText(context).apply {
-                tag="numeric_input";inputType=InputType.TYPE_CLASS_NUMBER
-                // Support localized decimal digits on API21–25 as well as
-                // modern keyboards, retaining ASCII entry in every locale.
-                keyListener=DigitsKeyListener.getInstance(acceptedDigits)
+                tag="numeric_input";LocaleNumberInput.configure(this)
                 setText((slider.progress+minimum).toString());selectAll();gravity=Gravity.CENTER
             }
             val dialog=EditorDialogBuilder(context).setTitle(name).setMessage(ui(R.string.ui_enter_a_whole_number_from_to, minimum, maximum))

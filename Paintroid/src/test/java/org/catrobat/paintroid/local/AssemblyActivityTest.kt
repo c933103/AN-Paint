@@ -138,7 +138,7 @@ class AssemblyActivityTest {
         val result=shadowOf(activity).resultIntent
         assertNotNull(result.getStringExtra("assembly_output"))
         val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java)
-        val main=mainController.setup().get(); main.document.newImage(5,7); main.document.bitmap.setPixel(2,3,Color.MAGENTA)
+        val main=mainController.setup().get();awaitEditorStartup(main); main.document.newImage(5,7); main.document.bitmap.setPixel(2,3,Color.MAGENTA)
         val credit=ImageCredit("https://example.org/previous.png","Previous canvas artwork — original author")
         main.document.paste(Bitmap.createBitmap(1,1,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.RED)},true,listOf(credit))
         main.document.finishSelection()

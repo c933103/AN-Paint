@@ -46,7 +46,7 @@ class ImageResizeFlowTest {
         File(context.filesDir,"classic-autosave.zip").delete(); File(context.filesDir,"classic-autosave.zip.bak").delete()
         context.getSharedPreferences("classic-ui",Context.MODE_PRIVATE).edit().clear().commit()
         controller = Robolectric.buildActivity(ClassicPaintActivity::class.java)
-        activity = controller.setup().get()
+        activity = controller.setup().get();awaitEditorStartup(activity)
         activity.document.newImage(120,120); activity.paintCanvas.fit()
         provider = ClassicWorkspaceTest.DocumentProvider().apply {
             file = File(context.cacheDir,"resize-fixture.png")

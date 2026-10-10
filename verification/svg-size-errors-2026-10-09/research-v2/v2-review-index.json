@@ -1,0 +1,207 @@
+{
+  "schema_version": 2,
+  "purpose": "Index of the second authoritative-source pass; all candidates are review-only. Original 48-pair snapshot is immutable and unchanged.",
+  "published_draft": "https://github.com/c933103/AN-Paint/pull/29",
+  "published_head": "80f0448f878165213eaa7e9bd5ad286be00e4ce8",
+  "original_proposals_sha256": "28b18b6753c69854cedef56e7018378ccd160fd72da92ffad34616c878ff79ca",
+  "scope": [
+    "hak-Hant-TW",
+    "hak-Latn-TW",
+    "bo",
+    "dz",
+    "mn-Mong",
+    "jje",
+    "mnc-Mong",
+    "ain-Kana",
+    "ain-Latn",
+    "ryu",
+    "vi-Hani"
+  ],
+  "summary": {
+    "complete_review_candidate_pairs": 5,
+    "additional_single_message_candidate": 1,
+    "locales_without_complete_review_candidate": 6,
+    "accepted_new_pairs": 0
+  },
+  "locales": {
+    "hak-Hant-TW": {
+      "status": "complete_review_candidate",
+      "evidence_file": "hakka-nom-paraphrase-candidates.json",
+      "independent_acceptance": false
+    },
+    "hak-Latn-TW": {
+      "status": "complete_review_candidate",
+      "evidence_file": "hakka-nom-paraphrase-candidates.json",
+      "independent_acceptance": false
+    },
+    "bo": {
+      "status": "complete_review_candidate",
+      "evidence_file": "v2-bo-dz-jje/candidates-and-evidence.json",
+      "independent_acceptance": false
+    },
+    "dz": {
+      "status": "complete_review_candidate",
+      "evidence_file": "v2-bo-dz-jje/candidates-and-evidence.json",
+      "independent_acceptance": false
+    },
+    "mn-Mong": {
+      "status": "withheld_complete_messages",
+      "evidence_file": "v2-mongolian-manchu/language-evidence.json",
+      "independent_acceptance": false
+    },
+    "jje": {
+      "status": "one_review_candidate_too_large_only",
+      "evidence_file": "v2-bo-dz-jje/candidates-and-evidence.json",
+      "independent_acceptance": false
+    },
+    "mnc-Mong": {
+      "status": "withheld_complete_messages",
+      "evidence_file": "v2-mongolian-manchu/language-evidence.json",
+      "independent_acceptance": false
+    },
+    "ain-Kana": {
+      "status": "withheld_complete_messages",
+      "evidence_file": "v2-ainu-okinawan/review.json",
+      "independent_acceptance": false
+    },
+    "ain-Latn": {
+      "status": "withheld_complete_messages",
+      "evidence_file": "v2-ainu-okinawan/review.json",
+      "independent_acceptance": false
+    },
+    "ryu": {
+      "status": "withheld_complete_messages",
+      "evidence_file": "v2-ainu-okinawan/review.json",
+      "independent_acceptance": false
+    },
+    "vi-Hani": {
+      "status": "complete_review_candidate",
+      "evidence_file": "hakka-nom-paraphrase-candidates.json",
+      "independent_acceptance": false
+    }
+  },
+  "files": [
+    {
+      "path": "hakka-nom-paraphrase-candidates.json",
+      "sha256_at_index_time": "75cea3bd0453da56b682b101796497183bd98aa94045b20971261c2b6da07d65"
+    },
+    {
+      "path": "v2-bo-dz-jje/candidates-and-evidence.json",
+      "sha256_at_index_time": "e82158caec2cd34b3ccc71e9a69cd79fb4ac0c88230a26d4dd8548e2b1bfa5e3"
+    },
+    {
+      "path": "v2-bo-dz-jje/review.md",
+      "sha256_at_index_time": "3ca065ea6431014a371ce913a36b33440f3a7e007f80dcd45131ee0fd2f4cea0"
+    },
+    {
+      "path": "v2-ainu-okinawan/review.json",
+      "sha256_at_index_time": "a007f24b3a5f8225d6591cedd74a4bdc7e7c2617207108bb51bb14d9bcd76f70"
+    },
+    {
+      "path": "v2-ainu-okinawan/review.md",
+      "sha256_at_index_time": "1db7bd319e2a8d7b6256ce9b45acf7bac036e301209ed1ecd28b90ea69abecd2"
+    },
+    {
+      "path": "v2-mongolian-manchu/language-evidence.json",
+      "sha256_at_index_time": "08be2d8897cd8bf0f9e99cb06f72c70da3b3be9e369b65296e42a80c6958b472"
+    },
+    {
+      "path": "v2-mongolian-manchu/sources-attempted.json",
+      "sha256_at_index_time": "4a8951c3e3b2d8da140bd40bceaecb5faf7de1dd204d9c8d80692c6f2c6b88da"
+    },
+    {
+      "path": "v2-mongolian-manchu/review.md",
+      "sha256_at_index_time": "f287341eb46956c4000fe5821108341a4e473a88af340327b47e6548013e39b4"
+    }
+  ],
+  "source_based_risks": [
+    "Jeju: a primary negation study distinguishes native 아녀다 from Korean 않다; copying the existing narrowing/shrinking-only sentence and changing suffixes is not enough. This is a bounded constructional review risk, not a full-catalogue defect finding.",
+    "Ainu: pororu is an independently documented coinage in a named lexicon, not a word newly coined in this pass. Its community acceptance and technical dimension sense remain unverified. Fourth-person a= is not a universal passive marker.",
+    "Manchu: daci is described as an adverb in the inspected grammar. The original-size noun phrase needs contextual review; the evidence does not prove it wrong.",
+    "Traditional Mongolian: deleting the automatic modifier from a nominal no-change clause does not independently establish completed-operation semantics."
+  ],
+  "limits": [
+    "Exact source URLs, retrieval outcomes and per-clause support are stored in the linked reports.",
+    "Some official PDFs were only available through indexed excerpts; failed direct fetches and unverified page images are explicitly recorded.",
+    "Complete candidates combine supported vocabulary and constructions; none is a quoted pre-existing SVG UI sentence or independently certified natural translation.",
+    "No production resources, tests or first-pass snapshot were edited by this work."
+  ],
+  "remaining_without_complete_pair": [
+    {
+      "tag": "mn-Mong",
+      "gaps": [
+        "Complete usable-original-dimension declaration in traditional written Mongolian.",
+        "Natural canvas-derived substitution clause with verified suffix/case forms.",
+        "Android bitmap dimensional-bound expression.",
+        "Completed negative size-change predicate: a nominal “no change” clause, even without automatic, does not itself establish that the operation performed no resizing."
+      ]
+    },
+    {
+      "tag": "jje",
+      "gaps": [
+        "Complete declaration/recording predicate and usable-original-size relative clause.",
+        "Natural canvas-derived substitute wording.",
+        "The too_large-only candidate still needs orthographic/register and noun-chain review; its new short negative avoids copying Korean contracted 않다."
+      ]
+    },
+    {
+      "tag": "mnc-Mong",
+      "gaps": [
+        "Declaration predicate suitable for an SVG document.",
+        "Usable-original-dimension syntax, including contextual review of adverbial daci in the existing original-size phrase.",
+        "Drawing-area-derived replacement argument structure.",
+        "Android bitmap dimensional-bound expression. The completed negative halahakū construction itself now has independent grammatical support."
+      ]
+    },
+    {
+      "tag": "ain-Kana",
+      "gaps": [
+        "Validated canvas/dimension terminology and original/intrinsic-size sense of the full noun phrase.",
+        "SVG declaration and usability argument structure.",
+        "Canvas-derived replacement argument structure; fourth-person a= cannot simply be assumed to be a general passive.",
+        "Android bitmap dimensional ceiling and a complete unqualified no-resize clause. Must remain paired with ain-Latn."
+      ]
+    },
+    {
+      "tag": "ain-Latn",
+      "gaps": [
+        "Validated canvas/dimension terminology and original/intrinsic-size sense of the full noun phrase.",
+        "SVG declaration and usability argument structure.",
+        "Canvas-derived replacement argument structure; fourth-person a= cannot simply be assumed to be a general passive.",
+        "Android bitmap dimensional ceiling and a complete unqualified no-resize clause. Must remain paired with ain-Kana."
+      ]
+    },
+    {
+      "tag": "ryu",
+      "gaps": [
+        "Complete SVG declaration and usable-original-size construction.",
+        "Canvas-derived substitution syntax and argument roles.",
+        "Natural Android bitmap dimensional ceiling comparison.",
+        "Completed polite negative resize clause; dictionary confirmation of change/negative past does not alone validate the full polite nominalized sentence."
+      ]
+    }
+  ],
+  "composition_review_update": {
+    "reported_by": "independent composition review",
+    "status": "No accepted coverage implied",
+    "hakka_han_pfs_nom": "Clause meanings reported coherent; PFS corrections required before inclusion: sông→song for 上, tiau→thiàu for 調 meaning adjust. Existing full Nôm assembly help independently contains 朱 別, so that compound is not newly guessed.",
+    "bo_dz": "Independent composition review pending at index finalization."
+  },
+  "later_composition_review": {
+    "artifact": "independent-composition-review.json",
+    "source_assisted_draft_inclusion": [
+      "hak-Hant-TW",
+      "hak-Latn-TW",
+      "vi-Hani",
+      "bo",
+      "dz"
+    ],
+    "required_pfs_corrections": [
+      "tiam → tiám",
+      "sông → song",
+      "tiau → thiàu"
+    ],
+    "exact_added_values": "added-proposed-values.json",
+    "native_language_acceptance": false
+  }
+}

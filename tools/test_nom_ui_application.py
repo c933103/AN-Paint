@@ -26,14 +26,17 @@ class NomUiApplicationTest(unittest.TestCase):
         self.assertIn('typeface=VerticalText.uiTypeface(context)', body)
         self.assertIn('R.string.ui_rotate', body)
 
-    def test_known_app_toasts_pass_through_api21_font_binding(self):
+    def test_known_app_messages_pass_through_locale_routing(self):
         paths = ('AdvancedColourDialog.kt', 'AssemblyActivity.kt', 'ClassicPaintActivity.kt',
                  'GalleryCredits.kt', 'LegalInfo.kt', 'MediaGalleryActivity.kt')
         for name in paths:
             self.assertNotIn('Toast.makeText(', source(name), name)
-            self.assertIn('LocaleTypography.toast(', source(name), name)
+            self.assertIn('LocaleTypography.showMessage(', source(name), name)
+            self.assertNotIn('LocaleTypography.toast(', source(name), name)
         helper = source('LocaleTypography.kt')
         self.assertIn('if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}', helper)
+        self.assertIn('Build.VERSION.SDK_INT>=30', helper)
+        self.assertIn('LocaleNotification.show(context,text,duration,font,anchor)', helper)
 
     def test_explicit_drawing_font_boundaries_remain(self):
         self.assertIn('filterNot {it.optBoolean("ui_only")}', source('FontCatalog.kt'))

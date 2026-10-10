@@ -25,7 +25,7 @@ class ToolCategoryButton(context: Context,val category: ToolCategory,var selecte
         text=ui(category.labelId);disclosure=expanded;disclosureBeside=!down
         labelledIcon(toolIcon(selectedTool))
         contentDescription=ui(if(expanded) R.string.ui_collapse_tool_category else R.string.ui_expand_tool_category,ui(category.labelId),selectedTool.label)
-        if(android.os.Build.VERSION.SDK_INT>=26) tooltipText=contentDescription
+        LocaleTooltip.set(this,contentDescription)
         invalidate()
     }
 }

@@ -16,6 +16,7 @@ import android.os.LocaleList
 import android.os.Looper
 import android.os.SystemClock
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
@@ -35,6 +36,7 @@ import androidx.test.runner.lifecycle.ActivityLifecycleCallback
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.PaintTool
@@ -69,6 +71,9 @@ class VerticalLocaleDeviceTest {
     private var originalOrientation=ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     private var evidenceName="setup"
     private val externalRequests=CopyOnWriteArrayList<Intent>()
+    // Read-only synchronization with this app's already scheduled autosave.
+    private val draftGenerationField=ClassicPaintActivity::class.java.getDeclaredField("draftGeneration").apply {isAccessible=true}
+    private val savedDraftGenerationField=ClassicPaintActivity::class.java.getDeclaredField("savedDraftGeneration").apply {isAccessible=true}
     private val monitor=object: Instrumentation.ActivityMonitor() {
         override fun onStartActivity(intent: Intent): Instrumentation.ActivityResult? {
             if(intent.action !in listOf(Intent.ACTION_CREATE_DOCUMENT,Intent.ACTION_OPEN_DOCUMENT,
@@ -98,7 +103,8 @@ class VerticalLocaleDeviceTest {
         assertNotNull(launch)
         scenario=ActivityScenario.launch(launch!!)
         scenario.onActivity {activity=it;originalOrientation=it.requestedOrientation}
-        awaitState("initial editor") {!activity.busy && activity.paintCanvas.width>0}
+        awaitState("initial editor") {activity.startupReady && !activity.busy &&
+            activity.paintCanvas.width>0 && activity.paintCanvas.height>0}
         onMain {
             activity.document.newImage(100,100)
             activity.document.bitmap.setPixel(4,7,Color.MAGENTA)
@@ -118,7 +124,7 @@ class VerticalLocaleDeviceTest {
                 onMain {activity.requestedOrientation=originalOrientation}
                 instrumentation.waitForIdleSync()
                 scenario.moveToState(Lifecycle.State.CREATED)
-                awaitState("pending save before close") {!activity.busy}
+                awaitAutosave("pending save before close")
                 // Preserve EditorDeviceTest's completed-autosave teardown: avoid
                 // the AndroidX EmptyActivity double-resume 45-second timeout.
                 onMain {activity.finish()}
@@ -172,10 +178,25 @@ class VerticalLocaleDeviceTest {
                 // cannot pass merely because the injected tap missed its target.
                 tap("Line tool precondition") {root().findViewWithTag<View>("tool_LINE")}
                 awaitState("Line selected before Arrow") {activity.paintCanvas.tool==PaintTool.LINE}
-                val swipes=tap("offscreen Arrow tool") {root().findViewWithTag<View>("tool_ARROW")}
-                overflowToolSwipes+=swipes
-                android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow native_swipes=$swipes")
-                awaitState("Arrow tool selected by native input") {activity.paintCanvas.tool==PaintTool.ARROW}
+                // Selecting Line schedules autosave 1500ms later. A native
+                // reveal swipe can cross that boundary, so !busy before the
+                // swipe alone does not establish readiness at the tap's UP.
+                // Drain the real pending write; do not suppress or alter it.
+                awaitAutosave("Line autosave finished before Arrow input")
+                val arrow=onMain {root().findViewWithTag<View>("tool_ARROW")}
+                onMain {
+                    arrow.setOnTouchListener {view,event ->
+                        if(event.actionMasked in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL))
+                            android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow touch=${MotionEvent.actionToString(event.actionMasked)} busy=${activity.busy} draft=${draftGenerationField.getLong(activity)} saved=${savedDraftGenerationField.getLong(activity)} raw=${rawBounds(view)} visible=${visibleBounds(view)}")
+                        false // Observe only; normal native dispatch and click remain intact.
+                    }
+                }
+                try {
+                    val swipes=tap("offscreen Arrow tool") {arrow}
+                    overflowToolSwipes+=swipes
+                    android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Arrow native_swipes=$swipes")
+                    awaitState("Arrow tool selected by native input") {activity.paintCanvas.tool==PaintTool.ARROW}
+                } finally {onMain {arrow.setOnTouchListener(null)}}
                 assertCanvas(tag)
                 screenshot("workspace")
                 selectTab("File")
@@ -228,7 +249,7 @@ class VerticalLocaleDeviceTest {
         val expected=if(landscape) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
         onMain {activity.requestedOrientation=if(landscape) ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}
         awaitState("${if(landscape) "landscape" else "portrait"} workspace layout") {
-            activity.resources.configuration.orientation==expected && root().width>0 &&
+            activity.startupReady && activity.resources.configuration.orientation==expected && root().width>0 &&
                 (root().width>root().height)==landscape && activity.paintCanvas.width>0 && !activity.busy
         }
         instrumentation.waitForIdleSync()
@@ -238,7 +259,14 @@ class VerticalLocaleDeviceTest {
         selectTab("View")
         tap("Languages command") {command("View",R.string.ui_languages23)}
         awaitState("native locale picker") {pickerList()!=null}
+        val receivedPosition=AtomicReference<Int?>()
         val index=onMain {
+            val list=pickerList()!!
+            val original=requireNotNull(list.onItemClickListener)
+            list.setOnItemClickListener {parent,view,position,id ->
+                receivedPosition.set(position)
+                original.onItemClick(parent,view,position,id)
+            }
             val tags=activity.resources.getStringArray(R.array.app_language_tags).toList()
             assertTrue("Exact locale is offered: $tag",tag in tags)
             (tags.indexOf(tag)+1).also {pickerList()!!.setSelection(it)}
@@ -246,14 +274,24 @@ class VerticalLocaleDeviceTest {
         awaitState("exact picker row laid out") {
             pickerList()?.let {list -> list.getChildAt(index-list.firstVisiblePosition)?.height?.let {it>0}}==true
         }
-        tap("locale row $tag") {
+        val (label,bounds)=onMain {
             val list=pickerList()!!
-            (list.getChildAt(index-list.firstVisiblePosition) as TextView).also {
-                assertTrue("Exact picker row text",it.text.toString().endsWith("[$tag]"))
-            }
+            val row=list.getChildAt(index-list.firstVisiblePosition) as TextView
+            assertTrue("Exact picker row text",row.text.toString().endsWith("[$tag]"))
+            row.text.toString() to (usableBounds(row) ?: throw AssertionError("Locale row is not reachable"))
+        }
+        // Re-resolve the real picker row through accessibility as the current
+        // editor tests do. Observe the forwarded callback, never simulate it.
+        val choice=device.findObject(UiSelector().className("android.widget.CheckedTextView").text(label))
+        assertTrue("Exact accessible locale row: $tag",choice.waitForExists(5000))
+        assertTrue("Native and accessible row agree",Rect.intersects(bounds,choice.visibleBounds))
+        assertTrue("Choose the visible locale row",choice.click())
+        awaitState("real picker selected $tag") {
+            receivedPosition.get()==index &&
+                activity.getSharedPreferences("app-language",0).getString("language-tag",null)==tag
         }
         awaitState("recreated $tag activity") {
-            activity.resources.configuration.locales[0].toLanguageTag()==tag &&
+            activity.startupReady && activity.resources.configuration.locales[0].toLanguageTag()==tag &&
                 root().findViewWithTag<View>("vertical_status_rail")?.isShown==true && !activity.busy
         }
         onMain {assertEquals(tag,activity.getSharedPreferences("app-language",0).getString("language-tag",null))}
@@ -363,7 +401,7 @@ class VerticalLocaleDeviceTest {
     }
     private data class Gesture(val bounds: Rect,val horizontal: Boolean,val direction: Int)
     private fun reveal(label: String,target: ()->View): Int {
-        awaitState("ready for $label") {!activity.busy}
+        awaitState("ready for $label") {activity.startupReady && !activity.busy}
         repeat(24) {attempt ->
             instrumentation.waitForIdleSync()
             if(onMain {usableBounds(target())!=null}) return attempt
@@ -432,6 +470,12 @@ class VerticalLocaleDeviceTest {
                 previous=signature;changedAt=SystemClock.uptimeMillis();false
             } else SystemClock.uptimeMillis()-changedAt>=150
         }
+    }
+
+    private fun awaitAutosave(description: String)=awaitState(description) {
+        assertNull("Autosave failed: $description",activity.lastAutosaveError)
+        activity.startupReady && !activity.busy &&
+            draftGenerationField.getLong(activity)==savedDraftGenerationField.getLong(activity)
     }
 
     private fun screenshot(suffix: String) {

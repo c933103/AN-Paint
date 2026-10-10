@@ -5,7 +5,6 @@ import org.catrobat.paintroid.R
 
 import android.content.Context
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
@@ -78,7 +77,7 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
         syncing = true
         val unit = if (percent) "%" else "px"
         widthLabel.text = ui(R.string.ui_width, unit); heightLabel.text = ui(R.string.ui_height, unit)
-        listOf(widthInput,heightInput).forEach { it.inputType = InputType.TYPE_CLASS_NUMBER or if (percent) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0 }
+        listOf(widthInput,heightInput).forEach { LocaleNumberInput.configure(it, decimal = percent) }
         widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))
         heightInput.contentDescription = ui(R.string.ui_height_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))
         target?.let { size ->

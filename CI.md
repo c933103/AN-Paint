@@ -46,16 +46,11 @@ Artifact availability is not a claim that all tests passed.
 Test APKs are compiled once, after the delivery artifact is available. Emulator
 jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
-API 30 and 35 jobs. Only the Ultra HDR class is excluded on API 30, where Android
-has no gain-map API. No test is removed from the current-platform suite.
-
-The app APK runs in two complementary invocations: the existing editor suite
-excludes exactly `paint.anpaint.android.VerticalLocaleDeviceTest`, then the
-vertical-locale suite includes exactly that class. Both selectors are checked
-against the complete source inventory; unknown or repeated classes, combined
-include/exclude filters and empty selections fail. Host tests check that the
-partition loses and repeats no methods. Each invocation retains its own
-180-second deadline. Native/import checks and their API 30 exclusion are unchanged.
+API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
+accepted-credit restart phase classes. API35 runs all declared methods: its
+ordinary app invocation excludes the restart pair, which run separately before
+and after an external force-stop. Their exact disjoint union is checked against
+the full source inventory; an exclusion is never treated as a passed test.
 
 Dependencies and pinned native source trees are cached. Starting with local.20,
 the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
@@ -96,10 +91,12 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   inside that shared deadline, with progress and failure logs. They may retry
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  native, editor and vertical-locale instrumentation invocation: 180 seconds.
-  The whole emulator execution step keeps its 15-minute limit. This outer limit
-  still applies if multiple installations, startup or invocations consume their
-  full individual budgets; their worst-case limits are not an extended allowance.
+  ordinary native/app instrumentation invocation: 180 seconds; each accepted-credit
+  seed/verify invocation: 60 seconds. The existing whole emulator execution step
+  remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
+  that every ceiling can be exhausted in one step. The new phase durations need
+  exact-head API35 measurement; deadline exhaustion fails rather than relaxing
+  a timeout or substituting a weaker restart test.
 - Emulator shutdown and log collection are bounded. Failure reports upload with
   `always()` even if a test step fails; forced job cancellation may leave partial
   evidence, which must not be described as a pass.
@@ -109,14 +106,6 @@ log, saves partial output, and writes JUnit XML plus `summary.json`. Success req
 the runner's final result, successful results for every declared method, and no
 missing, unexpected, ignored, failed or aborted tests. An `adb` exit code of zero
 alone is insufficient. No automatic retry hides a failure or doubles a long run.
-Editor results remain in `app/androidTest-results`; vertical-locale results are
-separate in `app-vertical/androidTest-results`. Before emulator shutdown, bounded
-exit cleanup pulls the app's external-files `vertical-locale-evidence` directory
-into `app/vertical-locale-evidence` under the same uploaded emulator report root.
-This runs after test failures and timeouts too. Pull output is retained in
-`vertical-locale-pull.log`; a failed pull fails an otherwise successful job and
-never replaces an existing failure. Forced cancellation may still interrupt
-collection. Screenshots supplement the method results, not replace them.
 Reports are separate artifacts: `regression-and-lint-<commit>` and
 `emulator-api-<api>-<commit>`. They are retained for 14 days; archive final release
 evidence during private packaging rather than depending on temporary artifacts.
@@ -266,8 +255,8 @@ completed all 71 native checks and all 11 editor checks; their sole failure was
 `NativeCodecTest.everyAdvertisedBundledFontLoadsItsActualFontFile`, which expected
 20 drawing font choices but found 21 after the Nôm UI subset was added.
 
-The Nôm asset is a subset for catalogue and picker text, so it now has the same
-`ui_only` role as the Wu fallback and is excluded from the drawing-font selector.
+The Nôm asset is a subset for catalogue and picker text, so it has the
+`ui_only` role and is excluded from the drawing-font selector.
 Default Nôm text still uses its glyph coverage, while an explicit drawing font
 keeps the user's selected face. Complete Mongolian remains a drawing choice.
 Font regressions compare selectable entries with the inventory's drawing roles
@@ -295,3 +284,136 @@ string-array, including unoffered locales. Disabling AAPT format checking does
 not bypass the check for an unescaped percent mixed with runtime arguments.
 `%%` consumes no argument, so it is excluded from placeholder-count comparisons;
 a translation may use the sign where English spells out “percent”.
+
+## API35 accepted-credit abrupt-process-stop regression
+
+This is one regression split into two one-method app instrumentation classes.
+After the ordinary editor suite passes, the host starts the ordinary launcher and
+records its live PID. The seed-only `--leave-target-running` wrapper option is
+restricted to the seed class and emits both `am instrument --no-restart` and
+`-e waitForActivitiesToComplete false`. Normal invocations, protocol parsing,
+APK installation, missing/ignored/aborted-test rejection and final-result checks
+retain their original behavior.
+
+The seed uses the established synthetic insertion fixture, then removes its
+monitor before opening the actual Gallery from the editor. Both synthetic Gallery
+insertion monitors echo the exact opaque session token supplied by their launch;
+this keeps the existing editor fixtures compatible with result-ownership checks. Real Save accepts
+large mixed Unicode credit text while the parent remains stopped with the known
+original drawing and ledger already autosaved. Read-only ZIP/JSON assertions
+prove the accepted session and retained snapshot are durable and that the original
+drawing was not updated. No accepted archive/session API manufactures acceptance.
+The method deliberately leaves Gallery and its credit dialog open.
+
+Only a complete successful seed report allows the host boundary to proceed. The
+host verifies the original PID still exists and Gallery remains resumed, rechecks
+the PID immediately before a bounded external force-stop, then positively checks
+absence with a protocol that distinguishes `pidof` absence from ADB failure. The
+bootstrap is bounded to 30 seconds; PID, activity-evidence and force-stop commands
+to 10 seconds each. There is no test retry, data clear, main-APK reinstall or
+orderly Gallery dismissal between acceptance and force-stop.
+
+The ordinary verify runner starts a new process. Before launching the editor it
+compares the seed's process identity and exact on-disk digests. It then checks the
+original drawing and ledger, reaches the archive through the actual Save dialog,
+reconstructs all visible credit pages, and confirms browsing leaves association
+unchanged. Production New creates a different blank drawing with no credits.
+Only choosing Add for the exact accepted record attaches that source and text;
+the new drawing's pixels stay unchanged.
+
+Reports remain under the existing API-specific artifact root:
+`app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
+and `coverage.json`. Coverage success requires the ordinary, seed and verify
+reports to contain mutually disjoint completed identities whose union equals all
+app methods declared in source, including future ordinary classes. A failed seed
+or host boundary prevents verification and records it as not run. API30 explicitly
+omits both phase classes and records that this API35 flow was not run.
+
+Local Python/fake-ADB checks establish command ordering, complete-result gating,
+PID/deadline/error propagation and inventory accounting only. They do not establish
+Android compilation or runtime success. The exact-head API35 emulator must first
+prove complete seed success with the same live PID and undelivered Gallery result;
+if that gate fails, diagnose it without claiming Activity recreation or an
+already-dead-process force-stop is equivalent. No workflow YAML, dependency,
+release matrix or outer deadline is changed.
+
+
+## SDK-aware instrumentation inventory (0.0.38 release verification)
+
+The source inventory now queries the connected device SDK and applies literal
+`@SdkSuppress` minimum/maximum bounds before comparing every eligible method
+with AndroidJUnitRunner's completed methods. A method annotation overrides the
+class annotation, matching AndroidX. The report records the device SDK and every
+SDK-ineligible method separately; those methods are not counted as test passes.
+Unknown or malformed SDK annotation syntax fails closed. Existing explicit
+class exclusions, skipped-test rejection and restart-phase completeness checks
+remain in force.
+
+The first release run 38013637833 passed build, 737 regression tests, lint and
+94 API35 tests. API30 completed 90 successful tests but correctly failed the old
+inventory check: it expected the API33-only device-language picker method. The
+method's `@SdkSuppress(minSdkVersion=33)` was already present, and the method ran
+and passed on API35. That run remains failed; a new exact-source full release
+run is required after this inventory correction. No test or SDK annotation was
+removed or relaxed.
+
+AndroidX precedence and bounds:
+https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+
+
+## Current-base installed four-locale matrix (PR18 continuation)
+
+The historical PR18 test class was intentionally excluded from the later PR19
+reconciliation. Its ancestry and old API35 run do not prove coverage in accepted
+develop. This continuation adapts those four installed native-input tests to the
+current startup, locale picker and autosave behavior; it changes no production UI.
+
+The class covers `mnc-Mong`, `lzh-Hant`, `en-XV` and `qaa-Zsye-XV`, each in portrait
+and landscape. Picker viewport positioning is fixture setup; the exact row is
+selected through native accessibility input and its real callback is observed.
+The tests follow replacement activities, wait for `startupReady`, preserve two
+sentinel pixels, select all five tabs, use native overflow swipes and select Line
+before Arrow. Arrow input waits for the real scheduled autosave generation to
+finish rather than suppressing autosave or retrying a missed tap. Save checks
+include initial LR/RL column position, native JPEG popup selection, filename,
+quality reachability, no lossless control, Cancel/reopen with PNG and native Back.
+No external save/share destination may be launched. Prior orientation and locale
+are restored; monitors/listeners are removed at teardown.
+
+The current direct-ADB runner remains the implementation for every invocation.
+The ordinary app suite excludes the vertical class and both accepted-credit
+restart classes. A separate `app-vertical` invocation selects the vertical class
+by excluding all other declared classes, including future additions. Its deadline
+is 180 seconds, matching the unchanged native/ordinary deadlines. The accepted-credit
+seed and verify retain their separate 60-second deadlines, live-PID checks,
+undelivered Gallery state and external force-stop. The whole emulator execution
+step remains capped at 15 minutes; no test is retried and no failed step is ignored.
+
+`tools/vertical_locale_matrix.py` verifies the exact disjoint SDK-specific union
+of ordinary, vertical, seed and verify reports on API35. On API30 it verifies
+ordinary plus vertical and records both restart methods as explicitly excluded,
+never passed. AndroidX SDK-suppressed methods remain separate from these explicit
+class omissions. Every selected method must complete successfully exactly once;
+a missing phase, duplicate identity, skip, missing/non-integer/mismatched device
+SDK or incomplete report fails the gate. Every phase must capture the same SDK
+selected for the run; the captured SDK is validated before source eligibility is
+computed, preserving PR36's minimum/maximum SDK-bound accepted-credit fix. The full receipt is `app/coverage.json`; API35 also retains the
+accepted-credit coverage path for existing evidence consumers.
+
+Fresh matrix screenshots and summaries are cleared before invocation. Bounded
+EXIT cleanup pulls screenshots before emulator shutdown, including after failure
+or timeout. A successful run requires exactly 32 PNGs: four locales × two
+orientations × workspace / initial Save / format popup / JPEG quality. The host
+receipt records filename, dimensions, size and SHA-256 after checking PNG headers.
+Missing collection or inventory makes an otherwise successful job fail. This is
+an inventory/integrity check, not visual review; inspect all 32 rendered images
+before concluding the installed matrix is verified.
+
+Reports are under `app-vertical/androidTest-results`, screenshots under
+`app/vertical-locale-evidence`, and the screenshot receipt is
+`vertical-locale-screenshots.json`, inside the existing API-specific artifact.
+Host/fake-ADB checks establish selection, accounting, cleanup and failure behavior
+only. Fresh exact-head compilation, API35 XML/logs, measured phase durations and
+visual screenshot review are required. Use the full API30/API35 matrix for release
+verification or a diagnosed cross-version risk; no new full-matrix default or
+workflow transplant is introduced here.
