@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+"""Reproduce bounded structural evidence, not translation acceptance.
+
+Run from a checkout with the two guard files. Historical comparisons also need
+the named PR commit objects, either in this checkout or --history-repository.
+The script reads files/Git and mocks catalogue reads; it does not edit resources.
+"""
+from pathlib import Path
+import argparse
+import hashlib
+import importlib
+import json
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+import xml.etree.ElementTree as ET
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "tools"))
+import translation_catalogues as translations
+
+BASE = "eab28203893ffba45f14a7f96df6d19cf4d19d3b"
+BASE_TREE = "537185be479023d1567ab583d808ffaa7a4d3db8"
+HISTORY = {
+    7: ("b528c9d2a1eeb950143386154cedfcd38c4350af", "730319aea40eb205d18c894c496e500d6f660ac6"),
+    9: ("97e511dc63f1b2011300ce49fd1582b4de23ce3d", "a0afe1cfed363b65c3880c9875034b0460f811a2"),
+}
+
+
+def sha256(value):
+    return hashlib.sha256(value).hexdigest()
+
+
+def guard_result(module):
+    result = unittest.TestResult()
+    unittest.defaultTestLoader.loadTestsFromModule(module).run(result)
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--history-repository", type=Path, default=ROOT)
+    args = parser.parse_args()
+    out = {"recorded_source_base": BASE, "recorded_source_base_tree": BASE_TREE,
+           "replay_target": "Current checkout files; recorded base is provenance, not an assertion that a later replay is the same tree",
+           "scope": "Structural and preservation checks only; all acceptance/reset rows remain open",
+           "guards": {}, "catalogues": {}, "historical_resource_deltas": {}}
+    paths = translations.catalogue_paths()
+    tags = translations.offered_tags()
+    all_defaults, all_plurals, source_keys, plural_keys = translations.default_resources()
+    out["source_counts"] = {"translatable_strings": len(source_keys), "translatable_plurals": len(plural_keys)}
+    for pr in HISTORY:
+        module = importlib.import_module(f"test_normalization_scope_pr{pr}")
+        result = guard_result(module)
+        assert result.testsRun == 1 and result.wasSuccessful()
+        original_read = translations.read_strings
+        mutations = []
+        targets = {"default": translations.RES / "values/strings.xml", **{tag: paths[tag] for tag in module.SCOPE}}
+        for tag, target in targets.items():
+            for key in sorted(module.KEYS):
+                def damaged_read(path, target=target, key=key):
+                    values = original_read(path)
+                    if path == target:
+                        assert key in values
+                        values.pop(key)
+                    return values
+                with patch.object(translations, "read_strings", damaged_read):
+                    negative = guard_result(module)
+                assert len(negative.failures) == 1 and not negative.errors, (pr, tag, key)
+                mutations.append({"tag": tag, "missing_key": key, "detected": True})
+        out["guards"][str(pr)] = {"positive_tests": result.testsRun,
+            "sha256": sha256((ROOT / f"tools/test_normalization_scope_pr{pr}.py").read_bytes()),
+            "missing_key_negative_controls": mutations}
+        for tag in module.SCOPE:
+            values = translations.read_strings(paths[tag])
+            plurals = translations.read_plurals(paths[tag])
+            errors = translations.validate_catalogue(tag, require_complete=True)
+            assert not errors, (tag, errors)
+            assert tags.count(tag) == 1
+            out["catalogues"][tag] = {"path": str(paths[tag].relative_to(ROOT)),
+                "sha256": sha256(paths[tag].read_bytes()), "registered_once": True,
+                "string_count": len(values), "plural_count": len(plurals),
+                "missing_translatable_strings": sorted(source_keys - values.keys()),
+                "missing_translatable_plurals": sorted(plural_keys - plurals.keys()),
+                "validation_errors": errors}
+
+    assert not translations.validate_resource_directories()
+    pt_config = translations.resource_configuration("values-pt-rPT")
+    assert pt_config == translations.resource_configuration("values-b+pt+PT")
+    matches = [p.parent.name for p in paths.values() if translations.resource_configuration(p.parent.name) == pt_config]
+    assert matches == ["values-b+pt+PT"], matches
+    with tempfile.TemporaryDirectory() as directory:
+        fake_res = Path(directory)
+        for folder in ("values-pt-rPT", "values-b+pt+PT"):
+            (fake_res / folder).mkdir()
+            (fake_res / folder / "strings.xml").write_text('<resources><string name="x">x</string></resources>')
+        with patch.object(translations, "RES", fake_res):
+            duplicate_errors = translations.validate_resource_directories()
+        assert len(duplicate_errors) == 1 and "equivalent resource directories" in duplicate_errors[0]
+    out["portuguese_configuration"] = {"canonical_directories": matches, "equivalent_duplicate_fixture_rejected": True,
+        "fixture_error": duplicate_errors[0]}
+    names = ET.parse(translations.RES / "values/app_language_names.xml")
+    def array(name):
+        return [n.text for n in names.findall(f".//string-array[@name='{name}']/item")]
+    aliases = dict(zip(array("app_language_aliases"), array("app_language_alias_targets"), strict=True))
+    assert tags.count("jje") == 1 and "cju" not in tags and aliases["cju"] == "jje"
+    out["jeju_registration"] = {"jje_registration_count": tags.count("jje"), "cju_registered": "cju" in tags,
+                                 "legacy_alias": {"cju": aliases["cju"]}}
+    out["default_language_note"] = all_defaults["language20_translation_note"]
+
+    def git(*arguments):
+        return subprocess.check_output(["git", "-C", str(args.history_repository), *arguments])
+    def elements(data):
+        return {e.get("name"): ET.tostring(e, encoding="unicode").strip() for e in ET.fromstring(data) if e.get("name")}
+    for pr, (baseline, head) in HISTORY.items():
+        rows = []
+        original_guard = git("show", f"{head}:tools/test_normalization_scope_pr{pr}.py")
+        assert original_guard == (ROOT / f"tools/test_normalization_scope_pr{pr}.py").read_bytes()
+        for path in git("diff", "--name-only", baseline, head).decode().splitlines():
+            if "/res/values" not in path or not path.endswith("/strings.xml"):
+                continue
+            old, proposed = (elements(git("show", f"{ref}:{path}")) for ref in (baseline, head))
+            current = elements((ROOT / path).read_bytes())
+            assert not old.keys() - proposed.keys(), (pr, path, "removed keys")
+            for key, value in proposed.items():
+                if old.get(key) == value:
+                    continue
+                assert current.get(key) == value, (pr, path, key)
+                rows.append({"path": path, "key": key, "proposed_sha256": sha256(value.encode()),
+                             "current_sha256": sha256(current[key].encode()), "equal": True})
+        out["historical_resource_deltas"][str(pr)] = {"baseline": baseline, "head": head,
+            "guard_byte_identical": True, "changed_elements": len(rows), "rows": rows}
+    assert [out["historical_resource_deltas"][str(pr)]["changed_elements"] for pr in (7, 9)] == [135, 97]
+
+    xml = ET.parse(Path(__file__).with_name("AppLanguageTest-eab2820.xml")).getroot()
+    assert xml.get("tests") == "19" and all(xml.get(k) == "0" for k in ("skipped", "failures", "errors"))
+    required = ("regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues", "manchuPickerUsesItsOwnJoinedVerticalAutonym")
+    for name in required:
+        cases = [n for n in xml.findall("testcase") if n.get("name") == name]
+        assert len(cases) == 1 and not list(cases[0])
+    out["base_android_unit_evidence"] = {"head": BASE, "tests": 19, "failures": 0, "errors": 0, "skipped": 0,
+        "inspected_cases": list(required), "xml_sha256": sha256(Path(__file__).with_name("AppLanguageTest-eab2820.xml").read_bytes()),
+        "note": "Executed on source base eab2820; not a fresh candidate CI run or an installed-device matrix"}
+    print(json.dumps(out, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()
