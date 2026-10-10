@@ -127,7 +127,8 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
 
 ## Deadlines and evidence
 
-- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 35 minutes;
+- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
+  universal APK assembly: 30 minutes;
   each emulator job: 46 minutes, including a 36-minute execution step.
   These are hard cancellation ceilings, not target runtimes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
