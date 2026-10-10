@@ -1,8 +1,8 @@
 # Localization recheck register
 
-**All previous scoped work is open. Accepted progress: zero. Every item below is pending full recheck.**
+**Previous conclusions remain withdrawn. Fresh individual rechecks completed: 3 structural rows. The other 472 rows remain pending full recheck.**
 
-The user rejected the entire previous delivery and instructed that each part become additional work requiring an individual full recheck. This register implements that reset; creating the register does not advance the original reconciliation or translation work. No source revalidation is claimed here.
+The user rejected the entire previous delivery and instructed that each part become additional work requiring an individual full recheck. This register implements that reset; creating the register does not advance the original reconciliation or translation work. The reset itself claimed no source revalidation. The three new structural dispositions below rely on separately recorded source checks and execution.
 
 **6 October follow-up:** [New bounded results](localization-followup-2026-10-06.md)
 record fresh source corrections for the two Malay labels (R-003–R-006) and the
@@ -30,7 +30,7 @@ The scope remains the latest summary PR, the latest discussions and conclusions 
 - **Unlisted-claim rule:** every prior scoped claim not explicitly listed here is also pending full recheck. Before relying on it, add a stable individual item. Silence, omission, repetition and a previous report's bounded wording never carry progress forward.
 - No item becomes accepted merely because a document was changed, a status reset was published or this register was counted. Any eventual status change needs its own new evidence and must respect the user's actual instruction.
 
-This file lists **475 individually identified pending recheck rows**. These are reset entries, not completed checks. The companion register supplies additional granular locale/evidence rows.
+This file lists **475 individually identified recheck rows: 3 newly completed structural rechecks and 472 pending full recheck**. Only P07-004, P07-005 and P07-006 are completed by the [10 October structural recheck](p07-structural-recheck-2026-10-10/README.md), using accepted develop `80c14372` rather than unmerged PR37. Every other row and every companion evidence entry remains unchanged and pending. No earlier conclusion inherits acceptance.
 
 ## Scope, provenance and history
 
@@ -234,9 +234,9 @@ Prior claim location: Rejected report: PR7 row and related non-PR rows. This loc
 | P07-001 | Recover the original default-English language-note deferral and later instruction. | Pending full recheck |
 | P07-002 | Recheck the current default-English language note against the app's actual resource workflow. | Pending full recheck |
 | P07-003 | Recheck the precise scope and identities of the seven English variants. | Pending full recheck |
-| P07-004 | Recheck European Portuguese configuration identity. | Pending full recheck |
-| P07-005 | Recheck duplicate Portuguese configuration removal. | Pending full recheck |
-| P07-006 | Recheck the equivalent-qualifier guard and its relevant cases. | Pending full recheck |
+| P07-004 | Recheck European Portuguese configuration identity. | [Full structural recheck completed — 10 October 2026](p07-structural-recheck-2026-10-10/README.md#p07-004-european-portuguese-configuration-identity) |
+| P07-005 | Recheck duplicate Portuguese configuration removal. | [Full structural recheck completed — 10 October 2026](p07-structural-recheck-2026-10-10/README.md#p07-005-duplicate-configuration-removal) |
+| P07-006 | Recheck the equivalent-qualifier guard and its relevant cases. | [Full structural recheck completed — 10 October 2026](p07-structural-recheck-2026-10-10/README.md#p07-006-equivalent-qualifier-guard) |
 | P07-007 | Recheck Brazilian Portuguese substantive semantic changes. | Pending full recheck |
 | P07-008 | Recheck Brazilian Portuguese clipboard terminology. | Pending full recheck |
 | P07-009 | Recheck the assertion that the entire Brazilian Portuguese rewrite is preserved. | Pending full recheck |
