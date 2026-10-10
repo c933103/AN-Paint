@@ -140,7 +140,8 @@ jobs:
   build:
     name: Build APK and corresponding source
     runs-on: ubuntu-22.04
-    timeout-minutes: 35
+    # Aggregate hard stop including cold universal build and evidence/test-APK work.
+    timeout-minutes: 45
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -185,11 +186,16 @@ jobs:
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
       - name: Build universal APK
-        timeout-minutes: 22
+        # Cold four-ABI compilation exceeded 22m before Kotlin; retain a bounded cap.
+        timeout-minutes: 30
         run: bash tools/ci_run_timed.sh apk ./gradlew --no-daemon --max-workers=2 --console=plain --profile :app:assemble${BUILD_VARIANT^} -PciReleaseSigning
       - name: Report native compiler cache statistics
         if: always()
-        run: if command -v ccache >/dev/null; then ccache --show-stats; fi
+        run: |
+          mkdir -p build/reports/ci-phases
+          if command -v ccache >/dev/null; then
+            ccache --show-stats | tee build/reports/ci-phases/apk.ccache.txt
+          fi
       # A killed assemble step must still leave inspectable partial build output.
       # This is diagnostic evidence, never a substitute for APK/device acceptance.
       - name: Upload build diagnostics even on failure

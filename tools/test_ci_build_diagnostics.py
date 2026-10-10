@@ -34,9 +34,10 @@ class BuildDiagnosticsTest(unittest.TestCase):
                     self.assertIn(f'exit_status={status}', (reports / 'apk.time').read_text())
 
     def test_existing_deadlines_signing_and_universal_abis_remain(self):
-        self.assertIn('    timeout-minutes: 35\n', BUILD)
+        # Identifier retained: cold-build evidence intentionally revises only 30/45m caps.
+        self.assertIn('    timeout-minutes: 45\n', BUILD)
         step = BUILD.split('      - name: Build universal APK\n', 1)[1].split('      - name:', 1)[0]
-        self.assertIn('        timeout-minutes: 22\n', step)
+        self.assertIn('        timeout-minutes: 30\n', step)
         self.assertNotIn('nativeAbis', step)
         self.assertNotIn('continue-on-error', BUILD)
         self.assertNotIn('|| true', step)
@@ -75,3 +76,21 @@ class BuildDiagnosticsTest(unittest.TestCase):
             result = subprocess.run(['bash', str(ROOT / 'tools/ci_run_timed.sh'), 'apk', 'true'],
                                     cwd=root, capture_output=True, text=True, timeout=5)
             self.assertNotEqual(result.returncode, 0)
+
+
+    def test_cache_statistics_are_retained_without_masking_failures(self):
+        import textwrap
+        step = BUILD.split('      - name: Report native compiler cache statistics\n', 1)[1].split('      # A killed', 1)[0]
+        command = textwrap.dedent(step.split('        run: |\n', 1)[1])
+        for status in (0, 7):
+            with self.subTest(status=status), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                stub = root / 'ccache'
+                stub.write_text('#!/bin/bash\necho cache-stats-evidence\nexit "$TEST_EXIT"\n')
+                stub.chmod(0o755)
+                result = subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', command], cwd=root,
+                    env={**os.environ, 'PATH': str(root)+':'+os.environ['PATH'], 'TEST_EXIT': str(status)},
+                    capture_output=True, text=True, timeout=5)
+                self.assertEqual(result.returncode, status, result.stderr)
+                self.assertEqual((root/'build/reports/ci-phases/apk.ccache.txt').read_text(),
+                                 'cache-stats-evidence\n')
