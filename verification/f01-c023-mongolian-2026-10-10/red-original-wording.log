@@ -1,0 +1,48 @@
+test_composed_guard_preserves_original_copy_credit_historical_hash (test_tiff_c023_wording.TiffC023WordingTests.test_composed_guard_preserves_original_copy_credit_historical_hash) ... FAIL
+test_composed_guard_rejects_reversion_corruption_deletion_and_duplication (test_tiff_c023_wording.TiffC023WordingTests.test_composed_guard_rejects_reversion_corruption_deletion_and_duplication) ... ok
+test_composed_guard_rejects_unrelated_content (test_tiff_c023_wording.TiffC023WordingTests.test_composed_guard_rejects_unrelated_content) ... ok
+test_exact_single_definition_and_unchanged_checkbox (test_tiff_c023_wording.TiffC023WordingTests.test_exact_single_definition_and_unchanged_checkbox) ... FAIL
+test_extension_fixture_contains_exactly_c023_with_independent_oracles (test_tiff_c023_wording.TiffC023WordingTests.test_extension_fixture_contains_exactly_c023_with_independent_oracles) ... ok
+test_extension_pin_rejects_missing_duplicate_or_expanded_fixture (test_tiff_c023_wording.TiffC023WordingTests.test_extension_pin_rejects_missing_duplicate_or_expanded_fixture) ... ok
+test_only_modal_substitution_restores_entire_pinned_source_file (test_tiff_c023_wording.TiffC023WordingTests.test_only_modal_substitution_restores_entire_pinned_source_file) ... FAIL
+test_original_37_entry_fixture_and_its_scope_are_unchanged (test_tiff_c023_wording.TiffC023WordingTests.test_original_37_entry_fixture_and_its_scope_are_unchanged) ... ok
+test_traditional_mongolian_c024_remains_byte_identical (test_tiff_c023_wording.TiffC023WordingTests.test_traditional_mongolian_c024_remains_byte_identical) ... ok
+
+======================================================================
+FAIL: test_composed_guard_preserves_original_copy_credit_historical_hash (test_tiff_c023_wording.TiffC023WordingTests.test_composed_guard_preserves_original_copy_credit_historical_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-f01-c023-20261010/tools/test_tiff_c023_wording.py", line 72, in test_composed_guard_preserves_original_copy_credit_historical_hash
+    self._assert_historical_hash((ROOT / PATH).read_text())
+  File "/workspace/shared/anpaint-f01-c023-20261010/tools/test_tiff_c023_wording.py", line 68, in _assert_historical_hash
+    restored = copy_credit_scope.catalogue_before_copy_credit_and_f01(PATH, text)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-f01-c023-20261010/tools/test_commons_copy_credit_errors.py", line 45, in catalogue_before_copy_credit_and_f01
+    raise AssertionError(f"{path}: expected exactly one F01-C023 description")
+AssertionError: Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml: expected exactly one F01-C023 description
+
+======================================================================
+FAIL: test_exact_single_definition_and_unchanged_checkbox (test_tiff_c023_wording.TiffC023WordingTests.test_exact_single_definition_and_unchanged_checkbox)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-f01-c023-20261010/tools/test_tiff_c023_wording.py", line 34, in test_exact_single_definition_and_unchanged_checkbox
+    self.assertEqual(EXPECTED, nodes[0].text)
+AssertionError: 'Нэг [69 chars]эг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана.' != 'Нэг [69 chars]эг багасгана; шахалтгүй TIFF хадгалахын тулд унтраана.'
+- Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана.
+?                                                                                    ^^^ ------
++ Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгана; шахалтгүй TIFF хадгалахын тулд унтраана.
+?                                                                                    ^
+
+
+======================================================================
+FAIL: test_only_modal_substitution_restores_entire_pinned_source_file (test_tiff_c023_wording.TiffC023WordingTests.test_only_modal_substitution_restores_entire_pinned_source_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-f01-c023-20261010/tools/test_tiff_c023_wording.py", line 44, in test_only_modal_substitution_restores_entire_pinned_source_file
+    self.assertEqual(1, data.count(after))
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.021s
+
+FAILED (failures=3)

@@ -177,7 +177,39 @@ class TiffDescriptionDialogTest {
         }
     }
 
+    @Test fun cyrillicMongolianC023KeepsQualifiedDescriptionWhenTogglingAndConfirming() {
+        for (initial in listOf(false, true)) {
+            val dialog = open("mn-Cyrl-MN", initial)
+            assertTiff(dialog, MONGOLIAN_C023, initial)
+            assertEquals(MONGOLIAN_C023, ui(R.string.formats22_tiff_description))
+            assertEquals("Алдагдалгүй шахалт (Deflate)", dialog.compression().text.toString())
+            dialog.compression().performClick(); idle()
+            assertTiff(dialog, MONGOLIAN_C023, !initial)
+            confirm(dialog, !initial)
+        }
+    }
+
+    @Test fun cyrillicMongolianC023RestoresDescriptionAfterFormatSwitchAndBothCancelRoutes() {
+        for (compressed in listOf(false, true)) for (cancelEvent in listOf(false, true)) {
+            val dialog = open("mn-Cyrl-MN", compressed)
+            assertTiff(dialog, MONGOLIAN_C023, compressed)
+            EditorTestNavigation.format(dialog.format(), ImageFormat.DIB)
+            assertEquals(View.GONE, dialog.compression().visibility)
+            assertEquals(ui(R.string.formats22_dib_description), dialog.description().text.toString())
+            assertNotEquals(MONGOLIAN_C023, dialog.description().text.toString())
+            EditorTestNavigation.format(dialog.format(), ImageFormat.TIFF)
+            assertTiff(dialog, MONGOLIAN_C023, compressed)
+            if (cancelEvent) dialog.cancel()
+            else assertTrue(dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick())
+            idle()
+            assertFalse(dialog.isShowing)
+            assertTrue(requests.isEmpty())
+            assertEquals(1, cancellations)
+        }
+    }
+
     companion object {
+        private const val MONGOLIAN_C023 = "Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана."
         private const val ENGLISH = "Saves one RGB page. Compression may reduce file size without changing " +
             "pixels; turn it off for uncompressed TIFF."
         private const val PORTUGUESE = "Salva uma página RGB. A compressão pode reduzir o tamanho do arquivo " +

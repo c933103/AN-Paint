@@ -34,6 +34,16 @@ def catalogue_before_copy_credit_and_f01(path, text):
         if text.count(change['after']) != 1:
             raise AssertionError(f"{path}: expected exactly one approved F01 description")
         text = text.replace(change['after'], change['before'], 1)
+    # C023 is a separate exact extension. The original 37-entry fixture and
+    # its pin above remain unchanged; all historical full-file hashes survive.
+    c023_bytes = (ROOT / 'tools/fixtures/tiff_c023_wording_scope.json').read_bytes()
+    if hashlib.sha256(c023_bytes).hexdigest() != 'd2dcbbeaef13c80ae9dfe4d1ec9595c8ba82cbe92d057479f5b25e4deba3d6c4':
+        raise AssertionError('The pinned one-line F01-C023 scope fixture changed')
+    c023 = json.loads(c023_bytes)['entries'][0]
+    if path == c023['path']:
+        if text.count(c023['after']) != 1:
+            raise AssertionError(f"{path}: expected exactly one F01-C023 description")
+        text = text.replace(c023['after'], c023['before'], 1)
     return text
 
 

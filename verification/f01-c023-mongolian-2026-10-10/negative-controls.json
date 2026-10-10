@@ -1,0 +1,19 @@
+{
+  "original_resource_reversion": {
+    "exit_code": 1,
+    "expected": "rejected",
+    "log": "red-original-wording.log"
+  },
+  "restored_candidate": {
+    "exit_code": 0,
+    "expected": "passed",
+    "log": "focused-host.log"
+  },
+  "candidate_bytes_restored": true,
+  "embedded_negative_controls": {
+    "resource_reversion_corruption_deletion_duplication": 4,
+    "unrelated_content": 1,
+    "malformed_extension_fixtures": 3
+  },
+  "kotlin_execution": "not compiled or run in this isolated pass; final exact integrated CI pending"
+}

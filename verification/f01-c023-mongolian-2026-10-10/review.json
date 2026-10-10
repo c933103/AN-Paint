@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "repository": "c933103/AN-Paint",
+  "case_id": "F01-C023",
+  "tag": "mn-Cyrl-MN",
+  "parent_rows": [
+    "P08-009"
+  ],
+  "board": "AN-W02",
+  "source_commit": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+  "source_tree": "04a84df1535297f13a314c521b55647f6d15a678",
+  "source_path": "Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+  "source_line": 570,
+  "source_blob": "575e8c401ab2e013b7a2afa1d0848024ddb53a8c",
+  "resource_key": "formats22_tiff_description",
+  "original": "Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгана; шахалтгүй TIFF хадгалахын тулд унтраана.",
+  "proposal": "Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана.",
+  "replacement": {
+    "before": "багасгана",
+    "after": "багасгаж магадгүй"
+  },
+  "disposition": "Bounded source/test proposal independently checked and accepted for isolated-branch publication. F01-C023 remains open; final integrated review/CI, merge and native-speaker verification are not claimed.",
+  "confidence": {
+    "lexical_and_morphological": "high",
+    "exact_ui_application": "source-backed model linguistic analysis",
+    "full_language": "not assessed"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Mongoltoli: БАГАСГАХ",
+      "url": "https://mongoltoli.mn/search.php?opt=1&ug_id=9881&word=%D0%91%D0%90%D0%93%D0%90%D0%A1%D0%93%D0%90%D0%A5",
+      "locator": "Sense 1 and хэмжээг нь багасгах",
+      "brief_quotation": "Бага болгох",
+      "supports": "The verb makes something smaller; the entry expressly includes reducing its size."
+    },
+    {
+      "id": "S2",
+      "title": "TUFS Mongolian grammar: nonpast",
+      "url": "https://www.coelang.tufs.ac.jp/mt/mn/gmod/contents/explanation/014.html",
+      "locator": "Nonpast final form and examples",
+      "brief_quotation": "語幹-на",
+      "supports": "Nonpast -на can state generic actions or truths; contextual application to this UI is model analysis, not a claim that -на lexically means always."
+    },
+    {
+      "id": "S3",
+      "title": "TUFS Mongolian grammar: modality (6)",
+      "url": "https://www.coelang.tufs.ac.jp/mt/mn/gmod/courses/c02/lesson17/step2/explanation/082.html",
+      "locator": "Table of forms attached to the predicate stem",
+      "brief_quotation": "-ж магадгүй / 可能性・蓋然性",
+      "supports": "The construction expresses possibility/probability for a prospective event, rather than asserting occurrence."
+    },
+    {
+      "id": "S4",
+      "title": "TUFS Mongolian grammar: converb and negative coordination",
+      "url": "https://www.coelang.tufs.ac.jp/mt/mn/gmod/contents/explanation/041.html",
+      "locator": "Converb -ж/-ч and negative coordination -хгүйгээр",
+      "supports": "Converb construction and the unchanged without-changing clause; spelling alternation points to S5."
+    },
+    {
+      "id": "S5",
+      "title": "TUFS Mongolian grammar: past final forms and spelling",
+      "url": "https://www.coelang.tufs.ac.jp/mt/mn/gmod/contents/explanation/012.html",
+      "locator": "-жээ/-чээ and shortened -ж/-ч spelling rules",
+      "supports": "The referenced alternation rules do not select -ч for vowel-final багасга-; багасга- + -ж yields багасгаж. This application is model morphology analysis."
+    },
+    {
+      "id": "S6",
+      "title": "Mongoltoli institutional provenance",
+      "url": "https://mongoltoli.mn/a001.php",
+      "locator": "Opening institutional description",
+      "supports": "The dictionary identifies Mongolian Academy of Sciences research institutes among its creators."
+    },
+    {
+      "id": "S7",
+      "title": "RFC1951",
+      "url": "https://www.rfc-editor.org/rfc/rfc1951.html#section-1.1",
+      "locator": "Section 1.1",
+      "supports": "Lossless compression cannot reduce every possible input, and Deflate can expand data; no complete-TIFF expansion percentage is promised."
+    }
+  ],
+  "analytical_gloss": "Compression may reduce the file size without changing the pixels.",
+  "morphology": "багасгах → stem багасга-; original багасга- + -на; proposal багасга- + -ж + магадгүй = багасгаж магадгүй.",
+  "limitations": [
+    "No native speaker reviewed this exact sentence.",
+    "Complete-string naturalness and computing terminology remain unverified.",
+    "The grammatical sources establish constructions; their application to the exact app sentence is model linguistic analysis.",
+    "No inference or substitution is propagated to Traditional Mongolian or any other locale.",
+    "New Kotlin tests have not been compiled or executed in this isolated pass; final exact integrated CI is pending.",
+    "Installed rendering, accessibility and full-language acceptance are not established."
+  ],
+  "scope_controls": {
+    "production_resources_changed": 1,
+    "production_code_changed": false,
+    "workflows_changed": false,
+    "original_37_fixture_changed": false,
+    "historical_copy_credit_hashes_changed": false,
+    "pr43_branch_changed": false,
+    "other_locales_changed": false,
+    "completion_counts_changed": false
+  },
+  "register_counts": {
+    "total": 475,
+    "structural_completed": 3,
+    "pending": 472
+  },
+  "independent_parent_check": {
+    "exact_five_path_source_diff": "inspected",
+    "separate_fixture_composition": "inspected",
+    "focused_host_tests_passed": 9,
+    "approval_scope": "separate-branch publication",
+    "kotlin_execution": false,
+    "clean_codex_review": false
+  }
+}
