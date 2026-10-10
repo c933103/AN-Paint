@@ -19,7 +19,8 @@ STEPS = {
 PHASES = {
     'Run Python contracts': ('python', 2),
     'Run JVM regression tests': ('jvm', 12),
-    'Run Android lint and native dependencies': ('lint', 6),
+    'Prepare lint native dependencies': ('native', 6),
+    'Run Android lint': ('lint', 6),
 }
 
 
@@ -35,6 +36,35 @@ class CheckPhaseContracts(unittest.TestCase):
                 self.assertEqual(block.count('        run: '), 1)
                 self.assertNotIn('|| true', block)
         self.assertNotIn('Run local checks', CHECKS)
+
+    def test_checks_reuse_only_the_build_jobs_strict_compiler_cache(self):
+        build = WORKFLOW.split('\n  build:\n', 1)[1].split('\n  device:\n', 1)[0]
+        for block in (CHECKS, build):
+            self.assertIn("CCACHE_COMPILERCHECK: content", block)
+            self.assertIn("CCACHE_SLOPPINESS: ''", block)
+            self.assertIn("CCACHE_NODEPEND: '1'", block)
+            self.assertIn("CCACHE_NODIRECT: '1'", block)
+            self.assertIn('CMAKE_C_COMPILER_LAUNCHER: ccache', block)
+            self.assertIn('CMAKE_CXX_COMPILER_LAUNCHER: ccache', block)
+            self.assertIn('ccache=4.5.1-1', block)
+            self.assertIn('path: ${{ env.CCACHE_DIR }}', block)
+            for forbidden in ('path: .cxx', 'path: app/build', 'path: Paintroid/build\n'):
+                self.assertNotIn(forbidden, block)
+        def cache_step(block):
+            return block.split('      - name: Set native compiler cache directory', 1)[1].split(
+                '      - name: Prepare build tools and notices', 1)[0]
+        self.assertEqual(cache_step(CHECKS), cache_step(build))
+        self.assertLess(CHECKS.index('Prepare lint native dependencies'), CHECKS.index('Run Android lint'))
+        self.assertNotIn(' -x ', CHECKS)
+
+    def test_full_matrix_pr_label_reuses_the_existing_android_jobs(self):
+        source = (ROOT / '.github/workflows/android.yml').read_text()
+        matrix = source.split('      matrix:', 1)[1].split('    steps:', 1)[0]
+        self.assertIn("contains(github.event.pull_request.labels.*.name, 'ci:full-android')", matrix)
+        self.assertIn("'[30,35]' || '[35]'", matrix)
+        self.assertIn("inputs.device_tests == 'full'", matrix)
+        self.assertNotIn('codex/an-w05', matrix)
+
 
     def test_reports_and_live_phase_profile_evidence_are_uploaded_on_failure(self):
         upload = CHECKS.split('      - uses: actions/upload-artifact@', 1)[1]
@@ -67,8 +97,9 @@ class CheckPhaseContracts(unittest.TestCase):
                             if phase == 'python':
                                 self.assertEqual(args, ['-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py'])
                             else:
-                                task = (f':Paintroid:test{variant.capitalize()}UnitTest' if phase == 'jvm'
-                                        else f':app:lint{variant.capitalize()}')
+                                task = {'jvm': f':Paintroid:test{variant.capitalize()}UnitTest',
+                                        'native': f':Paintroid:externalNativeBuild{variant.capitalize()}',
+                                        'lint': f':app:lint{variant.capitalize()}'}[phase]
                                 self.assertEqual(args, ['--no-daemon', '--max-workers=2', '--console=plain',
                                                        '--continue', '--profile', '-PnativeAbis=x86_64', task])
                             reports = root / 'build/reports/ci-phases'
