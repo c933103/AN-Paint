@@ -91,7 +91,7 @@ class ImportSelection(private val activity: Activity,private val worker: Executo
         val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else
             ui(R.string.formats22_animation_message,info.format,frames)+"\n\n"+
                 ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)
-        dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_animation_title)).setMessage(message)
+        dialog=EditorDialogBuilder(activity).setTitle(ui(if(info.frameCount<2) R.string.formats22_open_still else R.string.formats22_animation_title)).setMessage(message)
             .setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.show()
     }
