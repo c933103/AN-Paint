@@ -404,7 +404,10 @@ Fresh matrix screenshots and summaries are cleared before invocation. Bounded
 EXIT cleanup pulls screenshots before emulator shutdown, including after failure
 or timeout. A successful run requires exactly 32 PNGs: four locales × two
 orientations × workspace / initial Save / format popup / JPEG quality. The host
-receipt records filename, dimensions, size and SHA-256 after checking PNG headers.
+receipt records filename, dimensions, size and SHA-256 after checking PNG headers
+and rejecting exact duplicate content across required states. Popup capture waits
+for stable native-window geometry, a committed render frame and two subsequent
+frame callbacks, and rejects a byte-identical repeat of the closed Save frame.
 Missing collection or inventory makes an otherwise successful job fail. This is
 an inventory/integrity check, not visual review; inspect all 32 rendered images
 before concluding the installed matrix is verified.

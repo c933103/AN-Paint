@@ -1,5 +1,6 @@
 """Host contracts for matrix selection, fail-closed accounting and evidence cleanup."""
 import copy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -47,8 +48,9 @@ def screenshot_fixture(directory):
     directory.mkdir(parents=True, exist_ok=True)
     for name in EXPECTED_SCREENSHOTS:
         width, height = (120, 240) if '-portrait-' in name else (240, 120)
-        # The production verifier explicitly claims header/inventory checks only.
-        data = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR'+struct.pack('>II', width, height)+b'\0'*9
+        # Deliberately header-only fixtures exercise inventory and byte-duplicate checks.
+        # They do not pretend to be rendered screenshots or fully decodable PNGs.
+        data = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR'+struct.pack('>II', width, height)+b'\0'*9+name.encode('utf-8')
         (directory/name).write_bytes(data)
 
 
@@ -154,8 +156,31 @@ class MatrixInventoryTest(unittest.TestCase):
         self.assertIn('draftGenerationField.getLong(activity)==savedDraftGenerationField.getLong(activity)', source)
         self.assertIn('receivedPosition.get()==index', source)
         self.assertIn('externalRequests.isEmpty()', source)
+        self.assertIn('awaitRenderedFormatPopup()', source)
+        self.assertIn('registerFrameCommitCallback(committed)', source)
+        self.assertIn('unregisterFrameCommitCallback(committed)', source)
+        self.assertIn('screenshot("format-popup",distinctFrom=initialSaveScreenshot)', source)
         self.assertIn('Color.MAGENTA,activity.document.bitmap.getPixel(4,7)', source)
         self.assertIn('Color.CYAN,activity.document.bitmap.getPixel(81,63)', source)
+
+    def test_archived_attempt_two_is_bound_and_rejected_for_the_observed_duplicate(self):
+        evidence = ROOT/'verification/installed-vertical-matrix-2026-10-10/attempt-2-visual'
+        receipt = json.loads((evidence/'visual-receipt.json').read_text())
+        screenshots = evidence/'screenshots'
+        self.assertEqual({path.name for path in screenshots.glob('*.png')}, EXPECTED_SCREENSHOTS)
+        for entry in receipt['images']['files']:
+            self.assertEqual(hashlib.sha256((screenshots/entry['name']).read_bytes()).hexdigest(), entry['sha256'])
+        with self.assertRaisesRegex(ValueError, 'Duplicate screenshot content: en-XV-landscape-format-popup.png and en-XV-landscape-save-initial.png'):
+            verify_screenshots(screenshots)
+
+    def test_screenshot_matrix_rejects_a_duplicated_closed_form_as_popup(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); screenshot_fixture(root)
+            before = root/'en-XV-landscape-save-initial.png'
+            popup = root/'en-XV-landscape-format-popup.png'
+            popup.write_bytes(before.read_bytes())
+            with self.assertRaisesRegex(ValueError, 'Duplicate screenshot content'):
+                verify_screenshots(root)
 
     def test_screenshot_matrix_rejects_missing_extra_or_corrupted_files(self):
         with tempfile.TemporaryDirectory() as directory:

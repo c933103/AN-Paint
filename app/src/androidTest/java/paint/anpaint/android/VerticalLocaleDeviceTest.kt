@@ -208,10 +208,11 @@ class VerticalLocaleDeviceTest {
                 assertInitialColumns(onMain {
                     saveRoot()!!.findViewWithTag<HorizontalScrollView>("vertical_dialog_columns")
                 },rightToLeft,"Save dialog")
-                screenshot("save-initial")
+                val initialSaveScreenshot=screenshot("save-initial")
                 tap("native format spinner") {saveRoot()!!.findViewWithTag<View>("export_format")}
                 awaitState("native format popup") {formatList()!=null}
-                screenshot("format-popup")
+                awaitRenderedFormatPopup()
+                screenshot("format-popup",distinctFrom=initialSaveScreenshot)
                 tapJpeg()
                 awaitState("JPEG selected") {
                     saveRoot()?.findViewWithTag<Spinner>("export_format")?.selectedItem?.toString()=="JPEG"
@@ -478,12 +479,56 @@ class VerticalLocaleDeviceTest {
             draftGenerationField.getLong(activity)==savedDraftGenerationField.getLong(activity)
     }
 
-    private fun screenshot(suffix: String) {
+    private fun awaitRenderedFormatPopup() {
+        // A shown ListView can precede its first display frame. Wait for the
+        // actual popup geometry and hardware frame commit, then allow the next
+        // two frame callbacks before capturing the display. This redraws the
+        // same native popup; it never repeats the tap or changes its selection.
+        awaitGeometrySettled("format popup screenshot") {
+            formatList() ?: throw AssertionError("Native format popup vanished")
+        }
+        val popup=onMain {
+            val list=formatList() ?: throw AssertionError("Native format popup vanished")
+            assertNotNull("Native popup has usable bounds",usableBounds(list))
+            list.rootView.also {
+                assertTrue("Native popup is attached",it.isAttachedToWindow)
+                assertTrue("Native popup supports frame-commit observation",it.isHardwareAccelerated)
+            }
+        }
+        val complete=CountDownLatch(1)
+        val secondFrame=Runnable {complete.countDown()}
+        val firstFrame=Runnable {popup.postOnAnimation(secondFrame)}
+        val committed=Runnable {popup.postOnAnimation(firstFrame)}
+        val observer=onMain {
+            popup.viewTreeObserver.also {
+                it.registerFrameCommitCallback(committed)
+                popup.invalidate()
+            }
+        }
+        try {
+            assertTrue("Native popup frame committed before screenshot",complete.await(3,TimeUnit.SECONDS))
+            onMain {
+                assertSame("Same native popup remains open",popup,formatList()?.rootView)
+                assertTrue("Native popup remains attached and shown",popup.isAttachedToWindow && popup.isShown)
+            }
+        } finally {
+            onMain {
+                if(observer.isAlive) observer.unregisterFrameCommitCallback(committed)
+                popup.removeCallbacks(firstFrame)
+                popup.removeCallbacks(secondFrame)
+            }
+        }
+    }
+
+    private fun screenshot(suffix: String,distinctFrom: File?=null): File {
         val directory=File(context.getExternalFilesDir(null),"vertical-locale-evidence")
         assertTrue("Screenshot directory",directory.isDirectory || directory.mkdirs())
         val file=File(directory,"$evidenceName-$suffix.png")
         assertTrue("Installed screenshot $file",device.takeScreenshot(file))
         assertTrue("Nonempty screenshot",file.length()>0)
+        if(distinctFrom!=null) assertFalse("$suffix must not repeat the preceding closed Save frame",
+            file.readBytes().contentEquals(distinctFrom.readBytes()))
+        return file
     }
     private fun <T> onMain(action: ()->T): T {
         val result=AtomicReference<T>();val failure=AtomicReference<Throwable?>()

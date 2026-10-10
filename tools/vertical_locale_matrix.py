@@ -89,6 +89,7 @@ def verify_screenshots(directory: Path) -> dict:
         raise ValueError(f'Screenshot matrix mismatch: missing={sorted(EXPECTED_SCREENSHOTS-actual)}, '
                          f'unexpected={sorted(actual-EXPECTED_SCREENSHOTS)}')
     files = []
+    content_owners = {}
     for name in sorted(actual):
         data = (directory/name).read_bytes()
         if (len(data) < 33 or data[:8] != b'\x89PNG\r\n\x1a\n'
@@ -97,9 +98,13 @@ def verify_screenshots(directory: Path) -> dict:
         width, height = struct.unpack('>II', data[16:24])
         if not width or not height:
             raise ValueError(f'Empty PNG dimensions: {name}')
-        files.append(dict(name=name, bytes=len(data), width=width, height=height,
-                          sha256=hashlib.sha256(data).hexdigest()))
-    # This proves inventory/header integrity only. Reviewers still inspect pixels.
+        digest = hashlib.sha256(data).hexdigest()
+        if digest in content_owners:
+            raise ValueError(f'Duplicate screenshot content: {content_owners[digest]} and {name}')
+        content_owners[digest] = name
+        files.append(dict(name=name, bytes=len(data), width=width, height=height, sha256=digest))
+    # Inventory, header and exact-duplicate checks do not certify rendered state.
+    # Reviewers still inspect every actual image.
     return dict(success=True, expected_screenshots=32, files=files)
 
 
