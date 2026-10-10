@@ -122,6 +122,8 @@ def event(value):
     with (root/'timing.jsonl').open('a') as out:out.write(json.dumps(dict(event=value,monotonic=time.monotonic()))+'\n')
 def state():return (root/'pid').read_text() if (root/'pid').exists() else 'absent'
 event('adb '+json.dumps(args))
+if args==['shell','getprop','ro.build.version.sdk']:
+    print('35');sys.exit(0)
 if args[0]=='install':
     # One explicitly requested benign delay, outside the PID boundary command.
     delay=float(os.environ['HARNESS_SETUP_DELAY'])
@@ -407,3 +409,4 @@ run_credit_restart_regression || exit "$?"
 
 if __name__ == '__main__':
     unittest.main()
+

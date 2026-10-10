@@ -1,3 +1,25 @@
+# AN Paint 0.0.38 — SDK-aware release test inventory
+
+The first exact-source release run for eab28203893ffba45f14a7f96df6d19cf4d19d3b
+passed universal APK/source assembly, all 737 regression tests, zero lint issues
+and all 94 API35 tests. API30 completed 90 successful tests but failed strict
+completeness because the source inventory counted an existing API33-only picker
+test that AndroidJUnitRunner correctly suppressed. The test and its annotation
+are retained. The inventory now follows the device SDK and AndroidX method-over-
+class precedence, records SDK-ineligible methods separately and rejects unknown
+annotation syntax. No eligible test, skip check or assertion is removed.
+
+Historical run (failed):
+https://github.com/c933103/AN-Paint/actions/runs/38013637833
+The signed eab2820 candidate is retained as historical, not a fully verified
+release. Its APK SHA-256 is
+cf9661810ef0f735ed5cdcd4c45f0ddc87047b2beeec5b0c698b14ce065b7cdc.
+Version 0.0.38/code 95 and the original signing lineage remain unchanged.
+The corrected source requires a fresh release build, full API30/35 verification,
+source verification and private signing before publication.
+
+---
+
 # AN Paint 0.0.38 — release verification of accepted develop
 
 Release candidate version 0.0.38/code 95 retains the existing package and upgrade

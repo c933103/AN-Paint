@@ -336,3 +336,26 @@ prove complete seed success with the same live PID and undelivered Gallery resul
 if that gate fails, diagnose it without claiming Activity recreation or an
 already-dead-process force-stop is equivalent. No workflow YAML, dependency,
 release matrix or outer deadline is changed.
+
+
+## SDK-aware instrumentation inventory (0.0.38 release verification)
+
+The source inventory now queries the connected device SDK and applies literal
+`@SdkSuppress` minimum/maximum bounds before comparing every eligible method
+with AndroidJUnitRunner's completed methods. A method annotation overrides the
+class annotation, matching AndroidX. The report records the device SDK and every
+SDK-ineligible method separately; those methods are not counted as test passes.
+Unknown or malformed SDK annotation syntax fails closed. Existing explicit
+class exclusions, skipped-test rejection and restart-phase completeness checks
+remain in force.
+
+The first release run 38013637833 passed build, 737 regression tests, lint and
+94 API35 tests. API30 completed 90 successful tests but correctly failed the old
+inventory check: it expected the API33-only device-language picker method. The
+method's `@SdkSuppress(minSdkVersion=33)` was already present, and the method ran
+and passed on API35. That run remains failed; a new exact-source full release
+run is required after this inventory correction. No test or SDK annotation was
+removed or relaxed.
+
+AndroidX precedence and bounds:
+https://developer.android.com/reference/androidx/test/filters/SdkSuppress
