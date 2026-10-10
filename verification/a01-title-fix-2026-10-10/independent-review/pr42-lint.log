@@ -1,0 +1,508 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :Paintroid:fetchHeifSources
+> Task :Paintroid:fetchJxlSources
+> Task :Paintroid:fetchTiffSources
+> Task :Paintroid:fetchWebpSources
+> Task :Paintroid:bundleCorrespondingSource UP-TO-DATE
+> Task :Paintroid:preBuild UP-TO-DATE
+> Task :Paintroid:preDebugBuild UP-TO-DATE
+> Task :Paintroid:checkDebugAarMetadata
+
+> Task :Paintroid:configureCMakeDebug[x86_64]
+C/C++: -- Compiler is not EMSCRIPTEN
+C/C++: --- aom_configure: Detected CPU: generic
+C/C++: Running C compiler test: pie_check
+C/C++: CONFIG_PIC enabled for position independent executable (PIE) build
+C/C++: Running C compiler test: unistd_check
+C/C++: Running CXX compiler test: unistd_check
+C/C++: Running C compiler test: fenv_check
+C/C++: Checking C compiler flag support for: -std=c11
+C/C++: Checking C++ compiler flag support for: -std=c++17
+C/C++: Checking C compiler flag support for: -Wall
+C/C++: Checking C++ compiler flag support for: -Wall
+C/C++: Checking C compiler flag support for: -Wdisabled-optimization
+C/C++: Checking C++ compiler flag support for: -Wdisabled-optimization
+C/C++: Checking C compiler flag support for: -Wextra
+C/C++: Checking C++ compiler flag support for: -Wextra
+C/C++: Checking C compiler flag support for: -Wextra-semi
+C/C++: Checking C++ compiler flag support for: -Wextra-semi
+C/C++: Checking C compiler flag support for: -Wextra-semi-stmt
+C/C++: Checking C++ compiler flag support for: -Wextra-semi-stmt
+C/C++: Checking C compiler flag support for: -Wfloat-conversion
+C/C++: Checking C++ compiler flag support for: -Wfloat-conversion
+C/C++: Checking C compiler flag support for: -Wformat=2
+C/C++: Checking C++ compiler flag support for: -Wformat=2
+C/C++: Checking C compiler flag support for: -Wimplicit-function-declaration
+C/C++: Checking C compiler flag support for: -Wlogical-op
+C/C++: Checking C++ compiler flag support for: -Wlogical-op
+C/C++: Checking C compiler flag support for: -Wmissing-declarations
+C/C++: Checking C++ compiler flag support for: -Wmissing-declarations
+C/C++: Checking C compiler flag support for: -Wmissing-prototypes
+C/C++: Checking C++ compiler flag support for: -Wmissing-prototypes
+C/C++: Checking C compiler flag support for: -Wpointer-arith
+C/C++: Checking C++ compiler flag support for: -Wpointer-arith
+C/C++: Checking C compiler flag support for: -Wshadow
+C/C++: Checking C++ compiler flag support for: -Wshadow
+C/C++: Checking C compiler flag support for: -Wshorten-64-to-32
+C/C++: Checking C++ compiler flag support for: -Wshorten-64-to-32
+C/C++: Checking C compiler flag support for: -Wsign-compare
+C/C++: Checking C++ compiler flag support for: -Wsign-compare
+C/C++: Checking C compiler flag support for: -Wstring-conversion
+C/C++: Checking C++ compiler flag support for: -Wstring-conversion
+C/C++: Checking C compiler flag support for: -Wtype-limits
+C/C++: Checking C++ compiler flag support for: -Wtype-limits
+C/C++: Checking C compiler flag support for: -Wundef
+C/C++: Checking C++ compiler flag support for: -Wundef
+C/C++: Checking C compiler flag support for: -Wuninitialized
+C/C++: Checking C++ compiler flag support for: -Wuninitialized
+C/C++: Checking C compiler flag support for: -Wunreachable-code-aggressive
+C/C++: Checking C++ compiler flag support for: -Wunreachable-code-aggressive
+C/C++: Checking C compiler flag support for: -Wunused
+C/C++: Checking C++ compiler flag support for: -Wunused
+C/C++: Checking C compiler flag support for: -Wvla
+C/C++: Checking C++ compiler flag support for: -Wvla
+C/C++: Checking C compiler flag support for: -Wc23-extensions
+C/C++: Checking C++ compiler flag support for: -Wc++20-extensions
+C/C++: Checking C++ compiler flag support for: -Wc++23-extensions
+C/C++: Checking C compiler flag support for: -Wstack-usage=100000
+C/C++: Checking C++ compiler flag support for: -Wstack-usage=240000
+C/C++: Checking C compiler flag support for: -D_LARGEFILE_SOURCE
+C/C++: Checking C++ compiler flag support for: -D_LARGEFILE_SOURCE
+C/C++: Checking C compiler flag support for: -D_FILE_OFFSET_BITS=64
+C/C++: Checking C++ compiler flag support for: -D_FILE_OFFSET_BITS=64
+C/C++: Checking C compiler flag support for: -flax-vector-conversions=none
+C/C++: Checking C++ compiler flag support for: -flax-vector-conversions=none
+C/C++: === Summary of compiled codecs ===
+C/C++: libde265 HEVC decoder                 : + built-in
+C/C++: FFMPEG HEVC decoder (HW acc)          : - disabled
+C/C++: WebCodecs HEVC decoder (experimental) : - disabled
+C/C++: x265 HEVC encoder                     : - disabled
+C/C++: Kvazaar HEVC encoder                  : + built-in
+C/C++: AOM AV1 decoder                       : + built-in
+C/C++: AOM AV1 encoder                       : + built-in
+C/C++: Dav1d AV1 decoder                     : - disabled
+C/C++: SVT AV1 encoder                       : - disabled
+C/C++: Rav1e AV1 encoder                     : - disabled
+C/C++: JPEG decoder                          : - disabled
+C/C++: JPEG encoder                          : - disabled
+C/C++: x264 AVC encoder                      : - disabled
+C/C++: OpenH264 decoder                      : - disabled
+C/C++: OpenJPEG J2K decoder                  : - disabled
+C/C++: OpenJPEG J2K encoder                  : - disabled
+C/C++: OpenJPH HT-J2K encoder                : - disabled
+C/C++: uvg266 VVC encoder                    : - disabled
+C/C++: vvenc VVC encoder                     : - disabled
+C/C++: vvdec VVC decoder                     : - disabled
+C/C++: === Supported formats ===
+C/C++: format        decoding   encoding
+C/C++: AVC             NO         NO 
+C/C++: AVIF            YES        YES
+C/C++: HEIC            YES        YES
+C/C++: JPEG            NO         NO 
+C/C++: JPEG2000        NO         NO 
+C/C++: JPEG2000-HT     NO         NO 
+C/C++: Uncompressed    NO         NO 
+C/C++: VVC             NO         NO 
+C/C++: libsharpyuv: disabled
+C/C++: === Active input formats for heif-enc ===
+C/C++: JPEG: ------ (libjpeg not found)
+C/C++: PNG:  ------ (libpng not found)
+C/C++: WEBP:  ------ (libwebp not found)
+C/C++: TIFF: ------ (libtiff not found)
+C/C++: Not compiling 'x265' backend
+C/C++: Compiling 'libde265' as built-in backend
+C/C++: Not compiling 'dav1d' backend
+C/C++: Compiling 'aomdec' as built-in backend
+C/C++: Compiling 'aomenc' as built-in backend
+C/C++: Not compiling 'svtenc' backend
+C/C++: Not compiling 'rav1e' backend
+C/C++: Not compiling 'jpegdec' backend
+C/C++: Not compiling 'jpegenc' backend
+C/C++: Not compiling 'j2kdec' backend
+C/C++: Not compiling 'j2kenc' backend
+C/C++: Compiling 'kvazaar' as built-in backend
+C/C++: Not compiling 'ffmpegdec' backend
+C/C++: Not compiling 'jphenc' backend
+C/C++: Not compiling 'uvg266' backend
+C/C++: Not compiling 'vvdec' backend
+C/C++: Not compiling 'vvenc' backend
+C/C++: Not compiling 'x264' backend
+C/C++: Not compiling 'openh264dec' backend
+C/C++: Not compiling 'libsharpyuv'
+
+> Task :Paintroid:buildCMakeDebug[x86_64][anpaint_heif,anpaint_jxl,etc]
+C/C++: ninja: Entering directory `/home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64'
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1165:1: warning: stack frame size (5944) exceeds limit (5632) in 'skcms_private::baseline::Exec_xyz_to_lab(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1165 | STAGE(xyz_to_lab, NoCtx) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:64:1: note: expanded from here
+C/C++:    64 | Exec_xyz_to_lab
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1188:1: warning: stack frame size (6104) exceeds limit (5632) in 'skcms_private::baseline::Exec_gamma_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1188 | STAGE(gamma_rgb, const skcms_TransferFunction* tf) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:99:1: note: expanded from here
+C/C++:    99 | Exec_gamma_rgb
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1199:1: warning: stack frame size (7208) exceeds limit (5632) in 'skcms_private::baseline::Exec_tf_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1199 | STAGE(tf_rgb, const skcms_TransferFunction* tf) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:134:1: note: expanded from here
+C/C++:   134 | Exec_tf_rgb
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1205:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_r(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1205 | STAGE(pq_r, const skcms_TransferFunction* tf) { r = apply_pq(tf, r); }
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:141:1: note: expanded from here
+C/C++:   141 | Exec_pq_r
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1206:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_g(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1206 | STAGE(pq_g, const skcms_TransferFunction* tf) { g = apply_pq(tf, g); }
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:148:1: note: expanded from here
+C/C++:   148 | Exec_pq_g
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1207:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_b(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1207 | STAGE(pq_b, const skcms_TransferFunction* tf) { b = apply_pq(tf, b); }
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:155:1: note: expanded from here
+C/C++:   155 | Exec_pq_b
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1208:1: warning: stack frame size (5640) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_a(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1208 | STAGE(pq_a, const skcms_TransferFunction* tf) { a = apply_pq(tf, a); }
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:162:1: note: expanded from here
+C/C++:   162 | Exec_pq_a
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1210:1: warning: stack frame size (15800) exceeds limit (5632) in 'skcms_private::baseline::Exec_pq_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1210 | STAGE(pq_rgb, const skcms_TransferFunction* tf) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:169:1: note: expanded from here
+C/C++:   169 | Exec_pq_rgb
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1221:1: warning: stack frame size (9752) exceeds limit (5632) in 'skcms_private::baseline::Exec_hlg_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1221 | STAGE(hlg_rgb, const skcms_TransferFunction* tf) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:204:1: note: expanded from here
+C/C++:   204 | Exec_hlg_rgb
+C/C++:       | ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/skcms_TransformBaseline.cc:47:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:1253:1: warning: stack frame size (7928) exceeds limit (5632) in 'skcms_private::baseline::Exec_hlginv_rgb(skcms_private::baseline::StageList, void const**, char const*, char*, float vector[4], float vector[4], float vector[4], float vector[4], int)' [-Wframe-larger-than]
+C/C++:  1253 | STAGE(hlginv_rgb, const skcms_TransferFunction* tf) {
+C/C++:       | ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:818:9: note: expanded from macro 'STAGE'
+C/C++:   818 |         DECLARE_STAGE(name, arg, [[clang::musttail]] return (*list.fn)(list, ctx, src, dst, \
+C/C++:       |         ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/skcms/src/Transform_inl.h:809:17: note: expanded from macro 'DECLARE_STAGE'
+C/C++:   809 |         SI void Exec_##name(StageList list, const void** ctx, STAGE_PARAMS()) { \
+C/C++:       |                 ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/.cxx/Debug/68am3368/x86_64/<scratch space>:246:1: note: expanded from here
+C/C++:   246 | Exec_hlginv_rgb
+C/C++:       | ^
+C/C++: 10 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:22:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (10136) exceeds limit (5632) in 'jxl::N_SSE4::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+C/C++:       |                      ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:22:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (12888) exceeds limit (5632) in 'jxl::N_AVX2::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+C/C++:       |                      ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/compressed_dc.cc:149:22: warning: stack frame size (10136) exceeds limit (5632) in 'jxl::N_SSE2::AdaptiveDCSmoothing(JxlMemoryManagerStruct*, float const*, jxl::Image3<float>*, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   149 |   auto process_row = [&](const uint32_t y, size_t /*thread*/) -> Status {
+C/C++:       |                      ^
+C/C++: 3 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:28:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:29:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8440) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE4::DemoteTo<hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+C/C++:       |                   ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/dec_external_image.cc:29:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8408) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE2::DemoteTo<hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+C/C++:       |                   ^
+C/C++: 2 warnings generated.
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/encoding/encoding.cc:149:8: warning: stack frame size (8040) exceeds limit (5632) in 'jxl::Status jxl::detail::DecodeModularChannelMAANS<true>(jxl::BitReader*, jxl::ANSSymbolReader*, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>> const&, std::__ndk1::vector<jxl::PropertyDecisionNode, std::__ndk1::allocator<jxl::PropertyDecisionNode>> const&, jxl::weighted::Header const&, int, unsigned long, jxl::TreeLut<unsigned char, false, false>&, jxl::Image*, unsigned int&, unsigned int&)' [-Wframe-larger-than]
+C/C++:   149 | Status DecodeModularChannelMAANS(BitReader *br, ANSSymbolReader *reader,
+C/C++:       |        ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/encoding/encoding.cc:149:8: warning: stack frame size (15272) exceeds limit (5632) in 'jxl::Status jxl::detail::DecodeModularChannelMAANS<false>(jxl::BitReader*, jxl::ANSSymbolReader*, std::__ndk1::vector<unsigned char, std::__ndk1::allocator<unsigned char>> const&, std::__ndk1::vector<jxl::PropertyDecisionNode, std::__ndk1::allocator<jxl::PropertyDecisionNode>> const&, jxl::weighted::Header const&, int, unsigned long, jxl::TreeLut<unsigned char, false, false>&, jxl::Image*, unsigned int&, unsigned int&)' [-Wframe-larger-than]
+C/C++: 2 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:26:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (6056) exceeds limit (5632) in 'jxl::N_SSE4::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+C/C++:       |                               ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:26:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (17080) exceeds limit (5632) in 'jxl::N_AVX2::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+C/C++:       |                               ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/modular/transform/squeeze.cc:182:31: warning: stack frame size (6056) exceeds limit (5632) in 'jxl::N_SSE2::InvHSqueeze(jxl::Image&, unsigned int, unsigned int, jxl::ThreadPool*)::$_0::operator()(unsigned int, unsigned long) const' [-Wframe-larger-than]
+C/C++:   182 |   const auto unsqueeze_span = [&](const uint32_t task,
+C/C++:       |                               ^
+C/C++: 3 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:26:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:225:10: warning: stack frame size (10008) exceeds limit (5632) in 'jxl::N_AVX2::EPF1Stage::ProcessRow(std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long) const' [-Wframe-larger-than]
+C/C++:   225 |   Status ProcessRow(const RowInfo& input_rows, const RowInfo& output_rows,
+C/C++:       |          ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_epf.cc:416:10: warning: stack frame size (8696) exceeds limit (5632) in 'jxl::N_AVX2::EPF2Stage::ProcessRow(std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, std::__ndk1::vector<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>, std::__ndk1::allocator<std::__ndk1::vector<float*, std::__ndk1::allocator<float*>>>> const&, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long) const' [-Wframe-larger-than]
+C/C++:   416 |   Status ProcessRow(const RowInfo& input_rows, const RowInfo& output_rows,
+C/C++:       |          ^
+C/C++: 2 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:37:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1570:14: warning: stack frame size (9272) exceeds limit (5632) in 'void hwy::N_SSE4::StoreInterleaved3<hwy::N_SSE4::Simd<unsigned short, 8ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE4::Simd<unsigned short, 8ul, -1>)())), hwy::N_SSE4::Simd<unsigned short, 8ul, -1>, hwy::N_SSE4::Simd<unsigned short, 8ul, -1>::T*)' [-Wframe-larger-than]
+C/C++:  1570 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8536) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE4::DemoteTo<hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE4::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+C/C++:       |                   ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:37:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1522:14: warning: stack frame size (9096) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<unsigned char, 32ul, -2>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned char, 32ul, -2>)())), hwy::N_AVX2::Simd<unsigned char, 32ul, -2>, hwy::N_AVX2::Simd<unsigned char, 32ul, -2>::T*)' [-Wframe-larger-than]
+C/C++:  1522 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1432:14: warning: stack frame size (13192) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<unsigned short, 16ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), decltype(Zero((hwy::N_AVX2::Simd<unsigned short, 16ul, -1>)())), hwy::N_AVX2::Simd<unsigned short, 16ul, -1>, hwy::N_AVX2::Simd<unsigned short, 16ul, -1>::T*)' [-Wframe-larger-than]
+C/C++:  1432 | HWY_API void StoreInterleaved3(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2, D d,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1482:14: warning: stack frame size (8280) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved3<hwy::N_AVX2::Simd<float, 8ul, 0>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), hwy::N_AVX2::Simd<float, 8ul, 0>, hwy::N_AVX2::Simd<float, 8ul, 0>::T*)' [-Wframe-larger-than]
+C/C++:  1482 | HWY_API void StoreInterleaved3(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2, D d,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1734:14: warning: stack frame size (8376) exceeds limit (5632) in 'void hwy::N_AVX2::StoreInterleaved4<hwy::N_AVX2::Simd<float, 8ul, 0>, (void*)0, (void*)0>(decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())), hwy::N_AVX2::Simd<float, 8ul, 0>, hwy::N_AVX2::Simd<float, 8ul, 0>::T*)' [-Wframe-larger-than]
+C/C++:  1734 | HWY_API void StoreInterleaved4(VFromD<D> v0, VFromD<D> v1, VFromD<D> v2,
+C/C++:       |              ^
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/render_pipeline/stage_write.cc:38:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/highway.h:605:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1637:14: warning: stack frame size (11880) exceeds limit (5632) in 'void hwy::N_SSE2::StoreInterleaved3<hwy::N_SSE2::Simd<unsigned char, 16ul, -2>, (void*)0, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned char, 16ul, -2>)())), hwy::N_SSE2::Simd<unsigned char, 16ul, -2>, hwy::N_SSE2::Simd<unsigned char, 16ul, -2>::T*)' [-Wframe-larger-than]
+C/C++:  1637 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:1570:14: warning: stack frame size (19928) exceeds limit (5632) in 'void hwy::N_SSE2::StoreInterleaved3<hwy::N_SSE2::Simd<unsigned short, 8ul, -1>, (void*)0, (void*)0>(decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), decltype(Zero((hwy::N_SSE2::Simd<unsigned short, 8ul, -1>)())), hwy::N_SSE2::Simd<unsigned short, 8ul, -1>, hwy::N_SSE2::Simd<unsigned short, 8ul, -1>::T*)' [-Wframe-larger-than]
+C/C++:  1570 | HWY_API void StoreInterleaved3(VFromD<D> part0, VFromD<D> part1,
+C/C++:       |              ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/ops/generic_ops-inl.h:2807:19: warning: stack frame size (8424) exceeds limit (5632) in 'decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>)())) hwy::N_SSE2::DemoteTo<hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, (void*)0>(hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>, decltype(Zero((hwy::N_SSE2::Simd<hwy::float16_t, 8ul, -1>::Rebind<float>)())))' [-Wframe-larger-than]
+C/C++:  2807 | HWY_API VFromD<D> DemoteTo(D df16, VFromD<Rebind<float, D>> v) {
+C/C++:       |                   ^
+C/C++: 9 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/butteraugli/butteraugli.cc:45:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/butteraugli/butteraugli.cc:754:8: warning: stack frame size (7320) exceeds limit (5632) in 'decltype(Zero((hwy::N_AVX2::Simd<float, 8ul, 0>)())) jxl::N_AVX2::MaltaUnit<hwy::N_AVX2::Simd<float, 8ul, 0>>(jxl::MaltaTag, hwy::N_AVX2::Simd<float, 8ul, 0>, float const*, long)' [-Wframe-larger-than]
+C/C++:   754 | Vec<D> MaltaUnit(MaltaTag /*tag*/, const D df,
+C/C++:       |        ^
+C/C++: 1 warning generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:19:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:83:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9864) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+C/C++:       |                     ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9576) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9800) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9512) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6440) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6152) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6440) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6152) exceeds limit (5632) in 'void jxl::N_SSE4::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:19:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (18232) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+C/C++:       |                     ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (17944) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (18008) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (17720) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11608) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11320) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11608) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (11320) exceeds limit (5632) in 'void jxl::N_AVX2::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9864) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<0ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++:   111 |   JXL_NOINLINE void ConvolveRow(const uint32_t y) {
+C/C++:       |                     ^
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9576) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<0ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9800) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<1ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (9512) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<1ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6424) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<2ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6136) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<2ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6424) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<3ul, true>(unsigned int)' [-Wframe-larger-than]
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_convolve_separable5.cc:111:21: warning: stack frame size (6136) exceeds limit (5632) in 'void jxl::N_SSE2::Separable5Impl::ConvolveRow<3ul, false>(unsigned int)' [-Wframe-larger-than]
+C/C++: 24 warnings generated.
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_modular_simd.cc:25:
+C/C++: In file included from /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/third_party/highway/hwy/foreach_target.h:94:
+C/C++: /home/runner/work/AN-Paint/AN-Paint/Paintroid/build/jxl-source/lib/jxl/enc_modular_simd.cc:62:17: warning: stack frame size (8184) exceeds limit (5632) in 'jxl::N_AVX2::EstimateCost(jxl::Image const&)' [-Wframe-larger-than]
+C/C++:    62 | StatusOr<float> EstimateCost(const Image& img) {
+C/C++:       |                 ^
+C/C++: 1 warning generated.
+
+> Task :Paintroid:mergeDebugJniLibFolders
+> Task :Paintroid:checkKotlinGradlePluginConfigurationErrors
+> Task :Paintroid:generateDebugBuildConfig UP-TO-DATE
+> Task :Paintroid:generateDebugResValues UP-TO-DATE
+> Task :Paintroid:generateDebugResources UP-TO-DATE
+> Task :Paintroid:packageDebugResources UP-TO-DATE
+> Task :Paintroid:processDebugNavigationResources UP-TO-DATE
+> Task :Paintroid:parseDebugLocalResources UP-TO-DATE
+> Task :Paintroid:generateDebugRFile UP-TO-DATE
+> Task :Paintroid:mergeDebugNativeLibs
+> Task :Paintroid:compileDebugKotlin UP-TO-DATE
+> Task :Paintroid:stripDebugDebugSymbols
+> Task :Paintroid:extractDebugAnnotations
+> Task :Paintroid:extractDeepLinksForAarDebug
+> Task :Paintroid:mergeDebugShaders UP-TO-DATE
+> Task :Paintroid:compileDebugShaders NO-SOURCE
+> Task :Paintroid:generateDebugAssets UP-TO-DATE
+> Task :Paintroid:mergeDebugAssets UP-TO-DATE
+> Task :Paintroid:javaPreCompileDebug UP-TO-DATE
+> Task :Paintroid:compileDebugJavaWithJavac UP-TO-DATE
+> Task :Paintroid:mergeDebugGeneratedProguardFiles
+> Task :Paintroid:mergeDebugConsumerProguardFiles
+> Task :Paintroid:prepareDebugArtProfile
+> Task :Paintroid:prepareLintJarForPublish
+> Task :Paintroid:processDebugManifest UP-TO-DATE
+> Task :Paintroid:processDebugJavaRes UP-TO-DATE
+> Task :Paintroid:copyDebugJniLibsProjectAndLocalJars
+> Task :Paintroid:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:checkDebugAarMetadata
+> Task :Paintroid:mergeDebugJavaResource
+> Task :app:processDebugNavigationResources
+> Task :Paintroid:syncDebugLibJars
+> Task :Paintroid:bundleDebugLocalLintAar
+> Task :app:compileDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :Paintroid:extractDeepLinksDebug UP-TO-DATE
+
+> Task :app:processDebugMainManifest
+[androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/8.13/transforms/4c0c74693644e94e33bc27c89cbf9cd0/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
+	Namespace 'androidx.vectordrawable' is used in multiple modules and/or libraries: androidx.vectordrawable:vectordrawable-animated:1.0.0, androidx.vectordrawable:vectordrawable:1.0.0. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+/home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+	application@android:icon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+/home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+	application@android:roundIcon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :Paintroid:compileDebugLibraryResources UP-TO-DATE
+> Task :Paintroid:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :Paintroid:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :app:mergeDebugResources
+> Task :Paintroid:createFullJarDebug
+> Task :Paintroid:writeDebugLintModelMetadata
+> Task :app:extractProguardFiles
+> Task :Paintroid:extractProguardFiles
+> Task :app:processDebugResources
+> Task :Paintroid:generateDebugLintModel
+> Task :app:compileDebugKotlin NO-SOURCE
+> Task :app:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :Paintroid:preDebugAndroidTestBuild UP-TO-DATE
+> Task :Paintroid:generateDebugAndroidTestResValues
+> Task :Paintroid:generateDebugAndroidTestLintModel
+> Task :Paintroid:preDebugUnitTestBuild UP-TO-DATE
+> Task :Paintroid:generateDebugUnitTestLintModel
+> Task :Paintroid:lintAnalyzeDebug
+> Task :Paintroid:lintAnalyzeDebugAndroidTest
+> Task :Paintroid:lintAnalyzeDebugUnitTest
+> Task :app:lintAnalyzeDebug
+> Task :app:lintReportDebug
+> Task :app:lintDebug
+
+[Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 5m 7s
+77 actionable tasks: 57 executed, 20 up-to-date
+
+See the profiling report at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/profile/profile-2026-10-10-09-38-36.html
+A fine-grained performance profile is available: use the --scan option.

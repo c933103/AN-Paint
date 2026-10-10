@@ -1,0 +1,100 @@
+{
+  "jvm": {
+    "suite_count": 78,
+    "tests": 746,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "unique_testcase_identities": 746,
+    "selected_classes": [
+      {
+        "class": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+        "tests": 9,
+        "time": "9.305",
+        "methods": [
+          "bothApngDefaultImageOutcomesKeepConfirmedTitleAndTheirOwnBody",
+          "brazilianPortugueseUsesTheExistingNeutralAndConfirmedTitles",
+          "disposalAfterUncertainApprovalSuppressesQueuedSelection",
+          "exactGifAndWebpKeepTheConfirmedTitleAndOpenFirstImageExactlyOnce",
+          "incompleteWelshCatalogueRetainsDefaultEnglishFallback",
+          "ordinarySingleFrameInputsStillBypassTheWarning",
+          "provenLowerBoundKeepsConfirmedTitleAndAtLeastCount",
+          "uncertainOpenStillTransfersTheFirstImageExactlyOnce",
+          "zeroAndOneProvenFramesUseNeutralTitleAndOnlyTheUncertainBody"
+        ],
+        "all_passed": true
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ImportSelectionFlowTest",
+        "tests": 5,
+        "time": "0.261",
+        "methods": [
+          "animatedGifWaitsForApprovalThenTransfersTheStagedFileToItsOwner",
+          "apngAndAnimatedWebpShowWarningsAndBackCancelsWithoutImporting",
+          "base64AnimationGetsTheSameWarningAndCancelLeavesTheProviderOriginalIntact",
+          "disposalWhileInspectionIsQueuedSuppressesCallbacksAndDeletesTheStagedFile",
+          "selectedAssemblyPageSurvivesCropUndoAndReloadWhileOldProjectsDefaultToFirstPage"
+        ],
+        "all_passed": true
+      }
+    ],
+    "compileDebugUnitTestKotlin_observed": true
+  },
+  "lint": {
+    "issues": 0
+  },
+  "python": {
+    "total": 371,
+    "passed": 369,
+    "skipped": 2,
+    "skipped_identities_derived_from_exact_source_discovery_order": [
+      "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+      "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    ],
+    "qualification": "CI progress is nonverbose; identities reconstructed by matching all 371 ordered source cases to the progress characters. They are the two optional Pillow checks."
+  },
+  "api35": {
+    "native_import_tests": 74,
+    "editor_tests_ordinary": 18,
+    "editor_tests_restart_seed": 1,
+    "editor_tests_restart_verify": 1,
+    "total_unique_passed": 94,
+    "all_declared_api35_methods_covered": true,
+    "raw_protocols_reparsed_successfully": true,
+    "animation_decoder_tests": [
+      "apngImportsItsSeparateDefaultPoster",
+      "apngImportsTheFirstFrameWhenItIsTheDefaultImage",
+      "gifImportsTheFirstFrame",
+      "webpImportsTheFirstFrame"
+    ],
+    "junit_suites": [
+      {
+        "path": "Paintroid/androidTest-results/TEST-Paintroid.xml",
+        "tests": 74,
+        "time": "80.431",
+        "all_passed": true
+      },
+      {
+        "path": "app/androidTest-results/TEST-app.xml",
+        "tests": 18,
+        "time": "161.169",
+        "all_passed": true
+      },
+      {
+        "path": "app/accepted-credit-restart/seed/TEST-app-credit-restart-seed.xml",
+        "tests": 1,
+        "time": "9.723",
+        "all_passed": true
+      },
+      {
+        "path": "app/accepted-credit-restart/verify/TEST-app-credit-restart-verify.xml",
+        "tests": 1,
+        "time": "8.957",
+        "all_passed": true
+      }
+    ],
+    "image_artifacts": [],
+    "title_visual_acceptance": false,
+    "scope": "Installed API35 emulator execution. The four animation tests inspect metadata and decode first/default pixel; they do not display ImportSelection dialogs. Title assertions executed only in API33 Robolectric simulation."
+  }
+}

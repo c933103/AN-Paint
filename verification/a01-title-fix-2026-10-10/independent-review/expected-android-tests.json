@@ -1,0 +1,26 @@
+{
+  "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt": [
+    "zeroAndOneProvenFramesUseNeutralTitleAndOnlyTheUncertainBody",
+    "exactGifAndWebpKeepTheConfirmedTitleAndOpenFirstImageExactlyOnce",
+    "provenLowerBoundKeepsConfirmedTitleAndAtLeastCount",
+    "bothApngDefaultImageOutcomesKeepConfirmedTitleAndTheirOwnBody",
+    "brazilianPortugueseUsesTheExistingNeutralAndConfirmedTitles",
+    "incompleteWelshCatalogueRetainsDefaultEnglishFallback",
+    "ordinarySingleFrameInputsStillBypassTheWarning",
+    "uncertainOpenStillTransfersTheFirstImageExactlyOnce",
+    "disposalAfterUncertainApprovalSuppressesQueuedSelection"
+  ],
+  "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionFlowTest.kt": [
+    "animatedGifWaitsForApprovalThenTransfersTheStagedFileToItsOwner",
+    "base64AnimationGetsTheSameWarningAndCancelLeavesTheProviderOriginalIntact",
+    "apngAndAnimatedWebpShowWarningsAndBackCancelsWithoutImporting",
+    "disposalWhileInspectionIsQueuedSuppressesCallbacksAndDeletesTheStagedFile",
+    "selectedAssemblyPageSurvivesCropUndoAndReloadWhileOldProjectsDefaultToFirstPage"
+  ],
+  "Paintroid/src/androidTest/java/org/catrobat/paintroid/classic/AnimationImportTest.kt": [
+    "gifImportsTheFirstFrame",
+    "webpImportsTheFirstFrame",
+    "apngImportsTheFirstFrameWhenItIsTheDefaultImage",
+    "apngImportsItsSeparateDefaultPoster"
+  ]
+}

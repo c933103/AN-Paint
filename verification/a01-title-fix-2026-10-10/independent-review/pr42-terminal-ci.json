@@ -1,0 +1,329 @@
+{
+  "checked_at": "2026-10-10T09:45:50Z",
+  "run": {
+    "id": 38041522544,
+    "run_attempt": 1,
+    "head_sha": "f89fb76e6721e14f3e0b714116795530088812a6",
+    "tree": "5d7ce333311c452cd7587fd871cdf45d6b6a72ca",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38041522544"
+  },
+  "jobs": [
+    {
+      "id": 114182563633,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38041522544,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run Android lint and native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 114182563739,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38041522544,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 114184010778,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38041522544,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11666497670,
+      "name": "regression-and-lint-424cf44986195bab369b75c472d4ee1168c59e9c",
+      "size_in_bytes": 32272025,
+      "digest": "sha256:152bbe07adce86aa504053ca817fc7c65d6654fa82d884c03ba040e3bbdf02f6",
+      "workflow_run": {
+        "id": 38041522544,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/a01-animation-warning-title-20261010",
+        "head_sha": "f89fb76e6721e14f3e0b714116795530088812a6"
+      },
+      "created_at": "2026-10-10T09:43:45Z",
+      "expires_at": "2026-10-24T09:43:42Z"
+    },
+    {
+      "id": 11666282138,
+      "name": "apk-and-source-424cf44986195bab369b75c472d4ee1168c59e9c",
+      "size_in_bytes": 143638005,
+      "digest": "sha256:9733835a0337959d17b18f05f0efab8ad5cdca7a047575a38ec3bbb0adb63033",
+      "workflow_run": {
+        "id": 38041522544,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/a01-animation-warning-title-20261010",
+        "head_sha": "f89fb76e6721e14f3e0b714116795530088812a6"
+      },
+      "created_at": "2026-10-10T09:35:43Z",
+      "expires_at": "2026-10-24T09:35:35Z"
+    },
+    {
+      "id": 11666052471,
+      "name": "instrumentation-apks-424cf44986195bab369b75c472d4ee1168c59e9c",
+      "size_in_bytes": 96547866,
+      "digest": "sha256:43a42315a8de515e63b39541ba264062e0af9a4f9044b602b5b245b3743509dd",
+      "workflow_run": {
+        "id": 38041522544,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/a01-animation-warning-title-20261010",
+        "head_sha": "f89fb76e6721e14f3e0b714116795530088812a6"
+      },
+      "created_at": "2026-10-10T09:37:06Z",
+      "expires_at": "2026-10-24T09:37:02Z"
+    },
+    {
+      "id": 11665559033,
+      "name": "emulator-api-35-424cf44986195bab369b75c472d4ee1168c59e9c",
+      "size_in_bytes": 1855511,
+      "digest": "sha256:c85d8355a151da692b0d8aa8d04a0ff9a9b2375b814361e2700f8be8cb63a0c2",
+      "workflow_run": {
+        "id": 38041522544,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/a01-animation-warning-title-20261010",
+        "head_sha": "f89fb76e6721e14f3e0b714116795530088812a6"
+      },
+      "created_at": "2026-10-10T09:43:18Z",
+      "expires_at": "2026-10-24T09:43:17Z"
+    }
+  ]
+}
