@@ -701,3 +701,12 @@ Prior claim location: Rejected report: publication table. This location identifi
 | PUB15-005 | Recheck run 36175711603's association with PR15, exact source commit and workflow. | Pending full recheck |
 | PUB15-006 | Recheck run 36175711603's actual conclusion and the precise tests/build steps it covered. | Pending full recheck |
 | PUB15-007 | Recheck whether any later PR15 change invalidates the cited run's relevance. | Pending full recheck |
+
+
+## F01 bounded correction publication, 10 October 2026
+
+[Draft PR43](https://github.com/c933103/AN-Paint/pull/43) publishes the independently reviewed 37 TIFF description qualifications plus four focused test files. Source head `d3ada3e55fb60a6926e7f6c8eede242f3c1f140e` has accepted tree `bde13ca4bbd9a45198ab4da9cadd85d900aaa594`, based on develop `80c14372b0504bc44f9f2809ad477247fdc8100b`. [Full evidence](https://github.com/c933103/AN-Paint/blob/3981b84e6dc53f3a6ca772ae9ae1d7738699a5ea/verification/f01-tiff-wording-2026-10-10/README.md) preserves both isolated stages, exact original/proposal maps and confidence limits, all 60 explicit definitions plus 81 missing-key offered locales, independent source/map reviews, 374 host passes and 41 assertion-rejected negative controls. All 38 evidence files and the exact published source were read back. [PR7 follow-through](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6096955546).
+
+The prepublication checkbox return-value assertion was corrected by source/API-contract review, not an executed Android failure. [Automatic CI38047199955](https://github.com/c933103/AN-Paint/actions/runs/38047199955) passed APK/source and API35 jobs; its JVM step failed and is being diagnosed while lint finishes. The candidate is not validation-complete, and no clean Codex review is claimed. Original local Gradle attempts remain accurately labelled as blocked before compilation.
+
+This is a bounded F01 increment only. Twelve probable and four uncertain cases remain individually open and unchanged; seven already-qualified descriptions receive no full-language acceptance; 81 missing-key locales receive no translation and their fallback remains source-predicted except any separately verified individual runtime case. Original project scope is partially recovered, while term-specific history and applicable native-language/rendering requirements persist. Broader F01/P07-007 remain pending. All 475 individual rows are preserved, with **3 structural completed / 472 pending**.
