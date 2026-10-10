@@ -229,6 +229,8 @@ Prior claim location: Rejected report: PR6 row and related non-PR rows. This loc
 
 Prior claim location: Rejected report: PR7 row and related non-PR rows. This location identifies a rejected assertion; it does not verify it.
 
+**10 October bounded P07-007 supplement:** [Seven Brazilian Portuguese animation-warning resource dispositions](https://github.com/c933103/AN-Paint/blob/c92ce7a0a2e686ef677ef520e64c50cfd692fe82/verification/ptbr-animation-recheck-2026-10-10/README.md) record a model linguistic/source review, exact-source comparisons and seven composed-dialog examples. Six body/count/action strings have no translation defect identified within that bounded review; the shared definite-title/uncertain-body caveat A01 remains open. No host or Android tests were run in this pass. Original-discussion reconciliation, runtime validation and the rest of P07-007 remain pending. This supplement changes no row status or completion count.
+
 | ID | Individual full-recheck requirement | Status |
 | --- | --- | --- |
 | P07-001 | Recover the original default-English language-note deferral and later instruction. | Pending full recheck |
