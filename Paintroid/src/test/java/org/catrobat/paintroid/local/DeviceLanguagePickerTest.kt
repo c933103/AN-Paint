@@ -88,7 +88,9 @@ class DeviceLanguagePickerTest {
     }
 
     private fun expectedLabel(activity: Activity,deviceTag: String): String =
-        activity.createConfigurationContext(Configuration().apply {
+        // A raw ko-Kore-KR framework lookup ties with ordinary ko-KR. Keep the
+        // intended mixed-script label independent of the production resolver.
+        if(deviceTag=="ko-Kore-KR") "시스템 言語 使用" else activity.createConfigurationContext(Configuration().apply {
             fontScale=0f
             val locale=Locale.forLanguageTag(deviceTag);setLocale(locale);setLayoutDirection(locale)
         }).getString(R.string.language20_device_default)

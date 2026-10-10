@@ -144,7 +144,7 @@ SEED_REPORT
     return 1
   fi
   printf 'COMPLETED: see strict verify summary\n' > "$phase_root/verify-status.txt"
-  # The main driver checks the disjoint ordinary/vertical-shards/seed/verify union only
+  # The main driver checks the disjoint ordinary/gallery/vertical-shards/seed/verify union only
   # after every selected invocation. The process boundary itself is unchanged.
 }
 
@@ -152,13 +152,13 @@ run_vertical_locale_matrix() {
   local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
   local failed=0
   # Never reuse screenshots or a successful summary from a previous invocation.
-  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
-  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
-  timeout --kill-after=3s 10s "$adb" shell rm -rf \
-    /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence || return
+  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence" "$report/vertical-locale-export"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json" "$report/vertical-locale-export.json"
+  timeout --kill-after=3s 10s "$adb" shell \
+    'rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence' || return
   vertical_started=1
   # Two disjoint invocations provision 360s aggregate vertical time (formerly
-  # 180s). Each keeps the existing 180s ceiling; the outer 15m limit is unchanged.
+  # 180s). Each keeps the existing 180s ceiling; CI.md models the enclosing budget.
   # Each original method runs once, with its native input and both orientations.
   phase='Vertical locale native-input matrix: English + Manchu'
   progress "$phase"
@@ -183,6 +183,23 @@ run_vertical_locale_matrix() {
   return "$failed"
 }
 
+# Same unchanged class, fixtures and method bodies, now a separate ordinary
+# instrumentation process. The explicit 90s budget adds to (never extends) the
+# existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
+run_gallery_draft_regression() {
+  local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
+  phase='Gallery-draft instrumentation (90s maximum)'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-gallery-draft/androidTest-results" \
+    --suite app-gallery-draft --timeout-seconds 90 \
+    --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
+    --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
+    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+}
+
 cleanup() {
   local status=$?
   trap - ERR
@@ -192,9 +209,14 @@ cleanup() {
   if (( ${vertical_started:-0} )); then
     mkdir -p "$report/app"
     if ! timeout --kill-after=3s 15s "$adb" pull \
-        /sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence \
-        "$report/app/vertical-locale-evidence" > "$report/vertical-locale-pull.log" 2>&1; then
+        /sdcard/Download/anpaint-ci-vertical-evidence \
+        "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
       progress 'FAILED: could not collect vertical locale screenshots' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_evidence_transport.py "$report/vertical-locale-export" \
+        --sdk "$TEST_API" --output "$report/app/vertical-locale-evidence" \
+        --receipt "$report/vertical-locale-export.json" > "$report/vertical-locale-export.log" 2>&1; then
+      progress 'FAILED: incomplete or corrupt app-owned vertical evidence export' >&2
       if (( status == 0 )); then status=1; fi
     elif ! python3 tools/vertical_locale_matrix.py verify-screenshots \
         "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \
@@ -231,7 +253,8 @@ main() {
   mkdir -p "$report"
   emulator_pid=''
   vertical_started=0
-  rm -f "$report/app/coverage.json"
+  rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
+    "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
   phase='Create virtual device'
   trap cleanup EXIT
   trap 'progress "Interrupted during $phase"; exit 124' TERM INT
@@ -277,7 +300,7 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app/accepted-credit-restart"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-vertical"
   editor_failed=0
   phase='Editor instrumentation'
   progress "$phase"
@@ -288,7 +311,9 @@ main() {
     --suite app --timeout-seconds 180 \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
-    --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest || editor_failed=1
+    --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
+    --exclude-class paint.anpaint.android.GalleryDraftDeviceTest || editor_failed=1
+  run_gallery_draft_regression || editor_failed=1
   if (( editor_failed )); then failed=1; fi
   phase='Vertical locale native-input matrix'
   progress "$phase"
@@ -296,7 +321,7 @@ main() {
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
-      printf 'NOT RUN: ordinary editor suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
+      printf 'NOT RUN: ordinary editor or gallery-draft suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
     else
       run_credit_restart_regression || failed=1
     fi
@@ -307,7 +332,7 @@ main() {
   fi
   phase='Verify complete SDK-specific app phase inventory'
   progress "$phase"
-  python3 tools/vertical_locale_matrix.py verify-reports --source-tests app/src/androidTest \
+  python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest \
     --sdk "$TEST_API" --root "$report" || failed=1
   phase='Instrumentation complete'
   progress "$phase (result $failed)"

@@ -1,5 +1,24 @@
 # AN Paint 0.0.38 — SDK-aware release test inventory
 
+## PR34 mixed-script Korean follow-up (10 October)
+
+PR34 head c157eaa passed the original strict API30/API35 Korean Copy-credit
+oracles, all 11 new routing cases, both 28-row general-resource tables and both
+59-row Copy-credit tables. Its full JVM result remains failed: four older
+device-label/resource-tag assumptions failed out of 766 cases. Their exact
+JUnit failures and bounded test-oracle corrections are documented in
+`verification/commons-copy-credit-errors-2026-10-09/diagnostic-c157eaa/README.md`.
+Build/lint and generic installed API35 passed. The packaged whole-catalogue
+variant has 695 entries identical to the canonical compiled catalogue.
+
+The follow-up retains all text and public-identity expectations, adds a real
+installed Korean picker/rotation regression and an isolated pinned-Gradle
+clean/incremental generation job. Apply `ci:full-android` before its normal code
+update so the existing matrix covers API30/API35; verify the actual run. These
+new checks have not yet run. Keep PR34 draft until exact-head results and review
+are reconciled. Codex review reached its quota after one request; no repeat or
+state cycling was used. This work is still separate from the release below.
+
 The first exact-source release run for eab28203893ffba45f14a7f96df6d19cf4d19d3b
 passed universal APK/source assembly, all 737 regression tests, zero lint issues
 and all 94 API35 tests. API30 completed 90 successful tests but failed strict

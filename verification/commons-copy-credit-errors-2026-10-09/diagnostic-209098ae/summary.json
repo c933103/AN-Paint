@@ -1,0 +1,74 @@
+{
+  "head": "209098ae341d28a6ca3279c5c1ed53476d84ee99",
+  "merge": "d25e5bf8d8fe8ef047473864dd48b1344040b4ea",
+  "tree": "b48e1b756e40676f5f323977d76f36f27cf5b068",
+  "tested_tree_equals_head_tree": true,
+  "run_id": 38017319227,
+  "python": {
+    "tests": 363,
+    "passed": true
+  },
+  "jvm": {
+    "tests": 755,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0
+  },
+  "build": "success",
+  "lint": "success",
+  "api35_installed": {
+    "app/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 18,
+      "completed_tests": 18,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "app/accepted-credit-restart/seed/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "app/accepted-credit-restart/verify/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "Paintroid/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    }
+  },
+  "artifacts": [
+    {
+      "id": 11657595730,
+      "kind": "regression",
+      "sha256": "f1660baafdf5fe65c7805edf07605bce6f31abbe4cd3956befd398fcaf450c67",
+      "verified": true
+    },
+    {
+      "id": 11657675473,
+      "kind": "installed",
+      "sha256": "31009beac3b4db08e3584d293f131ff70412c7c0b19d321f3ca59897517af932",
+      "verified": true
+    }
+  ],
+  "diagnosis_comment": "https://github.com/c933103/AN-Paint/pull/34#issuecomment-6092984243",
+  "review": "https://github.com/c933103/AN-Paint/pull/34#issuecomment-6092816540",
+  "interpretation": "Persisted and configured ko-Kore-KR resolves ordinary Korean through wrapped resources on API30/API35 and the real gallery route on API35. Exact mixed-script strings remain required."
+}

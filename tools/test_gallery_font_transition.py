@@ -1,4 +1,9 @@
-"""Ordering model of the cited AOSP protocol, not an Android test or causal proof."""
+"""AOSP queue-ordering models, not Android tests or causal proof.
+
+The display-ack argument assumes normal FIFO delivery with no intervening
+synchronization barrier. DMS messages are async, unlike ordinary ATMS messages;
+the counterexample below explicitly models their ability to bypass a barrier.
+"""
 from collections import deque
 import unittest
 from pathlib import Path
@@ -7,6 +12,7 @@ import re
 import subprocess
 
 class Framework:
+    """Normal FIFO model; no MessageQueue synchronization barrier is present."""
     def __init__(self, initial=2):
         self.setting = self.system = self.target = initial
         self.display_queue = deque()
@@ -25,6 +31,11 @@ class Framework:
         self.display_queue.append(self.observe_setting)
     def next_message(self):
         self.display_queue.popleft()()
+    def queue_display_ack(self, event, display_id, delivered):
+        # Sharing DisplayThread is not enough when a sync barrier is present.
+        callback = lambda: delivered.add((event, display_id))
+        callback.asynchronous = True  # AOSP DisplayManagerHandler is async.
+        self.display_queue.append(callback)
     def flush_barrier(self):
         barrier = object()
         self.display_queue.append(barrier)
@@ -38,6 +49,23 @@ class Framework:
     def drain(self):
         while self.display_queue:
             self.next_message()
+
+class FrameworkWithSyncBarrier(Framework):
+    """An active MessageQueue barrier stalls ordinary work, but permits async work."""
+    def __init__(self, initial=2):
+        super().__init__(initial)
+        self.sync_barrier = False
+
+    def next_message(self):
+        if not self.sync_barrier:
+            return super().next_message()
+        for index, callback in enumerate(self.display_queue):
+            if getattr(callback, 'asynchronous', False):
+                del self.display_queue[index]
+                callback()
+                return
+        raise AssertionError('No asynchronous message can pass the active barrier')
+
 
 class FontTransitionOrderingTest(unittest.TestCase):
     def test_old_three_way_agreement_can_overtake_pending_writeback(self):
@@ -64,6 +92,69 @@ class FontTransitionOrderingTest(unittest.TestCase):
         self.assertTrue(f.matches(2))
         f.drain()
         self.assertTrue(f.matches(2))
+
+    def test_api30_display_acks_wait_behind_snapshot_under_normal_fifo(self):
+        f = Framework()
+        delivered = {('added', 9)}  # An unrelated ID is not an acknowledgment.
+        for display_id, scale in ((10, 1), (11, 2), (12, 1), (13, 2)):
+            f.shell_write(scale)
+            while not f.matches(scale):
+                f.next_message()
+            for event in ('added', 'removed'):
+                f.queue_display_ack(event, display_id, delivered)
+                self.assertNotIn((event, display_id), delivered)
+                while (event, display_id) not in delivered:
+                    f.next_message()
+            self.assertTrue(f.matches(scale))
+            f.drain()
+            self.assertTrue(f.matches(scale))
+
+    def test_second_ack_under_normal_fifo_covers_snapshot_posted_during_config(self):
+        f = Framework()
+        # The first event may have been requested during the config callback,
+        # before that callback had enqueued its persistent snapshot.
+        f.setting = f.system = f.target = 1
+        delivered = set()
+        f.queue_display_ack('added', 10, delivered)
+        f.display_queue.append(lambda: f.persist_snapshot(1))
+        f.next_message()
+        self.assertIn(('added', 10), delivered)
+        f.queue_display_ack('removed', 10, delivered)
+        while ('removed', 10) not in delivered:
+            f.next_message()
+        f.shell_write(2)
+        f.drain()
+        self.assertTrue(f.matches(2))
+
+    def test_async_display_acks_cannot_prove_queue_drained_across_sync_barrier(self):
+        f = FrameworkWithSyncBarrier()
+        f.shell_write(1)
+        f.next_message()  # Configuration arrived, but its snapshot is still queued.
+        self.assertTrue(f.matches(1))
+        f.sync_barrier = True
+        pending = tuple(f.display_queue)
+        delivered = set()
+        for event in ('added', 'removed'):
+            f.queue_display_ack(event, 10, delivered)
+            f.next_message()
+        self.assertEqual(delivered, {('added', 10), ('removed', 10)})
+        self.assertEqual(tuple(f.display_queue), pending)  # Neither ack drained ATMS.
+        self.assertTrue(f.matches(1))  # Even the immediate three-way check can pass.
+        f.shell_write(2)
+        f.sync_barrier = False
+        f.drain()
+        self.assertTrue(f.matches(1))  # Stale persistence overwrites the next request.
+        self.assertFalse(f.matches(2))
+
+    def test_api30_missing_or_wrong_kind_display_ack_is_not_a_success(self):
+        f = Framework()
+        f.shell_write(1)
+        f.next_message()
+        delivered = {('added', 9), ('changed', 10)}
+        f.drain()
+        self.assertTrue(f.matches(1))
+        self.assertNotIn(('added', 10), delivered)
+        self.assertNotIn(('removed', 10), delivered)
 
 SOURCE = (Path(__file__).resolve().parents[1] / 'app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt').read_text()
 
@@ -100,16 +191,52 @@ class FontShellProtocolTest(unittest.TestCase):
         self.assertIn('after the barrier",matches())', transition)
         self.assertNotIn('while(', transition)
 
-    def test_public_pipe_api_is_gated_and_older_path_is_not_called_equivalent(self):
+    def test_public_pipe_api_is_gated_and_older_path_requires_display_ack(self):
         self.assertIn('if(Build.VERSION.SDK_INT>=34)', SOURCE)
         self.assertIn('@androidx.annotation.RequiresApi(34)', SOURCE)
         self.assertIn('executeShellCommandRwe("sh")', SOURCE)
-        self.assertIn('legacy synchronization only', SOURCE)
-        self.assertIn('API30-33 do not expose the system-looper flush command', SOURCE)
+        self.assertNotIn('legacy synchronization only', SOURCE)
+        self.assertIn('awaitLegacyDisplayThread(deadline)', SOURCE)
+        self.assertIn('legacyFontShell("settings put system font_scale $scale",deadline)', SOURCE)
         self.assertNotIn('wait-for-broadcast-idle', SOURCE)
         self.assertIn('output.get(remainingTime(),TimeUnit.MILLISECONDS)', SOURCE)
         self.assertIn('error.get(remainingTime(),TimeUnit.MILLISECONDS)', SOURCE)
         self.assertIn('readers.shutdownNow()', SOURCE)
+
+    def test_legacy_ack_has_unique_identity_no_capture_and_finally_cleanup(self):
+        helper = SOURCE.split('private fun awaitLegacyDisplayThread(deadline: Long)', 1)[1].split(
+            'private fun legacyFontShell', 1)[0]
+        self.assertLess(helper.index('registerDisplayListener'), helper.index('createVirtualDisplay'))
+        self.assertIn('createVirtualDisplay("ANPaint font synchronization",1,1,160,null,', helper)
+        self.assertIn('DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY', helper)
+        self.assertIn('val id=display!!.display.displayId', helper)
+        self.assertIn('deadline) {added.contains(id)}', helper)
+        self.assertIn('deadline) {removed.contains(id)}', helper)
+        self.assertLess(helper.index('added.contains(id)'), helper.index('display.release()'))
+        self.assertLess(helper.index('display.release()'), helper.index('removed.contains(id)'))
+        self.assertIn('finally {display!!.release()}', helper)
+        self.assertIn('finally {manager.unregisterDisplayListener(listener)}', helper)
+        for disallowed in ('VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR', 'VIRTUAL_DISPLAY_FLAG_PUBLIC',
+                           'VIRTUAL_DISPLAY_FLAG_PRESENTATION', 'MediaProjection', 'Surface('):
+            self.assertNotIn(disallowed, helper)
+
+    def test_shipped_docs_qualify_display_ack_ordering(self):
+        comment = SOURCE.split('API30-33 lack the shell looper-flush command.', 1)[1].split('*/', 1)[0]
+        docs = (Path(__file__).resolve().parents[1] / 'CI.md').read_text()
+        for text in (comment, docs):
+            self.assertIn('normal FIFO', text.replace('\n', ' '))
+            self.assertIn('synchronization barrier', text)
+            self.assertIn('ATMS messages', text)
+            self.assertIn('portable queue-drain guarantee', text)
+
+    def test_legacy_shell_read_is_bounded_and_closes_resources(self):
+        helper = SOURCE.split('private fun legacyFontShell(command: String,deadline: Long)', 1)[1].split(
+            'private var fontShellVerified', 1)[0]
+        self.assertIn('executeShellCommand("timeout -s KILL ${seconds}s $command")', helper)
+        self.assertIn('output.get(readRemaining,TimeUnit.MILLISECONDS)', helper)
+        self.assertIn('pipe.close()', helper)
+        self.assertIn('reader.shutdownNow()', helper)
+        self.assertNotIn('+10000', helper)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

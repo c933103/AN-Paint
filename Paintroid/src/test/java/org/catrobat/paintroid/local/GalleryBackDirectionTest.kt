@@ -58,7 +58,14 @@ class GalleryBackDirectionTest {
                 val controller=open(provider)
                 try {
                     val activity=controller.get()
-                    assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+                    val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+                    assertEquals(resourceTag,activity.resources.configuration.locales[0].toLanguageTag())
+                    assertEquals(tag,AppLanguage.selectedTag(activity))
+                    assertEquals(tag,activity.getSharedPreferences("app-language",Context.MODE_PRIVATE)
+                        .getString("language-tag",null))
+                    assertEquals(tag,Locale.getDefault().toLanguageTag())
+                    if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
+                        activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
                     val expected=if(tag in rtlTags) "→" else "←"
                     val button=assertBack(activity,expected)
                     val web=ReflectionHelpers.getField<WebView>(activity,"web")
@@ -84,7 +91,7 @@ class GalleryBackDirectionTest {
                     assertEquals("retained query नदी 山",search.text.toString())
                     assertFalse(activity.isFinishing)
                     val navigation=activity.window.decorView.findViewWithTag<View>("gallery_navigation")
-                    records.put(JSONObject().put("locale",tag).put("arrow",button.text.toString())
+                    records.put(JSONObject().put("locale",tag).put("resource_tag",resourceTag).put("arrow",button.text.toString())
                         .put("app_layout_direction",activity.resources.configuration.layoutDirection)
                         .put("row_layout_direction",navigation.layoutDirection)
                         .put("accessible_description",button.contentDescription.toString())

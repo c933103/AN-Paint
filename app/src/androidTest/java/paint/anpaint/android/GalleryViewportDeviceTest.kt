@@ -7,6 +7,9 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Rect
+import android.hardware.display.DisplayManager
+import android.os.Handler
+import android.os.Looper
 import android.os.Build
 import android.os.LocaleList
 import android.os.ParcelFileDescriptor
@@ -34,6 +37,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Locale
+import java.util.Collections
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -228,11 +232,7 @@ class GalleryViewportDeviceTest {
                 assertEquals("Real font setting write succeeded",0,
                     fontShell("settings put system font_scale $scale",deadline))
             } else {
-                // API30-33 do not expose the system-looper flush command. This
-                // retains the older real-setting check, not an equivalent barrier.
-                android.util.Log.i("GalleryViewportDeviceTest","system-looper barrier unavailable on API${Build.VERSION.SDK_INT}; legacy synchronization only")
-                ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand("settings put system font_scale $scale"))
-                    .bufferedReader().use {android.util.Log.i("GalleryViewportDeviceTest","legacy font shell stdout: ${it.readText()}")}
+                legacyFontShell("settings put system font_scale $scale",deadline)
             }
             awaitUntil("real system font scale $scale",deadline,::matches)
             if(Build.VERSION.SDK_INT>=34) {
@@ -241,11 +241,73 @@ class GalleryViewportDeviceTest {
                 // before another transition can overwrite the pending snapshot.
                 assertEquals("System configuration write-back barrier succeeded",0,
                     fontShell("am wait-for-broadcast-barrier --flush-broadcast-loopers",deadline))
+            } else {
+                awaitLegacyDisplayThread(deadline)
             }
             instrumentation.waitForIdleSync()
             assertTrue("Font transition exceeded its original 10s deadline",SystemClock.uptimeMillis()<deadline)
             assertTrue("Font setting and real resources must still agree after the barrier",matches())
         } finally {android.util.Log.i("GalleryViewportDeviceTest","font transition after: ${state()}")}
+    }
+
+    /**
+     * API30-33 lack the shell looper-flush command. AOSP's ATMS configuration
+     * persistence and DisplayManager display-event delivery share DisplayThread.
+     * Register before creating a fresh private display, then require that exact
+     * ID's added callback, release it, then require its removed callback. Under
+     * normal FIFO delivery with no intervening synchronization barrier, this
+     * covers the earlier configuration message and its pending font snapshot.
+     * DMS messages are async and can bypass ordinary ATMS messages behind a
+     * synchronization barrier. This is NOT a portable queue-drain guarantee;
+     * exact-device verification and the real font/layout oracles remain required.
+     * There is no Surface, mirroring, presentation, capture or app window.
+     */
+    private fun awaitLegacyDisplayThread(deadline: Long) {
+        val manager=context.getSystemService(DisplayManager::class.java)
+        val added=Collections.synchronizedSet(mutableSetOf<Int>())
+        val removed=Collections.synchronizedSet(mutableSetOf<Int>())
+        val listener=object: DisplayManager.DisplayListener {
+            override fun onDisplayAdded(displayId: Int) {added.add(displayId)}
+            override fun onDisplayChanged(displayId: Int) {}
+            override fun onDisplayRemoved(displayId: Int) {removed.add(displayId)}
+        }
+        manager.registerDisplayListener(listener,Handler(Looper.getMainLooper()))
+        try {
+            assertTrue("No time remains for legacy display barrier",SystemClock.uptimeMillis()<deadline)
+            val display=manager.createVirtualDisplay("ANPaint font synchronization",1,1,160,null,
+                DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY)
+            assertNotNull("Private display is required for the legacy font barrier",display)
+            try {
+                val id=display!!.display.displayId
+                awaitUntil("DisplayThread added font barrier display $id",deadline) {added.contains(id)}
+                display.release()
+                awaitUntil("DisplayThread removed font barrier display $id",deadline) {removed.contains(id)}
+                android.util.Log.i("GalleryViewportDeviceTest",JSONObject().put("font_display_barrier",id)
+                    .put("remaining_ms",deadline-SystemClock.uptimeMillis()).toString())
+            } finally {display!!.release()} // release() is idempotent, including after a failed wait.
+        } finally {manager.unregisterDisplayListener(listener)}
+    }
+
+    /** Public read-only shell pipe on API30-33, bounded by the same deadline. */
+    private fun legacyFontShell(command: String,deadline: Long) {
+        val remaining=deadline-SystemClock.uptimeMillis()
+        assertTrue("No time remains for legacy font shell",remaining>0)
+        val seconds=String.format(Locale.ROOT,"%.3f",remaining/1000.0)
+        val pipe=instrumentation.uiAutomation.executeShellCommand("timeout -s KILL ${seconds}s $command")
+        val reader=Executors.newSingleThreadExecutor()
+        try {
+            val output=reader.submit<String> {
+                ParcelFileDescriptor.AutoCloseInputStream(pipe).bufferedReader().use {it.readText()}
+            }
+            val readRemaining=deadline-SystemClock.uptimeMillis()
+            assertTrue("No time remains to read legacy font shell",readRemaining>0)
+            android.util.Log.i("GalleryViewportDeviceTest",JSONObject().put("legacy_font_shell",command)
+                .put("stdout",output.get(readRemaining,TimeUnit.MILLISECONDS)).toString())
+            assertTrue("Legacy font shell exceeded shared 10s deadline",SystemClock.uptimeMillis()<deadline)
+        } finally {
+            try {pipe.close()} catch(_: java.io.IOException) {}
+            reader.shutdownNow()
+        }
     }
 
     private var fontShellVerified=false

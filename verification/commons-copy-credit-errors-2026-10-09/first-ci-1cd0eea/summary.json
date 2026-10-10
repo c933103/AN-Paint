@@ -1,0 +1,82 @@
+{
+  "head": "1cd0eeac6bc4a30cb331f3b27cdfa30ff62b97df",
+  "tested_merge_commit": "a428f780262d7908d397c598f1d95b7415bba52b",
+  "tested_tree": "493944794e0fa7a1c8e725938d8cda930e24503f",
+  "run": 37964790893,
+  "build": "passed",
+  "lint": "passed",
+  "host_python": {
+    "tests": 353,
+    "result": "passed"
+  },
+  "jvm": {
+    "tests": 740,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "new_copy_credit_route_tests": {
+      "tests": 13,
+      "failures": 0
+    },
+    "new_resource_tests": {
+      "tests": 4,
+      "failures": 2
+    },
+    "failure": "Exact ko-Kore-KR values resolve to ordinary ko-KR Korean through raw Configuration at APIs30/35. Actual persisted selection will be tested next without relaxing expected mixed-script text."
+  },
+  "installed_api35": {
+    "Paintroid/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "app/accepted-credit-restart/seed/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "app/accepted-credit-restart/verify/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    },
+    "app/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 18,
+      "completed_tests": 18,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "timed_out": false
+    }
+  },
+  "artifacts": {
+    "regression": {
+      "id": 11633486990,
+      "sha256": "739a2b954369191e8a464a6494f8090a5626785c617690700fc7bdde559ef160"
+    },
+    "installed": {
+      "id": 11633811602,
+      "sha256": "c8b3db91bb8aeee5d4556d81b037c7b42d487c64bc317475a57bd30c91ace4ae"
+    }
+  },
+  "capture_count": 30,
+  "capture_kind": "Robolectric NATIVE host-rendered; not installed-device screenshots",
+  "visual_inspection": [
+    "api35-ar-font2.0-commons_credit_copy_failed_reason.png",
+    "api35-mnc-Mong-font2.0-commons_credit_copy_failed_reason.png",
+    "api35-vi-Hani-font2.0-commons_credit_copy_out_of_memory.png"
+  ]
+}
