@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "review_completed_utc": "2026-10-10T12:44:13Z",
+  "disposition": "PASS for the exact bounded F01 source/test integration and the requested candidate-specific build/runtime checks. No blocking finding remains within this review. This does not close F01, broader language acceptance or release distribution.",
+  "blocking_findings": [],
+  "identity": {
+    "pr": 43,
+    "head": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+    "tree": "04a84df1535297f13a314c521b55647f6d15a678",
+    "tested_merge": "73fff41dee17c49a972825c90bdcd88e38287911",
+    "dependency_head": "5703a61394791f18e9f2597272d908d9840599af",
+    "dependency_tree": "f2333d9ee7aa6e55c584b306e7363bde83dbbf43",
+    "run": 38049772357,
+    "final_attempt": 2,
+    "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357",
+    "source_and_deadlines_unchanged_between_attempts": true
+  },
+  "attempt_history": {
+    "initial_standalone_pr43": {
+      "run": 38047199955,
+      "head": "d3ada3e55fb60a6926e7f6c8eede242f3c1f140e",
+      "result": "746 JVM tests, two strict Korean failures on base without routing dependency; preserved."
+    },
+    "first_local_stack": {
+      "tree": "405d57e43038f184fa11b63421094feea5a142fd",
+      "result": "408 host tests, one inherited whole-catalogue scope failure; preserved and resolved by narrowly reviewed test composition repair."
+    },
+    "stacked_attempt1": {
+      "result": "JVM/lint/host/generator passed; release APK build timed out at 22 minutes; API matrix skipped.",
+      "timeout_evidence": "Author-captured authoritative GitHub job annotation; independently reconciled metadata. Underlying slowness cause unknown.",
+      "historical_report": "stacked-ci-attempt1-review.json",
+      "separate_addendum": "stacked-ci-attempt1-timeout-addendum.json"
+    },
+    "stacked_attempt2": {
+      "kind": "One authorized failure-only retry; unchanged source, assertions and deadlines.",
+      "result": "All five logical jobs successful. Release build and both emulator jobs newly executed. Successful JVM/lint/host and generator results are carried forward from attempt 1, not represented as a second execution.",
+      "release_build_seconds": 905
+    }
+  },
+  "source_scope": {
+    "files": 1389,
+    "unchanged_dependency_files": 1346,
+    "canonical_single_line_resource_edits": 37,
+    "added_f01_test_files": 4,
+    "inherited_host_test_repair": 1,
+    "new_exact_scope_fixture": 1,
+    "removed_or_mode_changed": 0,
+    "historical_hashes_and_hanja_oracles_preserved": true,
+    "routing_generator_encoder_and_workflow_unchanged_from_dependency": true
+  },
+  "host_and_jvm": {
+    "local_independent_host": {
+      "passed": 412,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 53.317
+    },
+    "scope_guard_negative_controls": 212,
+    "supplementary_copy_credit_negative_controls": 3,
+    "earlier_unchanged_resource_negative_controls": 41,
+    "ci_python": {
+      "discovered": 412,
+      "passed": 410,
+      "skipped": 2,
+      "skip_names_by_progress_and_discovery_order": [
+        "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+        "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+      ],
+      "seconds": 63.599,
+      "local_independent_run": "412 pass/no skips; separate environment result"
+    },
+    "junit": {
+      "unique_methods": 775,
+      "suites": 82,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "all_nine_tiff_methods_compiled_and_passed": true,
+      "all_26_additional_locale_loops_complete": true,
+      "coverage_note": "37 corrected definition cases are covered by original eleven-entry checks (default through Welsh fallback) plus 26 locales, with strict fixed text, both compression states and state/callback transitions. No ignored/assumed branch or weakened Korean oracle."
+    },
+    "release_lint_issues": 0
+  },
+  "generator_and_packaged_resources": {
+    "seven_executed_gradle_probes_pass": true,
+    "canonical_sha256": "9d928efffd75d06b3a8b6016518c6869b407e95a3b6125b69c13a9482f2d6176",
+    "independent_aapt2_dump_byte_equal_author_dump": true,
+    "compiled_key_set_exactly_matches_canonical": 695,
+    "compiled_canonical_private_values_equal": 695,
+    "tiff_hanja_qualified_value": "RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.",
+    "private_variant_is_generated_only": true
+  },
+  "artifact_source_chain": {
+    "build_variant": "release",
+    "apk_sha256": "5fc2324db6448c1e58932986c1259aac364536d3838d861c501cd411c3b468ad",
+    "source_sha256": "2852a6a6c00974ee3ac9db040e352ab2a288a9ce2f37ed7a234d4ba31dd5ee25",
+    "embedded_extracted_source_identical": true,
+    "reviewed_files_byte_identical": 1386,
+    "reviewed_files_different": [],
+    "excluded_repository_metadata": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "extra_bundled_native_source_files": 6258,
+    "extra_native_folders": [
+      "Paintroid/build/heif-source",
+      "Paintroid/build/jxl-source",
+      "Paintroid/build/tiff-source",
+      "Paintroid/build/webp-source"
+    ],
+    "apk_abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signing_limit": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "device_execution": {
+    "api30": {
+      "native_import_methods": 73,
+      "tiff_codec_methods": 17,
+      "app_methods": 18,
+      "native_seconds": 17.559001599,
+      "app_seconds": 115.65958938099993,
+      "suppression_note": "UltraHDR and platform device-language row are SDK-suppressed as declared; accepted-credit restart phases explicitly API35-only.",
+      "four_korean_picker_phases_verified": true
+    },
+    "api35": {
+      "native_import_methods": 74,
+      "tiff_codec_methods": 17,
+      "ordinary_app_methods": 19,
+      "seed_methods": 1,
+      "verify_methods": 1,
+      "total_app_methods": 21,
+      "native_seconds": 32.60268043099995,
+      "ordinary_app_seconds": 172.0475185780001,
+      "ordinary_app_deadline_seconds": 180,
+      "seed_seconds": 7.257050595999999,
+      "verify_seconds": 7.61560925699996,
+      "no_sdk_suppressions": true,
+      "four_korean_picker_phases_verified": true,
+      "restart_boundary": {
+        "seed_pid": 5385,
+        "same_live_pid_before_and_after_seed_and_immediately_before_force_stop": true,
+        "gallery_still_resumed": true,
+        "external_force_stop_then_verified_absence": true,
+        "all_boundary_commands_exit_zero": true,
+        "verify_status": "COMPLETED",
+        "phases": [
+          {
+            "phase": "seed",
+            "seconds": 7.257050595999999,
+            "expected": 1,
+            "completed": 1,
+            "leave_target_running": true,
+            "target_pid_before_instrumentation": 5385
+          },
+          {
+            "phase": "verify",
+            "seconds": 7.61560925699996,
+            "expected": 1,
+            "completed": 1,
+            "leave_target_running": false,
+            "target_pid_before_instrumentation": null
+          }
+        ],
+        "boundary_log_sha256": "95cbac187a0ce65c922199c5ab4e6f91352a7f6238a6474db201c325ff850a25"
+      }
+    },
+    "strict_verification": "All six raw instrumentation logs reparsed against exact eligible source inventories. XML, JSON summaries and API35 disjoint phase coverage agree; no unexpected, missing, duplicate, errored or incomplete test result.",
+    "korean_identity": "Mixed selection, live rotation, ordinary Korean selection and mixed reselection preserve public persisted/default identities; API35 platform identity also stays public. Internal resource locale is the private anpaint variant. Orientation and both live dimensions change.",
+    "source_linkage_limit": "Device artifacts do not themselves log installed APK digests. Identity is linked by reviewed workflow download-by-tested-merge artifact names, successful installation and exact run/job provenance; artifact APK and test-APK digests were separately verified."
+  },
+  "remaining_limits": [
+    "API35 ordinary app run used 172.05 of 180 seconds, leaving roughly 7.95 seconds. The unchanged retry passed, but build/runtime timing variability remains a risk; no deadline was extended.",
+    "These checks do not establish native-speaker linguistic attestation, every-language quality, or native-device TIFF dialog visual/accessibility acceptance. Real Korean device routing checks use ui_save/Copy-credit strings; TIFF description behavior is separately covered by Robolectric and compiled resource parity.",
+    "The other 81 missing-definition locales do not gain universal runtime fallback acceptance from the Welsh case.",
+    "Twelve probable and four uncertain F01 entries remain open; seven already-qualified entries retain their earlier disposition. Parent counts remain 475 total / 3 structurally complete / 472 pending.",
+    "CI release APK uses the CI debug signing key; private upgrade signing and distribution remain separate.",
+    "Draft PR43 remains stacked on PR34; this review authorizes no merge or broader language/release closure."
+  ],
+  "preserved_prior_findings": "Original two-method Korean routing failure, initial checkbox API-contract correction, first-stack inherited scope failure and first exact-stack timeout all remain in their historical reports. None is erased by the later successful retry.",
+  "workflow_jobs": [
+    {
+      "id": 114210821217,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success",
+      "started_at": "2026-10-10T12:15:40Z",
+      "completed_at": "2026-10-10T12:33:59Z"
+    },
+    {
+      "id": 114210821963,
+      "name": "Regression tests and lint",
+      "conclusion": "success",
+      "started_at": "2026-10-10T11:49:38Z",
+      "completed_at": "2026-10-10T12:06:09Z"
+    },
+    {
+      "id": 114210852519,
+      "name": "Exact-script resource generation",
+      "conclusion": "success",
+      "started_at": "2026-10-10T11:49:38Z",
+      "completed_at": "2026-10-10T11:52:43Z"
+    },
+    {
+      "id": 114214056855,
+      "name": "Emulator API 35",
+      "conclusion": "success",
+      "started_at": "2026-10-10T12:34:02Z",
+      "completed_at": "2026-10-10T12:39:39Z"
+    },
+    {
+      "id": 114214056899,
+      "name": "Emulator API 30",
+      "conclusion": "success",
+      "started_at": "2026-10-10T12:34:02Z",
+      "completed_at": "2026-10-10T12:38:09Z"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11670640077,
+      "name": "instrumentation-apks-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 83195581,
+      "sha256": "3e29d539ecaa88c474ad319b35b5c3b1e6c3905b9f13039c0d17ed57fc258619"
+    },
+    {
+      "id": 11670585765,
+      "name": "emulator-api-35-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 1923497,
+      "sha256": "14b98276002f113362ddb9f4e9c21a340bf0ec598c516b37b6bec3fc488adb2e"
+    },
+    {
+      "id": 11670420763,
+      "name": "emulator-api-30-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 595515,
+      "sha256": "090fa570241657d332ed55653130aec5c1279fa4be8509d8372752a5359e3bc8"
+    },
+    {
+      "id": 11669519846,
+      "name": "apk-and-source-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 137951730,
+      "sha256": "1e7dec81e3f1975df13b348e61a8d89acc4d1450c3eaa562bf743717c483dd0d"
+    },
+    {
+      "id": 11669116173,
+      "name": "exact-script-generation-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 6186,
+      "sha256": "8d2666fa4ad2596b9195f13a3bb48cdd72376036107c6f00b9c6c5d3d768edef"
+    },
+    {
+      "id": 11668997775,
+      "name": "regression-and-lint-73fff41dee17c49a972825c90bdcd88e38287911",
+      "bytes": 35052390,
+      "sha256": "9e504c5ff800a27214e726138ed4d6e889a1a706bbcfb349b53383773c6f4bdf"
+    }
+  ],
+  "evidence_files": {
+    "stacked-final-source-review.json": "90d13c96cab2a8edb142ce26b0f2d7e65afd80c73485b7e24bd5440b18428f85",
+    "stacked-final-reviewed-manifest.json": "feede8352ae881696caf2c01588134cb23cddce8bc3130a7c612029e9bbbdb1e",
+    "stacked-ci-identity.json": "cd517bd70b4ce4cbd50fa9959de6d4e3c0ee59a82eb9147b1ba8df2af95a8358",
+    "stacked-ci-attempt1-review.json": "a4fdd7c2e76a1881c1e3f9b1d8ac386e6c32b7b2ed2a0ce885e8e185799cda21",
+    "stacked-ci-attempt1-timeout-addendum.json": "9fafed44a41b489a4416fb94fd587680ae72dfb902db4370c015b282a00a832b",
+    "stacked-ci-regression-review.json": "c8ea55e07e5b04cc471647d076f7eef1aceb9e4bf67326a8d10b7a9e1c0ebcd6",
+    "stacked-ci-generator-review.json": "9ac2d0f4d68accce20929e310a241be95ce4a1a307005b8723f35e9f7c6d34b5",
+    "stacked-ci-build-review.json": "766eb9996d3dd3242ae42a55f08514122547bccaf96fae685f497711025c2368",
+    "stacked-ci-compiled-korean-review.json": "edfeffb378fb24aeb1339781063d981dd37563c22f25bccf015efeee0259b78f",
+    "stacked-ci-test-apks.json": "59911ef17e0dd2fa228e6fd8579059cabd2709b86f3a4b43d942468c092ef377",
+    "stacked-ci-api30-review.json": "921e9ac254b075ebb954d84d453b6b06c550e206249b0b83f73a70d032b46df3",
+    "stacked-ci-api35-review.json": "6717104de6c4e5bf84488714d4ab8f89dfd901e856765f9370670448c17479eb",
+    "stacked-ci-attempt2-terminal-run.json": "1badaec9ac301dca19f412180fb1e61ffc1855503aff6a09e28c9ca12144a214",
+    "stacked-ci-attempt2-terminal-jobs.json": "51fa54bdfda1d01130fbc06c023a8dd809a5db19cbaea5c032f66bd4a2c9d9c4",
+    "stacked-ci-attempt2-terminal-artifacts.json": "eb6d66deadc6224854b1a183cec15965e57d4bb6baf6b1568c83f893ef318107"
+  },
+  "reviewer_actions": "Independent remote metadata reads, local source/artifact inspection, host tests, raw protocol replay, hash reconciliation and AAPT2 resource-table verification. No source edits, CI dispatch, publication or duplicate downloads."
+}

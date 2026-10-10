@@ -1,0 +1,775 @@
+{
+  "run": {
+    "id": 38049772357,
+    "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-10T11:49:36Z",
+    "updated_at": "2026-10-10T12:39:40Z",
+    "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357"
+  },
+  "source": {
+    "head": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+    "tree": "04a84df1535297f13a314c521b55647f6d15a678",
+    "tested_merge": "73fff41dee17c49a972825c90bdcd88e38287911",
+    "dependency_head": "5703a61394791f18e9f2597272d908d9840599af"
+  },
+  "jobs": [
+    {
+      "id": 114210821217,
+      "run_id": 38049772357,
+      "workflow_name": "Android build and checks",
+      "head_branch": "fix/f01-tiff-size-wording-20261010",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38049772357",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAal37UYQ",
+      "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/114210821217",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357/job/114210821217",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-10T12:15:38Z",
+      "started_at": "2026-10-10T12:15:40Z",
+      "completed_at": "2026-10-10T12:33:59Z",
+      "name": "Build APK and corresponding source",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-10T12:15:41Z",
+          "completed_at": "2026-10-10T12:15:43Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-10T12:15:43Z",
+          "completed_at": "2026-10-10T12:15:45Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-10T12:15:45Z",
+          "completed_at": "2026-10-10T12:15:55Z"
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-10T12:15:55Z",
+          "completed_at": "2026-10-10T12:15:55Z"
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-10T12:15:55Z",
+          "completed_at": "2026-10-10T12:16:04Z"
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-10T12:16:04Z",
+          "completed_at": "2026-10-10T12:16:16Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-10T12:16:16Z",
+          "completed_at": "2026-10-10T12:17:14Z"
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-10T12:17:14Z",
+          "completed_at": "2026-10-10T12:32:19Z"
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-10T12:32:19Z",
+          "completed_at": "2026-10-10T12:32:19Z"
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-10T12:32:19Z",
+          "completed_at": "2026-10-10T12:32:20Z"
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-10T12:32:20Z",
+          "completed_at": "2026-10-10T12:32:25Z"
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-10T12:32:25Z",
+          "completed_at": "2026-10-10T12:33:41Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-10T12:33:41Z",
+          "completed_at": "2026-10-10T12:33:45Z"
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-10T12:33:45Z",
+          "completed_at": "2026-10-10T12:33:46Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-10T12:33:46Z",
+          "completed_at": "2026-10-10T12:33:56Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-10T12:33:56Z",
+          "completed_at": "2026-10-10T12:33:56Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-10T12:33:56Z",
+          "completed_at": "2026-10-10T12:33:57Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/114210821217",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000006369,
+      "runner_name": "GitHub Actions 1000006369",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 114210821963,
+      "run_id": 38049772357,
+      "workflow_name": "Android build and checks",
+      "head_branch": "fix/f01-tiff-size-wording-20261010",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38049772357",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAal37XSw",
+      "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/114210821963",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357/job/114210821963",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-10T12:15:38Z",
+      "started_at": "2026-10-10T11:49:38Z",
+      "completed_at": "2026-10-10T12:06:09Z",
+      "name": "Regression tests and lint",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-10T11:49:39Z",
+          "completed_at": "2026-10-10T11:49:40Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-10T11:49:40Z",
+          "completed_at": "2026-10-10T11:49:42Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-10T11:49:42Z",
+          "completed_at": "2026-10-10T11:49:43Z"
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-10T11:49:43Z",
+          "completed_at": "2026-10-10T11:49:43Z"
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-10T11:49:43Z",
+          "completed_at": "2026-10-10T11:49:46Z"
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-10T11:49:46Z",
+          "completed_at": "2026-10-10T11:49:53Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-10T11:49:53Z",
+          "completed_at": "2026-10-10T11:51:26Z"
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-10T11:51:26Z",
+          "completed_at": "2026-10-10T11:52:30Z"
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-10T11:52:30Z",
+          "completed_at": "2026-10-10T11:59:41Z"
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-10T11:59:41Z",
+          "completed_at": "2026-10-10T12:04:12Z"
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-10T12:04:12Z",
+          "completed_at": "2026-10-10T12:05:52Z"
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-10T12:05:52Z",
+          "completed_at": "2026-10-10T12:05:52Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-10T12:05:52Z",
+          "completed_at": "2026-10-10T12:05:55Z"
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-10T12:05:55Z",
+          "completed_at": "2026-10-10T12:06:00Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-10T12:06:00Z",
+          "completed_at": "2026-10-10T12:06:07Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-10T12:06:07Z",
+          "completed_at": "2026-10-10T12:06:07Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-10T12:06:07Z",
+          "completed_at": "2026-10-10T12:06:07Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/114210821963",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000006367,
+      "runner_name": "GitHub Actions 1000006367",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 114210852519,
+      "run_id": 38049772357,
+      "workflow_name": "Android build and checks",
+      "head_branch": "fix/f01-tiff-size-wording-20261010",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38049772357",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAal39Opw",
+      "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/114210852519",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357/job/114210852519",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-10T12:15:48Z",
+      "started_at": "2026-10-10T11:49:38Z",
+      "completed_at": "2026-10-10T11:52:43Z",
+      "name": "Exact-script resource generation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-10T11:49:39Z",
+          "completed_at": "2026-10-10T11:49:40Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-10T11:49:40Z",
+          "completed_at": "2026-10-10T11:49:42Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-10T11:49:42Z",
+          "completed_at": "2026-10-10T11:49:43Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-10T11:49:43Z",
+          "completed_at": "2026-10-10T11:51:03Z"
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-10T11:51:03Z",
+          "completed_at": "2026-10-10T11:52:36Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-10T11:52:36Z",
+          "completed_at": "2026-10-10T11:52:37Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-10T11:52:37Z",
+          "completed_at": "2026-10-10T11:52:41Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-10T11:52:41Z",
+          "completed_at": "2026-10-10T11:52:41Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-10T11:52:41Z",
+          "completed_at": "2026-10-10T11:52:41Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/114210852519",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000006368,
+      "runner_name": "GitHub Actions 1000006368",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 114214056855,
+      "run_id": 38049772357,
+      "workflow_name": "Android build and checks",
+      "head_branch": "fix/f01-tiff-size-wording-20261010",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38049772357",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAal7Azlw",
+      "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/114214056855",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357/job/114214056855",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-10T12:34:00Z",
+      "started_at": "2026-10-10T12:34:02Z",
+      "completed_at": "2026-10-10T12:39:39Z",
+      "name": "Emulator API 35",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-10T12:34:03Z",
+          "completed_at": "2026-10-10T12:34:04Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-10T12:34:04Z",
+          "completed_at": "2026-10-10T12:34:06Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-10T12:34:06Z",
+          "completed_at": "2026-10-10T12:34:12Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-10T12:34:12Z",
+          "completed_at": "2026-10-10T12:34:17Z"
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-10T12:34:17Z",
+          "completed_at": "2026-10-10T12:35:02Z"
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-10T12:35:02Z",
+          "completed_at": "2026-10-10T12:39:34Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-10T12:39:34Z",
+          "completed_at": "2026-10-10T12:39:36Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-10T12:39:36Z",
+          "completed_at": "2026-10-10T12:39:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-10T12:39:37Z",
+          "completed_at": "2026-10-10T12:39:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/114214056855",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000006370,
+      "runner_name": "GitHub Actions 1000006370",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 114214056899,
+      "run_id": 38049772357,
+      "workflow_name": "Android build and checks",
+      "head_branch": "fix/f01-tiff-size-wording-20261010",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38049772357",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAal7Azww",
+      "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/114214056899",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38049772357/job/114214056899",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-10T12:34:00Z",
+      "started_at": "2026-10-10T12:34:02Z",
+      "completed_at": "2026-10-10T12:38:09Z",
+      "name": "Emulator API 30",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-10T12:34:03Z",
+          "completed_at": "2026-10-10T12:34:04Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-10T12:34:04Z",
+          "completed_at": "2026-10-10T12:34:06Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-10T12:34:06Z",
+          "completed_at": "2026-10-10T12:34:13Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-10T12:34:13Z",
+          "completed_at": "2026-10-10T12:34:17Z"
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-10T12:34:17Z",
+          "completed_at": "2026-10-10T12:34:58Z"
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-10T12:34:58Z",
+          "completed_at": "2026-10-10T12:38:05Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-10T12:38:05Z",
+          "completed_at": "2026-10-10T12:38:07Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-10T12:38:07Z",
+          "completed_at": "2026-10-10T12:38:07Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-10T12:38:07Z",
+          "completed_at": "2026-10-10T12:38:07Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/114214056899",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000006371,
+      "runner_name": "GitHub Actions 1000006371",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11670640077,
+      "name": "instrumentation-apks-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 83195581,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670640077",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670640077/zip",
+      "expired": false,
+      "created_at": "2026-10-10T12:33:45Z",
+      "expires_at": "2026-10-24T12:33:42Z",
+      "updated_at": "2026-10-10T12:33:45Z",
+      "digest": "sha256:3e29d539ecaa88c474ad319b35b5c3b1e6c3905b9f13039c0d17ed57fc258619",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    },
+    {
+      "id": 11670585765,
+      "name": "emulator-api-35-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 1923497,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670585765",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670585765/zip",
+      "expired": false,
+      "created_at": "2026-10-10T12:39:36Z",
+      "expires_at": "2026-10-24T12:39:35Z",
+      "updated_at": "2026-10-10T12:39:36Z",
+      "digest": "sha256:14b98276002f113362ddb9f4e9c21a340bf0ec598c516b37b6bec3fc488adb2e",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    },
+    {
+      "id": 11670420763,
+      "name": "emulator-api-30-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 595515,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670420763",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11670420763/zip",
+      "expired": false,
+      "created_at": "2026-10-10T12:38:07Z",
+      "expires_at": "2026-10-24T12:38:05Z",
+      "updated_at": "2026-10-10T12:38:07Z",
+      "digest": "sha256:090fa570241657d332ed55653130aec5c1279fa4be8509d8372752a5359e3bc8",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    },
+    {
+      "id": 11669519846,
+      "name": "apk-and-source-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 137951730,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11669519846",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11669519846/zip",
+      "expired": false,
+      "created_at": "2026-10-10T12:32:25Z",
+      "expires_at": "2026-10-24T12:32:20Z",
+      "updated_at": "2026-10-10T12:32:25Z",
+      "digest": "sha256:1e7dec81e3f1975df13b348e61a8d89acc4d1450c3eaa562bf743717c483dd0d",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    },
+    {
+      "id": 11669116173,
+      "name": "exact-script-generation-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 6186,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11669116173",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11669116173/zip",
+      "expired": false,
+      "created_at": "2026-10-10T11:52:37Z",
+      "expires_at": "2026-10-24T11:52:36Z",
+      "updated_at": "2026-10-10T11:52:37Z",
+      "digest": "sha256:8d2666fa4ad2596b9195f13a3bb48cdd72376036107c6f00b9c6c5d3d768edef",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    },
+    {
+      "id": 11668997775,
+      "name": "regression-and-lint-73fff41dee17c49a972825c90bdcd88e38287911",
+      "size_in_bytes": 35052390,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11668997775",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/11668997775/zip",
+      "expired": false,
+      "created_at": "2026-10-10T12:05:55Z",
+      "expires_at": "2026-10-24T12:05:52Z",
+      "updated_at": "2026-10-10T12:05:55Z",
+      "digest": "sha256:9e504c5ff800a27214e726138ed4d6e889a1a706bbcfb349b53383773c6f4bdf",
+      "workflow_run": {
+        "id": 38049772357,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "fix/f01-tiff-size-wording-20261010",
+        "head_sha": "4f9082aa687a5c36b559061bcc10d0e39331610f"
+      }
+    }
+  ],
+  "history": {
+    "attempt1": "Confirmed universal-APK 22-minute timeout, retained separately.",
+    "attempt2": "One authorized failure-only repeatability rerun. Same source and all deadlines. Regression/generator success carried forward with original timestamps, not re-executed.",
+    "first_head_run": "38047199955 remains failed for two strict Hanja routing assertions; source dependency stack resolved those assertions without weakening them."
+  },
+  "limits": [
+    "Draft PR34 dependency unmerged; draft PR43 unmerged.",
+    "No native-speaker/full-language or installed localized TIFF dialog visual acceptance.",
+    "One final-head Codex request6097631408 received explicit usage-limit response6097632279. No clean review.",
+    "475 total / 3 structural completed / 472 pending."
+  ]
+}
