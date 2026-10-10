@@ -136,7 +136,10 @@ class CommonsCopyCreditTranslationTest {
         AppLanguage.select(context,tag)
         assertEquals("Persist the exact requested application tag",tag,AppLanguage.selectedTag(context))
         val wrapped=AppLanguage.wrap(context)
-        assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+        // Preference identity is unchanged; this one catalogue uses an internal
+        // variant so Android cannot tie it with implicit-script ordinary Korean.
+        val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+        assertEquals(resourceTag,wrapped.resources.configuration.locales[0].toLanguageTag())
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
     }

@@ -1,4 +1,5 @@
 """Protocol regression checks: adb returning zero is insufficient evidence."""
+import copy
 import json
 import subprocess
 import sys
@@ -94,8 +95,76 @@ class ProtocolTest(unittest.TestCase):
                 declared_tests(Path(directory))
 
 
+class SdkInventoryTest(unittest.TestCase):
+    def inventory(self, body, sdk, class_annotation=''):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'EditorTest.kt'
+            path.write_text('package example\n' + class_annotation + '\nclass EditorTest {\n' + body + '\n}\n')
+            return declared_tests(Path(directory), sdk_level=sdk)
+
+    def test_method_bounds_are_inclusive_and_all_inventory_is_preserved(self):
+        body = ('@Test @SdkSuppress(minSdkVersion=30, maxSdkVersion=35) fun draw() {}\n'
+                '@Test fun save() {}')
+        self.assertEqual(self.inventory(body, None), EXPECTED)
+        for sdk in (30, 35):
+            self.assertEqual(self.inventory(body, sdk), EXPECTED)
+        for sdk in (29, 36):
+            self.assertEqual(self.inventory(body, sdk), {(OWNER, 'save')})
+
+    def test_class_bounds_and_method_override_match_androidx_precedence(self):
+        body = ('@SdkSuppress(minSdkVersion=29, maxSdkVersion=30) @Test fun draw() {}\n'
+                '@Test fun save() {}')
+        annotation = '@SdkSuppress(minSdkVersion=33, maxSdkVersion=35)'
+        self.assertEqual(self.inventory(body, 30, annotation), {(OWNER, 'draw')})
+        self.assertEqual(self.inventory(body, 35, annotation), {(OWNER, 'save')})
+        self.assertEqual(self.inventory(body, 36, annotation), set())
+        self.assertEqual(self.inventory(body, None, annotation), EXPECTED)
+
+    def test_max_only_and_qualified_annotations(self):
+        body = ('@Test @androidx.test.filters.SdkSuppress(maxSdkVersion = 30) fun draw() {}\n'
+                '@Test fun save() {}')
+        self.assertEqual(self.inventory(body, 30), EXPECTED)
+        self.assertEqual(self.inventory(body, 35), {(OWNER, 'save')})
+
+    def test_malformed_unknown_and_unsupported_sdk_annotations_fail_closed(self):
+        bad = ['minSdkVersion=33, maxSdkVersion=30', 'minSdkVersion=-1',
+               'minSdkVersion=0', 'minSdkVersion=Build.VERSION_CODES.TIRAMISU',
+               'minSdkVersion=33, minSdkVersion=34', 'unknown=30',
+               'excludedSdks=[30]', 'codeName="Tiramisu"', '',
+               'minSdkVersion=33,', 'minSdkVersion=33 + 1']
+        for arguments in bad:
+            for sdk in (None, 30, 35):
+                with self.subTest(arguments=arguments, sdk=sdk), self.assertRaises(ValueError):
+                    self.inventory('@Test @SdkSuppress(' + arguments + ') fun draw() {}', sdk)
+        for annotation in ('@SdkSuppress', '@SdkSuppress(minSdkVersion=(33))',
+                           '@other.SdkSuppress(minSdkVersion=33)',
+                           '@SdkSuppress(minSdkVersion=30) @SdkSuppress(maxSdkVersion=35)'):
+            with self.subTest(annotation=annotation), self.assertRaises(ValueError):
+                self.inventory('@Test ' + annotation + ' fun draw() {}', 30)
+
+    def test_unassociated_sdk_annotation_and_duplicate_ineligible_methods_rejected(self):
+        with self.assertRaises(ValueError):
+            self.inventory('@SdkSuppress(minSdkVersion=33) val unsupported = 1\n@Test fun draw() {}', 30)
+        with self.assertRaises(ValueError):
+            self.inventory('@Test @SdkSuppress(minSdkVersion=33) fun draw() {}\n'
+                           '@Test @SdkSuppress(minSdkVersion=33) fun draw() {}', 30)
+        for sdk in (0, -1, '30', True):
+            with self.subTest(sdk=sdk), self.assertRaises(ValueError):
+                self.inventory('@Test fun draw() {}', sdk)
+
+    def test_api30_protocol_accepts_only_eligible_methods_and_api35_requires_both(self):
+        body = ('@Test fun draw() {}\n@Test @SdkSuppress(minSdkVersion=33) fun save() {}')
+        actual30 = passing('draw', 1) + 'INSTRUMENTATION_CODE: -1\n'
+        self.assertTrue(parse_protocol(actual30, self.inventory(body, 30))['success'])
+        self.assertFalse(parse_protocol(actual30, self.inventory(body, 35))['success'])
+        self.assertFalse(parse_protocol(FINAL, self.inventory(body, 30))['success'])
+        actual35 = passing('draw') + passing('save') + FINAL
+        self.assertTrue(parse_protocol(actual35, self.inventory(body, 35))['success'])
+        self.assertFalse(parse_protocol(actual35, self.inventory(body, 30))['success'])
+
+
 class RestartModeTest(unittest.TestCase):
-    def invoke(self, *, seed_mode=True, live='123', excluded=True, truncated=False):
+    def invoke(self, *, seed_mode=True, live='123', excluded=True, truncated=False, sdk='35'):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory); source=root/'sources'; source.mkdir()
             for owner, method in ((RESTART_SEED, 'seed'), (RESTART_VERIFY, 'verify'), (OWNER, 'draw')):
@@ -109,6 +178,8 @@ class RestartModeTest(unittest.TestCase):
             commands=[]
             def run(command, **kwargs):
                 commands.append(command)
+                if command[1:]==['shell','getprop','ro.build.version.sdk']:
+                    return subprocess.CompletedProcess(command,0,sdk+'\n','')
                 if command[1]=='install':return subprocess.CompletedProcess(command,0,'Success\n','')
                 if command[1:]==['shell','pm','list','instrumentation']:
                     return subprocess.CompletedProcess(command,0,'instrumentation:test/Runner (target=paint.anpaint.android)\n','')
@@ -128,6 +199,18 @@ class RestartModeTest(unittest.TestCase):
                     patch('run_android_instrumentation.capture_live',side_effect=capture):
                 status=main()
             return status,commands,json.loads((root/'report/summary.json').read_text())
+
+    def test_device_sdk_query_is_recorded_and_invalid_result_fails_closed(self):
+        status,commands,report=self.invoke()
+        self.assertEqual(status,0)
+        self.assertIn(['adb','shell','getprop','ro.build.version.sdk'],commands)
+        self.assertEqual(report['device_sdk'],35)
+        self.assertEqual(report['sdk_suppressed_tests'],[])
+        for sdk in ('', 'SDK35', '0', '35\\n30'):
+            with self.subTest(sdk=sdk):
+                status,commands,report=self.invoke(sdk=sdk)
+                self.assertEqual(status,1)
+                self.assertFalse(any(c[1]=='install' for c in commands))
 
     def test_seed_emits_both_required_options_and_keeps_strict_complete_report(self):
         status,commands,report=self.invoke()
@@ -163,11 +246,19 @@ class RestartModeTest(unittest.TestCase):
     def test_partition_covers_future_classes_and_rejects_missing_or_duplicate_phases(self):
         expected={(OWNER,'draw'),('example.FutureTest','future'),(RESTART_SEED,'seed'),(RESTART_VERIFY,'verify')}
         parts=restart_partition(expected)
-        reports=[dict(success=True,expected_tests=len(part),completed_tests=len(part),
+        reports=[dict(success=True,device_sdk=35,expected_tests=len(part),completed_tests=len(part),
                       leave_target_running=(i==1),cases=[dict(classname=owner,name=name,status='passed')
                                                        for owner,name in sorted(part)])
                  for i,part in enumerate(parts)]
         self.assertEqual(verify_restart_reports(expected,reports)['completed_tests'],4)
+        self.assertEqual(verify_restart_reports(expected,reports)['device_sdk'],35)
+        for invalid in (None, 30, 36, '35', True):
+            for phase in range(3):
+                changed=copy.deepcopy(reports)
+                if invalid is None:changed[phase].pop('device_sdk')
+                else:changed[phase]['device_sdk']=invalid
+                with self.subTest(sdk=invalid,phase=phase), self.assertRaises(ValueError):
+                    verify_restart_reports(expected,changed)
         self.assertIn(('example.FutureTest','future'),parts[0])
         for bad in (reports[:2], [reports[0],reports[1],reports[1]]):
             with self.assertRaises(ValueError):verify_restart_reports(expected,bad)
@@ -179,3 +270,4 @@ class RestartModeTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

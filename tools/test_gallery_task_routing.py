@@ -97,7 +97,7 @@ class GallerySinkTest(unittest.TestCase):
 
 class GalleryRoutingContractTest(unittest.TestCase):
     def test_three_gallery_methods_stay_in_existing_ordinary_restart_partition(self):
-        inventory = declared_tests(ROOT / 'app/src/androidTest')
+        inventory = declared_tests(ROOT / 'app/src/androidTest', sdk_level=35)
         ordinary, seed, verify = restart_partition(inventory)
         gallery = {item for item in inventory if item[0] == GALLERY}
         self.assertEqual(len(gallery), 3)
@@ -106,7 +106,7 @@ class GalleryRoutingContractTest(unittest.TestCase):
         self.assertEqual(len(verify), 1)
         self.assertEqual(ordinary | seed | verify, inventory)
         self.assertFalse(ordinary & seed or ordinary & verify or seed & verify)
-        reports = [{'success': True, 'leave_target_running': mode,
+        reports = [{'success': True, 'device_sdk': 35, 'leave_target_running': mode,
                     'expected_tests': len(part), 'completed_tests': len(part),
                     'cases': [{'classname': owner, 'name': name, 'status': 'passed'}
                               for owner, name in sorted(part)]}

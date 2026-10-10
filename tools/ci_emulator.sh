@@ -148,11 +148,12 @@ SEED_REPORT
 import json, sys
 from pathlib import Path
 sys.path.insert(0, 'tools')
-from run_android_instrumentation import declared_tests, verify_restart_reports
+from run_android_instrumentation import declared_tests, restart_sdk, verify_restart_reports
 root = Path(sys.argv[2])
 reports = [json.loads(path.read_text()) for path in
            (Path(sys.argv[1]), root/'seed/summary.json', root/'verify/summary.json')]
-coverage = verify_restart_reports(declared_tests(Path('app/src/androidTest')), reports)
+sdk_level = restart_sdk(reports)
+coverage = verify_restart_reports(declared_tests(Path('app/src/androidTest'), sdk_level=sdk_level), reports)
 (root/'coverage.json').write_text(json.dumps(coverage, indent=2)+'\n')
 COVERAGE
 }
@@ -259,3 +260,4 @@ main() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then main "$@"; fi
+
