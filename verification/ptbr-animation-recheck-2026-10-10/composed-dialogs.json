@@ -1,0 +1,190 @@
+[
+  {
+    "id": "D01",
+    "name": "Exact-count GIF",
+    "input": {
+      "format": "GIF",
+      "frameCount": 3,
+      "frameCountExact": true,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This GIF contains 3 frames. AN Paint edits still images and does not preserve animation.\n\nOnly the first frame will be imported. Saving creates a still image.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este GIF contém 3 quadros. O AN Paint edita imagens estáticas e não preserva animações.\n\nApenas o primeiro quadro será importado. Salvar cria uma imagem estática.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": []
+  },
+  {
+    "id": "D02",
+    "name": "Lower-bound GIF",
+    "input": {
+      "format": "GIF",
+      "frameCount": 2,
+      "frameCountExact": false,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This GIF contains at least 2 frames. AN Paint edits still images and does not preserve animation.\n\nOnly the first frame will be imported. Saving creates a still image.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este GIF contém pelo menos 2 quadros. O AN Paint edita imagens estáticas e não preserva animações.\n\nApenas o primeiro quadro será importado. Salvar cria uma imagem estática.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": []
+  },
+  {
+    "id": "D03",
+    "name": "Uncertain PNG; zero frames established",
+    "input": {
+      "format": "PNG",
+      "frameCount": 0,
+      "frameCountExact": false,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This PNG is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este PNG é complexo demais para confirmar se contém vários quadros. O AN Paint abrirá apenas uma imagem estática e não preservará nenhuma animação.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": [
+      "A01: definite title with uncertain body",
+      "No first-frame/poster paragraph is appended in the uncertain branch"
+    ]
+  },
+  {
+    "id": "D04",
+    "name": "Uncertain GIF; one frame established",
+    "input": {
+      "format": "GIF",
+      "frameCount": 1,
+      "frameCountExact": false,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This GIF is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este GIF é complexo demais para confirmar se contém vários quadros. O AN Paint abrirá apenas uma imagem estática e não preservará nenhuma animação.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": [
+      "A01: definite title with uncertain body",
+      "No first-frame/poster paragraph is appended in the uncertain branch"
+    ]
+  },
+  {
+    "id": "D05",
+    "name": "APNG: default image is animation first frame",
+    "input": {
+      "format": "APNG",
+      "frameCount": 3,
+      "frameCountExact": true,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This APNG contains 3 frames. AN Paint edits still images and does not preserve animation.\n\nOnly the first frame will be imported. Saving creates a still image.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este APNG contém 3 quadros. O AN Paint edita imagens estáticas e não preserva animações.\n\nApenas o primeiro quadro será importado. Salvar cria uma imagem estática.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": []
+  },
+  {
+    "id": "D06",
+    "name": "APNG: separate default poster",
+    "input": {
+      "format": "APNG",
+      "frameCount": 3,
+      "frameCountExact": true,
+      "pngDefaultImageSeparate": true
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This APNG contains 3 frames. AN Paint edits still images and does not preserve animation.\n\nThis PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este APNG contém 3 quadros. O AN Paint edita imagens estáticas e não preserva animações.\n\nEste PNG tem uma imagem padrão separada. Essa imagem será importada no lugar dos quadros da animação. Salvar cria uma imagem estática.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": []
+  },
+  {
+    "id": "D07",
+    "name": "Exact-count WebP",
+    "input": {
+      "format": "WebP",
+      "frameCount": 3,
+      "frameCountExact": true,
+      "pngDefaultImageSeparate": false
+    },
+    "english": {
+      "title": "Animated image",
+      "body": "This WebP contains 3 frames. AN Paint edits still images and does not preserve animation.\n\nOnly the first frame will be imported. Saving creates a still image.",
+      "positive": "Open still image",
+      "negative": "Cancel"
+    },
+    "portuguese": {
+      "title": "Imagem animada",
+      "body": "Este WebP contém 3 quadros. O AN Paint edita imagens estáticas e não preserva animações.\n\nApenas o primeiro quadro será importado. Salvar cria uma imagem estática.",
+      "positive": "Abrir imagem estática",
+      "negative": "Cancelar"
+    },
+    "method": "Source-derived string substitution; not Android rendering or app execution",
+    "expected_positive_source_path": "finishSelection(0) -> ImportedImage(staged, name, 0) -> selected(source)",
+    "expected_cancel_source_path": "cancel() -> dispose() -> cancelled()",
+    "qualifications": []
+  }
+]
