@@ -1,0 +1,474 @@
+{
+  "repository": "c933103/AN-Paint",
+  "PR": 41,
+  "run_id": 38031416670,
+  "attempt": 1,
+  "conclusion": "failure",
+  "source_head": "f22ff7a206b6e871e54fec4b0e02ae32f7cc4700",
+  "tested_merge": "b9d9375f8c9e494f83478cd88090c30a6065bfa0",
+  "source_and_merge_tree": "d21df4db395b12aeac71600d73394323fa040d51",
+  "source_binding": "Both commit trees verified through GitHub; artifact metadata identifies same head/run",
+  "declared_installed_methods": 98,
+  "completed_installed_methods": 97,
+  "interrupted_methods": 1,
+  "phase_results": {
+    "app/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 18,
+      "completed_tests": 18,
+      "timed_out": false,
+      "elapsed_seconds": 164.38337714800002,
+      "returncode": 0,
+      "missing": [],
+      "errors": []
+    },
+    "app/accepted-credit-restart/seed/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "timed_out": false,
+      "elapsed_seconds": 8.552638123999941,
+      "returncode": 0,
+      "missing": [],
+      "errors": []
+    },
+    "app/accepted-credit-restart/verify/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "timed_out": false,
+      "elapsed_seconds": 9.742510391999986,
+      "returncode": 0,
+      "missing": [],
+      "errors": []
+    },
+    "Paintroid/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "timed_out": false,
+      "elapsed_seconds": 91.10472963000007,
+      "returncode": 0,
+      "missing": [],
+      "errors": []
+    },
+    "app-vertical/androidTest-results/summary.json": {
+      "success": false,
+      "expected_tests": 4,
+      "completed_tests": 3,
+      "timed_out": true,
+      "elapsed_seconds": 180.63559025400002,
+      "returncode": -9,
+      "missing": [
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ],
+      "errors": [
+        "Instrumentation exceeded its deadline",
+        "adb exited with status -9",
+        "Missing or unsuccessful final instrumentation result: []",
+        "1 declared test method(s) did not complete"
+      ]
+    }
+  },
+  "native_input_model_cases": [
+    {
+      "case": "en-XV-landscape",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 4,
+      "event_actions": {
+        "ACTION_DOWN": 4,
+        "ACTION_MOVE": 132,
+        "ACTION_UP": 4
+      },
+      "traces": [
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 100,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 1,
+      "confirmed_quality": 100,
+      "destination_requests": 1
+    },
+    {
+      "case": "en-XV-portrait",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 3,
+      "event_actions": {
+        "ACTION_DOWN": 3,
+        "ACTION_MOVE": 99,
+        "ACTION_UP": 3
+      },
+      "traces": [
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 95,
+      "confirmed_quality": 1,
+      "destination_requests": 1
+    },
+    {
+      "case": "mnc-Mong-landscape",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 4,
+      "event_actions": {
+        "ACTION_DOWN": 4,
+        "ACTION_MOVE": 132,
+        "ACTION_UP": 4
+      },
+      "traces": [
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 100,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 1,
+      "confirmed_quality": 100,
+      "destination_requests": 1
+    },
+    {
+      "case": "mnc-Mong-portrait",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 3,
+      "event_actions": {
+        "ACTION_DOWN": 3,
+        "ACTION_MOVE": 99,
+        "ACTION_UP": 3
+      },
+      "traces": [
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 95,
+      "confirmed_quality": 1,
+      "destination_requests": 1
+    },
+    {
+      "case": "qaa-Zsye-XV-landscape",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 4,
+      "event_actions": {
+        "ACTION_DOWN": 4,
+        "ACTION_MOVE": 132,
+        "ACTION_UP": 4
+      },
+      "traces": [
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 100,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 1,
+      "confirmed_quality": 100,
+      "destination_requests": 1
+    },
+    {
+      "case": "qaa-Zsye-XV-portrait",
+      "receipt_success": true,
+      "qualification": "Input/model assertions only; retained pixels reject full visual acceptance",
+      "native_drag_count": 3,
+      "event_actions": {
+        "ACTION_DOWN": 3,
+        "ACTION_MOVE": 99,
+        "ACTION_UP": 3
+      },
+      "traces": [
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 100,
+          "before": 1,
+          "after": 100,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        },
+        {
+          "requested": 1,
+          "before": 95,
+          "after": 1,
+          "outcome": "passed",
+          "scroll_offsets_unchanged": true,
+          "errors": [],
+          "dropped_events": 0,
+          "dropped_scroll_changes": 0,
+          "observers_removed": true
+        }
+      ],
+      "filename": "Untitled.jpg",
+      "cancel_draft_quality": 100,
+      "remembered_quality_before_cancel": 95,
+      "confirmed_quality": 1,
+      "destination_requests": 1
+    }
+  ],
+  "missing_reachability_cases": [
+    "lzh-Hant-portrait",
+    "lzh-Hant-landscape"
+  ],
+  "original_pngs": 72,
+  "original_state_pngs": 24,
+  "reachability_pngs": 48,
+  "retained_receipts": 6,
+  "completed_native_drags": 21,
+  "visual_acceptance": false,
+  "visual_findings_comment": "https://github.com/c933103/AN-Paint/pull/41#issuecomment-6094873111",
+  "visual_findings": [
+    "English portrait endpoints display 76 while progress reaches 1/100",
+    "Manchu portrait endpoint labels retain 95; vertical emoji portrait labels retain 77",
+    "Completed landscape maximum labels retain 1 while progress reaches 100",
+    "Filename preview can retain Untitled.png beside field Untitled.jpg"
+  ],
+  "archives": [
+    {
+      "file": "api35-original.zip",
+      "original_artifact": true,
+      "artifact_id": 11662561776,
+      "bytes": 4289911,
+      "sha256": "c804b59b9d9eb75ca6b24af696d2ae09cdf9ffa0c81582f75ffc30fd18c2397c",
+      "git_blob": "be3be9afb65efe0a949f3746cb2fe7c805db4f38"
+    },
+    {
+      "file": "supporting-reports-selected.zip",
+      "original_artifact": false,
+      "artifact_id": null,
+      "bytes": 106498,
+      "sha256": "cae82ceb1095555a4d18d69d59cbe60b812e41397ab516d2bf51fb007759308e",
+      "git_blob": "c24463af8b1a528f18a9464c45300bd2ec8daa3d"
+    }
+  ],
+  "supporting_scope": "Selected original-byte emulator job log, 78 JVM XML files, lint XML, and 12 CI phase logs/timestamps/timing files; newly assembled ZIP, not the complete original regression artifact",
+  "regression_original_artifact": {
+    "id": 11663260512,
+    "bytes": 32272067,
+    "sha256": "b753a120c4e332668ec763f794af6662d232f76fb3a8d4b0acdc0964c7ce70f7"
+  },
+  "regression_outcomes": {
+    "JVM_tests": 749,
+    "JVM_failures": 0,
+    "JVM_errors": 0,
+    "JVM_skips": 0,
+    "JVM_XML_files": 78,
+    "new_slider_cases": 12,
+    "lint_issues": 0,
+    "CI_Python_tests": 397,
+    "CI_Python_skips": 2,
+    "CI_Python_failures": 0,
+    "production_and_test_APK_compilation": "passed"
+  },
+  "prior_failures": "All prior failed runs and their evidence remain unchanged; no later source changes retroactively accept this run",
+  "publication_effect": "Evidence branch only; no source,workflow or CI trigger changes",
+  "binary_readback_limit": "Original local SHA256 and Git blob identity plus remote tree identity can be verified; connector cannot decode remote binary bytes, so such independent remote-byte verification is not claimed"
+}
