@@ -8,7 +8,7 @@ Seven resources have separate contextual dispositions in [dispositions.json](dis
 
 The six body/count/action resources preserve the reviewed operation distinctions; no translation defect was identified in this bounded review. The title is a faithful translation but has an **open shared contextual caveat, A01**: “Animated image” / “Imagem animada” also heads the uncertain-detection dialog. The body explains uncertainty, but the title is more definite than the scanner's established result.
 
-No translations, application source or tests are changed. Original-thread reconciliation and runtime validation remain pending. P07-007, P07-008, P07-009, CAT-040 and PR7 remain open. The authoritative [register](https://github.com/c933103/AN-Paint/blob/54557562afea97541e6a67d5a2dce93e2508e48c/verification/localization-recheck-register.md#L240-L242) is the source of the parent obligations. The existing [P07-008 clipboard evidence](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6093327556) remains separate.
+No translations, application source or tests are changed. Original scope/review/reset requirements are now partially recovered as recorded below; term-specific history, complete original-thread reconciliation and runtime validation remain pending. P07-007, P07-008, P07-009, CAT-040 and PR7 remain open. The authoritative [register](https://github.com/c933103/AN-Paint/blob/54557562afea97541e6a67d5a2dce93e2508e48c/verification/localization-recheck-register.md#L240-L242) is the source of the parent obligations. The existing [P07-008 clipboard evidence](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6093327556) remains separate.
 
 ## Seven individual dispositions
 
@@ -28,7 +28,23 @@ Each JSON disposition gives its full reasoning. Equal source text and matching p
 
 All seven current pt-BR text values match that correction, original PR7 head `730319aea40eb205d18c894c496e500d6f660ac6`, and integration head `54557562afea97541e6a67d5a2dce93e2508e48c`. The complete catalogue blobs differ because other entries changed. [source-evidence.json](source-evidence.json) records every read source's exact Git blob, ref and URL.
 
-The current PR7 description, public discussion and review finding were inspected. The public inline review concerns duplicate pt-PT configurations; its resolution history cannot accept these Portuguese meanings. The latest inspected pre-publication comment is [6093327556](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6093327556). Original Portuguese-specific conversation recovery remains incomplete. This report does not substitute retrospective summaries for original instructions or assert that no later instruction exists.
+The PR7 description, public discussion and review finding were inspected for the initial evidence pass. The public inline review concerns duplicate pt-PT configurations; its resolution history cannot accept these Portuguese meanings. The latest inspected comment before the initial evidence publication was [6093327556](https://github.com/c933103/AN-Paint/pull/7#issuecomment-6093327556).
+
+### Partial original-scope recovery, 10 October 2026
+
+A later read-only recovery verified original owner-authored scope, review and reset requirements. The following bounded project-scope summary replaces any interpretation that the original requirements are wholly unrecovered:
+
+- The original PR7 language scope is English variants, European Portuguese, Brazilian Portuguese, Italian, Greek and Turkish.
+- Inherited Paintroid or other-app translations can contain known errors. They must not be treated as invariably correct or automatically preferred over independent review.
+- Incomplete original language-thread work must be finished, and applicable shared application corrections must be propagated beyond only the originally selected language branches.
+- The reset includes findings and updates outside PR reviews. Completing the other 81 locales is outside this reset scope.
+- The rejected entire delivery requires individual full rechecks; prior progress and completion claims do not carry acceptance forward.
+
+This establishes why the inherited Portuguese text needs an independent contextual review and why shared application findings cannot be confined to one language branch. It does not establish approval of any chosen Portuguese word or acceptance of the seven reviewed resources.
+
+**Still missing:** no owner-specific clipboard or animation word-choice instruction has yet been recovered. Some assistant search hits lack readable exact-message anchors; complete latest-thread and alternate-branch reconciliation remain incomplete. An assistant search excerpt is not owner terminology evidence. No inference that additional instructions do not exist is made.
+
+Only the project-scope paraphrase is published here. Private conversation transcripts, message identifiers and conversation links are excluded. This recovery changes no semantic disposition, runtime result, native-speaker claim, parent-row status or completion count.
 
 ## Primary linguistic and software references
 
@@ -86,6 +102,6 @@ The host test source covers exact/lower-bound/unknown metadata outcomes but not 
 
 ## Remaining requirements and next validation
 
-Original instruction reconciliation, A01 disposition and fresh runtime evidence remain open. Future validation should exercise pt-BR exact/lower-bound/unknown dialogs, both APNG paths, Open/Cancel, accessibility and rendering, then run the applicable metadata/decoder tests on an exact source identity. Any approved title change must be propagated and rechecked in the affected shared/translated scope.
+The recovered scope/review/reset requirements narrow the history gap. Term-specific instruction recovery, complete latest-thread/alternate-branch reconciliation, A01 disposition and fresh runtime evidence remain open. Future validation should exercise pt-BR exact/lower-bound/unknown dialogs, both APNG paths, Open/Cancel, accessibility and rendering, then run the applicable metadata/decoder tests on an exact source identity. Any approved title change must be propagated and rechecked in the affected shared/translated scope.
 
 Other substantive pt-BR entries and full rewrite preservation require their own individual results. This seven-resource record does not change parent acceptance statuses or the reset register's completion count.
