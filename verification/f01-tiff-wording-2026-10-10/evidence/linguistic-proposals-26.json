@@ -1,0 +1,606 @@
+{
+  "schema_version": 1,
+  "review_scope": "F01 TIFF description: independent read-only linguistic review of 26 clear unqualified catalogs; narrow modal qualification only.",
+  "source_repository": "c933103/AN-Paint",
+  "source_ref": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+  "source_tree": "d9858229f98068bef9c6194c90d77610c5ecceec",
+  "source_provenance": "Exact original strings were read from the a01-title-recheck candidate snapshot identified by the author as byte-matching develop for these resources. This reviewer did not independently re-fetch all remote blobs.",
+  "review_created_utc": "2026-10-10T10:13:59Z",
+  "behavior_evidence": [
+    {
+      "path": "Paintroid/src/main/cpp/tiff_bridge.cpp",
+      "lines": "480-518",
+      "review_note": "Read directly: compressed selects Deflate without choosing the smaller of compressed and uncompressed output."
+    },
+    {
+      "title": "RFC 1951 section 1.1",
+      "url": "https://www.rfc-editor.org/rfc/rfc1951#section-1.1",
+      "review_note": "Lossless compression cannot shrink every possible input; expansion is possible."
+    }
+  ],
+  "global_limit_notes": [
+    "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+    "Supporting language sources verify a construction or usage only, not the whole translation.",
+    "Several proposals express can rather than strictly epistemic may. They remove categorical reduction claims but do not explicitly warn that output may grow.",
+    "No unresolved modal-construction blocker was identified among these 26 proposals. Korean regional/native usage and existing Swahili/Tagalog terminology remain outside narrow acceptance.",
+    "No candidate-resource edits, tests, publication, review of 12 probable or 4 uncertain catalogs, changes to 7 qualified strings, or work on 81 missing definitions were performed by this reviewer.",
+    "This JSON is a temporary research/evidence artifact; it is not proof that the proposed resources have been applied or compiled."
+  ],
+  "entries": [
+    {
+      "locale": "ar",
+      "qualifier": "values-ar",
+      "resource_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "يحفظ صفحة RGB واحدة. يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.",
+      "proposal": "يحفظ صفحة RGB واحدة. قد يقلل الضغط حجم الملف دون تغيير البكسلات؛ عطّله لحفظ TIFF غير مضغوط.",
+      "replacement": {
+        "original": "يقلل الضغط",
+        "proposal": "قد يقلل الضغط"
+      },
+      "confidence": "high",
+      "reason": "Adding قد before the imperfective qualifies reduction as possible.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "af",
+      "qualifier": "values-b+af",
+      "resource_path": "Paintroid/src/main/res/values-b+af/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 569,
+      "original": "Stoor een RGB-bladsy. Kompressie verklein die lêer sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.",
+      "proposal": "Stoor een RGB-bladsy. Kompressie kan die lêer verklein sonder om piksels te verander; skakel dit af vir ongekomprimeerde TIFF.",
+      "replacement": {
+        "original": "Kompressie verklein die lêer",
+        "proposal": "Kompressie kan die lêer verklein"
+      },
+      "confidence": "high",
+      "reason": "Adds kan and moves the lexical verb to its required position.",
+      "sources": [
+        {
+          "title": "VivA: Woordsoorte, werkwoord I",
+          "url": "https://viva-afrikaans.org/component/k2/item/577-woordsoorte-wetenswaardighede-oor-die-werkwoord-i"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports multi-verb word order. The exact sentence and its modal reading remain model-reviewed."
+      ]
+    },
+    {
+      "locale": "eo",
+      "qualifier": "values-b+eo",
+      "resource_path": "Paintroid/src/main/res/values-b+eo/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 567,
+      "original": "Konservas unu RGB-paĝon. Kunpremo malgrandigas la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.",
+      "proposal": "Konservas unu RGB-paĝon. Kunpremo povas malgrandigi la dosieron sen ŝanĝi bilderojn; malŝaltu ĝin por nekunpremita TIFF.",
+      "replacement": {
+        "original": "Kunpremo malgrandigas",
+        "proposal": "Kunpremo povas malgrandigi"
+      },
+      "confidence": "high",
+      "reason": "Povas plus infinitive expresses possibility/capability.",
+      "sources": [
+        {
+          "title": "PMEG: Povi",
+          "url": "https://bertilow.com/pmeg/gramatiko/gravaj_verboj/povi_devi_voli/povi.html"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports povi plus infinitive for possibility/capability. It does not review the complete translation."
+      ]
+    },
+    {
+      "locale": "es-419",
+      "qualifier": "values-b+es+419",
+      "resource_path": "Paintroid/src/main/res/values-b+es+419/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Guarda una página RGB. La compresión reduce el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
+      "proposal": "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
+      "replacement": {
+        "original": "La compresión reduce",
+        "proposal": "La compresión puede reducir"
+      },
+      "confidence": "high",
+      "reason": "Puede reducir replaces the categorical present with capability/possibility.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "qualifier": "values-b+es+ES",
+      "resource_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Guarda una página RGB. La compresión reduce el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
+      "proposal": "Guarda una página RGB. La compresión puede reducir el tamaño del archivo sin cambiar los píxeles; desactívala para un TIFF sin comprimir.",
+      "replacement": {
+        "original": "La compresión reduce",
+        "proposal": "La compresión puede reducir"
+      },
+      "confidence": "high",
+      "reason": "Same modal correction as es-419; no regional vocabulary changes.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "et",
+      "qualifier": "values-b+et",
+      "resource_path": "Paintroid/src/main/res/values-b+et/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 567,
+      "original": "Salvestab ühe RGB-lehe. Tihendus vähendab failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.",
+      "proposal": "Salvestab ühe RGB-lehe. Tihendus võib vähendada failisuurust piksleid muutmata; tihendamata TIFF-i jaoks lülita see välja.",
+      "replacement": {
+        "original": "Tihendus vähendab",
+        "proposal": "Tihendus võib vähendada"
+      },
+      "confidence": "high",
+      "reason": "Võib plus the da-infinitive qualifies the reduction.",
+      "sources": [
+        {
+          "title": "EKI: võima",
+          "url": "https://arhiiv.eki.ee/dict/psv/index.cgi?Q=v%C3%B5ima"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "Sense 4 supports possible occurrence; the exact TIFF sentence is model-reviewed."
+      ]
+    },
+    {
+      "locale": "ko-KP",
+      "qualifier": "values-b+ko+KP",
+      "resource_path": "Paintroid/src/main/res/values-b+ko+KP/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄입니다. 압축하지 않은 TIFF로 보관하려면 끄세요.",
+      "proposal": "RGB 한 페이지를 보관합니다. 압축은 화소를 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 보관하려면 끄세요.",
+      "replacement": {
+        "original": "줄입니다.",
+        "proposal": "줄일 수 있습니다."
+      },
+      "confidence": "high_on_modality_medium_high_on_regional_application",
+      "reason": "Changes only the categorical predicate to the potential construction; preserves 보관 and 화소.",
+      "sources": [
+        {
+          "title": "National Institute of Korean Language: 의존명사 수",
+          "url": "https://korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=317553&searchCondition=&searchKeyword="
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports ability/possibility for dependent noun 수 in standard South Korean usage; it does not approve the complete sentence. This is not DPRK-language attestation; regional vocabulary is preserved without claiming full regional acceptance."
+      ]
+    },
+    {
+      "locale": "ko-KR",
+      "qualifier": "values-b+ko+KR",
+      "resource_path": "Paintroid/src/main/res/values-b+ko+KR/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄입니다. 압축하지 않은 TIFF로 저장하려면 끄세요.",
+      "proposal": "RGB 한 페이지를 저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장하려면 끄세요.",
+      "replacement": {
+        "original": "줄입니다.",
+        "proposal": "줄일 수 있습니다."
+      },
+      "confidence": "high",
+      "reason": "Changes only the categorical predicate to the potential construction.",
+      "sources": [
+        {
+          "title": "National Institute of Korean Language: 의존명사 수",
+          "url": "https://korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=317553&searchCondition=&searchKeyword="
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports ability/possibility for dependent noun 수 in standard South Korean usage; it does not approve the complete sentence."
+      ]
+    },
+    {
+      "locale": "ko-Kore-KR",
+      "qualifier": "values-b+ko+Kore+KR",
+      "resource_path": "Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄입니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.",
+      "proposal": "RGB 한 페이지를 貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏하려면 끄세요.",
+      "replacement": {
+        "original": "줄입니다.",
+        "proposal": "줄일 수 있습니다."
+      },
+      "confidence": "high_on_modality",
+      "reason": "Preserves every Hanja character and all mixed-script choices.",
+      "sources": [
+        {
+          "title": "National Institute of Korean Language: 의존명사 수",
+          "url": "https://korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=317553&searchCondition=&searchKeyword="
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports ability/possibility for dependent noun 수 in standard South Korean usage; it does not approve the complete sentence. No broader mixed-script style validation is claimed; all existing Hanja is preserved."
+      ]
+    },
+    {
+      "locale": "lv",
+      "qualifier": "values-b+lv",
+      "resource_path": "Paintroid/src/main/res/values-b+lv/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 567,
+      "original": "Saglabā vienu RGB lapu. Saspiešana samazina faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.",
+      "proposal": "Saglabā vienu RGB lapu. Saspiešana var samazināt faila izmēru, nemainot pikseļus; izslēdziet to nesaspiestam TIFF.",
+      "replacement": {
+        "original": "Saspiešana samazina",
+        "proposal": "Saspiešana var samazināt"
+      },
+      "confidence": "high_on_narrow_change",
+      "reason": "Var plus infinitive expresses possible reduction.",
+      "sources": [
+        {
+          "title": "EU official Latvian text: Recommendation 2024/2143",
+          "url": "https://eur-lex.europa.eu/eli/reco/2024/2143/oj/lav/pdf"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source independently uses var samazināt for a possible effect. This is usage support, not full translation or UI terminology validation."
+      ]
+    },
+    {
+      "locale": "pt-PT",
+      "qualifier": "values-b+pt+PT",
+      "resource_path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 571,
+      "original": "Guarda uma página RGB. A compressão reduz o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.",
+      "proposal": "Guarda uma página RGB. A compressão pode reduzir o tamanho do ficheiro sem alterar os píxeis; desative-a para TIFF não comprimido.",
+      "replacement": {
+        "original": "A compressão reduz",
+        "proposal": "A compressão pode reduzir"
+      },
+      "confidence": "high",
+      "reason": "Pode reduzir qualifies the result and preserves ficheiro and píxeis.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "de",
+      "qualifier": "values-de",
+      "resource_path": "Paintroid/src/main/res/values-de/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Speichert eine RGB-Seite. Komprimierung verkleinert die Datei, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.",
+      "proposal": "Speichert eine RGB-Seite. Komprimierung kann die Datei verkleinern, ohne Pixel zu verändern; deaktivieren Sie sie für unkomprimiertes TIFF.",
+      "replacement": {
+        "original": "Komprimierung verkleinert die Datei",
+        "proposal": "Komprimierung kann die Datei verkleinern"
+      },
+      "confidence": "high",
+      "reason": "Adds modal kann and places the infinitive correctly.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "el",
+      "qualifier": "values-el",
+      "resource_path": "Paintroid/src/main/res/values-el/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Αποθηκεύει μία σελίδα RGB. Η συμπίεση μειώνει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.",
+      "proposal": "Αποθηκεύει μία σελίδα RGB. Η συμπίεση μπορεί να μειώσει το μέγεθος αρχείου χωρίς να αλλάζει pixel· απενεργοποιήστε την για ασυμπίεστο TIFF.",
+      "replacement": {
+        "original": "Η συμπίεση μειώνει",
+        "proposal": "Η συμπίεση μπορεί να μειώσει"
+      },
+      "confidence": "high",
+      "reason": "Μπορεί να μειώσει expresses possible reduction; retains existing pixel terminology and punctuation.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "fi",
+      "qualifier": "values-fi",
+      "resource_path": "Paintroid/src/main/res/values-fi/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 571,
+      "original": "Tallentaa yhden RGB-sivun. Pakkaus pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.",
+      "proposal": "Tallentaa yhden RGB-sivun. Pakkaus voi pienentää tiedostoa muuttamatta pikseleitä; poista se käytöstä pakkaamattomalle TIFF:lle.",
+      "replacement": {
+        "original": "Pakkaus pienentää",
+        "proposal": "Pakkaus voi pienentää"
+      },
+      "confidence": "high",
+      "reason": "Adds voi without changing the remaining syntax.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "fr",
+      "qualifier": "values-fr",
+      "resource_path": "Paintroid/src/main/res/values-fr/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 590,
+      "original": "Enregistre une page RGB. La compression réduit la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.",
+      "proposal": "Enregistre une page RGB. La compression peut réduire la taille du fichier sans modifier les pixels ; désactivez-la pour un TIFF non compressé.",
+      "replacement": {
+        "original": "La compression réduit",
+        "proposal": "La compression peut réduire"
+      },
+      "confidence": "high",
+      "reason": "Peut réduire removes the categorical result.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "hu",
+      "qualifier": "values-hu",
+      "resource_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 571,
+      "original": "Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkenti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.",
+      "proposal": "Egy RGB-oldalt ment. A tömörítés a képpontok módosítása nélkül csökkentheti a fájlméretet; kapcsolja ki tömörítetlen TIFF-hez.",
+      "replacement": {
+        "original": "csökkenti",
+        "proposal": "csökkentheti"
+      },
+      "confidence": "high_on_narrow_inflection",
+      "reason": "Csökkentheti adds potential modality while retaining definite-object agreement with a fájlméretet.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "id",
+      "qualifier": "values-in",
+      "resource_path": "Paintroid/src/main/res/values-in/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 591,
+      "original": "Simpan satu halaman RGB. Kompresi mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.",
+      "proposal": "Simpan satu halaman RGB. Kompresi dapat mengurangi ukuran berkas tanpa mengubah piksel; nonaktifkan untuk TIFF tanpa kompresi.",
+      "replacement": {
+        "original": "Kompresi mengurangi",
+        "proposal": "Kompresi dapat mengurangi"
+      },
+      "confidence": "high",
+      "reason": "Dapat qualifies reduction as a capability rather than an invariant result; preserves values-in and berkas.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "it",
+      "qualifier": "values-it",
+      "resource_path": "Paintroid/src/main/res/values-it/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Salva una pagina RGB. La compressione riduce le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.",
+      "proposal": "Salva una pagina RGB. La compressione può ridurre le dimensioni del file senza cambiare i pixel; disattivala per TIFF non compresso.",
+      "replacement": {
+        "original": "La compressione riduce",
+        "proposal": "La compressione può ridurre"
+      },
+      "confidence": "high",
+      "reason": "Può ridurre adds possibility/capability.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "lt",
+      "qualifier": "values-lt",
+      "resource_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 571,
+      "original": "Išsaugo vieną RGB puslapį. Glaudinimas sumažina failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.",
+      "proposal": "Išsaugo vieną RGB puslapį. Glaudinimas gali sumažinti failo dydį nekeisdamas pikselių; išjunkite nesuglaudintam TIFF.",
+      "replacement": {
+        "original": "Glaudinimas sumažina",
+        "proposal": "Glaudinimas gali sumažinti"
+      },
+      "confidence": "high_on_narrow_change",
+      "reason": "Gali sumažinti qualifies reduction while preserving the participial clause.",
+      "sources": [
+        {
+          "title": "Philips: Lithuanian Advanced Visualization Workspace documentation",
+          "url": "https://www.documents.philips.com/assets/Instruction%20for%20Use/20240104/eaf67dd60793488ab4e5b0ed00ad24a6.pdf?feed=ifu_docs_feed"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source uses the same modal combination with glaudinimas. It supports grammar/usage only, not AN Paint behavior or full translation quality."
+      ]
+    },
+    {
+      "locale": "ms",
+      "qualifier": "values-ms",
+      "resource_path": "Paintroid/src/main/res/values-ms/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 592,
+      "original": "Menyimpan satu halaman RGB. Mampatan mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.",
+      "proposal": "Menyimpan satu halaman RGB. Mampatan mungkin mengurangkan saiz fail tanpa mengubah piksel; matikannya untuk TIFF tanpa mampatan.",
+      "replacement": {
+        "original": "Mampatan mengurangkan",
+        "proposal": "Mampatan mungkin mengurangkan"
+      },
+      "confidence": "high_on_explicit_possibility",
+      "reason": "Mungkin closely matches may and requires only insertion. Boleh would also express capability, but mungkin makes uncertainty especially clear.",
+      "sources": [
+        {
+          "title": "Dewan Bahasa dan Pustaka: mungkin",
+          "url": "https://prpm.dbp.gov.my/Cari1?d=274052&keyword=mungkin"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The dictionary supports the possibility sense of mungkin. The complete UI sentence remains model-reviewed."
+      ]
+    },
+    {
+      "locale": "nl",
+      "qualifier": "values-nl",
+      "resource_path": "Paintroid/src/main/res/values-nl/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 571,
+      "original": "Slaat één RGB-pagina op. Compressie verkleint het bestand zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
+      "proposal": "Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
+      "replacement": {
+        "original": "Compressie verkleint het bestand",
+        "proposal": "Compressie kan het bestand verkleinen"
+      },
+      "confidence": "high",
+      "reason": "Adds kan and moves the infinitive appropriately.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "ru",
+      "qualifier": "values-ru",
+      "resource_path": "Paintroid/src/main/res/values-ru/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Сохраняет одну RGB-страницу. Сжатие уменьшает размер файла без изменения пикселей; отключите его для несжатого TIFF.",
+      "proposal": "Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.",
+      "replacement": {
+        "original": "Сжатие уменьшает",
+        "proposal": "Сжатие может уменьшить"
+      },
+      "confidence": "high",
+      "reason": "Может уменьшить expresses possible reduction, retaining the original object and preservation clause.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "sw",
+      "qualifier": "values-sw",
+      "resource_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 565,
+      "original": "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo hupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
+      "proposal": "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
+      "replacement": {
+        "original": "Mgandamizo hupunguza",
+        "proposal": "Mgandamizo unaweza kupunguza"
+      },
+      "confidence": "medium_high",
+      "reason": "Replaces the habitual categorical verb with a possibility construction; u- agrees with the existing class-3 subject.",
+      "sources": [
+        {
+          "title": "Swahili primary-source publication: Utu Uzima Kukoma Hedhi",
+          "url": "https://assets.ourbodiesourselves.org/documents/UtuUzimaKukomaHedhi_BecomingAnAdultAndCeasingToMenstruate.pdf"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source contains mgandamizo with ambao unaweza, supporting noun agreement. It does not validate Mgandamizo as the best computing term; that existing term is deliberately preserved."
+      ]
+    },
+    {
+      "locale": "tl",
+      "qualifier": "values-tl",
+      "resource_path": "Paintroid/src/main/res/values-tl/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 591,
+      "original": "Nagse-save ng isang RGB page. Binabawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
+      "proposal": "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
+      "replacement": {
+        "original": "Binabawasan ng compression",
+        "proposal": "Maaaring bawasan ng compression"
+      },
+      "confidence": "medium_high",
+      "reason": "Maaaring bawasan qualifies reduction while retaining the existing object-focus construction and mixed English terminology.",
+      "sources": [
+        {
+          "title": "Philippine education module: Wastong Pamamahala",
+          "url": "https://nlpdl.nlp.gov.ph/PE02/ct002/PE02T0000011/PE02T0000011p0018.pdf"
+        }
+      ],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "The source supports Maaaring bawasan usage. The exact object-focus UI sentence and mixed terminology remain model-reviewed."
+      ]
+    },
+    {
+      "locale": "tr",
+      "qualifier": "values-tr",
+      "resource_path": "Paintroid/src/main/res/values-tr/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltır; sıkıştırılmamış TIFF için kapatın.",
+      "proposal": "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.",
+      "replacement": {
+        "original": "azaltır",
+        "proposal": "azaltabilir"
+      },
+      "confidence": "high",
+      "reason": "Azaltabilir adds potential/capability morphology without changing sentence structure.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    },
+    {
+      "locale": "vi",
+      "qualifier": "values-vi",
+      "resource_path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "resource_key": "formats22_tiff_description",
+      "source_line": 593,
+      "original": "Lưu một trang RGB. Nén làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén.",
+      "proposal": "Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén.",
+      "replacement": {
+        "original": "Nén làm giảm",
+        "proposal": "Nén có thể làm giảm"
+      },
+      "confidence": "high",
+      "reason": "Có thể explicitly qualifies the existing reduction predicate; preserves điểm ảnh and all other wording.",
+      "sources": [],
+      "source_limit_notes": [
+        "Confidence concerns only the narrow modal substitution. This is model linguistic review, not native-speaker attestation or complete-locale acceptance.",
+        "No independent language-source verification was obtained for this entry; the grammatical and semantic assessment is model-based."
+      ]
+    }
+  ]
+}

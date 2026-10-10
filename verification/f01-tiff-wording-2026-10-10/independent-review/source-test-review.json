@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-10",
+  "review_scope": "Independent source identity, bounded wording, regression-test design, exact union, host execution and negative-control review.",
+  "disposition": "Accepted within source and test-design review scope after the two checkbox-assertion repairs. No remaining source/test-design blocker found. This is not Android/runtime or release acceptance.",
+  "base_commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+  "base_tree": "d9858229f98068bef9c6194c90d77610c5ecceec",
+  "accepted_trees": {
+    "revised_eleven": "89e43725c5b7c2f01827cfa06510c21f5268314c",
+    "isolated_26": "b81391fb46dd9ee1bdb86c3faf693462e1316232",
+    "combined": "bde13ca4bbd9a45198ab4da9cadd85d900aaa594"
+  },
+  "superseded_trees": {
+    "eleven_before_checkbox_repair": "f0c9e32a6d8e3b69d0d55b2c1972433cd05533d9",
+    "combined_before_checkbox_repair": "40a4df55453208f46cf9c3188e717c07e75882a4"
+  },
+  "identity_verification": {
+    "method": "Independently recomputed Git blob and recursive tree hashes from all actual file bytes and manifest modes; verified actual executable bits, additions/removals, per-file SHA-256, and exact union. Rechecked again when materializing this report.",
+    "source_files": 1294,
+    "single_resource_edits": 37,
+    "added_test_files": 4,
+    "unchanged_base_files": 1253,
+    "removed": [],
+    "unexpected_files": [],
+    "mode_changes": [],
+    "exact_union_verified": true
+  },
+  "wording_review": {
+    "english": "may reduce",
+    "pt_BR": "pode reduzir",
+    "finding": "The initial modal substitutions correctly qualify file-size reduction while preserving one RGB page, pixel preservation, and unchecked/uncompressed guidance.",
+    "expansion": "All 26 exact replacements match the independently reviewed linguistic proposal map; the Python and Kotlin expansion oracles match that map.",
+    "proposal_map_sha256": "632a49918015f150d2514e9d146f10e2c11aae9a8de81edc1ee13d518603a5d6",
+    "preserved": [
+      "Encoder and other application code",
+      "Existing tests",
+      "Other resource bytes",
+      "Locale routing and fallback policy",
+      "Canonical XML/Crowdin/imported-provenance policy",
+      "Emoji prefix, script and regional distinctions",
+      "Pixel-preservation and unchecked-compression clauses"
+    ],
+    "linguistic_limits": "Narrow model review, not native-speaker attestation or full-language acceptance. Regional Korean and existing terminology limits remain as recorded in the individual linguistic map."
+  },
+  "corrected_finding": {
+    "title": "Checkbox click return value is not a toggle-success flag",
+    "classification": "Source/API-contract finding; no executed runtime failure claimed.",
+    "status": "Resolved and independently verified.",
+    "detail": "The TIFF checkbox has no OnClickListener. CompoundButton.performClick toggles first and returns the underlying View listener-handled value, which can be false. Both added Kotlin classes incorrectly asserted a true return.",
+    "repair": "Removed only the two assertTrue wrappers around the checkbox click, retaining the actual click, explicit checked-state and description checks, and callback assertions. Production/resource bytes did not change.",
+    "sources": [
+      {
+        "url": "https://developer.android.com/reference/android/widget/CompoundButton#performClick()",
+        "purpose": "Public return-value contract."
+      },
+      {
+        "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-13.0.0_r1/core/java/android/widget/CompoundButton.java#L142-L154",
+        "git_blob": "63f8ee7528f2f939a4001fe3bf8b6391f0bc231c",
+        "purpose": "API33 framework toggles before delegating and returns the delegate result."
+      },
+      {
+        "url": "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowCompoundButton.java",
+        "git_blob": "18b606a357d25a14f5cd35c59b56af80e5f11d2f",
+        "purpose": "Pinned shadow does not override performClick."
+      },
+      {
+        "url": "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowView.java#L269-L275",
+        "git_blob": "1887043237a57dd3bff431f4cc82631de44b7c2e",
+        "purpose": "Pinned shadow returns the real View performClick result."
+      }
+    ]
+  },
+  "independent_validation": {
+    "tree": "bde13ca4bbd9a45198ab4da9cadd85d900aaa594",
+    "structural_validator": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/translation_catalogues.py",
+      "result": "passed"
+    },
+    "full_host_suite": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'",
+      "tests": 374,
+      "skipped": 0,
+      "seconds": 52.074,
+      "exit_code": 0,
+      "result": "passed",
+      "log": "../combined-evidence/independent-final-host.log",
+      "sha256": "5ecb90e7446a8e48cf653172d42517f71a69dad43cbdbf320fbf27c1069dcbe5",
+      "interpretation": "Printed success:false instrumentation summaries are deliberately rejected mocked host fixtures, not installed Android execution."
+    },
+    "negative_controls": {
+      "count": 41,
+      "assertion_rejections": 41,
+      "test_errors": 0,
+      "positive_focused_tests_before": 8,
+      "positive_focused_tests_after": 8,
+      "candidate_source_untouched": true,
+      "method": "Independent temporary resource copy of final candidate; each of 37 corrected clauses reverted separately, plus emoji removal, pixel-clause corruption, unchecked-guidance reversal and invented Welsh fallback definition.",
+      "log": "../combined-evidence/independent-final-negative-controls.json",
+      "sha256": "eb114e4d39cee62f04b9280dd9b5bba1e7310c8a2faa334fd27d8c07ae74d6fe"
+    }
+  },
+  "new_robolectric_coverage": {
+    "methods": [
+      "TiffDescriptionDialogTest.sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionDialogTest.brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionDialogTest.welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices",
+      "TiffDescriptionDialogTest.verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription",
+      "TiffDescriptionDialogTest.togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag",
+      "TiffDescriptionDialogTest.switchingFormatsRestoresDescriptionAndRetainsCompressionChoice",
+      "TiffDescriptionDialogTest.buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice",
+      "TiffDescriptionLocaleTest.allTwentySixLocalesUseTheirQualifiedDescriptionForBothCompressionChoices",
+      "TiffDescriptionLocaleTest.allTwentySixLocalesRetainDescriptionThroughToggleFormatSwitchAndCancel"
+    ],
+    "method_count": 9,
+    "sdk": 33,
+    "status": "All nine methods remain uncompiled and unrun locally.",
+    "design": "Actual production SaveOptionsDialog and resources, fixed expected text rather than resource-derived oracles, both initial checkbox states, actual positive callback flags and filename, toggles, DIB/TIFF switching, both cancellation paths represented across the suite, and Welsh fallback.",
+    "exclusions": "No encoder invocation, actual compressed-size measurements, installed-device routing acceptance, or rendered layout/accessibility acceptance."
+  },
+  "execution_limits": {
+    "gradle_attempt_tree": "40a4df55453208f46cf9c3188e717c07e75882a4",
+    "gradle_result": "Pre-repair attempt failed fetching uncached Gradle 8.13 with Network is unreachable before any Gradle task or Kotlin compiler ran.",
+    "revised_kotlin_execution": "No execution or compilation inferred for revised source.",
+    "not_established": [
+      "APK build",
+      "Android lint",
+      "Robolectric compilation or execution",
+      "Android emulator or physical-device tests",
+      "Screenshots/rendering/accessibility acceptance",
+      "Encoder or whole-TIFF size-measurement validation"
+    ],
+    "required_next": "Candidate-specific Android compilation/tests and applicable rendered checks remain necessary."
+  },
+  "inventory_and_closure": {
+    "exact_explicit_definitions_verified": 60,
+    "corrected": 37,
+    "unchanged": 23,
+    "unchanged_probable": 12,
+    "unchanged_uncertain": 4,
+    "unchanged_already_qualified": 7,
+    "missing_key_offered_locales": 81,
+    "fallback_limit": "Corrected default fallback is source-predicted; no runtime proof for all 81 locales.",
+    "F01": "Open",
+    "parent_total": 475,
+    "parent_structural_complete": 3,
+    "parent_pending": 472,
+    "scope_limit": "No parent row, full-language obligation, original-scope reconciliation or 81-locale completion is closed."
+  },
+  "related_reviews": [
+    "expansion-map-review.json",
+    "combined-inventory-review.json"
+  ],
+  "reviewer_actions": "Local read-only source inspection, temporary-copy negative controls, host execution, public upstream source reads and this report only. No production/source edits, remote writes, CI dispatch, merge or deployment by this reviewer."
+}

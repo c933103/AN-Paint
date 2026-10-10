@@ -1,0 +1,65 @@
+{
+  "candidate_tree": "f0c9e32a6d8e3b69d0d55b2c1972433cd05533d9",
+  "commands": [
+    {
+      "command": "python3 tools/translation_catalogues.py",
+      "exit_code": 0,
+      "result": "Canonical translation catalogues are structurally valid",
+      "log": "catalogue-validation.log"
+    },
+    {
+      "command": "python3 -m unittest discover -s tools -p 'test_translations.py' -v",
+      "exit_code": 0,
+      "tests": 32,
+      "result": "passed",
+      "log": "translation-host-tests.log"
+    },
+    {
+      "command": "python3 -m unittest discover -s tools -p 'test_tiff_description_wording.py' -v",
+      "exit_code": 0,
+      "tests": 6,
+      "result": "passed",
+      "log": "tiff-wording-host-tests.log"
+    },
+    {
+      "command": "python3 -m unittest discover -s tools -p 'test_*.py'",
+      "exit_code": 0,
+      "tests": 372,
+      "skipped": 0,
+      "seconds": 52.716,
+      "result": "passed",
+      "log": "all-host-tests.log"
+    },
+    {
+      "command": "GRADLE_USER_HOME=/tmp/anpaint-f01-gradle-offline timeout 90 ./gradlew :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.TiffDescriptionDialogTest --tests org.catrobat.paintroid.local.ExportFormatDialogTest --offline --no-daemon",
+      "exit_code": 1,
+      "result": "Wrapper bootstrap failed with Network is unreachable while fetching uncached Gradle 8.13; no tasks or Kotlin compilation ran.",
+      "log": "robolectric-attempt.log"
+    }
+  ],
+  "negative_controls": {
+    "count": 15,
+    "all_rejected_by_assertion": true,
+    "restored_original_candidate": true,
+    "file": "negative-controls.json"
+  },
+  "robolectric_methods": [
+    "sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices",
+    "brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices",
+    "welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices",
+    "verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription",
+    "togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag",
+    "switchingFormatsRestoresDescriptionAndRetainsCompressionChoice",
+    "buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice"
+  ],
+  "android_status": "All seven new Robolectric methods and existing ExportFormatDialogTest uncompiled/unrun locally. No Android/emulator/physical-device execution, installed visual acceptance, lint or APK build is claimed.",
+  "full_host_log_note": "JSON success:false blocks are deliberately rejected mocked instrumentation-runner fixtures inside the successful host unit suite; they are not installed Android test results.",
+  "language_limit": "Model linguistic triage and exact resource guards do not confer native-speaker attestation or full-language acceptance.",
+  "publication": "Not published; frozen for independent review.",
+  "parents": {
+    "total": 475,
+    "structural_completed": 3,
+    "pending": 472,
+    "F01": "Pending across remaining individual language cases and applicable validation."
+  }
+}

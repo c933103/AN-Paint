@@ -1,0 +1,654 @@
+{
+  "review_scope": "Combined F01 resource-union equivalence and inventory bookkeeping only.",
+  "result": "pass",
+  "base_tree": "d9858229f98068bef9c6194c90d77610c5ecceec",
+  "initial_eleven_tree": "89e43725c5b7c2f01827cfa06510c21f5268314c",
+  "isolated_26_tree": "b81391fb46dd9ee1bdb86c3faf693462e1316232",
+  "candidate_tree": "bde13ca4bbd9a45198ab4da9cadd85d900aaa594",
+  "candidate_manifest_sha256": "5ffab9e08d72a0c491adacd541822089ac82005300a3bb10c395a0c2d0472fb7",
+  "inventory_sha256": "351f9baa3f6ad2b701d4881b6597f0d02ff765f9915657c21450a49e1c6ed546",
+  "source_files": 1294,
+  "unchanged_base_files": 1253,
+  "changed_existing_resources": 37,
+  "added_test_files": 4,
+  "removed": [],
+  "counts": {
+    "explicit": 60,
+    "offered_explicit": 59,
+    "offered_total": 140,
+    "unqualified_high": 37,
+    "unqualified_probable": 12,
+    "qualified": 7,
+    "uncertain": 4,
+    "no_claim_confident": 0,
+    "candidate_entries": 37,
+    "fallback_offered": 81,
+    "unchanged_probable": 12,
+    "unchanged_uncertain": 4,
+    "unchanged_already_qualified": 7
+  },
+  "parent_state": {
+    "total": 475,
+    "structural_complete": 3,
+    "pending": 472,
+    "F01": "Open; 37 descriptions have bounded modal corrections proposed; twelve probable and four uncertain language cases plus applicable validation remain unresolved."
+  },
+  "checks": [
+    "37 resource changes are the disjoint exact blob union of revised 11-entry and isolated 26-entry candidates.",
+    "All 1,294 combined source bytes/modes match the frozen Git tree; all 41 manifest entries match blob/SHA-256/length.",
+    "Every explicit base/current string, base blob, line, tag and inherited classification agrees with source; no resource bytes outside the one value changed.",
+    "All 37 originally high-confidence unqualified descriptions receive modal edits; 12 probable, 4 uncertain and 7 already-qualified entries stay byte-identical.",
+    "140 unique offered tags partition into 59 explicit and 81 missing definitions, plus default gives 60 explicit records.",
+    "Each fallback entry still lacks the key and a same-language explicit definition; legacy unoffered es and ko also remain missing.",
+    "All existing verification files remain byte-identical; 475/3/472 is preserved and every explicit item remains Not closed."
+  ],
+  "limits": [
+    "Category counts describe the base-text classification, not remaining categorical assertions in the corrected candidate.",
+    "No native-speaker/full-locale acceptance or fresh review of the 12 probable/4 uncertain/7 qualified entries.",
+    "Fallback remains source-predicted; no runtime proof for 81 locales.",
+    "No host tests, test adequacy review, Kotlin compilation, Android runtime or rendered acceptance performed in this bounded role.",
+    "Git tree objects and local bytes were verified; no remote fetch/publication/dispatch occurred."
+  ],
+  "entries": [
+    {
+      "id": "F01-C001",
+      "tag": "default",
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C002",
+      "tag": "ar",
+      "path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C003",
+      "tag": "af",
+      "path": "Paintroid/src/main/res/values-b+af/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C004",
+      "tag": "ain-Kana",
+      "path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "base_category": "linguistically-uncertain",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C005",
+      "tag": "ain-Latn",
+      "path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "base_category": "linguistically-uncertain",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C006",
+      "tag": "bo",
+      "path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C007",
+      "tag": "ceb",
+      "path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C008",
+      "tag": "dz",
+      "path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C009",
+      "tag": "en-001",
+      "path": "Paintroid/src/main/res/values-b+en+001/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C010",
+      "tag": "en-XV",
+      "path": "Paintroid/src/main/res/values-b+en+XV/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C011",
+      "tag": "eo",
+      "path": "Paintroid/src/main/res/values-b+eo/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C012",
+      "tag": "es-419",
+      "path": "Paintroid/src/main/res/values-b+es+419/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C013",
+      "tag": "es-ES",
+      "path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C014",
+      "tag": "et",
+      "path": "Paintroid/src/main/res/values-b+et/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C015",
+      "tag": "hak-Hant-TW",
+      "path": "Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C016",
+      "tag": "hak-Latn-TW",
+      "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C017",
+      "tag": "jje",
+      "path": "Paintroid/src/main/res/values-b+jje/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C018",
+      "tag": "ko-KP",
+      "path": "Paintroid/src/main/res/values-b+ko+KP/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C019",
+      "tag": "ko-KR",
+      "path": "Paintroid/src/main/res/values-b+ko+KR/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C020",
+      "tag": "ko-Kore-KR",
+      "path": "Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C021",
+      "tag": "lv",
+      "path": "Paintroid/src/main/res/values-b+lv/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C022",
+      "tag": "lzh-Hant",
+      "path": "Paintroid/src/main/res/values-b+lzh+Hant/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C023",
+      "tag": "mn-Cyrl-MN",
+      "path": "Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C024",
+      "tag": "mn-Mong",
+      "path": "Paintroid/src/main/res/values-b+mn+Mong/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C025",
+      "tag": "mnc-Mong",
+      "path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C026",
+      "tag": "nan-Hant-TW",
+      "path": "Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C027",
+      "tag": "nan-Latn-TW",
+      "path": "Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C028",
+      "tag": "pt-PT",
+      "path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C029",
+      "tag": "qaa-Zsye-XV",
+      "path": "Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C030",
+      "tag": "ryu",
+      "path": "Paintroid/src/main/res/values-b+ryu/strings.xml",
+      "base_category": "linguistically-uncertain",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C031",
+      "tag": "vi-Hani",
+      "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "base_category": "linguistically-uncertain",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C032",
+      "tag": "wuu-Hans",
+      "path": "Paintroid/src/main/res/values-b+wuu+Hans/strings.xml",
+      "base_category": "unqualified-or-reductive-probable",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C033",
+      "tag": "yue-Hant",
+      "path": "Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C034",
+      "tag": "yue-Latn",
+      "path": "Paintroid/src/main/res/values-b+yue+Latn/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C035",
+      "tag": "de",
+      "path": "Paintroid/src/main/res/values-de/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C036",
+      "tag": "el",
+      "path": "Paintroid/src/main/res/values-el/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C037",
+      "tag": "en-AU",
+      "path": "Paintroid/src/main/res/values-en-rAU/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C038",
+      "tag": "en-CA",
+      "path": "Paintroid/src/main/res/values-en-rCA/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C039",
+      "tag": "en-GB",
+      "path": "Paintroid/src/main/res/values-en-rGB/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C040",
+      "tag": "en-IN",
+      "path": "Paintroid/src/main/res/values-en-rIN/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C041",
+      "tag": "en-SG",
+      "path": "Paintroid/src/main/res/values-en-rSG/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C042",
+      "tag": "en-US",
+      "path": "Paintroid/src/main/res/values-en-rUS/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C043",
+      "tag": "fi",
+      "path": "Paintroid/src/main/res/values-fi/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C044",
+      "tag": "fr",
+      "path": "Paintroid/src/main/res/values-fr/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C045",
+      "tag": "hu",
+      "path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C046",
+      "tag": "id",
+      "path": "Paintroid/src/main/res/values-in/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C047",
+      "tag": "it",
+      "path": "Paintroid/src/main/res/values-it/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C048",
+      "tag": "ja",
+      "path": "Paintroid/src/main/res/values-ja/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C049",
+      "tag": "lt",
+      "path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C050",
+      "tag": "ms",
+      "path": "Paintroid/src/main/res/values-ms/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C051",
+      "tag": "nl",
+      "path": "Paintroid/src/main/res/values-nl/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C052",
+      "tag": "pt-BR",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C053",
+      "tag": "ru",
+      "path": "Paintroid/src/main/res/values-ru/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C054",
+      "tag": "sw",
+      "path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C055",
+      "tag": "tl",
+      "path": "Paintroid/src/main/res/values-tl/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C056",
+      "tag": "tr",
+      "path": "Paintroid/src/main/res/values-tr/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C057",
+      "tag": "vi",
+      "path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "base_category": "unqualified-high",
+      "candidate_changed": true,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C058",
+      "tag": "zh-CN",
+      "path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C059",
+      "tag": "zh-HK",
+      "path": "Paintroid/src/main/res/values-zh-rHK/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    },
+    {
+      "id": "F01-C060",
+      "tag": "zh-TW",
+      "path": "Paintroid/src/main/res/values-zh-rTW/strings.xml",
+      "base_category": "capability-qualified",
+      "candidate_changed": false,
+      "base_and_candidate_text_match": true,
+      "other_bytes_identical": true,
+      "closure_unchanged": true
+    }
+  ]
+}
