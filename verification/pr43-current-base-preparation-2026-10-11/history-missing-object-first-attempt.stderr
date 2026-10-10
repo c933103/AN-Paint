@@ -1,0 +1,19 @@
+fatal: bad object 730319aea40eb205d18c894c496e500d6f660ac6:Paintroid/src/main/res/values-b+en+001/strings.xml
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr43-latest-integration-20261011/verification/pr7-pr9-recheck-2026-10-10/verify_scope.py", line 217, in <module>
+    main()
+  File "/workspace/shared/anpaint-pr43-latest-integration-20261011/verification/pr7-pr9-recheck-2026-10-10/verify_scope.py", line 181, in main
+    old, proposed = (elements(git("show", f"{ref}:{path}")) for ref in (baseline, head))
+    ^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr43-latest-integration-20261011/verification/pr7-pr9-recheck-2026-10-10/verify_scope.py", line 181, in <genexpr>
+    old, proposed = (elements(git("show", f"{ref}:{path}")) for ref in (baseline, head))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr43-latest-integration-20261011/verification/pr7-pr9-recheck-2026-10-10/verify_scope.py", line 170, in git
+    return subprocess.check_output(["git", "-C", str(args.history_repository), *arguments])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/workspace/shared/anpaint-pr43-latest-integration-20261011', 'show', '730319aea40eb205d18c894c496e500d6f660ac6:Paintroid/src/main/res/values-b+en+001/strings.xml']' returned non-zero exit status 128.
