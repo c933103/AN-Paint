@@ -1,0 +1,2055 @@
+{
+  "archive_sha256": "a9fa5e1d671f8143452a52e405bd1315ce921b0f3d6883b9c79062c91f642bfc",
+  "source_tree": "83f46e5d4772e98610bd6eb6fcc5a3964d19cd84",
+  "head": "0c782ef533f246ee5b6676451e09c51a00e4ae61",
+  "run_id": 38094001589,
+  "tested_merge": "5b2b0a4c64ca22980f47a450f43d146045d8bc5f",
+  "result": {
+    "phases": {
+      "ordinary": {
+        "tests": 16,
+        "seconds": 125.378834963,
+        "timeout_seconds": 180
+      },
+      "gallery-draft": {
+        "tests": 3,
+        "seconds": 44.011233902000015,
+        "timeout_seconds": 90
+      },
+      "vertical-english-manchu": {
+        "tests": 2,
+        "seconds": 107.19054390599996,
+        "timeout_seconds": 180
+      },
+      "vertical-literary-chinese-emoji": {
+        "tests": 2,
+        "seconds": 101.53499499099996,
+        "timeout_seconds": 180
+      },
+      "seed": {
+        "tests": 1,
+        "seconds": 5.043456483,
+        "timeout_seconds": 60
+      },
+      "verify": {
+        "tests": 1,
+        "seconds": 6.299965802000088,
+        "timeout_seconds": 60
+      },
+      "native": {
+        "tests": 74,
+        "seconds": 23.045410611000023,
+        "timeout_seconds": 180
+      }
+    },
+    "installed_methods": 99,
+    "coverage": {
+      "success": true,
+      "device_sdk": 35,
+      "source_tests_sha256": "146190bb18e714b4b92ba04475f4c16e70242f92f4c079cc35f4ac22788059bc",
+      "timeout_seconds_by_phase": {
+        "ordinary": 180,
+        "gallery-draft": 90,
+        "vertical-english-manchu": 180,
+        "vertical-literary-chinese-emoji": 180,
+        "seed": 60,
+        "verify": 60
+      },
+      "ordinary_and_gallery_total_timeout_seconds": 270,
+      "vertical_timeout_seconds_per_shard": 180,
+      "vertical_total_timeout_seconds": 360,
+      "receipt_scope": "complete-composed-app-union",
+      "all_app_total_timeout_seconds": 750,
+      "declared_tests": 25,
+      "sdk_eligible_tests": 25,
+      "sdk_suppressed_tests": [],
+      "selected_tests": 25,
+      "explicitly_excluded_tests": [],
+      "completed_tests": 25,
+      "phases": {
+        "ordinary": 16,
+        "gallery-draft": 3,
+        "vertical-english-manchu": 2,
+        "vertical-literary-chinese-emoji": 2,
+        "seed": 1,
+        "verify": 1
+      },
+      "completed": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ]
+    },
+    "screenshots": {
+      "success": true,
+      "expected_screenshots": 32,
+      "files": [
+        {
+          "name": "en-XV-landscape-format-popup.png",
+          "bytes": 34197,
+          "width": 640,
+          "height": 320,
+          "sha256": "dd39d55104f9e82a87ec40f02ebea8fd07785063f10768192b68437507aeb594"
+        },
+        {
+          "name": "en-XV-landscape-jpeg-quality.png",
+          "bytes": 21833,
+          "width": 640,
+          "height": 320,
+          "sha256": "440c966125ead55971c0f82ed13ced8209a2026da3167f42c7a8068aeaab5d3d"
+        },
+        {
+          "name": "en-XV-landscape-save-initial.png",
+          "bytes": 27537,
+          "width": 640,
+          "height": 320,
+          "sha256": "34ee273af18f073bdd60d00688a1f98391a1b18e1030302d240d4837b7986836"
+        },
+        {
+          "name": "en-XV-landscape-workspace.png",
+          "bytes": 28404,
+          "width": 640,
+          "height": 320,
+          "sha256": "86873765124da2914e8be4fd371b6d110161089f3210da1c8269322abe1e61d5"
+        },
+        {
+          "name": "en-XV-portrait-format-popup.png",
+          "bytes": 38532,
+          "width": 320,
+          "height": 640,
+          "sha256": "19b53d8fffe5ea00d83ada1339c2c2e96121c43b113813bc0606aac6976f5fbb"
+        },
+        {
+          "name": "en-XV-portrait-jpeg-quality.png",
+          "bytes": 23095,
+          "width": 320,
+          "height": 640,
+          "sha256": "5253f0eb73b7372b38e1a4dac014aab6883b6e44ac8e6ca4f74470fb23e50eed"
+        },
+        {
+          "name": "en-XV-portrait-save-initial.png",
+          "bytes": 28220,
+          "width": 320,
+          "height": 640,
+          "sha256": "9477c0cf636aaa16e13435f9d29cc9a3868b7e367f6364b6a5af78bff345ab09"
+        },
+        {
+          "name": "en-XV-portrait-workspace.png",
+          "bytes": 35313,
+          "width": 320,
+          "height": 640,
+          "sha256": "9090b0049c1e5a9ad65abab5dce56f556713dca9b893677ff6ded06ec4bdb554"
+        },
+        {
+          "name": "lzh-Hant-landscape-format-popup.png",
+          "bytes": 36641,
+          "width": 640,
+          "height": 320,
+          "sha256": "5dca2a5aeb5218e917ce51e27fe6586396f969533d05a39855d9d5477b4bc2c0"
+        },
+        {
+          "name": "lzh-Hant-landscape-jpeg-quality.png",
+          "bytes": 36730,
+          "width": 640,
+          "height": 320,
+          "sha256": "0fcf2d75aac9cb61a3bdf91f1068fb37476c0c343522758e0ee93c61dd160c56"
+        },
+        {
+          "name": "lzh-Hant-landscape-save-initial.png",
+          "bytes": 31157,
+          "width": 640,
+          "height": 320,
+          "sha256": "0a83b5039c6db971829b4dc1aa07b0525face9ee43f0a521574fe641992d80cd"
+        },
+        {
+          "name": "lzh-Hant-landscape-workspace.png",
+          "bytes": 29103,
+          "width": 640,
+          "height": 320,
+          "sha256": "e0c10e22068fa6b92de20afd200dd7f8478b19035317acee65dcc2297b2e7259"
+        },
+        {
+          "name": "lzh-Hant-portrait-format-popup.png",
+          "bytes": 42654,
+          "width": 320,
+          "height": 640,
+          "sha256": "591d46707a83d67822e48a0db93de2bd168613e11f1cadbf2aa7ae5a2fca95e4"
+        },
+        {
+          "name": "lzh-Hant-portrait-jpeg-quality.png",
+          "bytes": 41587,
+          "width": 320,
+          "height": 640,
+          "sha256": "c49902db862304e222906fad41b07fcc0cbef7ea4d20a53b18a17f7e7a11d867"
+        },
+        {
+          "name": "lzh-Hant-portrait-save-initial.png",
+          "bytes": 30175,
+          "width": 320,
+          "height": 640,
+          "sha256": "0f6e895334c2f2681cacd729366a37cf9e64df5b20a112abcf64fa430760ff01"
+        },
+        {
+          "name": "lzh-Hant-portrait-workspace.png",
+          "bytes": 36393,
+          "width": 320,
+          "height": 640,
+          "sha256": "aa2f4617f92ff3742365d23103b5cf83bb6a575000a78b8678f6ff54ee9416b0"
+        },
+        {
+          "name": "mnc-Mong-landscape-format-popup.png",
+          "bytes": 38207,
+          "width": 640,
+          "height": 320,
+          "sha256": "04869cfe44834e592d2f5699dd80f61f8d81b979539892697c4ad5b8d88c2eec"
+        },
+        {
+          "name": "mnc-Mong-landscape-jpeg-quality.png",
+          "bytes": 25911,
+          "width": 640,
+          "height": 320,
+          "sha256": "99dc00c4fa412c89080a2a8a8f79ecd06d8e4dd67f8551d052085ce35d329714"
+        },
+        {
+          "name": "mnc-Mong-landscape-save-initial.png",
+          "bytes": 31709,
+          "width": 640,
+          "height": 320,
+          "sha256": "cccd3b4e02b5dde86bf2cf739d273c4aaa9a1120caa6fbfcb412c20e9589dbdc"
+        },
+        {
+          "name": "mnc-Mong-landscape-workspace.png",
+          "bytes": 27897,
+          "width": 640,
+          "height": 320,
+          "sha256": "ce5f5cb731777d3cab997c2964593a5ce142c64509c0c4d0bdc3becb494e6fc4"
+        },
+        {
+          "name": "mnc-Mong-portrait-format-popup.png",
+          "bytes": 33032,
+          "width": 320,
+          "height": 640,
+          "sha256": "6495f2b2a861679321e80a1b0a6715a6905562d5552dd5098ab86d19d877749c"
+        },
+        {
+          "name": "mnc-Mong-portrait-jpeg-quality.png",
+          "bytes": 24990,
+          "width": 320,
+          "height": 640,
+          "sha256": "aca8b009ee97d0848fe43279b1bd0709f6a5d90f35ed4b9745234637d4e598a6"
+        },
+        {
+          "name": "mnc-Mong-portrait-save-initial.png",
+          "bytes": 30972,
+          "width": 320,
+          "height": 640,
+          "sha256": "75884cc9043ebd4664275f267cd09cc5dc3db4fb40fc67ff61817dc9286a446b"
+        },
+        {
+          "name": "mnc-Mong-portrait-workspace.png",
+          "bytes": 35868,
+          "width": 320,
+          "height": 640,
+          "sha256": "8db3a9c35ad540ac9da89184c1f0033ca255ca26a0301f1985fec412acdaf11e"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-format-popup.png",
+          "bytes": 35331,
+          "width": 640,
+          "height": 320,
+          "sha256": "d91f65cbc7664b40bfb7b8e7f107f931d758f5e70a055dd80f407a577fe5b1fd"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-jpeg-quality.png",
+          "bytes": 28870,
+          "width": 640,
+          "height": 320,
+          "sha256": "4212d46ad4494d029fdca36363987f0620c87d4e8d035877cdf4c8239ea01ee5"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-save-initial.png",
+          "bytes": 29087,
+          "width": 640,
+          "height": 320,
+          "sha256": "52d73eb3e588c122767a5000e91a7170b8c9c3fe6ba0c2881fdafe9323a68aa8"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-workspace.png",
+          "bytes": 29741,
+          "width": 640,
+          "height": 320,
+          "sha256": "4944f7ce1f691b958dbe37d624054086551061d37cc8fb89b21d6dfa96234348"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-format-popup.png",
+          "bytes": 42471,
+          "width": 320,
+          "height": 640,
+          "sha256": "96468c98b16436b21339feae70f1c5e8206f81e13698970075ff39f148adc751"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-jpeg-quality.png",
+          "bytes": 38203,
+          "width": 320,
+          "height": 640,
+          "sha256": "86831ebe556e09528abf57b06f8fab5fe95dd81f2413349801e552b309940aa9"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-save-initial.png",
+          "bytes": 33004,
+          "width": 320,
+          "height": 640,
+          "sha256": "4db38be6c575aad2b69ce5f95ea9ab32c94f50ec482626d8ca4c1dff77aee791"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-workspace.png",
+          "bytes": 40088,
+          "width": 320,
+          "height": 640,
+          "sha256": "93caee3d969ceb227d8c1003f3ec1eb66037b0a016b9f57f4433252d847312d1"
+        }
+      ]
+    },
+    "reachability": {
+      "success": true,
+      "cases": [
+        {
+          "case": "en-XV-landscape",
+          "device_sdk": 35,
+          "confirmed_quality": 100
+        },
+        {
+          "case": "en-XV-portrait",
+          "device_sdk": 35,
+          "confirmed_quality": 1
+        },
+        {
+          "case": "lzh-Hant-landscape",
+          "device_sdk": 35,
+          "confirmed_quality": 100
+        },
+        {
+          "case": "lzh-Hant-portrait",
+          "device_sdk": 35,
+          "confirmed_quality": 1
+        },
+        {
+          "case": "mnc-Mong-landscape",
+          "device_sdk": 35,
+          "confirmed_quality": 100
+        },
+        {
+          "case": "mnc-Mong-portrait",
+          "device_sdk": 35,
+          "confirmed_quality": 1
+        },
+        {
+          "case": "qaa-Zsye-XV-landscape",
+          "device_sdk": 35,
+          "confirmed_quality": 100
+        },
+        {
+          "case": "qaa-Zsye-XV-portrait",
+          "device_sdk": 35,
+          "confirmed_quality": 1
+        }
+      ],
+      "screenshots": 64,
+      "files": [
+        {
+          "name": "en-XV-landscape-before.png",
+          "bytes": 21833,
+          "width": 640,
+          "height": 320,
+          "sha256": "440c966125ead55971c0f82ed13ced8209a2026da3167f42c7a8068aeaab5d3d"
+        },
+        {
+          "name": "en-XV-landscape-minimum.png",
+          "bytes": 21816,
+          "width": 640,
+          "height": 320,
+          "sha256": "067068ebfb266926a25df26136925a7efcda5570485beafcb70b4d4666e18fa7"
+        },
+        {
+          "name": "en-XV-landscape-maximum.png",
+          "bytes": 22088,
+          "width": 640,
+          "height": 320,
+          "sha256": "b039ad6b4ab0d921ae302d7422e6f320b95891ec4641f4bde53aeffc0bac4a04"
+        },
+        {
+          "name": "en-XV-landscape-filename.png",
+          "bytes": 21816,
+          "width": 640,
+          "height": 320,
+          "sha256": "067068ebfb266926a25df26136925a7efcda5570485beafcb70b4d4666e18fa7"
+        },
+        {
+          "name": "en-XV-landscape-description.png",
+          "bytes": 24137,
+          "width": 640,
+          "height": 320,
+          "sha256": "ac698cda744a346889351a133c7c3268a9dad49b7216e6447caffbf575e1b63f"
+        },
+        {
+          "name": "en-XV-landscape-cancel-ready.png",
+          "bytes": 24431,
+          "width": 640,
+          "height": 320,
+          "sha256": "9d4f6c0198de9d2da16f7cfe24a11b019840fef30be08c3317a827a4f2c19276"
+        },
+        {
+          "name": "en-XV-landscape-choose-ready.png",
+          "bytes": 22195,
+          "width": 640,
+          "height": 320,
+          "sha256": "406e53d1d6eaa4142f5d81a3ac3c70267fcada25738f79d535b54be317500c78"
+        },
+        {
+          "name": "en-XV-landscape-returned.png",
+          "bytes": 19519,
+          "width": 640,
+          "height": 320,
+          "sha256": "2ed5f60118f6fc49f936b8f0ad65c93bb25e7866c80b29e1a4256aaa02a723fb"
+        },
+        {
+          "name": "en-XV-landscape.json",
+          "bytes": 593782,
+          "sha256": "738e28adf265956b7a95edc27fb3fce2af33f88f8361cca6b37474d3f3fbfd91"
+        },
+        {
+          "name": "en-XV-portrait-before.png",
+          "bytes": 23095,
+          "width": 320,
+          "height": 640,
+          "sha256": "5253f0eb73b7372b38e1a4dac014aab6883b6e44ac8e6ca4f74470fb23e50eed"
+        },
+        {
+          "name": "en-XV-portrait-minimum.png",
+          "bytes": 22789,
+          "width": 320,
+          "height": 640,
+          "sha256": "5b920e13a100e7be8148f03db936bcd0c4f0dc08f2f422bdefc9d36e5c58e69d"
+        },
+        {
+          "name": "en-XV-portrait-maximum.png",
+          "bytes": 23085,
+          "width": 320,
+          "height": 640,
+          "sha256": "1a8aacb00b68a8b86c88cf0b8c7f49c7cb229bd970c262fc666c1cbdd35c4f1a"
+        },
+        {
+          "name": "en-XV-portrait-filename.png",
+          "bytes": 26589,
+          "width": 320,
+          "height": 640,
+          "sha256": "fcbc1119bb85e74649b8f93dc8d325e84cfb9f1cce46d20f57582b073cf24f77"
+        },
+        {
+          "name": "en-XV-portrait-description.png",
+          "bytes": 29706,
+          "width": 320,
+          "height": 640,
+          "sha256": "f404edd7e792d1b42287b7451534c7926bcdaaabb2d9d1467792bc83809a7ba6"
+        },
+        {
+          "name": "en-XV-portrait-cancel-ready.png",
+          "bytes": 29684,
+          "width": 320,
+          "height": 640,
+          "sha256": "ee5df7b4a69a03047a337aa183160b09ca9a4202a8e8ca0a2077aca519bd0209"
+        },
+        {
+          "name": "en-XV-portrait-choose-ready.png",
+          "bytes": 23081,
+          "width": 320,
+          "height": 640,
+          "sha256": "529b8771f5bea4fd5bdb2dbf7d1892493b51c56c37fdb3d450bfe9aad585031e"
+        },
+        {
+          "name": "en-XV-portrait-returned.png",
+          "bytes": 26047,
+          "width": 320,
+          "height": 640,
+          "sha256": "74d59860bb2b3af0ce930adc6ef819c0fc430dc0f493f67057516635466a69d8"
+        },
+        {
+          "name": "en-XV-portrait.json",
+          "bytes": 468611,
+          "sha256": "be1e32bed0eeb9c3dae1121ae2c2e86c839a29117b7f870981bd92dcf63a7c4a"
+        },
+        {
+          "name": "lzh-Hant-landscape-before.png",
+          "bytes": 36730,
+          "width": 640,
+          "height": 320,
+          "sha256": "0fcf2d75aac9cb61a3bdf91f1068fb37476c0c343522758e0ee93c61dd160c56"
+        },
+        {
+          "name": "lzh-Hant-landscape-minimum.png",
+          "bytes": 36593,
+          "width": 640,
+          "height": 320,
+          "sha256": "b260a8dddb50014d1e85a7bfe07fb0f21b3265477192812a72bf6ca60c7806d0"
+        },
+        {
+          "name": "lzh-Hant-landscape-maximum.png",
+          "bytes": 36924,
+          "width": 640,
+          "height": 320,
+          "sha256": "e186b686e6cbb6148198f7202d5cec1a0d883efa1fad599ebce1b16c550780a4"
+        },
+        {
+          "name": "lzh-Hant-landscape-filename.png",
+          "bytes": 28085,
+          "width": 640,
+          "height": 320,
+          "sha256": "c317fe4a05a96935ea93d5075da314996dc71da474b358ce5d66606eaac3f505"
+        },
+        {
+          "name": "lzh-Hant-landscape-description.png",
+          "bytes": 28067,
+          "width": 640,
+          "height": 320,
+          "sha256": "d08640f9bf0113a657c181b8085c87872a6a2656cebc5e39eab4d731a4f5e2f8"
+        },
+        {
+          "name": "lzh-Hant-landscape-cancel-ready.png",
+          "bytes": 28378,
+          "width": 640,
+          "height": 320,
+          "sha256": "38f01bc03296bf270248eeadbf1e0e8b986e2db4ebe3209982136b80b5d27a2c"
+        },
+        {
+          "name": "lzh-Hant-landscape-choose-ready.png",
+          "bytes": 37266,
+          "width": 640,
+          "height": 320,
+          "sha256": "f36e98365dc326ce7460b4992862740587375dfb6a21d5da3279e8d2eb653986"
+        },
+        {
+          "name": "lzh-Hant-landscape-returned.png",
+          "bytes": 19977,
+          "width": 640,
+          "height": 320,
+          "sha256": "a21c3642a17aa3076ca815fe92067071f35855cbb7e970022ea7ba454bf84b5b"
+        },
+        {
+          "name": "lzh-Hant-landscape.json",
+          "bytes": 592937,
+          "sha256": "682d0dd11bc6fcf15c54bfd2130e790e83fcc45f46bc3d6d82e336fef347f368"
+        },
+        {
+          "name": "lzh-Hant-portrait-before.png",
+          "bytes": 41587,
+          "width": 320,
+          "height": 640,
+          "sha256": "c49902db862304e222906fad41b07fcc0cbef7ea4d20a53b18a17f7e7a11d867"
+        },
+        {
+          "name": "lzh-Hant-portrait-minimum.png",
+          "bytes": 34474,
+          "width": 320,
+          "height": 640,
+          "sha256": "4c535d55285358ffd52b53ec96edc5c4a6502b565bfc25fc8eae02deee859fbc"
+        },
+        {
+          "name": "lzh-Hant-portrait-maximum.png",
+          "bytes": 34728,
+          "width": 320,
+          "height": 640,
+          "sha256": "617bc2acda1e921281a635896667c9c71d78fbb1634bb186b9a20040b916482d"
+        },
+        {
+          "name": "lzh-Hant-portrait-filename.png",
+          "bytes": 29220,
+          "width": 320,
+          "height": 640,
+          "sha256": "cc8fdb753c878444905c0a19410d82120edc73417bb0d92c933460c5863b02b9"
+        },
+        {
+          "name": "lzh-Hant-portrait-description.png",
+          "bytes": 34708,
+          "width": 320,
+          "height": 640,
+          "sha256": "48f9dfffa3aa0b01551991455ca6a05e2b7fe3b3bf38a0bdc561d5c7a4aebef0"
+        },
+        {
+          "name": "lzh-Hant-portrait-cancel-ready.png",
+          "bytes": 34733,
+          "width": 320,
+          "height": 640,
+          "sha256": "c3a141c579aba7921ba5969722796ed77dc3c8ae780abfbe48d4a74a30c33b34"
+        },
+        {
+          "name": "lzh-Hant-portrait-choose-ready.png",
+          "bytes": 34474,
+          "width": 320,
+          "height": 640,
+          "sha256": "4c535d55285358ffd52b53ec96edc5c4a6502b565bfc25fc8eae02deee859fbc"
+        },
+        {
+          "name": "lzh-Hant-portrait-returned.png",
+          "bytes": 26966,
+          "width": 320,
+          "height": 640,
+          "sha256": "d3fc2901f36a6aec09c0eb084931443b4e584fb997afd001902b63141f796e99"
+        },
+        {
+          "name": "lzh-Hant-portrait.json",
+          "bytes": 466393,
+          "sha256": "7f6c0ccc6325f7c307e84ee5a84b2748c8913c54761082a09c735e6280eb795a"
+        },
+        {
+          "name": "mnc-Mong-landscape-before.png",
+          "bytes": 25911,
+          "width": 640,
+          "height": 320,
+          "sha256": "99dc00c4fa412c89080a2a8a8f79ecd06d8e4dd67f8551d052085ce35d329714"
+        },
+        {
+          "name": "mnc-Mong-landscape-minimum.png",
+          "bytes": 22458,
+          "width": 640,
+          "height": 320,
+          "sha256": "6e8c089c14876822d808402c9ce8bd8a4fc94e790e02c1fb4347bdc4669cbfd6"
+        },
+        {
+          "name": "mnc-Mong-landscape-maximum.png",
+          "bytes": 22621,
+          "width": 640,
+          "height": 320,
+          "sha256": "27b311447a211b140b3d19a64a5dae770ff6e10e729bfee2abe35f07cd0b6c85"
+        },
+        {
+          "name": "mnc-Mong-landscape-filename.png",
+          "bytes": 22458,
+          "width": 640,
+          "height": 320,
+          "sha256": "6e8c089c14876822d808402c9ce8bd8a4fc94e790e02c1fb4347bdc4669cbfd6"
+        },
+        {
+          "name": "mnc-Mong-landscape-description.png",
+          "bytes": 26054,
+          "width": 640,
+          "height": 320,
+          "sha256": "12a95f4f63ef3283669494aef65c23bfc47025aa92bcd6cbafbf3f52f747f281"
+        },
+        {
+          "name": "mnc-Mong-landscape-cancel-ready.png",
+          "bytes": 26218,
+          "width": 640,
+          "height": 320,
+          "sha256": "ab616129d65be8db3e242b14a8b929f2ca475ef1c1782afcde2bd06f01023746"
+        },
+        {
+          "name": "mnc-Mong-landscape-choose-ready.png",
+          "bytes": 22687,
+          "width": 640,
+          "height": 320,
+          "sha256": "8b4c17049274d3c28300950cb4f0f90e6872907826e7d622c54ad2446411d788"
+        },
+        {
+          "name": "mnc-Mong-landscape-returned.png",
+          "bytes": 21316,
+          "width": 640,
+          "height": 320,
+          "sha256": "8b90ccb7e2dde0fe3eb948b48078fd39f07e44d8206a9d72fb9fc1fb3cbcbc21"
+        },
+        {
+          "name": "mnc-Mong-landscape.json",
+          "bytes": 604702,
+          "sha256": "92002a4e9e2022b5760f1d770190675157c956332e28eb86b340cd455b51c131"
+        },
+        {
+          "name": "mnc-Mong-portrait-before.png",
+          "bytes": 24990,
+          "width": 320,
+          "height": 640,
+          "sha256": "aca8b009ee97d0848fe43279b1bd0709f6a5d90f35ed4b9745234637d4e598a6"
+        },
+        {
+          "name": "mnc-Mong-portrait-minimum.png",
+          "bytes": 23966,
+          "width": 320,
+          "height": 640,
+          "sha256": "c49145896cc34c5d22a9d52445a3125f0fffa994dbb241261183fd9f06161010"
+        },
+        {
+          "name": "mnc-Mong-portrait-maximum.png",
+          "bytes": 24167,
+          "width": 320,
+          "height": 640,
+          "sha256": "271dfbcd368a6d33b0012241ea0eb1d5ff80cb0bd43f6333e37161a59ef4fb0e"
+        },
+        {
+          "name": "mnc-Mong-portrait-filename.png",
+          "bytes": 27067,
+          "width": 320,
+          "height": 640,
+          "sha256": "d107d3384a28c1e7789b97d0085a456dde5444b48cd0cb6815cd8bcea6d4475a"
+        },
+        {
+          "name": "mnc-Mong-portrait-description.png",
+          "bytes": 32343,
+          "width": 320,
+          "height": 640,
+          "sha256": "218a5141dcba8c371bd3d9a73febd1311a1a830b090ccd833e4f6bd5c8992648"
+        },
+        {
+          "name": "mnc-Mong-portrait-cancel-ready.png",
+          "bytes": 32325,
+          "width": 320,
+          "height": 640,
+          "sha256": "cd4f078c7d0d588d6fb280948ea7d668ee816f9d0e4cac38b6a460922b0c5d4b"
+        },
+        {
+          "name": "mnc-Mong-portrait-choose-ready.png",
+          "bytes": 23966,
+          "width": 320,
+          "height": 640,
+          "sha256": "c49145896cc34c5d22a9d52445a3125f0fffa994dbb241261183fd9f06161010"
+        },
+        {
+          "name": "mnc-Mong-portrait-returned.png",
+          "bytes": 29205,
+          "width": 320,
+          "height": 640,
+          "sha256": "41ab0fd00720aba647ffe2f12fdbf15c733949ff0cbbcc92bfcfc6877674a8bc"
+        },
+        {
+          "name": "mnc-Mong-portrait.json",
+          "bytes": 475194,
+          "sha256": "013f4cf00e833b5a07daf55b5bbbec7f9f7b1f46f2dd45e1bc39715b6c521b91"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-before.png",
+          "bytes": 28870,
+          "width": 640,
+          "height": 320,
+          "sha256": "4212d46ad4494d029fdca36363987f0620c87d4e8d035877cdf4c8239ea01ee5"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-minimum.png",
+          "bytes": 29282,
+          "width": 640,
+          "height": 320,
+          "sha256": "7056875fe8931ea9dc97efa7b4e668e1d39cc6016f3f6ede685196d0b8ef964b"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-maximum.png",
+          "bytes": 29465,
+          "width": 640,
+          "height": 320,
+          "sha256": "b9ecfcc06247a1751b131a4c2efef7ab83ab512e37cc2a5544cf136281b1a5c0"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-filename.png",
+          "bytes": 26499,
+          "width": 640,
+          "height": 320,
+          "sha256": "90e234b277f313dd769e9ca79c8d5cf4d70cb6a7a05c0cc690a929dba70772eb"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-description.png",
+          "bytes": 26480,
+          "width": 640,
+          "height": 320,
+          "sha256": "1f061b6331289291eecd4d3d9889078c1e00203fb92a87d47fcded59dd1418ed"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-cancel-ready.png",
+          "bytes": 26437,
+          "width": 640,
+          "height": 320,
+          "sha256": "1385f607dea26d9776cc106dfbd598a332b99cf08db13095eda427dcb6a1f120"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-choose-ready.png",
+          "bytes": 28668,
+          "width": 640,
+          "height": 320,
+          "sha256": "1317e634d1259a31fdc901d19318e88b275343eabc2d2d196900a0f395f04d4f"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape-returned.png",
+          "bytes": 20865,
+          "width": 640,
+          "height": 320,
+          "sha256": "89a9688792619e796c062d23ccc6f9956aaef39d8359b3daedf41045b6e9bc23"
+        },
+        {
+          "name": "qaa-Zsye-XV-landscape.json",
+          "bytes": 597630,
+          "sha256": "c7a2e749b4ab2914f3fed6aeccd74727787869511dda6fbccae8cf910e224a93"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-before.png",
+          "bytes": 38203,
+          "width": 320,
+          "height": 640,
+          "sha256": "86831ebe556e09528abf57b06f8fab5fe95dd81f2413349801e552b309940aa9"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-minimum.png",
+          "bytes": 34702,
+          "width": 320,
+          "height": 640,
+          "sha256": "26ecf9d5bfd0d361f5f6ad8a4b6f981d7735a3185e8d47f246e861237bc211c3"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-maximum.png",
+          "bytes": 34921,
+          "width": 320,
+          "height": 640,
+          "sha256": "d4af563e16259b545193c2f85429d6c10b7de217e85348fc69e4cf38dfd9165e"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-filename.png",
+          "bytes": 30515,
+          "width": 320,
+          "height": 640,
+          "sha256": "5368e775f0d37cc0ee730840569697d2b7449d157018a01089031c6fc59b3a50"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-description.png",
+          "bytes": 34928,
+          "width": 320,
+          "height": 640,
+          "sha256": "df357a3369ec8c39a1d912f368b4061bd5287b60c97fb811757b7c05dfdc6ba7"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-cancel-ready.png",
+          "bytes": 34910,
+          "width": 320,
+          "height": 640,
+          "sha256": "9fb3c8d51f009ee416efef23aa2c75cb0de76654c9a6cac58293cfa1c2d4c585"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-choose-ready.png",
+          "bytes": 34990,
+          "width": 320,
+          "height": 640,
+          "sha256": "6f1e2012d1fbb7b07c7d8c9eb9018b11dfd15a67c1aed92ac12ef92092bb1344"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait-returned.png",
+          "bytes": 30702,
+          "width": 320,
+          "height": 640,
+          "sha256": "bc33d233a5c7effa690ae03ff1759e5691750dbe4f13965464ac61f2455ee07f"
+        },
+        {
+          "name": "qaa-Zsye-XV-portrait.json",
+          "bytes": 467448,
+          "sha256": "ddeab6a8e55810949e89fb843e39f08b35e0c76f89b38699ecf4900a023d3c69"
+        }
+      ],
+      "scope": "Native input/state/bounds receipts. Every actual PNG still requires independent visual review."
+    },
+    "decoded_images": [
+      {
+        "path": "app/vertical-locale-evidence/en-XV-landscape-format-popup.png",
+        "bytes": 34197,
+        "sha256": "dd39d55104f9e82a87ec40f02ebea8fd07785063f10768192b68437507aeb594",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9fa91749b7a8ebeafa65748ed9600794dbdd8719fa17565b8469b2031215c190"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-landscape-jpeg-quality.png",
+        "bytes": 21833,
+        "sha256": "440c966125ead55971c0f82ed13ced8209a2026da3167f42c7a8068aeaab5d3d",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "8540c139ed62c216411127487f325864cb9af42ede239531c08ca6e97c497043"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-landscape-save-initial.png",
+        "bytes": 27537,
+        "sha256": "34ee273af18f073bdd60d00688a1f98391a1b18e1030302d240d4837b7986836",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "490e328c6c0b65b7b8c32cc55c947fb4c51862f479e57940b479d00c86ac2913"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-landscape-workspace.png",
+        "bytes": 28404,
+        "sha256": "86873765124da2914e8be4fd371b6d110161089f3210da1c8269322abe1e61d5",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "cc0ff18dd14c2f23d648ecd03c002b9836ab36ab1451c1413e5a43d02a7f6cf5"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-portrait-format-popup.png",
+        "bytes": 38532,
+        "sha256": "19b53d8fffe5ea00d83ada1339c2c2e96121c43b113813bc0606aac6976f5fbb",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "e17add29c7faa02641672c825ae53115f4d10b4f1b384ed21ae6c3a5bec99fa3"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-portrait-jpeg-quality.png",
+        "bytes": 23095,
+        "sha256": "5253f0eb73b7372b38e1a4dac014aab6883b6e44ac8e6ca4f74470fb23e50eed",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "5ec2658ed73030bef77f1a9c7a519016e2f219b9c9afba26aeea6f86606446d4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-portrait-save-initial.png",
+        "bytes": 28220,
+        "sha256": "9477c0cf636aaa16e13435f9d29cc9a3868b7e367f6364b6a5af78bff345ab09",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "26ae5d1de6b73f4b1bcf736235e9ffe00afb19d3946a719537c1123a155b6e02"
+      },
+      {
+        "path": "app/vertical-locale-evidence/en-XV-portrait-workspace.png",
+        "bytes": 35313,
+        "sha256": "9090b0049c1e5a9ad65abab5dce56f556713dca9b893677ff6ded06ec4bdb554",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "c521b6a58752515b7cdc65e1097d43aa30a846bfc1620401fb761d522e602843"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-landscape-format-popup.png",
+        "bytes": 36641,
+        "sha256": "5dca2a5aeb5218e917ce51e27fe6586396f969533d05a39855d9d5477b4bc2c0",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "597ff03351043a2fc615c7ba2420e3081ee92d55e305bdb3e27dd71169d38049"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-landscape-jpeg-quality.png",
+        "bytes": 36730,
+        "sha256": "0fcf2d75aac9cb61a3bdf91f1068fb37476c0c343522758e0ee93c61dd160c56",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "41a19b2b7e2d419638a9234a637d5c051c7254f9461412b5733a508e12db44ae"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-landscape-save-initial.png",
+        "bytes": 31157,
+        "sha256": "0a83b5039c6db971829b4dc1aa07b0525face9ee43f0a521574fe641992d80cd",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "bf6cc9c918108d7d70b8eac36a08a1247144ec382a23d0dccb3e3a4ffd5aeb40"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-landscape-workspace.png",
+        "bytes": 29103,
+        "sha256": "e0c10e22068fa6b92de20afd200dd7f8478b19035317acee65dcc2297b2e7259",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "8bb03e1e0091898e491e1e6c95082a80b4108d1de6e161c7ea6aab4fb445ab38"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-portrait-format-popup.png",
+        "bytes": 42654,
+        "sha256": "591d46707a83d67822e48a0db93de2bd168613e11f1cadbf2aa7ae5a2fca95e4",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "b00f335976de440af1b917266a48ea59aca1682ded8bc605eb69df7fdf8171cc"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-portrait-jpeg-quality.png",
+        "bytes": 41587,
+        "sha256": "c49902db862304e222906fad41b07fcc0cbef7ea4d20a53b18a17f7e7a11d867",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "1bc835d0dcf16a6b5ec0e5a2563562dceba7dcb7fd30850fa26ccb8bc7a32be4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-portrait-save-initial.png",
+        "bytes": 30175,
+        "sha256": "0f6e895334c2f2681cacd729366a37cf9e64df5b20a112abcf64fa430760ff01",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "ed3eeb0201e6236fcbef75a9a1244a3b2b31942568364f367463ba93fe6e5665"
+      },
+      {
+        "path": "app/vertical-locale-evidence/lzh-Hant-portrait-workspace.png",
+        "bytes": 36393,
+        "sha256": "aa2f4617f92ff3742365d23103b5cf83bb6a575000a78b8678f6ff54ee9416b0",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "0e661239f216e922e1da122e376ba5ff9694276b420e9865ff7e1cb6c41c559f"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-landscape-format-popup.png",
+        "bytes": 38207,
+        "sha256": "04869cfe44834e592d2f5699dd80f61f8d81b979539892697c4ad5b8d88c2eec",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "aff5579e4231ed29ad05a2264801d82f59d10b23527d302a708a0bb26583cea3"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-landscape-jpeg-quality.png",
+        "bytes": 25911,
+        "sha256": "99dc00c4fa412c89080a2a8a8f79ecd06d8e4dd67f8551d052085ce35d329714",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "af0375f4948cfa9d252651ff53f65e81f6cfa91d35336a18472e8bbfb3a9bd07"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-landscape-save-initial.png",
+        "bytes": 31709,
+        "sha256": "cccd3b4e02b5dde86bf2cf739d273c4aaa9a1120caa6fbfcb412c20e9589dbdc",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "df5f16c3d855e98a627df1044399b774f88dd7e952c1e7acca427252424e99da"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-landscape-workspace.png",
+        "bytes": 27897,
+        "sha256": "ce5f5cb731777d3cab997c2964593a5ce142c64509c0c4d0bdc3becb494e6fc4",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "472dac255267bde876b274ad4b52abe6047fb3d46759307f0a3ff7a6eed0e39b"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-portrait-format-popup.png",
+        "bytes": 33032,
+        "sha256": "6495f2b2a861679321e80a1b0a6715a6905562d5552dd5098ab86d19d877749c",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "97287c86312d98eb4ed5d4c777ec853c864c951684439c054937abeb3251aff7"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-portrait-jpeg-quality.png",
+        "bytes": 24990,
+        "sha256": "aca8b009ee97d0848fe43279b1bd0709f6a5d90f35ed4b9745234637d4e598a6",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "e7fc827fa8e0074f1ca1f752e744e0160b25b648c3222c19bd818147170dbfc8"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-portrait-save-initial.png",
+        "bytes": 30972,
+        "sha256": "75884cc9043ebd4664275f267cd09cc5dc3db4fb40fc67ff61817dc9286a446b",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "de325dafe10ec914911346031d9c8b7ea52409b87f7c085f2bb65d415733fc4e"
+      },
+      {
+        "path": "app/vertical-locale-evidence/mnc-Mong-portrait-workspace.png",
+        "bytes": 35868,
+        "sha256": "8db3a9c35ad540ac9da89184c1f0033ca255ca26a0301f1985fec412acdaf11e",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "69a9f09b4e2d0e3db58d98c48762b38479b3059153a9476f9aec02dd37248068"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-landscape-format-popup.png",
+        "bytes": 35331,
+        "sha256": "d91f65cbc7664b40bfb7b8e7f107f931d758f5e70a055dd80f407a577fe5b1fd",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "53e6c0e9389c47c20953cb13630abb6487e75e2a851b3f74f4d689e7862e62a1"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-landscape-jpeg-quality.png",
+        "bytes": 28870,
+        "sha256": "4212d46ad4494d029fdca36363987f0620c87d4e8d035877cdf4c8239ea01ee5",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9234541bd76997b53ecd4ba708f6a86f8958818979b6990de51c3272437f7f22"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-landscape-save-initial.png",
+        "bytes": 29087,
+        "sha256": "52d73eb3e588c122767a5000e91a7170b8c9c3fe6ba0c2881fdafe9323a68aa8",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9dea9dcee9f50036833bd9b16066a1c396ac4f793aa935fe0453a59aff67e6c2"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-landscape-workspace.png",
+        "bytes": 29741,
+        "sha256": "4944f7ce1f691b958dbe37d624054086551061d37cc8fb89b21d6dfa96234348",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "db69ef2b183cd4bfcfc55898e827a512da76fdc7e8bc24bb4d68bed5078912f4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-portrait-format-popup.png",
+        "bytes": 42471,
+        "sha256": "96468c98b16436b21339feae70f1c5e8206f81e13698970075ff39f148adc751",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "9295cd0235f32907f3979210f57d81503fe81a02197d38782b0eb67b59e69e8a"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-portrait-jpeg-quality.png",
+        "bytes": 38203,
+        "sha256": "86831ebe556e09528abf57b06f8fab5fe95dd81f2413349801e552b309940aa9",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "80b94f41f27ea0e5d162b0b63585338ebf3430baf9e1e492d0c41f087f839755"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-portrait-save-initial.png",
+        "bytes": 33004,
+        "sha256": "4db38be6c575aad2b69ce5f95ea9ab32c94f50ec482626d8ca4c1dff77aee791",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "2c2568149f5bfe379f2aed3516f8ecc857d7d6b9f5f475aab2cfe467a3478d15"
+      },
+      {
+        "path": "app/vertical-locale-evidence/qaa-Zsye-XV-portrait-workspace.png",
+        "bytes": 40088,
+        "sha256": "93caee3d969ceb227d8c1003f3ec1eb66037b0a016b9f57f4433252d847312d1",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "8f7451c691116b7d3ace54df5cf8cc1c1011be46642fbbed6cee8a1659f490fc"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-before.png",
+        "bytes": 21833,
+        "sha256": "440c966125ead55971c0f82ed13ced8209a2026da3167f42c7a8068aeaab5d3d",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "8540c139ed62c216411127487f325864cb9af42ede239531c08ca6e97c497043"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-cancel-ready.png",
+        "bytes": 24431,
+        "sha256": "9d4f6c0198de9d2da16f7cfe24a11b019840fef30be08c3317a827a4f2c19276",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "08701a72b6219d790d34f0f6ac8f0be6ef24a3de9a50a0301aa8fbcfa36f9709"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-choose-ready.png",
+        "bytes": 22195,
+        "sha256": "406e53d1d6eaa4142f5d81a3ac3c70267fcada25738f79d535b54be317500c78",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "be6ba13e94246096581544914c8f7ce970737b7ab988c618bbdbf976d96adace"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-description.png",
+        "bytes": 24137,
+        "sha256": "ac698cda744a346889351a133c7c3268a9dad49b7216e6447caffbf575e1b63f",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "3ddaffc48ae5e9af350157601b510b6de0a05eed26ae076e79e9df9eae8266ee"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-filename.png",
+        "bytes": 21816,
+        "sha256": "067068ebfb266926a25df26136925a7efcda5570485beafcb70b4d4666e18fa7",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "192de043e4511bb8a04442c691ca10b27a1f678ce220c5f14775bf894bfc6650"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-maximum.png",
+        "bytes": 22088,
+        "sha256": "b039ad6b4ab0d921ae302d7422e6f320b95891ec4641f4bde53aeffc0bac4a04",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "b35d2e39cd8f82654e9b54bd3411f51da503359718246946c34fd43305d72d2e"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-minimum.png",
+        "bytes": 21816,
+        "sha256": "067068ebfb266926a25df26136925a7efcda5570485beafcb70b4d4666e18fa7",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "192de043e4511bb8a04442c691ca10b27a1f678ce220c5f14775bf894bfc6650"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-landscape-returned.png",
+        "bytes": 19519,
+        "sha256": "2ed5f60118f6fc49f936b8f0ad65c93bb25e7866c80b29e1a4256aaa02a723fb",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "315bb9a1068a13933b982c9ba74779e0495ea6ffe1031ccb34b07c76cd3131bc"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-before.png",
+        "bytes": 23095,
+        "sha256": "5253f0eb73b7372b38e1a4dac014aab6883b6e44ac8e6ca4f74470fb23e50eed",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "5ec2658ed73030bef77f1a9c7a519016e2f219b9c9afba26aeea6f86606446d4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-cancel-ready.png",
+        "bytes": 29684,
+        "sha256": "ee5df7b4a69a03047a337aa183160b09ca9a4202a8e8ca0a2077aca519bd0209",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "2a9d741ba48cdb32266b825d62e9a5565754aed93852671d8e23b9fcbbce6937"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-choose-ready.png",
+        "bytes": 23081,
+        "sha256": "529b8771f5bea4fd5bdb2dbf7d1892493b51c56c37fdb3d450bfe9aad585031e",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "6d6dedde6c5c112c8ddeca4371a374c78621931c6fb9d90b1beabc0657dd2176"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-description.png",
+        "bytes": 29706,
+        "sha256": "f404edd7e792d1b42287b7451534c7926bcdaaabb2d9d1467792bc83809a7ba6",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "19401ef2d3342cc122eb738ea745f4ca18d69617829e13e07e035e285c63e4ee"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-filename.png",
+        "bytes": 26589,
+        "sha256": "fcbc1119bb85e74649b8f93dc8d325e84cfb9f1cce46d20f57582b073cf24f77",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "35b1a47bd21981d3fdb2382cf9f7a879fb36f77581c08d9eaec0fc55df3b9495"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-maximum.png",
+        "bytes": 23085,
+        "sha256": "1a8aacb00b68a8b86c88cf0b8c7f49c7cb229bd970c262fc666c1cbdd35c4f1a",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "e1857aaaa28d7c740fca5262c1bc2acac5f1231524ac8b3140378dc71e6c3d31"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-minimum.png",
+        "bytes": 22789,
+        "sha256": "5b920e13a100e7be8148f03db936bcd0c4f0dc08f2f422bdefc9d36e5c58e69d",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "9983f2ba2e7a5c4dcbd40c6de10eb4620a88c0866c98642ffdf4a6d3f3378036"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/en-XV-portrait-returned.png",
+        "bytes": 26047,
+        "sha256": "74d59860bb2b3af0ce930adc6ef819c0fc430dc0f493f67057516635466a69d8",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "178fd605ee08aa04f0a6f7a550eb3cf167d22943f611e50399c884a5ded94422"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-before.png",
+        "bytes": 36730,
+        "sha256": "0fcf2d75aac9cb61a3bdf91f1068fb37476c0c343522758e0ee93c61dd160c56",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "41a19b2b7e2d419638a9234a637d5c051c7254f9461412b5733a508e12db44ae"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-cancel-ready.png",
+        "bytes": 28378,
+        "sha256": "38f01bc03296bf270248eeadbf1e0e8b986e2db4ebe3209982136b80b5d27a2c",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "a07d83cc610f62182ee1ed90b46568b741d50e82d5c58700286e37d039a4f0f4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-choose-ready.png",
+        "bytes": 37266,
+        "sha256": "f36e98365dc326ce7460b4992862740587375dfb6a21d5da3279e8d2eb653986",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "863cf2df855a8857171502e9981c2a3a59b7d4d4d3ac8d3422350b09749b4146"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-description.png",
+        "bytes": 28067,
+        "sha256": "d08640f9bf0113a657c181b8085c87872a6a2656cebc5e39eab4d731a4f5e2f8",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "1ef42ac5163f25d19f2ca4a7cc1c279f3209b305a432a72f4de327fb789dc961"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-filename.png",
+        "bytes": 28085,
+        "sha256": "c317fe4a05a96935ea93d5075da314996dc71da474b358ce5d66606eaac3f505",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "fcc4d3def5510000d3732e1d9c83fb6ec634aefe33c44a92a6dd66e3402a0bbf"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-maximum.png",
+        "bytes": 36924,
+        "sha256": "e186b686e6cbb6148198f7202d5cec1a0d883efa1fad599ebce1b16c550780a4",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "018200153cf2756be6341383d2fad4d2f3e6a63c7521e43ff355ef383e9f09fe"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-minimum.png",
+        "bytes": 36593,
+        "sha256": "b260a8dddb50014d1e85a7bfe07fb0f21b3265477192812a72bf6ca60c7806d0",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "82a8a4d23da780e9d74912f91ce3d970e4d1f4f99d645f9e8fbcbef7f5a5bb24"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-landscape-returned.png",
+        "bytes": 19977,
+        "sha256": "a21c3642a17aa3076ca815fe92067071f35855cbb7e970022ea7ba454bf84b5b",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "99e1300b6bc3913cf4fa4830736bad2c84f7bb73a4e64a4f5b4ff7886cfe99f6"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-before.png",
+        "bytes": 41587,
+        "sha256": "c49902db862304e222906fad41b07fcc0cbef7ea4d20a53b18a17f7e7a11d867",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "1bc835d0dcf16a6b5ec0e5a2563562dceba7dcb7fd30850fa26ccb8bc7a32be4"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-cancel-ready.png",
+        "bytes": 34733,
+        "sha256": "c3a141c579aba7921ba5969722796ed77dc3c8ae780abfbe48d4a74a30c33b34",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "f3c3b6b83291d26a3d322e33080c509fdb421ffefdb637dd5100261622c32c55"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-choose-ready.png",
+        "bytes": 34474,
+        "sha256": "4c535d55285358ffd52b53ec96edc5c4a6502b565bfc25fc8eae02deee859fbc",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "8dd7b4542d6ab93746481a5bc16d4b96b8c6a093243db133f5009ea23771731c"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-description.png",
+        "bytes": 34708,
+        "sha256": "48f9dfffa3aa0b01551991455ca6a05e2b7fe3b3bf38a0bdc561d5c7a4aebef0",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "86b3cbdda74ab0e68ed28a5801ac5436c639cb4ce7cc2824b33de6e46e1943dd"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-filename.png",
+        "bytes": 29220,
+        "sha256": "cc8fdb753c878444905c0a19410d82120edc73417bb0d92c933460c5863b02b9",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "1b3885aa40bc3374207ba598ab9ca239fe95a8f83da7bc8c1dd827087a3cd13f"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-maximum.png",
+        "bytes": 34728,
+        "sha256": "617bc2acda1e921281a635896667c9c71d78fbb1634bb186b9a20040b916482d",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "ea5f9af2f46ee0b217e85667698e0d1a951911cae8f61d548eb70af8097983f3"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-minimum.png",
+        "bytes": 34474,
+        "sha256": "4c535d55285358ffd52b53ec96edc5c4a6502b565bfc25fc8eae02deee859fbc",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "8dd7b4542d6ab93746481a5bc16d4b96b8c6a093243db133f5009ea23771731c"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/lzh-Hant-portrait-returned.png",
+        "bytes": 26966,
+        "sha256": "d3fc2901f36a6aec09c0eb084931443b4e584fb997afd001902b63141f796e99",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "2f0870f002c49809688e5a5fd7a6e16f13d0b248ed25f053249140a3b48dde08"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-before.png",
+        "bytes": 25911,
+        "sha256": "99dc00c4fa412c89080a2a8a8f79ecd06d8e4dd67f8551d052085ce35d329714",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "af0375f4948cfa9d252651ff53f65e81f6cfa91d35336a18472e8bbfb3a9bd07"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-cancel-ready.png",
+        "bytes": 26218,
+        "sha256": "ab616129d65be8db3e242b14a8b929f2ca475ef1c1782afcde2bd06f01023746",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9c92a36f6ac2e86e5f0686d10b68fbf1b2860e4101cacd7ad8c5993757604729"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-choose-ready.png",
+        "bytes": 22687,
+        "sha256": "8b4c17049274d3c28300950cb4f0f90e6872907826e7d622c54ad2446411d788",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "33c2dfb1c0113b50c20175d4f6b08ff5f1e62ac4bfb61b49dab1077709367f39"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-description.png",
+        "bytes": 26054,
+        "sha256": "12a95f4f63ef3283669494aef65c23bfc47025aa92bcd6cbafbf3f52f747f281",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "1a2175b5d033b6050d2270001b7ef088fc4cff77d15459460eb9217076d4e985"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-filename.png",
+        "bytes": 22458,
+        "sha256": "6e8c089c14876822d808402c9ce8bd8a4fc94e790e02c1fb4347bdc4669cbfd6",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "032144d2ceb727938ee598571e066fcd4afb587e31143e62d8ab8e765673e409"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-maximum.png",
+        "bytes": 22621,
+        "sha256": "27b311447a211b140b3d19a64a5dae770ff6e10e729bfee2abe35f07cd0b6c85",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "ceb619b88a833f0d7fa6d07e0229b9212fbe86d30f6997b2b8ceb02f1604de71"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-minimum.png",
+        "bytes": 22458,
+        "sha256": "6e8c089c14876822d808402c9ce8bd8a4fc94e790e02c1fb4347bdc4669cbfd6",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "032144d2ceb727938ee598571e066fcd4afb587e31143e62d8ab8e765673e409"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-landscape-returned.png",
+        "bytes": 21316,
+        "sha256": "8b90ccb7e2dde0fe3eb948b48078fd39f07e44d8206a9d72fb9fc1fb3cbcbc21",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "86ac0e7565c761ff37e4ebb0f992c884b817f7b348688872ac18199cfaaec222"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-before.png",
+        "bytes": 24990,
+        "sha256": "aca8b009ee97d0848fe43279b1bd0709f6a5d90f35ed4b9745234637d4e598a6",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "e7fc827fa8e0074f1ca1f752e744e0160b25b648c3222c19bd818147170dbfc8"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-cancel-ready.png",
+        "bytes": 32325,
+        "sha256": "cd4f078c7d0d588d6fb280948ea7d668ee816f9d0e4cac38b6a460922b0c5d4b",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "82990c022b1f6a9ef92ed15621ae652c4e857b25ceffb4c84fa9af9b6d3a0a68"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-choose-ready.png",
+        "bytes": 23966,
+        "sha256": "c49145896cc34c5d22a9d52445a3125f0fffa994dbb241261183fd9f06161010",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "aab3267e05e1cf95c8ebd2cf2584109479323ae351de2e7949ac19de864485f0"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-description.png",
+        "bytes": 32343,
+        "sha256": "218a5141dcba8c371bd3d9a73febd1311a1a830b090ccd833e4f6bd5c8992648",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "f419d2915e448424048d36c6cb791a718f457ee5cda4a5098009ca448c42e8a9"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-filename.png",
+        "bytes": 27067,
+        "sha256": "d107d3384a28c1e7789b97d0085a456dde5444b48cd0cb6815cd8bcea6d4475a",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "0777406383c80471f70660d818b2071c2dbde950f98722e82fcd6edbd36a7241"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-maximum.png",
+        "bytes": 24167,
+        "sha256": "271dfbcd368a6d33b0012241ea0eb1d5ff80cb0bd43f6333e37161a59ef4fb0e",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "4ac695950332798d4630e8d066a80a9225fc71e8d9be9b301c09647fe26d4a59"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-minimum.png",
+        "bytes": 23966,
+        "sha256": "c49145896cc34c5d22a9d52445a3125f0fffa994dbb241261183fd9f06161010",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "aab3267e05e1cf95c8ebd2cf2584109479323ae351de2e7949ac19de864485f0"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/mnc-Mong-portrait-returned.png",
+        "bytes": 29205,
+        "sha256": "41ab0fd00720aba647ffe2f12fdbf15c733949ff0cbbcc92bfcfc6877674a8bc",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "052dff9f9d178dcea72b61bd790cd44ae3953b039ce6d257f1c9572437365a69"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-before.png",
+        "bytes": 28870,
+        "sha256": "4212d46ad4494d029fdca36363987f0620c87d4e8d035877cdf4c8239ea01ee5",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9234541bd76997b53ecd4ba708f6a86f8958818979b6990de51c3272437f7f22"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-cancel-ready.png",
+        "bytes": 26437,
+        "sha256": "1385f607dea26d9776cc106dfbd598a332b99cf08db13095eda427dcb6a1f120",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9c3a38357c3e761f2788e257500f98cc37d9708988bc0cc926d1fdc4e780f465"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-choose-ready.png",
+        "bytes": 28668,
+        "sha256": "1317e634d1259a31fdc901d19318e88b275343eabc2d2d196900a0f395f04d4f",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "9ecc858a1152591cd18f185bd2462364e826c7724b2d13fbb34ea5b43073c957"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-description.png",
+        "bytes": 26480,
+        "sha256": "1f061b6331289291eecd4d3d9889078c1e00203fb92a87d47fcded59dd1418ed",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "b26d1c4be29666be3cb03d6551460bebb8543211225f8968a1724306824a63a0"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-filename.png",
+        "bytes": 26499,
+        "sha256": "90e234b277f313dd769e9ca79c8d5cf4d70cb6a7a05c0cc690a929dba70772eb",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "75643500053ff02b7f3485192a86dbc144ece70f95cec1e802ca68f4c545892f"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-maximum.png",
+        "bytes": 29465,
+        "sha256": "b9ecfcc06247a1751b131a4c2efef7ab83ab512e37cc2a5544cf136281b1a5c0",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "8239290bfac8f146bab821f7c60a63c8ea2e5d5ec1b6d7ef8af773c976b3e667"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-minimum.png",
+        "bytes": 29282,
+        "sha256": "7056875fe8931ea9dc97efa7b4e668e1d39cc6016f3f6ede685196d0b8ef964b",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "c2ea6cb648e20c95defb171d5d382ba7bff3c4af20f47875cbda586fc925b857"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-landscape-returned.png",
+        "bytes": 20865,
+        "sha256": "89a9688792619e796c062d23ccc6f9956aaef39d8359b3daedf41045b6e9bc23",
+        "width": 640,
+        "height": 320,
+        "decoded_rgba_sha256": "a704b43f540d6ab3a83e489a738b304485755dfe6942ab8b11fbfa2f3a3cbfb5"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-before.png",
+        "bytes": 38203,
+        "sha256": "86831ebe556e09528abf57b06f8fab5fe95dd81f2413349801e552b309940aa9",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "80b94f41f27ea0e5d162b0b63585338ebf3430baf9e1e492d0c41f087f839755"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-cancel-ready.png",
+        "bytes": 34910,
+        "sha256": "9fb3c8d51f009ee416efef23aa2c75cb0de76654c9a6cac58293cfa1c2d4c585",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "964fefb6c8c56ccac2ac0b13428f49a599d91cd5978c86ec97b5c285d8be3b1b"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-choose-ready.png",
+        "bytes": 34990,
+        "sha256": "6f1e2012d1fbb7b07c7d8c9eb9018b11dfd15a67c1aed92ac12ef92092bb1344",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "3c10bb0024e1b45a3b5703381bd56317e4c3562d84ac21b6aaa2064f8db358c1"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-description.png",
+        "bytes": 34928,
+        "sha256": "df357a3369ec8c39a1d912f368b4061bd5287b60c97fb811757b7c05dfdc6ba7",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "0c04cb6f534c562bb82c77eb0a8aee303db374488f74bb64d73d06e0467f2e71"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-filename.png",
+        "bytes": 30515,
+        "sha256": "5368e775f0d37cc0ee730840569697d2b7449d157018a01089031c6fc59b3a50",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "9ce0d9a4230bac1c9d86a646caeb1a39fae7aaba8e08d8f4a534702acf8a0352"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-maximum.png",
+        "bytes": 34921,
+        "sha256": "d4af563e16259b545193c2f85429d6c10b7de217e85348fc69e4cf38dfd9165e",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "98513da5d74a95e4e8447fea931ca38b18ed89fcd29df933582af0553cf2276d"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-minimum.png",
+        "bytes": 34702,
+        "sha256": "26ecf9d5bfd0d361f5f6ad8a4b6f981d7735a3185e8d47f246e861237bc211c3",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "a349c8e2ec3cb33de25883b55cd4414e8486e3181de1f806559604c5de1eb28e"
+      },
+      {
+        "path": "app/vertical-locale-evidence/reachability/qaa-Zsye-XV-portrait-returned.png",
+        "bytes": 30702,
+        "sha256": "bc33d233a5c7effa690ae03ff1759e5691750dbe4f13965464ac61f2455ee07f",
+        "width": 320,
+        "height": 640,
+        "decoded_rgba_sha256": "da56532f3c2549994647f3aac7dd370426691186f9eb3ddb88cb231adf1df616"
+      }
+    ],
+    "native_drags": [
+      {
+        "case": "en-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-landscape",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-portrait",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "en-XV-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-landscape",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-portrait",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "lzh-Hant-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-landscape",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-portrait",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "mnc-Mong-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-landscape",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-landscape",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-portrait",
+        "requested_quality": 100,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      },
+      {
+        "case": "qaa-Zsye-XV-portrait",
+        "requested_quality": 1,
+        "events": 35,
+        "ownership": "DOWN/MOVE/UP, no CANCEL, stationary ancestors, clean observer removal"
+      }
+    ],
+    "restart_boundary": "verified",
+    "application_log_oracles": {
+      "korean_phases": [
+        {
+          "api": 35,
+          "phase": "mixed-selected",
+          "requested_tag": "ko-Kore-KR",
+          "persisted_tag": "ko-Kore-KR",
+          "configured_tag": "ko-Kore-KR-anpaint",
+          "default_tag": "ko-Kore-KR",
+          "platform_tag": "ko-Kore-KR",
+          "orientation": 1,
+          "screen_width_dp": 320,
+          "screen_height_dp": 640,
+          "strings": {
+            "ui_save": "\u8caf\u85cf",
+            "commons_credit_copy_failed": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "commons_credit_copy_failed_reason": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: probe",
+            "commons_credit_copy_out_of_memory": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uba54\ubaa8\ub9ac\uac00 \ubd80\uc871\ud569\ub2c8\ub2e4."
+          }
+        },
+        {
+          "api": 35,
+          "phase": "mixed-after-rotation",
+          "requested_tag": "ko-Kore-KR",
+          "persisted_tag": "ko-Kore-KR",
+          "configured_tag": "ko-Kore-KR-anpaint",
+          "default_tag": "ko-Kore-KR",
+          "platform_tag": "ko-Kore-KR",
+          "orientation": 2,
+          "screen_width_dp": 640,
+          "screen_height_dp": 320,
+          "strings": {
+            "ui_save": "\u8caf\u85cf",
+            "commons_credit_copy_failed": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "commons_credit_copy_failed_reason": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: probe",
+            "commons_credit_copy_out_of_memory": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uba54\ubaa8\ub9ac\uac00 \ubd80\uc871\ud569\ub2c8\ub2e4."
+          }
+        },
+        {
+          "api": 35,
+          "phase": "ordinary-selected",
+          "requested_tag": "ko-KR",
+          "persisted_tag": "ko-KR",
+          "configured_tag": "ko-KR",
+          "default_tag": "ko-KR",
+          "platform_tag": "ko-KR",
+          "orientation": 2,
+          "screen_width_dp": 640,
+          "screen_height_dp": 320,
+          "strings": {
+            "ui_save": "\uc800\uc7a5",
+            "commons_credit_copy_failed": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \ubcf5\uc0ac\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "commons_credit_copy_failed_reason": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \ubcf5\uc0ac\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: probe",
+            "commons_credit_copy_out_of_memory": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \ubcf5\uc0ac\ud560 \uba54\ubaa8\ub9ac\uac00 \ubd80\uc871\ud569\ub2c8\ub2e4."
+          }
+        },
+        {
+          "api": 35,
+          "phase": "mixed-reselected",
+          "requested_tag": "ko-Kore-KR",
+          "persisted_tag": "ko-Kore-KR",
+          "configured_tag": "ko-Kore-KR-anpaint",
+          "default_tag": "ko-Kore-KR",
+          "platform_tag": "ko-Kore-KR",
+          "orientation": 2,
+          "screen_width_dp": 640,
+          "screen_height_dp": 320,
+          "strings": {
+            "ui_save": "\u8caf\u85cf",
+            "commons_credit_copy_failed": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "commons_credit_copy_failed_reason": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: probe",
+            "commons_credit_copy_out_of_memory": "\uc774\ubbf8\uc9c0 \ud06c\ub808\ub527\uc744 \u8907\u5beb\ud560 \uba54\ubaa8\ub9ac\uac00 \ubd80\uc871\ud569\ub2c8\ub2e4."
+          }
+        }
+      ],
+      "viewport_phases": [
+        {
+          "locale": "fr",
+          "font_scale": 2,
+          "orientation": 1,
+          "root_width": 320,
+          "root_height": 640,
+          "controls_height": 472,
+          "browser_width": 320,
+          "browser_height": 120,
+          "browser_visible": "Rect(0, 496 - 320, 616)",
+          "required_reserve": 120,
+          "query_lines": 6,
+          "search_ime_options": 3,
+          "search_input_type": 131073,
+          "provider": "real installed WebView; verified rejecting proxy; local HTML"
+        },
+        {
+          "locale": "fr",
+          "font_scale": 2,
+          "orientation": 2,
+          "root_width": 640,
+          "root_height": 320,
+          "controls_height": 182,
+          "browser_width": 640,
+          "browser_height": 90,
+          "browser_visible": "Rect(0, 206 - 640, 296)",
+          "required_reserve": 90,
+          "query_lines": 3,
+          "search_ime_options": 3,
+          "search_input_type": 131073,
+          "provider": "real installed WebView; verified rejecting proxy; local HTML"
+        },
+        {
+          "locale": "mn-Mong",
+          "font_scale": 2,
+          "orientation": 1,
+          "root_width": 320,
+          "root_height": 640,
+          "controls_height": 472,
+          "browser_width": 320,
+          "browser_height": 120,
+          "browser_visible": "Rect(0, 496 - 320, 616)",
+          "required_reserve": 120,
+          "query_lines": 6,
+          "search_ime_options": 3,
+          "search_input_type": 131073,
+          "provider": "real installed WebView; verified rejecting proxy; local HTML"
+        },
+        {
+          "locale": "mn-Mong",
+          "font_scale": 2,
+          "orientation": 2,
+          "root_width": 640,
+          "root_height": 320,
+          "controls_height": 182,
+          "browser_width": 640,
+          "browser_height": 90,
+          "browser_visible": "Rect(0, 206 - 640, 296)",
+          "required_reserve": 90,
+          "query_lines": 3,
+          "search_ime_options": 3,
+          "search_input_type": 131073,
+          "provider": "real installed WebView; verified rejecting proxy; local HTML"
+        }
+      ],
+      "test_processes": {
+        "paint.anpaint.android.EditorDeviceTest": [
+          3911
+        ],
+        "paint.anpaint.android.GalleryViewportDeviceTest": [
+          3911
+        ],
+        "paint.anpaint.android.GalleryDraftDeviceTest": [
+          5351
+        ],
+        "paint.anpaint.android.VerticalLocaleDeviceTest": [
+          5734,
+          6080
+        ],
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest": [
+          6282
+        ],
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest": [
+          6554
+        ]
+      },
+      "gallery_cold_process_distinct": true,
+      "instrumentation_complete_at_seconds": 449
+    },
+    "visual_review": "Reviewed all 96 images through eight labelled contact sheets per API, with three original-size focused images across the two APIs. Bounded vertical JPEG/quality/scroll/control/return-state evidence accepted; initial clipped states remain visible and open. No TIFF-dialog, accessibility, native-language or full-language acceptance."
+  }
+}
