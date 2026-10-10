@@ -2,6 +2,10 @@
 
 10 October 2026. [Draft PR43](https://github.com/c933103/AN-Paint/pull/43) publishes exactly the independently reviewed 37 catalogue substitutions and four new test files. This evidence-only supplement does not modify that source tree.
 
+## First-head CI update
+
+The first run completed with two strict mixed-Korean JVM failures; all seven initial F01 dialog methods, build/lint and API35 passed. Read the [retained failure and dependency diagnosis](first-ci-evidence/README.md) and [proposed exact stack](integration-proposal/README.md). The source-head history below remains the initial publication snapshot. The evidence-files.json manifest pins the original packet at commit3981b84e; later additions and this updated index have their own commits/manifests.
+
 ## Published source and verification
 
 - Source head: `d3ada3e55fb60a6926e7f6c8eede242f3c1f140e`; parent/develop: `80c14372b0504bc44f9f2809ad477247fdc8100b`.

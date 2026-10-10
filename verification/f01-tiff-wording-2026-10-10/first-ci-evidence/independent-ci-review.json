@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-10",
+  "scope": "Independent review of terminal PR43 first-run evidence and read-only dependency-stack proposal. No source/publication changes.",
+  "run": {
+    "id": 38047199955,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/38047199955",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "head": "d3ada3e55fb60a6926e7f6c8eede242f3c1f140e",
+    "base": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+    "tested_merge": "a8825ce33460372fb2888f9d49830f80df38d9cd",
+    "head_and_merge_tree": "bde13ca4bbd9a45198ab4da9cadd85d900aaa594",
+    "identity_verified": "Remote head commit, draft PR head/base, run metadata and merge commit/parents independently read. Head and tested merge have the identical reviewed tree."
+  },
+  "jobs": {
+    "regression_and_lint": "failure",
+    "apk_and_test_apk_build": "success",
+    "emulator_api35": "success"
+  },
+  "jvm": {
+    "compiled": true,
+    "tests": 746,
+    "passed": 744,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "xml_reports": 79,
+    "new_methods": [
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "switchingFormatsRestoresDescriptionAndRetainsCompressionChoice",
+        "status": "passed",
+        "seconds": 0.323
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription",
+        "status": "passed",
+        "seconds": 0.617
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices",
+        "status": "passed",
+        "seconds": 0.129
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice",
+        "status": "passed",
+        "seconds": 0.549
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices",
+        "status": "passed",
+        "seconds": 0.113
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag",
+        "status": "passed",
+        "seconds": 0.245
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionDialogTest",
+        "method": "sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices",
+        "status": "passed",
+        "seconds": 0.554
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionLocaleTest",
+        "method": "allTwentySixLocalesRetainDescriptionThroughToggleFormatSwitchAndCancel",
+        "status": "failed",
+        "seconds": 0.574
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionLocaleTest",
+        "method": "allTwentySixLocalesUseTheirQualifiedDescriptionForBothCompressionChoices",
+        "status": "failed",
+        "seconds": 0.564
+      }
+    ],
+    "failure_details": [
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionLocaleTest",
+        "method": "allTwentySixLocalesRetainDescriptionThroughToggleFormatSwitchAndCancel",
+        "message": "org.junit.ComparisonFailure: expected:<RGB 한 페이지를 [貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏]하려면 끄세요.> but was:<RGB 한 페이지를 [저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장]하려면 끄세요.>",
+        "assertion_location": "TiffDescriptionLocaleTest.kt:76"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TiffDescriptionLocaleTest",
+        "method": "allTwentySixLocalesUseTheirQualifiedDescriptionForBothCompressionChoices",
+        "message": "org.junit.ComparisonFailure: expected:<RGB 한 페이지를 [貯藏합니다. 壓縮은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 壓縮하지 않은 TIFF로 貯藏]하려면 끄세요.> but was:<RGB 한 페이지를 [저장합니다. 압축은 픽셀을 바꾸지 않고 파일 크기를 줄일 수 있습니다. 압축하지 않은 TIFF로 저장]하려면 끄세요.>",
+        "assertion_location": "TiffDescriptionLocaleTest.kt:76"
+      }
+    ],
+    "finding": "Both 26-locale methods fail at the actual resource lookup for ko-Kore-KR: fixed Hanja-mixed 貯藏/壓縮 expected, Hangul 저장/압축 returned. All seven TiffDescriptionDialogTest methods pass.",
+    "coverage_limit": "The two locale loops stop at mixed Korean. Passing/started JUnit methods do not prove all 26 locale rows; later rows are not reached.",
+    "runtime_evidence": "This is an executed API33 Robolectric resource/dialog mismatch, not an installed-device TIFF-description screenshot result."
+  },
+  "host": {
+    "discovered": 374,
+    "passed": 372,
+    "skipped": 2,
+    "seconds": 65.153,
+    "result": "success",
+    "local_independent_comparison": "The separate local final-source host run passed all 374 with no skips; do not merge those counts into this CI run."
+  },
+  "lint": {
+    "result": "success",
+    "reported_issues": 0,
+    "phase_seconds": 300.14,
+    "exit_code": 0
+  },
+  "api35": {
+    "native_import": 74,
+    "app_ordinary": 18,
+    "restart_seed": 1,
+    "restart_verify": 1,
+    "total": 94,
+    "tiff_codec_methods": 17,
+    "failures": 0,
+    "errors": 0,
+    "skipped_or_suppressed": 0,
+    "verification": "Matched both exact source method inventories, checked disjoint app union, independently reparsed all four raw instrumentation logs, and verified artifact digest.",
+    "limit": "Does not exercise the nine JVM-only TIFF description methods or prove localized installed rendering, physical-device behavior or native-speaker acceptance."
+  },
+  "build": {
+    "variant": "debug",
+    "run_id": "38047199955",
+    "build_info_commit": "a8825ce33460372fb2888f9d49830f80df38d9cd",
+    "apk_sha256": "6fa72c774c7bd2e05963955389d801ad59478ed72e156444cfcde7c5880eb2e3",
+    "source_sha256": "b36c04a6edef83cd3c2d9ceeab50a7346352a50e56645c7e145e38e1139b292d",
+    "embedded_and_extracted_source_equal": true,
+    "included_reviewed_repository_files_exact": 1291,
+    "differing_repository_files": 0,
+    "metadata_exclusions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "additional_source_files": 6258,
+    "additional_scope": [
+      "Paintroid/build/jxl-source",
+      "Paintroid/build/webp-source",
+      "Paintroid/build/heif-source",
+      "Paintroid/build/tiff-source"
+    ],
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signing_limit": "Build-info identifies the CI debug key. No private upgrade-signing or release-delivery acceptance is inferred."
+  },
+  "artifacts": [
+    {
+      "type": "apk_and_source",
+      "id": 11668580552,
+      "bytes": 143649955,
+      "sha256": "bdc28a470ff76e9d4bbf93dadfc503b7d5ab6d84ca131b927eb1ac6cd5e959f9"
+    },
+    {
+      "type": "regression_and_lint",
+      "id": 11667898087,
+      "bytes": 32277761,
+      "sha256": "5eb209bc36b53624363cd424bb87898cef944bab38a0f059bb215b90656603b8"
+    },
+    {
+      "type": "emulator_api35",
+      "id": 11667937654,
+      "bytes": 1875465,
+      "sha256": "5b01a4bef3cc935e2ae5b6c9db14a1582c52f6b55e1718cf6966df9dddd5c0a5"
+    }
+  ],
+  "dependency_diagnosis": {
+    "pr": "https://github.com/c933103/AN-Paint/pull/34",
+    "state": "draft, open, unmerged when checked",
+    "head": "5703a61394791f18e9f2597272d908d9840599af",
+    "tree": "f2333d9ee7aa6e55c584b306e7363bde83dbbf43",
+    "AppLanguage_blob": "7af1465dccdd7633f0f136a91a7d4894541b6560",
+    "source_finding": "The dependency maps only the ko-Kore-KR resource query to private variant anpaint in wrap/refresh, preserving public identity. Gradle Sync mirrors the complete canonical mixed-script XML into build-only resources. Neither component exists in the develop 80c-based PR43 source.",
+    "prior_reproduction": "https://github.com/c933103/AN-Paint/pull/34#issuecomment-6092984243",
+    "prior_fixed_head_receipt": "https://github.com/c933103/AN-Paint/pull/34#issuecomment-6094006470",
+    "prior_success_run": "https://github.com/c933103/AN-Paint/actions/runs/38024556268",
+    "verification_limit": "Independently verified current dependency source, exact tree and prior run success metadata, and read the linked detailed reproduction/fix receipts. Did not redownload/re-audit prior PR34 artifacts in this review. Prior success is not combined acceptance."
+  },
+  "read_only_stack_plan": {
+    "disposition": "Sound conditional proposal, pending author catalogue-conflict comparison, exact-union review and explicit publication-plan approval.",
+    "conditions": [
+      "Pin PR34 head 5703a613 / tree f2333d9e and apply only the 37 canonical TIFF-clause corrections plus four test files.",
+      "Preserve every inherited routing/generator/workflow/existing-test byte outside the declared F01 delta. Resolve catalogue changes by resource-level edits, never whole-file replacement from develop.",
+      "Preserve fixed Hanja expected text, public ko-Kore-KR selection/default-locale identity and the original failing evidence. No test-only resource context or Hangul-oracle bypass.",
+      "Keep generated private resources out of tracked source; canonical values-b+ko+Kore+KR remains the only editable catalogue.",
+      "Require generated and compiled whole-catalogue equality, including the corrected mixed Korean TIFF value.",
+      "Run fresh exact-combined-tree JUnit/lint/build and all nine F01 methods, plus inherited seven generation checks and API30/API35 installed picker/identity coverage.",
+      "Verify new head/tested merge/source archive identities, and assess all independent job results. Prior separate passes cannot replace combined evidence.",
+      "Preserve inherited test deadlines; PR34 prior API35 ordinary app timing of 178.579 seconds against 180 seconds is a documented risk, not a reason for a waiver."
+    ],
+    "actions_taken": "No source edit, rebase, branch/ref update, retarget, label change, CI dispatch, retry, merge or deployment by this reviewer."
+  },
+  "remaining_limits": [
+    "Initial PR43 CI remains failed.",
+    "New combined integration is not yet produced or accepted by this report.",
+    "No native-language or whole-locale acceptance.",
+    "No localized TIFF dialog screenshot/readability acceptance.",
+    "F01 probable/uncertain entries and all broader reset obligations remain open."
+  ]
+}
