@@ -1,19 +1,21 @@
 Command: python3 -m unittest discover -s tools -p 'test_*.py'
-Recorded repair snapshot parent: 2bff92308143e2fb9e9711e6e309bd5d700cf18f
+Recorded PR parent: ff2db040272fa522226da60744316bfeb8695cf0
+Integrated develop: 165a6a503529736527c689e3ac1b5432253d19ee
+Clean two-parent integration tree before the source changes below: 7c31bcba9cb29572bfe29d772ddf39c66dbb075c
 Changed test source/input Git blobs:
-  tools/test_pr7_pr9_evidence_receipt.py: 30852224a2f109ace267b947bac5218c90ce1d56
-  verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: f33baad8d880a90ef23b169e3426ab2d065d5436
-  verification/pr7-pr9-recheck-2026-10-10/ci-receipt.json: a8b7d5c733397671b1aca709ff8f43764673beab
-All other test/implementation/resource files match the parent.
+  tools/test_pr7_pr9_evidence_validation.py: 013c9c1801cace2db01ab154fa5eadca71c38498
+  verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: d588ba13f5a897b0710f67bbd93b07b740983151
+All other test/implementation/resource files match that integrated tree.
 Python: 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
 Pillow: 12.3.0
-Result: 371 tests passed; zero failures, errors or skips.
+Result: 379 tests passed; zero failures, errors or skips.
+Includes 23 invalid-evidence fixtures in each of normal, -O and PYTHONOPTIMIZE=1 modes.
 This is a recorded result, not an assertion about future checkouts.
-README, source-results and this host log are non-executable evidence changes.
+README and this host log are non-executable evidence changes.
 
-...................................................................................................................................................................................................................................................................................................................................................................................
+...........................................................................................................................................................................................................................................................................................................................................................................................
 ----------------------------------------------------------------------
-Ran 371 tests in 51.554s
+Ran 379 tests in 120.861s
 
 OK
 {
@@ -133,3 +135,11 @@ OK
     "1 declared test method(s) did not complete"
   ]
 }
+
+Post-discovery actual-history replay checks (same executable/input snapshot):
+python3 verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+python3 -O verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+PYTHONOPTIMIZE=1 python3 verification/pr7-pr9-recheck-2026-10-10/verify_scope.py: exit 0
+All three JSON outputs compare byte-identical with each other and source-results.json.
+Output SHA-256: b7ebadb5eb9d13a4f95bb5499ccce4f5efa493764f5eaf2f1d17105187c7a016
+Required historical objects were materialized before these completed replays.
