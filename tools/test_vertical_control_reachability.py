@@ -161,6 +161,30 @@ class ReachabilityReceiptTest(unittest.TestCase):
         with self.assertRaises(AssertionError):
             check(source.replace('false // Never consume','true // Never consume'))
 
+    def test_native_drag_requires_ownership_without_mutating_test_routing(self):
+        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
+        production=(ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt').read_text()
+        self.assertIn('trace.assertOwnedGesture()',source)
+        for assertion in ('Slider receives native DOWN','Slider receives native MOVE','Slider receives native UP',
+                          'Ancestor must not cancel the slider drag','Slider drag must not scroll ancestor',
+                          'No native drag events dropped','No native scroll observations dropped'):
+            self.assertIn(assertion,source)
+        # The production child claims only its own enabled touch stream. The
+        # native probe remains observational and cannot change event ownership.
+        self.assertNotIn('requestDisallowInterceptTouchEvent',source)
+        self.assertNotIn('setOnTouchListener',production)
+        self.assertIn('val slider: SeekBar=object: SeekBar(context)',production)
+        self.assertLess(production.index('requestDisallowInterceptTouchEvent(true)'),
+                        production.index('handled=super.onTouchEvent(event)'))
+        self.assertIn('event.actionMasked==MotionEvent.ACTION_DOWN',production)
+        self.assertIn('if(isEnabled)',production)
+        self.assertIn('event.actionMasked==MotionEvent.ACTION_UP',production)
+        self.assertIn('event.actionMasked==MotionEvent.ACTION_CANCEL',production)
+        self.assertIn('if(!handled ||',production)
+        self.assertIn('if(!enabled) releaseDrag()',production)
+        self.assertIn('override fun onDetachedFromWindow()',production)
+        self.assertNotIn('MotionEvent.ACTION_POINTER_UP',production)
+
     def test_diagnostic_failure_keeps_requested_delivered_and_final_geometry(self):
         source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt').read_text()
         wrapper=source.split('private fun observeNativeDrag',1)[1].split('private fun dragState',1)[0]

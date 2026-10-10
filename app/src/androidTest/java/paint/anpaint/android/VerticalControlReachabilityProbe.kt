@@ -198,7 +198,10 @@ internal class VerticalControlReachabilityProbe(
         observeNativeDrag(value,first,last) {trace ->
             assertTrue("Native drag to JPEG quality $value",device.swipe(arrayOf(first,last,last,last),12))
             instrumentation.waitForIdleSync()
-            onMain {trace.record.put("after_injection",dragState(trace.slider))}
+            onMain {
+                trace.record.put("after_injection",dragState(trace.slider))
+                trace.assertOwnedGesture()
+            }
             writeReceipt()
             waitUntil("native quality equals $value") {quality().slider.progress+quality().minimum==value}
             assertDraft();assertQualityGeometry()
@@ -282,6 +285,26 @@ internal class VerticalControlReachabilityProbe(
                 if(scrollChanges.length()<64) scrollChanges.put(dragState(slider))
                 else record.put("dropped_scroll_changes",record.getInt("dropped_scroll_changes")+1)
             } catch(error: Throwable) {errors.put("scroll: $error")}
+        }
+        fun assertOwnedGesture() {
+            val actions=(0 until events.length()).map {events.getJSONObject(it).getInt("action_masked")}
+            assertTrue("Slider receives native DOWN",actions.firstOrNull()==MotionEvent.ACTION_DOWN)
+            assertTrue("Slider receives native MOVE",actions.contains(MotionEvent.ACTION_MOVE))
+            assertTrue("Slider receives native UP",actions.lastOrNull()==MotionEvent.ACTION_UP)
+            assertFalse("Ancestor must not cancel the slider drag",actions.contains(MotionEvent.ACTION_CANCEL))
+            assertEquals("No native drag events dropped",0,record.getInt("dropped_events"))
+            assertEquals("No native scroll observations dropped",0,record.getInt("dropped_scroll_changes"))
+            val before=record.getJSONObject("before").getJSONObject("seekbar").getJSONArray("parents")
+            fun assertParents(state: JSONObject) {
+                val parents=state.getJSONObject("seekbar").getJSONArray("parents")
+                assertEquals("Slider ancestor chain retained during drag",before.length(),parents.length())
+                for(index in 0 until before.length()) for(axis in listOf("scroll_x","scroll_y"))
+                    assertEquals("Slider drag must not scroll ancestor $index/$axis",
+                        before.getJSONObject(index).getInt(axis),parents.getJSONObject(index).getInt(axis))
+            }
+            for(index in 0 until events.length()) assertParents(events.getJSONObject(index).getJSONObject("state"))
+            for(index in 0 until scrollChanges.length()) assertParents(scrollChanges.getJSONObject(index))
+            assertParents(record.getJSONObject("after_injection"))
         }
         fun attach() {
             // No listener replaces the production OnSeekBarChangeListener.
