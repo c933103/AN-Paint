@@ -1,0 +1,98 @@
+{
+  "revision": 2,
+  "status": "Retained proposal evidence; Android compilation and installed runtime were unexecuted when this record was prepared.",
+  "base_commit": "66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88",
+  "base_tree": "a90cdf84be34e6a08ab7a9d25b46cdce2f71b776",
+  "candidate_tree": "186de374ffce6dabd549a5b7982b5344f9724fec",
+  "branch": "draft/pr18-control-reachability-20261010",
+  "initial_freeze": {
+    "candidate_tree": "8a45b54bbbb975d4d7331d8a6ceb62b85eadbffc",
+    "patch_sha256": "4296f8a6ae8a9d6d576161eea5b54e70396866def2c7783acb0fd0b2b220e01b"
+  },
+  "patch_sha256": "3a74f71ef05f36fcba84beb7027f0aebdd89b420f75b0b9fc0ae692f4cdc1d96",
+  "review_fixes_patch_sha256": "9450c1565ad3f33c5f171ff8c7594575cf62278e47ae9667118870c063ff54b3",
+  "files": [
+    {
+      "path": "CI.md",
+      "mode": "100644",
+      "blob_sha": "42b54d539380d08f9efa4f01fd881d92488b61b9",
+      "bytes": 32517,
+      "sha256": "3cadd0e0c75c287b0ef289ef15796e8c4ddac85d206471c7afcb1cb0cd4aeeb7"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/VerticalControlReachabilityProbe.kt",
+      "mode": "100644",
+      "blob_sha": "562f67cca8786fabc6c592e0ca5dcbcfdaeee79c",
+      "bytes": 21374,
+      "sha256": "b69c1878453706588e137cf3fc8bb75e0cd0df998474d681eabc1be2fe99f011"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt",
+      "mode": "100644",
+      "blob_sha": "2fc7f5b2a6d047fa8981a6f64d715dd8af8da093",
+      "bytes": 33159,
+      "sha256": "20693d7ec79e7d22567b8e32c60332c0bfb1ee058c221a8774fed224df492ef2"
+    },
+    {
+      "path": "tools/ci_emulator.sh",
+      "mode": "100644",
+      "blob_sha": "f5b23e87856570aadf63d856927005d2ce3c4255",
+      "bytes": 15568,
+      "sha256": "13b6e4ecfef298a02e165d60352704f85de53bcf7bb75d6b87b4d227896f264d"
+    },
+    {
+      "path": "tools/test_vertical_control_reachability.py",
+      "mode": "100644",
+      "blob_sha": "00c712e9696c332126e86be4f67e677f495bedaf",
+      "bytes": 9862,
+      "sha256": "cf9093a1e3d061042e4571671bd085a49d141160aa52c46f01e3c5984d6837ae"
+    },
+    {
+      "path": "tools/test_vertical_locale_matrix.py",
+      "mode": "100644",
+      "blob_sha": "1dc9113a6463598d5eb8bd5cf0c6682100f79498",
+      "bytes": 18233,
+      "sha256": "51851ff6a252d31d2f48901fc20f0fb948897f5438dd57acf5f27a85bfed6795"
+    },
+    {
+      "path": "tools/vertical_control_reachability.py",
+      "mode": "100644",
+      "blob_sha": "69e61f7ea42be270bd5c41e856407f00ebf8682b",
+      "bytes": 8090,
+      "sha256": "585baf6254e28989a12e65af618385920be3b8ba6fc389bcf4c8c9e59e109c4b"
+    },
+    {
+      "path": "verification/vertical-control-reachability-2026-10-10/README.md",
+      "mode": "100644",
+      "blob_sha": "d16cb09483c70deba14ded7db12f883df3b62b7a",
+      "bytes": 6191,
+      "sha256": "00d79791a936cfdb8fb1cf16dfe06e6ba88c0bdf1c1fc46a3895e89acfb1f353"
+    }
+  ],
+  "proof": {
+    "unaffected_base_blobs_modes_preserved": 1337,
+    "all_prior_assertions_retained": true,
+    "original_test_lines_preserved_except_one_visibility_failure_guard": true,
+    "production_files_changed": 0,
+    "workflow_files_changed": 0,
+    "old_screenshot_validator_changed": false,
+    "prior_screenshots_overwritten": false,
+    "prior_evidence_retroactively_revalidated": false
+  },
+  "fixes": [
+    "Cancel draft is natively moved to a different endpoint when it equals remembered quality; both recorded and checked before Cancel, after Cancel and by receipt negatives.",
+    "Both test-only visibility helpers discard false-result rectangle output; both have installed false/nonempty fake-View negatives and host source mutation coverage."
+  ],
+  "validation": {
+    "targeted_host": "28 passed in 2.836 seconds",
+    "full_host": "389 passed in 55.218 seconds on exact frozen tree, zero skips",
+    "bash_syntax": "passed",
+    "diff_check": "passed",
+    "android_compile": "unverified; original local attempt blocked before compilation by unavailable Gradle 8.13 distribution and network",
+    "installed_negatives": "prepared, not executed",
+    "installed_run": "not run",
+    "runtime_budget": "unchanged 180 seconds; new duration unknown",
+    "remote_publication": "none",
+    "full_host_log_sha256": "ed855cb944a38cb7286e23635b13f3925702fa37b9955f47d567afb54ed77747"
+  }
+}
