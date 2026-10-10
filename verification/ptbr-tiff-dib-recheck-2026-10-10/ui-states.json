@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "validation": "source-composed expectations only; not Android execution",
+  "states": [
+    {
+      "id": "TIFF-checked",
+      "kind": "source-composed expectation; not rendered",
+      "assumption": "pt-BR selected resource resolves successfully; valid opaque RGB document; initial.tiffCompressed=true",
+      "format": "TIFF",
+      "checkbox": {
+        "visible": true,
+        "checked": true,
+        "text": "Compressão sem perdas (Deflate)"
+      },
+      "description": "Salva uma página RGB. A compressão reduz o tamanho do arquivo sem alterar os pixels; desative-a para criar um TIFF sem compressão.",
+      "quality_control": "hidden",
+      "lossless_choice_control": "hidden",
+      "expected_encoder": "TIFF one RGB page, Deflate; file-size reduction is not guaranteed (F01)."
+    },
+    {
+      "id": "TIFF-unchecked",
+      "kind": "source-composed expectation; not rendered",
+      "assumption": "Same document, checkbox unchecked or restored false",
+      "format": "TIFF",
+      "checkbox": {
+        "visible": true,
+        "checked": false,
+        "text": "Compressão sem perdas (Deflate)"
+      },
+      "description": "Salva uma página RGB. A compressão reduz o tamanho do arquivo sem alterar os pixels; desative-a para criar um TIFF sem compressão.",
+      "quality_control": "hidden",
+      "lossless_choice_control": "hidden",
+      "expected_encoder": "TIFF one RGB page, COMPRESSION_NONE; body remains unchanged."
+    },
+    {
+      "id": "DIB",
+      "kind": "source-composed expectation; not rendered",
+      "assumption": "pt-BR selected resource resolves successfully; DIB selected",
+      "format": "DIB",
+      "checkbox": {
+        "visible": false
+      },
+      "description": "Salva um DIB do Windows de 24 bits sem compressão. Use BMP se o aplicativo de destino exigir um cabeçalho de arquivo BMP.",
+      "quality_control": "hidden",
+      "lossless_choice_control": "hidden",
+      "expected_encoder": "24-bit uncompressed packed DIB with 40-byte information header, no 14-byte BMP file header."
+    }
+  ]
+}

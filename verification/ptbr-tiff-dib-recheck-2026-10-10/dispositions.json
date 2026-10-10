@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "parent_obligation": "P07-007",
+  "review_kind": "model linguistic and source review",
+  "dispositions": [
+    {
+      "id": "TD01",
+      "resource": "formats22_tiff_compression",
+      "historical_change": false,
+      "role": "Context dependency for the two changed descriptions: TIFF-only checkbox.",
+      "pt_BR": "Compressão sem perdas (Deflate)",
+      "english": "Lossless compression (Deflate)",
+      "previous_pt_BR": "Compressão sem perdas (Deflate)",
+      "placeholders": [],
+      "model_linguistic_review": "Sem perdas distinguishes lossless from lossy; Deflate remains the algorithm identifier. Esri's pt-BR glossary attests compressão sem perdas; Adobe also uses compactação sem perdas. Either vendor's wording is supporting usage evidence, not automatic authority over this app.",
+      "consumer_review": "SaveOptionsDialog displays this checkbox only for TIFF, initializes it from initial.tiffCompressed and passes its checked value into ExportOptions. ImageExporter forwards that boolean to TiffCodec. Native encode selects ADOBE_DEFLATE when true and NONE when false; the same opaque RGB bytes are supplied in both modes.",
+      "bounded_disposition": "No translation defect identified in this source/model review.",
+      "remaining": [
+        "Actual pt-BR resource resolution, checkbox rendering/accessibility and toggling are unexecuted.",
+        "The label does not certify preservation of arbitrary input metadata, alpha or source bit depth."
+      ]
+    },
+    {
+      "id": "TD02",
+      "resource": "formats22_tiff_description",
+      "historical_change": true,
+      "role": "TIFF export explanation, shown for both checked and unchecked states.",
+      "pt_BR": "Salva uma página RGB. A compressão reduz o tamanho do arquivo sem alterar os pixels; desative-a para criar um TIFF sem compressão.",
+      "english": "Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.",
+      "previous_pt_BR": "Guarda uma página RGB. A compressão reduz o tamanho do arquivo sem alterar os pixels; desative-a para TIFF não comprimido.",
+      "placeholders": [],
+      "model_linguistic_review": "Salva is appropriate pt-BR software wording for saves. Uma página retains the singular output; RGB remains unchanged. Desative-a refers to feminine compressão and corresponds to unchecking the option, not disabling TIFF export. Criar um TIFF sem compressão expresses the unchecked output more explicitly than the earlier phrase. The unqualified reduz reproduces the source's reduces and carries caveat F01.",
+      "consumer_review": "One bitmap enters TiffCodec. Native output writes a single directory with three 8-bit RGB samples, and rejects nonopaque pixels. The checkbox selects Deflate versus uncompressed storage without a lossy-quality route. No output-size comparison or smaller-of-two selection is implemented.",
+      "bounded_disposition": "Translation relationship supported; shared source/pt-BR file-size assurance remains qualified by open F01. Do not mark this resource fully accepted.",
+      "remaining": [
+        "Resolve F01 as a shared semantic wording issue across applicable catalogues.",
+        "Do not read sem alterar os pixels as a guarantee of preserving arbitrary original-file metadata, alpha or bit depth.",
+        "TIFF output sizes and decoded pixel equality have not been measured in this pass."
+      ]
+    },
+    {
+      "id": "TD03",
+      "resource": "formats22_dib_description",
+      "historical_change": true,
+      "role": "DIB export explanation; TIFF compression, quality and lossless-choice controls are hidden.",
+      "pt_BR": "Salva um DIB do Windows de 24 bits sem compressão. Use BMP se o aplicativo de destino exigir um cabeçalho de arquivo BMP.",
+      "english": "Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.",
+      "previous_pt_BR": "Guarda um DIB do Windows de 24 bits não comprimido. Use BMP se a aplicativo receptora exigir um cabeçalho de arquivo BMP.",
+      "placeholders": [],
+      "model_linguistic_review": "Salva and sem compressão convey the save action and uncompressed output. O aplicativo de destino repairs the earlier a aplicativo receptora agreement and conveys the receiving application. The conditional se ... exigir keeps BMP advice conditional. Cabeçalho de arquivo BMP is precise: it does not claim DIB has no header at all.",
+      "consumer_review": "DibCodec calls LegacyImageEncoder.dib. The shared bitmap encoder uses a 40-byte BITMAPINFOHEADER, one plane, 24 bits per pixel, BI_RGB=0, bottom-first BGR rows and four-byte row padding. DIB omits only the 14-byte BMP file header; BMP emits it before the same DIB payload.",
+      "bounded_disposition": "No translation defect identified in this source/model review; actual recipient compatibility is not established.",
+      "remaining": [
+        "Execute byte/header and opaque-RGB round-trip checks at a candidate revision.",
+        "Validate visible pt-BR prose and export/provider routes.",
+        "Do not generalize to every receiving application or to retention of transparency."
+      ]
+    }
+  ]
+}

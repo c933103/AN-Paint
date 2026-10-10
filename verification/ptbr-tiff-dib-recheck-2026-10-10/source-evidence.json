@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "repository": "c933103/AN-Paint",
+  "repository_visibility": "public; unchanged",
+  "parent_obligation": "P07-007",
+  "parent_status": "Pending full recheck",
+  "register_counts": {
+    "total": 475,
+    "structural_completed": 3,
+    "pending": 472
+  },
+  "accepted_source_commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+  "accepted_source_tree": "d9858229f98068bef9c6194c90d77610c5ecceec",
+  "english_resource": {
+    "path": "Paintroid/src/main/res/values/strings.xml",
+    "blob_sha": "576616126cd8b12f5ddfcb4f97e61341b337413c",
+    "lines": [
+      564,
+      566
+    ]
+  },
+  "pt_BR_resource_history": [
+    {
+      "role": "develop",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "1d60f1400d503409c28134ed4460febdcf102008",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/res/values-pt-rBR/strings.xml"
+    },
+    {
+      "role": "integration",
+      "commit": "b60f5830f30af5c243e5a6084e917c9cfd844678",
+      "blob_sha": "f7a34be5f95b2e959da5172269e5d2058b794615",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/b60f5830f30af5c243e5a6084e917c9cfd844678/Paintroid/src/main/res/values-pt-rBR/strings.xml"
+    },
+    {
+      "role": "PR7",
+      "commit": "730319aea40eb205d18c894c496e500d6f660ac6",
+      "blob_sha": "e4fda208b877885ace3f7de9409abd6859fe2fc6",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/730319aea40eb205d18c894c496e500d6f660ac6/Paintroid/src/main/res/values-pt-rBR/strings.xml"
+    },
+    {
+      "role": "historical_correction",
+      "commit": "595bedb6050064a5c37704eac16b3f6f46042c86",
+      "blob_sha": "58f1ddf52d69fede9380c3d1d7990c16a68a9186",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/595bedb6050064a5c37704eac16b3f6f46042c86/Paintroid/src/main/res/values-pt-rBR/strings.xml"
+    },
+    {
+      "role": "historical_parent",
+      "commit": "614f54a5dccfe806f5d8f9fc50d9f722da2f8d93",
+      "blob_sha": "e1d7096b31c9975484428a87cca7f9eac9a6b82c",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/614f54a5dccfe806f5d8f9fc50d9f722da2f8d93/Paintroid/src/main/res/values-pt-rBR/strings.xml"
+    }
+  ],
+  "comparison": {
+    "keys": [
+      "formats22_tiff_compression",
+      "formats22_tiff_description",
+      "formats22_dib_description"
+    ],
+    "result": "All three current values are equal at historical correction, current PR7, accepted develop and integration. Only TIFF/DIB descriptions changed between the historical parent and correction; the compression checkbox label is context, not an additional substantive rewrite."
+  },
+  "duplicate_check": {
+    "read_date": "2026-10-10",
+    "PR7_discussion_records": 10,
+    "last_comment_id": 6095494460,
+    "result": "No TIFF/DIB/Deflate/key-specific bounded supplement was found in the retrieved full PR7 discussion or authoritative register. This is not a claim about unpublished work or all other conversations. Empty GitHub code-search results were not treated as proof of absence."
+  },
+  "source_files": [
+    {
+      "id": "SaveOptionsDialog",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "e77f1fd01d9e7d9d9f59c37f40d4d1ea6f166a22",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "excerpts": [
+        {
+          "start_line": 11,
+          "end_line": 26,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L11-L26",
+          "text": "enum class ImageFormat(private val displayLabel: String,val mime: String,val extension: String,val supportsLossless: Boolean=false) {\n    // Append values to retain the saved-state ordinals used by earlier builds.\n    PNG(\"PNG\", \"image/png\", \".png\"), JPEG(\"JPEG\", \"image/jpeg\", \".jpg\"),\n    JPEG_XL(\"JPEG XL\", \"image/jxl\", \".jxl\",true), WEBP(\"WebP\",\"image/webp\",\".webp\",true),\n    HEIC(\"HEIC\",\"image/heic\",\".heic\"), AVIF(\"AVIF\",\"image/avif\",\".avif\",true),\n    BMP(\"BMP\",\"image/bmp\",\".bmp\"), GIF(\"GIF\",\"image/gif\",\".gif\"),\n    DIB(\"DIB\",\"image/x-dib\",\".dib\"), TIFF(\"TIFF\",\"image/tiff\",\".tif\"),\n    ICO(\"ICO\",\"image/vnd.microsoft.icon\",\".ico\"), BASE64(\"Base64 text\",\"text/plain\",\".txt\"),\n    ASCII_ART(\"ASCII art\",\"text/plain\",\".txt\");\n    val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}\n    val supportsQuality: Boolean get() = this in listOf(JPEG,JPEG_XL,WEBP,HEIC,AVIF)\n    val canSaveLosslessly: Boolean get() = this in listOf(PNG,JPEG_XL,WEBP,AVIF,BMP,DIB,TIFF,BASE64)\n    val isDerivedExport: Boolean get() = this in listOf(ICO,BASE64,ASCII_ART)\n}\ndata class ExportOptions(val format: ImageFormat=ImageFormat.PNG,val quality: Int=95,val lossless: Boolean=true,val dither: Boolean=true,val tiffCompressed: Boolean=true,\n    val icoSize: Int=256,val asciiColumns: Int=100,val asciiInvert: Boolean=false)"
+        },
+        {
+          "start_line": 63,
+          "end_line": 65,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L63-L65",
+          "text": "        val losslessBox=CheckBox(activity).apply {tag=\"export_lossless\";isChecked=lossless}\n        val ditherBox=CheckBox(activity).apply {tag=\"export_dither\";text=ui(R.string.save20_dither);isChecked=initial.dither}\n        val tiffCompressionBox=CheckBox(activity).apply {tag=\"export_tiff_compressed\";text=ui(R.string.formats22_tiff_compression);isChecked=initial.tiffCompressed}"
+        },
+        {
+          "start_line": 86,
+          "end_line": 105,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L86-L105",
+          "text": "        fun update() {\n            losslessBox.text=ui(R.string.ui_lossless_format,format.label)\n            losslessBox.visibility=if(format.supportsLossless) View.VISIBLE else View.GONE\n            slider.visibility=if(format.supportsQuality && !(format.supportsLossless && lossless)) View.VISIBLE else View.GONE\n            ditherBox.visibility=if(format==ImageFormat.GIF) View.VISIBLE else View.GONE\n            tiffCompressionBox.visibility=if(format==ImageFormat.TIFF) View.VISIBLE else View.GONE\n            iconControls.visibility=if(format==ImageFormat.ICO) View.VISIBLE else View.GONE\n            asciiControls.visibility=if(format==ImageFormat.ASCII_ART) View.VISIBLE else View.GONE\n            explanation.text=ui(when(format) {\n                ImageFormat.GIF -> R.string.save20_gif_description\n                ImageFormat.BMP -> R.string.save20_bmp_description\n                ImageFormat.DIB -> R.string.formats22_dib_description\n                ImageFormat.TIFF -> R.string.formats22_tiff_description\n                ImageFormat.ICO -> R.string.formats22_ico_description\n                ImageFormat.BASE64 -> R.string.formats22_base64_description\n                ImageFormat.ASCII_ART -> R.string.formats22_ascii_description\n                ImageFormat.JPEG,ImageFormat.HEIC -> R.string.save20_lossy_quality_description\n                else -> R.string.ui_higher_quality_usually_makes_a_larger_file_lossless\n            })\n            explanation.visibility=if(format==ImageFormat.PNG) View.GONE else View.VISIBLE"
+        },
+        {
+          "start_line": 187,
+          "end_line": 197,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L197",
+          "text": "        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))\n            .setView(content)\n            .setPositiveButton(ui(R.string.ui_choose_location),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()\n        dialog.setOnShowListener {\n            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n                val name=filename.text.toString()\n                if(!ExportNames.valid(name,format)) filename.error=ui(R.string.save20_invalid_name)\n                else {\n                    confirm(SaveRequest(ExportOptions(format,quality,format.supportsLossless && lossless,ditherBox.isChecked,tiffCompressionBox.isChecked,icoSize,asciiColumns,asciiInvert.isChecked),ExportNames.withExtension(name,format)))\n                    dialog.dismiss()"
+        }
+      ]
+    },
+    {
+      "id": "ImageExporter",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "a092dfb769e9e7117955f6bcd532f90ec7d7ae06",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+      "excerpts": [
+        {
+          "start_line": 8,
+          "end_line": 23,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt#L8-L23",
+          "text": "\n/** All formats encode the same opaque document; the source bitmap is never modified. */\nobject ImageExporter {\n    fun encode(image: Bitmap,file: File,options: ExportOptions,budget: Long) {\n        when(options.format) {\n            ImageFormat.JPEG_XL -> JxlCodec.encode(image,file,options.quality,options.lossless,budget)\n            ImageFormat.WEBP -> WebpCodec.encode(image,file,options.quality,options.lossless,budget)\n            ImageFormat.HEIC -> HeifCodec.encode(image,file,\"heic\",options.quality,false,budget)\n            ImageFormat.AVIF -> HeifCodec.encode(image,file,\"avif\",options.quality,options.lossless,budget)\n            ImageFormat.BMP,ImageFormat.GIF -> BitmapFileCodec.encode(image,file,options.format==ImageFormat.GIF,options.dither,budget)\n            ImageFormat.DIB -> DibCodec.encode(image,file,budget)\n            ImageFormat.TIFF -> TiffCodec.encode(image,file,options.tiffCompressed,budget)\n            ImageFormat.ICO -> IcoCodec.encode(image,file,options.icoSize,budget)\n            ImageFormat.BASE64 -> TextImageCodec.encodeBase64(image,file,budget)\n            ImageFormat.ASCII_ART -> TextImageCodec.encodeAscii(image,file,options.asciiColumns,options.asciiInvert,budget)\n            ImageFormat.PNG,ImageFormat.JPEG -> file.outputStream().use {"
+        }
+      ]
+    },
+    {
+      "id": "TiffCodec",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TiffCodec.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "079e2f71416e506d86d6aeaf6c6bf4ff3b0bf3fb",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/TiffCodec.kt",
+      "excerpts": [
+        {
+          "start_line": 59,
+          "end_line": 64,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/TiffCodec.kt#L59-L64",
+          "text": "    /** Lossless Deflate or uncompressed, single-page classic TIFF; failed saves preserve the destination. */\n    fun encode(image: Bitmap, file: File, compressed: Boolean, budget: Long) {\n        Native.encode(image, file.path, compressed, budget)\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "id": "TiffNativeOutput",
+      "path": "Paintroid/src/main/cpp/tiff_bridge.cpp",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "493e1cb4907baf84d5a046cb02a66c05f0edee27",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/cpp/tiff_bridge.cpp",
+      "excerpts": [
+        {
+          "start_line": 381,
+          "end_line": 408,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/cpp/tiff_bridge.cpp#L381-L408",
+          "text": "struct Output {\n    std::string temporary;\n    Tiff tif{nullptr,TIFFClose};\n    Output(const char* destination, Errors& errors, Budget& budget) {\n        std::string pattern=std::string(destination)+\".XXXXXX\";\n        std::vector<char> name(pattern.begin(),pattern.end()); name.push_back('\\0');\n        const int fd=mkstemp(name.data());\n        require(fd>=0,\"Cannot create TIFF output file\");\n        try {\n            temporary=name.data();\n            auto opts=options(errors,budget);\n            tif.reset(TIFFFdOpenExt(fd,name.data(),\"wl\",opts.get()));\n            errors.check(tif!=nullptr,\"Cannot open TIFF output file\");\n        } catch (...) {\n            if (!tif) close(fd);\n            tif.reset(); unlink(name.data()); temporary.clear();\n            throw;\n        }\n    }\n    ~Output() { tif.reset(); if (!temporary.empty()) unlink(temporary.c_str()); }\n    void commit(const char* destination, Errors& errors) {\n        errors.check(TIFFWriteDirectory(tif.get())==1,\"Cannot write TIFF image directory\");\n        errors.check(TIFFFlush(tif.get())==1,\"Cannot finish TIFF output\");\n        tif.reset();\n        errors.check(true,\"Cannot close TIFF output\");\n        require(rename(temporary.c_str(),destination)==0,\"Cannot replace TIFF output file\");\n        temporary.clear();\n    }"
+        },
+        {
+          "start_line": 480,
+          "end_line": 521,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/cpp/tiff_bridge.cpp#L480-L521",
+          "text": "extern \"C\" JNIEXPORT void JNICALL\nJava_org_catrobat_paintroid_classic_TiffCodec_00024Native_encode(\n        JNIEnv* env,jobject,jobject bitmap,jstring path,jboolean compressed,jlong maxBytes) {\n    Budget budget;\n    try {\n        Utf name(env,path); Pixels source(env,bitmap);\n        const auto sourceBytes=multiply(source.info.stride,source.info.height);\n        const auto rowBytes=multiply(source.info.width,3);\n        // Keep classic TIFF's offsets below 4 GiB, including worst-case Deflate\n        // growth, per-strip tables and profile/directory overhead.\n        const auto payload=multiply(rowBytes,source.info.height);\n        require(payload<0xF0000000ULL,\"TIFF export exceeds the classic TIFF size limit\");\n        const auto minimum=add(sourceBytes,add(kReserve,multiply(rowBytes,4)));\n        if (maxBytes<=0 || uint64_t(maxBytes)<minimum) throw std::bad_alloc();\n        budget.limit=static_cast<size_t>(std::min<uint64_t>(uint64_t(maxBytes)-sourceBytes-1024*1024,SIZE_MAX/2));\n        BudgetScope scope(budget); Errors errors;\n        Output output(name.text,errors,budget); auto* tif=output.tif.get();\n        const uint32_t rows=static_cast<uint32_t>(std::max<uint64_t>(1,std::min<uint64_t>(source.info.height,65536/rowBytes)));\n        require((uint64_t(source.info.height)+rows-1)/rows<=kMaximumBlocks,\"TIFF export needs too many strips\");\n        require(TIFFSetField(tif,TIFFTAG_IMAGEWIDTH,source.info.width) && TIFFSetField(tif,TIFFTAG_IMAGELENGTH,source.info.height) &&\n                TIFFSetField(tif,TIFFTAG_SAMPLESPERPIXEL,3) && TIFFSetField(tif,TIFFTAG_BITSPERSAMPLE,8) &&\n                TIFFSetField(tif,TIFFTAG_SAMPLEFORMAT,SAMPLEFORMAT_UINT) && TIFFSetField(tif,TIFFTAG_PHOTOMETRIC,PHOTOMETRIC_RGB) &&\n                TIFFSetField(tif,TIFFTAG_PLANARCONFIG,PLANARCONFIG_CONTIG) && TIFFSetField(tif,TIFFTAG_ORIENTATION,ORIENTATION_TOPLEFT) &&\n                TIFFSetField(tif,TIFFTAG_ROWSPERSTRIP,rows) &&\n                TIFFSetField(tif,TIFFTAG_COMPRESSION,compressed ? COMPRESSION_ADOBE_DEFLATE : COMPRESSION_NONE) &&\n                TIFFSetField(tif,TIFFTAG_ICCPROFILE,static_cast<uint32_t>(sizeof(kTiffSrgbProfile)),kTiffSrgbProfile) &&\n                TIFFSetField(tif,TIFFTAG_SOFTWARE,\"AN Paint\"),\"Cannot configure TIFF export\");\n        if (compressed) require(TIFFSetField(tif,TIFFTAG_PREDICTOR,PREDICTOR_HORIZONTAL) &&\n                                TIFFSetField(tif,TIFFTAG_ZIPQUALITY,6),\"Cannot configure lossless TIFF compression\");\n        Buffer row(rowBytes); source.lock();\n        for (uint32_t y=0;y<source.info.height;++y) {\n            const auto* pixels=static_cast<const uint8_t*>(source.data)+uint64_t(y)*source.info.stride;\n            for (uint32_t x=0;x<source.info.width;++x) {\n                require(pixels[uint64_t(x)*4+3]==255,\"TIFF export requires an opaque document\");\n                std::memcpy(row.data+uint64_t(x)*3,pixels+uint64_t(x)*4,3);\n            }\n            errors.check(TIFFWriteScanline(tif,row.data,y,0)==1,\"Cannot encode TIFF scanline\");\n        }\n        output.commit(name.text,errors);\n    } catch (const std::bad_alloc&) { fail(env,true,\"Not enough memory to encode TIFF\"); }\n      catch (const std::exception& error) { fail(env,budget.exhausted,error.what()); }\n}"
+        }
+      ]
+    },
+    {
+      "id": "DibCodec",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "f7ddc02a4917f65b974fc2a27dd8486eee448a32",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+      "excerpts": [
+        {
+          "start_line": 27,
+          "end_line": 41,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L27-L41",
+          "text": "    fun encode(image: Bitmap, file: File, budget: Long) {\n        val temporary = File.createTempFile(\"dib-export-\", \".tmp\", file.absoluteFile.parentFile)\n        try {\n            temporary.outputStream().buffered().use { output ->\n                val rows = LegacyImageEncoder.Rows { y, row -> image.getPixels(row, 0, image.width, 0, y, image.width, 1) }\n                LegacyImageEncoder.dib(image.width, image.height, rows, output, budget)\n            }\n            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))\n        } catch (error: LegacyImageEncoder.Failure) {\n            if (error.reason == 1) throw IOException(ui(R.string.formats22_dib_size_limit), error)\n            throw IOException(ui(R.string.save20_encoding_budget), error)\n        } finally { temporary.delete() }\n    }\n}\n"
+        }
+      ]
+    },
+    {
+      "id": "DibEncoder",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageEncoder.java",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "29ce6cb30c5ed81cfdd8aa6f83af5edc442d5174",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageEncoder.java",
+      "excerpts": [
+        {
+          "start_line": 37,
+          "end_line": 70,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageEncoder.java#L37-L70",
+          "text": "    /** BITMAPINFOHEADER, uncompressed BGR, padded scanlines stored bottom first. */\n    public static void bmp(int width, int height, Rows rows, OutputStream out, long budget) throws IOException {\n        bitmap(width, height, rows, out, budget, true);\n    }\n\n    /** Packed Windows DIB: BITMAPINFOHEADER and pixels, without the 14-byte BMP file header. */\n    public static void dib(int width, int height, Rows rows, OutputStream out, long budget) throws IOException {\n        bitmap(width, height, rows, out, budget, false);\n    }\n\n    private static void bitmap(int width, int height, Rows rows, OutputStream out, long budget, boolean fileHeader) throws IOException {\n        long stride = ((long) width * 3 + 3) & ~3L;\n        long bytes = stride * height;\n        check(width, height, budget, stride + (long) width * 4 + 65536);\n        if (stride > Integer.MAX_VALUE - 8 || bytes > 0xffffffffL - 54)\n            throw new Failure(1, \"The image exceeds the BMP file-size limit.\");\n        if (fileHeader) {\n            out.write('B'); out.write('M'); little(out, bytes + 54, 4);\n            little(out, 0, 4); little(out, 54, 4);\n        }\n        little(out, 40, 4);\n        little(out, width, 4); little(out, height, 4); little(out, 1, 2); little(out, 24, 2);\n        little(out, 0, 4); little(out, bytes, 4);\n        little(out, 0, 4); little(out, 0, 4); little(out, 0, 4); little(out, 0, 4);\n        int[] pixels = new int[width]; byte[] row = new byte[(int) stride];\n        for (int y = height - 1; y >= 0; y--) {\n            rows.read(y, pixels);\n            for (int x = 0, i = 0; x < width; x++) {\n                int colour = pixels[x];\n                row[i++] = (byte) colour; row[i++] = (byte) (colour >>> 8); row[i++] = (byte) (colour >>> 16);\n            }\n            out.write(row);\n        }\n    }"
+        }
+      ]
+    },
+    {
+      "id": "ExportDialogTest",
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExportFormatDialogTest.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "1fcb0a007ab288b041264cb7fa628c869953c3da",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/test/java/org/catrobat/paintroid/local/ExportFormatDialogTest.kt",
+      "excerpts": [
+        {
+          "start_line": 207,
+          "end_line": 237,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/test/java/org/catrobat/paintroid/local/ExportFormatDialogTest.kt#L207-L237",
+          "text": "    @Test fun tiffCompressionPersistsAcrossDialogChoicesAndDibHasNoLossyControls() {\n        menu(\"Save as…\")\n        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog\n        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF);idle()\n        val compression=dialog.window!!.decorView.findViewWithTag<CheckBox>(\"export_tiff_compressed\")\n        assertEquals(View.VISIBLE,compression.visibility);assertTrue(compression.isChecked)\n        assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)\n        compression.performClick()\n        EditorTestNavigation.format(dialog.format(),ImageFormat.DIB);idle()\n        assertEquals(View.GONE,compression.visibility)\n        assertEquals(View.GONE,dialog.lossless().visibility);assertEquals(View.GONE,dialog.quality().visibility)\n        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF);idle()\n        assertFalse(compression.isChecked)\n        dialog.window!!.decorView.findViewWithTag<EditText>(\"export_filename\").setText(\"scan.TIFF\")\n        dialog.confirm()\n        var launch=shadowOf(activity).nextStartedActivityForResult\n        assertEquals(\"image/tiff\",launch.intent.type)\n        assertEquals(\"scan.tif\",launch.intent.getStringExtra(Intent.EXTRA_TITLE))\n        shadowOf(activity).nextStartedActivity\n        activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()\n        menu(\"Save as…\")\n        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog\n        EditorTestNavigation.format(dialog.format(),ImageFormat.TIFF)\n        assertFalse(dialog.window!!.decorView.findViewWithTag<CheckBox>(\"export_tiff_compressed\").isChecked)\n        EditorTestNavigation.format(dialog.format(),ImageFormat.DIB);idle();dialog.confirm()\n        launch=shadowOf(activity).nextStartedActivityForResult\n        assertEquals(\"image/x-dib\",launch.intent.type)\n        assertTrue(launch.intent.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(\".dib\"))\n        shadowOf(activity).nextStartedActivity\n        activity.onActivityResult(launch.requestCode,Activity.RESULT_CANCELED,null);idle()\n    }"
+        }
+      ]
+    },
+    {
+      "id": "TiffRoundTripTest",
+      "path": "Paintroid/src/androidTest/java/org/catrobat/paintroid/classic/TiffCodecTest.kt",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "5d8bea589c4bd15b4c7c0729af694babee0dac22",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/androidTest/java/org/catrobat/paintroid/classic/TiffCodecTest.kt",
+      "excerpts": [
+        {
+          "start_line": 85,
+          "end_line": 104,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/Paintroid/src/androidTest/java/org/catrobat/paintroid/classic/TiffCodecTest.kt#L85-L104",
+          "text": "    @Test fun uncompressedAndDeflateExportsPreserveAllOpaquePixels() {\n        val input = source()\n        try {\n            for (compressed in listOf(false, true)) {\n                val file = File.createTempFile(\"tiff-roundtrip-\", \".bin\", context.cacheDir)\n                try {\n                    TiffCodec.encode(input, file, compressed, budget)\n                    assertTrue(TiffCodec.isTiff(file))\n                    assertEquals(ImageDimensions(37, 29), TiffCodec.dimensions(file))\n                    // The encoded Compression tag must match the chosen Save as setting.\n                    assertEquals(if (compressed) 8 else 1, compressionTag(file))\n                    val output = TiffCodec.decode(file, ImageDimensions(37, 29), budget)\n                    try {\n                        for (y in 0 until input.height) for (x in 0 until input.width)\n                            assertEquals(\"compressed=$compressed $x,$y\", input.getPixel(x,y), output.getPixel(x,y))\n                    } finally { output.recycle() }\n                } finally { file.delete() }\n            }\n        } finally { input.recycle() }\n    }"
+        }
+      ]
+    },
+    {
+      "id": "PackedDibTest",
+      "path": "tools/test_packed_dib.py",
+      "commit": "80c14372b0504bc44f9f2809ad477247fdc8100b",
+      "blob_sha": "596d108806db85bc24aab3505862a62fadcfbf50",
+      "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/tools/test_packed_dib.py",
+      "excerpts": [
+        {
+          "start_line": 40,
+          "end_line": 57,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/tools/test_packed_dib.py#L40-L57",
+          "text": "    static void colours(BufferedImage image,int... expected) {\n        check(expected.length==image.getWidth()*image.getHeight(),\"fixture dimensions\");int i=0;\n        for(int y=0;y<image.getHeight();y++)for(int x=0;x<image.getWidth();x++)\n            check((image.getRGB(x,y)&0xffffff)==(expected[i++]&0xffffff),\"pixel \"+x+\",\"+y+\": \"+Integer.toHexString(image.getRGB(x,y)));\n    }\n    static int colour(int x,int y) {return 0xff000000 | ((x*19+y*37)&255)<<16 | ((x*113+y*41)&255)<<8 | ((x*71+y*17)&255);}\n    static byte[] encode(int width,int height,boolean dib,long budget) throws Exception {\n        ByteArrayOutputStream out=new ByteArrayOutputStream();LegacyImageEncoder.Rows rows=(y,row)->{for(int x=0;x<width;x++)row[x]=colour(x,y);};\n        if(dib)LegacyImageEncoder.dib(width,height,rows,out,budget);else LegacyImageEncoder.bmp(width,height,rows,out,budget);return out.toByteArray();\n    }\n    static void output() throws Exception {\n        for(int width:new int[]{1,2,3,4,19,2057})for(int height:new int[]{1,17}) {\n            byte[] dib=encode(width,height,true,256L<<20),bmp=encode(width,height,false,256L<<20);\n            check(dib[0]==40 && dib[1]==0 && dib.length==bmp.length-14,\"true packed DIB header\");\n            check(Arrays.equals(dib,Arrays.copyOfRange(bmp,14,bmp.length)),\"DIB payload same as BMP\");\n            BufferedImage image=decode(dib,width,height);\n            for(int y=0;y<height;y++)for(int x=0;x<width;x++)check(image.getRGB(x,y)==colour(x,y),\"exact round trip\");\n        }"
+        },
+        {
+          "start_line": 158,
+          "end_line": 158,
+          "url": "https://github.com/c933103/AN-Paint/blob/80c14372b0504bc44f9f2809ad477247fdc8100b/tools/test_packed_dib.py#L158-L158",
+          "text": "    def test_true_headerless_dib_output_padding_and_rgb(self): self.run_case(\"output\")"
+        }
+      ]
+    }
+  ],
+  "primary_references": [
+    {
+      "id": "ESRI-ptBR",
+      "url": "https://support.esri.com/pt-br/gis-dictionary/lossless-compression",
+      "use": "Provider-authored Brazilian Portuguese terminology: compressão sem perdas and preservation of values. No native-speaker attestation or app validation is inferred.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "Adobe-ptBR-lossless",
+      "url": "https://helpx.adobe.com/br/photoshop/desktop/save-and-export/export-files-to-different-formats/file-compression-in-photoshop.html",
+      "use": "Provider-authored Brazilian Portuguese usage: compactação sem perdas. Its generalized size claims are not treated as an AN Paint size guarantee.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "Adobe-ptBR-save",
+      "url": "https://helpx.adobe.com/br/photoshop/desktop/save-and-export/save-files/save-large-documents.html",
+      "use": "Brazil-localized software help uses salva when describing TIFF output. Photoshop-specific capabilities are not transferred to AN Paint.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "Microsoft-BMP-file-header",
+      "url": "https://learn.microsoft.com/pt-br/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader",
+      "use": "Windows file-header distinction and Brazilian Portuguese cabeçalho/arquivo terminology.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "Microsoft-DIB-info-header",
+      "url": "https://learn.microsoft.com/pt-br/windows/win32/api/wingdi/ns-wingdi-bitmapinfoheader",
+      "use": "DIB dimensions/color header, BI_RGB uncompressed RGB and DWORD row stride. Source, rather than generic documentation, establishes this encoder's exact output.",
+      "accessed": "2026-10-10"
+    },
+    {
+      "id": "RFC1951",
+      "url": "https://www.rfc-editor.org/rfc/rfc1951.html#section-1.1",
+      "use": "DEFLATE specification, informational RFC: lossless compression cannot shorten all possible inputs and expansion is possible. No whole-TIFF expansion percentage is inferred.",
+      "accessed": "2026-10-10"
+    }
+  ],
+  "F01": {
+    "status": "open",
+    "kind": "shared source/translation semantic qualification",
+    "evidence": "Both English and pt-BR unconditionally say compression reduces file size. Native encoder explicitly budgets for Deflate growth and has no smaller-output fallback. RFC1951 permits expansion.",
+    "not_claimed": "No runtime size regression, observed size, loss of pixels or pt-BR-specific mistranslation is claimed.",
+    "proposed_review": "Consider can reduce / pode reduzir, retaining lossless and unchecked-TIFF meanings; independently review applicable language copies before any authorized wording change."
+  },
+  "validation": {
+    "performed": [
+      "Connected GitHub source/history reads",
+      "Exact string comparison in artifact preparation",
+      "Model linguistic/consumer-semantic assessment",
+      "Primary-reference reading"
+    ],
+    "not_performed": [
+      "Host/JVM/Python tests",
+      "Android build or emulator/device validation",
+      "Native codec execution",
+      "Output-size measurement",
+      "Screenshot/accessibility inspection",
+      "Native-speaker attestation",
+      "Complete original-thread/alternate-branch reconciliation"
+    ],
+    "existing_tests": "Test definitions were inspected only; no earlier test result is inherited as acceptance."
+  },
+  "original_scope": {
+    "status": "partially recovered",
+    "public_summary_url": "https://github.com/c933103/AN-Paint/blob/548bc966ea062613a0087d1127698ca11ecd9caf/verification/ptbr-animation-recheck-2026-10-10/README.md#partial-original-scope-recovery-10-october-2026",
+    "effect": "Independent review of inherited translations, shared-fix propagation, full individual recheck and no prior-progress carryforward remain applicable. Term-specific owner instruction for these TIFF/DIB choices has not been recovered in this pass; complete latest-thread/alternate-branch reconciliation remains open."
+  }
+}
