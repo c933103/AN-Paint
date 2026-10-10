@@ -92,7 +92,7 @@ printf '1\\r\\n'
 
 
 class AcceptedCreditBoundaryTest(unittest.TestCase):
-    def run_boundary(self, failure='', *, setup_delay=0):
+    def run_boundary(self, failure='', *, setup_delay=0, future_sdk_bound=''):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             (root/'tools').mkdir()
@@ -100,12 +100,13 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
             source=root/'app/src/androidTest';source.mkdir(parents=True)
             for name,method in (('EditorDeviceTest','ordinary'),('FutureTest','future'),
                                 ('AcceptedCreditRestartSeedTest','seed'),('AcceptedCreditRestartVerifyTest','verify')):
-                (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test fun {method}() {{}} }}\n')
+                annotation=f'@SdkSuppress({future_sdk_bound}) ' if name=='FutureTest' and future_sdk_bound else ''
+                (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test {annotation}fun {method}() {{}} }}\n')
             apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
             apk.parent.mkdir(parents=True);apk.touch()
             report=root/'report/app/androidTest-results';report.mkdir(parents=True)
-            ordinary=restart_partition(declared_tests(source))[0]
-            (report/'summary.json').write_text(json.dumps(dict(success=True,leave_target_running=False,
+            ordinary=restart_partition(declared_tests(source,sdk_level=35))[0]
+            (report/'summary.json').write_text(json.dumps(dict(success=True,device_sdk=35,leave_target_running=False,
                 expected_tests=len(ordinary),completed_tests=len(ordinary),
                 cases=[dict(classname=owner,name=name,status='passed') for owner,name in ordinary])))
             stale=root/'report/app/accepted-credit-restart/verify'
@@ -255,6 +256,17 @@ run_credit_restart_regression || exit "$?"
             status=(phase_root/'verify-status.txt').read_text()
             coverage=json.loads((phase_root/'coverage.json').read_text()) if (phase_root/'coverage.json').exists() else None
             return result,events,boundary,status,coverage
+
+    def test_restart_union_keeps_every_sdk_eligible_method_only(self):
+        for bound in ('minSdkVersion=36', 'maxSdkVersion=34'):
+            with self.subTest(bound=bound):
+                result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
+                self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
+                self.assertEqual(coverage['device_sdk'],35)
+                self.assertEqual(coverage['declared_tests'],3)
+                self.assertEqual(coverage['completed_tests'],3)
+                self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
+                self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()

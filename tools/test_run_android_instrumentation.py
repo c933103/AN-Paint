@@ -1,4 +1,5 @@
 """Protocol regression checks: adb returning zero is insufficient evidence."""
+import copy
 import json
 import subprocess
 import sys
@@ -245,11 +246,19 @@ class RestartModeTest(unittest.TestCase):
     def test_partition_covers_future_classes_and_rejects_missing_or_duplicate_phases(self):
         expected={(OWNER,'draw'),('example.FutureTest','future'),(RESTART_SEED,'seed'),(RESTART_VERIFY,'verify')}
         parts=restart_partition(expected)
-        reports=[dict(success=True,expected_tests=len(part),completed_tests=len(part),
+        reports=[dict(success=True,device_sdk=35,expected_tests=len(part),completed_tests=len(part),
                       leave_target_running=(i==1),cases=[dict(classname=owner,name=name,status='passed')
                                                        for owner,name in sorted(part)])
                  for i,part in enumerate(parts)]
         self.assertEqual(verify_restart_reports(expected,reports)['completed_tests'],4)
+        self.assertEqual(verify_restart_reports(expected,reports)['device_sdk'],35)
+        for invalid in (None, 30, 36, '35', True):
+            for phase in range(3):
+                changed=copy.deepcopy(reports)
+                if invalid is None:changed[phase].pop('device_sdk')
+                else:changed[phase]['device_sdk']=invalid
+                with self.subTest(sdk=invalid,phase=phase), self.assertRaises(ValueError):
+                    verify_restart_reports(expected,changed)
         self.assertIn(('example.FutureTest','future'),parts[0])
         for bad in (reports[:2], [reports[0],reports[1],reports[1]]):
             with self.assertRaises(ValueError):verify_restart_reports(expected,bad)

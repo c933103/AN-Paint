@@ -101,7 +101,16 @@ def restart_partition(expected: set[Identity]) -> tuple[set[Identity], set[Ident
     return ordinary, seed, verify
 
 
+def restart_sdk(reports: list[dict]) -> int:
+    """Accepted-credit restart evidence must come from one captured API35 device."""
+    if len(reports) != 3 or any(type(report.get('device_sdk')) is not int
+                                or report['device_sdk'] != 35 for report in reports):
+        raise ValueError('Three phase reports with the captured API35 SDK are required')
+    return 35
+
+
 def verify_restart_reports(expected: set[Identity], reports: list[dict]) -> dict:
+    sdk_level = restart_sdk(reports)
     partitions = restart_partition(expected)
     if len(reports) != 3:
         raise ValueError('Three completed app reports are required')
@@ -118,7 +127,8 @@ def verify_restart_reports(expected: set[Identity], reports: list[dict]) -> dict
         completed.update(identities)
     if completed != expected:
         raise ValueError('App reports omit declared source tests')
-    return {'success': True, 'declared_tests': len(expected), 'completed_tests': len(completed),
+    return {'success': True, 'device_sdk': sdk_level,
+            'declared_tests': len(expected), 'completed_tests': len(completed),
             'completed': sorted(completed)}
 
 
