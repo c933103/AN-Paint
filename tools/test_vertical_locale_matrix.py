@@ -12,6 +12,7 @@ import tempfile
 import unittest
 
 from run_android_instrumentation import RESTART_SEED, RESTART_VERIFY, declared_tests
+from test_vertical_control_reachability import fixture as reachability_fixture
 from vertical_locale_matrix import (VERTICAL, VERTICAL_METHODS, EXPECTED_SCREENSHOTS,
                                    app_partition, verify_app_reports, verify_screenshots)
 
@@ -253,12 +254,19 @@ raise SystemExit('Unexpected command: '+repr(args))
 
     def test_cleanup_collects_before_shutdown_and_never_turns_a_failure_green(self):
         for start, fault, expected_status in ((0, '', 0), (0, 'pull', 1), (0, 'missing', 1),
-                                              (7, 'pull', 7), (7, 'missing', 7)):
+                                              (7, 'pull', 7), (7, 'missing', 7), (0, 'reachability_missing', 1),
+                                              (0, 'reachability_failed', 1), (7, 'reachability_failed', 7)):
             with self.subTest(start=start, fault=fault), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory); (root/'report').mkdir()
                 shutil.copytree(ROOT/'tools', root/'tools', ignore=shutil.ignore_patterns('__pycache__'))
                 screenshot_fixture(root/'device')
+                reachability_fixture(root/'device/reachability')
                 if fault == 'missing': (root/'device'/sorted(EXPECTED_SCREENSHOTS)[0]).unlink()
+                if fault.startswith('reachability_'):
+                    receipt=next((root/'device/reachability').glob('*.json'))
+                    if fault=='reachability_missing': receipt.unlink()
+                    else:
+                        data=json.loads(receipt.read_text());data['success']=False;receipt.write_text(json.dumps(data))
                 fake = root/'adb'
                 fake.write_text('#!'+sys.executable+'\n'+r'''
 import json, os, shutil, sys
@@ -268,14 +276,15 @@ if sys.argv[1]=='pull':
     shutil.copytree('device',sys.argv[3])
 ''')
                 fake.chmod(0o700)
-                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
+                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; TEST_API=35; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
                 result = subprocess.run(['bash','-c',command], cwd=root, capture_output=True, text=True, timeout=15,
                     env={**os.environ, 'CI_SCRIPT': str(ROOT/'tools/ci_emulator.sh'), 'INITIAL_STATUS': str(start), 'TEST_FAULT': fault})
                 self.assertEqual(result.returncode, expected_status, result.stdout+result.stderr)
                 events = [json.loads(line) for line in (root/'events').read_text().splitlines()]
                 self.assertLess(next(i for i, event in enumerate(events) if event[0]=='pull'),
                                 next(i for i, event in enumerate(events) if event[:2]==['emu','kill']))
-                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), not fault)
+                self.assertEqual((root/'report/vertical-locale-screenshots.json').exists(), fault not in ('pull','missing'))
+                self.assertEqual((root/'report/vertical-control-reachability.json').exists(), not fault)
 
 
 if __name__ == '__main__':

@@ -153,7 +153,7 @@ run_vertical_locale_matrix() {
   local -a excluded=()
   # Never reuse screenshots or a successful summary from a previous invocation.
   rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence"
-  rm -f "$report/vertical-locale-screenshots.json"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json"
   classes=$(python3 tools/vertical_locale_matrix.py exclude-other-classes \
     --source-tests app/src/androidTest) || return
   while IFS= read -r owner; do excluded+=(--exclude-class "$owner"); done <<< "$classes"
@@ -184,6 +184,11 @@ cleanup() {
         "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \
         > "$report/vertical-locale-inventory.log" 2>&1; then
       progress 'FAILED: incomplete vertical locale screenshot matrix' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_control_reachability.py \
+        "$report/app/vertical-locale-evidence/reachability" --sdk "$TEST_API" --output "$report/vertical-control-reachability.json" \
+        > "$report/vertical-control-reachability.log" 2>&1; then
+      progress 'FAILED: incomplete native control-reachability evidence' >&2
       if (( status == 0 )); then status=1; fi
     fi
   fi

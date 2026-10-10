@@ -420,3 +420,74 @@ only. Fresh exact-head compilation, API35 XML/logs, measured phase durations and
 visual screenshot review are required. Use the full API30/API35 matrix for release
 verification or a diagnosed cross-version risk; no new full-matrix default or
 workflow transplant is introduced here.
+
+## Draft control-reachability follow-up to PR18
+
+This additive test proposal starts at exact head
+`66c39ca345ef7bc8c5fe1da8ce64cb872c3a0e88`, tree
+`a90cdf84be34e6a08ab7a9d25b46cdce2f71b776`. The prior 98 installed passes and
+32 capture-state images remain evidence of that source only. They do not prove
+these new checks passed. The accepted evidence and the unresolved checklist at
+[PR18 comment 6093775811](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6093775811)
+remain unchanged.
+
+`VerticalControlReachabilityProbe` adds assertions inside each existing locale /
+orientation case. The original phase inventory, all previous assertions, original
+32-image collector, 180-second vertical phase deadline and 15-minute enclosing
+execution limit remain intact. There is no new phase or workflow change.
+
+The probe first records the currently clipped viewport, then uses native swipes
+to reveal the complete quality widget, readout, native SeekBar and thumb. It drags
+the actual thumb to quality 1 and 100, requiring each input to change the previous
+value and checking both native progress and displayed value. It separately reveals
+the complete filename field/preview, JPEG explanation and Cancel action. Geometry
+receipts contain raw / ancestor-clipped screen bounds and ancestor scroll offsets.
+Reveal gestures match the missing edge plus native touch slop instead of relying
+on a fixed long swipe that could overshoot a reachable control. No progress setter,
+scroll setter, callback replacement or programmatic click establishes success.
+
+After the original Cancel/reopen/Back and no-external-request assertions, a distinct
+native Save flow selects JPEG again and uses Choose location. The existing
+ActivityMonitor intercepts exactly one ACTION_CREATE_DOCUMENT request and returns
+RESULT_CANCELED before opening a provider. Its MIME, filename and persisted quality
+must match. Portrait commits quality 1 and landscape commits 100. No external
+storage destination, grant, encoding, real file write or sharing is exercised.
+Cancel must not persist the changed draft quality. Draft filename, document
+filename, every canvas pixel and selected tool are checked for preservation.
+
+`app/vertical-locale-evidence/reachability/` holds eight case receipts and 64 fresh
+PNG captures: before, minimum, maximum, filename, description, cancel-ready,
+choose-ready and returned. These cannot replace the original top-level 32 states.
+EXIT collection still runs before emulator shutdown and failure stays failed.
+The new independent receipt checker rejects missing / extra files, failed or
+partial cases, clipped endpoint/thumb/readout bounds, unchanged endpoint input,
+wrong values, filename/state loss, missing native scroll movement and byte-identical
+minimum/maximum captures. Header, inventory and state receipts do not certify
+rendered pixels: reviewers must open every actual image after an installed run.
+
+The candidate is a probe, not a production repair or broad usability acceptance.
+A failure needs diagnosis: distinguish a real inaccessible control from a bad
+coordinate / native-scroll oracle or a phase-budget failure. Preserve the failing
+exact-source evidence. Do not weaken full-bound assertions or extend timeouts to
+turn a failure green. Run current-platform API35 only after reviewed publication;
+API30/full matrix remains for release verification or diagnosed cross-version risk.
+
+### Reviewed probe-oracle corrections
+
+The first unpublished proposal could finish the landscape Cancel draft at the
+same endpoint remembered from portrait. Revision 2 ensures a different value
+using another native endpoint gesture when needed, records both remembered and
+draft values, asserts the distinction immediately before Cancel, and rejects an
+equal-value receipt. Both endpoint screenshots remain required.
+
+Revision 2 also hardens both test-only geometry helpers: a false
+`getGlobalVisibleRect` result returns a fresh empty Rect, because Android leaves
+its output undefined on false. Each helper has an installed negative fixture that
+writes a nonempty rectangle and returns false; a regression of the guard must fail
+that fixture. Host checks validate the source/fixture contracts but do not execute
+Android/Kotlin. The actual installed negatives remain unexecuted until reviewed CI.
+
+This changes one pre-existing visibility-return line, so "every original line
+unchanged" is no longer an exact claim. Existing assertions and their thresholds,
+production source, workflow and deadlines are preserved. No prior screenshot is
+overwritten or retroactively revalidated by this test-oracle correction.
