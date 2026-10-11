@@ -1,6 +1,6 @@
 # PR43 postmerge release verification
 
-Final bounded acceptance at 2026-10-11 00:20 UTC: all five fresh postmerge jobs are green; exact source/build, compiled resources, JVM/lint/generation and both complete installed-device evidence sets independently pass. Actual-pixel checks pass only the stated JPEG/control reachability scope. Premerge acceptance is retained separately at [904cf7c4](https://github.com/c933103/AN-Paint/blob/904cf7c4ce4ced2122379909478e0b2a42faa5d5/verification/pr43-integrated-runtime-2026-10-11/REPORT.md).
+Final bounded acceptance at 2026-10-11 00:20 UTC: all five fresh postmerge jobs are green; exact source/build, compiled resources, JVM/lint/generation and both complete installed-device evidence sets independently pass. Actual-pixel checks pass only the stated JPEG/control reachability scope. Premerge acceptance is retained separately at [25186e0a](https://github.com/c933103/AN-Paint/blob/25186e0ad91d4d8c000444f5090b06fa122b8763/verification/pr43-integrated-runtime-2026-10-11/REPORT.md).
 
 This is fresh push run [38095872353](https://github.com/c933103/AN-Paint/actions/runs/38095872353), actual merged develop commit `2c1bd8622eb6c57444eee8f816194b309fff136e`, exact accepted tree `83f46e5d4772e98610bd6eb6fcc5a3964d19cd84`. No source change or evidence from the earlier synthetic checkout is relabelled as this new run.
 
@@ -25,4 +25,14 @@ Fresh installed verification completed:
 - Both retain the strict four Korean picker/rotation/public/private identity rows with exact strings, four real installed-WebView large-font viewport rows, all navigation methods and a distinct cold gallery process. API35 proves the live seed/top-resumed gallery/external force-stop/PID-absence/normal verification boundary.
 - All16 fresh labelled contact sheets covering192 images were inspected, plus two original-size API35 emoji-landscape description and literary-Chinese portrait-maximum images. Controls/description/filename reached by scrolling, endpoint states and editor returns support the existing bounded scope. Initial clipping is still visible in initial frames and remains open. These are vertical JPEG/control images, not TIFF-description screenshots.
 
-Original artifact IDs/digests are retained in `workflow-artifacts.json`; both detailed device receipts and the strict verifier are included. Host raw data is retained in ordered50KB UTF-8 base64 parts described by `host-parts.json`. Complete raw postmerge device packets are being archived separately on the same branch; the current acceptance already follows full downloaded-artifact replay, not a partial run. No installed TIFF-dialog, accessibility, native-speaker or full-language acceptance is claimed. Initial clipping and the unchanged475/3/472 localization register,12 probable and four uncertain findings remain open.
+Original artifact IDs/digests are retained in `workflow-artifacts.json`; both detailed device receipts and the strict verifier are included. Host raw data is retained in ordered50KB UTF-8 base64 parts described by `host-parts.json`. Complete raw postmerge device packets are retained in ordered50KB UTF-8 base64 parts described by `device-parts.json`. The two retained ZIPs preserve raw instrumentation/JUnit, startup/logcat, process boundary and raw locale transport evidence; only duplicate extracted locale images and the emulator console/probe diagnostic are omitted. `replay_retained.py` reconstructs every packet and image from these parts, checks Git blob/size/SHA256 identities and replays the full host/device/compiled-resource checks. The optional original `--build-archive` enables independent APK/source replay. An isolated reconstruction/replay of all retained parts, including the original build archive, passed. Actual-pixel review remains separately recorded. No installed TIFF-dialog, accessibility, native-speaker or full-language acceptance is claimed. Initial clipping and the unchanged475/3/472 localization register,12 probable and four uncertain findings remain open.
+
+## Retained evidence replay
+
+With the exact source checkout and this evidence directory:
+
+```sh
+python3 replay_retained.py --source /path/to/source --directory /path/to/new-output --build-archive /path/to/original-build.zip
+```
+
+The source blobs and executable modes are checked before importing any source helper. The original build ZIP is optional and not embedded in the retained evidence; omitting it explicitly leaves fresh APK/source replay unperformed. `publication-payload-review.json` records the public-destination/synthetic-emulator provenance and bounded credential-pattern review before archival. No owner device, account login or personal session data was used.
