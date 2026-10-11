@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "head_commit": "c711d0c0cce6b3ecd2dcecce7063dfdc6cda305f",
+  "tested_merge_commit": "b8749d7bea1ec7b90668d2fe1a5f44e4af0d6c3f",
+  "tested_tree": "89c3c199c415c48100dace760440efaffd809d4f",
+  "run_id": 38122366555,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38122366555",
+  "outcome": "All102installed and814JVM pass; full native colour state established; Hungarian portrait capture remains partly occluded",
+  "source_tests_sha256": "6625bbedcae5508075cdc31e0e45e32e82b7c97df6fd95e1631baccec4f828e0",
+  "ordinary": {
+    "success": true,
+    "expected_tests": 19,
+    "completed_tests": 19,
+    "elapsed_seconds": 152.17800520600002,
+    "timed_out": false
+  },
+  "colour_methods": [
+    {
+      "method": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "raw_bytes": 69355,
+      "raw_sha256": "037ec28f914cb9609fc2b78333f9e41aacae3c5dbdc5ece5663608ec5761f557",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 3834
+    },
+    {
+      "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "raw_bytes": 75321,
+      "raw_sha256": "0d103c68b159b235c274c59f5104002f9015cd7c1d6fc83977b59123529223f7",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 3052
+    },
+    {
+      "method": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "raw_bytes": 205310,
+      "raw_sha256": "f63bd746e69901497259d03944d4180ac16f99d7f7eec6fce7b0f7d022763a47",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 16435
+    }
+  ],
+  "jvm": {
+    "suite_count": 87,
+    "case_count": 814,
+    "unique_cases": 814,
+    "nonpasses": [],
+    "colour_cases": [
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordNormalShortLandscapeWithoutClaimingAcceptance[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordNormalShortLandscapeWithoutClaimingAcceptance"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordLargeShortLandscapeWithoutClaimingAcceptance[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordLargeShortLandscapeWithoutClaimingAcceptance"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "verticalScriptRetainsItsSeparateFormAndSixteenFiniteSavedSlots[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "verticalScriptRetainsItsSeparateFormAndSixteenFiniteSavedSlots"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths"
+      ]
+    ]
+  },
+  "lint_issues": 0,
+  "build_info": {
+    "commit": "b8749d7bea1ec7b90668d2fe1a5f44e4af0d6c3f",
+    "run_id": "38122366555",
+    "build_variant": "debug",
+    "apk_sha256": "9c9b50f2446cfe35656c6f367f93c4c7e821a86cd752c0b00c622eaf2569f05c",
+    "source_sha256": "db4938c1948b408f0100e151486d85e23aab1c856b6b3ae638f5fa04297558f1",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "production_source_archive_comparison": {
+    "tracked_files": 487,
+    "found": 487,
+    "different": [],
+    "missing": []
+  },
+  "artifacts": {
+    "emulator.zip": {
+      "artifact_id": 11696156596,
+      "bytes": 8550685,
+      "sha256": "98d8e94f9e465e9589b7f37a7aadfed92fba04d665bcf2a4398e6b2749c1e369"
+    },
+    "regression.zip": {
+      "artifact_id": 11696455980,
+      "bytes": 35916664,
+      "sha256": "e7d21dccfd713d591ea37f73d234c73f7f63affcb3f0aa0fc81e19325ab05b20"
+    },
+    "apk-source.zip": {
+      "artifact_id": 11695995957,
+      "bytes": 165945117,
+      "sha256": "cff2cc8f36e7764939c4e52417cf04f2fa0d28a2d2f843545dbb07d72d2cbc70"
+    }
+  },
+  "durable_archive": {
+    "name": "state-focused-evidence.zip",
+    "bytes": 1598618,
+    "sha256": "27156af60a180376f0f2fb38ecbb6d8524effb37eac25c7e36456ce649fa8352",
+    "members": 149,
+    "parts": [
+      {
+        "name": "state-focused-evidence.zip.part001",
+        "bytes": 49152,
+        "sha256": "67461f71041e5792c70bddc17aca702028276ae465689f4315ca0ec79e83842f"
+      },
+      {
+        "name": "state-focused-evidence.zip.part002",
+        "bytes": 49152,
+        "sha256": "255d35662a77a4355320ac0ca82d83a7d7aaaaeaeece90e2a2a4b59bd0e0f780"
+      },
+      {
+        "name": "state-focused-evidence.zip.part003",
+        "bytes": 49152,
+        "sha256": "4bd6a2142a167068b9d57b1ed4a2c1c5aeded5a9cb805546c55805f13353249e"
+      },
+      {
+        "name": "state-focused-evidence.zip.part004",
+        "bytes": 49152,
+        "sha256": "052c1a965e661a6727e513b29ad8b02b106d29b13c456eaea4ceded8717ea8f9"
+      },
+      {
+        "name": "state-focused-evidence.zip.part005",
+        "bytes": 49152,
+        "sha256": "4f9ed3a95c7509331e9d3d15f0385686b4fb235ec63ae535b4b4a63155335d3a"
+      },
+      {
+        "name": "state-focused-evidence.zip.part006",
+        "bytes": 49152,
+        "sha256": "4115a10a1ac14212861faecddd5dd3fd7cfd163f9530a58b0ef241b77c2f49c4"
+      },
+      {
+        "name": "state-focused-evidence.zip.part007",
+        "bytes": 49152,
+        "sha256": "bf1a4d8894b6ec803d40db27489e1fec212c1483f50291d9296723392b692157"
+      },
+      {
+        "name": "state-focused-evidence.zip.part008",
+        "bytes": 49152,
+        "sha256": "2df03afe89afb1b7d7aae45746eb6291e8f08d1061092fa458f38bb07626d71e"
+      },
+      {
+        "name": "state-focused-evidence.zip.part009",
+        "bytes": 49152,
+        "sha256": "4976ad0fca6176cc65cb847f59a2747c1be60f7f822e265864df997d97fa5e40"
+      },
+      {
+        "name": "state-focused-evidence.zip.part010",
+        "bytes": 49152,
+        "sha256": "271f0d4e322136719343579da2ff9bfc7662beda7530cf6c010daa02a01b3bf8"
+      },
+      {
+        "name": "state-focused-evidence.zip.part011",
+        "bytes": 49152,
+        "sha256": "8eff21cf6b6e6a89d1f31e5cee97b32c6088bd7e7993b78768cdb0b66bc08686"
+      },
+      {
+        "name": "state-focused-evidence.zip.part012",
+        "bytes": 49152,
+        "sha256": "99fad1f23c3c5c66267db17788305eb6ab1d07e7847753f6a34be81479278ef3"
+      },
+      {
+        "name": "state-focused-evidence.zip.part013",
+        "bytes": 49152,
+        "sha256": "46c3e0c083523b06d359ab7dca4577ae17cfd24e723778babe0ff81fb0e13dad"
+      },
+      {
+        "name": "state-focused-evidence.zip.part014",
+        "bytes": 49152,
+        "sha256": "a96df37166745d51eaa9c8f230883b6175a2593b300ee82fef782db0ea2fcc49"
+      },
+      {
+        "name": "state-focused-evidence.zip.part015",
+        "bytes": 49152,
+        "sha256": "b53d3ed16b08ba7e49f17e9d9822ce1856f1c23f5cb00f9d5a6004c437ccab12"
+      },
+      {
+        "name": "state-focused-evidence.zip.part016",
+        "bytes": 49152,
+        "sha256": "a659c66b049e2bb9eb46d7fc73acc340b88f80347665c836c9e106be673c548a"
+      },
+      {
+        "name": "state-focused-evidence.zip.part017",
+        "bytes": 49152,
+        "sha256": "97c53a9511a741c43e17ea342acd88be7f211efb45ecb5f6bcbee526990ab2d9"
+      },
+      {
+        "name": "state-focused-evidence.zip.part018",
+        "bytes": 49152,
+        "sha256": "232bc7fd8fa29577baca80dbe84fd26fc3ffe5e4c499c395229cbb35170db2ff"
+      },
+      {
+        "name": "state-focused-evidence.zip.part019",
+        "bytes": 49152,
+        "sha256": "68a150b088ad2cca1ce15df505063304811e2a90e4dc2328fe8283999eadcad6"
+      },
+      {
+        "name": "state-focused-evidence.zip.part020",
+        "bytes": 49152,
+        "sha256": "729b4e3e0595b889786d3e50dd5ec5c0b28c0ab10b66ff4578b5531d14f1a671"
+      },
+      {
+        "name": "state-focused-evidence.zip.part021",
+        "bytes": 49152,
+        "sha256": "e1d58fab52fdf821c98b29b0ec02453826a15b6857e58dd33c9b7c9b13e4e3c8"
+      },
+      {
+        "name": "state-focused-evidence.zip.part022",
+        "bytes": 49152,
+        "sha256": "10bc02174d01b254621743c2528996ed36d0654471d368f743b9d26881d72e1e"
+      },
+      {
+        "name": "state-focused-evidence.zip.part023",
+        "bytes": 49152,
+        "sha256": "0279884cfb496db9562aa40ca8eb2af06ba307a6dea28953a41221c7672e5af5"
+      },
+      {
+        "name": "state-focused-evidence.zip.part024",
+        "bytes": 49152,
+        "sha256": "93d70bd7945157d8cafdeb0a4b00cb78cb98bda6f3f715c32d1cf5686ced298c"
+      },
+      {
+        "name": "state-focused-evidence.zip.part025",
+        "bytes": 49152,
+        "sha256": "b1f278900674154d6e8787c22086a93f8fd5200ea26ab0a782a13e21c0caf6c5"
+      },
+      {
+        "name": "state-focused-evidence.zip.part026",
+        "bytes": 49152,
+        "sha256": "5a78867edbd8971bd675b9298d0f89daf5ed6ed46d5cd11e55e384f1e0c3dfe5"
+      },
+      {
+        "name": "state-focused-evidence.zip.part027",
+        "bytes": 49152,
+        "sha256": "c70addcec4e59e140af26d0f62f60f749e7e0ab6ee7cf48afdecb2763601894b"
+      },
+      {
+        "name": "state-focused-evidence.zip.part028",
+        "bytes": 49152,
+        "sha256": "b9ab44badc3020853da6f7e995cf8b8f653566b9718ce6dc3b2bfd30aeeeb10f"
+      },
+      {
+        "name": "state-focused-evidence.zip.part029",
+        "bytes": 49152,
+        "sha256": "90770bf80fa31da1df0fbb65b76a4511f28836ba56bbf5f1427b4e97fd49bbd1"
+      },
+      {
+        "name": "state-focused-evidence.zip.part030",
+        "bytes": 49152,
+        "sha256": "9da25fe9ef0bbde94cfc0db53cafae26e63feb3c6fa7a30c0e3e98ca245d38fe"
+      },
+      {
+        "name": "state-focused-evidence.zip.part031",
+        "bytes": 49152,
+        "sha256": "4fdeb98d89ba5158d7227ab3e42cc84edb932dded4cbedc1ec131b9d5fc33137"
+      },
+      {
+        "name": "state-focused-evidence.zip.part032",
+        "bytes": 49152,
+        "sha256": "f62c4304dbd9bd7667c6c16cc4a687892aabea6c9f35ce0dd64769e38b211735"
+      },
+      {
+        "name": "state-focused-evidence.zip.part033",
+        "bytes": 25754,
+        "sha256": "0bf07fa202591e8573867c676f8d6746eab88dfe179d36c9a1a13e16a57cd3e1"
+      }
+    ]
+  },
+  "acceptance_limits": [
+    "Hungarian portrait PNG has a temporary system clipboard overlay despite ineffective title-absence guard; no unobscured portrait control-use claim from it",
+    "2x remains unaccepted",
+    "No physical-device,TalkBack,linguistic,merge or release acceptance"
+  ]
+}

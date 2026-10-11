@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "run_id": 38122366555,
+  "head": "c711d0c0cce6b3ecd2dcecce7063dfdc6cda305f",
+  "finding": "All102installed methods pass, including full native IME/Back/state/commit. Hungarian portrait screenshot still visibly contains a temporary system clipboard preview, despite clipboard-overlay-absent seen=false/condition_passed=true.",
+  "meaning": "The accessibility-title guard did not observe the visible window. Green guard results do not prove clean pixels.",
+  "correction": "Remove the ineffective guard; exercise the same required Hungarian orientations landscape then portrait; retain every intrinsic/complete-bounds/overflow/no-commit assertion and finish native Cancel in portrait. No clipboard change, window-dismiss shortcut, blind delay or production change.",
+  "primary_sources": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/clipboardoverlay/ClipboardOverlayWindow.java",
+      "member": "onConfigurationChanged",
+      "lines": "98-104",
+      "semantics": "An actual orientation change invokes the overlay orientation callback."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/clipboardoverlay/ClipboardOverlayController.java",
+      "lines": "198-201;655-659",
+      "semantics": "The registered orientation callback calls hideImmediate, which removes the overlay window."
+    }
+  ],
+  "limit": "Rotation behavior explains the controlled setup. The successor must still pass exact-head native checks and show an unobscured actual portrait screenshot."
+}
