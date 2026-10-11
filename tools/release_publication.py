@@ -19,6 +19,8 @@ def pages(api, endpoint):
 def tag_commit(api, repo, tag):
     # This endpoint returns [] for an absent tag, avoiding interpreting errors as absence.
     refs = api(f'repos/{repo}/git/matching-refs/tags/{quote(tag, safe="")}')
+    if not isinstance(refs, list):
+        raise ValueError('Expected a GitHub tag reference list')
     exact = [row for row in refs if row['ref'] == f'refs/tags/{tag}']
     if not exact:
         return None

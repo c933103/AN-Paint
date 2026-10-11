@@ -184,6 +184,13 @@ class RecoveryTests(unittest.TestCase):
                 self.s.invoke()
             self.assertEqual(self.s.commands, [])
 
+    def test_invalid_reference_list_is_not_an_absent_tag(self):
+        for response in ({}, None, ''):
+            self.s.api = lambda path: response
+            with self.subTest(response=response), self.assertRaises(ValueError):
+                self.s.invoke()
+            self.assertEqual(self.s.commands, [])
+
     def test_missing_local_input_fails_before_api_or_mutation(self):
         self.s.notes.unlink()
         with self.assertRaises(FileNotFoundError):
