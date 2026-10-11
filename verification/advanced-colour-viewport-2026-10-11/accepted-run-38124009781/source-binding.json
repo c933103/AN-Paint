@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "head_commit": "512360bffef3abb393557bce29a30217b03c5ecc",
+  "tested_merge_commit": "58a88ecc5bd67945afc9f6f0657331197254cf85",
+  "tested_tree": "61b0205749e5633f4dd5838c7236a8b4427a3bad",
+  "run_id": 38124009781,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38124009781",
+  "outcome": "All 102 installed and 814 JVM methods pass; clean Hungarian portrait/native Cancel and full retained-state outcomes verified",
+  "source_tests_sha256": "95fa05fecacbbf60f63a987e76385e9d22fc825db7092f98207db309af335609",
+  "ordinary": {
+    "success": true,
+    "expected_tests": 19,
+    "completed_tests": 19,
+    "elapsed_seconds": 155.8482933979999,
+    "timed_out": false
+  },
+  "colour_methods": [
+    {
+      "method": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "raw_bytes": 63430,
+      "raw_sha256": "3c6c4b241ab67456c477e335b9f22b27c04616580332b968eff9b13d96fb2e78",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 4028
+    },
+    {
+      "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "raw_bytes": 75641,
+      "raw_sha256": "f2d5889b929ce9105197646fb211afa6105c7317dec7ca18932ba7004a54cf2d",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 2947
+    },
+    {
+      "method": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "raw_bytes": 206323,
+      "raw_sha256": "bad354f9001b4f1ddc9f3d5f6cf8f6bcd763c7f1e2b229a07aa82aea0c9d0715",
+      "manifest_verified": true,
+      "outcome": "passed",
+      "failure": null,
+      "fixture_elapsed_ms": 16905
+    }
+  ],
+  "jvm": {
+    "suite_count": 87,
+    "case_count": 814,
+    "unique_cases": 814,
+    "nonpasses": [],
+    "colour_cases": [
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordNormalShortLandscapeWithoutClaimingAcceptance[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordNormalShortLandscapeWithoutClaimingAcceptance"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordLargeShortLandscapeWithoutClaimingAcceptance[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "recordLargeShortLandscapeWithoutClaimingAcceptance"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "verticalScriptRetainsItsSeparateFormAndSixteenFiniteSavedSlots[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "verticalScriptRetainsItsSeparateFormAndSixteenFiniteSavedSlots"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths[30]"
+      ],
+      [
+        "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths"
+      ]
+    ]
+  },
+  "lint_issues": 0,
+  "build_info": {
+    "commit": "58a88ecc5bd67945afc9f6f0657331197254cf85",
+    "run_id": "38124009781",
+    "build_variant": "debug",
+    "apk_sha256": "4b394c47cad77f19feacb7436e6c0e963247f9a66a42b0f76f1c246f304a90be",
+    "source_sha256": "d7599260607e9c9365cf7ef1f39b45178018829ac4fbf1f34217f0b38f7f4067",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "production_source_archive_comparison": {
+    "tracked_files": 487,
+    "found": 487,
+    "different": [],
+    "missing": []
+  },
+  "artifacts": {
+    "emulator.zip": {
+      "artifact_id": 11697385063,
+      "bytes": 8543779,
+      "sha256": "7dbc846cfc6f37907e87369e9cb3afc2a548ebc21af08cab673b5ee41e919c3c"
+    },
+    "regression.zip": {
+      "artifact_id": 11696403992,
+      "bytes": 35915853,
+      "sha256": "964138c93d09b38f4109cddf9abd47421286ccaf76b3c4194c49c3c16ad3f8da"
+    },
+    "apk-source.zip": {
+      "artifact_id": 11696113868,
+      "bytes": 165945869,
+      "sha256": "bb50b37d4a77b69274c03ae81ad4756efebb7b4f70efff7612f1d16833a07560"
+    }
+  },
+  "durable_archive": {
+    "name": "accepted-focused-evidence.zip",
+    "bytes": 1595906,
+    "sha256": "ea4c0f348d3326fff286898e417fc1f9d3e005fe9eb11b7ac28969a5a0bb726e",
+    "members": 149,
+    "parts": [
+      {
+        "name": "accepted-focused-evidence.zip.part001",
+        "bytes": 49152,
+        "sha256": "6996aed2e9f6a93bdee39eb4a49d28c27607a228a4a813ff08ee0f552604e274"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part002",
+        "bytes": 49152,
+        "sha256": "7153858290af3aafe88aa6f1b364c37ece19bf70fbbc5412d4a3ea995988c58b"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part003",
+        "bytes": 49152,
+        "sha256": "da36c20ba8c98d93f44908ddb177fe64844eaa51e0555f0bd9ca33541e67c940"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part004",
+        "bytes": 49152,
+        "sha256": "acd14edbfdf25173cd86b7d5014d11704b76731f651d7fc8d07bc5c9aab4755c"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part005",
+        "bytes": 49152,
+        "sha256": "6400c916ecc0f5467a8385976eeb7ba91fba1ddc576624a95769e72f287ee4b1"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part006",
+        "bytes": 49152,
+        "sha256": "aa6c7cd8fa83d76942faa485ceff92ce5d5afe6484fe8393e15ae84c83bc7908"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part007",
+        "bytes": 49152,
+        "sha256": "df30901ee9a7b5c5d9bca6ed81e7c47d19282f19a8179d82d8acd30c828e2cf0"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part008",
+        "bytes": 49152,
+        "sha256": "22a262c704c537aa4ee4e71ae2af6168203f63a6829e6c2b541695dc023b4346"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part009",
+        "bytes": 49152,
+        "sha256": "4798cf5f0d260be3f4e07d8806a62b57ad08fc6fb311cd04a9280d321cf21625"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part010",
+        "bytes": 49152,
+        "sha256": "ac0ad39e4d63c8d367143e7aea9d9358777023057cc97d967e68a6e465d4d91e"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part011",
+        "bytes": 49152,
+        "sha256": "c55751713750f63ec3e157359f057ac8df48d6522414ac55f626cbdbc43ceb4c"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part012",
+        "bytes": 49152,
+        "sha256": "ec1bc4a9db577bd0a82a4a9b1b0778e47ca6b318e4989dc1ee8fae84fa94a4d0"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part013",
+        "bytes": 49152,
+        "sha256": "fe0b3caf26aa261263b44f10b1bc9a89fbf3588a4dc27c7bc35a0690ee766c4f"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part014",
+        "bytes": 49152,
+        "sha256": "83121e1a6fd56fec46ab719fa2c4ac22febc6d10fdc4a860179da0e18707cf29"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part015",
+        "bytes": 49152,
+        "sha256": "d278b1782025e4be1a4e08852c4346421869fad867c5050732dbe00cc5a894d3"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part016",
+        "bytes": 49152,
+        "sha256": "6de271737d69573446a922bfc56ba7642904c3c7df81b214b9f36d310b5dc322"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part017",
+        "bytes": 49152,
+        "sha256": "ab229fdff980f579be5353c7b53eb9782225bef807df0740a9453e014437cc70"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part018",
+        "bytes": 49152,
+        "sha256": "a7a4e5d551895c05ba05f6dda109c898cdb12d4307633c524684ec918ad2eaf6"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part019",
+        "bytes": 49152,
+        "sha256": "31300582ac86ef0afbf733f70550b91022ed04146858f9b9b8cb385b6476af3f"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part020",
+        "bytes": 49152,
+        "sha256": "89003d6a9f708d42a96c807332f27853d19e7e764b40287a5e17f5edc296c215"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part021",
+        "bytes": 49152,
+        "sha256": "59b440c9fd3fe65bbfee8abf3606b2452b413000f2a2d527820b4f3ecb561264"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part022",
+        "bytes": 49152,
+        "sha256": "a1ffeec52ad03cdd3dca042adffdb0bbe13a1155e3418873e656c601a3aaa1ae"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part023",
+        "bytes": 49152,
+        "sha256": "936952e7414a012b3085f73ae9f026f929706a4144524fb80c34dbc7a1acc25e"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part024",
+        "bytes": 49152,
+        "sha256": "a40c67341a591f03034d2de84a8c7cc7c7ea45a352028e48188ae1a2ae683f0f"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part025",
+        "bytes": 49152,
+        "sha256": "932fd37dfac428b3162a45dd43c9ad99f84d1a7cf4c4a376cd256f5674d4430c"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part026",
+        "bytes": 49152,
+        "sha256": "b3afd0a0fb92d6e4a5389a6406a8f6fdeebb1ec54e3f8baa32816d765d48ef9a"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part027",
+        "bytes": 49152,
+        "sha256": "d7079b4601d4232720c6ad2760502f12a63717857f029d32adb257e679e33175"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part028",
+        "bytes": 49152,
+        "sha256": "835eb95fca0b5e3270c5234ed2c4ba61649bdd3bed6687a574ae274477287ba9"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part029",
+        "bytes": 49152,
+        "sha256": "b74ab8a08695ef4c42401da1ff169301a010f1fd5b04f3e0d9b1ce59c690570c"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part030",
+        "bytes": 49152,
+        "sha256": "5ddf6a45198857e54e44eec2da0208a0886e32159ca26f5ea52bac39dc0cdf99"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part031",
+        "bytes": 49152,
+        "sha256": "e99929effab80f88bec12f585e1bd4b487b13572065ba2452a70ff5fd98ffcb0"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part032",
+        "bytes": 49152,
+        "sha256": "5bf4f6f14e1a44dc615a8edea076a02e0cd9287d3c409530eda89bc1cd4c0673"
+      },
+      {
+        "name": "accepted-focused-evidence.zip.part033",
+        "bytes": 23042,
+        "sha256": "28f6bbf0ffa7e986ae1d99bdf3fad010a850cec6b16c69a8b1ee9e49229a417d"
+      }
+    ]
+  },
+  "acceptance_limits": [
+    "2x remains unaccepted",
+    "No physical-device,TalkBack,linguistic,merge or release acceptance",
+    "No simultaneous IME/footer visibility guarantee"
+  ]
+}
