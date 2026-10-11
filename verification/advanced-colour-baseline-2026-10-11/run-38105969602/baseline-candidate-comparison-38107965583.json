@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-11T03:37:48Z",
+  "scope": "Exact-byte comparison of the 24 original PNGs and 8 original geometry JSONs from AdvancedColourLayoutDiagnosticTest. This is diagnostic equivalence only, not fit or installed 2x acceptance.",
+  "baseline": {
+    "head_sha": "1744530d3a61e4ba9e1652c898bfbec5886e3f84",
+    "tree_sha": "4f901f44446da1dcf83768895c99c1877ec4a3d8",
+    "run_id": 38105969602,
+    "tested_pr_merge_sha": "9b19cf47db35c30d02a86a3e676a21d372d79927",
+    "regression_zip_sha256": "9269a5bd25b170e58c3bcaded9ea22c7ca69b8f55aca08d161a499e711e5231c",
+    "archive_commit": "c2afaf477de74a2d834b0c0f4a54fbf1dbd2f844",
+    "archive_sha256": "219eabb9d47514d2837cd89585b2a4f1d6643ba821b699c73df1783019019ca3",
+    "archive_members": 70,
+    "archive_parts": 16,
+    "remote_readback": "All 22 published files and all 70 reconstructed ZIP member hashes verified from GitHub commit c2afaf477de74a2d834b0c0f4a54fbf1dbd2f844."
+  },
+  "candidate": {
+    "head_sha": "386078641e8793058573f328ce6c2805216893b9",
+    "tree_sha": "431c4594945c1dbf8d4e1140dc5264f48d08893f",
+    "run_id": 38107965583,
+    "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583",
+    "tested_pr_merge_sha": "b68b2a6e0b90c9420e70711a13de8b381dceb66b",
+    "regression_zip_bytes": 47768373,
+    "regression_zip_sha256": "cf704dfade63cbfdceb99c8a50d79831a98ee94a4aaac28eb36e6a2643f9092b",
+    "emulator_zip_sha256": "c0afdf92192abeb7970c02eb44c8dfcb05533690c2f0c8e7899f9f4d6566d5cc",
+    "workflow_conclusion": "failure",
+    "jvm_counts": {
+      "tests": 832,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_junit_xml_count": 87,
+    "lint": "success",
+    "diagnostic_class_xml_sha256": "97093ec1f27ede27a5210027de00de2b03fc9f86dcae563064e3fcb7877a760b",
+    "diagnostic_class_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<testsuite name=\"org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest\" tests=\"4\" skipped=\"0\" failures=\"0\" errors=\"0\" timestamp=\"2026-10-11T03:25:36.093Z\" hostname=\"runnervmwvtoz\" time=\"15.967\">\n  <properties/>\n  <testcase name=\"recordNormalShortLandscapeWithoutClaimingAcceptance[30]\" classname=\"org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest\" time=\"6.345\"/>\n  <testcase name=\"recordNormalShortLandscapeWithoutClaimingAcceptance\" classname=\"org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest\" time=\"6.363\"/>\n  <testcase name=\"recordLargeShortLandscapeWithoutClaimingAcceptance[30]\" classname=\"org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest\" time=\"1.486\"/>\n  <testcase name=\"recordLargeShortLandscapeWithoutClaimingAcceptance\" classname=\"org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest\" time=\"1.773\"/>\n  <system-out><![CDATA[]]></system-out>\n  <system-err><![CDATA[]]></system-err>\n</testsuite>\n",
+    "new_installed_fixture_failures": {
+      "source_member": "app/androidTest-results/summary.json",
+      "source_member_sha256": "1e197eeef7423d7e56cca44684bd9db8896d6704325d97b4252b74872327491a",
+      "ordinary_app_expected_tests": 19,
+      "ordinary_app_completed_tests": 19,
+      "ordinary_app_passed_tests": 16,
+      "failures": [
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutRowsOpenThreeNoticesWithReachableNativeFooters",
+          "status": "failure",
+          "exception": "java.lang.IllegalStateException: Check failed.",
+          "location": "DialogEvidenceExportRule.kt:41"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+          "status": "failure",
+          "exception": "java.lang.IllegalStateException: Check failed.",
+          "location": "DialogEvidenceExportRule.kt:41"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+          "status": "failure",
+          "exception": "java.lang.IllegalStateException: Check failed.",
+          "location": "DialogEvidenceExportRule.kt:41"
+        }
+      ],
+      "source_url": "https://github.com/c933103/AN-Paint/blob/386078641e8793058573f328ce6c2805216893b9/app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt#L41",
+      "interpretation": "All three new installed fixtures fail in exporter cache-path preflight before base.evaluate() invokes fixture UI actions. No installed 2x acceptance is established."
+    }
+  },
+  "identical_test_source_sha256": "5a29d04f6071968a47c6b16d47696ae0390ef910b7c26ec316cee50188b51549",
+  "comparison": {
+    "filenames_identical": true,
+    "baseline_file_count": 32,
+    "candidate_file_count": 32,
+    "png_count": 24,
+    "geometry_json_count": 8,
+    "byte_identical_count": 32,
+    "missing": [],
+    "extra": [],
+    "changed": [],
+    "total_original_bytes": 940393,
+    "original_zip_members_verified": true
+  },
+  "interpretation": [
+    "The captured Advanced Colour output is unchanged between the baseline and this candidate for all sampled cases.",
+    "The pre-existing 2x short-landscape zero-height scroller, clipped controls and unreachable hex target remain in this diagnostic.",
+    "JVM capture success and byte equality are not dialog fit assertions, physical-device acceptance or an all-locales conclusion.",
+    "The baseline and candidate workflows both failed, for the separately documented collection and fixture-preflight reasons.",
+    "This receipt supersedes only the pending-comparison status recorded in the immutable baseline archive/manifest snapshot."
+  ],
+  "candidate_workflow_evidence": {
+    "source_urls": [
+      "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38107965583",
+      "https://api.github.com/repos/c933103/AN-Paint/actions/runs/38107965583/jobs"
+    ],
+    "retrieved_at": "2026-10-11T03:37:15Z",
+    "run": {
+      "id": 38107965583,
+      "head_sha": "386078641e8793058573f328ce6c2805216893b9",
+      "tree_sha": "431c4594945c1dbf8d4e1140dc5264f48d08893f",
+      "head_branch": "fix/localized-dialog-layout-20261011",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583"
+    },
+    "jobs": [
+      {
+        "id": 114377391989,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583/job/114377391989",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 3,
+            "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 4,
+            "name": "Prepare build tools and notices",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 5,
+            "name": "Check clean and incremental resource graph in a disposable worktree",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 6,
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 11,
+            "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 12,
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 13,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 114377392146,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583/job/114377392146",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 3,
+            "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 4,
+            "name": "Set native compiler cache directory",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 5,
+            "name": "Restore content-checked native compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 6,
+            "name": "Install pinned compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 7,
+            "name": "Prepare build tools and notices",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 8,
+            "name": "Run Python contracts",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 9,
+            "name": "Run JVM regression tests",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 10,
+            "name": "Prepare lint native dependencies",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 11,
+            "name": "Run Android lint",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 12,
+            "name": "Report native compiler cache statistics",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 13,
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 24,
+            "name": "Post Restore content-checked native compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 25,
+            "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 26,
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 27,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 114377392189,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583/job/114377392189",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 3,
+            "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 4,
+            "name": "Set native compiler cache directory",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 5,
+            "name": "Restore content-checked native compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 6,
+            "name": "Install pinned compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 7,
+            "name": "Prepare build tools and notices",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 8,
+            "name": "Build universal APK",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 9,
+            "name": "Report native compiler cache statistics",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 10,
+            "name": "Upload build diagnostics even on failure",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 11,
+            "name": "Record build identity and extract matching source",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 12,
+            "name": "Upload APK immediately, before device tests",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 13,
+            "name": "Compile test APKs once for all emulator jobs",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 14,
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 26,
+            "name": "Post Restore content-checked native compiler cache",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 27,
+            "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 28,
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 29,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 114378304720,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "failure",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583/job/114378304720",
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 3,
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 4,
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 5,
+            "name": "Install emulator image",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 6,
+            "name": "Run prebuilt tests with deadlines and live logs",
+            "status": "completed",
+            "conclusion": "failure"
+          },
+          {
+            "number": 7,
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 14,
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "number": 15,
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "members": [
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-field-pointer.png",
+      "bytes": 31908,
+      "baseline_sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "candidate_sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-swipe.png",
+      "bytes": 31160,
+      "baseline_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "candidate_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-initial.png",
+      "bytes": 31160,
+      "baseline_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "candidate_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0.json",
+      "bytes": 12968,
+      "baseline_sha256": "a2ca38d53466a716ed1065f44a98b0d28afdf57488ee892b8c1043540a3b8836",
+      "candidate_sha256": "a2ca38d53466a716ed1065f44a98b0d28afdf57488ee892b8c1043540a3b8836",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-field-pointer.png",
+      "bytes": 40817,
+      "baseline_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "candidate_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-swipe.png",
+      "bytes": 40817,
+      "baseline_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "candidate_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-initial.png",
+      "bytes": 40817,
+      "baseline_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "candidate_sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0.json",
+      "bytes": 9426,
+      "baseline_sha256": "1c3d18f42f24220de83347ba7abb794278920fbe220707db9adb3123d340c674",
+      "candidate_sha256": "1c3d18f42f24220de83347ba7abb794278920fbe220707db9adb3123d340c674",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-field-pointer.png",
+      "bytes": 31486,
+      "baseline_sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "candidate_sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-swipe.png",
+      "bytes": 33193,
+      "baseline_sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "candidate_sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-initial.png",
+      "bytes": 32221,
+      "baseline_sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "candidate_sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0.json",
+      "bytes": 12985,
+      "baseline_sha256": "a10bade52515eab9ecc37278a19ff2af2084fb2af7d78c01ce6f4b78f2cbc2d5",
+      "candidate_sha256": "a10bade52515eab9ecc37278a19ff2af2084fb2af7d78c01ce6f4b78f2cbc2d5",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-field-pointer.png",
+      "bytes": 38556,
+      "baseline_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "candidate_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-swipe.png",
+      "bytes": 38556,
+      "baseline_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "candidate_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-initial.png",
+      "bytes": 38556,
+      "baseline_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "candidate_sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0.json",
+      "bytes": 9437,
+      "baseline_sha256": "dc4ff170a695f0797684d22c92159d2633e71efedac02ca05588c759cede86c8",
+      "candidate_sha256": "dc4ff170a695f0797684d22c92159d2633e71efedac02ca05588c759cede86c8",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-field-pointer.png",
+      "bytes": 31908,
+      "baseline_sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "candidate_sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-swipe.png",
+      "bytes": 31160,
+      "baseline_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "candidate_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-initial.png",
+      "bytes": 31160,
+      "baseline_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "candidate_sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0.json",
+      "bytes": 12968,
+      "baseline_sha256": "10fee729ffe7dba4fcbb99f9943744fc0ddaa2ea4b3bd65c95a988116d9dbfb2",
+      "candidate_sha256": "10fee729ffe7dba4fcbb99f9943744fc0ddaa2ea4b3bd65c95a988116d9dbfb2",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-field-pointer.png",
+      "bytes": 38931,
+      "baseline_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "candidate_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-swipe.png",
+      "bytes": 38931,
+      "baseline_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "candidate_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-initial.png",
+      "bytes": 38931,
+      "baseline_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "candidate_sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0.json",
+      "bytes": 9420,
+      "baseline_sha256": "14f3671622fd87f5504c3c353645d69cf15f5000ddaad3bca6690cecdfe65883",
+      "candidate_sha256": "14f3671622fd87f5504c3c353645d69cf15f5000ddaad3bca6690cecdfe65883",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-field-pointer.png",
+      "bytes": 31486,
+      "baseline_sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "candidate_sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-swipe.png",
+      "bytes": 33193,
+      "baseline_sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "candidate_sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-initial.png",
+      "bytes": 32221,
+      "baseline_sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "candidate_sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0.json",
+      "bytes": 12985,
+      "baseline_sha256": "83fed1c6340943b2268d37a4a0c6d7df64d7db480781b1db40029a975ad6900b",
+      "candidate_sha256": "83fed1c6340943b2268d37a4a0c6d7df64d7db480781b1db40029a975ad6900b",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-field-pointer.png",
+      "bytes": 37866,
+      "baseline_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "candidate_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-swipe.png",
+      "bytes": 37866,
+      "baseline_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "candidate_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-initial.png",
+      "bytes": 37866,
+      "baseline_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "candidate_sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "byte_identical": true
+    },
+    {
+      "path": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0.json",
+      "bytes": 9438,
+      "baseline_sha256": "b4c8f133c607956663b08343a394bd875627763857f5c39152cc79f0c01be7ca",
+      "candidate_sha256": "b4c8f133c607956663b08343a394bd875627763857f5c39152cc79f0c01be7ca",
+      "byte_identical": true
+    }
+  ]
+}

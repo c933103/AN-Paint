@@ -1,6 +1,6 @@
 # Baseline Advanced Colour diagnostic evidence
 
-This is a diagnostic-only archive of [run 38105969602](https://github.com/c933103/AN-Paint/actions/runs/38105969602) for [PR #50](https://github.com/c933103/AN-Paint/pull/50). It preserves original selected artifact bytes. It does **not** certify dialog fit, installed 2x-text acceptance, a green workflow, or a completed baseline/candidate comparison.
+This is a diagnostic-only archive of [run 38105969602](https://github.com/c933103/AN-Paint/actions/runs/38105969602) for [PR #50](https://github.com/c933103/AN-Paint/pull/50). It preserves original selected artifact bytes. It does **not** certify dialog fit, installed 2x-text acceptance, a green workflow, or comprehensive baseline/candidate UI acceptance.
 
 ## Provenance and scope
 
@@ -34,7 +34,7 @@ The seven existing installed API 35 phases report 99/99 methods passed: native 7
 
 The overall workflow **failed**. Resource generation, regression/lint and APK/source build jobs succeeded, but the emulator job failed during adb evidence collection. The retained collection log says `adb: error: failed to get feature set: device offline`. Passing individual methods does not change that failed workflow conclusion.
 
-The candidate comparison remains pending and is not established by this archive. Its then-current run was [38107965583](https://github.com/c933103/AN-Paint/actions/runs/38107965583). No candidate result is inferred here. This evidence branch does not edit production, advance the candidate PR branch, merge changes, close PR #50, or change repository visibility or permissions.
+A later [comparison receipt](baseline-candidate-comparison-38107965583.json) independently verifies that all 32 original diagnostic files (24 PNGs and 8 JSONs) are byte-identical between this baseline and candidate `386078641e8793058573f328ce6c2805216893b9` in [run 38107965583](https://github.com/c933103/AN-Paint/actions/runs/38107965583). Candidate JVM results are 832/832, with lint successful. Its workflow still failed: all three new installed fixtures stopped at exporter cache-path preflight before their UI actions. No installed 2x acceptance is established. The receipt supersedes only the pending-comparison status in the frozen baseline archive/manifest snapshot; all archive bytes and digests remain unchanged. This evidence branch does not edit production, advance the candidate PR branch, merge changes, close PR #50, or change repository visibility or permissions.
 
 ## Retrieve and verify
 
