@@ -1,0 +1,234 @@
+{
+  "kind": "source-contract and Python branch-expression model only",
+  "snapshots": 5,
+  "verified_source_blobs": 25,
+  "truth_table_cases": 640,
+  "mutation_controls_rejected": [
+    {
+      "name": "crosswire",
+      "rejection": "cross-wired toggles"
+    },
+    {
+      "name": "conflate_aa",
+      "rejection": "paint AA unexpectedly depends on smoothing"
+    },
+    {
+      "name": "remove_pencil_exception",
+      "rejection": "AA truth-table mismatch"
+    },
+    {
+      "name": "conflate_geometry",
+      "rejection": "path choice unexpectedly depends on AA"
+    }
+  ],
+  "kotlin_executed": false,
+  "android_runtime_executed": false,
+  "production_files_changed": 0,
+  "results": {
+    "develop": {
+      "bindings": [
+        [
+          "ui_smooth_freehand_strokes",
+          "strokeSmoothing",
+          "strokeSmoothing"
+        ],
+        [
+          "ui_smooth_pixel_edges_anti_aliasing",
+          "antialiasing",
+          "antialiasing"
+        ]
+      ],
+      "labels_ms_en": [
+        [
+          "Licinkan sapuan bebas",
+          "Licinkan tepi piksel (antialias)"
+        ],
+        [
+          "Smooth freehand strokes",
+          "Smooth pixel edges (anti-aliasing)"
+        ]
+      ],
+      "conditions": {
+        "flat": "document.brushTip == 2 && tool == PaintTool.BRUSH",
+        "smooth": "document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to",
+        "point": "from == to",
+        "aa": "tool != PaintTool.PENCIL && antialiasing"
+      },
+      "method_sha256": {
+        "settings": "60b77ef6f6669c64be04a4177033b3e4e84d51206aae49f2e83128d3aa6b5eef",
+        "stroke": "9e5a0dffd720f280946f39ff6744fa7dbd949eeb2771d756d04f5c4b0cb9abdd",
+        "paint": "b59ab83ebaeb8ff534025fd6b491857a0ddea18bc8ae55a2857e8639037f97f1"
+      },
+      "excerpts": {
+        "settings": "    private fun showDrawingSettings(preview: Boolean) {\n        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}\n        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {\n            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })\n        }\n        if(preview) {\n            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {\n                paintCanvas.activeMagnifier=it\n                populateCursorOptions()\n            }\n            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {\n                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()\n            }.apply {tag=\"preview_magnification\"})\n        } else {\n            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }\n            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }\n            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))\n        }\n        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))\n            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()\n    }",
+        "stroke": "    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n        val canvas = Canvas(document.bitmap)\n        val paint = document.paint(tool)\n        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n            paint.strokeWidth = max(1f, document.strokeWidth / 4)\n            for (i in 0..count) {\n                val x = from.x + (to.x - from.x) * i / count\n                val y = from.y + (to.y - from.y) * i / count\n                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n            }\n        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n            smoothedPrevious=mid\n        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n    }",
+        "paint": "    fun paint(tool: PaintTool): Paint = Paint().apply {\n        color = if (tool == PaintTool.ERASER) background else foreground\n        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n        style = Paint.Style.STROKE\n        strokeJoin = Paint.Join.ROUND\n        strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n        isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n        if (tool == PaintTool.WATERCOLOR) {\n            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n        }\n    }"
+      },
+      "case_count": 128
+    },
+    "pr52": {
+      "bindings": [
+        [
+          "ui_smooth_freehand_strokes",
+          "strokeSmoothing",
+          "strokeSmoothing"
+        ],
+        [
+          "ui_smooth_pixel_edges_anti_aliasing",
+          "antialiasing",
+          "antialiasing"
+        ]
+      ],
+      "labels_ms_en": [
+        [
+          "Licinkan sapuan bebas",
+          "Licinkan tepi piksel (antialias)"
+        ],
+        [
+          "Smooth freehand strokes",
+          "Smooth pixel edges (anti-aliasing)"
+        ]
+      ],
+      "conditions": {
+        "flat": "document.brushTip == 2 && tool == PaintTool.BRUSH",
+        "smooth": "document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to",
+        "point": "from == to",
+        "aa": "tool != PaintTool.PENCIL && antialiasing"
+      },
+      "method_sha256": {
+        "settings": "60b77ef6f6669c64be04a4177033b3e4e84d51206aae49f2e83128d3aa6b5eef",
+        "stroke": "9e5a0dffd720f280946f39ff6744fa7dbd949eeb2771d756d04f5c4b0cb9abdd",
+        "paint": "b59ab83ebaeb8ff534025fd6b491857a0ddea18bc8ae55a2857e8639037f97f1"
+      },
+      "excerpts": {
+        "settings": "    private fun showDrawingSettings(preview: Boolean) {\n        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}\n        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {\n            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })\n        }\n        if(preview) {\n            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {\n                paintCanvas.activeMagnifier=it\n                populateCursorOptions()\n            }\n            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {\n                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()\n            }.apply {tag=\"preview_magnification\"})\n        } else {\n            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }\n            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }\n            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))\n        }\n        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))\n            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()\n    }",
+        "stroke": "    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n        val canvas = Canvas(document.bitmap)\n        val paint = document.paint(tool)\n        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n            paint.strokeWidth = max(1f, document.strokeWidth / 4)\n            for (i in 0..count) {\n                val x = from.x + (to.x - from.x) * i / count\n                val y = from.y + (to.y - from.y) * i / count\n                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n            }\n        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n            smoothedPrevious=mid\n        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n    }",
+        "paint": "    fun paint(tool: PaintTool): Paint = Paint().apply {\n        color = if (tool == PaintTool.ERASER) background else foreground\n        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n        style = Paint.Style.STROKE\n        strokeJoin = Paint.Join.ROUND\n        strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n        isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n        if (tool == PaintTool.WATERCOLOR) {\n            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n        }\n    }"
+      },
+      "case_count": 128
+    },
+    "pr51": {
+      "bindings": [
+        [
+          "ui_smooth_freehand_strokes",
+          "strokeSmoothing",
+          "strokeSmoothing"
+        ],
+        [
+          "ui_smooth_pixel_edges_anti_aliasing",
+          "antialiasing",
+          "antialiasing"
+        ]
+      ],
+      "labels_ms_en": [
+        [
+          "Licinkan sapuan bebas",
+          "Licinkan tepi piksel (antialias)"
+        ],
+        [
+          "Smooth freehand strokes",
+          "Smooth pixel edges (anti-aliasing)"
+        ]
+      ],
+      "conditions": {
+        "flat": "document.brushTip == 2 && tool == PaintTool.BRUSH",
+        "smooth": "document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to",
+        "point": "from == to",
+        "aa": "tool != PaintTool.PENCIL && antialiasing"
+      },
+      "method_sha256": {
+        "settings": "60b77ef6f6669c64be04a4177033b3e4e84d51206aae49f2e83128d3aa6b5eef",
+        "stroke": "9e5a0dffd720f280946f39ff6744fa7dbd949eeb2771d756d04f5c4b0cb9abdd",
+        "paint": "b59ab83ebaeb8ff534025fd6b491857a0ddea18bc8ae55a2857e8639037f97f1"
+      },
+      "excerpts": {
+        "settings": "    private fun showDrawingSettings(preview: Boolean) {\n        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}\n        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {\n            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })\n        }\n        if(preview) {\n            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {\n                paintCanvas.activeMagnifier=it\n                populateCursorOptions()\n            }\n            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {\n                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()\n            }.apply {tag=\"preview_magnification\"})\n        } else {\n            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }\n            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }\n            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))\n        }\n        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))\n            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()\n    }",
+        "stroke": "    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n        val canvas = Canvas(document.bitmap)\n        val paint = document.paint(tool)\n        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n            paint.strokeWidth = max(1f, document.strokeWidth / 4)\n            for (i in 0..count) {\n                val x = from.x + (to.x - from.x) * i / count\n                val y = from.y + (to.y - from.y) * i / count\n                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n            }\n        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n            smoothedPrevious=mid\n        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n    }",
+        "paint": "    fun paint(tool: PaintTool): Paint = Paint().apply {\n        color = if (tool == PaintTool.ERASER) background else foreground\n        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n        style = Paint.Style.STROKE\n        strokeJoin = Paint.Join.ROUND\n        strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n        isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n        if (tool == PaintTool.WATERCOLOR) {\n            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n        }\n    }"
+      },
+      "case_count": 128
+    },
+    "pr3": {
+      "bindings": [
+        [
+          "ui_smooth_freehand_strokes",
+          "strokeSmoothing",
+          "strokeSmoothing"
+        ],
+        [
+          "ui_smooth_pixel_edges_anti_aliasing",
+          "antialiasing",
+          "antialiasing"
+        ]
+      ],
+      "labels_ms_en": [
+        [
+          "Licinkan sapuan bebas",
+          "Licinkan tepi piksel (antialias)"
+        ],
+        [
+          "Smooth freehand strokes",
+          "Smooth pixel edges (anti-aliasing)"
+        ]
+      ],
+      "conditions": {
+        "flat": "document.brushTip == 2 && tool == PaintTool.BRUSH",
+        "smooth": "document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to",
+        "point": "from == to",
+        "aa": "tool != PaintTool.PENCIL && antialiasing"
+      },
+      "method_sha256": {
+        "settings": "60b77ef6f6669c64be04a4177033b3e4e84d51206aae49f2e83128d3aa6b5eef",
+        "stroke": "9e5a0dffd720f280946f39ff6744fa7dbd949eeb2771d756d04f5c4b0cb9abdd",
+        "paint": "b59ab83ebaeb8ff534025fd6b491857a0ddea18bc8ae55a2857e8639037f97f1"
+      },
+      "excerpts": {
+        "settings": "    private fun showDrawingSettings(preview: Boolean) {\n        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}\n        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {\n            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })\n        }\n        if(preview) {\n            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {\n                paintCanvas.activeMagnifier=it\n                populateCursorOptions()\n            }\n            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {\n                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()\n            }.apply {tag=\"preview_magnification\"})\n        } else {\n            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }\n            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }\n            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))\n        }\n        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))\n            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()\n    }",
+        "stroke": "    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n        val canvas = Canvas(document.bitmap)\n        val paint = document.paint(tool)\n        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n            paint.strokeWidth = max(1f, document.strokeWidth / 4)\n            for (i in 0..count) {\n                val x = from.x + (to.x - from.x) * i / count\n                val y = from.y + (to.y - from.y) * i / count\n                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n            }\n        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n            smoothedPrevious=mid\n        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n    }",
+        "paint": "    fun paint(tool: PaintTool): Paint = Paint().apply {\n        color = if (tool == PaintTool.ERASER) background else foreground\n        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n        style = Paint.Style.STROKE\n        strokeJoin = Paint.Join.ROUND\n        strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n        isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n        if (tool == PaintTool.WATERCOLOR) {\n            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n        }\n    }"
+      },
+      "case_count": 128
+    },
+    "integration": {
+      "bindings": [
+        [
+          "ui_smooth_freehand_strokes",
+          "strokeSmoothing",
+          "strokeSmoothing"
+        ],
+        [
+          "ui_smooth_pixel_edges_anti_aliasing",
+          "antialiasing",
+          "antialiasing"
+        ]
+      ],
+      "labels_ms_en": [
+        [
+          "Licinkan sapuan bebas",
+          "Licinkan tepi piksel (antialias)"
+        ],
+        [
+          "Smooth freehand strokes",
+          "Smooth pixel edges (anti-aliasing)"
+        ]
+      ],
+      "conditions": {
+        "flat": "document.brushTip == 2 && tool == PaintTool.BRUSH",
+        "smooth": "document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to",
+        "point": "from == to",
+        "aa": "tool != PaintTool.PENCIL && antialiasing"
+      },
+      "method_sha256": {
+        "settings": "60b77ef6f6669c64be04a4177033b3e4e84d51206aae49f2e83128d3aa6b5eef",
+        "stroke": "9e5a0dffd720f280946f39ff6744fa7dbd949eeb2771d756d04f5c4b0cb9abdd",
+        "paint": "b59ab83ebaeb8ff534025fd6b491857a0ddea18bc8ae55a2857e8639037f97f1"
+      },
+      "excerpts": {
+        "settings": "    private fun showDrawingSettings(preview: Boolean) {\n        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}\n        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {\n            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })\n        }\n        if(preview) {\n            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {\n                paintCanvas.activeMagnifier=it\n                populateCursorOptions()\n            }\n            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {\n                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()\n            }.apply {tag=\"preview_magnification\"})\n        } else {\n            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }\n            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }\n            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))\n        }\n        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))\n            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()\n    }",
+        "stroke": "    private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n        val canvas = Canvas(document.bitmap)\n        val paint = document.paint(tool)\n        if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n            val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n            paint.strokeWidth = max(1f, document.strokeWidth / 4)\n            for (i in 0..count) {\n                val x = from.x + (to.x - from.x) * i / count\n                val y = from.y + (to.y - from.y) * i / count\n                canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n            }\n        } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n            val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n            canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n            smoothedPrevious=mid\n        } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n        else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n    }",
+        "paint": "    fun paint(tool: PaintTool): Paint = Paint().apply {\n        color = if (tool == PaintTool.ERASER) background else foreground\n        strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n        style = Paint.Style.STROKE\n        strokeJoin = Paint.Join.ROUND\n        strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n        isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n        if (tool == PaintTool.WATERCOLOR) {\n            alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n            maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n        }\n    }"
+      },
+      "case_count": 128
+    }
+  }
+}

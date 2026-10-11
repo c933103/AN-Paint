@@ -1,6 +1,6 @@
 # Localization recheck register
 
-**Previous conclusions remain withdrawn. Fresh individual rechecks completed: 3 structural rows. The other 472 rows remain pending full recheck.**
+**Previous conclusions remain withdrawn. Fresh individual rechecks completed: 3 structural rows and 1 bounded semantic/source distinction row (R-005). The other 471 rows remain pending full recheck.**
 
 The user rejected the entire previous delivery and instructed that each part become additional work requiring an individual full recheck. This register implements that reset; creating the register does not advance the original reconciliation or translation work. The reset itself claimed no source revalidation. The three new structural dispositions below rely on separately recorded source checks and execution.
 
@@ -30,7 +30,7 @@ The scope remains the latest summary PR, the latest discussions and conclusions 
 - **Unlisted-claim rule:** every prior scoped claim not explicitly listed here is also pending full recheck. Before relying on it, add a stable individual item. Silence, omission, repetition and a previous report's bounded wording never carry progress forward.
 - No item becomes accepted merely because a document was changed, a status reset was published or this register was counted. Any eventual status change needs its own new evidence and must respect the user's actual instruction.
 
-This file lists **475 individually identified recheck rows: 3 newly completed structural rechecks and 472 pending full recheck**. Only P07-004, P07-005 and P07-006 are completed by the [10 October structural recheck](p07-structural-recheck-2026-10-10/README.md), using accepted develop `80c14372` rather than unmerged PR37. Every other row and every companion evidence entry remains unchanged and pending. No earlier conclusion inherits acceptance.
+This file lists **475 individually identified recheck rows: 3 completed structural rechecks, 1 completed bounded semantic/source distinction recheck and 471 pending full recheck**. P07-004, P07-005 and P07-006 are completed by the [10 October structural recheck](p07-structural-recheck-2026-10-10/README.md), using accepted develop `80c14372` rather than unmerged PR37. R-005 is completed by the [11 October distinction recheck](r005-smoothing-distinction-2026-10-11/README.md), using pinned current source, primary API/lexical evidence and source-expression model execution; Android runtime and full-label idiomatic acceptance are not claimed. Every other row and every companion evidence entry remains unchanged and pending. No earlier conclusion inherits acceptance. Counts in dated historical follow-ups below describe those earlier checkpoints, not the current total.
 
 ## Scope, provenance and history
 
@@ -73,7 +73,7 @@ Prior claim location: Rejected report: Work still to be done. This location iden
 | R-002 | R1: reconcile each additional correction, unfinished instruction and later conclusion individually. | Pending full recheck |
 | R-003 | R2: recheck the diagnosis and wording of Malay ui_smooth_freehand_strokes. | Pending full recheck |
 | R-004 | R2: recheck the diagnosis and wording of Malay ui_smooth_pixel_edges_anti_aliasing. | Pending full recheck |
-| R-005 | R2: recheck the distinction between stroke smoothing and pixel-edge antialiasing. | Pending full recheck |
+| R-005 | R2: recheck the distinction between stroke smoothing and pixel-edge antialiasing. | Completed: bounded source/semantic distinction, 11 October; [evidence and limits](r005-smoothing-distinction-2026-10-11/README.md) |
 | R-006 | R2: establish and repair every affected original-PR and integration copy if the finding is confirmed. | Pending full recheck |
 | R-007 | R3: compare the complete English legacy assembly paragraph with the Traditional Mongolian counterpart. | Pending full recheck |
 | R-008 | R3: recheck the asserted omission of the up-to-20-images capacity clause. | Pending full recheck |
@@ -732,3 +732,12 @@ Run 38049772357 attempt 2 passed all five logical jobs: 775 JVM methods includin
 The first stacked attempt's confirmed 22-minute APK timeout remains preserved. One failure-only retry built identical source in 15m05s with no source/oracle/workflow/deadline changes; successful JVM/lint/host/generator results were carried forward from attempt 1 rather than re-executed. The cause of initial build slowness remains unknown. API35 ordinary tests used 172.05/180 seconds. Device-installed APK identity follows the reviewed exact-artifact workflow, not an independent installed-APK hash. Real Korean device checks use Save/Copy-credit strings; installed TIFF visual/accessibility and native-speaker acceptance are not established.
 
 The [single final-head Codex request](https://github.com/c933103/AN-Paint/pull/43#issuecomment-6097631408) received [usage-limit response 6097632279](https://github.com/c933103/AN-Paint/pull/43#issuecomment-6097632279), not a clean review. Both PRs remain draft/unmerged. Twelve probable and four uncertain F01 entries remain open; seven already-qualified and 81 missing-key cases remain unchanged. Welsh fallback does not validate every missing-key locale. Original scope is partially recovered; term-specific history and remaining language/rendering work persist. No broader F01/P07-007 or individual parent row is closed: **475 total / 3 structural completed / 472 pending**.
+
+## 11 October: R-005 control-meaning/source distinction
+
+The [fresh R-005 recheck](r005-smoothing-distinction-2026-10-11/README.md) recovers the original question, independently traces both labels through their current bindings and painting methods on five pinned snapshots, and corroborates the contrast using primary Android API and DBP lexical sources. Stroke smoothing selects quadratic path geometry; antialiasing independently selects the raster-edge flag. Pencil, finishing/sample and flat-brush exceptions are explicit. The retained labels preserve that distinction, so no source edit is needed for this row.
+
+Fresh executable source-contract/Python-expression checks verify 25 full source blobs, 640 branch cases and rejection of four causal mutations. These do not execute Kotlin or Android rendering and do not certify native/idiomatic Malay. R-003, R-004, R-006, R-016 and broader coverage remain pending; no companion evidence row closes. [Structured disposition](r005-smoothing-distinction-2026-10-11/disposition.json).
+
+Current totals: **475 rows = 3 completed structural + 1 completed bounded semantic/source distinction + 471 pending**. Previous conclusions remain withdrawn.
+

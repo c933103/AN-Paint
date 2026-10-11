@@ -1,0 +1,27 @@
+{
+  "kind": "source-contract and Python branch-expression model only",
+  "snapshots": 5,
+  "verified_source_blobs": 25,
+  "truth_table_cases": 640,
+  "mutation_controls_rejected": [
+    {
+      "name": "crosswire",
+      "rejection": "cross-wired toggles"
+    },
+    {
+      "name": "conflate_aa",
+      "rejection": "paint AA unexpectedly depends on smoothing"
+    },
+    {
+      "name": "remove_pencil_exception",
+      "rejection": "AA truth-table mismatch"
+    },
+    {
+      "name": "conflate_geometry",
+      "rejection": "path choice unexpectedly depends on AA"
+    }
+  ],
+  "kotlin_executed": false,
+  "android_runtime_executed": false,
+  "production_files_changed": 0
+}
