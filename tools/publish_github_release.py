@@ -32,6 +32,18 @@ def verify_jobs(workflow, jobs, commit):
         raise ValueError("Release verification is incomplete: " + ", ".join(sorted(required - completed)))
 
 
+def verify_signer_identity(signature):
+    """Require the one existing APK signer, rather than matching display text."""
+    lines = signature.splitlines()
+    counts = [line for line in lines if line.startswith("Number of signers:")]
+    identities = [line for line in lines
+                  if re.match(r"Signer\b", line) and "certificate SHA-256" in line]
+    identity = (re.fullmatch(r"Signer #1 certificate SHA-256 digest: ([0-9a-fA-F]{64})",
+                             identities[0]) if len(identities) == 1 else None)
+    if counts != ["Number of signers: 1"] or identity is None or identity[1].lower() != CERT:
+        raise ValueError("Release is not signed solely with the existing upgrade certificate")
+
+
 def main(request_path):
     request = json.loads(request_path.read_text())
     version, commit, run_id = request["version"], request["commit"], int(request["run_id"])
@@ -66,8 +78,7 @@ def main(request_path):
     for name in ("zipalign", "aapt2"):
         (verification / name).chmod(0o755)
     signature = run("java", "-jar", verification / "apksigner.jar", "verify", "--verbose", "--print-certs", apk)
-    if CERT not in signature:
-        raise ValueError("Release is not signed with the existing upgrade certificate")
+    verify_signer_identity(signature)
     run(verification / "zipalign", "-c", "-P", "16", "4", apk)
     metadata = run(verification / "aapt2", "dump", "badging", apk)
     if ("application-debuggable" in metadata or "name='paint.anpaint.android'" not in metadata
