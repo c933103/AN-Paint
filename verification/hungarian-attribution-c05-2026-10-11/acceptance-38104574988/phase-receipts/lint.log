@@ -1,0 +1,114 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :Paintroid:fetchHeifSources
+> Task :Paintroid:fetchJxlSources
+> Task :Paintroid:fetchTiffSources
+> Task :Paintroid:fetchWebpSources
+> Task :Paintroid:bundleCorrespondingSource UP-TO-DATE
+> Task :Paintroid:generateExactScriptResources UP-TO-DATE
+> Task :Paintroid:preBuild UP-TO-DATE
+> Task :Paintroid:preDebugBuild UP-TO-DATE
+> Task :Paintroid:checkDebugAarMetadata
+> Task :Paintroid:configureCMakeDebug[x86_64]
+> Task :Paintroid:buildCMakeDebug[x86_64][anpaint_heif,anpaint_jxl,etc]
+> Task :Paintroid:mergeDebugJniLibFolders
+> Task :Paintroid:checkKotlinGradlePluginConfigurationErrors
+> Task :Paintroid:generateDebugBuildConfig UP-TO-DATE
+> Task :Paintroid:generateDebugResValues UP-TO-DATE
+> Task :Paintroid:generateDebugResources UP-TO-DATE
+> Task :Paintroid:packageDebugResources UP-TO-DATE
+> Task :Paintroid:processDebugNavigationResources UP-TO-DATE
+> Task :Paintroid:parseDebugLocalResources UP-TO-DATE
+> Task :Paintroid:generateDebugRFile UP-TO-DATE
+> Task :Paintroid:mergeDebugNativeLibs
+> Task :Paintroid:compileDebugKotlin UP-TO-DATE
+> Task :Paintroid:stripDebugDebugSymbols
+> Task :Paintroid:extractDebugAnnotations
+> Task :Paintroid:extractDeepLinksForAarDebug
+> Task :Paintroid:mergeDebugShaders UP-TO-DATE
+> Task :Paintroid:compileDebugShaders NO-SOURCE
+> Task :Paintroid:generateDebugAssets UP-TO-DATE
+> Task :Paintroid:mergeDebugAssets UP-TO-DATE
+> Task :Paintroid:javaPreCompileDebug UP-TO-DATE
+> Task :Paintroid:compileDebugJavaWithJavac UP-TO-DATE
+> Task :Paintroid:mergeDebugGeneratedProguardFiles
+> Task :Paintroid:mergeDebugConsumerProguardFiles
+> Task :Paintroid:prepareDebugArtProfile
+> Task :Paintroid:prepareLintJarForPublish
+> Task :Paintroid:copyDebugJniLibsProjectAndLocalJars
+> Task :Paintroid:processDebugManifest UP-TO-DATE
+> Task :Paintroid:processDebugJavaRes UP-TO-DATE
+> Task :Paintroid:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:checkDebugAarMetadata
+> Task :Paintroid:mergeDebugJavaResource
+> Task :app:processDebugNavigationResources
+> Task :Paintroid:syncDebugLibJars
+> Task :Paintroid:bundleDebugLocalLintAar
+> Task :app:compileDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :Paintroid:extractDeepLinksDebug UP-TO-DATE
+> Task :app:mergeDebugResources
+
+> Task :app:processDebugMainManifest
+[androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/8.13/transforms/4c0c74693644e94e33bc27c89cbf9cd0/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
+	Namespace 'androidx.vectordrawable' is used in multiple modules and/or libraries: androidx.vectordrawable:vectordrawable-animated:1.0.0, androidx.vectordrawable:vectordrawable:1.0.0. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+/home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+	application@android:icon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+/home/runner/work/AN-Paint/AN-Paint/app/src/main/AndroidManifest.xml:24:5-53:19 Warning:
+	application@android:roundIcon was tagged at AndroidManifest.xml:24 to replace other declarations but no other declaration present
+
+> Task :app:processDebugManifest
+> Task :Paintroid:compileDebugLibraryResources UP-TO-DATE
+> Task :Paintroid:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :Paintroid:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :Paintroid:createFullJarDebug
+> Task :Paintroid:writeDebugLintModelMetadata
+> Task :app:extractProguardFiles
+> Task :Paintroid:extractProguardFiles
+> Task :app:processDebugResources
+> Task :Paintroid:generateDebugLintModel
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:compileDebugKotlin NO-SOURCE
+> Task :app:compileDebugJavaWithJavac NO-SOURCE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :Paintroid:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :Paintroid:preDebugAndroidTestBuild UP-TO-DATE
+> Task :Paintroid:generateDebugAndroidTestResValues
+> Task :Paintroid:generateDebugAndroidTestLintModel
+> Task :Paintroid:preDebugUnitTestBuild UP-TO-DATE
+> Task :Paintroid:generateDebugUnitTestLintModel
+> Task :Paintroid:lintAnalyzeDebugAndroidTest
+> Task :Paintroid:lintAnalyzeDebugUnitTest
+> Task :app:lintAnalyzeDebug
+> Task :app:lintReportDebug
+> Task :app:lintDebug
+
+[Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 49s
+78 actionable tasks: 57 executed, 21 up-to-date
+
+See the profiling report at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/profile/profile-2026-10-11-02-29-25.html
+A fine-grained performance profile is available: use the --scan option.
