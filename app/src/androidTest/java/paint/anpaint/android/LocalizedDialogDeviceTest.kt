@@ -17,8 +17,10 @@ import android.os.LocaleList
 import android.os.Looper
 import android.os.SystemClock
 import android.provider.Settings
+import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import android.view.inspector.WindowInspector
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -121,15 +123,23 @@ class LocalizedDialogDeviceTest {
                 assertEquals(expected,activity.getSystemService(ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString())
             }
             tap("other terms",onMain {root.findViewWithTag("terms_more")})
-            await("other terms opened") {topList()?.let {it!==menu}==true}
-            assertTrue("Native Back dismisses nested choices",device.pressBack())
+            await("other terms opened") {topList()?.let {it!==menu && it.rootView.hasWindowFocus()}==true}
+            val nested=onMain {topList()!!.rootView}
+            nativeBack("notice-$index-nested",state={
+                backWindowState(nested).put("notice_retained",termsRoot()===root)
+                    .put("notice_focused",root.hasWindowFocus())
+            }) {!nested.isAttachedToWindow && termsRoot()===root && root.hasWindowFocus()}
             await("notice resumes after nested Back") {termsRoot()===root && root.hasWindowFocus()}
             assertNotice()
             tap("notice done",onMain {root.findViewWithTag("terms_done")})
             await("Done dismisses the notice") {termsRoot()==null}
             openAbout();tapRow(onMain {aboutList()},onMain {activity.getString(entry.first)})
-            await("notice reopened") {termsRoot()!=null}
-            assertTrue("Native Back dismisses the notice",device.pressBack())
+            await("notice reopened") {termsRoot()?.hasWindowFocus()==true}
+            val reopened=onMain {termsRoot()!!}
+            nativeBack("notice-$index-close",state={
+                backWindowState(reopened).put("notice_present",termsRoot()!=null)
+                    .put("editor_focused",activity.window.decorView.hasWindowFocus())
+            }) {!reopened.isAttachedToWindow && termsRoot()==null && activity.window.decorView.hasWindowFocus()}
             await("Back returned to editor") {termsRoot()==null && activity.window.decorView.hasWindowFocus()}
         }
     }
@@ -201,7 +211,12 @@ class LocalizedDialogDeviceTest {
                     activity.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(next.windowToken,0)
                 }
                 instrumentation.waitForIdleSync()
-                assertTrue("Native Back cancels draft",device.pressBack())
+                await("reopened credit window focused") {reopened.isShowing && reopened.window!!.decorView.hasWindowFocus()}
+                nativeBack("credit-discard",state={
+                    backWindowState(reopened.window!!.decorView).put("dialog_showing",reopened.isShowing)
+                        .put("save_calls",calls).put("dismiss_calls",dismissed).put("saved_draft_unchanged",saved==draft)
+                }) {!reopened.isShowing && !reopened.window!!.decorView.isAttachedToWindow &&
+                    calls==4 && dismissed==2 && saved==draft}
                 await("Back dismissed credit editor") {!reopened.isShowing}
                 onMain {
                     assertEquals(4,calls);assertEquals(2,dismissed);assertEquals(draft,saved)
@@ -320,22 +335,23 @@ class LocalizedDialogDeviceTest {
             val launch=checkNotNull(context.packageManager.getLaunchIntentForPackage(context.packageName))
             val launched=ActivityScenario.launch<ClassicPaintActivity>(launch);scenario=launched
             launched.onActivity {activity=it;oldOrientation=it.requestedOrientation}
-            deadline=SystemClock.uptimeMillis()+45000
-            await("initial editor") {activity.startupReady && !activity.busy && activity.paintCanvas.width>0 && activity.window.decorView.hasWindowFocus()}
-            onMain {
-                // Read only after this synthetic activity is foreground. Android
-                // can return null for a background clipboard read despite data.
-                assertTrue("Clipboard snapshot requires the fixture foreground",activity.window.decorView.hasWindowFocus())
-                originalClip=clipboard.primaryClip;clipboardSnapshotted=true
-                assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
-                assertEquals(scale,activity.resources.configuration.fontScale,0f)
+            interaction {
+                await("initial editor") {activity.startupReady && !activity.busy && activity.paintCanvas.width>0 && activity.window.decorView.hasWindowFocus()}
+                onMain {
+                    // Read only after this synthetic activity is foreground. Android
+                    // can return null for a background clipboard read despite data.
+                    assertTrue("Clipboard snapshot requires the fixture foreground",activity.window.decorView.hasWindowFocus())
+                    originalClip=clipboard.primaryClip;clipboardSnapshotted=true
+                    assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+                    assertEquals(scale,activity.resources.configuration.fontScale,0f)
+                }
+                dismissClipboardOverlay("fixture-ready")
+                orient(false,launched)
+                evidence.observe(JSONObject().put("kind","fixture").put("locale",tag).put("font_scale",scale)
+                    .put("setup","real installed dialogs; synthetic editor data; native pointer actions"))
+                block(launched)
+                assertTrue("Dialog checks must not request any external activity",externalRequests.isEmpty())
             }
-            dismissClipboardOverlay("fixture-ready")
-            orient(false,launched)
-            evidence.observe(JSONObject().put("kind","fixture").put("locale",tag).put("font_scale",scale)
-                .put("setup","real installed dialogs; synthetic editor data; native pointer actions"))
-            block(launched)
-            assertTrue("Dialog checks must not request any external activity",externalRequests.isEmpty())
         } catch(error: Throwable) {
             failure=error
             try {evidence.capture("failure-before-restoration")} catch(capture: Throwable) {error.addSuppressed(capture)}
@@ -371,6 +387,75 @@ class LocalizedDialogDeviceTest {
             cleanup {onMain {ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(lifecycle)}}
         }
         failure?.let {throw it}
+    }
+
+    /** Keep the existing interval: initial editor readiness through the complete
+     * interaction block, before fixture restoration. A final successful action
+     * can itself consume the remaining time, so checking only before awaits or
+     * gestures is insufficient. Teardown is measured by the outer export rule.
+     */
+    private fun interaction(block: ()->Unit) {
+        val started=SystemClock.uptimeMillis()
+        deadline=started+45000
+        evidence.observe(JSONObject().put("kind","interaction-start").put("started_uptime_ms",started)
+            .put("deadline_uptime_ms",deadline).put("budget_ms",45000))
+        var completed=false
+        var ended=started
+        try {block();completed=true} finally {
+            ended=SystemClock.uptimeMillis()
+            evidence.observe(JSONObject().put("kind","interaction-end").put("started_uptime_ms",started)
+                .put("ended_uptime_ms",ended).put("deadline_uptime_ms",deadline).put("elapsed_ms",ended-started)
+                .put("budget_ms",45000).put("block_completed",completed).put("within_deadline",ended<=deadline))
+        }
+        assertTrue("Entire dialog interaction exceeded its 45-second budget",ended<=deadline)
+    }
+
+    private fun backWindowState(root: View): JSONObject {
+        val focused=WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}
+        val targetInsets=root.rootWindowInsets
+        val focusedInsets=focused?.rootWindowInsets
+        return JSONObject().put("target_attached",root.isAttachedToWindow)
+            .put("target_showing",root.isShown && root.isAttachedToWindow).put("target_focused",root.hasWindowFocus())
+            .put("target_insets_available",targetInsets!=null)
+            .put("target_ime_visible",targetInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+            .put("focused_app_window_present",focused!=null).put("focused_app_window_is_target",focused===root)
+            .put("focused_app_window_is_editor",focused===activity.window.decorView)
+            .put("focused_insets_available",focusedInsets!=null)
+            .put("focused_app_window_ime_visible",focusedInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+    }
+
+    /** androidx.test.uiautomator:uiautomator:2.2.0 pressBack waits for a
+     * TYPE_WINDOW_CONTENT_CHANGED event; its false result is not an injection
+     * result. pressKeyCode instead reports the single native DOWN/UP pair.
+     * Primary source: https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.2.0/uiautomator-2.2.0-sources.jar
+     * JAR SHA256: e1f438106ac0d26b80ecf4fd6ffe6d36f60e12bdcd6316903f802ed24d00be99.
+     * App state/callbacks remain a separate oracle; never retry a Back action.
+     */
+    private fun nativeBack(label: String,state: ()->JSONObject,condition: ()->Boolean) {
+        val before=onMain(state)
+        evidence.observe(JSONObject().put("kind","native-back-before").put("label",label)
+            .put("state",before).put("postcondition_met",onMain(condition)))
+        assertTrue("Back target is attached, visible and focused",before.getBoolean("target_attached") &&
+            before.getBoolean("target_showing") && before.getBoolean("target_focused"))
+        assertFalse("Back must establish a new app outcome",onMain(condition))
+        var injected: Boolean?=null
+        var completed=false
+        try {
+            checkDeadline()
+            injected=device.pressKeyCode(KeyEvent.KEYCODE_BACK)
+            evidence.observe(JSONObject().put("kind","native-back-injected").put("label",label)
+                .put("route","UiDevice.pressKeyCode(KEYCODE_BACK)").put("keycode",KeyEvent.KEYCODE_BACK)
+                .put("injection_count",1).put("injected",injected).put("state",onMain(state)))
+            assertTrue("Native Back DOWN/UP injection succeeded",injected==true)
+            await("native Back outcome: $label",condition)
+            completed=true
+        } finally {
+            // This runs inside the caller's try: its dismiss()/finish() cleanup
+            // has not happened yet, including when injection or waiting fails.
+            evidence.observe(JSONObject().put("kind","native-back-after").put("label",label)
+                .put("injected",injected ?: JSONObject.NULL).put("completed",completed)
+                .put("postcondition_met",onMain(condition)).put("state",onMain(state)))
+        }
     }
 
     /** Same native SystemUI dismissal used by EditorDeviceTest. Clipboard writes

@@ -194,3 +194,44 @@ selected matrix/transport/budget/source-scope cases also pass under Python -O.
 The strict fake-ADB wrapper checks both exact method selection and refusal of
 missing, extra, skipped or truncated reports for gallery and dialog phases.
 These host passes do not establish Kotlin compilation or new installed outcomes.
+
+## Native Back and complete-interval follow-through
+
+Exact head `4e93d81e6b218319c2abb01f2ae6f5dfca27babe` passed all 836 JVM
+cases, including all 28 shared-dialog cases, in
+[run38112218904](https://github.com/c933103/AN-Paint/actions/runs/38112218904).
+All 380 localized model evidence files match the preceding run byte-for-byte.
+Retained-rail stress cases concatenate captions 20 times without separators;
+their Mongolian footer can be outside the outer vertical viewport at the capture
+state. Those captures assert horizontal reading-offset retention only, not visible
+footer usability. Separate actual-caption Mongolian intrinsic/edge-reveal and
+native-model Copy/Done callback checks pass. No installed vertical-notice or
+accessibility-service acceptance follows from those model results.
+
+The installed run remains failed: all 97 pre-existing methods pass and the colour
+limitation characterization passes, but About and credit fail the Boolean result
+of `UiDevice.pressBack()` before their app postcondition waits. Ordinary took
+112.861 seconds and the separate dialog phase 44.995 seconds, with no timeout;
+restart was correctly withheld. The pinned AndroidX 2.2.0 source confirms that
+`pressBack` reports arrival of a matching accessibility event, whereas
+`pressKeyCode` reports direct DOWN/UP injection. Original logcat contains both
+matching event-wait timeouts. About's original PNG shows the notice resumed after
+Back; credit's local finally dismisses its reopened dialog, so its screenshot
+cannot establish cancellation. `native-back-successor/` preserves the exact
+summary, source provenance, original timeout lines and model-byte comparison.
+
+The bounded successor requires a single native BACK injection plus the
+original dialog/window, focus, callback and saved-draft postconditions, captured
+before caller cleanup. No retry or synthetic dismissal substitutes for that
+input. The entire existing 45-second interaction interval must be recorded and
+checked before cleanup resets its deadline; setup/teardown duration is separate.
+Exact-head Code review also identified stale canonical deadline documentation;
+that section now matches the phase/outer limits, with old 36/46-minute arithmetic
+explicitly historical and a source contract preventing contradictory current caps.
+Fresh Android execution remains required after these test/evidence corrections.
+
+Final native-Back successor host validation passes all 581 cases in 158.695
+seconds; 44 selected transport/matrix/budget cases pass under Python -O. The
+single-key route, callback checks, interval metadata and fail-closed collector
+still require fresh compilation and installed execution. No deadline, source
+inventory or production code was relaxed.

@@ -80,6 +80,8 @@ def verify_receipt(receipt, method, digest):
     require(isinstance(observations, list) and 0 < len(observations) <= 512,
             'Missing or excessive observations')
     require(all(isinstance(item, dict) for item in observations), 'Malformed observation')
+    verify_interaction_budget(receipt, observations)
+    verify_native_back(method, observations)
     lines = [x for x in observations if x.get('kind') == 'caption-line-reached']
     require(lines, 'No measured caption reachability')
     for line in lines:
@@ -119,6 +121,84 @@ def verify_receipt(receipt, method, digest):
     if method == 'unchangedAdvancedColourReportsShortLandscapeLimitation':
         verify_colour_limitation(receipt, observations)
 
+
+
+def verify_interaction_budget(receipt, observations):
+    starts = [o for o in observations if o.get('kind') == 'interaction-start']
+    ends = [o for o in observations if o.get('kind') == 'interaction-end']
+    require(len(starts) == len(ends) == 1, 'One complete interaction interval required')
+    start, end = starts[0], ends[0]
+    for event, fields in ((start, ('started_uptime_ms', 'deadline_uptime_ms', 'budget_ms')),
+                          (end, ('started_uptime_ms', 'ended_uptime_ms', 'deadline_uptime_ms', 'elapsed_ms', 'budget_ms'))):
+        require(all(type(event.get(field)) is int and event[field] >= 0 for field in fields),
+                'Malformed monotonic interaction timing')
+    require(start['budget_ms'] == end['budget_ms'] == 45000
+            and start['started_uptime_ms'] == end['started_uptime_ms']
+            and start['deadline_uptime_ms'] == end['deadline_uptime_ms'] == start['started_uptime_ms'] + 45000
+            and end['elapsed_ms'] == end['ended_uptime_ms'] - start['started_uptime_ms']
+            and start['started_uptime_ms'] <= end['ended_uptime_ms'] <= end['deadline_uptime_ms']
+            and end.get('within_deadline') is True and end.get('block_completed') is True,
+            'Unfinished or over-budget dialog interaction')
+    require(observations.index(start) < observations.index(end), 'Interaction timing order changed')
+    for field in ('fixture_started_uptime_ms', 'fixture_ended_uptime_ms', 'fixture_elapsed_ms',
+                  'fixture_setup_elapsed_ms', 'fixture_teardown_elapsed_ms'):
+        require(type(receipt.get(field)) is int and receipt[field] >= 0, 'Missing separate fixture timing')
+    require(receipt.get('fixture_elapsed_scope') == 'setup+interaction+teardown; excludes export'
+            and receipt['fixture_started_uptime_ms'] <= start['started_uptime_ms']
+            and end['ended_uptime_ms'] <= receipt['fixture_ended_uptime_ms']
+            and receipt['fixture_elapsed_ms'] == receipt['fixture_ended_uptime_ms'] - receipt['fixture_started_uptime_ms']
+            and receipt['fixture_setup_elapsed_ms'] == start['started_uptime_ms'] - receipt['fixture_started_uptime_ms']
+            and receipt['fixture_teardown_elapsed_ms'] == receipt['fixture_ended_uptime_ms'] - end['ended_uptime_ms'],
+            'Fixture timing does not separate setup, interaction and teardown')
+
+
+def verify_native_back(method, observations):
+    expected = ([f'notice-{index}-{action}' for index in range(3) for action in ('nested', 'close')]
+                if method == 'aboutRowsOpenThreeNoticesWithReachableNativeFooters' else
+                ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
+    events = [o for o in observations if o.get('kind', '').startswith('native-back-')]
+    require([(e.get('kind'), e.get('label')) for e in events] ==
+            [(kind, label) for label in expected for kind in ('native-back-before', 'native-back-injected', 'native-back-after')],
+            'Exact single-injection Back sequences required')
+    start = next(i for i, o in enumerate(observations) if o.get('kind') == 'interaction-start')
+    end = next(i for i, o in enumerate(observations) if o.get('kind') == 'interaction-end')
+    require(all(start < i < end for i, o in enumerate(observations) if o in events),
+            'Back evidence must precede interaction completion and cleanup')
+    for offset in range(0, len(events), 3):
+        before, injected, after = events[offset:offset + 3]
+        a, b = before.get('state'), after.get('state')
+        require(isinstance(a, dict) and isinstance(b, dict) and isinstance(injected.get('state'), dict), 'Missing native Back app state')
+        for state in (a, injected['state'], b):
+            require(all(type(state.get(key)) is bool for key in ('target_insets_available', 'focused_insets_available',
+                    'focused_app_window_present', 'focused_app_window_is_target', 'focused_app_window_is_editor')),
+                    'Missing focused-window/IME diagnostics')
+            for available, visible in (('target_insets_available', 'target_ime_visible'),
+                                       ('focused_insets_available', 'focused_app_window_ime_visible')):
+                require(visible in state and (type(state[visible]) is bool if state[available] else state[visible] is None),
+                        'Malformed IME visibility diagnostic')
+        require(all(a.get(key) is True for key in ('target_attached', 'target_showing', 'target_focused'))
+                and before.get('postcondition_met') is False, 'Back target not established before injection')
+        require(injected.get('route') == 'UiDevice.pressKeyCode(KEYCODE_BACK)' and type(injected.get('keycode')) is int
+                and injected['keycode'] == 4 and type(injected.get('injection_count')) is int and injected['injection_count'] == 1
+                and injected.get('injected') is True and after.get('injected') is True
+                and after.get('completed') is True and after.get('postcondition_met') is True,
+                'Native Back injection or app outcome incomplete')
+        require(b.get('target_attached') is False and b.get('target_showing') is False,
+                'Specific Back window remains attached')
+        if before['label'].endswith('-nested'):
+            require(a.get('notice_retained') is True and b.get('notice_retained') is True and b.get('notice_focused') is True,
+                    'Original notice was not retained and focused after nested Back')
+        elif before['label'].endswith('-close'):
+            require(a.get('notice_present') is True and b.get('notice_present') is False and b.get('editor_focused') is True,
+                    'Notice Back did not return to editor')
+        else:
+            require(a.get('dialog_showing') is True and b.get('dialog_showing') is False
+                    and type(a.get('save_calls')) is int and type(b.get('save_calls')) is int
+                    and a['save_calls'] == b['save_calls'] == 4
+                    and type(a.get('dismiss_calls')) is int and type(b.get('dismiss_calls')) is int
+                    and a['dismiss_calls'] == 1 and b['dismiss_calls'] == 2
+                    and a.get('saved_draft_unchanged') is True and b.get('saved_draft_unchanged') is True,
+                    'Credit Back must discard once without saving, before cleanup')
 
 
 def verify_colour_limitation(receipt, observations):

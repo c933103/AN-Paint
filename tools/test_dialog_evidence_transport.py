@@ -51,7 +51,44 @@ def receipt(method):
                  fixed=[geometry(100, 40, tag) for tag in ('colour_advanced_tab', 'custom_colours_panel', 'add_custom_colour')]),
             dict(kind='colour-limitation-cancelled', commit_callbacks=0, closed_callbacks=1, dialog_showing=False,
                  positive_viewport_accepted=False, untouched_baseline_installed='pending')])
+    back_labels = ([f'notice-{index}-{action}' for index in range(3) for action in ('nested', 'close')]
+                   if method == 'aboutRowsOpenThreeNoticesWithReachableNativeFooters' else
+                   ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
+    for label in back_labels:
+        before = dict(target_attached=True, target_showing=True, target_focused=True)
+        after = dict(target_attached=False, target_showing=False, target_focused=False)
+        if label.endswith('-nested'):
+            before.update(notice_retained=True, notice_focused=False)
+            after.update(notice_retained=True, notice_focused=True)
+        elif label.endswith('-close'):
+            before.update(notice_present=True, editor_focused=False)
+            after.update(notice_present=False, editor_focused=True)
+        else:
+            before.update(dialog_showing=True, save_calls=4, dismiss_calls=1, saved_draft_unchanged=True)
+            after.update(dialog_showing=False, save_calls=4, dismiss_calls=2, saved_draft_unchanged=True)
+        before.update(target_insets_available=True, target_ime_visible=False, focused_app_window_present=True,
+                      focused_app_window_is_target=True, focused_app_window_is_editor=False,
+                      focused_insets_available=True, focused_app_window_ime_visible=False)
+        after.update(target_insets_available=False, target_ime_visible=None, focused_app_window_present=True,
+                     focused_app_window_is_target=False, focused_app_window_is_editor=not label.endswith('-nested'),
+                     focused_insets_available=True, focused_app_window_ime_visible=False)
+        observations.extend([
+            dict(kind='native-back-before', label=label, state=before, postcondition_met=False),
+            dict(kind='native-back-injected', label=label, state=copy.deepcopy(after),
+                 route='UiDevice.pressKeyCode(KEYCODE_BACK)', keycode=4, injection_count=1, injected=True),
+            dict(kind='native-back-after', label=label, state=after, injected=True, completed=True, postcondition_met=True)])
+    observations.insert(0, dict(kind='interaction-start', started_uptime_ms=2000, deadline_uptime_ms=47000, budget_ms=45000))
+    observations.append(dict(kind='interaction-end', started_uptime_ms=2000, ended_uptime_ms=5000,
+                             deadline_uptime_ms=47000, elapsed_ms=3000, budget_ms=45000,
+                             block_completed=True, within_deadline=True))
+    value.update(fixture_started_uptime_ms=1000, fixture_ended_uptime_ms=6000, fixture_elapsed_ms=5000,
+                 fixture_setup_elapsed_ms=1000, fixture_teardown_elapsed_ms=1000,
+                 fixture_elapsed_scope='setup+interaction+teardown; excludes export')
     return value
+
+
+def observation(data, kind):
+    return next(o for o in data['observations'] if o['kind'] == kind)
 
 
 def write_archive(root, method, *, change_receipt=None, change_manifest=None, extra=None, corrupt=False):
@@ -142,13 +179,13 @@ class DialogEvidenceTransportTest(unittest.TestCase):
                 verify_receipt(data, self.method, DIGEST)
 
     def test_caption_clipping_bad_geometry_and_offscreen_or_unpaired_pointer_fail(self):
-        changes = [lambda d: d['observations'][0].update(layout_height=31),
-                   lambda d: d['observations'][0]['line_metrics'][0].update(ellipsis=1),
-                   lambda d: d['observations'][0]['line_metrics'][0].update(right=102),
-                   lambda d: d['observations'][1].update(line_rect=[0, 0, 200, 20]),
-                   lambda d: d['observations'][1].update(line_rect=[0, 0, True, 20]),
-                   lambda d: d['observations'][2].update(tap=[100, 100]),
-                   lambda d: d['observations'].pop(3)]
+        changes = [lambda d: observation(d, 'intrinsic-caption').update(layout_height=31),
+                   lambda d: observation(d, 'intrinsic-caption')['line_metrics'][0].update(ellipsis=1),
+                   lambda d: observation(d, 'intrinsic-caption')['line_metrics'][0].update(right=102),
+                   lambda d: observation(d, 'caption-line-reached').update(line_rect=[0, 0, 200, 20]),
+                   lambda d: observation(d, 'caption-line-reached').update(line_rect=[0, 0, True, 20]),
+                   lambda d: observation(d, 'pointer-before').update(tap=[100, 100]),
+                   lambda d: d['observations'].remove(observation(d, 'pointer-injected'))]
         for change in changes:
             data = receipt(self.method)
             change(data)
@@ -181,6 +218,156 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertFalse(destination.exists())
             self.assertFalse(self.output.exists())
+
+
+class NativeBackAndInteractionBudgetContractTest(unittest.TestCase):
+    """Source contracts + synthetic receipts, not proof of installed key delivery.
+
+    Primary source: Google Maven androidx.test.uiautomator:uiautomator:2.2.0.
+    https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.2.0/uiautomator-2.2.0-sources.jar
+    JAR SHA256 e1f438106ac0d26b80ecf4fd6ffe6d36f60e12bdcd6316903f802ed24d00be99
+    UiDevice.java SHA256 19a43983f6b75bb1690cb6b196873c24155cda3d6723d2d2df947896cefd8ffe
+    InteractionController.java SHA256 a549156dafb4e9fd6d5fea605e7f8945a066e45b0f7a5f0539b6e6077e48afe1
+    UiDevice.pressBack350 -> sendKeyAndWaitForEvent188 waits for content-change;
+    pressKeyCode458 -> sendKey578 returns true only if native DOWN and UP inject.
+    Exact original run38112218904 logcat timeout lines (the bodies remained failed):
+    10-11 04:53:24.646  5673  5738 W InteractionController: runAndwaitForEvents timed out waiting for events
+    10-11 04:53:45.534  5673  5738 W InteractionController: runAndwaitForEvents timed out waiting for events
+    """
+    @classmethod
+    def setUpClass(cls):
+        cls.source = (Path(__file__).resolve().parents[1] /
+            'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()
+
+    def test_single_native_key_pair_has_before_and_finally_state_before_cleanup(self):
+        source = self.source
+        helper = source.split('private fun nativeBack(', 1)[1].split('/** Same native SystemUI', 1)[0]
+        self.assertEqual(helper.count('device.pressKeyCode(KeyEvent.KEYCODE_BACK)'), 1)
+        self.assertNotIn('device.pressBack()', source)
+        for forbidden in ('repeat(', 'while(', 'performClick(', 'onBackPressed(', '.dismiss()', 'sendKeyDownUpSync', 'executeShellCommand'):
+            self.assertNotIn(forbidden, helper)
+        for required in ('"native-back-before"', '"native-back-injected"', '"native-back-after"',
+                         'assertTrue("Native Back DOWN/UP injection succeeded",injected==true)',
+                         'await("native Back outcome: $label",condition)', '.put("injection_count",1)',
+                         'assertFalse("Back must establish a new app outcome",onMain(condition))'):
+            self.assertIn(required, helper)
+        self.assertLess(helper.index('"native-back-before"'), helper.index('device.pressKeyCode'))
+        self.assertLess(helper.index('device.pressKeyCode'), helper.index('"native-back-injected"'))
+        self.assertLess(helper.index('} finally {'), helper.index('"native-back-after"'))
+        self.assertIn('!nested.isAttachedToWindow && termsRoot()===root && root.hasWindowFocus()', source)
+        self.assertIn('WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}', source)
+        self.assertIn('targetInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL', source)
+        self.assertIn('focusedInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL', source)
+        self.assertIn('hideSoftInputFromWindow(next.windowToken,0)', source)
+        credit = source.split('nativeBack("credit-discard"', 1)[1].split('} finally {onMain {reopened.dismiss()}}', 1)[0]
+        self.assertIn('calls==4 && dismissed==2 && saved==draft', credit)
+        self.assertIn('assertEquals(4,calls);assertEquals(2,dismissed);assertEquals(draft,saved)', credit)
+
+    def test_back_receipt_requires_one_injection_and_positive_pre_cleanup_outcome(self):
+        methods = list(METHOD_SCREENS)[:2]
+        mutations = [lambda r: observation(r, 'native-back-injected').update(injected=False),
+                     lambda r: observation(r, 'native-back-injected').update(injection_count=2),
+                     lambda r: observation(r, 'native-back-injected').update(injection_count=True),
+                     lambda r: observation(r, 'native-back-injected').update(route='UiDevice.pressBack()'),
+                     lambda r: observation(r, 'native-back-before').update(postcondition_met=True),
+                     lambda r: observation(r, 'native-back-before')['state'].update(target_focused=False),
+                     lambda r: observation(r, 'native-back-after').update(completed=False),
+                     lambda r: observation(r, 'native-back-after').update(postcondition_met=False),
+                     lambda r: observation(r, 'native-back-after')['state'].update(target_attached=True),
+                     lambda r: r['observations'].remove(observation(r, 'native-back-after')),
+                     lambda r: r['observations'].append(copy.deepcopy(observation(r, 'native-back-injected')))]
+        for method in methods:
+            verify_receipt(receipt(method), method, DIGEST)
+            for mutate in mutations:
+                data = receipt(method); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+        for field, value in [('save_calls', 5), ('dismiss_calls', 1), ('dismiss_calls', 3),
+                             ('saved_draft_unchanged', False), ('dialog_showing', True)]:
+            data = receipt(methods[1]); observation(data, 'native-back-after')['state'][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                verify_receipt(data, methods[1], DIGEST)
+        data = receipt(methods[0]); observation(data, 'native-back-after')['state']['notice_focused'] = False
+        with self.assertRaises(ValueError):
+            verify_receipt(data, methods[0], DIGEST)
+
+    def test_ime_diagnostics_do_not_substitute_for_positive_dialog_cancellation(self):
+        method = list(METHOD_SCREENS)[1]
+        # One Back can close the IME while leaving the credit dialog open. Record
+        # that honestly and reject it; never inject another Back as a fallback.
+        data = receipt(method)
+        observation(data, 'native-back-before')['state'].update(target_ime_visible=True, focused_app_window_ime_visible=True)
+        observation(data, 'native-back-after')['state'].update(target_attached=True, target_showing=True,
+            dialog_showing=True, dismiss_calls=1, focused_app_window_is_target=True, focused_app_window_is_editor=False)
+        observation(data, 'native-back-after').update(completed=False, postcondition_met=False)
+        with self.assertRaises(ValueError):
+            verify_receipt(data, method, DIGEST)
+        for field in ('target_ime_visible', 'focused_app_window_ime_visible', 'focused_app_window_present'):
+            data = receipt(method); observation(data, 'native-back-before')['state'].pop(field)
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+
+    def test_back_cleanup_state_or_duplicate_late_event_cannot_supply_acceptance(self):
+        method = list(METHOD_SCREENS)[1]
+        data = receipt(method)
+        after = observation(data, 'native-back-after')
+        data['observations'].remove(after)
+        data['observations'].append(after)
+        with self.assertRaises(ValueError):
+            verify_receipt(data, method, DIGEST)
+
+    def test_whole_interval_boundaries_separate_setup_and_teardown(self):
+        method = next(iter(METHOD_SCREENS))
+        for elapsed in (0, 44999, 45000):
+            data = receipt(method)
+            observation(data, 'interaction-end').update(ended_uptime_ms=2000 + elapsed, elapsed_ms=elapsed)
+            data.update(fixture_ended_uptime_ms=3000 + elapsed, fixture_elapsed_ms=2000 + elapsed)
+            verify_receipt(data, method, DIGEST)
+        # Even a fully successful final action one millisecond late must fail;
+        # there is deliberately no await/checkDeadline after that synthetic action.
+        for elapsed in (45001, 50000):
+            data = receipt(method)
+            observation(data, 'interaction-end').update(ended_uptime_ms=2000 + elapsed, elapsed_ms=elapsed)
+            data.update(fixture_ended_uptime_ms=3000 + elapsed, fixture_elapsed_ms=2000 + elapsed)
+            with self.subTest(elapsed=elapsed), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+
+    def test_unfinished_malformed_or_inconsistent_timing_fails_closed(self):
+        method = next(iter(METHOD_SCREENS))
+        mutations = [lambda r: observation(r, 'interaction-end').update(block_completed=False),
+                     lambda r: observation(r, 'interaction-end').update(within_deadline=False),
+                     lambda r: observation(r, 'interaction-end').update(elapsed_ms=1),
+                     lambda r: observation(r, 'interaction-end').update(ended_uptime_ms=True),
+                     lambda r: observation(r, 'interaction-end').update(deadline_uptime_ms=99999),
+                     lambda r: observation(r, 'interaction-start').update(budget_ms=60000),
+                     lambda r: r['observations'].remove(observation(r, 'interaction-end')),
+                     lambda r: r['observations'].append(copy.deepcopy(observation(r, 'interaction-end'))),
+                     lambda r: r.update(fixture_elapsed_ms=3000),
+                     lambda r: r.update(fixture_setup_elapsed_ms=True),
+                     lambda r: r.update(fixture_teardown_elapsed_ms=0),
+                     lambda r: r.update(fixture_elapsed_scope='interaction only')]
+        for mutate in mutations:
+            data = receipt(method); mutate(data)
+            with self.subTest(mutate=mutate), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+
+    def test_kotlin_records_and_asserts_final_whole_interval_before_reset(self):
+        source = self.source
+        fixture = source.split('private fun fixture(', 1)[1].split('private fun interaction(', 1)[0]
+        self.assertLess(fixture.index('interaction {'), fixture.index('await("initial editor")'))
+        self.assertLess(fixture.index('block(launched)'), fixture.index('deadline=Long.MAX_VALUE'))
+        helper = source.split('private fun interaction(', 1)[1].split('private fun backWindowState', 1)[0]
+        self.assertIn('deadline=started+45000', helper)
+        self.assertIn('try {block();completed=true} finally {', helper)
+        self.assertLess(helper.index('ended=SystemClock.uptimeMillis()'), helper.index('"interaction-end"'))
+        self.assertLess(helper.index('"interaction-end"'), helper.index('assertTrue("Entire dialog interaction'))
+        self.assertIn('ended<=deadline)', helper)
+        self.assertNotIn('deadline=Long.MAX_VALUE', helper)
+        rule = (Path(__file__).resolve().parents[1] /
+            'app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt').read_text()
+        self.assertIn('"fixture_setup_elapsed_ms"', rule)
+        self.assertIn('"fixture_teardown_elapsed_ms"', rule)
+        self.assertIn('"setup+interaction+teardown; excludes export"', rule)
 
 
 class EvidenceCachePathContractTest(unittest.TestCase):
@@ -393,16 +580,16 @@ class ColourLimitationScopeContractTest(unittest.TestCase):
         mutations = [lambda r: r.update(positive_viewport_accepted=True),
                      lambda r: r.update(untouched_baseline_installed='passed'),
                      lambda r: r.update(case_classification='repaired'),
-                     lambda r: r['observations'][-2].update(font_scale=2),
-                     lambda r: r['observations'][-2].update(font_scale=True),
-                     lambda r: r['observations'][-2].update(device_sdk=30),
-                     lambda r: r['observations'][-2]['display'].update(height=321),
-                     lambda r: r['observations'][-2]['inner'].update(height=10),
-                     lambda r: r['observations'][-2].update(fixed=[]),
-                     lambda r: r['observations'][-1].update(commit_callbacks=1),
-                     lambda r: r['observations'][-1].update(closed_callbacks=2),
-                     lambda r: r['observations'][-1].update(closed_callbacks=True),
-                     lambda r: r['observations'][-1].update(dialog_showing=True)]
+                     lambda r: observation(r, 'colour-limitation-characterization').update(font_scale=2),
+                     lambda r: observation(r, 'colour-limitation-characterization').update(font_scale=True),
+                     lambda r: observation(r, 'colour-limitation-characterization').update(device_sdk=30),
+                     lambda r: observation(r, 'colour-limitation-characterization')['display'].update(height=321),
+                     lambda r: observation(r, 'colour-limitation-characterization')['inner'].update(height=10),
+                     lambda r: observation(r, 'colour-limitation-characterization').update(fixed=[]),
+                     lambda r: observation(r, 'colour-limitation-cancelled').update(commit_callbacks=1),
+                     lambda r: observation(r, 'colour-limitation-cancelled').update(closed_callbacks=2),
+                     lambda r: observation(r, 'colour-limitation-cancelled').update(closed_callbacks=True),
+                     lambda r: observation(r, 'colour-limitation-cancelled').update(dialog_showing=True)]
         for mutate in mutations:
             data = receipt(self.method)
             mutate(data)

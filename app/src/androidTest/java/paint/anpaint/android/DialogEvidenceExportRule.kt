@@ -71,7 +71,18 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
                 failure=error;receipt.put("outcome","failed").put("failure",error.toString())
                 try {capture("failure")} catch(capture: Throwable) {error.addSuppressed(capture)}
             }
-            receipt.put("fixture_elapsed_ms",SystemClock.uptimeMillis()-started)
+            val ended=SystemClock.uptimeMillis()
+            receipt.put("fixture_started_uptime_ms",started).put("fixture_ended_uptime_ms",ended)
+                .put("fixture_elapsed_ms",ended-started)
+                .put("fixture_elapsed_scope","setup+interaction+teardown; excludes export")
+            val observations=receipt.getJSONArray("observations")
+            val states=(0 until observations.length()).map {observations.getJSONObject(it)}
+            val interactionStart=states.singleOrNull {it.optString("kind")=="interaction-start"}
+            val interactionEnd=states.singleOrNull {it.optString("kind")=="interaction-end"}
+            if(interactionStart!=null && interactionEnd!=null) {
+                receipt.put("fixture_setup_elapsed_ms",interactionStart.getLong("started_uptime_ms")-started)
+                    .put("fixture_teardown_elapsed_ms",ended-interactionEnd.getLong("ended_uptime_ms"))
+            }
             try {write();export(description.methodName)} catch(error: Throwable) {
                 if(failure==null) failure=error else failure!!.addSuppressed(error)
             }

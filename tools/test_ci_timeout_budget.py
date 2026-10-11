@@ -178,6 +178,18 @@ class TimeoutBudgetTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_budget(WORKFLOW, shell=changed)
 
+    def test_canonical_documentation_matches_the_current_phase_and_outer_caps(self):
+        docs = (ROOT / 'CI.md').read_text()
+        canonical = docs.split('## Deadlines and evidence', 1)[1].split('## How to conclude work', 1)[0]
+        for text in ('53 minutes, including a 43-minute execution step',
+                     'API35 dialog phase: 300 seconds',
+                     '630 seconds on API30 and 1,050 seconds on API35',
+                     '810 / 1,230', 'current 43-minute step'):
+            self.assertIn(text, canonical)
+        for stale in ('46 minutes', '36-minute', '750 seconds', '810 / 930'):
+            self.assertNotIn(stale, canonical)
+        self.assertIn('## Historical composed cancellation budgets', docs)
+
     def test_checks_job_is_an_explicit_aggregate_policy_not_a_sum_bound(self):
         checks = job(WORKFLOW, 'checks')
         self.assertEqual(int(one(r'^    timeout-minutes: (\d+)$', checks)), 22)

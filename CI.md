@@ -87,10 +87,11 @@ Test APKs are compiled once, after the delivery artifact is available. Emulator
 jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
-accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the three gallery-draft methods, four vertical
-methods and the restart pair. The unchanged gallery-draft class runs separately
-with a 90-second ceiling; the vertical methods run in two 180-second shards. The
+accepted-credit restart phase classes, plus the three API35-only installed-dialog
+methods. API35 runs all declared methods: its ordinary app invocation excludes
+the three gallery-draft methods, three dialog methods, four vertical methods and
+the restart pair. Gallery-draft runs separately with a 90-second ceiling, dialogs
+with 300 seconds, and vertical methods in two 180-second shards. The
 restart pair runs separately before and after an external force-stop. The
 exact disjoint union is checked against the full SDK-aware source inventory on
 both APIs; an exclusion is never treated as a passed test.
@@ -129,7 +130,7 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
 
 - Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
   universal APK assembly: 30 minutes;
-  each emulator job: 46 minutes, including a 36-minute execution step.
+  each emulator job: 53 minutes, including a 43-minute execution step.
   These are hard cancellation ceilings, not target runtimes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
   60 seconds; boot and Android service readiness share 120 seconds; main APK
@@ -138,14 +139,16 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
   native and ordinary-app instrumentation: 180 seconds each; gallery-draft:
-  90 seconds; each of two vertical shards: 180 seconds; accepted-credit seed
-  and verify: 60 seconds each. App-only ceilings sum to 630 seconds on API30
-  and 750 seconds on API35. Including native instrumentation gives 810 / 930
+  90 seconds; the separate API35 dialog phase: 300 seconds; each of two vertical
+  shards: 180 seconds; accepted-credit seed and verify: 60 seconds each. App-only
+  ceilings sum to 630 seconds on API30 and 1,050 seconds on API35. Including native
+  instrumentation gives 810 / 1,230
   seconds, before installation, discovery, startup, boundary and collection.
   The original composed head retained a 900-second outer step, which was
-  structurally insufficient. The corrected 36-minute step admits the existing
-  controlled subprocess paths plus explicit processing/cleanup allowances; the
-  detailed source-bound model is below. Exact-head combined API30/API35 runtime
+  structurally insufficient. The current 43-minute step admits the eight-phase
+  controlled API35 paths plus explicit processing/cleanup allowances. The current
+  source-bound model is in “Localized dialog evidence and separate phase” below;
+  older dated budget sections retain historical values and do not set today's caps. Exact-head combined API30/API35 runtime
   remains required. Deadline exhaustion fails without relaxing an inner timeout
   or substituting a weaker restart test.
 - Emulator shutdown and log-collection ADB commands have individual deadlines.
@@ -739,16 +742,17 @@ margin targets and every existing artifact/provenance/review gate. Missing SDK
 locally means host/fake-ADB checks only; standalone CI is not combined acceptance.
 
 
-## Corrected composed cancellation budgets (10 October 2026)
+## Historical composed cancellation budgets (10 October 2026)
 
-The historical sections above describe their original 15-minute / 25-minute
-limits. Those values are superseded for the current combined driver by **36
-minutes for emulator execution and 46 minutes for each emulator job**. Neither
-is a target runtime. The unchanged inner instrumentation ceilings total 930
-seconds on API35 and 810 on API30. The direct-ADB runner and all source tests
-are unchanged by this budget correction.
+At that revision, the original 15-minute / 25-minute limits were replaced by
+**36 minutes for emulator execution and 46 minutes for each emulator job**. The
+11 October dialog-phase addition supersedes those caps with 43 / 53 minutes; see
+the current “Deadlines and evidence” and dialog-phase sections. This historical
+correction retained instrumentation ceilings of 930 seconds on API35 and 810 on
+API30 without changing the direct-ADB runner or source tests.
 
-The source-bound model is checked by `tools/test_ci_timeout_budget.py`. References
+The following table preserves that revision's source-bound model; the current
+model in `tools/test_ci_timeout_budget.py` includes the later dialog phase. References
 in the following model name functions so that comment-only line shifts do not
 invalidate the explanation:
 
@@ -870,9 +874,10 @@ manifest fields/duplicate JSON keys, partial markers, size/hash mismatches and
 truncation fail closed. Existing screenshot and native reachability validators
 still run afterward and every prior failure status is retained.
 
-Export work stays inside each unchanged 180-second vertical invocation. The
-36/46-minute outer hard ceilings and all other phase/reset/pull limits remain
-unchanged. Host parsing/export checks are covered by the stated outer processing
+Export work stays inside each unchanged 180-second vertical invocation. This
+10 October export change retained the then-current 36/46-minute outer caps; the
+later dialog phase changes them to 43/53 minutes without changing vertical
+phase/reset/pull limits. Host parsing/export checks use the stated outer processing
 allowance, not by a new universal liveness claim. Host corruption fixtures and
 source contracts cannot prove MediaStore behavior on a device: fresh exact-source
 release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
