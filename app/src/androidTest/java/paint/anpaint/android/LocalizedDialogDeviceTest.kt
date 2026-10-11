@@ -98,6 +98,128 @@ class LocalizedDialogDeviceTest {
         } finally {onMain {dialog.dismiss()}}
     }
 
+    @Test fun retainedColourStateSurvivesRotationImeCancelAndReopen()=fixture("en-US",1f) {scenario ->
+        var commits=0;var closes=0;var selected=android.graphics.Color.RED;var preview=selected
+        fun open(mode: Int): Pair<AdvancedColourDialog,AlertDialog> = onMain {
+            val picker=AdvancedColourDialog(activity,android.graphics.Color.RED,false,
+                preview={preview=it},closed={closes++},initialMode=mode) {selected=it;commits++}
+            picker to picker.show()
+        }
+        var (picker,dialog)=open(2)
+        try {
+            await("portrait colour window") {dialog.window!!.decorView.hasWindowFocus() &&
+                dialog.window!!.decorView.findViewWithTag<View>("colour_editor_scroll").height>0}
+            val root=onMain {dialog.window!!.decorView}
+            val field=onMain {root.findViewWithTag<EditText>("colour_hex")}
+            val slots=onMain {(0 until 16).map {root.findViewWithTag<View>("custom_colour_$it")}}
+            // An explicit synthetic draft, not a claim of keyboard transcription.
+            onMain {field.setText("#13579B");field.setSelection(2,5)}
+            fun retained()=onMain {
+                assertSame(root,dialog.window!!.decorView)
+                assertSame(field,root.findViewWithTag<View>("colour_hex"))
+                assertEquals("#13579B",field.text.toString());assertNull(field.error)
+                assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)
+                assertEquals(0xff13579b.toInt(),picker.value.colour)
+                assertTrue((root.findViewWithTag<View>("colour_surface") as org.catrobat.paintroid.classic.ColourSurface).wheel)
+                assertEquals(slots,(0 until 16).map {root.findViewWithTag<View>("custom_colour_$it")})
+                assertEquals(0,commits);assertEquals(0,closes)
+            }
+            for(landscape in listOf(true,false,true)) {
+                orient(landscape,scenario);settle(root);retained()
+                onMain {
+                    assertTrue(root.findViewWithTag<View>("colour_editor_scroll").height>0)
+                    slots.forEach {assertTrue("Saved slot retains a finite size",it.width>0 && it.height>0)}
+                    if(!landscape) slots.forEach {assertComplete(it)}
+                    for(tag in listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour")) {
+                        val view=root.findViewWithTag<View>(tag);assertComplete(view)
+                        if(view is TextView) intrinsic(view)
+                    }
+                }
+                evidence.capture(if(landscape) "retained-landscape" else "retained-portrait")
+            }
+            val inner=onMain {root.findViewWithTag<ScrollView>("colour_editor_scroll")}
+            val surface=onMain {root.findViewWithTag<View>("colour_surface")}
+            reveal(surface) {
+                val raw=rawBounds(surface);val density=surface.resources.displayMetrics.density
+                Rect(raw.left,raw.top+(8*density).toInt(),raw.right,raw.top+(32*density).toInt())
+            }
+            val surfaceBounds=onMain {visibleBounds(surface)}
+            assertTrue("A real visible colour surface remains available",surfaceBounds.width()>16 && surfaceBounds.height()>16)
+            val beforeDrag=onMain {picker.value.colour to inner.scrollY}
+            assertTrue("Native surface drag",device.swipe(surfaceBounds.left+surfaceBounds.width()/4,surfaceBounds.centerY(),
+                surfaceBounds.right-surfaceBounds.width()/4,surfaceBounds.centerY(),16))
+            instrumentation.waitForIdleSync()
+            onMain {
+                assertNotEquals("Dragging the actual colour surface still edits the value",beforeDrag.first,picker.value.colour)
+                assertEquals("The surface retains its drag ownership",beforeDrag.second,inner.scrollY)
+                assertEquals(0,commits);assertEquals(0,closes)
+                val node=inner.createAccessibilityNodeInfo()
+                try {
+                    assertTrue("Native accessibility reports scrollable content",node.isScrollable)
+                    assertTrue(node.actionList.any {it.id==android.view.accessibility.AccessibilityNodeInfo.ACTION_SCROLL_FORWARD})
+                } finally {node.recycle()}
+                evidence.observe(JSONObject().put("kind","colour-surface-native-drag")
+                    .put("before_colour",beforeDrag.first).put("after_colour",picker.value.colour)
+                    .put("scroll_before",beforeDrag.second).put("scroll_after",inner.scrollY))
+            }
+            evidence.capture("colour-surface-dragged")
+            onMain {field.setText("#13579B");field.setSelection(2,5)}
+            retained()
+            // The last saved slot remains reachable by the existing horizontal
+            // native scroll route; resizing does not replace any swatch object.
+            val palette=onMain {descendants(root.findViewWithTag("custom_colours_panel"))
+                .filterIsInstance<android.widget.HorizontalScrollView>().single()}
+            var reached=false
+            for(attempt in 0..8) {
+                if(onMain {visibleBounds(slots.last()).contains(rawBounds(slots.last()))}) {reached=true;break}
+                val bounds=onMain {visibleBounds(palette)}
+                assertTrue(device.swipe(bounds.right-bounds.width()/5,bounds.centerY(),
+                    bounds.left+bounds.width()/5,bounds.centerY(),16))
+                settle(palette)
+            }
+            assertTrue("Last saved slot has a real native reachability route",reached);retained()
+            tap("colour hex field",field)
+            onMain {
+                field.setSelection(2,5)
+                activity.getSystemService(InputMethodManager::class.java).showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
+            }
+            await("actual IME visible") {root.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())==true}
+            evidence.observe(onMain {JSONObject().put("kind","colour-ime-visible")
+                .put("ime_visible",root.rootWindowInsets!!.isVisible(android.view.WindowInsets.Type.ime()))
+                .put("field",geometry(field)).put("value",field.text.toString())
+                .put("note","IME/extract view may cover dialog controls; no simultaneous visibility acceptance")})
+            evidence.capture("colour-ime-visible")
+            assertTrue("Native Back dismisses the IME",device.pressBack())
+            await("IME hidden with dialog retained") {dialog.isShowing &&
+                root.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())!=true}
+            settle(root);retained()
+            tap("colour state cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
+            await("state Cancel closes") {!dialog.isShowing}
+            onMain {assertEquals(0,commits);assertEquals(1,closes);assertEquals(android.graphics.Color.RED,preview)}
+            val reopened=open(1);picker=reopened.first;dialog=reopened.second
+            await("reopened colour ready") {dialog.window!!.decorView.hasWindowFocus()}
+            onMain {assertEquals("#FF0000",dialog.window!!.decorView.findViewWithTag<EditText>("colour_hex").text.toString())}
+            assertTrue("Native Back closes reopened picker",device.pressBack())
+            await("reopened picker closed") {!dialog.isShowing}
+            onMain {assertEquals(0,commits);assertEquals(2,closes)}
+            val third=open(1);picker=third.first;dialog=third.second
+            await("third colour ready") {dialog.window!!.decorView.hasWindowFocus()}
+            val finalField=onMain {dialog.window!!.decorView.findViewWithTag<EditText>("colour_hex")}
+            onMain {finalField.setText("#broken")}
+            tap("invalid colour rejected",onMain {dialog.getButton(AlertDialog.BUTTON_POSITIVE)})
+            onMain {assertTrue(dialog.isShowing);assertEquals(0,commits);assertNotNull(finalField.error)}
+            onMain {finalField.setText("#2468AC")}
+            tap("valid colour committed",onMain {dialog.getButton(AlertDialog.BUTTON_POSITIVE)})
+            await("valid colour closes") {!dialog.isShowing}
+            onMain {
+                assertEquals(1,commits);assertEquals(3,closes);assertEquals(0xff2468ac.toInt(),selected)
+                evidence.observe(JSONObject().put("kind","colour-retained-state-complete")
+                    .put("commit_callbacks",commits).put("closed_callbacks",closes)
+                    .put("selected",String.format(Locale.ROOT,"#%06X",selected and 0xffffff)))
+            }
+        } finally {onMain {dialog.dismiss()}}
+    }
+
     private fun fixture(tag: String,scale: Float,block: (ActivityScenario<ClassicPaintActivity>)->Unit) {
         assertEquals(35,Build.VERSION.SDK_INT)
         assertTrue("Run only on the declared emulator, not a personal device",
@@ -307,8 +429,24 @@ class LocalizedDialogDeviceTest {
         val low=bounds.top+bounds.height()/5;val high=bounds.bottom-bounds.height()/5
         val slop=android.view.ViewConfiguration.get(context).scaledTouchSlop
         val distance=hidden?.let {(it+slop+2).coerceIn(1,high-low)} ?: (high-low)
-        val start=Point(bounds.centerX(),if(direction>0) high else low)
-        val end=Point(bounds.centerX(),start.y-if(direction>0) distance else -distance)
+        // Colour-surface drags intentionally belong to the colour editor.
+        // Use the visible native scroll gutter for this ScrollView only.
+        val x=onMain {
+            val editor=WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {
+                it.findViewWithTag<ScrollView>("colour_editor_scroll")
+            }?.takeIf {visibleBounds(it)==bounds}
+            if(editor==null) bounds.centerX() else {
+                val rtl=editor.layoutDirection==View.LAYOUT_DIRECTION_RTL
+                val gutter=if(rtl) editor.paddingLeft else editor.paddingRight
+                assertTrue("Visible scroll gutter has a finite touch width",gutter>=24*editor.resources.displayMetrics.density)
+                val target=if(rtl) bounds.left+gutter/2 else bounds.right-gutter/2
+                evidence.observe(JSONObject().put("kind","colour-native-scroll-route")
+                    .put("viewport",rect(bounds)).put("gutter_pixels",gutter).put("x",target).put("rtl",rtl))
+                target
+            }
+        }
+        val start=Point(x,if(direction>0) high else low)
+        val end=Point(x,start.y-if(direction>0) distance else -distance)
         assertTrue("Native scroll gesture",device.swipe(arrayOf(start,end,end,end),16))
         instrumentation.waitForIdleSync()
     }

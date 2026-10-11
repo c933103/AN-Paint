@@ -897,3 +897,23 @@ by the ordinary runner. Raw ZIP export collection retains failures and adds one
 A passing host contract or collected screenshot is not an installed test pass.
 See `verification/advanced-colour-viewport-2026-10-11/` for exact source identity,
 the preserved original positive method and actual run status.
+
+The separate candidate now has two installed colour methods (27 declared app
+methods, three API 30 suppressions). The original positive method is unchanged;
+rotation, retained state, IME dismissal, Cancel/reopen and native validation/commit
+are a distinct method. The ordinary app phase remains 180 seconds. Baseline run
+38112708313 established the zero viewport on unchanged production source and
+used 139.949 seconds for the ordinary phase. Candidate aggregate runtime remains
+to be measured; the per-case 45-second budget does not prove aggregate fit.
+Native-rendered JVM coverage also checks the wider landscape columns, all sixteen
+portrait GridLayout slots and the separate vertical-script form. The copied 2×
+model remains explicitly diagnostic with no usability acceptance.
+
+The candidate's successor scroll helper uses a visible native scrollbar/end
+gutter for the colour ScrollView. The archived original centre-swipe route can
+land on ColourSurface, which intentionally captures drags to edit colour. The
+positive geometry, overflow, native scroll movement, fixed-control bounds, Cancel
+and no-commit assertions are retained. A complementary installed native surface
+drag verifies colour editing and unchanged parent scroll position. The original
+failed source/route remains archived; helper byte identity is not claimed for
+this documented correction.

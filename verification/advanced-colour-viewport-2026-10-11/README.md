@@ -31,9 +31,78 @@ controlled path: maximum 2087s + 60s operational allowance = 2147s (< 2160s).
 This arithmetic excludes universal filesystem/runtime guarantees. The API 35
 composed suite cannot be green unless the unchanged positive case also passes.
 
-Installed baseline result is pending. Source contracts alone do not prove the
+At the initial harness publication, the installed baseline result was pending. Source contracts alone do not prove the
 native allocation, usability, pointer route, state preservation, or any repair.
 The original failed run 38109511511 and its archived fixture remain failures.
 Once this untouched-base replay is established, a separate production change
 will keep the original positive acceptance requirements and add state/large-text
 coverage as supported by actual results.
+
+## Untouched-base gate established
+
+[Run 38112708313](https://github.com/c933103/AN-Paint/actions/runs/38112708313)
+reproduced the original positive assertion failure on unchanged application
+source. The native holder measured 384 × 138; its editor measured 360 × 0 while
+containing 470px of content. The 48px Add button had only 25px visible. The original
+API 35, 640 × 320, density 1, en-US, font 1× configuration was measured. All 487
+tracked production files in the matching source ZIP were checked byte-for-byte;
+the APK and source hashes match build-info.json. The focused archive and exact
+source binding are in `baseline-run-38112708313/`. This supersedes the earlier
+pending replay status, without granting any usability credit to that failure.
+
+## Candidate correction, installed verification pending
+
+The horizontal-language picker uses a wider native window in landscape when the
+current visible frame can accommodate it. The same retained editor controls and
+fixed palette/preview/Add controls become sibling columns. Portrait keeps a
+vertical stack. Measurement reads the live configuration; the existing native
+title and action allocation still constrain the custom body. No title/footer,
+colour math, field-validation, preview or commit callback is replaced.
+
+The saved-colour grid retains all sixteen original view objects while changing
+between sixteen landscape columns and eight portrait columns. No fields are
+recreated during rotation, and the width listener is removed on dismissal.
+Window width is bounded by the current visible frame and 900dp. Native vertical
+script dialogs keep their existing separate form and window path.
+
+The original positive installed method remains unchanged. A distinct installed
+case adds same-dialog rotation, draft/selection/wheel-mode retention, all sixteen
+finite portrait slots, real horizontal reachability of the final slot, actual
+IME appearance and native Back dismissal, Cancel, reopen, invalid submission and
+one valid commit. The IME may cover controls or use its extract view: this does
+not claim simultaneous field/footer visibility while the keyboard is showing.
+The normal controls must be reachable again after keyboard dismissal.
+
+Native-rendered JVM tests cover landscape ancestor bounds, all portrait swatches
+and the separate vertical-script form. The prior 1×/2× diagnostic is retained
+with its acceptance-comment corrected. Large-text 2× remains diagnostic; a
+captured image or a passing diagnostic is not a usability pass.
+
+The ordinary installed phase keeps its 180-second ceiling. The baseline phase
+used 139.949 seconds including its failed viewport wait; the new state case must
+fit the actual aggregate runtime, not merely its own 45-second interaction limit.
+
+### Corrected native gesture route
+
+Source review found that `ColourSurface` deliberately owns drag gestures by
+calling `requestDisallowInterceptTouchEvent(true)`. A centre-of-viewport swipe
+can therefore edit colour when the restored viewport shows that surface. Making
+its parent steal the drag, or shrinking the viewport to move the test coordinate,
+would damage the interaction rather than establish scrolling.
+
+The candidate adds a persistent native scrollbar with a 32dp end gutter, mirrored
+for RTL. The installed helper uses the measured gutter only when its target is
+the colour ScrollView. Other pointer helpers, the original positive method body,
+and its viewport/overflow/real-scroll/fixed-bounds/Cancel/no-commit assertions stay
+unchanged. The original source and original gesture remain unmodified in the
+historical fixture and untouched-base archive; the successor helper is explicitly
+different and is not claimed byte-identical to the original route.
+
+The separate state case also reveals the actual colour surface using native
+scrolling, drags on its visible area, and requires the colour value to change
+without moving the editor ScrollView or committing. It verifies that native
+accessibility exposes scrolling actions. This is pending installed verification;
+source preservation and a host contract alone cannot establish that these two
+real input routes work.
+
+The successor native scroll gesture keeps both pointer endpoints on the measured gutter x-coordinate, so it is a vertical drag rather than crossing into the colour surface. The source-preservation comparison explicitly normalizes both endpoints back to their historical centre coordinates.

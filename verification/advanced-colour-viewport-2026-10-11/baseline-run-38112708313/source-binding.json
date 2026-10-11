@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "run_id": 38112708313,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38112708313",
+  "base_commit": "691f8870649a1d21d1441f4e3d0e795660b23e9a",
+  "head_commit": "cecce0626dc730ba89120936b66de88e1c990335",
+  "tested_merge_commit": "340dd09be1ce99d36c9ff51faa6d8dfe401c2ded",
+  "tested_tree": "8bfe87cb32daee373085b201bd856f02782417b8",
+  "source_tests_sha256": "bfb0bf6cdb5ba072bcca64cfc5fa3de017d5a31d345433841d07ad2a05318643",
+  "original_positive_method_sha256": "08b0efebe1e7a71d03fee557243e47263d22560231fc55cf2b00e693f3a53096",
+  "outcome": "Original positive assertion failed on untouched application source",
+  "positive_viewport_accepted": false,
+  "untouched_baseline_installed": true,
+  "sole_failed_method": "paint.anpaint.android.LocalizedDialogDeviceTest#normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+  "failure": "java.lang.AssertionError: Timed out: normal Advanced Colour laid out",
+  "observed": {
+    "sdk": 35,
+    "display_pixels": [
+      640,
+      320
+    ],
+    "density": 1,
+    "font_scale": 1,
+    "locale": "en-US",
+    "holder_pixels": [
+      384,
+      138
+    ],
+    "editor_pixels": [
+      360,
+      0
+    ],
+    "content_pixels": [
+      360,
+      470
+    ],
+    "native_title_height": 46,
+    "native_action_height": 56,
+    "add_button_height": 48,
+    "add_button_visible_height": 25
+  },
+  "completed_tests": 98,
+  "passed_tests": 97,
+  "failed_tests": 1,
+  "restart_tests": "Not run: normal ordinary-suite failure gate; not acceptance credit",
+  "build_regression_lint_resource_jobs": "passed",
+  "build_info": {
+    "commit": "340dd09be1ce99d36c9ff51faa6d8dfe401c2ded",
+    "run_id": "38112708313",
+    "build_variant": "debug",
+    "apk_sha256": "79e8f3ad056908a1c545422d786d4a2b636497e459d610243c5729a7744ebea6",
+    "source_sha256": "fb8f6f0d33721d9f30e12cebd71f38521ce2d2ff7e399fecc539a5a829c0409d",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "production_source_archive_comparison": {
+    "tracked_files": 487,
+    "found": 487,
+    "different": 0,
+    "missing": 0
+  },
+  "artifacts": {
+    "emulator.zip": {
+      "artifact_id": 11692099509,
+      "bytes": 8306002,
+      "sha256": "11fa45db8cbd2f1f012e6a170c6de8580635a391750b867310b914772d540d02"
+    },
+    "apk-source.zip": {
+      "artifact_id": 11692168521,
+      "bytes": 153897295,
+      "sha256": "b3a7159f81d630e7d1048fd5d908ecbd5e9e1d259e1a350de8980c8e0213f77c"
+    }
+  },
+  "durable_archive": {
+    "name": "baseline-focused-evidence.zip",
+    "bytes": 508455,
+    "sha256": "f8fb8cc680c7886c97b7b5765ba9cfb55cac890b10be37d6d8aa5d8e2b34407f",
+    "parts": [
+      {
+        "name": "baseline-focused-evidence.zip.part001",
+        "bytes": 49152,
+        "sha256": "7cdb21eb92ce331875dea28150f97161803887f4e02243cdaeb28ddd6bd6756c"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part002",
+        "bytes": 49152,
+        "sha256": "aa9d22f69e7603b6730ac94a909f3a989aba669068c0af1920e5b1a46d31a3b3"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part003",
+        "bytes": 49152,
+        "sha256": "d884ceef62079b8f27ac1cf59d52c166e72e9345423bcaa0fe9c30593c4672e9"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part004",
+        "bytes": 49152,
+        "sha256": "02aba1d5985c8a900f6759926d257f6aa9f20cd00a36352394ce66cf0542ed49"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part005",
+        "bytes": 49152,
+        "sha256": "84dbc07d6cffeef32f05a0038d4c5e60bc745bb2b67ff375825363b8fb23e5bd"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part006",
+        "bytes": 49152,
+        "sha256": "5a1df64d4ef2f4ae05ccbbfbfa8160545070aa0c92e1e83fa876fb34ed0555aa"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part007",
+        "bytes": 49152,
+        "sha256": "a3c764bd4fde50d1a0fcea38d4bf17a78bd9f3d42d47c8ba42c611d2259a3a2a"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part008",
+        "bytes": 49152,
+        "sha256": "9c8ee3b2939ca1a61bb82a58f895ce0dcbb67c14ac58da0e9cbf6f59327209ea"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part009",
+        "bytes": 49152,
+        "sha256": "f84197c4d6446d0dede1f5119baf5cc65d122951e3f2fddd0c4a26fad0ee0a0d"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part010",
+        "bytes": 49152,
+        "sha256": "c38dec505bfea9c738c8e819a409078ef4b313c62096728c116b92c7f6a98801"
+      },
+      {
+        "name": "baseline-focused-evidence.zip.part011",
+        "bytes": 16935,
+        "sha256": "663c0b86e80bd75e22fad866eab81691fe1b885c3b83cc2b7382c6e4106c8a54"
+      }
+    ]
+  }
+}

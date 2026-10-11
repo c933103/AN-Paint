@@ -199,6 +199,7 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
         const val RELATIVE_PATH="Download/anpaint-ci-dialog-evidence/"
         const val MAX_FILE=2L*1024*1024
         const val MAX_CASE=24L*1024*1024
-        val METHODS=setOf("normalAdvancedColourKeepsFiniteViewportAndFixedControls")
+        val METHODS=setOf("normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+            "retainedColourStateSurvivesRotationImeCancelAndReopen")
     }
 }
