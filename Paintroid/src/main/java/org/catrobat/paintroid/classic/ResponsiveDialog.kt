@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.classic
 
 import android.content.Context
+import android.content.res.Configuration
 import android.database.DataSetObserver
 import android.view.Gravity
 import android.view.View
@@ -12,12 +13,16 @@ import android.widget.*
  * The heading/actions have bounded viewports, never bounded text or line counts.
  * The central region retains at least the remaining 40% at the maximum sizes.
  */
-internal class ResponsiveDialogLayout(context: Context): LinearLayout(context) {
+internal class ResponsiveDialogLayout(context: Context,private val resized: (() -> Unit)?=null): LinearLayout(context) {
     init {orientation=VERTICAL;setBackgroundColor(EditorColours.surface)}
     fun region(view: View,fraction: Float,tagName: String) {
         addView(RegionScrollView(context,fraction).apply {tag=tagName;addView(view)},LayoutParams(-1,-2))
     }
     fun body(view: View) {addView(view,LayoutParams(-1,-2,1f))}
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        resized?.invoke();requestLayout()
+    }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         val maximum=(resources.configuration.screenHeightDp*resources.displayMetrics.density*.88f).toInt()
         val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) maximum else minOf(maximum,MeasureSpec.getSize(heightMeasureSpec))

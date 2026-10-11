@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -15,6 +16,7 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+import android.widget.ScrollView
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
@@ -24,6 +26,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
+import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
@@ -31,6 +34,7 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowAlertDialog
 import java.io.File
+import java.time.Duration
 import java.util.Locale
 
 /** Actual mounted geometry + scroll reveal + root-dispatched pointer input.
@@ -49,7 +53,9 @@ class LocalizedDialogLayoutTest {
         val app=RuntimeEnvironment.getApplication() as Context
         val oldLocale=Locale.getDefault();val oldTag=AppLanguage.selectedTag(app);val oldResources=PaintApplication.currentResources
         AppLanguage.select(app,tag)
-        val controller=Robolectric.buildActivity(Activity::class.java).setup().visible().windowFocusChanged(true)
+        val controller=Robolectric.buildActivity(Activity::class.java)
+        controller.get().setTheme(R.style.ClassicPaintTheme)
+        controller.setup().visible().windowFocusChanged(true)
         val activity=controller.get();AppLanguage.refresh(activity)
         try {return block(activity)} finally {
             controller.pause().stop().destroy();idle()
@@ -74,7 +80,7 @@ class LocalizedDialogLayoutTest {
         for(line in 0 until layout.lineCount) {
             val lineRect=Rect(view.totalPaddingLeft,view.totalPaddingTop+layout.getLineTop(line),
                 view.width-view.totalPaddingRight,view.totalPaddingTop+layout.getLineBottom(line))
-            view.requestRectangleOnScreen(lineRect,true);idle()
+            view.requestRectangleOnScreen(Rect(lineRect),true);idle()
             val visible=Rect();assertTrue("Not visible ${view.text}",view.getLocalVisibleRect(visible))
             assertTrue("Line $line not revealed: $lineRect in $visible: ${view.text}",visible.contains(lineRect))
         }
@@ -92,7 +98,8 @@ class LocalizedDialogLayoutTest {
             val event=MotionEvent.obtain(time,time+if(action==MotionEvent.ACTION_UP) 40 else 0,action,x,y,0)
             try {assertTrue("Pointer event was not handled for ${view.text}",root.dispatchTouchEvent(event))} finally {event.recycle()}
         }
-        idle()
+        // ListView retains its real pressed-state delay before delivering an item click.
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(200))
     }
     private fun back(dialog: Dialog) {
         dialog.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK))
@@ -174,12 +181,12 @@ class LocalizedDialogLayoutTest {
                 val rows=JSONArray()
                 for(view in controls) {
                     val caption=VerticalText.wrapLabel(view.text.toString(),view.paint,96*view.resources.displayMetrics.density)
-                    val bounds=VerticalText.bounds(caption,view.paint,VerticalText.uiDirection(),GlyphOrientation.MIXED)
+                    val bounds=VerticalText.bounds(caption,view.paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
                     assertTrue("Column width ${view.text}",view.width>=kotlin.math.ceil(bounds.width()).toInt()+view.paddingLeft+view.paddingRight)
                     assertTrue("Column height ${view.text}",view.height>=kotlin.math.ceil(bounds.height()).toInt()+view.paddingTop+view.paddingBottom)
                     for(x in listOf(0,(view.width-16).coerceAtLeast(0))) for(y in listOf(0,(view.height-16).coerceAtLeast(0))) {
                         val tile=Rect(x,y,minOf(view.width,x+16),minOf(view.height,y+16))
-                        view.requestRectangleOnScreen(tile,true);idle()
+                        view.requestRectangleOnScreen(Rect(tile),true);idle()
                         val visible=Rect();assertTrue(view.getLocalVisibleRect(visible));assertTrue("Column edge $tile in $visible",visible.contains(tile))
                     }
                     rows.put(JSONObject().put("text",view.text).put("width",view.width).put("height",view.height).put("column_bounds",bounds.toString()))
@@ -197,10 +204,81 @@ class LocalizedDialogLayoutTest {
         }
     }
 
+
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun pointerSwipesScrollTitleAndFooterWithoutInvokingActions()=withActivity("hu") {activity ->
+        var calls=0
+        val dialog=EditorDialogBuilder(activity).setTitle(c05Title+" "+c05Title).setMessage("Unchanged body")
+            .setPositiveButton(c05Title) {_,_->calls++}.setNegativeButton(c05Title) {_,_->calls++}
+            .setNeutralButton(c05Title) {_,_->calls++}.show();idle()
+        try {
+            val root=dialog.window!!.decorView
+            for(tag in listOf("dialog_title_scroll","dialog_actions_scroll")) {
+                val scroll=root.findViewWithTag<ScrollView>(tag)
+                assertTrue(tag,scroll.getChildAt(0).height>scroll.height)
+                val before=scroll.scrollY;val location=IntArray(2);val origin=IntArray(2)
+                scroll.getLocationOnScreen(location);root.getLocationOnScreen(origin)
+                val x=location[0]-origin[0]+scroll.width*.5f
+                val start=location[1]-origin[1]+scroll.height*.85f
+                val end=location[1]-origin[1]+scroll.height*.15f
+                val time=SystemClock.uptimeMillis()
+                for(step in 0..10) {
+                    val action=when(step) {0->MotionEvent.ACTION_DOWN;10->MotionEvent.ACTION_UP;else->MotionEvent.ACTION_MOVE}
+                    val event=MotionEvent.obtain(time,time+step*20L,action,x,start+(end-start)*step/10,0)
+                    try {assertTrue(root.dispatchTouchEvent(event))} finally {event.recycle()}
+                }
+                shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(250))
+                assertTrue("Native swipe did not scroll $tag",scroll.scrollY>before);assertEquals(0,calls)
+            }
+            tap(dialog,dialog.getButton(AlertDialog.BUTTON_POSITIVE));assertEquals(1,calls);assertFalse(dialog.isShowing)
+        } finally {dialog.dismiss()}
+    }
+
+    @Test @Config(fontScale=2f)
+    fun configurationDispatchResizesAnOpenEditorWithoutLosingDraftOrCallbacks()=withActivity("hu") {activity ->
+        val original=ImageCredit("https://example.org/rotate.png","Original")
+        var calls=0
+        val dialog=GalleryCredits.showEditor(activity,listOf(original)) {_,_->calls++}!!.dialog;idle()
+        val root=dialog.window!!.decorView
+        val field=root.findViewWithTag<EditText>("gallery_credit_text");field.setText("Unsaved rotation draft");field.setSelection(3,8);idle()
+        val before=dialog.window!!.attributes.width
+        try {
+            for((index,qualifiers) in listOf("w640dp-h320dp-land-xhdpi","w320dp-h640dp-port-xhdpi").withIndex()) {
+                RuntimeEnvironment.setQualifiers(qualifiers)
+                @Suppress("DEPRECATION")
+                activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
+                // Dispatch the same framework View callback used by a retained Dialog's ViewRoot.
+                root.dispatchConfigurationChanged(activity.resources.configuration);idle()
+                assertSame(field,root.findViewWithTag<EditText>("gallery_credit_text"))
+                assertEquals("Unsaved rotation draft",field.text.toString());assertEquals(index,calls)
+                assertEquals(3,field.selectionStart);assertEquals(8,field.selectionEnd)
+                if(index==0) assertTrue(dialog.window!!.attributes.width>before)
+                else assertEquals(before,dialog.window!!.attributes.width)
+                reveal(root.findViewWithTag("dialog_title"));reveal(field)
+                tap(dialog,root.findViewWithTag("gallery_credit_save"));assertEquals(index+1,calls);assertTrue(dialog.isShowing)
+            }
+            back(dialog);assertEquals(2,calls)
+        } finally {dialog.dismiss();RuntimeEnvironment.setQualifiers("w320dp-h640dp-port-xhdpi")}
+    }
+
+    @Test fun outsideDismissalCallsCancelOnceAndNeverRunsAnAction()=withActivity("en-US") {activity ->
+        var cancelled=0;var actions=0
+        val dialog=EditorDialogBuilder(activity).setTitle("Cancel fixture").setMessage("Unchanged")
+            .setPositiveButton("Accept") {_,_->actions++}.setOnCancelListener {cancelled++}.show();idle()
+        dialog.setCanceledOnTouchOutside(true)
+        val time=SystemClock.uptimeMillis()
+        var handled=false
+        for(action in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP)) {
+            val event=MotionEvent.obtain(time,time+if(action==MotionEvent.ACTION_UP) 40 else 0,action,-1000f,-1000f,0)
+            try {handled=dialog.dispatchTouchEvent(event)||handled} finally {event.recycle()}
+        }
+        idle();assertTrue(handled);assertFalse(dialog.isShowing);assertEquals(1,cancelled);assertEquals(0,actions)
+    }
+
     private fun creditEditor()=withActivity("hu") {activity ->
         val original=ImageCredit("https://example.org/fixture.png","Original author\nCC BY 4.0")
-        var saved=original;var dismissed=0
-        fun open()=GalleryCredits.showEditor(activity,listOf(saved),null,{source,text->saved=ImageCredit(source,text)},{dismissed++})!!.dialog.also {idle()}
+        var saved=original;var dismissed=0;var saves=0;var reject=false
+        fun open()=GalleryCredits.showEditor(activity,listOf(saved),null,{source,text->saves++;if(reject) throw java.io.IOException("Fixture rejection");saved=ImageCredit(source,text)},{dismissed++})!!.dialog.also {idle()}
         val dialog=open()
         try {
             val root=dialog.window!!.decorView
@@ -208,13 +286,15 @@ class LocalizedDialogLayoutTest {
             val value="Unmodified 100% %1\$s\nCreator\nhttps://example.org/source?a=1&b=2"
             field.setText(value);idle();reveal(field)
             val copy=root.findViewWithTag<TextView>("gallery_credit_copy");val save=root.findViewWithTag<TextView>("gallery_credit_save");val done=root.findViewWithTag<TextView>("gallery_credit_done")
-            tap(dialog,copy);assertEquals(value,saved.text)
+            tap(dialog,copy);assertEquals(1,saves);assertEquals(value,saved.text)
             assertEquals(value,(activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip!!.getItemAt(0).text.toString())
-            field.setText("$value\nEdited");idle();tap(dialog,save);assertEquals("$value\nEdited",saved.text);assertTrue(dialog.isShowing)
-            capture(dialog,"editor",listOf(copy,save,done));tap(dialog,done);assertFalse(dialog.isShowing);assertEquals(1,dismissed)
+            field.setText("$value\nEdited");idle();tap(dialog,save);assertEquals(2,saves);assertEquals("$value\nEdited",saved.text);assertTrue(dialog.isShowing)
+            capture(dialog,"editor",listOf(copy,save,done))
+            reject=true;tap(dialog,done);assertEquals(3,saves);assertTrue(dialog.isShowing);assertEquals(0,dismissed)
+            reject=false;tap(dialog,done);assertEquals(4,saves);assertFalse(dialog.isShowing);assertEquals(1,dismissed)
             val reopened=open();assertEquals(saved.text,reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
             reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText("Unsaved draft")
-            back(reopened);assertEquals("$value\nEdited",saved.text);assertEquals(2,dismissed)
+            back(reopened);assertEquals(4,saves);assertEquals("$value\nEdited",saved.text);assertEquals(2,dismissed)
         } finally {dialog.dismiss()}
     }
     @Test @Config(fontScale=2f) fun editorPointerCopySaveDoneAndBackAtLargeText()=creditEditor()

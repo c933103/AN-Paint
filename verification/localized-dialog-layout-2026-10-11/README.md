@@ -21,7 +21,7 @@ repository settings are unchanged.
 
 ## Implementation
 
-- Shared horizontal dialogs retain their actual ListView, adapter identities,
+- Shared horizontal dialogs retain their actual ListView, adapter item IDs/types,
   selection and native Button objects/callbacks, including Save validation.
 - Intrinsic-height titles and wrapping menu rows have no line cap or ellipsis.
 - The title and action regions scroll independently and use at most 25% / 35%
@@ -70,3 +70,28 @@ emulator dialog-specific assertion, accessibility-service, physical-device,
 native-language or complete-all-language runtime acceptance is claimed. Normal
 installed regression checks are a separate CI gate, not evidence that every
 localized dialog was visually reviewed.
+
+## First source-review follow-through
+
+Independent review found a missing RobolectricTestRunner import in the new test
+class, before runtime acceptance. Initial CI also reports a missing explicit
+vertical-bounds spacing argument; the successor supplies the unchanged 1f
+spacing. The exact failed compiler excerpt is retained. The batched successor adds it and drains
+200 ms of the real main-looper pressed-state delay after dispatched pointer
+UP; ListView's callback is not invoked directly. The three strict focused host
+contracts pass again. The original failed source evidence is unchanged.
+
+Further independent review identified two concrete defects before acceptance:
+`requestRectangleOnScreen` mutates its Rect argument, so the test now passes a
+copy and keeps its local-coordinate oracle unchanged; the fixed horizontal
+window width also needed a lifecycle-safe resize callback on configuration
+change. The responsive root now handles that callback without replacing the
+field or intercepting existing dismissal listeners.
+
+The successor additionally tests real DOWN/MOVE/UP scrolling in title/footer
+regions, exactly-once action/save/cancel callbacks, a rejected save that must
+not dismiss, outside cancellation, and retained-editor configuration dispatch
+with draft and callback preservation. The latter is a framework-callback
+simulation in Robolectric, not installed-device rotation acceptance. Fresh
+source CI must establish compilation and runtime outcomes; earlier host results
+alone do not accept these changes.

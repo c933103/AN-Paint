@@ -146,7 +146,8 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     }
     private fun mountHorizontal(dialog: AlertDialog) {
         fun dp(n: Int)=(n*context.resources.displayMetrics.density+.5f).toInt()
-        val shell=ResponsiveDialogLayout(context).apply {tag="horizontal_dialog"}
+        fun resize() {dialog.window!!.setLayout(dp((context.resources.configuration.screenWidthDp*.94).toInt()),ViewGroup.LayoutParams.WRAP_CONTENT)}
+        val shell=ResponsiveDialogLayout(context,::resize).apply {tag="horizontal_dialog"}
         heading?.let {title ->
             shell.region(TextView(context).apply {
                 tag="dialog_title";text=title;textSize=20f;setTextColor(EditorColours.onSurface)
@@ -180,8 +181,7 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
             dialog.getButton(which)?.takeIf {it.visibility==View.VISIBLE}?.let {actions.action(it)}
         }
         if(actions.childCount>0) shell.region(actions,.35f,"dialog_actions_scroll")
-        dialog.setContentView(shell)
-        dialog.window!!.setLayout(dp((context.resources.configuration.screenWidthDp*.94).toInt()),ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.setContentView(shell);resize()
     }
     private fun mount(dialog: AlertDialog) {
         fun dp(n: Int)=(n*context.resources.displayMetrics.density+.5f).toInt()
