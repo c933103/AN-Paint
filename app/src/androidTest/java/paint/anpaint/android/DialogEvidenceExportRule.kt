@@ -63,7 +63,8 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
                 .put("observations",JSONArray()).put("screenshots",JSONArray()).put("outcome","running")
             if(description.methodName=="unchangedAdvancedColourReportsShortLandscapeLimitation") {
                 receipt.put("case_classification","baseline-identical-source-limitation-characterization")
-                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed","pending")
+                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed",BASELINE_INSTALLED)
+                    .put("baseline_evidence",verifiedColourBaseline())
             }
             val started=SystemClock.uptimeMillis()
             var failure: Throwable?=null
@@ -210,11 +211,23 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
     private fun sha256(bytes: ByteArray)=hex(MessageDigest.getInstance("SHA-256").digest(bytes))
     private fun hex(bytes: ByteArray)=bytes.joinToString("") {"%02x".format(it.toInt() and 255)}
     companion object {
+        // Verified historical control, not acceptance of a positive viewport.
+        const val BASELINE_INSTALLED="verified-original-positive-failure"
+        fun verifiedColourBaseline()=JSONObject()
+            .put("run_id",38112708313L)
+            .put("source_commit","cecce0626dc730ba89120936b66de88e1c990335")
+            .put("tested_merge_commit","340dd09be1ce99d36c9ff51faa6d8dfe401c2ded")
+            .put("production_commit","691f8870649a1d21d1441f4e3d0e795660b23e9a")
+            .put("source_tests_sha256","bfb0bf6cdb5ba072bcca64cfc5fa3de017d5a31d345433841d07ad2a05318643")
+            .put("evidence_url","https://github.com/c933103/AN-Paint/blob/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313/source-binding.json")
+            .put("source_binding_sha256","d4072ad9c2b72403663e50ed6205f35c53ce7aaab2133d538f02f577d6835ea3")
+            .put("receipt_sha256","03f20e26ac1d33be758bccc161c11e27a549bf917217ec7d4edcad23778080c2")
         const val OWNER="paint.anpaint.android"
         const val RELATIVE_PATH="Download/anpaint-ci-dialog-evidence/"
         const val MAX_FILE=2L*1024*1024
         const val MAX_CASE=24L*1024*1024
-        val METHODS=setOf("aboutRowsOpenThreeNoticesWithReachableNativeFooters",
+        val METHODS=setOf("aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+            "aboutArtworkNoticeCompletesNativeFooterFlow","aboutGimpTranslationNoticeCompletesNativeFooterFlow",
             "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
             "unchangedAdvancedColourReportsShortLandscapeLimitation")
     }

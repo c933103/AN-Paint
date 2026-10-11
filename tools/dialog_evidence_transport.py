@@ -15,11 +15,29 @@ from vertical_evidence_transport import bounded_digest, require, strict_object
 
 OWNER = 'paint.anpaint.android'
 TEST_CLASS = OWNER + '.LocalizedDialogDeviceTest'
+BASELINE_INSTALLED = 'verified-original-positive-failure'
+BASELINE_EVIDENCE = {
+    'run_id': 38112708313,
+    'source_commit': 'cecce0626dc730ba89120936b66de88e1c990335',
+    'tested_merge_commit': '340dd09be1ce99d36c9ff51faa6d8dfe401c2ded',
+    'production_commit': '691f8870649a1d21d1441f4e3d0e795660b23e9a',
+    'source_tests_sha256': 'bfb0bf6cdb5ba072bcca64cfc5fa3de017d5a31d345433841d07ad2a05318643',
+    'evidence_url': 'https://github.com/c933103/AN-Paint/blob/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313/source-binding.json',
+    'source_binding_sha256': 'd4072ad9c2b72403663e50ed6205f35c53ce7aaab2133d538f02f577d6835ea3',
+    'receipt_sha256': '03f20e26ac1d33be758bccc161c11e27a549bf917217ec7d4edcad23778080c2',
+}
+
+NOTICE_METHODS = {
+    'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
+    'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
+    'aboutGimpTranslationNoticeCompletesNativeFooterFlow': 2,
+}
 METHOD_SCREENS = {
-    'aboutRowsOpenThreeNoticesWithReachableNativeFooters': [
+    'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': [
         '0-about-portrait.png', '1-about-landscape.png',
-        '2-notice-0-initial.png', '3-notice-0-portrait.png',
-        '4-notice-1-initial.png', '5-notice-2-initial.png'],
+        '2-notice-0-initial.png', '3-notice-0-portrait.png'],
+    'aboutArtworkNoticeCompletesNativeFooterFlow': ['0-notice-1-initial.png'],
+    'aboutGimpTranslationNoticeCompletesNativeFooterFlow': ['0-notice-2-initial.png'],
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation': [
         '0-credit-landscape.png', '1-credit-portrait.png'],
     'unchangedAdvancedColourReportsShortLandscapeLimitation': [
@@ -27,7 +45,7 @@ METHOD_SCREENS = {
 }
 MAX_FILE = 2 * 1024 * 1024
 MAX_CASE = 24 * 1024 * 1024
-MAX_TOTAL = 3 * MAX_CASE
+MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; five cases still have only ten PNGs.
 MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
@@ -45,12 +63,12 @@ def source_binding(summary):
     require(len(relevant) == len(METHOD_SCREENS)
             and {c.get('name') for c in relevant} == set(METHOD_SCREENS)
             and all(c.get('status') == 'passed' for c in relevant),
-            'All three exact installed-dialog methods must pass in dedicated dialog report')
-    require(len(cases) == 3 and summary.get('expected_tests') == 3
-            and summary.get('completed_tests') == 3 and summary.get('missing') == []
+            'All five exact installed-dialog methods must pass in dedicated dialog report')
+    require(len(cases) == 5 and summary.get('expected_tests') == 5
+            and summary.get('completed_tests') == 5 and summary.get('missing') == []
             and summary.get('unexpected') == [] and summary.get('errors') == []
             and summary.get('included_tests') == sorted(TEST_CLASS + '#' + name for name in METHOD_SCREENS),
-            'Exact selected three-method dialog phase required')
+            'Exact selected five-method dialog phase required')
     return digest
 
 
@@ -112,11 +130,9 @@ def verify_receipt(receipt, method, digest):
         require(isinstance(tap, list) and len(tap) == 2 and all(type(v) is int for v in tap), 'Invalid pointer')
         bounds = rectangle(pointer['geometry']['visible'])
         require(bounds[0] <= tap[0] < bounds[2] and bounds[1] <= tap[1] < bounds[3], 'Pointer outside visible control')
-    required = {
-        list(METHOD_SCREENS)[0]: ['notice copy', 'other terms', 'notice done'],
-        list(METHOD_SCREENS)[1]: ['credit save', 'credit copy', 'credit done'],
-        list(METHOD_SCREENS)[2]: ['colour cancel'],
-    }[method]
+    required = (['notice copy', 'other terms', 'notice done'] if method in NOTICE_METHODS else
+                ['credit save', 'credit copy', 'credit done'] if method ==
+                'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else ['colour cancel'])
     require(set(required) <= {item.get('label') for item in before}, 'Required native footer actions absent')
     if method == 'unchangedAdvancedColourReportsShortLandscapeLimitation':
         verify_colour_limitation(receipt, observations)
@@ -153,8 +169,8 @@ def verify_interaction_budget(receipt, observations):
 
 
 def verify_native_back(method, observations):
-    expected = ([f'notice-{index}-{action}' for index in range(3) for action in ('nested', 'close')]
-                if method == 'aboutRowsOpenThreeNoticesWithReachableNativeFooters' else
+    expected = ([f'notice-{NOTICE_METHODS[method]}-{action}' for action in ('nested', 'close')]
+                if method in NOTICE_METHODS else
                 ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
     events = [o for o in observations if o.get('kind', '').startswith('native-back-')]
     require([(e.get('kind'), e.get('label')) for e in events] ==
@@ -205,14 +221,18 @@ def verify_colour_limitation(receipt, observations):
     classification = 'baseline-identical-source-limitation-characterization'
     require(receipt.get('case_classification') == classification
             and receipt.get('positive_viewport_accepted') is False
-            and receipt.get('untouched_baseline_installed') == 'pending',
-            'Colour characterization must not claim positive or baseline-device acceptance')
+            and receipt.get('untouched_baseline_installed') == BASELINE_INSTALLED,
+            'Colour characterization must retain verified baseline failure without positive acceptance')
     measured = [o for o in observations if o.get('kind') == 'colour-limitation-characterization']
     cancelled = [o for o in observations if o.get('kind') == 'colour-limitation-cancelled']
     require(len(measured) == len(cancelled) == 1, 'Missing exact colour limitation/cancellation observations')
     state, end = measured[0], cancelled[0]
+    for record in (receipt, state, end):
+        require(record.get('baseline_evidence') == BASELINE_EVIDENCE
+                and type(record['baseline_evidence'].get('run_id')) is int,
+                'Stale, missing or foreign untouched-baseline evidence')
     require(state.get('classification') == classification and state.get('positive_viewport_accepted') is False
-            and state.get('untouched_baseline_installed') == 'pending' and state.get('device_sdk') == 35
+            and state.get('untouched_baseline_installed') == BASELINE_INSTALLED and state.get('device_sdk') == 35
             and type(state.get('font_scale')) in (int, float) and state.get('font_scale') == 1,
             'Colour characterization scope changed')
     require(state['display']['width'] == 640 and state['display']['height'] == 320
@@ -237,7 +257,7 @@ def verify_colour_limitation(receipt, observations):
     require(type(end.get('commit_callbacks')) is int and end.get('commit_callbacks') == 0
             and type(end.get('closed_callbacks')) is int and end.get('closed_callbacks') == 1
             and end.get('dialog_showing') is False and end.get('positive_viewport_accepted') is False
-            and end.get('untouched_baseline_installed') == 'pending',
+            and end.get('untouched_baseline_installed') == BASELINE_INSTALLED,
             'Native Cancel did not close exactly once without committing')
 
 
@@ -313,7 +333,8 @@ def extract(exports, destination, dialog_summary):
     return {'success': True, 'scope': 'installed-api35-dialog-behaviour-and-explicit-colour-limitation', 'source_tests_sha256': digest,
             'source_report': 'dedicated dialog instrumentation summary', 'device_sdk': 35,
             'cases': receipts, 'colour_case_classification': 'baseline-identical-source-limitation-characterization',
-            'positive_colour_viewport_accepted': False, 'untouched_baseline_installed': 'pending',
+            'positive_colour_viewport_accepted': False, 'untouched_baseline_installed': BASELINE_INSTALLED,
+            'baseline_evidence': dict(BASELINE_EVIDENCE),
             'large_text_short_landscape_advanced_colour': 'not-accepted-diagnostic-only'}
 
 

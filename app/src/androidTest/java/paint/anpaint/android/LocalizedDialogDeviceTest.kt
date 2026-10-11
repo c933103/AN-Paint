@@ -66,82 +66,89 @@ class LocalizedDialogDeviceTest {
     private lateinit var activity: ClassicPaintActivity
     private var deadline=Long.MAX_VALUE
 
-    @Test fun aboutRowsOpenThreeNoticesWithReachableNativeFooters()=fixture("fr",2f) {scenario ->
+    @Test fun aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow()=noticeFlow(0)
+    @Test fun aboutArtworkNoticeCompletesNativeFooterFlow()=noticeFlow(1)
+    @Test fun aboutGimpTranslationNoticeCompletesNativeFooterFlow()=noticeFlow(2)
+
+    // Each complete notice flow has its own unchanged 45-second interaction
+    // interval. Keep the original per-notice assertions, not a filtered subset.
+    private fun noticeFlow(index: Int)=fixture("fr",2f) {scenario ->
         val cases=listOf(
             Triple(R.string.ui_third_party_notices,R.string.ui_open_source_credits_and_notices,"legal/THIRD_PARTY_NOTICES.txt"),
             Triple(R.string.ui_icons_fonts_artwork_credits,R.string.ui_icons_fonts_artwork_credits,"legal/ASSET_CREDITS.txt"),
             Triple(R.string.ui_gimp_translations31,R.string.ui_gimp_translations31,"legal/GIMP_TRANSLATION_NOTICES.txt"))
-        for((index,entry) in cases.withIndex()) {
-            openAbout()
-            val menu=onMain {aboutList()}
-            if(index==0) {
-                val about=onMain {menu.rootView}
-                evidence.capture("about-portrait")
-                orient(true,scenario)
-                onMain {assertSame("Retain the real About chooser across rotation",menu,aboutList())
-                    assertSame(about,menu.rootView)}
-                revealText(onMain {about.findViewWithTag("dialog_title")})
-                evidence.capture("about-landscape")
-            }
-            tapRow(menu,onMain {activity.getString(entry.first)})
-            await("notice opened") {termsRoot()!=null}
-            val root=onMain {termsRoot()!!}
-            val expected=context.assets.open(entry.third).bufferedReader().use {it.readText()}
-            fun assertNotice()=onMain {
-                assertEquals(activity.getString(entry.second),root.findViewWithTag<TextView>("terms_title").text.toString())
-                assertEquals("Actual menu callback loaded the bundled notice",expected,
-                    root.findViewWithTag<TextView>("terms_text").text.toString())
-                assertTrue(root.findViewWithTag<View>("terms_scroll").height>0)
-            }
-            assertNotice()
-            revealText(onMain {root.findViewWithTag("terms_title")})
-            evidence.capture("notice-$index-initial")
-            if(index==0) {
-                orient(false,scenario)
-                onMain {assertSame("Keep the same legal dialog after real rotation",root,termsRoot())}
-                assertNotice();revealText(onMain {root.findViewWithTag("terms_title")})
-                evidence.capture("notice-$index-portrait")
-                orient(true,scenario)
-                assertNotice();revealText(onMain {root.findViewWithTag("terms_title")})
-            }
-            onMain {activity.getSystemService(ClipboardManager::class.java)
-                .setPrimaryClip(ClipData.newPlainText("Synthetic dialog test","copy has not run"))}
-            dismissClipboardOverlay("notice-sentinel",waitForAppearance=true)
-            onMain {
-                assertSame("System preview dismissal retains the notice",root,termsRoot())
-                assertEquals("Sentinel survives native preview dismissal","copy has not run",
-                    activity.getSystemService(ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString())
-            }
-            tap("notice copy",onMain {root.findViewWithTag("terms_copy")})
-            onMain {
-                val clipboard=activity.getSystemService(ClipboardManager::class.java)
-                assertEquals(expected,clipboard.primaryClip!!.getItemAt(0).text.toString())
-            }
-            dismissClipboardOverlay("notice-copy",waitForAppearance=true)
-            onMain {
-                assertSame("Copy preview dismissal retains the notice",root,termsRoot())
-                assertEquals(expected,activity.getSystemService(ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString())
-            }
-            tap("other terms",onMain {root.findViewWithTag("terms_more")})
-            await("other terms opened") {topList()?.let {it!==menu && it.rootView.hasWindowFocus()}==true}
-            val nested=onMain {topList()!!.rootView}
-            nativeBack("notice-$index-nested",state={
-                backWindowState(nested).put("notice_retained",termsRoot()===root)
-                    .put("notice_focused",root.hasWindowFocus())
-            }) {!nested.isAttachedToWindow && termsRoot()===root && root.hasWindowFocus()}
-            await("notice resumes after nested Back") {termsRoot()===root && root.hasWindowFocus()}
-            assertNotice()
-            tap("notice done",onMain {root.findViewWithTag("terms_done")})
-            await("Done dismisses the notice") {termsRoot()==null}
-            openAbout();tapRow(onMain {aboutList()},onMain {activity.getString(entry.first)})
-            await("notice reopened") {termsRoot()?.hasWindowFocus()==true}
-            val reopened=onMain {termsRoot()!!}
-            nativeBack("notice-$index-close",state={
-                backWindowState(reopened).put("notice_present",termsRoot()!=null)
-                    .put("editor_focused",activity.window.decorView.hasWindowFocus())
-            }) {!reopened.isAttachedToWindow && termsRoot()==null && activity.window.decorView.hasWindowFocus()}
-            await("Back returned to editor") {termsRoot()==null && activity.window.decorView.hasWindowFocus()}
+        val entry=cases[index]
+        // The former combined loop inherited landscape from index zero.
+        if(index!=0) orient(true,scenario)
+        openAbout()
+        val menu=onMain {aboutList()}
+        if(index==0) {
+            val about=onMain {menu.rootView}
+            evidence.capture("about-portrait")
+            orient(true,scenario)
+            onMain {assertSame("Retain the real About chooser across rotation",menu,aboutList())
+                assertSame(about,menu.rootView)}
+            revealText(onMain {about.findViewWithTag("dialog_title")})
+            evidence.capture("about-landscape")
         }
+        tapRow(menu,onMain {activity.getString(entry.first)})
+        await("notice opened") {termsRoot()!=null}
+        val root=onMain {termsRoot()!!}
+        val expected=context.assets.open(entry.third).bufferedReader().use {it.readText()}
+        fun assertNotice()=onMain {
+            assertEquals(activity.getString(entry.second),root.findViewWithTag<TextView>("terms_title").text.toString())
+            assertEquals("Actual menu callback loaded the bundled notice",expected,
+                root.findViewWithTag<TextView>("terms_text").text.toString())
+            assertTrue(root.findViewWithTag<View>("terms_scroll").height>0)
+        }
+        assertNotice()
+        revealText(onMain {root.findViewWithTag("terms_title")})
+        evidence.capture("notice-$index-initial")
+        if(index==0) {
+            orient(false,scenario)
+            onMain {assertSame("Keep the same legal dialog after real rotation",root,termsRoot())}
+            assertNotice();revealText(onMain {root.findViewWithTag("terms_title")})
+            evidence.capture("notice-$index-portrait")
+            orient(true,scenario)
+            assertNotice();revealText(onMain {root.findViewWithTag("terms_title")})
+        }
+        onMain {activity.getSystemService(ClipboardManager::class.java)
+            .setPrimaryClip(ClipData.newPlainText("Synthetic dialog test","copy has not run"))}
+        dismissClipboardOverlay("notice-sentinel",waitForAppearance=true)
+        onMain {
+            assertSame("System preview dismissal retains the notice",root,termsRoot())
+            assertEquals("Sentinel survives native preview dismissal","copy has not run",
+                activity.getSystemService(ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString())
+        }
+        tap("notice copy",onMain {root.findViewWithTag("terms_copy")})
+        onMain {
+            val clipboard=activity.getSystemService(ClipboardManager::class.java)
+            assertEquals(expected,clipboard.primaryClip!!.getItemAt(0).text.toString())
+        }
+        dismissClipboardOverlay("notice-copy",waitForAppearance=true)
+        onMain {
+            assertSame("Copy preview dismissal retains the notice",root,termsRoot())
+            assertEquals(expected,activity.getSystemService(ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString())
+        }
+        tap("other terms",onMain {root.findViewWithTag("terms_more")})
+        await("other terms opened") {topList()?.let {it!==menu && it.rootView.hasWindowFocus()}==true}
+        val nested=onMain {topList()!!.rootView}
+        nativeBack("notice-$index-nested",state={
+            backWindowState(nested).put("notice_retained",termsRoot()===root)
+                .put("notice_focused",root.hasWindowFocus())
+        }) {!nested.isAttachedToWindow && termsRoot()===root && root.hasWindowFocus()}
+        await("notice resumes after nested Back") {termsRoot()===root && root.hasWindowFocus()}
+        assertNotice()
+        tap("notice done",onMain {root.findViewWithTag("terms_done")})
+        await("Done dismisses the notice") {termsRoot()==null}
+        openAbout();tapRow(onMain {aboutList()},onMain {activity.getString(entry.first)})
+        await("notice reopened") {termsRoot()?.hasWindowFocus()==true}
+        val reopened=onMain {termsRoot()!!}
+        nativeBack("notice-$index-close",state={
+            backWindowState(reopened).put("notice_present",termsRoot()!=null)
+                .put("editor_focused",activity.window.decorView.hasWindowFocus())
+        }) {!reopened.isAttachedToWindow && termsRoot()==null && activity.window.decorView.hasWindowFocus()}
+        await("Back returned to editor") {termsRoot()==null && activity.window.decorView.hasWindowFocus()}
     }
 
     @Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()=fixture("hu",2f) {scenario ->
@@ -230,7 +237,8 @@ class LocalizedDialogDeviceTest {
     /** This characterizes an unchanged-source limitation; it does not accept
      * colour usability. The original positive oracle is preserved verbatim in
      * verification/localized-dialog-layout-2026-10-11/colour-separate-scope/.
-     * An untouched-baseline installed comparison and a corrective PR are pending.
+     * The untouched-baseline installed comparison reproduces this failure;
+     * the positive corrective gate remains separate.
      */
     @Test fun unchangedAdvancedColourReportsShortLandscapeLimitation()=fixture("en-US",1f) {scenario ->
         orient(true,scenario)
@@ -253,7 +261,8 @@ class LocalizedDialogDeviceTest {
                 // not fabricated or intercepted parent MeasureSpec values.
                 evidence.observe(JSONObject().put("kind","colour-limitation-characterization")
                     .put("classification","baseline-identical-source-limitation-characterization")
-                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed","pending")
+                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED)
+                    .put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline())
                     .put("device_sdk",Build.VERSION.SDK_INT).put("font_scale",activity.resources.configuration.fontScale)
                     .put("density",activity.resources.displayMetrics.density)
                     .put("display",colourGeometry(display)).put("dialog",colourGeometry(root))
@@ -276,7 +285,8 @@ class LocalizedDialogDeviceTest {
                 assertEquals(0,committed);assertEquals(1,closed)
                 evidence.observe(JSONObject().put("kind","colour-limitation-cancelled")
                     .put("commit_callbacks",committed).put("closed_callbacks",closed).put("dialog_showing",dialog.isShowing)
-                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed","pending"))
+                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED)
+                    .put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline()))
             }
             settle(onMain {activity.window.decorView})
             evidence.capture("colour-cancelled")

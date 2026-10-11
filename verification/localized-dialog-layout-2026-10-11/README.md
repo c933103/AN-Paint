@@ -235,3 +235,56 @@ seconds; 44 selected transport/matrix/budget cases pass under Python -O. The
 single-key route, callback checks, interval metadata and fail-closed collector
 still require fresh compilation and installed execution. No deadline, source
 inventory or production code was relaxed.
+
+## Independently bounded notice flows
+
+Exact head `1783e798d539c40f8b7ab505857340c79430f7b1` passed Code review,
+all 836 JVM cases (28 shared-dialog cases), lint, compilation and generation in
+[run38114313848](https://github.com/c933103/AN-Paint/actions/runs/38114313848).
+All 380 model report files remain byte-identical. Installed execution completed
+100 methods: 99 passed, one failed, and the restart pair was correctly withheld.
+Credit's real native Back discard now passes before cleanup, preserving the saved
+draft with exactly four save callbacks and two dismissals. Its whole interaction
+was 12.477 seconds; colour's unchanged-limitation characterization was 1.639.
+
+The combined three-notice About case exhausted its whole 45-second budget after
+45.715 seconds while reopening the second notice. Its recorded interval is
+incomplete and outside the deadline; this is not an independent eight-second
+layout-settle defect. Three earlier native Back postconditions passed. The
+original screenshot shows the About list during scrolling. The 300-second phase
+did not time out (76.315 seconds), and the 16-method ordinary phase passed in
+127.824 seconds. `notice-case-successor/` preserves the original combined flow,
+its exact source/range hashes, original result/timing classifications and the
+model-byte comparison. The failed run is never converted to an acceptance.
+
+The same three complete notice flows are decomposed into three explicitly named
+cases, each retaining its own 45-second interaction gate. Third-party notices
+retain both live About and notice rotations; artwork and GIMP explicitly start
+in the landscape orientation previously inherited from the first flow. Every
+original heading/body, menu, Copy/clipboard, Other terms, nested Back, Done,
+reopen and closing Back assertion remains required. The exact dialog phase now
+contains five cases and ten screenshots; the complete API35 union is 30 app plus
+74 native methods. API30 explicitly suppresses six app methods and still runs
+22 app methods. Missing, skipped, renamed or duplicate identities remain fatal.
+
+The 300-second dialog and 180-second ordinary limits remain unchanged. Five
+45-second interactions leave a shared 75-second setup/teardown/export allowance;
+it is an operational cancellation limit, not a sum of every possible helper
+maximum. Added fixture overhead and complete successful notice durations require
+fresh exact-head measurement. No production code changes accompany this test
+partition. The separate colour positive-viewport requirement remains open.
+
+The separate [untouched-develop installed control](https://github.com/c933103/AN-Paint/tree/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313)
+now establishes the same Advanced Colour limitation on API35, 640×320, density1,
+en-US, font1×: holder384×138, editor360×0, content height470; the preserved
+positive viewport assertion times out. All 487 tracked production source files
+match develop691f8870 in that run's corresponding-source archive. This external
+control supersedes the earlier pending investigation status while preserving all
+original receipt values and the separate corrective task's positive gate.
+
+Final decomposed-notice successor validation passes all 587 host cases in
+166.386 seconds, with 50 selected transport/matrix/budget cases under Python -O
+in 45.169 seconds. The earlier pre-provenance 585-case and 48-case optimized
+runs are retained separately. Final source digest is recorded with the exact
+30-method SDK-aware partition; fresh compilation and installed execution still
+must establish every complete flow and total phase timing.

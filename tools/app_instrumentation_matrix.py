@@ -24,7 +24,9 @@ GALLERY_METHODS = {
 }
 DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
 DIALOG_METHODS = {
-    'aboutRowsOpenThreeNoticesWithReachableNativeFooters',
+    'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow',
+    'aboutArtworkNoticeCompletesNativeFooterFlow',
+    'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
     'unchangedAdvancedColourReportsShortLandscapeLimitation',
 }
@@ -53,7 +55,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} if sdk == 35 else set()):
-        raise ValueError('The exact three API35 dialog methods and API30 suppression are required')
+        raise ValueError('The exact five API35 dialog methods and API30 suppression are required')
     parts = {'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS}
     if sdk == 35:
         parts.update(dialog=dialog, seed=seed, verify=verify)

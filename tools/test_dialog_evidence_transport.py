@@ -7,10 +7,11 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import textwrap
 import unittest
 import zipfile
 
-from dialog_evidence_transport import (METHOD_SCREENS, OWNER, TEST_CLASS, PNG,
+from dialog_evidence_transport import (METHOD_SCREENS, NOTICE_METHODS, BASELINE_INSTALLED, BASELINE_EVIDENCE, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt)
 
 DIGEST = 'a' * 64
@@ -18,7 +19,7 @@ DIGEST = 'a' * 64
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=3, completed_tests=3, missing=[], unexpected=[], errors=[],
+                source_tests_sha256=DIGEST, expected_tests=5, completed_tests=5, missing=[], unexpected=[], errors=[],
                 included_tests=sorted(TEST_CLASS + '#' + name for name in METHOD_SCREENS),
                 cases=[dict(classname=TEST_CLASS, name=m, status='passed') for m in METHOD_SCREENS])
 
@@ -38,21 +39,21 @@ def receipt(method):
                  screenshots=METHOD_SCREENS[method], observations=observations)
     if method == 'unchangedAdvancedColourReportsShortLandscapeLimitation':
         classification = 'baseline-identical-source-limitation-characterization'
-        value.update(case_classification=classification, positive_viewport_accepted=False, untouched_baseline_installed='pending')
+        value.update(case_classification=classification, positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE))
         def geometry(width, height, tag=None):
             return dict(width=width, height=height, measured_width=width, measured_height=height,
                         raw=[0, 0, width, height], visible=[0, 0, width, height],
                         layout_width=-1, layout_height=-2, tag=tag)
         observations.extend([
             dict(kind='colour-limitation-characterization', classification=classification,
-                 positive_viewport_accepted=False, untouched_baseline_installed='pending', device_sdk=35, font_scale=1,
+                 positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE), device_sdk=35, font_scale=1,
                  display=geometry(640, 320), dialog=geometry(384, 240), holder=geometry(360, 120),
                  holder_parent=geometry(360, 120), inner=geometry(360, 0), inner_content=geometry(360, 700),
                  fixed=[geometry(100, 40, tag) for tag in ('colour_advanced_tab', 'custom_colours_panel', 'add_custom_colour')]),
             dict(kind='colour-limitation-cancelled', commit_callbacks=0, closed_callbacks=1, dialog_showing=False,
-                 positive_viewport_accepted=False, untouched_baseline_installed='pending')])
-    back_labels = ([f'notice-{index}-{action}' for index in range(3) for action in ('nested', 'close')]
-                   if method == 'aboutRowsOpenThreeNoticesWithReachableNativeFooters' else
+                 positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE))])
+    back_labels = ([f'notice-{NOTICE_METHODS[method]}-{action}' for action in ('nested', 'close')]
+                   if method in NOTICE_METHODS else
                    ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
     for label in back_labels:
         before = dict(target_attached=True, target_showing=True, target_focused=True)
@@ -126,14 +127,17 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             write_archive(self.exports, method)
         self.method = next(iter(METHOD_SCREENS))
 
-    def test_exact_source_bound_three_case_export_and_atomic_extraction(self):
+    def test_exact_source_bound_five_case_export_and_atomic_extraction(self):
         result = extract(self.exports, self.output, self.summary)
         self.assertTrue(result['success'])
         self.assertEqual(result['source_tests_sha256'], DIGEST)
-        self.assertEqual(len(result['cases']), 3)
+        self.assertEqual(len(result['cases']), 5)
         self.assertEqual(len(list(self.output.rglob('*.png'))), 10)
-        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 3)
+        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 5)
         self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted-diagnostic-only')
+        self.assertEqual(result['untouched_baseline_installed'], BASELINE_INSTALLED)
+        self.assertEqual(result['baseline_evidence'], BASELINE_EVIDENCE)
+        self.assertIs(result['positive_colour_viewport_accepted'], False)
         with self.assertRaises(ValueError):
             extract(self.exports, self.output, self.summary)
 
@@ -220,6 +224,101 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             self.assertFalse(self.output.exists())
 
 
+class NoticeFlowPartitionContractTest(unittest.TestCase):
+    """Partition, not weaker acceptance: preserve the original complete loop body.
+
+    The old combined method on head1783e798/run38114313848 remains FAILED:
+    interaction elapsed45715 ms, block_completed=false, within_deadline=false.
+    Original whole source SHA256:
+    651454e20b5bf1b29746ba2616140ce9d2af0f8a2e3f050adf3adf2018a01067
+    Original runner source_tests_sha256:
+    2891e328738baa1719c9780f4b42d99cc3f96ca8640de9abf5515ad86d2ba356
+    Original aboutRowsOpenThreeNoticesWithReachableNativeFooters receipt SHA256:
+    289adcf0ca7ce11cdc6814ffd2cbe16b81909ea2a582ac9d40b706f26836ff74
+    The normalized original loop-body SHA below excludes only common indentation
+    and its outer for-loop wrapper. It retains every original assertion verbatim.
+    """
+    @classmethod
+    def setUpClass(cls):
+        cls.root = Path(__file__).resolve().parents[1]
+        cls.source = (cls.root / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()
+        cls.flow = cls.source.split('private fun noticeFlow(index: Int)', 1)[1].split(
+            '@Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()', 1)[0]
+
+    def test_exact_three_index_resource_title_asset_tuples_and_five_sdk35_methods(self):
+        expected = {
+            'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
+            'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
+            'aboutGimpTranslationNoticeCompletesNativeFooterFlow': 2,
+        }
+        self.assertEqual(NOTICE_METHODS, expected)
+        bindings = re.findall(r'@Test fun (\w+)\(\)=noticeFlow\((\d+)\)', self.source)
+        self.assertEqual({name: int(index) for name, index in bindings}, expected)
+        tuples = re.findall(r'Triple\(R.string.(\w+),R.string.(\w+),"([^"]+)"\)', self.flow)
+        self.assertEqual(tuples, [
+            ('ui_third_party_notices', 'ui_open_source_credits_and_notices', 'legal/THIRD_PARTY_NOTICES.txt'),
+            ('ui_icons_fonts_artwork_credits', 'ui_icons_fonts_artwork_credits', 'legal/ASSET_CREDITS.txt'),
+            ('ui_gimp_translations31', 'ui_gimp_translations31', 'legal/GIMP_TRANSLATION_NOTICES.txt')])
+        self.assertIn('=fixture("fr",2f)', self.flow)
+        self.assertIn('val entry=cases[index]', self.flow)
+        self.assertEqual(set(re.findall(r'@Test fun (\w+)\(', self.source)), set(METHOD_SCREENS))
+        rule = (self.root / 'app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt').read_text()
+        whitelist = rule.split('val METHODS=setOf(', 1)[1].split(')', 1)[0]
+        self.assertEqual(set(re.findall(r'"(\w+)"', whitelist)), set(METHOD_SCREENS))
+        from run_android_instrumentation import declared_tests
+        directory = self.root / 'app/src/androidTest'
+        self.assertEqual({name for owner, name in declared_tests(directory, sdk_level=35) if owner == TEST_CLASS}, set(METHOD_SCREENS))
+        self.assertFalse({name for owner, name in declared_tests(directory, sdk_level=30) if owner == TEST_CLASS})
+
+    def test_complete_original_notice_flow_and_first_case_rotations_are_preserved(self):
+        body = self.flow.split('        openAbout()', 1)[1].rsplit('\n    }', 1)[0]
+        normalized = textwrap.dedent('        openAbout()' + body) + '\n'
+        self.assertEqual(hashlib.sha256(normalized.encode()).hexdigest(),
+            'a04a779411a0bfbefaaa37e8af1ffabb2d5235895becb43bc24d15b299c4bc04')
+        # Cases 1/2 formerly inherited landscape from case 0. Each new independent
+        # fixture establishes the same orientation before opening its real menu.
+        self.assertLess(self.flow.index('if(index!=0) orient(true,scenario)'), self.flow.index('openAbout()'))
+        self.assertEqual(normalized.count('if(index==0)'), 2)
+        self.assertEqual(normalized.count('orient(true,scenario)'), 2)
+        self.assertEqual(normalized.count('orient(false,scenario)'), 1)
+        for required in ('Retain the real About chooser across rotation', 'Keep the same legal dialog after real rotation',
+                         'tap("notice copy"', 'tap("other terms"', 'tap("notice done"',
+                         'nativeBack("notice-$index-nested"', 'nativeBack("notice-$index-close"',
+                         'openAbout();tapRow(', 'assertEquals(expected,clipboard.primaryClip',
+                         'assertEquals("Actual menu callback loaded the bundled notice",expected,'):
+            self.assertIn(required, normalized)
+
+    def test_exact_ten_pngs_keep_original_states_with_per_method_capture_indices(self):
+        self.assertEqual([METHOD_SCREENS[name] for name in NOTICE_METHODS], [
+            ['0-about-portrait.png', '1-about-landscape.png', '2-notice-0-initial.png', '3-notice-0-portrait.png'],
+            ['0-notice-1-initial.png'], ['0-notice-2-initial.png']])
+        self.assertEqual(len(METHOD_SCREENS), 5)
+        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 10)
+        self.assertEqual(len(METHOD_SCREENS['retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']), 2)
+        self.assertEqual(len(METHOD_SCREENS['unchangedAdvancedColourReportsShortLandscapeLimitation']), 2)
+
+    def test_each_notice_requires_its_own_copy_nested_back_done_reopen_and_close_back(self):
+        for method, index in NOTICE_METHODS.items():
+            verify_receipt(receipt(method), method, DIGEST)
+            mutations = [lambda r: observation(r, 'native-back-after').update(label='notice-99-nested'),
+                         lambda r: r['observations'].remove(observation(r, 'native-back-after')),
+                         lambda r: r.update(screenshots=METHOD_SCREENS[next(m for m in NOTICE_METHODS if m != method)]),
+                         lambda r: r.update(test_method='aboutRowsOpenThreeNoticesWithReachableNativeFooters')]
+            for mutate in mutations:
+                data = receipt(method); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+            for label in ('notice copy', 'other terms', 'notice done'):
+                data = receipt(method)
+                data['observations'] = [o for o in data['observations'] if o.get('label') != label]
+                with self.subTest(method=method, label=label), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+        data = summary()
+        data['cases'][0]['name'] = 'aboutRowsOpenThreeNoticesWithReachableNativeFooters'
+        with self.assertRaises(ValueError):
+            source_binding(data)
+
+
 class NativeBackAndInteractionBudgetContractTest(unittest.TestCase):
     """Source contracts + synthetic receipts, not proof of installed key delivery.
 
@@ -264,7 +363,7 @@ class NativeBackAndInteractionBudgetContractTest(unittest.TestCase):
         self.assertIn('assertEquals(4,calls);assertEquals(2,dismissed);assertEquals(draft,saved)', credit)
 
     def test_back_receipt_requires_one_injection_and_positive_pre_cleanup_outcome(self):
-        methods = list(METHOD_SCREENS)[:2]
+        methods = [next(iter(NOTICE_METHODS)), 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']
         mutations = [lambda r: observation(r, 'native-back-injected').update(injected=False),
                      lambda r: observation(r, 'native-back-injected').update(injection_count=2),
                      lambda r: observation(r, 'native-back-injected').update(injection_count=True),
@@ -292,7 +391,7 @@ class NativeBackAndInteractionBudgetContractTest(unittest.TestCase):
             verify_receipt(data, methods[0], DIGEST)
 
     def test_ime_diagnostics_do_not_substitute_for_positive_dialog_cancellation(self):
-        method = list(METHOD_SCREENS)[1]
+        method = 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation'
         # One Back can close the IME while leaving the credit dialog open. Record
         # that honestly and reject it; never inject another Back as a fallback.
         data = receipt(method)
@@ -308,7 +407,7 @@ class NativeBackAndInteractionBudgetContractTest(unittest.TestCase):
                 verify_receipt(data, method, DIGEST)
 
     def test_back_cleanup_state_or_duplicate_late_event_cannot_supply_acceptance(self):
-        method = list(METHOD_SCREENS)[1]
+        method = 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation'
         data = receipt(method)
         after = observation(data, 'native-back-after')
         data['observations'].remove(after)
@@ -596,7 +695,50 @@ class ColourLimitationScopeContractTest(unittest.TestCase):
             with self.subTest(mutate=mutate), self.assertRaises(ValueError):
                 verify_receipt(data, self.method, DIGEST)
 
-    def test_collector_requires_exact_separate_three_method_phase(self):
+    def test_current_verified_baseline_evidence_is_exact_and_shared_by_kotlin_exporter(self):
+        self.assertEqual(BASELINE_INSTALLED, 'verified-original-positive-failure')
+        self.assertEqual(BASELINE_EVIDENCE['run_id'], 38112708313)
+        self.assertEqual(BASELINE_EVIDENCE['source_commit'], 'cecce0626dc730ba89120936b66de88e1c990335')
+        self.assertEqual(BASELINE_EVIDENCE['production_commit'], '691f8870649a1d21d1441f4e3d0e795660b23e9a')
+        self.assertIn('/8096234be003cd6a287660d32884c2541c518e65/', BASELINE_EVIDENCE['evidence_url'])
+        self.assertEqual(BASELINE_EVIDENCE['source_binding_sha256'],
+                         'd4072ad9c2b72403663e50ed6205f35c53ce7aaab2133d538f02f577d6835ea3')
+        self.assertEqual(BASELINE_EVIDENCE['receipt_sha256'],
+                         '03f20e26ac1d33be758bccc161c11e27a549bf917217ec7d4edcad23778080c2')
+        root = Path(__file__).resolve().parents[1]
+        rule = (root / 'app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt').read_text()
+        metadata = rule.split('fun verifiedColourBaseline()=JSONObject()', 1)[1].split('const val OWNER=', 1)[0]
+        kotlin = dict(re.findall(r'\.put\("([^"]+)","([^"]+)"\)', metadata))
+        kotlin['run_id'] = int(re.search(r'\.put\("run_id",(\d+)L\)', metadata)[1])
+        self.assertEqual(kotlin, BASELINE_EVIDENCE)
+        self.assertIn('const val BASELINE_INSTALLED="verified-original-positive-failure"', rule)
+        source = (root / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()
+        self.assertEqual(source.count('.put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline())'), 2)
+        self.assertIn('.put("baseline_evidence",verifiedColourBaseline())', rule)
+        data = receipt(self.method)
+        verify_receipt(data, self.method, DIGEST)
+        self.assertIs(data['positive_viewport_accepted'], False)
+
+    def test_stale_missing_foreign_or_changed_baseline_provenance_is_rejected_everywhere(self):
+        for kind in (None, 'colour-limitation-characterization', 'colour-limitation-cancelled'):
+            def target(data):
+                return data if kind is None else observation(data, kind)
+            for marker in ('pending', 'passed', True, None):
+                data = receipt(self.method); target(data)['untouched_baseline_installed'] = marker
+                with self.subTest(kind=kind, marker=marker), self.assertRaises(ValueError):
+                    verify_receipt(data, self.method, DIGEST)
+            for field in BASELINE_EVIDENCE:
+                data = receipt(self.method)
+                target(data)['baseline_evidence'][field] = 'foreign'
+                with self.subTest(kind=kind, field=field), self.assertRaises(ValueError):
+                    verify_receipt(data, self.method, DIGEST)
+            for evidence in (None, {}, {**BASELINE_EVIDENCE, 'extra': 'unverified'},
+                             {**BASELINE_EVIDENCE, 'run_id': float(BASELINE_EVIDENCE['run_id'])}):
+                data = receipt(self.method); target(data)['baseline_evidence'] = evidence
+                with self.subTest(kind=kind, evidence=evidence), self.assertRaises(ValueError):
+                    verify_receipt(data, self.method, DIGEST)
+
+    def test_collector_requires_exact_separate_five_method_phase(self):
         data = summary()
         data['cases'].append(dict(classname='paint.anpaint.android.EditorDeviceTest', name='extra', status='passed'))
         with self.assertRaises(ValueError):
@@ -636,7 +778,7 @@ class ColourLimitationScopeContractTest(unittest.TestCase):
                      '"holder_parent",colourGeometry(holder.parent as View)', '"inner_content",colourGeometry(inner.getChildAt(0))',
                      'evidence.capture("colour-limitation")', 'evidence.capture("colour-cancelled")',
                      'tap("colour cancel"', 'assertEquals(0,committed);assertEquals(1,closed)',
-                     '"positive_viewport_accepted",false', '"untouched_baseline_installed","pending"'):
+                     '"positive_viewport_accepted",false', '"untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED'):
             self.assertIn(text, block)
         self.assertNotIn('@Test fun normalAdvancedColourKeepsFiniteViewportAndFixedControls()', source)
 
