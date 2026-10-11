@@ -741,3 +741,28 @@ Fresh executable source-contract/Python-expression checks verify 25 full source 
 
 Current totals: **475 rows = 3 completed structural + 1 completed bounded semantic/source distinction + 471 pending**. Previous conclusions remain withdrawn.
 
+## 11 October 2026: PR7 / PR9 archival implementation disposition
+
+[Fresh source/test and complete changed-path proof](pr7-pr9-disposition-2026-10-11/README.md)
+supports closing the historical implementation PRs as superseded **without merging
+them**. This is PR cleanup while new localization work is paused. The PR comments
+and live GitHub state record whether closure has occurred. Original branches and
+evidence remain preserved.
+
+The branch-only handoff records remain immutable withdrawn evidence:
+- [Shared PR2 handoff](https://github.com/c933103/AN-Paint/blob/730319aea40eb205d18c894c496e500d6f660ac6/verification/localization-handoff-pr2.md) (also byte-identical at PR9 head)
+- [PR7 handoff](https://github.com/c933103/AN-Paint/blob/730319aea40eb205d18c894c496e500d6f660ac6/verification/localization-handoff-pr7.md)
+- [PR9 handoff](https://github.com/c933103/AN-Paint/blob/a0afe1cfed363b65c3880c9875034b0460f811a2/verification/localization-handoff-pr9.md)
+
+Their wrappers withdraw every prior progress/completion/repair/verification/no-defect
+claim. Their old catalogue and test-count statements are historical inputs, not
+accepted current results. Indexing these objects does not restore the old claims
+or require copying historical files into develop.
+
+The three narrowly fixed Codex source findings may be resolved independently of
+the broader reset obligations. **GH-018, GH-022, GH-023 and every other row/status
+remain unchanged.** No pending language/history/original-discussion acceptance task
+is closed by either code-review flag resolution or superseded PR closure.
+
+Current totals remain **475 = 3 completed structural + 1 completed bounded R-005
+distinction + 471 pending**. The companion evidence register is unchanged.
