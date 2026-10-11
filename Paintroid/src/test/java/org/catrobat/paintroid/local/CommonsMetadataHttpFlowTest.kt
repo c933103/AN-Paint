@@ -241,7 +241,7 @@ class CommonsMetadataHttpFlowTest {
     }
     @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi")
     fun representativeM02StatusRetainsFullAccessibleTextAtNormalScale() = readable(1f)
-    @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi-fontScale200")
+    @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi",fontScale=2f)
     fun representativeM02StatusRetainsFullAccessibleTextAtDoubleScale() = readable(2f)
     private fun readable(scale: Float) {
         for(insert in listOf(false,true)) for(tag in listOf("en-GB","fr","ar","ja","vi-Hani","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {

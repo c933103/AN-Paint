@@ -97,6 +97,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
                       'representativeM02StatusRetainsFullAccessibleTextAtDoubleScale',
                       'assertFalse(requests.last().read)', 'assertEquals(before,files(activity))']:
             self.assertIn(token, flow)
+        self.assertIn('@Config(qualifiers="w320dp-h640dp-port-xhdpi",fontScale=2f)', flow)
+        self.assertNotIn('xhdpi-fontScale', flow)
         resolved = (tests/'CommonsMetadataHttpTranslationTest.kt').read_text()
         self.assertIn('@Config(sdk=[30,35])', resolved)
         self.assertIn('AppLanguage.select(context,tag)', resolved)
