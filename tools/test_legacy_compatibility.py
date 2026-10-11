@@ -11,6 +11,7 @@ from app_instrumentation_matrix import (app_partition, coverage_paths, report_pa
                                         verify_app_reports)
 from run_android_instrumentation import RESTART_SEED, RESTART_VERIFY, declared_tests
 from test_app_instrumentation_matrix import SOURCE, receipts
+from test_ci_timeout_budget import job, one, step_minutes
 
 ROOT = Path(__file__).resolve().parents[1]
 SHELL = (ROOT/'tools/ci_emulator.sh').read_text()
@@ -151,6 +152,27 @@ wait_until_ready() {
             run = self.probe(sdk, abi)
             self.assertEqual(run.returncode, 2)
             self.assertNotIn('COMMAND', run.stdout)
+
+    def test_legacy_build_admits_reconciled_cold_universal_and_test_apk_budgets(self):
+        legacy = (ROOT/'.github/workflows/android-legacy.yml').read_text()
+        standard = (ROOT/'.github/workflows/android.yml').read_text()
+        legacy_build, standard_build = job(legacy, 'build'), job(standard, 'build')
+        def limits(build, test_step):
+            return (int(one(r'^    timeout-minutes: (\d+)$', build)),
+                    step_minutes(build, 'Build universal APK'), step_minutes(build, test_step))
+        self.assertEqual(limits(legacy_build, 'Compile both instrumentation APKs'), (45, 30, 3))
+        self.assertEqual(limits(legacy_build, 'Compile both instrumentation APKs'),
+                         limits(standard_build, 'Compile test APKs once for all emulator jobs'))
+        assembly = legacy_build.split('      - name: Build universal APK\n', 1)[1].split('      - name:', 1)[0]
+        test_apks = legacy_build.split('      - name: Compile both instrumentation APKs\n', 1)[1].split('      - name:', 1)[0]
+        self.assertIn(':app:assembleDebug ', assembly)
+        self.assertNotIn('AndroidTest', assembly)
+        self.assertIn(':Paintroid:assembleDebugAndroidTest :app:assembleDebugAndroidTest', test_apks)
+        self.assertNotIn(':app:assembleDebug ', test_apks)
+        # Reinstating either stale cap cannot satisfy the reconciled contract.
+        for old, new in (('timeout-minutes: 45', 'timeout-minutes: 40'),
+                         ('timeout-minutes: 30', 'timeout-minutes: 26')):
+            self.assertNotEqual(limits(legacy_build.replace(old, new), 'Compile both instrumentation APKs'), (45, 30, 3))
 
     def test_manual_workflow_never_joins_regular_push_or_pr_matrix(self):
         legacy = (ROOT/'.github/workflows/android-legacy.yml').read_text()

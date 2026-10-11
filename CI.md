@@ -898,6 +898,9 @@ gh workflow run android-legacy.yml --ref develop -f versions=both -f abis=both
 ```
 
 The build job produces **one identical universal debug APK** plus both test APKs.
+Its cold-build allowances match the regular workflow: a 45-minute build job,
+30 minutes for universal assembly, and a separate three-minute test-APK compile
+step. No instrumentation/device deadline is extended by this build allowance.
 Each selected emulator downloads those exact binaries, installs the target app
 and SDK-eligible test APK, and invokes the existing strict test-inventory/protocol
 runner. The SDK-ineligible app-test APK is retained as a build artifact. A failed install, boot, test, test-inventory

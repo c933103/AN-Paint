@@ -32,7 +32,8 @@ jobs:
   build:
     name: Build once for selected legacy emulators
     runs-on: ubuntu-22.04
-    timeout-minutes: 40
+    # Match the reconciled cold universal-build allowance in android.yml.
+    timeout-minutes: 45
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -76,12 +77,16 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Verify emulator script syntax
         run: bash -n tools/ci_emulator.sh
-      - name: Build universal app and both instrumentation APKs
-        timeout-minutes: 26
+      - name: Build universal APK
+        timeout-minutes: 30
         run: |
           ./gradlew --no-daemon --max-workers=2 --console=plain \
-            :app:assembleDebug :Paintroid:assembleDebugAndroidTest :app:assembleDebugAndroidTest \
-            -PciReleaseSigning
+            :app:assembleDebug -PciReleaseSigning
+      - name: Compile both instrumentation APKs
+        timeout-minutes: 3
+        run: |
+          ./gradlew --no-daemon --max-workers=2 --console=plain \
+            :Paintroid:assembleDebugAndroidTest :app:assembleDebugAndroidTest -PciReleaseSigning
       - name: Validate exact APKs supplied to emulators
         run: |
           set -euo pipefail
