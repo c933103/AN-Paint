@@ -6,6 +6,7 @@ import re
 import unittest
 
 import translation_catalogues as catalogues
+from hungarian_attribution_c05_scope import before_c05
 from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -20,6 +21,7 @@ KEYS = {
 
 def catalogue_before_copy_credit_and_f01(path, text):
     """Reverse only the two reviewed resource deltas; keep the original full-file hash."""
+    text = before_c05(path, text)
     for key in KEYS:
         text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
         if count != 1:

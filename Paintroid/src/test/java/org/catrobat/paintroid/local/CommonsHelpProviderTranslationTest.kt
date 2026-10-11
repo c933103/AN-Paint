@@ -122,7 +122,7 @@ class CommonsHelpProviderTranslationTest {
     @Test @Config(sdk=[35])
     fun realFileHelpAndOtherImagesPickerAgreeAfterDismissalAndLanguageChanges() {
         assertEquals(listOf("CATROBAT","IRASUTOYA","OPENCLIPART","COMMONS"),IllustrationSource.values().map {it.name})
-        for(tag in listOf("fr","ja","mn-Mong","vi-Hani","am")) withLanguage(tag) {
+        for(tag in listOf("hu","fr","ja","mn-Mong","vi-Hani","am")) withLanguage(tag) {
             val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
             val activity=controller.get()
             try {
