@@ -1,0 +1,222 @@
+/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+package org.catrobat.paintroid.local
+
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.ClipboardManager
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Rect
+import android.os.Looper
+import android.os.SystemClock
+import android.view.KeyEvent
+import android.view.MotionEvent
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.*
+import org.json.JSONArray
+import org.json.JSONObject
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
+import org.robolectric.annotation.LooperMode
+import org.robolectric.shadows.ShadowAlertDialog
+import java.io.File
+import java.util.Locale
+
+/** Actual mounted geometry + scroll reveal + root-dispatched pointer input.
+ * NATIVE captures are not physical-device or native-language acceptance. */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk=[30,35],qualifiers="w320dp-h640dp-port-xhdpi")
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@LooperMode(LooperMode.Mode.PAUSED)
+class LocalizedDialogLayoutTest {
+    private val languages=listOf("en-US","hu","de","fr","pt-BR","ar","he","hi","th","ja","ko-Kore-KR","zh-TW","mn-Cyrl-MN","vi-Hani","wuu-Hans")
+    private val noticeKeys=listOf(R.string.ui_icons_fonts_artwork_credits,R.string.ui_open_source_credits_and_notices,R.string.ui_gimp_translations31)
+    // Long pending C05 wording is integration input only; production resources are untouched.
+    private val c05Title="Nyílt forráskódú összetevők forrásmegjelölései és közleményei"
+    private fun idle()=shadowOf(Looper.getMainLooper()).idle()
+    private fun <T> withActivity(tag: String,block: (Activity)->T): T {
+        val app=RuntimeEnvironment.getApplication() as Context
+        val oldLocale=Locale.getDefault();val oldTag=AppLanguage.selectedTag(app);val oldResources=PaintApplication.currentResources
+        AppLanguage.select(app,tag)
+        val controller=Robolectric.buildActivity(Activity::class.java).setup().visible().windowFocusChanged(true)
+        val activity=controller.get();AppLanguage.refresh(activity)
+        try {return block(activity)} finally {
+            controller.pause().stop().destroy();idle()
+            AppLanguage.select(app,oldTag);PaintApplication.currentResources=oldResources;Locale.setDefault(oldLocale)
+        }
+    }
+    private fun intrinsic(view: TextView) {
+        val label=view.text.toString();val layout=requireNotNull(view.layout) {"No layout for $label"}
+        val transformed=view.transformationMethod?.getTransformation(view.text,view)?.toString() ?: label
+        assertTrue(label,layout.lineCount>0)
+        assertEquals(label,transformed.length,layout.getLineEnd(layout.lineCount-1))
+        for(line in 0 until layout.lineCount) {
+            assertEquals("Ellipsized $label line $line",0,layout.getEllipsisCount(line))
+            assertTrue("Horizontal clip $label",layout.getLineLeft(line)>=-1 && layout.getLineRight(line)<=layout.width+1)
+        }
+        assertTrue("Vertical clip $label: ${layout.height} > ${view.height}",layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom)
+    }
+    /** Read every line through real ancestors; do not resize views or treat isShown as reachability. */
+    private fun reveal(view: TextView) {
+        intrinsic(view)
+        val layout=view.layout
+        for(line in 0 until layout.lineCount) {
+            val lineRect=Rect(view.totalPaddingLeft,view.totalPaddingTop+layout.getLineTop(line),
+                view.width-view.totalPaddingRight,view.totalPaddingTop+layout.getLineBottom(line))
+            view.requestRectangleOnScreen(lineRect,true);idle()
+            val visible=Rect();assertTrue("Not visible ${view.text}",view.getLocalVisibleRect(visible))
+            assertTrue("Line $line not revealed: $lineRect in $visible: ${view.text}",visible.contains(lineRect))
+        }
+    }
+    private fun tap(dialog: Dialog,view: TextView) {
+        reveal(view);tapVisible(dialog,view)
+    }
+    private fun tapVisible(dialog: Dialog,view: TextView) {
+        val visible=Rect();assertTrue(view.getLocalVisibleRect(visible))
+        val root=dialog.window!!.decorView;val target=IntArray(2);val origin=IntArray(2)
+        view.getLocationOnScreen(target);root.getLocationOnScreen(origin)
+        val x=(target[0]-origin[0]+visible.centerX()).toFloat();val y=(target[1]-origin[1]+visible.centerY()).toFloat()
+        val time=SystemClock.uptimeMillis()
+        for(action in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP)) {
+            val event=MotionEvent.obtain(time,time+if(action==MotionEvent.ACTION_UP) 40 else 0,action,x,y,0)
+            try {assertTrue("Pointer event was not handled for ${view.text}",root.dispatchTouchEvent(event))} finally {event.recycle()}
+        }
+        idle()
+    }
+    private fun back(dialog: Dialog) {
+        dialog.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK))
+        dialog.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_BACK));idle();assertFalse(dialog.isShowing)
+    }
+    private fun capture(dialog: Dialog,name: String,labels: List<TextView>) {
+        val root=dialog.window!!.decorView;val rows=JSONArray()
+        labels.forEach {view ->
+            reveal(view);val visible=Rect();view.getLocalVisibleRect(visible)
+            rows.put(JSONObject().put("text",view.text).put("width",view.width).put("height",view.height)
+                .put("layout_height",view.layout.height).put("line_count",view.lineCount).put("visible_rect",visible.toShortString()))
+        }
+        val directory=File("build/reports/localized-dialog-layout").apply {mkdirs()}
+        val config=root.resources.configuration
+        val prefix="api${RuntimeEnvironment.getApiLevel()}-${config.screenWidthDp}x${config.screenHeightDp}-font${config.fontScale}-${Locale.getDefault().toLanguageTag()}-$name"
+        val bitmap=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
+        try {root.draw(Canvas(bitmap));File(directory,"$prefix.png").outputStream().use {assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {bitmap.recycle()}
+        File(directory,"$prefix.json").writeText(JSONObject().put("evidence_kind","Robolectric NATIVE; no physical-device or linguistic acceptance")
+            .put("intrinsic_fit_asserted",true).put("each_line_scroll_reveal_asserted",true).put("labels",rows).toString(2)+"\n")
+    }
+    private fun noticeAndChooser(tags: List<String>) {
+        for(tag in tags) withActivity(tag) {activity ->
+            val text="VERBATIM body: 100% %1\$s\nhttps://example.org/?x=a&y=b\n"+(1..18).joinToString("\n") {"Clause $it: source text remains unchanged."}
+            for(key in noticeKeys) {
+                val dialog=LegalInfo.termsDialog(activity,ui(key),text);dialog.show();idle()
+                try {
+                    val root=dialog.window!!.decorView
+                    val heading=root.findViewWithTag<TextView>("terms_title")
+                    val body=root.findViewWithTag<TextView>("terms_text")
+                    assertEquals(text,body.text.toString());reveal(heading);reveal(body)
+                    val copy=root.findViewWithTag<TextView>("terms_copy");val more=root.findViewWithTag<TextView>("terms_more");val done=root.findViewWithTag<TextView>("terms_done")
+                    for(action in listOf(copy,more,done)) reveal(action)
+                    tap(dialog,copy)
+                    assertEquals(text,(activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip!!.getItemAt(0).text.toString())
+                    assertTrue(dialog.isShowing)
+                    if(key==noticeKeys.first()) {
+                        capture(dialog,"notice",listOf(heading,copy,more,done))
+                        tap(dialog,more)
+                        val options=ShadowAlertDialog.getLatestAlertDialog();assertTrue(options.isShowing)
+                        tap(options,options.getButton(AlertDialog.BUTTON_NEGATIVE));assertFalse(options.isShowing);assertTrue(dialog.isShowing)
+                    }
+                    tap(dialog,done);assertFalse(dialog.isShowing)
+                } finally {dialog.dismiss()}
+            }
+            var chosen=-1
+            val labels=(noticeKeys.map {ui(it)}+c05Title).toTypedArray()
+            val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_about_credits23)).setItems(labels) {_,index->chosen=index}
+                .setNegativeButton(ui(R.string.ui_done),null).show();idle()
+            try {
+                val heading=chooser.window!!.decorView.findViewWithTag<TextView>("dialog_title");reveal(heading)
+                for(index in labels.indices) {
+                    chooser.listView.setSelectionFromTop(index,0);idle()
+                    val row=chooser.listView.getChildAt(index-chooser.listView.firstVisiblePosition) as TextView
+                    assertEquals(labels[index],row.text.toString());reveal(row)
+                }
+                chooser.listView.setSelectionFromTop(labels.lastIndex,0);idle()
+                val last=chooser.listView.getChildAt(labels.lastIndex-chooser.listView.firstVisiblePosition) as TextView
+                capture(chooser,"chooser",listOf(heading,last,chooser.getButton(AlertDialog.BUTTON_NEGATIVE)))
+                tap(chooser,last);assertEquals(labels.lastIndex,chosen);assertFalse(chooser.isShowing)
+            } finally {chooser.dismiss()}
+            val repeated=EditorDialogBuilder(activity).setTitle(c05Title).setMessage(text).setNegativeButton(ui(R.string.ui_cancel),null).show();idle()
+            reveal(repeated.window!!.decorView.findViewWithTag("dialog_title"));back(repeated)
+        }
+    }
+    @Test @Config(fontScale=1f) fun normalNarrowPortrait()=noticeAndChooser(listOf("en-US","hu"))
+    @Test @Config(fontScale=2f) fun largeNarrowPortrait()=noticeAndChooser(languages)
+    @Test @Config(fontScale=1f,qualifiers="w640dp-h320dp-land-xhdpi") fun normalShortLandscape()=noticeAndChooser(listOf("en-US","hu"))
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi") fun largeShortLandscape()=noticeAndChooser(languages)
+
+
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun verticalNoticeColumnsAndActionsRemainUnclippedAndReachable() {
+        for(tag in listOf("mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) withActivity(tag) {activity ->
+            val text="Verbatim licence body\n100% %1\$s\nhttps://example.org/source"
+            val dialog=LegalInfo.termsDialog(activity,ui(R.string.ui_icons_fonts_artwork_credits),text);dialog.show();idle()
+            try {
+                val root=dialog.window!!.decorView
+                val controls=listOf("terms_title","terms_copy","terms_more","terms_done").map {root.findViewWithTag<TextView>(it)}
+                val rows=JSONArray()
+                for(view in controls) {
+                    val caption=VerticalText.wrapLabel(view.text.toString(),view.paint,96*view.resources.displayMetrics.density)
+                    val bounds=VerticalText.bounds(caption,view.paint,VerticalText.uiDirection(),GlyphOrientation.MIXED)
+                    assertTrue("Column width ${view.text}",view.width>=kotlin.math.ceil(bounds.width()).toInt()+view.paddingLeft+view.paddingRight)
+                    assertTrue("Column height ${view.text}",view.height>=kotlin.math.ceil(bounds.height()).toInt()+view.paddingTop+view.paddingBottom)
+                    for(x in listOf(0,(view.width-16).coerceAtLeast(0))) for(y in listOf(0,(view.height-16).coerceAtLeast(0))) {
+                        val tile=Rect(x,y,minOf(view.width,x+16),minOf(view.height,y+16))
+                        view.requestRectangleOnScreen(tile,true);idle()
+                        val visible=Rect();assertTrue(view.getLocalVisibleRect(visible));assertTrue("Column edge $tile in $visible",visible.contains(tile))
+                    }
+                    rows.put(JSONObject().put("text",view.text).put("width",view.width).put("height",view.height).put("column_bounds",bounds.toString()))
+                }
+                val directory=File("build/reports/localized-dialog-layout").apply {mkdirs()}
+                val name="api${RuntimeEnvironment.getApiLevel()}-vertical-$tag"
+                val bitmap=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
+                try {root.draw(Canvas(bitmap));File(directory,"$name.png").outputStream().use {assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {bitmap.recycle()}
+                File(directory,"$name.json").writeText(JSONObject().put("evidence_kind","Robolectric NATIVE vertical intrinsic bounds and edge reveal; not physical-device acceptance")
+                    .put("controls",rows).toString(2)+"\n")
+                val copy=controls[1];copy.requestRectangleOnScreen(Rect(0,0,minOf(16,copy.width),minOf(16,copy.height)),true);idle();tapVisible(dialog,copy)
+                assertEquals(text,(activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip!!.getItemAt(0).text.toString())
+                val done=controls[3];done.requestRectangleOnScreen(Rect(0,0,minOf(16,done.width),minOf(16,done.height)),true);idle();tapVisible(dialog,done);assertFalse(dialog.isShowing)
+            } finally {dialog.dismiss()}
+        }
+    }
+
+    private fun creditEditor()=withActivity("hu") {activity ->
+        val original=ImageCredit("https://example.org/fixture.png","Original author\nCC BY 4.0")
+        var saved=original;var dismissed=0
+        fun open()=GalleryCredits.showEditor(activity,listOf(saved),null,{source,text->saved=ImageCredit(source,text)},{dismissed++})!!.dialog.also {idle()}
+        val dialog=open()
+        try {
+            val root=dialog.window!!.decorView
+            val field=root.findViewWithTag<EditText>("gallery_credit_text")
+            val value="Unmodified 100% %1\$s\nCreator\nhttps://example.org/source?a=1&b=2"
+            field.setText(value);idle();reveal(field)
+            val copy=root.findViewWithTag<TextView>("gallery_credit_copy");val save=root.findViewWithTag<TextView>("gallery_credit_save");val done=root.findViewWithTag<TextView>("gallery_credit_done")
+            tap(dialog,copy);assertEquals(value,saved.text)
+            assertEquals(value,(activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip!!.getItemAt(0).text.toString())
+            field.setText("$value\nEdited");idle();tap(dialog,save);assertEquals("$value\nEdited",saved.text);assertTrue(dialog.isShowing)
+            capture(dialog,"editor",listOf(copy,save,done));tap(dialog,done);assertFalse(dialog.isShowing);assertEquals(1,dismissed)
+            val reopened=open();assertEquals(saved.text,reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+            reopened.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText("Unsaved draft")
+            back(reopened);assertEquals("$value\nEdited",saved.text);assertEquals(2,dismissed)
+        } finally {dialog.dismiss()}
+    }
+    @Test @Config(fontScale=2f) fun editorPointerCopySaveDoneAndBackAtLargeText()=creditEditor()
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi") fun editorPointerCopySaveDoneAndBackInShortLandscape()=creditEditor()
+}
