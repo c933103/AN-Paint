@@ -205,6 +205,9 @@ class GalleryViewportDeviceTest {
         }
         instrumentation.waitForIdleSync()
     }
+    /** Reuse the bounded verified font transition for the installed colour fixture. */
+    internal fun transitionFontScale(scale: Float)=setFontScale(scale)
+
     private fun setFontScale(scale: Float) {
         require(scale.isFinite() && scale>0f)
         val deadline=SystemClock.uptimeMillis()+10000

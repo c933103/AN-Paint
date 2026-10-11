@@ -200,6 +200,14 @@ run_gallery_draft_regression() {
     --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
 }
 
+# Retain the app-owned raw export even when the original positive assertion fails.
+# This is evidence collection only; it never turns the failing suite green.
+collect_colour_evidence() {
+  timeout --kill-after=3s 15s "$adb" pull \
+    /sdcard/Download/anpaint-ci-dialog-evidence \
+    "$report/colour-viewport-export" > "$report/colour-viewport-pull.log" 2>&1
+}
+
 cleanup() {
   local status=$?
   trap - ERR
@@ -230,6 +238,12 @@ cleanup() {
       if (( status == 0 )); then status=1; fi
     fi
   fi
+  if (( ${colour_started:-0} )); then
+    if ! collect_colour_evidence; then
+      progress 'FAILED: could not collect colour viewport evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    fi
+  fi
   timeout --kill-after=3s 10s "$adb" emu kill
   if test -n "$emulator_pid"; then
     kill "$emulator_pid" 2>/dev/null
@@ -253,6 +267,7 @@ main() {
   mkdir -p "$report"
   emulator_pid=''
   vertical_started=0
+  colour_started=0
   rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
     "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
   phase='Create virtual device'
@@ -302,6 +317,7 @@ main() {
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
   rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-vertical"
   editor_failed=0
+  if test "$TEST_API" = 35; then colour_started=1; fi
   phase='Editor instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \

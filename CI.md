@@ -879,3 +879,21 @@ release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
 source/APK provenance and rendered-image review remain required. Debug is covered
 by the same source path and host selection checks; installed debug compatibility
 must be reported explicitly rather than inferred from release results.
+
+## Advanced Colour untouched-base installed replay (11 October 2026)
+
+The separate Advanced Colour corrective branch initially changes only test and
+CI harness files. It replays the original positive installed colour method with
+production source untouched at develop `691f8870649a1d21d1441f4e3d0e795660b23e9a`.
+The API 35 ordinary app inventory gains one method (26 declared app methods, one
+additional API 30 suppression); the 180-second ordinary ceiling is unchanged.
+The original API 35 640×320 density 1 en-US font 1× fixture and positive oracle are
+unchanged. Read-only native allocation and screenshot capture occurs at the
+existing positive-height wait boundary, before finally-dismiss on failure.
+The same source digest is supplied to the app-owned evidence rule and recorded
+by the ordinary runner. Raw ZIP export collection retains failures and adds one
+15+3-second bounded command to cleanup; the controlled maximum is 2087s, leaving
+73s under the existing 36-minute step before the 60-second processing allowance.
+A passing host contract or collected screenshot is not an installed test pass.
+See `verification/advanced-colour-viewport-2026-10-11/` for exact source identity,
+the preserved original positive method and actual run status.
