@@ -201,9 +201,10 @@ run_gallery_draft_regression() {
 }
 
 # Explicit API35 dialog workload; ordinary retains its original 180s cap.
-# The colour identity characterizes a known limitation, not positive usability.
+# Four notice/credit and three positive colour cases form one exact selected union.
 run_dialog_regression() {
   local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
+  local colour_class=paint.anpaint.android.ColourViewportDeviceTest
   phase='Installed dialog phase (300s maximum)'
   progress "$phase"
   dialog_started=1
@@ -216,7 +217,9 @@ run_dialog_regression() {
     --include-test "$dialog_class#aboutArtworkNoticeCompletesNativeFooterFlow" \
     --include-test "$dialog_class#aboutGimpTranslationNoticeCompletesNativeFooterFlow" \
     --include-test "$dialog_class#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation" \
-    --include-test "$dialog_class#unchangedAdvancedColourReportsShortLandscapeLimitation"
+    --include-test "$colour_class#normalAdvancedColourKeepsFiniteViewportAndFixedControls" \
+    --include-test "$colour_class#retainedColourStateSurvivesRotationImeCancelAndReopen" \
+    --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape"
 }
 
 cleanup() {
@@ -349,7 +352,8 @@ main() {
     --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
     --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
     --exclude-class paint.anpaint.android.GalleryDraftDeviceTest \
-    --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest || editor_failed=1
+    --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest \
+    --exclude-class paint.anpaint.android.ColourViewportDeviceTest || editor_failed=1
   run_gallery_draft_regression || editor_failed=1
   if test "$TEST_API" = 35; then run_dialog_regression || editor_failed=1; fi
   if (( editor_failed )); then failed=1; fi

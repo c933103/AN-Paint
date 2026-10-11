@@ -1,0 +1,304 @@
+{
+  "schema": 1,
+  "head_commit": "4750d62f1a45d74eb88e3d91a85512e0237e644c",
+  "tested_merge_commit": "8d0dc77d69a3f67192f48deb0d733bdcc77d1885",
+  "tested_tree": "912a21a7d071e44fbe4499f5203ddd2b032281a3",
+  "run_id": 38118041931,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38118041931",
+  "outcome": "Failed trial retained: two portrait JVM clipping failures and installed startup failures before colour UI",
+  "source_tests_sha256": "2c4e3daa53071dc55a31f685bebac24058792fbabb34f03989d11dfb87d3ba34",
+  "ordinary": {
+    "success": false,
+    "expected_tests": 19,
+    "completed_tests": 19,
+    "elapsed_seconds": 145.84683728800007,
+    "timed_out": false
+  },
+  "colour_methods": [
+    {
+      "method": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "raw_bytes": 184415,
+      "raw_sha256": "8e8a34ca3791a09a7d2ad0fcf5fbbfb6b3c718eab7d40ebf98d509faf5c9d7c7",
+      "manifest_verified": true,
+      "outcome": "failed",
+      "failure": "java.lang.AssertionError: Timed out: initial editor",
+      "fixture_elapsed_ms": 8832
+    },
+    {
+      "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "raw_bytes": 184430,
+      "raw_sha256": "99fb67dd1136bec13827a447ffebb8da5a1807db15459b9f46346eff0a474297",
+      "manifest_verified": true,
+      "outcome": "failed",
+      "failure": "java.lang.AssertionError: Timed out: initial editor",
+      "fixture_elapsed_ms": 8826
+    },
+    {
+      "method": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "raw_bytes": 184425,
+      "raw_sha256": "8c5baa2d5c0698b80b8852381bc28d971f335ccae6fcfe781909bf84d04e2dc4",
+      "manifest_verified": true,
+      "outcome": "failed",
+      "failure": "java.lang.AssertionError: Timed out: initial editor",
+      "fixture_elapsed_ms": 9253
+    }
+  ],
+  "jvm": {
+    "suite_count": 87,
+    "case_count": 814,
+    "unique_cases": 814,
+    "nonpasses": [
+      {
+        "suite": "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "name": "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths[30]",
+        "kind": "failure",
+        "message": "java.lang.AssertionError: All ancestors retain complete bounds: colour_mode_3 expected:<Rect(0, 0 - 88, 51)> but was:<Rect(0, 0 - 88, 48)>",
+        "trace": "java.lang.AssertionError: All ancestors retain complete bounds: colour_mode_3 expected:<Rect(0, 0 - 88, 51)> but was:<Rect(0, 0 - 88, 48)>\n\tat org.junit.Assert.fail(Assert.java:89)\n\tat org.junit.Assert.failNotEquals(Assert.java:835)\n\tat org.junit.Assert.assertEquals(Assert.java:120)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.complete(AdvancedColourViewportTest.kt:52)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.access$complete(AdvancedColourViewportTest.kt:28)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest$portraitKeepsAllSixteenSavedSlotsAtFiniteWidths$1.invoke(AdvancedColourViewportTest.kt:89)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest$portraitKeepsAllSixteenSavedSlotsAtFiniteWidths$1.invoke(AdvancedColourViewportTest.kt:82)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.withPicker(AdvancedColourViewportTest.kt:43)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.portraitKeepsAllSixteenSavedSlotsAtFiniteWidths(AdvancedColourViewportTest.kt:82)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+      },
+      {
+        "suite": "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "name": "portraitKeepsAllSixteenSavedSlotsAtFiniteWidths",
+        "kind": "failure",
+        "message": "java.lang.AssertionError: All ancestors retain complete bounds: colour_mode_3 expected:<Rect(0, 0 - 88, 51)> but was:<Rect(0, 0 - 88, 48)>",
+        "trace": "java.lang.AssertionError: All ancestors retain complete bounds: colour_mode_3 expected:<Rect(0, 0 - 88, 51)> but was:<Rect(0, 0 - 88, 48)>\n\tat org.junit.Assert.fail(Assert.java:89)\n\tat org.junit.Assert.failNotEquals(Assert.java:835)\n\tat org.junit.Assert.assertEquals(Assert.java:120)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.complete(AdvancedColourViewportTest.kt:52)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.access$complete(AdvancedColourViewportTest.kt:28)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest$portraitKeepsAllSixteenSavedSlotsAtFiniteWidths$1.invoke(AdvancedColourViewportTest.kt:89)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest$portraitKeepsAllSixteenSavedSlotsAtFiniteWidths$1.invoke(AdvancedColourViewportTest.kt:82)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.withPicker(AdvancedColourViewportTest.kt:43)\n\tat org.catrobat.paintroid.local.AdvancedColourViewportTest.portraitKeepsAllSixteenSavedSlotsAtFiniteWidths(AdvancedColourViewportTest.kt:82)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n\tSuppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.\n"
+      }
+    ]
+  },
+  "lint_issues": 0,
+  "build_info": {
+    "commit": "8d0dc77d69a3f67192f48deb0d733bdcc77d1885",
+    "run_id": "38118041931",
+    "build_variant": "debug",
+    "apk_sha256": "08d49b688805954d27aa044ae64698d4ce08d2f347621d9c71bd4930856e14c2",
+    "source_sha256": "e7c9373c3e7547881cd1e1ea61ad59ba5d7725560dc8c55f1d9cc7d4467dadc0",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "production_source_archive_comparison": {
+    "tracked_files": 487,
+    "found": 487,
+    "different": [],
+    "missing": []
+  },
+  "artifacts": {
+    "emulator.zip": {
+      "artifact_id": 11694598502,
+      "bytes": 2541658,
+      "sha256": "59462ebcd64b3ef32a549c26d124abf166adc1c9b6171e083daf1d5b0a65ff19"
+    },
+    "regression.zip": {
+      "artifact_id": 11694722474,
+      "bytes": 35919100,
+      "sha256": "13975c53aba559c8f087dcfd3cfe8fcbe8a26af6e626db0b630cecdcc79bcf2b"
+    },
+    "apk-source.zip": {
+      "artifact_id": 11693972497,
+      "bytes": 158577387,
+      "sha256": "390c21b94c1fa53dd89d8918ade4583577cbd7f484c8ded1c719d232480b77d2"
+    }
+  },
+  "durable_archive": {
+    "name": "caption-focused-evidence.zip",
+    "bytes": 1818730,
+    "sha256": "e532ee3f01fb69718906f5ed50f6fd39c4bb9d08d9f2033cbe3b71017da5ba5a",
+    "members": 143,
+    "parts": [
+      {
+        "name": "caption-focused-evidence.zip.part001",
+        "bytes": 49152,
+        "sha256": "9a4b19bc501d9e4371df1dce18636540bbc8d0b05df60a5531ed735cb5090575"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part002",
+        "bytes": 49152,
+        "sha256": "03a2fa441afd36f0de4056a0720589cf4af263abd63adc331acb704687d500b1"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part003",
+        "bytes": 49152,
+        "sha256": "d74b7914d5f619f6721aa5e5c8aa0f590c9aea5d390a4eccb417adbce550e60f"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part004",
+        "bytes": 49152,
+        "sha256": "bc94eee477b5f4ed9c7012e91d85924936c2a22f937993845e1f32cbe64c1c09"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part005",
+        "bytes": 49152,
+        "sha256": "ec2ebe74f199c7fef4919b6e3a08951e0adff92502bfa89e1ab90012a01e3d33"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part006",
+        "bytes": 49152,
+        "sha256": "2b14ee90e93d1888fb381a817ce824821f435af158765dbf18647e4e2026fdee"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part007",
+        "bytes": 49152,
+        "sha256": "eac3baadf02de40a8e9f25a64bc90c4e4818ac3afe2eda5cef98a09124df737d"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part008",
+        "bytes": 49152,
+        "sha256": "597963542e855ba392f4b0204be3b1b7060c429ff858f7c92d8005100b8898be"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part009",
+        "bytes": 49152,
+        "sha256": "3ad8b33ed677510db59bb9af387e41a371796c90d400857c080f76712711a583"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part010",
+        "bytes": 49152,
+        "sha256": "304b108e76781f45dab9e03170fd3ece3f98d972320b5fccba954ed5ca0fa037"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part011",
+        "bytes": 49152,
+        "sha256": "9cd3929e179518ae655aebfe2efb486c6250c3914297fdd3bac7a99e0fff4b13"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part012",
+        "bytes": 49152,
+        "sha256": "1d162d556e0173c0ed8fb6fe6398f6e06c2ef0920f0b1456f73110686cd27d26"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part013",
+        "bytes": 49152,
+        "sha256": "37e9d5b7709bce134b8feaace6547cb0be66027602ede1598c56dfe85a1b6490"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part014",
+        "bytes": 49152,
+        "sha256": "dc1bab44bb9af657573129737fec7419138519a9c9fd4e8e1695c227534a9911"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part015",
+        "bytes": 49152,
+        "sha256": "7061c93ac5e062a9cb3e3bad93b269eaeef7d3d077b2d576b376461e04e7d686"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part016",
+        "bytes": 49152,
+        "sha256": "043e61d103564336612f21338ddd3b6a2ecba3f739c27c5d8704952cec0b4071"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part017",
+        "bytes": 49152,
+        "sha256": "13203acab707590fb9762d0d41ac8a1e3eff5c0e9f8bbd99cabaaa57653b15b0"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part018",
+        "bytes": 49152,
+        "sha256": "281adbd0815c321ec9e2ee22d6e2a9ab712dad14f8442f49a18c427089491695"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part019",
+        "bytes": 49152,
+        "sha256": "b523d89ff1dc76a5a91b05937994e8037b587b901948fc9254067e44328421f3"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part020",
+        "bytes": 49152,
+        "sha256": "a6b015029b929627a111e88671ecc556c0b133a9e3e2453e2e828b2f7139beb7"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part021",
+        "bytes": 49152,
+        "sha256": "364f799eaab4df233128fb0cc485e0cd3e2874e9ad5bedb5d1c874d21c0b24e6"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part022",
+        "bytes": 49152,
+        "sha256": "b6d66bd1bb46c05e282aedba4113ba8725b78758978506e2764be14ac1bb9ae3"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part023",
+        "bytes": 49152,
+        "sha256": "64981303685720bac208de9e6a49623a5d7137b767753a0aae512b83efa72539"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part024",
+        "bytes": 49152,
+        "sha256": "c944e32d45ed7f4dd3ef050ee3cc6289e9a6aa2f10aac2fe92da2a4b4515127c"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part025",
+        "bytes": 49152,
+        "sha256": "82023c65523d407ead248fd053e93eff1c0c10ce06494a0031725f5649fca640"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part026",
+        "bytes": 49152,
+        "sha256": "c3d934d2f63af9fd4cadb30d111dd77d178081d4d8e0ba371da470bec3110baf"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part027",
+        "bytes": 49152,
+        "sha256": "856d3537e8c14ee32546a1f44f38a8be45d9c9595e98357b28a2218ac8ffc929"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part028",
+        "bytes": 49152,
+        "sha256": "69d93bc328e30fdbb3fc93867e67eacecd1390e7834c388e7ecc9902615294b0"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part029",
+        "bytes": 49152,
+        "sha256": "580c25914b05d20ea1e32e91d07f825c46e8e84fdb37f22198d24e3024cb6bf1"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part030",
+        "bytes": 49152,
+        "sha256": "64395aa39e6dc79ca4b6239683cd96a632db3263c7536d6692cf393314b53ae0"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part031",
+        "bytes": 49152,
+        "sha256": "9948789a433bfe97e73c534ea53db0c6f63188af766c1c2f35bcd4ec8934ce93"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part032",
+        "bytes": 49152,
+        "sha256": "2144cb9144b6209e085721c538f39c6b66b3bf766a9550ca4fb1b98a3b2bfeda"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part033",
+        "bytes": 49152,
+        "sha256": "bad319a47264ba14bf1943612184b57ef23fbb70d630cf37e86af9e984a2fe9a"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part034",
+        "bytes": 49152,
+        "sha256": "eaadc269d05409d7756c45070f3d16b4e80b65c61b26b5d95e692794818aed86"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part035",
+        "bytes": 49152,
+        "sha256": "cf810e6c38cca1d97631d3c0f1655866cb8da526c43aa53665e989ee49c034de"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part036",
+        "bytes": 49152,
+        "sha256": "609ebf09c6d6041c9fe0418f8eca21694202f4bd1a2412fbc5ce9fd2b5d0a6f0"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part037",
+        "bytes": 49152,
+        "sha256": "1d59266fe29a846e22fc0222e1a4fadd3fd90914a2050fafb2412970d00f994e"
+      },
+      {
+        "name": "caption-focused-evidence.zip.part038",
+        "bytes": 106,
+        "sha256": "93eb9e3f65f8a59fc9699691dc8585b68fa9bdf6965822242c43a434f718c175"
+      }
+    ]
+  },
+  "acceptance_limits": [
+    "No installed colour body executed in this run",
+    "No new native Back, rendered IME, caption or commit acceptance",
+    "Black-screen startup root cause and failed compound gate conjunct remain unproven",
+    "2x remains unaccepted"
+  ]
+}

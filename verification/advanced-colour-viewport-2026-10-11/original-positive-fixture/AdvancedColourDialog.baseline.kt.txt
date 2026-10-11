@@ -1,0 +1,365 @@
+/* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later.
+ * Colour controls and generated spectrum/wheel geometry.
+ */
+package org.catrobat.paintroid.classic
+
+import org.catrobat.paintroid.R
+
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
+import android.graphics.*
+import android.graphics.drawable.GradientDrawable
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
+import android.view.Gravity
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.core.graphics.ColorUtils
+import java.util.Locale
+import kotlin.math.*
+
+class ColourValue(initial: Int) {
+    var colour = initial or Color.BLACK; private set
+    val hsv = FloatArray(3)
+    private val hslState = FloatArray(3)
+    val hsl get() = hslState.copyOf()
+    init { Color.colorToHSV(initial, hsv); ColorUtils.colorToHSL(initial, hslState) }
+    fun rgb(value: Int) {
+        val hue = hsv[0]; colour = value or Color.BLACK; Color.colorToHSV(colour, hsv); ColorUtils.colorToHSL(colour, hslState)
+        if (hsv[1] == 0f) { hsv[0] = hue; hslState[0] = hue }
+    }
+    fun hsv(h: Float, s: Float, v: Float) {
+        hsv[0] = h % 360f; hsv[1] = s; hsv[2] = v
+        colour = Color.HSVToColor(hsv)
+        ColorUtils.colorToHSL(colour, hslState); hslState[0] = hsv[0]
+        if (v == 0f) hslState[1] = s
+    }
+    fun hsl(h: Float, s: Float, l: Float) {
+        hslState[0] = h % 360f; hslState[1] = s; hslState[2] = l
+        colour = ColorUtils.HSLToColor(hslState)
+        Color.colorToHSV(colour, hsv); hsv[0] = hslState[0]
+        if (l == 0f) hsv[1] = s
+    }
+}
+
+class AdvancedColourDialog(private val activity: Activity, initial: Int, private val background: Boolean, private val preview: (Int) -> Unit = {}, private val paletteChanged: () -> Unit = {}, private val closed: () -> Unit = {}, private val initialMode: Int = 0, private val addingToPalette: Boolean = false, private val replacingPaletteColour: Boolean = false, private val commit: (Int) -> Unit) {
+    private val original = initial or Color.BLACK
+    private var accepted = false
+    private val paletteStore = CustomColours(activity)
+    val value = ColourValue(initial or Color.BLACK)
+    private val prefs = activity.getSharedPreferences("classic-custom-colours", Context.MODE_PRIVATE)
+    private val fields = linkedMapOf<String, EditText>()
+    private val custom = mutableListOf<View>()
+    private lateinit var saveCustomButton: Button
+    private lateinit var customHeading: TextView
+    private lateinit var surface: ColourSurface
+    private lateinit var sample: View
+    private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())
+    private fun hasCustomColour(index: Int) = paletteStore.has(index)
+    private fun customColour(index: Int) = paletteStore.colour(index)
+    private fun customLabel(index: Int,colour: Int): String {
+        val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)
+        return "$name: ${String.format(Locale.ROOT,"#%06X",colour and 0xffffff)}"
+    }
+    private var syncing = false
+    private lateinit var honeycomb: HoneycombPalette
+    private fun dp(n: Int) = (activity.resources.displayMetrics.density * n + .5f).toInt()
+    private fun label(text: String) = FlowTextView(activity).apply { this.text = text; textSize = 12f }
+    private fun swatchBackground(view: View, colour: Int) {
+        view.background = GradientDrawable().apply { setColor(colour); setStroke(dp(1), EditorColours.outline) }
+    }
+    private fun column() = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
+    private fun button(text: String, tag: String, action: () -> Unit) = FlowButton(activity).apply {
+        this.text = text; this.tag = tag; isAllCaps = false; textSize = 12f; setOnClickListener { action() }
+    }
+    fun show(): AlertDialog {
+        val shell = column().apply { setPadding(dp(12), dp(4), dp(12), dp(4)) }
+        val body = column().apply { setPadding(0, dp(4), 0, dp(8)) }
+        val tabs = LinearLayout(activity)
+        val palette = column().apply { tag = "colour_palette" }
+        surface = ColourSurface(activity, value).apply { tag = "colour_surface"; changed = { sync() }; visibility = View.GONE }
+        val advanced = column().apply { tag = "colour_advanced"; visibility = View.GONE }
+        honeycomb = HoneycombPalette(activity, value) { sync() }.apply { tag = "colour_honeycomb"; visibility = View.GONE }
+        fun selectMode(mode: Int) {
+            palette.visibility = if (mode == 0) View.VISIBLE else View.GONE
+            honeycomb.visibility = if (mode == 3) View.VISIBLE else View.GONE
+            advanced.visibility = if (mode == 1 || mode == 2) View.VISIBLE else View.GONE
+            surface.visibility = advanced.visibility
+            surface.wheel = mode == 2; surface.invalidate()
+            surface.contentDescription = if (mode == 2) ui(R.string.ui_hue_and_saturation_wheel_value_slider_on_the) else ui(R.string.ui_hue_and_saturation_spectrum_lightness_slider_on_the)
+            for (i in 0 until tabs.childCount) tabs.getChildAt(i).isSelected = i == when (mode) { 0 -> 0; 3 -> 1; else -> 2 }
+        }
+        listOf(Triple(ui(R.string.ui_palette), "colour_mode_0", 0), Triple(ui(R.string.ui_honeycomb), "colour_mode_3", 3), Triple(ui(R.string.ui_advanced), "colour_advanced_tab", 1)).forEach { (name, tag, mode) ->
+            tabs.addView(button(name, tag) { selectMode(mode) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+        }
+        shell.addView(tabs)
+        val advancedTabs = LinearLayout(activity)
+        listOf(ui(R.string.ui_spectrum), ui(R.string.ui_wheel)).forEachIndexed { i, name ->
+            advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+        }
+        advanced.addView(advancedTabs)
+        advanced.addView(surface, LinearLayout.LayoutParams(-1, dp(190)))
+        palette.addView(label(ui(R.string.ui_basic_colours)))
+        val basics = intArrayOf(Color.BLACK, 0xff808080.toInt(),0xff800000.toInt(),0xff808000.toInt(),0xff008000.toInt(),0xff008080.toInt(),0xff000080.toInt(),0xff800080.toInt(),
+            Color.WHITE,0xffc0c0c0.toInt(),Color.RED,Color.YELLOW,Color.GREEN,Color.CYAN,Color.BLUE,Color.MAGENTA) +
+            (0 until 32).map { Color.HSVToColor(floatArrayOf((it % 8) * 45f, if (it < 16) .5f else 1f, if (it % 16 < 8) 1f else .65f)) }.toIntArray()
+        fun swatch(colour: Int, tagName: String, select: () -> Int): View = View(activity).apply {
+            tag = tagName; contentDescription = ui(R.string.ui_colour, String.format(Locale.ROOT, "#%06X", colour and 0xffffff))
+            swatchBackground(this, colour); isFocusable = true; isClickable = true
+            setOnClickListener { value.rgb(select()); sync() }
+        }
+        basics.toList().chunked(8).forEachIndexed { rowIndex, row ->
+            val line = LinearLayout(activity)
+            row.forEachIndexed { i, c -> line.addView(swatch(c, "basic_colour_${rowIndex * 8 + i}") { c }, LinearLayout.LayoutParams(0, dp(28), 1f).apply { setMargins(dp(1), dp(1), dp(1), dp(1)) }) }
+            palette.addView(line)
+        }
+        body.addView(palette); body.addView(honeycomb, LinearLayout.LayoutParams(-1, dp(278)))
+        body.addView(advanced)
+        val scroll = ScrollView(activity).apply { tag="colour_editor_scroll";addView(body) }
+        shell.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
+        // Custom colours are shared by every selector. Choosing a stored swatch
+        // loads it; an empty slot directly stores the current colour.
+        val customPanel = column().apply { tag="custom_colours_panel" }
+        customHeading = label("").apply { tag="custom_colour_selection" }
+        customPanel.addView(customHeading)
+        val compact = activity.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        val grid = column()
+        repeat(if (compact) 1 else 2) { row ->
+            val line = LinearLayout(activity)
+            repeat(if (compact) 16 else 8) { col ->
+                val index = row * 8 + col
+                val view = object : View(activity) {
+                    override fun onDraw(canvas: Canvas) {
+                        val p=Paint(Paint.ANTI_ALIAS_FLAG)
+                        val inset=dp(4).toFloat()
+                        val bounds=RectF(inset,inset,width-inset,height-inset)
+                        p.color=if(hasCustomColour(index)) customColour(index) else EditorColours.surface
+                        canvas.drawRect(bounds,p)
+                        p.style=Paint.Style.STROKE;p.strokeWidth=dp(1).toFloat();p.color=EditorColours.outline
+                        canvas.drawRect(bounds,p)
+                        if (!hasCustomColour(index)) {
+                            p.strokeWidth=dp(2).toFloat();p.color=EditorColours.onSurface
+                            canvas.drawLine(width/2f-dp(5),height/2f,width/2f+dp(5),height/2f,p)
+                            canvas.drawLine(width/2f,height/2f-dp(5),width/2f,height/2f+dp(5),p)
+                        }
+                        if (isSelected) {
+                            // An outer ring is independent of the swatch colour.
+                            p.strokeWidth=dp(2).toFloat();p.color=EditorColours.primary
+                            canvas.drawRect(dp(1).toFloat(),dp(1).toFloat(),width-dp(1).toFloat(),height-dp(1).toFloat(),p)
+                        }
+                    }
+                }.apply {
+                    tag="custom_colour_$index";isFocusable=true;isClickable=true
+                    setOnClickListener {
+                        if(hasCustomColour(index)) {value.rgb(customColour(index));sync()}
+                        else if(!addingToPalette && fields.values.none {it.error!=null}) {
+                            paletteStore.replace(index,value.colour);refreshCustom();paletteChanged()
+                        }
+                    }
+                }
+                custom.add(view)
+                line.addView(view,if(compact) LinearLayout.LayoutParams(dp(44),dp(44)) else LinearLayout.LayoutParams(0,dp(44),1f))
+            }
+            grid.addView(line)
+        }
+        if (compact) customPanel.addView(HorizontalScrollView(activity).apply { addView(grid) }) else customPanel.addView(grid)
+        shell.addView(customPanel)
+        val previewRow = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
+        val sampleColumn=column()
+        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)))
+        sample = object : View(activity) {
+            override fun onDraw(canvas: Canvas) {
+                val p = Paint()
+                p.color = value.colour; canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), p)
+            }
+        }.apply { tag = "new_colour_preview" }
+        sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
+        previewRow.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
+        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0 }
+        if(addingToPalette) saveCustomButton.visibility=View.GONE
+        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
+        shell.addView(previewRow)
+        refreshCustom()
+        fun field(key: String, hintText: String, max: Int): LinearLayout {
+            val wrap = column(); wrap.addView(label(hintText))
+            val edit = EditText(activity).apply {
+                tag = "colour_$key"; contentDescription = hintText; textSize = 13f
+                if (key == "hex") inputType = InputType.TYPE_CLASS_TEXT
+                else LocaleNumberInput.configure(this, decimal = true)
+                isSingleLine = true; setSelectAllOnFocus(true)
+                addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        if (syncing) return
+                        if (key != "hex") {
+                            val n = uiNumber(s.toString())
+                            if (n == null || n !in 0.0..max.toDouble()) { error = ui(R.string.ui_colour_component_range, max); return }
+                        }
+                        readFields(key)
+                    }
+                    override fun afterTextChanged(s: Editable?) = Unit
+                })
+            }; fields[key] = edit; wrap.addView(edit); return wrap
+        }
+        advanced.addView(field("hex", ui(R.string.ui_hex_rrggbb), 0))
+        listOf(listOf(Triple("r", R.string.ui_colour_red_range, 255),Triple("g", R.string.ui_colour_green_range, 255),Triple("b", R.string.ui_colour_blue_range, 255)),
+            listOf(Triple("h", R.string.ui_colour_hsv_hue_range, 360),Triple("s", R.string.ui_colour_hsv_saturation_range, 100),Triple("v", R.string.ui_colour_hsv_value_range, 100)),
+            listOf(Triple("hl", R.string.ui_colour_hsl_hue_range, 360),Triple("sl", R.string.ui_colour_hsl_saturation_range, 100),Triple("l", R.string.ui_colour_hsl_lightness_range, 100))).forEach { group ->
+            val row = LinearLayout(activity)
+            group.forEach { (key, label, max) -> row.addView(field(key, ui(label), max), LinearLayout.LayoutParams(0, -2, 1f)) }
+            advanced.addView(row)
+        }
+        // Keep the tabs, custom slots and Save action reachable while the long
+        // Advanced controls scroll, including on short landscape screens.
+        val preferredHeight=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
+        val holder=object : FrameLayout(activity) {
+            override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+                val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferredHeight
+                    else MeasureSpec.getSize(heightMeasureSpec)
+                shell.layoutParams.height=minOf(preferredHeight,available)
+                super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+            }
+        }.apply {
+            tag="colour_dialog_holder"
+            addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
+        }
+        val dialogContent=if(VerticalText.uiVertical()) {
+            VerticalUi.panel(tabs,112);VerticalUi.panel(advanced,160)
+            val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_colour_form"}
+            form.addView(VerticalUi.detach(tabs),LinearLayout.LayoutParams(-2,-2))
+            palette.layoutParams=LinearLayout.LayoutParams(dp(288),-2)
+            (palette.getChildAt(0) as? FlowTextView)?.columnHeightDp=64
+            honeycomb.layoutParams=LinearLayout.LayoutParams(dp(288),dp(278))
+            form.addView(VerticalUi.detach(body),LinearLayout.LayoutParams(-2,-2))
+            // Swatches stay spatial, at usable touch sizes; their captions have separate columns.
+            customPanel.layoutParams=LinearLayout.LayoutParams(dp(352),-2)
+            (customHeading as? FlowTextView)?.columnHeightDp=96
+            form.addView(VerticalUi.detach(customPanel),LinearLayout.LayoutParams(dp(352),-2))
+            VerticalUi.panel(previewRow,112)
+            form.addView(VerticalUi.detach(previewRow),LinearLayout.LayoutParams(-2,-2))
+            form
+        } else holder
+        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)
+            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()
+        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            if (fields.values.any { it.error != null }) return@setOnClickListener
+            accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()
+        } }
+        dialog.setOnDismissListener {if(!accepted) preview(original);closed()}
+        sync();selectMode(initialMode);dialog.show();return dialog
+    }
+    private fun refreshCustom() {
+        custom.forEachIndexed {index,view ->
+            view.isSelected=hasCustomColour(index) && customColour(index)==value.colour
+            view.contentDescription=if(hasCustomColour(index)) customLabel(index,customColour(index)) else ui(R.string.ui_empty_palette26,index+1)
+            view.invalidate()
+        }
+        customHeading.text=ui(R.string.ui_saved_palette23)
+        saveCustomButton.text=ui(R.string.ui_add_palette23)
+    }
+    private fun saveCustom() {
+        if(fields.values.any {it.error!=null}) return
+        fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}
+        if(paletteStore.add(value.colour)) changed() else {
+            val entries=paletteStore.entries()
+            EditorDialogBuilder(activity).setTitle(ui(R.string.ui_replace_palette23))
+                .setItems(entries.map {customLabel(it.first,it.second)}.toTypedArray()) {_,which ->paletteStore.replace(entries[which].first,value.colour);changed()}
+                .setNegativeButton(ui(R.string.ui_cancel),null).show()
+        }
+    }
+    private fun readFields(key: String) {
+        fun number(name: String, max: Float): Float? = uiNumber(fields[name]?.text.toString())?.toFloat()?.takeIf { it in 0f..max }
+        try {
+            when (key) {
+                "hex" -> {
+                    val text = fields[key]!!.text.toString().trim()
+                    if (!text.matches(Regex("#[0-9a-fA-F]{6}"))) { fields[key]!!.error = ui(R.string.ui_use_rrggbb); return }
+                    value.rgb(Color.parseColor(text))
+                }
+                "r", "g", "b" -> value.rgb(Color.rgb( (number("r",255f) ?: return).toInt(),(number("g",255f) ?: return).toInt(),(number("b",255f) ?: return).toInt()))
+                "h", "s", "v" -> value.hsv(number("h",360f) ?: return,(number("s",100f) ?: return) / 100,(number("v",100f) ?: return) / 100)
+                "hl", "sl", "l" -> value.hsl(number("hl",360f) ?: return,(number("sl",100f) ?: return) / 100,(number("l",100f) ?: return) / 100)
+            }
+            fields[key]?.error = null; sync(key)
+        } catch (_: IllegalArgumentException) { fields[key]?.error = ui(R.string.ui_invalid_colour) }
+    }
+    private fun sync(except: String? = null) {
+        syncing = true
+        val c = value.colour; val hsl = value.hsl
+        val numbers = mapOf("r" to Color.red(c).toFloat(),"g" to Color.green(c).toFloat(),"b" to Color.blue(c).toFloat(),
+            "h" to value.hsv[0],"s" to value.hsv[1] * 100,"v" to value.hsv[2] * 100,"hl" to hsl[0],"sl" to hsl[1] * 100,"l" to hsl[2] * 100)
+        fields.forEach { (key, field) -> if (key != except) {
+            field.setText(if (key == "hex") String.format(Locale.ROOT, "#%06X", c and 0xffffff) else String.format(Locale.getDefault(), if (key in listOf("r","g","b")) "%.0f" else "%.2f", numbers[key]))
+            field.error = null
+        } }
+        sample.invalidate();surface.invalidate();honeycomb.invalidateSelection();syncing=false
+        refreshCustom();if(fields.values.none {it.error!=null}) preview(value.colour)
+    }
+}
+
+/** Two advanced graphical selectors: classic H/S spectrum + L, and HSV wheel + V. */
+class ColourSurface(context: Context, private val colour: ColourValue) : View(context) {
+    var wheel = false
+    var changed: () -> Unit = {}
+    private var spectrum: Bitmap? = null
+    private var brightnessDrag = false
+    init { isFocusable = true; isClickable = true }
+    private fun mainRect() = RectF(4f, 4f, width - 42 * resources.displayMetrics.density, height - 4f)
+    override fun onDraw(c: Canvas) {
+        val r = mainRect(); if (r.width() <= 0 || r.height() <= 0) return
+        val p = Paint(Paint.ANTI_ALIAS_FLAG)
+        var px: Float; var py: Float
+        val high: Int
+        if (wheel) {
+            val radius = min(r.width(),r.height()) / 2
+            val colours = (0..6).map { Color.HSVToColor(floatArrayOf(it * 60f,1f,1f)) }.toIntArray()
+            p.shader = ComposeShader(SweepGradient(r.centerX(),r.centerY(),colours,null),RadialGradient(r.centerX(),r.centerY(),radius,intArrayOf(Color.WHITE,0x00ffffff),null,Shader.TileMode.CLAMP),PorterDuff.Mode.SRC_OVER)
+            c.drawCircle(r.centerX(),r.centerY(),radius,p); p.shader = null
+            val angle = Math.toRadians(colour.hsv[0].toDouble())
+            px = r.centerX() + cos(angle).toFloat() * radius * colour.hsv[1]; py = r.centerY() + sin(angle).toFloat() * radius * colour.hsv[1]
+            high = Color.HSVToColor(floatArrayOf(colour.hsv[0],colour.hsv[1],1f))
+        } else {
+            if (spectrum == null) {
+                val pixels = IntArray(240 * 160)
+                for (y in 0 until 160) for (x in 0 until 240) pixels[y * 240 + x] = ColorUtils.HSLToColor(floatArrayOf(x / 239f * 359.99f,1 - y / 159f,.5f))
+                spectrum = Bitmap.createBitmap(pixels,240,160,Bitmap.Config.ARGB_8888)
+            }
+            c.drawBitmap(spectrum!!,null,r,null)
+            val hsl = colour.hsl; px = r.left + hsl[0] / 360 * r.width(); py = r.top + (1 - hsl[1]) * r.height()
+            high = ColorUtils.HSLToColor(floatArrayOf(hsl[0],hsl[1],.5f))
+        }
+        val bar = RectF(r.right + 12 * resources.displayMetrics.density,r.top,width - 6f,r.bottom)
+        p.shader = if (wheel) LinearGradient(0f,bar.top,0f,bar.bottom,high,Color.BLACK,Shader.TileMode.CLAMP)
+            else LinearGradient(0f,bar.top,0f,bar.bottom,intArrayOf(Color.WHITE,high,Color.BLACK),null,Shader.TileMode.CLAMP)
+        c.drawRect(bar,p); p.shader = null
+        val y = bar.top + (1 - if (wheel) colour.hsv[2] else colour.hsl[2]) * bar.height()
+        p.style = Paint.Style.STROKE; p.strokeWidth = 4f; p.color = Color.BLACK
+        c.drawCircle(px,py,8f,p); c.drawLine(bar.left - 3,y,bar.right + 3,y,p)
+        p.strokeWidth = 2f; p.color = Color.WHITE; c.drawCircle(px,py,8f,p); c.drawLine(bar.left - 3,y,bar.right + 3,y,p)
+    }
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (event.actionMasked == MotionEvent.ACTION_DOWN) { parent?.requestDisallowInterceptTouchEvent(true); brightnessDrag = event.x > mainRect().right }
+        if (event.actionMasked in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_MOVE,MotionEvent.ACTION_UP)) {
+            val r = mainRect(); val vertical = (1 - (event.y - r.top) / r.height()).coerceIn(0f,1f)
+            if (wheel) {
+                if (brightnessDrag) colour.hsv(colour.hsv[0],colour.hsv[1],vertical)
+                else {
+                    val dx = event.x - r.centerX(); val dy = event.y - r.centerY()
+                    colour.hsv(((atan2(dy,dx) * 180 / PI + 360) % 360).toFloat(),(hypot(dx,dy) / (min(r.width(),r.height()) / 2)).coerceIn(0f,1f),colour.hsv[2])
+                }
+            } else {
+                val hsl = colour.hsl
+                if (brightnessDrag) colour.hsl(hsl[0],hsl[1],vertical)
+                else colour.hsl(((event.x - r.left) / r.width()).coerceIn(0f,.99999f) * 360,vertical,hsl[2])
+            }
+            invalidate(); changed()
+            if (event.actionMasked == MotionEvent.ACTION_UP) { parent?.requestDisallowInterceptTouchEvent(false); performClick() }
+        }
+        return true
+    }
+    override fun performClick(): Boolean { super.performClick(); return true }
+}

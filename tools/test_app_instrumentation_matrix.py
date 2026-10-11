@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, PHASE_TIMEOUTS,
+from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, DIALOG_IDENTITIES, PHASE_TIMEOUTS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -38,13 +38,13 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':15, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}}),
-                            (35, {'ordinary':16, 'dialog':5, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':16, 'dialog':7, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 30)
-            self.assertEqual(result['completed_tests'], 22 if sdk==30 else 30)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 6 if sdk==30 else 0)
+            self.assertEqual(result['declared_tests'], 32)
+            self.assertEqual(result['completed_tests'], 22 if sdk==30 else 32)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 8 if sdk==30 else 0)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
@@ -56,7 +56,8 @@ class AppPartitionTest(unittest.TestCase):
         future=('paint.anpaint.android.FutureTest','newCase')
         self.assertIn(future,app_partition(expected|{future},35)['ordinary'])
         with self.assertRaises(ValueError): verify_app_reports(expected|{future},35,reports,digest,suppressed)
-        for changed in (expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')},
+        for changed in (expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'newColourCase')},
+                        expected-{(COLOUR,next(iter(COLOUR_METHODS)))},
                         expected-{(DIALOG,next(iter(DIALOG_METHODS)))},
                         expected-{(GALLERY_DRAFT,next(iter(GALLERY_METHODS)))},
                         expected|{(RESTART_SEED,'extra')},
@@ -130,9 +131,11 @@ class AppPartitionTest(unittest.TestCase):
         self.assertEqual(shell.count('--timeout-seconds 60'),2)
         main=shell.split('main() {',1)[1]
         self.assertIn('--exclude-class paint.anpaint.android.GalleryDraftDeviceTest',main)
-        self.assertIn('--exclude-class paint.anpaint.android.LocalizedDialogDeviceTest || editor_failed=1',main)
+        self.assertIn('--exclude-class paint.anpaint.android.LocalizedDialogDeviceTest',main)
+        self.assertIn('--exclude-class paint.anpaint.android.ColourViewportDeviceTest || editor_failed=1',main)
         dialog=shell.split('run_dialog_regression() {',1)[1].split('\n}\n',1)[0]
         self.assertEqual(set(re.findall(r'--include-test \"\$dialog_class#(\w+)\"',dialog)),DIALOG_METHODS)
+        self.assertEqual(set(re.findall(r'--include-test \"\$colour_class#(\w+)\"',dialog)),COLOUR_METHODS)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
@@ -180,7 +183,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(lines.count('vertical'),1)
                     self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery','dialog')))
                     ordinary=next(line for line in lines if ' --suite app ' in line)
-                    for owner in (GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
+                    for owner in (GALLERY_DRAFT,DIALOG,COLOUR,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
                         self.assertIn('--exclude-class '+owner,ordinary)
                     verifiers=[line for line in lines if line.startswith('python3 tools/app_instrumentation_matrix.py')]
                     self.assertEqual(len(verifiers),1)
@@ -210,7 +213,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],22 if sdk==30 else 30)
+                        self.assertEqual(result['completed_tests'],22 if sdk==30 else 32)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
                         for subtree in ('app','app-gallery-draft','app-dialog','app-vertical'):
@@ -251,21 +254,23 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
 
 class SelectedInvocationTest(unittest.TestCase):
     def test_gallery_wrapper_runs_one_exact_selection_without_retries(self):
-        self.check_wrapper(GALLERY_DRAFT, GALLERY_METHODS, 'gallery_draft', 'app-gallery-draft', 90)
+        self.check_wrapper({(GALLERY_DRAFT, name) for name in GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90)
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
-        self.check_wrapper(DIALOG, DIALOG_METHODS, 'dialog', 'app-dialog', 300)
+        self.check_wrapper(DIALOG_IDENTITIES, 'dialog', 'app-dialog', 300)
 
-    def check_wrapper(self, owner, methods, function, suite, deadline):
-        class_name = owner.rsplit('.', 1)[1]
+    def check_wrapper(self, identities, function, suite, deadline):
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):
             with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
                 root=Path(directory)
                 (root/'tools').mkdir()
                 shutil.copyfile(ROOT/'tools/run_android_instrumentation.py',root/'tools/run_android_instrumentation.py')
                 source=root/'app/src/androidTest';source.mkdir(parents=True)
-                (source/(class_name+'.kt')).write_text('package paint.anpaint.android\nclass '+class_name+' {\n'+
-                    ''.join(f'@Test fun {name}() {{}}\n' for name in sorted(methods))+'}\n')
+                for owner in {owner for owner, _ in identities}:
+                    class_name=owner.rsplit('.',1)[1]
+                    methods={name for candidate,name in identities if candidate==owner}
+                    (source/(class_name+'.kt')).write_text('package paint.anpaint.android\nclass '+class_name+' {\n'+
+                        ''.join(f'@Test fun {name}() {{}}\n' for name in sorted(methods))+'}\n')
                 (source/'Other.kt').write_text('package example\nclass Other { @Test fun keepOrdinary() {} }\n')
                 apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
                 apk.parent.mkdir(parents=True);apk.touch()
@@ -305,7 +310,7 @@ else:raise SystemExit('Unexpected adb command: '+repr(args))
                 self.assertEqual(len(instrumentation),1)
                 command=instrumentation[0]
                 self.assertEqual(command[command.index('class')+1].split(','),
-                                 sorted(f'{owner}#{method}' for method in methods))
+                                 sorted(f'{owner}#{method}' for owner,method in identities))
                 self.assertNotIn('--no-restart',command)
                 self.assertNotIn('waitForActivitiesToComplete',command)
                 self.assertEqual(report['timeout_seconds'],deadline)

@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "failed_run": 38119879923,
+  "failed_head": "b56d769fc280ca2bbd5854d3bf92e69463adf1f6",
+  "failure": "Timed out: actual IME occupies a stable positive inset",
+  "observed": "Original failure PNG shows actual full-screen landscape extract keyboard, synthetic #13579B and selection; ImeTracker token e36ebd38 reaches onShown at 07:13:41.767.",
+  "primary_sources": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/inputmethodservice/InputMethodService.java",
+      "lines": "2321-2324;2337-2340",
+      "semantics": "Extract mode leaves the application unchanged behind the IME; fullscreen mode does not resize its underlying window.",
+      "source_sha256": "2958a82be8178a2d0a1755cfa89fb075ad06413c5829645c8a35910f1962631d"
+    },
+    {
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.2.0/uiautomator-2.2.0-sources.jar",
+      "sha256": "e1f438106ac0d26b80ecf4fd6ffe6d36f60e12bdcd6316903f802ed24d00be99",
+      "member": "androidx/test/uiautomator/UiDevice.java",
+      "lines": "115-117;1095-1123",
+      "semantics": "Existing UiDevice construction enables interactive window retrieval. No new permission, UI automation configuration or input-mode change is needed."
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/packages/SystemUI/src/com/android/systemui/clipboardoverlay/ClipboardOverlayWindow.java",
+      "lines": "67-68",
+      "semantics": "The platform clipboard-preview window title is ClipboardOverlay; wait for its natural absence before Hungarian caption capture.",
+      "source_sha256": "d7a6d56ad25ffe9cce2c66004805c24abc2ca3d3449771c07bae7627fb680587"
+    }
+  ],
+  "successor": "Actual configured TYPE_INPUT_METHOD window, visible nonempty root and bounds stable250ms. Then exactly one native Back plus unchanged exact dialog/field/value/selection/zero-callback predicates and stable native IME absence. Capture success/failure in helper finally before dialog dismissal.",
+  "limits": [
+    "The predecessor's final Back/cancel/reopen/commit checks remain unrun.",
+    "Native window structure is supplemented by inspecting the actual PNG, not accepted as pixels alone.",
+    "Hungarian portrait predecessor PNG is partly occluded by temporary SystemUI clipboard preview; do not claim unobscured portrait control use from it.",
+    "2x remains unaccepted."
+  ]
+}

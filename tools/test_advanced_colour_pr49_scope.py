@@ -1,8 +1,9 @@
-"""Exact source non-regression only; the separate installed positive gate is open."""
+"""Historical PR49 endpoint guard, restored through the explicit PR51 composition."""
 import hashlib
 import json
 from pathlib import Path
 import unittest
+from dialog_colour_composition_scope import before_colour_composition
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / 'tools/fixtures/advanced_colour_pr49_scope.json'
@@ -32,11 +33,11 @@ class AdvancedColourPr49Scope(unittest.TestCase):
                          {'AdvancedColourDialog.kt', 'VerticalUi.kt', 'ClassicPaintActivity.kt'})
         for row in data['files']:
             with self.subTest(path=row['path']):
-                baseline_bytes((ROOT / row['path']).read_bytes(), row)
+                baseline_bytes(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes()), row)
 
     def test_unrelated_source_changes_and_endpoint_changes_fail_closed(self):
         for row in json.loads(FIXTURE.read_bytes())['files']:
-            current = (ROOT / row['path']).read_bytes()
+            current = before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())
             with self.subTest(path=row['path']), self.assertRaises(ValueError):
                 baseline_bytes(current+b'\n', row)
             with self.assertRaises(ValueError):

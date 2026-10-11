@@ -87,9 +87,9 @@ Test APKs are compiled once, after the delivery artifact is available. Emulator
 jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
-accepted-credit restart phase classes, plus the five API35-only installed-dialog
+accepted-credit restart phase classes, plus the seven API35-only installed-dialog
 methods. API35 runs all declared methods: its ordinary app invocation excludes
-the three gallery-draft methods, five dialog methods, four vertical methods and
+the three gallery-draft methods, seven dialog methods, four vertical methods and
 the restart pair. Gallery-draft runs separately with a 90-second ceiling, dialogs
 with 300 seconds, and vertical methods in two 180-second shards. The
 restart pair runs separately before and after an external force-stop. The
@@ -888,30 +888,28 @@ must be reported explicitly rather than inferred from release results.
 
 ## Localized dialog evidence and separate phase (11 October 2026)
 
-API35 now selects five installed dialog methods in a disjoint `app-dialog`
-invocation. Ordinary instrumentation excludes that class and retains its original
-180-second limit and 16 methods. The dialog phase includes exactly five named
-methods, with a 300-second limit. The complete source-bound union still requires
-all 30 app methods on API35, including both restart methods; API30 explicitly
-suppresses the five API35-only methods and retains its original 22 completed
+API35 now selects seven installed dialog methods in a disjoint `app-dialog`
+invocation. Ordinary instrumentation excludes both classes and retains its original
+180-second limit and 16 methods. The dialog phase includes exactly seven named
+methods across the notice/credit and colour classes, with a 300-second limit. The complete source-bound union still requires
+all 32 app methods on API35, including both restart methods; API30 explicitly
+suppresses the seven API35-only methods and retains its original 22 completed
 app methods. Missing, duplicate, renamed, skipped or failed methods fail closed.
 Ordinary, gallery or dialog failure withholds restart, while the other diagnostics
 and vertical phases still run. No individual failure is retried.
 
 The dialog source digest is passed as a runner argument and checked against the
-exact five-method `app-dialog` report before accepting app-owned exports. EXIT
+exact seven-method, two-class `app-dialog` report before accepting app-owned exports. EXIT
 cleanup uses a bounded API35-only 15-second pull with 3-second kill grace, retains
-partial failure archives, and cannot turn a failed test green. The colour method
-is an explicitly named characterization of the unchanged short-landscape
-limitation, not positive viewport acceptance. The original failed positive method
-and its exact source are preserved under
-`verification/localized-dialog-layout-2026-10-11/colour-separate-scope/`; its
-positive acceptance belongs to the separate colour corrective task. The untouched-develop installed replay is now verified separately in
-[baseline run38112708313](https://github.com/c933103/AN-Paint/tree/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313):
-the same 1× short-landscape positive viewport assertion fails with editor360×0.
-The current diagnostic records that exact baseline provenance; earlier receipts
-remain immutable. Neither the baseline failure nor its characterization provides
-positive colour acceptance.
+partial failure archives, and cannot turn a failed test green. The four notice/credit
+methods keep their accepted fixture, native input and timing evidence. The separate
+`ColourViewportDeviceTest` retains the complete PR51 implementation under only a
+class-declaration rename. Its three methods provide positive 1× viewport/native
+scroll, Hungarian captions/portrait Cancel, and retained state/IME/Back/commit gates.
+The retired `unchangedAdvancedColourReportsShortLandscapeLimitation` source and
+baseline-negative receipts are preserved under the composition history; they are
+not silently reinterpreted as a positive result. The active union is explicitly
+30 − 1 + 3 = 32 app methods on API35. Font2× colour remains unaccepted.
 
 ### Evidence and cap rationale
 
@@ -930,17 +928,16 @@ completed its original interaction in 12.477 seconds and the colour diagnostic i
 
 The three notice flows now run as independently named cases, preserving every
 original action/assertion and the first notice's retained About/notice rotations.
-Each of the five dialog cases retains its 45-second interaction cap (225 seconds
-combined). The phase retains its 300-second hard ceiling, leaving a shared
-75-second operational allowance for setup, font transitions, teardown and export.
-The previous three cases measured 15.079 seconds of combined setup/teardown;
-two extra fixture lifecycles and complete notice flows still require fresh
-measurements. The 75 seconds is not the sum of every permitted helper timeout:
-slow setup/teardown can exhaust the phase before every interaction cap is used.
-The old three-case 135+80+24+61 rationale is superseded. This explicit cancellation
-allowance is not a successful-flow or universal I/O liveness guarantee; the
-enclosing deadline remains the hard stop. All original native/ordinary/gallery/vertical/restart deadlines
-stay unchanged; this additional phase is not a way to filter slow cases.
+Each of the seven cases retains its accepted 45-second interaction cap. The
+phase retains its 300-second aggregate hard ceiling. Seven per-case maxima total
+315 seconds before setup/teardown, so this is an aggregate cancellation policy,
+not a guarantee that every method can consume its entire per-case maximum.
+The previous five-case 225+75 operational allowance is historical and superseded.
+Actual exact-source combined execution must finish inside 300 seconds, with all
+seven methods and their complete exports verified; standalone elapsed times do
+not establish the combined result. Notice/credit setup, interaction and teardown
+remain separately measured; colour retains its original fixture elapsed receipt
+and unchanged internal deadline. No input, startup retry or deadline is relaxed.
 
 `tools/test_ci_timeout_budget.py` reads the actual shell/runner limits. Its API35
 all-success path is 2,442 seconds and its continuing-failure envelope is 2,482.

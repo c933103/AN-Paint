@@ -1,0 +1,84 @@
+......EEEEEEE................................/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+..................................
+======================================================================
+ERROR: test_sources_and_historical_pr52_paths_have_pinned_endpoints (tools.test_dialog_colour_composition.DialogColourCompositionContracts.test_sources_and_historical_pr52_paths_have_pinned_endpoints) (path='app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_dialog_colour_composition.py", line 24, in test_sources_and_historical_pr52_paths_have_pinned_endpoints
+    self.assertEqual(row['sha256'], composition.digest(composition.before_colour_composition(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt
+
+======================================================================
+ERROR: test_sources_and_historical_pr52_paths_have_pinned_endpoints (tools.test_dialog_colour_composition.DialogColourCompositionContracts.test_sources_and_historical_pr52_paths_have_pinned_endpoints) (path='tools/dialog_evidence_transport.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_dialog_colour_composition.py", line 24, in test_sources_and_historical_pr52_paths_have_pinned_endpoints
+    self.assertEqual(row['sha256'], composition.digest(composition.before_colour_composition(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: tools/dialog_evidence_transport.py
+
+======================================================================
+ERROR: test_sources_and_historical_pr52_paths_have_pinned_endpoints (tools.test_dialog_colour_composition.DialogColourCompositionContracts.test_sources_and_historical_pr52_paths_have_pinned_endpoints) (path='tools/test_dialog_evidence_transport.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_dialog_colour_composition.py", line 24, in test_sources_and_historical_pr52_paths_have_pinned_endpoints
+    self.assertEqual(row['sha256'], composition.digest(composition.before_colour_composition(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: tools/test_dialog_evidence_transport.py
+
+======================================================================
+ERROR: test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion (tools.test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion) (path='app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_localized_dialog_composition.py", line 49, in test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion
+    self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt
+
+======================================================================
+ERROR: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (tools.test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_localized_dialog_composition.py", line 38, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt
+
+======================================================================
+ERROR: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (tools.test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/dialog_evidence_transport.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_localized_dialog_composition.py", line 38, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: tools/dialog_evidence_transport.py
+
+======================================================================
+ERROR: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (tools.test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_dialog_evidence_transport.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/test_localized_dialog_composition.py", line 38, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-dialog-colour-composition-20261011/tools/dialog_colour_composition_scope.py", line 31, in before_colour_composition
+    raise ValueError('Source exceeds the explicit colour composition scope: ' + path)
+ValueError: Source exceeds the explicit colour composition scope: tools/test_dialog_evidence_transport.py
+
+----------------------------------------------------------------------
+Ran 75 tests in 45.880s
+
+FAILED (errors=7)

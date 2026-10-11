@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import unittest
+from dialog_colour_composition_scope import before_colour_composition, scope as colour_scope
 import xml.etree.ElementTree as ET
 
 import hungarian_attribution_c05_scope as c05
@@ -34,7 +35,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
         self.assertEqual(247, len({row['path'] for row in rows}))
         for row in rows:
             with self.subTest(path=row['path'], producer=row['producer']):
-                self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+                self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
 
     def test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion(self):
         rows = composition_scope()['all_kotlin_test_sources']
@@ -42,10 +43,10 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
                  for folder in ('test', 'androidTest')
                  for path in (ROOT / module / 'src' / folder).rglob('*.kt')}
         self.assertEqual(116, len(rows))
-        self.assertEqual(paths, {row['path'] for row in rows})
+        self.assertEqual(paths, {row['path'] for row in rows} | set(colour_scope()['added_kotlin_tests']))
         for row in rows:
             with self.subTest(path=row['path']):
-                self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+                self.assertEqual(row['sha256'], digest(before_colour_composition(row['path'], (ROOT / row['path']).read_bytes())))
 
     def test_exact_sdk_aware_phase_union_and_all_original_deadlines_survive(self):
         self.assertEqual({'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
@@ -53,19 +54,19 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
                           'vertical-literary-chinese-emoji': 180, 'seed': 60, 'verify': 60},
                          PHASE_TIMEOUTS)
         app = ROOT / 'app/src/androidTest'
-        for sdk, ordinary, native, completed in ((30, 15, 73, 22), (35, 16, 74, 30)):
+        for sdk, ordinary, native, completed in ((30, 15, 73, 22), (35, 16, 74, 32)):
             with self.subTest(sdk=sdk):
                 methods = declared_tests(app, sdk_level=sdk)
                 parts = app_partition(methods, sdk)
                 counts = {'ordinary': ordinary, 'gallery-draft': 3,
                           'vertical-english-manchu': 2, 'vertical-literary-chinese-emoji': 2}
                 if sdk == 35:
-                    counts.update(dialog=5, seed=1, verify=1)
+                    counts.update(dialog=7, seed=1, verify=1)
                 self.assertEqual(counts, {name: len(items) for name, items in parts.items()})
                 self.assertEqual(completed, len(set.union(*parts.values())))
                 self.assertEqual(completed, sum(map(len, parts.values())))
                 self.assertEqual(native, len(declared_tests(ROOT / 'Paintroid/src/androidTest', sdk_level=sdk)))
-        self.assertEqual(6, len(declared_tests(app) - declared_tests(app, sdk_level=30)))
+        self.assertEqual(8, len(declared_tests(app) - declared_tests(app, sdk_level=30)))
 
     def test_hungarian_is_exactly_17_replacements_and_one_independent_m02_addition(self):
         scope = c05.scope()

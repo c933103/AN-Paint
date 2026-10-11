@@ -190,11 +190,11 @@ class TimeoutBudgetTest(unittest.TestCase):
             self.assertNotIn(stale, canonical)
         self.assertIn('## Historical composed cancellation budgets', docs)
         dialog = docs.split('## Localized dialog evidence and separate phase', 1)[1]
-        for text in ('five installed dialog methods', 'all 30 app methods',
-                     'exact five-method `app-dialog` report', '225 seconds',
-                     '75-second operational allowance', '45.715 seconds'):
+        for text in ('seven installed dialog methods', 'all 32 app methods',
+                     'exact seven-method, two-class `app-dialog` report', '315 seconds',
+                     'aggregate cancellation policy', '45.715 seconds'):
             self.assertIn(text, dialog)
-        self.assertIn('not the sum of every permitted helper timeout', dialog)
+        self.assertIn('not a guarantee that every method can consume', dialog)
 
     def test_checks_job_is_an_explicit_aggregate_policy_not_a_sum_bound(self):
         checks = job(WORKFLOW, 'checks')
