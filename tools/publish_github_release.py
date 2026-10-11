@@ -8,6 +8,7 @@ import sys
 import zipfile
 from pathlib import Path
 from apk_release_patch import apply, digest
+from release_publication import publish_verified_release
 
 
 CERT = "f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b0b7791"
@@ -30,6 +31,18 @@ def verify_jobs(workflow, jobs, commit):
     completed = {job["name"] for job in jobs if job["status"] == "completed" and job["conclusion"] == "success"}
     if not required <= completed:
         raise ValueError("Release verification is incomplete: " + ", ".join(sorted(required - completed)))
+
+
+def verify_signer_identity(signature):
+    """Require the one existing APK signer, rather than matching display text."""
+    lines = signature.splitlines()
+    counts = [line for line in lines if line.startswith("Number of signers:")]
+    identities = [line for line in lines
+                  if re.match(r"Signer\b", line) and "certificate SHA-256" in line]
+    identity = (re.fullmatch(r"Signer #1 certificate SHA-256 digest: ([0-9a-fA-F]{64})",
+                             identities[0]) if len(identities) == 1 else None)
+    if counts != ["Number of signers: 1"] or identity is None or identity[1].lower() != CERT:
+        raise ValueError("Release is not signed solely with the existing upgrade certificate")
 
 
 def main(request_path):
@@ -66,8 +79,7 @@ def main(request_path):
     for name in ("zipalign", "aapt2"):
         (verification / name).chmod(0o755)
     signature = run("java", "-jar", verification / "apksigner.jar", "verify", "--verbose", "--print-certs", apk)
-    if CERT not in signature:
-        raise ValueError("Release is not signed with the existing upgrade certificate")
+    verify_signer_identity(signature)
     run(verification / "zipalign", "-c", "-P", "16", "4", apk)
     metadata = run(verification / "aapt2", "dump", "badging", apk)
     if ("application-debuggable" in metadata or "name='paint.anpaint.android'" not in metadata
@@ -83,11 +95,8 @@ def main(request_path):
     checksums.write_text("".join(f"{digest(p.read_bytes())}  {p.name}\n" for p in assets))
     notes = request_path.with_name(f"{version}-notes.md")
     tag = "v" + version
-    run("gh", "release", "create", tag, "--repo", repo, "--target", commit,
-        "--title", f"AN Paint {version}", "--notes-file", notes, "--draft")
-    run("gh", "release", "upload", tag, "--repo", repo, *assets, checksums)
-    run("gh", "release", "edit", tag, "--repo", repo, "--draft=false", "--latest")
-    print(run("gh", "release", "view", tag, "--repo", repo, "--json", "url,assets"))
+    print(publish_verified_release(api, run, repo=repo, tag=tag, commit=commit,
+        title=f"AN Paint {version}", notes_path=notes, assets=[*assets, checksums]))
 
 
 if __name__ == "__main__":

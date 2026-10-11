@@ -60,13 +60,24 @@ internal object AppLanguage {
     fun locale(context: Context): Locale = selectedTag(context).takeIf { it.isNotEmpty() }
         ?.let(Locale::forLanguageTag) ?: deviceLocale(context)
 
+    /** Keep the public preference distinct from an internal resource-selection qualifier.
+     * Android infers Kore for ko-KR, so ko-KR and ko-Kore-KR otherwise tie. The
+     * build mirrors the complete exact catalogue under this private app variant.
+     * The preference and default locale retain the requested public tag.
+     */
+    internal fun resourceLocale(chosen: Locale): Locale =
+        if(chosen.toLanguageTag()=="ko-Kore-KR")
+            Locale.Builder().setLocale(chosen).setVariant("anpaint").build()
+        else chosen
+
     fun wrap(context: Context): Context {
         val chosen = locale(context)
+        val resource = resourceLocale(chosen)
         // An override is a delta: copying the current screen configuration would
         // pin orientation, window size and font scale for this context's lifetime.
         val config = Configuration().apply {
             fontScale = 0f
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
         Locale.setDefault(chosen)
@@ -77,8 +88,9 @@ internal object AppLanguage {
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
         val chosen = locale(activity)
+        val resource = resourceLocale(chosen)
         val config = Configuration(configuration).apply {
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
         activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
@@ -105,9 +117,10 @@ internal object AppLanguage {
 
     /** Resolve against the device language, without inheriting the app's override. */
     internal fun deviceDefaultLabel(context: Context, chosen: Locale=deviceLocale(context)): String {
+        val resource = resourceLocale(chosen)
         val config=Configuration().apply {
             fontScale=0f
-            if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
         return context.createConfigurationContext(config).getString(R.string.language20_device_default)

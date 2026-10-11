@@ -6,12 +6,47 @@ import org.catrobat.paintroid.R
 import android.app.AlertDialog
 import android.content.Context
 import android.view.Gravity
+import android.view.MotionEvent
+import android.view.ViewParent
 import android.widget.*
 
 /** A slider with a large, tappable value: exact entry needs no narrow inline keyboard field. */
 class NumericSlider(context: Context, val name: String, value: Int, val minimum: Int, val maximum: Int,
     val changed: (Int) -> Unit) : LinearLayout(context) {
-    val slider=SeekBar(context)
+    val slider: SeekBar=object: SeekBar(context) {
+        private var dragParent: ViewParent?=null
+        private fun releaseDrag() {
+            dragParent?.requestDisallowInterceptTouchEvent(false)
+            dragParent=null
+        }
+        override fun onTouchEvent(event: MotionEvent): Boolean {
+            if(event.actionMasked==MotionEvent.ACTION_DOWN) {
+                releaseDrag()
+                // AbsSeekBar waits for touch slop inside a scrolling container.
+                // Claim DOWN first, before a horizontal ancestor can steal MOVE.
+                if(isEnabled) {
+                    dragParent=parent
+                    dragParent?.requestDisallowInterceptTouchEvent(true)
+                }
+            }
+            var handled=false
+            try {
+                handled=super.onTouchEvent(event)
+                return handled
+            } finally {
+                // POINTER_UP is not terminal while another finger remains down.
+                if(!handled || event.actionMasked==MotionEvent.ACTION_UP || event.actionMasked==MotionEvent.ACTION_CANCEL) releaseDrag()
+            }
+        }
+        override fun setEnabled(enabled: Boolean) {
+            super.setEnabled(enabled)
+            if(!enabled) releaseDrag()
+        }
+        override fun onDetachedFromWindow() {
+            releaseDrag()
+            super.onDetachedFromWindow()
+        }
+    }
     val number=FlowButton(context).apply {columnHeightDp=112}
     private fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
     init {

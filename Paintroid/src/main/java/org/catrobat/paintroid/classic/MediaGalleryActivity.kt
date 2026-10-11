@@ -265,11 +265,14 @@ class MediaGalleryActivity : Activity() {
                     if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));hideStatus()}
                 }
             } catch(error: Exception) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_could_not_load_gallery_image,error.message))}
+                val reason=error.message?.takeIf {it.isNotBlank()}
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(
+                    if(reason==null) ui(R.string.commons_credit_copy_failed)
+                    else ui(R.string.commons_credit_copy_failed_reason,reason))}
             } catch(_: OutOfMemoryError) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.commons_credit_copy_out_of_memory))}
             } catch(_: LinkageError) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.colour_converter_unavailable))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.commons_credit_copy_failed))}
             } finally {activeConnection?.disconnect();activeConnection=null;downloading=false}
         }
     }

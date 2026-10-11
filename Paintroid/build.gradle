@@ -146,6 +146,20 @@ dependencies {
 
 tasks.withType(Javadoc).configureEach { enabled = false }
 
+// Android infers Kore for ordinary ko-KR. A whole-catalogue variant breaks its
+// resource-ranking tie with the explicitly selected mixed-script catalogue.
+// The canonical source stays in res/values-b+ko+Kore+KR; never edit a second copy.
+def exactScriptResourceDirectory = layout.buildDirectory.dir('generated/exactScriptResources')
+def generateExactScriptResources = tasks.register('generateExactScriptResources', Sync) {
+    from('src/main/res/values-b+ko+Kore+KR') {
+        include '*.xml'
+        into 'values-b+ko+Kore+KR+anpaint'
+    }
+    into exactScriptResourceDirectory
+}
+android.sourceSets.main.res.srcDir(exactScriptResourceDirectory)
+tasks.named('preBuild').configure { dependsOn(generateExactScriptResources) }
+
 // Host-side Android graphics tests supplement the upstream unit tests.
 tasks.withType(Test).configureEach {
     maxHeapSize = '2g'

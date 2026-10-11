@@ -1,0 +1,2802 @@
+{
+  "info": {
+    "commit": "d4d9db1b83bd6edf4ccc35a0df48aebed866d0af",
+    "run_id": "38022221410",
+    "build_variant": "debug",
+    "apk_sha256": "707adee18f2c7b5ba874f7e7e228fb4b9b2bec04d2335bb5e0aeb93dda730112",
+    "source_sha256": "f0165518c4dd1a4084e5ae2bb677236f4a7db006add0e5923c53d4ffc50ae545",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "matching_source_files": 1339,
+  "excluded_metadata_paths": [
+    ".gitignore",
+    ".idea/codeStyles/Project.xml",
+    "colorpicker/.gitignore"
+  ],
+  "source_other_files_exact": true,
+  "canonical_and_variant_equal_resource_count": 695,
+  "matching_resources": [
+    {
+      "resource": "resource 0x7f0c0000 plurals/ui_crop_preview_images",
+      "compiled_value_sha256": "4b33786fe832fbdbfaa67d82c9344805ae3d8dccd242c56477b754d9c4447428"
+    },
+    {
+      "resource": "resource 0x7f0d0027 string/colour20_custom_selected_slot",
+      "compiled_value_sha256": "b89c9d71153ef657f906df7cf6eed2dfc2eef630be6db0fc8d9c83f261226987"
+    },
+    {
+      "resource": "resource 0x7f0d0028 string/colour20_empty_slot",
+      "compiled_value_sha256": "872d560da940179f3f6d4c6b34c04810ff42a025788aef8ed80d595e458b2754"
+    },
+    {
+      "resource": "resource 0x7f0d0029 string/colour20_replace_slot",
+      "compiled_value_sha256": "236a99a9c0b47de041f788b056ec8e254add0095490661fbd74dcdb797451959"
+    },
+    {
+      "resource": "resource 0x7f0d002a string/colour20_save_slot",
+      "compiled_value_sha256": "13fd6e761b236986e88dfc6f708d28823da2878f412f797db5d8fdba67ec8a14"
+    },
+    {
+      "resource": "resource 0x7f0d002b string/colour20_saved_slot",
+      "compiled_value_sha256": "7eeb764cdc78b8b7c978763da372a9c4e6e044f899ddde3cf5f51a640c062f80"
+    },
+    {
+      "resource": "resource 0x7f0d002c string/colour20_stored_slot",
+      "compiled_value_sha256": "3ca7613b45e3007ba852cde485be266f22cde2e1cff9a5d72bdd35a4b7e99c18"
+    },
+    {
+      "resource": "resource 0x7f0d002d string/colour_converter_unavailable",
+      "compiled_value_sha256": "ea3658b4859ab0cec0c97411ca1556c49642e5526c7cae731dd79d47863af93e"
+    },
+    {
+      "resource": "resource 0x7f0d002e string/colour_invalid_metadata",
+      "compiled_value_sha256": "793ef6b6fc8aa21419c561e326c477f996b9aa04e22424db7a795ab9d889c28c"
+    },
+    {
+      "resource": "resource 0x7f0d002f string/colour_truncated_metadata",
+      "compiled_value_sha256": "5782fbdf665f8401b4b6525b3529ec61ed3e4300718cd51c1c2ada1181d58194"
+    },
+    {
+      "resource": "resource 0x7f0d0030 string/colour_unsupported_icc_model",
+      "compiled_value_sha256": "ce96ca47cfeea7b83eacf70f797712729a35607c485985a178a8c2d15855ce92"
+    },
+    {
+      "resource": "resource 0x7f0d0031 string/commons_blank_maps",
+      "compiled_value_sha256": "c9b8b5f7de0cb328ab74b57196ec43793f9034c5e77125d57da445ea0a4523b6"
+    },
+    {
+      "resource": "resource 0x7f0d0032 string/commons_check_file_licence",
+      "compiled_value_sha256": "f17c4015c1a8b1563c8d3fea71061ad93605e144edb30fb33f8ff9b526da9c6d"
+    },
+    {
+      "resource": "resource 0x7f0d0033 string/commons_credit_copy_failed",
+      "compiled_value_sha256": "01638b7eceeedd7dfd4f8204fc618ad4d02f714623cb6bc1ad6c8e0d39e778d0"
+    },
+    {
+      "resource": "resource 0x7f0d0034 string/commons_credit_copy_failed_reason",
+      "compiled_value_sha256": "f79faf2913f72cdc3f5a3696602d3caf2bbb70d183f70a431ef664512a21aac0"
+    },
+    {
+      "resource": "resource 0x7f0d0035 string/commons_credit_copy_out_of_memory",
+      "compiled_value_sha256": "3e790bfcb702f29acd8cc38f546368d8b83d724216a67cc2a0824aa10e0b6319"
+    },
+    {
+      "resource": "resource 0x7f0d0036 string/commons_import_raster_changes",
+      "compiled_value_sha256": "3837d22d8febb15a7814b25dbf4a4a778acecc107972706692f5b99c3ba8d3fd"
+    },
+    {
+      "resource": "resource 0x7f0d0037 string/commons_import_svg_changes",
+      "compiled_value_sha256": "f258a3fe2b52cb3425ebe248d3ad11c8f848d98bca7566aee5da0cb5c68e5f43"
+    },
+    {
+      "resource": "resource 0x7f0d0038 string/commons_svg_original_size_too_large",
+      "compiled_value_sha256": "d88f4b48d04f35aa912626602935d3b3e2446fa63e76f8ced6f22a3e2d3a5541"
+    },
+    {
+      "resource": "resource 0x7f0d0039 string/commons_svg_original_size_unavailable",
+      "compiled_value_sha256": "a16186ed4b83fa697b4ce509897b56047b5d53a0eea4b0aa0ed47d76de87e829"
+    },
+    {
+      "resource": "resource 0x7f0d003a string/commons_svg_too_large",
+      "compiled_value_sha256": "110c9ee54fc776975b5e0fbd70eddf06c7dac2243732e779c54800102a996376"
+    },
+    {
+      "resource": "resource 0x7f0d003b string/formats22_animation_message",
+      "compiled_value_sha256": "28a64a65b8905e60c864ca4d4ae5190f71c2a38c15b99f10fe3c40d6840c10f3"
+    },
+    {
+      "resource": "resource 0x7f0d003c string/formats22_animation_poster",
+      "compiled_value_sha256": "be4cd736f1411cba637b1b46f30a016803cdc1448d6549583ea27ee127b435cc"
+    },
+    {
+      "resource": "resource 0x7f0d003d string/formats22_animation_still",
+      "compiled_value_sha256": "b0ce110e2a212a99d5b8737095c4271af645e2b1eb1593a2cebd8b2018269d4d"
+    },
+    {
+      "resource": "resource 0x7f0d003e string/formats22_animation_title",
+      "compiled_value_sha256": "64f25882211486678afbacfbc58273216b62c4c07f9764ae8dec62bcaf06b0f4"
+    },
+    {
+      "resource": "resource 0x7f0d003f string/formats22_animation_unknown",
+      "compiled_value_sha256": "4541c3a01ecec98e4031480ea6fac9222c51178f1a8023fe4ea1c3cd7e3deab2"
+    },
+    {
+      "resource": "resource 0x7f0d0040 string/formats22_ascii_columns",
+      "compiled_value_sha256": "d412e87b4411fd1a241f84b48471be494da53dedcfa42a9a7a580deac40d234d"
+    },
+    {
+      "resource": "resource 0x7f0d0041 string/formats22_ascii_description",
+      "compiled_value_sha256": "f107f6bdfa8f84747d274f46aaf8ec7296b2256ac3aa7d03a512f2cb6d81ae3e"
+    },
+    {
+      "resource": "resource 0x7f0d0042 string/formats22_ascii_invert",
+      "compiled_value_sha256": "93a9793678d7c3742d9c946a175522ba8fcb4b2c56d65c214f0a3c6def66453b"
+    },
+    {
+      "resource": "resource 0x7f0d0043 string/formats22_ascii_label",
+      "compiled_value_sha256": "64f491b9190160f6af8068541946693bee216558122ffaab73319a24f406e254"
+    },
+    {
+      "resource": "resource 0x7f0d0044 string/formats22_at_least_frames",
+      "compiled_value_sha256": "909c2fd4faca612dc27bfde8e666eaea813efd39a494b6c56d5113c1fc772396"
+    },
+    {
+      "resource": "resource 0x7f0d0045 string/formats22_base64_description",
+      "compiled_value_sha256": "037da2a2a3197c2f94162a9881ed31b00dfea77bd5cb17b56d45620efd8579bb"
+    },
+    {
+      "resource": "resource 0x7f0d0046 string/formats22_base64_label",
+      "compiled_value_sha256": "393ac07fe64394a12c7386d965de13829a4839cca34bf4451c653e6a3952610c"
+    },
+    {
+      "resource": "resource 0x7f0d0047 string/formats22_derived_exported",
+      "compiled_value_sha256": "875f99f0ae812050e16a61b2f0da947e94235e9864c51d141d1c1d85b1ddde55"
+    },
+    {
+      "resource": "resource 0x7f0d0048 string/formats22_dib_description",
+      "compiled_value_sha256": "b32ff0857d5313d7a153752613f450ba5711f443d6375bed6efc2a60046bd5b7"
+    },
+    {
+      "resource": "resource 0x7f0d0049 string/formats22_dib_size_limit",
+      "compiled_value_sha256": "9413acbd9c6b73551b05628c37446adc8a4b2c31933467da6021b84f2aa5ce3a"
+    },
+    {
+      "resource": "resource 0x7f0d004a string/formats22_ico_decode_budget",
+      "compiled_value_sha256": "c7736b46a62b02e2f9af928ae454a22ef366463788b4487dfb00ea6e354b46d7"
+    },
+    {
+      "resource": "resource 0x7f0d004b string/formats22_ico_description",
+      "compiled_value_sha256": "923cf1ed580dc8c225670d32871d68b8400e7e8b202e069c2bac2d70a056f779"
+    },
+    {
+      "resource": "resource 0x7f0d004c string/formats22_ico_dimensions_error",
+      "compiled_value_sha256": "8c5ff4602afcc2c537d86e743aca22b078517e9cbfa39250c55d475b0d303dae"
+    },
+    {
+      "resource": "resource 0x7f0d004d string/formats22_ico_invalid_size",
+      "compiled_value_sha256": "b11aa91f524f46debf19ac75bf12bed8025210e19a1617e7b435e2acf8e98454"
+    },
+    {
+      "resource": "resource 0x7f0d004e string/formats22_ico_size",
+      "compiled_value_sha256": "63fb97d9684ea200952ad68c31af860816b54bbc3d1dec561fcd9ee05574b761"
+    },
+    {
+      "resource": "resource 0x7f0d004f string/formats22_import_limit",
+      "compiled_value_sha256": "bc15c08ccaae8dc77ce725d459ab6652dd1c4b7b8faf70fb8471856f3e0d213a"
+    },
+    {
+      "resource": "resource 0x7f0d0050 string/formats22_loading_page",
+      "compiled_value_sha256": "83d342b28219e71dc709a0f8c76076778c4b72cf067e57329e9c1dc506e08b80"
+    },
+    {
+      "resource": "resource 0x7f0d0051 string/formats22_next_page",
+      "compiled_value_sha256": "78695062b75b6f23dd34f9e09c744d8c0e5b092f44a1bf50e0d8d6898ba563ff"
+    },
+    {
+      "resource": "resource 0x7f0d0052 string/formats22_open_page",
+      "compiled_value_sha256": "1d5a70006f8b3100b50b7a7bfc8afccedba9fd48ecc6ffea8ca7224540b669ad"
+    },
+    {
+      "resource": "resource 0x7f0d0053 string/formats22_open_still",
+      "compiled_value_sha256": "fd7091102aed2560b3e0a5469c8b29f31ef8d9efb3e5fd598de49d356bb37968"
+    },
+    {
+      "resource": "resource 0x7f0d0054 string/formats22_page_description",
+      "compiled_value_sha256": "e721ca7a1808a3454f84794f027d928cc082c6081d9311be5c9cec36734fb3b7"
+    },
+    {
+      "resource": "resource 0x7f0d0055 string/formats22_page_dimensions",
+      "compiled_value_sha256": "d4f9fa74847c34f40e6ba904c6df17c45994d8e8e2e27bc5f42a2c51efb3e752"
+    },
+    {
+      "resource": "resource 0x7f0d0056 string/formats22_page_number",
+      "compiled_value_sha256": "3aaae588c9df2e99b0f2c511e0f4d481558b46adcf942f567256e3257b05029e"
+    },
+    {
+      "resource": "resource 0x7f0d0057 string/formats22_page_preview",
+      "compiled_value_sha256": "9faf97c6c483e498f3d2e7cf2db9a81d8f2f04602cde9ffbed357d9ce9b0216e"
+    },
+    {
+      "resource": "resource 0x7f0d0058 string/formats22_page_range",
+      "compiled_value_sha256": "0083cc8b36321b468f08c37fb7902a2d6461712b3f805e4fd2276b8e119497bf"
+    },
+    {
+      "resource": "resource 0x7f0d0059 string/formats22_pdf_crop",
+      "compiled_value_sha256": "f1e3b923a92d1367fa5ac326f3419d54d0f9438e53ddad549dabe04784929b5d"
+    },
+    {
+      "resource": "resource 0x7f0d005a string/formats22_pdf_dimensions",
+      "compiled_value_sha256": "fc72d7ce00de832a9680984a0aa76775a6ae8b9036fea0843ee52436fd3d5044"
+    },
+    {
+      "resource": "resource 0x7f0d005b string/formats22_pdf_encrypted",
+      "compiled_value_sha256": "d25eb036115660eb0d73ddcd457789fad5e19d7f097ba9c78b8fdbc9e38f06df"
+    },
+    {
+      "resource": "resource 0x7f0d005c string/formats22_pdf_file_size",
+      "compiled_value_sha256": "bbe6bfacb965ca68288b226a039ce744ad0008e185a3dce6092c625c38123d89"
+    },
+    {
+      "resource": "resource 0x7f0d005d string/formats22_pdf_invalid",
+      "compiled_value_sha256": "2fe0c059afb323a0bc6bf376ee2f8b2e9a3ce9b297f6e683f704b29775d3cd62"
+    },
+    {
+      "resource": "resource 0x7f0d005e string/formats22_pdf_memory",
+      "compiled_value_sha256": "5b9614652df852557c0cdadc00b380b66e83136924099eeea45070d94d681229"
+    },
+    {
+      "resource": "resource 0x7f0d005f string/formats22_pdf_page_count",
+      "compiled_value_sha256": "99b9f4d98abe342b546d30f9c7114a27eb092db7bbcdb16c8c0d2c4ec3a7277a"
+    },
+    {
+      "resource": "resource 0x7f0d0060 string/formats22_pdf_page_index",
+      "compiled_value_sha256": "4171f77073b91ee424a20d6d83bcf9b7620801012f77d8beb9dd6cfa3b328b6d"
+    },
+    {
+      "resource": "resource 0x7f0d0061 string/formats22_pdf_raster_hint",
+      "compiled_value_sha256": "5e3146afbe3e9ee596a949ccb09cd26fbda2070250d5fbf8c0fa25b349a35046"
+    },
+    {
+      "resource": "resource 0x7f0d0062 string/formats22_preview_memory",
+      "compiled_value_sha256": "8d1e20d829f12ad34499aefe6b0f76dc9502431873fdf4a0f02b5007abd07495"
+    },
+    {
+      "resource": "resource 0x7f0d0063 string/formats22_preview_unavailable",
+      "compiled_value_sha256": "f08405c64f746c916cce57def8ec062c421641d28f232dc6f4c730a7a0452ebf"
+    },
+    {
+      "resource": "resource 0x7f0d0064 string/formats22_previous_page",
+      "compiled_value_sha256": "cc32bbc7dcfa31f378c430606d29ae9f6784af61c83b29e2e2d6f708a3cee815"
+    },
+    {
+      "resource": "resource 0x7f0d0065 string/formats22_select_page",
+      "compiled_value_sha256": "d571d4b134fb6ebdbd7b295d002521645e2d353e69a3479640197de73def24ac"
+    },
+    {
+      "resource": "resource 0x7f0d0066 string/formats22_text_not_image",
+      "compiled_value_sha256": "4f20b9a35d44fe4e898275e18275327ef2704df3372224baa3d9d54209dd2e15"
+    },
+    {
+      "resource": "resource 0x7f0d0067 string/formats22_tiff_compression",
+      "compiled_value_sha256": "ee27bb8466dbd67b0fa2ecfc7d948248d8663736acfe0ec3027a49c00490bee4"
+    },
+    {
+      "resource": "resource 0x7f0d0068 string/formats22_tiff_description",
+      "compiled_value_sha256": "c1807c2db787dc6f1df1acd3fb8730b63d0c81ded707126c870a41c6b1d6ab35"
+    },
+    {
+      "resource": "resource 0x7f0d0069 string/gallery_copy_credit",
+      "compiled_value_sha256": "5b004998cd01d9a5594637c5d2d6b8082082a63730dc2aa89bffbe403fd93ae8"
+    },
+    {
+      "resource": "resource 0x7f0d006a string/gallery_credit_copied",
+      "compiled_value_sha256": "4affe67f93ee40843b659fecf806d20a0d2c3357cbd6234419825d8c1fcd30a6"
+    },
+    {
+      "resource": "resource 0x7f0d006b string/gallery_credit_could_not_save",
+      "compiled_value_sha256": "60bdbfb3c147e0e1037d795fc530ae8a64d7aa97951b3dc408f7a05479ec3d5b"
+    },
+    {
+      "resource": "resource 0x7f0d006c string/gallery_credit_edit_hint",
+      "compiled_value_sha256": "9a589a4d5ff9a45e2717d275a1968d0dd6966d94eb35d751ba097d472efbf0c1"
+    },
+    {
+      "resource": "resource 0x7f0d006d string/gallery_credit_gallery",
+      "compiled_value_sha256": "c521da4eb38126026f6f162105925cedc65aab350d4c373cc38441d166ebecef"
+    },
+    {
+      "resource": "resource 0x7f0d006e string/gallery_credit_licence",
+      "compiled_value_sha256": "bc7b1d6cadba25ec493495068aec2a41be3a9082a5203a67d5472db82cda9c63"
+    },
+    {
+      "resource": "resource 0x7f0d006f string/gallery_credit_publisher",
+      "compiled_value_sha256": "8e568e178656d1ccbdc3c3bc0c6fb069b8e1d5914ae08e7bbf87d236fd9f8e8d"
+    },
+    {
+      "resource": "resource 0x7f0d0070 string/gallery_credit_saved",
+      "compiled_value_sha256": "fb564a70c62d5bcf68def23d3eb6c3dd141457216bff8f7d1c8ee5788182cb7f"
+    },
+    {
+      "resource": "resource 0x7f0d0071 string/gallery_credit_source",
+      "compiled_value_sha256": "34468c1de1f9d06bba51859c59d0c3188b9c2b276c4d2fc431d6ad23ca36c2da"
+    },
+    {
+      "resource": "resource 0x7f0d0072 string/gallery_credit_title",
+      "compiled_value_sha256": "58c00608b417f502e877ae3978afaf199dfc7735f70cfaed9525713e1bb554e6"
+    },
+    {
+      "resource": "resource 0x7f0d0073 string/gallery_credit_too_large",
+      "compiled_value_sha256": "50759a45975e63506da8cccb3462254561f4561ffcc950bcde87369937d32b13"
+    },
+    {
+      "resource": "resource 0x7f0d0074 string/gallery_description",
+      "compiled_value_sha256": "2b189a4b6bb40f73669cc260fb906bb2a9fdd207c49beb03d1fc71bab5af9797"
+    },
+    {
+      "resource": "resource 0x7f0d0075 string/gallery_edit_credits",
+      "compiled_value_sha256": "30fff787bc33c853807330fdad506591070e9cba049df2e95298c4ff2884d5f4"
+    },
+    {
+      "resource": "resource 0x7f0d0076 string/gallery_use_image",
+      "compiled_value_sha256": "1965d6d15608584655e77a50062c49f8eaddb05a0daaea19d2899e30c963fb44"
+    },
+    {
+      "resource": "resource 0x7f0d0077 string/language20_app_language",
+      "compiled_value_sha256": "28e55abf57ff27c64fa5b779945ce8f0091a667f984e302dcfb878321e8b80cc"
+    },
+    {
+      "resource": "resource 0x7f0d0078 string/language20_current",
+      "compiled_value_sha256": "f1b332a5609b60384f61e3d014e067ee7ed97e5f435f445a5011351ba23fc4f5"
+    },
+    {
+      "resource": "resource 0x7f0d0079 string/language20_device_default",
+      "compiled_value_sha256": "95e7e172607fa6913d496d17f7bbea02e35fc2bddb9318fdad494ab36324e819"
+    },
+    {
+      "resource": "resource 0x7f0d007a string/language20_settings",
+      "compiled_value_sha256": "e5a1b9fab0f57bc3eb6222d161375d3c979e5ebd96ffcab1f89912e51536679d"
+    },
+    {
+      "resource": "resource 0x7f0d007b string/language20_translation_note",
+      "compiled_value_sha256": "7c7cf99dae018818080f114b0bcb8a58eaab25bd29e7ac0bfaab93e0d54f9fd0"
+    },
+    {
+      "resource": "resource 0x7f0d007c string/legacy_credits_add",
+      "compiled_value_sha256": "f5ff058565b2a4fb88348d2e174300f096bbcd61a35f75562bd6957eafd3032a"
+    },
+    {
+      "resource": "resource 0x7f0d007d string/legacy_credits_added",
+      "compiled_value_sha256": "b492372b24128fbc4b4ea6bddb47171e9778eeb44762c9d623076b2ba29f7ca7"
+    },
+    {
+      "resource": "resource 0x7f0d007e string/legacy_credits_existing",
+      "compiled_value_sha256": "7c84bacf1029be3b2e9bca34741e3fdf097f53a95bd1fd9f566ce1f9d86a3f75"
+    },
+    {
+      "resource": "resource 0x7f0d007f string/legacy_credits_hint",
+      "compiled_value_sha256": "ae67ea4779de8aaabc4f58d064155e4367b0723fcf323bb2852cc059a34a40b7"
+    },
+    {
+      "resource": "resource 0x7f0d0080 string/legacy_credits_save_text",
+      "compiled_value_sha256": "685155fd98f9175631c4be37e1a63058c86fa2de82d4577d7fcf280ab4c92ecb"
+    },
+    {
+      "resource": "resource 0x7f0d0081 string/legacy_credits_title",
+      "compiled_value_sha256": "fed8d9cd70927d51ba135fecb5eebc2fee0b8d4a7c13c1171367875447df1606"
+    },
+    {
+      "resource": "resource 0x7f0d0082 string/legacy_credits_unreadable",
+      "compiled_value_sha256": "6f65c1dd02a6189f96a11acce08871965ab4f69b2e25faec983e99819bb0de08"
+    },
+    {
+      "resource": "resource 0x7f0d0083 string/save20_bmp_description",
+      "compiled_value_sha256": "6eb0dc0e44df50c1493c64aa73a599e718c6e421af601cc925789e063332e502"
+    },
+    {
+      "resource": "resource 0x7f0d0084 string/save20_bmp_size_limit",
+      "compiled_value_sha256": "b58b6547aaf84299dd7c0c88d247c89a31ccedba50dcaf3d2eb2339b59694379"
+    },
+    {
+      "resource": "resource 0x7f0d0085 string/save20_destination_error",
+      "compiled_value_sha256": "5ddaf9bfc0121604d833013299b7c405b36647f785854dc78fb86a043e294632"
+    },
+    {
+      "resource": "resource 0x7f0d0086 string/save20_dither",
+      "compiled_value_sha256": "87e015e4697cc75e715f483d182644716ef5d8ca2efe936384eecb297b3a2cdc"
+    },
+    {
+      "resource": "resource 0x7f0d0087 string/save20_encoding_budget",
+      "compiled_value_sha256": "f35229f6f996207926434001ebaea9d7964743f77a0eca83c956d4724fe08c15"
+    },
+    {
+      "resource": "resource 0x7f0d0088 string/save20_file_format",
+      "compiled_value_sha256": "db200f5c7de3c85a7e093b65f8f926ef66b25765d77dd02ed52231e2e2f806d7"
+    },
+    {
+      "resource": "resource 0x7f0d0089 string/save20_file_name",
+      "compiled_value_sha256": "7cdbdf04866a7f4c31a32ad46682702fd9553026438ed201a4fb4448f049b3e6"
+    },
+    {
+      "resource": "resource 0x7f0d008a string/save20_gif_description",
+      "compiled_value_sha256": "3afb5df4053a0deec6223df0e7229843a3be24e80f3e0cbedad57e9efcaa5d4c"
+    },
+    {
+      "resource": "resource 0x7f0d008b string/save20_gif_size_limit",
+      "compiled_value_sha256": "420ad6feaa4341c281b6210c193f2b48a0ca5a87f28d113c4f4553f3c25f654e"
+    },
+    {
+      "resource": "resource 0x7f0d008c string/save20_invalid_name",
+      "compiled_value_sha256": "c977d414140ed03b58c4eda0d6810b0edb5d2c1c497ec00cae2a009eb1f2c3c5"
+    },
+    {
+      "resource": "resource 0x7f0d008d string/save20_lossy_quality_description",
+      "compiled_value_sha256": "a7d39cb4f982c8aa8a7e14c3774278f39c2b2a0ee8e9bce8d47e6cd8119f9a2c"
+    },
+    {
+      "resource": "resource 0x7f0d008e string/save20_title",
+      "compiled_value_sha256": "1ea14436043fe429188638c6afb52320c996dfaef532500654bd53352d80a20f"
+    },
+    {
+      "resource": "resource 0x7f0d008f string/save20_unsupported_tagged_colour",
+      "compiled_value_sha256": "39d03411854ec15ff986918f7edf1cb526fd4ac6878d72da38290044e46069b1"
+    },
+    {
+      "resource": "resource 0x7f0d0092 string/ui_0f_0f_px_1f",
+      "compiled_value_sha256": "047b97062fdb8059b0ecac89676f7097c4aa618d2ba2ca734b5bf7ccdfe5a487"
+    },
+    {
+      "resource": "resource 0x7f0d0093 string/ui_100",
+      "compiled_value_sha256": "d00492fda826ed48646d6fa5cc09443ba93fc4a85e863ee2734d62dd3f130a90"
+    },
+    {
+      "resource": "resource 0x7f0d0094 string/ui_1_px",
+      "compiled_value_sha256": "1c75f471e11616c2ffde4621c4380aec23d24361e86cc5e8cbd466f76578efbe"
+    },
+    {
+      "resource": "resource 0x7f0d0095 string/ui_1f_s",
+      "compiled_value_sha256": "45af690c61fd73d756e9577dd8e638d1a1fc7c86ebb7670f30c46b6a2270860c"
+    },
+    {
+      "resource": "resource 0x7f0d0096 string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "compiled_value_sha256": "6be93f9e496ff99ccbf76221e49a4bf2b5ea886eb22ae1d8f3231cfdc31ad468"
+    },
+    {
+      "resource": "resource 0x7f0d0097 string/ui_aa_bb_0123",
+      "compiled_value_sha256": "70f2c8c0f0dac7f93efb5b3193c5015c5cc427333022f2d02d4954f78270de07"
+    },
+    {
+      "resource": "resource 0x7f0d0098 string/ui_about_copyright",
+      "compiled_value_sha256": "f5ddcacff2ab2ceff7bc27d44313ebde6d9e193b1b93360ff6333171c599b4e1"
+    },
+    {
+      "resource": "resource 0x7f0d0099 string/ui_about_copyright_licence",
+      "compiled_value_sha256": "517842b8a0b00a186babc3fc713e76690df40288565e8bea887a16fcea32d066"
+    },
+    {
+      "resource": "resource 0x7f0d009a string/ui_about_credits23",
+      "compiled_value_sha256": "321f090e8fed6ed49ca85c9fa749a8118354937256a5aa97c45d2ddad4f410dc"
+    },
+    {
+      "resource": "resource 0x7f0d009b string/ui_actual_size_100",
+      "compiled_value_sha256": "cdc6323358fdeef8935ee631cfeaa6d208781b48882e36b6dea9f3c1176ab4b6"
+    },
+    {
+      "resource": "resource 0x7f0d009c string/ui_add_active23",
+      "compiled_value_sha256": "9d8a59052fab5fb8a2af95bb21ef75a32372a763fba19fd103b67b6847333353"
+    },
+    {
+      "resource": "resource 0x7f0d009d string/ui_add_colour26",
+      "compiled_value_sha256": "39e26d531b221c4942094cc2b5c75a52d649c45a9347898157133cf1edd04439"
+    },
+    {
+      "resource": "resource 0x7f0d009e string/ui_add_images",
+      "compiled_value_sha256": "19e5866fdef27dbb5070ff8aa54c8388cc05c9ab93e3e4f1ee20c55a170ce06b"
+    },
+    {
+      "resource": "resource 0x7f0d009f string/ui_add_images_first",
+      "compiled_value_sha256": "1baaa4db239e59cdaf1565e079c6dddcd3a40336aca60d5f31ab89227b74e421"
+    },
+    {
+      "resource": "resource 0x7f0d00a0 string/ui_add_images_then_drag_a_thumbnail_here",
+      "compiled_value_sha256": "bacc225c78c0753d9725d276f9fd7eed57ac4742a9daf9a6ef391c795f1093a7"
+    },
+    {
+      "resource": "resource 0x7f0d00a1 string/ui_add_palette23",
+      "compiled_value_sha256": "dedf6ee97d693638a8228047d318379da4523359d1989ad40a74226d33ab2422"
+    },
+    {
+      "resource": "resource 0x7f0d00a2 string/ui_add_text",
+      "compiled_value_sha256": "b8705346b29b372b7022424a09cd806129ac6f96ff69099410ed2a206e901128"
+    },
+    {
+      "resource": "resource 0x7f0d00a3 string/ui_add_to_custom_colours",
+      "compiled_value_sha256": "d825679f62c1bf0a066746384da2f5b152df39faec0e816ff9f5f4c0736e301e"
+    },
+    {
+      "resource": "resource 0x7f0d00a4 string/ui_add_up_to_20_images_with_android_s",
+      "compiled_value_sha256": "3b4ce52059fac035375cca2fe8be41eb4cd3c6a7a239168c3ec21dec8ee022ad"
+    },
+    {
+      "resource": "resource 0x7f0d00a5 string/ui_added_palette23",
+      "compiled_value_sha256": "d8a62c76ed0ba8ecf63c6419036bb5b3d34953d249e624bc94bddc7e85509c17"
+    },
+    {
+      "resource": "resource 0x7f0d00a6 string/ui_advanced",
+      "compiled_value_sha256": "3f585db31bee14da7b5bbbe3aada8eab9493a2966d0023b39d1723d5666e8739"
+    },
+    {
+      "resource": "resource 0x7f0d00a7 string/ui_agpl_licence",
+      "compiled_value_sha256": "4274b1aea2cf9f3e8dd2a7bd9a4a5a7b94f2cbd896ea40f89d274024a13ef6d7"
+    },
+    {
+      "resource": "resource 0x7f0d00a8 string/ui_airbrush",
+      "compiled_value_sha256": "fd602d58acc107acf21633144dceb4cf978329e4d5e278406bbdde0054bd52b9"
+    },
+    {
+      "resource": "resource 0x7f0d00a9 string/ui_all",
+      "compiled_value_sha256": "b511867d2a02f96ebb899dfb1251aee2a8f6c2ae20c6084a24424e9442a6bb43"
+    },
+    {
+      "resource": "resource 0x7f0d00aa string/ui_an_assembly_can_contain_up_to_20_images",
+      "compiled_value_sha256": "df4baa67c549a8da2fcfcc3ebdd435949d8c6073f0deca42d41ed1a747f28f99"
+    },
+    {
+      "resource": "resource 0x7f0d00ab string/ui_an_assembly_can_contain_up_to_20_images_86d995",
+      "compiled_value_sha256": "154671f68eefeeecee5a20ca95d94b49ae2c497768192a142eeb0cb90448b427"
+    },
+    {
+      "resource": "resource 0x7f0d00ac string/ui_an_assembly_source_image_is_missing",
+      "compiled_value_sha256": "4b9a2f45cdcc011e69a12044e2d92d0fe91d2eefe6226ee8a0c30ae615abf7fc"
+    },
+    {
+      "resource": "resource 0x7f0d00ad string/ui_an_image_cannot_attach_to_itself_or_one",
+      "compiled_value_sha256": "adaa803d6b1112a474aa74407ec6b14b2846cfe92252465be56a07ae94e8d836"
+    },
+    {
+      "resource": "resource 0x7f0d00ae string/ui_an_paint_assembly_image",
+      "compiled_value_sha256": "52dda5878413c5e60b0f8aa1f9d78d42b52761b3eed9bcc3248495c2081dc8e2"
+    },
+    {
+      "resource": "resource 0x7f0d00b0 string/ui_an_paint_image",
+      "compiled_value_sha256": "ebd97a659475a1b781e06d99ae3d32e548395ef826d489458a53d47ff1560f26"
+    },
+    {
+      "resource": "resource 0x7f0d00b1 string/ui_an_paint_image_assembly",
+      "compiled_value_sha256": "c4280642e774e8df76a349cb4ae975cee875d9f2460c2886f961f4bd4f9ba3d1"
+    },
+    {
+      "resource": "resource 0x7f0d00b2 string/ui_an_paint_image_assembly_20_images_placed",
+      "compiled_value_sha256": "e4f3bc59cf1ce85f9e8522a611993bb09a5c160aa8601dcf57b5178a547b61ca"
+    },
+    {
+      "resource": "resource 0x7f0d00b5 string/ui_android_blocked_the_file_picker",
+      "compiled_value_sha256": "91c74602b633e3ba05e32b3d3c13c0443d08779e1a63249f72074dac2fe550c8"
+    },
+    {
+      "resource": "resource 0x7f0d00b6 string/ui_android_could_not_decode_this_image",
+      "compiled_value_sha256": "9573da63ff53bfe58c82fefee9d7ac83102616a2af0c8d304a1696957ae0ad5b"
+    },
+    {
+      "resource": "resource 0x7f0d00b7 string/ui_android_could_not_find_a_file_picker_enable",
+      "compiled_value_sha256": "11dcdb0300779ec3384d324e557504ae7eec3c114ae71f6e09e305ec71c03fb5"
+    },
+    {
+      "resource": "resource 0x7f0d00b8 string/ui_apply",
+      "compiled_value_sha256": "8c5d3a09723dcf8fa906463964d40c72ede67b285af3044808731b1012785daa"
+    },
+    {
+      "resource": "resource 0x7f0d00b9 string/ui_apply_bounds",
+      "compiled_value_sha256": "da6da130059b610ddba84b12f9fc8d7050577c741b4d544853d03d4de2df337e"
+    },
+    {
+      "resource": "resource 0x7f0d00ba string/ui_apply_crop",
+      "compiled_value_sha256": "77295fdd7ace65fbf5f0cede09e9b0f6138e20f960e26d1cea80ea58f6d4cee2"
+    },
+    {
+      "resource": "resource 0x7f0d00bb string/ui_apply_to_all",
+      "compiled_value_sha256": "0ef16d3f64ad400d76385a555d0e163f18e3efe658e114bf3fe26aa6cdaa905d"
+    },
+    {
+      "resource": "resource 0x7f0d00bc string/ui_apply_to_these_images",
+      "compiled_value_sha256": "979bb56e28202a5d65107e2673cb4b50add27bd587961544c4fd4bd9a9d658ac"
+    },
+    {
+      "resource": "resource 0x7f0d00bd string/ui_arrow",
+      "compiled_value_sha256": "d3f2cf1611c48967d837bf0a552047b656ccaa0e68f112628c1f4cba3cf5534f"
+    },
+    {
+      "resource": "resource 0x7f0d00be string/ui_assembly_decoded_output_estimated_editing_render_memory_at",
+      "compiled_value_sha256": "9b0e1ff808379b39ceca1a95845750493ea94c3f4e4816ef06f4894de6d275d7"
+    },
+    {
+      "resource": "resource 0x7f0d00bf string/ui_assembly_output_size",
+      "compiled_value_sha256": "c4a84b9fe4c7fd9692c0446853bb8799c4270e384fe34b557e21360ac3f7347e"
+    },
+    {
+      "resource": "resource 0x7f0d00c0 string/ui_assembly_png",
+      "compiled_value_sha256": "d3f0243de8d87cbcf0ebc4984fed811cbf397d76634d60f714685df7f040ec7d"
+    },
+    {
+      "resource": "resource 0x7f0d00c1 string/ui_assembly_saved",
+      "compiled_value_sha256": "046bc23327ad0765fa2b3e6c2a2dea96ced88858956f6604f77a77cfd3351135"
+    },
+    {
+      "resource": "resource 0x7f0d00c2 string/ui_assembly_source_memory_floor",
+      "compiled_value_sha256": "00676179a69592c5e7351033b5d6b58c9714bb3485a34e65cfeb9a2de21a479e"
+    },
+    {
+      "resource": "resource 0x7f0d00c3 string/ui_autosave_failed_use_save",
+      "compiled_value_sha256": "6c3bd1e104e78679cf0a7ac853942c28a4c65b65b7f2565d239325f4dbd21fa4"
+    },
+    {
+      "resource": "resource 0x7f0d00c4 string/ui_autosave_image_encoding_failed",
+      "compiled_value_sha256": "15bcc46bf7897d5eb972b5b119de712207f0f6e61f2b6642722f726f4347933c"
+    },
+    {
+      "resource": "resource 0x7f0d00c5 string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "compiled_value_sha256": "80da25bcc3fca87314d76978bbd6369f5c645738fed1918572ccb9c4dcf59873"
+    },
+    {
+      "resource": "resource 0x7f0d00c6 string/ui_autosave_metadata_is_missing",
+      "compiled_value_sha256": "08edec2b8d1f088c4486d7d52f73b86b675bf83f1a641581f43a6d5e8cd97002"
+    },
+    {
+      "resource": "resource 0x7f0d00c7 string/ui_autosave_paused_use_save",
+      "compiled_value_sha256": "b61aa4eed2947ddc6aeb548e921b14119df7eebaeef3987cbd6432bec109bb70"
+    },
+    {
+      "resource": "resource 0x7f0d00c8 string/ui_autosave_pixels_are_missing",
+      "compiled_value_sha256": "6e843f039d75c7aa0da637af9e5e3bdb6b0b8d61548f6f148bb500822f249659"
+    },
+    {
+      "resource": "resource 0x7f0d00c9 string/ui_autosave_pixels_could_not_be_read",
+      "compiled_value_sha256": "b830038f83c5480e181d06956f220e774946000082a39aad6e70dacbb47a0d03"
+    },
+    {
+      "resource": "resource 0x7f0d00ca string/ui_autosave_selection_encoding_failed",
+      "compiled_value_sha256": "a09f8c6315e8a7fd64c1a3fa68e29211666559434541d9a259dcd7b8d722abbc"
+    },
+    {
+      "resource": "resource 0x7f0d00cb string/ui_autosaving_draft",
+      "compiled_value_sha256": "f8c9bf314e1c825e70f85c0d19429b06e3af62d4f561905be629321cdddb337f"
+    },
+    {
+      "resource": "resource 0x7f0d00cc string/ui_background_colour",
+      "compiled_value_sha256": "ac6c1adae89d088b8b1e2131245d3af8a2dc008dc57bbe1719a13f4addc4eeac"
+    },
+    {
+      "resource": "resource 0x7f0d00cd string/ui_background_edit_colour",
+      "compiled_value_sha256": "df3fcb3627cf1d9f0820933259ad307aa7991b4d853491a7ba209ea00a8ecdd4"
+    },
+    {
+      "resource": "resource 0x7f0d00ce string/ui_basic_colours",
+      "compiled_value_sha256": "ea8beb8e89d4f41a2c542c709de5b8bea77c98941301945699b7553c7193510c"
+    },
+    {
+      "resource": "resource 0x7f0d00cf string/ui_batch_crop",
+      "compiled_value_sha256": "25b7d121bba5f4c44e91ebcd9ba2fbddb88d4b1be3d506317a25836df5ee736c"
+    },
+    {
+      "resource": "resource 0x7f0d00d0 string/ui_batch_crop_images",
+      "compiled_value_sha256": "3929e7a88107adf211f69be3df7e37bf7fba3e5c8e957d6939ba3c63eafe95a1"
+    },
+    {
+      "resource": "resource 0x7f0d00d1 string/ui_bg",
+      "compiled_value_sha256": "ac6c1adae89d088b8b1e2131245d3af8a2dc008dc57bbe1719a13f4addc4eeac"
+    },
+    {
+      "resource": "resource 0x7f0d00d2 string/ui_bold",
+      "compiled_value_sha256": "a95c7933e9037e645f756fccef7254d738ad3f1f1853b7b72e8531c9c3f59bc7"
+    },
+    {
+      "resource": "resource 0x7f0d00d3 string/ui_bottom",
+      "compiled_value_sha256": "f2478f152c3be3a995671c11566232f6f5a10464ce8dc595f3cc78e57a4d492e"
+    },
+    {
+      "resource": "resource 0x7f0d00d4 string/ui_bottom23",
+      "compiled_value_sha256": "58285ea732ef970fbaa4aa43e2f5d768617a83014b02ddf2208617370420dd07"
+    },
+    {
+      "resource": "resource 0x7f0d00d5 string/ui_brush",
+      "compiled_value_sha256": "185f9d5b1e842c43b58fd29da8048aaaa75505433c8c5cf164b96c59491f0980"
+    },
+    {
+      "resource": "resource 0x7f0d00d6 string/ui_bucket_fill",
+      "compiled_value_sha256": "c1a937a8ca66aef76cafe89236a9db517f332883a5a3b4e26e2bafcae5f701da"
+    },
+    {
+      "resource": "resource 0x7f0d00d7 string/ui_by_pixels_hold_and_drag_to_place",
+      "compiled_value_sha256": "15dee7bc2712d85daa896c42a5a71784317e350f5712d2126de08fd431e8eb84"
+    },
+    {
+      "resource": "resource 0x7f0d00d8 string/ui_calligraphy",
+      "compiled_value_sha256": "faab5e5d4d3e8572c95c6a7f2e0c203ad814e0b35636f85ffb38ccf74eaadcf9"
+    },
+    {
+      "resource": "resource 0x7f0d00d9 string/ui_cancel",
+      "compiled_value_sha256": "4fa6cdbf13079926965f04ae1a16b9d6c0d6ba3ca287f399132620e167d1bcdf"
+    },
+    {
+      "resource": "resource 0x7f0d00da string/ui_cannot_create_the_undo_cache_free_some_device",
+      "compiled_value_sha256": "f426e5380f16762195cc788e7cfac7373bdb6e0216934aa90db3c3bd221de847"
+    },
+    {
+      "resource": "resource 0x7f0d00db string/ui_canvas_bounds",
+      "compiled_value_sha256": "f37845746c2f9a0ec93900f0aa1894d6bf718701307de28af903d915fc04e6ca"
+    },
+    {
+      "resource": "resource 0x7f0d00dc string/ui_canvas_size",
+      "compiled_value_sha256": "ead6cf15e79ad469986432450a3d5fcc6c1d72085d9667959fae3b22abaa1339"
+    },
+    {
+      "resource": "resource 0x7f0d00dd string/ui_canvas_size_30460e",
+      "compiled_value_sha256": "94864689931531e0d27f116f7d812d5c971bdb184df5f043ae0b9fdf4ee66c76"
+    },
+    {
+      "resource": "resource 0x7f0d00de string/ui_canvas_zoom",
+      "compiled_value_sha256": "5e731e3030b02b174d9035a4a8a956551bb0a36c8660cf3b305279dc89c20810"
+    },
+    {
+      "resource": "resource 0x7f0d00df string/ui_canvas_zoom_771f84",
+      "compiled_value_sha256": "68037c0e3059f5b3e30c7da641a141243a276abf4e63f41d02f7f9af29fc550d"
+    },
+    {
+      "resource": "resource 0x7f0d00e0 string/ui_casual",
+      "compiled_value_sha256": "365e26de3b95ea065847bde447f99e8815e9340ccd1f42122025eef5a2591f2a"
+    },
+    {
+      "resource": "resource 0x7f0d00e1 string/ui_category_brush",
+      "compiled_value_sha256": "185f9d5b1e842c43b58fd29da8048aaaa75505433c8c5cf164b96c59491f0980"
+    },
+    {
+      "resource": "resource 0x7f0d00e2 string/ui_category_insert",
+      "compiled_value_sha256": "ddf3054534228746dfa79b8bcc04cef8889fcbe00d9fab0c2ebe92abc432eb36"
+    },
+    {
+      "resource": "resource 0x7f0d00e3 string/ui_category_selection",
+      "compiled_value_sha256": "392d991a2e0dec2d57022bd0f5558b9f1a37c3f69692a3cdf5aff5548f1e5cd5"
+    },
+    {
+      "resource": "resource 0x7f0d00e4 string/ui_catrobat_online_gallery_artwork_by_its_credited_creators",
+      "compiled_value_sha256": "cb53f8f91ef710ad1338129156bb6446230c1dc2ca4cc4c8c7ce72ad90f113b9"
+    },
+    {
+      "resource": "resource 0x7f0d00e5 string/ui_catrobat_s_own_artwork_uses_cc_by_sa",
+      "compiled_value_sha256": "df24b03e94ed41f6d5da61b7cf05d5450e97d881af07251cbbbc9924699eded2"
+    },
+    {
+      "resource": "resource 0x7f0d00e6 string/ui_catrobat_sticker_gallery",
+      "compiled_value_sha256": "07a31e969a8552aadb7780692c52b356995adeaf5247520f7c36936e4808fb3c"
+    },
+    {
+      "resource": "resource 0x7f0d00e7 string/ui_centred",
+      "compiled_value_sha256": "42522c6e34396eaca293c33f072e4085d6502aeb2673b182ae5dc9ae09e67405"
+    },
+    {
+      "resource": "resource 0x7f0d00e8 string/ui_choose_a_smaller_output_copy_the_source_images",
+      "compiled_value_sha256": "19e421be8173a601b75decc758fff21aaba4959279d20f9efe9cbab1684cfe47"
+    },
+    {
+      "resource": "resource 0x7f0d00e9 string/ui_choose_a_smaller_size",
+      "compiled_value_sha256": "4f6a772d2478359d862859f327ef9203efaf92605a022a402e974c3848e9329d"
+    },
+    {
+      "resource": "resource 0x7f0d00ea string/ui_choose_at_least_one_image",
+      "compiled_value_sha256": "259b5b89d06487ffef7c7249fb62e4f5488ac2af8bae919a42740732a17ba1f9"
+    },
+    {
+      "resource": "resource 0x7f0d00eb string/ui_choose_dimensions_no_larger_than_the_original",
+      "compiled_value_sha256": "89dd38ec375cd9b17e3483a345acc0e416017043281ab0593a34841520d62a56"
+    },
+    {
+      "resource": "resource 0x7f0d00ec string/ui_choose_location",
+      "compiled_value_sha256": "8d8e3fa007ec73a39fca54c547bf1da96022b59070cf446f5229faeaba3a8dc9"
+    },
+    {
+      "resource": "resource 0x7f0d00ed string/ui_clear_all",
+      "compiled_value_sha256": "a955bd6d6dbef336953bbdbecfa2c5e2a939e564904fb4398a190cb8b30cf8a1"
+    },
+    {
+      "resource": "resource 0x7f0d00ee string/ui_clear_image",
+      "compiled_value_sha256": "e6ae1a2b572f55c987ed5d83134c5314102ffea0ceaf15e5321b921575e7cf59"
+    },
+    {
+      "resource": "resource 0x7f0d00ef string/ui_close_polygon",
+      "compiled_value_sha256": "506b7c5fabd688cf5e99ec6f21e5e77826d57b4cf1a911b9e2d956ecf49b08b2"
+    },
+    {
+      "resource": "resource 0x7f0d00f0 string/ui_codec_resize_memory_floor",
+      "compiled_value_sha256": "69a0cdad0ab70614f9a360656b5f9a729c9cbdd3e9d4bb2d11330d249f61b66e"
+    },
+    {
+      "resource": "resource 0x7f0d00f1 string/ui_collapse_colour_palette",
+      "compiled_value_sha256": "998040c82c474e0566c9ede532fc98c9e5bfb6e37de2976d75080ff483a92799"
+    },
+    {
+      "resource": "resource 0x7f0d00f2 string/ui_collapse_tool_category",
+      "compiled_value_sha256": "6b0ef61423e8565a910dda4710ac90f6b2243bad5cf5ebd7eef072436cfb6f40"
+    },
+    {
+      "resource": "resource 0x7f0d00f3 string/ui_collapse_toolbox",
+      "compiled_value_sha256": "22d9cd2032fe91f8ce2cfbd99997dd6586d4f68f07d12ba722595127813f947a"
+    },
+    {
+      "resource": "resource 0x7f0d00f4 string/ui_colour",
+      "compiled_value_sha256": "cf5894aa4c58e6f48e0f4d95fc0b64c91a4f03de67f6821e1dfb0f61b274bdf3"
+    },
+    {
+      "resource": "resource 0x7f0d00f5 string/ui_colour_blue_range",
+      "compiled_value_sha256": "4de9283b52e32e016e533b92c10d6c7996b9f7e10ab2c93b873072877b130459"
+    },
+    {
+      "resource": "resource 0x7f0d00f6 string/ui_colour_component_range",
+      "compiled_value_sha256": "561adc6f827f9247c926bc9ac33528e7e3d83e517d1f9bd4046386b6eec59c44"
+    },
+    {
+      "resource": "resource 0x7f0d00f7 string/ui_colour_green_range",
+      "compiled_value_sha256": "08a393cd3a6824563833bcd58dbf62fa5614ac145f82ac04189f8ffb16db10cc"
+    },
+    {
+      "resource": "resource 0x7f0d00f8 string/ui_colour_hsl_hue_range",
+      "compiled_value_sha256": "861e011cc77d087e0f22ed9b90c45c68b0ee9a88123aded1a2d7f0829e8d386d"
+    },
+    {
+      "resource": "resource 0x7f0d00f9 string/ui_colour_hsl_lightness_range",
+      "compiled_value_sha256": "79ea87b72a2953a439ccd28f55c4d345a5cded9af245be6ea478ebd289e9d7dd"
+    },
+    {
+      "resource": "resource 0x7f0d00fa string/ui_colour_hsl_saturation_range",
+      "compiled_value_sha256": "4f170decc7bc1830117271a268827fb1a431d5a590c88cb5e035c3f1942e446f"
+    },
+    {
+      "resource": "resource 0x7f0d00fb string/ui_colour_hsv_hue_range",
+      "compiled_value_sha256": "fd36ba4448f037210febeb1a20a9a4fb853a20565e3401bdc2c257af4f9dff49"
+    },
+    {
+      "resource": "resource 0x7f0d00fc string/ui_colour_hsv_saturation_range",
+      "compiled_value_sha256": "3243b7fc5e06177a7f2dde5c6b0c409f386796eafcef70f57de84bdf55b49e9e"
+    },
+    {
+      "resource": "resource 0x7f0d00fd string/ui_colour_hsv_value_range",
+      "compiled_value_sha256": "f3f1747c1f8e010a65f364061c29863870560410c2258592ac191a1991228982"
+    },
+    {
+      "resource": "resource 0x7f0d00fe string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "compiled_value_sha256": "35f5f3c974ace29e1f78e79bb61112af222e7de99feecf2d57d94656bd582a87"
+    },
+    {
+      "resource": "resource 0x7f0d00ff string/ui_colour_red_range",
+      "compiled_value_sha256": "c5c4d1ecf9b3118bdd5dfdee7f98ceb17d7e3052068039247f0fc613c4b12981"
+    },
+    {
+      "resource": "resource 0x7f0d0100 string/ui_colour_tab23",
+      "compiled_value_sha256": "faf3701b750567a7bf2560436208cce22862a73ca8566bfdc8f62425a79d9068"
+    },
+    {
+      "resource": "resource 0x7f0d0101 string/ui_colour_tap_foreground_hold_background",
+      "compiled_value_sha256": "17693056fea190bf1f6f013250f4218c7769857ce6afd0141fd79e21210ae414"
+    },
+    {
+      "resource": "resource 0x7f0d0102 string/ui_commit_selection",
+      "compiled_value_sha256": "7e9943a3755d4786417db379bdcb754a239520cb07e9cd715eee3c2a34dfa65d"
+    },
+    {
+      "resource": "resource 0x7f0d0103 string/ui_common_in",
+      "compiled_value_sha256": "548d969359f76bcd9f38ce71697e2d466fc0764a310951fe8e84da16bb16ae0f"
+    },
+    {
+      "resource": "resource 0x7f0d0104 string/ui_common_in_pixels",
+      "compiled_value_sha256": "2a2bcf19f1c0be89dc31c524eebf084e928f80bd43bcc28c5e008259d8504a4f"
+    },
+    {
+      "resource": "resource 0x7f0d0105 string/ui_copper",
+      "compiled_value_sha256": "d4c32eabaf07c353d9429a0feac98fdda5e3367d501bd1563bc47c703a90862a"
+    },
+    {
+      "resource": "resource 0x7f0d0106 string/ui_copy",
+      "compiled_value_sha256": "82f645500139de1e3f8dbb98fb91598d9df39754a4228375fa0a9257b5d92556"
+    },
+    {
+      "resource": "resource 0x7f0d0107 string/ui_copy_all",
+      "compiled_value_sha256": "c98f98d868510f368a79b79feda7d03da93616cefd7d9e2ae1d0e30ee7dce465"
+    },
+    {
+      "resource": "resource 0x7f0d0108 string/ui_copy_an_area_or_use_file_insert_image",
+      "compiled_value_sha256": "669794cb04d4d6ba23d50a85db348fd3ffdbf98f2861fecd526036ca91c7006c"
+    },
+    {
+      "resource": "resource 0x7f0d0109 string/ui_copy_decoded_image_at_this_size_estimated_loading",
+      "compiled_value_sha256": "eddefd49e94b63fc5a8bf502cb8de255d6a59a47d0ef492424511893ca5966cb"
+    },
+    {
+      "resource": "resource 0x7f0d010a string/ui_corners_and_edges_resize_round_handle_rotates",
+      "compiled_value_sha256": "a071a93ef85de5cd72d028cbe6d418da2143dc3ea268012c69bf32e56e9c962d"
+    },
+    {
+      "resource": "resource 0x7f0d010b string/ui_could_not_apply_the_crop",
+      "compiled_value_sha256": "5562afb2fc3eaa503444fd78b7859c36816a245d58e169721662bacd815ed27f"
+    },
+    {
+      "resource": "resource 0x7f0d010c string/ui_could_not_complete_the_edit",
+      "compiled_value_sha256": "b2f6cfd395535349a9507d30a5d83a4ea98fecc0796e1bbad837b50b4867edbc"
+    },
+    {
+      "resource": "resource 0x7f0d010d string/ui_could_not_complete_the_operation",
+      "compiled_value_sha256": "e3b5a706b03ec65ed772d18164757f7281967d19cf25f91f0003a9b60e555f1f"
+    },
+    {
+      "resource": "resource 0x7f0d010e string/ui_could_not_create_the_assembly",
+      "compiled_value_sha256": "327607b6e3d94e2f6f935cfb7e377c4b330ce570a61f43199c6cea867667a9a1"
+    },
+    {
+      "resource": "resource 0x7f0d010f string/ui_could_not_decode_the_cropped_region_of",
+      "compiled_value_sha256": "c356390d15e3abd2b170617e91961a7daa2ffce8ffcd9da0d15de3c23659228b"
+    },
+    {
+      "resource": "resource 0x7f0d0110 string/ui_could_not_export_source_code",
+      "compiled_value_sha256": "8168332fb11dc4e222d124fdbd284030e1647cb9fa5fca4f1fcfa720ac2af0cf"
+    },
+    {
+      "resource": "resource 0x7f0d0111 string/ui_could_not_export_the_recovery_copy",
+      "compiled_value_sha256": "9a55087256ffd172677ff10c45bc3ad0415d8fd9e1f963c9615a4ffedf14c761"
+    },
+    {
+      "resource": "resource 0x7f0d0112 string/ui_could_not_load_gallery_image",
+      "compiled_value_sha256": "15f7722ca1710afe66bf80d8218ea3f461a2ec8cfc4f1ec69dcdd44e4f5fe872"
+    },
+    {
+      "resource": "resource 0x7f0d0113 string/ui_could_not_open_image",
+      "compiled_value_sha256": "5e1166d022b51b9f2cb0f940e63ee1335369e52d1491c4cad5c6c9fd9e81c5b4"
+    },
+    {
+      "resource": "resource 0x7f0d0114 string/ui_could_not_place_the_image",
+      "compiled_value_sha256": "1a69f034d24e65c1d9d5679d4ca5a63dea580ed20c9dc82e8ad75473dbfd390d"
+    },
+    {
+      "resource": "resource 0x7f0d0115 string/ui_could_not_prepare_the_image",
+      "compiled_value_sha256": "421eb3dd677b80367a45866afe836483bd791c0ba0e1d8e94b8c56b5ada7a872"
+    },
+    {
+      "resource": "resource 0x7f0d0116 string/ui_could_not_save_image",
+      "compiled_value_sha256": "84b7f99aa21b6d0a7dca4931b28fa185d69fe8bbafe38a38eb684887a4a0746b"
+    },
+    {
+      "resource": "resource 0x7f0d0117 string/ui_could_not_save_the_assembly",
+      "compiled_value_sha256": "736dec17f4fcbfa54af87166a794e041b0c97feeea955a3e3fea193e35bd2425"
+    },
+    {
+      "resource": "resource 0x7f0d0118 string/ui_could_not_store_the_assembly",
+      "compiled_value_sha256": "5b9b09771f0124f7493188038fd9160f058c578c90637dbf0185d9432f8ab3ed"
+    },
+    {
+      "resource": "resource 0x7f0d0119 string/ui_create_output",
+      "compiled_value_sha256": "bb4420dca420348522bba48042e10be4d2b5db95a935644e7a56491fc8f9df5b"
+    },
+    {
+      "resource": "resource 0x7f0d011a string/ui_creator_on_source34",
+      "compiled_value_sha256": "1f36d2927f2626971c41ca623bc3a1266a998c24d166263c7731f452848eedd2"
+    },
+    {
+      "resource": "resource 0x7f0d011b string/ui_credits_terms",
+      "compiled_value_sha256": "2f6433d4259bcd55341245c65bd7af4bac5958d2e082e01a2b49d80bc18492de"
+    },
+    {
+      "resource": "resource 0x7f0d011c string/ui_crop",
+      "compiled_value_sha256": "eecdb818879353e0bbb7daa14509d2520e76479f12261721baf3073fd533cc49"
+    },
+    {
+      "resource": "resource 0x7f0d011d string/ui_crop_image",
+      "compiled_value_sha256": "849cd409b95d86ca87284fcd2880ba08425d1308b3905555b7dc229508e4d646"
+    },
+    {
+      "resource": "resource 0x7f0d011e string/ui_crop_must_stay_inside_the_canvas",
+      "compiled_value_sha256": "d5415fa742db02d2978b231dcd5f67d6052f7c74d6dd23b1ee8ac436fe4d27c2"
+    },
+    {
+      "resource": "resource 0x7f0d011f string/ui_crop_preview_drag_an_edge_or_corner_drag",
+      "compiled_value_sha256": "7df77ba46b623ffbad5d0a47165ba0cf81c101cd56d56197007b9c2761d3e181"
+    },
+    {
+      "resource": "resource 0x7f0d0120 string/ui_crop_to_selection",
+      "compiled_value_sha256": "9377919a9f9cd383691ccc2d16647c8d483d10e441e8b792dd31fef02181cdff"
+    },
+    {
+      "resource": "resource 0x7f0d0121 string/ui_cropped_thumbnail",
+      "compiled_value_sha256": "b40e3af6f352d03b492e5075f3cdeda9f77bc4e75446238448e73682f58452b3"
+    },
+    {
+      "resource": "resource 0x7f0d0122 string/ui_current_safe_budget_2f_mp",
+      "compiled_value_sha256": "61801e405613c2a39c4c32f4989e98df241baa9b41539978f7942e8d7f6d9c28"
+    },
+    {
+      "resource": "resource 0x7f0d0123 string/ui_current_safe_editing_budget_s_up_to_2f",
+      "compiled_value_sha256": "a7dde07c984a5a43fcc449ccecfef62ee255ffa61d843d84f8138d9c016664c2"
+    },
+    {
+      "resource": "resource 0x7f0d0124 string/ui_cursive",
+      "compiled_value_sha256": "d02b0101a5909423172cf394e91250873d1b81366253731b9ea5a0d72727df39"
+    },
+    {
+      "resource": "resource 0x7f0d0125 string/ui_cursor_drawing32",
+      "compiled_value_sha256": "744932b7b6c42d244afde5f2e44cfe749277f15b8bb0de63740e77320af83474"
+    },
+    {
+      "resource": "resource 0x7f0d0126 string/ui_cursor_help29",
+      "compiled_value_sha256": "41152222c388c12c0d79f16ccf13425ed9193f7b42cc706cdacd91eadb7c361b"
+    },
+    {
+      "resource": "resource 0x7f0d0127 string/ui_cursor_help31",
+      "compiled_value_sha256": "db4d25129699dd72b77eef1d85a3dc4a38007e676e8d21b443d03676af4c2c2e"
+    },
+    {
+      "resource": "resource 0x7f0d0128 string/ui_cursor_ink30",
+      "compiled_value_sha256": "744932b7b6c42d244afde5f2e44cfe749277f15b8bb0de63740e77320af83474"
+    },
+    {
+      "resource": "resource 0x7f0d0129 string/ui_cursor_marker_help31",
+      "compiled_value_sha256": "27a6221acf2a04d4826cd3bfe1f2798cf11d2863278669735227dd93f85b8683"
+    },
+    {
+      "resource": "resource 0x7f0d012a string/ui_cursor_marker_size31",
+      "compiled_value_sha256": "6ce24cfb9f03583527ccd90f28a768e56ab6d3549e4edc766655011e78ad2232"
+    },
+    {
+      "resource": "resource 0x7f0d012b string/ui_cursor_pan_draw32",
+      "compiled_value_sha256": "8e1ae2395b803890ae7b8a79dba9deaa90951bfc541f6829c3395acc67f3b800"
+    },
+    {
+      "resource": "resource 0x7f0d012c string/ui_cursor_pan_move32",
+      "compiled_value_sha256": "470c37c19b402667e90b0b7300d12f3822ef881326c0528721fe5dbde41e4f3e"
+    },
+    {
+      "resource": "resource 0x7f0d012d string/ui_cursor_position26",
+      "compiled_value_sha256": "18f142f106519ac8df6e6f4978fbb5725d03d1df0b4a7817612278e71e3cedb2"
+    },
+    {
+      "resource": "resource 0x7f0d012e string/ui_cursor_settings31",
+      "compiled_value_sha256": "d0aabec25ef6a71f6e66661e223138cc41efa90d03a35afd104bd694c17a7d2f"
+    },
+    {
+      "resource": "resource 0x7f0d012f string/ui_cursor_shape31",
+      "compiled_value_sha256": "359dd46c77374898a9b68d615e2ae966e8b7aa2f1eadf1c8af76a68e206697d9"
+    },
+    {
+      "resource": "resource 0x7f0d0130 string/ui_cursor_start31",
+      "compiled_value_sha256": "6c36c35806c3553ebef45291a3c5a362d90f6a88ec85cf065c794cea088748db"
+    },
+    {
+      "resource": "resource 0x7f0d0131 string/ui_cursor_stop31",
+      "compiled_value_sha256": "894d5a1553f49b38593e94325b0acf93a369478c6a12a8b181f977f91d9223b3"
+    },
+    {
+      "resource": "resource 0x7f0d0132 string/ui_cursor_tap_hint37",
+      "compiled_value_sha256": "6a844b0f93b72525e7ba1a21f00b9d886394483d3ac451fb2fef3286022f16d0"
+    },
+    {
+      "resource": "resource 0x7f0d0133 string/ui_curve",
+      "compiled_value_sha256": "31d278ed502f9c2ce016310973413118af1021e46ad1be4ccb6ec9b824a28cdb"
+    },
+    {
+      "resource": "resource 0x7f0d0134 string/ui_custom_colour",
+      "compiled_value_sha256": "3be50dd66dba31f1c0e306a6fd7fd3e7783592d486fad22fae342e398a7aa056"
+    },
+    {
+      "resource": "resource 0x7f0d0135 string/ui_custom_colours_hold_a_swatch_to_replace_it",
+      "compiled_value_sha256": "5fea8bad4c29a3315dc049ebe48e153d086e70a323c77b448ed62d5671449b74"
+    },
+    {
+      "resource": "resource 0x7f0d0136 string/ui_cut",
+      "compiled_value_sha256": "64ae9071bf67fc7042346b05897cbe7c8faffe965e91d2e3a8bc524745399e30"
+    },
+    {
+      "resource": "resource 0x7f0d0137 string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "compiled_value_sha256": "06135a0d19610c55687618ad4410c9e4cc001227d6aab09b41b280869e0f905d"
+    },
+    {
+      "resource": "resource 0x7f0d0138 string/ui_d_d_px_d_pixels_2f_mp",
+      "compiled_value_sha256": "2316cb7345272763241454dc804a250b644fcf16717908cc8281de08cd25791e"
+    },
+    {
+      "resource": "resource 0x7f0d0139 string/ui_delete_selection",
+      "compiled_value_sha256": "6454b702b33c0235543abec20cdc9bd220cdd3affbe3fb118808161dbb255ebd"
+    },
+    {
+      "resource": "resource 0x7f0d013a string/ui_disable_cursor_drawing",
+      "compiled_value_sha256": "9d13e1c4b8aba845f8e6284f993030189b3dfc29790839380228caba6ab77e9e"
+    },
+    {
+      "resource": "resource 0x7f0d013b string/ui_disable_cursor_drawing33",
+      "compiled_value_sha256": "c458acc663da2fe97e0d709f65e306086154b476319ae66d89cd4e2fd9feadc6"
+    },
+    {
+      "resource": "resource 0x7f0d013c string/ui_discard",
+      "compiled_value_sha256": "34ae946fd3c56f2829eaee97fe6cf3e111f187bed0233ded709b5c384aec641b"
+    },
+    {
+      "resource": "resource 0x7f0d013d string/ui_discard_changes23",
+      "compiled_value_sha256": "34ae946fd3c56f2829eaee97fe6cf3e111f187bed0233ded709b5c384aec641b"
+    },
+    {
+      "resource": "resource 0x7f0d013e string/ui_done",
+      "compiled_value_sha256": "e9de582f1df1f06460ca8c0006c057bbff40214e1e61c381deef95013298ed4f"
+    },
+    {
+      "resource": "resource 0x7f0d013f string/ui_downloading_image",
+      "compiled_value_sha256": "8c6479f6eb385cd4fff02c61235741ffffcbd727b4c79c23d01458dfaeaece5b"
+    },
+    {
+      "resource": "resource 0x7f0d0140 string/ui_draft_not_saved_yet",
+      "compiled_value_sha256": "633929504d2acb435ff07627d458200c59af92db3a2de55e8b90021e33afdd05"
+    },
+    {
+      "resource": "resource 0x7f0d0141 string/ui_draft_pending",
+      "compiled_value_sha256": "53f97792c8b4213cf7b11e921a4f37feb3b7949f20e365f7d5727a55cf83bfd3"
+    },
+    {
+      "resource": "resource 0x7f0d0142 string/ui_draft_restored",
+      "compiled_value_sha256": "5614fb9b8f798b07b91b1b158e0d5c85e4809f06fff4f1a528a72fb9e857bb6c"
+    },
+    {
+      "resource": "resource 0x7f0d0143 string/ui_draft_saved",
+      "compiled_value_sha256": "f4354788cf319f7f0cb1173e7bc79eadec85cecb305d8a717eacd5fd5b67cfc8"
+    },
+    {
+      "resource": "resource 0x7f0d0144 string/ui_drag_a_line_then_drag_twice_to_set",
+      "compiled_value_sha256": "f451a006cf94a4fd652503daca16e78f76927e97706b2e1c94804a5f2e099c02"
+    },
+    {
+      "resource": "resource 0x7f0d0145 string/ui_drag_a_selection_drag_inside_to_move_square",
+      "compiled_value_sha256": "21dc5d50b4cbcb25ad77e9bcfb964b34bf12f5a2d3bfb2a2eb0ffa21c506c94e"
+    },
+    {
+      "resource": "resource 0x7f0d0146 string/ui_drag_across_the_ellipse_s_bounding_box",
+      "compiled_value_sha256": "22fc195fb955bf563faded47d0de89bba8a855d898c006ac47f42268791293d0"
+    },
+    {
+      "resource": "resource 0x7f0d0147 string/ui_drag_between_opposite_corners_choose_outline_or_fill",
+      "compiled_value_sha256": "920a2ca43c788135d0ffc62d10d44c59c0f0469cd5527a546b32d365689c6133"
+    },
+    {
+      "resource": "resource 0x7f0d0148 string/ui_drag_between_opposite_corners_to_draw_a_five",
+      "compiled_value_sha256": "64d1c13f9b1874d18b64aee829fd5736b9aecbef9ae439649401ef133af3d868"
+    },
+    {
+      "resource": "resource 0x7f0d0149 string/ui_drag_between_opposite_corners_to_draw_a_heart",
+      "compiled_value_sha256": "ece021e1a868bf025bd4f916c3b07c1ff679e69e490c98557913f2d0d0bf1810"
+    },
+    {
+      "resource": "resource 0x7f0d014a string/ui_drag_from_the_start_to_the_end_of",
+      "compiled_value_sha256": "945c784e356f1306189c9514096a055a260c78e6b8fed743de5e79e61f0eba70"
+    },
+    {
+      "resource": "resource 0x7f0d014b string/ui_drag_from_the_tail_towards_the_arrowhead_choose",
+      "compiled_value_sha256": "332458b6861c74fd75a31d6931c02cb22998da2bac23c5b8e50ed519ac9945e1"
+    },
+    {
+      "resource": "resource 0x7f0d014c string/ui_drag_out_to_expand_in_to_trim_drag",
+      "compiled_value_sha256": "1d2fdbba85295f20997c6aaa13323695a6a731527f7fc2c1201160281c72cc28"
+    },
+    {
+      "resource": "resource 0x7f0d014d string/ui_drag_placed_images_to_move_them_hold_and",
+      "compiled_value_sha256": "900f55f45ed651e77e0729c9ed01eed529278f25817ed8c14130d5bf780fe1dc"
+    },
+    {
+      "resource": "resource 0x7f0d014e string/ui_drag_to_erase_with_the_background_colour",
+      "compiled_value_sha256": "ad1a3e1ffd2f4adb428011e06145746912ecacb860cbc29bfd9a82dc5a13706e"
+    },
+    {
+      "resource": "resource 0x7f0d014f string/ui_drag_to_pan_without_drawing_pinch_with_two",
+      "compiled_value_sha256": "40151556cdf2b3440bc0d4f491dd2a514ca5c1f328f2d3f26ce40d267ce10b3c"
+    },
+    {
+      "resource": "resource 0x7f0d0150 string/ui_draw26",
+      "compiled_value_sha256": "f99e4649d10099afe9ac6836b30ab93147657fbdc8ae64b111cbdaf7ea172337"
+    },
+    {
+      "resource": "resource 0x7f0d0151 string/ui_draw_a_crisp_one_pixel_line",
+      "compiled_value_sha256": "1350642752f5cfc2bef2f5329ff0e829b68aaf2776d93b6f742cb0c5c2f477c3"
+    },
+    {
+      "resource": "resource 0x7f0d0152 string/ui_draw_again",
+      "compiled_value_sha256": "deecdb6b88bfed4c9763df1f1c8ecff1ed75914a2674342737ca54771c0f47a9"
+    },
+    {
+      "resource": "resource 0x7f0d0153 string/ui_draw_around_an_area_drag_inside_to_move",
+      "compiled_value_sha256": "7919c1a228f91da22a5bdfda4a656a4765ebf1578c564301f68d0c745e82e126"
+    },
+    {
+      "resource": "resource 0x7f0d0154 string/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly",
+      "compiled_value_sha256": "e5a04ca2ec12c33f943f1c77ecad3b6b403c8afa1ef84752f4d5861c8505c1eb"
+    },
+    {
+      "resource": "resource 0x7f0d0155 string/ui_draw_with_the_selected_brush_tip_and_size",
+      "compiled_value_sha256": "50536fb616a1c68f10f32806b5ca37aa144c580449879ba594b1d63b92db218a"
+    },
+    {
+      "resource": "resource 0x7f0d0156 string/ui_drawing23",
+      "compiled_value_sha256": "f99e4649d10099afe9ac6836b30ab93147657fbdc8ae64b111cbdaf7ea172337"
+    },
+    {
+      "resource": "resource 0x7f0d0157 string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "compiled_value_sha256": "e47e47e53ec8af0cf5d428d1ed700df3be0ff6e97605e10e81c7da717ca62a7b"
+    },
+    {
+      "resource": "resource 0x7f0d0158 string/ui_drawing_settings",
+      "compiled_value_sha256": "1533b9637cfe304af5d0495b5df4c3203fab720e141c44e7d676d033c07e7c3b"
+    },
+    {
+      "resource": "resource 0x7f0d0159 string/ui_drawing_settings_d900c6",
+      "compiled_value_sha256": "991b1eaa43e17644c0380e763b0021df3fca0e11e27244d19b5178a4fa3d77b7"
+    },
+    {
+      "resource": "resource 0x7f0d015a string/ui_drop_at_a_highlighted_edge_right_top_aligned",
+      "compiled_value_sha256": "bbce03e94607433ddc65c94155d262ba413c35d91216a9b878a86051c30ef23f"
+    },
+    {
+      "resource": "resource 0x7f0d015b string/ui_each_px_px_percent_is_relative_to_the",
+      "compiled_value_sha256": "e337fe62fe0c735ce46ae9fd615ac03b1ab52e5bee6697a11ce6183c4ac367b1"
+    },
+    {
+      "resource": "resource 0x7f0d015c string/ui_edit_background",
+      "compiled_value_sha256": "cfa9ac2a1664ee673727bb5b23c0b705674f868a311e49347248e5408a020e18"
+    },
+    {
+      "resource": "resource 0x7f0d015d string/ui_edit_canvas33",
+      "compiled_value_sha256": "e89047a4e688f66e52f63e752f4a64a135eda80fa6a875c996963b43dad728bb"
+    },
+    {
+      "resource": "resource 0x7f0d015e string/ui_edit_colour26",
+      "compiled_value_sha256": "9aedfac0c186f26674e9f8bdccfd1fdfcb8c1d9b901d16cd93fe7bb8bd4b13f3"
+    },
+    {
+      "resource": "resource 0x7f0d015f string/ui_edit_foreground",
+      "compiled_value_sha256": "4cc12e2db9d1fd84e530d6bd2a08dfacb160d04c41791651bd1c5857e134099b"
+    },
+    {
+      "resource": "resource 0x7f0d0160 string/ui_edit_in_paint",
+      "compiled_value_sha256": "fbbfa598f776c3604c0570b953fc06cfd2bb2508969b1d2ad3be62d03084513c"
+    },
+    {
+      "resource": "resource 0x7f0d0161 string/ui_edit_palette23",
+      "compiled_value_sha256": "0dd557a4e89b571fad35dbcf7f28773d85f1361fcac1c6679fdeb6cdf7238d23"
+    },
+    {
+      "resource": "resource 0x7f0d0162 string/ui_edit_transform33",
+      "compiled_value_sha256": "d5116ca71c7175647bff812c094d70c520015495ec1ed7d4dc57b0113fd2465f"
+    },
+    {
+      "resource": "resource 0x7f0d0163 string/ui_ellipse",
+      "compiled_value_sha256": "785e5082709e7da46258d460690410e5145bf3a3b1cb657adead6f68b40edeac"
+    },
+    {
+      "resource": "resource 0x7f0d0164 string/ui_empty_palette26",
+      "compiled_value_sha256": "c63debe4f33dc6412db689d60a143571c41dcbb5018ac4d30a2a95a3cf4200ab"
+    },
+    {
+      "resource": "resource 0x7f0d0165 string/ui_enable_android_s_files_or_documents_app_then",
+      "compiled_value_sha256": "356d9ace27ff36803811a9d45f64b94afbc289c568896e932251453a4ef18ed3"
+    },
+    {
+      "resource": "resource 0x7f0d0166 string/ui_enable_cursor_drawing",
+      "compiled_value_sha256": "1d9428a729eca32c333e7427b2e34b1f019fffb49aee4b3fe4daae4037cae651"
+    },
+    {
+      "resource": "resource 0x7f0d0167 string/ui_enter_a_number_from_to",
+      "compiled_value_sha256": "5d6773938461e0205ddbff19459ca3977449dd785bc1863d7eaec92e7f86df78"
+    },
+    {
+      "resource": "resource 0x7f0d0168 string/ui_enter_a_positive_size",
+      "compiled_value_sha256": "0e3a1c4484fc36f54275f1c7279786d1ccb05d7f11e81274775adbc17f3b7f4c"
+    },
+    {
+      "resource": "resource 0x7f0d0169 string/ui_enter_a_trim_amount_for_every_edge",
+      "compiled_value_sha256": "5cf727a957ce7d226f235cc79d6bae5f0d55ebdc4929b328e56d4403e0e29a93"
+    },
+    {
+      "resource": "resource 0x7f0d016a string/ui_enter_a_whole_number_from_to",
+      "compiled_value_sha256": "73bd23d1a47ff548ab8b9b390ea42021b0178b1cddd900435673b11ccf69bdc3"
+    },
+    {
+      "resource": "resource 0x7f0d016b string/ui_enter_all_four_trim_amounts",
+      "compiled_value_sha256": "45541906c179eb4da527efba074a98ed89579a794517004cd62669b8b4142039"
+    },
+    {
+      "resource": "resource 0x7f0d016c string/ui_enter_positive_canvas_dimensions_within_android_s_coordinate",
+      "compiled_value_sha256": "dda6723ebc016e3e77540984f840d4490fe83b79cb7c3986de4030637b0a6b2e"
+    },
+    {
+      "resource": "resource 0x7f0d016d string/ui_enter_positive_dimensions",
+      "compiled_value_sha256": "0e3a1c4484fc36f54275f1c7279786d1ccb05d7f11e81274775adbc17f3b7f4c"
+    },
+    {
+      "resource": "resource 0x7f0d016e string/ui_enter_positive_dimensions_no_larger_than_the_original",
+      "compiled_value_sha256": "bd8d0554badfd7b745781eaff524138a5bbd29eb1f0289893147742f7a46616e"
+    },
+    {
+      "resource": "resource 0x7f0d016f string/ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "compiled_value_sha256": "3ea427a820bf261f2d021e59da998cd490a373e894b53f388e56e76ab93ca686"
+    },
+    {
+      "resource": "resource 0x7f0d0170 string/ui_enter_positive_image_dimensions",
+      "compiled_value_sha256": "59656582518d87bad4941eca949fb72e1b46c62db24f088e0bf4fea07950e275"
+    },
+    {
+      "resource": "resource 0x7f0d0171 string/ui_enter_valid_dimensions",
+      "compiled_value_sha256": "297ba3d2fab936a8309a3406a481c88be4f8f09863fc0a81d230f04c505e2844"
+    },
+    {
+      "resource": "resource 0x7f0d0172 string/ui_eraser",
+      "compiled_value_sha256": "3dd538ceb7907b98997afe6467e031ee149d267a78ab23a8a3ef31604045946c"
+    },
+    {
+      "resource": "resource 0x7f0d0173 string/ui_estimated_memory_current_working_budget",
+      "compiled_value_sha256": "a26327942352c0e8984f809b510ba87987a362ed8979cf0e4807da7a4c5e08a0"
+    },
+    {
+      "resource": "resource 0x7f0d0174 string/ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+      "compiled_value_sha256": "af163c4b43baab1a2ec57255b3ab19cf006e22f95a2872276cdcb65db78f5ea4"
+    },
+    {
+      "resource": "resource 0x7f0d0175 string/ui_expand_colour_palette",
+      "compiled_value_sha256": "7d71afb84b80731fc6bc77553e06535ce86ba4a7f06a4f2a0425b6b91a330c3c"
+    },
+    {
+      "resource": "resource 0x7f0d0176 string/ui_expand_tool_category",
+      "compiled_value_sha256": "8b67853854f8642a13b9859539f870f34960e14ff2a94845f440b6666080ca49"
+    },
+    {
+      "resource": "resource 0x7f0d0177 string/ui_expand_toolbox",
+      "compiled_value_sha256": "ae85b327bc57b4aa2511fea6dfe787f2475201f8893b9b11843689352eba90f3"
+    },
+    {
+      "resource": "resource 0x7f0d0178 string/ui_export_as23",
+      "compiled_value_sha256": "8e335bd1f13ee7065a7138509124bebdff10d07f87273ef8574d7c71c969f79c"
+    },
+    {
+      "resource": "resource 0x7f0d0179 string/ui_export_did_not_save23",
+      "compiled_value_sha256": "90e00d652dd42c3f784ed9ad29bbdafb352f24dda4926aeadab47eba10eb4c5d"
+    },
+    {
+      "resource": "resource 0x7f0d017a string/ui_export_explanation23",
+      "compiled_value_sha256": "419774fbf90ecc0c3186bdc81e8fa3d8ce034abc81b13298dd6c95147b6e0ba6"
+    },
+    {
+      "resource": "resource 0x7f0d017b string/ui_export_recovery_copy",
+      "compiled_value_sha256": "bf613437e6b1176ed68c1a67f2abb69ef04e71631e6ec7878bb3d61ad9c67005"
+    },
+    {
+      "resource": "resource 0x7f0d017c string/ui_export_recovery_copy_144b8a",
+      "compiled_value_sha256": "6b44765daf51bde700426c9e3fc3e789ee00fe7fb99137e444a2f9628f083190"
+    },
+    {
+      "resource": "resource 0x7f0d017d string/ui_export_this_version_s_source_code",
+      "compiled_value_sha256": "d98ad7273a2439d4f323366ff8a476f6740d294c0937337803224d3e14b66f65"
+    },
+    {
+      "resource": "resource 0x7f0d017e string/ui_eyedropper",
+      "compiled_value_sha256": "90a000fced5bff335e4f30c4101b409b1a6d16fdc78269892f29d29e3017622a"
+    },
+    {
+      "resource": "resource 0x7f0d017f string/ui_fg",
+      "compiled_value_sha256": "35bfbd8a84e06dcf88a90926dc06d894218b96d791c6c720074e456a502032f7"
+    },
+    {
+      "resource": "resource 0x7f0d0180 string/ui_filename_a_z",
+      "compiled_value_sha256": "36431832bddaedc885cc33f00bc095679839825f1b10e957f014f147d66e71bb"
+    },
+    {
+      "resource": "resource 0x7f0d0181 string/ui_filename_z_a",
+      "compiled_value_sha256": "3d669827ea9178a649318b965347b9c49252e295280a50a40e1152f5a8893ddd"
+    },
+    {
+      "resource": "resource 0x7f0d0182 string/ui_fill_line",
+      "compiled_value_sha256": "a5c0d4abd3140a3ac63a2f8fb21ef48b39b1f5ca5e48191abe68c75ab6967a3e"
+    },
+    {
+      "resource": "resource 0x7f0d0183 string/ui_fill_text_box_with_bg_colour",
+      "compiled_value_sha256": "8d49971b1cc84caa6232da08e86c5ebf0ddaf65c09d3aae72af51ad9854d502a"
+    },
+    {
+      "resource": "resource 0x7f0d0184 string/ui_finish_curve",
+      "compiled_value_sha256": "971d271621b387bb0355468791ad9e498397cb4a848a9005d5441704f431c45f"
+    },
+    {
+      "resource": "resource 0x7f0d0185 string/ui_finish_polygon",
+      "compiled_value_sha256": "97e608800fc8cea186cf2a5fcad37d732f257ed4eba0ae33bd3af1964c5adfb8"
+    },
+    {
+      "resource": "resource 0x7f0d0186 string/ui_fit",
+      "compiled_value_sha256": "1f2d5ce362c05756b8ee234a29d5e35be03b030e430cfb80e322cc28c15c1f86"
+    },
+    {
+      "resource": "resource 0x7f0d0187 string/ui_fit_entire_canvas_in_view",
+      "compiled_value_sha256": "be57b81624c11d4013007c1efe24f2e1cec4df652004d0310795072d100b0b9b"
+    },
+    {
+      "resource": "resource 0x7f0d0188 string/ui_fit_image",
+      "compiled_value_sha256": "73dc1f4d45fb9f6758bd4ba6bebdc78b99ef26dd0b47c553709907c98190eb0c"
+    },
+    {
+      "resource": "resource 0x7f0d0189 string/ui_fit_selection34",
+      "compiled_value_sha256": "5edadf9e16f52955acb8d2c4868bae4489bc4c5f6a416e8f29ba745f1610170d"
+    },
+    {
+      "resource": "resource 0x7f0d018a string/ui_fits_the_current_budget",
+      "compiled_value_sha256": "90e15d1865d96dcd7d055ad87dda25487f50b0238735e3f00b114925a51221b0"
+    },
+    {
+      "resource": "resource 0x7f0d018b string/ui_flip_horizontal",
+      "compiled_value_sha256": "c3b395127a41722e544621be7a7c14897e821a572881061ae20c73f5c09f7625"
+    },
+    {
+      "resource": "resource 0x7f0d018c string/ui_flip_vertical",
+      "compiled_value_sha256": "318d419ef590fa734c4d8f4a141eae4dfc9c135d5b1f8d1757575e6c75622610"
+    },
+    {
+      "resource": "resource 0x7f0d018d string/ui_font",
+      "compiled_value_sha256": "2266174a31c20aeea4ed664fe8c96610b672906b6c7ba210c2aab54d09841402"
+    },
+    {
+      "resource": "resource 0x7f0d018e string/ui_font_family",
+      "compiled_value_sha256": "b5675ba55abb615e671880c5f07c69a0c31e0bb5958e5caae34e73dc8aac8ccd"
+    },
+    {
+      "resource": "resource 0x7f0d018f string/ui_font_licences",
+      "compiled_value_sha256": "77f408d3f97d35516237a9459955220c02b6799eb55ccdeeeda1144f87ce4b9e"
+    },
+    {
+      "resource": "resource 0x7f0d0190 string/ui_foreground_background_colour_palette",
+      "compiled_value_sha256": "867e6ed3ff2a54188ea286dede152e33aeded0c6a2a2339585f15ad33c6e1630"
+    },
+    {
+      "resource": "resource 0x7f0d0191 string/ui_foreground_colour",
+      "compiled_value_sha256": "35bfbd8a84e06dcf88a90926dc06d894218b96d791c6c720074e456a502032f7"
+    },
+    {
+      "resource": "resource 0x7f0d0192 string/ui_foreground_edit_colour",
+      "compiled_value_sha256": "fc6323539c3361686012b475b95c58fae4c7a928c17a49b4ce773063d98eb002"
+    },
+    {
+      "resource": "resource 0x7f0d0193 string/ui_free_form_select",
+      "compiled_value_sha256": "45b625f6fff5079e9ea4c21cb959d846f29f42f3fcc896804c05ced2fcc75f91"
+    },
+    {
+      "resource": "resource 0x7f0d0194 string/ui_from_device34",
+      "compiled_value_sha256": "e6e47454253c21b484022ed633f04e598f9c7deee12cd84e3e2156d231d85ac8"
+    },
+    {
+      "resource": "resource 0x7f0d0195 string/ui_full_text_copied",
+      "compiled_value_sha256": "3d0b4eb4e2e71dd20d91417eb68b18bbb328a6850faf079a036eb78c669f8c3f"
+    },
+    {
+      "resource": "resource 0x7f0d0196 string/ui_fullscreen33",
+      "compiled_value_sha256": "2e25576602ef571cc5096f4597dc939bc4af5779f14fb6e47bea312806406fb1"
+    },
+    {
+      "resource": "resource 0x7f0d0197 string/ui_gallery_artwork_catrobat_and_its_credited_creators_cc",
+      "compiled_value_sha256": "d8feb08bece9b9a3cad01095dca80b3c1447b7c9a16f43d8ffbb0eaf06d9b25d"
+    },
+    {
+      "resource": "resource 0x7f0d0198 string/ui_gallery_back34",
+      "compiled_value_sha256": "2755c394355b355773a307fe147e8e0fa3b89239f73a57622a97382de9ae6eb1"
+    },
+    {
+      "resource": "resource 0x7f0d0199 string/ui_gallery_image",
+      "compiled_value_sha256": "bc0364c8e213f8facee08ab8dc716499229e043139537839a3e268411dcf3aed"
+    },
+    {
+      "resource": "resource 0x7f0d019a string/ui_gallery_unsupported34",
+      "compiled_value_sha256": "4229fd456a925b67cce291d02e88d1bfa21df3d20eb51dcd796ad34b5de65d6c"
+    },
+    {
+      "resource": "resource 0x7f0d019b string/ui_gimp_translations31",
+      "compiled_value_sha256": "7254bc5490af482304a3841e95c94153eafc889e2fc093f9804b766d6eecc1a4"
+    },
+    {
+      "resource": "resource 0x7f0d019c string/ui_give_all_images_the_same_each_image_keeps",
+      "compiled_value_sha256": "8181daa715776ec748e26d0220963194689744bde8e99849eed21a9f45610238"
+    },
+    {
+      "resource": "resource 0x7f0d019d string/ui_gnu_affero_general_public_license",
+      "compiled_value_sha256": "07edb7cd962c50fcdb18103de89ea320701dbb9ae2b7c0724643d34ff7fb2669"
+    },
+    {
+      "resource": "resource 0x7f0d019e string/ui_gnu_agpl_licence",
+      "compiled_value_sha256": "20aeb9dbb583ad3d894be13e1a8bbe7d8dc601893f1452763f25b865b8257fc5"
+    },
+    {
+      "resource": "resource 0x7f0d019f string/ui_gold",
+      "compiled_value_sha256": "d93a46f98e44d76f632df835aa49b8a358ad040923d1547e41d2453ac23d0ec3"
+    },
+    {
+      "resource": "resource 0x7f0d01a0 string/ui_heart",
+      "compiled_value_sha256": "8a2c6fc0528e5f2069a859a24773265aca97dc94aa41883d1e4c286baecaad73"
+    },
+    {
+      "resource": "resource 0x7f0d01a1 string/ui_heic_avif_codec_licences",
+      "compiled_value_sha256": "63cfb8c3816c40d2892c797f778393deee974a606dc77e9a4fa48b6726c4f49c"
+    },
+    {
+      "resource": "resource 0x7f0d01a2 string/ui_height",
+      "compiled_value_sha256": "e851cb2412cf6e90f2754e75a4c1264559db232c5864658d79a60979d65e2525"
+    },
+    {
+      "resource": "resource 0x7f0d01a3 string/ui_height_in",
+      "compiled_value_sha256": "e851cb2412cf6e90f2754e75a4c1264559db232c5864658d79a60979d65e2525"
+    },
+    {
+      "resource": "resource 0x7f0d01a4 string/ui_heights",
+      "compiled_value_sha256": "2554c3ce016850734edfeadfd27fd28aace1111938c80a53ca7efcf4942a7dd3"
+    },
+    {
+      "resource": "resource 0x7f0d01a5 string/ui_help23",
+      "compiled_value_sha256": "b3af8b2d0d85239e294de788d3fbe474dbad5206e9dd14d06790cf9a3fa7f72e"
+    },
+    {
+      "resource": "resource 0x7f0d01a6 string/ui_hex_rrggbb",
+      "compiled_value_sha256": "e341804c3ec2719cd647076c76fdb69a8587ca74958b6127efb507d3122fc05f"
+    },
+    {
+      "resource": "resource 0x7f0d01a7 string/ui_hide_editor_controls",
+      "compiled_value_sha256": "e4a4bbd7118b088f7f15c02608af1a2e336c49d5a76aace1e1cd561017108a3a"
+    },
+    {
+      "resource": "resource 0x7f0d01a8 string/ui_hide_pixel_grid_800",
+      "compiled_value_sha256": "b2449c26f96593e49998fb2763ec8a0462592c0564a522367cf1b045e9609fec"
+    },
+    {
+      "resource": "resource 0x7f0d01a9 string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "compiled_value_sha256": "e4449a4f87b7d81cfe4267a92a1045c81adbc104e5157d1eb6436934ceb1c15d"
+    },
+    {
+      "resource": "resource 0x7f0d01aa string/ui_history_unavailable34",
+      "compiled_value_sha256": "4d045ee17a5286e6f1187bbd93c5592e5c017692e84cabbb06a65ec9fa0016ee"
+    },
+    {
+      "resource": "resource 0x7f0d01ab string/ui_hold_a_thumbnail_and_drag_it_here_or",
+      "compiled_value_sha256": "c6a9ee29730f30a8260a3d42fe19969cc95f08295b44d7360fc1b634eb0d3757"
+    },
+    {
+      "resource": "resource 0x7f0d01ac string/ui_hold_or_drag_to_spray_colour",
+      "compiled_value_sha256": "bcef6f9cd42036b70c6d4decf751956aa7359fc1a01cff801b898a8fc537097b"
+    },
+    {
+      "resource": "resource 0x7f0d01ad string/ui_honeycomb",
+      "compiled_value_sha256": "93e9c484d2ba015d9598a7fce3d0d80654113c584423f215960822b935d09cc9"
+    },
+    {
+      "resource": "resource 0x7f0d01ae string/ui_honeycomb_colour_06x",
+      "compiled_value_sha256": "c2a6aecfc8b835bf2b59f430f0913d92c33c25e8a8b01cc0afcb02ab79c86f27"
+    },
+    {
+      "resource": "resource 0x7f0d01af string/ui_honeycomb_colour_swatches_with_a_greyscale_row",
+      "compiled_value_sha256": "316285d289d65bd6489f3be2544d0cf1429a67e0aaf0aea805cf9e7d0b02bdb2"
+    },
+    {
+      "resource": "resource 0x7f0d01b0 string/ui_horizontal23",
+      "compiled_value_sha256": "c7323d94eb79137473fdaec9e936e56b34eb51d8c330f3c4fd73123349cd6240"
+    },
+    {
+      "resource": "resource 0x7f0d01b1 string/ui_how_to_use",
+      "compiled_value_sha256": "a044e29ae5ff6a018172a2475621f65dd1a3e228c79405c472d788159d05ef01"
+    },
+    {
+      "resource": "resource 0x7f0d01b2 string/ui_hue_and_saturation_spectrum_lightness_slider_on_the",
+      "compiled_value_sha256": "35a2cb7939d2c83240e03c284ffee7d2024484f8fabe010390ec877a40b0b371"
+    },
+    {
+      "resource": "resource 0x7f0d01b3 string/ui_hue_and_saturation_wheel_value_slider_on_the",
+      "compiled_value_sha256": "e6ee4ae86c6af8e89162f03befa5683ba3803ab4a3fcdbe9b2c5234f4849fb95"
+    },
+    {
+      "resource": "resource 0x7f0d01b4 string/ui_icon_licences",
+      "compiled_value_sha256": "959f60194495bd434c699d3de952b851cfc504b8fb61aedc0553e434e13ab66d"
+    },
+    {
+      "resource": "resource 0x7f0d01b5 string/ui_icon_licences_kde_breeze",
+      "compiled_value_sha256": "cd0adb747354ba458eb60679f4b0308061b124660095dd2de470e1b3b29c2c6a"
+    },
+    {
+      "resource": "resource 0x7f0d01b6 string/ui_icons_artwork",
+      "compiled_value_sha256": "49c7eed5c4cad95a91fe56e406ca62042707cd1a1ee5300d1c7507c5d1aa65a0"
+    },
+    {
+      "resource": "resource 0x7f0d01b7 string/ui_icons_fonts_artwork_credits",
+      "compiled_value_sha256": "1cc92df809d323f3572342293d65ac50abff798f4da4e75277a3f4f7a42a6854"
+    },
+    {
+      "resource": "resource 0x7f0d01b8 string/ui_image",
+      "compiled_value_sha256": "d10adc2e93353f11592cb04169252baefe19775806de50c57b3e4f112396a835"
+    },
+    {
+      "resource": "resource 0x7f0d01b9 string/ui_image_assembly",
+      "compiled_value_sha256": "7e509df66bba6a4e3bb05360b46668f44c44b6831e01b84c2ab1991db68cde09"
+    },
+    {
+      "resource": "resource 0x7f0d01ba string/ui_image_assembly_workspace_drag_placed_images_or_drop",
+      "compiled_value_sha256": "bf63ed4b67f6b3c59658ef7c1d0f39ba8c651edac6efbf1c78465500a254037c"
+    },
+    {
+      "resource": "resource 0x7f0d01bb string/ui_image_codec_licences",
+      "compiled_value_sha256": "5793dd83ce69ffdbbccc795d6b529b8ae68543cd837ed9a49fb158dccb35adb9"
+    },
+    {
+      "resource": "resource 0x7f0d01bc string/ui_image_credits",
+      "compiled_value_sha256": "798d25e2677d6596e4bcebf2dc113b13b777da97faad6f649e0c787dcad7e1ce"
+    },
+    {
+      "resource": "resource 0x7f0d01bd string/ui_image_placed_drag_it_to_move_or_hold",
+      "compiled_value_sha256": "8edeedd6c2801744a9957c499f59e0816d7b7fe3b0aa5bd20590fad80a76a1c2"
+    },
+    {
+      "resource": "resource 0x7f0d01be string/ui_image_shown_in_crop_preview",
+      "compiled_value_sha256": "359b84a6e60dd2ffc5c9df9443249bda8a4493913016ba8379baa954693aeed7"
+    },
+    {
+      "resource": "resource 0x7f0d01bf string/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more",
+      "compiled_value_sha256": "7b2a621715bb09fc680c4cc83bec560e271122dbd5c896b624b7d526c670915b"
+    },
+    {
+      "resource": "resource 0x7f0d01c0 string/ui_insert",
+      "compiled_value_sha256": "ddf3054534228746dfa79b8bcc04cef8889fcbe00d9fab0c2ebe92abc432eb36"
+    },
+    {
+      "resource": "resource 0x7f0d01c1 string/ui_insert_gallery_image",
+      "compiled_value_sha256": "27f46becb1e1bbc12875799a5dab32409fa7650aba8d97e4291cf774b26d2ffb"
+    },
+    {
+      "resource": "resource 0x7f0d01c2 string/ui_insert_image_into_canvas",
+      "compiled_value_sha256": "995dd8d11fc34c99ee9112622f6ddfbe6d8a82622f19ba903675c5b746673b0e"
+    },
+    {
+      "resource": "resource 0x7f0d01c3 string/ui_invalid_autosave_metadata",
+      "compiled_value_sha256": "73a394d4f87e4abe4e8bb7a6d2dd2dfd70f24ad1b700d68072e9adbae58363ba"
+    },
+    {
+      "resource": "resource 0x7f0d01c4 string/ui_invalid_colour",
+      "compiled_value_sha256": "76c3fce3b593fa28b2dbfc63a1fe81e3b0a164ff6044e6701fb67022755cd614"
+    },
+    {
+      "resource": "resource 0x7f0d01c5 string/ui_invalid_image_attachments",
+      "compiled_value_sha256": "9c4e23eeabd532d772886ae60bb9f46b603b8df797895bdd90266cbc86d81327"
+    },
+    {
+      "resource": "resource 0x7f0d01c6 string/ui_invalid_selection_outline",
+      "compiled_value_sha256": "0cb15d4a3157836cb6a7e5723ea1a3f4120574e5143d8f947e52c8c1e3feaef1"
+    },
+    {
+      "resource": "resource 0x7f0d01c7 string/ui_invert_colours",
+      "compiled_value_sha256": "e44ae27eaff06b5abc24ac2324744ea69290bb6a49aaa598fceb6ba2bf8cc63b"
+    },
+    {
+      "resource": "resource 0x7f0d01c8 string/ui_irasutoya_credit34",
+      "compiled_value_sha256": "f0cf7f864d42e32c29a85c9299fb8ce0af79455a4d91235051e1d3ddfb73d24d"
+    },
+    {
+      "resource": "resource 0x7f0d01c9 string/ui_irasutoya_help34",
+      "compiled_value_sha256": "2778b3fe5b9c4626539da4d0022c52b537f81766dd969e50a6008fcd775daa70"
+    },
+    {
+      "resource": "resource 0x7f0d01ca string/ui_italic",
+      "compiled_value_sha256": "b9ffc273df92d699b186694ad43be849c86ea0ca7f48534ee319e33add7f3def"
+    },
+    {
+      "resource": "resource 0x7f0d01cb string/ui_jpeg_xl_codec_licences",
+      "compiled_value_sha256": "324433d8d2c3f737d1a502eb94f29b5dcc69b04a05069edb14e64f88fc40b65c"
+    },
+    {
+      "resource": "resource 0x7f0d01cc string/ui_keep_editing23",
+      "compiled_value_sha256": "924bd5fb60fb45d82f0924c183fc279f9af8c4a31558574f27439e24187f56ab"
+    },
+    {
+      "resource": "resource 0x7f0d01cd string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "compiled_value_sha256": "cc16af459972537c6abc9ab866110836f3528f931e4c489ebcd2f6dd2702f76f"
+    },
+    {
+      "resource": "resource 0x7f0d01ce string/ui_languages23",
+      "compiled_value_sha256": "f75931a0bd8c167caf36e64354270aba4aa498a20df640a00e53f7132dfc4500"
+    },
+    {
+      "resource": "resource 0x7f0d01cf string/ui_largest",
+      "compiled_value_sha256": "82e8e3f9cc25f06194176b71da8f20c4d6910170942b62b2f92cecb2e76ff80f"
+    },
+    {
+      "resource": "resource 0x7f0d01d0 string/ui_left",
+      "compiled_value_sha256": "6dc955900b8853b1d0f37ccb1a3c94176bd769648b47ee538bd71d3a846600d3"
+    },
+    {
+      "resource": "resource 0x7f0d01d1 string/ui_left_aligned",
+      "compiled_value_sha256": "5f228e4ca3001e5f653cf5bbdae4e37547a5e206537541bd19b856f538a3450f"
+    },
+    {
+      "resource": "resource 0x7f0d01d2 string/ui_left_arrow_collapse",
+      "compiled_value_sha256": "833c5cb18186103571e4acd09b1e16d125470b10206b49d45c7c0fd5f7a307ac"
+    },
+    {
+      "resource": "resource 0x7f0d01d3 string/ui_line",
+      "compiled_value_sha256": "8ba10f5175546e70030b7ff04479f2a2f71161f6e323a776df629e6ff0200a8d"
+    },
+    {
+      "resource": "resource 0x7f0d01d4 string/ui_line_spacing",
+      "compiled_value_sha256": "85ddee6276b0d419fcf69d3bf4e817d9ab9fdf9f0c8334499e338089e957f93f"
+    },
+    {
+      "resource": "resource 0x7f0d01d5 string/ui_load_image",
+      "compiled_value_sha256": "740b4f87351d469f9d055e989dc57e6fb7c6c671d85ab3d13a78f9e7bb8fd7d9"
+    },
+    {
+      "resource": "resource 0x7f0d01d6 string/ui_lock_aspect_ratio",
+      "compiled_value_sha256": "54ffad6b91bd23b047c5cc6de7616624629bdd8640189553d476807de750f6e3"
+    },
+    {
+      "resource": "resource 0x7f0d01d7 string/ui_lock_proportions",
+      "compiled_value_sha256": "d4a36e8e029abb8c5be4979031688e1c30c2630a1bc310daba192ea7b0f2fef7"
+    },
+    {
+      "resource": "resource 0x7f0d01d8 string/ui_lossless_format",
+      "compiled_value_sha256": "356b8b6ddb859950a4824a9c516fa74b9c7f25288e2f668a9f55cd0379e23e1a"
+    },
+    {
+      "resource": "resource 0x7f0d01d9 string/ui_lossless_jpeg_xl",
+      "compiled_value_sha256": "e331b5b6651bcb961dfd4030544336fd7b4781bb52a50e282f585ffb955874ea"
+    },
+    {
+      "resource": "resource 0x7f0d01da string/ui_magnification",
+      "compiled_value_sha256": "87cd63af5522777799f2d9411d7137298eec881c8a4d8414ef17d06faddb3735"
+    },
+    {
+      "resource": "resource 0x7f0d01db string/ui_magnified_preview",
+      "compiled_value_sha256": "75449ad41961af069934604e064d6b3fad5b5ed9980fa23ba9dc3d649146942c"
+    },
+    {
+      "resource": "resource 0x7f0d01dc string/ui_magnified_preview_ea9209",
+      "compiled_value_sha256": "7305746c15bb73009801799a3cf61846e5a9055e46029b54a1ac970b514523d8"
+    },
+    {
+      "resource": "resource 0x7f0d01dd string/ui_magnifier33",
+      "compiled_value_sha256": "fda4a4f25d5c06c7ff99a2b76d1bc542fbb6763fb57ff4d985ef4f9b1a61ed91"
+    },
+    {
+      "resource": "resource 0x7f0d01de string/ui_main23",
+      "compiled_value_sha256": "df5f9c4ae8bcb93822eb30d3b46deebe8a69db654c957877b1469c7caa287414"
+    },
+    {
+      "resource": "resource 0x7f0d01df string/ui_menu",
+      "compiled_value_sha256": "2ae577ae392866ab85330164dbe70c07e9fa6c06b3ded8b97b311b5f74dbde9b"
+    },
+    {
+      "resource": "resource 0x7f0d01e0 string/ui_menu_colours",
+      "compiled_value_sha256": "397c299bd8f6b2f2c41668be58c46ce79999e71037f90a5cd99a0d779a8f0bd9"
+    },
+    {
+      "resource": "resource 0x7f0d01e1 string/ui_menu_edit",
+      "compiled_value_sha256": "298fae572023c88a571c1a56a840ff80a9da50ff5a76eab8b3c4aa48c9f5590b"
+    },
+    {
+      "resource": "resource 0x7f0d01e2 string/ui_menu_file",
+      "compiled_value_sha256": "5d89d15309460b88b5d73acc984243effea1ff17ca5b5053fe71e316502c93d1"
+    },
+    {
+      "resource": "resource 0x7f0d01e3 string/ui_menu_help",
+      "compiled_value_sha256": "088a75e23248111f852fc767026f85d35759007ca9706fcfe819827e84e343c5"
+    },
+    {
+      "resource": "resource 0x7f0d01e4 string/ui_menu_image",
+      "compiled_value_sha256": "d10adc2e93353f11592cb04169252baefe19775806de50c57b3e4f112396a835"
+    },
+    {
+      "resource": "resource 0x7f0d01e5 string/ui_menu_view",
+      "compiled_value_sha256": "0d395e69eb1bbc9a54579a2be3798ca9744b0990dccaeabaee8708763b01061a"
+    },
+    {
+      "resource": "resource 0x7f0d01e6 string/ui_modified_newest_first",
+      "compiled_value_sha256": "05a249e61d7515f46934b18b3126351ea5a1818798fcac3cabe6f9338c2326e2"
+    },
+    {
+      "resource": "resource 0x7f0d01e7 string/ui_modified_oldest_first",
+      "compiled_value_sha256": "7c6f70969586f128e93b91152d0b346b460f8b27ba88153d8a06904e56285da8"
+    },
+    {
+      "resource": "resource 0x7f0d01e8 string/ui_monospace",
+      "compiled_value_sha256": "7f313fba994144c299ad018377dd6fdb8a7df5fbbad2c84cff34821f27c2e4e2"
+    },
+    {
+      "resource": "resource 0x7f0d01e9 string/ui_navigate",
+      "compiled_value_sha256": "034f57258620d4e5d1f9b0ef966182d1d43fb00f76db3d8bc9d3ff2d4f668f1e"
+    },
+    {
+      "resource": "resource 0x7f0d01ea string/ui_new",
+      "compiled_value_sha256": "b46ffe4c3cdb120344b5254b6a346a2f33fec2af27531226ad3be0ae4d497110"
+    },
+    {
+      "resource": "resource 0x7f0d01eb string/ui_new_colour",
+      "compiled_value_sha256": "874cc83d64ada431286bf37d215d529b14d637d6ba7166533df0ed05954b927b"
+    },
+    {
+      "resource": "resource 0x7f0d01ec string/ui_new_image",
+      "compiled_value_sha256": "3e6498274f43a721dd58fb6623bacac23b34c631d08e4d0c6ca8b410e72a4242"
+    },
+    {
+      "resource": "resource 0x7f0d01ed string/ui_no_attachment_fits_within_the_current_coordinate_range",
+      "compiled_value_sha256": "ff324e774be3900ea7eb808cfef3a1b4d2b5e2ed0f199ff4558a3ca3f572777b"
+    },
+    {
+      "resource": "resource 0x7f0d01ee string/ui_no_gallery_images_have_been_inserted",
+      "compiled_value_sha256": "78d6e41d282f3eb0830f9c9aaeb65329fda5e6f76015b396181dcd240e0a2260"
+    },
+    {
+      "resource": "resource 0x7f0d01ef string/ui_no_readable_image_data",
+      "compiled_value_sha256": "ec17f6e2a52461c7eed23a570dc1bd7a1b2d25d9f722c113cb776fe322ec48a2"
+    },
+    {
+      "resource": "resource 0x7f0d01f0 string/ui_no_resize_fits_decoder_memory",
+      "compiled_value_sha256": "971c9e71a5117c9fa02a48febf8c37974b9d5812cac1dca1df7732ef9a6d54f0"
+    },
+    {
+      "resource": "resource 0x7f0d01f1 string/ui_none",
+      "compiled_value_sha256": "eef17b9050ef8074d40e9b7f08764895f16cb7de6b9f0b9a6f5a06b480148a54"
+    },
+    {
+      "resource": "resource 0x7f0d01f2 string/ui_normalize_height_info",
+      "compiled_value_sha256": "df0aaf04fef8e49b2cced1f56120c52fc7f3dbdcdc4d038898829fd9dcfb9256"
+    },
+    {
+      "resource": "resource 0x7f0d01f3 string/ui_normalize_height_input_percent",
+      "compiled_value_sha256": "49d655e1f094b6d7a1b86514cdefa1934eb72689d9912966b8ede16cf720e2d7"
+    },
+    {
+      "resource": "resource 0x7f0d01f4 string/ui_normalize_height_intro",
+      "compiled_value_sha256": "0dc1cb97646d2549dac1c5b32174e9e2d9ca7d26756ed3b361a9ae7f6826d1db"
+    },
+    {
+      "resource": "resource 0x7f0d01f5 string/ui_normalize_width_info",
+      "compiled_value_sha256": "975361ecac5e16cb1029ea54f53eb6407162e7c8e329a05f2c0dae3e3bcb3a2a"
+    },
+    {
+      "resource": "resource 0x7f0d01f6 string/ui_normalize_width_input_percent",
+      "compiled_value_sha256": "d928592d190d7c8617384a73ee821b70ba835c7a25fd98cdf40d27f86f8b14fe"
+    },
+    {
+      "resource": "resource 0x7f0d01f7 string/ui_normalize_width_intro",
+      "compiled_value_sha256": "c20f3cbcb6c64e168a436ec67228760bba1d418c5369c551f4d89864d55becee"
+    },
+    {
+      "resource": "resource 0x7f0d01f8 string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "compiled_value_sha256": "3045ed2ab4cb9952a45968fdbd3300ed4a7883a35186a43e2e970b959da03731"
+    },
+    {
+      "resource": "resource 0x7f0d01f9 string/ui_not_enough_memory_to_finish_opening_this_image",
+      "compiled_value_sha256": "8e0281f72fb45fd7bff16775c2fb12e4ea3a39a84c86d2a7ff73c50b70f71c0c"
+    },
+    {
+      "resource": "resource 0x7f0d01fa string/ui_not_enough_memory_to_inspect_the_gallery_image",
+      "compiled_value_sha256": "00c73474a4e265d95d7e0e58273f5ecc93801e6e459dc3af27781ecbc90fe19c"
+    },
+    {
+      "resource": "resource 0x7f0d01fb string/ui_not_enough_memory_to_inspect_this_image",
+      "compiled_value_sha256": "da27189badba69fcffeeaf2d170f194451481496f3af0f876d410c96e8cdf8d5"
+    },
+    {
+      "resource": "resource 0x7f0d01fc string/ui_not_enough_memory_to_save_in_this_format",
+      "compiled_value_sha256": "ef863207f34cc9ad3c1b99d3558f264b7c88e4744cb2946ad93cefcca9355d06"
+    },
+    {
+      "resource": "resource 0x7f0d01fd string/ui_not_placed",
+      "compiled_value_sha256": "74f1ea6be49e47e30792b087d191b13f6442d5411a5bfefd61af52eba003f468"
+    },
+    {
+      "resource": "resource 0x7f0d01fe string/ui_numeric_slider_value",
+      "compiled_value_sha256": "c5ae04e0eafbdc19ffe5f60e2e04f6e064028cb3d15b96de61d8f9b625e259c9"
+    },
+    {
+      "resource": "resource 0x7f0d01ff string/ui_ok",
+      "compiled_value_sha256": "5350f2a7ab80ab579480fa9498c89e62e87f83e6d61b8224956230161a89c375"
+    },
+    {
+      "resource": "resource 0x7f0d0200 string/ui_open_artwork34",
+      "compiled_value_sha256": "719a3a832ab1a0777a296f0ea8bdd5dc2b93e58d826528589740c597df3d4c8f"
+    },
+    {
+      "resource": "resource 0x7f0d0201 string/ui_open_source_credits_and_notices",
+      "compiled_value_sha256": "3738164faea233457f94626e1511814a118a12e941ca07aba6570c054a0a6801"
+    },
+    {
+      "resource": "resource 0x7f0d0202 string/ui_openclipart_help34",
+      "compiled_value_sha256": "8b6dfdddcb52d264743f58cd2dda7bd80db2ec245f6f7c87cc76c983a897937a"
+    },
+    {
+      "resource": "resource 0x7f0d0203 string/ui_original_decoded_image_rgba_4_bytes_pixel_estimated",
+      "compiled_value_sha256": "b06a3fb7c71e8084c266f824b9253e16e11764f4d1bccc18f677c6c4b1606e34"
+    },
+    {
+      "resource": "resource 0x7f0d0204 string/ui_original_size34",
+      "compiled_value_sha256": "f3f593594c5f9b4784fdb5393b612ea67690494b6b3bf79258d16dbd2afbe28b"
+    },
+    {
+      "resource": "resource 0x7f0d0205 string/ui_other_images34",
+      "compiled_value_sha256": "5f2691638b61eb33f87b20464089c5f80dfe882286acac5285f107454e4a9eca"
+    },
+    {
+      "resource": "resource 0x7f0d0206 string/ui_other_terms",
+      "compiled_value_sha256": "45aa5736f4c5970aba6d5d91f8a8f5461d4c91c42b4d12faee3bbf49bb9eca1f"
+    },
+    {
+      "resource": "resource 0x7f0d0207 string/ui_outline",
+      "compiled_value_sha256": "2eaaed35a46b27127dbe2a98c847e6cb03b7f1e14d9d1805930b07ef423ea619"
+    },
+    {
+      "resource": "resource 0x7f0d0208 string/ui_pale_violet",
+      "compiled_value_sha256": "6b4c3d95336447c5782872473d679c8a3e972967bc9f46e65dab42a95bc2e259"
+    },
+    {
+      "resource": "resource 0x7f0d0209 string/ui_palette",
+      "compiled_value_sha256": "9210f846b7c0681478a12156c2d3e74fc1b2bb69418020ddd491bc9de9962a88"
+    },
+    {
+      "resource": "resource 0x7f0d020a string/ui_paste",
+      "compiled_value_sha256": "228956107ce5df0aba94c47fad90aa8f9f018226e4a235120ce95482e51a4cbd"
+    },
+    {
+      "resource": "resource 0x7f0d020b string/ui_paste_hint34",
+      "compiled_value_sha256": "669794cb04d4d6ba23d50a85db348fd3ffdbf98f2861fecd526036ca91c7006c"
+    },
+    {
+      "resource": "resource 0x7f0d020c string/ui_pencil",
+      "compiled_value_sha256": "c348a7947478494061643259451c68ea8fdc42f5b63820de95fbc41d901d424b"
+    },
+    {
+      "resource": "resource 0x7f0d020d string/ui_pencil_crisp_adjustable_strokes",
+      "compiled_value_sha256": "4cb65068dc2979678f26ea1decc60363d89917d0609c4cf9cc0646677ba9a205"
+    },
+    {
+      "resource": "resource 0x7f0d020e string/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+      "compiled_value_sha256": "4cb65068dc2979678f26ea1decc60363d89917d0609c4cf9cc0646677ba9a205"
+    },
+    {
+      "resource": "resource 0x7f0d020f string/ui_percent",
+      "compiled_value_sha256": "2bc8de29be5b65565e63a8f966a6c2cb7952000573f97ff81b4b3232b5bb3fbd"
+    },
+    {
+      "resource": "resource 0x7f0d0210 string/ui_percent_fd8671",
+      "compiled_value_sha256": "2bc8de29be5b65565e63a8f966a6c2cb7952000573f97ff81b4b3232b5bb3fbd"
+    },
+    {
+      "resource": "resource 0x7f0d0211 string/ui_percent_of_pixels",
+      "compiled_value_sha256": "2474c26bcfa9ec3e5e0611a44189d74ac37af03c0cbeefa4025e13ba2953cc36"
+    },
+    {
+      "resource": "resource 0x7f0d0212 string/ui_pinch_and_pan_mode",
+      "compiled_value_sha256": "64fa79bd5e596727a39d51194a8e8ec88306942c715f9976a8e76175cec2bf0b"
+    },
+    {
+      "resource": "resource 0x7f0d0213 string/ui_pinch_to_zoom_drag_to_pan",
+      "compiled_value_sha256": "854a0ce602c2f6b3dd0876c5ace99ee0dfeeb7278f3fc66e2af9734b0f301e30"
+    },
+    {
+      "resource": "resource 0x7f0d0214 string/ui_pixel_grid33",
+      "compiled_value_sha256": "ebe559010526c90c7b629ab707921eb37263f7b48aaca1c46983b55051fc9ad3"
+    },
+    {
+      "resource": "resource 0x7f0d0215 string/ui_pixel_grid_help33",
+      "compiled_value_sha256": "0665b11ef321a032eef2f76ec44f9af136a5973ad448fc09ddf30f078fdbfaf6"
+    },
+    {
+      "resource": "resource 0x7f0d0216 string/ui_pixels",
+      "compiled_value_sha256": "2e800956634707f29d0ac08745080ac7e73fd7126b36e60e8dff10e92aa1312d"
+    },
+    {
+      "resource": "resource 0x7f0d0217 string/ui_pixels_6ec9c2",
+      "compiled_value_sha256": "2e800956634707f29d0ac08745080ac7e73fd7126b36e60e8dff10e92aa1312d"
+    },
+    {
+      "resource": "resource 0x7f0d0218 string/ui_place_at_least_one_image_in_the_workspace",
+      "compiled_value_sha256": "556c15883159d2fc8d1ddf3961812b65e337e43de04c46a0518a4a6d261e647f"
+    },
+    {
+      "resource": "resource 0x7f0d0219 string/ui_place_text",
+      "compiled_value_sha256": "e335ec7eddca793c4233039832d6093ad1173dc5f2b4a3a034e9770261c7aa05"
+    },
+    {
+      "resource": "resource 0x7f0d021a string/ui_placed",
+      "compiled_value_sha256": "e4d1ea466dd3a862927ff8699b8a9ba3ada07d911e8c454602e96349c54e12e0"
+    },
+    {
+      "resource": "resource 0x7f0d021b string/ui_please_try_again",
+      "compiled_value_sha256": "908ac5fa048c3f8cd57d6e3edef0e2af86d5a93f3b0f8b9e743f9ef117eb112a"
+    },
+    {
+      "resource": "resource 0x7f0d021c string/ui_please_wait_for_the_current_operation",
+      "compiled_value_sha256": "e978558e77d5e471d776ea1c32cb7576c43113abb150a4abe9413c83f8197346"
+    },
+    {
+      "resource": "resource 0x7f0d021d string/ui_png_encoding_failed",
+      "compiled_value_sha256": "ef6bdbc705784a2263b69fb047178abf855de5f9c9a7eef26887c122384637a2"
+    },
+    {
+      "resource": "resource 0x7f0d021e string/ui_polygon",
+      "compiled_value_sha256": "d9f908ddd4d859acec06ac93f20d113ae7469de81261ae36a61437737b3be67a"
+    },
+    {
+      "resource": "resource 0x7f0d021f string/ui_preview",
+      "compiled_value_sha256": "80e6f8bfdf693ed74820439da03b99585719dfc5cf58893b7ef6afdab9dd3ef7"
+    },
+    {
+      "resource": "resource 0x7f0d0220 string/ui_preview_memory_error",
+      "compiled_value_sha256": "4b3771b37e15e888a645abe2d4201772dee9b1e8a71208186c2c8517784c8447"
+    },
+    {
+      "resource": "resource 0x7f0d0221 string/ui_previous_draft_kept_for_recovery",
+      "compiled_value_sha256": "4edd6afbdef9eaf9266e5b4cd785b091795725d39349bff2d27c752da214b9cf"
+    },
+    {
+      "resource": "resource 0x7f0d0222 string/ui_px",
+      "compiled_value_sha256": "6ffe1ace2a3750ac290bdd3aed61e3ba9620a82ba1caaa1caf76bc27615280ee"
+    },
+    {
+      "resource": "resource 0x7f0d0223 string/ui_px_724eb3",
+      "compiled_value_sha256": "417a03432b3503595889b7a98f35262b01b859ecd7dacd85b82a9acaf38d44f7"
+    },
+    {
+      "resource": "resource 0x7f0d0224 string/ui_px_drag_an_image_to_move_hold_a",
+      "compiled_value_sha256": "5df38ab854b8db06ccec1dd7c4c63db236dc9650a3bc3953434899cdfc3db574"
+    },
+    {
+      "resource": "resource 0x7f0d0225 string/ui_quality",
+      "compiled_value_sha256": "7354d4f6d397e78ae6ac04729dd3d41659aa4004e02d53e6daa93c01151413c6"
+    },
+    {
+      "resource": "resource 0x7f0d0226 string/ui_radius_px",
+      "compiled_value_sha256": "56f993dd9ae4c42346b78aafe3746869d8989b4375d41fdbcf38fb0cdc9f7697"
+    },
+    {
+      "resource": "resource 0x7f0d0227 string/ui_ready",
+      "compiled_value_sha256": "652ae2ea73d5dddca1406c404144df53604480104d572fe7699ba23f37f3703b"
+    },
+    {
+      "resource": "resource 0x7f0d0228 string/ui_recent_colour_d_06x_tap_foreground_hold_background",
+      "compiled_value_sha256": "0787c5a02b846d081a9b791fd7a46368d170faf7caa970d922e2126b58300fd9"
+    },
+    {
+      "resource": "resource 0x7f0d0229 string/ui_recent_colour_empty",
+      "compiled_value_sha256": "a40ad26ac586273631f9b72b8925f903efbed4d0869061d22027b1f20f139a43"
+    },
+    {
+      "resource": "resource 0x7f0d022a string/ui_recovered_image",
+      "compiled_value_sha256": "78e038f0ebb90a1d02a6bd16dd607f453d3383b6b8ce0a825f4ad3b686226e01"
+    },
+    {
+      "resource": "resource 0x7f0d022b string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "compiled_value_sha256": "f0749fd58f8e0528358a3a733f99d7097fe07ac1bf8ae296e4e8559bf4d27cf5"
+    },
+    {
+      "resource": "resource 0x7f0d022c string/ui_rectangle",
+      "compiled_value_sha256": "17dc89c625e1fe4bc39ba6415ffd5ae1f69105664f73f52f4cd1ff454ff2b0fe"
+    },
+    {
+      "resource": "resource 0x7f0d022d string/ui_rectangle_select",
+      "compiled_value_sha256": "2839cfcbd9ec79e2543feace6b672d9837052f1e5f1328648473b2c2e12cfcf3"
+    },
+    {
+      "resource": "resource 0x7f0d022e string/ui_redo",
+      "compiled_value_sha256": "5ff74d2041196d245394330eb2490f72da9b2f73ddf8bb6d06fe2b3e7948d4b2"
+    },
+    {
+      "resource": "resource 0x7f0d022f string/ui_remove",
+      "compiled_value_sha256": "c794748a1855fa2ee44e1df28c9108bf3a5e718ee1277fa22a932a7099426b42"
+    },
+    {
+      "resource": "resource 0x7f0d0230 string/ui_remove_palette23",
+      "compiled_value_sha256": "d57f8259bd1c4974ed1360293de2280be12a70cde5e3213ced8def581c944939"
+    },
+    {
+      "resource": "resource 0x7f0d0231 string/ui_rendering_images",
+      "compiled_value_sha256": "4fa8ab1cc8305ca826183556d09458b0c11e39ceecbf6ebe88514d22a77c4b64"
+    },
+    {
+      "resource": "resource 0x7f0d0232 string/ui_replace_palette23",
+      "compiled_value_sha256": "f160b0019ef818774fc57c5938855827fd7c6d918d87923ab582f99fdc8668b4"
+    },
+    {
+      "resource": "resource 0x7f0d0233 string/ui_replace_with_active23",
+      "compiled_value_sha256": "56a862ad948db590cf7872b21c2feef0d677a96b13fd817b21b5d58a85a032c1"
+    },
+    {
+      "resource": "resource 0x7f0d0234 string/ui_reset_bw23",
+      "compiled_value_sha256": "ecb12b79d36d92835fffafd2c9ec51774ccfcc5846735ae00da7b6bcd255edc9"
+    },
+    {
+      "resource": "resource 0x7f0d0235 string/ui_reset_crop",
+      "compiled_value_sha256": "16fe20e02550a217e92b554f169be5fc2bece006463e3a8d86f35ce0c513af55"
+    },
+    {
+      "resource": "resource 0x7f0d0236 string/ui_reset_to_black_white",
+      "compiled_value_sha256": "4039271a2a20417957c58bc64cf26798d1a71a652f8fdcfd9d46d916050f0e50"
+    },
+    {
+      "resource": "resource 0x7f0d0237 string/ui_resize_and_load",
+      "compiled_value_sha256": "68878ff7a61feaa5ed4f0cb6e28bd86fc1dfe5de94d760ce7d8bd8fab27efd1f"
+    },
+    {
+      "resource": "resource 0x7f0d0238 string/ui_resize_image",
+      "compiled_value_sha256": "d4a990efdb9dfa8edc7d1a2345e30943ef8e88966b697f051e47eba3695c8e6c"
+    },
+    {
+      "resource": "resource 0x7f0d0239 string/ui_resize_image_ab28be",
+      "compiled_value_sha256": "902719e0029c37791a35b0f3c5907aad6304e41f5a827675960574e1a8b251a4"
+    },
+    {
+      "resource": "resource 0x7f0d023a string/ui_resize_large_image",
+      "compiled_value_sha256": "26a3163ecc81cfb1db70953f4cb4fa4a41129fdd35e2093acee623a839ed8730"
+    },
+    {
+      "resource": "resource 0x7f0d023b string/ui_resize_the_copy",
+      "compiled_value_sha256": "38bed9c747b38eb98afd2a9e09326396da2080586b3056ab26cd8ca6eadcc9d2"
+    },
+    {
+      "resource": "resource 0x7f0d023c string/ui_restore_original_sizes",
+      "compiled_value_sha256": "3e196ffe74fa93184eac82015452a67a4839c26f4a35ac753e3c87611a865137"
+    },
+    {
+      "resource": "resource 0x7f0d023d string/ui_right",
+      "compiled_value_sha256": "32cfc5303b95e33de57cdf3606069fba1f6a5258b5197e2afc95ca78b12c878c"
+    },
+    {
+      "resource": "resource 0x7f0d023e string/ui_right_aligned",
+      "compiled_value_sha256": "1901199855c462736b3428da544b58b91aaf3240fff73c412eee29764b5bcb3d"
+    },
+    {
+      "resource": "resource 0x7f0d023f string/ui_right_arrow_expand",
+      "compiled_value_sha256": "638bcdc35c6f78285c0b5b6f4a63f9400787981065ad9a484c4586671937822e"
+    },
+    {
+      "resource": "resource 0x7f0d0240 string/ui_rotate",
+      "compiled_value_sha256": "e1f0b9675f8c7a9705a434d3fddcf83ce1e82ff83fff449791d3a6c776273fd4"
+    },
+    {
+      "resource": "resource 0x7f0d0241 string/ui_rotate_180",
+      "compiled_value_sha256": "8ee2ad139ba04d1afd1a7c0e76834017e3465ac69fbdec43f612e4f3fb688295"
+    },
+    {
+      "resource": "resource 0x7f0d0242 string/ui_rotate_90_clockwise",
+      "compiled_value_sha256": "2d0c068a765e8b809dbe7aed311422abc6e1c106aa13c1f13f8a1e5cb984788a"
+    },
+    {
+      "resource": "resource 0x7f0d0243 string/ui_round",
+      "compiled_value_sha256": "32b60cbde76d03ebbe6405f2b1bc9ce91cd91e8ec7f1247ca4911d8b69b1a283"
+    },
+    {
+      "resource": "resource 0x7f0d0244 string/ui_rounded_rectangle",
+      "compiled_value_sha256": "b0b348bda859a4ba75e6d17dca9b0d13af420b817fd7d1c0416a010165604f3e"
+    },
+    {
+      "resource": "resource 0x7f0d0245 string/ui_same",
+      "compiled_value_sha256": "667cbaf1173e2db23d6672cc227cceebdb5898df94975581bd183c04e140a455"
+    },
+    {
+      "resource": "resource 0x7f0d0246 string/ui_same_height",
+      "compiled_value_sha256": "6b1c3a3d43db6eeffd286b6465c6e698cc284d51dc0f41aa8e9cf8a71512964a"
+    },
+    {
+      "resource": "resource 0x7f0d0247 string/ui_same_width",
+      "compiled_value_sha256": "db00d2dc7c8d467865752fd04532a0b54da89a6178558f8a46632e6bde2e5cef"
+    },
+    {
+      "resource": "resource 0x7f0d0248 string/ui_sans_condensed",
+      "compiled_value_sha256": "8d039bc5e66833e758fee68135a1c95f38d02a2882ee81053904e335078887fd"
+    },
+    {
+      "resource": "resource 0x7f0d0249 string/ui_sans_light",
+      "compiled_value_sha256": "8bbbeffa66c2d514fc8c916faeeeb914650d3295211c7db84a8dbf3a47547040"
+    },
+    {
+      "resource": "resource 0x7f0d024a string/ui_sans_medium",
+      "compiled_value_sha256": "6c3dc45af7428f689e28872f0e1fe3c000dd0b1f726a1b08a4629467f00481eb"
+    },
+    {
+      "resource": "resource 0x7f0d024b string/ui_sans_serif",
+      "compiled_value_sha256": "e39a7e117c95cc8becd0cff81f6a323eaab7f43c33b6a552620c1e3535ae8660"
+    },
+    {
+      "resource": "resource 0x7f0d024c string/ui_sans_thin",
+      "compiled_value_sha256": "b16ad479d0b73fdc45c4b7ea0f62ebb6f5172e4e545dd0b2c161e68e0d74b750"
+    },
+    {
+      "resource": "resource 0x7f0d024d string/ui_save",
+      "compiled_value_sha256": "89f97b41499a6745ac0af008992773aa0265c28a3a9af1787130ad005b84b6cd"
+    },
+    {
+      "resource": "resource 0x7f0d024e string/ui_save_a5d0d9",
+      "compiled_value_sha256": "882aa02a39c1a29a5b9bd5ce20227f6277bceff115ce3e73fac153c468993f00"
+    },
+    {
+      "resource": "resource 0x7f0d024f string/ui_save_and_share",
+      "compiled_value_sha256": "180788bba2adcfbe3de20ef1c46f823f9998392a3dc0c365c30335bc87da65e9"
+    },
+    {
+      "resource": "resource 0x7f0d0250 string/ui_save_and_share_41edb4",
+      "compiled_value_sha256": "7bf25ceff3768d6c32b048a6e37d8756b1774b75bd56240c5f9544faae15c0ba"
+    },
+    {
+      "resource": "resource 0x7f0d0251 string/ui_save_as",
+      "compiled_value_sha256": "d9ff0c450eb9cfc47291da20556c82ca47f9f2f769a86e7109da088459ec5912"
+    },
+    {
+      "resource": "resource 0x7f0d0252 string/ui_save_as_avif",
+      "compiled_value_sha256": "b277bcc1085568c63b913aef2a9ce397a49a0ed19478d447ac5344400f71dd9b"
+    },
+    {
+      "resource": "resource 0x7f0d0253 string/ui_save_as_heic",
+      "compiled_value_sha256": "26c3e5e622e4b094d4fcc5fecf47f91ca7ae24da999dcded4a7b621c536ee8d3"
+    },
+    {
+      "resource": "resource 0x7f0d0254 string/ui_save_as_jpeg",
+      "compiled_value_sha256": "40e4dd915b9226f771818eef07b598ed77bbac6ddbc80cf2e807c8d23fecc64d"
+    },
+    {
+      "resource": "resource 0x7f0d0255 string/ui_save_as_jpeg_xl",
+      "compiled_value_sha256": "7bc8a9370372f6ba53f153ebb7b1c8a8b88b858306a43e35698e046d80aa38f6"
+    },
+    {
+      "resource": "resource 0x7f0d0256 string/ui_save_as_png",
+      "compiled_value_sha256": "24606dfb77c0e7a8507a7b62210e71b4b8d3588c4041d06d289d1184367ee11c"
+    },
+    {
+      "resource": "resource 0x7f0d0257 string/ui_save_as_webp",
+      "compiled_value_sha256": "54126ca49f105333ce8a9424c8bfd363af266c4af92e19153174a5519b261b38"
+    },
+    {
+      "resource": "resource 0x7f0d0258 string/ui_save_explanation23",
+      "compiled_value_sha256": "6fd7bb211a24afa9916eafa5cf4152476ae036657892a61dbe2304c379c5381e"
+    },
+    {
+      "resource": "resource 0x7f0d0259 string/ui_save_png",
+      "compiled_value_sha256": "ba124bfb6e8559477632b859e76e590658e22be0d43fe4e995d4b4de14a731b9"
+    },
+    {
+      "resource": "resource 0x7f0d025a string/ui_save_your_changes",
+      "compiled_value_sha256": "2c696d64d8e92f6c4c017062b73bc42747a35c49357ef7dc88b1921e645164b6"
+    },
+    {
+      "resource": "resource 0x7f0d025b string/ui_saved",
+      "compiled_value_sha256": "a9ca888bbe318a24f081e4fa3015245441cc0afc0588e39e445d51dabbfd7d53"
+    },
+    {
+      "resource": "resource 0x7f0d025c string/ui_saved_palette23",
+      "compiled_value_sha256": "569d430a7dcc5f4186f2e811f74dfeb15144fbc192221fe829538f529b888d2a"
+    },
+    {
+      "resource": "resource 0x7f0d025d string/ui_scales_the_image_unlock_the_ratio_to_stretch",
+      "compiled_value_sha256": "09e5da343db338bcca636b172181bbe8d0c38442504ad0a1eb7d5f1eec6a903d"
+    },
+    {
+      "resource": "resource 0x7f0d025e string/ui_search34",
+      "compiled_value_sha256": "6ffaa385945ebd91e628ba969a59159079e71d5883213711fb2607b93874edeb"
+    },
+    {
+      "resource": "resource 0x7f0d025f string/ui_search_english34",
+      "compiled_value_sha256": "846ef07cc41350aea673f847d51f295af78d79a2a9602c6862ddeb14df3c8715"
+    },
+    {
+      "resource": "resource 0x7f0d0260 string/ui_select_all",
+      "compiled_value_sha256": "24c791ca7956b3399106fdcc2e7ad014d007e1c6c0b56425ba41120f05ca1af1"
+    },
+    {
+      "resource": "resource 0x7f0d0261 string/ui_select_an_area",
+      "compiled_value_sha256": "238cdba11908f26f6478d4a279595bed0da16fa44631747a29a7dd2b89e9af6a"
+    },
+    {
+      "resource": "resource 0x7f0d0262 string/ui_select_an_area_first",
+      "compiled_value_sha256": "30384092b6969038952afc36699cd29b516c35cf8aa6ac8d824fc5613a4a840d"
+    },
+    {
+      "resource": "resource 0x7f0d0263 string/ui_selected_colour23",
+      "compiled_value_sha256": "299d18c79e09bf0726027ebf0df7032274f7f9bf1e32ef4f5f0899dfc557f37c"
+    },
+    {
+      "resource": "resource 0x7f0d0264 string/ui_selection_dimensions_are_too_large",
+      "compiled_value_sha256": "c6405a192b7fda3771ead6fa6b7e3de4eee7921a5f3f3971a600449c63eea8a9"
+    },
+    {
+      "resource": "resource 0x7f0d0265 string/ui_serif",
+      "compiled_value_sha256": "dcd3f2b51101a7202e97a6a51970f3a7ee3d8668729ce89184e72fdcfbc5710e"
+    },
+    {
+      "resource": "resource 0x7f0d0266 string/ui_set_radius_px_then_drag_between_opposite_corners",
+      "compiled_value_sha256": "1e640ac5f4ef4b77e80aae6ecf665d35c44ae62cb4acbe5be3d2f24cdc879c69"
+    },
+    {
+      "resource": "resource 0x7f0d0267 string/ui_share_explanation34",
+      "compiled_value_sha256": "838e814f0814f35599c19cbd6300eb8c3bd1156d8b01543326187778bf11d7cf"
+    },
+    {
+      "resource": "resource 0x7f0d0268 string/ui_share_saved_image",
+      "compiled_value_sha256": "04d72f3bf3197377a7f9ae5f352617feb776a698319f25d3be6062419f077b39"
+    },
+    {
+      "resource": "resource 0x7f0d0269 string/ui_show_all",
+      "compiled_value_sha256": "5b4c2602463b4ec29a1a30698247af3e4740afd4034e2fd2994efcfa6a77b2e1"
+    },
+    {
+      "resource": "resource 0x7f0d026a string/ui_show_controls",
+      "compiled_value_sha256": "d11536955732d2c275aaf5e138dac05c38162cc68fe374b763e1d81696100d3e"
+    },
+    {
+      "resource": "resource 0x7f0d026b string/ui_show_editor_controls",
+      "compiled_value_sha256": "3f7a5a820c7bfd8721d4f76c367d437e9bfcb8eabe38511d53cfa75d9eac257d"
+    },
+    {
+      "resource": "resource 0x7f0d026c string/ui_show_magnified_drawing_preview",
+      "compiled_value_sha256": "680e75c79034cad7752556d9a6a337acd0c8789798aca276d2687009d90736e9"
+    },
+    {
+      "resource": "resource 0x7f0d026d string/ui_show_pixel_grid_800",
+      "compiled_value_sha256": "c681acdd8fd9390a2414db22cb3055ae1ab60b9ce828da279b8f638243f3908b"
+    },
+    {
+      "resource": "resource 0x7f0d026e string/ui_shows_the_whole_assembly_image_and_output_sizes",
+      "compiled_value_sha256": "7b70291f3a8edcdf257bc213a99194fc756f51219d5dbd44d003ebc74ebca21c"
+    },
+    {
+      "resource": "resource 0x7f0d026f string/ui_silver",
+      "compiled_value_sha256": "12d65187f2d4e74a8e89f20bed9b9a788e4894c4179b02d1d7eb41a38ab1b2e0"
+    },
+    {
+      "resource": "resource 0x7f0d0270 string/ui_size_pixels",
+      "compiled_value_sha256": "3b5f9716f9b97d4491ba2fe39cb61744e5a755cf408827f1539813522801f83a"
+    },
+    {
+      "resource": "resource 0x7f0d0271 string/ui_size_px",
+      "compiled_value_sha256": "83fc618579069839eaa267988cc86c5ac7d5caa0868071abae51e692f08338ea"
+    },
+    {
+      "resource": "resource 0x7f0d0272 string/ui_smallest",
+      "compiled_value_sha256": "5f093812e9f663dc6b2b7589dd7775b297fde2d4b7d91978f2967a6dde1fc275"
+    },
+    {
+      "resource": "resource 0x7f0d0273 string/ui_smooth_freehand_strokes",
+      "compiled_value_sha256": "81c15292257326de202111017c45609c2db1a6b243165fb6961e3a685bb59c79"
+    },
+    {
+      "resource": "resource 0x7f0d0274 string/ui_smooth_pixel_edges_anti_aliasing",
+      "compiled_value_sha256": "c6e8555fe9a0dcae8cf3b83d0ebcfe9aad870efc1e7b9206069e73239a612900"
+    },
+    {
+      "resource": "resource 0x7f0d0275 string/ui_solid_fill",
+      "compiled_value_sha256": "c1a937a8ca66aef76cafe89236a9db517f332883a5a3b4e26e2bafcae5f701da"
+    },
+    {
+      "resource": "resource 0x7f0d0276 string/ui_some_previews_could_not_be_decoded_you_can",
+      "compiled_value_sha256": "d78919591ac60fadffdb761724ecfccb81030c25aca3fefe3a3ae55efecdc9fc"
+    },
+    {
+      "resource": "resource 0x7f0d0277 string/ui_sort_images_by_filename_or_modification_time",
+      "compiled_value_sha256": "20992fd856def132078929fa550ec6fc8e2b5fefd8496450a945c9d9715a94f2"
+    },
+    {
+      "resource": "resource 0x7f0d0278 string/ui_sort_tray",
+      "compiled_value_sha256": "5d2a9fe9232d2ae7a7047d4e38dde17fdfcf5812f80d628189319d27d2425d4c"
+    },
+    {
+      "resource": "resource 0x7f0d0279 string/ui_source_code_exported_including_build_scripts_and_licence",
+      "compiled_value_sha256": "b58de6e782a58457652769212f4f30084ce16efcef2c781b67ff152de9f06574"
+    },
+    {
+      "resource": "resource 0x7f0d027a string/ui_spectrum",
+      "compiled_value_sha256": "d3b2b8d74c25027d80f3d16ab813b7cc416b747de63249d0fe0f3f42246c88f8"
+    },
+    {
+      "resource": "resource 0x7f0d027b string/ui_spray_radius_px",
+      "compiled_value_sha256": "52a8d0a5f81d44b41a3595b5c467c3231ca2ac5af249732fb6007d6196a00104"
+    },
+    {
+      "resource": "resource 0x7f0d027c string/ui_square",
+      "compiled_value_sha256": "17dc89c625e1fe4bc39ba6415ffd5ae1f69105664f73f52f4cd1ff454ff2b0fe"
+    },
+    {
+      "resource": "resource 0x7f0d027d string/ui_star",
+      "compiled_value_sha256": "bd70aec736835d063eb783c72e598ce42f645d10410c643f41731baaa404d0be"
+    },
+    {
+      "resource": "resource 0x7f0d027e string/ui_strength",
+      "compiled_value_sha256": "ad282b14e4d01e19affeb1a5070051942c0aa64f48b1f747e6ffd7521bc2477d"
+    },
+    {
+      "resource": "resource 0x7f0d027f string/ui_strikethrough",
+      "compiled_value_sha256": "1ff9ee913280567a538e1244c4a6792b3e35cccac893bf7b7cbd4bd494331b37"
+    },
+    {
+      "resource": "resource 0x7f0d0280 string/ui_swap23",
+      "compiled_value_sha256": "f385d7491b9fddb29803348e0a50c6134a7ef71f4846fd3ed021979fd045b1cc"
+    },
+    {
+      "resource": "resource 0x7f0d0281 string/ui_swap_foreground_background",
+      "compiled_value_sha256": "7327fbad85559239199ee8c481370501183c54a400e74aa6ecc38337e79856b3"
+    },
+    {
+      "resource": "resource 0x7f0d0282 string/ui_tap_a_pixel",
+      "compiled_value_sha256": "15b14b14834bae60177a72a37af0b0f5dd8fa4348489fb796bb324f71806b98c"
+    },
+    {
+      "resource": "resource 0x7f0d0283 string/ui_tap_an_enclosed_area_adjust_tolerance_for_similar",
+      "compiled_value_sha256": "d55daa939ce151fa64a4944101b3c852f6400f2b97e9d9ad42f6e77d62a2bc26"
+    },
+    {
+      "resource": "resource 0x7f0d0284 string/ui_tap_an_image_first",
+      "compiled_value_sha256": "e90b533b1548d12309e5a785f84747a2f998c14838fe8ce78cf9d49f5a6f53e5"
+    },
+    {
+      "resource": "resource 0x7f0d0285 string/ui_tap_an_image_thumbnail_first",
+      "compiled_value_sha256": "1f10df62b132eae63ebb805b3c38e95461a92a99418685208eadcdfca30cec84"
+    },
+    {
+      "resource": "resource 0x7f0d0286 string/ui_tap_canvas_to_type",
+      "compiled_value_sha256": "66c3ec9a30950b828c14a812752440020bf09e2813099f27794c091854bb82a8"
+    },
+    {
+      "resource": "resource 0x7f0d0287 string/ui_tap_the_canvas_to_place_text_and_choose",
+      "compiled_value_sha256": "4e0399d6915ee241794192066c8b3dbf17a3492bac8cd977538b5a7a8c81efdc"
+    },
+    {
+      "resource": "resource 0x7f0d0288 string/ui_tap_the_image_to_sample_the_foreground_colour",
+      "compiled_value_sha256": "624e520c75ffe3ed2f1fbeb8d3a182fa8a64df58ae37e835d7ae011dc5295740"
+    },
+    {
+      "resource": "resource 0x7f0d0289 string/ui_tap_to_type_a_number",
+      "compiled_value_sha256": "7b68a7194caf3a78f9a060d6eb0c4f4af3e04fabe245ef0365ed16b7a006f578"
+    },
+    {
+      "resource": "resource 0x7f0d028a string/ui_tap_vertices_then_double_tap_the_last_vertex",
+      "compiled_value_sha256": "a420d30b28ecc4a5cb87e0a8f3a16e55be68d1a2fd9f36c36c131cfb616b1990"
+    },
+    {
+      "resource": "resource 0x7f0d028b string/ui_text",
+      "compiled_value_sha256": "5f187f9fa2c288301e265dd83457775daf72c1f2f9515c7de89ed2300c905ef4"
+    },
+    {
+      "resource": "resource 0x7f0d028c string/ui_text_alignment",
+      "compiled_value_sha256": "10fe62b0c5a4912e4a7fe4257345668f26292484ad8a3cd21457a91778f6d827"
+    },
+    {
+      "resource": "resource 0x7f0d028d string/ui_text_direction23",
+      "compiled_value_sha256": "d3c29a90187b1069e86851f78cb9fbae40e7a9af82f1bfbba9e4b252500deda5"
+    },
+    {
+      "resource": "resource 0x7f0d028e string/ui_that_arrangement_overlaps_another_image_use_a_different",
+      "compiled_value_sha256": "4b2b6e4f9bf9b1ba2e51f4ffad253d53df80742aeb0e2f575f821cfa7e39fa55"
+    },
+    {
+      "resource": "resource 0x7f0d028f string/ui_the_arrow_on_the_left_directly_below_the",
+      "compiled_value_sha256": "bac2d8c5cca9c8fc5f00119bd6a684ce1fac8a60301d9d02e52b830aa0c9015c"
+    },
+    {
+      "resource": "resource 0x7f0d0290 string/ui_the_assembly_exceeds_android_s_coordinate_range",
+      "compiled_value_sha256": "f9441f57cc080a3809e76f186f45d4a6ab8f3b511a49b4a7cb5548d88491a377"
+    },
+    {
+      "resource": "resource 0x7f0d0291 string/ui_the_assembly_needs_about_choose_a_smaller_output",
+      "compiled_value_sha256": "3c6eb44ebef4609c34f2678a36034ebf80e0e5c0e7c2ed5837c6ee40d702fc77"
+    },
+    {
+      "resource": "resource 0x7f0d0292 string/ui_the_assembly_output_is_unavailable_reopen_image_assembly",
+      "compiled_value_sha256": "4f48649904ac9c0e30524e9b4237b6b351ed82512a3d2050b6ae6918d00b943d"
+    },
+    {
+      "resource": "resource 0x7f0d0293 string/ui_the_attachment_image_is_missing",
+      "compiled_value_sha256": "19fa04f30fc8a3196fa71c674b5b7c32133b762dabbab1f3c2cef5b686becc4b"
+    },
+    {
+      "resource": "resource 0x7f0d0294 string/ui_the_attachment_image_is_not_placed",
+      "compiled_value_sha256": "cceda03d7c4c80c41f272a986d75e44f7e6bfdef5f6d52b4452d8dc1228b9e5b"
+    },
+    {
+      "resource": "resource 0x7f0d0295 string/ui_the_crop_must_contain_at_least_one_pixel",
+      "compiled_value_sha256": "dab8d01acdc54f2a15fe849f255457d5ad1b2d3bb0737b0f3411779f2342c8d4"
+    },
+    {
+      "resource": "resource 0x7f0d0296 string/ui_the_crop_must_stay_inside_the_image",
+      "compiled_value_sha256": "6a497db88bbf2070ccea5b7a8d6fedbcacd76ba57655e28c68f1e09bd7f1253e"
+    },
+    {
+      "resource": "resource 0x7f0d0297 string/ui_the_decoder_and_editing_buffers_need_about_the",
+      "compiled_value_sha256": "efdda599f02651fcffa2ac7df34c7aa68d8b91e037494a8f107edf226b623757"
+    },
+    {
+      "resource": "resource 0x7f0d0298 string/ui_the_draft_is_saving_try_again_shortly",
+      "compiled_value_sha256": "dca279c67aaf6420aaa9ef2dd52135128856a186d640062cb960b4458052ba0b"
+    },
+    {
+      "resource": "resource 0x7f0d0299 string/ui_the_encoder_did_not_finish",
+      "compiled_value_sha256": "dcf486d862cda0ca65a55de7e8f87be5079512724ffd58873a6e75e828bdd0a5"
+    },
+    {
+      "resource": "resource 0x7f0d029a string/ui_the_first_image_starts_at_the_top_left",
+      "compiled_value_sha256": "51a8665c577f810a019abca77d9f04a4507c6f2c10b20d0f8e78cf30c3dbb169"
+    },
+    {
+      "resource": "resource 0x7f0d029b string/ui_the_full_image_and_working_buffers_exceed_the",
+      "compiled_value_sha256": "174e429851f451ba91d7aa309da7709e885aa7f7022af57021a33265c6e6383f"
+    },
+    {
+      "resource": "resource 0x7f0d029c string/ui_the_gallery_download_is_too_large",
+      "compiled_value_sha256": "0c594723d9fe55911eed30781ff05066419f79434251b2462a22c6ac73471f0c"
+    },
+    {
+      "resource": "resource 0x7f0d029d string/ui_the_gallery_image_is_unavailable",
+      "compiled_value_sha256": "488eac5601d601456e8eb7babb637b9434c58e662b7f0ace7448dc89853e1ad5"
+    },
+    {
+      "resource": "resource 0x7f0d029e string/ui_the_gallery_redirected_outside_its_supported_hosts",
+      "compiled_value_sha256": "c60903a49203354fc7bd23e1e872b31486b3c42610d31ee1a860385417d5c39e"
+    },
+    {
+      "resource": "resource 0x7f0d029f string/ui_the_image_could_not_be_downloaded",
+      "compiled_value_sha256": "9810952227457398e22e5c6223cbe990e5cf5abc110627aac87002f4057b1ca8"
+    },
+    {
+      "resource": "resource 0x7f0d02a0 string/ui_the_image_was_saved_but_android_could_not",
+      "compiled_value_sha256": "4f026ad24829facb4d1b62a8def671186834550c4ff9d280bdf2f973f9bf06fb"
+    },
+    {
+      "resource": "resource 0x7f0d02a1 string/ui_the_images_cannot_fit_within_android_s_coordinate",
+      "compiled_value_sha256": "339fb54080e9aff3791ab57a159dd0e613f48f64442be062dd5a3492a3b02d0d"
+    },
+    {
+      "resource": "resource 0x7f0d02a2 string/ui_the_normalized_image_dimensions_are_outside_android_s",
+      "compiled_value_sha256": "03975734ccf847cd85ff989727766c6d29f35a0365c0bf302b04b0cbda410282"
+    },
+    {
+      "resource": "resource 0x7f0d02a3 string/ui_the_online_gallery_could_not_be_loaded_check",
+      "compiled_value_sha256": "2f915a135c326860a6a35cff01f4c3348ec2cb35a00b5a6053b10f367ac51001"
+    },
+    {
+      "resource": "resource 0x7f0d02a4 string/ui_the_picker_returned_no_file_please_choose_the",
+      "compiled_value_sha256": "cefc722c1e4f689c6b13cd73f1e40b975dafb6c5065a0070e1341bded1a8e1e5"
+    },
+    {
+      "resource": "resource 0x7f0d02a5 string/ui_the_picker_returned_no_files",
+      "compiled_value_sha256": "af5a175620c3346562bddae4c3bf73e0eb9b949265c9cdc213394ce45f885fc1"
+    },
+    {
+      "resource": "resource 0x7f0d02a6 string/ui_the_previous_draft_could_not_be_moved_to",
+      "compiled_value_sha256": "80d6e54cf07d02fbbf3c21db8e642032bac4b03bf2e1c62dc540609bcc59dcbc"
+    },
+    {
+      "resource": "resource 0x7f0d02a7 string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "compiled_value_sha256": "02f1ef9233c78e414b32a1a0357d778e958d753c9956bb1402c2b60676543f11"
+    },
+    {
+      "resource": "resource 0x7f0d02a8 string/ui_the_previous_draft_could_not_be_restored",
+      "compiled_value_sha256": "c93302ef1fccbc5b3c1367850a1a8d98e48a528e2904769e78f8c6be4ee97688"
+    },
+    {
+      "resource": "resource 0x7f0d02a9 string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "compiled_value_sha256": "88ed7a0e54096afedc929d8e3a5104e2aef369fd251f51422024a3c868ccfb14"
+    },
+    {
+      "resource": "resource 0x7f0d02aa string/ui_the_saved_assembly_could_not_be_opened",
+      "compiled_value_sha256": "c83349a68348dca687842ffeefa7615bdf79f677a13dd15ad254ed2b035de4ee"
+    },
+    {
+      "resource": "resource 0x7f0d02ab string/ui_the_selected_location_is_not_writable",
+      "compiled_value_sha256": "fa3a3260255707ac925df85b6df7b9b998150de924ebb26e203e7b7fea793ce6"
+    },
+    {
+      "resource": "resource 0x7f0d02ac string/ui_the_selected_provider_did_not_return_any_image",
+      "compiled_value_sha256": "4073f3977fe6adabc765e3e72dd12058fc7146ebce45f5bc23cd519aeb751391"
+    },
+    {
+      "resource": "resource 0x7f0d02ad string/ui_the_trim_would_remove_the_entire_image",
+      "compiled_value_sha256": "50d7f2c416f20f2f73f73346745e6422ee88222518e4916f1a402b2da44234a6"
+    },
+    {
+      "resource": "resource 0x7f0d02ae string/ui_the_undo_cache_is_damaged",
+      "compiled_value_sha256": "74bf8a2c0c894edc1c26437057d36c2b7d5b2affb271c5d1159e1c3031ef7cfe"
+    },
+    {
+      "resource": "resource 0x7f0d02af string/ui_there_is_not_enough_memory_for_this_operation",
+      "compiled_value_sha256": "2b8f225b943489802e8a015ac3a3aed91cc3aa1e54bd30bdd764d1a6333d6a36"
+    },
+    {
+      "resource": "resource 0x7f0d02b0 string/ui_third_party_notices",
+      "compiled_value_sha256": "f3fec988715eafd99d251ded6716715d78692b08229abec27e21dece2ae879ea"
+    },
+    {
+      "resource": "resource 0x7f0d02b1 string/ui_this_file_is_not_a_supported_image_use",
+      "compiled_value_sha256": "27df54b4b3bbe60635010e153dd797b2954a3b9e7ce74c256a90b93f3984eed0"
+    },
+    {
+      "resource": "resource 0x7f0d02b2 string/ui_this_image_is_outside_the_supported_catrobat_gallery",
+      "compiled_value_sha256": "4fe59633fc3bb91dca6511966c2589693366f53f621ebccc939fd6f3c5f92e39"
+    },
+    {
+      "resource": "resource 0x7f0d02b3 string/ui_this_location_is_not_writable",
+      "compiled_value_sha256": "322037a11e71bc15b364578d7915781d7b6f86988a2c786b42be76a9419d9d65"
+    },
+    {
+      "resource": "resource 0x7f0d02b4 string/ui_time_unavailable",
+      "compiled_value_sha256": "3021ac94ab01a0cc7f65ed66d67935e22aea68b01cce3bd85b723be6b793aed3"
+    },
+    {
+      "resource": "resource 0x7f0d02b5 string/ui_toggle_toolbox",
+      "compiled_value_sha256": "ffab140507aded7c55e0d9a9bdcfe26ccabdd42d4d17591a83277a2df75ea23c"
+    },
+    {
+      "resource": "resource 0x7f0d02b6 string/ui_tolerance",
+      "compiled_value_sha256": "9b9cc5d39f3ae43c3782fccfde4b55564f9a7f18c3e5b58220d5c3f970c8da07"
+    },
+    {
+      "resource": "resource 0x7f0d02b7 string/ui_too_large_for_the_current_budget_reduce_the",
+      "compiled_value_sha256": "acce9678d46941f40b22b0aa4da49ae90ec6521da11d153cf1e4dc8f2477a832"
+    },
+    {
+      "resource": "resource 0x7f0d02b8 string/ui_too_many_gallery_redirects",
+      "compiled_value_sha256": "b42545d13ab4802391258923c36c15c56d7b6350ac7f4a60e14e391fe02b418c"
+    },
+    {
+      "resource": "resource 0x7f0d02b9 string/ui_tool_categories",
+      "compiled_value_sha256": "5bb337fe10f056fd536ba0d9bfdd2c32d4091e3701db6585b560b81b20a764ee"
+    },
+    {
+      "resource": "resource 0x7f0d02ba string/ui_tool_option",
+      "compiled_value_sha256": "a82ec85bd1d335fb18ea0fa6f75eb2fce561eb01fe1cb339dd7086524fb2a68b"
+    },
+    {
+      "resource": "resource 0x7f0d02bb string/ui_toolbox_and_tool_options_scroll_for_more",
+      "compiled_value_sha256": "fd36b62fbfd207f741cefdb03856d509e2c9ae17a02f293a59bb79cbf6957717"
+    },
+    {
+      "resource": "resource 0x7f0d02bc string/ui_top",
+      "compiled_value_sha256": "13cd503ab1adc69362e790eabf2c3a2668697812f2cd09ed1cb9049e95774511"
+    },
+    {
+      "resource": "resource 0x7f0d02bd string/ui_top23",
+      "compiled_value_sha256": "e09203e03622d63ff499958e71e6d851b6caaa0a09724db0dbd2bb4285435cc5"
+    },
+    {
+      "resource": "resource 0x7f0d02be string/ui_trim_amounts_must_be_zero_or_greater",
+      "compiled_value_sha256": "2e8742d1a76f35a0a5460ae68e7d07102ad9f5752da68f6fd7006d7f0ac6b00f"
+    },
+    {
+      "resource": "resource 0x7f0d02bf string/ui_trim_amounts_must_fit_inside_each_image_use",
+      "compiled_value_sha256": "a3c8cef074bc564100f2242c096ba25edf860ba28512b63c1935a3db39eae8da"
+    },
+    {
+      "resource": "resource 0x7f0d02c0 string/ui_trim_expand_canvas_by_touch",
+      "compiled_value_sha256": "81834d87fb89bde246808cf8a2a238008cf2c42a7b3ad33f21044350a303a68d"
+    },
+    {
+      "resource": "resource 0x7f0d02c1 string/ui_trim_from_the_original_edges_drag_the_handles",
+      "compiled_value_sha256": "460cd2b932a1367b44e9fe6350a1dc32cbd4b7ae355c0d8606db7d3cfa757fb9"
+    },
+    {
+      "resource": "resource 0x7f0d02c2 string/ui_trim_in_percent",
+      "compiled_value_sha256": "b8f34d41482df57a0c1ddb95c513c0678d2b1bb8f54b5e75b17f6fc7f84eb688"
+    },
+    {
+      "resource": "resource 0x7f0d02c3 string/ui_trim_in_pixels",
+      "compiled_value_sha256": "485be6dbce3daaf2cd392504a27f77df45cd5f435df5a661548869b0474ddda4"
+    },
+    {
+      "resource": "resource 0x7f0d02c4 string/ui_try_a_different_file_or_location",
+      "compiled_value_sha256": "65cc853c5468afcdb01b49f850c696a1514ba50e8343d18f60ec0cf2aff659ef"
+    },
+    {
+      "resource": "resource 0x7f0d02c5 string/ui_type_text",
+      "compiled_value_sha256": "6f22b18877541f255fba9b14e709c8ba193bd01213d95418f9873011d54a0dc8"
+    },
+    {
+      "resource": "resource 0x7f0d02c6 string/ui_underline",
+      "compiled_value_sha256": "1218241593d84802be806a2cb36beefdb878c1ec3ad5a8cb223ea06f7576accf"
+    },
+    {
+      "resource": "resource 0x7f0d02c7 string/ui_undo",
+      "compiled_value_sha256": "b58eb41744f7692727de8a2eb145c0fb6d7df6d3ecdaed319d0fbddb13507dbf"
+    },
+    {
+      "resource": "resource 0x7f0d02c8 string/ui_unexpected_data_in_the_undo_cache",
+      "compiled_value_sha256": "68c4af18eed300c4dd2c6823f64d7b1515b7b1c9b83f3640f16dc04b27b1016b"
+    },
+    {
+      "resource": "resource 0x7f0d02c9 string/ui_unplace",
+      "compiled_value_sha256": "b9d1d5bcbaf7f5d2b91c5e6f5ff7dbee7b5a22a8bcd9964e67343db8dd3e7cc0"
+    },
+    {
+      "resource": "resource 0x7f0d02ca string/ui_untitled",
+      "compiled_value_sha256": "8bf37f64d6bfb52eb1e56b48dee7ceebe7ef6eccb93db92786747387b69f5d05"
+    },
+    {
+      "resource": "resource 0x7f0d02cb string/ui_use_1_1024_pixels",
+      "compiled_value_sha256": "afc0f7ee604e38e7b8d4516283f35453cc69284757608e3fe3a272b51d12f835"
+    },
+    {
+      "resource": "resource 0x7f0d02cc string/ui_use_50_300",
+      "compiled_value_sha256": "459df3b8b8a001b5ad594ca5da439cb91f26c3a6dfed7aa3bc609843f2351bf4"
+    },
+    {
+      "resource": "resource 0x7f0d02cd string/ui_use_a_positive_target_dimension",
+      "compiled_value_sha256": "354d38d49286c0d86f9d89d65d61020ce84a1fa6f1457ef5c68013e5e2e33d70"
+    },
+    {
+      "resource": "resource 0x7f0d02ce string/ui_use_colour",
+      "compiled_value_sha256": "c6b4fd225805c718bbb2f9dcc167312878b70b2827dc4f61310af3dc1d45f37b"
+    },
+    {
+      "resource": "resource 0x7f0d02cf string/ui_use_rrggbb",
+      "compiled_value_sha256": "a3284e2cfebf73e00d7c6d19f96506a550baf887f3d2b7c9358ee08d8c9a3d22"
+    },
+    {
+      "resource": "resource 0x7f0d02d0 string/ui_vertical_hint23",
+      "compiled_value_sha256": "20798a193354c28791bf609884092f419907e47a60e9c14e23378d2ba5d71c2c"
+    },
+    {
+      "resource": "resource 0x7f0d02d1 string/ui_vertical_letters23",
+      "compiled_value_sha256": "b7193362860485f255f4d4734db1f07505cba24a793f6bfddb846ded98caae62"
+    },
+    {
+      "resource": "resource 0x7f0d02d2 string/ui_vertical_lr23",
+      "compiled_value_sha256": "f3dae23de6dfbfcea8bcfada5568ee3216cc71493098dd6e0aa32fbc0e143304"
+    },
+    {
+      "resource": "resource 0x7f0d02d3 string/ui_vertical_mixed23",
+      "compiled_value_sha256": "7ca94e0d99b04b9b4e364708a3d6f9ba2c93a298ee740e6a2776661c9bd966dc"
+    },
+    {
+      "resource": "resource 0x7f0d02d4 string/ui_vertical_rl23",
+      "compiled_value_sha256": "13308abeb0fb0cdd974e67078c98847b54b021b153cfbf7afb7a96cbc081a476"
+    },
+    {
+      "resource": "resource 0x7f0d02d5 string/ui_vertical_sideways23",
+      "compiled_value_sha256": "82cdbf5f06fe2f07ee38655bcd97ad32f3dd4e681569f3b93773da4410e63652"
+    },
+    {
+      "resource": "resource 0x7f0d02d6 string/ui_vertical_upright23",
+      "compiled_value_sha256": "e247d1c94136ff61a73fccdb8e6ada0bb759166075c0e77f0d975a344d7614f6"
+    },
+    {
+      "resource": "resource 0x7f0d02d7 string/ui_watercolor",
+      "compiled_value_sha256": "4bb566ff9ebc1eceb203ca1726857f21630ddd5f9549a0b633aa8a735ee5db17"
+    },
+    {
+      "resource": "resource 0x7f0d02d8 string/ui_webp_codec_licences",
+      "compiled_value_sha256": "368698082becaa7ec6b768edb225b80e37e3c313fffc0b1424596866f32eab7d"
+    },
+    {
+      "resource": "resource 0x7f0d02d9 string/ui_wheel",
+      "compiled_value_sha256": "d3f6fa3174dd1ce7e6d20db24c25868f3e61d63118bd82ddcb6ecb7c684245dd"
+    },
+    {
+      "resource": "resource 0x7f0d02da string/ui_width",
+      "compiled_value_sha256": "bec10faab5c48bc947de20c66921c9979f3d83224ccd802f2d51e8634a801ab4"
+    },
+    {
+      "resource": "resource 0x7f0d02db string/ui_width_in",
+      "compiled_value_sha256": "bec10faab5c48bc947de20c66921c9979f3d83224ccd802f2d51e8634a801ab4"
+    },
+    {
+      "resource": "resource 0x7f0d02dc string/ui_widths",
+      "compiled_value_sha256": "30da417ea4c1d9d475fd0812344735d0f4b982bb93329ceb843de82d1f6c2f1a"
+    },
+    {
+      "resource": "resource 0x7f0d02dd string/ui_working",
+      "compiled_value_sha256": "f9fe74d33b57c0b4e4ea90e7a0297a3bd3e200410f0e10fc79a9ef5d0db887f7"
+    },
+    {
+      "resource": "resource 0x7f0d02de string/ui_you_can_add_more_images_select_fewer_files",
+      "compiled_value_sha256": "c78dd85e077dd83204303583d4137308c62fa9f83bca62d01a8d35e5bcddfeed"
+    },
+    {
+      "resource": "resource 0x7f0d02df string/ui_your_current_image_has_unsaved_changes",
+      "compiled_value_sha256": "0cfec8cc95e38a8ee9673a1f4c394d7f9b690421d6fc24b89850e1f617b541c8"
+    },
+    {
+      "resource": "resource 0x7f0d02e0 string/ui_zoom_in",
+      "compiled_value_sha256": "a0c56693c6e9c88174360d37904c6df3822161423f72deab289822ab224b1f53"
+    },
+    {
+      "resource": "resource 0x7f0d02e1 string/ui_zoom_out",
+      "compiled_value_sha256": "0f2291703ee029d26e343c820974c1bd9a2ae19182632685ca97ced29ab4b220"
+    }
+  ],
+  "generated_variant_in_source_zip": false
+}
