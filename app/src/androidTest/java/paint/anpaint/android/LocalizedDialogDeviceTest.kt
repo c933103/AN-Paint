@@ -7,6 +7,7 @@ import android.app.Instrumentation
 import android.app.LocaleManager
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -20,6 +21,7 @@ import android.provider.Settings
 import android.view.View
 import android.view.KeyEvent
 import android.view.WindowInsets
+import android.view.accessibility.AccessibilityWindowInfo
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
 import android.view.inputmethod.InputMethodManager
@@ -190,22 +192,7 @@ class LocalizedDialogDeviceTest {
                 field.setSelection(2,5)
                 activity.getSystemService(InputMethodManager::class.java).showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
             }
-            var lastImeBottom=0;var stableImeSince=SystemClock.uptimeMillis()
-            await("actual IME occupies a stable positive inset") {
-                val insets=root.rootWindowInsets
-                val bottom=insets?.getInsets(WindowInsets.Type.ime())?.bottom ?: 0
-                if(insets?.isVisible(WindowInsets.Type.ime())!=true || bottom<=0 || bottom!=lastImeBottom) {
-                    lastImeBottom=bottom;stableImeSince=SystemClock.uptimeMillis();false
-                } else SystemClock.uptimeMillis()-stableImeSince>=250
-            }
-            evidence.observe(onMain {JSONObject().put("kind","colour-ime-visible")
-                .put("ime_visible",root.rootWindowInsets!!.isVisible(WindowInsets.Type.ime()))
-                .put("ime_inset_bottom",root.rootWindowInsets!!.getInsets(WindowInsets.Type.ime()).bottom)
-                .put("stable_inset_ms",SystemClock.uptimeMillis()-stableImeSince)
-                .put("dialog",geometry(root)).put("editor",geometry(inner))
-                .put("field",geometry(field)).put("value",field.text.toString())
-                .put("note","Positive stable IME inset before screenshot; no simultaneous field/footer fit acceptance")})
-            evidence.capture("colour-ime-visible")
+            awaitNativeImeWindow(true,root,field)
             nativeBack("hide colour IME",{
                 backWindowState(root).put("dialog_showing",dialog.isShowing).put("value",field.text.toString())
                     .put("ime_inset_bottom",root.rootWindowInsets?.getInsets(WindowInsets.Type.ime())?.bottom ?: JSONObject.NULL)
@@ -218,6 +205,7 @@ class LocalizedDialogDeviceTest {
                     field.text.toString()=="#13579B" && picker.value.colour==0xff13579b.toInt() &&
                     field.selectionStart==2 && field.selectionEnd==5 && commits==0 && closes==0
             }
+            awaitNativeImeWindow(false,root,field)
             settle(root);retained();evidence.capture("colour-ime-hidden-retained")
             tap("colour state cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
             await("state Cancel closes") {!dialog.isShowing}
@@ -263,6 +251,7 @@ class LocalizedDialogDeviceTest {
             val root=onMain {dialog.window!!.decorView}
             for(landscape in listOf(false,true)) {
                 orient(landscape,scenario);settle(root)
+                awaitClipboardOverlayAbsent()
                 onMain {
                     val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
                     assertTrue(inner.height>0 && inner.getChildAt(0).height>inner.height)
@@ -621,6 +610,73 @@ class LocalizedDialogDeviceTest {
         evidence.capture("colour-pre-assert-allocation")
     }
 
+    private fun awaitClipboardOverlayAbsent() {
+        // Android 15 ClipboardOverlayWindow uses this exact public window title.
+        // Wait for the prior fixture's temporary system preview to leave naturally;
+        // do not clear the clipboard, dismiss another window or delay blindly.
+        val until=minOf(deadline,SystemClock.uptimeMillis()+8000)
+        var absentSince=SystemClock.uptimeMillis();var seen=false;var passed=false
+        try {
+            while(SystemClock.uptimeMillis()<until) {
+                val present=instrumentation.uiAutomation.windows.any {it.title?.toString()=="ClipboardOverlay"}
+                if(present) {seen=true;absentSince=SystemClock.uptimeMillis()}
+                else if(SystemClock.uptimeMillis()-absentSince>=250) {passed=true;break}
+                SystemClock.sleep(25)
+            }
+            assertTrue("System clipboard preview no longer obscures caption capture",passed)
+        } finally {
+            evidence.observe(JSONObject().put("kind","clipboard-overlay-absent")
+                .put("seen",seen).put("condition_passed",passed)
+                .put("stable_absence_ms",SystemClock.uptimeMillis()-absentSince))
+            if(!passed) evidence.capture("clipboard-overlay-wait-failed-before-dismiss")
+        }
+    }
+    private fun awaitNativeImeWindow(showing: Boolean,root: View,field: EditText) {
+        // AOSP InputMethodService leaves the app unchanged behind a fullscreen
+        // extract editor; its dialog inset can be zero while the keyboard shows.
+        // UiAutomator 2.2.0 already requests interactive-window retrieval. Observe
+        // the configured native IME window, without changing input-mode flags.
+        val imePackage=checkNotNull(ComponentName.unflattenFromString(
+            Settings.Secure.getString(context.contentResolver,Settings.Secure.DEFAULT_INPUT_METHOD))).packageName
+        val until=minOf(deadline,SystemClock.uptimeMillis()+8000)
+        var previous="";var stableSince=SystemClock.uptimeMillis();var reached=false
+        var last=JSONArray()
+        try {
+            while(SystemClock.uptimeMillis()<until) {
+                val facts=instrumentation.uiAutomation.windows.mapNotNull {window ->
+                    if(window.type!=AccessibilityWindowInfo.TYPE_INPUT_METHOD) return@mapNotNull null
+                    val bounds=Rect();window.getBoundsInScreen(bounds)
+                    val node=window.root;val nodeBounds=Rect();node?.getBoundsInScreen(nodeBounds)
+                    val pkg=node?.packageName?.toString()
+                    val visible=node?.isVisibleToUser==true && !bounds.isEmpty && !nodeBounds.isEmpty
+                    JSONObject().put("id",window.id).put("type",window.type).put("bounds",rect(bounds))
+                        .put("root_bounds",rect(nodeBounds)).put("package",pkg ?: JSONObject.NULL)
+                        .put("root_visible",visible).put("root_children",node?.childCount ?: 0)
+                        .put("configured_ime",pkg==imePackage)
+                }
+                last=JSONArray(facts)
+                val visible=facts.filter {it.getBoolean("root_visible")}
+                val matches=if(showing) visible.any {it.getBoolean("configured_ime") && it.getInt("root_children")>0}
+                    else visible.isEmpty()
+                val state=last.toString()
+                if(!matches || state!=previous) {previous=state;stableSince=SystemClock.uptimeMillis()}
+                else if(SystemClock.uptimeMillis()-stableSince>=250) {reached=true;break}
+                SystemClock.sleep(25)
+            }
+            assertTrue("Actual configured IME window ${if(showing) "shown" else "hidden"} and stable",reached)
+        } finally {
+            evidence.observe(onMain {JSONObject().put("kind","colour-native-ime-window")
+                .put("requested_visible",showing).put("condition_passed",reached).put("windows",last)
+                .put("stable_window_ms",SystemClock.uptimeMillis()-stableSince)
+                .put("ime_visible",root.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+                .put("ime_inset_bottom",root.rootWindowInsets?.getInsets(WindowInsets.Type.ime())?.bottom ?: JSONObject.NULL)
+                .put("fullscreen_ime",activity.getSystemService(InputMethodManager::class.java).isFullscreenMode)
+                .put("dialog",geometry(root)).put("field",geometry(field)).put("value",field.text.toString())
+                .put("note","Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance")})
+            evidence.capture(if(reached) "colour-ime-${if(showing) "visible" else "hidden"}"
+                else "colour-ime-wait-failed-before-dismiss")
+        }
+    }
     private fun recordEditorStartup(stage: String) {
         // Read-only diagnosis of the unchanged compound startup gate. Capture
         // before cleanup so a blank window is not mistaken for a colour failure.

@@ -165,3 +165,26 @@ retaining intrinsic wrapping and minimum touch sizes. Read-only startup snapshot
 are added before the original wait and at its pass/failure boundary, before cleanup.
 The fixture body, positive method, startup condition, real input and deadlines remain
 unchanged. No activity retry, forced startup/focus or broadened acceptance is added.
+
+## Row-alignment result and fullscreen-IME oracle successor
+
+Run [38119879923](https://github.com/c933103/AN-Paint/actions/runs/38119879923)
+at head `b56d769f` / tree `1c2da141` passes all 814 JVM methods, lint, build and
+generation. Installed positive viewport and Hungarian caption/Cancel cases pass.
+The latter portrait image has a temporary system clipboard preview; it is not an
+unobscured portrait-use proof. Startup succeeds without any startup production
+change; the prior blank-screen root cause remains unknown.
+
+The one state failure is the positive-dialog-IME-inset assumption. Actual pixels
+and native onShown prove a fullscreen extract keyboard, which Android's primary
+source explains can leave the underlying app unchanged. `ime-run-38119879923/`
+preserves the original failed gate and all source-bound results. Back, later
+Cancel/reopen and final invalid/valid commit remain unrun in that trial.
+
+The next test-only helper requires an actual configured TYPE_INPUT_METHOD window
+with visible nonempty root/bounds stable for 250ms, then unchanged one-Back exact
+state outcomes plus stable native keyboard absence. It records/captures success
+and failure before dialog cleanup. Insets remain observations for fullscreen
+extract mode. Hungarian capture also awaits the platform clipboard preview's
+verified natural absence. No production input-mode, permission or deadline change
+is introduced. Fresh complete native outcomes and pixel review remain required.
