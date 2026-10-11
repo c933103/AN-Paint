@@ -79,7 +79,11 @@ def controlled_model(shell, runner):
 
     main = body(joined, 'main')
     startup = sum(shell_timeout(main, command)[0] for command in ('avdmanager', 'wait-for-device', 'install -r -t'))
-    startup += int(one(r'readiness_deadline=\$\(\(SECONDS \+ (\d+)\)\)', main))
+    legacy_readiness, current_readiness = one(
+        r'if \(\( TEST_API < 30 \)\); then\s+'
+        r'readiness_deadline=\$\(\(SECONDS \+ (\d+)\)\)\s+else\s+'
+        r'readiness_deadline=\$\(\(SECONDS \+ (\d+)\)\)\s+fi', main)
+    startup += int(current_readiness)
     restart = body(joined, 'run_credit_restart_regression')
     pid = int(one(r"credit_restart_command '[^']*' (\d+) shell", body(joined, 'credit_restart_pid')))
     pid_count = len(re.findall(r'^  credit_restart_pid \|\| return$', restart, re.M))

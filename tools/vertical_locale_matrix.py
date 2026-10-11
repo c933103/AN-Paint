@@ -90,7 +90,7 @@ def main() -> None:
     commands = parser.add_subparsers(dest='command', required=True)
     reports = commands.add_parser('verify-reports')
     reports.add_argument('--source-tests', type=Path, required=True)
-    reports.add_argument('--sdk', type=int, choices=(30, 35), required=True)
+    reports.add_argument('--sdk', type=int, choices=(21, 24, 30, 35), required=True)
     reports.add_argument('--root', type=Path, required=True)
     screenshots = commands.add_parser('verify-screenshots')
     screenshots.add_argument('directory', type=Path)

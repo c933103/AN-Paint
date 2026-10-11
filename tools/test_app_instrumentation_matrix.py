@@ -158,25 +158,42 @@ run_gallery_draft_regression() { echo gallery; [[ "$TEST_FAULT" != gallery ]]; }
 run_vertical_locale_matrix() { echo vertical; [[ "$TEST_FAULT" != vertical ]]; }
 run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; }
 """
-        for sdk in (30,35):
+        for sdk in (21,24,30,35):
             for fault in ('', 'native', 'ordinary', 'gallery', 'vertical', 'restart', 'verifier'):
                 with self.subTest(sdk=sdk,fault=fault),tempfile.TemporaryDirectory() as directory:
                     run=subprocess.run(['bash','-c',harness+'\n'+driver],cwd=ROOT,
                         env={**os.environ,'TEST_ROOT':directory,'TEST_API':str(sdk),'TEST_FAULT':fault},
                         text=True,capture_output=True,timeout=10)
-                    expected_failure=bool(fault) and not (sdk==30 and fault=='restart')
+                    expected_failure=(fault in ('native','verifier') if sdk<30 else
+                                      bool(fault) and not (sdk==30 and fault=='restart'))
                     self.assertEqual(run.returncode,int(expected_failure),run.stdout+run.stderr)
                     lines=run.stdout.splitlines()
-                    self.assertEqual(lines.count('gallery'),1)
-                    self.assertEqual(lines.count('vertical'),1)
+                    self.assertEqual(lines.count('gallery'),int(sdk>=30))
+                    self.assertEqual(lines.count('vertical'),int(sdk>=30))
                     self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery')))
-                    ordinary=next(line for line in lines if ' --suite app ' in line)
-                    for owner in (GALLERY_DRAFT,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
-                        self.assertIn('--exclude-class '+owner,ordinary)
+                    native=next(line for line in lines if ' --suite Paintroid ' in line)
+                    self.assertEqual('--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest' in native,sdk<35)
+                    self.assertIn('--timeout-seconds 180',native)
+                    ordinary=[line for line in lines if ' --suite app ' in line]
+                    self.assertEqual(len(ordinary),int(sdk>=30))
+                    if ordinary:
+                        self.assertIn('--timeout-seconds 180',ordinary[0])
+                        for owner in (GALLERY_DRAFT,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
+                            self.assertIn('--exclude-class '+owner,ordinary[0])
+                    if sdk<35:
+                        status=(Path(directory)/'report/app/accepted-credit-restart/verify-status.txt').read_text()
+                        self.assertTrue(status.startswith('NOT RUN:'))
+                        self.assertIn('API35-only',status)
+                        self.assertIn('API '+str(sdk),status)
+                    if sdk<30:
+                        for path in ('app/status.txt','app-gallery-draft/status.txt','app-vertical/status.txt'):
+                            status=(Path(directory)/'report'/path).read_text()
+                            self.assertTrue(status.startswith('NOT RUN:'))
+                            self.assertIn('actual API '+str(sdk),status)
                     verifiers=[line for line in lines if line.startswith('python3 tools/app_instrumentation_matrix.py')]
                     self.assertEqual(len(verifiers),1)
                     self.assertEqual(lines[-1],verifiers[0])
-                    self.assertLess(lines.index('gallery'),lines.index('vertical'))
+                    if sdk>=30:self.assertLess(lines.index('gallery'),lines.index('vertical'))
                     if 'restart' in lines:self.assertLess(lines.index('vertical'),lines.index('restart'))
 
     def test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes(self):

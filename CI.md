@@ -879,3 +879,51 @@ release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
 source/APK provenance and rendered-image review remain required. Debug is covered
 by the same source path and host selection checks; installed debug compatibility
 must be reported explicitly rather than inferred from release results.
+
+## Android 5.0 and 7.0 compatibility — manually triggered only
+
+The separate [Android legacy compatibility workflow](.github/workflows/android-legacy.yml)
+has **only** `workflow_dispatch`. It does not run on pushes, pull requests,
+routine `current` runs or `full` runs. It does not change the regular API 35
+or full API 30/35 matrix, and its result is not an implicit release gate.
+
+From **Actions → Android legacy compatibility (manual) → Run workflow**, choose
+`versions` = `both` (default), `21` (Android 5.0) or `24` (Android 7.0);
+choose `abis` = `both` (default), `x86` (32-bit) or `x86_64`.
+The default dispatch runs four independent emulator jobs. Alternatively,
+from an authenticated local GitHub CLI:
+
+```sh
+gh workflow run android-legacy.yml --ref develop -f versions=both -f abis=both
+```
+
+The build job produces **one identical universal debug APK** plus both test APKs.
+Its cold-build allowances match the regular workflow: a 45-minute build job,
+30 minutes for universal assembly, and a separate three-minute test-APK compile
+step. No instrumentation/device deadline is extended by this build allowance.
+Each selected emulator downloads those exact binaries, installs the target app
+and SDK-eligible test APK, and invokes the existing strict test-inventory/protocol
+runner. The SDK-ineligible app-test APK is retained as a build artifact. A failed install, boot, test, test-inventory
+check or timeout is a failed device job, not a reported success. Each device
+job uploads startup, emulator, logcat and instrumentation reports even if it
+fails. Android 5.0 uses `pm path` for its older package-manager shell, and
+does not attempt the unsupported `wm dismiss-keyguard` command; all first-boot
+emulators use an unprotected lock screen. The native/import suite still runs.
+Current ordinary editor classes require API 26 or later, gallery-draft requires
+API 30, and vertical-locale requires API 29.
+On API 21/24 these app phases are explicitly **NOT RUN**, not passes. The strict
+app source-inventory verifier proves that no selected SDK-eligible app methods
+remain; if a new eligible ordinary method is added, this omission policy fails
+closed until the legacy app execution plan is updated. Its zero-test receipt has
+`success: null`, `execution_status: not-run-no-sdk-eligible-selected-tests`, and
+separate SDK-suppressed and explicitly excluded identities. No empty fake
+instrumentation summary is created. Ultra HDR (API 34+) is SDK-suppressed, and
+the separate API35-only gallery force-stop phases are explicitly excluded as in
+existing lower-API runs.
+
+Passing these emulator checks establishes only the recorded emulator/API/ABI
+coverage. It does not prove compatibility with physical ARMv7/ARM64 Android 5/7
+devices, manufacturer document pickers, all native codec variants, or constrained
+RAM. Failures should be corrected and verified in a fresh **manual** dispatch,
+rather than quietly weakening tests or automatically adding legacy device jobs
+to release or push/PR CI.
