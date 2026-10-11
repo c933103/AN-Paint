@@ -132,7 +132,11 @@ class HungarianAttributionC05Test(unittest.TestCase):
         actual = (tests / 'HungarianAttributionC05Test.kt').read_text()
         for contract in ('gallery_edit_credits', 'gallery_credit_copy', 'gallery_credit_save',
                          'gallery_credit_done', 'terms_text', 'terms_done', 'EditorTestNavigation.named',
-                         'clipboard.primaryClip', 'Resources.getSystem().configuration.fontScale'):
+                         'clipboard.primaryClip', 'Resources.getSystem().configuration.fontScale',
+                         'list.setSelection(index)', 'list.performItemClick(row,index,index.toLong())',
+                         'terms_copy', 'terms_more', 'requestRectangleOnScreen',
+                         'text_fits_view', 'initial_fully_visible', 'ancestor_chain_before',
+                         'fully_visible_after_rectangle_request', 'rectangle_reveal_is_not_native_input_acceptance'):
             self.assertIn(contract, actual)
 
 

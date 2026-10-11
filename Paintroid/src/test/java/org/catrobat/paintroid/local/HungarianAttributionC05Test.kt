@@ -183,16 +183,29 @@ class HungarianAttributionC05Test {
                 EditorTestNavigation.named(activity,"File",expected.getValue(R.string.ui_about_credits23))
                 val chooser=ShadowAlertDialog.getLatestAlertDialog()
                 assertTrue(chooser.isShowing)
-                capture(chooser,"about-$titleKey",2f,emptyList(),expected.getValue(R.string.ui_about_credits23))
                 val adapter=chooser.listView.adapter
                 val index=(0 until adapter.count).single {adapter.getItem(it).toString()==activity.getString(menuKey)}
-                assertTrue(chooser.listView.performItemClick(null,index,index.toLong()));idle()
+                // Materialize and measure the selected real row before exercising its callback.
+                // The title-only capture cannot establish menu-item fit or reachability.
+                val list=chooser.listView
+                list.setSelection(index);idle()
+                val row=requireNotNull(list.getChildAt(index-list.firstVisiblePosition))
+                assertTrue("Selected About row must be attached and shown",row.isAttachedToWindow && row.isShown)
+                val labels=texts(row).filter {it.text.toString()==activity.getString(menuKey)}
+                assertEquals("Exactly one actual selected menu label",1,labels.size)
+                val visible=Rect()
+                assertTrue("The selected About row must intersect its ancestors",row.getGlobalVisibleRect(visible))
+                capture(chooser,"about-$titleKey",2f,labels,expected.getValue(R.string.ui_about_credits23))
+                assertTrue(list.performItemClick(row,index,index.toLong()));idle()
                 val notice=ShadowDialog.getLatestDialog()
                 assertTrue(notice.isShowing)
                 val body=notice.window!!.decorView.findViewWithTag<TextView>("terms_text")
                 assertEquals(activity.assets.open(asset).bufferedReader().use {it.readText()},body.text.toString())
                 assertTrue(texts(notice.window!!.decorView).any {it.text.toString()==expected.getValue(titleKey)})
-                capture(notice,"notice-$titleKey",2f,emptyList(),expected.getValue(titleKey))
+                capture(notice,"notice-$titleKey",2f,listOf(
+                    notice.window!!.decorView.findViewWithTag<TextView>("terms_copy"),
+                    notice.window!!.decorView.findViewWithTag<TextView>("terms_more"),
+                    notice.window!!.decorView.findViewWithTag<TextView>("terms_done")),expected.getValue(titleKey))
                 assertTrue(notice.window!!.decorView.findViewWithTag<View>("terms_done").performClick());idle()
                 assertFalse(notice.isShowing)
             }
@@ -202,36 +215,81 @@ class HungarianAttributionC05Test {
         }
     }
 
-    /** Retain actual geometry, including clipping. Do not force child sizes or waive fit failures. */
+    private fun bounds(view: View): JSONObject {
+        val location=IntArray(2);view.getLocationOnScreen(location)
+        val visible=Rect();val intersects=view.getLocalVisibleRect(visible)
+        return JSONObject().put("class",view.javaClass.name).put("tag",view.tag?.toString() ?: JSONObject.NULL)
+            .put("left_screen",location[0]).put("top_screen",location[1]).put("width",view.width).put("height",view.height)
+            .put("visible",intersects).put("visible_rect",JSONArray(listOf(visible.left,visible.top,visible.right,visible.bottom)))
+            .put("scroll_x",view.scrollX).put("scroll_y",view.scrollY)
+            .put("can_scroll_up",view.canScrollVertically(-1)).put("can_scroll_down",view.canScrollVertically(1))
+    }
+
+    private fun ancestors(view: View): JSONArray {
+        val rows=JSONArray();var parent=view.parent as? View
+        while(parent!=null) {rows.put(bounds(parent));parent=parent.parent as? View}
+        return rows
+    }
+
+    /** Initial clipping, text truncation and scroll reachability are distinct observations.
+     * requestRectangleOnScreen exercises the real ancestor chain, not physical finger/TalkBack input. */
     private fun capture(dialog: Dialog,phase: String,scale: Float,actions: List<TextView>,title: String) {
         idle()
         val root=dialog.window!!.decorView
         assertTrue(root.width>0 && root.height>0)
-        val views=texts(root).filter {it.text.toString()==title}+actions
-        assertTrue("The actual title must be present",views.isNotEmpty())
+        val titles=texts(root).filter {it.text.toString()==title}
+        assertEquals("Exactly one actual dialog title",1,titles.size)
+        val views=titles+actions
+        val directory=File("build/reports/hungarian-attribution-c05").apply {mkdirs()}
+        val name="api${RuntimeEnvironment.getApiLevel()}-font$scale-$phase"
+        fun image(suffix: String) {
+            val bitmap=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
+            try {root.draw(Canvas(bitmap));File(directory,"$name$suffix.png").outputStream().use {
+                assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it))
+            }} finally {bitmap.recycle()}
+        }
+        image("") // Unmodified initial pixels, before any scroll-reveal request.
         val rows=JSONArray()
+        // Freeze every initial observation before revealing any one view.
         for(view in views) {
             val layout=requireNotNull(view.layout)
             val visible=Rect();val intersects=view.getLocalVisibleRect(visible)
             val transformed=view.transformationMethod?.getTransformation(view.text,view)?.toString() ?: view.text.toString()
-            val fits=layout.getLineEnd(layout.lineCount-1)==transformed.length &&
-                (0 until layout.lineCount).all {layout.getEllipsisCount(it)==0 && layout.getLineLeft(it)>=-1 && layout.getLineRight(it)<=layout.width+1} &&
-                layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom &&
-                intersects && visible.width()==view.width && visible.height()==view.height
+            val noEllipsis=(0 until layout.lineCount).all {layout.getEllipsisCount(it)==0}
+            val horizontal=(0 until layout.lineCount).all {layout.getLineLeft(it)>=-1 && layout.getLineRight(it)<=layout.width+1}
+            val fullText=layout.getLineEnd(layout.lineCount-1)==transformed.length && noEllipsis && horizontal &&
+                layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom
+            val fullyVisible=intersects && visible.width()==view.width && visible.height()==view.height
             rows.put(JSONObject().put("text",view.text.toString()).put("transformed",transformed)
                 .put("width",view.width).put("height",view.height).put("layout_height",layout.height)
-                .put("last_character",layout.getLineEnd(layout.lineCount-1)).put("complete_fit",fits))
+                .put("last_character",layout.getLineEnd(layout.lineCount-1)).put("max_lines",view.maxLines)
+                .put("ellipsize",view.ellipsize?.toString() ?: JSONObject.NULL).put("no_ellipsis",noEllipsis)
+                .put("text_fits_view",fullText).put("initial_fully_visible",fullyVisible)
+                .put("complete_fit",fullText && fullyVisible).put("initial_bounds",bounds(view))
+                .put("ancestor_chain_before",ancestors(view)))
         }
-        val directory=File("build/reports/hungarian-attribution-c05").apply {mkdirs()}
-        val name="api${RuntimeEnvironment.getApiLevel()}-font$scale-$phase"
-        val image=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
-        try {root.draw(Canvas(image));File(directory,"$name.png").outputStream().use {
-            assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))
-        }} finally {image.recycle()}
+        for((index,view) in views.withIndex()) {
+            val row=rows.getJSONObject(index)
+            row.put("ancestor_chain_before_request",ancestors(view))
+            val requested=view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true)
+            idle()
+            val after=Rect();val intersects=view.getLocalVisibleRect(after)
+            val reachable=intersects && after.width()==view.width && after.height()==view.height
+            row.put("rectangle_request_returned",requested)
+                .put("fully_visible_after_rectangle_request",reachable).put("bounds_after",bounds(view))
+                .put("ancestor_chain_after",ancestors(view))
+            if(!row.getBoolean("initial_fully_visible")) image("-reveal-$index")
+        }
         File(directory,"$name.json").writeText(JSONObject()
             .put("evidence_kind","Robolectric NATIVE geometry/capture, not installed-device or linguistic acceptance")
             .put("behavioral_test_is_not_text_fit_acceptance",true)
-            .put("text_fit_accepted",(0 until rows.length()).all {rows.getJSONObject(it).getBoolean("complete_fit")})
-            .put("font_scale",scale).put("measurements",rows).toString(2)+"\n")
+            .put("initial_all_text_fits",(0 until rows.length()).all {rows.getJSONObject(it).getBoolean("complete_fit")})
+            .put("all_text_fits_with_rectangle_reveal",(0 until rows.length()).all {
+                rows.getJSONObject(it).getBoolean("text_fits_view") && rows.getJSONObject(it).getBoolean("fully_visible_after_rectangle_request")})
+            .put("rectangle_reveal_is_not_native_input_acceptance",true)
+            .put("font_scale",scale).put("api",RuntimeEnvironment.getApiLevel())
+            .put("screen_width_dp",root.resources.configuration.screenWidthDp)
+            .put("screen_height_dp",root.resources.configuration.screenHeightDp)
+            .put("measurements",rows).toString(2)+"\n")
     }
 }
