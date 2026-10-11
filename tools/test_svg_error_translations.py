@@ -76,8 +76,10 @@ class SvgErrorTranslationTests(unittest.TestCase):
         self.assertIn('SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable', source)
         self.assertIn('SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large', source)
         self.assertIn('if(error is SvgOriginalSize.SizeException)', source)
-        self.assertIn('}) else error.message', source)
-        self.assertIn('failure(ui(R.string.ui_could_not_load_gallery_image,reason))', source)
+        self.assertIn('}) else commonsMetadataReason(error)', source)
+        self.assertIn('else error.message', source)
+        self.assertIn('showStatus(ui(R.string.ui_could_not_load_gallery_image,reason))', source)
+        self.assertIn('runOnUiThread {if(!isFinishing && !isDestroyed) {', source)
 
 
 if __name__ == '__main__':

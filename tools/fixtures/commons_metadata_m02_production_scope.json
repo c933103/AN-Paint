@@ -1,0 +1,39 @@
+{
+  "base": "2c1bd8622eb6c57444eee8f816194b309fff136e",
+  "entries": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "before_sha256": "3ca4e198067ba0f75a443158bc6d8db280e34cd642df9f6d4acf9dd078dbfe5f",
+      "after_sha256": "f30b50ad2e0c89356082ace268e241080efe54cf2c7c2c0307d26425efac4546",
+      "edits": [
+        {
+          "before": "",
+          "after": "    /** Application-owned metadata status only; localize at the alive UI boundary. */\n    class HttpException(val status: Int): IOException()\n\n"
+        },
+        {
+          "before": "            if (status != 200) throw IOException(\"Commons metadata: HTTP $status\")\n",
+          "after": "            if (status != 200) throw HttpException(status)\n"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "before_sha256": "4d9d56cbafa7d2fa34d11cf5c8ead438b7b81f3be5e9c79ab86d05d695d541d2",
+      "after_sha256": "9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a",
+      "edits": [
+        {
+          "before": "                val reason=error.message?.takeIf {it.isNotBlank()}\n                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(\n                    if(reason==null) ui(R.string.commons_credit_copy_failed)\n                    else ui(R.string.commons_credit_copy_failed_reason,reason))}\n",
+          "after": "                runOnUiThread {if(!isFinishing && !isDestroyed) {\n                    val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}\n                    showStatus(if(reason==null) ui(R.string.commons_credit_copy_failed)\n                        else ui(R.string.commons_credit_copy_failed_reason,reason))\n                }}\n"
+        },
+        {
+          "before": "",
+          "after": "\n    /** Do not classify provider/framework exceptions by their text or format their detail twice. */\n    private fun commonsMetadataReason(error: Exception): String? =\n        if(error is CommonsAttribution.HttpException) ui(R.string.commons_metadata_http_error,error.status.toString())\n        else error.message\n"
+        },
+        {
+          "before": "                val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {\n                    SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable\n                    SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large\n                }) else error.message\n                failure(ui(R.string.ui_could_not_load_gallery_image,reason))\n",
+          "after": "                runOnUiThread {if(!isFinishing && !isDestroyed) {\n                    val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {\n                        SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable\n                        SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large\n                    }) else commonsMetadataReason(error)\n                    showStatus(ui(R.string.ui_could_not_load_gallery_image,reason))\n                }}\n"
+        }
+      ]
+    }
+  ]
+}

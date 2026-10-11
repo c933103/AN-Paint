@@ -5,6 +5,7 @@ import pathlib
 import re
 import unittest
 
+from commons_metadata_m02_scope import before_m02_catalogue, before_m02_producer
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
 
@@ -24,6 +25,7 @@ def catalogue_before_copy_credit_and_f01(path, text):
         text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
         if count != 1:
             raise AssertionError(f"{path}: expected one Copy-credit entry for {key}")
+    text = before_m02_catalogue(path, text)
     fixture_bytes = (ROOT / 'tools/fixtures/tiff_size_wording_scope.json').read_bytes()
     if hashlib.sha256(fixture_bytes).hexdigest() != '9cead98f8f826c5c853f4b0dc6cd6b80f8760274770a00f600c690d44fba0ac1':
         raise AssertionError('The independently reviewed 37-line F01 scope fixture changed')
@@ -88,7 +90,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
     def test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim(self):
         text = (JAVA / 'MediaGalleryActivity.kt').read_text()
         copy = text.split('    private fun copyCommonsCredit(', 1)[1].split('    private fun showStatus(', 1)[0]
-        self.assertIn('val reason=error.message?.takeIf {it.isNotBlank()}', copy)
+        self.assertIn('val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}', copy)
         self.assertIn('ui(R.string.commons_credit_copy_failed_reason,reason)', copy)
         self.assertIn('record.text(imported=false)', copy)
         for old in ('ui_could_not_load_gallery_image', 'ui_not_enough_memory_to_inspect_the_gallery_image', 'colour_converter_unavailable'):
@@ -102,7 +104,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             self.assertNotIn('R.string.' + key, before + after)
         scope = json.loads((EVIDENCE / 'source-scope.json').read_text())
         for row in scope['unchanged_semantics_files']:
-            self.assertEqual(row['sha256'], hashlib.sha256((ROOT / row['path']).read_bytes()).hexdigest())
+            self.assertEqual(row['sha256'], hashlib.sha256(before_m02_producer(row['path'], (ROOT / row['path']).read_bytes())).hexdigest())
 
     def test_android_tests_use_all_140_tags_and_actual_webview_route(self):
         tests = ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local'
