@@ -85,7 +85,9 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         shell.addView(editorPanel,LinearLayout.LayoutParams(-1,0,1f))
         shell.addView(fixedPanel,LinearLayout.LayoutParams(-1,-2))
         val body = column().apply { setPadding(0, dp(4), 0, dp(8)) }
-        val tabs = LinearLayout(activity)
+        // Wrapped captions must align by their view bounds, not their differing
+        // text baselines, which can move a taller button outside the row.
+        val tabs = LinearLayout(activity).apply { isBaselineAligned=false }
         val palette = column().apply { tag = "colour_palette" }
         surface = ColourSurface(activity, value).apply { tag = "colour_surface"; changed = { sync() }; visibility = View.GONE }
         val advanced = column().apply { tag = "colour_advanced"; visibility = View.GONE }
@@ -103,7 +105,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             tabs.addView(button(name, tag) { selectMode(mode) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }
         editorPanel.addView(tabs)
-        val advancedTabs = LinearLayout(activity)
+        val advancedTabs = LinearLayout(activity).apply { isBaselineAligned=false }
         listOf(ui(R.string.ui_spectrum), ui(R.string.ui_wheel)).forEachIndexed { i, name ->
             advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }

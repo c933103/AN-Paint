@@ -80,6 +80,8 @@ class ColourBaselineContractTest(unittest.TestCase):
         self.assertEqual(hashlib.sha256(helper).hexdigest(),'46c005dee8a443e69daa0fe0297c38023c00e80e86fd9a1aefea721c65b38c0c')
         self.assertEqual(SOURCE.read_bytes().count(helper),1)
         self.assertEqual(production.count('minHeight=dp(44);minimumHeight=dp(44)'),2)
+        self.assertIn('val tabs = LinearLayout(activity).apply { isBaselineAligned=false }',production)
+        self.assertIn('val advancedTabs = LinearLayout(activity).apply { isBaselineAligned=false }',production)
         self.assertIn('minHeight=dp(48);minimumHeight=dp(48)',production)
         self.assertIn('previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,-2,1f))',production)
         self.assertNotIn('device.pressBack(',source)
@@ -96,6 +98,8 @@ class ColourBaselineContractTest(unittest.TestCase):
     def test_timeout_capture_runs_before_original_dismissal_and_remains_failure(self):
         source=SOURCE.read_text()
         self.assertIn('if(label=="normal Advanced Colour laid out") recordColourAllocation()',source)
+        self.assertIn('if(label=="initial editor") recordEditorStartup("failed-before-cleanup")',source)
+        self.assertIn('await("initial editor") {activity.startupReady && !activity.busy && activity.paintCanvas.width>0 && activity.window.decorView.hasWindowFocus()}',source)
         self.assertIn('evidence.capture("colour-pre-assert-allocation")',source)
         self.assertIn('finally {onMain {dialog.dismiss()}}',source)
         self.assertIn('assertTrue("Real gesture scrolls the internal colour viewport",inner.scrollY>before)',source)

@@ -145,3 +145,23 @@ pass after correcting the local PYTHONPATH invocation (the original import-error
 log is retained). Six source contracts also pass under PYTHONOPTIMIZE=1. These are
 host checks only; fresh exact-head Android results remain required for the
 intrinsic captions, rendered IME and complete native Back/commit outcomes.
+
+## Caption trial and row-alignment successor
+
+Run [38118041931](https://github.com/c933103/AN-Paint/actions/runs/38118041931)
+at head `4750d62f` / tree `912a21a7` remains failed. All 814 JVM methods completed;
+the two API30/35 portrait Honeycomb whole-view checks found 51px height with only
+48px visible. Lint and 812 other JVM methods passed. Hungarian 1× landscape Add
+intrinsic sizing improved, but no model image grants installed acceptance.
+
+The installed trial never reached colour UI: all three colour cases failed at the
+unchanged initial-editor gate, with black pre-restoration screenshots. Subsequent
+gallery/vertical startup fixtures also failed. The root cause and specific failed
+gate conjunct are not known; RESUMED/Displayed logs alone do not prove a usable
+editor. `caption-run-38118041931/` preserves the original failures and exact binding.
+
+The next narrow production change disables baseline alignment on both tab rows,
+retaining intrinsic wrapping and minimum touch sizes. Read-only startup snapshots
+are added before the original wait and at its pass/failure boundary, before cleanup.
+The fixture body, positive method, startup condition, real input and deadlines remain
+unchanged. No activity retry, forced startup/focus or broadened acceptance is added.

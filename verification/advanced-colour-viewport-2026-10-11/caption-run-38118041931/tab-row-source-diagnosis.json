@@ -1,0 +1,11 @@
+{
+  "primary_source_url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/LinearLayout.java",
+  "primary_source_sha256": "2b298872073243509d8beb5f5a9366040858773fefe8efcc7be7432cfb4d60e4",
+  "observed_jvm_failure": "API 30/35 portrait colour_mode_3 measured 88x51; local visible rect 88x48",
+  "source_mechanism": {
+    "measureHorizontal_lines": "1486-1499 expand maxHeight for baselines; 1526-1528 replace it with alternativeMaxHeight for non-MATCH_PARENT children",
+    "layoutHorizontal_lines": "1824-1838 obtains child baseline and adds maxAscent minus childBaseline to childTop"
+  },
+  "candidate": "Disable baseline alignment on the two horizontal colour tab rows. Retain intrinsic wrapping, minimum44dp, callbacks and all complete-bounds/caption assertions. Exact-head re-execution is required.",
+  "status": "Source-backed hypothesis; not an installed acceptance claim"
+}

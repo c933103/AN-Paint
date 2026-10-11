@@ -621,13 +621,40 @@ class LocalizedDialogDeviceTest {
         evidence.capture("colour-pre-assert-allocation")
     }
 
+    private fun recordEditorStartup(stage: String) {
+        // Read-only diagnosis of the unchanged compound startup gate. Capture
+        // before cleanup so a blank window is not mistaken for a colour failure.
+        onMain {
+            val root=activity.window.decorView
+            val canvas=runCatching {activity.paintCanvas}.getOrNull()
+            evidence.observe(JSONObject().put("kind","initial-editor-state").put("stage",stage)
+                .put("startup_ready",activity.startupReady).put("busy",activity.busy)
+                .put("canvas",canvas?.let {geometry(it)} ?: JSONObject.NULL)
+                .put("activity_destroyed",activity.isDestroyed).put("activity_finishing",activity.isFinishing)
+                .put("io_error_present",activity.lastIoError!=null).put("autosave_error_present",activity.lastAutosaveError!=null)
+                .put("window_focus",root.hasWindowFocus()).put("root",geometry(root))
+                .put("root_attached",root.isAttachedToWindow).put("descendant_count",descendants(root).size)
+                .put("startup_view_present",root.findViewWithTag<View>("editor_startup")!=null)
+                .put("font_scale",activity.resources.configuration.fontScale)
+                .put("locale",activity.resources.configuration.locales[0].toLanguageTag())
+                .put("orientation",activity.resources.configuration.orientation)
+                .put("screen_width_dp",activity.resources.configuration.screenWidthDp)
+                .put("screen_height_dp",activity.resources.configuration.screenHeightDp)
+                .put("global_windows",JSONArray(WindowInspector.getGlobalWindowViews().map {
+                    geometry(it).put("attached",it.isAttachedToWindow).put("window_focus",it.hasWindowFocus())
+                })))
+        }
+    }
     private fun checkDeadline() {assertTrue("Dialog case exceeded its 45-second interaction budget",SystemClock.uptimeMillis()<deadline)}
     private fun await(label: String,condition: ()->Boolean) {
+        if(label=="initial editor") recordEditorStartup("before-wait")
         val until=minOf(deadline,SystemClock.uptimeMillis()+8000)
         while(SystemClock.uptimeMillis()<until) {if(onMain(condition)) {
+            if(label=="initial editor") recordEditorStartup("passed")
             if(label=="normal Advanced Colour laid out") recordColourAllocation()
             return
         };SystemClock.sleep(25)}
+        if(label=="initial editor") recordEditorStartup("failed-before-cleanup")
         if(label=="normal Advanced Colour laid out") recordColourAllocation()
         throw AssertionError("Timed out: $label")
     }
