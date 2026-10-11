@@ -8,6 +8,7 @@ import sys
 import zipfile
 from pathlib import Path
 from apk_release_patch import apply, digest
+from release_publication import publish_verified_release
 
 
 CERT = "f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b0b7791"
@@ -94,11 +95,8 @@ def main(request_path):
     checksums.write_text("".join(f"{digest(p.read_bytes())}  {p.name}\n" for p in assets))
     notes = request_path.with_name(f"{version}-notes.md")
     tag = "v" + version
-    run("gh", "release", "create", tag, "--repo", repo, "--target", commit,
-        "--title", f"AN Paint {version}", "--notes-file", notes, "--draft")
-    run("gh", "release", "upload", tag, "--repo", repo, *assets, checksums)
-    run("gh", "release", "edit", tag, "--repo", repo, "--draft=false", "--latest")
-    print(run("gh", "release", "view", tag, "--repo", repo, "--json", "url,assets"))
+    print(publish_verified_release(api, run, repo=repo, tag=tag, commit=commit,
+        title=f"AN Paint {version}", notes_path=notes, assets=[*assets, checksums]))
 
 
 if __name__ == "__main__":
