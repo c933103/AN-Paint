@@ -1,0 +1,133 @@
+{
+  "success": true,
+  "scope": "installed-api35-dialog-behaviour-and-explicit-colour-limitation",
+  "source_tests_sha256": "aaaeee9481ac0d47a8724e29b82fc3adbe7d6d8f3b5597be85ed591d213e75e9",
+  "source_report": "dedicated dialog instrumentation summary",
+  "device_sdk": 35,
+  "cases": [
+    {
+      "method": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+      "zip_bytes": 175001,
+      "zip_sha256": "e61477e5f206df0e63b41aed9d1609ee3e8bb981ab0860f5df9cd73420eddbcf",
+      "files": [
+        {
+          "path": "0-about-portrait.png",
+          "bytes": 42010,
+          "sha256": "9e40e91d26a7f791bcfa6281ed3533de81d713e0fa81bb418e22d591a108f78f"
+        },
+        {
+          "path": "1-about-landscape.png",
+          "bytes": 42408,
+          "sha256": "0f203387c32ee287dc0cd9cd3aedce7cf82737438a1c2984f3f8a384dd2001df"
+        },
+        {
+          "path": "2-notice-0-initial.png",
+          "bytes": 40979,
+          "sha256": "82221b7b7b52dfe48b0223850560332bc0787b5cf88b14222bb3daf76fe84188"
+        },
+        {
+          "path": "3-notice-0-portrait.png",
+          "bytes": 50935,
+          "sha256": "db931888c392940518de2636a28295475e353985a27b7d31d65456c14d18aa4f"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 32118,
+          "sha256": "eb771d116f737972ba43c99c7fbaa46fa49da08095df5d2824538644ba70f04a"
+        }
+      ]
+    },
+    {
+      "method": "aboutArtworkNoticeCompletesNativeFooterFlow",
+      "zip_bytes": 47147,
+      "zip_sha256": "002f23b46eef3996bcf5fef4f73b742d98a220fef047e0e76781a82ab35e6dad",
+      "files": [
+        {
+          "path": "0-notice-1-initial.png",
+          "bytes": 44830,
+          "sha256": "ff9ead245f39f2dee7d5b8b2faa6131414b3355686568591173531e2de689630"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 28880,
+          "sha256": "9b9e0d1010e3f7ccbc07cd64ede65c4a6bb8c153aa5e06034db53af23be451a3"
+        }
+      ]
+    },
+    {
+      "method": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+      "zip_bytes": 44338,
+      "zip_sha256": "07c8dba16bed8bda1e0ff2887c574cf78a2c5c47dfc474638454f17a8412d66b",
+      "files": [
+        {
+          "path": "0-notice-2-initial.png",
+          "bytes": 42050,
+          "sha256": "da11e40cfed0242fd34e3005bf003577c4a4a508cb77b2494b47020061630c01"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 27686,
+          "sha256": "834b382fcc1a92c54d294cffa436f7e7deacc81101b9000abefd5f0ffba2d10d"
+        }
+      ]
+    },
+    {
+      "method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+      "zip_bytes": 98571,
+      "zip_sha256": "971363ed75b00a9d2657f65f1849d12a9fdde76a222b02e1555d3098e0f69610",
+      "files": [
+        {
+          "path": "0-credit-landscape.png",
+          "bytes": 46907,
+          "sha256": "6f5046e88a163e58feabb7043476cd91dd0948cf9c4d6c6e6d2f67f0e7b43837"
+        },
+        {
+          "path": "1-credit-portrait.png",
+          "bytes": 50282,
+          "sha256": "f3f00dad94847a1f5507a9227239b052f6e821977b13033d2311e85125926c7b"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 21966,
+          "sha256": "c256366fd6942ca23049312d1b7dd6adb7f39f27e82ee03f2c21e5b1dabfac46"
+        }
+      ]
+    },
+    {
+      "method": "unchangedAdvancedColourReportsShortLandscapeLimitation",
+      "zip_bytes": 57107,
+      "zip_sha256": "215d021f3ebb94a38bf6c5ea47afabe4deffa3fcfbbfd7878d4e2d9d9ea64a03",
+      "files": [
+        {
+          "path": "0-colour-limitation.png",
+          "bytes": 34130,
+          "sha256": "b792ba46b972d90c1936d2445b5894160ef840339a4743b1aa8f77bea9ff42e2"
+        },
+        {
+          "path": "1-colour-cancelled.png",
+          "bytes": 20443,
+          "sha256": "9ca15d6f5980408846c9d5353a5f67ebecc3084678519f72afca207a98c12fc4"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 14216,
+          "sha256": "119a1f75eda8ac28b768bad279e05a5b61805bc1254ac7fd700f22d7be1b1450"
+        }
+      ]
+    }
+  ],
+  "colour_case_classification": "baseline-identical-source-limitation-characterization",
+  "positive_colour_viewport_accepted": false,
+  "untouched_baseline_installed": "verified-original-positive-failure",
+  "baseline_evidence": {
+    "run_id": 38112708313,
+    "source_commit": "cecce0626dc730ba89120936b66de88e1c990335",
+    "tested_merge_commit": "340dd09be1ce99d36c9ff51faa6d8dfe401c2ded",
+    "production_commit": "691f8870649a1d21d1441f4e3d0e795660b23e9a",
+    "source_tests_sha256": "bfb0bf6cdb5ba072bcca64cfc5fa3de017d5a31d345433841d07ad2a05318643",
+    "evidence_url": "https://github.com/c933103/AN-Paint/blob/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313/source-binding.json",
+    "source_binding_sha256": "d4072ad9c2b72403663e50ed6205f35c53ce7aaab2133d538f02f577d6835ea3",
+    "receipt_sha256": "03f20e26ac1d33be758bccc161c11e27a549bf917217ec7d4edcad23778080c2"
+  },
+  "large_text_short_landscape_advanced_colour": "not-accepted-diagnostic-only"
+}

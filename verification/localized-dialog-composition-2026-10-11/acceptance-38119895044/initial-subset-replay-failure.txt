@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-composition-acceptance-38119895044/publish/initial-verify-archive.py", line 44, in <module>
+    inner=zipfile.ZipFile(io.BytesIO(data));rows={r['path']:r for r in c['files']};require(set(inner.namelist())==set(rows),'Export exact members')
+                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-composition-acceptance-38119895044/publish/initial-verify-archive.py", line 10, in require
+    if not x:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: Export exact members

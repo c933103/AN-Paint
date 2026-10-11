@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "success": true,
+  "head": "2755e30573d6ea2c071a128b6fa2940fc675af1a",
+  "tree": "8e92977c026be27c6e6b75d04467d2b818fb3681",
+  "run": "38119895044",
+  "source_tests_sha256": "aaaeee9481ac0d47a8724e29b82fc3adbe7d6d8f3b5597be85ed591d213e75e9",
+  "native_source_tests_sha256": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b",
+  "exact_total": 104,
+  "app_union": {
+    "success": true,
+    "device_sdk": 35,
+    "source_tests_sha256": "aaaeee9481ac0d47a8724e29b82fc3adbe7d6d8f3b5597be85ed591d213e75e9",
+    "timeout_seconds_by_phase": {
+      "ordinary": 180,
+      "gallery-draft": 90,
+      "vertical-english-manchu": 180,
+      "vertical-literary-chinese-emoji": 180,
+      "dialog": 300,
+      "seed": 60,
+      "verify": 60
+    },
+    "ordinary_and_gallery_total_timeout_seconds": 270,
+    "dialog_timeout_seconds": 300,
+    "colour_scope": "known-baseline-identical-limitation; positive viewport acceptance remains separate",
+    "vertical_timeout_seconds_per_shard": 180,
+    "vertical_total_timeout_seconds": 360,
+    "receipt_scope": "complete-composed-app-union",
+    "all_app_total_timeout_seconds": 1050,
+    "declared_tests": 30,
+    "sdk_eligible_tests": 30,
+    "sdk_suppressed_tests": [],
+    "selected_tests": 30,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 30,
+    "phases": {
+      "ordinary": 16,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "dialog": 5,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutArtworkNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "unchangedAdvancedColourReportsShortLandscapeLimitation"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ]
+  },
+  "phases": {
+    "ordinary": {
+      "completed": 16,
+      "elapsed_seconds": 120.47438065299997,
+      "timeout_seconds": 180,
+      "protocol_sha256": "ff5304c19047c20af06bc82d3576b977163a138a168dc9b2b46b82f7ff59f160",
+      "xml_sha256": "e35a8d9fe5b3d8d9203bcd6ee7ffdb9af828e6325423bd8bcb6e93521b2e9ca3"
+    },
+    "gallery-draft": {
+      "completed": 3,
+      "elapsed_seconds": 45.88196067000001,
+      "timeout_seconds": 90,
+      "protocol_sha256": "e9b9c5d81f49abb95e1b1b8211572b61883fa0d1590aa28a28e8a4cfda2625d7",
+      "xml_sha256": "7e08acdc3bac3457907447540a936c6d18687b5bf409c698e7e23942c86e5ad1"
+    },
+    "vertical-english-manchu": {
+      "completed": 2,
+      "elapsed_seconds": 114.21445206299995,
+      "timeout_seconds": 180,
+      "protocol_sha256": "3b9ac88c680e63a82ff11639493d7dbf0378d4d4904c234387a967d42ef866df",
+      "xml_sha256": "c24ad42ded31a268478aa09e13c11046b93c8e29850161835e2f1fda8de02623"
+    },
+    "vertical-literary-chinese-emoji": {
+      "completed": 2,
+      "elapsed_seconds": 108.63042782599996,
+      "timeout_seconds": 180,
+      "protocol_sha256": "341e803e0521b1e5b6f6881c6301e11aa86b7b2b20276540755926ccdfaf21ac",
+      "xml_sha256": "10970a1a4bf7a06b8ae843d29eabe20909eafc2cef09f472b42f7e94f7f7fbb2"
+    },
+    "dialog": {
+      "completed": 5,
+      "elapsed_seconds": 99.51311789700003,
+      "timeout_seconds": 300,
+      "protocol_sha256": "f3b6a50dbf221e734913f078d30b33a6c3864f655c18b63848e0689b187b769d",
+      "xml_sha256": "3f8c731dc259ba3c5b838256e8e553e9cbc919e7110791b82ac1fca01975c6de"
+    },
+    "seed": {
+      "completed": 1,
+      "elapsed_seconds": 7.363040228000045,
+      "timeout_seconds": 60,
+      "protocol_sha256": "257b071c2b44f5151706ad32ee45eb4c54b940b7f62dcbb17eda62938e6aa372",
+      "xml_sha256": "d49f080d289bf5e53ed179599c2e21fb885fe4bfbc8d4f4653e46fbc9a9d7c54"
+    },
+    "verify": {
+      "completed": 1,
+      "elapsed_seconds": 7.946357741999918,
+      "timeout_seconds": 60,
+      "protocol_sha256": "2128b91687f3b5f57a3aa80b6a09259cecc583804415fcdf32d99d5859ae7bef",
+      "xml_sha256": "8660003f936010cd919a4968b04b50682b5223127f9a01f2466a2e9335b9f2f8"
+    },
+    "native": {
+      "completed": 74,
+      "elapsed_seconds": 60.60048868999996,
+      "timeout_seconds": 180,
+      "protocol_sha256": "24df49ac6dd461e81fabac14b7c57fe563ec0bdffbe77ec4ee2306c6c27ad726",
+      "xml_sha256": "d7aae3a6534a59c76ce6add2bb5e9fa302ec8e589208dc73a9c1ab6e2ff06699"
+    }
+  },
+  "scope": "Raw protocol, original XML and source-bound union replay; pixels, compiled resources and APK binding are separate gates."
+}
