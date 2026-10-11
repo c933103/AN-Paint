@@ -188,3 +188,27 @@ and failure before dialog cleanup. Insets remain observations for fullscreen
 extract mode. Hungarian capture also awaits the platform clipboard preview's
 verified natural absence. No production input-mode, permission or deadline change
 is introduced. Fresh complete native outcomes and pixel review remain required.
+
+## Full state pass and final portrait-capture correction
+
+Run [38122366555](https://github.com/c933103/AN-Paint/actions/runs/38122366555)
+at head `c711d0c0` / tree `89c3c199` passes all 102 installed methods, 814 JVM
+methods, lint, build and generation. All three colour methods pass: native
+configured fullscreen IME is visible while the dialog inset is zero, one Back
+hides it with the same field/value/selection and zero callbacks, reopened Back
+detaches the exact window, invalid submission is rejected and one valid submission
+commits `#2468AC` (one commit, three closes). Ordinary19/19 takes152.178s under180s;
+the complete state case takes16.435s under45s. Original raw evidence is retained.
+
+Pixel review still finds the temporary clipboard preview on the Hungarian portrait
+capture. Its AccessibilityWindowInfo-title absence guard did not observe the
+visible overlay and grants no acceptance. The final test-only correction removes
+that ineffective guard and performs the same two required orientations in
+landscape→portrait order, ending with actual portrait Cancel. The fixture already
+starts portrait, so the first real rotation dismisses the platform clipboard
+preview through normal Android behavior. Android15 ClipboardOverlayWindow.java
+onConfigurationChanged invokes its orientation callback; ClipboardOverlayController
+lines198–201 call hideImmediate. No clipboard mutation, other-window dismissal,
+blind delay, production change or weakened geometry/callback assertion is added.
+The next exact-head portrait PNG and native Cancel must still be checked; green
+checks alone do not prove that capture is unobscured.

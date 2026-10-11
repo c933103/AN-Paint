@@ -249,9 +249,11 @@ class LocalizedDialogDeviceTest {
         try {
             await("Hungarian colour ready") {dialog.window!!.decorView.hasWindowFocus()}
             val root=onMain {dialog.window!!.decorView}
-            for(landscape in listOf(false,true)) {
+            // Start with a real rotation, then return to portrait for both its
+            // capture and native Cancel. Android dismisses its temporary clipboard
+            // preview on orientation change; inspect the resulting pixels too.
+            for(landscape in listOf(true,false)) {
                 orient(landscape,scenario);settle(root)
-                awaitClipboardOverlayAbsent()
                 onMain {
                     val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
                     assertTrue(inner.height>0 && inner.getChildAt(0).height>inner.height)
@@ -610,27 +612,6 @@ class LocalizedDialogDeviceTest {
         evidence.capture("colour-pre-assert-allocation")
     }
 
-    private fun awaitClipboardOverlayAbsent() {
-        // Android 15 ClipboardOverlayWindow uses this exact public window title.
-        // Wait for the prior fixture's temporary system preview to leave naturally;
-        // do not clear the clipboard, dismiss another window or delay blindly.
-        val until=minOf(deadline,SystemClock.uptimeMillis()+8000)
-        var absentSince=SystemClock.uptimeMillis();var seen=false;var passed=false
-        try {
-            while(SystemClock.uptimeMillis()<until) {
-                val present=instrumentation.uiAutomation.windows.any {it.title?.toString()=="ClipboardOverlay"}
-                if(present) {seen=true;absentSince=SystemClock.uptimeMillis()}
-                else if(SystemClock.uptimeMillis()-absentSince>=250) {passed=true;break}
-                SystemClock.sleep(25)
-            }
-            assertTrue("System clipboard preview no longer obscures caption capture",passed)
-        } finally {
-            evidence.observe(JSONObject().put("kind","clipboard-overlay-absent")
-                .put("seen",seen).put("condition_passed",passed)
-                .put("stable_absence_ms",SystemClock.uptimeMillis()-absentSince))
-            if(!passed) evidence.capture("clipboard-overlay-wait-failed-before-dismiss")
-        }
-    }
     private fun awaitNativeImeWindow(showing: Boolean,root: View,field: EditText) {
         // AOSP InputMethodService leaves the app unchanged behind a fullscreen
         // extract editor; its dialog inset can be zero while the keyboard shows.
