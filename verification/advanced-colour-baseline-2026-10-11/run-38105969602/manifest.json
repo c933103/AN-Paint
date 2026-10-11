@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "purpose": "Durable exact-byte evidence for the diagnostic-only baseline run. Not fit acceptance, not 2x installed-dialog acceptance, and not an overall green workflow.",
+  "repository": "c933103/AN-Paint",
+  "baseline_diagnostic_commit": "1744530d3a61e4ba9e1652c898bfbec5886e3f84",
+  "baseline_tree": "4f901f44446da1dcf83768895c99c1877ec4a3d8",
+  "untouched_production_develop_commit": "691f8870649a1d21d1441f4e3d0e795660b23e9a",
+  "diagnostic_pull_request": "https://github.com/c933103/AN-Paint/pull/50",
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38105969602",
+  "run_id": 38105969602,
+  "run_attempt": 1,
+  "tested_pr_merge_commit": "9b19cf47db35c30d02a86a3e676a21d372d79927",
+  "workflow_conclusion": "failure",
+  "failure_evidence": "emulator/vertical-locale-pull.log: adb collection failed because device was offline.",
+  "diagnostic_test_source_path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourLayoutDiagnosticTest.kt",
+  "diagnostic_test_source_sha256": "5a29d04f6071968a47c6b16d47696ae0390ef910b7c26ec316cee50188b51549",
+  "diagnostic_jvm_methods_passed": 4,
+  "diagnostic_png_count": 24,
+  "diagnostic_geometry_json_count": 8,
+  "installed_method_count": 99,
+  "installed_phases": [
+    {
+      "summary": "emulator/Paintroid/androidTest-results/summary.json",
+      "completed_tests": 74,
+      "expected_tests": 74,
+      "success": true
+    },
+    {
+      "summary": "emulator/app/accepted-credit-restart/seed/summary.json",
+      "completed_tests": 1,
+      "expected_tests": 1,
+      "success": true
+    },
+    {
+      "summary": "emulator/app/accepted-credit-restart/verify/summary.json",
+      "completed_tests": 1,
+      "expected_tests": 1,
+      "success": true
+    },
+    {
+      "summary": "emulator/app/androidTest-results/summary.json",
+      "completed_tests": 16,
+      "expected_tests": 16,
+      "success": true
+    },
+    {
+      "summary": "emulator/app-gallery-draft/androidTest-results/summary.json",
+      "completed_tests": 3,
+      "expected_tests": 3,
+      "success": true
+    },
+    {
+      "summary": "emulator/app-vertical/english-manchu/androidTest-results/summary.json",
+      "completed_tests": 2,
+      "expected_tests": 2,
+      "success": true
+    },
+    {
+      "summary": "emulator/app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+      "completed_tests": 2,
+      "expected_tests": 2,
+      "success": true
+    }
+  ],
+  "candidate_comparison": {
+    "status": "pending, not established by this baseline archive",
+    "candidate_run_url": "https://github.com/c933103/AN-Paint/actions/runs/38107965583"
+  },
+  "source_archives": [
+    {
+      "filename": "regression.zip",
+      "bytes": 35505888,
+      "sha256": "9269a5bd25b170e58c3bcaded9ea22c7ca69b8f55aca08d161a499e711e5231c"
+    },
+    {
+      "filename": "emulator.zip",
+      "bytes": 93113,
+      "sha256": "0457d621d8459107a17dc70f9b577ae4c19abbabe842ca57afa7475a9d354992"
+    }
+  ],
+  "archive": {
+    "filename": "baseline-colour-diagnostic-evidence.zip",
+    "bytes": 785715,
+    "sha256": "219eabb9d47514d2837cd89585b2a4f1d6643ba821b699c73df1783019019ca3",
+    "member_count": 70,
+    "original_artifact_member_count": 68,
+    "supplemental_member_count": 2,
+    "max_part_bytes": 50000,
+    "part_count": 16,
+    "format": "ZIP_DEFLATED level 9; sorted paths; fixed 1980-01-01 timestamps; Unix regular files mode 0644"
+  },
+  "parts": [
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part001",
+      "bytes": 50000,
+      "sha256": "a803e2ffadc3524f8c8542a47c7ebddc239c433c4fea8d7fd07f978a58f0b5ba",
+      "git_blob_sha1": "cc05825925626a68474e9e6435a311a819580d5b"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part002",
+      "bytes": 50000,
+      "sha256": "aa7cb3f7ad8c76154a0c357e228210c5750a987878dc40aa6c30561603aa5cb3",
+      "git_blob_sha1": "35f1c7c37305a7dd343f7479d55348d4c315dbdb"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part003",
+      "bytes": 50000,
+      "sha256": "b7edcd597826affb7dd6febe01da2f8dafb5242a5499434351e59b52ff76dd88",
+      "git_blob_sha1": "2341b9fe4ebe296d8caa72f065cdabd902a90f14"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part004",
+      "bytes": 50000,
+      "sha256": "ac84c16606666d70b3fd778db1e4c699f9d137c640f465a60648d18068f38b30",
+      "git_blob_sha1": "5de02accfd11ee7a5583117cd7bc5662e1b98c7c"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part005",
+      "bytes": 50000,
+      "sha256": "e8ec1813175f70d7bcd8e9ae9dda806bbc0b2dd95d623eadb07806a08e3e8c30",
+      "git_blob_sha1": "16fc1c86bfa03a4c2dbc42668262723b083e8803"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part006",
+      "bytes": 50000,
+      "sha256": "7f7777ff9aa5532968a4879cd93aaf358c84f7efc804e9eed8ab776454f96bfa",
+      "git_blob_sha1": "09f54dcafbaa47e1cd6b8bf7684cf9fa56ddfdf7"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part007",
+      "bytes": 50000,
+      "sha256": "6077d3113b3386f9d6b805d9116b4ad19b2640a7b6737ce36ec4b0d891557309",
+      "git_blob_sha1": "8541409fbfb9c65ba6b9ac1a63038d04ad9fd204"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part008",
+      "bytes": 50000,
+      "sha256": "08cb3fdd2808243c7f4df05038167fd0f938ce72b17f3f090222d534c00a776c",
+      "git_blob_sha1": "cce6135a30406154b6c0ef8c2565375294779b01"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part009",
+      "bytes": 50000,
+      "sha256": "056bae848ae0ac2087ae7abf872275abad971f59b8e010519df4a3675d63f68e",
+      "git_blob_sha1": "481b85bb0dd2d8893820dd2280aca4e9dae017fd"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part010",
+      "bytes": 50000,
+      "sha256": "cbf3edfe34c75ce781cf1c3961ece9a066f396b96a97756ddaf1d33fc9f40756",
+      "git_blob_sha1": "db424b5f534b26c0fabc40795c2d98c698f85fe6"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part011",
+      "bytes": 50000,
+      "sha256": "a96ec782453a71af9209f79cda8f17538647a52238b98127d4e039e00b525067",
+      "git_blob_sha1": "7bdeff8abaa9710e10aa751f2ff4ba76b1c2633d"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part012",
+      "bytes": 50000,
+      "sha256": "0f87202b10bd3fe3ce1fee46745d897894e8073b1f4f764390474f9c4c560ee9",
+      "git_blob_sha1": "30f7b5035d5d5ac2abb73575a7f1611aa00f2aeb"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part013",
+      "bytes": 50000,
+      "sha256": "50953eead5291f7dc4e5152532083f7782427f24fcd42184cdc25d4c44dbb079",
+      "git_blob_sha1": "032ee16c79deadf99f91082036029380ae10404b"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part014",
+      "bytes": 50000,
+      "sha256": "acb3a5979606b7f77f4799a5b9f5de42f112739926296526a79a5d87ceaa9f35",
+      "git_blob_sha1": "891e013870dea176bf0b5445db52fc6d1ef359b1"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part015",
+      "bytes": 50000,
+      "sha256": "36aa7fd27b4383f01bce163f4b2794edddc4a1d3fea69adf88ed4e5e273d4b65",
+      "git_blob_sha1": "ca88b78677821440c1986cdd9938a5b5055f353f"
+    },
+    {
+      "path": "baseline-colour-diagnostic-evidence.zip.part016",
+      "bytes": 35715,
+      "sha256": "b9a9a3b37f9d0920dc04e6d829a4dac95de84d18456217ff5e06a07fbc7df340",
+      "git_blob_sha1": "dde3a1d5f137b5876d3cc8af35fef8e6b5d5b652"
+    }
+  ],
+  "members": [
+    {
+      "path": "diagnostic-summary.json",
+      "bytes": 3411,
+      "sha256": "fa60bb4f8195a2a85d488393122555e893b5d95888532b56d5a3bcdb2f4ca820",
+      "source": "Derived local diagnostic summary supplied with downloaded artifacts; hashes are verified against original JSON members."
+    },
+    {
+      "path": "emulator/Paintroid/androidTest-results/TEST-Paintroid.xml",
+      "bytes": 10557,
+      "sha256": "e5ae196f96450b3d07fa44fdcd5e1b2c811924170c756b84629c2cf214edd7de",
+      "source_archive": "emulator.zip",
+      "source_member": "Paintroid/androidTest-results/TEST-Paintroid.xml"
+    },
+    {
+      "path": "emulator/Paintroid/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "Paintroid/androidTest-results/install.log"
+    },
+    {
+      "path": "emulator/Paintroid/androidTest-results/instrumentation.log",
+      "bytes": 51865,
+      "sha256": "d81a09e46620536b8c00ec63740b2cbeba1711ceb3280bfd6f2cdcf3bfd32dde",
+      "source_archive": "emulator.zip",
+      "source_member": "Paintroid/androidTest-results/instrumentation.log"
+    },
+    {
+      "path": "emulator/Paintroid/androidTest-results/summary.json",
+      "bytes": 15831,
+      "sha256": "4da10cd203735f5453ad2ed84513e0f9205ce673e3316bbc5ad335b8bfa789b8",
+      "source_archive": "emulator.zip",
+      "source_member": "Paintroid/androidTest-results/summary.json"
+    },
+    {
+      "path": "emulator/app-gallery-draft/androidTest-results/TEST-app-gallery-draft.xml",
+      "bytes": 585,
+      "sha256": "6023250c5169caef6b520f89ce498131f20ac79607d3351dc4dca5528479c566",
+      "source_archive": "emulator.zip",
+      "source_member": "app-gallery-draft/androidTest-results/TEST-app-gallery-draft.xml"
+    },
+    {
+      "path": "emulator/app-gallery-draft/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app-gallery-draft/androidTest-results/install.log"
+    },
+    {
+      "path": "emulator/app-gallery-draft/androidTest-results/instrumentation.log",
+      "bytes": 2228,
+      "sha256": "b622d630da48594bf25568f5c16d354e53652c36e1140e535c11165572e9ff8a",
+      "source_archive": "emulator.zip",
+      "source_member": "app-gallery-draft/androidTest-results/instrumentation.log"
+    },
+    {
+      "path": "emulator/app-gallery-draft/androidTest-results/summary.json",
+      "bytes": 1591,
+      "sha256": "5110a6bd59af01ce5b0325de718bf33864bc994bf4b390b62fecc5eb78e7ec93",
+      "source_archive": "emulator.zip",
+      "source_member": "app-gallery-draft/androidTest-results/summary.json"
+    },
+    {
+      "path": "emulator/app-vertical/english-manchu/androidTest-results/TEST-app-vertical-english-manchu.xml",
+      "bytes": 456,
+      "sha256": "86efa54b613eb4a8f8508aa1c4f47059c0230c2e27614084ff8a71b53e770aaf",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/english-manchu/androidTest-results/TEST-app-vertical-english-manchu.xml"
+    },
+    {
+      "path": "emulator/app-vertical/english-manchu/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/english-manchu/androidTest-results/install.log"
+    },
+    {
+      "path": "emulator/app-vertical/english-manchu/androidTest-results/instrumentation.log",
+      "bytes": 1543,
+      "sha256": "4b8881dc7013753d89a3f94d695fb2806edc4793da63d3faa09cb72e591aae2c",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/english-manchu/androidTest-results/instrumentation.log"
+    },
+    {
+      "path": "emulator/app-vertical/english-manchu/androidTest-results/summary.json",
+      "bytes": 1275,
+      "sha256": "598680a5908c20f1f88bdb3c77a46defbe1a3c88e44e15b271f0d71d28cbe56f",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/english-manchu/androidTest-results/summary.json"
+    },
+    {
+      "path": "emulator/app-vertical/literary-chinese-emoji/androidTest-results/TEST-app-vertical-literary-chinese-emoji.xml",
+      "bytes": 471,
+      "sha256": "48e3142923c5bc22f2d51468be4a3805918fd60bdb8355b35da73a37b2bf7331",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/literary-chinese-emoji/androidTest-results/TEST-app-vertical-literary-chinese-emoji.xml"
+    },
+    {
+      "path": "emulator/app-vertical/literary-chinese-emoji/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/literary-chinese-emoji/androidTest-results/install.log"
+    },
+    {
+      "path": "emulator/app-vertical/literary-chinese-emoji/androidTest-results/instrumentation.log",
+      "bytes": 1558,
+      "sha256": "8a0021da83ddbe3fae860eaaf6535ef66a0dca4fbb6e9914651287712a013279",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/literary-chinese-emoji/androidTest-results/instrumentation.log"
+    },
+    {
+      "path": "emulator/app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+      "bytes": 1289,
+      "sha256": "d7bd73091890a83596dee96c0fdb1d3b0180642dfe272ee775965e56f321cae0",
+      "source_archive": "emulator.zip",
+      "source_member": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/boundary.log",
+      "bytes": 40700,
+      "sha256": "3d80268d8c3c840ead349b49e332ca77d41e27ce32d0565856fb29c183c518c4",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/boundary.log"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/coverage.json",
+      "bytes": 4363,
+      "sha256": "7b6fbacb2e06c7a3227df4ad1b6c47aee371088f96b1a4709cc6f92f8e4938d5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/coverage.json"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/seed/TEST-app-credit-restart-seed.xml",
+      "bytes": 299,
+      "sha256": "5791d9396e3d96eebfdd3addb11466a1cfd4c8e45d10457cdd52478c423001d5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/seed/TEST-app-credit-restart-seed.xml"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/seed/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/seed/install.log"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/seed/instrumentation.log",
+      "bytes": 837,
+      "sha256": "a02f336f12137c7ed1a668e0a2b57b8c643df3cb623d425f0dead762bdd48a97",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/seed/instrumentation.log"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/seed/summary.json",
+      "bytes": 1081,
+      "sha256": "5eee6e1b05e75e25afed8d25ad8ebf68d92f177e75a566d0c81e426d1cb5144a",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/seed/summary.json"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/verify-status.txt",
+      "bytes": 37,
+      "sha256": "13b055f8e1e03d6a2677e0ad53718937ae520ce74005cca5be3b350a167031b5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/verify-status.txt"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/verify/TEST-app-credit-restart-verify.xml",
+      "bytes": 304,
+      "sha256": "eec44e33ca19476fc60de48b4f9c583b646434f58112bc8a5f48c67d66b49751",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/verify/TEST-app-credit-restart-verify.xml"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/verify/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/verify/install.log"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/verify/instrumentation.log",
+      "bytes": 845,
+      "sha256": "a21ea6d8ed9f6fda4712ffabd4faf3b7d1f2a256db480b16a2b08113cb6d4329",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/verify/instrumentation.log"
+    },
+    {
+      "path": "emulator/app/accepted-credit-restart/verify/summary.json",
+      "bytes": 1083,
+      "sha256": "97705aa0a34878af7ca3f227564925a89e4768dcd5d235a02bcd81f6cefbd6c4",
+      "source_archive": "emulator.zip",
+      "source_member": "app/accepted-credit-restart/verify/summary.json"
+    },
+    {
+      "path": "emulator/app/androidTest-results/TEST-app.xml",
+      "bytes": 2349,
+      "sha256": "bf2064332bc1900a32960939e0aff93b214ba4a446f15e3f80f3e6e676dc744a",
+      "source_archive": "emulator.zip",
+      "source_member": "app/androidTest-results/TEST-app.xml"
+    },
+    {
+      "path": "emulator/app/androidTest-results/install.log",
+      "bytes": 36,
+      "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7",
+      "source_archive": "emulator.zip",
+      "source_member": "app/androidTest-results/install.log"
+    },
+    {
+      "path": "emulator/app/androidTest-results/instrumentation.log",
+      "bytes": 11161,
+      "sha256": "8c7ab317b1420ff6e8d2b180d532f2f8241510be64189c07b67159dad4523dbb",
+      "source_archive": "emulator.zip",
+      "source_member": "app/androidTest-results/instrumentation.log"
+    },
+    {
+      "path": "emulator/app/androidTest-results/summary.json",
+      "bytes": 4081,
+      "sha256": "542d8acabd4cfa66a7c247daac6737f33a5a3ba212749fcc1d2c3fd3a454abea",
+      "source_archive": "emulator.zip",
+      "source_member": "app/androidTest-results/summary.json"
+    },
+    {
+      "path": "emulator/app/coverage.json",
+      "bytes": 4363,
+      "sha256": "7b6fbacb2e06c7a3227df4ad1b6c47aee371088f96b1a4709cc6f92f8e4938d5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/coverage.json"
+    },
+    {
+      "path": "emulator/app/ordinary-gallery-coverage.json",
+      "bytes": 4363,
+      "sha256": "7b6fbacb2e06c7a3227df4ad1b6c47aee371088f96b1a4709cc6f92f8e4938d5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/ordinary-gallery-coverage.json"
+    },
+    {
+      "path": "emulator/app/vertical-coverage.json",
+      "bytes": 4363,
+      "sha256": "7b6fbacb2e06c7a3227df4ad1b6c47aee371088f96b1a4709cc6f92f8e4938d5",
+      "source_archive": "emulator.zip",
+      "source_member": "app/vertical-coverage.json"
+    },
+    {
+      "path": "emulator/vertical-locale-pull.log",
+      "bytes": 54,
+      "sha256": "76fb89d2a8ab19faf4b12c75fd0c86ecaa583a3f04170746c6066f875a4f1330",
+      "source_archive": "emulator.zip",
+      "source_member": "vertical-locale-pull.log"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-field-pointer.png",
+      "bytes": 31908,
+      "sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-swipe.png",
+      "bytes": 31160,
+      "sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-initial.png",
+      "bytes": 31160,
+      "sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0.json",
+      "bytes": 12968,
+      "sha256": "a2ca38d53466a716ed1065f44a98b0d28afdf57488ee892b8c1043540a3b8836",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font1.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-field-pointer.png",
+      "bytes": 40817,
+      "sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-swipe.png",
+      "bytes": 40817,
+      "sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-initial.png",
+      "bytes": 40817,
+      "sha256": "8fd973c54d2e6471d6d4813bd28579465ec4887923e438083be71f86e862e041",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0.json",
+      "bytes": 9426,
+      "sha256": "1c3d18f42f24220de83347ba7abb794278920fbe220707db9adb3123d340c674",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-en-US-font2.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-field-pointer.png",
+      "bytes": 31486,
+      "sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-swipe.png",
+      "bytes": 33193,
+      "sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-initial.png",
+      "bytes": 32221,
+      "sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0.json",
+      "bytes": 12985,
+      "sha256": "a10bade52515eab9ecc37278a19ff2af2084fb2af7d78c01ce6f4b78f2cbc2d5",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font1.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-field-pointer.png",
+      "bytes": 38556,
+      "sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-swipe.png",
+      "bytes": 38556,
+      "sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-initial.png",
+      "bytes": 38556,
+      "sha256": "15ae677dee08770c374cccc7c98f43499e45a74503c331172e1c1a2ed356403e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0.json",
+      "bytes": 9437,
+      "sha256": "dc4ff170a695f0797684d22c92159d2633e71efedac02ca05588c759cede86c8",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api30-hu-font2.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-field-pointer.png",
+      "bytes": 31908,
+      "sha256": "4cc5863a0b90f934f54b92e403c8b1ef171b3429e7174e170a34fed488bbb864",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-swipe.png",
+      "bytes": 31160,
+      "sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-initial.png",
+      "bytes": 31160,
+      "sha256": "b68b36d4922eb0916ec78f737cfe5e7b5f8409d512f1c117aafe8e7bb527d50e",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0.json",
+      "bytes": 12968,
+      "sha256": "10fee729ffe7dba4fcbb99f9943744fc0ddaa2ea4b3bd65c95a988116d9dbfb2",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font1.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-field-pointer.png",
+      "bytes": 38931,
+      "sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-swipe.png",
+      "bytes": 38931,
+      "sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-initial.png",
+      "bytes": 38931,
+      "sha256": "58d4059951ee9d370882d8261fc0e2218a9fe9337f2501347d974333a71b5eea",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0.json",
+      "bytes": 9420,
+      "sha256": "14f3671622fd87f5504c3c353645d69cf15f5000ddaad3bca6690cecdfe65883",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-en-US-font2.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-field-pointer.png",
+      "bytes": 31486,
+      "sha256": "f369dfbbad981e1c3b2bfcdb5d88d5e8bb33a6e6788808292523bfca912c2a33",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-swipe.png",
+      "bytes": 33193,
+      "sha256": "187a8e612f35c362a4a8ccebbe7a23dbe9577ac4258798f6251e74b9fe2fec8c",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-initial.png",
+      "bytes": 32221,
+      "sha256": "c816335fffb6335145d0247db23d143a71c4e0b940ccee4a35552ab9437451d6",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0.json",
+      "bytes": 12985,
+      "sha256": "83fed1c6340943b2268d37a4a0c6d7df64d7db480781b1db40029a975ad6900b",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font1.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-field-pointer.png",
+      "bytes": 37866,
+      "sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-field-pointer.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-swipe.png",
+      "bytes": 37866,
+      "sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-after-swipe.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-initial.png",
+      "bytes": 37866,
+      "sha256": "0b5e137b385428730a3bcd63b0f9b9f379aa0f746c18efcb163a55ae5e379487",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0-initial.png"
+    },
+    {
+      "path": "regression/Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0.json",
+      "bytes": 9438,
+      "sha256": "b4c8f133c607956663b08343a394bd875627763857f5c39152cc79f0c01be7ca",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/reports/advanced-colour-diagnostic/api35-hu-font2.0.json"
+    },
+    {
+      "path": "regression/Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest.xml",
+      "bytes": 1007,
+      "sha256": "f29acb28d08e987856439a0ae49ef70421cf0b3ae88d77d46e9d6d2f0925f90d",
+      "source_archive": "regression.zip",
+      "source_member": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest.xml"
+    },
+    {
+      "path": "workflow-status.json",
+      "bytes": 11482,
+      "sha256": "64a30f3e8dd5aaa154cc5596ba7581a6bdd82cc44ac05b1a11e17646cd7b28af",
+      "source": "Selected GitHub API run/job metadata, with source URLs; generated capture rather than an original artifact member."
+    }
+  ]
+}
