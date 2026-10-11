@@ -87,10 +87,11 @@ Test APKs are compiled once, after the delivery artifact is available. Emulator
 jobs download those binaries and run `adb shell am instrument -w -r` directly;
 they do not invoke Gradle or rebuild native codecs. Full runs use independent
 API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
-accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the three gallery-draft methods, four vertical
-methods and the restart pair. The unchanged gallery-draft class runs separately
-with a 90-second ceiling; the vertical methods run in two 180-second shards. The
+accepted-credit restart phase classes, plus the five API35-only installed-dialog
+methods. API35 runs all declared methods: its ordinary app invocation excludes
+the three gallery-draft methods, five dialog methods, four vertical methods and
+the restart pair. Gallery-draft runs separately with a 90-second ceiling, dialogs
+with 300 seconds, and vertical methods in two 180-second shards. The
 restart pair runs separately before and after an external force-stop. The
 exact disjoint union is checked against the full SDK-aware source inventory on
 both APIs; an exclusion is never treated as a passed test.
@@ -129,7 +130,7 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
 
 - Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
   universal APK assembly: 30 minutes;
-  each emulator job: 46 minutes, including a 36-minute execution step.
+  each emulator job: 53 minutes, including a 43-minute execution step.
   These are hard cancellation ceilings, not target runtimes.
 - Emulator SDK installation: 5-minute command deadline; device discovery:
   60 seconds; boot and Android service readiness share 120 seconds; main APK
@@ -138,14 +139,16 @@ allows unchanged codecs to reuse their valid objects while the new codec builds.
   transient startup failures; APK installation and app tests are not retried.
 - Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
   native and ordinary-app instrumentation: 180 seconds each; gallery-draft:
-  90 seconds; each of two vertical shards: 180 seconds; accepted-credit seed
-  and verify: 60 seconds each. App-only ceilings sum to 630 seconds on API30
-  and 750 seconds on API35. Including native instrumentation gives 810 / 930
+  90 seconds; the separate API35 dialog phase: 300 seconds; each of two vertical
+  shards: 180 seconds; accepted-credit seed and verify: 60 seconds each. App-only
+  ceilings sum to 630 seconds on API30 and 1,050 seconds on API35. Including native
+  instrumentation gives 810 / 1,230
   seconds, before installation, discovery, startup, boundary and collection.
   The original composed head retained a 900-second outer step, which was
-  structurally insufficient. The corrected 36-minute step admits the existing
-  controlled subprocess paths plus explicit processing/cleanup allowances; the
-  detailed source-bound model is below. Exact-head combined API30/API35 runtime
+  structurally insufficient. The current 43-minute step admits the eight-phase
+  controlled API35 paths plus explicit processing/cleanup allowances. The current
+  source-bound model is in “Localized dialog evidence and separate phase” below;
+  older dated budget sections retain historical values and do not set today's caps. Exact-head combined API30/API35 runtime
   remains required. Deadline exhaustion fails without relaxing an inner timeout
   or substituting a weaker restart test.
 - Emulator shutdown and log-collection ADB commands have individual deadlines.
@@ -739,16 +742,17 @@ margin targets and every existing artifact/provenance/review gate. Missing SDK
 locally means host/fake-ADB checks only; standalone CI is not combined acceptance.
 
 
-## Corrected composed cancellation budgets (10 October 2026)
+## Historical composed cancellation budgets (10 October 2026)
 
-The historical sections above describe their original 15-minute / 25-minute
-limits. Those values are superseded for the current combined driver by **36
-minutes for emulator execution and 46 minutes for each emulator job**. Neither
-is a target runtime. The unchanged inner instrumentation ceilings total 930
-seconds on API35 and 810 on API30. The direct-ADB runner and all source tests
-are unchanged by this budget correction.
+At that revision, the original 15-minute / 25-minute limits were replaced by
+**36 minutes for emulator execution and 46 minutes for each emulator job**. The
+11 October dialog-phase addition supersedes those caps with 43 / 53 minutes; see
+the current “Deadlines and evidence” and dialog-phase sections. This historical
+correction retained instrumentation ceilings of 930 seconds on API35 and 810 on
+API30 without changing the direct-ADB runner or source tests.
 
-The source-bound model is checked by `tools/test_ci_timeout_budget.py`. References
+The following table preserves that revision's source-bound model; the current
+model in `tools/test_ci_timeout_budget.py` includes the later dialog phase. References
 in the following model name functions so that comment-only line shifts do not
 invalidate the explanation:
 
@@ -870,12 +874,80 @@ manifest fields/duplicate JSON keys, partial markers, size/hash mismatches and
 truncation fail closed. Existing screenshot and native reachability validators
 still run afterward and every prior failure status is retained.
 
-Export work stays inside each unchanged 180-second vertical invocation. The
-36/46-minute outer hard ceilings and all other phase/reset/pull limits remain
-unchanged. Host parsing/export checks are covered by the stated outer processing
+Export work stays inside each unchanged 180-second vertical invocation. This
+10 October export change retained the then-current 36/46-minute outer caps; the
+later dialog phase changes them to 43/53 minutes without changing vertical
+phase/reset/pull limits. Host parsing/export checks use the stated outer processing
 allowance, not by a new universal liveness claim. Host corruption fixtures and
 source contracts cannot prove MediaStore behavior on a device: fresh exact-source
 release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
 source/APK provenance and rendered-image review remain required. Debug is covered
 by the same source path and host selection checks; installed debug compatibility
 must be reported explicitly rather than inferred from release results.
+
+
+## Localized dialog evidence and separate phase (11 October 2026)
+
+API35 now selects five installed dialog methods in a disjoint `app-dialog`
+invocation. Ordinary instrumentation excludes that class and retains its original
+180-second limit and 16 methods. The dialog phase includes exactly five named
+methods, with a 300-second limit. The complete source-bound union still requires
+all 30 app methods on API35, including both restart methods; API30 explicitly
+suppresses the five API35-only methods and retains its original 22 completed
+app methods. Missing, duplicate, renamed, skipped or failed methods fail closed.
+Ordinary, gallery or dialog failure withholds restart, while the other diagnostics
+and vertical phases still run. No individual failure is retried.
+
+The dialog source digest is passed as a runner argument and checked against the
+exact five-method `app-dialog` report before accepting app-owned exports. EXIT
+cleanup uses a bounded API35-only 15-second pull with 3-second kill grace, retains
+partial failure archives, and cannot turn a failed test green. The colour method
+is an explicitly named characterization of the unchanged short-landscape
+limitation, not positive viewport acceptance. The original failed positive method
+and its exact source are preserved under
+`verification/localized-dialog-layout-2026-10-11/colour-separate-scope/`; its
+positive acceptance belongs to the separate colour corrective task. The untouched-develop installed replay is now verified separately in
+[baseline run38112708313](https://github.com/c933103/AN-Paint/tree/8096234be003cd6a287660d32884c2541c518e65/verification/advanced-colour-viewport-2026-10-11/baseline-run-38112708313):
+the same 1× short-landscape positive viewport assertion fails with editor360×0.
+The current diagnostic records that exact baseline provenance; earlier receipts
+remain immutable. Neither the baseline failure nor its characterization provides
+positive colour acceptance.
+
+### Evidence and cap rationale
+
+Run `38109511511` completed the formerly combined 19-method ordinary phase in
+175.068 seconds (runner report), with three failures and no timeout. Its inner
+instrumentation clock was 173.304 seconds. The three fixture bodies reported
+25.016, 10.629 and 9.370 seconds, but stopped early at failures, so these are not
+successful-flow durations or evidence of adequate margin in the old 180 seconds.
+The earlier `38107965583` ordinary report was 131.244 seconds (inner 129.652),
+but all three new bodies were blocked by export-rule preflight failures.
+
+Run `38114313848` verified the single-native-key Back path, but the combined
+three-notice About interaction reached 45.715 seconds before completion. Credit
+completed its original interaction in 12.477 seconds and the colour diagnostic in
+1.639 seconds. That failed run is retained; no unchanged retry is used.
+
+The three notice flows now run as independently named cases, preserving every
+original action/assertion and the first notice's retained About/notice rotations.
+Each of the five dialog cases retains its 45-second interaction cap (225 seconds
+combined). The phase retains its 300-second hard ceiling, leaving a shared
+75-second operational allowance for setup, font transitions, teardown and export.
+The previous three cases measured 15.079 seconds of combined setup/teardown;
+two extra fixture lifecycles and complete notice flows still require fresh
+measurements. The 75 seconds is not the sum of every permitted helper timeout:
+slow setup/teardown can exhaust the phase before every interaction cap is used.
+The old three-case 135+80+24+61 rationale is superseded. This explicit cancellation
+allowance is not a successful-flow or universal I/O liveness guarantee; the
+enclosing deadline remains the hard stop. All original native/ordinary/gallery/vertical/restart deadlines
+stay unchanged; this additional phase is not a way to filter slow cases.
+
+`tools/test_ci_timeout_budget.py` reads the actual shell/runner limits. Its API35
+all-success path is 2,442 seconds and its continuing-failure envelope is 2,482.
+The unchanged 60-second host-processing allowance gives 2,542 seconds, requiring
+a 43-minute execution cap. The job cap is 53 minutes, retaining six minutes for
+image provisioning and four for other job overhead. The API30 modeled path stays
+1,669 seconds and does not run or collect the dialog phase. These are controlled
+wait arithmetic, not a universal liveness proof. No KVM, permission, signing or
+repository-visibility setting is changed. Fresh exact-head timings, full union,
+original screenshots and source/APK provenance remain required for acceptance.

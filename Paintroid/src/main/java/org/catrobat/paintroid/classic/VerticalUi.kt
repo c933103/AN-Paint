@@ -124,6 +124,13 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     private var content: View?=null
     override fun setTitle(title: CharSequence?): AlertDialog.Builder {heading=title;return super.setTitle(title)}
     override fun setTitle(titleId: Int): AlertDialog.Builder=setTitle(context.getText(titleId))
+    /** Opt-in for a localized heading that can exceed the native title's line cap.
+     * Keep AlertController's own body, chooser, buttons and window sizing intact. */
+    fun setScrollableTitle(title: CharSequence): EditorDialogBuilder {
+        setTitle(title)
+        if(!VerticalText.uiVertical()) setCustomTitle(ResponsiveDialogTitle(context,title))
+        return this
+    }
     override fun setMessage(message: CharSequence?): AlertDialog.Builder {prose=message;return super.setMessage(message)}
     override fun setMessage(messageId: Int): AlertDialog.Builder=setMessage(context.getText(messageId))
     override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}

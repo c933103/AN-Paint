@@ -879,7 +879,7 @@ class ClassicPaintActivity : Activity() {
             ui(R.string.ui_icon_licences) to {LegalInfo.showAsset(this,ui(R.string.ui_icon_licences_kde_breeze),"legal/ICON_NOTICES.txt")}) +
             if(ImageCreditArchive.hasRecords(this)) listOf(ui(R.string.legacy_credits_title) to {showLegacyImageCredits()})
             else emptyList()
-        EditorDialogBuilder(this).setTitle(ui(R.string.ui_about_credits23)).setItems(actions.map {it.first}.toTypedArray()) {_,index->actions[index].second()}
+        EditorDialogBuilder(this).setScrollableTitle(ui(R.string.ui_about_credits23)).setItems(actions.map {it.first}.toTypedArray()) {_,index->actions[index].second()}
             .setNegativeButton(ui(R.string.ui_done),null).show()
     }
 

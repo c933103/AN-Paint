@@ -402,6 +402,8 @@ def main() -> int:
             raise ValueError(f'Instrumentation {component} was not installed; found {sorted(available)}')
         target = available[component]
         command = [args.adb, 'shell', 'am', 'instrument', '-w', '-r']
+        if source_digest:
+            command += ['-e', 'anpaint_source_tests_sha256', source_digest]
         if args.leave_target_running:
             if target != 'paint.anpaint.android':
                 raise ValueError('Accepted-credit seed must target paint.anpaint.android')

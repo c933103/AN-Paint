@@ -1056,7 +1056,23 @@ class EditorDeviceTest {
     }
     private fun clickText(value: String) {
         val view=device.findObject(UiSelector().text(value))
-        assertTrue("Visible control: $value",view.waitForExists(5000));assertTrue(view.click())
+        val visible=view.waitForExists(5000)
+        if(!visible && Build.VERSION.SDK_INT>=29) onMain {editor ->
+            // Preserve read-only failure context. Never scroll, retry or synthesize the failed click.
+            fun dump(node: View,depth: Int) {
+                if(depth>30) return
+                val bounds=Rect();val shown=node.getGlobalVisibleRect(bounds)
+                if(node is TextView || node is ListView) android.util.Log.e("DialogVisibilityFailure",
+                    org.json.JSONObject().put("requested",value).put("class",node.javaClass.name)
+                        .put("tag",node.tag).put("shown",shown).put("bounds",bounds.toShortString())
+                        .put("width",node.width).put("height",node.height)
+                        .put("text",(node as? TextView)?.text)
+                        .put("first",(node as? ListView)?.firstVisiblePosition).toString())
+                if(node is ViewGroup) for(index in 0 until node.childCount) dump(node.getChildAt(index),depth+1)
+            }
+            WindowInspector.getGlobalWindowViews().forEach {dump(it,0)}
+        }
+        assertTrue("Visible control: $value",visible);assertTrue(view.click())
         instrumentation.waitForIdleSync()
     }
     private fun menu(group: String,item: String) {

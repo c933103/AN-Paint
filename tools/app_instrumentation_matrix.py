@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact SDK-aware union for ordinary/gallery/vertical-shards/restart invocations.
+"""Exact SDK-aware union for ordinary/gallery/dialog/vertical-shards/restart invocations.
 
 Uses the selector, source-digest and report conventions already reviewed in PR41.
 No successful phase substitutes for a missing, skipped or failed method elsewhere.
@@ -22,9 +22,17 @@ GALLERY_METHODS = {
     'confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor',
     'savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft',
 }
-PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90,
+DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
+DIALOG_METHODS = {
+    'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow',
+    'aboutArtworkNoticeCompletesNativeFooterFlow',
+    'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
+    'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
+    'unchangedAdvancedColourReportsShortLandscapeLimitation',
+}
+PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
                   **{phase: 180 for phase in VERTICAL_SHARDS}, 'seed': 60, 'verify': 60}
-SELECTED_PHASES = {'gallery-draft', *VERTICAL_SHARDS}
+SELECTED_PHASES = {'gallery-draft', 'dialog', *VERTICAL_SHARDS}
 
 
 def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]:
@@ -35,7 +43,8 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
-    ordinary = expected - gallery - vertical - seed - verify
+    dialog = {item for item in expected if item[0] == DIALOG}
+    ordinary = expected - gallery - dialog - vertical - seed - verify
     shards = list(VERTICAL_SHARDS.values())
     if (vertical != {(VERTICAL, name) for name in VERTICAL_METHODS}
             or len(shards) != 2 or any(len(part) != 2 for part in shards)
@@ -45,9 +54,11 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The exact three gallery-draft methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
+    if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} if sdk == 35 else set()):
+        raise ValueError('The exact five API35 dialog methods and API30 suppression are required')
     parts = {'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS}
     if sdk == 35:
-        parts.update(seed=seed, verify=verify)
+        parts.update(dialog=dialog, seed=seed, verify=verify)
     return parts
 
 
@@ -86,6 +97,8 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
     return dict(success=True, device_sdk=sdk, source_tests_sha256=source_digest,
                 timeout_seconds_by_phase={phase: PHASE_TIMEOUTS[phase] for phase in parts},
                 ordinary_and_gallery_total_timeout_seconds=270,
+                dialog_timeout_seconds=300 if sdk == 35 else 0,
+                colour_scope='known-baseline-identical-limitation; positive viewport acceptance remains separate',
                 vertical_timeout_seconds_per_shard=180, vertical_total_timeout_seconds=360,
                 receipt_scope="complete-composed-app-union",
                 all_app_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts),
@@ -103,6 +116,7 @@ def report_paths(root: Path, sdk: int) -> dict[str, Path]:
     paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
                   for phase in VERTICAL_SHARDS})
     if sdk == 35:
+        paths['dialog'] = root/'app-dialog/androidTest-results/summary.json'
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
                       for phase in ('seed', 'verify')})
     return paths
@@ -112,7 +126,7 @@ def read_app_reports(root: Path, sdk: int) -> dict[str, dict]:
     paths = report_paths(root, sdk)
     wanted = set(paths.values())
     actual = set().union(*((root/name).rglob('summary.json')
-                          for name in ('app', 'app-gallery-draft', 'app-vertical')))
+                          for name in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical')))
     if actual != wanted:
         raise ValueError(f'Exact composed app report inventory required: missing={sorted(map(str, wanted-actual))}, '
                          f'unexpected={sorted(map(str, actual-wanted))}')

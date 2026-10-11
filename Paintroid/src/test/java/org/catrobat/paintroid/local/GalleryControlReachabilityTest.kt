@@ -98,7 +98,7 @@ class GalleryControlReachabilityTest {
         val credit=ImageCredit("https://example.org/gallery-layout.png","Retained layout fixture credit")
         val retained=ImageCreditArchive.retainAccepted(app,listOf(credit))
         try {
-            for(tag in listOf("fr","hak-Latn-TW","ar","vi-Hani","bo","dz","mn-Mong","mnc-Mong","lzh-Hant")) {
+            for(tag in listOf("hu","fr","hak-Latn-TW","ar","vi-Hani","bo","dz","mn-Mong","mnc-Mong","lzh-Hant")) {
                 AppLanguage.select(app,tag);PaintApplication.currentResources=AppLanguage.wrap(app).resources
                 val controller=Robolectric.buildActivity(MediaGalleryActivity::class.java,
                     Intent(app,MediaGalleryActivity::class.java).putExtra("gallery_provider",IllustrationSource.COMMONS.name)

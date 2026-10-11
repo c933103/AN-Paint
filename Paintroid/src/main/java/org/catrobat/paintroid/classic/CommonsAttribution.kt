@@ -15,6 +15,9 @@ import java.net.URL
 
 /** Capture file-specific attribution, not the Commons site footer's unrelated licence. */
 internal object CommonsAttribution {
+    /** Application-owned metadata status only; localize at the alive UI boundary. */
+    class HttpException(val status: Int): IOException()
+
     private const val MAX_RESPONSE = 2 * 1024 * 1024
     private const val MAX_FIELD = 64 * 1024
     private val fields = listOf("ObjectName", "Artist", "Credit", "Attribution", "LicenseShortName",
@@ -66,7 +69,7 @@ internal object CommonsAttribution {
             connection.setRequestProperty("Referer", page)
             connection.setRequestProperty("Accept", "application/json")
             val status = connection.responseCode
-            if (status != 200) throw IOException("Commons metadata: HTTP $status")
+            if (status != 200) throw HttpException(status)
             val bytes = ByteArrayOutputStream()
             connection.inputStream.use { input ->
                 val buffer = ByteArray(16384)

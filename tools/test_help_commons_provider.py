@@ -7,6 +7,7 @@ import unittest
 
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
+from hungarian_attribution_c05_scope import historical_c03_help
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -40,8 +41,9 @@ class HelpCommonsProviderTest(unittest.TestCase):
                 self.assertEqual(strings['commons_blank_maps'], row['caption'])
                 self.assertEqual(1, actual.count(row['caption']))
                 self.assertEqual(1, actual.count(row['after_segment']))
-                self.assertEqual(row['after_help_sha256'], digest(actual))
-                before = actual.replace(row['after_segment'], row['before_segment'], 1)
+                historical = historical_c03_help(tag, actual, row)
+                self.assertEqual(row['after_help_sha256'], digest(historical))
+                before = historical.replace(row['after_segment'], row['before_segment'], 1)
                 self.assertEqual(row['before_help_sha256'], digest(before),
                                  'Only the documented provider-list passage may change')
                 self.assertNotIn('Wikimedia Commons', before)

@@ -82,18 +82,20 @@ object LegalInfo {
     fun termsDialog(activity: Activity,title: String,text: String): Dialog {
         fun dp(n: Int)=(n*activity.resources.displayMetrics.density+.5f).toInt()
         val dialog=Dialog(activity).apply { requestWindowFeature(android.view.Window.FEATURE_NO_TITLE) }
-        val body=LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL;setBackgroundColor(EditorColours.surface);setPadding(dp(12),dp(8),dp(12),dp(8)) }
-        body.addView(FlowTextView(activity).apply { this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);maxLines=2;gravity=Gravity.CENTER_VERTICAL;columnHeightDp=96 },LinearLayout.LayoutParams(-1,if(VerticalText.uiVertical()) -2 else dp(52)))
+        val body=ResponsiveDialogLayout(activity).apply {setPadding(dp(12),dp(8),dp(12),dp(8))}
+        val heading=FlowTextView(activity).apply {tag="terms_title";this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);gravity=Gravity.CENTER_VERTICAL;columnHeightDp=96}
+        val titleView=if(VerticalText.uiVertical()) ResponsiveDialogColumns(activity).apply {addView(heading)} else heading
+        body.region(titleView,.25f,"terms_title_scroll")
         val scroll=ScrollView(activity).apply { tag="terms_scroll" }
         scroll.addView(TextView(activity).apply {
             tag="terms_text";this.text=text;textSize=14f;setTextColor(EditorColours.onSurface);setTextIsSelectable(true);setPadding(dp(4),dp(6),dp(4),dp(12))
             Linkify.addLinks(this,Linkify.WEB_URLS);movementMethod=LinkMovementMethod.getInstance()
         })
-        body.addView(scroll,LinearLayout.LayoutParams(-1,0,1f))
-        val actions=LinearLayout(activity).apply { tag="terms_actions";gravity=Gravity.CENTER_VERTICAL }
+        body.body(scroll)
+        val actions=ResponsiveDialogActions(activity).apply {tag="terms_actions";gravity=Gravity.CENTER_VERTICAL}
         fun action(label: String,tagName: String,run: (Button) -> Unit) {
-            val b=FlowButton(activity).apply { columnHeightDp=96;this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;setPadding(dp(3),0,dp(3),0);setOnClickListener { run(this) } }
-            actions.addView(b,LinearLayout.LayoutParams(0,if(VerticalText.uiVertical()) -2 else dp(48),1f))
+            val b=FlowButton(activity).apply { columnHeightDp=96;this.text=label;tag=tagName;isAllCaps=false;textSize=12f;minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48);setPadding(dp(6),dp(4),dp(6),dp(4));setOnClickListener { run(this) } }
+            actions.action(b)
         }
         action(ui(R.string.ui_copy_all),"terms_copy") { button ->
             (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))
@@ -118,12 +120,13 @@ object LegalInfo {
             }.setNegativeButton(ui(R.string.ui_cancel),null).show()
         }
         action(ui(R.string.ui_done),"terms_done") { dialog.dismiss() }
-        body.addView(actions,LinearLayout.LayoutParams(-1,if(VerticalText.uiVertical()) -2 else dp(48)))
+        val actionView=if(VerticalText.uiVertical()) ResponsiveDialogColumns(activity).apply {addView(actions)} else actions
+        body.region(actionView,.35f,"terms_actions_scroll")
         dialog.setContentView(body)
         LocaleTypography.install(body)
         fun resize() {
             val m=activity.resources.displayMetrics
-            dialog.window?.setLayout((m.widthPixels*.94f).toInt(),(m.heightPixels*.88f).toInt())
+            dialog.window?.setLayout((m.widthPixels*.94f).toInt(),android.view.ViewGroup.LayoutParams.WRAP_CONTENT)
         }
         val callback=object : ComponentCallbacks {
             override fun onConfigurationChanged(config: Configuration) { resize() }
