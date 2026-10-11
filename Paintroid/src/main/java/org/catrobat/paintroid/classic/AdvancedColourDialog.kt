@@ -100,12 +100,12 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             for (i in 0 until tabs.childCount) tabs.getChildAt(i).isSelected = i == when (mode) { 0 -> 0; 3 -> 1; else -> 2 }
         }
         listOf(Triple(ui(R.string.ui_palette), "colour_mode_0", 0), Triple(ui(R.string.ui_honeycomb), "colour_mode_3", 3), Triple(ui(R.string.ui_advanced), "colour_advanced_tab", 1)).forEach { (name, tag, mode) ->
-            tabs.addView(button(name, tag) { selectMode(mode) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+            tabs.addView(button(name, tag) { selectMode(mode) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }
         editorPanel.addView(tabs)
         val advancedTabs = LinearLayout(activity)
         listOf(ui(R.string.ui_spectrum), ui(R.string.ui_wheel)).forEachIndexed { i, name ->
-            advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+            advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }
         advanced.addView(advancedTabs)
         advanced.addView(surface, LinearLayout.LayoutParams(-1, dp(190)))
@@ -206,9 +206,9 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         }.apply { tag = "new_colour_preview" }
         sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
         previewRow.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
-        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0 }
+        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }
         if(addingToPalette) saveCustomButton.visibility=View.GONE
-        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
+        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,-2,1f))
         fixedPanel.addView(previewRow)
         refreshCustom()
         fun field(key: String, hintText: String, max: Int): LinearLayout {

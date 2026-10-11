@@ -21,7 +21,8 @@ class ColourBaselineContractTest(unittest.TestCase):
         self.assertEqual(SOURCE.read_bytes().count(original),1)
         self.assertEqual(re.findall(r'@Test fun (\w+)',SOURCE.read_text()),
                          ['normalAdvancedColourKeepsFiniteViewportAndFixedControls',
-                          'retainedColourStateSurvivesRotationImeCancelAndReopen'])
+                          'retainedColourStateSurvivesRotationImeCancelAndReopen',
+                          'hungarianColourCaptionsFitPortraitAndLandscape'])
 
     def test_fixture_and_native_pointer_helpers_are_original(self):
         original=(ORIGINAL/'LocalizedDialogDeviceTest.df214fee.kt.txt').read_text()
@@ -71,6 +72,26 @@ class ColourBaselineContractTest(unittest.TestCase):
         self.assertIn('Native surface drag',SOURCE.read_text())
         self.assertIn('colour-native-scroll-route',SOURCE.read_text())
         self.assertIn('removeOnGlobalLayoutListener(layoutListener)',after)
+
+    def test_intrinsic_captions_and_native_back_successor_keep_strict_outcomes(self):
+        production=(ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt').read_text()
+        source=SOURCE.read_text()
+        helper=(EVIDENCE/'native-back-successor-helper.d7f1a958.kt.txt').read_bytes()
+        self.assertEqual(hashlib.sha256(helper).hexdigest(),'46c005dee8a443e69daa0fe0297c38023c00e80e86fd9a1aefea721c65b38c0c')
+        self.assertEqual(SOURCE.read_bytes().count(helper),1)
+        self.assertEqual(production.count('minHeight=dp(44);minimumHeight=dp(44)'),2)
+        self.assertIn('minHeight=dp(48);minimumHeight=dp(48)',production)
+        self.assertIn('previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,-2,1f))',production)
+        self.assertNotIn('device.pressBack(',source)
+        self.assertEqual(source.count('device.pressKeyCode(KeyEvent.KEYCODE_BACK)'),1)
+        self.assertIn('SystemClock.uptimeMillis()-stableImeSince>=250',source)
+        self.assertIn('bottom<=0 || bottom!=lastImeBottom',source)
+        self.assertIn('!reopenedRoot.isAttachedToWindow && activity.window.decorView.hasWindowFocus()',source)
+        self.assertIn('commits==0 && closes==2',source)
+        self.assertIn('assertEquals(1,commits);assertEquals(3,closes)',source)
+        model=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt').read_text()
+        self.assertEqual(model.count('for(tag in listOf("en-US","hu"))'),2)
+        self.assertIn('tabTags.forEach {complete(root.findViewWithTag(it));caption(root.findViewWithTag(it))}',model)
 
     def test_timeout_capture_runs_before_original_dismissal_and_remains_failure(self):
         source=SOURCE.read_text()

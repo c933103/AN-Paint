@@ -1,0 +1,25 @@
+test_baseline_colour_source_identity_and_production_tree_are_pinned (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_baseline_colour_source_identity_and_production_tree_are_pinned) ... ok
+test_candidate_retains_colour_math_validation_commit_and_input_configuration (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_candidate_retains_colour_math_validation_commit_and_input_configuration) ... ok
+test_fixture_and_native_pointer_helpers_are_original (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_fixture_and_native_pointer_helpers_are_original) ... ok
+test_intrinsic_captions_and_native_back_successor_keep_strict_outcomes (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_intrinsic_captions_and_native_back_successor_keep_strict_outcomes) ... ok
+test_original_positive_method_remains_verbatim (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_original_positive_method_remains_verbatim) ... ok
+test_timeout_capture_runs_before_original_dismissal_and_remains_failure (tools.test_colour_viewport_baseline.ColourBaselineContractTest.test_timeout_capture_runs_before_original_dismissal_and_remains_failure) ... ok
+test_app_instrumentation_matrix (unittest.loader._FailedTest.test_app_instrumentation_matrix) ... ERROR
+
+======================================================================
+ERROR: test_app_instrumentation_matrix (unittest.loader._FailedTest.test_app_instrumentation_matrix)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_app_instrumentation_matrix
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-colour-viewport-20261011/tools/test_app_instrumentation_matrix.py", line 13, in <module>
+    from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, PHASE_TIMEOUTS,
+ModuleNotFoundError: No module named 'app_instrumentation_matrix'
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+FAILED (errors=1)

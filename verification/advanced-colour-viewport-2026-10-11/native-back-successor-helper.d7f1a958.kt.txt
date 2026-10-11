@@ -1,0 +1,47 @@
+    private fun backWindowState(root: View): JSONObject {
+        val focused=WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}
+        val targetInsets=root.rootWindowInsets
+        val focusedInsets=focused?.rootWindowInsets
+        return JSONObject().put("target_attached",root.isAttachedToWindow)
+            .put("target_showing",root.isShown && root.isAttachedToWindow).put("target_focused",root.hasWindowFocus())
+            .put("target_insets_available",targetInsets!=null)
+            .put("target_ime_visible",targetInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+            .put("focused_app_window_present",focused!=null).put("focused_app_window_is_target",focused===root)
+            .put("focused_app_window_is_editor",focused===activity.window.decorView)
+            .put("focused_insets_available",focusedInsets!=null)
+            .put("focused_app_window_ime_visible",focusedInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+    }
+
+    /** androidx.test.uiautomator:uiautomator:2.2.0 pressBack waits for a
+     * TYPE_WINDOW_CONTENT_CHANGED event; its false result is not an injection
+     * result. pressKeyCode instead reports the single native DOWN/UP pair.
+     * Primary source: https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.2.0/uiautomator-2.2.0-sources.jar
+     * JAR SHA256: e1f438106ac0d26b80ecf4fd6ffe6d36f60e12bdcd6316903f802ed24d00be99.
+     * App state/callbacks remain a separate oracle; never retry a Back action.
+     */
+    private fun nativeBack(label: String,state: ()->JSONObject,condition: ()->Boolean) {
+        val before=onMain(state)
+        evidence.observe(JSONObject().put("kind","native-back-before").put("label",label)
+            .put("state",before).put("postcondition_met",onMain(condition)))
+        assertTrue("Back target is attached, visible and focused",before.getBoolean("target_attached") &&
+            before.getBoolean("target_showing") && before.getBoolean("target_focused"))
+        assertFalse("Back must establish a new app outcome",onMain(condition))
+        var injected: Boolean?=null
+        var completed=false
+        try {
+            checkDeadline()
+            injected=device.pressKeyCode(KeyEvent.KEYCODE_BACK)
+            evidence.observe(JSONObject().put("kind","native-back-injected").put("label",label)
+                .put("route","UiDevice.pressKeyCode(KEYCODE_BACK)").put("keycode",KeyEvent.KEYCODE_BACK)
+                .put("injection_count",1).put("injected",injected).put("state",onMain(state)))
+            assertTrue("Native Back DOWN/UP injection succeeded",injected==true)
+            await("native Back outcome: $label",condition)
+            completed=true
+        } finally {
+            // This runs inside the caller's try: its dismiss()/finish() cleanup
+            // has not happened yet, including when injection or waiting fails.
+            evidence.observe(JSONObject().put("kind","native-back-after").put("label",label)
+                .put("injected",injected ?: JSONObject.NULL).put("completed",completed)
+                .put("postcondition_met",onMain(condition)).put("state",onMain(state)))
+        }
+    }

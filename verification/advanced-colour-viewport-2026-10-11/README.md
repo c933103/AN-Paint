@@ -106,3 +106,42 @@ source preservation and a host contract alone cannot establish that these two
 real input routes work.
 
 The successor native scroll gesture keeps both pointer endpoints on the measured gutter x-coordinate, so it is a vertical drag rather than crossing into the colour surface. The source-preservation comparison explicitly normalizes both endpoints back to their historical centre coordinates.
+
+## First candidate outcome and caption/state successor
+
+[Run38115531753](https://github.com/c933103/AN-Paint/actions/runs/38115531753)
+passed the original positive viewport case on installed API35: editor364×86,
+content470px and a real gutter swipe from scrollY0 to55 with fully visible fixed
+controls, native Cancel, one close and no commit. Its separate state case failed
+on the reopened-picker UiDevice.pressBack event-wait Boolean; final close-state
+and invalid/valid commit checks were unrun. Ordinary18/18 completed in152.365s
+without timeout; restart was correctly withheld. All814 JVM methods, lint,
+production/test APK compilation and generation passed, but that is not a full
+installed-state or usability acceptance. `candidate-run-38115531753/` preserves
+raw exports, all original captures/reports and exact source/APK bindings.
+
+Pixel/intrinsic review additionally found Hungarian1× Add-caption clipping in the
+new side column and a portrait Honeycomb caption clipped by the baseline-identical
+44dp tab construction. The next narrow correction uses intrinsic wrapping heights
+with unchanged44dp tab/48dp Add minimums, never smaller fonts. Strict SDK30/35 model
+coverage checks every main/submode caption and Add for en-US/hu in portrait and
+landscape. A short additional installed Hungarian1× case checks these same captions
+and actual Cancel/no commit. The ordinary phase still has180s for all19 methods.
+
+The next state harness uses the exact native Back helper pinned from PR49
+d7f1a958: one pressKeyCode(KEYCODE_BACK) DOWN/UP pair, then a new exact target-window,
+focus, value/selection and callback outcome recorded before cleanup. The first
+trial remains failed; merely changing the key helper grants no acceptance.
+The prior IME flag was captured before native onShown and its PNG had no rendered
+keyboard. The successor requires a positive IME inset stable for250ms before the
+screenshot and one native Back that hides it while retaining the same dialog,
+field, draft, selection and zero commits/closes. Reopened-dialog Back instead must
+detach that exact root, restore editor focus and produce exactly the second close
+without committing. The complete invalid/valid commit sequence must then pass.
+Large-text2× still has observed clipped captions/preview and remains unaccepted.
+
+Successor local checks:552 full host tests pass;15 focused inventory/source cases
+pass after correcting the local PYTHONPATH invocation (the original import-error
+log is retained). Six source contracts also pass under PYTHONOPTIMIZE=1. These are
+host checks only; fresh exact-head Android results remain required for the
+intrinsic captions, rendered IME and complete native Back/commit outcomes.

@@ -898,8 +898,8 @@ A passing host contract or collected screenshot is not an installed test pass.
 See `verification/advanced-colour-viewport-2026-10-11/` for exact source identity,
 the preserved original positive method and actual run status.
 
-The separate candidate now has two installed colour methods (27 declared app
-methods, three API 30 suppressions). The original positive method is unchanged;
+The separate candidate now has three installed colour methods (28 declared app
+methods, four API 30 suppressions). The original positive method is unchanged;
 rotation, retained state, IME dismissal, Cancel/reopen and native validation/commit
 are a distinct method. The ordinary app phase remains 180 seconds. Baseline run
 38112708313 established the zero viewport on unchanged production source and
@@ -917,3 +917,11 @@ and no-commit assertions are retained. A complementary installed native surface
 drag verifies colour editing and unchanged parent scroll position. The original
 failed source/route remains archived; helper byte identity is not claimed for
 this documented correction.
+
+The caption/state successor retains failed run38115531753. It adds native Hungarian
+1× portrait/landscape caption checks, intrinsic44/48dp minimum button sizing, one
+native BACK pair with exact pre-cleanup outcome checks, and a positive IME inset
+stable for250ms before capture. No phase/case timeout is enlarged. The prior
+ordinary run used152.365s, failed only the reopened-Back event-wait Boolean and did
+not execute the final invalid/valid commit section. Its viewport case passed;
+2× and its too-early keyboard screenshot are not visual usability acceptance.

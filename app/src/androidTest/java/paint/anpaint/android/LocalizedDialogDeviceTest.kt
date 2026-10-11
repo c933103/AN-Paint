@@ -18,6 +18,8 @@ import android.os.Looper
 import android.os.SystemClock
 import android.provider.Settings
 import android.view.View
+import android.view.KeyEvent
+import android.view.WindowInsets
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
 import android.view.inputmethod.InputMethodManager
@@ -130,10 +132,15 @@ class LocalizedDialogDeviceTest {
                     assertTrue(root.findViewWithTag<View>("colour_editor_scroll").height>0)
                     slots.forEach {assertTrue("Saved slot retains a finite size",it.width>0 && it.height>0)}
                     if(!landscape) slots.forEach {assertComplete(it)}
-                    for(tag in listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour")) {
-                        val view=root.findViewWithTag<View>(tag);assertComplete(view)
-                        if(view is TextView) intrinsic(view)
+                    for(tag in listOf("colour_mode_0","colour_mode_3","colour_advanced_tab",
+                            "colour_mode_1","colour_mode_2","add_custom_colour")) {
+                        val view=root.findViewWithTag<TextView>(tag)
+                        intrinsic(view)
+                        // Spectrum/Wheel may be inside the scrollable body;
+                        // their full intrinsic captions must still fit their views.
+                        if(tag !in listOf("colour_mode_1","colour_mode_2")) assertComplete(view)
                     }
+                    assertComplete(root.findViewWithTag("custom_colours_panel"))
                 }
                 evidence.capture(if(landscape) "retained-landscape" else "retained-portrait")
             }
@@ -183,25 +190,52 @@ class LocalizedDialogDeviceTest {
                 field.setSelection(2,5)
                 activity.getSystemService(InputMethodManager::class.java).showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
             }
-            await("actual IME visible") {root.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())==true}
+            var lastImeBottom=0;var stableImeSince=SystemClock.uptimeMillis()
+            await("actual IME occupies a stable positive inset") {
+                val insets=root.rootWindowInsets
+                val bottom=insets?.getInsets(WindowInsets.Type.ime())?.bottom ?: 0
+                if(insets?.isVisible(WindowInsets.Type.ime())!=true || bottom<=0 || bottom!=lastImeBottom) {
+                    lastImeBottom=bottom;stableImeSince=SystemClock.uptimeMillis();false
+                } else SystemClock.uptimeMillis()-stableImeSince>=250
+            }
             evidence.observe(onMain {JSONObject().put("kind","colour-ime-visible")
-                .put("ime_visible",root.rootWindowInsets!!.isVisible(android.view.WindowInsets.Type.ime()))
+                .put("ime_visible",root.rootWindowInsets!!.isVisible(WindowInsets.Type.ime()))
+                .put("ime_inset_bottom",root.rootWindowInsets!!.getInsets(WindowInsets.Type.ime()).bottom)
+                .put("stable_inset_ms",SystemClock.uptimeMillis()-stableImeSince)
+                .put("dialog",geometry(root)).put("editor",geometry(inner))
                 .put("field",geometry(field)).put("value",field.text.toString())
-                .put("note","IME/extract view may cover dialog controls; no simultaneous visibility acceptance")})
+                .put("note","Positive stable IME inset before screenshot; no simultaneous field/footer fit acceptance")})
             evidence.capture("colour-ime-visible")
-            assertTrue("Native Back dismisses the IME",device.pressBack())
-            await("IME hidden with dialog retained") {dialog.isShowing &&
-                root.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())!=true}
-            settle(root);retained()
+            nativeBack("hide colour IME",{
+                backWindowState(root).put("dialog_showing",dialog.isShowing).put("value",field.text.toString())
+                    .put("ime_inset_bottom",root.rootWindowInsets?.getInsets(WindowInsets.Type.ime())?.bottom ?: JSONObject.NULL)
+                    .put("commit_callbacks",commits).put("closed_callbacks",closes)
+            }) {
+                dialog.isShowing && root.isAttachedToWindow && root.hasWindowFocus() &&
+                    dialog.window!!.decorView===root && root.findViewWithTag<View>("colour_hex")===field &&
+                    root.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false &&
+                    root.rootWindowInsets?.getInsets(WindowInsets.Type.ime())?.bottom==0 &&
+                    field.text.toString()=="#13579B" && picker.value.colour==0xff13579b.toInt() &&
+                    field.selectionStart==2 && field.selectionEnd==5 && commits==0 && closes==0
+            }
+            settle(root);retained();evidence.capture("colour-ime-hidden-retained")
             tap("colour state cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
             await("state Cancel closes") {!dialog.isShowing}
             onMain {assertEquals(0,commits);assertEquals(1,closes);assertEquals(android.graphics.Color.RED,preview)}
             val reopened=open(1);picker=reopened.first;dialog=reopened.second
             await("reopened colour ready") {dialog.window!!.decorView.hasWindowFocus()}
             onMain {assertEquals("#FF0000",dialog.window!!.decorView.findViewWithTag<EditText>("colour_hex").text.toString())}
-            assertTrue("Native Back closes reopened picker",device.pressBack())
-            await("reopened picker closed") {!dialog.isShowing}
+            val reopenedRoot=onMain {dialog.window!!.decorView}
+            nativeBack("close reopened colour picker",{
+                backWindowState(reopenedRoot).put("dialog_showing",dialog.isShowing)
+                    .put("commit_callbacks",commits).put("closed_callbacks",closes)
+                    .put("selected_colour",selected).put("preview_colour",preview)
+            }) {
+                !dialog.isShowing && !reopenedRoot.isAttachedToWindow && activity.window.decorView.hasWindowFocus() &&
+                    commits==0 && closes==2 && selected==android.graphics.Color.RED && preview==android.graphics.Color.RED
+            }
             onMain {assertEquals(0,commits);assertEquals(2,closes)}
+            evidence.capture("colour-reopened-back-closed")
             val third=open(1);picker=third.first;dialog=third.second
             await("third colour ready") {dialog.window!!.decorView.hasWindowFocus()}
             val finalField=onMain {dialog.window!!.decorView.findViewWithTag<EditText>("colour_hex")}
@@ -218,6 +252,84 @@ class LocalizedDialogDeviceTest {
                     .put("selected",String.format(Locale.ROOT,"#%06X",selected and 0xffffff)))
             }
         } finally {onMain {dialog.dismiss()}}
+    }
+
+    @Test fun hungarianColourCaptionsFitPortraitAndLandscape()=fixture("hu",1f) {scenario ->
+        var commits=0;var closes=0
+        val dialog=onMain {AdvancedColourDialog(activity,android.graphics.Color.RED,false,
+            closed={closes++},initialMode=1) {commits++}.show()}
+        try {
+            await("Hungarian colour ready") {dialog.window!!.decorView.hasWindowFocus()}
+            val root=onMain {dialog.window!!.decorView}
+            for(landscape in listOf(false,true)) {
+                orient(landscape,scenario);settle(root)
+                onMain {
+                    val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+                    assertTrue(inner.height>0 && inner.getChildAt(0).height>inner.height)
+                    for(tag in listOf("colour_mode_0","colour_mode_3","colour_advanced_tab",
+                            "colour_mode_1","colour_mode_2","add_custom_colour")) {
+                        val view=root.findViewWithTag<TextView>(tag);intrinsic(view);assertComplete(view)
+                    }
+                    assertComplete(root.findViewWithTag("custom_colours_panel"))
+                    assertEquals(0,commits);assertEquals(0,closes)
+                    evidence.observe(JSONObject().put("kind","hungarian-colour-captions-fit")
+                        .put("landscape",landscape).put("inner",geometry(inner))
+                        .put("add",geometry(root.findViewWithTag("add_custom_colour"))))
+                }
+                evidence.capture(if(landscape) "hungarian-captions-landscape" else "hungarian-captions-portrait")
+            }
+            tap("Hungarian colour Cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
+            await("Hungarian colour Cancel closes") {!dialog.isShowing && !root.isAttachedToWindow &&
+                activity.window.decorView.hasWindowFocus() && commits==0 && closes==1}
+        } finally {onMain {dialog.dismiss()}}
+    }
+
+    private fun backWindowState(root: View): JSONObject {
+        val focused=WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}
+        val targetInsets=root.rootWindowInsets
+        val focusedInsets=focused?.rootWindowInsets
+        return JSONObject().put("target_attached",root.isAttachedToWindow)
+            .put("target_showing",root.isShown && root.isAttachedToWindow).put("target_focused",root.hasWindowFocus())
+            .put("target_insets_available",targetInsets!=null)
+            .put("target_ime_visible",targetInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+            .put("focused_app_window_present",focused!=null).put("focused_app_window_is_target",focused===root)
+            .put("focused_app_window_is_editor",focused===activity.window.decorView)
+            .put("focused_insets_available",focusedInsets!=null)
+            .put("focused_app_window_ime_visible",focusedInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
+    }
+
+    /** androidx.test.uiautomator:uiautomator:2.2.0 pressBack waits for a
+     * TYPE_WINDOW_CONTENT_CHANGED event; its false result is not an injection
+     * result. pressKeyCode instead reports the single native DOWN/UP pair.
+     * Primary source: https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.2.0/uiautomator-2.2.0-sources.jar
+     * JAR SHA256: e1f438106ac0d26b80ecf4fd6ffe6d36f60e12bdcd6316903f802ed24d00be99.
+     * App state/callbacks remain a separate oracle; never retry a Back action.
+     */
+    private fun nativeBack(label: String,state: ()->JSONObject,condition: ()->Boolean) {
+        val before=onMain(state)
+        evidence.observe(JSONObject().put("kind","native-back-before").put("label",label)
+            .put("state",before).put("postcondition_met",onMain(condition)))
+        assertTrue("Back target is attached, visible and focused",before.getBoolean("target_attached") &&
+            before.getBoolean("target_showing") && before.getBoolean("target_focused"))
+        assertFalse("Back must establish a new app outcome",onMain(condition))
+        var injected: Boolean?=null
+        var completed=false
+        try {
+            checkDeadline()
+            injected=device.pressKeyCode(KeyEvent.KEYCODE_BACK)
+            evidence.observe(JSONObject().put("kind","native-back-injected").put("label",label)
+                .put("route","UiDevice.pressKeyCode(KEYCODE_BACK)").put("keycode",KeyEvent.KEYCODE_BACK)
+                .put("injection_count",1).put("injected",injected).put("state",onMain(state)))
+            assertTrue("Native Back DOWN/UP injection succeeded",injected==true)
+            await("native Back outcome: $label",condition)
+            completed=true
+        } finally {
+            // This runs inside the caller's try: its dismiss()/finish() cleanup
+            // has not happened yet, including when injection or waiting fails.
+            evidence.observe(JSONObject().put("kind","native-back-after").put("label",label)
+                .put("injected",injected ?: JSONObject.NULL).put("completed",completed)
+                .put("postcondition_met",onMain(condition)).put("state",onMain(state)))
+        }
     }
 
     private fun fixture(tag: String,scale: Float,block: (ActivityScenario<ClassicPaintActivity>)->Unit) {

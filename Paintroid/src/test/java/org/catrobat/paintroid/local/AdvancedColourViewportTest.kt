@@ -51,15 +51,20 @@ class AdvancedColourViewportTest {
         assertTrue("Visible: ${view.tag}",view.getLocalVisibleRect(local))
         assertEquals("All ancestors retain complete bounds: ${view.tag}",Rect(0,0,view.width,view.height),local)
     }
+    private val tabTags=listOf("colour_mode_0","colour_mode_3","colour_advanced_tab","colour_mode_1","colour_mode_2")
     private fun caption(view: TextView) {
         val layout=checkNotNull(view.layout)
         assertTrue(layout.lineCount>0)
         val transformed=view.transformationMethod?.getTransformation(view.text,view) ?: view.text
         assertEquals(transformed.length,layout.getLineEnd(layout.lineCount-1))
         assertTrue(layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom)
-        for(line in 0 until layout.lineCount) assertEquals(0,layout.getEllipsisCount(line))
+        for(line in 0 until layout.lineCount) {
+            assertEquals(0,layout.getEllipsisCount(line))
+            assertTrue(layout.getLineLeft(line)>=-.5f && layout.getLineRight(line)<=layout.width+.5f)
+        }
     }
-    @Test fun wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors()=withPicker {dialog ->
+    @Test fun wideShortLandscapeKeepsEditorAndFixedControlsInsideAllAncestors() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
         val root=dialog.window!!.decorView
         val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
         complete(inner)
@@ -68,16 +73,21 @@ class AdvancedColourViewportTest {
             val view=root.findViewWithTag<View>(tag);complete(view)
             if(view is TextView) caption(view)
         }
+        tabTags.forEach {complete(root.findViewWithTag(it));caption(root.findViewWithTag(it))}
         complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
+      }
     }
     @Test @Config(qualifiers="w320dp-h640dp-port-mdpi")
-    fun portraitKeepsAllSixteenSavedSlotsAtFiniteWidths()=withPicker {dialog ->
+    fun portraitKeepsAllSixteenSavedSlotsAtFiniteWidths() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
         val root=dialog.window!!.decorView
         val slots=(0 until 16).map {root.findViewWithTag<View>("custom_colour_$it")}
         assertEquals(16,slots.toSet().size)
         assertEquals(8,(slots.first().parent as GridLayout).columnCount)
         slots.forEach {complete(it);assertTrue(it.contentDescription.isNotBlank())}
-        complete(root.findViewWithTag("add_custom_colour"))
+        complete(root.findViewWithTag("add_custom_colour"));caption(root.findViewWithTag("add_custom_colour"))
+        tabTags.forEach {complete(root.findViewWithTag(it));caption(root.findViewWithTag(it))}
+      }
     }
     @Test @Config(qualifiers="w412dp-h900dp-port-mdpi")
     fun verticalScriptRetainsItsSeparateFormAndSixteenFiniteSavedSlots()=withPicker("mnc-Mong") {dialog ->
