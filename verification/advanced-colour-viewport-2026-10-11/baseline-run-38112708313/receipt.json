@@ -1,0 +1,540 @@
+{
+  "schema": 1,
+  "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+  "test_method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+  "device_sdk": 35,
+  "fingerprint": "google\/sdk_gphone64_x86_64\/emu64xa:15\/AE3A.240806.043\/12960925:userdebug\/dev-keys",
+  "package": "paint.anpaint.android",
+  "version_name": "0.0.38",
+  "version_code": 95,
+  "source_tests_sha256": "bfb0bf6cdb5ba072bcca64cfc5fa3de017d5a31d345433841d07ad2a05318643",
+  "source_binding": "runner-supplied-needs-host-comparison",
+  "observations": [
+    {
+      "kind": "orientation",
+      "landscape": false,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 1
+    },
+    {
+      "kind": "fixture",
+      "locale": "en-US",
+      "font_scale": 1,
+      "setup": "real installed dialogs; synthetic editor data; native pointer actions"
+    },
+    {
+      "kind": "orientation",
+      "landscape": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 1
+    },
+    {
+      "kind": "colour-pre-assert-allocation",
+      "device_sdk": 35,
+      "font_scale": 1,
+      "density": 1,
+      "visible_display_frame": [
+        0,
+        24,
+        640,
+        296
+      ],
+      "display": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 640,
+        "height": 320,
+        "measured_width": 640,
+        "measured_height": 320,
+        "layout_width": -1,
+        "layout_height": -1,
+        "layout_weight": null,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dialog": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          112,
+          24,
+          528,
+          296
+        ],
+        "visible": [
+          112,
+          24,
+          528,
+          296
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 416,
+        "height": 272,
+        "measured_width": 416,
+        "measured_height": 272,
+        "layout_width": -2,
+        "layout_height": -2,
+        "layout_weight": null,
+        "padding": [
+          16,
+          16,
+          16,
+          16
+        ]
+      },
+      "holder": {
+        "class": "org.catrobat.paintroid.classic.AdvancedColourDialog$show$holder$1",
+        "tag": "colour_dialog_holder",
+        "raw": [
+          128,
+          86,
+          512,
+          224
+        ],
+        "visible": [
+          128,
+          86,
+          512,
+          224
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 384,
+        "height": 138,
+        "measured_width": 384,
+        "measured_height": 138,
+        "layout_width": -1,
+        "layout_height": -1,
+        "layout_weight": null,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "holder_parent": {
+        "class": "android.widget.FrameLayout",
+        "tag": null,
+        "raw": [
+          128,
+          86,
+          512,
+          224
+        ],
+        "visible": [
+          128,
+          86,
+          512,
+          224
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 384,
+        "height": 138,
+        "measured_width": 384,
+        "measured_height": 138,
+        "layout_width": -1,
+        "layout_height": -2,
+        "layout_weight": null,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "inner": {
+        "class": "android.widget.ScrollView",
+        "tag": "colour_editor_scroll",
+        "raw": [
+          140,
+          134,
+          500,
+          134
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 360,
+        "height": 0,
+        "measured_width": 360,
+        "measured_height": 0,
+        "layout_width": -1,
+        "layout_height": 0,
+        "layout_weight": 1,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "inner_content": {
+        "class": "android.widget.LinearLayout",
+        "tag": null,
+        "raw": [
+          140,
+          134,
+          500,
+          604
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true,
+        "width": 360,
+        "height": 470,
+        "measured_width": 360,
+        "measured_height": 470,
+        "layout_width": -1,
+        "layout_height": -1,
+        "layout_weight": null,
+        "padding": [
+          0,
+          4,
+          0,
+          8
+        ]
+      },
+      "native_panels": [
+        {
+          "class": "com.android.internal.widget.AlertDialogLayout",
+          "tag": null,
+          "raw": [
+            128,
+            40,
+            512,
+            280
+          ],
+          "visible": [
+            128,
+            40,
+            512,
+            280
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 384,
+          "height": 240,
+          "measured_width": 384,
+          "measured_height": 240,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "class": "android.widget.LinearLayout",
+          "tag": null,
+          "raw": [
+            128,
+            40,
+            512,
+            86
+          ],
+          "visible": [
+            128,
+            40,
+            512,
+            86
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 384,
+          "height": 46,
+          "measured_width": 384,
+          "measured_height": 46,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": 0,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "class": "android.widget.FrameLayout",
+          "tag": null,
+          "raw": [
+            128,
+            86,
+            512,
+            224
+          ],
+          "visible": [
+            128,
+            86,
+            512,
+            224
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 384,
+          "height": 138,
+          "measured_width": 384,
+          "measured_height": 138,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": 0,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "class": "android.widget.FrameLayout",
+          "tag": null,
+          "raw": [
+            128,
+            86,
+            512,
+            224
+          ],
+          "visible": [
+            128,
+            86,
+            512,
+            224
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 384,
+          "height": 138,
+          "measured_width": 384,
+          "measured_height": 138,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "class": "android.widget.ScrollView",
+          "tag": null,
+          "raw": [
+            128,
+            224,
+            512,
+            280
+          ],
+          "visible": [
+            128,
+            224,
+            512,
+            280
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 384,
+          "height": 56,
+          "measured_width": 384,
+          "measured_height": 56,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": 0,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "fixed": [
+        {
+          "class": "org.catrobat.paintroid.classic.FlowButton",
+          "tag": "colour_advanced_tab",
+          "raw": [
+            380,
+            90,
+            500,
+            134
+          ],
+          "visible": [
+            380,
+            90,
+            500,
+            134
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 120,
+          "height": 44,
+          "measured_width": 120,
+          "measured_height": 44,
+          "layout_width": 0,
+          "layout_height": 44,
+          "layout_weight": 1,
+          "padding": [
+            12,
+            10,
+            12,
+            10
+          ]
+        },
+        {
+          "class": "android.widget.LinearLayout",
+          "tag": "custom_colours_panel",
+          "raw": [
+            140,
+            134,
+            500,
+            195
+          ],
+          "visible": [
+            140,
+            134,
+            500,
+            195
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 360,
+          "height": 61,
+          "measured_width": 360,
+          "measured_height": 61,
+          "layout_width": -1,
+          "layout_height": -2,
+          "layout_weight": 0,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "class": "org.catrobat.paintroid.classic.FlowButton",
+          "tag": "add_custom_colour",
+          "raw": [
+            216,
+            195,
+            500,
+            243
+          ],
+          "visible": [
+            216,
+            195,
+            500,
+            220
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "width": 284,
+          "height": 48,
+          "measured_width": 284,
+          "measured_height": 48,
+          "layout_width": 0,
+          "layout_height": 48,
+          "layout_weight": 1,
+          "padding": [
+            12,
+            10,
+            12,
+            10
+          ]
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "0-colour-pre-assert-allocation.png",
+    "1-failure-before-restoration.png",
+    "2-failure.png"
+  ],
+  "outcome": "failed",
+  "failure": "java.lang.AssertionError: Timed out: normal Advanced Colour laid out",
+  "fixture_elapsed_ms": 9523
+}
