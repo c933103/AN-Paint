@@ -102,7 +102,19 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             self.assertNotIn('R.string.' + key, before + after)
         scope = json.loads((EVIDENCE / 'source-scope.json').read_text())
         for row in scope['unchanged_semantics_files']:
-            self.assertEqual(row['sha256'], hashlib.sha256((ROOT / row['path']).read_bytes()).hexdigest())
+            current = (ROOT / row['path']).read_bytes()
+            if row['path'] == 'Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt':
+                # Preserve the historical whole-file endpoint. The separate About
+                # layout repair permits exactly one pinned presentation-only edit.
+                title = json.loads((ROOT / 'verification/localized-dialog-layout-2026-10-11/minimal-successor/about-title-scope.json').read_text())
+                self.assertEqual(row['path'], title['path'])
+                self.assertEqual(row['sha256'], title['before_sha256'])
+                self.assertEqual(title['after_sha256'], hashlib.sha256(current).hexdigest())
+                self.assertEqual(1, title['count'])
+                self.assertEqual(1, current.count(title['after_fragment'].encode()))
+                self.assertEqual(0, current.count(title['before_fragment'].encode()))
+                current = current.replace(title['after_fragment'].encode(), title['before_fragment'].encode())
+            self.assertEqual(row['sha256'], hashlib.sha256(current).hexdigest())
 
     def test_android_tests_use_all_140_tags_and_actual_webview_route(self):
         tests = ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local'

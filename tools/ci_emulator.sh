@@ -206,6 +206,20 @@ cleanup() {
   set +e
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
   timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1
+  if (( ${dialog_started:-0} )); then
+    if ! timeout --kill-after=3s 15s "$adb" pull \
+        /sdcard/Download/anpaint-ci-dialog-evidence \
+        "$report/dialog-export" > "$report/dialog-pull.log" 2>&1; then
+      progress 'FAILED: could not collect installed dialog evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/dialog_evidence_transport.py "$report/dialog-export" \
+        --ordinary-summary "$report/app/androidTest-results/summary.json" \
+        --output "$report/app/dialog-evidence" --receipt "$report/dialog-evidence.json" \
+        > "$report/dialog-export.log" 2>&1; then
+      progress 'FAILED: incomplete or corrupt installed dialog evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    fi
+  fi
   if (( ${vertical_started:-0} )); then
     mkdir -p "$report/app"
     if ! timeout --kill-after=3s 15s "$adb" pull \
@@ -253,6 +267,9 @@ main() {
   mkdir -p "$report"
   emulator_pid=''
   vertical_started=0
+  dialog_started=0
+  rm -rf "$report/dialog-export" "$report/app/dialog-evidence"
+  rm -f "$report/dialog-evidence.json"
   rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
     "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
   phase='Create virtual device'
@@ -302,6 +319,7 @@ main() {
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
   rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-vertical"
   editor_failed=0
+  if test "$TEST_API" = 35; then dialog_started=1; fi
   phase='Editor instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \

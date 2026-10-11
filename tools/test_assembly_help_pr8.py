@@ -130,7 +130,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         for method in ("setPositiveButton", "show"):
             self.assertFalse(code_locations(wrapper, "override fun " + method))
 
-    def test_help_wrapper_mounts_script_specific_shell_and_installs_typography_on_both_paths(self):
+    def test_help_wrapper_mounts_only_vertical_and_installs_typography_on_both_paths(self):
         create = kotlin_block(self.dialog_wrapper(), "override fun create(): AlertDialog {")
         self.assertCode(create, "val dialog = super.create()")
         self.assertCode(create, "dialog.window!!.decorView.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {")
@@ -138,7 +138,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         self.assertCode(attached, "view.removeOnAttachStateChangeListener(this)")
         post = kotlin_block(attached, "view.post {")
         shown = kotlin_block(post, "if (dialog.isShowing) {")
-        self.assertCode(shown, "if (VerticalText.uiVertical()) mount(dialog) else mountHorizontal(dialog) LocaleTypography.install(dialog.window!!.decorView)")
+        self.assertCode(shown, "if (VerticalText.uiVertical()) mount(dialog) LocaleTypography.install(dialog.window!!.decorView)")
         self.assertCode(create, "return dialog")
 
     def test_vertical_help_preserves_body_and_original_positive_action(self):

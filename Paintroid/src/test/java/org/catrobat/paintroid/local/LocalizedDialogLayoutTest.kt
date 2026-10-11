@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ClipboardManager
+import android.content.ClipData
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -13,10 +14,12 @@ import android.graphics.Rect
 import android.os.Looper
 import android.os.SystemClock
 import android.view.KeyEvent
+import android.view.InputDevice
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.ScrollView
+import android.widget.ListView
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
@@ -33,6 +36,10 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowDisplayManager
+import org.robolectric.shadows.ShadowViewRootImpl
+import org.robolectric.shadow.api.Shadow
+import org.robolectric.util.ReflectionHelpers
 import java.io.File
 import java.time.Duration
 import java.util.Locale
@@ -88,18 +95,38 @@ class LocalizedDialogLayoutTest {
     private fun tap(dialog: Dialog,view: TextView) {
         reveal(view);tapVisible(dialog,view)
     }
+    private fun pointerState(root: View,view: TextView,phase: String,x: Float,y: Float) {
+        val row=JSONObject().put("phase",phase).put("time",SystemClock.uptimeMillis()).put("text",view.text)
+            .put("x",x).put("y",y).put("attached",view.isAttachedToWindow).put("touch_mode",view.isInTouchMode)
+            .put("explicit_focusable",view.hasExplicitFocusable()).put("parent",view.parent?.javaClass?.name)
+        val visible=Rect();view.getLocalVisibleRect(visible);row.put("visible",visible.toShortString())
+        (view.parent as? ListView)?.let {list ->
+            val target=IntArray(2);val origin=IntArray(2);list.getLocationOnScreen(target);root.getLocationOnScreen(origin)
+            row.put("hit_position",list.pointToPosition((x+origin[0]-target[0]).toInt(),(y+origin[1]-target[1]).toInt()))
+                .put("row_position",list.getPositionForView(view)).put("first",list.firstVisiblePosition).put("last",list.lastVisiblePosition)
+            for(field in listOf("mTouchMode","mMotionPosition","mDataChanged","mIsDetaching")) {
+                row.put(field,try {ReflectionHelpers.getField<Any>(list,field)} catch(_: RuntimeException) {"unavailable"})
+            }
+        }
+        val directory=File("build/reports/localized-dialog-layout").apply {mkdirs()}
+        File(directory,"pointer-api${RuntimeEnvironment.getApiLevel()}-${Locale.getDefault().toLanguageTag()}.jsonl").appendText(row.toString()+"\n")
+    }
     private fun tapVisible(dialog: Dialog,view: TextView) {
         val visible=Rect();assertTrue(view.getLocalVisibleRect(visible))
         val root=dialog.window!!.decorView;val target=IntArray(2);val origin=IntArray(2)
         view.getLocationOnScreen(target);root.getLocationOnScreen(origin)
         val x=(target[0]-origin[0]+visible.centerX()).toFloat();val y=(target[1]-origin[1]+visible.centerY()).toFloat()
+        pointerState(root,view,"before-down",x,y)
         val time=SystemClock.uptimeMillis()
         for(action in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP)) {
-            val event=MotionEvent.obtain(time,time+if(action==MotionEvent.ACTION_UP) 40 else 0,action,x,y,0)
+            if(action==MotionEvent.ACTION_UP) shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(40))
+            val event=MotionEvent.obtain(time,SystemClock.uptimeMillis(),action,x,y,0).apply {source=InputDevice.SOURCE_TOUCHSCREEN}
             try {assertTrue("Pointer event was not handled for ${view.text}",root.dispatchTouchEvent(event))} finally {event.recycle()}
+            pointerState(root,view,"after-$action",x,y)
         }
         // ListView retains its real pressed-state delay before delivering an item click.
         shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(200))
+        pointerState(root,view,"after-click-delay",x,y)
     }
     private fun back(dialog: Dialog) {
         dialog.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_BACK))
@@ -144,9 +171,9 @@ class LocalizedDialogLayoutTest {
                     tap(dialog,done);assertFalse(dialog.isShowing)
                 } finally {dialog.dismiss()}
             }
-            var chosen=-1
-            val labels=(noticeKeys.map {ui(it)}+c05Title).toTypedArray()
-            val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_about_credits23)).setItems(labels) {_,index->chosen=index}
+            var chosen=-1;var choiceCalls=0
+            val labels=noticeKeys.map {ui(it)}.toTypedArray()
+            val chooser=EditorDialogBuilder(activity).setScrollableTitle(ui(R.string.ui_about_credits23)).setItems(labels) {_,index->chosen=index;choiceCalls++}
                 .setNegativeButton(ui(R.string.ui_done),null).show();idle()
             try {
                 val heading=chooser.window!!.decorView.findViewWithTag<TextView>("dialog_title");reveal(heading)
@@ -158,9 +185,9 @@ class LocalizedDialogLayoutTest {
                 chooser.listView.setSelectionFromTop(labels.lastIndex,0);idle()
                 val last=chooser.listView.getChildAt(labels.lastIndex-chooser.listView.firstVisiblePosition) as TextView
                 capture(chooser,"chooser",listOf(heading,last,chooser.getButton(AlertDialog.BUTTON_NEGATIVE)))
-                tap(chooser,last);assertEquals(labels.lastIndex,chosen);assertFalse(chooser.isShowing)
+                tap(chooser,last);assertEquals(labels.lastIndex,chosen);assertEquals(1,choiceCalls);assertFalse(chooser.isShowing)
             } finally {chooser.dismiss()}
-            val repeated=EditorDialogBuilder(activity).setTitle(c05Title).setMessage(text).setNegativeButton(ui(R.string.ui_cancel),null).show();idle()
+            val repeated=EditorDialogBuilder(activity).setScrollableTitle(c05Title).setMessage(text).setNegativeButton(ui(R.string.ui_cancel),null).show();idle()
             reveal(repeated.window!!.decorView.findViewWithTag("dialog_title"));back(repeated)
         }
     }
@@ -207,13 +234,16 @@ class LocalizedDialogLayoutTest {
 
     @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
     fun pointerSwipesScrollTitleAndFooterWithoutInvokingActions()=withActivity("hu") {activity ->
-        var calls=0
-        val dialog=EditorDialogBuilder(activity).setTitle(c05Title+" "+c05Title).setMessage("Unchanged body")
-            .setPositiveButton(c05Title) {_,_->calls++}.setNegativeButton(c05Title) {_,_->calls++}
-            .setNeutralButton(c05Title) {_,_->calls++}.show();idle()
+        val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        clipboard.setPrimaryClip(ClipData.newPlainText("sentinel","Swipe must not copy"))
+        val previousAlert=ShadowAlertDialog.getLatestAlertDialog()
+        val dialog=LegalInfo.termsDialog(activity,c05Title+" "+c05Title,"Unchanged body")
+        // Oversized-caption stress fixture on the real controls/listeners; production wording is unchanged.
+        for(tag in listOf("terms_copy","terms_more","terms_done")) dialog.window!!.decorView.findViewWithTag<TextView>(tag).text=c05Title
+        dialog.show();idle()
         try {
             val root=dialog.window!!.decorView
-            for(tag in listOf("dialog_title_scroll","dialog_actions_scroll")) {
+            for(tag in listOf("terms_title_scroll","terms_actions_scroll")) {
                 val scroll=root.findViewWithTag<ScrollView>(tag)
                 assertTrue(tag,scroll.getChildAt(0).height>scroll.height)
                 val before=scroll.scrollY;val location=IntArray(2);val origin=IntArray(2)
@@ -224,14 +254,52 @@ class LocalizedDialogLayoutTest {
                 val time=SystemClock.uptimeMillis()
                 for(step in 0..10) {
                     val action=when(step) {0->MotionEvent.ACTION_DOWN;10->MotionEvent.ACTION_UP;else->MotionEvent.ACTION_MOVE}
-                    val event=MotionEvent.obtain(time,time+step*20L,action,x,start+(end-start)*step/10,0)
+                    if(step>0) shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(20))
+                    val event=MotionEvent.obtain(time,SystemClock.uptimeMillis(),action,x,start+(end-start)*step/10,0).apply {source=InputDevice.SOURCE_TOUCHSCREEN}
                     try {assertTrue(root.dispatchTouchEvent(event))} finally {event.recycle()}
                 }
+                // Let the real fling finish; a DOWN during a fling is a stop gesture, not a button tap.
+                shadowOf(Looper.getMainLooper()).idleFor(Duration.ofSeconds(3))
+                val settled=scroll.scrollY
                 shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(250))
-                assertTrue("Native swipe did not scroll $tag",scroll.scrollY>before);assertEquals(0,calls)
+                assertEquals("Scroll must settle before the independent tap",settled,scroll.scrollY)
+                assertTrue("Native swipe did not scroll $tag",scroll.scrollY>before);assertTrue(dialog.isShowing)
+                assertEquals("Swipe must not copy",clipboard.primaryClip!!.getItemAt(0).text.toString())
+                assertSame("Swipe must not open Other terms",previousAlert,ShadowAlertDialog.getLatestAlertDialog())
             }
-            tap(dialog,dialog.getButton(AlertDialog.BUTTON_POSITIVE));assertEquals(1,calls);assertFalse(dialog.isShowing)
+            tap(dialog,root.findViewWithTag("terms_done"));assertFalse(dialog.isShowing)
         } finally {dialog.dismiss()}
+    }
+
+    @Test @Config(fontScale=2f)
+    fun retainedAboutTitleResizesWithoutReplacingItsNativeList()=withActivity("hu") {activity ->
+        var chosen=-1;var choiceCalls=0
+        val dialog=EditorDialogBuilder(activity).setScrollableTitle(c05Title)
+            .setItems(arrayOf(ui(R.string.ui_done),ui(R.string.ui_cancel))) {_,index->chosen=index;choiceCalls++}.show();idle()
+        val root=dialog.window!!.decorView;val list=dialog.listView;val adapter=list.adapter;val before=root.width
+        try {
+            for((index,qualifiers) in listOf("w640dp-h320dp-land-xhdpi","w320dp-h640dp-port-xhdpi").withIndex()) {
+                resizeDisplay(activity,root,qualifiers)
+                assertSame(list,dialog.listView);assertSame(adapter,list.adapter)
+                if(index==0) assertTrue(root.width>before) else assertEquals(before,root.width)
+                val title=root.findViewWithTag<TextView>("dialog_title");reveal(title)
+                assertTrue(root.findViewWithTag<ScrollView>("dialog_title_scroll").height<root.height/2)
+                assertTrue(list.height>0);capture(dialog,"retained-about-$index",listOf(title))
+            }
+            val row=list.getChildAt(0) as TextView;tap(dialog,row)
+            assertEquals(list.firstVisiblePosition,chosen);assertEquals(1,choiceCalls);assertFalse(dialog.isShowing)
+        } finally {dialog.dismiss();RuntimeEnvironment.setQualifiers("w320dp-h640dp-port-xhdpi")}
+    }
+
+    private fun resizeDisplay(activity: Activity,root: View,qualifiers: String) {
+        RuntimeEnvironment.setQualifiers(qualifiers)
+        ShadowDisplayManager.changeDisplay(root.display.displayId,qualifiers)
+        // Resources-only changes leave Robolectric 4.14's ViewRoot frame stale.
+        // Deliver its supported resize callback; never directly measure a child.
+        Shadow.extract<ShadowViewRootImpl>(root.parent).callDispatchResized();idle()
+        @Suppress("DEPRECATION")
+        activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
+        root.dispatchConfigurationChanged(activity.resources.configuration);idle()
     }
 
     @Test @Config(fontScale=2f)
@@ -241,24 +309,45 @@ class LocalizedDialogLayoutTest {
         val dialog=GalleryCredits.showEditor(activity,listOf(original)) {_,_->calls++}!!.dialog;idle()
         val root=dialog.window!!.decorView
         val field=root.findViewWithTag<EditText>("gallery_credit_text");field.setText("Unsaved rotation draft");field.setSelection(3,8);idle()
-        val before=dialog.window!!.attributes.width
+        val before=root.width
         try {
             for((index,qualifiers) in listOf("w640dp-h320dp-land-xhdpi","w320dp-h640dp-port-xhdpi").withIndex()) {
-                RuntimeEnvironment.setQualifiers(qualifiers)
-                @Suppress("DEPRECATION")
-                activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
-                // Dispatch the same framework View callback used by a retained Dialog's ViewRoot.
-                root.dispatchConfigurationChanged(activity.resources.configuration);idle()
+                resizeDisplay(activity,root,qualifiers)
                 assertSame(field,root.findViewWithTag<EditText>("gallery_credit_text"))
                 assertEquals("Unsaved rotation draft",field.text.toString());assertEquals(index,calls)
                 assertEquals(3,field.selectionStart);assertEquals(8,field.selectionEnd)
-                if(index==0) assertTrue(dialog.window!!.attributes.width>before)
-                else assertEquals(before,dialog.window!!.attributes.width)
-                reveal(root.findViewWithTag("dialog_title"));reveal(field)
+                if(index==0) assertTrue(root.width>before)
+                else assertEquals(before,root.width)
+                reveal(field)
                 tap(dialog,root.findViewWithTag("gallery_credit_save"));assertEquals(index+1,calls);assertTrue(dialog.isShowing)
             }
             back(dialog);assertEquals(2,calls)
         } finally {dialog.dismiss();RuntimeEnvironment.setQualifiers("w320dp-h640dp-port-xhdpi")}
+    }
+
+    @Test @Config(fontScale=1f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun advancedColourRetainsItsBoundedHolderAndFixedControls()=withActivity("en-US") {activity ->
+        var committed=0;var closed=0
+        val dialog=AdvancedColourDialog(activity,android.graphics.Color.RED,false,closed={closed++},initialMode=1) {committed++}.show();idle()
+        try {
+            val root=dialog.window!!.decorView
+            val holder=root.findViewWithTag<View>("colour_dialog_holder")
+            assertFalse("Retain native bounded custom holder",holder.parent is ScrollView)
+            val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+            assertTrue(inner.height>0);assertTrue(inner.getChildAt(0).height>inner.height)
+            val fixed=listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour").map {root.findViewWithTag<View>(it)}
+            fun bounds(view: View): Rect {
+                val position=IntArray(2);view.getLocationOnScreen(position)
+                val full=Rect(position[0],position[1],position[0]+view.width,position[1]+view.height)
+                val visible=Rect();assertTrue(view.getGlobalVisibleRect(visible));assertEquals(full,visible)
+                return full
+            }
+            val before=fixed.map {bounds(it)}
+            inner.fullScroll(View.FOCUS_DOWN);shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(500));assertTrue(inner.scrollY>0)
+            assertEquals(before,fixed.map {bounds(it)})
+            tap(dialog,dialog.getButton(AlertDialog.BUTTON_NEGATIVE));assertFalse(dialog.isShowing)
+            assertEquals(0,committed);assertEquals(1,closed)
+        } finally {dialog.dismiss()}
     }
 
     @Test fun outsideDismissalCallsCancelOnceAndNeverRunsAnAction()=withActivity("en-US") {activity ->

@@ -26,14 +26,14 @@ def inventory():
     for tag, path in sorted(paths.items()):
         own = defaults if tag == 'default' else catalogues.read_strings(path)
         rows.append(dict(tag=tag, offered=tag in offered,
-            layout='vertical-columns' if tag in VERTICAL else 'horizontal-responsive-regions',
+            layout='vertical-columns' if tag in VERTICAL else 'horizontal-about-title-and-notice-regions',
             runtime_representative=tag in RUNTIME or tag in VERTICAL,
             source_path=str(path.relative_to(catalogues.ROOT)),
             source_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
             exact_override_keys=[key for key in KEYS if key in own],
             missing_effective_keys=[key for key in KEYS if not own.get(key, defaults[key])]))
     return dict(scope='All canonical catalogues plus default; source applicability only',
-        source_claim='Every catalogue reaches the same shared notice/dialog layout; no translation values change.',
+        source_claim='Every catalogue reaches the same notice regions and About title; other horizontal chooser/custom layouts remain native. No translation values change.',
         fallback_limit='exact_override documents direct source presence, not the full Android locale fallback algorithm.',
         coverage_limit='Selected API30/API35 Robolectric NATIVE profiles only; no full-language, accessibility-service or physical-device acceptance.',
         keys=KEYS, catalogues=len(rows), offered_languages=len(offered), rows=rows)

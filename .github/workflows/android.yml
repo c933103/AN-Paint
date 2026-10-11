@@ -290,7 +290,7 @@ jobs:
           sudo chmod a+rw /dev/kvm
           timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"
       - name: Run prebuilt tests with deadlines and live logs
-        # 2,069s controlled path + 60s processing allowance, rounded up; see CI.md.
+        # 2,087s controlled path + 60s processing allowance, rounded up; see CI.md.
         # Hard cancellation ceiling, not a target runtime or universal liveness bound.
         timeout-minutes: 36
         env:

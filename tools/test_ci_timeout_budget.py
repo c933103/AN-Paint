@@ -90,7 +90,12 @@ def controlled_model(shell, runner):
     boundary_grace = int(one(r'timeout --kill-after=(\d+)s', body(joined, 'credit_restart_command')))
     reset = shell_timeout(body(joined, 'run_vertical_locale_matrix'), r"shell\s+'?rm -rf")[0]
     cleanup = body(joined, 'cleanup')
-    collection = sum(sum(shell_timeout(cleanup, command)) for command in ('logcat -d', 'pull', 'emu kill'))
+    collection = sum(sum(shell_timeout(cleanup, command)) for command in ('logcat -d', 'emu kill'))
+    pulls = re.findall(r'timeout --kill-after=(\d+)s (\d+)s [^\n]*\bpull\b', cleanup)
+    if len(pulls) != 2:
+        raise ValueError('Exactly vertical and dialog evidence pulls are budgeted')
+    collection += sum(int(grace) + int(deadline) for grace, deadline in pulls)
+    dialog_collection = sum(shell_timeout(cleanup, r'pull\s+/sdcard/Download/anpaint-ci-dialog-evidence'))
     collection += int(one(r'for attempt in \$\(seq 1 (\d+)\)', cleanup)) * int(one(r'^      sleep (\d+)$', cleanup))
     prep = preparation['device_sdk'] + preparation['installed'] + preparation['instrumentation']
     seed = prep + phases['app-credit-restart-seed'] + tail + preparation['live']
@@ -104,7 +109,7 @@ def controlled_model(shell, runner):
         'api35_ordinary_or_gallery_failure': success - seed - verify - boundary + 5 * extra_failure,
         'api35_seed_failure': success - verify - (boundary - before_seed) + 4 * extra_failure,
         'api35_last_boundary_failure': success - verify + boundary_grace + 3 * extra_failure,
-        'api30_five_with_five_recoveries': success - seed - verify - boundary + 5 * extra_failure,
+        'api30_five_with_five_recoveries': success - seed - verify - boundary + 5 * extra_failure - dialog_collection,
     }
     return dict(startup=startup, instrumentation=sum(phases.values()), preparation=prep * len(phases),
                 seed_pid=preparation['live'], boundary=boundary, reset=reset, tails=tail * len(phases),
@@ -130,16 +135,16 @@ class TimeoutBudgetTest(unittest.TestCase):
         model, limits, required = validate_budget(WORKFLOW)
         self.assertEqual({k: v for k, v in model.items() if k != 'paths'},
                          dict(startup=270, instrumentation=930, preparation=630, seed_pid=10,
-                              boundary=90, reset=10, tails=35, cleanup=54, recovery=40))
+                              boundary=90, reset=10, tails=35, cleanup=72, recovery=40))
         self.assertEqual(limits, (36, 6, 46))
         self.assertEqual(required, 36)
 
     def test_failure_gates_and_exclusive_tail_paths_are_not_double_counted(self):
         model = controlled_model(SHELL, RUNNER)
         self.assertEqual(model['paths'], {
-            'api35_success': 2029, 'api35_all_seven_with_four_recoveries': 2069,
-            'api35_ordinary_or_gallery_failure': 1669, 'api35_seed_failure': 1864,
-            'api35_last_boundary_failure': 1905, 'api30_five_with_five_recoveries': 1669})
+            'api35_success': 2047, 'api35_all_seven_with_four_recoveries': 2087,
+            'api35_ordinary_or_gallery_failure': 1687, 'api35_seed_failure': 1882,
+            'api35_last_boundary_failure': 1923, 'api30_five_with_five_recoveries': 1669})
         main = body(SHELL, 'main')
         self.assertIn('if (( editor_failed )); then', main)
         self.assertIn('run_credit_restart_regression || failed=1', main)

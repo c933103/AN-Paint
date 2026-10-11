@@ -115,7 +115,7 @@ internal object VerticalUi {
     fun detach(view: View): View { (view.parent as? ViewGroup)?.removeView(view);return view }
 }
 
-/** Responsive horizontal regions; a separate column-based shell for vertical scripts.
+/** Native horizontal dialogs; a separate column-based shell for vertical scripts.
  * Native fields, choice lists and button objects are retained, including validation and accessibility.
  */
 internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(context) {
@@ -124,6 +124,13 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     private var content: View?=null
     override fun setTitle(title: CharSequence?): AlertDialog.Builder {heading=title;return super.setTitle(title)}
     override fun setTitle(titleId: Int): AlertDialog.Builder=setTitle(context.getText(titleId))
+    /** Opt-in for a localized heading that can exceed the native title's line cap.
+     * Keep AlertController's own body, chooser, buttons and window sizing intact. */
+    fun setScrollableTitle(title: CharSequence): EditorDialogBuilder {
+        setTitle(title)
+        if(!VerticalText.uiVertical()) setCustomTitle(ResponsiveDialogTitle(context,title))
+        return this
+    }
     override fun setMessage(message: CharSequence?): AlertDialog.Builder {prose=message;return super.setMessage(message)}
     override fun setMessage(messageId: Int): AlertDialog.Builder=setMessage(context.getText(messageId))
     override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}
@@ -137,51 +144,12 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
             override fun onViewAttachedToWindow(view: View) {
                 view.removeOnAttachStateChangeListener(this)
                 view.post {if(dialog.isShowing) {
-                    if(VerticalText.uiVertical()) mount(dialog) else mountHorizontal(dialog)
+                    if(VerticalText.uiVertical()) mount(dialog)
                     LocaleTypography.install(dialog.window!!.decorView)
                 }}
             }
         })
         return dialog
-    }
-    private fun mountHorizontal(dialog: AlertDialog) {
-        fun dp(n: Int)=(n*context.resources.displayMetrics.density+.5f).toInt()
-        fun resize() {dialog.window!!.setLayout(dp((context.resources.configuration.screenWidthDp*.94).toInt()),ViewGroup.LayoutParams.WRAP_CONTENT)}
-        val shell=ResponsiveDialogLayout(context,::resize).apply {tag="horizontal_dialog"}
-        heading?.let {title ->
-            shell.region(TextView(context).apply {
-                tag="dialog_title";text=title;textSize=20f;setTextColor(EditorColours.onSurface)
-                setPadding(dp(20),dp(12),dp(20),dp(8))
-            },.25f,"dialog_title_scroll")
-        }
-        val list=dialog.listView
-        if(list!=null) {
-            VerticalUi.detach(list)
-            val checked=(0 until list.count).filter {list.isItemChecked(it)}
-            val selected=list.selectedItemPosition
-            list.adapter=WrappingDialogChoices(list.adapter)
-            checked.forEach {list.setItemChecked(it,true)}
-            if(selected>=0) list.setSelection(selected)
-            shell.body(list)
-        } else {
-            val body=LinearLayout(context).apply {orientation=LinearLayout.VERTICAL}
-            prose?.let {message ->
-                // Retain the native message object, so later setMessage calls still update it.
-                val label=dialog.findViewById<TextView>(android.R.id.message) ?: TextView(context).apply {id=android.R.id.message;text=message}
-                VerticalUi.detach(label);label.setSingleLine(false);label.maxLines=Int.MAX_VALUE;label.ellipsize=null
-                label.setPadding(dp(20),dp(8),dp(20),dp(8));body.addView(label,LinearLayout.LayoutParams(-1,-2))
-            }
-            var custom=content
-            if(custom is ScrollView && custom.childCount==1) custom=VerticalUi.detach(custom.getChildAt(0))
-            custom?.let {body.addView(VerticalUi.detach(it),LinearLayout.LayoutParams(-1,-2))}
-            if(body.childCount>0) shell.body(ScrollView(context).apply {tag="dialog_body_scroll";addView(body)})
-        }
-        val actions=ResponsiveDialogActions(context).apply {tag="dialog_actions";setPadding(dp(8),dp(4),dp(8),dp(4))}
-        listOf(AlertDialog.BUTTON_NEUTRAL,AlertDialog.BUTTON_NEGATIVE,AlertDialog.BUTTON_POSITIVE).forEach {which ->
-            dialog.getButton(which)?.takeIf {it.visibility==View.VISIBLE}?.let {actions.action(it)}
-        }
-        if(actions.childCount>0) shell.region(actions,.35f,"dialog_actions_scroll")
-        dialog.setContentView(shell);resize()
     }
     private fun mount(dialog: AlertDialog) {
         fun dp(n: Int)=(n*context.resources.displayMetrics.density+.5f).toInt()

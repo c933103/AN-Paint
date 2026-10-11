@@ -3,7 +3,6 @@ package org.catrobat.paintroid.classic
 
 import android.content.Context
 import android.content.res.Configuration
-import android.database.DataSetObserver
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import android.widget.*
  * The heading/actions have bounded viewports, never bounded text or line counts.
  * The central region retains at least the remaining 40% at the maximum sizes.
  */
-internal class ResponsiveDialogLayout(context: Context,private val resized: (() -> Unit)?=null): LinearLayout(context) {
+internal class ResponsiveDialogLayout(context: Context): LinearLayout(context) {
     init {orientation=VERTICAL;setBackgroundColor(EditorColours.surface)}
     fun region(view: View,fraction: Float,tagName: String) {
         addView(RegionScrollView(context,fraction).apply {tag=tagName;addView(view)},LayoutParams(-1,-2))
@@ -21,7 +20,7 @@ internal class ResponsiveDialogLayout(context: Context,private val resized: (() 
     fun body(view: View) {addView(view,LayoutParams(-1,-2,1f))}
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        resized?.invoke();requestLayout()
+        requestLayout()
     }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         val maximum=(resources.configuration.screenHeightDp*resources.displayMetrics.density*.88f).toInt()
@@ -68,24 +67,23 @@ internal class ResponsiveDialogActions(context: Context): LinearLayout(context) 
     }
 }
 
-/** Preserve the actual ListView, selection modes, IDs and callbacks; remove only
- * the platform row's fixed height and line/ellipsis limits. No synthetic clicks.
- */
-internal class WrappingDialogChoices(private val source: ListAdapter): BaseAdapter() {
-    override fun getCount()=source.count
-    override fun getItem(position: Int)=source.getItem(position)
-    override fun getItemId(position: Int)=source.getItemId(position)
-    override fun getItemViewType(position: Int)=source.getItemViewType(position)
-    override fun getViewTypeCount()=source.viewTypeCount
-    override fun hasStableIds()=source.hasStableIds()
-    override fun isEmpty()=source.isEmpty
-    override fun areAllItemsEnabled()=source.areAllItemsEnabled()
-    override fun isEnabled(position: Int)=source.isEnabled(position)
-    override fun registerDataSetObserver(observer: DataSetObserver)=source.registerDataSetObserver(observer)
-    override fun unregisterDataSetObserver(observer: DataSetObserver)=source.unregisterDataSetObserver(observer)
-    override fun getView(position: Int,convertView: View?,parent: ViewGroup): View =
-        source.getView(position,convertView,parent).also {view ->
-            if(view is TextView) {view.setSingleLine(false);view.maxLines=Int.MAX_VALUE;view.ellipsize=null}
-            view.layoutParams=AbsListView.LayoutParams(-1,-2)
-        }
+/** An About-only custom title inside the otherwise unchanged native AlertDialog.
+ * Cap the viewport, not the caption; native lists/buttons retain their own layout. */
+internal class ResponsiveDialogTitle(context: Context,title: CharSequence): ScrollView(context) {
+    init {
+        tag="dialog_title_scroll"
+        fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
+        addView(TextView(context).apply {
+            tag="dialog_title";text=title;textSize=20f;setTextColor(EditorColours.onSurface)
+            setPadding(dp(24),dp(16),dp(24),dp(12))
+        })
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig);requestLayout()
+    }
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        val maximum=(resources.configuration.screenHeightDp*resources.displayMetrics.density*.22f).toInt()
+        val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) maximum else minOf(maximum,MeasureSpec.getSize(heightMeasureSpec))
+        super.onMeasure(widthMeasureSpec,MeasureSpec.makeMeasureSpec(available,MeasureSpec.AT_MOST))
+    }
 }

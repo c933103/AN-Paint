@@ -205,6 +205,9 @@ class GalleryViewportDeviceTest {
         }
         instrumentation.waitForIdleSync()
     }
+    /** Reuse the same bounded, verified system transition in installed dialog checks. */
+    internal fun transitionFontScale(scale: Float)=setFontScale(scale)
+
     private fun setFontScale(scale: Float) {
         require(scale.isFinite() && scale>0f)
         val deadline=SystemClock.uptimeMillis()+10000

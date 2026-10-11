@@ -879,3 +879,22 @@ release API30/API35 CI, all 96 actual images, eight receipts, 28 native drags,
 source/APK provenance and rendered-image review remain required. Debug is covered
 by the same source path and host selection checks; installed debug compatibility
 must be reported explicitly rather than inferred from release results.
+
+
+## Localized dialog evidence collection (11 October 2026)
+
+API35 ordinary instrumentation now includes three installed dialog methods.
+Their exact-source digest is passed as a runner argument and checked against the
+ordinary report before accepting the app-owned screenshot/geometry exports.
+The disjoint source inventory includes all three methods; API30 explicitly
+suppresses them. The ordinary180-second limit and all other phase limits remain
+unchanged; exceeding one remains a failed run.
+
+EXIT cleanup adds one API35-only15-second dialog-evidence pull with3-second kill
+grace. It preserves partial archives on failure and never lets absent/mismatched
+evidence turn a failed test green. Source-bound budget checks now count72seconds
+for the maximum collection/shutdown path,2047seconds for API35 all-success, and
+2087seconds for the continuing-failure envelope. With the unchanged60-second
+processing allowance,2147seconds still fits the existing36-minute execution cap
+and46-minute job cap. API30 does not perform this pull; its prior bound remains.
+No KVM, permission, signing or repository visibility setting is changed.
