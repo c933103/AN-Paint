@@ -69,9 +69,17 @@ wait was added to the installed fixture, its57 related host checks pass again
 was the preserved historical whole-file Commons guard: a new exact before/after
 hash endpoint now permits only the single About-title presentation call, then
 reconstructs and verifies the original bytes. That failure and both endpoints
-are retained in `minimal-successor/`. Current exact-head Android compilation,
-runtime and installed results remain pending; host checks alone do not accept
-UI behavior.
+are retained in `minimal-successor/`. The minimal head `386078641e8793058573f328ce6c2805216893b9` compiled and passed
+832 JVM cases (including24 focused dialog cases), with no failures/errors/skips
+and lint green in run38107965583. Its installed run failed before the three new
+fixture bodies at the exporter cache-path preflight; existing74 native,16 ordinary,
+3 gallery and4 vertical methods passed, while restart was correctly withheld.
+The ordinary runner took131.244s (instrumentation inner timer129.652s), which
+does not establish timing for the unexecuted fixtures. Ten representative original
+PNG states were inspected, with readable captions in final revealed states;
+per-line reveal is not simultaneous whole-title visibility. See
+`minimal-ci-38107965583/receipt.json` for exact identities and inspection limits.
+The next batched successor below still requires fresh Android execution.
 
 ## Rejected historical iterations
 
@@ -95,3 +103,26 @@ uptime-consistent events, bounded fling settling, and explicit diagnostic traces
 improve the new oracle without accepting the old result. The old rotation test
 changed resources but left the model's window frame at portrait dimensions.
 Its source limitation is corrected separately from actual installed rotation.
+
+## Batched rotation and fixture successor
+
+Exact-head Code review found that the newly used vertical notice rails inherited
+a first-layout-only reading start. Only those two rails now use
+`ResponsiveDialogColumns`: retain the distance from the reading start when the
+content/viewport range changes, clamp shorter ranges, and leave same-range native
+scrolling alone. A focused descendant takes precedence over a touch-reader offset.
+The global ColumnScrollView and unrelated dialogs remain unchanged. New API30/35
+model tests cover both reading directions, untouched start, intentional offsets,
+content/viewport/fitting transitions, deferred native input focus, and a still-open
+notice's landscape→portrait→landscape callbacks, with dismissal unregistering its
+width callback. This does not establish TalkBack or installed vertical rotation.
+
+The installed collector now canonicalizes only Android's trusted app-cache root.
+The private container, exact method directory and bounded regular evidence files
+remain independently confined and reject symlinks; cleanup validates a flat
+inventory before deleting it. The previous failure and original three failed
+method summaries are retained. No layout assertion, method, budget, source-binding
+check or native input requirement is weakened. All562 final-source host checks pass (146.765s), including the five new
+cache-path contracts and the scoped rail contract. Twelve targeted transport/path
+host tests also pass in normal and optimized Python. Fresh successor Kotlin/native/
+installed results are pending; the existing180-second ordinary ceiling remains.

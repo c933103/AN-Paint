@@ -28,6 +28,7 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
     private val context get()=instrumentation.targetContext
     private val resolver get()=context.contentResolver
     private val collection get()=MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    private lateinit var cacheRoot: File
     private lateinit var directory: File
     private lateinit var receipt: JSONObject
     private var captureIndex=0
@@ -37,10 +38,19 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
             check(context.packageName==OWNER && Build.VERSION.SDK_INT==35)
             check(description.className=="paint.anpaint.android.LocalizedDialogDeviceTest")
             check(description.methodName in METHODS)
-            directory=File(context.cacheDir,"dialog-evidence/${description.methodName}")
-            check(!Files.isSymbolicLink(directory.toPath()) && directory.canonicalFile==directory.absoluteFile)
-            if(directory.exists()) check(directory.deleteRecursively())
-            check(directory.mkdirs())
+            // Android may return /data/user/0/... while its canonical cache is
+            // /data/data/.... Normalize this trusted platform root ONLY; aliases
+            // in our controlled descendants must still fail closed.
+            val requestedCache=context.cacheDir.absoluteFile
+            cacheRoot=requestedCache.canonicalFile
+            check(cacheRoot.isDirectory) {"Missing Android cache: requested=$requestedCache canonical=$cacheRoot"}
+            android.util.Log.i("LocalizedDialogDeviceTest",JSONObject().put("kind","evidence-cache-root")
+                .put("requested",requestedCache.path).put("canonical",cacheRoot.path).toString())
+            directory=File(cacheRoot,"dialog-evidence/${description.methodName}")
+            checkEvidenceDirectory()
+            clearEvidenceDirectory()
+            check(directory.mkdirs()) {"Cannot create owned evidence directory: $directory"}
+            checkEvidenceDirectory()
             val supplied=InstrumentationRegistry.getArguments().getString("anpaint_source_tests_sha256")
             check(supplied==null || supplied.matches(Regex("[0-9a-f]{64}")))
             val info=context.packageManager.getPackageInfo(OWNER,0)
@@ -62,7 +72,7 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
                 if(failure==null) failure=error else failure!!.addSuppressed(error)
             }
             // No test data is left in internal cache after the immutable export.
-            try {check(directory.deleteRecursively())} catch(error: Throwable) {
+            try {clearEvidenceDirectory()} catch(error: Throwable) {
                 if(failure==null) failure=error else failure!!.addSuppressed(error)
             }
             failure?.let {throw it}
@@ -77,11 +87,50 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
     fun capture(label: String) {
         check(label.matches(Regex("[A-Za-z0-9_-]+")) && captureIndex<20)
         val name="${captureIndex++}-$label.png"
-        val file=File(directory,name)
+        val file=evidenceFile(name)
         check(UiDevice.getInstance(instrumentation).takeScreenshot(file) && file.length() in 1..MAX_FILE)
         receipt.getJSONArray("screenshots").put(name);write()
     }
-    private fun write() {File(directory,"receipt.json").writeText(receipt.toString(2)+"\n")}
+    private fun write() {evidenceFile("receipt.json").writeText(receipt.toString(2)+"\n")}
+
+    private fun checkConfined(file: File) {
+        val expected=file.absoluteFile
+        val actual=file.canonicalFile
+        check(!Files.isSymbolicLink(file.toPath()) && actual==expected &&
+            actual.toPath().startsWith(cacheRoot.toPath()) && actual!=cacheRoot) {
+            "Noncanonical or linked evidence descendant: expected=$expected actual=$actual root=$cacheRoot"
+        }
+    }
+    private fun checkEvidenceDirectory() {
+        // Check both components, including dangling links and links that resolve
+        // back inside cacheRoot. Canonicalizing the final child would hide these.
+        checkConfined(File(cacheRoot,"dialog-evidence"));checkConfined(directory)
+    }
+    private fun evidenceFile(name: String): File {
+        check(name=="receipt.json" || name.matches(Regex("[0-9]+-[A-Za-z0-9_-]+\\.png")))
+        checkEvidenceDirectory()
+        return File(directory,name).also {checkConfined(it)}
+    }
+    private fun evidenceFiles(): List<File> {
+        checkEvidenceDirectory()
+        val files=checkNotNull(directory.listFiles()) {"Cannot list owned evidence directory: $directory"}.sortedBy {it.name}
+        check(files.size<=21 && files.sumOf {it.length()}<=MAX_CASE) {"Unbounded owned evidence directory: $directory"}
+        for(file in files) {
+            check(file==evidenceFile(file.name) && file.isFile && file.length() in 0..MAX_FILE) {
+                "Nonregular or oversized evidence child: $file"
+            }
+        }
+        return files
+    }
+    private fun clearEvidenceDirectory() {
+        checkEvidenceDirectory()
+        if(!directory.exists()) return
+        // Never recurse through a descendant. Validate the complete bounded,
+        // app-owned flat inventory before deleting any of its regular files.
+        val files=evidenceFiles()
+        files.forEach {check(it.delete()) {"Cannot clear owned evidence file: $it"}}
+        check(directory.delete()) {"Cannot clear owned evidence directory: $directory"}
+    }
 
     private fun export(method: String) {
         val selection="${MediaStore.MediaColumns.RELATIVE_PATH} = ? AND ${MediaStore.MediaColumns.DISPLAY_NAME} = ? AND ${MediaStore.MediaColumns.OWNER_PACKAGE_NAME} = ?"
@@ -92,12 +141,12 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
             while(cursor.moveToNext()) {check(ids.size<16);ids.add(cursor.getLong(0))}
         } ?: error("Cannot query owned dialog export")
         ids.forEach {check(resolver.delete(ContentUris.withAppendedId(collection,it),null,null)==1)}
-        val files=checkNotNull(directory.listFiles()).sortedBy {it.name}
+        val files=evidenceFiles()
         check(files.size in 1..21 && files.sumOf {it.length()}<=MAX_CASE)
         val manifest=JSONObject().put("schema",1).put("owner",OWNER).put("method",method)
             .put("device_sdk",Build.VERSION.SDK_INT).put("test_passed",receipt.getString("outcome")=="passed")
             .put("files",JSONArray())
-        val temporary=File.createTempFile("dialog-export-",".zip",context.cacheDir)
+        val temporary=File.createTempFile("dialog-export-",".zip",cacheRoot)
         var uri: android.net.Uri?=null
         try {
             ZipOutputStream(temporary.outputStream().buffered()).use {zip ->

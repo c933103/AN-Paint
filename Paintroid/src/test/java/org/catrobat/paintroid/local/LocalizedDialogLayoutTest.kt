@@ -231,6 +231,113 @@ class LocalizedDialogLayoutTest {
         }
     }
 
+    @Test @Config(fontScale=2f)
+    fun noticeColumnsClampOffsetsAcrossContentAndViewportChanges() {
+        for(tag in listOf("lzh-Hant","mn-Mong")) withActivity(tag) {activity ->
+            val columns=ResponsiveDialogColumns(activity)
+            val child=View(activity)
+            columns.addView(child,android.widget.FrameLayout.LayoutParams(1200,120))
+            val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+            assertEquals(tag=="lzh-Hant",rightToLeft)
+            fun range()=(child.width-columns.width).coerceAtLeast(0)
+            fun offset()=if(rightToLeft) range()-columns.scrollX else columns.scrollX
+            fun layout(width: Int,contentWidth: Int=1200) {
+                child.layoutParams=child.layoutParams.apply {this.width=contentWidth}
+                columns.requestLayout()
+                columns.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(120,View.MeasureSpec.EXACTLY))
+                columns.layout(0,0,width,120)
+            }
+            layout(400);assertEquals(0,offset())
+            layout(160);assertEquals(0,offset())
+            layout(400);assertEquals(0,offset())
+            columns.scrollTo(if(rightToLeft) range()-73 else 73,0)
+            layout(160);assertEquals(73,offset())
+            layout(500);assertEquals(73,offset())
+            layout(500);assertEquals("Same-size layout must retain reader position",73,offset())
+            layout(500,680);assertEquals(73,offset())
+            layout(500,520);assertEquals("Clamp to the shorter content range",20,offset())
+            layout(500,120);assertEquals(0,offset())
+            layout(500,1200);assertEquals(0,offset())
+
+            // Native deferred focus navigation on a same-range layout must win over anchoring.
+            val focusColumns=ResponsiveDialogColumns(activity).apply {isSmoothScrollingEnabled=false}
+            val row=android.widget.LinearLayout(activity)
+            val first=android.widget.Button(activity).apply {text="First";isFocusableInTouchMode=true}
+            val last=android.widget.Button(activity).apply {text="Last";isFocusableInTouchMode=true}
+            row.addView(first,android.widget.LinearLayout.LayoutParams(200,120))
+            row.addView(View(activity),android.widget.LinearLayout.LayoutParams(800,120))
+            row.addView(last,android.widget.LinearLayout.LayoutParams(200,120))
+            focusColumns.addView(row)
+            fun focusLayout(width: Int=400) {
+                focusColumns.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(120,View.MeasureSpec.EXACTLY))
+                focusColumns.layout(0,0,width,120)
+            }
+            focusLayout()
+            val target=if(rightToLeft) first else last
+            focusColumns.requestLayout();assertTrue(target.requestFocus());focusLayout()
+            assertSame(target,focusColumns.findFocus())
+            assertTrue(target.left>=focusColumns.scrollX)
+            assertTrue(target.right<=focusColumns.scrollX+focusColumns.width)
+            focusColumns.requestLayout();focusLayout(240)
+            assertSame(target,focusColumns.findFocus())
+            assertTrue("Focused control wins over reader anchoring on resize",target.left>=focusColumns.scrollX)
+            assertTrue(target.right<=focusColumns.scrollX+focusColumns.width)
+        }
+    }
+
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun retainedVerticalNoticeKeepsReadingOffsetAcrossRotation() {
+        for(tag in listOf("lzh-Hant","mn-Mong")) withActivity(tag) {activity ->
+            // Deliberately overflowing captions stress the real notice rails, not production wording.
+            val dialog=LegalInfo.termsDialog(activity,ui(R.string.ui_icons_fonts_artwork_credits).repeat(20),"Unchanged body")
+            for(name in listOf("terms_copy","terms_more","terms_done")) {
+                val action=dialog.window!!.decorView.findViewWithTag<TextView>(name)
+                action.text=action.text.toString().repeat(20)
+            }
+            dialog.show();idle()
+            val root=dialog.window!!.decorView
+            val rails=listOf("terms_title_scroll","terms_actions_scroll").map {root.findViewWithTag<ScrollView>(it).getChildAt(0) as ResponsiveDialogColumns}
+            val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+            fun range(rail: ResponsiveDialogColumns)=(rail.getChildAt(0).width-rail.width+rail.paddingLeft+rail.paddingRight).coerceAtLeast(0)
+            fun offset(rail: ResponsiveDialogColumns)=if(rightToLeft) range(rail)-rail.scrollX else rail.scrollX
+            try {
+                for(readerOffset in listOf(0,47)) {
+                    rails.forEach {assertTrue(range(it)>47);it.scrollTo(if(rightToLeft) range(it)-readerOffset else readerOffset,0)}
+                    for((index,qualifiers) in listOf("w320dp-h640dp-port-xhdpi","w640dp-h320dp-land-xhdpi").withIndex()) {
+                        resizeDisplay(activity,root,qualifiers)
+                        // API35 can scope callbacks to the Activity; older APIs delegate to Application.
+                        activity.onConfigurationChanged(activity.resources.configuration)
+                        activity.application.onConfigurationChanged(activity.resources.configuration);idle()
+                        assertTrue(dialog.isShowing)
+                        assertEquals((activity.resources.displayMetrics.widthPixels*.94f).toInt(),dialog.window!!.attributes.width)
+                        val rows=JSONArray()
+                        for((railIndex,rail) in rails.withIndex()) {
+                            assertSame(rail,root.findViewWithTag<ScrollView>(if(railIndex==0) "terms_title_scroll" else "terms_actions_scroll").getChildAt(0))
+                            assertTrue(range(rail)>47);assertEquals(readerOffset,offset(rail))
+                            rail.requestLayout();idle();assertEquals(readerOffset,offset(rail))
+                            rows.put(JSONObject().put("range",range(rail)).put("scroll_x",rail.scrollX).put("reading_offset",offset(rail)).put("viewport_width",rail.width))
+                        }
+                        assertEquals("Unchanged body",root.findViewWithTag<TextView>("terms_text").text.toString())
+                        val directory=File("build/reports/localized-dialog-layout").apply {mkdirs()}
+                        val name="api${RuntimeEnvironment.getApiLevel()}-retained-vertical-$tag-offset$readerOffset-$index"
+                        val bitmap=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
+                        try {root.draw(Canvas(bitmap));File(directory,"$name.png").outputStream().use {assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {bitmap.recycle()}
+                        File(directory,"$name.json").writeText(JSONObject().put("evidence_kind","Retained Robolectric NATIVE notice rotation and programmatic reader-offset preservation; oversized test captions; not installed input acceptance")
+                            .put("rails",rows).toString(2)+"\n")
+                    }
+                }
+                back(dialog)
+                val dismissedWidth=dialog.window!!.attributes.width
+                RuntimeEnvironment.setQualifiers("w320dp-h640dp-port-xhdpi")
+                @Suppress("DEPRECATION")
+                activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
+                activity.onConfigurationChanged(activity.resources.configuration)
+                activity.application.onConfigurationChanged(activity.resources.configuration);idle()
+                assertEquals("Dismissed notice must unregister its resize callback",dismissedWidth,dialog.window!!.attributes.width)
+            } finally {dialog.dismiss();RuntimeEnvironment.setQualifiers("w640dp-h320dp-land-xhdpi")}
+        }
+    }
+
 
     @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
     fun pointerSwipesScrollTitleAndFooterWithoutInvokingActions()=withActivity("hu") {activity ->

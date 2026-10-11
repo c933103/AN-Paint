@@ -87,3 +87,22 @@ internal class ResponsiveDialogTitle(context: Context,title: CharSequence): Scro
         super.onMeasure(widthMeasureSpec,MeasureSpec.makeMeasureSpec(available,MeasureSpec.AT_MOST))
     }
 }
+
+/** Notice-only column rails retain the reader's distance from the reading start.
+ * Capture before native layout can clamp scrollX to a changed viewport range. */
+internal class ResponsiveDialogColumns(context: Context): HorizontalScrollView(context) {
+    private var previousRange: Int?=null
+    override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {
+        val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+        val offset=previousRange?.let {if(rightToLeft) (it-scrollX).coerceAtLeast(0) else scrollX} ?: 0
+        super.onLayout(changed,left,top,right,bottom)
+        if(childCount==0 || width<=0) return
+        val range=(getChildAt(0).width-width+paddingLeft+paddingRight).coerceAtLeast(0)
+        // Native input-focus navigation takes priority over a touch reader's offset.
+        val focused=findFocus()
+        if((focused==null || focused===this) && (previousRange==null || previousRange!=range)) {
+            scrollTo((if(rightToLeft) range-offset else offset).coerceIn(0,range),0)
+        }
+        previousRange=range
+    }
+}

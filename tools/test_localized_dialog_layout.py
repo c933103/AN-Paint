@@ -25,8 +25,8 @@ class LocalizedDialogLayoutContracts(unittest.TestCase):
         for forbidden in ('maxLines=2','dp(52)','dp(48),1f'):
             self.assertNotIn(forbidden,terms)
         self.assertIn('ResponsiveDialogLayout(activity)',terms)
-        self.assertIn('ColumnScrollView(activity).apply {addView(heading)}',terms)
-        self.assertIn('ColumnScrollView(activity).apply {addView(actions)}',terms)
+        self.assertIn('ResponsiveDialogColumns(activity).apply {addView(heading)}',terms)
+        self.assertIn('ResponsiveDialogColumns(activity).apply {addView(actions)}',terms)
         self.assertIn('fun setScrollableTitle(title: CharSequence)',builder)
         self.assertIn('setCustomTitle(ResponsiveDialogTitle(context,title))',builder)
         self.assertNotIn('mountHorizontal',builder)
@@ -35,6 +35,21 @@ class LocalizedDialogLayoutContracts(unittest.TestCase):
         self.assertIn('button.maxLines=Int.MAX_VALUE;button.ellipsize=null',shared)
         self.assertIn('windowLimit=available',shared)
         self.assertIn('LayoutParams(-1,-2,1f)',shared)
+
+    def test_notice_column_resize_is_scoped_and_preserves_the_reader_offset(self):
+        shared=(JAVA/'ResponsiveDialog.kt').read_text()
+        columns=shared[shared.index('internal class ResponsiveDialogColumns'):]
+        self.assertLess(columns.index('val offset='),columns.index('super.onLayout'))
+        self.assertIn('(it-scrollX).coerceAtLeast(0)',columns)
+        self.assertIn('range-offset else offset',columns)
+        self.assertIn('previousRange=range',columns)
+        self.assertIn('focused==null || focused===this',columns)
+        self.assertIn('previousRange==null || previousRange!=range',columns)
+        original=(JAVA/'RibbonWidgets.kt').read_text()
+        self.assertIn('private var positioned=false',original)
+        test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()
+        self.assertIn('retainedVerticalNoticeKeepsReadingOffsetAcrossRotation',test)
+        self.assertIn('noticeColumnsClampOffsetsAcrossContentAndViewportChanges',test)
 
     def test_runtime_oracles_do_not_substitute_direct_click_for_pointer_reachability(self):
         test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()
