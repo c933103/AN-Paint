@@ -22,8 +22,8 @@ METHOD_SCREENS = {
         '4-notice-1-initial.png', '5-notice-2-initial.png'],
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation': [
         '0-credit-landscape.png', '1-credit-portrait.png'],
-    'normalAdvancedColourKeepsFiniteViewportAndFixedControls': [
-        '0-colour-normal-before.png', '1-colour-normal-scrolled.png'],
+    'unchangedAdvancedColourReportsShortLandscapeLimitation': [
+        '0-colour-limitation.png', '1-colour-cancelled.png'],
 }
 MAX_FILE = 2 * 1024 * 1024
 MAX_CASE = 24 * 1024 * 1024
@@ -35,17 +35,22 @@ PNG = b'\x89PNG\r\n\x1a\n'
 def source_binding(summary):
     require(isinstance(summary, dict) and summary.get('success') is True
             and type(summary.get('device_sdk')) is int and summary.get('device_sdk') == 35 and summary.get('timed_out') is False
-            and summary.get('returncode') == 0, 'Successful API35 ordinary report required')
+            and summary.get('returncode') == 0, 'Successful API35 dedicated dialog report required')
     digest = summary.get('source_tests_sha256')
     require(isinstance(digest, str) and re.fullmatch('[0-9a-f]{64}', digest),
-            'Exact ordinary test-source digest required')
+            'Exact dialog test-source digest required')
     cases = summary.get('cases')
-    require(isinstance(cases, list), 'Ordinary report cases missing')
+    require(isinstance(cases, list), 'Dialog report cases missing')
     relevant = [case for case in cases if case.get('classname') == TEST_CLASS]
     require(len(relevant) == len(METHOD_SCREENS)
             and {c.get('name') for c in relevant} == set(METHOD_SCREENS)
             and all(c.get('status') == 'passed' for c in relevant),
-            'All three exact installed-dialog methods must pass in ordinary report')
+            'All three exact installed-dialog methods must pass in dedicated dialog report')
+    require(len(cases) == 3 and summary.get('expected_tests') == 3
+            and summary.get('completed_tests') == 3 and summary.get('missing') == []
+            and summary.get('unexpected') == [] and summary.get('errors') == []
+            and summary.get('included_tests') == sorted(TEST_CLASS + '#' + name for name in METHOD_SCREENS),
+            'Exact selected three-method dialog phase required')
     return digest
 
 
@@ -69,7 +74,7 @@ def verify_receipt(receipt, method, digest):
             'Incomplete or foreign dialog receipt')
     require(receipt.get('source_tests_sha256') == digest and
             receipt.get('source_binding') == 'runner-supplied-needs-host-comparison',
-            'Dialog receipt is not bound to exact ordinary source')
+            'Dialog receipt is not bound to exact dialog-phase source')
     require(receipt.get('screenshots') == METHOD_SCREENS[method], 'Incomplete dialog screenshot inventory')
     observations = receipt.get('observations')
     require(isinstance(observations, list) and 0 < len(observations) <= 512,
@@ -111,6 +116,49 @@ def verify_receipt(receipt, method, digest):
         list(METHOD_SCREENS)[2]: ['colour cancel'],
     }[method]
     require(set(required) <= {item.get('label') for item in before}, 'Required native footer actions absent')
+    if method == 'unchangedAdvancedColourReportsShortLandscapeLimitation':
+        verify_colour_limitation(receipt, observations)
+
+
+
+def verify_colour_limitation(receipt, observations):
+    classification = 'baseline-identical-source-limitation-characterization'
+    require(receipt.get('case_classification') == classification
+            and receipt.get('positive_viewport_accepted') is False
+            and receipt.get('untouched_baseline_installed') == 'pending',
+            'Colour characterization must not claim positive or baseline-device acceptance')
+    measured = [o for o in observations if o.get('kind') == 'colour-limitation-characterization']
+    cancelled = [o for o in observations if o.get('kind') == 'colour-limitation-cancelled']
+    require(len(measured) == len(cancelled) == 1, 'Missing exact colour limitation/cancellation observations')
+    state, end = measured[0], cancelled[0]
+    require(state.get('classification') == classification and state.get('positive_viewport_accepted') is False
+            and state.get('untouched_baseline_installed') == 'pending' and state.get('device_sdk') == 35
+            and type(state.get('font_scale')) in (int, float) and state.get('font_scale') == 1,
+            'Colour characterization scope changed')
+    require(state['display']['width'] == 640 and state['display']['height'] == 320
+            and rectangle(state['display']['raw']) == [0, 0, 640, 320], 'Colour display scope changed')
+    for field in ('display', 'dialog', 'holder', 'holder_parent', 'inner', 'inner_content'):
+        geometry = state[field]
+        raw = rectangle(geometry['raw'])
+        rectangle(geometry['visible'])
+        require(type(geometry.get('width')) is int and type(geometry.get('height')) is int
+                and geometry['width'] == raw[2] - raw[0] and geometry['height'] == raw[3] - raw[1]
+                and type(geometry.get('measured_width')) is int and type(geometry.get('measured_height')) is int
+                and 'layout_width' in geometry and 'layout_height' in geometry,
+                'Missing or inconsistent colour geometry')
+    require(state['holder']['width'] > 0 and state['holder']['height'] > 0
+            and state['inner']['width'] > 0 and state['inner']['height'] == 0
+            and state['inner_content']['height'] > 0, 'Expected zero-viewport limitation was not established')
+    require(isinstance(state.get('fixed'), list) and len(state['fixed']) == 3
+            and {g.get('tag') for g in state['fixed']} == {'colour_advanced_tab', 'custom_colours_panel', 'add_custom_colour'},
+            'Fixed-control measurements missing')
+    for geometry in state['fixed']:
+        rectangle(geometry['raw']); rectangle(geometry['visible'])
+    require(type(end.get('commit_callbacks')) is int and end.get('commit_callbacks') == 0
+            and type(end.get('closed_callbacks')) is int and end.get('closed_callbacks') == 1
+            and end.get('dialog_showing') is False and end.get('positive_viewport_accepted') is False
+            and end.get('untouched_baseline_installed') == 'pending',
+            'Native Cancel did not close exactly once without committing')
 
 
 def inspect_archive(archive, method, digest):
@@ -159,8 +207,8 @@ def inspect_archive(archive, method, digest):
     return {'method': method, 'zip_bytes': size, 'zip_sha256': archive_digest, 'files': entries}
 
 
-def extract(exports, destination, ordinary):
-    digest = source_binding(json.loads(ordinary.read_text(), object_pairs_hook=strict_object))
+def extract(exports, destination, dialog_summary):
+    digest = source_binding(json.loads(dialog_summary.read_text(), object_pairs_hook=strict_object))
     require(not exports.is_symlink() and exports.is_dir(), 'Missing dialog export directory')
     require({p.name for p in exports.iterdir()} == {m + '.zip' for m in METHOD_SCREENS}, 'Wrong dialog export inventory')
     require(not os.path.lexists(destination), 'Dialog destination must be fresh')
@@ -182,20 +230,22 @@ def extract(exports, destination, ordinary):
                         require(bounded_digest(source, entry['bytes'], output) == entry['sha256'], 'Dialog data changed')
         require(not os.path.lexists(destination), 'Destination appeared during validation')
         os.rename(staged, destination)
-    return {'success': True, 'scope': 'installed-api35-dialogs-only', 'source_tests_sha256': digest,
-            'source_report': 'ordinary instrumentation summary', 'device_sdk': 35,
-            'cases': receipts, 'large_text_short_landscape_advanced_colour': 'not-accepted-diagnostic-only'}
+    return {'success': True, 'scope': 'installed-api35-dialog-behaviour-and-explicit-colour-limitation', 'source_tests_sha256': digest,
+            'source_report': 'dedicated dialog instrumentation summary', 'device_sdk': 35,
+            'cases': receipts, 'colour_case_classification': 'baseline-identical-source-limitation-characterization',
+            'positive_colour_viewport_accepted': False, 'untouched_baseline_installed': 'pending',
+            'large_text_short_landscape_advanced_colour': 'not-accepted-diagnostic-only'}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('exports', type=Path)
-    parser.add_argument('--ordinary-summary', type=Path, required=True)
+    parser.add_argument('--dialog-summary', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--receipt', type=Path, required=True)
     args = parser.parse_args()
     args.receipt.unlink(missing_ok=True)
-    result = extract(args.exports, args.output, args.ordinary_summary)
+    result = extract(args.exports, args.output, args.dialog_summary)
     args.receipt.write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps({'success': True, 'cases': len(result['cases']), 'device_sdk': 35}))
 

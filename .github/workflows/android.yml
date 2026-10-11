@@ -264,8 +264,8 @@ jobs:
     needs: build
     if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-22.04
-    # 36-minute execution + 6-minute image step + existing 4-minute job overhead.
-    timeout-minutes: 46
+    # 43-minute execution + 6-minute image step + existing 4-minute job overhead.
+    timeout-minutes: 53
     strategy:
       fail-fast: false
       matrix:
@@ -290,9 +290,9 @@ jobs:
           sudo chmod a+rw /dev/kvm
           timeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"
       - name: Run prebuilt tests with deadlines and live logs
-        # 2,087s controlled path + 60s processing allowance, rounded up; see CI.md.
+        # 2,482s controlled path + 60s processing allowance, rounded up; see CI.md.
         # Hard cancellation ceiling, not a target runtime or universal liveness bound.
-        timeout-minutes: 36
+        timeout-minutes: 43
         env:
           TEST_API: ${{ matrix.api }}
         run: bash tools/ci_emulator.sh

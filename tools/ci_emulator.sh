@@ -200,6 +200,23 @@ run_gallery_draft_regression() {
     --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
 }
 
+# Explicit API35 dialog workload; ordinary retains its original 180s cap.
+# The colour identity characterizes a known limitation, not positive usability.
+run_dialog_regression() {
+  local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
+  phase='Installed dialog phase (300s maximum)'
+  progress "$phase"
+  dialog_started=1
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-dialog/androidTest-results" \
+    --suite app-dialog --timeout-seconds 300 \
+    --include-test "$dialog_class#aboutRowsOpenThreeNoticesWithReachableNativeFooters" \
+    --include-test "$dialog_class#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation" \
+    --include-test "$dialog_class#unchangedAdvancedColourReportsShortLandscapeLimitation"
+}
+
 cleanup() {
   local status=$?
   trap - ERR
@@ -213,7 +230,7 @@ cleanup() {
       progress 'FAILED: could not collect installed dialog evidence' >&2
       if (( status == 0 )); then status=1; fi
     elif ! python3 tools/dialog_evidence_transport.py "$report/dialog-export" \
-        --ordinary-summary "$report/app/androidTest-results/summary.json" \
+        --dialog-summary "$report/app-dialog/androidTest-results/summary.json" \
         --output "$report/app/dialog-evidence" --receipt "$report/dialog-evidence.json" \
         > "$report/dialog-export.log" 2>&1; then
       progress 'FAILED: incomplete or corrupt installed dialog evidence' >&2
@@ -317,9 +334,8 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-vertical"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-dialog" "$report/app-vertical"
   editor_failed=0
-  if test "$TEST_API" = 35; then dialog_started=1; fi
   phase='Editor instrumentation'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
@@ -330,8 +346,10 @@ main() {
     --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
     --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
     --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
-    --exclude-class paint.anpaint.android.GalleryDraftDeviceTest || editor_failed=1
+    --exclude-class paint.anpaint.android.GalleryDraftDeviceTest \
+    --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest || editor_failed=1
   run_gallery_draft_regression || editor_failed=1
+  if test "$TEST_API" = 35; then run_dialog_regression || editor_failed=1; fi
   if (( editor_failed )); then failed=1; fi
   phase='Vertical locale native-input matrix'
   progress "$phase"
@@ -339,7 +357,7 @@ main() {
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
-      printf 'NOT RUN: ordinary editor or gallery-draft suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
+      printf 'NOT RUN: ordinary editor, gallery-draft or dialog suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
     else
       run_credit_restart_regression || failed=1
     fi

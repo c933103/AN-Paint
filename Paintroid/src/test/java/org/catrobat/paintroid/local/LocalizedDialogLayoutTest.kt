@@ -242,15 +242,22 @@ class LocalizedDialogLayoutTest {
             fun range()=(child.width-columns.width).coerceAtLeast(0)
             fun offset()=if(rightToLeft) range()-columns.scrollX else columns.scrollX
             fun layout(width: Int,contentWidth: Int=1200) {
+                // HorizontalScrollView measures its child with an unspecified width.
+                // A bare View needs intrinsic content; LayoutParams alone yield zero width.
+                child.minimumWidth=contentWidth
                 child.layoutParams=child.layoutParams.apply {this.width=contentWidth}
                 columns.requestLayout()
                 columns.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(120,View.MeasureSpec.EXACTLY))
                 columns.layout(0,0,width,120)
+                assertEquals("Synthetic child's intrinsic width",contentWidth,child.width)
+                assertEquals((contentWidth-width).coerceAtLeast(0),range())
             }
             layout(400);assertEquals(0,offset())
             layout(160);assertEquals(0,offset())
             layout(400);assertEquals(0,offset())
+            assertTrue("The offset fixture must actually overflow",range()>73)
             columns.scrollTo(if(rightToLeft) range()-73 else 73,0)
+            assertEquals("Reader offset must be established before resize",73,offset())
             layout(160);assertEquals(73,offset())
             layout(500);assertEquals(73,offset())
             layout(500);assertEquals("Same-size layout must retain reader position",73,offset())

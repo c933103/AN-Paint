@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "scope": "Original failed run summary; successor still requires Android execution",
+  "head": "df214fee4f106c4365325412b4f9d3c8530232d5",
+  "tree": "856fc693af0dfd265acb0f2c9221e91c09d30a6c",
+  "run": 38109511511,
+  "conclusion": "failure",
+  "jvm": {
+    "xml_files": 87,
+    "tests": 836,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0,
+    "failed_cases": [
+      {
+        "classname": "org.catrobat.paintroid.local.LocalizedDialogLayoutTest",
+        "name": "noticeColumnsClampOffsetsAcrossContentAndViewportChanges[30]",
+        "xml_path": "regression/Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocalizedDialogLayoutTest.xml"
+      },
+      {
+        "classname": "org.catrobat.paintroid.local.LocalizedDialogLayoutTest",
+        "name": "noticeColumnsClampOffsetsAcrossContentAndViewportChanges",
+        "xml_path": "regression/Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.LocalizedDialogLayoutTest.xml"
+      }
+    ]
+  },
+  "installed": {
+    "app-gallery-draft/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 3,
+      "completed_tests": 3,
+      "timeout_seconds": 90,
+      "timed_out": false,
+      "elapsed_seconds": 47.59868034500005,
+      "source_tests_sha256": "04a0e4c9518e8684a13f3f00b6e7d636269d7e8d03ad300e511281e99e1513fa"
+    },
+    "app/androidTest-results/summary.json": {
+      "success": false,
+      "expected_tests": 19,
+      "completed_tests": 19,
+      "timeout_seconds": 180,
+      "timed_out": false,
+      "elapsed_seconds": 175.067972327,
+      "source_tests_sha256": "04a0e4c9518e8684a13f3f00b6e7d636269d7e8d03ad300e511281e99e1513fa"
+    },
+    "Paintroid/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "timeout_seconds": 180,
+      "timed_out": false,
+      "elapsed_seconds": 88.81226337200002,
+      "source_tests_sha256": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+    },
+    "app-vertical/literary-chinese-emoji/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "timeout_seconds": 180,
+      "timed_out": false,
+      "elapsed_seconds": 111.40595280299999,
+      "source_tests_sha256": "04a0e4c9518e8684a13f3f00b6e7d636269d7e8d03ad300e511281e99e1513fa"
+    },
+    "app-vertical/english-manchu/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "timeout_seconds": 180,
+      "timed_out": false,
+      "elapsed_seconds": 122.0212881010001,
+      "source_tests_sha256": "04a0e4c9518e8684a13f3f00b6e7d636269d7e8d03ad300e511281e99e1513fa"
+    }
+  },
+  "artifacts": {
+    "regression.zip": {
+      "bytes": 48335066,
+      "sha256": "e101ffcc8d6d21d551f5f2b6138103f4ba2c784069dcb046f2c80344a85d60bb"
+    },
+    "emulator.zip": {
+      "bytes": 9348100,
+      "sha256": "ef7b5c0a6699ecb93c7d20d1b6932722a0e198e732bcd5a70344ca0198354b61"
+    }
+  },
+  "interpretation": [
+    "Two synthetic JVM failures had no overflowing content; fix requires measured-width/range/offset preconditions.",
+    "About and credit original PNGs show SystemUI clipboard preview over intended pointer lane.",
+    "Colour positive viewport failed on installed API35 640x320 at1x; unchanged-source characterization is not usability acceptance or untouched-base installed evidence.",
+    "97 prior installed cases passed; restart withheld; overall union failed."
+  ]
+}

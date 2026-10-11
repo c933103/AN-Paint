@@ -17,7 +17,7 @@ from test_vertical_control_reachability import fixture as reachability_fixture
 from vertical_locale_matrix import (VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, EXPECTED_SCREENSHOTS,
                                    app_partition, verify_app_reports, verify_screenshots, report_paths, read_app_reports)
 
-from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES
+from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES
 
 ROOT = Path(__file__).resolve().parents[1]
 EDITOR = 'paint.anpaint.android.EditorDeviceTest'
@@ -29,6 +29,8 @@ def expected(sdk=35):
     result = {(EDITOR, 'ordinary'), (FUTURE, 'future')} | {(VERTICAL, name) for name in VERTICAL_METHODS}
     result |= {(RESTART_SEED, 'seed'), (RESTART_VERIFY, 'verify')}
     result |= {(GALLERY_DRAFT, name) for name in GALLERY_METHODS}
+    if sdk == 35:
+        result |= {(DIALOG, name) for name in DIALOG_METHODS}
     return result
 
 
@@ -52,7 +54,7 @@ def source_fixture(root):
     source.mkdir(parents=True)
     for owner in {owner for owner, _ in expected()}:
         name = owner.rsplit('.', 1)[1]
-        annotation = ''
+        annotation = '@SdkSuppress(minSdkVersion=35) ' if owner == DIALOG else ''
         methods = ''.join(f'@Test fun {method}() {{}}\n' for item_owner, method in sorted(expected()) if owner == item_owner)
         (source/f'{name}.kt').write_text(f'package paint.anpaint.android\n{annotation}class {name} {{\n{methods}}}\n')
     return source
@@ -72,7 +74,7 @@ class MatrixInventoryTest(unittest.TestCase):
     def test_complete_current_and_future_methods_form_disjoint_sdk_partitions(self):
         for sdk in (30, 35):
             result = verify_app_reports(expected(sdk), sdk, reports(sdk), SOURCE_DIGEST)
-            self.assertEqual(result['completed_tests'], 9 if sdk == 30 else 11)
+            self.assertEqual(result['completed_tests'], 9 if sdk == 30 else 14)
             self.assertIn((FUTURE, 'future'), app_partition(expected(sdk), sdk)['ordinary'])
             self.assertEqual({phase: result['phases'][phase] for phase in VERTICAL_SHARDS},
                              {phase: 2 for phase in VERTICAL_SHARDS})
@@ -125,13 +127,13 @@ class MatrixInventoryTest(unittest.TestCase):
         first, second = VERTICAL_SHARDS
         for sdk in (30, 35):
             broken = reports(sdk); broken[second] = copy.deepcopy(broken[first])
-            with self.assertRaises(ValueError): verify_app_reports(expected(), sdk, broken, SOURCE_DIGEST)
+            with self.assertRaises(ValueError): verify_app_reports(expected(sdk), sdk, broken, SOURCE_DIGEST)
             broken = reports(sdk); broken[first], broken[second] = broken[second], broken[first]
-            with self.assertRaises(ValueError): verify_app_reports(expected(), sdk, broken, SOURCE_DIGEST)
+            with self.assertRaises(ValueError): verify_app_reports(expected(sdk), sdk, broken, SOURCE_DIGEST)
             broken = reports(sdk); broken['vertical'] = broken.pop(first); broken.pop(second)
-            with self.assertRaises(ValueError): verify_app_reports(expected(), sdk, broken, SOURCE_DIGEST)
+            with self.assertRaises(ValueError): verify_app_reports(expected(sdk), sdk, broken, SOURCE_DIGEST)
             broken = reports(sdk); broken['vertical-extra'] = broken[first]
-            with self.assertRaises(ValueError): verify_app_reports(expected(), sdk, broken, SOURCE_DIGEST)
+            with self.assertRaises(ValueError): verify_app_reports(expected(sdk), sdk, broken, SOURCE_DIGEST)
         for mutation in ('overlap', 'missing', 'extra_shard'):
             shards = copy.deepcopy(VERTICAL_SHARDS)
             if mutation=='overlap': shards[second] = shards[first]
@@ -197,8 +199,8 @@ class MatrixInventoryTest(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
                     receipt = json.loads((root/'report/app/coverage.json').read_text())
                     self.assertEqual(receipt['device_sdk'], sdk)
-                    self.assertEqual(receipt['declared_tests'], 11)
-                    self.assertEqual(receipt['completed_tests'], (11 if sdk == 35 else 9) - (not eligible))
+                    self.assertEqual(receipt['declared_tests'], 14)
+                    self.assertEqual(receipt['completed_tests'], (14 if sdk == 35 else 9) - (not eligible))
                     self.assertEqual([FUTURE, 'future'] in receipt['completed'], eligible)
                     self.assertEqual(receipt['phases']['ordinary'], 2 if eligible else 1)
                     self.assertEqual({phase: receipt['phases'][phase] for phase in VERTICAL_SHARDS},

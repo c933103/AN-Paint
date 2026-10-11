@@ -881,20 +881,53 @@ by the same source path and host selection checks; installed debug compatibility
 must be reported explicitly rather than inferred from release results.
 
 
-## Localized dialog evidence collection (11 October 2026)
+## Localized dialog evidence and separate phase (11 October 2026)
 
-API35 ordinary instrumentation now includes three installed dialog methods.
-Their exact-source digest is passed as a runner argument and checked against the
-ordinary report before accepting the app-owned screenshot/geometry exports.
-The disjoint source inventory includes all three methods; API30 explicitly
-suppresses them. The ordinary180-second limit and all other phase limits remain
-unchanged; exceeding one remains a failed run.
+API35 now selects three installed dialog methods in a disjoint `app-dialog`
+invocation. Ordinary instrumentation excludes that class and retains its original
+180-second limit and 16 methods. The dialog phase includes exactly three named
+methods, with a 300-second limit. The complete source-bound union still requires
+all 28 app methods on API35, including both restart methods; API30 explicitly
+suppresses the three new API35-only methods and retains its original 22 completed
+app methods. Missing, duplicate, renamed, skipped or failed methods fail closed.
+Ordinary, gallery or dialog failure withholds restart, while the other diagnostics
+and vertical phases still run. No individual failure is retried.
 
-EXIT cleanup adds one API35-only15-second dialog-evidence pull with3-second kill
-grace. It preserves partial archives on failure and never lets absent/mismatched
-evidence turn a failed test green. Source-bound budget checks now count72seconds
-for the maximum collection/shutdown path,2047seconds for API35 all-success, and
-2087seconds for the continuing-failure envelope. With the unchanged60-second
-processing allowance,2147seconds still fits the existing36-minute execution cap
-and46-minute job cap. API30 does not perform this pull; its prior bound remains.
-No KVM, permission, signing or repository visibility setting is changed.
+The dialog source digest is passed as a runner argument and checked against the
+exact three-method `app-dialog` report before accepting app-owned exports. EXIT
+cleanup uses a bounded API35-only 15-second pull with 3-second kill grace, retains
+partial failure archives, and cannot turn a failed test green. The colour method
+is an explicitly named characterization of the unchanged short-landscape
+limitation, not positive viewport acceptance. The original failed positive method
+and its exact source are preserved under
+`verification/localized-dialog-layout-2026-10-11/colour-separate-scope/`; its
+positive acceptance belongs to the separate colour corrective task. An untouched
+baseline installed replay is still required there.
+
+### Evidence and cap rationale
+
+Run `38109511511` completed the formerly combined 19-method ordinary phase in
+175.068 seconds (runner report), with three failures and no timeout. Its inner
+instrumentation clock was 173.304 seconds. The three fixture bodies reported
+25.016, 10.629 and 9.370 seconds, but stopped early at failures, so these are not
+successful-flow durations or evidence of adequate margin in the old 180 seconds.
+The earlier `38107965583` ordinary report was 131.244 seconds (inner 129.652),
+but all three new bodies were blocked by export-rule preflight failures.
+
+The separate 300-second dialog allowance covers three 45-second interaction caps
+(135 seconds), up to eight 10-second font transitions (80), three 8-second teardown
+waits (24), plus 61 seconds for fixture startup, assertions, screenshots and
+bounded export operations. It is an explicit operational allowance, not a proof
+that every possible local I/O delay terminates. The enclosing deadline remains
+the hard stop. All original native/ordinary/gallery/vertical/restart deadlines
+stay unchanged; this additional phase is not a way to filter slow cases.
+
+`tools/test_ci_timeout_budget.py` reads the actual shell/runner limits. Its API35
+all-success path is 2,442 seconds and its continuing-failure envelope is 2,482.
+The unchanged 60-second host-processing allowance gives 2,542 seconds, requiring
+a 43-minute execution cap. The job cap is 53 minutes, retaining six minutes for
+image provisioning and four for other job overhead. The API30 modeled path stays
+1,669 seconds and does not run or collect the dialog phase. These are controlled
+wait arithmetic, not a universal liveness proof. No KVM, permission, signing or
+repository-visibility setting is changed. Fresh exact-head timings, full union,
+original screenshots and source/APK provenance remain required for acceptance.

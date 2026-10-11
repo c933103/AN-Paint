@@ -61,6 +61,10 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
                 .put("source_tests_sha256",supplied ?: JSONObject.NULL)
                 .put("source_binding",if(supplied==null) "unbound-needs-host-summary" else "runner-supplied-needs-host-comparison")
                 .put("observations",JSONArray()).put("screenshots",JSONArray()).put("outcome","running")
+            if(description.methodName=="unchangedAdvancedColourReportsShortLandscapeLimitation") {
+                receipt.put("case_classification","baseline-identical-source-limitation-characterization")
+                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed","pending")
+            }
             val started=SystemClock.uptimeMillis()
             var failure: Throwable?=null
             try {base.evaluate();receipt.put("outcome","passed")} catch(error: Throwable) {
@@ -201,6 +205,6 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
         const val MAX_CASE=24L*1024*1024
         val METHODS=setOf("aboutRowsOpenThreeNoticesWithReachableNativeFooters",
             "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
-            "normalAdvancedColourKeepsFiniteViewportAndFixedControls")
+            "unchangedAdvancedColourReportsShortLandscapeLimitation")
     }
 }

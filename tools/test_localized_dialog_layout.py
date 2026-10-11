@@ -50,6 +50,9 @@ class LocalizedDialogLayoutContracts(unittest.TestCase):
         test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()
         self.assertIn('retainedVerticalNoticeKeepsReadingOffsetAcrossRotation',test)
         self.assertIn('noticeColumnsClampOffsetsAcrossContentAndViewportChanges',test)
+        self.assertIn('child.minimumWidth=contentWidth',test)
+        self.assertIn('"Synthetic child\'s intrinsic width",contentWidth,child.width',test)
+        self.assertIn('"Reader offset must be established before resize",73,offset()',test)
 
     def test_runtime_oracles_do_not_substitute_direct_click_for_pointer_reachability(self):
         test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()

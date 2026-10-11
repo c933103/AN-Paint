@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "base_commit": "691f8870649a1d21d1441f4e3d0e795660b23e9a",
+  "scope": "PR49 preserves the Advanced Colour implementation and native horizontal builder; only the unrelated About entry opts into a scrollable title. Source equality is not an untouched-baseline installed reproduction or usability acceptance.",
+  "files": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+      "before_sha256": "0d26b7eb50028ed9c0cf1698b68c8138ecc02b309b2d439a88ef521b8a902684",
+      "after_sha256": "0d26b7eb50028ed9c0cf1698b68c8138ecc02b309b2d439a88ef521b8a902684"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt",
+      "before_sha256": "f18e1fdc15901e94cc4fd17d5bcdccc75f58b841fb82d373b8f66e11340e1c1e",
+      "after_sha256": "35f0363176801c1bf29804633099e51d27f3db87891f2ee4ddecf472b278e4b5",
+      "before_fragment": "",
+      "after_fragment": "    /** Opt-in for a localized heading that can exceed the native title's line cap.\n     * Keep AlertController's own body, chooser, buttons and window sizing intact. */\n    fun setScrollableTitle(title: CharSequence): EditorDialogBuilder {\n        setTitle(title)\n        if(!VerticalText.uiVertical()) setCustomTitle(ResponsiveDialogTitle(context,title))\n        return this\n    }\n",
+      "count": 1
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "before_sha256": "30e4dba469b7e7fb1fd6b04b5ad58f8ba1dca3cb9e30ad6ce8b015a0e99a5adb",
+      "after_sha256": "dbff7e3dc45b1added87915d99e57f61cf315828e8117d46104af7476ba727c3",
+      "before_fragment": "EditorDialogBuilder(this).setTitle(ui(R.string.ui_about_credits23)).setItems",
+      "after_fragment": "EditorDialogBuilder(this).setScrollableTitle(ui(R.string.ui_about_credits23)).setItems",
+      "count": 1
+    }
+  ]
+}
