@@ -1,0 +1,52 @@
+{
+  "status": "PASS_UNCHANGED_CONFIGURED_DEADLINES",
+  "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+  "tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "merge": "a437d0a7daa51c7c339bf04add38545cd74b0fc2",
+  "run_id": 38299305241,
+  "inputs": [
+    {
+      "path": ".github/workflows/android.yml",
+      "sha256": "05799922107e2effecfbe042c6a9353afd35e7077fc8b6845a40feb7c2f280ea"
+    },
+    {
+      "path": "tools/ci_emulator.sh",
+      "sha256": "153ffad707a1b55b0b66d928c28869dbb183ccd4663eebe90a7093bec92f9229"
+    },
+    {
+      "path": "tools/run_android_instrumentation.py",
+      "sha256": "816ba4c7da7afd095f8a4a557a49da41aacb9ddb19a578ad414a98f01d4bdbc0"
+    },
+    {
+      "path": "tools/app_instrumentation_matrix.py",
+      "sha256": "5df9d7cd26a6c6c1c7ff5fc733ccc981cbd4d504936f35568f70b03c6f7e2a24"
+    }
+  ],
+  "phase_seconds": {
+    "ordinary": 180,
+    "gallery-draft": 90,
+    "dialog": 300,
+    "vertical-english-manchu": 180,
+    "vertical-literary-chinese-emoji": 180,
+    "seed": 60,
+    "verify": 60,
+    "library": 180
+  },
+  "app_ceilings_seconds": {
+    "30": 630,
+    "35": 1050
+  },
+  "including_library_seconds": {
+    "30": 810,
+    "35": 1230
+  },
+  "device_job_minutes": 53,
+  "execution_step_minutes": 43,
+  "sdk_install_seconds": 300,
+  "device_discovery_seconds": 60,
+  "readiness_shared_seconds": 120,
+  "readiness_probe_seconds": 10,
+  "main_and_test_apk_install_seconds": 60,
+  "runner_discovery_seconds": 15,
+  "limit": "Current configuration checks only; actual phase elapsed seconds, timeout flags and complete terminal protocols are checked separately. These are hard ceilings, not a runtime prediction or universal synchronization guarantee."
+}

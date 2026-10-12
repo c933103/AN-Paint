@@ -1,0 +1,97 @@
+{
+  "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+  "tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "base": "71f4d288669858e7975ec4c094b7f47a9a1ff145",
+  "merge": "a437d0a7daa51c7c339bf04add38545cd74b0fc2",
+  "run_id": 38299305241,
+  "status": "PASS_BOUNDED_BUILD_RECEIPT",
+  "build_receipt": {
+    "job_log_sha256": "2b1e0e61d75c13bef6e37ccd2986b802e56b77100b9fc6272888f26cef5d69de",
+    "job_log_bytes": 272775,
+    "evidence": [
+      {
+        "line": 138,
+        "text": "2026-10-12T19:41:29.0484968Z HEAD is now at a437d0a Merge e19c766eb3eaedc1b3cd3657bb92864f81a9498a into 71f4d288669858e7975ec4c094b7f47a9a1ff145"
+      },
+      {
+        "line": 463,
+        "text": "2026-10-12T19:42:44.6897236Z BUILD SUCCESSFUL in 33s"
+      },
+      {
+        "line": 1954,
+        "text": "2026-10-12T19:48:47.5939659Z > Task :app:assembleDebug"
+      },
+      {
+        "line": 1964,
+        "text": "2026-10-12T19:48:47.6947439Z BUILD SUCCESSFUL in 6m 2s"
+      },
+      {
+        "line": 2034,
+        "text": "2026-10-12T19:48:48.6471696Z SHA256 digest of uploaded artifact is 2d35b0b59d9cc0680f74d320ad345ed58fc720e17d095340f03431a31fbff8fd"
+      },
+      {
+        "line": 2124,
+        "text": "2026-10-12T19:48:56.5835523Z SHA256 digest of uploaded artifact is 073ee0409cab14155a4d6cc5d297c809a21252f7920ca45dc49c665bff26a3fd"
+      },
+      {
+        "line": 2126,
+        "text": "2026-10-12T19:48:56.8358152Z Artifact apk-and-source-a437d0a7daa51c7c339bf04add38545cd74b0fc2 successfully finalized. Artifact ID 11769343484"
+      },
+      {
+        "line": 2127,
+        "text": "2026-10-12T19:48:56.8359858Z Artifact apk-and-source-a437d0a7daa51c7c339bf04add38545cd74b0fc2 has been successfully uploaded! Final size is 139701485 bytes. Artifact ID is 11769343484"
+      },
+      {
+        "line": 2199,
+        "text": "2026-10-12T19:49:47.5904123Z > Task :Paintroid:compileDebugAndroidTestKotlin"
+      },
+      {
+        "line": 2256,
+        "text": "2026-10-12T19:50:17.2943819Z > Task :Paintroid:assembleDebugAndroidTest"
+      },
+      {
+        "line": 2274,
+        "text": "2026-10-12T19:50:41.0904928Z > Task :app:compileDebugAndroidTestKotlin"
+      },
+      {
+        "line": 2292,
+        "text": "2026-10-12T19:50:43.3897066Z > Task :app:assembleDebugAndroidTest"
+      },
+      {
+        "line": 2302,
+        "text": "2026-10-12T19:50:43.4555770Z BUILD SUCCESSFUL in 1m 46s"
+      },
+      {
+        "line": 2348,
+        "text": "2026-10-12T19:50:47.4203959Z SHA256 digest of uploaded artifact is 344eca33197ae9f9133d3861f9056ea3f87f11ac7b1f1c9154d11e6cb5306631"
+      },
+      {
+        "line": 2350,
+        "text": "2026-10-12T19:50:47.6684444Z Artifact instrumentation-apks-a437d0a7daa51c7c339bf04add38545cd74b0fc2 successfully finalized. Artifact ID 11770457972"
+      },
+      {
+        "line": 2351,
+        "text": "2026-10-12T19:50:47.6687108Z Artifact instrumentation-apks-a437d0a7daa51c7c339bf04add38545cd74b0fc2 has been successfully uploaded! Final size is 94709105 bytes. Artifact ID is 11770457972"
+      }
+    ]
+  },
+  "downloads": {
+    "instrumentation-apks": {
+      "artifact_id": 11770457972,
+      "sha256": "344eca33197ae9f9133d3861f9056ea3f87f11ac7b1f1c9154d11e6cb5306631"
+    },
+    "apk-and-source": {
+      "artifact_id": 11769343484,
+      "sha256": "073ee0409cab14155a4d6cc5d297c809a21252f7920ca45dc49c665bff26a3fd"
+    }
+  },
+  "build_info": {
+    "commit": "a437d0a7daa51c7c339bf04add38545cd74b0fc2",
+    "run_id": "38299305241",
+    "build_variant": "debug",
+    "apk_sha256": "cdc5e7255401e8557a31db0bd04d26f3ef486b0b749e596857eb9dfdb9741126",
+    "source_sha256": "f80c249525eab8b5bccd3ae01aafbfc5fa3ea9b2731452fbc8466cd52abbe28c",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  }
+}

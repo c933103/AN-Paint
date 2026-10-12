@@ -1,0 +1,104 @@
+{
+  "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+  "tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "base": "71f4d288669858e7975ec4c094b7f47a9a1ff145",
+  "merge": "a437d0a7daa51c7c339bf04add38545cd74b0fc2",
+  "run_id": 38299305241,
+  "status": "PASS_BOUNDED_INSTALLED_SCOPE_AND_PLATFORM_DISCOVERY",
+  "matrices": {
+    "30": {
+      "sdk_eligible_declarations": 97,
+      "scheduled": 95,
+      "completed": 95,
+      "passed": 95,
+      "failed": 0,
+      "explicitly_excluded_tests": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ]
+      ],
+      "missing_phases": []
+    },
+    "35": {
+      "sdk_eligible_declarations": 104,
+      "scheduled": 104,
+      "completed": 104,
+      "passed": 104,
+      "failed": 0,
+      "explicitly_excluded_tests": [],
+      "missing_phases": []
+    }
+  },
+  "raw_phase_protocols": 13,
+  "platform_locale_discovery": {
+    "status": "PASS_BOUND_INSTALLED_PLATFORM_LOCALE_DISCOVERY",
+    "sdk": 35,
+    "framework_status": 0,
+    "expected_count": 167,
+    "actual_count": 167,
+    "runner_pid": "4237",
+    "runner_tid": "4261",
+    "started_line": 45509,
+    "line": 45599,
+    "finished_line": 47091,
+    "api30_status": "EXCLUDED_BY_CURRENT_SOURCE_API33_MINIMUM; NO_RECEIPT",
+    "api33_constructor_status": "UNRUN_BY_NORMAL_API30_API35_MATRIX"
+  },
+  "strict_arabic_full_reference_routes": 2,
+  "exact_argb_failures": 0,
+  "native_vertical_pngs_actually_viewed": 192,
+  "arabic_pngs_actually_viewed": 4,
+  "save_telemetry_snapshots": {
+    "30": 72,
+    "35": 72
+  },
+  "same_run_prebuilt_receipts": "PASS",
+  "restart_boundary": "PASS",
+  "expiry_safe_replay": "NOT_YET_RUN_AT_VERDICT_FREEZE",
+  "critical_scope_limit": "Bounded installed regression and API35 framework manifest/resource discovery pass. This is not overall PR acceptance, Settings UI visibility or translation completeness. API33 constructor branch remains unrun.",
+  "limitations": [
+    "Application/process/root/target locale snapshots precede dialog mounting; dialogLocale=absent does not observe post-mount resource locale or an unlogged callback/process-default reset.",
+    "CI debug same-run artifact download/install receipts; no independent on-device APK hash or private release/upgrade signing.",
+    "Native software rasters and bounded native frame/input evidence; no hardware/physical device, live Commons network failure, external document provider or fluent-language acceptance.",
+    "The existing advanced-colour short-landscape characterization is not positive viewport acceptance."
+  ],
+  "evidence": [
+    {
+      "path": "reproduced/result.json",
+      "sha256": "0c84fc122d61820814a3db4615cf630b81836a5037ddbca2b40d45984ba03196"
+    },
+    {
+      "path": "reproduced/installed-matrix-result.json",
+      "sha256": "b5b6472e3fac4cb7ba28085a52f280ec0e2c2c48fdc0f1cd9281dd9c8706d434"
+    },
+    {
+      "path": "reproduced/platform-locale-binding-result.json",
+      "sha256": "56f14bb4642ff73af073bd9e016eab22fac2507fa304c2327cf3705163c4403d"
+    },
+    {
+      "path": "reproduced/prebuilt-provenance-result.json",
+      "sha256": "d7a2f4d32419e836c66c5894938fe00c511481df7c36a00439d03cdc4a0f8173"
+    },
+    {
+      "path": "reproduced/installed-pixel-result.json",
+      "sha256": "f140fab96333ae9d6e0b1317bc7704ee67ff6526718725563bea1eaf88503768"
+    },
+    {
+      "path": "reproduced/natural-update-result.json",
+      "sha256": "04324565bfb9467eaa648e315d4ae98365c86582c30ff4714fba52f799a16138"
+    },
+    {
+      "path": "reproduced/restart-boundary-result.json",
+      "sha256": "78db0204a1d1d4ec262116713933d833b941a9894d2c3624fa304d9845135075"
+    },
+    {
+      "path": "visual-inspection.json",
+      "sha256": "eecccf7e779392e8d366930e6cea77cf7bfd0ed1d3f5fa9f438159b807f2a755"
+    }
+  ]
+}
