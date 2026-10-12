@@ -16,7 +16,7 @@ internal class GalleryActions(context: Context): ViewGroup(context) {
     private data class Cell(val view: View,val x: Int,val y: Int)
     private val cells=mutableListOf<Cell>()
     init {
-        if(VerticalText.uiVertical()) layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL)
+        if(VerticalText.uiVertical(context)) layoutDirection=if(VerticalText.uiDirection(context)==TextDirection.VERTICAL_RL)
             View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
     }
 

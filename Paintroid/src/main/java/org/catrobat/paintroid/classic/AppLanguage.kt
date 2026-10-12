@@ -146,7 +146,7 @@ internal object AppLanguage {
             VerticalUi.caption(this,128)
         }
         return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))
-            .setCustomTitle(if(VerticalText.uiVertical()) ColumnScrollView(activity).apply {addView(note)} else note)
+            .setCustomTitle(if(VerticalText.uiVertical(activity)) ColumnScrollView(activity).apply {addView(note)} else note)
             .setSingleChoiceItems(object: android.widget.ArrayAdapter<String>(activity,android.R.layout.simple_list_item_single_choice,labels) {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.

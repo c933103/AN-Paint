@@ -55,7 +55,7 @@ class VerticalEvidenceExportRule(private val instrumentation: Instrumentation) :
 
     private fun prepare(locale: String) {
         check(Build.VERSION.SDK_INT>=29 && context.packageName==OWNER)
-        for(relative in paths(locale)) {
+        for(relative in paths(locale)+diagnosticPaths(locale)) {
             val file=source(relative)
             if(file.exists()) check(file.isFile && file.delete()) {"Could not clear owned evidence"}
         }
@@ -100,14 +100,17 @@ class VerticalEvidenceExportRule(private val instrumentation: Instrumentation) :
 
     private fun export(locale: String,method: String,testPassed: Boolean) {
         val expected=paths(locale)
-        val available=expected.filter {source(it).exists()}
+        // Optional failure frames remain diagnostic. Successful exports retain
+        // their exact required inventory and cannot gain credit from these files.
+        val available=(expected+if(testPassed) emptyList() else diagnosticPaths(locale))
+            .filter {source(it).exists()}
         var total=0L
         for(relative in available) {
             val file=source(relative)
             check(file.isFile && file.length() in 1..MAX_FILE) {"Invalid evidence file size/type"}
             total+=file.length();check(total<=MAX_CASE) {"Oversize evidence case"}
         }
-        val complete=testPassed && available.size==expected.size
+        val complete=testPassed && available.containsAll(expected)
         val manifest=JSONObject().put("version",1).put("owner",OWNER).put("locale",locale)
             .put("method",method).put("device_sdk",Build.VERSION.SDK_INT).put("complete",complete)
             .put("files",JSONArray())
@@ -185,6 +188,10 @@ class VerticalEvidenceExportRule(private val instrumentation: Instrumentation) :
             "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations" to "lzh-Hant",
             "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" to "en-XV",
             "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" to "qaa-Zsye-XV")
+        fun diagnosticPaths(locale: String): List<String> {
+            require(locale in METHOD_LOCALES.values)
+            return listOf("$locale-failure.png","$locale-portrait-failure.png","$locale-landscape-failure.png")
+        }
         fun paths(locale: String): List<String> {
             require(locale in METHOD_LOCALES.values)
             return listOf("portrait","landscape").flatMap {orientation ->

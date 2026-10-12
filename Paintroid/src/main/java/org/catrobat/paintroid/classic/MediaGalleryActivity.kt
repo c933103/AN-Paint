@@ -77,22 +77,22 @@ class MediaGalleryActivity : Activity() {
             // The shared caption is one atomic span: a literal paragraph break
             // would make TextView draw that entire span once for each paragraph.
             // Keep every word, using a space only for the vertical column run.
-            text=provider.label+(if(VerticalText.uiVertical()) " " else "\n")+ui(provider.descriptionId)
+            text=provider.label+(if(VerticalText.uiVertical(this@MediaGalleryActivity)) " " else "\n")+ui(provider.descriptionId)
             textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
             VerticalUi.caption(this,64)
         }
-        val descriptionContent=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        val descriptionContent=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_description_columns";addView(description)
         } else description
         controls.addView(descriptionContent,LinearLayout.LayoutParams(-1,-2))
-        status=(if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical())
+        status=(if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical(this@MediaGalleryActivity))
             GlyphBoundsStatusView(this) else TextView(this)).apply {
             tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))
             accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
             VerticalUi.caption(this,144)
         }
-        statusHost=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        statusHost=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_status_columns";visibility=View.GONE;addView(status)
         } else status
         controls.addView(statusHost)
@@ -100,7 +100,7 @@ class MediaGalleryActivity : Activity() {
         fun action(label: String,tagName: String,run: ()->Unit) {
             row.addView(galleryButton(this,label,tagName,12f,run=run))
         }
-        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             addView(actions)
         } else actions
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
@@ -127,7 +127,7 @@ class MediaGalleryActivity : Activity() {
         }.apply {contentDescription=ui(R.string.ui_gallery_back34)})
         val searchLabel=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34)
         val search=gallerySearchField(this,searchLabel)
-        if(VerticalText.uiVertical()) {
+        if(VerticalText.uiVertical(this@MediaGalleryActivity)) {
             // Keep editing in Android's native field; the label uses the same
             // script-aware columns as the rest of the surrounding app controls.
             val caption=TextView(this).apply {

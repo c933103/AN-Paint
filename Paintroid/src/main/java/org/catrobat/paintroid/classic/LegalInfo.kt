@@ -84,7 +84,7 @@ object LegalInfo {
         val dialog=Dialog(activity).apply { requestWindowFeature(android.view.Window.FEATURE_NO_TITLE) }
         val body=ResponsiveDialogLayout(activity).apply {setPadding(dp(12),dp(8),dp(12),dp(8))}
         val heading=FlowTextView(activity).apply {tag="terms_title";this.text=title;textSize=18f;setTextColor(EditorColours.onSurface);gravity=Gravity.CENTER_VERTICAL;columnHeightDp=96}
-        val titleView=if(VerticalText.uiVertical()) ResponsiveDialogColumns(activity).apply {addView(heading)} else heading
+        val titleView=if(VerticalText.uiVertical(activity)) ResponsiveDialogColumns(activity).apply {addView(heading)} else heading
         body.region(titleView,.25f,"terms_title_scroll")
         val scroll=ScrollView(activity).apply { tag="terms_scroll" }
         scroll.addView(TextView(activity).apply {
@@ -120,7 +120,7 @@ object LegalInfo {
             }.setNegativeButton(ui(R.string.ui_cancel),null).show()
         }
         action(ui(R.string.ui_done),"terms_done") { dialog.dismiss() }
-        val actionView=if(VerticalText.uiVertical()) ResponsiveDialogColumns(activity).apply {addView(actions)} else actions
+        val actionView=if(VerticalText.uiVertical(activity)) ResponsiveDialogColumns(activity).apply {addView(actions)} else actions
         body.region(actionView,.35f,"terms_actions_scroll")
         dialog.setContentView(body)
         LocaleTypography.install(body)

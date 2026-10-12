@@ -92,6 +92,27 @@ class VerticalEvidenceTransportTest(unittest.TestCase):
                 with self.assertRaises(ValueError):extract(root/'exports',root/'evidence',35)
                 self.assertFalse((root/'evidence').exists())
 
+    def test_optional_failure_frame_cannot_turn_partial_export_into_success(self):
+        for claims_complete in (False, True):
+            with self.subTest(claims_complete=claims_complete), tempfile.TemporaryDirectory() as temporary:
+                root=Path(temporary);export_fixture(root/'exports',30)
+                def failed_case(data):
+                    report=json.loads(data['manifest.json'])
+                    removed=report['files'].pop()
+                    del data[removed['path']]
+                    name='lzh-Hant-landscape-failure.png';content=b'diagnostic only'
+                    data[name]=content
+                    report['files'].append(dict(path=name,bytes=len(content),sha256=hashlib.sha256(content).hexdigest()))
+                    report['complete']=claims_complete
+                    data['manifest.json']=json.dumps(report)
+                rewrite(root/'exports/lzh-Hant.zip',failed_case)
+                with self.assertRaises(ValueError):extract(root/'exports',root/'evidence',30)
+                self.assertFalse((root/'evidence').exists())
+        source=(ROOT/'app/src/androidTest/java/paint/anpaint/android/VerticalEvidenceExportRule.kt').read_text()
+        self.assertIn('paths(locale)+diagnosticPaths(locale)',source)
+        self.assertIn('expected+if(testPassed) emptyList() else diagnosticPaths(locale)',source)
+        self.assertIn('val complete=testPassed && available.containsAll(expected)',source)
+
     def test_duplicate_json_keys_and_corrupt_or_truncated_content_fail(self):
         changes=[lambda d:d.__setitem__('manifest.json',d['manifest.json'].replace(b'"version": 1',b'"version": 1, "version": 1')),
                  lambda d:d.__setitem__(next(n for n in d if n!='manifest.json'),b'corrupt'),

@@ -50,11 +50,11 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
     val number=FlowButton(context).apply {columnHeightDp=112}
     private fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
     init {
-        orientation=if(VerticalText.uiVertical()) HORIZONTAL else VERTICAL;isBaselineAligned=false
+        orientation=if(VerticalText.uiVertical(context)) HORIZONTAL else VERTICAL;isBaselineAligned=false
         number.isAllCaps=false;number.textSize=11f;number.setPadding(0,0,0,0);number.minWidth=0;number.minimumWidth=0
-        addView(number,LayoutParams(if(VerticalText.uiVertical()) -2 else -1,if(VerticalText.uiVertical()) -2 else dp(44)))
+        addView(number,LayoutParams(if(VerticalText.uiVertical(context)) -2 else -1,if(VerticalText.uiVertical(context)) -2 else dp(44)))
         slider.max=maximum-minimum;slider.progress=value.coerceIn(minimum,maximum)-minimum
-        slider.contentDescription=name;addView(slider,LayoutParams(if(VerticalText.uiVertical()) dp(100) else -1,dp(44)))
+        slider.contentDescription=name;addView(slider,LayoutParams(if(VerticalText.uiVertical(context)) dp(100) else -1,dp(44)))
         fun display(n: Int) { number.text=ui(R.string.ui_numeric_slider_value,name,n);number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }
         display(slider.progress+minimum)
         slider.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {

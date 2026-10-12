@@ -3,6 +3,7 @@ package org.catrobat.paintroid.classic
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -23,6 +24,16 @@ internal object VerticalText {
         locale.language=="qaa" && locale.script=="Zsye" && locale.country=="XV" -> TextDirection.VERTICAL_RL
         else -> TextDirection.HORIZONTAL
     }
+    // Rendering follows the locale of its resource context. Android can reset
+    // the process default during configuration dispatch after our activity's
+    // override has already been applied; that must not turn existing UI sideways.
+    @Suppress("DEPRECATION")
+    fun uiDirection(context: Context): TextDirection {
+        val configuration=context.resources.configuration
+        val locale=if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
+        return uiDirection(locale)
+    }
+    fun uiVertical(context: Context)=uiDirection(context)!=TextDirection.HORIZONTAL
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
     fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
     /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */

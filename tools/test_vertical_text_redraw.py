@@ -15,7 +15,7 @@ class VerticalTextRedrawContractTest(unittest.TestCase):
                 change=widget.split('override fun onTextChanged(',1)[1].split('private fun caption',1)[0]
                 def check(text):
                     self.assertIn('super.onTextChanged(text,start,lengthBefore,lengthAfter)',text)
-                    self.assertIn('if(VerticalText.uiVertical()) {requestLayout();invalidate()}',text)
+                    self.assertIn('if(VerticalText.uiVertical(context)) {requestLayout();invalidate()}',text)
                 check(change)
                 for deleted in ('requestLayout();','invalidate()','super.onTextChanged(text,start,lengthBefore,lengthAfter)'):
                     with self.assertRaises(AssertionError):check(change.replace(deleted,''))

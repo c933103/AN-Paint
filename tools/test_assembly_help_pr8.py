@@ -138,7 +138,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         self.assertCode(attached, "view.removeOnAttachStateChangeListener(this)")
         post = kotlin_block(attached, "view.post {")
         shown = kotlin_block(post, "if (dialog.isShowing) {")
-        self.assertCode(shown, "if (VerticalText.uiVertical()) mount(dialog) LocaleTypography.install(dialog.window!!.decorView)")
+        self.assertCode(shown, "if (VerticalText.uiVertical(context)) mount(dialog) LocaleTypography.install(dialog.window!!.decorView)")
         self.assertCode(create, "return dialog")
 
     def test_vertical_help_preserves_body_and_original_positive_action(self):
