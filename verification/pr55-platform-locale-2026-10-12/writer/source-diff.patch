@@ -1,0 +1,61 @@
+diff --git a/HANDOFF.md b/HANDOFF.md
+index ec073c9..5a27926 100644
+--- a/HANDOFF.md
++++ b/HANDOFF.md
+@@ -2,7 +2,7 @@
+ 
+ - Build, test and delivery rules: [CI.md](CI.md).
+ - Current localization regression data: `tools/fixtures/current_localization/`.
+-  Exact wording coverage is not native-speaker acceptance; 81 other offered
++  Exact wording coverage is not native-speaker acceptance; 108 other offered
+   locales remain outside the bounded 59-locale work.
+ - Current PR55 work: typed Commons query failures, full accessible localized
+   status text, native/installed lifecycle and rendering regressions.
+diff --git a/app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt
+index 9a3826b..e457f53 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt
+@@ -4,6 +4,7 @@ package paint.anpaint.android
+ import android.app.Activity
+ import android.app.Dialog
+ import android.app.Instrumentation
++import android.app.LocaleConfig
+ import android.app.LocaleManager
+ import android.content.ClipData
+ import android.content.ClipboardManager
+@@ -744,6 +745,23 @@ class EditorDeviceTest {
+ 
+     @Test @SdkSuppress(minSdkVersion=33)
+     fun deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches() {
++        // Read the installed app's manifest-bound platform configuration, not the XML
++        // directly. This proves framework discovery, not visibility in a Settings UI.
++        val expected=context.resources.getStringArray(R.array.app_language_tags).toList()
++        val config=if(Build.VERSION.SDK_INT>=34) LocaleConfig.fromContextIgnoringOverride(context)
++            else LocaleConfig(context)
++        android.util.Log.i("LanguagePickerTest","platformLocaleConfigStatus=${config.status} " +
++            "expected=${expected.joinToString(",")} actual=${config.supportedLocales?.toLanguageTags()}")
++        assertEquals("Installed app declares a readable platform locale configuration",
++            LocaleConfig.STATUS_SUCCESS,config.status)
++        val supported=config.supportedLocales
++            ?: throw AssertionError("Successful locale configuration must expose supported locales")
++        val actual=(0 until supported.size()).map {supported[it].toLanguageTag()}
++        assertTrue("The current picker inventory must not be empty",expected.isNotEmpty())
++        assertEquals("Current picker tags are unique",expected.size,expected.toSet().size)
++        assertEquals("Platform and picker locale counts match",expected.size,actual.size)
++        assertEquals("Platform exposes every exact current picker tag",expected.toSet(),actual.toSet())
++
+         // The repository's emulator fixture boots in en-US. Keep this oracle independent
+         // of AppLanguage.deviceDefaultLabel and the app-overridden resource context.
+         assertEquals("Controlled emulator device locale","en-US",
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index c924c0c..b2f82b6 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -22,6 +22,7 @@
+     xmlns:tools="http://schemas.android.com/tools">
+ 
+     <application
++        android:localeConfig="@xml/app_locales"
+         android:allowBackup="false"
+         android:fullBackupContent="false"
+         android:dataExtractionRules="@xml/data_extraction_rules"

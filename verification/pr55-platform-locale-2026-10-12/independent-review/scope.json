@@ -1,0 +1,38 @@
+{
+  "status": "PASS_BOUNDED_SOURCE_REVIEW",
+  "base_tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "candidate_tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "changed_paths": [
+    "HANDOFF.md",
+    "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+    "app/src/main/AndroidManifest.xml"
+  ],
+  "unchanged_leaves_and_modes": 1091,
+  "total_leaves": 1094,
+  "existing_instrumentation_body_exact_after_removing_new_check": true,
+  "platform_manifest_binding": "@xml/app_locales",
+  "current_unique_exact_tags": 167,
+  "source_pins": [
+    {
+      "path": "HANDOFF.md",
+      "before_sha256": "810453b0b18f5723859dcbd611f77341c67df26ab995dd19356aa1f77ce0864f",
+      "after_sha256": "7b015c642a5f1200ee65dc214567b428221457d5e017215ce4acfe8460d00696"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+      "before_sha256": "220c8a2984ff8a99c53ec89e7868e16acf2ecfa1530a367f0a852898109799b8",
+      "after_sha256": "f61aa99043c58c9a64e3b0697728fc3cc2b6a599fd450b5d4a6d92280e050d9d"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "before_sha256": "1768b79976f0302c8a492ed71e2aea6dd77dc7071137ab7c348e3d59649e62c1",
+      "after_sha256": "21ad3d0555c47016de37bc3fd60bb68ee020d2c41f8efa7e5e88e60b8b43fa19"
+    }
+  ],
+  "limits": [
+    "One-time source inspection, not Android compilation or installed acceptance.",
+    "Fresh compiled application reference and actual API35 LocaleConfig status/tag receipt remain required.",
+    "API33 constructor branch is source reviewed but not executed by the ordinary API30/API35 matrix.",
+    "No Settings UI visibility claim."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "mode": "normal",
+      "passed": 24,
+      "seconds": 7.154,
+      "exit_status": 0,
+      "sha256": "082104a551b819faa64a320723a1e717f990d05d140f68cfac148db2e79f1284"
+    },
+    {
+      "mode": "optimized",
+      "passed": 24,
+      "seconds": 4.976,
+      "exit_status": 0,
+      "sha256": "a7123607f229fec8296db764a1acb7378c2ce184973204ede1460c5f32ec833d"
+    }
+  ],
+  "modules": [
+    "test_language_option_additions",
+    "test_language_option_additions_second",
+    "test_current_localization_contracts",
+    "test_ci_timeout_budget"
+  ],
+  "not_run": [
+    "Android compile",
+    "installed framework discovery",
+    "fresh compiled APK attribute audit",
+    "full host aggregate"
+  ]
+}

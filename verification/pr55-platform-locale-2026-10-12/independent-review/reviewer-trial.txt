@@ -1,0 +1,1 @@
+The first one-time checker trial incorrectly looked for app_language_tags in values/strings.xml, and stopped on a NoneType lookup. Corrected to its actual values/app_language_tags.xml owner before any result; this was a reviewer path error, not an application/test failure.
