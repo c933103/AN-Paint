@@ -473,6 +473,10 @@ def verify_png(data):
         require(offset + 12 <= len(data), 'Truncated PNG chunk')
         size = struct.unpack('>I', data[offset:offset + 4])[0]
         kind = data[offset + 4:offset + 8]
+        require(all(65 <= byte <= 90 or 97 <= byte <= 122 for byte in kind),
+                'Invalid PNG chunk type')
+        require(kind[0] & 0x20 or kind in (b'IHDR', b'PLTE', b'IDAT', b'IEND'),
+                'Unknown critical PNG chunk')
         end = offset + 12 + size
         require(end <= len(data), 'Truncated PNG payload')
         require(zlib.crc32(data[offset + 4:end - 4]) & 0xffffffff ==

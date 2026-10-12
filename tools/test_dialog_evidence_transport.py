@@ -849,6 +849,25 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
             with self.subTest(palette_case=index), self.assertRaises(ValueError):
                 verify_png(value)
 
+    def test_png_unknown_critical_and_invalid_chunk_types_fail_closed(self):
+        valid = png()
+
+        def inserted(kind, offset):
+            payload = b'new extension'
+            chunk = (struct.pack('>I', len(payload)) + kind + payload
+                     + struct.pack('>I', zlib.crc32(kind + payload) & 0xffffffff))
+            return valid[:offset] + chunk + valid[offset:]
+
+        # Unknown ancillary chunks remain legal before or after the image data.
+        # The same extension marked critical cannot be safely interpreted.
+        for offset in (len(PNG) + 25, len(valid) - 12):
+            for kind in (b'abCD', b'abCd'):
+                with self.subTest(ancillary=kind, offset=offset):
+                    verify_png(inserted(kind, offset))
+            for kind in (b'ABCD', b'AbCd', b'a1CD', b'ab\x00D', b'\xe1bCD'):
+                with self.subTest(invalid=kind, offset=offset), self.assertRaises(ValueError):
+                    verify_png(inserted(kind, offset))
+
 
 if __name__ == '__main__':
     unittest.main()
