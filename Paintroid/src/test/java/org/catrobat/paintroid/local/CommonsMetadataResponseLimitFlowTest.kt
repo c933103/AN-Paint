@@ -343,7 +343,7 @@ class CommonsMetadataResponseLimitFlowTest {
     @Test @Config(qualifiers="w320dp-h640dp-port-xhdpi",fontScale=2f)
     fun representativeM03StatusRetainsFullAccessibleTextAtDoubleScale() = readable(2f)
     private fun readable(scale: Float) {
-        for(insert in listOf(false,true)) for(tag in listOf("en-GB","fr","ar","ja","vi-Hani","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
+        for(insert in listOf(false,true)) for(tag in listOf("en-GB","ain-Kana","ain-Latn","fr","ar","ja","vi-Hani","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
             withGallery(tag) {activity ->
                 val before=files(activity);val requests=Collections.synchronizedList(mutableListOf<Connection>())
                 connect(activity,requests,limit+1);select(activity,insert);await {!activity.downloading}

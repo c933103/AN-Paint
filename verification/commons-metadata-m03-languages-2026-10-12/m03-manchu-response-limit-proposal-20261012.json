@@ -1,0 +1,339 @@
+{
+  "key": "commons_metadata_response_too_large",
+  "locale": "mnc-Mong",
+  "source": "Commons metadata exceeds the response limit",
+  "status": "source-assisted-proposal; independent reviewer recommends acceptance as a contextual paraphrase",
+  "value": "ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+  "romanization": "nirugan i Commons ci alime gaiha mejige i uheri kemun toktoho kemun ci fulu.",
+  "romanization_system": "Scholarly Manchu transliteration compatible with Möllendorff; no diacritic-bearing letter occurs in this sentence. Commons is a literal brand token.",
+  "literal_backtranslation": "[Image-of [Commons-from received] information]-of total measure [set measure]-than greater.",
+  "fluent_backtranslation": "The total amount of information about the image received from Commons is greater than the set limit.",
+  "confidence": "moderate-source-assisted-paraphrase; not a claim of native competence or attested modern terminology",
+  "rationale": "This translates the error through a received-data paraphrase. The head noun is mejige, information; nirugan i specifies information about the image, while Commons ci alime gaiha specifies its source and receipt. The comparative bounds that received information's total amount. Initial nirugan i, followed by the receipt modifier immediately before mejige, avoids presenting the image itself as the received head. uheri emphasizes the aggregate rather than an individual metadata field. No invented metadata, HTTP-response or byte word is asserted. The English source contains neither a numeric limit nor a byte unit, so no numeric threshold or unit is added. Commons is unchanged.",
+  "segmentation": [
+    {
+      "script": "ᠨᡳᡵᡠᡤᠠᠨ",
+      "romanization": "nirugan",
+      "role": "image/picture",
+      "evidence": [
+        "S1"
+      ]
+    },
+    {
+      "script": "ᡳ",
+      "romanization": "i",
+      "role": "genitive linking image with information; here information about the image",
+      "evidence": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "script": "Commons",
+      "romanization": "Commons",
+      "role": "provider name, preserved literally",
+      "evidence": [
+        "T1"
+      ]
+    },
+    {
+      "script": "ᠴᡳ",
+      "romanization": "ci",
+      "role": "ablative: from",
+      "evidence": [
+        "S2"
+      ]
+    },
+    {
+      "script": "ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ",
+      "romanization": "ali-me gai-ha",
+      "role": "received; converb plus perfect participle, modifying information",
+      "evidence": [
+        "S2",
+        "S4"
+      ]
+    },
+    {
+      "script": "ᠮᡝᠵᡳᡤᡝ",
+      "romanization": "mejige",
+      "role": "information; ordinary historical word, contextually extended to transmitted image information",
+      "evidence": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "script": "ᡳ",
+      "romanization": "i",
+      "role": "genitive attaching the complete received-information phrase to its amount",
+      "evidence": [
+        "S2"
+      ]
+    },
+    {
+      "script": "ᡠᡥᡝᡵᡳ",
+      "romanization": "uheri",
+      "role": "total/aggregate",
+      "evidence": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "script": "ᡴᡝᠮᡠᠨ",
+      "romanization": "kemun",
+      "role": "measure/amount; a contextual extension to received-data size",
+      "evidence": [
+        "S1",
+        "S6"
+      ]
+    },
+    {
+      "script": "ᡨᠣᡴᡨᠣᡥᠣ",
+      "romanization": "tokto-ho",
+      "role": "set/established; perfect participial modifier of the second measure",
+      "evidence": [
+        "S2",
+        "S5"
+      ]
+    },
+    {
+      "script": "ᡴᡝᠮᡠᠨ",
+      "romanization": "kemun",
+      "role": "limit/measure",
+      "evidence": [
+        "S1",
+        "S6"
+      ]
+    },
+    {
+      "script": "ᠴᡳ ᡶᡠᠯᡠ",
+      "romanization": "ci fulu",
+      "role": "greater than/in excess of; predicate comparison without an invented verb form",
+      "evidence": [
+        "S2",
+        "S5",
+        "S7"
+      ]
+    }
+  ],
+  "technical_scope": {
+    "meaning_verified": "In CommonsAttribution.fetch, downloaded input bytes are accumulated, and ResponseLimitException is thrown if bytes.size().toLong() + count exceeds MAX_RESPONSE = 2 * 1024 * 1024. The response is JSON containing image information and extmetadata.",
+    "not_the_bounded_object": [
+      "image dimensions or image-file bytes",
+      "length of one metadata field",
+      "attribution text length",
+      "upload size",
+      "response time or response count"
+    ],
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+    "implementation_edits": false,
+    "publication_performed": false
+  },
+  "review_limits": [
+    "The composed sentence is new. Historical lexical and grammatical evidence supports its constituents; it does not attest HTTP or JSON vocabulary in contemporary Manchu.",
+    "The byte-size interpretation is contextual: the sentence explicitly measures the total received image information, but does not literally name bytes. This mirrors the English source's absence of a byte unit. Information-size rather than information-quality is the intended reading of kemun and fulu here.",
+    "The paraphrase identifies metadata as information about the image; it does not claim mejige alone is a standardized translation of metadata.",
+    "The receipt phrase modifies mejige, with nirugan i placed first after independent reviewer feedback. Final full-sentence naturalness remains less certain than the supported constituent meanings.",
+    "A Unicode/transliteration check is provided separately. Android shaping and visual rendering have not been tested for this proposal."
+  ],
+  "not_reused": {
+    "catalogue_status": "Existing locale material was consulted for script and context only; it is not an authority for correctness.",
+    "dabaliha": "Not reused. Elliott lists dabali as a postposition, and Möllendorff uses it adverbially. The Qing index distinguishes dabambi/dabanambi. These sources do not establish a dabaliha form; this is not an exhaustive claim that the form never exists.",
+    "jabun": "Not required by the received-data paraphrase; no HTTP sense is claimed.",
+    "unsupported_additions": "No JSON, byte loanword or 2 MiB constant is inserted into the UI sentence."
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://gerel.net/articles/roncho/A47All.pdf",
+      "title": "Kuribayashi: Manchu index to the Qing Manchu-Mongolian-Chinese dictionary",
+      "retrieval": "Full PDF text inspected",
+      "locations": "PDF pages 98, 180, 324, 365, 398 and 527",
+      "supports": "nirugan: picture; mejige: information; kemun: measure/standard; fulu: surplus; uheri: total. The index separately records exceed-related vocabulary.",
+      "limit": "Historical senses, not digital terminology. The displayed non-Latin dictionary column is Mongolian, not a Manchu-script validation source."
+    },
+    {
+      "id": "S2",
+      "url": "https://en.wikisource.org/wiki/A_Manchu_Grammar",
+      "title": "P. G. von Möllendorff, A Manchu Grammar (1892)",
+      "retrieval": "Public-domain primary grammar transcription inspected",
+      "locations": "II.1 nouns and case suffixes; II.4 verb forms and irregular verbs; III syntax",
+      "supports": "Genitive i, ablative/comparative ci, perfect gaiha, and pre-head genitive/participle syntax support the sentence. This supports a compositional analysis, not an attested complete UI sentence."
+    },
+    {
+      "id": "S3",
+      "url": "https://journals.publishing.umich.edu/saksaha/article/id/4215/download/pdf/",
+      "title": "Monggo Yamun and Tulergi Golo be Dasara Jurgan, Saksaha 19 (2023), palace-memorial transcription",
+      "retrieval": "Indexed primary-text excerpt inspected; direct retrieval returned an anti-bot page",
+      "locations": "Printed page 94",
+      "supports": "The original ukanju i mejige is translated as information about fugitives, supporting X i mejige as information about X.",
+      "limit": "Provides the about-information construction only; the new image-information application remains compositional."
+    },
+    {
+      "id": "S4",
+      "url": "https://www.battle-of-qurman.com.cn/literature/Onuma-2010.pdf#page=32",
+      "title": "Noda Jin and Onuma Takahiro, A Collection of Documents from the Kazakh Sultans to the Qing Dynasty (2010)",
+      "retrieval": "Full scholarly primary-document edition inspected",
+      "locations": "Printed page 25, PDF page 32",
+      "supports": "alime gaiha directly precedes a received document head, with the edition's translation confirming receipt.",
+      "limit": "Historical receipt of a document, not download terminology."
+    },
+    {
+      "id": "S5",
+      "url": "https://www.sciamvs.org/files/SCIAMVS_06_177-264_Watanabe.pdf",
+      "title": "Junsei Watanabe, A Manchu manuscript on arithmetic, SCIAMVS 6 (2005), 177–264",
+      "retrieval": "Full primary-manuscript transcription and scholarly translation inspected",
+      "locations": "Printed pages 181–183 (toktoho), 258–260 (ci fulu), 261–262 (uheri ton)",
+      "supports": "Established numerical values, greater-than comparison in arithmetic, and total/summed quantities independently support the proposed modifier, predicate and aggregate wording.",
+      "limit": "Quantitative morphology and semantics only, not a digital-size phrase."
+    },
+    {
+      "id": "S6",
+      "url": "https://sino-platonic.org/complete/spp178_art_of_war.pdf#page=122",
+      "title": "H. T. Toh, Manchu transcription and glosses in Victor H. Mair, Soldierly Methods, Sino-Platonic Papers 178 (2008)",
+      "retrieval": "Full primary-text transcription and scholarly glosses inspected",
+      "locations": "Printed page 104, PDF page 122",
+      "supports": "Explicit limit-related glosses for kemun provide independent support for the upper-bound noun.",
+      "limit": "Historical contextual use; the first kemun as data measure is an ordinary extension, not an attested byte unit."
+    },
+    {
+      "id": "S7",
+      "url": "https://www.manchustudiesgroup.org/translations/muwa-gisun/muwa-gisun-section-three/",
+      "title": "Manchu Studies Group, Muwa Gisun Section Three, discourse 11",
+      "retrieval": "Full original transcription and translation inspected",
+      "supports": "A bare ci fulu predicate occurs with no expressed copula. This supports the error sentence's concise predicate form.",
+      "limit": "Qualitative comparison in this dialogue; quantitative support instead comes from S5."
+    },
+    {
+      "id": "S8",
+      "url": "https://www.manchustudiesgroup.org/wp-content/uploads/2020/07/Handout-5-Postpositions.pdf",
+      "title": "Mark Elliott, Manchu S-A, Postpositions",
+      "retrieval": "Full handout inspected",
+      "locations": "Page 3",
+      "supports": "dabali is classified as a postposition and mejige appears as the object of information gathering. Used to avoid blindly reusing catalogue morphology."
+    },
+    {
+      "id": "T1",
+      "url": "https://github.com/c933103/AN-Paint/blob/79b1f990a98eaf44c28351cd02c20157c70d8dff/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt#L79",
+      "title": "AN Paint CommonsAttribution byte-limit check",
+      "retrieval": "Local source inspected; stable URL from the prior research record",
+      "supports": "Technical meaning of the response-limit error, not language evidence."
+    }
+  ],
+  "independent_review": {
+    "status": "independent-reviewer-recommends-acceptance",
+    "reviewer": "independent language reviewer",
+    "reviewed_value": "ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+    "outcome": "Reordered sentence plus uheri accepted as a contextual paraphrase with moderate confidence. Receipt qualifier on limit can remain implicit. Reviewer independently checked the complete codepoint-to-romanization mapping, absence of hidden controls, Onuma received-document wording and the indexed Saksaha information-about phrase.",
+    "scope_limit": "No claim of native-speaker review, attested contemporary metadata terminology, or Android rendering validation."
+  },
+  "validation": {
+    "romanization_roundtrip": "pass",
+    "literal_Commons": "pass",
+    "NFC": "pass",
+    "hidden_controls": "none",
+    "all_script_codepoints": "Manchu/Mongolian block letters matching the written romanization",
+    "xml_text_roundtrip": "pass",
+    "character_count": 76,
+    "visual_rendering": "not run",
+    "codepoints": [
+      {
+        "character": "ᠠ",
+        "codepoint": "U+1820",
+        "name": "MONGOLIAN LETTER A",
+        "romanization": "a"
+      },
+      {
+        "character": "ᠣ",
+        "codepoint": "U+1823",
+        "name": "MONGOLIAN LETTER O",
+        "romanization": "o"
+      },
+      {
+        "character": "ᠨ",
+        "codepoint": "U+1828",
+        "name": "MONGOLIAN LETTER NA",
+        "romanization": "n"
+      },
+      {
+        "character": "ᠮ",
+        "codepoint": "U+182E",
+        "name": "MONGOLIAN LETTER MA",
+        "romanization": "m"
+      },
+      {
+        "character": "ᠯ",
+        "codepoint": "U+182F",
+        "name": "MONGOLIAN LETTER LA",
+        "romanization": "l"
+      },
+      {
+        "character": "ᠴ",
+        "codepoint": "U+1834",
+        "name": "MONGOLIAN LETTER CHA",
+        "romanization": "c"
+      },
+      {
+        "character": "ᠵ",
+        "codepoint": "U+1835",
+        "name": "MONGOLIAN LETTER JA",
+        "romanization": "j"
+      },
+      {
+        "character": "ᡝ",
+        "codepoint": "U+185D",
+        "name": "MONGOLIAN LETTER SIBE E",
+        "romanization": "e"
+      },
+      {
+        "character": "ᡠ",
+        "codepoint": "U+1860",
+        "name": "MONGOLIAN LETTER SIBE UE",
+        "romanization": "u"
+      },
+      {
+        "character": "ᡤ",
+        "codepoint": "U+1864",
+        "name": "MONGOLIAN LETTER SIBE GA",
+        "romanization": "g"
+      },
+      {
+        "character": "ᡥ",
+        "codepoint": "U+1865",
+        "name": "MONGOLIAN LETTER SIBE HA",
+        "romanization": "h"
+      },
+      {
+        "character": "ᡨ",
+        "codepoint": "U+1868",
+        "name": "MONGOLIAN LETTER SIBE TA",
+        "romanization": "t"
+      },
+      {
+        "character": "ᡳ",
+        "codepoint": "U+1873",
+        "name": "MONGOLIAN LETTER MANCHU I",
+        "romanization": "i"
+      },
+      {
+        "character": "ᡴ",
+        "codepoint": "U+1874",
+        "name": "MONGOLIAN LETTER MANCHU KA",
+        "romanization": "k"
+      },
+      {
+        "character": "ᡵ",
+        "codepoint": "U+1875",
+        "name": "MONGOLIAN LETTER MANCHU RA",
+        "romanization": "r"
+      },
+      {
+        "character": "ᡶ",
+        "codepoint": "U+1876",
+        "name": "MONGOLIAN LETTER MANCHU FA",
+        "romanization": "f"
+      }
+    ]
+  }
+}

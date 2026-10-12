@@ -149,3 +149,11 @@ in the source. Local Android compilation/runtime was not established because
 the SDK was unavailable; hosted results must be recorded against the actual PR
 head. This draft does not claim competent-language acceptance, all-size font
 raster equivalence, Android behavior, readiness, merge or release approval.
+
+## Later language successor
+
+This report and its source manifest describe the initial `0c5073c7` checkpoint.
+The three-language successor has its own [report, exact values, independent
+language review and validation](../commons-metadata-m03-languages-2026-10-12/README.md).
+The active disposition inventory is updated by that successor; its initial
+56-proposal / three-unresolved bytes remain in the first immutable commit.

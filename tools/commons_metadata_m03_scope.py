@@ -4,7 +4,7 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-CATALOGUE_PIN = '8239265b3bb0963a8c546df0494b562dd90880ef6d4ab63ad8c42ab6744c2e5c'
+CATALOGUE_PIN = '2bf39ff3c05322e4ecb10adbe90e8790b6d53580073cd412b128324db47852ef'
 PRODUCTION_PIN = '27255affc9138de58320c994d215534e272f939e4e0e1935170fe857dc8a5220'
 
 

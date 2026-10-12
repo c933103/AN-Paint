@@ -3,6 +3,7 @@ import hashlib
 import json
 import pathlib
 import unittest
+import unicodedata
 from unittest.mock import patch
 
 import translation_catalogues as catalogues
@@ -18,6 +19,29 @@ DEFAULT = 'Commons metadata exceeds the response limit'
 
 
 class CommonsMetadataM03Contracts(unittest.TestCase):
+    def test_reviewed_three_language_successor_matches_decisions_and_limits(self):
+        evidence = ROOT / 'verification/commons-metadata-m03-languages-2026-10-12'
+        decisions = json.loads((evidence / 'decisions.json').read_text())
+        self.assertEqual({'ain-Kana', 'ain-Latn', 'mnc-Mong'}, set(decisions))
+        paths = catalogues.catalogue_paths()
+        for tag, decision in decisions.items():
+            self.assertEqual('accept_source_assisted_contextual_paraphrase', decision['decision'])
+            self.assertEqual('moderate', decision['confidence'])
+            self.assertFalse(decision['native_speaker_approval_claimed'])
+            self.assertTrue(decision['backtranslation']); self.assertTrue(decision['residual_limit'])
+            value = catalogues.read_strings(paths[tag])[KEY]
+            self.assertEqual(decision['value'], value)
+            self.assertEqual(unicodedata.normalize('NFC', value), value)
+            self.assertFalse(any(unicodedata.category(ch).startswith('C') for ch in value))
+
+    def test_reviewed_scripts_are_in_normal_and_double_scale_status_routes(self):
+        flow = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt').read_text()
+        readable = flow[flow.index('private fun readable('):]
+        for tag in ('ain-Kana', 'ain-Latn', 'mnc-Mong'):
+            self.assertIn('"'+tag+'"', readable)
+        self.assertIn('representativeM03StatusRetainsFullAccessibleTextAtNormalScale() = readable(1f)', flow)
+        self.assertIn('representativeM03StatusRetainsFullAccessibleTextAtDoubleScale() = readable(2f)', flow)
+
     def test_only_one_message_added_to_default_and_exact_59_catalogues(self):
         data = catalogue_fixture()
         self.assertEqual(KEY, data['key']); self.assertEqual(DEFAULT, data['default'])

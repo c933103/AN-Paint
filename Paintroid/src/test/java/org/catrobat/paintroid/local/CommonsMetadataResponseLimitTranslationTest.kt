@@ -25,6 +25,9 @@ import org.robolectric.annotation.Config
 class CommonsMetadataResponseLimitTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val expectedMessages=mapOf(
+        "ain-Kana" to "Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
+        "ain-Latn" to "Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
+        "mnc-Mong" to "ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
         "af" to "Commons-metadata oorskry die groottelimiet vir antwoorde",
         "ar" to "تتجاوز بيانات Commons الوصفية الحد الأقصى لحجم الاستجابة",
         "bo" to "Commons ཀྱི་མེ་ཊ་གནས་ཚུལ་གྱི་ལན་ནི་ལན་གྱི་ཆེ་ཆུང་གི་ཚད་ལས་བརྒལ་ཡོད།",
