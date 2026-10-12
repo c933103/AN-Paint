@@ -1,0 +1,58 @@
+test_exact_three_endpoints_restore_the_failed_source (test_commons_metadata_m04_receiver.ReceiverSuccessorContracts.test_exact_three_endpoints_restore_the_failed_source) ... ok
+test_fixture_corruption_fails_even_under_optimized_python (test_commons_metadata_m04_receiver.ReceiverSuccessorContracts.test_fixture_corruption_fails_even_under_optimized_python) ... ok
+test_missing_duplicate_reverted_or_unrelated_live_edits_fail_closed (test_commons_metadata_m04_receiver.ReceiverSuccessorContracts.test_missing_duplicate_reverted_or_unrelated_live_edits_fail_closed) ... ok
+test_only_explicit_textview_receiver_changes_kotlin (test_commons_metadata_m04_receiver.ReceiverSuccessorContracts.test_only_explicit_textview_receiver_changes_kotlin) ... ok
+test_original_glyph_fixture_and_pixel_guard_are_unchanged (test_commons_metadata_m04_receiver.ReceiverSuccessorContracts.test_original_glyph_fixture_and_pixel_guard_are_unchanged) ... ok
+test_before_control_and_six_script_resets_retain_defect_specific_mutations (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_before_control_and_six_script_resets_retain_defect_specific_mutations) ... ok
+test_deleted_restored_duplicated_corrupted_or_unrelated_live_content_fails_closed (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_deleted_restored_duplicated_corrupted_or_unrelated_live_content_fails_closed) ... ok
+test_fixture_corruption_is_rejected_even_with_optimized_python (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_fixture_corruption_is_rejected_even_with_optimized_python) ... ok
+test_fresh_source_inventory_and_three_failed_checkpoints_remain_distinct (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_fresh_source_inventory_and_three_failed_checkpoints_remain_distinct) ... ok
+test_installed_profile_preserves_prior_checks_and_requires_full_rasters_without_new_status_codes (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_installed_profile_preserves_prior_checks_and_requires_full_rasters_without_new_status_codes) ... ok
+test_production_margin_is_measured_absolute_bounded_and_resets (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_production_margin_is_measured_absolute_bounded_and_resets) ... ok
+test_seven_exact_inverse_endpoints_keep_all_historical_fixtures (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_seven_exact_inverse_endpoints_keep_all_historical_fixtures) ... FAIL
+test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated) ... FAIL
+test_all_24_resource_reversal_orders_restore_original_pre_m02_m03_m04_c05_endpoints (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_all_24_resource_reversal_orders_restore_original_pre_m02_m03_m04_c05_endpoints) ... ok
+test_every_pr52_leaf_is_preserved_exactly_or_has_an_explicit_reversible_delta (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_every_pr52_leaf_is_preserved_exactly_or_has_an_explicit_reversible_delta) ... ok
+test_exact_projections_reject_changed_missing_duplicated_or_unrelated_source (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_exact_projections_reject_changed_missing_duplicated_or_unrelated_source) ... ok
+test_exact_source_inputs_and_accepted_value_file_remain_bound (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_exact_source_inputs_and_accepted_value_file_remain_bound) ... ok
+test_fixture_corruption_and_scope_expansion_fail_without_python_asserts (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_fixture_corruption_and_scope_expansion_fail_without_python_asserts) ... ok
+test_fragment_reversal_never_removes_corrupted_m04_production (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_fragment_reversal_never_removes_corrupted_m04_production) ... ok
+test_live_production_has_one_three_type_mapper_and_unchanged_pr52_callbacks (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_live_production_has_one_three_type_mapper_and_unchanged_pr52_callbacks) ... ok
+test_new_flow_http_oracle_is_typed_and_every_other_original_m04_assertion_restores (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_new_flow_http_oracle_is_typed_and_every_other_original_m04_assertion_restores) ... ok
+test_original_m04_catalogue_production_and_prior_test_endpoints_are_preserved (test_commons_metadata_m04_composition.CommonsMetadataM04CompositionContracts.test_original_m04_catalogue_production_and_prior_test_endpoints_are_preserved) ... ok
+
+======================================================================
+FAIL: test_seven_exact_inverse_endpoints_keep_all_historical_fixtures (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_seven_exact_inverse_endpoints_keep_all_historical_fixtures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/test_commons_metadata_m04_glyph_bounds.py", line 31, in test_seven_exact_inverse_endpoints_keep_all_historical_fixtures
+    self.assertEqual(row['before_sha256'],digest(old));self.assertEqual(old,before_glyph_bounds(row['path'],old))
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/commons_metadata_m04_glyph_bounds_scope.py", line 23, in before_glyph_bounds
+    content = before_receiver_fix(path, content)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/commons_metadata_m04_receiver_scope.py", line 27, in before_receiver_fix
+    raise AssertionError(f'{path}: unapproved receiver successor bytes')
+AssertionError: Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt: unapproved receiver successor bytes
+
+======================================================================
+FAIL: test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated (test_commons_metadata_m04_glyph_bounds.GlyphBoundsSuccessorContracts.test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/test_commons_metadata_m04_glyph_bounds.py", line 81, in test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated
+    self.assertEqual(before_painted_ink(FLOW,old.encode()),before_painted_ink(FLOW,live.encode()))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/commons_metadata_m04_painted_ink_scope.py", line 25, in before_painted_ink
+    content = before_glyph_bounds(path, content)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/commons_metadata_m04_glyph_bounds_scope.py", line 23, in before_glyph_bounds
+    content = before_receiver_fix(path, content)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-glyph-compile-fix-20261012/tools/commons_metadata_m04_receiver_scope.py", line 27, in before_receiver_fix
+    raise AssertionError(f'{path}: unapproved receiver successor bytes')
+AssertionError: Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt: unapproved receiver successor bytes
+
+----------------------------------------------------------------------
+Ran 22 tests in 7.220s
+
+FAILED (failures=2)

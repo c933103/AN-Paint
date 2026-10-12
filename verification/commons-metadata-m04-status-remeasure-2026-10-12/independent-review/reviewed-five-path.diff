@@ -1,0 +1,209 @@
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt
+index 11fd3df..314f201 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt
+@@ -442,6 +442,9 @@ private class GlyphBoundsStatusView(context: android.content.Context): TextView(
+     }
+     fun setStatusText(message: String) {
+         sourceText=message;leadingInset=0;measuredSignature=null;text=message
++        // TextView can replace a fixed-width, same-height Layout without remeasurement.
++        // The new message must still run our glyph-inset measurement on normal traversal.
++        requestLayout()
+     }
+     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+         val message=sourceText
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
+index 3a5bdad..1192c59 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
+@@ -645,7 +645,7 @@ class CommonsMetadataQueryFailureFlowTest {
+                     setLineSpacing(view.lineSpacingExtra,view.lineSpacingMultiplier)
+                     breakStrategy=view.breakStrategy;hyphenationFrequency=view.hyphenationFrequency
+                     justificationMode=view.justificationMode;lineBreakStyle=view.lineBreakStyle;lineBreakWordStyle=view.lineBreakWordStyle
+-                    useBoundsForWidth=false;shiftDrawingOffsetForStartOverhang=false;text=view.text.toString()
++                    useBoundsForWidth=false;shiftDrawingOffsetForStartOverhang=false;this.text=view.text.toString()
+                 }
+                 beforeView.measure(View.MeasureSpec.makeMeasureSpec(view.width,View.MeasureSpec.EXACTLY),
+                     View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+@@ -747,6 +747,9 @@ class CommonsMetadataQueryFailureFlowTest {
+             }
+         }
+         try {
++            assertFalse("Status is settled before same-height replacement",view.isLayoutRequested)
++            show(original)
++            assertTrue("Status setter must request its own glyph remeasurement",view.isLayoutRequested)
+             repeat(3) {measure();assertEquals("Remeasure must not accumulate the margin",initialInset,inset())}
+             measure(width-48);check("width",original)
+             view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,originalSize*.75f)
+diff --git a/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
+index bbec37e..75a226c 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt
+@@ -239,13 +239,42 @@ class GalleryViewportDeviceTest {
+         val failures=mutableListOf<String>()
+         val source=InstrumentationRegistry.getArguments().getString("anpaint_source_tests_sha256")
+         assertTrue("Installed evidence must bind to the runner's exact source inventory",source?.matches(Regex("[0-9a-f]{64}"))==true)
++        fun statusMessage(insert: Boolean): String {
++            val reason=gallery.getString(R.string.commons_metadata_query_failed)
++            return gallery.getString(if(insert) R.string.ui_could_not_load_gallery_image else R.string.commons_credit_copy_failed_reason,reason)
++        }
++        fun show(value: String) {
++            MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
++                .apply {isAccessible=true}.invoke(gallery,value)
++        }
++        fun settled(value: String)=onMain {
++            val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
++            !root.isLayoutRequested && !view.isLayoutRequested && view.layout?.text?.toString()==value
++        }
++        // Establish a visible fixed-width status through ordinary traversal. The two
++        // replacements below must schedule their own measure, with no test-forced layout.
++        val baseline=onMain {statusMessage(true).also {show(it)}}
++        await("installed Arabic baseline layout") {settled(baseline)}
++        instrumentation.waitForIdleSync()
+         for(insert in listOf(false,true)) {
+             val route=if(insert) "insert" else "copy"
+-            val message=onMain {
+-                val reason=gallery.getString(R.string.commons_metadata_query_failed)
+-                gallery.getString(if(insert) R.string.ui_could_not_load_gallery_image else R.string.commons_credit_copy_failed_reason,reason)
+-                    .also {MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
+-                        .apply {isAccessible=true}.invoke(gallery,it)}
++            val message=onMain {statusMessage(insert)}
++            val naturalUpdate=onMain {
++                val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
++                assertEquals("org.catrobat.paintroid.classic.GlyphBoundsStatusView",view.javaClass.name)
++                assertTrue(view.isShown);assertTrue(view.width>0)
++                assertFalse("Root is settled before replacement",root.isLayoutRequested)
++                assertFalse("Status is settled before replacement",view.isLayoutRequested)
++                val oldText=view.text.toString();val oldHeight=requireNotNull(view.layout).height
++                assertTrue("Replace a different full message",oldText!=message);assertTrue(oldHeight>0)
++                show(message)
++                val requested=view.isLayoutRequested
++                assertTrue("Production setter must request glyph remeasurement",requested)
++                JSONObject().put("schema",1).put("route",route).put("source_tests_sha256",source)
++                    .put("status_class",view.javaClass.name).put("old_message",oldText).put("message",message)
++                    .put("old_layout_height",oldHeight).put("view_width",view.width)
++                    .put("root_requested_before",false).put("view_requested_before",false)
++                    .put("view_requested_after",requested).put("root_requested_after",root.isLayoutRequested)
+             }
+             await("installed Arabic M04 $route layout") {onMain {
+                 val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+@@ -259,6 +288,13 @@ class GalleryViewportDeviceTest {
+                 assertEquals(2f,gallery.resources.configuration.fontScale,0f)
+                 assertEquals(Configuration.ORIENTATION_LANDSCAPE,gallery.resources.configuration.orientation)
+                 assertEquals(message,view.text.toString());assertEquals(message,view.createAccessibilityNodeInfo().text.toString())
++                assertFalse(root.isLayoutRequested);assertFalse(view.isLayoutRequested)
++                assertEquals("Same-height replacement exercises TextView's relayout shortcut",
++                    naturalUpdate.getInt("old_layout_height"),requireNotNull(view.layout).height)
++                assertEquals(naturalUpdate.getInt("view_width"),view.width)
++                naturalUpdate.put("new_layout_height",view.layout.height).put("complete_layout_text",view.layout.text.toString())
++                    .put("root_requested_settled",root.isLayoutRequested).put("view_requested_settled",view.isLayoutRequested)
++                android.util.Log.i("GalleryStatusNaturalUpdate",naturalUpdate.toString())
+                 capturePaintedInk(view).use {frame ->
+                     fun png(bitmap: android.graphics.Bitmap): JSONObject {
+                         val bytes=java.io.ByteArrayOutputStream().use {out ->
+diff --git a/tools/commons_metadata_m04_glyph_bounds_scope.py b/tools/commons_metadata_m04_glyph_bounds_scope.py
+index 1d4a6d9..2c64670 100644
+--- a/tools/commons_metadata_m04_glyph_bounds_scope.py
++++ b/tools/commons_metadata_m04_glyph_bounds_scope.py
+@@ -3,6 +3,8 @@ import hashlib
+ import json
+ from pathlib import Path
+ 
++from commons_metadata_m04_receiver_scope import before_receiver_fix
++
+ ROOT = Path(__file__).resolve().parents[1]
+ FIXTURE = ROOT / 'tools/fixtures/commons_metadata_m04_glyph_bounds_successor_scope.json'
+ SCOPE_PIN = '824cb01cbd9f9c9edf3e7283b1ccdc18da7c0e7bb1fc88a4a59a3a38ff4a0639'
+@@ -19,8 +21,11 @@ def scope():
+ def before_glyph_bounds(path, content, *, allow_original=True):
+     """Idempotent for stacked historical oracles; live-source tests require exact new hashes."""
+     if path not in PATHS:
+-        return content
++        return before_receiver_fix(path, content)
+     row = next((row for row in scope()['entries'] if row['path'] == path), None)
++    if allow_original and row and hashlib.sha256(content).hexdigest() == row['before_sha256']:
++        return content
++    content = before_receiver_fix(path, content)
+     if row is None:
+         return content
+     digest = hashlib.sha256(content).hexdigest()
+diff --git a/tools/test_commons_metadata_m04_glyph_bounds.py b/tools/test_commons_metadata_m04_glyph_bounds.py
+index 371acc6..3fab10d 100644
+--- a/tools/test_commons_metadata_m04_glyph_bounds.py
++++ b/tools/test_commons_metadata_m04_glyph_bounds.py
+@@ -7,12 +7,14 @@ import unittest
+ from unittest.mock import patch
+ from commons_metadata_m04_glyph_bounds_scope import ROOT, FIXTURE, PATHS, scope, before_glyph_bounds
+ from commons_metadata_m04_painted_ink_scope import before_painted_ink
++from commons_metadata_m04_receiver_scope import before_receiver_fix
+ 
+ FLOW='Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt'
+ GALLERY='Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
+ DEVICE='app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt'
+ EVIDENCE=ROOT/'verification/commons-metadata-m04-glyph-bounds-2026-10-12'
+ 
++def historical_bytes(path): return before_receiver_fix(path, (ROOT/path).read_bytes())
+ def digest(b): return hashlib.sha256(b).hexdigest()
+ def methods(s): return re.findall(r'@Test\b(?:(?!\bfun\b).)*\bfun\s+(\w+)\s*\(',s,re.S)
+ 
+@@ -24,13 +26,13 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+         self.assertEqual({GALLERY},{r['path'] for r in data['entries'] if '/src/main/' in r['path']})
+         self.assertEqual(data['historical_painted_ink_scope_sha256'],digest((ROOT/'tools/fixtures/commons_metadata_m04_painted_ink_successor_scope.json').read_bytes()))
+         for row in data['entries']:
+-            raw=(ROOT/row['path']).read_bytes();self.assertEqual(row['after_sha256'],digest(raw))
++            raw=historical_bytes(row['path']);self.assertEqual(row['after_sha256'],digest(raw))
+             old=before_glyph_bounds(row['path'],raw,allow_original=False)
+             self.assertEqual(row['before_sha256'],digest(old));self.assertEqual(old,before_glyph_bounds(row['path'],old))
+ 
+     def test_deleted_restored_duplicated_corrupted_or_unrelated_live_content_fails_closed(self):
+         for row in scope()['entries']:
+-            raw=(ROOT/row['path']).read_bytes();old=before_glyph_bounds(row['path'],raw,allow_original=False)
++            raw=historical_bytes(row['path']);old=before_glyph_bounds(row['path'],raw,allow_original=False)
+             for bad in [old,raw+b'\n// unrelated\n']:
+                 with self.assertRaises(AssertionError):before_glyph_bounds(row['path'],bad,allow_original=False)
+             for edit in row['edits']:
+@@ -51,7 +53,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+             with patch.object(Path,'read_bytes',lambda p:raw if p==FIXTURE else read(p)),self.assertRaises(AssertionError):scope()
+ 
+     def test_production_margin_is_measured_absolute_bounded_and_resets(self):
+-        live=(ROOT/GALLERY).read_text()
++        live=historical_bytes(GALLERY).decode()
+         self.assertIn('if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical())\n            GlyphBoundsStatusView(this) else TextView(this)',live)
+         self.assertIn('if(android.os.Build.VERSION.SDK_INT>=35 && status is GlyphBoundsStatusView)',live)
+         body=live.split('private class GlyphBoundsStatusView',1)[1]
+@@ -67,7 +69,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+         for forbidden in ['leadingInset+needed','setTextSize','setTypeface','substring','take(','replace(']:self.assertNotIn(forbidden,body)
+ 
+     def test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated(self):
+-        live=(ROOT/FLOW).read_text();old=before_glyph_bounds(FLOW,live.encode(),allow_original=False).decode()
++        live=historical_bytes(FLOW).decode();old=before_glyph_bounds(FLOW,live.encode(),allow_original=False).decode()
+         part=lambda s:s.split('    private fun assertPaintedInk(',1)[1].split('    private fun paintedInkReport',1)[0]
+         self.assertEqual(part(old),part(live))
+         for token in ['spans.size<=1','LeadingMarginSpan.Standard::class.java,span.javaClass',
+@@ -79,7 +81,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+         self.assertEqual(before_painted_ink(FLOW,old.encode()),before_painted_ink(FLOW,live.encode()))
+ 
+     def test_before_control_and_six_script_resets_retain_defect_specific_mutations(self):
+-        live=(ROOT/FLOW).read_text()
++        live=historical_bytes(FLOW).decode()
+         for token in ['Original Arabic native start bearing must overflow','Original Arabic draw must really lose expected ink',
+                       'capturePaintedInk(beforeView,expectedBoundsWidth=false)','original-plain-before',
+                       'Remeasure must not accumulate the margin','measure(width-48)','originalSize*.75f',
+@@ -92,7 +94,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+         self.assertIn('assertArrayEquals("Clipping changes the actual draw only",intact.referencePixels,frame.referencePixels)',live)
+ 
+     def test_installed_profile_preserves_prior_checks_and_requires_full_rasters_without_new_status_codes(self):
+-        live=(ROOT/DEVICE).read_text();old=before_glyph_bounds(DEVICE,live.encode(),allow_original=False).decode()
++        live=historical_bytes(DEVICE).decode();old=before_glyph_bounds(DEVICE,live.encode(),allow_original=False).decode()
+         self.assertEqual(methods(old),methods(live))
+         for token in ['else listOf("fr","mn-Mong")','tag=="ar" && landscape','for(insert in listOf(false,true))',
+                       'commons_metadata_query_failed','commons_credit_copy_failed_reason','ui_could_not_load_gallery_image',
+@@ -112,7 +114,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
+         old=json.loads((ROOT/new['frozen_inventory_path']).read_text())
+         self.assertEqual(892,len(new['expected']));self.assertEqual(old['expected'],new['expected'])
+         self.assertEqual([],new['added_execution_identities']);self.assertEqual([],new['removed_execution_identities'])
+-        self.assertEqual(digest((ROOT/FLOW).read_bytes()),new['flow_source_sha256'])
++        self.assertEqual(digest(historical_bytes(FLOW)),new['flow_source_sha256'])
+         binding=json.loads((EVIDENCE/'historical-failure-binding.json').read_text())
+         self.assertEqual([38239121942,38244193872,38250189049],[r['run_id'] for r in binding['checkpoints']])
+         self.assertTrue(all(r['status']=='failed' for r in binding['checkpoints']))
