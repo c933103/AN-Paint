@@ -749,26 +749,6 @@ class ColourLimitationScopeContractTest(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 source_binding(data)
 
-    def test_original_positive_method_and_whole_source_are_preserved_verbatim(self):
-        directory = Path(__file__).resolve().parents[1] / 'verification/localized-dialog-layout-2026-10-11/colour-separate-scope'
-        identity = json.loads((directory / 'source-identity.json').read_text())
-        full = (directory / identity['whole_source_file']).read_bytes()
-        positive = (directory / identity['positive_method_file']).read_bytes()
-        self.assertEqual(hashlib.sha256(full).hexdigest(), identity['whole_source_sha256'])
-        self.assertEqual(hashlib.sha1(('blob %s\0' % len(full)).encode() + full).hexdigest(), identity['original_source_git_blob'])
-        self.assertEqual(identity['whole_source_sha256'], 'f148f27864f050efde8ef6815bdd49c40ba0470d165f4fe37e5db5e204a98440')
-        self.assertEqual(hashlib.sha256(positive).hexdigest(), identity['positive_method_sha256'])
-        start = full.index(b'    @Test fun normalAdvancedColourKeepsFiniteViewportAndFixedControls()')
-        end = full.index(b'\n    }\n', start) + len(b'\n    }\n')
-        self.assertEqual(start, identity['positive_method_byte_start'])
-        self.assertEqual(end, identity['positive_method_byte_end'])
-        self.assertEqual(positive, full[start:end])
-        self.assertIn(b'assertTrue(inner.height>0)', positive)
-        self.assertIn(b'inner.scrollY>before', positive)
-        self.assertIn(b'fixed.map {assertComplete(it);rawBounds(it)}', positive)
-        self.assertEqual(identity['original_source_commit'], 'df214fee4f106c4365325412b4f9d3c8530232d5')
-        self.assertFalse(identity['positive_viewport_accepted'])
-        self.assertEqual(identity['untouched_baseline_installed'], 'pending')
 
     def test_current_characterization_emits_geometry_before_known_limitation_assertion(self):
         source = (Path(__file__).resolve().parents[1] / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()

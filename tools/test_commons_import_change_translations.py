@@ -8,7 +8,7 @@ from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-MANIFEST = ROOT / 'verification/commons-import-changes-2026-10-09/translations.json'
+MANIFEST = ROOT / 'tools/fixtures/current_localization/commons_import_current_wording.json'
 KEYS = {
     'commons_import_svg_changes':
         'AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.',

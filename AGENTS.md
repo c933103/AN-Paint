@@ -23,7 +23,19 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
   classes, APKs, linked native libraries or CMake build directories. Keep compiler
   identity/content checks and strict header checks; do not enable unsafe cache
   sloppiness or depend mode to improve a timing claim.
-- Before triggering a build after GitHub publication, compare the remote tree with
-  the intended source snapshot, including file removals. Use GitHub's dedicated
-  delete-file operation for removed paths and verify their absence; do not assume
-  a null tree entry was applied by a connector.
+- Keep patches reviewable: application code, meaningful behavior tests, compact
+  resource/font/licence fixtures and concise current documentation belong in
+  the application tree. Put bulky generated logs, captures, inventories and
+  historical reports in CI artifacts or a dedicated evidence ref.
+- Do not add permanent whole-source hashes, recursive inverse adapters or
+  historical snapshot reconstruction as substitutes for behavior tests. Preserve
+  old evidence once under an immutable reachable ref before migration/removal.
+- Test the actual requirement. Keep full-text, accessibility, lifecycle, resource
+  and corruption checks; record exact raster differences without silently
+  converting every antialias fringe into a production defect. Unexplained visual
+  differences require explicit review; do not conceal them or invent a tolerance.
+- Before publication, compare the remote tree with the reviewed checkout,
+  including every intended removal and retained file's content and executable
+  mode. A fresh complete Git tree is allowed for an archived migration; do not
+  rely on unverified null tree entries. Preserve the expected parent and a
+  non-force branch lease. Verify the final remote tree before triggering CI.

@@ -411,7 +411,7 @@ layers/document transparency, Smudge, auto crop and native project formats as
 requested; preserved internal selection masks. UI text moved into translation
 resources. The intentionally unfinished delivery passed 154 unit checks but
 failed one JPEG XL boundary test. Its exact status is preserved in
-`verification/HANDOFF_LOCAL16.md`.
+[archived local.16 handoff](https://github.com/c933103/AN-Paint/blob/04b128889a4ff9159f199d1737bd07d41e22162d/verification/HANDOFF_LOCAL16.md).
 
 ## Codec completion and audit: 2.14.1-local.17 — 12 September 2026
 

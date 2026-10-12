@@ -1,61 +1,39 @@
-"""Bounded AN-W05-C03 provider inventory and resource contracts, not fluency proof."""
-import hashlib
-import json
-import pathlib
+"""Current Help provider wording and menu contracts; no historical XML snapshots."""
+from pathlib import Path
 import re
 import unittest
-
 import translation_catalogues as catalogues
+from current_localization_contracts import fixture, require_string
 from test_translations import SCOPED_TAGS
-from hungarian_attribution_c05_scope import historical_c03_help
-
-ROOT = pathlib.Path(__file__).resolve().parents[1]
-JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-MANIFEST = ROOT / 'verification/help-commons-provider-2026-10-09/translations.json'
-KEY = 'ui_help23'
-
-
-def digest(value):
-    return hashlib.sha256(value.encode('utf-8')).hexdigest()
-
+ROOT=Path(__file__).resolve().parents[1]
+JAVA=ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
+KEY='ui_help23'
 
 class HelpCommonsProviderTest(unittest.TestCase):
-    def test_separate_one_key_manifest_has_exact_59_tag_scope(self):
-        data = json.loads(MANIFEST.read_text())
-        self.assertEqual(KEY, data['resource'])
-        self.assertEqual(set(SCOPED_TAGS), set(data['scope']))
-        self.assertEqual(set(SCOPED_TAGS) | {'default'}, set(data['translations']))
-        remaining = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(81, len(remaining))
-        self.assertEqual(remaining, set(data['remaining_other_offered_locales']))
-        for tag, path in catalogues.catalogue_paths().items():
-            if tag not in SCOPED_TAGS:
-                self.assertNotIn(KEY, catalogues.read_strings(path), tag)
-
-    def test_exact_caption_added_once_and_all_surrounding_help_preserved(self):
-        data = json.loads(MANIFEST.read_text())
-        for tag, row in data['translations'].items():
+    def test_provider_captions_segments_and_boundaries_match_current_help(self):
+        data=fixture('help_commons_provider_current_contract.json')
+        paths={'default': catalogues.RES/'values/strings.xml', **catalogues.catalogue_paths()}
+        self.assertEqual({'default'}|SCOPED_TAGS,set(data['provider_segments']))
+        for tag,segment in data['provider_segments'].items():
             with self.subTest(tag=tag):
-                strings = catalogues.read_strings(ROOT / row['catalogue'])
-                actual = strings[KEY]
-                self.assertEqual(strings['commons_blank_maps'], row['caption'])
-                self.assertEqual(1, actual.count(row['caption']))
-                self.assertEqual(1, actual.count(row['after_segment']))
-                historical = historical_c03_help(tag, actual, row)
-                self.assertEqual(row['after_help_sha256'], digest(historical))
-                before = historical.replace(row['after_segment'], row['before_segment'], 1)
-                self.assertEqual(row['before_help_sha256'], digest(before),
-                                 'Only the documented provider-list passage may change')
-                self.assertNotIn('Wikimedia Commons', before)
-                self.assertIn(row['before_context'], before)
-                self.assertIn(row['after_context'], actual)
-                self.assertEqual(catalogues.placeholders(before), catalogues.placeholders(actual))
-                self.assertEqual([], catalogues.android_string_errors(actual))
-                self.assertEqual([], catalogues.format_string_errors(actual, False))
-                for provider in ('Catrobat', 'Openclipart'):
-                    self.assertEqual(before.count(provider), actual.count(provider))
-                self.assertEqual(before.count('Irasutoya'), actual.count('Irasutoya'))
-                self.assertEqual(before.count('いらすとや'), actual.count('いらすとや'))
+                strings=catalogues.read_strings(paths[tag]);value=strings[KEY]
+                caption=data['values']['commons_blank_maps'][tag]
+                require_string(paths[tag].read_text(),'commons_blank_maps',caption)
+                self.assertEqual(1,value.count(caption))
+                self.assertEqual(1,value.count(segment))
+                self.assertIn(data['caption_boundary_fragments'][tag],value)
+                self.assertEqual({},catalogues.placeholders(value))
+                self.assertEqual([],catalogues.android_string_errors(value))
+                self.assertEqual([],catalogues.format_string_errors(value,False))
+        for tag,path in paths.items():
+            if tag!='default' and tag not in SCOPED_TAGS:
+                self.assertNotIn(KEY,catalogues.read_strings(path))
+
+    def test_source_assisted_punctuation_corrections(self):
+        rows=fixture('help_commons_provider_current_contract.json')['provider_segments']
+        self.assertTrue(rows['et'].endswith('„Wikimedia Commons · Kontuurkaardid…“'))
+        self.assertTrue(rows['fi'].endswith('”Wikimedia Commons · Ääriviivakartat…” -valinnan'))
+        self.assertTrue(rows['vi-Hani'].endswith('吧 「Wikimedia Commons · 版圖 𤿰…」'))
 
     def test_default_lists_actual_device_and_four_provider_choices(self):
         strings = catalogues.read_strings(catalogues.RES / 'values/strings.xml')
@@ -70,12 +48,6 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertIn('private fun showHelp() = message(ui(R.string.ui_help23))', editor)
         self.assertIn('ui(R.string.ui_how_to_use) to {showHelp()}', editor)
 
-    def test_source_assisted_punctuation_corrections(self):
-        rows = json.loads(MANIFEST.read_text())['translations']
-        self.assertTrue(rows['et']['after_segment'].endswith('„Wikimedia Commons · Kontuurkaardid…“'))
-        self.assertTrue(rows['fi']['after_segment'].endswith('”Wikimedia Commons · Ääriviivakartat…” -valinnan'))
-        self.assertTrue(rows['vi-Hani']['after_segment'].endswith('吧 「Wikimedia Commons · 版圖 𤿰…」'))
-
     def test_complete_japanese_provider_sentence_joins_label_and_particle(self):
         help_text = catalogues.read_strings(catalogues.RES / 'values-ja/strings.xml')[KEY]
         expected = ('［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、'
@@ -89,7 +61,3 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertEqual(set(SCOPED_TAGS), set(re.findall(r'"([\w-]+)"', tags)))
         self.assertIn('EditorTestNavigation.command(activity,"File",7)', source)
         self.assertIn('ShadowAlertDialog.getLatestAlertDialog()', source)
-
-
-if __name__ == '__main__':
-    unittest.main()

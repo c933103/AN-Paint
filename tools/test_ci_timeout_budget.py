@@ -194,9 +194,9 @@ class TimeoutBudgetTest(unittest.TestCase):
             self.assertNotIn(stale, canonical)
         self.assertIn('## Historical composed cancellation budgets', docs)
         dialog = docs.split('## Localized dialog evidence and separate phase', 1)[1]
-        for text in ('five installed dialog methods', 'all 30 app methods',
+        for text in ('five installed dialog methods', 'all current app methods',
                      'exact five-method `app-dialog` report', '225 seconds',
-                     '75-second operational allowance', '45.715 seconds'):
+                     '75-second operational allowance'):
             self.assertIn(text, dialog)
         self.assertIn('not the sum of every permitted helper timeout', dialog)
 
