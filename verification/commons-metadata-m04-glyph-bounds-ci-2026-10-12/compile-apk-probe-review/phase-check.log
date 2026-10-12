@@ -1,0 +1,81 @@
+{
+  "review_status": "FAIL_COMPILE_BLOCKER",
+  "tree": "8f9f0d5399f88d173a508e0ce5c96682ca173ed4",
+  "head": "d5fb31f6cb1562eecba51e5ccff9b118a7e71714",
+  "merge": "b750c54f6411412ee3f1bc1f51815db205212c35",
+  "run_id": 38263619232,
+  "phases": {
+    "python": {
+      "exit": 0,
+      "timing": {
+        "real_seconds": "193.342",
+        "user_seconds": "149.166",
+        "sys_seconds": "21.991",
+        "exit_status": "0"
+      },
+      "log_sha256": "96c1d6aad333b78fa690bea156b3053bcb4216da21eb98c19e6f520dcefa9393",
+      "time_sha256": "7406dc26f4a641266483a9c62a26edc96e855e21ef7c644a017935c2706b271c",
+      "started_at": "2026-10-12T14:33:29Z",
+      "ended_at": "2026-10-12T14:36:43Z"
+    },
+    "jvm": {
+      "exit": 1,
+      "timing": {
+        "real_seconds": "127.109",
+        "user_seconds": "2.413",
+        "sys_seconds": "0.243",
+        "exit_status": "1"
+      },
+      "log_sha256": "813f40957eb3f71bea450e1202279bbdcfd5db9e9587670b6b893f9ce126aeb7",
+      "time_sha256": "404ef3f35b83ce266172144b08a679a5d01014df9a00f408a831047bba272b22",
+      "started_at": "2026-10-12T14:36:43Z",
+      "ended_at": "2026-10-12T14:38:50Z"
+    },
+    "native": {
+      "exit": 0,
+      "timing": {
+        "real_seconds": "76.746",
+        "user_seconds": "175.054",
+        "sys_seconds": "51.962",
+        "exit_status": "0"
+      },
+      "log_sha256": "2343ed3a7a89d22604498137ee27daf71c7d016a7e81c61e423b412489ca57cf",
+      "time_sha256": "9efe5a88aba78c04abf9b755805f4064d11fbff19f7829962de0bc33671fe0d7",
+      "started_at": "2026-10-12T14:38:50Z",
+      "ended_at": "2026-10-12T14:40:07Z"
+    },
+    "lint": {
+      "exit": 0,
+      "timing": {
+        "real_seconds": "118.450",
+        "user_seconds": "417.201",
+        "sys_seconds": "8.641",
+        "exit_status": "0"
+      },
+      "log_sha256": "6199e8fc8db415fd8add53e75ea8b2e4ae110d7c012edb80edcd68a44709ccb3",
+      "time_sha256": "d94ccaa99b0b5ac57b99baccd47b47c6c7fa4d3967f93ae89389176819edb5d1",
+      "started_at": "2026-10-12T14:40:07Z",
+      "ended_at": "2026-10-12T14:42:05Z"
+    }
+  },
+  "compiler_errors": [
+    "file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt:648:86 Val cannot be reassigned"
+  ],
+  "jvm_execution": "UNRUN: Kotlin test compilation stopped before any JVM identity or render",
+  "expected_unrun": {
+    "jvm_identities": 892,
+    "success_render_pairs": 112,
+    "diagnostic_profiles": 28,
+    "strict_ink_triplets": 181,
+    "control_summaries": 4
+  },
+  "host_aggregate": {
+    "ran": 712,
+    "skipped": 2,
+    "unittest_seconds": 193.013,
+    "exit": 0,
+    "limits": "The two skips are reported honestly; compact hosted log does not identify their names. Later negative-control JSON success:false fields are not aggregate failures."
+  },
+  "job_log_sha256": "637546e194090272a676ba678f678d6b0870e425ab13fa22e0177bbe95304f5c",
+  "limitation": "Native phase here is library preparation, not JVM or installed raster execution. Installed phase artifacts are independent."
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "merge": "b750c54f6411412ee3f1bc1f51815db205212c35",
+  "tree": "8f9f0d5399f88d173a508e0ce5c96682ca173ed4",
+  "run_id": "38263619232",
+  "artifact_sha256": "7f625c5b6f8b78c58fb5d265ad92320d6c176e771f13cc8e5cdc63ff7304217f",
+  "build_info": {
+    "commit": "b750c54f6411412ee3f1bc1f51815db205212c35",
+    "run_id": "38263619232",
+    "build_variant": "debug",
+    "apk_sha256": "b1528f3f58c5f5412b177a881686af6b2aa99b2b0a7ddeeeb094a329f1f99820",
+    "source_sha256": "c10d6595dd8cfd23e895c35dab9227f53aa4e0ec0c2ac10a710ac7a12a8c5b85",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "tracked_leaves": 2117,
+  "exact_source_blobs": 2114,
+  "omissions": [
+    ".gitignore",
+    ".idea/codeStyles/Project.xml",
+    "colorpicker/.gitignore"
+  ],
+  "native_extra_files": 6258,
+  "font_assets_exact": 14,
+  "font_sha256": "6b70d3c5c146c9d11503e5dff7ade5e7ccb3ae5a70c511f71902d4a75f7a3006",
+  "embedded_source_exact": true,
+  "probe_summary_sha256": "f09823da456fa5119c34298e9a54effc108e16a5679cdd8a18e0b92622d34101",
+  "probes_checked": [
+    {
+      "path": "01-clean.log",
+      "sha256": "2cff7497cfab36d4e316f6c90bcf4646d31659dc8192549ae52f130bea83a03d"
+    },
+    {
+      "path": "02-clean-debug-release.log",
+      "sha256": "b95e32900c0145e56c8f77ec4442ea010a611de4b04e04842350c6a8960ccacb"
+    },
+    {
+      "path": "03-unchanged.log",
+      "sha256": "c974897df34ec4fa8179b9c00548816e79348e7dce253f126885d3e0a02ed3b6"
+    },
+    {
+      "path": "04-input-change-and-stale-output.log",
+      "sha256": "b403f6f91350b39978a6794a9173c72f8ca8426fe2fefcbc51d2a1483e1fdcd9"
+    },
+    {
+      "path": "05-restored-input-release.log",
+      "sha256": "27390683cf07153cf7a2a2c038bb946183e3cd8be2f0b5d012b7ec1ec1059719"
+    },
+    {
+      "path": "06-second-clean.log",
+      "sha256": "5793dcb9699cf0b2fdc571474ccb52de6e1ac7141260b693bc0a2168a85602d5"
+    },
+    {
+      "path": "07-release-first-after-clean.log",
+      "sha256": "1dbbfe8ae3a49340f5f304d44b884175f657dd25a4c9bca068253476624fb56b"
+    }
+  ],
+  "limits": [
+    "ZIP native-source extras constrained to existing four native source roots; their upstream content not independently reaudited.",
+    "No APK signature/upgrade-key, alignment, ABI, installed execution or pixel rendering claim.",
+    "Probe log/source/hash validation checks retained receipts; not an independent toolchain rerun.",
+    "Actual run/job conclusion and authenticity depend on parent-verified artifact provenance."
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "status": "FAIL_INSTALLED_INK",
+  "head": "d5fb31f6cb1562eecba51e5ccff9b118a7e71714",
+  "tree": "8f9f0d5399f88d173a508e0ce5c96682ca173ed4",
+  "merge": "b750c54f6411412ee3f1bc1f51815db205212c35",
+  "run_id": 38263619232,
+  "artifact_bindings": {
+    "30": {
+      "sha256": "d4d87b878071ff564f54e7a50f1365431b77829b71a9cd7cc6dbe59406c499aa",
+      "members": 143
+    },
+    "35": {
+      "sha256": "f309d2269839c32bfd5a5c7a6ec2e59464230de969869d5627f5320b647acc25",
+      "members": 167
+    }
+  },
+  "raw_sha256": "4bcffe9d3195475ea5882b24daa32eef1c4e3b5c0abbeab5ae4c820a9e58b0dc",
+  "summary_sha256": "0656b2202b5d8e479928d1df11ac5d3b8ea1a54906583819102cbe89575287bf",
+  "source_tests_sha256": "a5dd8b617ce5610378b197e5f5ac5a59748e87e39a592b3198a53e8bb842345f",
+  "decoder_sha256": "e6a7d077033d0c84416eaca18807bd1d6b29928e94974685a59086155764df65",
+  "strict_acceptance_rejection": "successful runner summary required",
+  "routes": [
+    {
+      "route": "copy",
+      "rejection": "copy: nonzero horizontal_overflow_pixels: 1",
+      "counts": {
+        "ink_pixels": 4287,
+        "ink_left": 28,
+        "ink_right_exclusive": 617,
+        "allocation_edge_pixels": 0,
+        "horizontal_overflow_pixels": 1,
+        "outside_view_pixels": 0,
+        "missing_expected_ink_pixels": 1,
+        "different_argb_pixels": 1
+      },
+      "independent_numpy_exact": true,
+      "problem_pixels": [
+        {
+          "layout": [
+            616,
+            14
+          ],
+          "reference": [
+            618,
+            16
+          ],
+          "actual": [
+            628,
+            14
+          ],
+          "reference_rgba": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "actual_rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "geometry": {
+        "reference_box": "[-2,-2][619,90]",
+        "glyph_bounds": "RectF(28.0, 8.0, 617.0, 81.0)",
+        "origin_x": 12,
+        "origin_y": 0,
+        "content_width": 616,
+        "measured_leading_inset_px": 0,
+        "root_width": 640,
+        "root_height": 320,
+        "density": 1,
+        "density_dpi": 160,
+        "font_scale": 2,
+        "default_textview_use_bounds_for_width": true,
+        "view_use_bounds_for_width": true,
+        "layout_use_bounds_for_width": true,
+        "shift_drawing_offset_for_start_overhang": false,
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys"
+      },
+      "files": [
+        {
+          "name": "copy-actual.png",
+          "sha256": "db6c8ca3fad66496a62cd0c0ff845395ff849e2945c7da31b9305a6bf9ab4de3"
+        },
+        {
+          "name": "copy-reference.png",
+          "sha256": "db3ddc8dd99858e61f100b1d7e5f47cb759783f1a8d9527f77cda49ea3af1cdd"
+        },
+        {
+          "name": "copy.json",
+          "sha256": "2fb7deee0be7862fd4963fc9582a5d95cbf5da6d8bc709979429e3bcc20c929e"
+        }
+      ]
+    },
+    {
+      "route": "insert",
+      "rejection": "insert: nonzero horizontal_overflow_pixels: 1",
+      "counts": {
+        "ink_pixels": 4435,
+        "ink_left": 7,
+        "ink_right_exclusive": 617,
+        "allocation_edge_pixels": 0,
+        "horizontal_overflow_pixels": 1,
+        "outside_view_pixels": 0,
+        "missing_expected_ink_pixels": 1,
+        "different_argb_pixels": 1
+      },
+      "independent_numpy_exact": true,
+      "problem_pixels": [
+        {
+          "layout": [
+            616,
+            14
+          ],
+          "reference": [
+            618,
+            16
+          ],
+          "actual": [
+            628,
+            14
+          ],
+          "reference_rgba": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "actual_rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "geometry": {
+        "reference_box": "[-2,-2][619,90]",
+        "glyph_bounds": "RectF(7.0, 8.0, 617.0, 81.0)",
+        "origin_x": 12,
+        "origin_y": 0,
+        "content_width": 616,
+        "measured_leading_inset_px": 0,
+        "root_width": 640,
+        "root_height": 320,
+        "density": 1,
+        "density_dpi": 160,
+        "font_scale": 2,
+        "default_textview_use_bounds_for_width": true,
+        "view_use_bounds_for_width": true,
+        "layout_use_bounds_for_width": true,
+        "shift_drawing_offset_for_start_overhang": false,
+        "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys"
+      },
+      "files": [
+        {
+          "name": "insert-actual.png",
+          "sha256": "4d09a7429ac3e809416184f234146c8392a766973352585355beeda0ea4266c6"
+        },
+        {
+          "name": "insert-reference.png",
+          "sha256": "1d7f78b5e49274eca7ae9a7dccbed2e4422f5e103b275b02b994955672649e2d"
+        },
+        {
+          "name": "insert.json",
+          "sha256": "b2deca92d2bb4f785265cde26d2fb04d1cd65a87f6ca9ff18ae9a98358da7159"
+        }
+      ]
+    }
+  ],
+  "scope": "Forensic extraction of failed installed API35 native software-raster records. Both official ZIPs/extractions verified, but full matrix outcome remains a separate audit. No hardware screenshot/network failure route or native JVM run is claimed."
+}

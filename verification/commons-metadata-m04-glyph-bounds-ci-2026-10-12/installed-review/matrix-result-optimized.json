@@ -1,0 +1,175 @@
+{
+  "head": "d5fb31f6cb1562eecba51e5ccff9b118a7e71714",
+  "merge": "b750c54f6411412ee3f1bc1f51815db205212c35",
+  "tree": "8f9f0d5399f88d173a508e0ce5c96682ca173ed4",
+  "run_id": 38263619232,
+  "matrices": {
+    "30": {
+      "status": "PASS",
+      "source_digests": {
+        "app": "a5dd8b617ce5610378b197e5f5ac5a59748e87e39a592b3198a53e8bb842345f",
+        "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+      },
+      "sdk_eligible_declarations": 97,
+      "scheduled": 95,
+      "completed": 95,
+      "passed": 95,
+      "failed": 0,
+      "missing_phases": [],
+      "phases": {
+        "ordinary": {
+          "completed": 15,
+          "passed": 15,
+          "failures": [],
+          "raw_sha256": "d1fee784dc699df6aefbe73b1f5a39c9be1ec0c483e629190a5aabb48a459fed",
+          "summary_sha256": "9d0b8713a842fd2f7a01a1c78ba4d5bf521a785f3b522e40168e1636dbf8edbd",
+          "xml_sha256": "7a2648404631c8fd2539841723f4a4789f3203d6c927fecf0b1cfccaee817695",
+          "elapsed_seconds": 90.58272709600001,
+          "success": true
+        },
+        "gallery-draft": {
+          "completed": 3,
+          "passed": 3,
+          "failures": [],
+          "raw_sha256": "1c761bc7ea4102ea7e9e1c27a66e4d698aeeb1fe3e238670aec5d1cf2f9b1bf8",
+          "summary_sha256": "0209f77ccdf1d9c964b48e7d25a6c3d98eeb945ec0ac7f9c4749cbfb96c4a6f6",
+          "xml_sha256": "ccc8e3bbe74f310621dd76a7fa1f1975b36c7244e33de943ce33c5b5f10a5d34",
+          "elapsed_seconds": 36.483074845999965,
+          "success": true
+        },
+        "vertical-english-manchu": {
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "b01b9726a72efcaf7a9eaf3c9db98cb32bd3b5951c1d108b5f846b5e4bc322fc",
+          "summary_sha256": "07cbaf5a8439af6b1d864a36dd598409a26c2a125546c39fce8e83f7b9c40216",
+          "xml_sha256": "f812a337eea044b9464105a41ca64b5d2a57b81431534b61f855db956db98e8c",
+          "elapsed_seconds": 102.44288784999998,
+          "success": true
+        },
+        "vertical-literary-chinese-emoji": {
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "e1ae74bcccb4805ed998ab08faba70a3cc45f13ee9ca9809b9bf2f23b164d1d4",
+          "summary_sha256": "028b0302d6e6e7f15b87bcfdd94726d1a7073c6616ff0602791a01f1475b1a58",
+          "xml_sha256": "6dd6b7906373808d6977b86a0309842041412e6fb273ff694aac616cb2e8c22d",
+          "elapsed_seconds": 93.167930845,
+          "success": true
+        },
+        "library": {
+          "completed": 73,
+          "passed": 73,
+          "failures": [],
+          "raw_sha256": "a88003cd0927aa36f221a44ce6b2bda2fa91b261e9d9af7a1d27d916a6d01430",
+          "summary_sha256": "75583ebb193f1cb9d60ad0ad593cb00e4db4f8db02da4bb8099ba3072c7659a8",
+          "xml_sha256": "322afbb690918de67cb90ee45fbe5ea5dc0f0215da0f88d46bb6ea5fc9d6eb73",
+          "elapsed_seconds": 44.483318290000014,
+          "success": true
+        }
+      }
+    },
+    "35": {
+      "status": "FAIL",
+      "source_digests": {
+        "app": "a5dd8b617ce5610378b197e5f5ac5a59748e87e39a592b3198a53e8bb842345f",
+        "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+      },
+      "sdk_eligible_declarations": 104,
+      "scheduled": 104,
+      "completed": 102,
+      "passed": 101,
+      "failed": 1,
+      "missing_phases": [
+        {
+          "phase": "seed",
+          "identities": [
+            [
+              "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+              "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+            ]
+          ]
+        },
+        {
+          "phase": "verify",
+          "identities": [
+            [
+              "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+              "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+            ]
+          ]
+        }
+      ],
+      "phases": {
+        "ordinary": {
+          "completed": 16,
+          "passed": 15,
+          "failures": [
+            {
+              "classname": "paint.anpaint.android.GalleryViewportDeviceTest",
+              "name": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+              "status": "failure",
+              "message": "java.lang.AssertionError: Installed Arabic ink failures: copy: installed Arabic copy horizontal painted-ink overflow expected:<0> but was:<1>, insert: installed Arabic insert horizontal painted-ink overflow expected:<0> but was:<1>\n\tat org.junit.Assert.fail(Assert.java:89)\n\tat org.junit.Assert.assertTrue(Assert.java:42)\n\tat paint.anpaint.android.GalleryViewportDeviceTest.checkInstalledArabicStatusInk(GalleryViewportDeviceTest.kt:296)\n\tat paint.anpaint.android.GalleryViewportDeviceTest.realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation(GalleryViewportDeviceTest.kt:164)"
+            }
+          ],
+          "raw_sha256": "4bcffe9d3195475ea5882b24daa32eef1c4e3b5c0abbeab5ae4c820a9e58b0dc",
+          "summary_sha256": "0656b2202b5d8e479928d1df11ac5d3b8ea1a54906583819102cbe89575287bf",
+          "xml_sha256": "652f9c3d7c685b57390d7b935232bdf8afb1ad8cad17a03834261b65541846df",
+          "elapsed_seconds": 113.36707358600006,
+          "success": false
+        },
+        "gallery-draft": {
+          "completed": 3,
+          "passed": 3,
+          "failures": [],
+          "raw_sha256": "d032c795e06bcafcc6507f7bd72ce23a2043abc0a7da2c5745a0ec6a36e99116",
+          "summary_sha256": "dbf2cfb52b8f29ec9e5dc451e7b8996ae47bb8e08b017082decbe85eb4e1693e",
+          "xml_sha256": "68eb183b2c3942110269bdad2598eb8ad15bdf58708478ab7a2f95e23c79c745",
+          "elapsed_seconds": 44.14065194,
+          "success": true
+        },
+        "vertical-english-manchu": {
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "0a5de2a236ea4d90c2c046c4ef69af41738bc56245111168d8a797bdedb97b08",
+          "summary_sha256": "0bdde7efb0ff0b15a92fcd785d14bcb05cc1112dfb233a717e41d5140bdffd27",
+          "xml_sha256": "64e017d1848cf24da3ef3ee7d7d72fb98b3744d7796aae245b49d48ae6d0ad1d",
+          "elapsed_seconds": 108.82369971699995,
+          "success": true
+        },
+        "vertical-literary-chinese-emoji": {
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "7dce220c6eac0d7be07e2755f756dc147258b66b4d44ed4da07bb462bc15ada0",
+          "summary_sha256": "ad94e45faecb72a2d06fbafaf0876daa88d742cd92da0407b751f27796370aba",
+          "xml_sha256": "3c0d1f6a36b104d5f61ad7ebc927907b20e2de9bf723888a57bc726768a78cb6",
+          "elapsed_seconds": 103.88288151200004,
+          "success": true
+        },
+        "dialog": {
+          "completed": 5,
+          "passed": 5,
+          "failures": [],
+          "raw_sha256": "fec4c0ca41d7d68a793a179576173eff50bebc6e2497fe4f66e4985b43161802",
+          "summary_sha256": "d70132a9622e62815e3daf14fc254607396b2c8f4e808b6a204a62aa8d611256",
+          "xml_sha256": "cbd30a4b9f29d2037f1fb03e96cedf0d1d95500da08ca20b687dd8873df2d27d",
+          "elapsed_seconds": 86.14918735800006,
+          "success": true
+        },
+        "library": {
+          "completed": 74,
+          "passed": 74,
+          "failures": [],
+          "raw_sha256": "5d42209fb62bf0f0f4eb3c96733ce64fa60bfd7a4e387aa11d99478034dac732",
+          "summary_sha256": "f03ebd24d6a9e7ccf375d478d3c09fab68fb1fea40db1fccbd8032189cdcf387",
+          "xml_sha256": "fc67f1ceca744cba234095b34ce41e3f69451f8f1b9e09a2aa6871a4f66b1a03",
+          "elapsed_seconds": 45.58304060099999,
+          "success": true
+        }
+      }
+    }
+  },
+  "scope": "Read-only exact-source selector/digest, raw protocol, summary, XML and matrix reconciliation. ZIP and APK provenance are separate bound reviews; API35 restart missing phases cannot be replaced by other successful phases."
+}

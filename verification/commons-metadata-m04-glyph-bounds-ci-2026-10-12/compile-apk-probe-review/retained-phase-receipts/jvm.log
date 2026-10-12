@@ -1,0 +1,101 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :Paintroid:checkKotlinGradlePluginConfigurationErrors
+> Task :Paintroid:fetchHeifSources
+> Task :Paintroid:fetchJxlSources
+> Task :Paintroid:fetchTiffSources
+> Task :Paintroid:fetchWebpSources
+> Task :Paintroid:bundleCorrespondingSource
+> Task :Paintroid:generateExactScriptResources
+> Task :Paintroid:preBuild
+> Task :Paintroid:preDebugBuild
+> Task :Paintroid:generateDebugBuildConfig
+> Task :Paintroid:generateDebugResValues
+> Task :Paintroid:generateDebugResources
+> Task :Paintroid:packageDebugResources
+> Task :Paintroid:processDebugNavigationResources
+> Task :Paintroid:javaPreCompileDebug
+> Task :Paintroid:preDebugUnitTestBuild
+> Task :Paintroid:writeDebugAarMetadata
+> Task :Paintroid:parseDebugLocalResources
+> Task :Paintroid:checkDebugUnitTestAarMetadata
+> Task :Paintroid:generateDebugRFile
+> Task :Paintroid:compileDebugLibraryResources
+> Task :Paintroid:generateDebugUnitTestResValues
+> Task :Paintroid:mapDebugUnitTestSourceSetPaths
+> Task :Paintroid:generateDebugUnitTestResources
+> Task :Paintroid:mergeDebugUnitTestResources
+> Task :Paintroid:extractDeepLinksDebug
+> Task :Paintroid:processDebugManifest
+
+> Task :Paintroid:processDebugUnitTestManifest
+[androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/8.13/transforms/4c0c74693644e94e33bc27c89cbf9cd0/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
+	Namespace 'androidx.vectordrawable' is used in multiple modules and/or libraries: androidx.vectordrawable:vectordrawable-animated:1.0.0, androidx.vectordrawable:vectordrawable:1.0.0. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+
+> Task :Paintroid:processDebugUnitTestResources
+> Task :Paintroid:javaPreCompileDebugUnitTest
+> Task :Paintroid:generateDebugUnitTestAssets UP-TO-DATE
+> Task :Paintroid:mergeDebugShaders
+> Task :Paintroid:compileDebugShaders NO-SOURCE
+> Task :Paintroid:generateDebugAssets UP-TO-DATE
+> Task :Paintroid:mergeDebugAssets
+> Task :Paintroid:mergeDebugUnitTestAssets
+> Task :Paintroid:packageDebugUnitTestForUnitTest
+> Task :Paintroid:generateDebugUnitTestConfig
+> Task :Paintroid:compileDebugKotlin
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt:141:23 Unnecessary non-null assertion (!!) on a non-null receiver of type Bitmap
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:154:29 'getParcelableArrayList(String?): ArrayList<T!>?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:260:61 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:261:96 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1128:40 'getParcelableExtra(String!): T?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1205:39 Condition 'returnedSession!=null' is always 'true'
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1229:21 Unnecessary safe call on a non-null receiver of type Intent?
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1230:21 Unnecessary safe call on a non-null receiver of type Intent?
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1231:21 Unnecessary safe call on a non-null receiver of type Intent?
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:26 'setter for systemUiVisibility: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:65 'SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1574:101 'SYSTEM_UI_FLAG_VISIBLE: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt:49:112 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt:133:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:167:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:396:102 'onBackPressed(): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:578:113 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:584:113 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt:815:143 'computeBounds(RectF, Boolean): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/main/java/org/catrobat/paintroid/classic/RibbonWidgets.kt:46:15 'setColorFilter(Int, PorterDuff.Mode): Unit' is deprecated. Deprecated in Java
+
+> Task :Paintroid:compileDebugJavaWithJavac
+> Task :Paintroid:bundleLibRuntimeToJarDebug
+> Task :Paintroid:bundleLibCompileToJarDebug
+> Task :Paintroid:processDebugJavaRes
+> Task :Paintroid:compileDebugUnitTestKotlin
+e: file:///home/runner/work/AN-Paint/AN-Paint/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt:648:86 Val cannot be reassigned
+
+> Task :Paintroid:compileDebugUnitTestKotlin FAILED
+
+[Incubating] Problems report is available at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':Paintroid:compileDebugUnitTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 2m 6s
+38 actionable tasks: 38 executed
+
+See the profiling report at: file:///home/runner/work/AN-Paint/AN-Paint/build/reports/profile/profile-2026-10-12-14-36-46.html
+A fine-grained performance profile is available: use the --scan option.
