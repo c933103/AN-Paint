@@ -1,4 +1,7 @@
 """Direct union and negative contracts for accepted M02 + merged M03."""
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import hashlib
 import itertools
 import json
@@ -27,7 +30,7 @@ class CommonsMetadataCompositionContracts(unittest.TestCase):
     def test_all_six_resource_reversal_orders_restore_all_original_endpoints(self):
         reversals = (m02.before_m02_catalogue, m03.before_m03_catalogue, c05.before_c05)
         for row in m02.fixture()['entries']:
-            path = row['path']; text = (ROOT / path).read_text()
+            path = row['path']; text = before_m04_catalogue(path, (ROOT / path).read_text())
             self.assertEqual(1, text.count('name="commons_metadata_http_error"'))
             self.assertEqual(1, text.count('name="commons_metadata_response_too_large"'))
             for order in itertools.permutations(reversals):
@@ -41,7 +44,7 @@ class CommonsMetadataCompositionContracts(unittest.TestCase):
         m03_rows = m03.production_fixture()['entries']
         for old02, old03 in zip(m02_rows, m03_rows):
             path = old02['path']; self.assertEqual(path, old03['path'])
-            text = (ROOT/path).read_text()
+            text = before_m04_composed_production(path, (ROOT/path).read_text())
             standalone02 = without_m03_production(path, text)
             standalone03 = without_m02_production(path, text)
             self.assertEqual(old02['after_sha256'], digest(standalone02))
@@ -56,7 +59,7 @@ class CommonsMetadataCompositionContracts(unittest.TestCase):
             self.assertEqual(old03['before_sha256'], digest(restored03))
 
     def test_one_discriminator_preserves_both_typed_routes_and_the_verbatim_default(self):
-        text = (ROOT/JAVA/'MediaGalleryActivity.kt').read_text()
+        text = before_m04_composed_production(JAVA+'MediaGalleryActivity.kt', (ROOT/JAVA/'MediaGalleryActivity.kt').read_text())
         self.assertEqual(1, text.count(COMBINED_HELPER))
         self.assertEqual(1, text.count('private fun commonsMetadataReason('))
         self.assertEqual(2, text.count('commonsMetadataReason(error)'))
@@ -70,7 +73,7 @@ class CommonsMetadataCompositionContracts(unittest.TestCase):
         self.assertIn('.appendQueryParameter("iiextmetadatalanguage", "en")', producer)
 
     def test_projections_reject_missing_duplicate_or_changed_discriminator_and_unrelated_edits(self):
-        path = JAVA+'MediaGalleryActivity.kt'; original = (ROOT/path).read_text()
+        path = JAVA+'MediaGalleryActivity.kt'; original = before_m04_composed_production(path, (ROOT/path).read_text())
         for project in (without_m02_production, without_m03_production):
             for change in ('', COMBINED_HELPER*2, HTTP_HELPER,
                            COMBINED_HELPER.replace('else error.message', 'else null'),

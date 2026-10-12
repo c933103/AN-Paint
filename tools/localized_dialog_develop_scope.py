@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from commons_metadata_m03_scope import before_m03_catalogue
+from commons_metadata_m04_composition_scope import before_composed_m04
 from commons_metadata_composition_scope import without_m03_production
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +20,7 @@ def scope():
 
 def before_develop_successor(path, content):
     """Undo only explicit M03 and PR40 overlaps; no historic fixture is rewritten."""
+    content = before_composed_m04(path, content)
     if path.startswith('Paintroid/src/main/res/') and path.endswith('/strings.xml'):
         return before_m03_catalogue(path, content.decode()).encode()
     if path in ('Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt',

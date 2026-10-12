@@ -2,6 +2,9 @@
 
 Source/host checks do not establish native-speaker or installed-dialog acceptance.
 """
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import hashlib
 import json
 from pathlib import Path
@@ -42,7 +45,7 @@ class TiffC023WordingTests(unittest.TestCase):
     def test_only_modal_substitution_restores_entire_pinned_source_file(self):
         self.assertEqual(EXPECTED, ORIGINAL.replace("багасгана", "багасгаж магадгүй"))
         # Remove only the independently pinned later M02 addition; preserve the original full-file hash.
-        data = before_m02_catalogue(PATH, before_m03_catalogue(PATH, (ROOT / PATH).read_text())).encode()
+        data = before_m02_catalogue(PATH, before_m03_catalogue(PATH, before_m04_catalogue(PATH, (ROOT / PATH).read_text()))).encode()
         after, before = xml_line(EXPECTED).encode(), xml_line(ORIGINAL).encode()
         self.assertEqual(1, data.count(after))
         self.assertEqual(0, data.count(before))
@@ -108,7 +111,7 @@ class TiffC023WordingTests(unittest.TestCase):
     def test_traditional_mongolian_c024_remains_byte_identical(self):
         path = ROOT / "Paintroid/src/main/res/values-b+mn+Mong/strings.xml"
         self.assertEqual("6c1b22b811b1e3cdce566fc40c5c2c69a942b875beb5631c6e8c1406a15a3821",
-                         hashlib.sha256(before_m02_catalogue(str(path.relative_to(ROOT)), before_m03_catalogue(str(path.relative_to(ROOT)), path.read_text())).encode()).hexdigest())
+                         hashlib.sha256(before_m02_catalogue(str(path.relative_to(ROOT)), before_m03_catalogue(str(path.relative_to(ROOT)), before_m04_catalogue(str(path.relative_to(ROOT)), path.read_text()))).encode()).hexdigest())
 
 
 if __name__ == "__main__":

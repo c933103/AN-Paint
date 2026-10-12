@@ -5,6 +5,7 @@ from pathlib import Path
 import struct
 import unittest
 import xml.etree.ElementTree as ET
+from commons_metadata_m04_font_scope import before_m04_font
 from commons_metadata_m03_font_scope import before_m03_font
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,7 +55,7 @@ def mapped_codepoints(path):
 class LocaleFontCoverageTest(unittest.TestCase):
     def test_nom_svg_extension_preserves_the_frozen_font_data(self):
         evidence = json.loads((ROOT / 'verification/svg-size-errors-2026-10-09/nom-svg-font-extension.json').read_text())
-        data = before_m03_font((ASSETS / 'fonts/anpaintnomui.ttf').read_bytes())
+        data = before_m03_font(before_m04_font((ASSETS / 'fonts/anpaintnomui.ttf').read_bytes()))
         tables = {}
         for index in range(struct.unpack_from('>H', data, 4)[0]):
             tag, _, offset, length = struct.unpack_from('>4sIII', data, 12 + index * 16)

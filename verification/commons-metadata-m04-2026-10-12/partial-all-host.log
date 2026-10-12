@@ -1,0 +1,264 @@
+...............................................................................................................................................................................F....F...........................................................................................................................FF..................................................................................................................................................................................................................................FFFFFF...................................................
+======================================================================
+FAIL: test_all_140_individual_dispositions_retain_81_open_fallbacks (test_commons_metadata_m04.CommonsMetadataM04Contracts.test_all_140_individual_dispositions_retain_81_open_fallbacks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_commons_metadata_m04.py", line 78, in test_all_140_individual_dispositions_retain_81_open_fallbacks
+    self.assertEqual(59, sum(row['value'] is not None for row in rows))
+AssertionError: 59 != 53
+
+======================================================================
+FAIL: test_exact_default_plus_59_message_additions_preserve_all_previous_catalogue_bytes (test_commons_metadata_m04.CommonsMetadataM04Contracts.test_exact_default_plus_59_message_additions_preserve_all_previous_catalogue_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_commons_metadata_m04.py", line 25, in test_exact_default_plus_59_message_additions_preserve_all_previous_catalogue_bytes
+    self.assertEqual({'default'} | SCOPED_TAGS, {row['tag'] for row in data['entries']})
+AssertionError: Items in the first set but not the second:
+'ryu'
+'ain-Latn'
+'ain-Kana'
+'bo'
+'mn-Mong'
+'mnc-Mong'
+
+======================================================================
+FAIL: test_scoped_catalogues_pass_structural_validation (test_localization_repairs_pr8.CatalogueStructurePr8Tests.test_scoped_catalogues_pass_structural_validation) (tag='bo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_localization_repairs_pr8.py", line 15, in test_scoped_catalogues_pass_structural_validation
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['bo: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'bo: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['bo: missing 1 strings: commons_metadata_query_failed']
+
+======================================================================
+FAIL: test_scoped_catalogues_pass_structural_validation (test_localization_repairs_pr8.CatalogueStructurePr8Tests.test_scoped_catalogues_pass_structural_validation) (tag='mn-Mong')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_localization_repairs_pr8.py", line 15, in test_scoped_catalogues_pass_structural_validation
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['mn-Mong: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'mn-Mong: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['mn-Mong: missing 1 strings: commons_metadata_query_failed']
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='ain-Kana')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['ain-Kana: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'ain-Kana: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['ain-Kana: missing 1 strings: commons_metadata_query_failed'] : ain-Kana
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='ain-Latn')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['ain-Latn: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'ain-Latn: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['ain-Latn: missing 1 strings: commons_metadata_query_failed'] : ain-Latn
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='bo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['bo: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'bo: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['bo: missing 1 strings: commons_metadata_query_failed'] : bo
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='mn-Mong')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['mn-Mong: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'mn-Mong: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['mn-Mong: missing 1 strings: commons_metadata_query_failed'] : mn-Mong
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='mnc-Mong')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['mnc-Mong: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'mnc-Mong: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['mnc-Mong: missing 1 strings: commons_metadata_query_failed'] : mnc-Mong
+
+======================================================================
+FAIL: test_scoped_catalogues_have_all_source_keys (test_translations.TranslationCatalogueTests.test_scoped_catalogues_have_all_source_keys) (tag='ryu')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m04-20261012/tools/test_translations.py", line 80, in test_scoped_catalogues_have_all_source_keys
+    self.assertEqual(
+AssertionError: Lists differ: [] != ['ryu: missing 1 strings: commons_metadata_query_failed']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'ryu: missing 1 strings: commons_metadata_query_failed'
+
+- []
++ ['ryu: missing 1 strings: commons_metadata_query_failed'] : ryu
+
+----------------------------------------------------------------------
+Ran 583 tests in 180.449s
+
+FAILED (failures=10)
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}

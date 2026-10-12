@@ -1,4 +1,7 @@
 """M02-only contracts. Source/resource success is not Android or language acceptance."""
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import hashlib
 import json
 import pathlib
@@ -24,6 +27,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
         self.assertEqual(60, len(data['entries']))
         for row in data['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
                     else without_m03_production(row['path'], text))
             # C05's exact 17 replacements are independent of this one addition.
@@ -58,6 +63,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
         self.assertEqual(2, len(entries))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
                     else without_m03_production(row['path'], text))
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
@@ -80,6 +87,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
     def test_rejects_missing_duplicated_changed_and_unrelated_catalogue_edits(self):
         for row in fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
                     else without_m03_production(row['path'], text))
             for bad in ('', row['line']*2, row['line'].replace('HTTP ', 'HTTPX ')):

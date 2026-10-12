@@ -1,4 +1,7 @@
 """Bounded SVG-error resource contracts; these are not linguistic acceptance."""
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import json
 import pathlib
 import unittest
@@ -74,7 +77,7 @@ class SvgErrorTranslationTests(unittest.TestCase):
 
     def test_only_typed_svg_failures_are_translated_at_the_display_boundary(self):
         path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
-        source = without_m03_production(path, (ROOT / path).read_text())
+        source = without_m03_production(path, before_m04_composed_production(path, (ROOT / path).read_text()))
         self.assertIn('SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable', source)
         self.assertIn('SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large', source)
         self.assertIn('if(error is SvgOriginalSize.SizeException)', source)

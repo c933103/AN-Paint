@@ -1,4 +1,7 @@
 """M03-only contracts. Host/source success is not Android or language acceptance."""
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import hashlib
 import json
 import pathlib
@@ -53,6 +56,8 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(DEFAULT, catalogues.read_strings(catalogues.RES/'values/strings.xml')[KEY])
         for row in data['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_c05(row['path'], before_m02_catalogue(row['path'], text))
                     if row['path'].endswith('/strings.xml') else without_m02_production(row['path'], text))
             self.assertEqual(row['before_sha256'], hashlib.sha256(before_m03_catalogue(row['path'], text).encode()).hexdigest())
@@ -106,6 +111,8 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(len(entries), len({r['tag'] for r in entries}))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_c05(row['path'], before_m02_catalogue(row['path'], text))
                     if row['path'].endswith('/strings.xml') else without_m02_production(row['path'], text))
             self.assertEqual(row['before_sha256'], hashlib.sha256(before_m03_catalogue(row['path'], text).encode()).hexdigest())
@@ -121,6 +128,8 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(2, len(entries))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_c05(row['path'], before_m02_catalogue(row['path'], text))
                     if row['path'].endswith('/strings.xml') else without_m02_production(row['path'], text))
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
@@ -147,6 +156,8 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
     def test_all_catalogues_reject_missing_duplicated_changed_and_unrelated_edits(self):
         for row in catalogue_fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_c05(row['path'], before_m02_catalogue(row['path'], text))
                     if row['path'].endswith('/strings.xml') else without_m02_production(row['path'], text))
             for bad in ('', row['line']*2, row['line'].replace('Commons', 'CommonX')):
@@ -159,6 +170,8 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
     def test_production_reversal_rejects_broader_or_untyped_changes(self):
         for row in production_fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m04_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else before_m04_composed_production(row['path'], text))
             text = (before_c05(row['path'], before_m02_catalogue(row['path'], text))
                     if row['path'].endswith('/strings.xml') else without_m02_production(row['path'], text))
             for edit in row['edits']:

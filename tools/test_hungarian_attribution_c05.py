@@ -1,4 +1,7 @@
 """C05 source/successor contracts; matching wording is not linguistic approval."""
+from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_composition_scope import before_m04_composed_production
+
 import hashlib
 import json
 from pathlib import Path
@@ -35,7 +38,7 @@ class HungarianAttributionC05Test(unittest.TestCase):
         self.assertEqual('691f8870649a1d21d1441f4e3d0e795660b23e9a', self.scope['source_commit'])
         # Remove only M02's separately pinned single addition before the
         # unchanged C05 whole-file endpoints; keep all 17 replacements required.
-        c05_only = before_m02_catalogue(c05.PATH, before_m03_catalogue(c05.PATH, self.text))
+        c05_only = before_m02_catalogue(c05.PATH, before_m03_catalogue(c05.PATH, before_m04_catalogue(c05.PATH, self.text)))
         self.assertEqual(self.scope['after_sha256'], c05.digest(c05_only))
         self.assertEqual(self.scope['before_sha256'], c05.digest(c05.before_c05(c05.PATH, c05_only)))
 

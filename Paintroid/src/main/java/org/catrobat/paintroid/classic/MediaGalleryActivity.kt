@@ -282,6 +282,7 @@ class MediaGalleryActivity : Activity() {
     private fun commonsMetadataReason(error: Exception): String? =
         if(error is CommonsAttribution.HttpException) ui(R.string.commons_metadata_http_error,error.status.toString())
         else if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
+        else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)
         else error.message
 
     private fun showStatus(message: String) {
