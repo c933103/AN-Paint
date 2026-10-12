@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+  "prior_tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "frozen_prior_review_files": 61,
+  "frozen_prior_review_unchanged": true,
+  "prior_manifest_binding": "FAIL",
+  "current_manifest_binding": "PASS",
+  "prior_binary_manifest_sha256": "652f94b8e56061f9b4342d258d6d5724717ce059726cf2426a0d56e08f677bdb",
+  "current_binary_manifest_sha256": "e9b5fb6516917ba8cb1bf3cdfe09b5ad97d6d748d28cb7b32c1c920e4371f392",
+  "prior_application_attributes": 12,
+  "current_application_attributes": 13,
+  "only_added_application_attribute": [
+    {
+      "namespace": "http://schemas.android.com/apk/res/android",
+      "name": "localeConfig",
+      "name_resource_id": "0x0101065b",
+      "raw_value": null,
+      "value_type": "0x01",
+      "data": "0x7f100000",
+      "string_value": null
+    }
+  ],
+  "all_other_application_attribute_semantics_unchanged": true,
+  "string_pool_index_relocations": [
+    {
+      "attribute": "label",
+      "old_string_pool_index": "0x0000001b",
+      "new_string_pool_index": "0x0000001c",
+      "decoded_string": "AN Paint"
+    },
+    {
+      "attribute": "name",
+      "old_string_pool_index": "0x00000036",
+      "new_string_pool_index": "0x00000037",
+      "decoded_string": "org.catrobat.paintroid.classic.PaintApplication"
+    },
+    {
+      "attribute": "appComponentFactory",
+      "old_string_pool_index": "0x00000027",
+      "new_string_pool_index": "0x00000028",
+      "decoded_string": "androidx.core.app.CoreComponentFactory"
+    }
+  ],
+  "byte_identical_compiled_and_asset_evidence": {
+    "compiled-picker-arrays.txt": "f364b8a2f9c0da1acecb19dc60205e79cb93d685f4b0fb3a0406027da4c98079",
+    "compiled-platform-locales.txt": "6086b5f3c556940d31a9d624812f8e39c69b47dbbb86912c8714c4bf25d877bf",
+    "compiled-m04-resource.txt": "17f385d1e6a252b63f45fc7aae9dd29bc8a2eaaf0d079a9c7bf41cfd8f8e7fd9",
+    "compiled-arabic-routes.txt": "0c2e7ee683256435d391e27359bad0635133f871f7a11b7d2af57c4afc315902",
+    "font-legal-manifest.jsonl": "189862baa94947b89d91f98b44df5a2dfd3c965ba1f738fa68ad4bcfb0a6d1bc"
+  },
+  "picker_inventory_catalogue_statuses_unchanged": true,
+  "limits": [
+    "Bounded compiled/resource/asset comparison only. No installed LocaleConfig, Settings UI, rendering, upgrade-signing or overall CI claim.",
+    "The frozen earlier finding remains intact; this separate successor records the repaired compiled binding."
+  ]
+}

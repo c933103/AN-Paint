@@ -1,0 +1,95 @@
+{
+  "status": "EXPLICIT_FRESH_BOUNDED_FRINGE_DISPOSITION",
+  "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+  "tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "run_id": 38299305241,
+  "profile": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+  "exact_pixel_comparison_passed": false,
+  "review_required_preserved": true,
+  "lost_pixels": [
+    {
+      "layout_xy": [
+        1232,
+        29
+      ],
+      "reference_xy": [
+        2419,
+        31
+      ],
+      "actual_xy": [
+        1256,
+        29
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        36,
+        7
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layout_xy": [
+        1232,
+        30
+      ],
+      "reference_xy": [
+        2419,
+        32
+      ],
+      "actual_xy": [
+        1256,
+        30
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "affected_components": [
+    {
+      "reference_samples": 78,
+      "missing_samples": 2,
+      "reference_alpha_sum": 10633,
+      "missing_alpha_sum": 8,
+      "max_reference_alpha": 255,
+      "max_missing_alpha": 7,
+      "component_entirely_missing": false
+    }
+  ],
+  "hard_missing_whole_components": 0,
+  "hard_missing_opaque_samples": 0,
+  "allocation_edge_contact": 0,
+  "inspected_images": [
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+      "sha256": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf",
+      "bytes": 36634
+    },
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png",
+      "sha256": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3",
+      "bytes": 39721
+    }
+  ],
+  "visual_review": "Both fresh actual and independent complete-reference images were opened and inspected. Four text lines remain. Exact full-resolution recomputation finds only two alpha7/alpha1 edge samples absent, with76 of78 samples retained in the affected component, no lost opaque sample or whole component.",
+  "disposition": "Accept only this specific low-severity antialias fringe for the bounded readable-status requirement; retain exact=false and review_required=true. No universal tolerance, fluency or full glyph/grapheme guarantee follows.",
+  "limits": [
+    "The image tool displayed the2519x332 reference at2048x270; all numeric checks use original-resolution bytes.",
+    "Installed strict-zero-difference tests are separately audited and not relaxed by this disposition."
+  ]
+}

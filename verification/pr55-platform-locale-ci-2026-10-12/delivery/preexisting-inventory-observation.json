@@ -1,0 +1,36 @@
+{
+  "observation": "Ten individual licence_file references already do not resolve in the prior tree. Inventory and aggregate notices are unchanged; this is an existing metadata-reference issue, not evidence of missing aggregate notices or licence removal by this integration. Actual APK asset presence is checked separately.",
+  "current_tree": "dc1ba97dacc573ead73729297eb739ecb244dcf5",
+  "prior_tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "missing_notice_paths": [
+    "legal/fonts/lato-OFL.txt",
+    "legal/fonts/alegreyasans-OFL.txt",
+    "legal/fonts/breeserif-OFL.txt",
+    "legal/fonts/anton-OFL.txt",
+    "legal/fonts/bangers-OFL.txt",
+    "legal/fonts/patrickhand-OFL.txt",
+    "legal/fonts/sacramento-OFL.txt",
+    "legal/fonts/sawarabigothic-OFL.txt",
+    "legal/fonts/sawarabimincho-OFL.txt",
+    "legal/fonts/anonymouspro-OFL.txt"
+  ],
+  "all_already_absent_from_prior_tree": true,
+  "inventory_and_aggregate_bindings": {
+    "fonts/inventory.json": {
+      "bytes": 5654,
+      "sha256": "196450b9b69d44b888eadd9241ca1da3f019b3fc12bb4f0b92e45bd8ddb61e84",
+      "unchanged_from_prior_tree": true
+    },
+    "legal/FONT_NOTICES.txt": {
+      "bytes": 59902,
+      "sha256": "16e42e3d0e8e4a1c429b7df4e0565693ddb41b616396251d37dda482adcd3d46",
+      "unchanged_from_prior_tree": true
+    },
+    "legal/THIRD_PARTY_NOTICES.txt": {
+      "bytes": 802541,
+      "sha256": "d8f3c14a57bcfd2f47a577bbcac15a31219a523a68cae5ed0cbc3c69711e997e",
+      "unchanged_from_prior_tree": true
+    }
+  },
+  "limitation": "One-time contextual comparison only; not a normal CI gate or independent legal conclusion. Separate tracking is outside this audit."
+}
