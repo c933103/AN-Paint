@@ -33,7 +33,7 @@ internal object VerticalUi {
             canvas.save();canvas.translate(x,y-box(ink).height());VerticalText.draw(canvas,label(ink),ink,direction,GlyphOrientation.MIXED);canvas.restore()
         }
     }
-    fun caption(view: TextView,heightDp: Int=144,direction: TextDirection=VerticalText.uiDirection()) {
+    fun caption(view: TextView,heightDp: Int=144,direction: TextDirection=VerticalText.uiDirection(view.context)) {
         if(direction==TextDirection.HORIZONTAL || view is EditText || view is FlowButton || view is FlowTextView) return
         if(view.getTag(org.catrobat.paintroid.R.id.vertical_caption_installed)==true) return
         view.setTag(org.catrobat.paintroid.R.id.vertical_caption_installed,true)
@@ -89,14 +89,14 @@ internal object VerticalUi {
         }
     }
     fun spinner(view: Spinner,heightDp: Int=144) {
-        if(!VerticalText.uiVertical() || view.adapter is VerticalChoices) return
+        if(!VerticalText.uiVertical(view.context) || view.adapter is VerticalChoices) return
         view.minimumWidth=dp(view,112)
         val position=view.selectedItemPosition
         view.adapter=VerticalChoices(view.adapter,heightDp);view.setSelection(position)
     }
     fun panel(panel: LinearLayout,heightDp: Int=112) {
         panel.orientation=LinearLayout.HORIZONTAL;panel.isBaselineAligned=false;panel.gravity=Gravity.TOP
-        panel.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
+        panel.layoutDirection=if(VerticalText.uiDirection(panel.context)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
         for(i in 0 until panel.childCount) {
             val child=panel.getChildAt(i)
             if(child is FlowButton) child.columnHeightDp=heightDp
@@ -124,6 +124,13 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
     private var content: View?=null
     override fun setTitle(title: CharSequence?): AlertDialog.Builder {heading=title;return super.setTitle(title)}
     override fun setTitle(titleId: Int): AlertDialog.Builder=setTitle(context.getText(titleId))
+    /** Opt-in for a localized heading that can exceed the native title's line cap.
+     * Keep AlertController's own body, chooser, buttons and window sizing intact. */
+    fun setScrollableTitle(title: CharSequence): EditorDialogBuilder {
+        setTitle(title)
+        if(!VerticalText.uiVertical(context)) setCustomTitle(ResponsiveDialogTitle(context,title))
+        return this
+    }
     override fun setMessage(message: CharSequence?): AlertDialog.Builder {prose=message;return super.setMessage(message)}
     override fun setMessage(messageId: Int): AlertDialog.Builder=setMessage(context.getText(messageId))
     override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}
@@ -137,7 +144,7 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
             override fun onViewAttachedToWindow(view: View) {
                 view.removeOnAttachStateChangeListener(this)
                 view.post {if(dialog.isShowing) {
-                    if(VerticalText.uiVertical()) mount(dialog)
+                    if(VerticalText.uiVertical(context)) mount(dialog)
                     LocaleTypography.install(dialog.window!!.decorView)
                 }}
             }
@@ -150,7 +157,7 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
         val shell=LinearLayout(context).apply {orientation=LinearLayout.VERTICAL;tag="vertical_dialog";setPadding(dp(12),dp(12),dp(12),dp(8))}
         val columns=LinearLayout(context).apply {
             orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;gravity=Gravity.TOP
-            layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
+            layoutDirection=if(VerticalText.uiDirection(context)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
         }
         fun add(view: View) {columns.addView(VerticalUi.detach(view),LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(8),0,dp(8),0)})}
         heading?.let {add(FlowTextView(context).apply {text=it;textSize=20f;columnHeightDp=height})}

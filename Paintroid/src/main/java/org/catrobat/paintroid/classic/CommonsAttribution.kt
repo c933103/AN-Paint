@@ -15,8 +15,14 @@ import java.net.URL
 
 /** Capture file-specific attribution, not the Commons site footer's unrelated licence. */
 internal object CommonsAttribution {
+    /** Application-owned metadata status only; localize at the alive UI boundary. */
+    class HttpException(val status: Int): IOException()
+
     /** Application-owned streaming response limit; localize only at the alive UI boundary. */
     class ResponseLimitException: IOException()
+
+    /** Application-owned API error presence; keep provider error fields out of UI text. */
+    class QueryFailureException: IOException()
 
     private const val MAX_RESPONSE = 2 * 1024 * 1024
     private const val MAX_FIELD = 64 * 1024
@@ -69,7 +75,7 @@ internal object CommonsAttribution {
             connection.setRequestProperty("Referer", page)
             connection.setRequestProperty("Accept", "application/json")
             val status = connection.responseCode
-            if (status != 200) throw IOException("Commons metadata: HTTP $status")
+            if (status != 200) throw HttpException(status)
             val bytes = ByteArrayOutputStream()
             connection.inputStream.use { input ->
                 val buffer = ByteArray(16384)
@@ -88,7 +94,7 @@ internal object CommonsAttribution {
     fun parse(json: String, expectedSource: String): Record {
         require(json.length <= MAX_RESPONSE)
         val root = JSONObject(json)
-        if (root.has("error")) throw IOException("Commons metadata query failed")
+        if (root.has("error")) throw QueryFailureException()
         val pages = root.getJSONObject("query").getJSONArray("pages")
         if (pages.length() != 1) throw IOException("Commons metadata returned an ambiguous file")
         val page = pages.getJSONObject(0)

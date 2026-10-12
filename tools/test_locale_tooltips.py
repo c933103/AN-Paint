@@ -24,7 +24,7 @@ class LocaleTooltipSourceTest(unittest.TestCase):
     def test_metric_span_preserves_native_ownership_and_measure_draw_font(self):
         source=(JAVA/'LocaleTooltip.kt').read_text()
         for text in ('if(Build.VERSION.SDK_INT>=26) view.tooltipText=format(view.context,text)',
-                     'if(VerticalText.uiVertical()) null else LocaleTypography.typeface(context)',
+                     'if(VerticalText.uiVertical(context)) null else LocaleTypography.typeface(context)',
                      'MetricAffectingSpan()',
                      'paint.typeface=Typeface.create(font,paint.typeface?.style ?: Typeface.NORMAL)',
                      'override fun updateMeasureState(paint: TextPaint)=apply(paint)',

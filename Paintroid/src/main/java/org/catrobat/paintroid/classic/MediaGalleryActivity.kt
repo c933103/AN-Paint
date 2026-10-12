@@ -77,21 +77,22 @@ class MediaGalleryActivity : Activity() {
             // The shared caption is one atomic span: a literal paragraph break
             // would make TextView draw that entire span once for each paragraph.
             // Keep every word, using a space only for the vertical column run.
-            text=provider.label+(if(VerticalText.uiVertical()) " " else "\n")+ui(provider.descriptionId)
+            text=provider.label+(if(VerticalText.uiVertical(this@MediaGalleryActivity)) " " else "\n")+ui(provider.descriptionId)
             textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
             VerticalUi.caption(this,64)
         }
-        val descriptionContent=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        val descriptionContent=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_description_columns";addView(description)
         } else description
         controls.addView(descriptionContent,LinearLayout.LayoutParams(-1,-2))
-        status=TextView(this).apply {
+        status=(if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical(this@MediaGalleryActivity))
+            GlyphBoundsStatusView(this) else TextView(this)).apply {
             tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))
             accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
             VerticalUi.caption(this,144)
         }
-        statusHost=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        statusHost=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_status_columns";visibility=View.GONE;addView(status)
         } else status
         controls.addView(statusHost)
@@ -99,7 +100,7 @@ class MediaGalleryActivity : Activity() {
         fun action(label: String,tagName: String,run: ()->Unit) {
             row.addView(galleryButton(this,label,tagName,12f,run=run))
         }
-        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             addView(actions)
         } else actions
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
@@ -126,7 +127,7 @@ class MediaGalleryActivity : Activity() {
         }.apply {contentDescription=ui(R.string.ui_gallery_back34)})
         val searchLabel=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34)
         val search=gallerySearchField(this,searchLabel)
-        if(VerticalText.uiVertical()) {
+        if(VerticalText.uiVertical(this@MediaGalleryActivity)) {
             // Keep editing in Android's native field; the label uses the same
             // script-aware columns as the rest of the surrounding app controls.
             val caption=TextView(this).apply {
@@ -252,11 +253,6 @@ class MediaGalleryActivity : Activity() {
         return record
     }
 
-    /** Translate only this application-owned failure; preserve provider/framework details verbatim. */
-    private fun commonsMetadataReason(error: Exception): String? =
-        if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
-        else error.message
-
     /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */
     private fun copyCommonsCredit(uri: Uri,page: String) {
         if(downloading || isFinishing || isDestroyed) return
@@ -283,8 +279,18 @@ class MediaGalleryActivity : Activity() {
         }
     }
 
+    /** Do not classify provider/framework exceptions by their text or format their detail twice. */
+    private fun commonsMetadataReason(error: Exception): String? =
+        if(error is CommonsAttribution.HttpException) ui(R.string.commons_metadata_http_error,error.status.toString())
+        else if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
+        else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)
+        else error.message
+
     private fun showStatus(message: String) {
-        status.text=message;status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
+        if(android.os.Build.VERSION.SDK_INT>=35 && status is GlyphBoundsStatusView)
+            (status as GlyphBoundsStatusView).setStatusText(message)
+        else status.text=message
+        status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
         (statusHost as? ColumnScrollView)?.resetToReadingStart()
         controlsScroll.revealStart(statusHost)
     }
@@ -421,5 +427,61 @@ class MediaGalleryActivity : Activity() {
         if(::web.isInitialized) web.destroy()
         if(isFinishing && !sessionHandedBack && ::creditSession.isInitialized && !creditSession.accepted && creditSession.draft==null) creditSession.discard()
         worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
+    }
+}
+
+/** Horizontal API35 status only: keep the message and font, reserve measured leading glyph ink. */
+@androidx.annotation.RequiresApi(35)
+private class GlyphBoundsStatusView(context: android.content.Context): TextView(context) {
+    private var sourceText: String?=null
+    private var leadingInset=0
+    private var measuredSignature: List<Any?>?=null
+    init {
+        useBoundsForWidth=true
+        shiftDrawingOffsetForStartOverhang=false
+    }
+    fun setStatusText(message: String) {
+        sourceText=message;leadingInset=0;measuredSignature=null;text=message
+        // TextView can replace a fixed-width, same-height Layout without remeasurement.
+        // The new message must still run our glyph-inset measurement on normal traversal.
+        requestLayout()
+    }
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        val message=sourceText
+        val signature=listOf(widthMeasureSpec,paint.textSize,paint.textScaleX,paint.textSkewX,
+            paint.typeface,paint.textLocales,paint.letterSpacing,paint.fontFeatureSettings,
+            compoundPaddingLeft,compoundPaddingRight,layoutDirection,textDirection,textAlignment,gravity,
+            breakStrategy,hyphenationFrequency,lineBreakStyle,lineBreakWordStyle)
+        if(message!=null && signature!=measuredSignature) {
+            if(leadingInset!=0) {leadingInset=0;text=message}
+            measuredSignature=signature
+        }
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        if(message.isNullOrEmpty()) return
+        // Width-based breaking handles trailing ink; a native paragraph margin moves the
+        // logical start anchor too, including the RTL right edge. Never alter glyphs/text.
+        repeat(3) {
+            val measured=layout ?: return
+            if(measured.width<=0 || measured.lineCount==0) return
+            val bounds=android.graphics.RectF(measured.computeDrawingBoundingBox())
+            if(!listOf(bounds.left,bounds.top,bounds.right,bounds.bottom).all {it.isFinite()}) return
+            val hasLtr=(0 until measured.lineCount).any {measured.getParagraphDirection(it)>0}
+            val hasRtl=(0 until measured.lineCount).any {measured.getParagraphDirection(it)<0}
+            // This API omits the paragraph margin when locating bounds. Treat its
+            // result as an absolute required inset, never add it again on remeasure.
+            val needed=kotlin.math.ceil(maxOf(0f,if(hasLtr) -bounds.left else 0f,
+                if(hasRtl) bounds.right-measured.width else 0f)).toInt()
+            if(needed<=leadingInset) return
+            val next=needed
+            // Bound remeasurement/allocation for arbitrary provider error text. This is
+            // not an acceptance allowance: the strict native ink checks must still pass.
+            if(next>kotlin.math.ceil(paint.textSize*2f).toInt()) return
+            leadingInset=next
+            text=android.text.SpannableString(message).apply {
+                setSpan(android.text.style.LeadingMarginSpan.Standard(leadingInset),0,length,
+                    android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        }
     }
 }

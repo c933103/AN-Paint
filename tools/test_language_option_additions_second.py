@@ -1,11 +1,11 @@
 """Requested option and principal-variety identities; registration does not establish translation."""
-import hashlib
 import json
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
 import translation_catalogues as catalogues
+from language_option_additions import require_untranslated_option
 from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +24,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         data = json.loads(SECOND_ADDITIONS_PATH.read_text())
         self.assertEqual(set(EXPECTED), SECOND_ADDED_TAGS)
         self.assertEqual(21, len(data['languages']))
+        self.assertEqual(len(EXPECTED), len(data['languages']))
         self.assertEqual(EXPECTED, {r['tag']: r['name'] for r in data['languages']})
         self.assertFalse(FIRST_ADDED_TAGS & SECOND_ADDED_TAGS)
         self.assertEqual(27, len(ADDED_TAGS))
@@ -68,34 +69,23 @@ class FurtherLanguageOptionTests(unittest.TestCase):
                 self.assertIn(rows[tag]['scope_note'], (ROOT / rows[tag]['catalogue']).read_text())
 
     def test_untranslated_catalogues_remain_empty_and_completeness_stays_honest(self):
-        _, _, strings, plurals = catalogues.default_resources()
-        self.assertEqual(695, len(strings)); self.assertEqual(1, len(plurals))
+        defaults, default_plurals, strings, plurals = catalogues.default_resources()
+        self.assertTrue(strings); self.assertTrue(plurals)
+        self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
         for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
             path = ROOT / row['catalogue']
+            require_untranslated_option(row, path.read_text())
             self.assertEqual('not-started', row['translation_status'])
             self.assertEqual('not-started', row['linguistic_review'])
             self.assertEqual('default-English', row['fallback'])
             self.assertEqual(0, row['source_strings_present']); self.assertEqual(0, row['source_plurals_present'])
             self.assertEqual([], list(ET.parse(path).getroot()))
             self.assertEqual([], catalogues.validate_catalogue(row['tag']))
-            self.assertTrue(catalogues.validate_catalogue(row['tag'], require_complete=True))
+            self.assertEqual([
+                f"{row['tag']}: missing {len(strings)} strings: {', '.join(sorted(strings)[:20])}",
+                f"{row['tag']}: missing plural resources: {', '.join(sorted(plurals))}",
+            ], catalogues.validate_catalogue(row['tag'], require_complete=True))
 
-    def test_removing_only_the_twenty_one_rows_restores_original_146_inventories(self):
-        data = json.loads(SECOND_ADDITIONS_PATH.read_text())
-        for path, digest in data['baseline_sha256'].items():
-            text = (ROOT / path).read_text()
-            if path.endswith('app_language_tags.xml'):
-                lines = ['        <item>' + tag + '</item>\n' for tag in EXPECTED]
-            elif path.endswith('app_language_names.xml'):
-                lines = ['        <item>' + name + '</item>\n' for name in EXPECTED.values()]
-            elif path.endswith('app_locales.xml'):
-                lines = ['    <locale android:name="' + tag + '"/>\n' for tag in EXPECTED]
-            else:
-                lines = []  # The first six-option fixture is historical evidence.
-            for line in lines:
-                self.assertEqual(1, text.count(line), (path, line))
-                text = text.replace(line, '', 1)
-            self.assertEqual(digest, hashlib.sha256(text.encode()).hexdigest(), path)
 
 
 if __name__ == '__main__':

@@ -41,7 +41,7 @@ class FontCatalog(private val context: Context) {
         // Catalogue subsets supply missing glyphs for the default choice only;
         // they are not complete drawing fonts and must not replace an explicit choice.
         if(locale.language=="vi" && locale.script=="Hani" || locale.language=="wuu" && text.contains("𠲎"))
-            LocaleTypography.typeface(context)?.let {return Typeface.create(it,style)}
+            LocaleTypography.typeface(context,locale)?.let {return Typeface.create(it,style)}
         return face(index,style)
     }
     fun adapter() = object : ArrayAdapter<FontChoice>(context,android.R.layout.simple_spinner_dropdown_item,fonts) {

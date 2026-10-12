@@ -69,7 +69,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         val layout = dragging?.let { assembly.layoutWithout(it) } ?: assembly.layout()
         if (layout.isEmpty() && selectedId == null) {
             val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = EditorColours.onSurface; textSize = 16*density; textAlign = Paint.Align.CENTER; typeface = VerticalText.uiTypeface(context) }
-            val direction=VerticalText.uiDirection()
+            val direction=VerticalText.uiDirection(context)
             if(direction==TextDirection.HORIZONTAL) {
                 canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p)
             } else {

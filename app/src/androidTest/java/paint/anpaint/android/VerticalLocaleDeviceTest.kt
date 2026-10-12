@@ -333,12 +333,43 @@ class VerticalLocaleDeviceTest {
     }
 
     private fun openSave() {
-        tap("Save as command") {command("File",R.string.save20_title)}
-        awaitState("native vertical Save layout") {
-            saveRoot()?.findViewWithTag<View>("vertical_save_form")?.height?.let {it>0}==true &&
-                saveRoot()?.findViewWithTag<View>("vertical_dialog_columns")?.width?.let {it>0}==true
+        val save=onMain {command("File",R.string.save20_title)}
+        onMain {
+            save.setOnTouchListener {view,event ->
+                if(event.actionMasked in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP,MotionEvent.ACTION_CANCEL))
+                    logSaveState("touch=${MotionEvent.actionToString(event.actionMasked)}",view)
+                false // Observe only; preserve native dispatch, busy gating and the real click.
+            }
+            logSaveState("before",save)
         }
-        instrumentation.waitForIdleSync()
+        try {
+            tap("Save as command") {command("File",R.string.save20_title)}
+            awaitState("native vertical Save layout") {
+                saveRoot()?.findViewWithTag<View>("vertical_save_form")?.height?.let {it>0}==true &&
+                    saveRoot()?.findViewWithTag<View>("vertical_dialog_columns")?.width?.let {it>0}==true
+            }
+            instrumentation.waitForIdleSync()
+        } catch(failure: Throwable) {
+            onMain {logSaveState("failure",save)}
+            throw failure
+        } finally {onMain {save.setOnTouchListener(null)}}
+    }
+
+    /** One snapshot before input, observed touch endpoints, and one on failure. */
+    private fun logSaveState(phase: String,target: View) {
+        val dialog=saveRoot()
+        fun size(tag: String)=dialog?.findViewWithTag<View>(tag)?.let {"${it.width}x${it.height}"} ?: "absent"
+        android.util.Log.i("VerticalLocaleDeviceTest","$evidenceName Save $phase " +
+            "default=${java.util.Locale.getDefault().toLanguageTag()} " +
+            "activity=${activity.resources.configuration.locales.toLanguageTags()} " +
+            "target=${target.resources.configuration.locales.toLanguageTags()} " +
+            "rootLocale=${root().resources.configuration.locales.toLanguageTags()} " +
+            "dialogLocale=${dialog?.resources?.configuration?.locales?.toLanguageTags() ?: "absent"} " +
+            "application=${activity.applicationContext.resources.configuration.locales.toLanguageTags()} " +
+            "selected=${activity.getSharedPreferences("app-language",0).getString("language-tag","")} " +
+            "busy=${activity.busy} draft=${draftGenerationField.getLong(activity)} saved=${savedDraftGenerationField.getLong(activity)} " +
+            "attached=${target.isAttachedToWindow} raw=${rawBounds(target)} visible=${visibleBounds(target)} root=${dialog!=null} " +
+            "form=${size("vertical_save_form")} columns=${size("vertical_dialog_columns")}")
     }
 
     private fun assertInitialColumns(columns: HorizontalScrollView,rtl: Boolean,label: String)=onMain {

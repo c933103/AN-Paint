@@ -146,9 +146,14 @@ class CommonsCopyCreditErrorTest {
     @Test fun missingEmptyAndWhitespaceOnlyReasonsUseReasonlessCreditMessage() {
         for(reason in listOf(null,""," \n\t")) checkFailure(expected={it.getString(R.string.commons_credit_copy_failed)}) {throw IOException(reason)}
     }
-    @Test fun metadataQueryAndValidationFailuresKeepTheirExistingReasons() {
+    @Test fun metadataQueryFailureUsesItsLocalizedApplicationReason() {
+        checkFailure("fr",{it.getString(R.string.commons_credit_copy_failed_reason,
+            it.getString(R.string.commons_metadata_query_failed))}) {
+            response(it,"{\"error\":{\"code\":\"fixture\"}}")
+        }
+    }
+    @Test fun metadataValidationFailuresKeepTheirExistingReasons() {
         val cases=listOf(
-            "{\"error\":{\"code\":\"fixture\"}}" to "Commons metadata query failed",
             "{\"query\":{\"pages\":[]}}" to "Commons metadata returned an ambiguous file",
             "{\"query\":{\"pages\":[{\"ns\":6,\"missing\":true}]}}" to "Commons file metadata is unavailable",
             CommonsTestMetadata.response("https://upload.wikimedia.org/wikipedia/commons/a/ab/Other.svg",page) to "Commons attribution does not match the selected original file",
@@ -171,7 +176,7 @@ class CommonsCopyCreditErrorTest {
         checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,reason)}) {response(it,body)}
     }
     @Test fun persistedMixedScriptKoreanSelectionUsesItsExactCopyCreditMessageInTheGallery() =
-        checkFailure("ko-Kore-KR",{"이미지 크레딧을 複寫할 수 없습니다: Commons metadata: HTTP 503"}) {response(it,code=503)}
+        checkFailure("ko-Kore-KR",{"이미지 크레딧을 複寫할 수 없습니다: Commons 메타데이터: HTTP 503"}) {response(it,code=503)}
     @Test fun metadataMemoryFailureDoesNotClaimImageInspection() =
         checkFailure(expected={it.getString(R.string.commons_credit_copy_out_of_memory)}) {throw OutOfMemoryError("fixture")}
     @Test fun metadataLinkageFailureDoesNotClaimAnImageColourConverterFailure() =

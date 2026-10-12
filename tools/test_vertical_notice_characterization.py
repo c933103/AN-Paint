@@ -115,7 +115,7 @@ class VerticalNoticeCharacterizationContractTest(unittest.TestCase):
 
     def test_characterization_does_not_enable_route_or_implement_policy(self):
         route = (ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt").read_text()
-        self.assertIn("if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical())", route)
+        self.assertIn("if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context))", route)
         source = TEST.read_text()
         self.assertIn('importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_NO', source)
         self.assertEqual(1, source.count("announceForAccessibility("))

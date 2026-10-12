@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.res.Configuration
 import android.graphics.*
 import android.view.MotionEvent
 import org.catrobat.paintroid.classic.*
@@ -179,13 +180,16 @@ class ViewportAndVerticalTextTest {
     }
     @Test fun verticalLocaleDefaultsAndSettingsSurviveSerialization() {
         val old=Locale.getDefault()
+        fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
+            base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
+        }
         try {
             Locale.setDefault(Locale.forLanguageTag("lzh-Hant"));assertEquals(TextDirection.VERTICAL_RL,TextSettings().direction)
             Locale.setDefault(Locale.forLanguageTag("mn-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
-            val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(font)
+            val font=VerticalText.uiTypeface(localizedContext());assertNotNull(font)
             val paint=Paint().apply {typeface=font;textSize=40f};assertTrue(paint.hasGlyph("ᠮ"))
             Locale.setDefault(Locale.forLanguageTag("mnc-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
-            assertSame(font,VerticalText.uiTypeface(RuntimeEnvironment.getApplication()))
+            assertSame(font,VerticalText.uiTypeface(localizedContext()))
             assertTrue(paint.hasGlyph("ᡤ"))
             assertEquals(TextDirection.VERTICAL_LR,VerticalText.uiDirection(Locale.forLanguageTag("en-XV")))
             assertEquals(TextDirection.VERTICAL_RL,VerticalText.uiDirection(Locale.forLanguageTag("qaa-Zsye-XV")))

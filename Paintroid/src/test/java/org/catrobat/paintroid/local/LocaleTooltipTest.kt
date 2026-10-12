@@ -1,6 +1,8 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -33,11 +35,16 @@ import java.util.Locale
 @Config(sdk=[26,27,30,35])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class LocaleTooltipTest {
-    private val context get()=RuntimeEnvironment.getApplication()
+    private lateinit var context: Context
     private lateinit var previous: Locale
-    @Before fun remember() {previous=Locale.getDefault()}
+    @Before fun remember() {previous=Locale.getDefault();context=RuntimeEnvironment.getApplication()}
     @After fun restore() {Locale.setDefault(previous)}
-    private fun select(tag: String) {Locale.setDefault(Locale.forLanguageTag(tag))}
+    private fun select(tag: String) {
+        val locale=Locale.forLanguageTag(tag)
+        Locale.setDefault(locale)
+        val base=RuntimeEnvironment.getApplication()
+        context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(locale)})
+    }
     private fun spans(text: CharSequence?): Array<out MetricAffectingSpan> {
         val value=requireNotNull(text)
         return (value as? Spanned)?.getSpans(0,value.length,MetricAffectingSpan::class.java).orEmpty()
@@ -122,8 +129,7 @@ class LocaleTooltipTest {
         val previousResources=PaintApplication.currentResources
         try { for(tag in tags) {
             select(tag)
-            val config=android.content.res.Configuration(context.resources.configuration).apply {setLocale(Locale.getDefault())}
-            val localized=context.createConfigurationContext(config)
+            val localized=context
             PaintApplication.currentResources=localized.resources
             val view=View(localized).apply {contentDescription="accessible label"}
             val original=SpannableString("$tag tooltip")

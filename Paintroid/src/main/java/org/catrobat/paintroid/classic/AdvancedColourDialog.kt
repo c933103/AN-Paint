@@ -227,7 +227,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             tag="colour_dialog_holder"
             addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
         }
-        val dialogContent=if(VerticalText.uiVertical()) {
+        val dialogContent=if(VerticalText.uiVertical(activity)) {
             VerticalUi.panel(tabs,112);VerticalUi.panel(advanced,160)
             val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_colour_form"}
             form.addView(VerticalUi.detach(tabs),LinearLayout.LayoutParams(-2,-2))

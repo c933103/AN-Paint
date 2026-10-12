@@ -24,19 +24,19 @@ open class FlowButton(context: Context): Button(context) {
     }
     fun labelledIcon(resource: Int,size: Int=32) {
         icon=context.getDrawable(resource)?.mutate()?.apply {setBounds(0,0,dp(size),dp(size))}
-        if(!VerticalText.uiVertical()) setCompoundDrawables(null,icon,null,null)
+        if(!VerticalText.uiVertical(context)) setCompoundDrawables(null,icon,null,null)
         compoundDrawablePadding=dp(3);requestLayout();invalidate()
     }
     override fun onTextChanged(text: CharSequence?,start: Int,lengthBefore: Int,lengthAfter: Int) {
         super.onTextChanged(text,start,lengthBefore,lengthAfter)
         // Vertical measurement/drawing bypass TextView's native Layout, whose
         // presence normally makes setText request layout and invalidate its ink.
-        if(VerticalText.uiVertical()) {requestLayout();invalidate()}
+        if(VerticalText.uiVertical(context)) {requestLayout();invalidate()}
     }
-    protected open fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat())
+    protected open fun caption()=VerticalText.wrapLabel(text.toString(),paint,dp(columnHeightDp).toFloat(),VerticalText.uiDirection(context))
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
-        val box=VerticalText.bounds(caption(),paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        if(!VerticalText.uiVertical(context)) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
+        val box=VerticalText.bounds(caption(),paint,VerticalText.uiDirection(context),GlyphOrientation.MIXED,1f)
         val iconWidth=icon?.bounds?.width()?.plus(dp(8)) ?: 0
         val w=ceil(box.width()).toInt()+iconWidth+paddingLeft+paddingRight
         val h=maxOf(ceil(box.height()).toInt(),icon?.bounds?.height() ?: 0)+paddingTop+paddingBottom
@@ -44,15 +44,15 @@ open class FlowButton(context: Context): Button(context) {
     }
     override fun onDraw(canvas: Canvas) {
         icon?.setColorFilter(if(isEnabled) currentTextColor else EditorColours.disabledOnSurface,PorterDuff.Mode.SRC_IN)
-        if(!VerticalText.uiVertical()) {super.onDraw(canvas);return}
+        if(!VerticalText.uiVertical(context)) {super.onDraw(canvas);return}
         val p=Paint(paint).apply {color=if(isEnabled) currentTextColor else EditorColours.disabledOnSurface}
-        val label=caption();val box=VerticalText.bounds(label,p,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        val label=caption();val box=VerticalText.bounds(label,p,VerticalText.uiDirection(context),GlyphOrientation.MIXED,1f)
         val iw=icon?.bounds?.width() ?: 0;val gap=if(iw>0) dp(8) else 0
         val left=(width-box.width()-iw-gap)/2f
-        val textFirst=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+        val textFirst=VerticalText.uiDirection(context)==TextDirection.VERTICAL_RL
         icon?.let {canvas.save();canvas.translate(if(textFirst) left+box.width()+gap else left,(height-it.bounds.height())/2f);it.draw(canvas);canvas.restore()}
         canvas.save();canvas.translate(if(textFirst) left else left+iw+gap,(height-box.height())/2f)
-        VerticalText.draw(canvas,label,p,VerticalText.uiDirection(),GlyphOrientation.MIXED);canvas.restore()
+        VerticalText.draw(canvas,label,p,VerticalText.uiDirection(context),GlyphOrientation.MIXED);canvas.restore()
     }
 }
 
@@ -71,7 +71,7 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
         // The activity theme supplies textAlignment=viewStart; gravity alone cannot override it.
         textAlignment=TEXT_ALIGNMENT_CENTER;gravity=Gravity.CENTER
-        if(!VerticalText.uiVertical()) {maxLines=2;ellipsize=android.text.TextUtils.TruncateAt.END;includeFontPadding=false}
+        if(!VerticalText.uiVertical(context)) {maxLines=2;ellipsize=android.text.TextUtils.TruncateAt.END;includeFontPadding=false}
         setPadding(dp(4),dp(3),dp(4),dp(3));compoundDrawablePadding=dp(2);columnHeightDp=58
         fun tile(selected: Boolean)=GradientDrawable().apply {
             setColor(if(selected) EditorColours.primaryContainer else EditorColours.surfaceContainer)
@@ -90,14 +90,14 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         columnHeightDp=((side-paddingTop-paddingBottom)/resources.displayMetrics.density).toInt()
         icon?.let {drawable ->
             val captionSpace=ceil(paint.fontSpacing*2).toInt()
-            val iconSide=if(VerticalText.uiVertical()) dp(24) else
+            val iconSide=if(VerticalText.uiVertical(context)) dp(24) else
                 minOf(dp(24),(side-paddingTop-paddingBottom-captionSpace-dp(2)).coerceAtLeast(dp(16)))
             if(drawable.bounds.width()!=iconSide || drawable.bounds.height()!=iconSide) {
                 drawable.setBounds(0,0,iconSide,iconSide)
-                if(!VerticalText.uiVertical()) setCompoundDrawables(null,drawable,null,null)
+                if(!VerticalText.uiVertical(context)) setCompoundDrawables(null,drawable,null,null)
             }
         }
-        if(!VerticalText.uiVertical()) {
+        if(!VerticalText.uiVertical(context)) {
             compoundDrawablePadding=dp(2)
             maxLines=((side-paddingTop-paddingBottom-(icon?.bounds?.height() ?: 0)-compoundDrawablePadding)/paint.fontSpacing).toInt().coerceIn(1,2)
         }
@@ -109,7 +109,7 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         val availableWidth=width-paddingLeft-paddingRight-(icon?.bounds?.width()?.plus(dp(8)) ?: 0)
         val availableHeight=height-paddingTop-paddingBottom
         fun fits(label: String): Boolean {
-            val box=VerticalText.bounds(label,paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+            val box=VerticalText.bounds(label,paint,VerticalText.uiDirection(context),GlyphOrientation.MIXED,1f)
             return box.width()<=availableWidth && box.height()<=availableHeight
         }
         if(fits(full)) return full
@@ -118,7 +118,7 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         val clusters=VerticalText.clusters(text.toString()).toMutableList()
         while(clusters.isNotEmpty()) {
             clusters.removeAt(clusters.lastIndex)
-            val label=VerticalText.wrapLabel(clusters.joinToString("").trimEnd()+"…",paint,availableHeight.toFloat())
+            val label=VerticalText.wrapLabel(clusters.joinToString("").trimEnd()+"…",paint,availableHeight.toFloat(),VerticalText.uiDirection(context))
             if(fits(label)) return label
         }
         return "…"
@@ -164,7 +164,7 @@ internal class TabStrip(context: Context,sideLayout: Boolean=false): EqualHeight
 
 /** An attached tab with a selected edge; never a boxed command button. */
 class RibbonTab(context: Context,private val sideLayout: Boolean=false): FlowButton(context) {
-    init {background=null;textAlignment=TEXT_ALIGNMENT_CENTER;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(if(VerticalText.uiVertical()) 12 else 16),dp(8),dp(if(VerticalText.uiVertical()) 12 else 16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
+    init {background=null;textAlignment=TEXT_ALIGNMENT_CENTER;textSize=13f;minimumHeight=dp(44);minHeight=dp(44);setPadding(dp(if(VerticalText.uiVertical(context)) 12 else 16),dp(8),dp(if(VerticalText.uiVertical(context)) 12 else 16),dp(9));columnHeightDp=88;setTextColor(EditorColours.onSurface)}
     override fun onDraw(canvas: Canvas) {
         val p=Paint(Paint.ANTI_ALIAS_FLAG)
         if(isSelected) {p.color=EditorColours.surfaceContainer;canvas.drawRect(0f,0f,width.toFloat(),height.toFloat(),p)}
@@ -187,22 +187,22 @@ class FlowTextView(context: Context): TextView(context) {
         super.onTextChanged(text,start,lengthBefore,lengthAfter)
         // Vertical measurement/drawing bypass TextView's native Layout, whose
         // presence normally makes setText request layout and invalidate its ink.
-        if(VerticalText.uiVertical()) {requestLayout();invalidate()}
+        if(VerticalText.uiVertical(context)) {requestLayout();invalidate()}
     }
-    private fun caption(height: Int)=VerticalText.wrapLabel(text.toString(),paint,height.toFloat().coerceAtLeast(paint.fontSpacing))
+    private fun caption(height: Int)=VerticalText.wrapLabel(text.toString(),paint,height.toFloat().coerceAtLeast(paint.fontSpacing),VerticalText.uiDirection(context))
     private var columnHeight=0
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        if(!VerticalText.uiVertical()) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
+        if(!VerticalText.uiVertical(context)) {super.onMeasure(widthMeasureSpec,heightMeasureSpec);return}
         val preferred=(columnHeightDp*resources.displayMetrics.density).toInt()
         columnHeight=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferred else minOf(preferred,MeasureSpec.getSize(heightMeasureSpec)-paddingTop-paddingBottom)
-        val box=VerticalText.bounds(caption(columnHeight),paint,VerticalText.uiDirection(),GlyphOrientation.MIXED,1f)
+        val box=VerticalText.bounds(caption(columnHeight),paint,VerticalText.uiDirection(context),GlyphOrientation.MIXED,1f)
         setMeasuredDimension(resolveSize(ceil(box.width()).toInt()+paddingLeft+paddingRight,widthMeasureSpec),
             resolveSize(ceil(box.height()).toInt()+paddingTop+paddingBottom,heightMeasureSpec))
     }
     override fun onDraw(canvas: Canvas) {
-        if(!VerticalText.uiVertical()) {super.onDraw(canvas);return}
+        if(!VerticalText.uiVertical(context)) {super.onDraw(canvas);return}
         canvas.save();canvas.translate(paddingLeft.toFloat(),paddingTop.toFloat())
-        VerticalText.draw(canvas,caption(columnHeight),Paint(paint).apply {color=currentTextColor},VerticalText.uiDirection(),GlyphOrientation.MIXED)
+        VerticalText.draw(canvas,caption(columnHeight),Paint(paint).apply {color=currentTextColor},VerticalText.uiDirection(context),GlyphOrientation.MIXED)
         canvas.restore()
     }
 }
@@ -216,7 +216,7 @@ internal class ColumnScrollView(context: Context): android.widget.HorizontalScro
         super.onLayout(changed,left,top,right,bottom)
         if(!positioned && childCount>0 && width>0) {
             positioned=true
-            if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) scrollTo((getChildAt(0).width-width+paddingLeft+paddingRight).coerceAtLeast(0),0)
+            if(VerticalText.uiDirection(context)==TextDirection.VERTICAL_RL) scrollTo((getChildAt(0).width-width+paddingLeft+paddingRight).coerceAtLeast(0),0)
             else scrollTo(0,0)
         }
     }

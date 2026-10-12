@@ -145,7 +145,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
         }}
         legacyButton?.let {body.addView(it)}
         update()
-        val content: View=if(VerticalText.uiVertical()) {
+        val content: View=if(VerticalText.uiVertical(activity)) {
             val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_save_form"}
             val tall=(activity.resources.configuration.screenHeightDp-260).coerceIn(144,280)
             val d=activity.resources.displayMetrics.density
@@ -181,7 +181,7 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             creditsPanel?.let {form.addView(ScrollView(activity).apply {addView(VerticalUi.detach(it))},LinearLayout.LayoutParams((264*d).toInt(),(tall*d).toInt()))}
             legacyButton?.let {VerticalUi.caption(it,tall);form.addView(VerticalUi.detach(it))}
             form.addView(prose(ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})))
-            form.layoutDirection=if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
+            form.layoutDirection=if(VerticalText.uiDirection(activity)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
             form
         } else ScrollView(activity).apply {addView(body)}
         dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))

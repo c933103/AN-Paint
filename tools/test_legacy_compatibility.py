@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (app_partition, coverage_paths, report_paths,
+from app_instrumentation_matrix import (DIALOG, DIALOG_METHODS, app_partition, coverage_paths, report_paths,
                                         verify_app_reports)
 from run_android_instrumentation import RESTART_SEED, RESTART_VERIFY, declared_tests
 from test_app_instrumentation_matrix import SOURCE, receipts
@@ -31,8 +31,10 @@ class LegacyInventoryTest(unittest.TestCase):
             self.assertEqual(result['receipt_scope'], 'sdk-ineligible-app-omission')
             self.assertEqual(result['completed_tests'], 0)
             self.assertEqual(result['selected_tests'], 0)
-            self.assertEqual(result['declared_tests'], 25)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 23)
+            self.assertEqual(result['declared_tests'], 30)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 28)
+            self.assertEqual({(DIALOG, method) for method in DIALOG_METHODS},
+                             {tuple(item) for item in result['sdk_suppressed_tests'] if item[0] == DIALOG})
             self.assertEqual(set(result['explicitly_excluded_tests']), expected)
             self.assertEqual(result['all_app_total_timeout_seconds'], 0)
             self.assertEqual(result['vertical_total_timeout_seconds'], 0)
@@ -45,7 +47,7 @@ class LegacyInventoryTest(unittest.TestCase):
     def test_new_eligible_method_or_foreign_report_cannot_be_hidden_as_omission(self):
         for sdk in (21, 24):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
-            for owner in ('paint.anpaint.android.FutureTest', 'paint.anpaint.android.EditorDeviceTest',
+            for owner in (DIALOG, 'paint.anpaint.android.FutureTest', 'paint.anpaint.android.EditorDeviceTest',
                           'paint.anpaint.android.GalleryDraftDeviceTest', 'paint.anpaint.android.VerticalLocaleDeviceTest',
                           RESTART_SEED):
                 with self.subTest(sdk=sdk, owner=owner), self.assertRaises(ValueError):
@@ -77,7 +79,7 @@ class LegacyInventoryTest(unittest.TestCase):
                         self.assertEqual(result['completed_tests'], 0)
                         self.assertEqual(list(root.rglob('summary.json')), [])
                         self.assertTrue(all(not path.exists() for path in coverage_paths(root)[1:]))
-                        for subtree in ('app', 'app-gallery-draft', 'app-vertical'):
+                        for subtree in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical'):
                             stale = root/subtree/'old/summary.json'
                             stale.parent.mkdir(parents=True, exist_ok=True); stale.write_text('{"success":true}')
                             run = subprocess.run(command, env=env, text=True, capture_output=True, timeout=10)

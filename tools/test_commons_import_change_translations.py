@@ -5,11 +5,10 @@ import unittest
 
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
-from language_option_additions import ADDED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-MANIFEST = ROOT / 'verification/commons-import-changes-2026-10-09/translations.json'
+MANIFEST = ROOT / 'tools/fixtures/current_localization/commons_import_current_wording.json'
 KEYS = {
     'commons_import_svg_changes':
         'AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.',
@@ -34,7 +33,7 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         self.assertEqual(set(SCOPED_TAGS), translated | blocked)
         unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
         self.assertEqual(108, len(unscoped))
-        self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']) | ADDED_TAGS)
+        self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']))
         paths = catalogues.catalogue_paths()
         for tag, expected in manifest['translations'].items():
             with self.subTest(tag=tag):

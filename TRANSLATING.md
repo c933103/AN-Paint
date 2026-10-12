@@ -2,7 +2,7 @@
 
 **Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (12 October 2026) is 167 locale options: 59 scoped catalogues and 108 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 108 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 167-option scope.
 
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
 `Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
@@ -27,16 +27,17 @@ temporary migration condition until the applicable catalogue work has been indep
 The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
 Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
 Android App languages. Their exact canonical XML catalogues intentionally contain
-no translated entries yet: all 695 translatable source strings and the one plural
-resource currently use default English fallback. Selecting a language is not a
+no translated entries yet: all current translatable source strings and plural
+resources use default English fallback. Selecting a language is not a
 claim of translated UI, linguistic review, or installed-device verification.
 
 The existing picker explains untranslated English fallback. The dedicated
 [translation progress tracker](https://github.com/c933103/AN-Paint/pull/56)
 records the outstanding catalogue and review work. The addition fixture at
 `tools/fixtures/language_option_additions_20261012.json` records the six identities
-and status. Historical 140-choice/81-fallback evidence is preserved unchanged;
-current regression checks compose it with these six explicit additions.
+and status. Historical 140-choice/81-fallback evidence remains available in the
+[immutable archive](verification/README.md). Current regressions check the live
+resources and the explicit current scope directly.
 
 ## Further options and principal varieties requested on 12 October 2026
 
@@ -61,12 +62,13 @@ Native-name bases are source-backed; regional qualifiers are explicit editorial
 disambiguators. No automatic fallback between these individual tags is implied.
 The source and selection limits are recorded with the addition fixture.
 
-Each new catalogue has **0/695 translatable strings and 0/1 plural resources**;
-all 696 app resource keys use default-English fallback pending actual translation.
+Each new catalogue has **zero translated strings and plural resources**;
+all current translatable keys use default-English fallback pending actual translation.
 The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
-Historical 140-choice evidence and the first six-option fixture remain unchanged;
-current regressions compose both additions into **27 new options and 108 partial
-catalogues**. The earlier unpublished 162-choice candidate is superseded; its
+The explicit current scope preserves the original 59 scoped catalogues and all
+81 existing fallback identities, adding **27 empty catalogues for 108 fallbacks**.
+It checks current identity, status, resource values and fallback behavior without
+reconstructing historical snapshots. The earlier unpublished 162-choice candidate is superseded; its
 retained test/review evidence is historical and does not accept this successor.
 
 ## Editing a translation

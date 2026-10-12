@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, PHASE_TIMEOUTS,
+from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, PHASE_TIMEOUTS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -38,25 +38,26 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':15, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}}),
-                            (35, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':16, 'dialog':5, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 25)
-            self.assertEqual(result['completed_tests'], 22 if sdk==30 else 25)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 1 if sdk==30 else 0)
+            self.assertEqual(result['declared_tests'], 30)
+            self.assertEqual(result['completed_tests'], 22 if sdk==30 else 30)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 6 if sdk==30 else 0)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
             self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],270)
-            self.assertEqual(result['all_app_total_timeout_seconds'],630 if sdk==30 else 750)
+            self.assertEqual(result['all_app_total_timeout_seconds'],630 if sdk==30 else 1050)
 
     def test_future_ordinary_methods_are_included_and_unknown_gallery_methods_fail_closed(self):
         expected, reports, digest, suppressed = receipts(SOURCE,35)
         future=('paint.anpaint.android.FutureTest','newCase')
         self.assertIn(future,app_partition(expected|{future},35)['ordinary'])
         with self.assertRaises(ValueError): verify_app_reports(expected|{future},35,reports,digest,suppressed)
-        for changed in (expected|{(GALLERY_DRAFT,'newGalleryCase')},
+        for changed in (expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')},
+                        expected-{(DIALOG,next(iter(DIALOG_METHODS)))},
                         expected-{(GALLERY_DRAFT,next(iter(GALLERY_METHODS)))},
                         expected|{(RESTART_SEED,'extra')},
                         {item for item in expected if item[0]!=RESTART_VERIFY}):
@@ -117,7 +118,7 @@ class AppPartitionTest(unittest.TestCase):
                 with self.assertRaises(ValueError): verify_reports(SOURCE,root,sdk)
                 self.assertFalse((root/'app/ordinary-gallery-coverage.json').exists())
 
-    def test_shell_selects_exact_gallery_methods_without_changing_outer_deadlines(self):
+    def test_shell_selects_exact_gallery_and_dialog_methods_with_explicit_outer_budget(self):
         shell=(ROOT/'tools/ci_emulator.sh').read_text()
         body=shell.split('run_gallery_draft_regression() {',1)[1].split('\n}\n',1)[0]
         selected=set(re.findall(r'--include-test "\$gallery_class#(\w+)"',body))
@@ -128,14 +129,20 @@ class AppPartitionTest(unittest.TestCase):
         self.assertEqual(shell.count('--timeout-seconds 180'),4)
         self.assertEqual(shell.count('--timeout-seconds 60'),2)
         main=shell.split('main() {',1)[1]
-        self.assertIn('--exclude-class paint.anpaint.android.GalleryDraftDeviceTest || editor_failed=1',main)
+        self.assertIn('--exclude-class paint.anpaint.android.GalleryDraftDeviceTest',main)
+        self.assertIn('--exclude-class paint.anpaint.android.LocalizedDialogDeviceTest || editor_failed=1',main)
+        dialog=shell.split('run_dialog_regression() {',1)[1].split('\n}\n',1)[0]
+        self.assertEqual(set(re.findall(r'--include-test \"\$dialog_class#(\w+)\"',dialog)),DIALOG_METHODS)
+        self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
+        self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
+        self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
         self.assertIn('run_gallery_draft_regression || editor_failed=1',main)
         self.assertLess(main.index('run_gallery_draft_regression'),main.index('run_credit_restart_regression'))
         self.assertLess(main.index('run_credit_restart_regression'),main.index('tools/app_instrumentation_matrix.py'))
         workflow=(ROOT/'.github/workflows/android.yml').read_text()
         # Identifier retained; inner phase deadlines remain unchanged under the corrected outer cap.
-        self.assertIn('timeout-minutes: 46',workflow)
-        self.assertIn('timeout-minutes: 36',workflow)
+        self.assertIn('timeout-minutes: 53',workflow)
+        self.assertIn('timeout-minutes: 43',workflow)
 
 
 class ComposedDriverTest(unittest.TestCase):
@@ -155,22 +162,24 @@ python3() {
   else [[ "$TEST_FAULT" != ordinary ]]; fi
 }
 run_gallery_draft_regression() { echo gallery; [[ "$TEST_FAULT" != gallery ]]; }
+run_dialog_regression() { echo dialog; [[ "$TEST_FAULT" != dialog ]]; }
 run_vertical_locale_matrix() { echo vertical; [[ "$TEST_FAULT" != vertical ]]; }
 run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; }
 """
         for sdk in (21,24,30,35):
-            for fault in ('', 'native', 'ordinary', 'gallery', 'vertical', 'restart', 'verifier'):
+            for fault in ('', 'native', 'ordinary', 'gallery', 'dialog', 'vertical', 'restart', 'verifier'):
                 with self.subTest(sdk=sdk,fault=fault),tempfile.TemporaryDirectory() as directory:
                     run=subprocess.run(['bash','-c',harness+'\n'+driver],cwd=ROOT,
                         env={**os.environ,'TEST_ROOT':directory,'TEST_API':str(sdk),'TEST_FAULT':fault},
                         text=True,capture_output=True,timeout=10)
                     expected_failure=(fault in ('native','verifier') if sdk<30 else
-                                      bool(fault) and not (sdk==30 and fault=='restart'))
+                                      bool(fault) and not (sdk==30 and fault in ('restart','dialog')))
                     self.assertEqual(run.returncode,int(expected_failure),run.stdout+run.stderr)
                     lines=run.stdout.splitlines()
                     self.assertEqual(lines.count('gallery'),int(sdk>=30))
                     self.assertEqual(lines.count('vertical'),int(sdk>=30))
-                    self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery')))
+                    self.assertEqual(lines.count('dialog'),int(sdk==35))
+                    self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery','dialog')))
                     native=next(line for line in lines if ' --suite Paintroid ' in line)
                     self.assertEqual('--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest' in native,sdk<35)
                     self.assertIn('--timeout-seconds 180',native)
@@ -178,7 +187,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
                         self.assertIn('--timeout-seconds 180',ordinary[0])
-                        for owner in (GALLERY_DRAFT,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
+                        for owner in (GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
                             self.assertIn('--exclude-class '+owner,ordinary[0])
                     if sdk<35:
                         status=(Path(directory)/'report/app/accepted-credit-restart/verify-status.txt').read_text()
@@ -218,10 +227,10 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],22 if sdk==30 else 25)
+                        self.assertEqual(result['completed_tests'],22 if sdk==30 else 30)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
-                        for subtree in ('app','app-gallery-draft','app-vertical'):
+                        for subtree in ('app','app-gallery-draft','app-dialog','app-vertical'):
                             extra=root/subtree/'old/summary.json';extra.parent.mkdir(parents=True)
                             extra.write_text('{}')
                             for output in outputs:
@@ -257,16 +266,23 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(run.stdout,'')
 
 
-class GalleryInvocationTest(unittest.TestCase):
-    def test_real_wrapper_runs_one_exact_bounded_selection_and_never_retries_failed_results(self):
+class SelectedInvocationTest(unittest.TestCase):
+    def test_gallery_wrapper_runs_one_exact_selection_without_retries(self):
+        self.check_wrapper(GALLERY_DRAFT, GALLERY_METHODS, 'gallery_draft', 'app-gallery-draft', 90)
+
+    def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
+        self.check_wrapper(DIALOG, DIALOG_METHODS, 'dialog', 'app-dialog', 300)
+
+    def check_wrapper(self, owner, methods, function, suite, deadline):
+        class_name = owner.rsplit('.', 1)[1]
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):
             with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
                 root=Path(directory)
                 (root/'tools').mkdir()
                 shutil.copyfile(ROOT/'tools/run_android_instrumentation.py',root/'tools/run_android_instrumentation.py')
                 source=root/'app/src/androidTest';source.mkdir(parents=True)
-                (source/'GalleryDraftDeviceTest.kt').write_text('package paint.anpaint.android\nclass GalleryDraftDeviceTest {\n'+
-                    ''.join(f'@Test fun {name}() {{}}\n' for name in sorted(GALLERY_METHODS))+'}\n')
+                (source/(class_name+'.kt')).write_text('package paint.anpaint.android\nclass '+class_name+' {\n'+
+                    ''.join(f'@Test fun {name}() {{}}\n' for name in sorted(methods))+'}\n')
                 (source/'Other.kt').write_text('package example\nclass Other { @Test fun keepOrdinary() {} }\n')
                 apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
                 apk.parent.mkdir(parents=True);apk.touch()
@@ -297,19 +313,19 @@ else:raise SystemExit('Unexpected adb command: '+repr(args))
 """)
                 adb.chmod(0o700)
                 run=subprocess.run(['bash','-c',
-                    'source "$CI_SCRIPT"; report="$TEST_ROOT/report"; adb="$TEST_ROOT/adb"; variant=debug; run_gallery_draft_regression'],
+                    'source "$CI_SCRIPT"; report="$TEST_ROOT/report"; adb="$TEST_ROOT/adb"; variant=debug; run_'+function+'_regression'],
                     cwd=root,env={**os.environ,'CI_SCRIPT':str(ROOT/'tools/ci_emulator.sh'),
                                   'TEST_ROOT':str(root),'TEST_FAULT':fault},text=True,capture_output=True,timeout=15)
-                report=json.loads((root/'report/app-gallery-draft/androidTest-results/summary.json').read_text())
+                report=json.loads((root/'report'/suite/'androidTest-results/summary.json').read_text())
                 commands=[json.loads(line) for line in (root/'commands.jsonl').read_text().splitlines()]
                 instrumentation=[args for args in commands if args[:3]==['shell','am','instrument']]
                 self.assertEqual(len(instrumentation),1)
                 command=instrumentation[0]
                 self.assertEqual(command[command.index('class')+1].split(','),
-                                 sorted(f'{GALLERY_DRAFT}#{method}' for method in GALLERY_METHODS))
+                                 sorted(f'{owner}#{method}' for method in methods))
                 self.assertNotIn('--no-restart',command)
                 self.assertNotIn('waitForActivitiesToComplete',command)
-                self.assertEqual(report['timeout_seconds'],90)
+                self.assertEqual(report['timeout_seconds'],deadline)
                 self.assertEqual(report['success'],not fault,run.stdout+run.stderr)
                 self.assertEqual(run.returncode,1 if fault else 0,run.stdout+run.stderr)
 
