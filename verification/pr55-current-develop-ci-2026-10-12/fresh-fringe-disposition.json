@@ -1,0 +1,96 @@
+{
+  "status": "EXPLICIT_BOUNDED_FRINGE_DISPOSITION",
+  "run_id": 38296205283,
+  "tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "profile": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+  "exact_pixel_comparison_passed": false,
+  "review_required_preserved": true,
+  "hard_missing_whole_components": 0,
+  "hard_missing_opaque_samples": 0,
+  "allocation_edge_contact": 0,
+  "lost_pixels": [
+    {
+      "layout_xy": [
+        1232,
+        29
+      ],
+      "reference_xy": [
+        2419,
+        31
+      ],
+      "actual_xy": [
+        1256,
+        29
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        36,
+        7
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layout_xy": [
+        1232,
+        30
+      ],
+      "reference_xy": [
+        2419,
+        32
+      ],
+      "actual_xy": [
+        1256,
+        30
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "affected_components": [
+    {
+      "reference_samples": 78,
+      "missing_samples": 2,
+      "reference_alpha_sum": 10633,
+      "missing_alpha_sum": 8,
+      "max_reference_alpha": 255,
+      "max_missing_alpha": 7,
+      "component_entirely_missing": false
+    }
+  ],
+  "visual_observation": "Actual TextView and complete independent reference were both inspected. Four text lines remain; the two absent samples are on the outer antialias edge of a surviving connected component. No whole component or opaque stroke disappears. The exact difference remains visible in metadata and is not called an exact pass.",
+  "disposition": "Accepted as a specific low-severity antialias fringe for the bounded readable-status requirement. No blanket tolerance, linguistic fluency, universal glyph segmentation or installed-policy change follows.",
+  "inspected_inputs": [
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs.json",
+      "bytes": 1157,
+      "sha256": "da3f2a0c06cc3361100044cc4c11563399b8613e3ba6f0a9840f7b265a7538c3"
+    },
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+      "bytes": 36634,
+      "sha256": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf"
+    },
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png",
+      "bytes": 39721,
+      "sha256": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3"
+    }
+  ],
+  "view_limit": "The 2519x332 complete reference was displayed at 2048x270 by the image tool; all numerical comparison used original full-resolution PNG bytes."
+}

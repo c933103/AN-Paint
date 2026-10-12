@@ -1,0 +1,95 @@
+{
+  "status": "EXISTING_RUNTIME_SCOPES_PASS_WITH_CONFIRMED_PLATFORM_BINDING_FAILURE",
+  "head": "b0697fd58a2a37fb94e351f4c4ec68757b0f6b5e",
+  "tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "merge": "e3dc717586539f8bbfe2ae3e3aae87e83db16d19",
+  "run_id": 38296205283,
+  "jvm": {
+    "passed": 910,
+    "failed": 0,
+    "skipped": 0,
+    "new_option_cases": 4,
+    "renamed_executions": 10,
+    "direction_cases": 14
+  },
+  "host": {
+    "total": 650,
+    "passed": 648,
+    "skipped": 2
+  },
+  "rasters": {
+    "success_pairs": 112,
+    "diagnostic_profiles": 28,
+    "ink_triplets": 189,
+    "mutants": 78,
+    "summaries": 4,
+    "positive_frames": 110,
+    "exact_positive_frames": 109,
+    "reviewed_fringe_frames": 1,
+    "notice_pairs": 16
+  },
+  "installed": {
+    "api30_selected_passed": 95,
+    "api35_selected_passed": 104,
+    "phases": 13,
+    "source_verdict_sha256": "9591b24d778556cf48d2a6b9cdd8922a71665bb277a10502e84ab71aa9cb0cec",
+    "platform_locale_config_observed": false
+  },
+  "delivery": {
+    "probes": 7,
+    "tracked_source_blobs_verified": 1091,
+    "declared_bundle_omissions": 3,
+    "fonts_directory_assets": 14,
+    "legal_assets": 21,
+    "compiled_m04_configs": 61,
+    "compiled_picker_and_xml_tags": 167
+  },
+  "blocking_static_finding": {
+    "attribute": "android:localeConfig",
+    "actual_application_manifest": "ABSENT",
+    "preexisting": true,
+    "manifest_sha256": "652f94b8e56061f9b4342d258d6d5724717ce059726cf2426a0d56e08f677bdb",
+    "diagnosis": "AGP8.13.0 default manifest-merger31.13.0 accepts this attribute only from MAIN/OVERLAY, not LIBRARY. Source-backed explanation, not an archived CI merger replay.",
+    "settings_ui": "UNOBSERVED"
+  },
+  "separate_review_comment": "HANDOFF81\u2192108 correction is approved in a separate source review, not retroactively applied to these artifacts.",
+  "limits": [
+    "No overall platform-registration/release-readiness acceptance.",
+    "No local Android execution, physical hardware, Settings UI visibility, new-language translations or private signing claim.",
+    "All old checkpoints remain unchanged."
+  ],
+  "supporting_files": [
+    {
+      "path": "regression-audit.json",
+      "sha256": "782af6221dfcdc828e737ac959d799986aad2748f74787be748ecfb4112bd831"
+    },
+    {
+      "path": "regression-job-binding.json",
+      "sha256": "2b7fb1947b29947c4a0545e0f522c54dcd5ea86d1438b7d89ebe64fffc7643bf"
+    },
+    {
+      "path": "runtime-summary.json",
+      "sha256": "938ad1b07b0150f53e0807a72a9cb360f8a032eca75b4bba905abbbdded5ea3c"
+    },
+    {
+      "path": "integration-identities.json",
+      "sha256": "4b402a954d4a505b0be78da158200b139df88a978d08c1a9acaca3555689068f"
+    },
+    {
+      "path": "fresh-fringe-disposition.json",
+      "sha256": "8ba87a4141ab45dc0d02b31c074d5735e1277343dea7ded317fe6f57f00133d3"
+    },
+    {
+      "path": "retained-notice-audit.json",
+      "sha256": "14cf31db61fa876cb311e6fe9ebcdc290b844d997ff93510ceefdbae7ad5b313"
+    },
+    {
+      "path": "visual-review.json",
+      "sha256": "c65c9df780ac16d5b678b3550e9b7247594867ae7b91e9be3fec89e714a660ff"
+    },
+    {
+      "path": "final-source-publication.json",
+      "sha256": "9acf5164c0dc16ba06742643d44c1031da7d1497b4cada12b1383bf426872b66"
+    }
+  ]
+}
