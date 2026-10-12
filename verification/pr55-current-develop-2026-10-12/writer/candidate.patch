@@ -1,0 +1,2530 @@
+diff --git a/CI.md b/CI.md
+index 39c1da1..fdeff6c 100644
+--- a/CI.md
++++ b/CI.md
+@@ -11,7 +11,7 @@ Current source/test discovery and per-run APK/source binding remain required.
+ 
+ Localization status remains scoped: earlier withdrawn review conclusions are
+ not restored by this migration. The compact 59-locale wording fixtures preserve
+-current regression expectations and explicitly retain the 81 open fallbacks;
++current regression expectations and explicitly retain the 108 open fallbacks;
+ matching them does not certify fluency or complete linguistic review.
+ 
+ ## What runs
+diff --git a/Paintroid/src/main/res/values-b+as/strings.xml b/Paintroid/src/main/res/values-b+as/strings.xml
+new file mode 100644
+index 0000000..5376079
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+as/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- অসমীয়া (as): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+ch/strings.xml b/Paintroid/src/main/res/values-b+ch/strings.xml
+new file mode 100644
+index 0000000..5cadd25
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+ch/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Chamoru (ch): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+chr/strings.xml b/Paintroid/src/main/res/values-b+chr/strings.xml
+new file mode 100644
+index 0000000..94bc8d0
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+chr/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- ᏣᎳᎩ (chr): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+ha/strings.xml b/Paintroid/src/main/res/values-b+ha/strings.xml
+new file mode 100644
+index 0000000..80c35d3
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+ha/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Hausa (ha): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+ht/strings.xml b/Paintroid/src/main/res/values-b+ht/strings.xml
+new file mode 100644
+index 0000000..8fffada
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+ht/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Kreyòl ayisyen (ht): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+ig/strings.xml b/Paintroid/src/main/res/values-b+ig/strings.xml
+new file mode 100644
+index 0000000..9989b5b
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+ig/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Igbo (ig): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+ln/strings.xml b/Paintroid/src/main/res/values-b+ln/strings.xml
+new file mode 100644
+index 0000000..ccfdb1b
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+ln/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Lingála (ln): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+mi/strings.xml b/Paintroid/src/main/res/values-b+mi/strings.xml
+new file mode 100644
+index 0000000..0ee8c06
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+mi/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Māori (mi): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+nch/strings.xml b/Paintroid/src/main/res/values-b+nch/strings.xml
+new file mode 100644
+index 0000000..e3ade04
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+nch/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Mexicano (Central Huasteca) (nch): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Central Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+nhe/strings.xml b/Paintroid/src/main/res/values-b+nhe/strings.xml
+new file mode 100644
+index 0000000..3353802
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+nhe/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Náhuatl (Eastern Huasteca) (nhe): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Eastern Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+nhw/strings.xml b/Paintroid/src/main/res/values-b+nhw/strings.xml
+new file mode 100644
+index 0000000..66e38b2
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+nhw/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Náhuatl (Western Huasteca) (nhw): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Western Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+nv/strings.xml b/Paintroid/src/main/res/values-b+nv/strings.xml
+new file mode 100644
+index 0000000..b70a444
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+nv/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Diné bizaad (nv): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+pcm/strings.xml b/Paintroid/src/main/res/values-b+pcm/strings.xml
+new file mode 100644
+index 0000000..ea8c04c
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+pcm/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Naijá (pcm): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+qug/strings.xml b/Paintroid/src/main/res/values-b+qug/strings.xml
+new file mode 100644
+index 0000000..35508f5
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+qug/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Kichwa (Chimborazo) (qug): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Chimborazo Highland Quichua; this tag does not cover all Ecuadorian Kichwa, and provincial Kichwa totals are not an exact qug census.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+quh/strings.xml b/Paintroid/src/main/res/values-b+quh/strings.xml
+new file mode 100644
+index 0000000..5c2510d
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+quh/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Qhichwa (South Bolivian) (quh): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     South Bolivian Quechua; this tag does not cover all Quechua in Bolivia or all Southern Quechua.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+quy/strings.xml b/Paintroid/src/main/res/values-b+quy/strings.xml
+new file mode 100644
+index 0000000..5ceac5e
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+quy/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Qichwa (Ayacucho / Chanka) (quy): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Ayacucho Quechua, also labelled Chanka; this tag does not cover all Southern Quechua.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+quz/strings.xml b/Paintroid/src/main/res/values-b+quz/strings.xml
+new file mode 100644
+index 0000000..b9b961b
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+quz/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Qichwa (Cusco) (quz): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Cusco Quechua; this tag does not cover all Southern Quechua.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+sa/strings.xml b/Paintroid/src/main/res/values-b+sa/strings.xml
+new file mode 100644
+index 0000000..690325b
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+sa/strings.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- संस्कृतम् (sa): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Sanskrit macrolanguage in current IANA registry: no narrower registered variety has been selected. Define scope deliberately before translating.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+sm/strings.xml b/Paintroid/src/main/res/values-b+sm/strings.xml
+new file mode 100644
+index 0000000..b5d47e9
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+sm/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Gagana Samoa (sm): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+so/strings.xml b/Paintroid/src/main/res/values-b+so/strings.xml
+new file mode 100644
+index 0000000..4c12fad
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+so/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Soomaaliga (so): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+su/strings.xml b/Paintroid/src/main/res/values-b+su/strings.xml
+new file mode 100644
+index 0000000..8df7288
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+su/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Sunda (su): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+tg/strings.xml b/Paintroid/src/main/res/values-b+tg/strings.xml
+new file mode 100644
+index 0000000..57e44cc
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+tg/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Тоҷикӣ (tg): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+tpi/strings.xml b/Paintroid/src/main/res/values-b+tpi/strings.xml
+new file mode 100644
+index 0000000..fcfde2c
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+tpi/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Tok Pisin (tpi): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+wo/strings.xml b/Paintroid/src/main/res/values-b+wo/strings.xml
+new file mode 100644
+index 0000000..e460901
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+wo/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Wolof (wo): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+yo/strings.xml b/Paintroid/src/main/res/values-b+yo/strings.xml
+new file mode 100644
+index 0000000..f6f6c3e
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+yo/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Yorùbá (yo): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+yua/strings.xml b/Paintroid/src/main/res/values-b+yua/strings.xml
+new file mode 100644
+index 0000000..0c4664a
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+yua/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Maaya t’aan (yua): offered language option, translation not started.
++     Intentionally no translated entries; untranslated app resources use default English.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values-b+zu/strings.xml b/Paintroid/src/main/res/values-b+zu/strings.xml
+new file mode 100644
+index 0000000..a0943a4
+--- /dev/null
++++ b/Paintroid/src/main/res/values-b+zu/strings.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- isiZulu (zu): offered language, translation not started.
++     Intentionally no translated entries; untranslated UI uses the default English resources.
++     Edit this canonical catalogue directly when reviewed translations are available. -->
++<resources>
++</resources>
+diff --git a/Paintroid/src/main/res/values/app_language_names.xml b/Paintroid/src/main/res/values/app_language_names.xml
+index bc3a97c..5fde6ee 100644
+--- a/Paintroid/src/main/res/values/app_language_names.xml
++++ b/Paintroid/src/main/res/values/app_language_names.xml
+@@ -7,6 +7,7 @@
+         <item>Aynu itak</item>
+         <item>አማርኛ</item>
+         <item>العربية</item>
++        <item>অসমীয়া</item>
+         <item>Asturianu</item>
+         <item>Azərbaycanca</item>
+         <item>Беларуская</item>
+@@ -18,6 +19,8 @@
+         <item>Català</item>
+         <item>Valencià</item>
+         <item>Cebuano</item>
++        <item>Chamoru</item>
++        <item>ᏣᎳᎩ</item>
+         <item>کوردی</item>
+         <item>Čeština</item>
+         <item>Kaszëbsczi</item>
+@@ -47,16 +50,19 @@
+         <item>Gàidhlig</item>
+         <item>Galego</item>
+         <item>ગુજરાતી</item>
++        <item>Hausa</item>
+         <item>臺灣客家語（四縣腔，漢字）</item>
+         <item>Hak-kâ-ngî (Thòi-vân, Si-yen, Pha̍k-fa-sṳ)</item>
+         <item>עברית</item>
+         <item>हिन्दी</item>
+         <item>छत्तीसगढ़ी</item>
+         <item>Hrvatski</item>
++        <item>Kreyòl ayisyen</item>
+         <item>Magyar</item>
+         <item>Հայերեն</item>
+         <item>Interlingua</item>
+         <item>Bahasa Indonesia</item>
++        <item>Igbo</item>
+         <item>Íslenska</item>
+         <item>Italiano</item>
+         <item>日本語</item>
+@@ -73,11 +79,13 @@
+         <item>Kurdî</item>
+         <item>Кыргызча</item>
+         <item>Latina</item>
++        <item>Lingála</item>
+         <item>ລາວ</item>
+         <item>Lietuvių</item>
+         <item>Latviešu</item>
+         <item>文言（繁體）</item>
+         <item>मैथिली</item>
++        <item>Māori</item>
+         <item>Македонски</item>
+         <item>മലയാളം (ഇന്ത്യ)</item>
+         <item>Монгол (Кирилл, Монгол Улс)</item>
+@@ -89,39 +97,54 @@
+         <item>မြန်မာဘာသာ</item>
+         <item>臺灣台語（漢字）</item>
+         <item>Tâi-gí (Tâi-oân, Pe̍h-ōe-jī)</item>
++        <item>Mexicano (Central Huasteca)</item>
+         <item>Plattdüütsch</item>
+         <item>नेपाली</item>
++        <item>Náhuatl (Eastern Huasteca)</item>
++        <item>Náhuatl (Western Huasteca)</item>
+         <item>Nederlands</item>
+         <item>Norsk nynorsk</item>
+         <item>Norsk</item>
++        <item>Diné bizaad</item>
+         <item>Occitan</item>
+         <item>ਪੰਜਾਬੀ (ਭਾਰਤ)</item>
++        <item>Naijá</item>
+         <item>Polski</item>
+         <item>پښتو</item>
+         <item>Português (Brasil)</item>
+         <item>Português (Portugal)</item>
+         <item>😀 Emoji (vertical test; English hints)</item>
++        <item>Kichwa (Chimborazo)</item>
++        <item>Qhichwa (South Bolivian)</item>
++        <item>Qichwa (Ayacucho / Chanka)</item>
++        <item>Qichwa (Cusco)</item>
+         <item>Română</item>
+         <item>Русский</item>
+         <item>Ikinyarwanda</item>
+         <item>うちなーぐち</item>
++        <item>संस्कृतम्</item>
+         <item>سنڌي</item>
+         <item>Davvisámegiella</item>
+         <item>တႆး</item>
+         <item>සිංහල</item>
+         <item>Slovenčina</item>
+         <item>Slovenščina</item>
++        <item>Gagana Samoa</item>
++        <item>Soomaaliga</item>
+         <item>Shqip</item>
+         <item>Српски (Ћирилица)</item>
+         <item>Srpski (Latinica)</item>
++        <item>Sunda</item>
+         <item>Svenska</item>
+         <item>Kiswahili</item>
+         <item>தமிழ்</item>
+         <item>ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ</item>
+         <item>తెలుగు</item>
++        <item>Тоҷикӣ</item>
+         <item>ไทย</item>
+         <item>Tagalog</item>
+         <item>toki pona</item>
++        <item>Tok Pisin</item>
+         <item>Türkçe</item>
+         <item>Татарча (Кирилл)</item>
+         <item>Tatarça (Latin)</item>
+@@ -132,15 +155,19 @@
+         <item>Tiếng Việt</item>
+         <item>㗂越（𡨸喃）</item>
+         <item>Walon</item>
++        <item>Wolof</item>
+         <item>吴语（上海话书面语，简体）</item>
+         <item>IsiXhosa</item>
+         <item>ייִדיש</item>
++        <item>Yorùbá</item>
++        <item>Maaya t’aan</item>
+         <item>粵語（繁體）</item>
+         <item>Cantonese (Latin)</item>
+         <item>Vahcuengh</item>
+         <item>简体中文（中国大陆）</item>
+         <item>繁體中文（香港）</item>
+         <item>繁體中文（台灣）</item>
++        <item>isiZulu</item>
+     </string-array>
+     <string-array name="app_language_aliases" translatable="false">
+         <item>en</item>
+diff --git a/Paintroid/src/main/res/values/app_language_tags.xml b/Paintroid/src/main/res/values/app_language_tags.xml
+index 6237d1c..07e9cf9 100644
+--- a/Paintroid/src/main/res/values/app_language_tags.xml
++++ b/Paintroid/src/main/res/values/app_language_tags.xml
+@@ -7,6 +7,7 @@
+         <item>ain-Latn</item>
+         <item>am</item>
+         <item>ar</item>
++        <item>as</item>
+         <item>ast</item>
+         <item>az</item>
+         <item>be</item>
+@@ -18,6 +19,8 @@
+         <item>ca</item>
+         <item>ca-ES-valencia</item>
+         <item>ceb</item>
++        <item>ch</item>
++        <item>chr</item>
+         <item>ckb</item>
+         <item>cs</item>
+         <item>csb</item>
+@@ -47,16 +50,19 @@
+         <item>gd</item>
+         <item>gl</item>
+         <item>gu</item>
++        <item>ha</item>
+         <item>hak-Hant-TW</item>
+         <item>hak-Latn-TW</item>
+         <item>he</item>
+         <item>hi</item>
+         <item>hne</item>
+         <item>hr</item>
++        <item>ht</item>
+         <item>hu</item>
+         <item>hy</item>
+         <item>ia</item>
+         <item>id</item>
++        <item>ig</item>
+         <item>is</item>
+         <item>it</item>
+         <item>ja</item>
+@@ -73,11 +79,13 @@
+         <item>ku</item>
+         <item>ky</item>
+         <item>la</item>
++        <item>ln</item>
+         <item>lo</item>
+         <item>lt</item>
+         <item>lv</item>
+         <item>lzh-Hant</item>
+         <item>mai</item>
++        <item>mi</item>
+         <item>mk</item>
+         <item>ml-IN</item>
+         <item>mn-Cyrl-MN</item>
+@@ -89,39 +97,54 @@
+         <item>my</item>
+         <item>nan-Hant-TW</item>
+         <item>nan-Latn-TW</item>
++        <item>nch</item>
+         <item>nds</item>
+         <item>ne</item>
++        <item>nhe</item>
++        <item>nhw</item>
+         <item>nl</item>
+         <item>nn</item>
+         <item>no</item>
++        <item>nv</item>
+         <item>oc</item>
+         <item>pa-IN</item>
++        <item>pcm</item>
+         <item>pl</item>
+         <item>ps</item>
+         <item>pt-BR</item>
+         <item>pt-PT</item>
+         <item>qaa-Zsye-XV</item>
++        <item>qug</item>
++        <item>quh</item>
++        <item>quy</item>
++        <item>quz</item>
+         <item>ro</item>
+         <item>ru</item>
+         <item>rw</item>
+         <item>ryu</item>
++        <item>sa</item>
+         <item>sd</item>
+         <item>se</item>
+         <item>shn</item>
+         <item>si</item>
+         <item>sk</item>
+         <item>sl</item>
++        <item>sm</item>
++        <item>so</item>
+         <item>sq</item>
+         <item>sr-Cyrl</item>
+         <item>sr-Latn</item>
++        <item>su</item>
+         <item>sv</item>
+         <item>sw</item>
+         <item>ta</item>
+         <item>tdd</item>
+         <item>te</item>
++        <item>tg</item>
+         <item>th</item>
+         <item>tl</item>
+         <item>tok</item>
++        <item>tpi</item>
+         <item>tr</item>
+         <item>tt-Cyrl</item>
+         <item>tt-Latn</item>
+@@ -132,14 +155,18 @@
+         <item>vi</item>
+         <item>vi-Hani</item>
+         <item>wa</item>
++        <item>wo</item>
+         <item>wuu-Hans</item>
+         <item>xh</item>
+         <item>yi</item>
++        <item>yo</item>
++        <item>yua</item>
+         <item>yue-Hant</item>
+         <item>yue-Latn</item>
+         <item>za</item>
+         <item>zh-CN</item>
+         <item>zh-HK</item>
+         <item>zh-TW</item>
++        <item>zu</item>
+     </string-array>
+ </resources>
+diff --git a/Paintroid/src/main/res/xml/app_locales.xml b/Paintroid/src/main/res/xml/app_locales.xml
+index efacbca..0327623 100644
+--- a/Paintroid/src/main/res/xml/app_locales.xml
++++ b/Paintroid/src/main/res/xml/app_locales.xml
+@@ -6,6 +6,7 @@
+     <locale android:name="ain-Latn"/>
+     <locale android:name="am"/>
+     <locale android:name="ar"/>
++    <locale android:name="as"/>
+     <locale android:name="ast"/>
+     <locale android:name="az"/>
+     <locale android:name="be"/>
+@@ -17,6 +18,8 @@
+     <locale android:name="ca"/>
+     <locale android:name="ca-ES-valencia"/>
+     <locale android:name="ceb"/>
++    <locale android:name="ch"/>
++    <locale android:name="chr"/>
+     <locale android:name="ckb"/>
+     <locale android:name="cs"/>
+     <locale android:name="csb"/>
+@@ -46,16 +49,19 @@
+     <locale android:name="gd"/>
+     <locale android:name="gl"/>
+     <locale android:name="gu"/>
++    <locale android:name="ha"/>
+     <locale android:name="hak-Hant-TW"/>
+     <locale android:name="hak-Latn-TW"/>
+     <locale android:name="he"/>
+     <locale android:name="hi"/>
+     <locale android:name="hne"/>
+     <locale android:name="hr"/>
++    <locale android:name="ht"/>
+     <locale android:name="hu"/>
+     <locale android:name="hy"/>
+     <locale android:name="ia"/>
+     <locale android:name="id"/>
++    <locale android:name="ig"/>
+     <locale android:name="is"/>
+     <locale android:name="it"/>
+     <locale android:name="ja"/>
+@@ -72,11 +78,13 @@
+     <locale android:name="ku"/>
+     <locale android:name="ky"/>
+     <locale android:name="la"/>
++    <locale android:name="ln"/>
+     <locale android:name="lo"/>
+     <locale android:name="lt"/>
+     <locale android:name="lv"/>
+     <locale android:name="lzh-Hant"/>
+     <locale android:name="mai"/>
++    <locale android:name="mi"/>
+     <locale android:name="mk"/>
+     <locale android:name="ml-IN"/>
+     <locale android:name="mn-Cyrl-MN"/>
+@@ -88,39 +96,54 @@
+     <locale android:name="my"/>
+     <locale android:name="nan-Hant-TW"/>
+     <locale android:name="nan-Latn-TW"/>
++    <locale android:name="nch"/>
+     <locale android:name="nds"/>
+     <locale android:name="ne"/>
++    <locale android:name="nhe"/>
++    <locale android:name="nhw"/>
+     <locale android:name="nl"/>
+     <locale android:name="nn"/>
+     <locale android:name="no"/>
++    <locale android:name="nv"/>
+     <locale android:name="oc"/>
+     <locale android:name="pa-IN"/>
++    <locale android:name="pcm"/>
+     <locale android:name="pl"/>
+     <locale android:name="ps"/>
+     <locale android:name="pt-BR"/>
+     <locale android:name="pt-PT"/>
+     <locale android:name="qaa-Zsye-XV"/>
++    <locale android:name="qug"/>
++    <locale android:name="quh"/>
++    <locale android:name="quy"/>
++    <locale android:name="quz"/>
+     <locale android:name="ro"/>
+     <locale android:name="ru"/>
+     <locale android:name="rw"/>
+     <locale android:name="ryu"/>
++    <locale android:name="sa"/>
+     <locale android:name="sd"/>
+     <locale android:name="se"/>
+     <locale android:name="shn"/>
+     <locale android:name="si"/>
+     <locale android:name="sk"/>
+     <locale android:name="sl"/>
++    <locale android:name="sm"/>
++    <locale android:name="so"/>
+     <locale android:name="sq"/>
+     <locale android:name="sr-Cyrl"/>
+     <locale android:name="sr-Latn"/>
++    <locale android:name="su"/>
+     <locale android:name="sv"/>
+     <locale android:name="sw"/>
+     <locale android:name="ta"/>
+     <locale android:name="tdd"/>
+     <locale android:name="te"/>
++    <locale android:name="tg"/>
+     <locale android:name="th"/>
+     <locale android:name="tl"/>
+     <locale android:name="tok"/>
++    <locale android:name="tpi"/>
+     <locale android:name="tr"/>
+     <locale android:name="tt-Cyrl"/>
+     <locale android:name="tt-Latn"/>
+@@ -131,13 +154,17 @@
+     <locale android:name="vi"/>
+     <locale android:name="vi-Hani"/>
+     <locale android:name="wa"/>
++    <locale android:name="wo"/>
+     <locale android:name="wuu-Hans"/>
+     <locale android:name="xh"/>
+     <locale android:name="yi"/>
++    <locale android:name="yo"/>
++    <locale android:name="yua"/>
+     <locale android:name="yue-Hant"/>
+     <locale android:name="yue-Latn"/>
+     <locale android:name="za"/>
+     <locale android:name="zh-CN"/>
+     <locale android:name="zh-HK"/>
+     <locale android:name="zh-TW"/>
++    <locale android:name="zu"/>
+ </locale-config>
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt
+index ad33ffa..9a6654e 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt
+@@ -42,6 +42,73 @@ class AppLanguageTest {
+         Locale.setDefault(oldLocale)
+     }
+ 
++    @Test @Config(sdk=[30,35]) fun sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback() {
++        val expectedNames=mapOf("ha" to "Hausa", "ig" to "Igbo", "ln" to "Lingála",
++            "su" to "Sunda", "yo" to "Yorùbá", "zu" to "isiZulu")
++        assertEquals(167,AppLanguage.tags(context).size)
++        for((tag,name) in expectedNames) {
++            assertTrue(tag in AppLanguage.tags(context))
++            AppLanguage.select(context,tag)
++            val wrapped=AppLanguage.wrap(context)
++            PaintApplication.currentResources=wrapped.resources
++            assertEquals(tag,AppLanguage.selectedTag(wrapped))
++            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
++            assertEquals(tag,Locale.getDefault().toLanguageTag())
++            assertEquals("$name [$tag]",AppLanguage.name(tag))
++            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
++            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
++            assertEquals("Save",wrapped.getString(R.string.ui_save))
++            assertTrue(wrapped.getString(R.string.language20_translation_note)
++                .contains("New or untranslated text appears in English."))
++            if(android.os.Build.VERSION.SDK_INT>=33) {
++                val manager=context.getSystemService(LocaleManager::class.java)!!
++                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())
++                // A system-side switch back to the exact tag remains the same app choice.
++                manager.applicationLocales=LocaleList.forLanguageTags("en-001")
++                assertEquals("en-001",AppLanguage.selectedTag(context))
++                manager.applicationLocales=LocaleList.forLanguageTags(tag)
++                assertEquals(tag,AppLanguage.selectedTag(context))
++            }
++        }
++    }
++
++    @Test @Config(sdk=[30,35]) fun furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback() {
++        val expectedNames=mapOf("pcm" to "Naijá", "so" to "Soomaaliga", "as" to "অসমীয়া",
++            "wo" to "Wolof", "ht" to "Kreyòl ayisyen", "tpi" to "Tok Pisin", "nv" to "Diné bizaad",
++            "chr" to "ᏣᎳᎩ", "yua" to "Maaya t’aan",
++            "nch" to "Mexicano (Central Huasteca)", "nhe" to "Náhuatl (Eastern Huasteca)",
++            "nhw" to "Náhuatl (Western Huasteca)", "quz" to "Qichwa (Cusco)",
++            "quy" to "Qichwa (Ayacucho / Chanka)", "quh" to "Qhichwa (South Bolivian)",
++            "qug" to "Kichwa (Chimborazo)",
++            "ch" to "Chamoru", "sm" to "Gagana Samoa", "mi" to "Māori", "sa" to "संस्कृतम्",
++            "tg" to "Тоҷикӣ")
++        assertEquals(167,AppLanguage.tags(context).size)
++        for((tag,name) in expectedNames) {
++            assertTrue(tag in AppLanguage.tags(context))
++            AppLanguage.select(context,tag)
++            val wrapped=AppLanguage.wrap(context)
++            PaintApplication.currentResources=wrapped.resources
++            assertEquals(tag,AppLanguage.selectedTag(wrapped))
++            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
++            assertEquals(tag,Locale.getDefault().toLanguageTag())
++            assertEquals("$name [$tag]",AppLanguage.name(tag))
++            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
++            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
++            assertEquals("Save",wrapped.getString(R.string.ui_save))
++            assertTrue(wrapped.getString(R.string.language20_translation_note)
++                .contains("New or untranslated text appears in English."))
++            if(android.os.Build.VERSION.SDK_INT>=33) {
++                val manager=context.getSystemService(LocaleManager::class.java)!!
++                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())
++                // A system-side switch back to the exact tag remains the same app choice.
++                manager.applicationLocales=LocaleList.forLanguageTags("en-001")
++                assertEquals("en-001",AppLanguage.selectedTag(context))
++                manager.applicationLocales=LocaleList.forLanguageTags(tag)
++                assertEquals(tag,AppLanguage.selectedTag(context))
++            }
++        }
++    }
++
+     @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {
+         val tags=AppLanguage.tags(context)
+         assertEquals("en-001",tags.first())
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt
+index 4bf3c4e..e4637c4 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt
+@@ -19,7 +19,7 @@ import org.robolectric.RobolectricTestRunner
+ import org.robolectric.RuntimeEnvironment
+ import org.robolectric.annotation.Config
+ 
+-/** All 140 offered tags have explicit exact-catalogue or default-fallback disposition. */
++/** All 167 offered tags have explicit exact-catalogue or default-fallback disposition. */
+ @RunWith(RobolectricTestRunner::class)
+ @Config(sdk=[30,35])
+ class CommonsCopyCreditTranslationTest {
+@@ -97,6 +97,8 @@ class CommonsCopyCreditTranslationTest {
+         "zh-TW" to listOf("無法複製圖片致謝資訊。", "無法複製圖片致謝資訊：%1\$s", "記憶體不足，無法複製圖片致謝資訊。")
+     )
+     private val fallbackTags=setOf(
++        "as", "ch", "chr", "ht", "mi", "nch", "nhe", "nhw", "nv", "pcm", "qug", "quh", "quy", "quz", "sa", "sm", "so", "tg", "tpi", "wo", "yua",
++        "ha", "ig", "ln", "su", "yo", "zu",
+         "am", "ast", "az", "be", "bg", "bn", "br", "bs",
+         "ca", "ca-ES-valencia", "ckb", "cs", "csb", "cy", "da", "eu-ES",
+         "fa", "fa-IR", "fy", "ga", "gd", "gl", "gu", "he",
+@@ -172,9 +174,9 @@ class CommonsCopyCreditTranslationTest {
+         assertTrue("Every exact manifest message must resolve through persisted app-language selection:\n"+
+             mismatches.joinToString("\n"),mismatches.isEmpty())
+     }
+-    @Test fun remaining81OfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
++    @Test fun remainingOfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
+         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
+-        assertEquals(140,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(81,remaining.size)
++        assertEquals(167,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(108,remaining.size)
+         assertEquals(fallbackTags,remaining.toSet())
+         for(tag in remaining) assertEquals("$tag documented default fallback is incomplete localization",
+             defaultMessages,keys.map {resourcesFor(tag).getString(it)})
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt
+index b7537e8..44eb104 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt
+@@ -68,10 +68,10 @@ class CommonsHelpProviderTranslationTest {
+         }
+     }
+ 
+-    @Test fun other81OfferedTagsUseTheGenuineDefaultHelpFallback() {
++    @Test fun otherOfferedTagsUseTheGenuineDefaultHelpFallback() {
+         // The host contract verifies these XML catalogues do not contain ui_help23.
+         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
+-        assertEquals(81,remaining.size)
++        assertEquals(108,remaining.size)
+         val english=resourcesFor("en-GB").getString(R.string.ui_help23)
+         for(tag in remaining) assertEquals("$tag explicit incomplete/fallback",english,
+             resourcesFor(tag).getString(R.string.ui_help23))
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt
+index afd66b2..31a5f9e 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt
+@@ -116,8 +116,8 @@ class CommonsMetadataHttpTranslationTest {
+         PaintApplication.currentResources=wrapped.resources
+         return wrapped.resources
+     }
+-    @Test fun all140TagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
+-        assertEquals(140,AppLanguage.tags(context).size)
++    @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
++        assertEquals(167,AppLanguage.tags(context).size)
+         assertEquals(59,expectedMessages.size)
+         var fallbacks=0
+         for(tag in AppLanguage.tags(context)) {
+@@ -131,6 +131,6 @@ class CommonsMetadataHttpTranslationTest {
+                 assertTrue(expected.contains("HTTP ${code}"))
+             }
+         }
+-        assertEquals(81,fallbacks)
++        assertEquals(108,fallbacks)
+     }
+ }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt
+index 4e0e012..ac30607 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt
+@@ -119,8 +119,8 @@ class CommonsMetadataQueryFailureTranslationTest {
+     @Test fun allRequired59CataloguesHaveExplicitProposals() {
+         assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
+     }
+-    @Test fun all140TagsResolveTheirExplicitMessageOrDocumentedFallback() {
+-        assertEquals(140,AppLanguage.tags(context).size)
++    @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
++        assertEquals(167,AppLanguage.tags(context).size)
+         var fallbacks=0
+         for(tag in AppLanguage.tags(context)) {
+             val resources=resourcesFor(tag)
+@@ -128,6 +128,6 @@ class CommonsMetadataQueryFailureTranslationTest {
+             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_query_failed))
+             assertTrue(expected.contains("Commons"))
+         }
+-        assertEquals(81,fallbacks)
++        assertEquals(108,fallbacks)
+     }
+ }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt
+index 6231e2d..9cc43e8 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt
+@@ -119,8 +119,8 @@ class CommonsMetadataResponseLimitTranslationTest {
+     @Test fun allRequired59CataloguesHaveExplicitProposals() {
+         assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
+     }
+-    @Test fun all140TagsResolveTheirExplicitMessageOrDocumentedFallback() {
+-        assertEquals(140,AppLanguage.tags(context).size)
++    @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
++        assertEquals(167,AppLanguage.tags(context).size)
+         var fallbacks=0
+         for(tag in AppLanguage.tags(context)) {
+             val resources=resourcesFor(tag)
+@@ -128,6 +128,6 @@ class CommonsMetadataResponseLimitTranslationTest {
+             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_response_too_large))
+             assertTrue(expected.contains("Commons"))
+         }
+-        assertEquals(81,fallbacks)
++        assertEquals(108,fallbacks)
+     }
+ }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt
+index 9566544..bc76c49 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt
+@@ -163,7 +163,7 @@ class DeviceLanguagePickerTest {
+ 
+     @Test fun everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices()=withActivity { activity ->
+         val tags=AppLanguage.tags(activity)
+-        assertEquals(140,tags.size)
++        assertEquals(167,tags.size)
+         for(tag in tags) {
+             languages(activity,tag,"ja")
+             val picker=AppLanguage.showPicker(activity) {}
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt
+index 8316408..fd58f09 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt
+@@ -48,7 +48,7 @@ class GalleryBackDirectionTest {
+     @Test @Config(fontScale=2f)
+     fun everyOfferedLocaleUsesAccessibleBackAndKeepsBothNavigationBranches()=withLanguageState {
+         val tags=AppLanguage.tags(app)
+-        assertEquals(140,tags.size)
++        assertEquals(167,tags.size)
+         assertTrue(tags.containsAll(rtlTags))
+         val records=JSONArray()
+         try {
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt
+index 705c6a3..67c4593 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt
+@@ -130,7 +130,7 @@ class LocaleNumberInputTest {
+         val old=Locale.getDefault()
+         try {
+             val tags=AppLanguage.tags(context)
+-            assertEquals(140,tags.size)
++            assertEquals(167,tags.size)
+             for(tag in tags) {
+                 val locale=Locale.forLanguageTag(tag)
+                 val localized=context.createConfigurationContext(Configuration(context.resources.configuration).apply {setLocale(locale);setLayoutDirection(locale)})
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
+index 72f0fca..580131a 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
+@@ -118,7 +118,7 @@ class LocaleTooltipTest {
+ 
+     @Test fun allPickerLocalesKeepNativeTextAndOnlyHorizontalBundledFacesAreAdded() {
+         val tags=context.resources.getStringArray(R.array.app_language_tags)
+-        assertEquals(140,tags.size)
++        assertEquals(167,tags.size)
+         val previousResources=PaintApplication.currentResources
+         try { for(tag in tags) {
+             select(tag)
+diff --git a/TRANSLATING.md b/TRANSLATING.md
+index 74e807e..885afe3 100644
+--- a/TRANSLATING.md
++++ b/TRANSLATING.md
+@@ -22,6 +22,55 @@ The intended end state is a complete catalogue for every language offered by
+ View → Languages and Android's App languages page. English fallback is only a
+ temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
+ 
++## Six language options added on 12 October 2026
++
++The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
++Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
++Android App languages. Their exact canonical XML catalogues intentionally contain
++no translated entries yet: all current translatable source strings and plural
++resources use default English fallback. Selecting a language is not a
++claim of translated UI, linguistic review, or installed-device verification.
++
++The existing picker explains untranslated English fallback. The dedicated
++[translation progress tracker](https://github.com/c933103/AN-Paint/pull/56)
++records the outstanding catalogue and review work. The addition fixture at
++`tools/fixtures/language_option_additions_20261012.json` records the six identities
++and status. Historical 140-choice/81-fallback evidence remains available in the
++[immutable archive](verification/README.md). Current regressions check the live
++resources and the explicit current scope directly.
++
++## Further options and principal varieties requested on 12 October 2026
++
++The successor inventory has **167 choices**, adding **21 options** to the merged
++146-choice baseline. Fourteen requested languages retain their individual option:
++Nigerian Pidgin (`pcm`), Somali (`so`), Assamese (`as`), Wolof (`wo`), Haitian Creole
++(`ht`), Tok Pisin (`tpi`), Navajo (`nv`), Cherokee (`chr`), Yucatec Maya (`yua`),
++Chamorro (`ch`), Samoan (`sm`), Māori (`mi`), Sanskrit (`sa`) and Tajik (`tg`).
++The current IANA registry marks Sanskrit as a macrolanguage; no narrower Sanskrit
++variety was requested.
++
++Following the clarification to use the main varieties, the broad `nah` and `qu`
++placeholders are replaced by seven concrete individual-language options:
++
++- Nahuatl: Central Huasteca (`nch`), Eastern Huasteca (`nhe`), Western Huasteca (`nhw`).
++- Quechua: Cusco (`quz`), Ayacucho / Chanka (`quy`), South Bolivian (`quh`),
++  Chimborazo Highland Quichua (`qug`).
++
++This is a practical principal-variety set, not an exhaustive catalogue. In
++particular, `quz` is not all Southern Quechua and `qug` is not all Ecuadorian Kichwa.
++Native-name bases are source-backed; regional qualifiers are explicit editorial
++disambiguators. No automatic fallback between these individual tags is implied.
++The source and selection limits are recorded with the addition fixture.
++
++Each new catalogue has **zero translated strings and plural resources**;
++all current translatable keys use default-English fallback pending actual translation.
++The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
++The explicit current scope preserves the original 59 scoped catalogues and all
++81 existing fallback identities, adding **27 empty catalogues for 108 fallbacks**.
++It checks current identity, status, resource values and fallback behavior without
++reconstructing historical snapshots. The earlier unpublished 162-choice candidate is superseded; its
++retained test/review evidence is historical and does not accept this successor.
++
+ ## Editing a translation
+ 
+ Edit the locale directly, for example:
+diff --git a/tools/current_localization_contracts.py b/tools/current_localization_contracts.py
+index 5a6221f..1614947 100644
+--- a/tools/current_localization_contracts.py
++++ b/tools/current_localization_contracts.py
+@@ -28,6 +28,26 @@ def require_wording_shape(data, expected_keys, expected_tags):
+     return data
+ 
+ 
++def require_locale_scope(data, expected_scoped_tags, offered_tags):
++    """Require the explicit, disjoint current scope; absence never implies review."""
++    if data.get('schema_version') != 1 or data.get('default_tag') != 'default':
++        raise ValueError('Current locale scope schema differs')
++    groups = []
++    for field in ('scoped_tags', 'fallback_tags'):
++        tags = data.get(field)
++        if (not isinstance(tags, list) or not tags or
++                not all(isinstance(tag, str) and tag for tag in tags) or
++                len(tags) != len(set(tags))):
++            raise ValueError('Missing, empty or duplicate locale scope: '+field)
++        groups.append(set(tags))
++    scoped, fallback = groups
++    if scoped != set(expected_scoped_tags) or scoped & fallback:
++        raise ValueError('Reviewed scope differs or overlaps fallback scope')
++    if len(offered_tags) != len(set(offered_tags)) or scoped | fallback != set(offered_tags):
++        raise ValueError('Explicit locale scope does not match current picker')
++    return scoped, fallback
++
++
+ def require_string(xml, key, expected, constraints=None):
+     """Validate one complete Android string, rejecting missing/duplicate definitions."""
+     constraints = constraints or {}
+diff --git a/tools/fixtures/current_localization/commons_copy_credit_current_wording.json b/tools/fixtures/current_localization/commons_copy_credit_current_wording.json
+index 7bd8df2..1a256be 100644
+--- a/tools/fixtures/current_localization/commons_copy_credit_current_wording.json
++++ b/tools/fixtures/current_localization/commons_copy_credit_current_wording.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 1,
+-  "scope_id": "default-plus-59-with-81-open-fallbacks",
++  "scope_id": "default-plus-59-with-108-open-fallbacks",
+   "values": {
+     "commons_credit_copy_failed": {
+       "default": "Could not copy image credit.",
+diff --git a/tools/fixtures/current_localization/commons_import_current_wording.json b/tools/fixtures/current_localization/commons_import_current_wording.json
+index 5383a5e..b059e7f 100644
+--- a/tools/fixtures/current_localization/commons_import_current_wording.json
++++ b/tools/fixtures/current_localization/commons_import_current_wording.json
+@@ -244,6 +244,7 @@
+   "blocked_scoped_locales": {},
+   "remaining_other_offered_locales": [
+     "am",
++    "as",
+     "ast",
+     "az",
+     "be",
+@@ -253,6 +254,8 @@
+     "bs",
+     "ca",
+     "ca-ES-valencia",
++    "ch",
++    "chr",
+     "ckb",
+     "cs",
+     "csb",
+@@ -266,12 +269,15 @@
+     "gd",
+     "gl",
+     "gu",
++    "ha",
+     "he",
+     "hi",
+     "hne",
+     "hr",
++    "ht",
+     "hy",
+     "ia",
++    "ig",
+     "is",
+     "jv",
+     "ka",
+@@ -282,38 +288,55 @@
+     "ku",
+     "ky",
+     "la",
++    "ln",
+     "lo",
+     "mai",
++    "mi",
+     "mk",
+     "ml-IN",
+     "mr",
+     "mww",
+     "my",
++    "nch",
+     "nds",
+     "ne",
++    "nhe",
++    "nhw",
+     "nn",
+     "no",
++    "nv",
+     "oc",
+     "pa-IN",
++    "pcm",
+     "pl",
+     "ps",
++    "qug",
++    "quh",
++    "quy",
++    "quz",
+     "ro",
+     "rw",
++    "sa",
+     "sd",
+     "se",
+     "shn",
+     "si",
+     "sk",
+     "sl",
++    "sm",
++    "so",
+     "sq",
+     "sr-Cyrl",
+     "sr-Latn",
++    "su",
+     "sv",
+     "ta",
+     "tdd",
+     "te",
++    "tg",
+     "th",
+     "tok",
++    "tpi",
+     "tt-Cyrl",
+     "tt-Latn",
+     "ug",
+@@ -321,8 +344,12 @@
+     "ur",
+     "uz-Latn",
+     "wa",
++    "wo",
+     "xh",
+     "yi",
+-    "za"
++    "yo",
++    "yua",
++    "za",
++    "zu"
+   ]
+ }
+diff --git a/tools/fixtures/current_localization/commons_metadata_current_wording.json b/tools/fixtures/current_localization/commons_metadata_current_wording.json
+index 538a3ef..601f4d6 100644
+--- a/tools/fixtures/current_localization/commons_metadata_current_wording.json
++++ b/tools/fixtures/current_localization/commons_metadata_current_wording.json
+@@ -190,7 +190,7 @@
+   },
+   "constraints": {
+     "commons_metadata_http_error": {
+-      "scope_id": "default-plus-59-with-81-open-fallbacks",
++      "scope_id": "default-plus-59-with-108-open-fallbacks",
+       "placeholders": {
+         "%1$s": 1
+       },
+@@ -212,7 +212,7 @@
+       "no_default_copy_in_other_scoped_tags": true
+     },
+     "commons_metadata_response_too_large": {
+-      "scope_id": "default-plus-59-with-81-open-fallbacks",
++      "scope_id": "default-plus-59-with-108-open-fallbacks",
+       "placeholders": {},
+       "required_literals": [
+         "Commons"
+@@ -231,7 +231,7 @@
+       "no_default_copy_in_other_scoped_tags": true
+     },
+     "commons_metadata_query_failed": {
+-      "scope_id": "default-plus-59-with-81-open-fallbacks",
++      "scope_id": "default-plus-59-with-108-open-fallbacks",
+       "placeholders": {},
+       "required_literals": [
+         "Commons"
+diff --git a/tools/fixtures/current_localization/commons_svg_current_wording.json b/tools/fixtures/current_localization/commons_svg_current_wording.json
+index e55b58e..f26fc81 100644
+--- a/tools/fixtures/current_localization/commons_svg_current_wording.json
++++ b/tools/fixtures/current_localization/commons_svg_current_wording.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 1,
+-  "scope_id": "default-plus-59-with-81-open-fallbacks",
++  "scope_id": "default-plus-59-with-108-open-fallbacks",
+   "values": {
+     "commons_svg_original_size_unavailable": {
+       "default": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+diff --git a/tools/fixtures/current_localization/help_commons_provider_current_contract.json b/tools/fixtures/current_localization/help_commons_provider_current_contract.json
+index c3cfdc2..72b9b77 100644
+--- a/tools/fixtures/current_localization/help_commons_provider_current_contract.json
++++ b/tools/fixtures/current_localization/help_commons_provider_current_contract.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 1,
+-  "scope_id": "default-plus-59-with-81-open-fallbacks",
++  "scope_id": "default-plus-59-with-108-open-fallbacks",
+   "resource": "ui_help23",
+   "caption_resource": "commons_blank_maps",
+   "values": {
+diff --git a/tools/fixtures/current_localization/locale_contract_scope.json b/tools/fixtures/current_localization/locale_contract_scope.json
+index b4ab278..aa9a5b6 100644
+--- a/tools/fixtures/current_localization/locale_contract_scope.json
++++ b/tools/fixtures/current_localization/locale_contract_scope.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 1,
+-  "scope_id": "default-plus-59-with-81-open-fallbacks",
++  "scope_id": "default-plus-59-with-108-open-fallbacks",
+   "default_tag": "default",
+   "scoped_tags": [
+     "af",
+@@ -65,6 +65,7 @@
+   ],
+   "fallback_tags": [
+     "am",
++    "as",
+     "ast",
+     "az",
+     "be",
+@@ -74,6 +75,8 @@
+     "bs",
+     "ca",
+     "ca-ES-valencia",
++    "ch",
++    "chr",
+     "ckb",
+     "cs",
+     "csb",
+@@ -87,12 +90,15 @@
+     "gd",
+     "gl",
+     "gu",
++    "ha",
+     "he",
+     "hi",
+     "hne",
+     "hr",
++    "ht",
+     "hy",
+     "ia",
++    "ig",
+     "is",
+     "jv",
+     "ka",
+@@ -103,38 +109,55 @@
+     "ku",
+     "ky",
+     "la",
++    "ln",
+     "lo",
+     "mai",
++    "mi",
+     "mk",
+     "ml-IN",
+     "mr",
+     "mww",
+     "my",
++    "nch",
+     "nds",
+     "ne",
++    "nhe",
++    "nhw",
+     "nn",
+     "no",
++    "nv",
+     "oc",
+     "pa-IN",
++    "pcm",
+     "pl",
+     "ps",
++    "qug",
++    "quh",
++    "quy",
++    "quz",
+     "ro",
+     "rw",
++    "sa",
+     "sd",
+     "se",
+     "shn",
+     "si",
+     "sk",
+     "sl",
++    "sm",
++    "so",
+     "sq",
+     "sr-Cyrl",
+     "sr-Latn",
++    "su",
+     "sv",
+     "ta",
+     "tdd",
+     "te",
++    "tg",
+     "th",
+     "tok",
++    "tpi",
+     "tt-Cyrl",
+     "tt-Latn",
+     "ug",
+@@ -142,13 +165,17 @@
+     "ur",
+     "uz-Latn",
+     "wa",
++    "wo",
+     "xh",
+     "yi",
+-    "za"
++    "yo",
++    "yua",
++    "za",
++    "zu"
+   ],
+   "synthetic_tags": [
+     "en-XV",
+     "qaa-Zsye-XV"
+   ],
+-  "fallback_policy": "The listed keys remain absent in these 81 offered catalogues and resolve through the unchanged default English resource; absence is incomplete translation, not linguistic acceptance."
++  "fallback_policy": "The listed keys remain absent in these 108 offered catalogues and resolve through the unchanged default English resource; absence is incomplete translation, not linguistic acceptance."
+ }
+diff --git a/tools/fixtures/current_localization/wording-provenance.json b/tools/fixtures/current_localization/wording-provenance.json
+index 5424379..36c4c9d 100644
+--- a/tools/fixtures/current_localization/wording-provenance.json
++++ b/tools/fixtures/current_localization/wording-provenance.json
+@@ -31,7 +31,43 @@
+         "archive_url": "https://github.com/c933103/AN-Paint/blob/04b128889a4ff9159f199d1737bd07d41e22162d/verification/commons-metadata-m04-2026-10-12/all-language-dispositions.json"
+       }
+     ],
+-    "derivation": "The same exact 59 scoped and 81 missing-key fallback tags are cross-checked across all five independent records and against current offered_tags()/SCOPED_TAGS. No scope is inferred from which strings happen to be present."
++    "derivation": "The same exact 59 scoped and 81 missing-key fallback tags are cross-checked across all five independent records and against current offered_tags()/SCOPED_TAGS. No scope is inferred from which strings happen to be present.",
++    "current_integration": {
++      "accepted_develop_commit": "484d1b31cb113c88351e6d0dbdaa0d503e5dd834",
++      "added_fallback_tags": [
++        "as",
++        "ch",
++        "chr",
++        "ha",
++        "ht",
++        "ig",
++        "ln",
++        "mi",
++        "nch",
++        "nhe",
++        "nhw",
++        "nv",
++        "pcm",
++        "qug",
++        "quh",
++        "quy",
++        "quz",
++        "sa",
++        "sm",
++        "so",
++        "su",
++        "tg",
++        "tpi",
++        "wo",
++        "yo",
++        "yua",
++        "zu"
++      ],
++      "current_scoped_count": 59,
++      "current_fallback_count": 108,
++      "derivation": "Keep the original 59 scoped values and 81 explicit fallback identities unchanged. Add only the 27 accepted empty catalogues from the two language-option identity fixtures; no new translations or linguistic acceptance.",
++      "evidence_index": "https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification"
++    }
+   },
+   "fixtures": {
+     "commons_metadata_current_wording.json": {
+diff --git a/tools/fixtures/language_option_additions_20261012.json b/tools/fixtures/language_option_additions_20261012.json
+new file mode 100644
+index 0000000..4a567fc
+--- /dev/null
++++ b/tools/fixtures/language_option_additions_20261012.json
+@@ -0,0 +1,70 @@
++{
++  "baseline_commit": "4231edaac45d89c52f51e2b77d0f94a1176ad88c",
++  "baseline_offered_count": 140,
++  "offered_count": 146,
++  "scope": "Six requested language options only. No UI translations or linguistic acceptance are claimed.",
++  "autonym_source": "https://github.com/wikimedia/mediawiki/blob/eb2c0acaeeb2135c7a6e2952b536f0deb3343ba2/includes/Languages/Data/Names.php",
++  "autonym_note": "Lingála is menu-capitalized from the source lingála; other factual autonyms are unchanged.",
++  "languages": [
++    {
++      "tag": "ha",
++      "name": "Hausa",
++      "catalogue": "Paintroid/src/main/res/values-b+ha/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "ig",
++      "name": "Igbo",
++      "catalogue": "Paintroid/src/main/res/values-b+ig/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "ln",
++      "name": "Lingála",
++      "catalogue": "Paintroid/src/main/res/values-b+ln/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "su",
++      "name": "Sunda",
++      "catalogue": "Paintroid/src/main/res/values-b+su/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "yo",
++      "name": "Yorùbá",
++      "catalogue": "Paintroid/src/main/res/values-b+yo/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "zu",
++      "name": "isiZulu",
++      "catalogue": "Paintroid/src/main/res/values-b+zu/strings.xml",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    }
++  ]
++}
+diff --git a/tools/fixtures/language_option_additions_20261012_second.json b/tools/fixtures/language_option_additions_20261012_second.json
+new file mode 100644
+index 0000000..e63d707
+--- /dev/null
++++ b/tools/fixtures/language_option_additions_20261012_second.json
+@@ -0,0 +1,350 @@
++{
++  "baseline_commit": "1011233a89a3cac98f56fc2d46a902a9476a1e08",
++  "baseline_pull_request": 57,
++  "baseline_offered_count": 146,
++  "offered_count": 167,
++  "scope": "Twenty-one additional options from the sixteen-language request, after selecting seven concrete principal Nahuatl and Quechua varieties. No UI translations or linguistic acceptance are claimed.",
++  "sources": [
++    {
++      "url": "https://github.com/wikimedia/mediawiki/blob/eb2c0acaeeb2135c7a6e2952b536f0deb3343ba2/includes/Languages/Data/Names.php",
++      "use": "Factual name bases for the fourteen unchanged requested languages. Yucatec and Tajik names are menu-capitalized; comments about varieties do not override IANA scope."
++    },
++    {
++      "url": "https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry",
++      "file_date": "2026-09-17",
++      "checked_utc_date": "2026-10-12",
++      "use": "Registered, nondeprecated tags and scope."
++    },
++    {
++      "url": "https://www.rfc-editor.org/rfc/rfc5646.html#section-4.1",
++      "use": "Prefer precise individual-language identities when the intended variety is known; no automatic umbrella-to-child matching is claimed."
++    },
++    {
++      "url": "https://mexico.sil.org/es/publicaciones/confusion-de-nomenclatura/confusion-huasteco",
++      "use": "The major Huasteca Nahuatl cluster and its three registered constituent identities."
++    },
++    {
++      "url": "https://www.inali.gob.mx/sitios/clin-inali/html/l_nahuatl.html",
++      "use": "Nahuatl/Mexicano name bases and Huasteca variety distinctions."
++    },
++    {
++      "url": "https://bdpi.cultura.gob.pe/lenguas/quechua",
++      "use": "Chanka and Collao variety distinction and writing support; quz remains Cusco only."
++    },
++    {
++      "url": "https://repositorio.perueduca.pe/recursos/2022/DEIB22-0568.pdf",
++      "use": "Qichwa name base and normalized writing."
++    },
++    {
++      "url": "https://biblioteca.minedu.gob.bo/biblio/eBooks/2019/October/5d9ceed9831b0/3_ESTADO_DE_SITUACION.pdf",
++      "use": "Bolivian Qhichwa name base and writing-normalization work, page 113."
++    },
++    {
++      "url": "https://www.secretariapueblosynacionalidades.gob.ec/wp-content/uploads/2024/07/PLAN-DECENAL-DE-REVITALIZACION-Y-REVALORIZACION-DEL-USO-DE-LAS-LENGUAS-DE-LAS-NACIONALIDADES-DEL-ECUADOR2.pdf",
++      "use": "Principal Ecuadorian regional inclusion; provincial Kichwa figures are not exact qug counts. Indexed primary map checked, not full PDF."
++    }
++  ],
++  "languages": [
++    {
++      "tag": "as",
++      "name": "অসমীয়া",
++      "english_name": "Assamese",
++      "catalogue": "Paintroid/src/main/res/values-b+as/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "ch",
++      "name": "Chamoru",
++      "english_name": "Chamorro",
++      "catalogue": "Paintroid/src/main/res/values-b+ch/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "chr",
++      "name": "ᏣᎳᎩ",
++      "english_name": "Cherokee",
++      "catalogue": "Paintroid/src/main/res/values-b+chr/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "ht",
++      "name": "Kreyòl ayisyen",
++      "english_name": "Haitian Creole",
++      "catalogue": "Paintroid/src/main/res/values-b+ht/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "mi",
++      "name": "Māori",
++      "english_name": "Māori",
++      "catalogue": "Paintroid/src/main/res/values-b+mi/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "nch",
++      "name": "Mexicano (Central Huasteca)",
++      "english_name": "Central Huasteca Nahuatl",
++      "requested_group": "Nahuatl",
++      "catalogue": "Paintroid/src/main/res/values-b+nch/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Central Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "nhe",
++      "name": "Náhuatl (Eastern Huasteca)",
++      "english_name": "Eastern Huasteca Nahuatl",
++      "requested_group": "Nahuatl",
++      "catalogue": "Paintroid/src/main/res/values-b+nhe/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Eastern Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "nhw",
++      "name": "Náhuatl (Western Huasteca)",
++      "english_name": "Western Huasteca Nahuatl",
++      "requested_group": "Nahuatl",
++      "catalogue": "Paintroid/src/main/res/values-b+nhw/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Western Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "nv",
++      "name": "Diné bizaad",
++      "english_name": "Navajo",
++      "catalogue": "Paintroid/src/main/res/values-b+nv/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "pcm",
++      "name": "Naijá",
++      "english_name": "Nigerian Pidgin",
++      "catalogue": "Paintroid/src/main/res/values-b+pcm/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "qug",
++      "name": "Kichwa (Chimborazo)",
++      "english_name": "Chimborazo Highland Quichua",
++      "requested_group": "Quechua",
++      "catalogue": "Paintroid/src/main/res/values-b+qug/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Chimborazo Highland Quichua; this tag does not cover all Ecuadorian Kichwa, and provincial Kichwa totals are not an exact qug census.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "quh",
++      "name": "Qhichwa (South Bolivian)",
++      "english_name": "South Bolivian Quechua",
++      "requested_group": "Quechua",
++      "catalogue": "Paintroid/src/main/res/values-b+quh/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "South Bolivian Quechua; this tag does not cover all Quechua in Bolivia or all Southern Quechua.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "quy",
++      "name": "Qichwa (Ayacucho / Chanka)",
++      "english_name": "Ayacucho Quechua (Chanka)",
++      "requested_group": "Quechua",
++      "catalogue": "Paintroid/src/main/res/values-b+quy/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Ayacucho Quechua, also labelled Chanka; this tag does not cover all Southern Quechua.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "quz",
++      "name": "Qichwa (Cusco)",
++      "english_name": "Cusco Quechua",
++      "requested_group": "Quechua",
++      "catalogue": "Paintroid/src/main/res/values-b+quz/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Cusco Quechua; this tag does not cover all Southern Quechua.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "sa",
++      "name": "संस्कृतम्",
++      "english_name": "Sanskrit",
++      "catalogue": "Paintroid/src/main/res/values-b+sa/strings.xml",
++      "registry_scope": "macrolanguage",
++      "scope_note": "Sanskrit macrolanguage in current IANA registry: no narrower registered variety has been selected. Define scope deliberately before translating.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "sm",
++      "name": "Gagana Samoa",
++      "english_name": "Samoan",
++      "catalogue": "Paintroid/src/main/res/values-b+sm/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "so",
++      "name": "Soomaaliga",
++      "english_name": "Somali",
++      "catalogue": "Paintroid/src/main/res/values-b+so/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "tg",
++      "name": "Тоҷикӣ",
++      "english_name": "Tajik",
++      "catalogue": "Paintroid/src/main/res/values-b+tg/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "tpi",
++      "name": "Tok Pisin",
++      "english_name": "Tok Pisin",
++      "catalogue": "Paintroid/src/main/res/values-b+tpi/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "wo",
++      "name": "Wolof",
++      "english_name": "Wolof",
++      "catalogue": "Paintroid/src/main/res/values-b+wo/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    },
++    {
++      "tag": "yua",
++      "name": "Maaya t’aan",
++      "english_name": "Yucatec Maya",
++      "catalogue": "Paintroid/src/main/res/values-b+yua/strings.xml",
++      "registry_scope": "individual",
++      "scope_note": "Registered individual language; no extra regional or script variant was requested.",
++      "translation_status": "not-started",
++      "linguistic_review": "not-started",
++      "fallback": "default-English",
++      "source_strings_present": 0,
++      "source_plurals_present": 0
++    }
++  ],
++  "reviewed_baseline_source_commit": "be60964a5b62c73f6517ec2fa8f58b101ab05c99",
++  "baseline_tree": "bbf2766504e1b743cc9a580a429f0a2179a10b2d",
++  "selection_decision": {
++    "supersedes_unpublished_offered_count": 162,
++    "removed_umbrella_tags": [
++      "nah",
++      "qu"
++    ],
++    "principal_variety_tags": [
++      "nch",
++      "nhe",
++      "nhw",
++      "qug",
++      "quh",
++      "quy",
++      "quz"
++    ],
++    "selection_not_exhaustive": true,
++    "owner_clarification": "the main ones",
++    "label_note": "Native-name bases are source-backed; English regional qualifiers are explicit editorial disambiguators, not claims of a universal native self-name or shared translation."
++  }
++}
+diff --git a/tools/language_option_additions.py b/tools/language_option_additions.py
+new file mode 100644
+index 0000000..66d95e6
+--- /dev/null
++++ b/tools/language_option_additions.py
+@@ -0,0 +1,24 @@
++"""Accepted option identities and truthful empty-catalogue fallback contracts."""
++import json
++from pathlib import Path
++import xml.etree.ElementTree as ET
++
++FIXTURES = Path(__file__).resolve().parent / "fixtures"
++ADDITIONS_PATH = FIXTURES / "language_option_additions_20261012.json"
++SECOND_ADDITIONS_PATH = FIXTURES / "language_option_additions_20261012_second.json"
++FIRST_ADDED_TAGS = {row["tag"] for row in json.loads(ADDITIONS_PATH.read_text())["languages"]}
++SECOND_ADDED_TAGS = {row["tag"] for row in json.loads(SECOND_ADDITIONS_PATH.read_text())["languages"]}
++ADDED_TAGS = FIRST_ADDED_TAGS | SECOND_ADDED_TAGS
++
++
++def require_untranslated_option(row, xml):
++    for field, expected in (('translation_status', 'not-started'),
++                            ('linguistic_review', 'not-started'),
++                            ('fallback', 'default-English'),
++                            ('source_strings_present', 0),
++                            ('source_plurals_present', 0)):
++        if row.get(field) != expected:
++            raise ValueError('Untranslated option status differs: '+field)
++    root = ET.fromstring(xml)
++    if root.tag != 'resources' or root.attrib or list(root) or (root.text or '').strip():
++        raise ValueError('Untranslated fallback catalogue must remain empty')
+diff --git a/tools/test_commons_import_change_translations.py b/tools/test_commons_import_change_translations.py
+index fe9d20d..86059e2 100644
+--- a/tools/test_commons_import_change_translations.py
++++ b/tools/test_commons_import_change_translations.py
+@@ -32,7 +32,7 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
+         self.assertFalse(translated & blocked)
+         self.assertEqual(set(SCOPED_TAGS), translated | blocked)
+         unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
+-        self.assertEqual(81, len(unscoped))
++        self.assertEqual(108, len(unscoped))
+         self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']))
+         paths = catalogues.catalogue_paths()
+         for tag, expected in manifest['translations'].items():
+diff --git a/tools/test_current_localization_contracts.py b/tools/test_current_localization_contracts.py
+index 68e8a5b..dd9ff28 100644
+--- a/tools/test_current_localization_contracts.py
++++ b/tools/test_current_localization_contracts.py
+@@ -1,11 +1,13 @@
+ """Current wording, syntax, fallback and Unicode contracts, not linguistic certification."""
+ from pathlib import Path
++import re
+ import unittest
+ import unicodedata
+ import xml.etree.ElementTree as ET
+-from current_localization_contracts import fixture, require_string, require_wording_shape
++from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope
+ import translation_catalogues as catalogues
+ from test_translations import SCOPED_TAGS
++from language_option_additions import ADDED_TAGS
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ FAMILIES = ('commons_metadata_current_wording.json', 'commons_copy_credit_current_wording.json',
+@@ -53,11 +55,41 @@ class CurrentLocalizationContracts(unittest.TestCase):
+ 
+     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
+         scope = fixture('locale_contract_scope.json')
+-        self.assertEqual(SCOPED_TAGS, set(scope['scoped_tags']))
+-        self.assertEqual(59, len(scope['scoped_tags']))
+-        self.assertEqual(81, len(scope['fallback_tags']))
+-        self.assertFalse(set(scope['scoped_tags']) & set(scope['fallback_tags']))
+-        self.assertEqual(set(catalogues.offered_tags()), set(scope['scoped_tags'] + scope['fallback_tags']))
++        scoped, fallback = require_locale_scope(scope, SCOPED_TAGS, catalogues.offered_tags())
++        self.assertEqual(59, len(scoped))
++        self.assertEqual(108, len(fallback))
++        self.assertEqual(27, len(ADDED_TAGS))
++        self.assertLessEqual(ADDED_TAGS, fallback)
++        self.assertEqual(fallback, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
++        source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt').read_text()
++        declaration = re.search(r'private val fallbackTags=setOf\((.*?)\n    \)', source, re.S)
++        self.assertIsNotNone(declaration)
++        runtime_fallbacks = re.findall(r'"([\w-]+)"', declaration.group(1))
++        self.assertEqual(len(fallback), len(runtime_fallbacks))
++        self.assertEqual(fallback, set(runtime_fallbacks))
++
++    def test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected(self):
++        from copy import deepcopy
++        original = fixture('locale_contract_scope.json')
++        offered = catalogues.offered_tags()
++        for field in ('scoped_tags', 'fallback_tags'):
++            for mutation in ('missing-group', 'empty-group', 'missing-tag', 'duplicate-tag', 'unknown-tag'):
++                data = deepcopy(original)
++                if mutation == 'missing-group': del data[field]
++                if mutation == 'empty-group': data[field] = []
++                if mutation == 'missing-tag': data[field].pop()
++                if mutation == 'duplicate-tag': data[field].append(data[field][0])
++                if mutation == 'unknown-tag': data[field][0] = 'zz-unknown'
++                with self.subTest(field=field, mutation=mutation), self.assertRaises(ValueError):
++                    require_locale_scope(data, SCOPED_TAGS, offered)
++        data = deepcopy(original)
++        data['fallback_tags'].append(data['scoped_tags'][0])
++        with self.assertRaises(ValueError): require_locale_scope(data, SCOPED_TAGS, offered)
++        for tag in ADDED_TAGS:
++            data = deepcopy(original); data['fallback_tags'].remove(tag)
++            with self.subTest(missing_added=tag), self.assertRaises(ValueError):
++                require_locale_scope(data, SCOPED_TAGS, offered)
++        with self.assertRaises(ValueError): require_locale_scope(original, SCOPED_TAGS, offered + [offered[0]])
+ 
+     def test_all_current_values_attributes_placeholders_and_legal_literals(self):
+         xml = {tag: path.read_text() for tag, path in paths().items()}
+diff --git a/tools/test_help_commons_provider.py b/tools/test_help_commons_provider.py
+index ea98dd2..d5f784c 100644
+--- a/tools/test_help_commons_provider.py
++++ b/tools/test_help_commons_provider.py
+@@ -3,7 +3,7 @@ from pathlib import Path
+ import re
+ import unittest
+ import translation_catalogues as catalogues
+-from current_localization_contracts import fixture, require_string
++from current_localization_contracts import fixture, require_string, require_locale_scope
+ from test_translations import SCOPED_TAGS
+ ROOT=Path(__file__).resolve().parents[1]
+ JAVA=ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
+@@ -12,6 +12,7 @@ KEY='ui_help23'
+ class HelpCommonsProviderTest(unittest.TestCase):
+     def test_provider_captions_segments_and_boundaries_match_current_help(self):
+         data=fixture('help_commons_provider_current_contract.json')
++        _, fallback = require_locale_scope(fixture('locale_contract_scope.json'), SCOPED_TAGS, catalogues.offered_tags())
+         paths={'default': catalogues.RES/'values/strings.xml', **catalogues.catalogue_paths()}
+         self.assertEqual({'default'}|SCOPED_TAGS,set(data['provider_segments']))
+         for tag,segment in data['provider_segments'].items():
+@@ -26,7 +27,7 @@ class HelpCommonsProviderTest(unittest.TestCase):
+                 self.assertEqual([],catalogues.android_string_errors(value))
+                 self.assertEqual([],catalogues.format_string_errors(value,False))
+         for tag,path in paths.items():
+-            if tag!='default' and tag not in SCOPED_TAGS:
++            if tag in fallback:
+                 self.assertNotIn(KEY,catalogues.read_strings(path))
+ 
+     def test_source_assisted_punctuation_corrections(self):
+diff --git a/tools/test_language_option_additions.py b/tools/test_language_option_additions.py
+new file mode 100644
+index 0000000..f48dc82
+--- /dev/null
++++ b/tools/test_language_option_additions.py
+@@ -0,0 +1,81 @@
++"""Current option identities and truthful zero-coverage status; not linguistic acceptance."""
++import json
++from pathlib import Path
++import unittest
++import xml.etree.ElementTree as ET
++
++import translation_catalogues as catalogues
++from language_option_additions import require_untranslated_option
++from language_option_additions import FIRST_ADDED_TAGS, ADDITIONS_PATH
++
++ROOT = Path(__file__).resolve().parents[1]
++EXPECTED = {'ha': 'Hausa', 'ig': 'Igbo', 'ln': 'Lingála', 'su': 'Sunda', 'yo': 'Yorùbá', 'zu': 'isiZulu'}
++
++
++class LanguageOptionAdditionTests(unittest.TestCase):
++    def test_six_requested_identities_match_picker_platform_metadata_and_catalogues(self):
++        data = json.loads(ADDITIONS_PATH.read_text())
++        self.assertEqual(set(EXPECTED), FIRST_ADDED_TAGS)
++        self.assertEqual(len(EXPECTED), len(data['languages']))
++        self.assertEqual(EXPECTED, {r['tag']: r['name'] for r in data['languages']})
++        tags = catalogues.offered_tags()
++        self.assertEqual(167, len(tags)); self.assertEqual(167, len(set(tags)))
++        self.assertEqual(tags, [n.get('{http://schemas.android.com/apk/res/android}name')
++                               for n in ET.parse(catalogues.RES / 'xml/app_locales.xml').getroot()])
++        names = [n.text for n in ET.parse(catalogues.RES / 'values/app_language_names.xml').findall(
++            ".//string-array[@name='app_language_names']/item")]
++        by_tag = dict(zip(tags, names))
++        options = json.loads((ROOT / 'translations/language-options.json').read_text())['options']
++        # Retained metadata has older aliases and excludes the two test modes.
++        # Check only the six appended identities; live inventory authority is XML.
++        for tag, name in EXPECTED.items():
++            self.assertEqual(name, by_tag[tag])
++            entries = [r for r in options if r['tag'] == tag]
++            self.assertEqual(1, len(entries))
++            self.assertEqual(name, entries[0]['name'])
++            self.assertEqual('not-started', entries[0]['translation_status'])
++            self.assertEqual('default-English', entries[0]['fallback'])
++            self.assertEqual(catalogues.RES / f'values-b+{tag}/strings.xml', catalogues.catalogue_paths()[tag])
++
++    def test_new_catalogues_honestly_declare_untranslated_default_fallback(self):
++        data = json.loads(ADDITIONS_PATH.read_text())
++        defaults, plurals, source_strings, source_plurals = catalogues.default_resources()
++        self.assertTrue(source_strings); self.assertTrue(source_plurals)
++        self.assertLessEqual(source_strings, set(defaults)); self.assertLessEqual(source_plurals, set(plurals))
++        for row in data['languages']:
++            self.assertEqual('not-started', row['translation_status'])
++            self.assertEqual('not-started', row['linguistic_review'])
++            self.assertEqual('default-English', row['fallback'])
++            path = ROOT / row['catalogue']
++            require_untranslated_option(row, path.read_text())
++            self.assertEqual([], list(ET.parse(path).getroot()), row['tag'])
++            self.assertEqual({}, catalogues.read_strings(path))
++            self.assertEqual({}, catalogues.read_plurals(path))
++            self.assertEqual([], catalogues.validate_catalogue(row['tag']))
++            self.assertEqual([
++                f"{row['tag']}: missing {len(source_strings)} strings: {', '.join(sorted(source_strings)[:20])}",
++                f"{row['tag']}: missing plural resources: {', '.join(sorted(source_plurals))}",
++            ], catalogues.validate_catalogue(row['tag'], require_complete=True))
++        self.assertIn('New or untranslated text appears in English.', defaults['language20_translation_note'])
++
++    def test_false_translation_status_or_nonempty_fallback_catalogues_are_rejected(self):
++        from copy import deepcopy
++        row = json.loads(ADDITIONS_PATH.read_text())['languages'][0]
++        xml = (ROOT / row['catalogue']).read_text()
++        require_untranslated_option(row, xml)
++        for field, value in (('translation_status', 'complete'), ('linguistic_review', 'accepted'),
++                             ('fallback', 'translated'), ('source_strings_present', 1),
++                             ('source_plurals_present', 1)):
++            changed = deepcopy(row); changed[field] = value
++            with self.subTest(field=field), self.assertRaises(ValueError):
++                require_untranslated_option(changed, xml)
++            del changed[field]
++            with self.subTest(missing=field), self.assertRaises(ValueError):
++                require_untranslated_option(changed, xml)
++        for broken in ('<resources><string name="ui_menu_file">File</string></resources>',
++                       '<resources><plurals name="items"><item quantity="other">Items</item></plurals></resources>',
++                       '<resources>Unreviewed English</resources>', '<catalogue/>'):
++            with self.subTest(xml=broken), self.assertRaises(ValueError):
++                require_untranslated_option(row, broken)
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tools/test_language_option_additions_second.py b/tools/test_language_option_additions_second.py
+new file mode 100644
+index 0000000..61b2879
+--- /dev/null
++++ b/tools/test_language_option_additions_second.py
+@@ -0,0 +1,92 @@
++"""Requested option and principal-variety identities; registration does not establish translation."""
++import json
++from pathlib import Path
++import unittest
++import xml.etree.ElementTree as ET
++
++import translation_catalogues as catalogues
++from language_option_additions import require_untranslated_option
++from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
++
++ROOT = Path(__file__).resolve().parents[1]
++EXPECTED = {'pcm': 'Naijá', 'so': 'Soomaaliga', 'as': 'অসমীয়া', 'wo': 'Wolof',
++            'ht': 'Kreyòl ayisyen', 'tpi': 'Tok Pisin', 'nv': 'Diné bizaad', 'chr': 'ᏣᎳᎩ',
++            'yua': 'Maaya t’aan', 'ch': 'Chamoru',
++            'nch': 'Mexicano (Central Huasteca)', 'nhe': 'Náhuatl (Eastern Huasteca)',
++            'nhw': 'Náhuatl (Western Huasteca)', 'quz': 'Qichwa (Cusco)',
++            'quy': 'Qichwa (Ayacucho / Chanka)', 'quh': 'Qhichwa (South Bolivian)',
++            'qug': 'Kichwa (Chimborazo)',
++            'sm': 'Gagana Samoa', 'mi': 'Māori', 'sa': 'संस्कृतम्', 'tg': 'Тоҷикӣ'}
++
++
++class FurtherLanguageOptionTests(unittest.TestCase):
++    def test_requested_concrete_identities_match_all_active_and_recorded_inventories(self):
++        data = json.loads(SECOND_ADDITIONS_PATH.read_text())
++        self.assertEqual(set(EXPECTED), SECOND_ADDED_TAGS)
++        self.assertEqual(21, len(data['languages']))
++        self.assertEqual(len(EXPECTED), len(data['languages']))
++        self.assertEqual(EXPECTED, {r['tag']: r['name'] for r in data['languages']})
++        self.assertFalse(FIRST_ADDED_TAGS & SECOND_ADDED_TAGS)
++        self.assertEqual(27, len(ADDED_TAGS))
++        tags = catalogues.offered_tags()
++        self.assertEqual(167, len(tags)); self.assertEqual(167, len(set(tags)))
++        self.assertEqual(tags, [n.get('{http://schemas.android.com/apk/res/android}name')
++                               for n in ET.parse(catalogues.RES / 'xml/app_locales.xml').getroot()])
++        names = [n.text for n in ET.parse(catalogues.RES / 'values/app_language_names.xml').findall(
++            ".//string-array[@name='app_language_names']/item")]
++        by_tag = dict(zip(tags, names))
++        options = json.loads((ROOT / 'translations/language-options.json').read_text())['options']
++        for tag, name in EXPECTED.items():
++            self.assertEqual(name, by_tag[tag])
++            rows = [r for r in options if r['tag'] == tag]
++            self.assertEqual(1, len(rows)); self.assertEqual(name, rows[0]['name'])
++            self.assertEqual('not-started', rows[0]['translation_status'])
++            self.assertEqual('default-English', rows[0]['fallback'])
++            self.assertEqual(catalogues.RES / f'values-b+{tag}/strings.xml', catalogues.catalogue_paths()[tag])
++
++    def test_principal_varieties_replace_broad_groups_with_exact_scope(self):
++        data = json.loads(SECOND_ADDITIONS_PATH.read_text())
++        rows = {r['tag']: r for r in data['languages']}
++        self.assertEqual(set(), {t for t, r in rows.items() if r['registry_scope'] == 'collection'})
++        self.assertEqual({'sa'}, {t for t, r in rows.items() if r['registry_scope'] == 'macrolanguage'})
++        self.assertEqual(20, sum(r['registry_scope'] == 'individual' for r in rows.values()))
++        varieties = {'nch', 'nhe', 'nhw', 'quz', 'quy', 'quh', 'qug'}
++        self.assertEqual(varieties, set(data['selection_decision']['principal_variety_tags']))
++        self.assertEqual({'nah', 'qu'}, set(data['selection_decision']['removed_umbrella_tags']))
++        self.assertTrue(data['selection_decision']['selection_not_exhaustive'])
++        self.assertFalse({'nah', 'qu'} & set(catalogues.offered_tags()))
++        self.assertFalse({'nah', 'qu'} & set(catalogues.catalogue_paths()))
++        self.assertEqual({'nch', 'nhe', 'nhw'}, {t for t, r in rows.items() if r.get('requested_group') == 'Nahuatl'})
++        self.assertEqual({'quz', 'quy', 'quh', 'qug'}, {t for t, r in rows.items() if r.get('requested_group') == 'Quechua'})
++        self.assertIn('does not cover all Southern Quechua', rows['quz']['scope_note'])
++        self.assertIn('does not cover all Ecuadorian Kichwa', rows['qug']['scope_note'])
++        self.assertIn('not an exact qug census', rows['qug']['scope_note'])
++        options = {r['tag']: r for r in json.loads((ROOT / 'translations/language-options.json').read_text())['options']}
++        for tag in EXPECTED:
++            self.assertEqual(rows[tag]['registry_scope'], options[tag]['registry_scope'])
++            if tag in varieties | {'sa'}:
++                self.assertEqual(rows[tag]['scope_note'], options[tag]['scope_note'])
++                self.assertIn(rows[tag]['scope_note'], (ROOT / rows[tag]['catalogue']).read_text())
++
++    def test_untranslated_catalogues_remain_empty_and_completeness_stays_honest(self):
++        defaults, default_plurals, strings, plurals = catalogues.default_resources()
++        self.assertTrue(strings); self.assertTrue(plurals)
++        self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
++        for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
++            path = ROOT / row['catalogue']
++            require_untranslated_option(row, path.read_text())
++            self.assertEqual('not-started', row['translation_status'])
++            self.assertEqual('not-started', row['linguistic_review'])
++            self.assertEqual('default-English', row['fallback'])
++            self.assertEqual(0, row['source_strings_present']); self.assertEqual(0, row['source_plurals_present'])
++            self.assertEqual([], list(ET.parse(path).getroot()))
++            self.assertEqual([], catalogues.validate_catalogue(row['tag']))
++            self.assertEqual([
++                f"{row['tag']}: missing {len(strings)} strings: {', '.join(sorted(strings)[:20])}",
++                f"{row['tag']}: missing plural resources: {', '.join(sorted(plurals))}",
++            ], catalogues.validate_catalogue(row['tag'], require_complete=True))
++
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/translations/language-options.json b/translations/language-options.json
+index 3a76f45..9604c4c 100644
+--- a/translations/language-options.json
++++ b/translations/language-options.json
+@@ -87,6 +87,13 @@
+       "tag": "ar",
+       "name": "العربية"
+     },
++    {
++      "tag": "as",
++      "name": "অসমীয়া",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "ast",
+       "name": "Asturianu",
+@@ -137,6 +144,20 @@
+       "name": "Cebuano",
+       "starter_translation": true
+     },
++    {
++      "tag": "ch",
++      "name": "Chamoru",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
++    {
++      "tag": "chr",
++      "name": "ᏣᎳᎩ",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "ckb",
+       "name": "کوردی",
+@@ -265,6 +286,12 @@
+       "tag": "gu",
+       "name": "ગુજરાતી"
+     },
++    {
++      "tag": "ha",
++      "name": "Hausa",
++      "translation_status": "not-started",
++      "fallback": "default-English"
++    },
+     {
+       "tag": "hak-Hant",
+       "name": "客家語（繁體）",
+@@ -293,6 +320,13 @@
+       "tag": "hr",
+       "name": "Hrvatski"
+     },
++    {
++      "tag": "ht",
++      "name": "Kreyòl ayisyen",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "hu",
+       "name": "Magyar"
+@@ -312,6 +346,12 @@
+       "tag": "id",
+       "name": "Bahasa Indonesia"
+     },
++    {
++      "tag": "ig",
++      "name": "Igbo",
++      "translation_status": "not-started",
++      "fallback": "default-English"
++    },
+     {
+       "tag": "is",
+       "name": "Íslenska",
+@@ -385,6 +425,12 @@
+       "name": "Latina",
+       "starter_translation": true
+     },
++    {
++      "tag": "ln",
++      "name": "Lingála",
++      "translation_status": "not-started",
++      "fallback": "default-English"
++    },
+     {
+       "tag": "lo",
+       "name": "ລາວ",
+@@ -409,6 +455,13 @@
+       "translation_source": "Krita",
+       "partial_translation": true
+     },
++    {
++      "tag": "mi",
++      "name": "Māori",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "mk",
+       "name": "Македонски"
+@@ -458,6 +511,14 @@
+       "name": "Bân-lâm-gí (Taiwan, Latin)",
+       "starter_translation": true
+     },
++    {
++      "tag": "nch",
++      "name": "Mexicano (Central Huasteca)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Central Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl."
++    },
+     {
+       "tag": "nds",
+       "name": "Plattdüütsch",
+@@ -468,6 +529,22 @@
+       "name": "नेपाली",
+       "translation_source": "GIMP"
+     },
++    {
++      "tag": "nhe",
++      "name": "Náhuatl (Eastern Huasteca)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Eastern Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl."
++    },
++    {
++      "tag": "nhw",
++      "name": "Náhuatl (Western Huasteca)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Western Huasteca Nahuatl, a concrete individual language within the selected major Huasteca cluster; not all Nahuatl."
++    },
+     {
+       "tag": "nl",
+       "name": "Nederlands"
+@@ -481,6 +558,13 @@
+       "tag": "no",
+       "name": "Norsk"
+     },
++    {
++      "tag": "nv",
++      "name": "Diné bizaad",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "oc",
+       "name": "Occitan",
+@@ -490,6 +574,13 @@
+       "tag": "pa-IN",
+       "name": "ਪੰਜਾਬੀ (ਭਾਰਤ)"
+     },
++    {
++      "tag": "pcm",
++      "name": "Naijá",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "pl",
+       "name": "Polski"
+@@ -507,6 +598,38 @@
+       "name": "Português (Portugal)",
+       "translation_base": "pt"
+     },
++    {
++      "tag": "qug",
++      "name": "Kichwa (Chimborazo)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Chimborazo Highland Quichua; this tag does not cover all Ecuadorian Kichwa, and provincial Kichwa totals are not an exact qug census."
++    },
++    {
++      "tag": "quh",
++      "name": "Qhichwa (South Bolivian)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "South Bolivian Quechua; this tag does not cover all Quechua in Bolivia or all Southern Quechua."
++    },
++    {
++      "tag": "quy",
++      "name": "Qichwa (Ayacucho / Chanka)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Ayacucho Quechua, also labelled Chanka; this tag does not cover all Southern Quechua."
++    },
++    {
++      "tag": "quz",
++      "name": "Qichwa (Cusco)",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual",
++      "scope_note": "Cusco Quechua; this tag does not cover all Southern Quechua."
++    },
+     {
+       "tag": "ro",
+       "name": "Română"
+@@ -524,6 +647,14 @@
+       "tag": "ryu",
+       "name": "うちなーぐち"
+     },
++    {
++      "tag": "sa",
++      "name": "संस्कृतम्",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "macrolanguage",
++      "scope_note": "Sanskrit macrolanguage in current IANA registry: no narrower registered variety has been selected. Define scope deliberately before translating."
++    },
+     {
+       "tag": "sd",
+       "name": "سنڌي"
+@@ -550,6 +681,20 @@
+       "tag": "sl",
+       "name": "Slovenščina"
+     },
++    {
++      "tag": "sm",
++      "name": "Gagana Samoa",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
++    {
++      "tag": "so",
++      "name": "Soomaaliga",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "sq",
+       "name": "Shqip"
+@@ -562,6 +707,12 @@
+       "tag": "sr-Latn",
+       "name": "Srpski (Latinica)"
+     },
++    {
++      "tag": "su",
++      "name": "Sunda",
++      "translation_status": "not-started",
++      "fallback": "default-English"
++    },
+     {
+       "tag": "sv",
+       "name": "Svenska"
+@@ -583,6 +734,13 @@
+       "tag": "te",
+       "name": "తెలుగు"
+     },
++    {
++      "tag": "tg",
++      "name": "Тоҷикӣ",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "th",
+       "name": "ไทย"
+@@ -597,6 +755,13 @@
+       "translation_source": "Krita",
+       "partial_translation": true
+     },
++    {
++      "tag": "tpi",
++      "name": "Tok Pisin",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "tr",
+       "name": "Türkçe"
+@@ -645,6 +810,13 @@
+       "translation_source": "Krita",
+       "partial_translation": true
+     },
++    {
++      "tag": "wo",
++      "name": "Wolof",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "wuu-Hans",
+       "name": "吴语（简体）",
+@@ -660,6 +832,19 @@
+       "name": "ייִדיש",
+       "translation_source": "GIMP"
+     },
++    {
++      "tag": "yo",
++      "name": "Yorùbá",
++      "translation_status": "not-started",
++      "fallback": "default-English"
++    },
++    {
++      "tag": "yua",
++      "name": "Maaya t’aan",
++      "translation_status": "not-started",
++      "fallback": "default-English",
++      "registry_scope": "individual"
++    },
+     {
+       "tag": "yue-Hant",
+       "name": "粵語（繁體）",
+@@ -686,6 +871,12 @@
+     {
+       "tag": "zh-TW",
+       "name": "繁體中文（台灣）"
++    },
++    {
++      "tag": "zu",
++      "name": "isiZulu",
++      "translation_status": "not-started",
++      "fallback": "default-English"
+     }
+   ]
+ }
+diff --git a/verification/README.md b/verification/README.md
+index d27b7ed..75d508c 100644
+--- a/verification/README.md
++++ b/verification/README.md
+@@ -32,6 +32,17 @@ with no demonstrated glyph, mark or line loss; this is a specific disposition,
+ not a universal pixel tolerance. API30's 95 and API35's 104 scheduled installed
+ methods passed, including both Arabic natural-update/full-raster checks.
+ 
++## Language-option evidence
++
++The accepted language-option records remain reachable at immutable develop
++[484d1b31](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834):
++- [Six-option registration and review](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-2026-10-12).
++- [Twenty-one concrete identities and principal-variety decision](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-second-2026-10-12).
++- [Superseded unpublished 162-choice candidate](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-superseded-162-2026-10-12).
++These records do not certify translated UI or current runtime behavior. The
++compact identity/status fixtures and explicit 59-scoped/108-fallback contract
++remain active; routine CI does not require the historical files.
++
+ ## Files intentionally retained here
+ 
+ - `legacy-font-metadata.json`: licensing/provenance input cited by the packaged

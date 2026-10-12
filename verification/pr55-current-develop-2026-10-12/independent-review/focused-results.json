@@ -1,0 +1,28 @@
+{
+  "tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "base_tree": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+  "checks": [
+    {
+      "mode": "normal",
+      "methods": 124,
+      "seconds": 12.37,
+      "exit": 0,
+      "log_sha256": "2ba6a96eafb6e68995d62453035afad3017f82c4126318f8fc6c8501bb5ad111",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -m unittest -v test_current_localization_contracts test_language_option_additions test_language_option_additions_second test_help_commons_provider test_commons_import_change_translations test_translations test_current_font_contract test_font_disclosures_pr12 test_ci_timeout_budget test_exact_script_resource_routing test_locale_number_input test_locale_tooltips"
+    },
+    {
+      "mode": "optimized",
+      "methods": 124,
+      "seconds": 12.078,
+      "exit": 0,
+      "log_sha256": "af5bb2ef6442ea112223beda79066884885ac1969f13fd439c8ac5b45ba9cb3e",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -O -m unittest -v test_current_localization_contracts test_language_option_additions test_language_option_additions_second test_help_commons_provider test_commons_import_change_translations test_translations test_current_font_contract test_font_disclosures_pr12 test_ci_timeout_budget test_exact_script_resource_routing test_locale_number_input test_locale_tooltips"
+    }
+  ],
+  "candidate_manifest_sha256": "2c5add23ecac89fc98c445ce2b33cef9f3cf5494d88a84eeca32544358a20aca",
+  "candidate_patch_sha256": "3e8693f6168c10d438ab9f3398c16bd0255026dd36f5e1d70eca702499ac3543",
+  "whitespace_exit": 0,
+  "unstaged_diff_exit": 0,
+  "local_android": "UNRUN: no SDK/toolchain in this review environment",
+  "limit": "Focused local host checks, not a complete aggregate or fresh hosted Android result."
+}

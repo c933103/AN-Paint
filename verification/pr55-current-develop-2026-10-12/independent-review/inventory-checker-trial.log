@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-current-develop-independent-review-20261012/audit_current_inventory.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/shared/anpaint-pr55-current-develop-independent-review-20261012/audit_current_inventory.py", line 43, in main
+    TREE=a.base_tree;base=current_inventory(a.repo);TREE=a.candidate_tree;current=current_inventory(a.repo);old=set(map(tuple,base['expected']));new=set(map(tuple,current['expected']));writer=json.loads(a.writer_inventory.read_text());require(current==writer,'writer current source inventory differs')
+                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr55-current-develop-independent-review-20261012/audit_current_inventory.py", line 39, in require
+    if not v:raise ValueError(message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: writer current source inventory differs
