@@ -68,3 +68,20 @@ was accepted on the same source head. Green jobs retain their original execution
 timestamps; only the API 35 job executes again. At this evidence checkpoint the
 second attempt is in progress. The failed collection gate is not suppressed,
 and passing instrumentation alone is not claimed as full CI success.
+
+## Final result after the single permitted retry
+
+**Full normal API 35 workflow passed on unchanged code head `d4ee976`.**
+Attempt 2 passed all 74 native and 25 app cases and completed the evidence
+collection gates. The retrieved artifact digest is
+`c0115f37da7dbc78925c37c0cd28a62df89775a3b2e4e3aa4b1bb9532145e10f`.
+The actual export, screenshot matrix and reachability receipts were rerun through
+the unchanged strict local verifiers: 104 files, 32 matrix screenshots and eight
+reachability cases with 64 supporting images all pass. See
+[the final result](api35-attempt2/final-result.json) and preserved receipts.
+
+The first failed transfer is retained; it was not relabeled as success. No source,
+deadline, gate or green job was changed to obtain the retry result. Its exact
+transport cause was not diagnosed from the short log. No M03 defect or failing
+acceptance gate remains. The rendering/linguistic limits above describe the scope
+of what was checked; they do not assert additional permanent approval gates.
