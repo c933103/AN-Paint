@@ -12,8 +12,10 @@ tracked separately from translated UI and release acceptance.
 PR57's [accepted CI run](https://github.com/c933103/AN-Paint/actions/runs/38258647977)
 includes bounded API30/35 app-language identity and default-resource fallback
 checks for the first six options. This is not complete installed-language UI or
-linguistic acceptance. The twenty-one-option successor is unmerged at this update and is pinned to
+linguistic acceptance. PR58 merged as `484d1b31cb113c88351e6d0dbdaa0d503e5dd834`. Its merge tree equals the reviewed source tree. The accepted source is pinned to
 [`e3c56d3b70e6`](https://github.com/c933103/AN-Paint/commit/e3c56d3b70e6bf9c87f007c93d247ccb60d01808).
+
+PR58's [accepted four-job CI](https://github.com/c933103/AN-Paint/actions/runs/38264239986) includes API30/35 exact-identity and default-resource fallback assertions, build/source, lint, exact-script generation and the installed API35 suite. This is bounded technical evidence, not full-language UI, glyph or linguistic acceptance. Post-merge push CI is tracked separately; no release publication is claimed.
 
 The first six are Hausa, Yoruba, Lingala, Sundanese, Igbo and Zulu. The next sixteen requested language groups
 are Nigerian Pidgin, Somali, Assamese, Wolof, Haitian Creole, Tok Pisin, Navajo,
@@ -35,7 +37,7 @@ Sanskrit `sa` separately retains its IANA macrolanguage scope; define its
 translation scope before filling the catalogue. The other 20 second-batch
 choices are individual-language tags.
 
-Once the successor merges, the offered inventory will be **167 choices: 158 non-English,
+After PR58 merged, the offered inventory is **167 choices: 158 non-English,
 7 English and 2 test modes; 59 full-key and 108 partial catalogues**. The
 [first six-option snapshot](verification/translation-progress-2026-10-12/pending-language-options.json)
 and [second option snapshot](verification/translation-progress-2026-10-12/further-language-options.json)
@@ -79,7 +81,7 @@ Bounded review details: [follow-up record](https://github.com/c933103/AN-Paint/b
 
 ## Per-choice progress (140 baseline + 27 requested additions)
 
-Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. All rows remain open for their stated next action. Test modes are explicitly separated in their rows. Rows labelled “pending option” are candidate-source coverage, not yet offered on develop; any merged option rows are explicitly marked.
+Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. All rows remain open for their stated next action. Test modes are explicitly separated in their rows. All 27 requested additions are now on develop and are marked with their merged option PR. Option registration and bounded technical checks do not close translation or full UI review.
 
 | Choice / display name | Direct; gap | Independent / bounded review | Bounded UI evidence | Pending PR | Concrete next action |
 |---|---:|---|---|---|---|
@@ -89,7 +91,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `ain-Latn` Aynu itak | 695+1 (100.00%); 0 | Pending P09; M03 checked | Routing; host M03 | #52 M02; #55 M04 | Recheck P09; review M02 and F01-C005 |
 | `am` አማርኛ | 12+0 (1.72%); 684 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ar` العربية | 695+1 (100.00%); 0 | Pending P05; crop counts 0–20 checked; M03 pending | Routing; host M02/M03 | #52 M02; #55 M04 | Recheck P05; review M02/M03 |
-| `as` অসমীয়া **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `as` অসমীয়া **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `ast` Asturianu | 86+0 (12.36%); 610 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `az` Azərbaycanca | 57+0 (8.19%); 639 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `be` Беларуская | 108+0 (15.52%); 588 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -101,8 +103,8 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `ca` Català | 127+0 (18.25%); 569 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ca-ES-valencia` Valencià | 95+0 (13.65%); 601 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ceb` Cebuano | 695+1 (100.00%); 0 | Pending P03; M03 pending | Routing | #52 M02; #55 M04 | Recheck P03; review M02/M03; F01-C007 |
-| `ch` Chamoru **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `chr` ᏣᎳᎩ **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `ch` Chamoru **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `chr` ᏣᎳᎩ **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `ckb` کوردی | 40+0 (5.75%); 656 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `cs` Čeština | 121+0 (17.39%); 575 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `csb` Kaszëbsczi | 3+0 (0.43%); 693 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -139,7 +141,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `hi` हिन्दी | 59+0 (8.48%); 637 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `hne` छत्तीसगढ़ी | 16+0 (2.30%); 680 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `hr` Hrvatski | 98+0 (14.08%); 598 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `ht` Kreyòl ayisyen **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `ht` Kreyòl ayisyen **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `hu` Magyar | 695+1 (100.00%); 0 | Pending P04; C05 17-value candidate reviewed; M03 pending | Routing; PR52 composition only | #48/#52 C05+M02; #55 M04 | Reconcile C05 candidate; recheck P04; review M02/M03 |
 | `hy` Հայերեն | 110+0 (15.80%); 586 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ia` Interlingua | 60+0 (8.62%); 636 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -167,7 +169,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `lv` Latviešu | 695+1 (100.00%); 0 | Pending P04; M03 pending | Routing | #52 M02; #55 M04 | Recheck P04; review M02/M03 |
 | `lzh-Hant` 文言（繁體） | 695+1 (100.00%); 0 | Pending P06; M03 pending | Routing; host M02/M03; installed vertical | #52 M02; #55 M04 | Recheck P06; review M02/M03 |
 | `mai` मैथिली | 38+0 (5.46%); 658 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `mi` Māori **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `mi` Māori **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `mk` Македонски | 74+0 (10.63%); 622 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ml-IN` മലയാളം (ഇന്ത്യ) | 59+0 (8.48%); 637 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `mn-Cyrl-MN` Монгол (Кирилл, Монгол Улс) | 695+1 (100.00%); 0 | Pending P08; language note corrected; M03 pending | Routing | #52 M02; #55 M04 | Recheck P08; review M02/M03 |
@@ -179,40 +181,40 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `my` မြန်မာဘာသာ | 74+0 (10.63%); 622 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `nan-Hant-TW` 臺灣台語（漢字） | 695+1 (100.00%); 0 | Pending P06; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C026 |
 | `nan-Latn-TW` Tâi-gí (Tâi-oân, Pe̍h-ōe-jī) | 695+1 (100.00%); 0 | Pending P06; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C027 |
-| `nch` Mexicano (Central Huasteca) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `nch` Mexicano (Central Huasteca) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `nds` Plattdüütsch | 32+0 (4.60%); 664 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ne` नेपाली | 74+0 (10.63%); 622 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `nhe` Náhuatl (Eastern Huasteca) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `nhw` Náhuatl (Western Huasteca) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `nhe` Náhuatl (Eastern Huasteca) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `nhw` Náhuatl (Western Huasteca) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `nl` Nederlands | 695+1 (100.00%); 0 | Pending P04; M03 pending | Routing | #52 M02; #55 M04 | Recheck P04; review M02/M03 |
 | `nn` Norsk nynorsk | 110+0 (15.80%); 586 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `no` Norsk | 115+0 (16.52%); 581 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `nv` Diné bizaad **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `nv` Diné bizaad **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `oc` Occitan | 88+0 (12.64%); 608 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `pa-IN` ਪੰਜਾਬੀ (ਭਾਰਤ) | 107+0 (15.37%); 589 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `pcm` Naijá **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `pcm` Naijá **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `pl` Polski | 166+0 (23.85%); 530 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ps` پښتو | 45+0 (6.47%); 651 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `pt-BR` Português (Brasil) | 695+1 (100.00%); 0 | Pending P07; bounded A01/F01 checked; M03 pending | Routing | #52 M02; #55 M04 | Recheck P07; review M02/M03 |
 | `pt-PT` Português (Portugal) | 695+1 (100.00%); 0 | Pending P07; 3 structural items closed only; M03 pending | Routing | #52 M02; #55 M04 | Recheck P07; review M02/M03 |
 | `qaa-Zsye-XV` 😀 Emoji (vertical test; English hints) **[test mode]** | 695+1 (100.00%); 0 | Test mode; no natural-language acceptance | Routing; host M02/M03; installed vertical | #52/#55 conventions | Check vertical regressions; preserve explicit test labels |
-| `qug` Kichwa (Chimborazo) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `quh` Qhichwa (South Bolivian) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `quy` Qichwa (Ayacucho / Chanka) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `quz` Qichwa (Cusco) **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `qug` Kichwa (Chimborazo) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `quh` Qhichwa (South Bolivian) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `quy` Qichwa (Ayacucho / Chanka) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `quz` Qichwa (Cusco) **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `ro` Română | 127+0 (18.25%); 569 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ru` Русский | 695+1 (100.00%); 0 | Pending P05; crop counts 0–20 checked; M03 pending | Routing | #52 M02; #55 M04 | Recheck P05; review M02/M03 |
 | `rw` Ikinyarwanda | 14+0 (2.01%); 682 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ryu` うちなーぐち | 695+1 (100.00%); 0 | Pending P09; M03 pending | Routing | #52 M02; #55 M04 | Recheck P09; review M02/M03; F01-C030 |
-| `sa` संस्कृतम् [macrolanguage] **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Decide concrete translation scope, then translate/review 696 keys at lower priority |
+| `sa` संस्कृतम् [macrolanguage] **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Decide concrete translation scope, then translate/review 696 keys at lower priority |
 | `sd` سنڌي | 60+0 (8.62%); 636 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `se` Davvisámegiella | 28+0 (4.02%); 668 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `shn` တႆး | 9+0 (1.29%); 687 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `si` සිංහල | 52+0 (7.47%); 644 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sk` Slovenčina | 127+0 (18.25%); 569 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sl` Slovenščina | 127+0 (18.25%); 569 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `sm` Gagana Samoa **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
-| `so` Soomaaliga **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `sm` Gagana Samoa **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
+| `so` Soomaaliga **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `sq` Shqip | 65+0 (9.34%); 631 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sr-Cyrl` Српски (Ћирилица) | 170+0 (24.43%); 526 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sr-Latn` Srpski (Latinica) | 168+0 (24.14%); 528 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -222,11 +224,11 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `ta` தமிழ் | 96+0 (13.79%); 600 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `tdd` ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ | 7+0 (1.01%); 689 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `te` తెలుగు | 97+0 (13.94%); 599 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `tg` Тоҷикӣ **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `tg` Тоҷикӣ **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `th` ไทย | 164+0 (23.56%); 532 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `tl` Tagalog | 695+1 (100.00%); 0 | Pending P03; M03 pending | Routing | #52 M02; #55 M04 | Recheck P03; review M02/M03 |
 | `tok` toki pona | 9+0 (1.29%); 687 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `tpi` Tok Pisin **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `tpi` Tok Pisin **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `tr` Türkçe | 695+1 (100.00%); 0 | Pending P07; M03 pending | Routing | #52 M02; #55 M04 | Recheck P07; review M02/M03 |
 | `tt-Cyrl` Татарча (Кирилл) | 19+0 (2.73%); 677 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `tt-Latn` Tatarça (Latin) | 19+0 (2.73%); 677 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -237,12 +239,12 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `vi` Tiếng Việt | 695+1 (100.00%); 0 | Pending P12; M03 pending | Routing | #52 M02; #55 M04 | Recheck P12; review M02/M03 |
 | `vi-Hani` 㗂越（𡨸喃） | 695+1 (100.00%); 0 | Pending P12; C03 one-key checked; M03 pending | Routing; host M02/M03 | #52 M02; #55 M04 | Recheck P12; review M02/M03; F01-C031 |
 | `wa` Walon | 24+0 (3.45%); 672 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `wo` Wolof **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `wo` Wolof **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `wuu-Hans` 吴语（上海话书面语，简体） | 695+1 (100.00%); 0 | Pending P06; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C032 |
 | `xh` IsiXhosa | 32+0 (4.60%); 664 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `yi` ייִדיש | 7+0 (1.01%); 689 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `yo` Yorùbá **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
-| `yua` Maaya t’aan **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #58 option registration | Complete option checks and merge; Translate and review all 696 app resource keys at lower priority |
+| `yua` Maaya t’aan **[added in #58]** | 0+0 (0.00%); 696 | Translation/review not started | PR58 API30/35 identity/fallback; full UI pending | — | Translate and review all 696 app resource keys at lower priority |
 | `yue-Hant` 粵語（繁體） | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `yue-Latn` Cantonese (Latin) | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `za` Vahcuengh | 7+0 (1.01%); 689 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
