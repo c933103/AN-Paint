@@ -239,13 +239,42 @@ class GalleryViewportDeviceTest {
         val failures=mutableListOf<String>()
         val source=InstrumentationRegistry.getArguments().getString("anpaint_source_tests_sha256")
         assertTrue("Installed evidence must bind to the runner's exact source inventory",source?.matches(Regex("[0-9a-f]{64}"))==true)
+        fun statusMessage(insert: Boolean): String {
+            val reason=gallery.getString(R.string.commons_metadata_query_failed)
+            return gallery.getString(if(insert) R.string.ui_could_not_load_gallery_image else R.string.commons_credit_copy_failed_reason,reason)
+        }
+        fun show(value: String) {
+            MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
+                .apply {isAccessible=true}.invoke(gallery,value)
+        }
+        fun settled(value: String)=onMain {
+            val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+            !root.isLayoutRequested && !view.isLayoutRequested && view.layout?.text?.toString()==value
+        }
+        // Establish a visible fixed-width status through ordinary traversal. The two
+        // replacements below must schedule their own measure, with no test-forced layout.
+        val baseline=onMain {statusMessage(true).also {show(it)}}
+        await("installed Arabic baseline layout") {settled(baseline)}
+        instrumentation.waitForIdleSync()
         for(insert in listOf(false,true)) {
             val route=if(insert) "insert" else "copy"
-            val message=onMain {
-                val reason=gallery.getString(R.string.commons_metadata_query_failed)
-                gallery.getString(if(insert) R.string.ui_could_not_load_gallery_image else R.string.commons_credit_copy_failed_reason,reason)
-                    .also {MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
-                        .apply {isAccessible=true}.invoke(gallery,it)}
+            val message=onMain {statusMessage(insert)}
+            val naturalUpdate=onMain {
+                val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+                assertEquals("org.catrobat.paintroid.classic.GlyphBoundsStatusView",view.javaClass.name)
+                assertTrue(view.isShown);assertTrue(view.width>0)
+                assertFalse("Root is settled before replacement",root.isLayoutRequested)
+                assertFalse("Status is settled before replacement",view.isLayoutRequested)
+                val oldText=view.text.toString();val oldHeight=requireNotNull(view.layout).height
+                assertTrue("Replace a different full message",oldText!=message);assertTrue(oldHeight>0)
+                show(message)
+                val requested=view.isLayoutRequested
+                assertTrue("Production setter must request glyph remeasurement",requested)
+                JSONObject().put("schema",1).put("route",route).put("source_tests_sha256",source)
+                    .put("status_class",view.javaClass.name).put("old_message",oldText).put("message",message)
+                    .put("old_layout_height",oldHeight).put("view_width",view.width)
+                    .put("root_requested_before",false).put("view_requested_before",false)
+                    .put("view_requested_after",requested).put("root_requested_after",root.isLayoutRequested)
             }
             await("installed Arabic M04 $route layout") {onMain {
                 val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
@@ -259,6 +288,13 @@ class GalleryViewportDeviceTest {
                 assertEquals(2f,gallery.resources.configuration.fontScale,0f)
                 assertEquals(Configuration.ORIENTATION_LANDSCAPE,gallery.resources.configuration.orientation)
                 assertEquals(message,view.text.toString());assertEquals(message,view.createAccessibilityNodeInfo().text.toString())
+                assertFalse(root.isLayoutRequested);assertFalse(view.isLayoutRequested)
+                assertEquals("Same-height replacement exercises TextView's relayout shortcut",
+                    naturalUpdate.getInt("old_layout_height"),requireNotNull(view.layout).height)
+                assertEquals(naturalUpdate.getInt("view_width"),view.width)
+                naturalUpdate.put("new_layout_height",view.layout.height).put("complete_layout_text",view.layout.text.toString())
+                    .put("root_requested_settled",root.isLayoutRequested).put("view_requested_settled",view.isLayoutRequested)
+                android.util.Log.i("GalleryStatusNaturalUpdate",naturalUpdate.toString())
                 capturePaintedInk(view).use {frame ->
                     fun png(bitmap: android.graphics.Bitmap): JSONObject {
                         val bytes=java.io.ByteArrayOutputStream().use {out ->

@@ -3,6 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from commons_metadata_m04_receiver_scope import before_receiver_fix
+
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / 'tools/fixtures/commons_metadata_m04_glyph_bounds_successor_scope.json'
 SCOPE_PIN = '824cb01cbd9f9c9edf3e7283b1ccdc18da7c0e7bb1fc88a4a59a3a38ff4a0639'
@@ -19,8 +21,11 @@ def scope():
 def before_glyph_bounds(path, content, *, allow_original=True):
     """Idempotent for stacked historical oracles; live-source tests require exact new hashes."""
     if path not in PATHS:
-        return content
+        return before_receiver_fix(path, content)
     row = next((row for row in scope()['entries'] if row['path'] == path), None)
+    if allow_original and row and hashlib.sha256(content).hexdigest() == row['before_sha256']:
+        return content
+    content = before_receiver_fix(path, content)
     if row is None:
         return content
     digest = hashlib.sha256(content).hexdigest()

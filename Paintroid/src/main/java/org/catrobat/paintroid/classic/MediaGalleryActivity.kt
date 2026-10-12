@@ -442,6 +442,9 @@ private class GlyphBoundsStatusView(context: android.content.Context): TextView(
     }
     fun setStatusText(message: String) {
         sourceText=message;leadingInset=0;measuredSignature=null;text=message
+        // TextView can replace a fixed-width, same-height Layout without remeasurement.
+        // The new message must still run our glyph-inset measurement on normal traversal.
+        requestLayout()
     }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         val message=sourceText

@@ -7,12 +7,14 @@ import unittest
 from unittest.mock import patch
 from commons_metadata_m04_glyph_bounds_scope import ROOT, FIXTURE, PATHS, scope, before_glyph_bounds
 from commons_metadata_m04_painted_ink_scope import before_painted_ink
+from commons_metadata_m04_receiver_scope import before_receiver_fix
 
 FLOW='Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt'
 GALLERY='Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
 DEVICE='app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt'
 EVIDENCE=ROOT/'verification/commons-metadata-m04-glyph-bounds-2026-10-12'
 
+def historical_bytes(path): return before_receiver_fix(path, (ROOT/path).read_bytes())
 def digest(b): return hashlib.sha256(b).hexdigest()
 def methods(s): return re.findall(r'@Test\b(?:(?!\bfun\b).)*\bfun\s+(\w+)\s*\(',s,re.S)
 
@@ -24,13 +26,13 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
         self.assertEqual({GALLERY},{r['path'] for r in data['entries'] if '/src/main/' in r['path']})
         self.assertEqual(data['historical_painted_ink_scope_sha256'],digest((ROOT/'tools/fixtures/commons_metadata_m04_painted_ink_successor_scope.json').read_bytes()))
         for row in data['entries']:
-            raw=(ROOT/row['path']).read_bytes();self.assertEqual(row['after_sha256'],digest(raw))
+            raw=historical_bytes(row['path']);self.assertEqual(row['after_sha256'],digest(raw))
             old=before_glyph_bounds(row['path'],raw,allow_original=False)
             self.assertEqual(row['before_sha256'],digest(old));self.assertEqual(old,before_glyph_bounds(row['path'],old))
 
     def test_deleted_restored_duplicated_corrupted_or_unrelated_live_content_fails_closed(self):
         for row in scope()['entries']:
-            raw=(ROOT/row['path']).read_bytes();old=before_glyph_bounds(row['path'],raw,allow_original=False)
+            raw=historical_bytes(row['path']);old=before_glyph_bounds(row['path'],raw,allow_original=False)
             for bad in [old,raw+b'\n// unrelated\n']:
                 with self.assertRaises(AssertionError):before_glyph_bounds(row['path'],bad,allow_original=False)
             for edit in row['edits']:
@@ -51,7 +53,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
             with patch.object(Path,'read_bytes',lambda p:raw if p==FIXTURE else read(p)),self.assertRaises(AssertionError):scope()
 
     def test_production_margin_is_measured_absolute_bounded_and_resets(self):
-        live=(ROOT/GALLERY).read_text()
+        live=historical_bytes(GALLERY).decode()
         self.assertIn('if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical())\n            GlyphBoundsStatusView(this) else TextView(this)',live)
         self.assertIn('if(android.os.Build.VERSION.SDK_INT>=35 && status is GlyphBoundsStatusView)',live)
         body=live.split('private class GlyphBoundsStatusView',1)[1]
@@ -67,7 +69,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
         for forbidden in ['leadingInset+needed','setTextSize','setTypeface','substring','take(','replace(']:self.assertNotIn(forbidden,body)
 
     def test_strict_pixel_assertions_are_byte_identical_and_known_margin_is_fully_allocated(self):
-        live=(ROOT/FLOW).read_text();old=before_glyph_bounds(FLOW,live.encode(),allow_original=False).decode()
+        live=historical_bytes(FLOW).decode();old=before_glyph_bounds(FLOW,live.encode(),allow_original=False).decode()
         part=lambda s:s.split('    private fun assertPaintedInk(',1)[1].split('    private fun paintedInkReport',1)[0]
         self.assertEqual(part(old),part(live))
         for token in ['spans.size<=1','LeadingMarginSpan.Standard::class.java,span.javaClass',
@@ -79,7 +81,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
         self.assertEqual(before_painted_ink(FLOW,old.encode()),before_painted_ink(FLOW,live.encode()))
 
     def test_before_control_and_six_script_resets_retain_defect_specific_mutations(self):
-        live=(ROOT/FLOW).read_text()
+        live=historical_bytes(FLOW).decode()
         for token in ['Original Arabic native start bearing must overflow','Original Arabic draw must really lose expected ink',
                       'capturePaintedInk(beforeView,expectedBoundsWidth=false)','original-plain-before',
                       'Remeasure must not accumulate the margin','measure(width-48)','originalSize*.75f',
@@ -92,7 +94,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
         self.assertIn('assertArrayEquals("Clipping changes the actual draw only",intact.referencePixels,frame.referencePixels)',live)
 
     def test_installed_profile_preserves_prior_checks_and_requires_full_rasters_without_new_status_codes(self):
-        live=(ROOT/DEVICE).read_text();old=before_glyph_bounds(DEVICE,live.encode(),allow_original=False).decode()
+        live=historical_bytes(DEVICE).decode();old=before_glyph_bounds(DEVICE,live.encode(),allow_original=False).decode()
         self.assertEqual(methods(old),methods(live))
         for token in ['else listOf("fr","mn-Mong")','tag=="ar" && landscape','for(insert in listOf(false,true))',
                       'commons_metadata_query_failed','commons_credit_copy_failed_reason','ui_could_not_load_gallery_image',
@@ -112,7 +114,7 @@ class GlyphBoundsSuccessorContracts(unittest.TestCase):
         old=json.loads((ROOT/new['frozen_inventory_path']).read_text())
         self.assertEqual(892,len(new['expected']));self.assertEqual(old['expected'],new['expected'])
         self.assertEqual([],new['added_execution_identities']);self.assertEqual([],new['removed_execution_identities'])
-        self.assertEqual(digest((ROOT/FLOW).read_bytes()),new['flow_source_sha256'])
+        self.assertEqual(digest(historical_bytes(FLOW)),new['flow_source_sha256'])
         binding=json.loads((EVIDENCE/'historical-failure-binding.json').read_text())
         self.assertEqual([38239121942,38244193872,38250189049],[r['run_id'] for r in binding['checkpoints']])
         self.assertTrue(all(r['status']=='failed' for r in binding['checkpoints']))

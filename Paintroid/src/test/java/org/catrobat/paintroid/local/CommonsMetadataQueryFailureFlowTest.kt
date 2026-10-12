@@ -645,7 +645,7 @@ class CommonsMetadataQueryFailureFlowTest {
                     setLineSpacing(view.lineSpacingExtra,view.lineSpacingMultiplier)
                     breakStrategy=view.breakStrategy;hyphenationFrequency=view.hyphenationFrequency
                     justificationMode=view.justificationMode;lineBreakStyle=view.lineBreakStyle;lineBreakWordStyle=view.lineBreakWordStyle
-                    useBoundsForWidth=false;shiftDrawingOffsetForStartOverhang=false;text=view.text.toString()
+                    useBoundsForWidth=false;shiftDrawingOffsetForStartOverhang=false;this.text=view.text.toString()
                 }
                 beforeView.measure(View.MeasureSpec.makeMeasureSpec(view.width,View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
@@ -747,6 +747,9 @@ class CommonsMetadataQueryFailureFlowTest {
             }
         }
         try {
+            assertFalse("Status is settled before same-height replacement",view.isLayoutRequested)
+            show(original)
+            assertTrue("Status setter must request its own glyph remeasurement",view.isLayoutRequested)
             repeat(3) {measure();assertEquals("Remeasure must not accumulate the margin",initialInset,inset())}
             measure(width-48);check("width",original)
             view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,originalSize*.75f)
