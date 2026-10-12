@@ -28,6 +28,26 @@ def require_wording_shape(data, expected_keys, expected_tags):
     return data
 
 
+def require_locale_scope(data, expected_scoped_tags, offered_tags):
+    """Require the explicit, disjoint current scope; absence never implies review."""
+    if data.get('schema_version') != 1 or data.get('default_tag') != 'default':
+        raise ValueError('Current locale scope schema differs')
+    groups = []
+    for field in ('scoped_tags', 'fallback_tags'):
+        tags = data.get(field)
+        if (not isinstance(tags, list) or not tags or
+                not all(isinstance(tag, str) and tag for tag in tags) or
+                len(tags) != len(set(tags))):
+            raise ValueError('Missing, empty or duplicate locale scope: '+field)
+        groups.append(set(tags))
+    scoped, fallback = groups
+    if scoped != set(expected_scoped_tags) or scoped & fallback:
+        raise ValueError('Reviewed scope differs or overlaps fallback scope')
+    if len(offered_tags) != len(set(offered_tags)) or scoped | fallback != set(offered_tags):
+        raise ValueError('Explicit locale scope does not match current picker')
+    return scoped, fallback
+
+
 def require_string(xml, key, expected, constraints=None):
     """Validate one complete Android string, rejecting missing/duplicate definitions."""
     constraints = constraints or {}

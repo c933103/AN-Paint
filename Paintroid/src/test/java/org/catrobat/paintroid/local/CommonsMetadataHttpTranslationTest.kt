@@ -116,8 +116,8 @@ class CommonsMetadataHttpTranslationTest {
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
     }
-    @Test fun all140TagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
-        assertEquals(140,AppLanguage.tags(context).size)
+    @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
+        assertEquals(167,AppLanguage.tags(context).size)
         assertEquals(59,expectedMessages.size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
@@ -131,6 +131,6 @@ class CommonsMetadataHttpTranslationTest {
                 assertTrue(expected.contains("HTTP ${code}"))
             }
         }
-        assertEquals(81,fallbacks)
+        assertEquals(108,fallbacks)
     }
 }

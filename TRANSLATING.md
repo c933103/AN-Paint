@@ -22,6 +22,55 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Six language options added on 12 October 2026
+
+The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
+Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
+Android App languages. Their exact canonical XML catalogues intentionally contain
+no translated entries yet: all current translatable source strings and plural
+resources use default English fallback. Selecting a language is not a
+claim of translated UI, linguistic review, or installed-device verification.
+
+The existing picker explains untranslated English fallback. The dedicated
+[translation progress tracker](https://github.com/c933103/AN-Paint/pull/56)
+records the outstanding catalogue and review work. The addition fixture at
+`tools/fixtures/language_option_additions_20261012.json` records the six identities
+and status. Historical 140-choice/81-fallback evidence remains available in the
+[immutable archive](verification/README.md). Current regressions check the live
+resources and the explicit current scope directly.
+
+## Further options and principal varieties requested on 12 October 2026
+
+The successor inventory has **167 choices**, adding **21 options** to the merged
+146-choice baseline. Fourteen requested languages retain their individual option:
+Nigerian Pidgin (`pcm`), Somali (`so`), Assamese (`as`), Wolof (`wo`), Haitian Creole
+(`ht`), Tok Pisin (`tpi`), Navajo (`nv`), Cherokee (`chr`), Yucatec Maya (`yua`),
+Chamorro (`ch`), Samoan (`sm`), Māori (`mi`), Sanskrit (`sa`) and Tajik (`tg`).
+The current IANA registry marks Sanskrit as a macrolanguage; no narrower Sanskrit
+variety was requested.
+
+Following the clarification to use the main varieties, the broad `nah` and `qu`
+placeholders are replaced by seven concrete individual-language options:
+
+- Nahuatl: Central Huasteca (`nch`), Eastern Huasteca (`nhe`), Western Huasteca (`nhw`).
+- Quechua: Cusco (`quz`), Ayacucho / Chanka (`quy`), South Bolivian (`quh`),
+  Chimborazo Highland Quichua (`qug`).
+
+This is a practical principal-variety set, not an exhaustive catalogue. In
+particular, `quz` is not all Southern Quechua and `qug` is not all Ecuadorian Kichwa.
+Native-name bases are source-backed; regional qualifiers are explicit editorial
+disambiguators. No automatic fallback between these individual tags is implied.
+The source and selection limits are recorded with the addition fixture.
+
+Each new catalogue has **zero translated strings and plural resources**;
+all current translatable keys use default-English fallback pending actual translation.
+The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
+The explicit current scope preserves the original 59 scoped catalogues and all
+81 existing fallback identities, adding **27 empty catalogues for 108 fallbacks**.
+It checks current identity, status, resource values and fallback behavior without
+reconstructing historical snapshots. The earlier unpublished 162-choice candidate is superseded; its
+retained test/review evidence is historical and does not accept this successor.
+
 ## Editing a translation
 
 Edit the locale directly, for example:

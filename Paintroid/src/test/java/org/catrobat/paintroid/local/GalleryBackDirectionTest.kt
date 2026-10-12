@@ -48,7 +48,7 @@ class GalleryBackDirectionTest {
     @Test @Config(fontScale=2f)
     fun everyOfferedLocaleUsesAccessibleBackAndKeepsBothNavigationBranches()=withLanguageState {
         val tags=AppLanguage.tags(app)
-        assertEquals(140,tags.size)
+        assertEquals(167,tags.size)
         assertTrue(tags.containsAll(rtlTags))
         val records=JSONArray()
         try {

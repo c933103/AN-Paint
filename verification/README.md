@@ -32,6 +32,17 @@ with no demonstrated glyph, mark or line loss; this is a specific disposition,
 not a universal pixel tolerance. API30's 95 and API35's 104 scheduled installed
 methods passed, including both Arabic natural-update/full-raster checks.
 
+## Language-option evidence
+
+The accepted language-option records remain reachable at immutable develop
+[484d1b31](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834):
+- [Six-option registration and review](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-2026-10-12).
+- [Twenty-one concrete identities and principal-variety decision](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-second-2026-10-12).
+- [Superseded unpublished 162-choice candidate](https://github.com/c933103/AN-Paint/tree/484d1b31cb113c88351e6d0dbdaa0d503e5dd834/verification/language-options-superseded-162-2026-10-12).
+These records do not certify translated UI or current runtime behavior. The
+compact identity/status fixtures and explicit 59-scoped/108-fallback contract
+remain active; routine CI does not require the historical files.
+
 ## Files intentionally retained here
 
 - `legacy-font-metadata.json`: licensing/provenance input cited by the packaged

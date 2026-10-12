@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 import unittest
 import translation_catalogues as catalogues
-from current_localization_contracts import fixture, require_string
+from current_localization_contracts import fixture, require_string, require_locale_scope
 from test_translations import SCOPED_TAGS
 ROOT=Path(__file__).resolve().parents[1]
 JAVA=ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -12,6 +12,7 @@ KEY='ui_help23'
 class HelpCommonsProviderTest(unittest.TestCase):
     def test_provider_captions_segments_and_boundaries_match_current_help(self):
         data=fixture('help_commons_provider_current_contract.json')
+        _, fallback = require_locale_scope(fixture('locale_contract_scope.json'), SCOPED_TAGS, catalogues.offered_tags())
         paths={'default': catalogues.RES/'values/strings.xml', **catalogues.catalogue_paths()}
         self.assertEqual({'default'}|SCOPED_TAGS,set(data['provider_segments']))
         for tag,segment in data['provider_segments'].items():
@@ -26,7 +27,7 @@ class HelpCommonsProviderTest(unittest.TestCase):
                 self.assertEqual([],catalogues.android_string_errors(value))
                 self.assertEqual([],catalogues.format_string_errors(value,False))
         for tag,path in paths.items():
-            if tag!='default' and tag not in SCOPED_TAGS:
+            if tag in fallback:
                 self.assertNotIn(KEY,catalogues.read_strings(path))
 
     def test_source_assisted_punctuation_corrections(self):

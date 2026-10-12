@@ -118,7 +118,7 @@ class LocaleTooltipTest {
 
     @Test fun allPickerLocalesKeepNativeTextAndOnlyHorizontalBundledFacesAreAdded() {
         val tags=context.resources.getStringArray(R.array.app_language_tags)
-        assertEquals(140,tags.size)
+        assertEquals(167,tags.size)
         val previousResources=PaintApplication.currentResources
         try { for(tag in tags) {
             select(tag)

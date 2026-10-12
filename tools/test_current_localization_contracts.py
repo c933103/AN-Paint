@@ -1,11 +1,13 @@
 """Current wording, syntax, fallback and Unicode contracts, not linguistic certification."""
 from pathlib import Path
+import re
 import unittest
 import unicodedata
 import xml.etree.ElementTree as ET
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
+from language_option_additions import ADDED_TAGS
 
 ROOT = Path(__file__).resolve().parents[1]
 FAMILIES = ('commons_metadata_current_wording.json', 'commons_copy_credit_current_wording.json',
@@ -53,11 +55,41 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')
-        self.assertEqual(SCOPED_TAGS, set(scope['scoped_tags']))
-        self.assertEqual(59, len(scope['scoped_tags']))
-        self.assertEqual(81, len(scope['fallback_tags']))
-        self.assertFalse(set(scope['scoped_tags']) & set(scope['fallback_tags']))
-        self.assertEqual(set(catalogues.offered_tags()), set(scope['scoped_tags'] + scope['fallback_tags']))
+        scoped, fallback = require_locale_scope(scope, SCOPED_TAGS, catalogues.offered_tags())
+        self.assertEqual(59, len(scoped))
+        self.assertEqual(108, len(fallback))
+        self.assertEqual(27, len(ADDED_TAGS))
+        self.assertLessEqual(ADDED_TAGS, fallback)
+        self.assertEqual(fallback, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
+        source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt').read_text()
+        declaration = re.search(r'private val fallbackTags=setOf\((.*?)\n    \)', source, re.S)
+        self.assertIsNotNone(declaration)
+        runtime_fallbacks = re.findall(r'"([\w-]+)"', declaration.group(1))
+        self.assertEqual(len(fallback), len(runtime_fallbacks))
+        self.assertEqual(fallback, set(runtime_fallbacks))
+
+    def test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected(self):
+        from copy import deepcopy
+        original = fixture('locale_contract_scope.json')
+        offered = catalogues.offered_tags()
+        for field in ('scoped_tags', 'fallback_tags'):
+            for mutation in ('missing-group', 'empty-group', 'missing-tag', 'duplicate-tag', 'unknown-tag'):
+                data = deepcopy(original)
+                if mutation == 'missing-group': del data[field]
+                if mutation == 'empty-group': data[field] = []
+                if mutation == 'missing-tag': data[field].pop()
+                if mutation == 'duplicate-tag': data[field].append(data[field][0])
+                if mutation == 'unknown-tag': data[field][0] = 'zz-unknown'
+                with self.subTest(field=field, mutation=mutation), self.assertRaises(ValueError):
+                    require_locale_scope(data, SCOPED_TAGS, offered)
+        data = deepcopy(original)
+        data['fallback_tags'].append(data['scoped_tags'][0])
+        with self.assertRaises(ValueError): require_locale_scope(data, SCOPED_TAGS, offered)
+        for tag in ADDED_TAGS:
+            data = deepcopy(original); data['fallback_tags'].remove(tag)
+            with self.subTest(missing_added=tag), self.assertRaises(ValueError):
+                require_locale_scope(data, SCOPED_TAGS, offered)
+        with self.assertRaises(ValueError): require_locale_scope(original, SCOPED_TAGS, offered + [offered[0]])
 
     def test_all_current_values_attributes_placeholders_and_legal_literals(self):
         xml = {tag: path.read_text() for tag, path in paths().items()}
