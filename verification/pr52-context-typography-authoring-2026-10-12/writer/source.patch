@@ -1,0 +1,664 @@
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/FontCatalog.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/FontCatalog.kt
+index 0f07109..24ad358 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/FontCatalog.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/FontCatalog.kt
+@@ -41,7 +41,7 @@ class FontCatalog(private val context: Context) {
+         // Catalogue subsets supply missing glyphs for the default choice only;
+         // they are not complete drawing fonts and must not replace an explicit choice.
+         if(locale.language=="vi" && locale.script=="Hani" || locale.language=="wuu" && text.contains("𠲎"))
+-            LocaleTypography.typeface(context)?.let {return Typeface.create(it,style)}
++            LocaleTypography.typeface(context,locale)?.let {return Typeface.create(it,style)}
+         return face(index,style)
+     }
+     fun adapter() = object : ArrayAdapter<FontChoice>(context,android.R.layout.simple_spinner_dropdown_item,fonts) {
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt
+index 8d241ff..f696764 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt
+@@ -22,7 +22,7 @@ internal object LocaleTooltip {
+     internal fun format(context: Context,text: CharSequence?): CharSequence? {
+         if(text.isNullOrEmpty()) return text
+         val previous=(text as? Spanned)?.getSpans(0,text.length,Face::class.java).orEmpty()
+-        val font=if(VerticalText.uiVertical()) null else LocaleTypography.typeface(context)
++        val font=if(VerticalText.uiVertical(context)) null else LocaleTypography.typeface(context)
+         if(font==null && previous.isEmpty()) return text
+         // Copy rather than mutate caller-owned text; retain every unrelated span.
+         return SpannableString(text).apply {
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt
+index 030b07c..8d1754c 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt
+@@ -25,7 +25,7 @@ internal object LocaleTypography {
+         locale.language=="wuu" && locale.script=="Hans" -> "fonts/anpaintwuufallback.ttf"
+         else -> null
+     }
+-    fun typeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? {
++    fun typeface(context: Context,locale: Locale=VerticalText.uiLocale(context)): Typeface? {
+         val asset=asset(locale) ?: return null
+         return faces.getOrPut(asset) {Typeface.createFromAsset(context.assets,asset)}
+     }
+@@ -41,7 +41,7 @@ internal object LocaleTypography {
+      * Background/application contexts retain a standard, system-rendered text toast.
+      */
+     fun showMessage(context: Context,text: CharSequence,duration: Int,anchor: View?=null) {
+-        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()) {
++        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context)) {
+             val font=typeface(context)
+             if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return
+         }
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt
+index dba4a2b..93f6233 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt
+@@ -28,14 +28,14 @@ internal object VerticalText {
+     // the process default during configuration dispatch after our activity's
+     // override has already been applied; that must not turn existing UI sideways.
+     @Suppress("DEPRECATION")
+-    fun uiDirection(context: Context): TextDirection {
++    fun uiLocale(context: Context): Locale {
+         val configuration=context.resources.configuration
+-        val locale=if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
+-        return uiDirection(locale)
++        return if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
+     }
++    fun uiDirection(context: Context): TextDirection = uiDirection(uiLocale(context))
+     fun uiVertical(context: Context)=uiDirection(context)!=TextDirection.HORIZONTAL
+     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
+-    fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
++    fun uiTypeface(context: Context,locale: Locale=uiLocale(context)): Typeface? = LocaleTypography.typeface(context,locale)
+     /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */
+     fun clusters(text: String): List<String> {
+         val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNotificationTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNotificationTest.kt
+index 807b886..ec0c89d 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNotificationTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNotificationTest.kt
+@@ -3,6 +3,7 @@ package org.catrobat.paintroid.local
+ 
+ import android.app.Activity
+ import android.app.Dialog
++import android.content.Context
+ import android.content.ContextWrapper
+ import android.content.res.Configuration
+ import android.graphics.Insets
+@@ -38,31 +39,78 @@ import java.util.Locale
+ @GraphicsMode(GraphicsMode.Mode.NATIVE)
+ @LooperMode(LooperMode.Mode.PAUSED)
+ class LocaleNotificationTest {
+-    private lateinit var controller: ActivityController<Activity>
++    class NotificationActivity: Activity() {
++        override fun attachBaseContext(base: Context) {
++            val config=Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())}
++            super.attachBaseContext(base.createConfigurationContext(config))
++        }
++    }
++
++    private lateinit var controller: ActivityController<NotificationActivity>
+     private lateinit var previous: Locale
++    private lateinit var previousConfiguration: Configuration
+     private val activity get()=controller.get()
+     private val host get()=activity.findViewById<FrameLayout>(android.R.id.content)
+     private fun notice()=host.findViewWithTag<View>("locale_notification")
+     private fun message()=host.findViewWithTag<TextView>("locale_notification_text")
+     private fun advance(ms: Long)=shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(ms))
+     private fun show(text: String,duration: Int=Toast.LENGTH_SHORT)=LocaleTypography.showMessage(activity,text,duration)
++    @Suppress("DEPRECATION")
++    private fun selectLocale(locale: Locale) {
++        Locale.setDefault(locale)
++        // Only this fixture's configuration context changes; application resources stay untouched.
++        val config=Configuration(activity.resources.configuration).apply {setLocale(locale)}
++        activity.resources.updateConfiguration(config,activity.resources.displayMetrics)
++    }
+ 
+     @Before fun setup() {
+         previous=Locale.getDefault()
+         Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+-        controller=Robolectric.buildActivity(Activity::class.java).setup()
++        controller=Robolectric.buildActivity(NotificationActivity::class.java).setup()
++        previousConfiguration=Configuration(activity.resources.configuration)
+         activity.setContentView(FrameLayout(activity))
+         controller.visible().windowFocusChanged(true)
+         assertTrue("Lifecycle regressions require a real attached parent",host.isAttachedToWindow)
+         ShadowToast.reset()
+     }
++    @Suppress("DEPRECATION")
+     @After fun cleanup() {
+         controller.close()
+         advance(0)
++        activity.resources.updateConfiguration(previousConfiguration,activity.resources.displayMetrics)
+         Locale.setDefault(previous)
+         ShadowToast.reset()
+     }
+ 
++    @Test fun notificationRouteUsesResourcesDespiteAnOppositeProcessDefault() {
++        assertTrue("Real attached notification host",host.isAttachedToWindow)
++        for((tag,asset,value) in listOf(
++                Triple("vi-Hani","fonts/anpaintnomui.ttf","𡨸喃 𮞶"),
++                Triple("wuu-Hans","fonts/anpaintwuufallback.ttf","𠲎.png"))) {
++            selectLocale(Locale.forLanguageTag(tag))
++            Locale.setDefault(Locale.forLanguageTag("mn-Mong"))
++            assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
++            assertNotEquals(Locale.getDefault(),activity.resources.configuration.locales[0])
++            ShadowToast.reset();show(value)
++            assertNotNull("Resource-bound horizontal notice: $tag",notice())
++            assertEquals(value,message().text.toString())
++            assertEquals(android.graphics.Typeface.createFromAsset(activity.assets,asset),message().typeface)
++            assertEquals(value,message().createAccessibilityNodeInfo().text.toString())
++            assertNull(ShadowToast.getLatestToast())
++            advance(2100);assertNull("Normal short-notice timeout retained",notice())
++        }
++        for(tag in listOf("mn-Mong","en-US")) {
++            selectLocale(Locale.forLanguageTag(tag))
++            Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
++            assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
++            assertNotEquals(Locale.getDefault(),activity.resources.configuration.locales[0])
++            val value="$tag complete fallback message"
++            ShadowToast.reset();show(value)
++            assertNull("Resource-bound vertical/ordinary fallback: $tag",notice())
++            assertEquals(value,ShadowToast.getTextOfLatestToast())
++        }
++    }
++
+     @Test fun currentApiNomMessageUsesBundledFontAndFullResourceThroughWrappedContext() {
+         val config=Configuration(activity.resources.configuration).apply {setLocale(Locale.forLanguageTag("vi-Hani"))}
+         val text=activity.createConfigurationContext(config).getString(R.string.ui_cursor_pan_move32)
+@@ -79,7 +127,7 @@ class LocaleNotificationTest {
+ 
+     @Test fun currentApiWuSaveFeedbackUsesItsBundledSupplementaryGlyph() {
+         val locale=Locale.forLanguageTag("wuu-Hans")
+-        Locale.setDefault(locale)
++        selectLocale(locale)
+         val config=Configuration(activity.resources.configuration).apply {setLocale(locale)}
+         // The current canned Wu toast strings contain no supplementary glyph.
+         // A saved filename is user text and can contain the bundled U+20C8E.
+@@ -100,7 +148,7 @@ class LocaleNotificationTest {
+         val tags=activity.resources.getStringArray(R.array.app_language_tags).toList()
+         assertTrue(tags.containsAll(bundledHorizontal))
+         for(tag in tags) {
+-            Locale.setDefault(Locale.forLanguageTag(tag))
++            selectLocale(Locale.forLanguageTag(tag))
+             ShadowToast.reset()
+             show(tag)
+             if(tag in bundledHorizontal) {
+@@ -119,7 +167,7 @@ class LocaleNotificationTest {
+     }
+ 
+     @Test fun wuDialogAnchorAndBackgroundFallbackRetainTheirWindowBoundaries() {
+-        Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
++        selectLocale(Locale.forLanguageTag("wuu-Hans"))
+         val dialog=Dialog(activity)
+         val anchor=TextView(activity)
+         dialog.setContentView(anchor)
+@@ -365,7 +413,7 @@ class LocaleNotificationTest {
+ 
+     @Test fun ordinaryLocalesKeepTheirSystemToastBehavior() {
+         for(tag in listOf("vi","ko-KR","ko-KP","ko-Kore-KR","en")) {
+-            Locale.setDefault(Locale.forLanguageTag(tag))
++            selectLocale(Locale.forLanguageTag(tag))
+             show(tag)
+             assertNull(notice())
+             assertEquals(tag,ShadowToast.getTextOfLatestToast())
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
+index 580131a..a99f6bd 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipTest.kt
+@@ -1,6 +1,8 @@
+ /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+ package org.catrobat.paintroid.local
+ 
++import android.content.Context
++import android.content.res.Configuration
+ import android.graphics.Bitmap
+ import android.graphics.Canvas
+ import android.graphics.Color
+@@ -33,11 +35,16 @@ import java.util.Locale
+ @Config(sdk=[26,27,30,35])
+ @GraphicsMode(GraphicsMode.Mode.NATIVE)
+ class LocaleTooltipTest {
+-    private val context get()=RuntimeEnvironment.getApplication()
++    private lateinit var context: Context
+     private lateinit var previous: Locale
+-    @Before fun remember() {previous=Locale.getDefault()}
++    @Before fun remember() {previous=Locale.getDefault();context=RuntimeEnvironment.getApplication()}
+     @After fun restore() {Locale.setDefault(previous)}
+-    private fun select(tag: String) {Locale.setDefault(Locale.forLanguageTag(tag))}
++    private fun select(tag: String) {
++        val locale=Locale.forLanguageTag(tag)
++        Locale.setDefault(locale)
++        val base=RuntimeEnvironment.getApplication()
++        context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(locale)})
++    }
+     private fun spans(text: CharSequence?): Array<out MetricAffectingSpan> {
+         val value=requireNotNull(text)
+         return (value as? Spanned)?.getSpans(0,value.length,MetricAffectingSpan::class.java).orEmpty()
+@@ -122,8 +129,7 @@ class LocaleTooltipTest {
+         val previousResources=PaintApplication.currentResources
+         try { for(tag in tags) {
+             select(tag)
+-            val config=android.content.res.Configuration(context.resources.configuration).apply {setLocale(Locale.getDefault())}
+-            val localized=context.createConfigurationContext(config)
++            val localized=context
+             PaintApplication.currentResources=localized.resources
+             val view=View(localized).apply {contentDescription="accessible label"}
+             val original=SpannableString("$tag tooltip")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipWindowTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipWindowTest.kt
+index 535739f..328b7f5 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipWindowTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipWindowTest.kt
+@@ -2,6 +2,8 @@
+ package org.catrobat.paintroid.local
+ 
+ import android.app.Activity
++import android.content.Context
++import android.content.res.Configuration
+ import android.os.Looper
+ import android.view.InputDevice
+ import android.view.MotionEvent
+@@ -34,7 +36,14 @@ import java.util.Locale
+ @GraphicsMode(GraphicsMode.Mode.NATIVE)
+ @LooperMode(LooperMode.Mode.PAUSED)
+ class LocaleTooltipWindowTest {
+-    private lateinit var controller: ActivityController<Activity>
++    class TooltipActivity: Activity() {
++        override fun attachBaseContext(base: Context) {
++            val config=Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())}
++            super.attachBaseContext(base.createConfigurationContext(config))
++        }
++    }
++
++    private lateinit var controller: ActivityController<TooltipActivity>
+     private lateinit var previous: Locale
+     private lateinit var host: FrameLayout
+     private lateinit var anchor: View
+@@ -43,7 +52,7 @@ class LocaleTooltipWindowTest {
+ 
+     @Before fun attach() {
+         previous=Locale.getDefault();Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+-        controller=Robolectric.buildActivity(Activity::class.java).setup()
++        controller=Robolectric.buildActivity(TooltipActivity::class.java).setup()
+         host=FrameLayout(activity)
+         anchor=View(activity).apply {isClickable=true;contentDescription="original accessible label"}
+         host.addView(anchor,FrameLayout.LayoutParams(80,60).apply {leftMargin=100;topMargin=100})
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyApi21Test.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyApi21Test.kt
+index 4cf2353..a4562e6 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyApi21Test.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyApi21Test.kt
+@@ -2,6 +2,7 @@
+ package org.catrobat.paintroid.local
+ 
+ import android.content.Context
++import android.content.res.Configuration
+ import android.graphics.Typeface
+ import android.widget.ArrayAdapter
+ import android.widget.EditText
+@@ -26,11 +27,15 @@ import java.util.Locale
+ @RunWith(RobolectricTestRunner::class)
+ @Config(sdk=[21],shadows=[Api21ViewBackedToast::class])
+ class LocaleTypographyApi21Test {
++    private fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
++        base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
++    }
++
+     @Test fun tooltipSetterDoesNotLinkApi26MethodsOrChangeApi21Interactions() {
+         val previous=Locale.getDefault()
+         try {
+             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+-            val view=android.view.View(RuntimeEnvironment.getApplication()).apply {contentDescription="original"}
++            val view=android.view.View(localizedContext()).apply {contentDescription="original"}
+             var clicks=0
+             view.setOnLongClickListener {clicks++;true}
+             for(text in listOf("𡨸喃",null,"")) org.catrobat.paintroid.classic.LocaleTooltip.set(view,text)
+@@ -43,7 +48,7 @@ class LocaleTypographyApi21Test {
+         val previous=Locale.getDefault()
+         try {
+             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+-            val context=RuntimeEnvironment.getApplication()
++            val context=localizedContext()
+             // The API21 legacy shadow compares font family/style, not object identity.
+             val face=Typeface.createFromAsset(context.assets,"fonts/anpaintnomui.ttf")
+             val root=LinearLayout(context)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyTest.kt
+index 6a1fefa..5679676 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTypographyTest.kt
+@@ -1,6 +1,7 @@
+ /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+ package org.catrobat.paintroid.local
+ 
++import android.content.res.Configuration
+ import android.graphics.Paint
+ import android.graphics.Typeface
+ import android.widget.EditText
+@@ -23,6 +24,10 @@ import java.util.Locale
+ @Config(sdk=[30])
+ @GraphicsMode(GraphicsMode.Mode.NATIVE)
+ class LocaleTypographyTest {
++    private fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
++        base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
++    }
++
+     @Test fun uiSubsetsStayOutOfDrawingChoicesAndPreserveExplicitFonts() {
+         val context=RuntimeEnvironment.getApplication()
+         val old=Locale.getDefault()
+@@ -33,7 +38,7 @@ class LocaleTypographyTest {
+             assertTrue(explicit>0)
+             for((tag,text) in listOf("vi-Hani" to "𡨸喃", "wuu-Hans" to "𠲎")) {
+                 Locale.setDefault(Locale.forLanguageTag(tag))
+-                val fallback=Typeface.create(LocaleTypography.typeface(context),Typeface.BOLD)
++                val fallback=Typeface.create(LocaleTypography.typeface(context,Locale.getDefault()),Typeface.BOLD)
+                 assertSame(tag,fallback,catalog.faceForText(0,text,Typeface.BOLD))
+                 assertSame(tag,catalog.face(explicit),catalog.faceForText(explicit,text))
+             }
+@@ -44,10 +49,10 @@ class LocaleTypographyTest {
+         } finally {Locale.setDefault(old)}
+     }
+     @Test fun nomFontReachesNativeControlsButPreservesExplicitTextFonts() {
+-        val context=RuntimeEnvironment.getApplication()
+         val old=Locale.getDefault()
+         try {
+             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
++            val context=localizedContext()
+             val font=LocaleTypography.typeface(context)!!
+             val paint=Paint().apply {typeface=font;textSize=32f}
+             for(text in listOf("𡨸","𥻂","𦻳","𮞶")) assertTrue(text,paint.hasGlyph(text))
+@@ -77,9 +82,10 @@ class LocaleTypographyTest {
+             assertSame(font,popupRow.typeface)
+             assertEquals("𮞶",popupRow.text.toString())
+             Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
+-            val wu=LocaleTypography.typeface(context)!!
++            val wuContext=localizedContext()
++            val wu=LocaleTypography.typeface(wuContext)!!
+             assertTrue(Paint().apply {typeface=wu}.hasGlyph("𠲎"))
+-            val catalog=org.catrobat.paintroid.classic.FontCatalog(context)
++            val catalog=org.catrobat.paintroid.classic.FontCatalog(wuContext)
+             assertFalse(catalog.fonts.any {it.id=="anpaintwuufallback"})
+         } finally {Locale.setDefault(old)}
+     }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
+index 66114ad..94bd390 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
+@@ -130,7 +130,8 @@ class UiDirectionContextTest {
+     @Test fun rotationAndRecreationPreserveSelectedDirectionDespiteLaterDefaultReset() {
+         for((tag,vertical,rtl) in listOf(
+                 Triple("lzh-Hant",true,true),Triple("mnc-Mong",true,false),
+-                Triple("en-XV",true,false),Triple("qaa-Zsye-XV",true,true),Triple("en-US",false,false))) {
++                Triple("en-XV",true,false),Triple("qaa-Zsye-XV",true,true),Triple("en-US",false,false),
++                Triple("vi-Hani",false,false),Triple("wuu-Hans",false,false))) {
+             withEditor(tag) {controller ->
+                 var activity=controller.get()
+                 activity.document.newImage(17,11)
+@@ -186,6 +187,19 @@ class UiDirectionContextTest {
+         assertEquals(tag,AppLanguage.selectedTag(activity))
+         assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+         assertEquals(opposite(vertical),Locale.getDefault())
++        val asset=when(tag) {
++            "mnc-Mong" -> "fonts/notosansmongolian.ttf"
++            "vi-Hani" -> "fonts/anpaintnomui.ttf"
++            "wuu-Hans" -> "fonts/anpaintwuufallback.ttf"
++            else -> null
++        }
++        asset?.let {path ->
++            val expected=android.graphics.Typeface.createFromAsset(activity.assets,path)
++            for(view in widgets(activity)) {
++                assertEquals("New control after callback/default reset: $tag",expected,view.typeface)
++                assertEquals("Sample 95\nNative text",view.text.toString())
++            }
++        }
+         val root=activity.window.decorView
+         assertEquals("Workspace scaffold follows resources",vertical,root.findViewWithTag<View>("vertical_status_rail")!=null)
+         val file=root.findViewWithTag<TextView>("menu_File")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/UiTypographyContextTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiTypographyContextTest.kt
+new file mode 100644
+index 0000000..ef4afb4
+--- /dev/null
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiTypographyContextTest.kt
+@@ -0,0 +1,178 @@
++/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
++package org.catrobat.paintroid.local
++
++import android.content.Context
++import android.content.res.Configuration
++import android.graphics.Paint
++import android.graphics.Typeface
++import android.os.Build
++import android.text.Spanned
++import android.text.TextPaint
++import android.text.style.MetricAffectingSpan
++import android.widget.ArrayAdapter
++import android.widget.EditText
++import android.widget.LinearLayout
++import android.widget.Spinner
++import android.widget.TextView
++import org.catrobat.paintroid.classic.*
++import org.junit.Assert.*
++import org.junit.Test
++import org.junit.runner.RunWith
++import org.robolectric.RobolectricTestRunner
++import org.robolectric.RuntimeEnvironment
++import org.robolectric.annotation.Config
++import org.robolectric.annotation.GraphicsMode
++import java.util.Locale
++
++/** API21/24 establish binding with legacy fonts, not real glyph geometry.
++ * API30/35 additionally exercise native glyph coverage; direction has its own
++ * unchanged native geometry and lifecycle tests.
++ */
++@RunWith(RobolectricTestRunner::class)
++@Config(sdk=[21,24,30,35],qualifiers="en-rUS")
++@GraphicsMode(GraphicsMode.Mode.NATIVE)
++class UiTypographyContextTest {
++    private data class Profile(val tag: String,val asset: String,val sample: String)
++    private val base get()=RuntimeEnvironment.getApplication() as Context
++    private fun profiles(): List<Profile> = listOf(
++        Profile("vi-Hani","fonts/anpaintnomui.ttf","𡨸喃 𮞶"),
++        Profile("wuu-Hans","fonts/anpaintwuufallback.ttf","𠲎")
++    )+AppLanguage.tags(base).filter {Locale.forLanguageTag(it).script=="Mong"}
++        .map {Profile(it,"fonts/notosansmongolian.ttf","ᠮᠣᠩᠭᠣᠯ ᡤ")}
++    private fun localized(tag: String)=base.createConfigurationContext(
++        Configuration(base.resources.configuration).apply {setLocale(Locale.forLanguageTag(tag))})
++    @Suppress("DEPRECATION")
++    private fun resourceLocale(context: Context)=if(Build.VERSION.SDK_INT>=24)
++        context.resources.configuration.locales[0] else context.resources.configuration.locale
++    private fun withDefault(tag: String,check: ()->Unit) {
++        val before=Locale.getDefault()
++        try {Locale.setDefault(Locale.forLanguageTag(tag));check()}
++        finally {Locale.setDefault(before)}
++    }
++    private fun requiredFace(profile: Profile,context: Context)=Typeface.createFromAsset(context.assets,profile.asset)
++    private fun checkFace(profile: Profile,view: TextView) {
++        assertEquals("Bundled asset for ${profile.tag}",requiredFace(profile,view.context),view.typeface)
++        assertEquals(profile.sample,view.text.toString())
++        // These binding-only views are detached; API21 needs an attached window for
++        // a real accessibility node. Attached notification/dialog tests cover that path.
++        if(Build.VERSION.SDK_INT>=26) {
++            val paint=Paint(view.paint)
++            profile.sample.codePoints().filter {it!=32}.forEach {point ->
++                assertTrue("${profile.tag} U+${point.toString(16)}",paint.hasGlyph(String(Character.toChars(point))))
++            }
++        }
++    }
++
++    @Test fun freshControlsUseEveryApplicableResourceFontAfterDefaultReset() {
++        val required=profiles()
++        assertTrue(required.any {it.tag=="mn-Mong"})
++        assertTrue(required.any {it.tag=="mnc-Mong"})
++        for(profile in required) {
++            val context=localized(profile.tag)
++            withDefault("en-US") {
++                assertEquals(profile.tag,resourceLocale(context).toLanguageTag())
++                assertNotEquals(resourceLocale(context),Locale.getDefault())
++                val expected=requiredFace(profile,context)
++                assertEquals(expected,LocaleTypography.typeface(context))
++                assertEquals(expected,VerticalText.uiTypeface(context))
++                val button=FlowButton(context).apply {this.text=profile.sample}
++                val label=FlowTextView(context).apply {this.text=profile.sample}
++                listOf(button,label).forEach {checkFace(profile,it)}
++                if(Locale.forLanguageTag(profile.tag).script=="Mong") {
++                    val caption=TextView(context).apply {this.text=profile.sample}
++                    VerticalUi.caption(caption)
++                    checkFace(profile,caption)
++                }
++            }
++        }
++    }
++
++    @Test fun installerCoversNewChildrenAndSpinnerWithoutReplacingExplicitDrawingFaces() {
++        for(profile in profiles()) {
++            val context=localized(profile.tag)
++            withDefault("en-US") {
++                val expected=requiredFace(profile,context)
++                val root=LinearLayout(context)
++                val label=TextView(context).apply {this.text=profile.sample}
++                val field=EditText(context).apply {setText(profile.sample)}
++                val bold=TextView(context).apply {typeface=Typeface.DEFAULT_BOLD}
++                val explicit=EditText(context).apply {tag="text_content";typeface=Typeface.MONOSPACE}
++                val preview=TextView(context).apply {tag="font_option_monospace";typeface=Typeface.MONOSPACE}
++                listOf(label,field,bold,explicit,preview).forEach {root.addView(it)}
++                LocaleTypography.install(root)
++                checkFace(profile,label);checkFace(profile,field)
++                assertEquals(Typeface.create(expected,Typeface.BOLD),bold.typeface)
++                assertSame(Typeface.MONOSPACE,explicit.typeface);assertSame(Typeface.MONOSPACE,preview.typeface)
++                val added=TextView(context).apply {this.text=profile.sample};root.addView(added)
++                val spinner=Spinner(context).apply {
++                    adapter=ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,listOf("first",profile.sample))
++                    setSelection(1)
++                }
++                root.addView(spinner);root.viewTreeObserver.dispatchOnGlobalLayout()
++                checkFace(profile,added)
++                assertEquals(1,spinner.selectedItemPosition)
++                val row=spinner.adapter.getDropDownView(1,null,root) as TextView
++                assertEquals(expected,row.typeface);assertEquals(profile.sample,row.text.toString())
++                assertSame(Typeface.MONOSPACE,explicit.typeface);assertSame(Typeface.MONOSPACE,preview.typeface)
++            }
++        }
++    }
++
++    @Test fun englishResourcesDoNotInheritAnUnrelatedProcessBundledFace() {
++        val context=localized("en-US")
++        val normal=withEnglishDefaults(context)
++        for(processTag in listOf("vi-Hani","wuu-Hans","mn-Mong")) withDefault(processTag) {
++            assertEquals("en-US",resourceLocale(context).toLanguageTag())
++            assertNotEquals(resourceLocale(context),Locale.getDefault())
++            assertNull(LocaleTypography.typeface(context));assertNull(VerticalText.uiTypeface(context))
++            assertEquals(normal.first,FlowButton(context).typeface)
++            assertEquals(normal.second,FlowTextView(context).typeface)
++            val root=LinearLayout(context)
++            val label=TextView(context).apply {this.text="English label";typeface=Typeface.SERIF}
++            root.addView(label);LocaleTypography.install(root);root.viewTreeObserver.dispatchOnGlobalLayout()
++            assertSame(Typeface.SERIF,label.typeface)
++            assertEquals("English label",label.text.toString())
++        }
++    }
++    private fun withEnglishDefaults(context: Context): Pair<Typeface?,Typeface?> {
++        var result: Pair<Typeface?,Typeface?>?=null
++        withDefault("en-US") {result=FlowButton(context).typeface to FlowTextView(context).typeface}
++        return result!!
++    }
++
++    @Test fun explicitLocaleAndPickerOverridesRemainIndependentOfContextAndProcess() {
++        val context=localized("en-US")
++        withDefault("lzh-Hant") {
++            for(profile in profiles()) {
++                val locale=Locale.forLanguageTag(profile.tag)
++                val expected=requiredFace(profile,context)
++                assertEquals(expected,LocaleTypography.typeface(context,locale))
++                assertEquals(expected,VerticalText.uiTypeface(context,locale))
++                if(locale.script!="Mong") {
++                    val row=TextView(context).apply {this.text=profile.sample;contentDescription=profile.sample}
++                    VerticalUi.languageChoice(row,locale)
++                    checkFace(profile,row)
++                    assertEquals(profile.sample,row.contentDescription.toString())
++                }
++            }
++            assertNull(LocaleTypography.typeface(localized("vi-Hani"),Locale.US))
++        }
++    }
++
++    @Test fun tooltipFontAndVerticalExclusionUseTheSameResourceLocale() {
++        for(profile in profiles()) {
++            val context=localized(profile.tag)
++            val vertical=Locale.forLanguageTag(profile.tag).script=="Mong"
++            withDefault(if(vertical) "vi-Hani" else "mn-Mong") {
++                val formatted=LocaleTooltip.format(context,profile.sample)!!
++                val spans=(formatted as? Spanned)?.getSpans(0,formatted.length,MetricAffectingSpan::class.java).orEmpty()
++                assertEquals(profile.sample,formatted.toString())
++                if(vertical) assertTrue(spans.isEmpty())
++                else {
++                    val paint=TextPaint();spans.single().updateMeasureState(paint)
++                    assertEquals(requiredFace(profile,context),paint.typeface)
++                }
++            }
++        }
++    }
++}
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/ViewportAndVerticalTextTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/ViewportAndVerticalTextTest.kt
+index 6f2fe3e..6b215b5 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/ViewportAndVerticalTextTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/ViewportAndVerticalTextTest.kt
+@@ -1,6 +1,7 @@
+ /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+ package org.catrobat.paintroid.local
+ 
++import android.content.res.Configuration
+ import android.graphics.*
+ import android.view.MotionEvent
+ import org.catrobat.paintroid.classic.*
+@@ -179,13 +180,16 @@ class ViewportAndVerticalTextTest {
+     }
+     @Test fun verticalLocaleDefaultsAndSettingsSurviveSerialization() {
+         val old=Locale.getDefault()
++        fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
++            base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
++        }
+         try {
+             Locale.setDefault(Locale.forLanguageTag("lzh-Hant"));assertEquals(TextDirection.VERTICAL_RL,TextSettings().direction)
+             Locale.setDefault(Locale.forLanguageTag("mn-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
+-            val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(font)
++            val font=VerticalText.uiTypeface(localizedContext());assertNotNull(font)
+             val paint=Paint().apply {typeface=font;textSize=40f};assertTrue(paint.hasGlyph("ᠮ"))
+             Locale.setDefault(Locale.forLanguageTag("mnc-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
+-            assertSame(font,VerticalText.uiTypeface(RuntimeEnvironment.getApplication()))
++            assertSame(font,VerticalText.uiTypeface(localizedContext()))
+             assertTrue(paint.hasGlyph("ᡤ"))
+             assertEquals(TextDirection.VERTICAL_LR,VerticalText.uiDirection(Locale.forLanguageTag("en-XV")))
+             assertEquals(TextDirection.VERTICAL_RL,VerticalText.uiDirection(Locale.forLanguageTag("qaa-Zsye-XV")))
+diff --git a/tools/test_locale_tooltips.py b/tools/test_locale_tooltips.py
+index ecd45cb..574b970 100644
+--- a/tools/test_locale_tooltips.py
++++ b/tools/test_locale_tooltips.py
+@@ -24,7 +24,7 @@ class LocaleTooltipSourceTest(unittest.TestCase):
+     def test_metric_span_preserves_native_ownership_and_measure_draw_font(self):
+         source=(JAVA/'LocaleTooltip.kt').read_text()
+         for text in ('if(Build.VERSION.SDK_INT>=26) view.tooltipText=format(view.context,text)',
+-                     'if(VerticalText.uiVertical()) null else LocaleTypography.typeface(context)',
++                     'if(VerticalText.uiVertical(context)) null else LocaleTypography.typeface(context)',
+                      'MetricAffectingSpan()',
+                      'paint.typeface=Typeface.create(font,paint.typeface?.style ?: Typeface.NORMAL)',
+                      'override fun updateMeasureState(paint: TextPaint)=apply(paint)',
+diff --git a/tools/test_nom_notifications.py b/tools/test_nom_notifications.py
+index 71ec8c4..0cdc597 100644
+--- a/tools/test_nom_notifications.py
++++ b/tools/test_nom_notifications.py
+@@ -11,7 +11,7 @@ class NomNotificationSourceTest(unittest.TestCase):
+     def test_current_api_bundled_horizontal_route_keeps_nom_and_includes_wu(self):
+         text=(JAVA/'LocaleTypography.kt').read_text()
+         self.assertIn('fun showMessage(',text)
+-        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()',text)
++        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context)',text)
+         self.assertIn('val font=typeface(context)',text)
+         self.assertNotIn('asset()=="fonts/anpaintnomui.ttf"',text)
+         self.assertIn('if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return',text)
+diff --git a/tools/test_vertical_notice_characterization.py b/tools/test_vertical_notice_characterization.py
+index 44bb6fc..619cf16 100644
+--- a/tools/test_vertical_notice_characterization.py
++++ b/tools/test_vertical_notice_characterization.py
+@@ -115,7 +115,7 @@ class VerticalNoticeCharacterizationContractTest(unittest.TestCase):
+ 
+     def test_characterization_does_not_enable_route_or_implement_policy(self):
+         route = (ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt").read_text()
+-        self.assertIn("if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical())", route)
++        self.assertIn("if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context))", route)
+         source = TEST.read_text()
+         self.assertIn('importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_NO', source)
+         self.assertEqual(1, source.count("announceForAccessibility("))
