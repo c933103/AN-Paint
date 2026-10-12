@@ -1,0 +1,27 @@
+{
+  "status": "PASS_BOUNDED_PATTERN_SCREEN",
+  "input_files": 113,
+  "input_bytes": 420008,
+  "categories": [
+    "github_credential",
+    "aws_access_key",
+    "private_key",
+    "jwt",
+    "bearer_value",
+    "basic_value",
+    "generic_token_assignment",
+    "sensitive_assignment",
+    "sensitive_url_parameter",
+    "unmasked_password_option"
+  ],
+  "counts": {
+    "generic_token_assignment:masked_null_boolean_or_zero": 1,
+    "sensitive_assignment:github_checkout_authorization_masked": 1
+  },
+  "unresolved_locations": [],
+  "limits": [
+    "Bounded credential/header/query pattern screen only; no universal sensitive-data absence claim.",
+    "Original primary logs/XML remain local/Actions; this receipt prints no matched values."
+  ],
+  "input_manifest_sha256": "3a63a362265be894df8c30943f3faa545d64a37089b541b080c5d14a65fa1f27"
+}

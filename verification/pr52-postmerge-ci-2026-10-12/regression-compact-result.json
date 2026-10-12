@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "event": "push",
+  "tested_revision": "b20a827979d5bf9cd9e20898c65dcdc05fc7736a",
+  "tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "run_id": 38322285642,
+  "jvm": {
+    "expected_count": 932,
+    "actual_count": 932,
+    "passing_testcases": 932,
+    "missing": [],
+    "unexpected": [],
+    "duplicates": [],
+    "failures_and_errors": [],
+    "skipped": [],
+    "parse_or_count_errors": []
+  },
+  "success_pairs": 112,
+  "diagnostic_profiles": 28,
+  "ink_frames": 189,
+  "control_receipts": [
+    {
+      "name": "native-negative-controls-font1.0.json",
+      "sha256": "f73d9edca9a400c8aaf869c2f78d58f8a650c67bfcfd694cc8f3c8143f89cc7b",
+      "intact_profiles": 6,
+      "rejected_native_mutants": 39
+    },
+    {
+      "name": "native-negative-controls-font2.0.json",
+      "sha256": "e07729ec1b8b16fa6c00cc2f385cc50b0350bbb9f13530cd13ded4bfd6f57f79",
+      "intact_profiles": 6,
+      "rejected_native_mutants": 39
+    },
+    {
+      "name": "native-inset-resets-font1.0.json",
+      "sha256": "6280276606be80f7168f056e49e5f92f8ba4f6b6241bce7eaecf3ca6442e8843",
+      "profiles": 6,
+      "positive_reset_cases": 30
+    },
+    {
+      "name": "native-inset-resets-font2.0.json",
+      "sha256": "439907b01d0dd5dba8431afea01599ef8483ece347b39533c19ce7d2745c3775",
+      "profiles": 6,
+      "positive_reset_cases": 30
+    }
+  ],
+  "fresh_ink_status": "PASS",
+  "old_advance_diagnostic": [
+    {
+      "profile": "api35-ain-Kana-640x320-font1.0-copy-before-checks",
+      "line": 0,
+      "left": 0,
+      "right": 1233.043,
+      "layout_width": 1232,
+      "text": "\u30ce\u30ab \u30aa\u30eb\u31f1\u30da \u30a2\u30a2\u30c3\u30c8\u30a5\u31f7\u309a\u30c6 \u30a8\u30a2\u30a4\u30ab\u31f7\u309a: \u30bf\u30c8\u30a5\u31fa (\u30ce\u30ab \u30aa\u30eb\u31f1\u30da) \u30a2\u30ca\u31f0 Commons \u30a2\u30b3\u30cc \u30a8\u30a2",
+      "ink_pixels_outside_layout": 0
+    }
+  ],
+  "pixel_audit_sha256": "483164df091bd43614426d7215352117c6d88448ad203d7545e9df95eb91be10",
+  "source_discovery_scope": "Current Kotlin @Test declarations expanded by literal class/method @Config SDK lists; final selected SDK uses the unsuffixed Robolectric identity. No historical inventory fixture.",
+  "source_inventory_sha256": "3e4d4992f84eb49ffb93bf6021d59db271f677ebe8b898e4aad0ce02cfa1ebd7",
+  "limits": [
+    "All expected identities derived from current source; not a permanent historical source gate.",
+    "Large detailed audit result and original CI files remain local/Actions unless separately selected.",
+    "All review-required positive raster differences retain a separate explicit disposition."
+  ]
+}

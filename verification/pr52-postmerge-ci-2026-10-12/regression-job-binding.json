@@ -1,0 +1,56 @@
+{
+  "status": "PASS_PUSH_LOG_SOURCE_AND_UPLOAD_BINDING",
+  "event": "push",
+  "run_id": 38322285642,
+  "tested_revision": "b20a827979d5bf9cd9e20898c65dcdc05fc7736a",
+  "synthetic_merge": null,
+  "artifact_id": 11779623379,
+  "log_sha256": "cd4cf685b1494b48706be18d4c97e8ae6d1ca209b65f5c7d2d1f3fee59575e88",
+  "log_bytes": 155808,
+  "evidence_lines": [
+    {
+      "line": 111,
+      "text": "2026-10-12T23:28:14.3113367Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b20a827979d5bf9cd9e20898c65dcdc05fc7736a:refs/remotes/origin/develop"
+    },
+    {
+      "line": 124,
+      "text": "2026-10-12T23:28:15.5311779Z [command]/usr/bin/git checkout --progress --force -B develop refs/remotes/origin/develop"
+    },
+    {
+      "line": 128,
+      "text": "2026-10-12T23:28:15.7027074Z [command]/usr/bin/git log -1 --format=%H"
+    },
+    {
+      "line": 129,
+      "text": "2026-10-12T23:28:15.7063404Z b20a827979d5bf9cd9e20898c65dcdc05fc7736a"
+    },
+    {
+      "line": 686,
+      "text": "2026-10-12T23:35:06.5036872Z > Task :Paintroid:compileDebugUnitTestKotlin"
+    },
+    {
+      "line": 761,
+      "text": "2026-10-12T23:35:53.5050198Z > Task :Paintroid:testDebugUnitTest"
+    },
+    {
+      "line": 776,
+      "text": "2026-10-12T23:42:22.9077322Z BUILD SUCCESSFUL in 9m 24s"
+    },
+    {
+      "line": 1428,
+      "text": "2026-10-12T23:45:47.0567256Z SHA256 digest of uploaded artifact is d58e21d85bbf2f50156f7c03c80869c1ee33dd085d63b508d27521690db239c7"
+    },
+    {
+      "line": 1431,
+      "text": "2026-10-12T23:45:47.4217639Z Artifact regression-and-lint-b20a827979d5bf9cd9e20898c65dcdc05fc7736a has been successfully uploaded! Final size is 78872635 bytes. Artifact ID is 11779623379"
+    },
+    {
+      "line": 1432,
+      "text": "2026-10-12T23:45:47.4222377Z Artifact download URL: https://github.com/c933103/AN-Paint/actions/runs/38322285642/artifacts/11779623379"
+    }
+  ],
+  "limits": [
+    "Remote log authenticity is provided by separately verified GitHub receipt.",
+    "Current-source JUnit identities and phase exits are reconciled separately."
+  ]
+}

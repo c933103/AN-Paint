@@ -1,0 +1,107 @@
+{
+  "status": "EXPLICIT_POSTMERGE_DISPOSITION_WITH_VERIFIED_VISUAL_REUSE",
+  "head": "b20a827979d5bf9cd9e20898c65dcdc05fc7736a",
+  "tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "run_id": 38322285642,
+  "profile": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+  "exact_pixel_comparison_passed": false,
+  "review_required_preserved": true,
+  "lost_pixels": [
+    {
+      "layout_xy": [
+        1232,
+        29
+      ],
+      "reference_xy": [
+        2419,
+        31
+      ],
+      "actual_xy": [
+        1256,
+        29
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        36,
+        7
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layout_xy": [
+        1232,
+        30
+      ],
+      "reference_xy": [
+        2419,
+        32
+      ],
+      "actual_xy": [
+        1256,
+        30
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "affected_components": [
+    {
+      "reference_samples": 78,
+      "missing_samples": 2,
+      "reference_alpha_sum": 10633,
+      "missing_alpha_sum": 8,
+      "max_reference_alpha": 255,
+      "max_missing_alpha": 7,
+      "component_entirely_missing": false
+    }
+  ],
+  "hard_missing_whole_components": 0,
+  "hard_missing_opaque_samples": 0,
+  "allocation_edge_contact": 0,
+  "inspected_images": [
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+      "sha256": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf",
+      "bytes": 36634
+    },
+    {
+      "path": "Paintroid/build/reports/commons-metadata-m04-painted-ink/api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png",
+      "sha256": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3",
+      "bytes": 39721
+    }
+  ],
+  "visual_review": "Fresh actual/reference PNGs are byte-identical to specifically inspected e19 originals and accepted premerge images. That limited visual assessment is reused; original-resolution metrics and native mutations are freshly recomputed. No new opening of unchanged JVM images is claimed.",
+  "disposition": "Accept only this specific low-severity antialias fringe for the bounded readable-status requirement; retain exact=false and review_required=true. No universal tolerance, fluency or full glyph/grapheme guarantee follows.",
+  "limits": [
+    "The prior image tool displayed the 2519x332 reference at 2048x270; all current numeric checks use original-resolution bytes.",
+    "Installed strict-zero-difference tests are separately audited and not relaxed by this disposition."
+  ],
+  "prior_inspected_evidence": {
+    "head": "e19c766eb3eaedc1b3cd3657bb92864f81a9498a",
+    "run": 38299305241,
+    "commit": "f066e90b8fc7682023e0bf260da55959e6ebf9e5",
+    "path": "verification/pr55-platform-locale-ci-2026-10-12/fresh-fringe-disposition.json",
+    "sha256": "61c1cccf65c568184e000a294faf4c152c5def2a59a98ab8510602d20b98995c"
+  },
+  "fresh_comparison_sha256": "34d82b0dbfb64caa8b92df1a079b33b02e833cc157abe89861cf843cd2a7dd26",
+  "fresh_forensics_sha256": "ad57578fb220446901f80469c264b65896deb4c965e925b00098d5199365a751",
+  "event": "push",
+  "tested_revision": "b20a827979d5bf9cd9e20898c65dcdc05fc7736a",
+  "synthetic_merge": null
+}
