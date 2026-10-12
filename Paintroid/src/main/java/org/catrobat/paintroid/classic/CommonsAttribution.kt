@@ -15,6 +15,9 @@ import java.net.URL
 
 /** Capture file-specific attribution, not the Commons site footer's unrelated licence. */
 internal object CommonsAttribution {
+    /** Application-owned streaming response limit; localize only at the alive UI boundary. */
+    class ResponseLimitException: IOException()
+
     private const val MAX_RESPONSE = 2 * 1024 * 1024
     private const val MAX_FIELD = 64 * 1024
     private val fields = listOf("ObjectName", "Artist", "Credit", "Attribution", "LicenseShortName",
@@ -73,7 +76,7 @@ internal object CommonsAttribution {
                 while (true) {
                     checkActive()
                     val count = input.read(buffer); if (count < 0) break
-                    if (bytes.size().toLong() + count > MAX_RESPONSE) throw IOException("Commons metadata exceeds the response limit")
+                    if (bytes.size().toLong() + count > MAX_RESPONSE) throw ResponseLimitException()
                     bytes.write(buffer, 0, count)
                 }
             }

@@ -1,0 +1,40 @@
+{
+  "base_commit": "79b1f990a98eaf44c28351cd02c20157c70d8dff",
+  "item": "AN-W05-METADATA-M03",
+  "entries": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "before_sha256": "3ca4e198067ba0f75a443158bc6d8db280e34cd642df9f6d4acf9dd078dbfe5f",
+      "after_sha256": "6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3",
+      "edits": [
+        {
+          "before": "    private const val MAX_RESPONSE = 2 * 1024 * 1024\n",
+          "after": "    /** Application-owned streaming response limit; localize only at the alive UI boundary. */\n    class ResponseLimitException: IOException()\n\n    private const val MAX_RESPONSE = 2 * 1024 * 1024\n"
+        },
+        {
+          "before": "if (bytes.size().toLong() + count > MAX_RESPONSE) throw IOException(\"Commons metadata exceeds the response limit\")",
+          "after": "if (bytes.size().toLong() + count > MAX_RESPONSE) throw ResponseLimitException()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "before_sha256": "4d9d56cbafa7d2fa34d11cf5c8ead438b7b81f3be5e9c79ab86d05d695d541d2",
+      "after_sha256": "a1796251c8cc5351df26a22b1dd29f051651cb2d22fc7df53b51392a81cc8507",
+      "edits": [
+        {
+          "before": "    /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */",
+          "after": "    /** Translate only this application-owned failure; preserve provider/framework details verbatim. */\n    private fun commonsMetadataReason(error: Exception): String? =\n        if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)\n        else error.message\n\n    /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */"
+        },
+        {
+          "before": "                val reason=error.message?.takeIf {it.isNotBlank()}\n                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(\n                    if(reason==null) ui(R.string.commons_credit_copy_failed)\n                    else ui(R.string.commons_credit_copy_failed_reason,reason))}",
+          "after": "                runOnUiThread {if(!isFinishing && !isDestroyed) {\n                    val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}\n                    showStatus(if(reason==null) ui(R.string.commons_credit_copy_failed)\n                        else ui(R.string.commons_credit_copy_failed_reason,reason))\n                }}"
+        },
+        {
+          "before": "                val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {\n                    SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable\n                    SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large\n                }) else error.message\n                failure(ui(R.string.ui_could_not_load_gallery_image,reason))",
+          "after": "                runOnUiThread {if(!isFinishing && !isDestroyed) {\n                    val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {\n                        SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable\n                        SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large\n                    }) else commonsMetadataReason(error)\n                    showStatus(ui(R.string.ui_could_not_load_gallery_image,reason))\n                }}"
+        }
+      ]
+    }
+  ]
+}

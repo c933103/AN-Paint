@@ -252,6 +252,11 @@ class MediaGalleryActivity : Activity() {
         return record
     }
 
+    /** Translate only this application-owned failure; preserve provider/framework details verbatim. */
+    private fun commonsMetadataReason(error: Exception): String? =
+        if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
+        else error.message
+
     /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */
     private fun copyCommonsCredit(uri: Uri,page: String) {
         if(downloading || isFinishing || isDestroyed) return
@@ -265,10 +270,11 @@ class MediaGalleryActivity : Activity() {
                     if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));hideStatus()}
                 }
             } catch(error: Exception) {
-                val reason=error.message?.takeIf {it.isNotBlank()}
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(
-                    if(reason==null) ui(R.string.commons_credit_copy_failed)
-                    else ui(R.string.commons_credit_copy_failed_reason,reason))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) {
+                    val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}
+                    showStatus(if(reason==null) ui(R.string.commons_credit_copy_failed)
+                        else ui(R.string.commons_credit_copy_failed_reason,reason))
+                }}
             } catch(_: OutOfMemoryError) {
                 runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.commons_credit_copy_out_of_memory))}
             } catch(_: LinkageError) {
@@ -356,11 +362,13 @@ class MediaGalleryActivity : Activity() {
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
                 if(resultFile===file) temporary=null else rendered=null
             } catch(error: Exception) {
-                val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {
-                    SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable
-                    SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large
-                }) else error.message
-                failure(ui(R.string.ui_could_not_load_gallery_image,reason))
+                runOnUiThread {if(!isFinishing && !isDestroyed) {
+                    val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {
+                        SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable
+                        SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large
+                    }) else commonsMetadataReason(error)
+                    showStatus(ui(R.string.ui_could_not_load_gallery_image,reason))
+                }}
             }
               catch(error: OutOfMemoryError) {failure(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
               catch(error: LinkageError) {failure(ui(R.string.ui_could_not_load_gallery_image,ui(R.string.colour_converter_unavailable)))}

@@ -10,6 +10,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 import test_commons_copy_credit_errors as copy_credit_scope
+from commons_metadata_m03_scope import before_m03_catalogue
 
 ROOT = Path(__file__).resolve().parents[1]
 KEY = "formats22_tiff_description"
@@ -39,7 +40,7 @@ class TiffC023WordingTests(unittest.TestCase):
 
     def test_only_modal_substitution_restores_entire_pinned_source_file(self):
         self.assertEqual(EXPECTED, ORIGINAL.replace("багасгана", "багасгаж магадгүй"))
-        data = (ROOT / PATH).read_bytes()
+        data = before_m03_catalogue(PATH, (ROOT / PATH).read_text()).encode()
         after, before = xml_line(EXPECTED).encode(), xml_line(ORIGINAL).encode()
         self.assertEqual(1, data.count(after))
         self.assertEqual(0, data.count(before))
@@ -105,7 +106,7 @@ class TiffC023WordingTests(unittest.TestCase):
     def test_traditional_mongolian_c024_remains_byte_identical(self):
         path = ROOT / "Paintroid/src/main/res/values-b+mn+Mong/strings.xml"
         self.assertEqual("6c1b22b811b1e3cdce566fc40c5c2c69a942b875beb5631c6e8c1406a15a3821",
-                         hashlib.sha256(path.read_bytes()).hexdigest())
+                         hashlib.sha256(before_m03_catalogue(path.relative_to(ROOT).as_posix(), path.read_text()).encode()).hexdigest())
 
 
 if __name__ == "__main__":
