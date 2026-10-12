@@ -1,0 +1,4361 @@
+{
+  "audit_integrity_status": "PASS",
+  "installed_gate_status": "PASS",
+  "head": "ff8553d29a4c135c16b00beadf9cabba1e8d6fae",
+  "merge": "a73e9482253d9774c14af72951697390d9f0141a",
+  "tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "run_id": "38319915849",
+  "matrices": {
+    "30": {
+      "status": "PASS",
+      "source_digests": {
+        "app": "a738d95c19efbceef9f9de69e2841b9bd08da578981186b77cb47b654dcd1dcc",
+        "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+      },
+      "sdk_eligible_declarations": 97,
+      "explicitly_excluded_tests": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ]
+      ],
+      "scheduled_identities": [
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "apngImportsItsSeparateDefaultPoster"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "gifImportsTheFirstFrame"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "webpImportsTheFirstFrame"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "colouredHlgUsesActualPrimariesForDisplayLuminance"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "failedBudgetPreservesExistingDestinationAndSourcePixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "everyAdvertisedBundledFontLoadsItsActualFontFile"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "lossyQualityAndReducedDecodeProduceUsableImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "assemblyCropUsesSameColourConversionAndWhiteBackground"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "jpegAndWebpIccAreConvertedExactlyOnce"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "jpegCompressedTiffMatchesIndependentHostDecoder"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "transparentEncodeRejectsBeforeOverwritingDestination"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ],
+      "scheduled": 95,
+      "completed": 95,
+      "passed": 95,
+      "failed": 0,
+      "missing_phases": [],
+      "phases": {
+        "ordinary": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 15,
+            "successful_completion_events": 15,
+            "event_count": 30,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+                ],
+                "code": 0
+              },
+              {
+                "line": 50,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 57,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 64,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+                ],
+                "code": 1
+              },
+              {
+                "line": 71,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+                ],
+                "code": 0
+              },
+              {
+                "line": 78,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 85,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 92,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+                ],
+                "code": 1
+              },
+              {
+                "line": 99,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+                ],
+                "code": 0
+              },
+              {
+                "line": 106,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+                ],
+                "code": 1
+              },
+              {
+                "line": 113,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+                ],
+                "code": 0
+              },
+              {
+                "line": 120,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+                ],
+                "code": 1
+              },
+              {
+                "line": 127,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+                ],
+                "code": 0
+              },
+              {
+                "line": 134,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+                ],
+                "code": 1
+              },
+              {
+                "line": 141,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+                ],
+                "code": 0
+              },
+              {
+                "line": 148,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+                ],
+                "code": 1
+              },
+              {
+                "line": 155,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+                ],
+                "code": 0
+              },
+              {
+                "line": 162,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 169,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 176,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 183,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 190,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+                ],
+                "code": 1
+              },
+              {
+                "line": 197,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+                ],
+                "code": 0
+              },
+              {
+                "line": 205,
+                "identity": [
+                  "paint.anpaint.android.GalleryViewportDeviceTest",
+                  "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 212,
+                "identity": [
+                  "paint.anpaint.android.GalleryViewportDeviceTest",
+                  "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 15,
+          "passed": 15,
+          "failures": [],
+          "raw_sha256": "43e95bc5edd49b9ebccdcf9c49479cf97a397c314a39ab65ef2aef0dfbaa6870",
+          "summary_sha256": "7e7bc7394a6201d26e042c935729d326571660bb68cb161b3da5dfd68f5abc19",
+          "xml_sha256": "1a76a248047c6c23b3847f9d1dbae40c2dd6d60f0c845ef05136c81e34b66b2a",
+          "elapsed_seconds": 87.75001175200009,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "gallery-draft": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 3,
+            "successful_completion_events": 3,
+            "event_count": 6,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 3,
+          "passed": 3,
+          "failures": [],
+          "raw_sha256": "297d819362a8f805ef604805d688b91dc6864e4ffb4e3c89d5ab94662307f0c7",
+          "summary_sha256": "fbf47acc8e2ea18cb5d3b43e4acb7b5951d90ebca40becf3b896a45aa5b6ffff",
+          "xml_sha256": "f1098816e9b0c571e60c1de1f42e78436f17d524c8fffeff99e825bb4994a95d",
+          "elapsed_seconds": 36.49666729399996,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "vertical-english-manchu": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 2,
+            "successful_completion_events": 2,
+            "event_count": 4,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "c78a2e29f7b925d927a8992a57acb755d78a1e834b72bbc07da6f745ab82b5c1",
+          "summary_sha256": "1d8b6443622ad312189397a93ae98ad04596c4c2345905fe4d7fda3b11a22b63",
+          "xml_sha256": "4fa9f3646532e3312c4b4049f3e8a4c73f7f734e3238a61d2839daa77415f73e",
+          "elapsed_seconds": 102.37091674999999,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "vertical-literary-chinese-emoji": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 2,
+            "successful_completion_events": 2,
+            "event_count": 4,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "688cc5ca6e745304960d73b810b97722126be52fb140518b358bc9221415675e",
+          "summary_sha256": "93ee076524e77f353314c412257b355cfc3942d4a07db03a9826218b59e1812d",
+          "xml_sha256": "580c7031ee3b50815479127ace2116c9163eadde2bf785d7e3fbf88a3ee59eaa",
+          "elapsed_seconds": 92.89919971200015,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "library": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 73,
+            "successful_completion_events": 73,
+            "event_count": 146,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsItsSeparateDefaultPoster"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsItsSeparateDefaultPoster"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "gifImportsTheFirstFrame"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "gifImportsTheFirstFrame"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 50,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "webpImportsTheFirstFrame"
+                ],
+                "code": 1
+              },
+              {
+                "line": 57,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "webpImportsTheFirstFrame"
+                ],
+                "code": 0
+              },
+              {
+                "line": 65,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+                ],
+                "code": 1
+              },
+              {
+                "line": 72,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+                ],
+                "code": 0
+              },
+              {
+                "line": 79,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+                ],
+                "code": 1
+              },
+              {
+                "line": 86,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+                ],
+                "code": 0
+              },
+              {
+                "line": 93,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+                ],
+                "code": 1
+              },
+              {
+                "line": 100,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+                ],
+                "code": 0
+              },
+              {
+                "line": 108,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+                ],
+                "code": 1
+              },
+              {
+                "line": 115,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+                ],
+                "code": 0
+              },
+              {
+                "line": 122,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 129,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+                ],
+                "code": 0
+              },
+              {
+                "line": 136,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+                ],
+                "code": 1
+              },
+              {
+                "line": 143,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+                ],
+                "code": 0
+              },
+              {
+                "line": 151,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+                ],
+                "code": 1
+              },
+              {
+                "line": 158,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+                ],
+                "code": 0
+              },
+              {
+                "line": 165,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "colouredHlgUsesActualPrimariesForDisplayLuminance"
+                ],
+                "code": 1
+              },
+              {
+                "line": 172,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "colouredHlgUsesActualPrimariesForDisplayLuminance"
+                ],
+                "code": 0
+              },
+              {
+                "line": 179,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+                ],
+                "code": 1
+              },
+              {
+                "line": 186,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+                ],
+                "code": 0
+              },
+              {
+                "line": 193,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 200,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 207,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 214,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 221,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 228,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 235,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 242,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 249,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+                ],
+                "code": 1
+              },
+              {
+                "line": 256,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+                ],
+                "code": 0
+              },
+              {
+                "line": 263,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 270,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 277,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 284,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 291,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+                ],
+                "code": 1
+              },
+              {
+                "line": 298,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+                ],
+                "code": 0
+              },
+              {
+                "line": 306,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "failedBudgetPreservesExistingDestinationAndSourcePixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 313,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "failedBudgetPreservesExistingDestinationAndSourcePixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 320,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+                ],
+                "code": 1
+              },
+              {
+                "line": 327,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+                ],
+                "code": 0
+              },
+              {
+                "line": 334,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+                ],
+                "code": 1
+              },
+              {
+                "line": 341,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+                ],
+                "code": 0
+              },
+              {
+                "line": 349,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 356,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 363,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+                ],
+                "code": 1
+              },
+              {
+                "line": 370,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+                ],
+                "code": 0
+              },
+              {
+                "line": 377,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+                ],
+                "code": 1
+              },
+              {
+                "line": 384,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+                ],
+                "code": 0
+              },
+              {
+                "line": 391,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyQualityAndReducedDecodeProduceUsableImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 398,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyQualityAndReducedDecodeProduceUsableImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 405,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+                ],
+                "code": 1
+              },
+              {
+                "line": 412,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+                ],
+                "code": 0
+              },
+              {
+                "line": 419,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+                ],
+                "code": 1
+              },
+              {
+                "line": 426,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+                ],
+                "code": 0
+              },
+              {
+                "line": 433,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 440,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+                ],
+                "code": 0
+              },
+              {
+                "line": 447,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "everyAdvertisedBundledFontLoadsItsActualFontFile"
+                ],
+                "code": 1
+              },
+              {
+                "line": 454,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "everyAdvertisedBundledFontLoadsItsActualFontFile"
+                ],
+                "code": 0
+              },
+              {
+                "line": 461,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+                ],
+                "code": 1
+              },
+              {
+                "line": 468,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+                ],
+                "code": 0
+              },
+              {
+                "line": 475,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 482,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 489,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 496,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 504,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+                ],
+                "code": 1
+              },
+              {
+                "line": 511,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+                ],
+                "code": 0
+              },
+              {
+                "line": 518,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+                ],
+                "code": 1
+              },
+              {
+                "line": 525,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+                ],
+                "code": 0
+              },
+              {
+                "line": 532,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 539,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 546,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 553,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 560,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 567,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 574,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+                ],
+                "code": 1
+              },
+              {
+                "line": 581,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+                ],
+                "code": 0
+              },
+              {
+                "line": 588,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+                ],
+                "code": 1
+              },
+              {
+                "line": 595,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+                ],
+                "code": 0
+              },
+              {
+                "line": 602,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+                ],
+                "code": 1
+              },
+              {
+                "line": 609,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+                ],
+                "code": 0
+              },
+              {
+                "line": 616,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+                ],
+                "code": 1
+              },
+              {
+                "line": 623,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+                ],
+                "code": 0
+              },
+              {
+                "line": 631,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+                ],
+                "code": 1
+              },
+              {
+                "line": 638,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+                ],
+                "code": 0
+              },
+              {
+                "line": 645,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+                ],
+                "code": 1
+              },
+              {
+                "line": 652,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+                ],
+                "code": 0
+              },
+              {
+                "line": 659,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+                ],
+                "code": 1
+              },
+              {
+                "line": 666,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+                ],
+                "code": 0
+              },
+              {
+                "line": 673,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+                ],
+                "code": 1
+              },
+              {
+                "line": 680,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+                ],
+                "code": 0
+              },
+              {
+                "line": 687,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+                ],
+                "code": 1
+              },
+              {
+                "line": 694,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+                ],
+                "code": 0
+              },
+              {
+                "line": 701,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+                ],
+                "code": 1
+              },
+              {
+                "line": 708,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+                ],
+                "code": 0
+              },
+              {
+                "line": 715,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "jpegAndWebpIccAreConvertedExactlyOnce"
+                ],
+                "code": 1
+              },
+              {
+                "line": 722,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "jpegAndWebpIccAreConvertedExactlyOnce"
+                ],
+                "code": 0
+              },
+              {
+                "line": 729,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "assemblyCropUsesSameColourConversionAndWhiteBackground"
+                ],
+                "code": 1
+              },
+              {
+                "line": 736,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "assemblyCropUsesSameColourConversionAndWhiteBackground"
+                ],
+                "code": 0
+              },
+              {
+                "line": 744,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+                ],
+                "code": 1
+              },
+              {
+                "line": 751,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+                ],
+                "code": 0
+              },
+              {
+                "line": 758,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+                ],
+                "code": 1
+              },
+              {
+                "line": 765,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+                ],
+                "code": 0
+              },
+              {
+                "line": 772,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 779,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 786,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+                ],
+                "code": 1
+              },
+              {
+                "line": 793,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+                ],
+                "code": 0
+              },
+              {
+                "line": 800,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+                ],
+                "code": 1
+              },
+              {
+                "line": 807,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+                ],
+                "code": 0
+              },
+              {
+                "line": 814,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 821,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 828,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "jpegCompressedTiffMatchesIndependentHostDecoder"
+                ],
+                "code": 1
+              },
+              {
+                "line": 835,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "jpegCompressedTiffMatchesIndependentHostDecoder"
+                ],
+                "code": 0
+              },
+              {
+                "line": 842,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 849,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 856,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 863,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 870,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+                ],
+                "code": 1
+              },
+              {
+                "line": 877,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+                ],
+                "code": 0
+              },
+              {
+                "line": 884,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 891,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 898,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 905,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 912,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 919,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 926,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+                ],
+                "code": 1
+              },
+              {
+                "line": 933,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+                ],
+                "code": 0
+              },
+              {
+                "line": 940,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+                ],
+                "code": 1
+              },
+              {
+                "line": 947,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+                ],
+                "code": 0
+              },
+              {
+                "line": 954,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "transparentEncodeRejectsBeforeOverwritingDestination"
+                ],
+                "code": 1
+              },
+              {
+                "line": 961,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "transparentEncodeRejectsBeforeOverwritingDestination"
+                ],
+                "code": 0
+              },
+              {
+                "line": 968,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 975,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 983,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+                ],
+                "code": 1
+              },
+              {
+                "line": 990,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+                ],
+                "code": 0
+              },
+              {
+                "line": 997,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1004,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+                ],
+                "code": 0
+              },
+              {
+                "line": 1011,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1018,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+                ],
+                "code": 0
+              },
+              {
+                "line": 1025,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1032,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 73,
+          "passed": 73,
+          "failures": [],
+          "raw_sha256": "f75720738dd347ba9f66b6f8b48a77cd9e422e12ebbb7eed67cb2a23369d9295",
+          "summary_sha256": "f73dd81b1fac9593f87e4820512747828232d1b2ba8b25502f97b411d271cdae",
+          "xml_sha256": "6dcf974ac70531b04b90a00815135c5a7c0821068033fa43b8c91c252633b54d",
+          "elapsed_seconds": 48.33100427900001,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        }
+      }
+    },
+    "35": {
+      "status": "PASS",
+      "source_digests": {
+        "app": "a738d95c19efbceef9f9de69e2841b9bd08da578981186b77cb47b654dcd1dcc",
+        "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+      },
+      "sdk_eligible_declarations": 104,
+      "explicitly_excluded_tests": [],
+      "scheduled_identities": [
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "apngImportsItsSeparateDefaultPoster"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "gifImportsTheFirstFrame"
+        ],
+        [
+          "org.catrobat.paintroid.classic.AnimationImportTest",
+          "webpImportsTheFirstFrame"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+        ],
+        [
+          "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+        ],
+        [
+          "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "colouredHlgUsesActualPrimariesForDisplayLuminance"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+        ],
+        [
+          "org.catrobat.paintroid.classic.HeifCodecTest",
+          "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+        ],
+        [
+          "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "failedBudgetPreservesExistingDestinationAndSourcePixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "everyAdvertisedBundledFontLoadsItsActualFontFile"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "lossyQualityAndReducedDecodeProduceUsableImages"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.NativeCodecTest",
+          "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PdfCodecTest",
+          "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "assemblyCropUsesSameColourConversionAndWhiteBackground"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "jpegAndWebpIccAreConvertedExactlyOnce"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+        ],
+        [
+          "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "jpegCompressedTiffMatchesIndependentHostDecoder"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "transparentEncodeRejectsBeforeOverwritingDestination"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.TiffCodecTest",
+          "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+        ],
+        [
+          "org.catrobat.paintroid.classic.UltraHdrImportTest",
+          "ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+        ],
+        [
+          "org.catrobat.paintroid.classic.WebpCodecTest",
+          "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutArtworkNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "unchangedAdvancedColourReportsShortLandscapeLimitation"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ],
+      "scheduled": 104,
+      "completed": 104,
+      "passed": 104,
+      "failed": 0,
+      "missing_phases": [],
+      "phases": {
+        "ordinary": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 16,
+            "successful_completion_events": 16,
+            "event_count": 32,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+                ],
+                "code": 0
+              },
+              {
+                "line": 50,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 57,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 64,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+                ],
+                "code": 1
+              },
+              {
+                "line": 71,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+                ],
+                "code": 0
+              },
+              {
+                "line": 78,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 85,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 92,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+                ],
+                "code": 1
+              },
+              {
+                "line": 99,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+                ],
+                "code": 0
+              },
+              {
+                "line": 106,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+                ],
+                "code": 1
+              },
+              {
+                "line": 113,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+                ],
+                "code": 0
+              },
+              {
+                "line": 120,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+                ],
+                "code": 1
+              },
+              {
+                "line": 127,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+                ],
+                "code": 0
+              },
+              {
+                "line": 134,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+                ],
+                "code": 1
+              },
+              {
+                "line": 141,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+                ],
+                "code": 0
+              },
+              {
+                "line": 148,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+                ],
+                "code": 1
+              },
+              {
+                "line": 155,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+                ],
+                "code": 0
+              },
+              {
+                "line": 162,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+                ],
+                "code": 1
+              },
+              {
+                "line": 169,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+                ],
+                "code": 0
+              },
+              {
+                "line": 176,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 183,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 190,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 197,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 204,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+                ],
+                "code": 1
+              },
+              {
+                "line": 211,
+                "identity": [
+                  "paint.anpaint.android.EditorDeviceTest",
+                  "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+                ],
+                "code": 0
+              },
+              {
+                "line": 219,
+                "identity": [
+                  "paint.anpaint.android.GalleryViewportDeviceTest",
+                  "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 226,
+                "identity": [
+                  "paint.anpaint.android.GalleryViewportDeviceTest",
+                  "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 16,
+          "passed": 16,
+          "failures": [],
+          "raw_sha256": "d2a94d8df1d3dfefc3cbe175a1a56c9df37ad5d2a5a46b70ae513b45b3dc4aee",
+          "summary_sha256": "cab2a8e9de88825f12eb9be896f3b1595734fa2f6d56d367ce7253f0ef5a949e",
+          "xml_sha256": "6b15f3abf867160bd4ad54c6c8f03a790ba1b2a56648245d6974b5241fd4409e",
+          "elapsed_seconds": 132.06532453399996,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "gallery-draft": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 3,
+            "successful_completion_events": 3,
+            "event_count": 6,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "paint.anpaint.android.GalleryDraftDeviceTest",
+                  "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 3,
+          "passed": 3,
+          "failures": [],
+          "raw_sha256": "163a6a3705b092e8dda2903118842c5b1d89cbce6bb174df1cfe0f010285b0a0",
+          "summary_sha256": "e318ff095683c8d96a0fbf16b7f0fd4b085acb3b111d0df919fd9a6e3a8ad9e7",
+          "xml_sha256": "4aeda2de70e78c8401fcf53fc72f8757b49edcd2ca5387facec02254a3b2c49d",
+          "elapsed_seconds": 45.474918877999926,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "vertical-english-manchu": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 2,
+            "successful_completion_events": 2,
+            "event_count": 4,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "d923c570e99cc38ee5df1fbfda924852d693b2a08707c10d15e68c0411fc251a",
+          "summary_sha256": "706c7113d302b4668278a691a2f589926f2fdbbcdedbb179b4faf4a037d72f2c",
+          "xml_sha256": "d59ce7e6663469eccc64ec743103a670e90d0e44664da25776543c540863bf09",
+          "elapsed_seconds": 117.71411060399998,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "vertical-literary-chinese-emoji": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 2,
+            "successful_completion_events": 2,
+            "event_count": 4,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.VerticalLocaleDeviceTest",
+                  "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 2,
+          "passed": 2,
+          "failures": [],
+          "raw_sha256": "ef2d8ded66ce3f399d61c1a33780cf61059eb4261fe1b69c0d3dd7acf67e5615",
+          "summary_sha256": "1ebba008bb22be31d243e40f85381223c22cf091f8c7590cffe89474c59aaf3f",
+          "xml_sha256": "bc69ca9391339e9c74386f30ba154138a0bad34e6dbb21e0bb42607d5bbbd63e",
+          "elapsed_seconds": 107.14863913099998,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "dialog": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 5,
+            "successful_completion_events": 5,
+            "event_count": 10,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "unchangedAdvancedColourReportsShortLandscapeLimitation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "unchangedAdvancedColourReportsShortLandscapeLimitation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+                ],
+                "code": 0
+              },
+              {
+                "line": 50,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutArtworkNoticeCompletesNativeFooterFlow"
+                ],
+                "code": 1
+              },
+              {
+                "line": 57,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutArtworkNoticeCompletesNativeFooterFlow"
+                ],
+                "code": 0
+              },
+              {
+                "line": 64,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+                ],
+                "code": 1
+              },
+              {
+                "line": 71,
+                "identity": [
+                  "paint.anpaint.android.LocalizedDialogDeviceTest",
+                  "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 5,
+          "passed": 5,
+          "failures": [],
+          "raw_sha256": "5b42b3c42dc5ad40a0f6c320dbe43638bd6610ab70579edbf7df1b8a3042c9cf",
+          "summary_sha256": "60a98429a80ed120aff638869292bca84b7da53956bfdbf323068def0663622a",
+          "xml_sha256": "22a50165f0a9504cceb3b21819ee837f52307e620e19e7c38240aca728379bfd",
+          "elapsed_seconds": 102.09273208000002,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "seed": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 1,
+            "successful_completion_events": 1,
+            "event_count": 2,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+                  "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+                  "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 1,
+          "passed": 1,
+          "failures": [],
+          "raw_sha256": "ad993382b8083b9beb63b9bc921d2b5078efed6bd7506634e7344f5d4fa91d00",
+          "summary_sha256": "fd611b6f6ec03c58e5f4f7f37558955a5deb09a88d5e0ddad7178e5bcec4097c",
+          "xml_sha256": "585ecb914bb395b91640f6610f94309ca51925571462ac10c2ad8ca544fe2ca8",
+          "elapsed_seconds": 6.155306428000131,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "verify": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 1,
+            "successful_completion_events": 1,
+            "event_count": 2,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+                  "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+                  "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 1,
+          "passed": 1,
+          "failures": [],
+          "raw_sha256": "0d898570528a0fb33d19f25ea523df347f6ac8a7301c404110178201cf06fdc7",
+          "summary_sha256": "450e57551799f60467a0ba8fce55fc671df79a4dc604d57c6f83c4fa4a3f8a06",
+          "xml_sha256": "518bb1d28910d31236a2f326558311fb87cb1101cacd45ae17ecfc2f16fbded1",
+          "elapsed_seconds": 7.910583100000167,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        },
+        "library": {
+          "independent_serial_protocol": {
+            "status": "PASS_INDEPENDENT_SERIAL_PROTOCOL",
+            "terminal_codes": [
+              -1
+            ],
+            "start_events": 74,
+            "successful_completion_events": 74,
+            "event_count": 148,
+            "events": [
+              {
+                "line": 8,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsItsSeparateDefaultPoster"
+                ],
+                "code": 1
+              },
+              {
+                "line": 15,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsItsSeparateDefaultPoster"
+                ],
+                "code": 0
+              },
+              {
+                "line": 22,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "gifImportsTheFirstFrame"
+                ],
+                "code": 1
+              },
+              {
+                "line": 29,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "gifImportsTheFirstFrame"
+                ],
+                "code": 0
+              },
+              {
+                "line": 36,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 43,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "apngImportsTheFirstFrameWhenItIsTheDefaultImage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 50,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "webpImportsTheFirstFrame"
+                ],
+                "code": 1
+              },
+              {
+                "line": 57,
+                "identity": [
+                  "org.catrobat.paintroid.classic.AnimationImportTest",
+                  "webpImportsTheFirstFrame"
+                ],
+                "code": 0
+              },
+              {
+                "line": 65,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+                ],
+                "code": 1
+              },
+              {
+                "line": 72,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence"
+                ],
+                "code": 0
+              },
+              {
+                "line": 79,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+                ],
+                "code": 1
+              },
+              {
+                "line": 86,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview"
+                ],
+                "code": 0
+              },
+              {
+                "line": 93,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+                ],
+                "code": 1
+              },
+              {
+                "line": 100,
+                "identity": [
+                  "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+                  "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo"
+                ],
+                "code": 0
+              },
+              {
+                "line": 108,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+                ],
+                "code": 1
+              },
+              {
+                "line": 115,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks"
+                ],
+                "code": 0
+              },
+              {
+                "line": 122,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 129,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap"
+                ],
+                "code": 0
+              },
+              {
+                "line": 136,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+                ],
+                "code": 1
+              },
+              {
+                "line": 143,
+                "identity": [
+                  "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+                  "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds"
+                ],
+                "code": 0
+              },
+              {
+                "line": 151,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+                ],
+                "code": 1
+              },
+              {
+                "line": 158,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicExportKeepsLongOddImageDimensionsAcrossTiles"
+                ],
+                "code": 0
+              },
+              {
+                "line": 165,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "colouredHlgUsesActualPrimariesForDisplayLuminance"
+                ],
+                "code": 1
+              },
+              {
+                "line": 172,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "colouredHlgUsesActualPrimariesForDisplayLuminance"
+                ],
+                "code": 0
+              },
+              {
+                "line": 179,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+                ],
+                "code": 1
+              },
+              {
+                "line": 186,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition"
+                ],
+                "code": 0
+              },
+              {
+                "line": 193,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 200,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 207,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 214,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 221,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 228,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifTiledRoundTripAndCrossTileCropKeepExactPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 235,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 242,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "heicAndAvifQualityControlsProduceDecodableOpaqueImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 249,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+                ],
+                "code": 1
+              },
+              {
+                "line": 256,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb"
+                ],
+                "code": 0
+              },
+              {
+                "line": 263,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 270,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 277,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 284,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 291,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+                ],
+                "code": 1
+              },
+              {
+                "line": 298,
+                "identity": [
+                  "org.catrobat.paintroid.classic.HeifCodecTest",
+                  "avifIccProfileAndNclxWideGamutAreConvertedToSrgb"
+                ],
+                "code": 0
+              },
+              {
+                "line": 306,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "failedBudgetPreservesExistingDestinationAndSourcePixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 313,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "failedBudgetPreservesExistingDestinationAndSourcePixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 320,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+                ],
+                "code": 1
+              },
+              {
+                "line": 327,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes"
+                ],
+                "code": 0
+              },
+              {
+                "line": 334,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+                ],
+                "code": 1
+              },
+              {
+                "line": 341,
+                "identity": [
+                  "org.catrobat.paintroid.classic.LegacyCodecTest",
+                  "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder"
+                ],
+                "code": 0
+              },
+              {
+                "line": 349,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 356,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyEncodingHandlesLongPortraitAndLandscapeImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 363,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+                ],
+                "code": 1
+              },
+              {
+                "line": 370,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary"
+                ],
+                "code": 0
+              },
+              {
+                "line": 377,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+                ],
+                "code": 1
+              },
+              {
+                "line": 384,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput"
+                ],
+                "code": 0
+              },
+              {
+                "line": 391,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyQualityAndReducedDecodeProduceUsableImages"
+                ],
+                "code": 1
+              },
+              {
+                "line": 398,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "lossyQualityAndReducedDecodeProduceUsableImages"
+                ],
+                "code": 0
+              },
+              {
+                "line": 405,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+                ],
+                "code": 1
+              },
+              {
+                "line": 412,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights"
+                ],
+                "code": 0
+              },
+              {
+                "line": 419,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+                ],
+                "code": 1
+              },
+              {
+                "line": 426,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground"
+                ],
+                "code": 0
+              },
+              {
+                "line": 433,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 440,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap"
+                ],
+                "code": 0
+              },
+              {
+                "line": 447,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "everyAdvertisedBundledFontLoadsItsActualFontFile"
+                ],
+                "code": 1
+              },
+              {
+                "line": 454,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "everyAdvertisedBundledFontLoadsItsActualFontFile"
+                ],
+                "code": 0
+              },
+              {
+                "line": 461,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+                ],
+                "code": 1
+              },
+              {
+                "line": 468,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode"
+                ],
+                "code": 0
+              },
+              {
+                "line": 475,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 482,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 489,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 496,
+                "identity": [
+                  "org.catrobat.paintroid.classic.NativeCodecTest",
+                  "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 504,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+                ],
+                "code": 1
+              },
+              {
+                "line": 511,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors"
+                ],
+                "code": 0
+              },
+              {
+                "line": 518,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+                ],
+                "code": 1
+              },
+              {
+                "line": 525,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput"
+                ],
+                "code": 0
+              },
+              {
+                "line": 532,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 539,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 546,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+                ],
+                "code": 1
+              },
+              {
+                "line": 553,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions"
+                ],
+                "code": 0
+              },
+              {
+                "line": 560,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 567,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "tileRenderingUsesTheSameCoordinatesAsTheWholePage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 574,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+                ],
+                "code": 1
+              },
+              {
+                "line": 581,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne"
+                ],
+                "code": 0
+              },
+              {
+                "line": 588,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+                ],
+                "code": 1
+              },
+              {
+                "line": 595,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "descriptorsCloseAfterRepeatedSuccessAndPageFailures"
+                ],
+                "code": 0
+              },
+              {
+                "line": 602,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+                ],
+                "code": 1
+              },
+              {
+                "line": 609,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "selectedPageOpensAsEditablePixelsWithoutChangingThePdf"
+                ],
+                "code": 0
+              },
+              {
+                "line": 616,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+                ],
+                "code": 1
+              },
+              {
+                "line": 623,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PdfCodecTest",
+                  "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection"
+                ],
+                "code": 0
+              },
+              {
+                "line": 631,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+                ],
+                "code": 1
+              },
+              {
+                "line": 638,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize"
+                ],
+                "code": 0
+              },
+              {
+                "line": 645,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+                ],
+                "code": 1
+              },
+              {
+                "line": 652,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies"
+                ],
+                "code": 0
+              },
+              {
+                "line": 659,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+                ],
+                "code": 1
+              },
+              {
+                "line": 666,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion"
+                ],
+                "code": 0
+              },
+              {
+                "line": 673,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+                ],
+                "code": 1
+              },
+              {
+                "line": 680,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha"
+                ],
+                "code": 0
+              },
+              {
+                "line": 687,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+                ],
+                "code": 1
+              },
+              {
+                "line": 694,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "linear16AndPqPngRenderWithTransferAndHighlightDetail"
+                ],
+                "code": 0
+              },
+              {
+                "line": 701,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+                ],
+                "code": 1
+              },
+              {
+                "line": 708,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget"
+                ],
+                "code": 0
+              },
+              {
+                "line": 715,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "jpegAndWebpIccAreConvertedExactlyOnce"
+                ],
+                "code": 1
+              },
+              {
+                "line": 722,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "jpegAndWebpIccAreConvertedExactlyOnce"
+                ],
+                "code": 0
+              },
+              {
+                "line": 729,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "assemblyCropUsesSameColourConversionAndWhiteBackground"
+                ],
+                "code": 1
+              },
+              {
+                "line": 736,
+                "identity": [
+                  "org.catrobat.paintroid.classic.PlatformColourImportTest",
+                  "assemblyCropUsesSameColourConversionAndWhiteBackground"
+                ],
+                "code": 0
+              },
+              {
+                "line": 744,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+                ],
+                "code": 1
+              },
+              {
+                "line": 751,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication"
+                ],
+                "code": 0
+              },
+              {
+                "line": 758,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+                ],
+                "code": 1
+              },
+              {
+                "line": 765,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedEncodePreservesDestinationAndSourceAndCanRecover"
+                ],
+                "code": 0
+              },
+              {
+                "line": 772,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 779,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 786,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+                ],
+                "code": 1
+              },
+              {
+                "line": 793,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly"
+                ],
+                "code": 0
+              },
+              {
+                "line": 800,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+                ],
+                "code": 1
+              },
+              {
+                "line": 807,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile"
+                ],
+                "code": 0
+              },
+              {
+                "line": 814,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 821,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 828,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "jpegCompressedTiffMatchesIndependentHostDecoder"
+                ],
+                "code": 1
+              },
+              {
+                "line": 835,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "jpegCompressedTiffMatchesIndependentHostDecoder"
+                ],
+                "code": 0
+              },
+              {
+                "line": 842,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+                ],
+                "code": 1
+              },
+              {
+                "line": 849,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "sharedImportRecognizesTiffBySignatureAndUsesFirstPage"
+                ],
+                "code": 0
+              },
+              {
+                "line": 856,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 863,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "uncompressedAndDeflateExportsPreserveAllOpaquePixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 870,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+                ],
+                "code": 1
+              },
+              {
+                "line": 877,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget"
+                ],
+                "code": 0
+              },
+              {
+                "line": 884,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+                ],
+                "code": 1
+              },
+              {
+                "line": 891,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation"
+                ],
+                "code": 0
+              },
+              {
+                "line": 898,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+                ],
+                "code": 1
+              },
+              {
+                "line": 905,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels"
+                ],
+                "code": 0
+              },
+              {
+                "line": 912,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+                ],
+                "code": 1
+              },
+              {
+                "line": 919,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization"
+                ],
+                "code": 0
+              },
+              {
+                "line": 926,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+                ],
+                "code": 1
+              },
+              {
+                "line": 933,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "independentLzwPredictorPackBitsAndCcittFixturesImportExactly"
+                ],
+                "code": 0
+              },
+              {
+                "line": 940,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+                ],
+                "code": 1
+              },
+              {
+                "line": 947,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount"
+                ],
+                "code": 0
+              },
+              {
+                "line": 954,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "transparentEncodeRejectsBeforeOverwritingDestination"
+                ],
+                "code": 1
+              },
+              {
+                "line": 961,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "transparentEncodeRejectsBeforeOverwritingDestination"
+                ],
+                "code": 0
+              },
+              {
+                "line": 968,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+                ],
+                "code": 1
+              },
+              {
+                "line": 975,
+                "identity": [
+                  "org.catrobat.paintroid.classic.TiffCodecTest",
+                  "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing"
+                ],
+                "code": 0
+              },
+              {
+                "line": 983,
+                "identity": [
+                  "org.catrobat.paintroid.classic.UltraHdrImportTest",
+                  "ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 990,
+                "identity": [
+                  "org.catrobat.paintroid.classic.UltraHdrImportTest",
+                  "ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap"
+                ],
+                "code": 0
+              },
+              {
+                "line": 998,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1005,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource"
+                ],
+                "code": 0
+              },
+              {
+                "line": 1012,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1019,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination"
+                ],
+                "code": 0
+              },
+              {
+                "line": 1026,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1033,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "lossyQualityChangesTheFileAndHigherQualityReducesPixelError"
+                ],
+                "code": 0
+              },
+              {
+                "line": 1040,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+                ],
+                "code": 1
+              },
+              {
+                "line": 1047,
+                "identity": [
+                  "org.catrobat.paintroid.classic.WebpCodecTest",
+                  "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap"
+                ],
+                "code": 0
+              }
+            ]
+          },
+          "completed": 74,
+          "passed": 74,
+          "failures": [],
+          "raw_sha256": "98dd5cf38c0d7c3390559cc20091e91412d37a62e14220f3793e8607a7cdd0dc",
+          "summary_sha256": "c1ade1fc7c3e3da320848a3f200c669f2d1b780657756971ab46e74d67a1af08",
+          "xml_sha256": "3d9155d7a6fcc85dd05692c6439d8eff27db09c36ba957d5fe900310ff4ca978",
+          "elapsed_seconds": 56.098943815999974,
+          "success": true,
+          "missing_identities": [],
+          "runner_errors": [],
+          "returncode": 0,
+          "timed_out": false
+        }
+      }
+    }
+  },
+  "scope": "Read-only exact-source selector/digest, raw protocol, summary, XML and matrix reconciliation. ZIP and APK provenance are separate bound reviews; Successful phases cannot substitute for failed or missing methods."
+}

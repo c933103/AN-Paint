@@ -1,0 +1,82 @@
+{
+  "status": "PASS_ISOLATED_RECEIPT_ONLY_REPLAY",
+  "run_id": 38319915849,
+  "source_tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "support_archive_sha256": "b7f7a97ec597ea4451c146a8034406f0c8dc61d6d3ada963bc5f29e49b579474",
+  "support_members": 87,
+  "command": "python3 run_audit.py --repo /exact/source/tree --artifacts /fresh/support/current-inputs --receipt-only --output /fresh/audit",
+  "checks": [
+    {
+      "path": "deadline-result.json",
+      "portable_sha256": "f88f714d7edb76005e3efafd1d555f34c320c1cdd7a85f5bf9767db1ab2fbfe5",
+      "original_result_sha256": "f88f714d7edb76005e3efafd1d555f34c320c1cdd7a85f5bf9767db1ab2fbfe5",
+      "byte_identical": true,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "installed-matrix-result.json",
+      "portable_sha256": "b42d1a0ceef16ed3415a8c83e201068c2c0dc5e5ae978445e3b07fe5d16ceda1",
+      "original_result_sha256": "b42d1a0ceef16ed3415a8c83e201068c2c0dc5e5ae978445e3b07fe5d16ceda1",
+      "byte_identical": true,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "installed-pixel-result.json",
+      "portable_sha256": "378e24c02c5eb112ef3bb54d9fda655cea09a3358f3c1c983edc6a6f5dc9f01b",
+      "original_result_sha256": "378e24c02c5eb112ef3bb54d9fda655cea09a3358f3c1c983edc6a6f5dc9f01b",
+      "byte_identical": true,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "natural-update-binding.json",
+      "portable_sha256": "7446f68f3abd832d31fdf167f36fecf107a1fdd3418567fcdeaf253d6357ba4d",
+      "original_result_sha256": "2fb15ad36f234ef4c2fa994d13c6519ee424ab0a36450b9d43c63a6a0221c19c",
+      "byte_identical": false,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "natural-update-result.json",
+      "portable_sha256": "fcc65faabeea54f658481464e6928999e577eac80f6386cb68b41ba9cdbd7818",
+      "original_result_sha256": "57ff2b3da781d74b6043920eebd9f767ddf34425007c4def2658bafa3ffa9f78",
+      "byte_identical": false,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "platform-locale-binding-result.json",
+      "portable_sha256": "35c7c83eb9ec14063590695c2c3bb9033fc83ad53b1d14eb35ff4821661751b7",
+      "original_result_sha256": "8ba5e7f3aedcdc0922da24cdbce821eaab28972b4a183df9246283af77270007",
+      "byte_identical": false,
+      "json_semantically_equal": false
+    },
+    {
+      "path": "prebuilt-provenance-result.json",
+      "portable_sha256": "b4e9f4da541688a2dab462c346b30395feeca775ad59c536edcd92b136bc2602",
+      "original_result_sha256": "05c8b2748a1726984bc897ae0b56abe8d7a161cae1a0cf3048c4479d1de02f45",
+      "byte_identical": false,
+      "json_semantically_equal": false
+    },
+    {
+      "path": "restart-boundary-result.json",
+      "portable_sha256": "62c237601e0479ce4de2018b5730d9816073ab5a111daf3aad9e26d56e915d7f",
+      "original_result_sha256": "62c237601e0479ce4de2018b5730d9816073ab5a111daf3aad9e26d56e915d7f",
+      "byte_identical": true,
+      "json_semantically_equal": true
+    },
+    {
+      "path": "result.json",
+      "portable_sha256": "c1286f03540a338893b95bfde329823b5e772e2b1539449634899bad2113a5b6",
+      "original_result_sha256": null,
+      "byte_identical": false,
+      "json_semantically_equal": false
+    },
+    {
+      "path": "source-input-result.json",
+      "portable_sha256": "7d8bcf538c95c8a86efeac9d5e7d0fbfa8baca3d6fe8a798210b270f2f2f1a8f",
+      "original_result_sha256": "7d8bcf538c95c8a86efeac9d5e7d0fbfa8baca3d6fe8a798210b270f2f2f1a8f",
+      "byte_identical": true,
+      "json_semantically_equal": true
+    }
+  ],
+  "limitations": "Replay rehashed every retained raw support member and ran the full two-API matrix, source, deadline, prebuilt-receipt, framework, strict Arabic, natural-update, restart and native checks. Original outer CI ZIP/APK/source payload rehash receipts cannot be reproduced without intentionally omitted downloads. Prebuilt and derived platform report hashes differ because receipt-only replay explicitly does not claim omitted payload recomputation.",
+  "serialization_note": "Natural-update binding and result differ only in JSON object-key ordering and parse to equal objects. Prebuilt receipt-only payload flag and its derived platform report bindings deliberately differ. The aggregate portable result has no separate manually assembled original-result counterpart; frozen ACCEPTANCE.json is the original concise verdict."
+}

@@ -1,0 +1,100 @@
+{
+  "status": "BOUNDED_SELECTED_CONTENT_AND_LOCAL_TRANSPORT_CHECKS_COMPLETE",
+  "head": "ff8553d29a4c135c16b00beadf9cabba1e8d6fae",
+  "tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "merge": "a73e9482253d9774c14af72951697390d9f0141a",
+  "run_id": 38319915849,
+  "selection_manifest_sha256": "d0b2bdd58e0c933bf1b27bcf5045befd5f6738ec39021b76c5cb30b701242be0",
+  "selected_files": 166,
+  "selected_bytes_excluding_manifest": 11260656,
+  "source_publication_sha256": "7ee33eb8674bf6d2bf9eff17bb2d2cb4b82e8b36af4e88b815d4b8851d496989",
+  "transport": {
+    "status": "PASS_EXACT_SELECTED_TRANSPORT",
+    "selection_manifest_sha256": "d0b2bdd58e0c933bf1b27bcf5045befd5f6738ec39021b76c5cb30b701242be0",
+    "transport_map_sha256": "4e99898837fd63beb3addea99e1a4ad6892686277ac53669813853a2a2b237af",
+    "entries": 169,
+    "bytes": 11290532,
+    "selected_files": 166,
+    "unchanged_selection_manifest_included": true,
+    "all_source_and_decoded_transport_bytes_sha256_git_blob_ids_and_modes_match": true,
+    "additional_unexpected_entries": [],
+    "missing_entries": [],
+    "splitting_reconstruction_or_repackaging": true,
+    "repackaging": false,
+    "lossless_reconstruction": {
+      "original_selected_path": "installed/supporting-evidence.tar.gz",
+      "original_bytes": 9336412,
+      "original_sha256": "b7f7a97ec597ea4451c146a8034406f0c8dc61d6d3ada963bc5f29e49b579474",
+      "ordered_parts": [
+        {
+          "path": "installed/supporting-evidence.tar.gz.part001",
+          "bytes": 6291456,
+          "sha256": "e3708a7ee78e63000e605d37c6cae38bee92f6d7c7d3c9d37c6e549aa9d33072"
+        },
+        {
+          "path": "installed/supporting-evidence.tar.gz.part002",
+          "bytes": 3044956,
+          "sha256": "42dc9e7d4fb3d962793c66116c88c764263a4955541d4d4f92378a24ea5667d8"
+        }
+      ],
+      "transported_recipe_path": "installed/supporting-evidence.tar.gz.parts.json",
+      "transported_recipe_sha256": "5f06c85802926797f962cc162c8840d2fb5da7b62371bc34fdfb8e814f7af3a3",
+      "transported_recipe_bytes": 786,
+      "byte_for_byte_equal": true,
+      "only_selected_path_replaced_by_parts": true
+    },
+    "transport_map_and_recipe_text_pattern_candidates": [],
+    "payloads_rechecked_unchanged": true,
+    "limit": "Verifies prepared local encoded transport and lossless concatenation only, not remote publication, repository permissions or availability."
+  },
+  "coverage": {
+    "text_leaves": 730,
+    "text_bytes": 51029817,
+    "pngs": 754,
+    "types": {
+      "text": 730,
+      "tar.gz": 1,
+      "zip": 9,
+      "png": 754,
+      "gzip": 1
+    },
+    "synthetic_scanner_controls": 22,
+    "unresolved_candidate_locations": 0,
+    "archive_or_parse_errors": 0,
+    "unexpected_png_metadata": 0,
+    "representative_selected_pngs_visually_reviewed": 3
+  },
+  "provenance": {
+    "regression_selected_members": 1024,
+    "regression_partition": {
+      "immutable_e19_replay": 912,
+      "current_delta": 112
+    },
+    "all_selected_regression_members_match_current_primary_bytes": true,
+    "support_archive_sha256": "b7f7a97ec597ea4451c146a8034406f0c8dc61d6d3ada963bc5f29e49b579474",
+    "support_members": 87,
+    "support_current_raw_members": 86,
+    "support_separately_labeled_derived_reports": 1,
+    "support_current_raw_members_match_primary_bytes": true,
+    "selected_apis": [
+      30,
+      35
+    ],
+    "all_source_leaves_and_modes_match_target_tree": true,
+    "source_leaves": 1095,
+    "source_and_runtime_classification": "Current CI synthetic application fixtures, Android emulator/framework diagnostics and public upstream notices are distinguished; runtime logs are not blanket classified as synthetic."
+  },
+  "prose_revision": {
+    "expected_three_selected_paths_only": true,
+    "technical_raw_and_compact_bytes_unchanged": true
+  },
+  "assessment": "No unresolved sensitive-data candidate was identified within this exact selected text/archive/PNG-metadata screen after contextual review. The selected current raw inputs are unchanged.",
+  "limits": [
+    "Pattern/context checks are bounded and do not prove universal absence of sensitive information.",
+    "PNG checking covers chunk structure and metadata; three selected images were visually sampled. No exhaustive OCR or hidden/steganographic-payload analysis.",
+    "Numeric/IP/MAC classifications use CI provenance and sampled context, not universal semantic resolution.",
+    "APK/source/tool binaries and unselected raw Gradle binary/HTML reports are outside this final selected-content screen.",
+    "Local receipt/member/transport consistency does not independently authenticate remote receipt issuance.",
+    "No publication authorization, repository visibility decision, remote publication claim, functional acceptance or Android execution follows from this assessment."
+  ]
+}

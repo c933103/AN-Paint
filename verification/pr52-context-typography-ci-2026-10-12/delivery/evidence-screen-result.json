@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "raw_build_and_probe_inputs": {
+    "files_screened": 12,
+    "suspected_value_count": 0,
+    "masked_authorization_count": 1,
+    "locations_only": [
+      {
+        "path": "build-job.log",
+        "suspected_value_lines": [],
+        "provider_masked_authorization_lines": [
+          104
+        ],
+        "sensitive_url_query_fields": []
+      }
+    ]
+  },
+  "selected_packet": {
+    "files_screened": 69,
+    "suspected_value_count": 0,
+    "masked_authorization_count": 0,
+    "locations_only": []
+  },
+  "raw_build_log_content_in_packet": false,
+  "screened_raw_probe_logs_in_packet": true,
+  "suspected_values_or_value_hashes_in_report": false,
+  "limits": [
+    "Pattern-based conservative field/token and sensitive URL query-key selection check; not a universal secret detector.",
+    "Selected build evidence contains expected markers rather than arbitrary surrounding log lines.",
+    "No raw prior API30 packet, raw logcat, APK, source ZIP or full source inventory is copied."
+  ]
+}
