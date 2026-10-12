@@ -1,0 +1,67 @@
+{
+  "status": "PASS_FINAL_ATTEMPT_SEPARATION",
+  "run_id": 38303992927,
+  "actual_targeted_job_reruns": 1,
+  "successful_job_aliases_not_new_executions": 4,
+  "rows": [
+    {
+      "name": "Exact-script resource generation",
+      "original_executed_job_id": 114993461374,
+      "attempt2_alias_job_id": 115001927201,
+      "classification": "COPIED_SUCCESS_RECORD_NOT_NEW_EXECUTION",
+      "started_at": "2026-10-12T20:24:20Z",
+      "completed_at": "2026-10-12T20:27:02Z"
+    },
+    {
+      "name": "Regression tests and lint",
+      "original_executed_job_id": 114993461644,
+      "attempt2_alias_job_id": 115001980694,
+      "classification": "COPIED_SUCCESS_RECORD_NOT_NEW_EXECUTION",
+      "started_at": "2026-10-12T20:24:21Z",
+      "completed_at": "2026-10-12T20:41:04Z"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "original_executed_job_id": 114993461655,
+      "attempt2_alias_job_id": 115001987390,
+      "classification": "COPIED_SUCCESS_RECORD_NOT_NEW_EXECUTION",
+      "started_at": "2026-10-12T20:24:20Z",
+      "completed_at": "2026-10-12T20:33:45Z"
+    },
+    {
+      "name": "Emulator API 35",
+      "original_executed_job_id": 114996862237,
+      "attempt2_alias_job_id": 115001985121,
+      "classification": "COPIED_SUCCESS_RECORD_NOT_NEW_EXECUTION",
+      "started_at": "2026-10-12T20:33:47Z",
+      "completed_at": "2026-10-12T20:45:35Z"
+    },
+    {
+      "name": "Emulator API 30",
+      "original_job_id": 114996862363,
+      "new_job_id": 115001925607,
+      "classification": "ACTUAL_TARGETED_RERUN",
+      "attempt1_conclusion": "failure",
+      "attempt2_status": "completed",
+      "attempt2_conclusion": "success",
+      "original_started_at": "2026-10-12T20:33:47Z",
+      "original_completed_at": "2026-10-12T20:34:33Z",
+      "retry_started_at": "2026-10-12T20:48:11Z",
+      "retry_completed_at": null,
+      "final_status_source": "final-source-publication.json; raw final job timestamp metadata not supplied here"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "attempt1-final-jobs.json",
+      "sha256": "cc23b4c8f17b0da73cd0efbf4b93e09b42a6c20d7980d2af265140485f27e21c"
+    },
+    {
+      "file": "attempt2-jobs-initial.json",
+      "sha256": "8ca4929ca3e3d800205ec077765622b1c8e0c38b249fc83669cde49acb500eb9"
+    }
+  ],
+  "limit": "Metadata timestamps support copied-success classification; independent original logs and artifact digests retain actual execution provenance. Attempt1 API30 remains setup failure with all95 selected tests unrun.",
+  "final_publication_receipt_sha256": "4dd47d11f2f0734b952c1a4f11a30722957c4f827c60d696f823610451501972",
+  "final_displayed_jobs_all_completed_success": true
+}

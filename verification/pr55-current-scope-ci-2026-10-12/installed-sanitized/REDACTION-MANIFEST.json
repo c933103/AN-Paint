@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "status": "LOCAL_SANITIZED_DERIVATIVE_PENDING_INDEPENDENT_REVIEW",
+  "original_selection_sha256": "7f5e33a1e9015527a1f7bc877ecdeafd191701013ec44aaaea0ed84800d7a389",
+  "original_archive_sha256": "786b527dc893aa76f253b504734e30e8b73b26cd4f674d88057966ddbbf8e54d",
+  "sanitized_archive_sha256": "0c9ddeebc5967ba0a13b804a3838bc075bf3c0760a1e5f87a68c67ea56e45cee",
+  "original_archive_bytes": 9510513,
+  "sanitized_archive_bytes": 9510183,
+  "changed_members": [
+    {
+      "path": "current-inputs/api30/logcat.txt",
+      "line": 20476,
+      "original_whole_file_sha256": "d7d2e746e2a55afac2914a82ba30aabdf56d6cb3d0f410d01bb1da2f59077587",
+      "sanitized_whole_file_sha256": "a732fe7a59ce513789f213214598056e1e4134112412baa6a3af158b34ef36d8",
+      "original_bytes": 4762496,
+      "sanitized_bytes": 4761564,
+      "line_count": 38173,
+      "line_count_preserved": true,
+      "response_field": "headers",
+      "response_header_names": [
+        "null",
+        "Connection",
+        "Content-Length",
+        "Content-Security-Policy",
+        "Content-Type",
+        "Date",
+        "Permissions-Policy",
+        "Server",
+        "Set-Cookie",
+        "X-Android-Received-Millis",
+        "X-Android-Response-Source",
+        "X-Android-Selected-Protocol",
+        "X-Android-Sent-Millis",
+        "X-Frame-Options",
+        "X-XSS-Protection"
+      ],
+      "cookie_field_names": [
+        "__Secure-STRP",
+        "SEARCH_SAMESITE"
+      ],
+      "replacement": "headers={[REDACTED: third-party response headers]}",
+      "all_bytes_outside_this_response_field_unchanged": true
+    }
+  ],
+  "unchanged_archive_members": 89,
+  "reason": "Unmasked third-party response-cookie values and associated response-header material in the Android connectivity probe; not a claim of authenticated user-account access.",
+  "provider_host": "www.google.com",
+  "request_path": "/gen_204",
+  "cookie_values_or_cookie_value_hashes_included": false,
+  "original_input_bytes_preserved": true,
+  "requires": "Independent content scan and source/test-protocol verification before any publication recommendation."
+}

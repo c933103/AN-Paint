@@ -1,0 +1,95 @@
+{
+  "head": "4a35933ff6b6d0013dac8743cc5eeac1c1033e05",
+  "tree": "b6bf7626c1d7c4aef669394970046ffc89a5c877",
+  "merge": "0c01e5fca04da3713c3595acbf45b60ad3538d30",
+  "run_id": 38303992927,
+  "status": "PASS_BOUNDED_ASSERTIONS_ON_SANITIZED_LOG_DERIVATIVE",
+  "original_acceptance_sha256": "e5684bf7b81df201bc02477403e2aae24c3eb0f070da6a6c5d2adb1ce3be8280",
+  "sanitized_selection_sha256": "6b0720bcf45c0619cb810f5974a9a875ae6a732012803d15e850e232d8621bc4",
+  "redaction_manifest_sha256": "2ae39aaf710f70e1afa4593073b41fa7eb8e618da93826e41f2828e1291c3bfb",
+  "changed_input": {
+    "path": "api30/logcat.txt",
+    "line": 20476,
+    "line_count": 38173,
+    "original_whole_file_sha256": "d7d2e746e2a55afac2914a82ba30aabdf56d6cb3d0f410d01bb1da2f59077587",
+    "sanitized_whole_file_sha256": "a732fe7a59ce513789f213214598056e1e4134112412baa6a3af158b34ef36d8"
+  },
+  "verified_methods": {
+    "30": 95,
+    "35": 104
+  },
+  "platform_locale_count": 167,
+  "exact_native_images_unchanged": 192,
+  "exact_arabic_records_and_images_unchanged": true,
+  "result_comparisons": [
+    {
+      "path": "source-input-result.json",
+      "original_whole_file_sha256": "80d50d67f7092460b092aeb7c73d7a3741b249a2924154b8dd01b0301130f288",
+      "sanitized_verification_whole_file_sha256": "80d50d67f7092460b092aeb7c73d7a3741b249a2924154b8dd01b0301130f288",
+      "changed_fields": []
+    },
+    {
+      "path": "deadline-result.json",
+      "original_whole_file_sha256": "f17db9e1a15fe58aea18b183cd117329ba049edbf4482bd0e36ec9ed46627c30",
+      "sanitized_verification_whole_file_sha256": "f17db9e1a15fe58aea18b183cd117329ba049edbf4482bd0e36ec9ed46627c30",
+      "changed_fields": []
+    },
+    {
+      "path": "installed-matrix-result.json",
+      "original_whole_file_sha256": "503b8289d7358521716fc07fc8bafb3e1deb695e02488af6752fb384a895e1b4",
+      "sanitized_verification_whole_file_sha256": "503b8289d7358521716fc07fc8bafb3e1deb695e02488af6752fb384a895e1b4",
+      "changed_fields": []
+    },
+    {
+      "path": "prebuilt-provenance-result.json",
+      "original_whole_file_sha256": "4ebd551c5a027da9a2c05a705ef603c4eab404729beb50bef146880ad514ba6a",
+      "sanitized_verification_whole_file_sha256": "bd48ae6dcab536ae6a5372b317942daecbf52f6d652aeeaba74ac9a89edb2aa2",
+      "changed_fields": [
+        ".status",
+        ".payload_hash_recomputed"
+      ]
+    },
+    {
+      "path": "platform-locale-binding-result.json",
+      "original_whole_file_sha256": "54db437c8ff59d196b834cdbde8bdf5fb6f9f5093949b615ed7422e3b8343424",
+      "sanitized_verification_whole_file_sha256": "1b6af19e6ccccc169f9993427ed6b7d3d7e0e25bc5675681058802df7ec619dc",
+      "changed_fields": [
+        ".api30_logcat_sha256",
+        ".prebuilt_result_sha256"
+      ]
+    },
+    {
+      "path": "restart-boundary-result.json",
+      "original_whole_file_sha256": "10a929560fb7f542c60b83ff16073de99476fc88b0719f594734679e5aa4107c",
+      "sanitized_verification_whole_file_sha256": "10a929560fb7f542c60b83ff16073de99476fc88b0719f594734679e5aa4107c",
+      "changed_fields": []
+    },
+    {
+      "path": "installed-pixel-result.json",
+      "original_whole_file_sha256": "d0297b00c0e74fb3523356e43e8aa671231e9389085fcee855f5c626a2714452",
+      "sanitized_verification_whole_file_sha256": "d0297b00c0e74fb3523356e43e8aa671231e9389085fcee855f5c626a2714452",
+      "changed_fields": []
+    },
+    {
+      "path": "natural-update-result.json",
+      "original_whole_file_sha256": "22864414f1aafa19807fe66214ca62f9d6c54f5b4f24dbeaf1f81ea8ca39e0c2",
+      "sanitized_verification_whole_file_sha256": "b9e6b1f872fa313a252c5a65bf19298bcfc811812ae4208150e7435897cf97eb",
+      "changed_fields": []
+    },
+    {
+      "path": "native-vertical/result.json",
+      "original_whole_file_sha256": "f9b5de9b9c904711c9e8aa7b5e1c48cdfc6de3971ffcee8cd6247d1b0c39a0c3",
+      "sanitized_verification_whole_file_sha256": "be4514aaac22e88b3a0bae64759bb92d888e2dd13710ce4b6e7d5d9d2fd7960c",
+      "changed_fields": [
+        ".devices.30.logcat_sha256"
+      ]
+    }
+  ],
+  "semantic_conclusion": "All source, raw identity/protocol/terminal/JUnit, restart, natural-update, Arabic pixel, native geometry/input/Save and LocaleConfig assertions are unchanged. Expected differences are only the sanitized API30 whole-log hash, its downstream receipt hash, and explicit receipt-only payload status.",
+  "limits": [
+    "This is verification on a sanitized derivative, not exact original raw-log replay.",
+    "Original outer ZIP/APK/source hashes were checked before redaction and remain historical receipts; their original payloads are intentionally omitted.",
+    "Content-disclosure assessment is separate. No cookie value or cookie-value hash appears in this report.",
+    "No new Android/app execution or code changes."
+  ]
+}
