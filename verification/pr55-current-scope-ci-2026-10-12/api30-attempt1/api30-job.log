@@ -1,0 +1,276 @@
+﻿2026-10-12T20:33:48.6809315Z Current runner version: '2.337.0'
+2026-10-12T20:33:48.6830830Z ##[group]Runner Image Provisioner
+2026-10-12T20:33:48.6831548Z Hosted Compute Agent
+2026-10-12T20:33:48.6832187Z Version: 20261002.596
+2026-10-12T20:33:48.6832716Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-12T20:33:48.6833366Z Build Date: 2026-10-02T22:28:27Z
+2026-10-12T20:33:48.6833974Z Worker ID: {5bc9965e-4ad6-44a5-9c15-e0b019967386}
+2026-10-12T20:33:48.6834556Z Region: westus3
+2026-10-12T20:33:48.6835092Z Cloud: Azure
+2026-10-12T20:33:48.6835548Z ##[endgroup]
+2026-10-12T20:33:48.6836604Z ##[group]Operating System
+2026-10-12T20:33:48.6837229Z Ubuntu
+2026-10-12T20:33:48.6837672Z 22.04.5
+2026-10-12T20:33:48.6838205Z LTS
+2026-10-12T20:33:48.6838641Z ##[endgroup]
+2026-10-12T20:33:48.6839096Z ##[group]Runner Image
+2026-10-12T20:33:48.6839824Z Image: ubuntu-22.04
+2026-10-12T20:33:48.6840306Z Version: 20261004.315.1
+2026-10-12T20:33:48.6841420Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261004.315/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-12T20:33:48.6842643Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261004.315
+2026-10-12T20:33:48.6843490Z ##[endgroup]
+2026-10-12T20:33:48.6844407Z ##[group]GITHUB_TOKEN Permissions
+2026-10-12T20:33:48.6845990Z Contents: read
+2026-10-12T20:33:48.6846506Z Metadata: read
+2026-10-12T20:33:48.6847043Z ##[endgroup]
+2026-10-12T20:33:48.6848766Z Secret source: Actions
+2026-10-12T20:33:48.6849804Z Cache mode: write
+2026-10-12T20:33:48.6850390Z Prepare workflow directory
+2026-10-12T20:33:48.7351457Z Prepare all required actions
+2026-10-12T20:33:48.7390310Z Getting action download info
+2026-10-12T20:33:49.0293974Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-12T20:33:49.1889055Z Download action repository 'actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c' (SHA:3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c)
+2026-10-12T20:33:49.8041037Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-12T20:33:50.0685638Z Complete job name: Emulator API 30
+2026-10-12T20:33:50.1308195Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-12T20:33:50.1308990Z with:
+2026-10-12T20:33:50.1309334Z   persist-credentials: false
+2026-10-12T20:33:50.1309861Z   repository: c933103/AN-Paint
+2026-10-12T20:33:50.1312934Z   token: ***
+2026-10-12T20:33:50.1313281Z   ssh-strict: true
+2026-10-12T20:33:50.1313623Z   ssh-user: git
+2026-10-12T20:33:50.1313942Z   clean: true
+2026-10-12T20:33:50.1314282Z   sparse-checkout-cone-mode: true
+2026-10-12T20:33:50.1314678Z   fetch-depth: 1
+2026-10-12T20:33:50.1315008Z   fetch-tags: false
+2026-10-12T20:33:50.1315349Z   show-progress: true
+2026-10-12T20:33:50.1315710Z   lfs: false
+2026-10-12T20:33:50.1316034Z   submodules: false
+2026-10-12T20:33:50.1316380Z   set-safe-directory: true
+2026-10-12T20:33:50.1316776Z   allow-unsafe-pr-checkout: false
+2026-10-12T20:33:50.1317362Z env:
+2026-10-12T20:33:50.1317679Z   BUILD_VARIANT: debug
+2026-10-12T20:33:50.1318030Z ##[endgroup]
+2026-10-12T20:33:50.2163914Z Syncing repository: c933103/AN-Paint
+2026-10-12T20:33:50.2166053Z ##[group]Getting Git version info
+2026-10-12T20:33:50.2166931Z Working directory is '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-12T20:33:50.2168254Z [command]/usr/bin/git version
+2026-10-12T20:33:50.2502141Z git version 2.55.0
+2026-10-12T20:33:50.2533099Z ##[endgroup]
+2026-10-12T20:33:50.2540751Z Temporarily overriding HOME='/home/runner/work/_temp/c6d24ea4-9379-458c-ac31-cc89271f07ef' before making global git config changes
+2026-10-12T20:33:50.2542865Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T20:33:50.2544511Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-12T20:33:50.2564453Z Deleting the contents of '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-12T20:33:50.2567364Z ##[group]Determining repository object format
+2026-10-12T20:33:50.2568596Z ##[endgroup]
+2026-10-12T20:33:50.2569706Z ##[group]Initializing the repository
+2026-10-12T20:33:50.2572023Z [command]/usr/bin/git init /home/runner/work/AN-Paint/AN-Paint
+2026-10-12T20:33:50.3087888Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-12T20:33:50.3089134Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-12T20:33:50.3090461Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-12T20:33:50.3091506Z hint: call:
+2026-10-12T20:33:50.3092215Z hint:
+2026-10-12T20:33:50.3092993Z hint: 	git config --global init.defaultBranch <name>
+2026-10-12T20:33:50.3093652Z hint:
+2026-10-12T20:33:50.3094107Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-12T20:33:50.3094832Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-12T20:33:50.3095411Z hint:
+2026-10-12T20:33:50.3095795Z hint: 	git branch -m <name>
+2026-10-12T20:33:50.3096262Z hint:
+2026-10-12T20:33:50.3097033Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-12T20:33:50.3098289Z Initialized empty Git repository in /home/runner/work/AN-Paint/AN-Paint/.git/
+2026-10-12T20:33:50.3100610Z [command]/usr/bin/git remote add origin https://github.com/c933103/AN-Paint
+2026-10-12T20:33:50.3136223Z ##[endgroup]
+2026-10-12T20:33:50.3137153Z ##[group]Disabling automatic garbage collection
+2026-10-12T20:33:50.3138368Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-12T20:33:50.3171672Z ##[endgroup]
+2026-10-12T20:33:50.3172880Z ##[group]Setting up auth
+2026-10-12T20:33:50.3173526Z Removing SSH command configuration
+2026-10-12T20:33:50.3176191Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T20:33:50.3209239Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T20:33:50.4498647Z Removing HTTP extra header
+2026-10-12T20:33:50.4504161Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T20:33:50.4537826Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T20:33:50.4753340Z Removing includeIf entries pointing to credentials config files
+2026-10-12T20:33:50.4757913Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T20:33:50.4790992Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T20:33:50.5012787Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-12T20:33:50.5050741Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path /home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:50.5083909Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:50.5118007Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:50.5153638Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:50.5184983Z ##[endgroup]
+2026-10-12T20:33:50.5185876Z ##[group]Fetching the repository
+2026-10-12T20:33:50.5190152Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0c01e5fca04da3713c3595acbf45b60ad3538d30:refs/remotes/pull/55/merge
+2026-10-12T20:33:51.8109928Z From https://github.com/c933103/AN-Paint
+2026-10-12T20:33:51.8111603Z  * [new ref]         0c01e5fca04da3713c3595acbf45b60ad3538d30 -> pull/55/merge
+2026-10-12T20:33:51.8113788Z ##[endgroup]
+2026-10-12T20:33:51.8114354Z ##[group]Determining the checkout info
+2026-10-12T20:33:51.8114947Z ##[endgroup]
+2026-10-12T20:33:51.8119666Z [command]/usr/bin/git sparse-checkout disable
+2026-10-12T20:33:51.8163814Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-12T20:33:51.8549212Z ##[group]Checking out the ref
+2026-10-12T20:33:51.8552962Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/55/merge
+2026-10-12T20:33:51.9865264Z Note: switching to 'refs/remotes/pull/55/merge'.
+2026-10-12T20:33:51.9865705Z 
+2026-10-12T20:33:51.9866013Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-12T20:33:51.9866802Z changes and commit them, and you can discard any commits you make in this
+2026-10-12T20:33:51.9867552Z state without impacting any branches by switching back to a branch.
+2026-10-12T20:33:51.9867971Z 
+2026-10-12T20:33:51.9868297Z If you want to create a new branch to retain commits you create, you may
+2026-10-12T20:33:51.9868950Z do so (now or later) by using -c with the switch command. Example:
+2026-10-12T20:33:51.9869294Z 
+2026-10-12T20:33:51.9869463Z   git switch -c <new-branch-name>
+2026-10-12T20:33:51.9869845Z 
+2026-10-12T20:33:51.9870010Z Or undo this operation with:
+2026-10-12T20:33:51.9870257Z 
+2026-10-12T20:33:51.9870394Z   git switch -
+2026-10-12T20:33:51.9870607Z 
+2026-10-12T20:33:51.9870967Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-12T20:33:51.9871457Z 
+2026-10-12T20:33:51.9871968Z HEAD is now at 0c01e5f Merge 4a35933ff6b6d0013dac8743cc5eeac1c1033e05 into 71f4d288669858e7975ec4c094b7f47a9a1ff145
+2026-10-12T20:33:51.9877006Z ##[endgroup]
+2026-10-12T20:33:51.9920438Z [command]/usr/bin/git log -1 --format=%H
+2026-10-12T20:33:51.9948598Z 0c01e5fca04da3713c3595acbf45b60ad3538d30
+2026-10-12T20:33:51.9957253Z ##[group]Removing auth
+2026-10-12T20:33:51.9957629Z Removing SSH command configuration
+2026-10-12T20:33:51.9960056Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T20:33:51.9992757Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T20:33:52.0214192Z Removing HTTP extra header
+2026-10-12T20:33:52.0217132Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T20:33:52.0254093Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T20:33:52.0475890Z Removing includeIf entries pointing to credentials config files
+2026-10-12T20:33:52.0478384Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T20:33:52.0506644Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-12T20:33:52.0507287Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-12T20:33:52.0507919Z includeif.gitdir:/github/workspace/.git.path
+2026-10-12T20:33:52.0508462Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-12T20:33:52.0515732Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-12T20:33:52.0541320Z /home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:52.0550126Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-be16029b\-a748\-42a2\-bb39\-76094e9f5502\.config
+2026-10-12T20:33:52.0585121Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-12T20:33:52.0611333Z /home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:52.0617226Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-be16029b\-a748\-42a2\-bb39\-76094e9f5502\.config
+2026-10-12T20:33:52.1100187Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-12T20:33:52.1134743Z /github/runner_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:52.1144007Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-be16029b\-a748\-42a2\-bb39\-76094e9f5502\.config
+2026-10-12T20:33:52.1197985Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-12T20:33:52.1226798Z /github/runner_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config
+2026-10-12T20:33:52.1255300Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-be16029b\-a748\-42a2\-bb39\-76094e9f5502\.config
+2026-10-12T20:33:52.1324688Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T20:33:52.1569759Z Removing credentials config '/home/runner/work/_temp/git-credentials-be16029b-a748-42a2-bb39-76094e9f5502.config'
+2026-10-12T20:33:52.1580211Z ##[endgroup]
+2026-10-12T20:33:52.1791847Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-10-12T20:33:52.1792172Z with:
+2026-10-12T20:33:52.1792406Z   name: apk-and-source-0c01e5fca04da3713c3595acbf45b60ad3538d30
+2026-10-12T20:33:52.1792716Z   path: build/prebuilt
+2026-10-12T20:33:52.1792907Z   merge-multiple: false
+2026-10-12T20:33:52.1793092Z   repository: c933103/AN-Paint
+2026-10-12T20:33:52.1793283Z   run-id: 38303992927
+2026-10-12T20:33:52.1793460Z   skip-decompress: false
+2026-10-12T20:33:52.1793645Z   digest-mismatch: error
+2026-10-12T20:33:52.1793810Z env:
+2026-10-12T20:33:52.1793963Z   BUILD_VARIANT: debug
+2026-10-12T20:33:52.1794133Z ##[endgroup]
+2026-10-12T20:33:52.2928124Z Downloading single artifact
+2026-10-12T20:33:52.5410304Z Preparing to download the following artifacts:
+2026-10-12T20:33:52.5411464Z - apk-and-source-0c01e5fca04da3713c3595acbf45b60ad3538d30 (ID: 11771394989, Size: 139702184, Expected Digest: sha256:568abefebae47325172364417e23243c562648a7103ef569541aa54ffb8ae9d8)
+2026-10-12T20:33:53.0285058Z Redirecting to blob download url: https://productionresultssa15.blob.core.windows.net/actions-results/4a608cc0-455c-8cf1-9c71-9f33e1587f61/workflow-job-run-bee071ef-2c9b-582a-ac38-fbfe30282b57/artifacts/177b11757339dc02927d04316693c0c2465f43e2dcfb2086447d7d7d546576fb.zip
+2026-10-12T20:33:53.0286270Z Starting download of artifact to: /home/runner/work/AN-Paint/AN-Paint/build/prebuilt
+2026-10-12T20:33:53.2631381Z (node:2017) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-12T20:33:53.2632118Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T20:33:57.0947400Z SHA256 digest of downloaded artifact is 568abefebae47325172364417e23243c562648a7103ef569541aa54ffb8ae9d8
+2026-10-12T20:33:57.0948129Z Artifact download completed successfully.
+2026-10-12T20:33:57.0948509Z Total of 1 artifact(s) downloaded
+2026-10-12T20:33:57.0952986Z Download artifact has finished successfully
+2026-10-12T20:33:57.1096961Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-10-12T20:33:57.1097288Z with:
+2026-10-12T20:33:57.1097721Z   name: instrumentation-apks-0c01e5fca04da3713c3595acbf45b60ad3538d30
+2026-10-12T20:33:57.1098044Z   path: build/prebuilt
+2026-10-12T20:33:57.1098233Z   merge-multiple: false
+2026-10-12T20:33:57.1098427Z   repository: c933103/AN-Paint
+2026-10-12T20:33:57.1098623Z   run-id: 38303992927
+2026-10-12T20:33:57.1098800Z   skip-decompress: false
+2026-10-12T20:33:57.1098998Z   digest-mismatch: error
+2026-10-12T20:33:57.1099171Z env:
+2026-10-12T20:33:57.1099325Z   BUILD_VARIANT: debug
+2026-10-12T20:33:57.1099688Z ##[endgroup]
+2026-10-12T20:33:57.2295682Z Downloading single artifact
+2026-10-12T20:33:57.4733321Z Preparing to download the following artifacts:
+2026-10-12T20:33:57.4734524Z - instrumentation-apks-0c01e5fca04da3713c3595acbf45b60ad3538d30 (ID: 11773180175, Size: 94709188, Expected Digest: sha256:a6867a3c832976caf818d87b63ebe59c80354cec7546749d51535511c5bac666)
+2026-10-12T20:33:57.9505769Z Redirecting to blob download url: https://productionresultssa15.blob.core.windows.net/actions-results/4a608cc0-455c-8cf1-9c71-9f33e1587f61/workflow-job-run-bee071ef-2c9b-582a-ac38-fbfe30282b57/artifacts/a6bbf420b1cc219ae8bf368db79b62d8e15ff53abe7c5f9c5738cd9de6396e1c.zip
+2026-10-12T20:33:57.9507042Z Starting download of artifact to: /home/runner/work/AN-Paint/AN-Paint/build/prebuilt
+2026-10-12T20:33:58.1970237Z (node:2029) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-10-12T20:33:58.1970955Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T20:34:00.8047919Z SHA256 digest of downloaded artifact is a6867a3c832976caf818d87b63ebe59c80354cec7546749d51535511c5bac666
+2026-10-12T20:34:00.8048571Z Artifact download completed successfully.
+2026-10-12T20:34:00.8048861Z Total of 1 artifact(s) downloaded
+2026-10-12T20:34:00.8052551Z Download artifact has finished successfully
+2026-10-12T20:34:00.8172137Z ##[group]Run sudo chmod a+rw /dev/kvm
+2026-10-12T20:34:00.8172472Z [36;1msudo chmod a+rw /dev/kvm[0m
+2026-10-12T20:34:00.8173016Z [36;1mtimeout --kill-after=15s 5m "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "system-images;android-$TEST_API;google_apis;x86_64" "emulator"[0m
+2026-10-12T20:34:00.9513733Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-12T20:34:00.9514052Z env:
+2026-10-12T20:34:00.9514229Z   BUILD_VARIANT: debug
+2026-10-12T20:34:00.9514424Z   TEST_API: 30
+2026-10-12T20:34:00.9514589Z ##[endgroup]
+2026-10-12T20:34:13.9216286Z Loading package information...                                                  
+2026-10-12T20:34:14.0077684Z Loading local repository...                                                     
+2026-10-12T20:34:14.0085604Z [                                       ] 3% Loading local repository...        
+2026-10-12T20:34:14.8950782Z [                                       ] 3% Fetch remote repository...         
+2026-10-12T20:34:15.3193216Z [=                                      ] 3% Fetch remote repository...         
+2026-10-12T20:34:15.4008970Z [=                                      ] 4% Fetch remote repository...         
+2026-10-12T20:34:15.4342354Z [=                                      ] 5% Fetch remote repository...         
+2026-10-12T20:34:15.5351197Z [==                                     ] 5% Fetch remote repository...         
+2026-10-12T20:34:15.5951119Z [==                                     ] 6% Fetch remote repository...         
+2026-10-12T20:34:15.6970735Z [==                                     ] 7% Fetch remote repository...         
+2026-10-12T20:34:15.7000079Z [==                                     ] 7% Computing updates...               
+2026-10-12T20:34:15.7057321Z [===                                    ] 8% Computing updates...               
+2026-10-12T20:34:15.7370039Z [===                                    ] 10% Computing updates...              
+2026-10-12T20:34:15.8567637Z [===                                    ] 10% Installing Android Emulator       
+2026-10-12T20:34:16.2921786Z [===                                    ] 10% Downloading emulator-linux_x64-164
+2026-10-12T20:34:16.3866983Z [====                                   ] 10% Downloading emulator-linux_x64-164
+2026-10-12T20:34:21.0042522Z [====                                   ] 11% Downloading emulator-linux_x64-164
+2026-10-12T20:34:21.3674022Z [====                                   ] 12% Downloading emulator-linux_x64-164
+2026-10-12T20:34:22.3097183Z [=====                                  ] 13% Downloading emulator-linux_x64-164
+2026-10-12T20:34:24.4153771Z [=====                                  ] 14% Downloading emulator-linux_x64-164
+2026-10-12T20:34:24.9722546Z [=====                                  ] 15% Downloading emulator-linux_x64-164
+2026-10-12T20:34:25.3792630Z [======                                 ] 15% Downloading emulator-linux_x64-164
+2026-10-12T20:34:27.6910840Z [======                                 ] 16% Downloading emulator-linux_x64-164
+2026-10-12T20:34:30.5396584Z [======                                 ] 17% Downloading emulator-linux_x64-164
+2026-10-12T20:34:30.5399664Z [========                               ] 21% Downloading emulator-linux_x64-164
+2026-10-12T20:34:31.0424391Z [========                               ] 21% Unzipping...                      
+2026-10-12T20:34:31.0427383Z Warning: An error occurred while preparing SDK package Android Emulator: Archive is not a ZIP archive.
+2026-10-12T20:34:31.0427964Z                                                                                 
+2026-10-12T20:34:31.0993823Z [========                               ] 21% Unzipping...                      
+2026-10-12T20:34:31.1006165Z ##[error]Process completed with exit code 1.
+2026-10-12T20:34:31.1089033Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-12T20:34:31.1089368Z with:
+2026-10-12T20:34:31.1089729Z   archive: true
+2026-10-12T20:34:31.1090031Z   name: emulator-api-30-0c01e5fca04da3713c3595acbf45b60ad3538d30
+2026-10-12T20:34:31.1090326Z   retention-days: 14
+2026-10-12T20:34:31.1090525Z   if-no-files-found: warn
+2026-10-12T20:34:31.1090732Z   path: build/reports/android-api-30/
+2026-10-12T20:34:31.1090965Z   compression-level: 6
+2026-10-12T20:34:31.1091147Z   overwrite: false
+2026-10-12T20:34:31.1091334Z   include-hidden-files: false
+2026-10-12T20:34:31.1091535Z env:
+2026-10-12T20:34:31.1091691Z   BUILD_VARIANT: debug
+2026-10-12T20:34:31.1091870Z ##[endgroup]
+2026-10-12T20:34:31.2318179Z ##[warning]No files were found with the provided path: build/reports/android-api-30/. No artifacts will be uploaded.
+2026-10-12T20:34:31.2436632Z Post job cleanup.
+2026-10-12T20:34:31.3190193Z [command]/usr/bin/git version
+2026-10-12T20:34:31.3224912Z git version 2.55.0
+2026-10-12T20:34:31.3255866Z Temporarily overriding HOME='/home/runner/work/_temp/2ceffa4e-872c-4643-8293-481287545bc9' before making global git config changes
+2026-10-12T20:34:31.3256838Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T20:34:31.3259355Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-12T20:34:31.3290407Z Removing SSH command configuration
+2026-10-12T20:34:31.3296260Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T20:34:31.3340613Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-12T20:34:31.3577597Z Removing HTTP extra header
+2026-10-12T20:34:31.3584096Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T20:34:31.3622075Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-12T20:34:31.3863455Z Removing includeIf entries pointing to credentials config files
+2026-10-12T20:34:31.3869662Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T20:34:31.3931895Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-12T20:34:31.4361922Z Cleaning up orphan processes

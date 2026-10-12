@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "head": "4a35933ff6b6d0013dac8743cc5eeac1c1033e05",
+  "tree": "b6bf7626c1d7c4aef669394970046ffc89a5c877",
+  "run_id": 38303992927,
+  "attempt": 1,
+  "job_id": 114996862363,
+  "conclusion": "failure",
+  "failed_stage": "Install emulator image: sdkmanager Android Emulator archive preparation",
+  "exact_error": "Archive is not a ZIP archive",
+  "exit_code": 1,
+  "selected_api30_methods": 95,
+  "execution_status": "UNRUN",
+  "artifact_status": "No files found; no API30 artifact uploaded",
+  "source_or_deadline_change": false,
+  "underlying_download_cause": "Not established by the log",
+  "log": {
+    "path": "api30-job.log",
+    "bytes": 24921,
+    "sha256": "4f51e140f888aaadce2d32cd7a677070cfdf1aeb5b77ef675841c8d7a1ea9287"
+  },
+  "job_metadata": {
+    "id": 114996862363,
+    "name": "Emulator API 30",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_id": 38303992927,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Install emulator image",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 5
+      },
+      {
+        "name": "Run prebuilt tests with deadlines and live logs",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      }
+    ]
+  }
+}
