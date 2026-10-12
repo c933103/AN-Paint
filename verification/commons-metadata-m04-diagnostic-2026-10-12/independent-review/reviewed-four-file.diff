@@ -1,0 +1,244 @@
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
+index 958e461..b007cae 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt
+@@ -362,10 +362,14 @@ class CommonsMetadataQueryFailureFlowTest {
+     @Test @Config(qualifiers="w640dp-h320dp-land-xhdpi",fontScale=2f)
+     fun shortLandscapeM04RetainsFullAccessibleTextAtDoubleScale() = readable(2f,640,320)
+     private fun readable(scale: Float,widthDp: Int=320,heightDp: Int=640) {
++        val failures=mutableListOf<String>()
++        var completedProfiles=0
+         for(insert in listOf(false,true)) for(tag in listOf("en-GB","ain-Kana","ain-Latn","bo","ryu","fr","ar","ja","vi-Hani","mn-Mong","mnc-Mong","lzh-Hant","en-XV","qaa-Zsye-XV")) {
+-            withGallery(tag) {activity ->
++            var metadataFinished=false
++            try {withGallery(tag) {activity ->
+                 val before=files(activity);val requests=Collections.synchronizedList(mutableListOf<Connection>())
+                 connect(activity,requests,true);select(activity,insert);await {!activity.downloading}
++                metadataFinished=true
+                 val reason=activity.getString(R.string.commons_metadata_query_failed)
+                 assertFailure(activity,insert,reason,before)
+                 val text=expected(activity,insert,reason)
+@@ -376,6 +380,10 @@ class CommonsMetadataQueryFailureFlowTest {
+                 val view=status(activity);assertEquals(scale,activity.resources.configuration.fontScale,0f)
+                 assertNull(view.ellipsize);assertTrue(view.isShown)
+                 val layout=requireNotNull(view.layout)
++                // Retain failed-profile pixels and measured geometry before any layout oracle.
++                // This is diagnostic evidence; the original assertions below still decide acceptance.
++                if(widthDp==640 && heightDp==320 && scale==1f)
++                    recordLandscapeDiagnostic(root,view,tag,insert,scale)
+                 assertEquals(text.length,layout.getLineEnd(layout.lineCount-1))
+                 assertTrue(layout.height<=view.height-view.totalPaddingTop-view.totalPaddingBottom)
+                 if(VerticalText.uiVertical()) {
+@@ -388,6 +396,10 @@ class CommonsMetadataQueryFailureFlowTest {
+                         if(position==end) assertEquals(view.width,visible.right)
+                     }
+                     rail.resetToReadingStart()
++                    root.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
++                        View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY));root.layout(0,0,width,height)
++                    assertEquals("Capture must follow the completed reading-start layout",
++                        if(VerticalText.uiDirection()==TextDirection.VERTICAL_RL) end else 0,rail.scrollX)
+                 } else {
+                     if(heightDp>=640) GallerySvgReadabilityFixture.assertEntireMessageVisible(view)
+                     else {
+@@ -395,7 +407,9 @@ class CommonsMetadataQueryFailureFlowTest {
+                         assertTrue("Short landscape must retain a visible scroll viewport",scroll.height>0)
+                         for(line in 0 until layout.lineCount) {
+                             assertEquals(0,layout.getEllipsisCount(line))
+-                            assertTrue(layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f)
++                            assertTrue("$tag ${if(insert) "insert" else "copy"} ${widthDp}x$heightDp font$scale " +
++                                "line $line: left=${layout.getLineLeft(line)}, right=${layout.getLineRight(line)}, width=${layout.width}",
++                                layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f)
+                         }
+                         val start=android.graphics.Rect()
+                         assertTrue(view.getLocalVisibleRect(start));assertEquals(0,start.top)
+@@ -426,8 +440,104 @@ class CommonsMetadataQueryFailureFlowTest {
+                 java.io.File(directory,"$name.json").writeText(org.json.JSONObject()
+                     .put("evidence_kind","Robolectric NATIVE rendering, not installed-device capture")
+                     .put("locale",tag).put("font_scale",scale).put("action",if(insert) "insert" else "copy")
+-                    .put("message",text).put("all_characters_laid_out",true).toString(2)+"\n")
++                    .put("message",text).put("all_characters_laid_out",true)
++                    .put("status_parent_scroll_x",(view.parent as View).scrollX).toString(2)+"\n")
++            }} catch(failure: AssertionError) {
++                if(!metadataFinished) throw failure
++                // withGallery has already performed its normal cleanup. Keep other profiles
++                // observable, without retrying the failed action or converting failure to success.
++                failures.add("$tag ${if(insert) "insert" else "copy"} ${widthDp}x$heightDp font$scale: ${failure.message}")
++            }
++            completedProfiles++
++        }
++        if(widthDp==640 && heightDp==320 && scale==1f) {
++            val directory=java.io.File("build/reports/commons-metadata-m04-diagnostic").apply {mkdirs()}
++            java.io.File(directory,"normal-landscape-outcomes.json").writeText(org.json.JSONObject()
++                .put("evidence_kind","Diagnostic outcomes; original JUnit assertions remain authoritative")
++                .put("completed_profiles",completedProfiles).put("expected_profiles",28)
++                .put("failures",org.json.JSONArray(failures)).put("all_profiles_passed",failures.isEmpty()).toString(2)+"\n")
++        }
++        assertTrue("Readability profile failures:\n"+failures.joinToString("\n"),failures.isEmpty())
++    }
++
++    private fun recordLandscapeDiagnostic(root: View,view: TextView,tag: String,insert: Boolean,scale: Float) {
++        val layout=requireNotNull(view.layout)
++        val directory=java.io.File("build/reports/commons-metadata-m04-diagnostic").apply {mkdirs()}
++        val name="api35-$tag-640x320-font$scale-${if(insert) "insert" else "copy"}-before-checks"
++        fun save(bitmap: android.graphics.Bitmap,suffix: String) {
++            java.io.File(directory,"$name$suffix.png").outputStream().use {
++                check(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it))
+             }
+         }
++        val screen=android.graphics.Bitmap.createBitmap(root.width,root.height,android.graphics.Bitmap.Config.ARGB_8888)
++        try {root.draw(android.graphics.Canvas(screen));save(screen,"")} finally {screen.recycle()}
++        val margin=kotlin.math.ceil(view.textSize*2).toInt().coerceAtLeast(32)
++        val ink=android.graphics.Bitmap.createBitmap(layout.width+2*margin,layout.height+2*margin,
++            android.graphics.Bitmap.Config.ARGB_8888)
++        val lines=org.json.JSONArray()
++        val inkEdges=org.json.JSONObject()
++        try {
++            // Draw the SAME native Layout onto a transparent, expanded canvas. This separates
++            // typographic advance from actual painted ink without changing the view or its text.
++            val canvas=android.graphics.Canvas(ink);canvas.translate(margin.toFloat(),margin.toFloat())
++            layout.draw(canvas);save(ink,"-expanded-layout")
++            val pixels=IntArray(ink.width*ink.height)
++            ink.getPixels(pixels,0,ink.width,0,0,ink.width,ink.height)
++            fun painted(x: Int,y: Int)=(pixels[y*ink.width+x] ushr 24)!=0
++            inkEdges.put("left",(0 until ink.height).any {painted(0,it)})
++                .put("right",(0 until ink.height).any {painted(ink.width-1,it)})
++                .put("top",(0 until ink.width).any {painted(it,0)})
++                .put("bottom",(0 until ink.width).any {painted(it,ink.height-1)})
++            for(line in 0 until layout.lineCount) {
++                var left=ink.width;var right=-1;var outside=0
++                val top=(margin+layout.getLineTop(line)).coerceAtLeast(0)
++                val bottom=(margin+layout.getLineBottom(line)).coerceAtMost(ink.height)
++                for(y in top until bottom) for(x in 0 until ink.width) {
++                    if((pixels[y*ink.width+x] ushr 24)!=0) {
++                        left=minOf(left,x);right=maxOf(right,x)
++                        if(x<margin || x>=margin+layout.width) outside++
++                    }
++                }
++                lines.put(org.json.JSONObject()
++                    .put("line",line).put("start",layout.getLineStart(line)).put("end",layout.getLineEnd(line))
++                    .put("text",view.text.subSequence(layout.getLineStart(line),layout.getLineEnd(line)).toString())
++                    .put("left",layout.getLineLeft(line)).put("right",layout.getLineRight(line))
++                    .put("max",layout.getLineMax(line)).put("width_including_trailing_whitespace",layout.getLineWidth(line))
++                    .put("top",layout.getLineTop(line)).put("bottom",layout.getLineBottom(line))
++                    .put("baseline",layout.getLineBaseline(line)).put("paragraph_direction",layout.getParagraphDirection(line))
++                    .put("ellipsis_count",layout.getEllipsisCount(line))
++                    .put("original_horizontal_guard",layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f)
++                    .put("ink_left",if(right>=0) left-margin else org.json.JSONObject.NULL)
++                    .put("ink_right_exclusive",if(right>=0) right-margin+1 else org.json.JSONObject.NULL)
++                    .put("ink_pixels_outside_layout",outside))
++            }
++        } finally {ink.recycle()}
++        val visible=android.graphics.Rect();val intersects=view.getLocalVisibleRect(visible)
++        val window=IntArray(2);view.getLocationInWindow(window)
++        val parent=view.parent as View
++        val report=org.json.JSONObject()
++            .put("evidence_kind","Robolectric NATIVE pre-assertion diagnostic; not installed-device or acceptance evidence")
++            .put("locale",tag).put("action",if(insert) "insert" else "copy").put("font_scale",scale)
++            .put("message",view.text.toString()).put("accessibility_text",view.createAccessibilityNodeInfo().text.toString())
++            .put("viewport_width",root.width).put("viewport_height",root.height)
++            .put("density",view.resources.displayMetrics.density).put("scaled_density",view.resources.displayMetrics.scaledDensity)
++            .put("configured_font_scale",view.resources.configuration.fontScale)
++            .put("resource_locales",view.resources.configuration.locales.toLanguageTags()).put("text_locales",view.textLocales.toLanguageTags())
++            .put("text_size_px",view.textSize).put("break_strategy",view.breakStrategy).put("hyphenation_frequency",view.hyphenationFrequency)
++            .put("view_width",view.width).put("view_height",view.height).put("layout_class",layout.javaClass.name)
++            .put("layout_width",layout.width).put("layout_height",layout.height).put("line_count",layout.lineCount)
++            .put("content_width",view.width-view.compoundPaddingLeft-view.compoundPaddingRight)
++            .put("content_height",view.height-view.totalPaddingTop-view.totalPaddingBottom)
++            .put("padding_left",view.totalPaddingLeft).put("padding_top",view.totalPaddingTop)
++            .put("padding_right",view.totalPaddingRight).put("padding_bottom",view.totalPaddingBottom)
++            .put("window_x",window[0]).put("window_y",window[1]).put("layout_direction",view.layoutDirection)
++            .put("visible_bounds",visible.toShortString()).put("intersects_visible_area",intersects)
++            .put("parent_class",parent.javaClass.name).put("parent_width",parent.width).put("parent_height",parent.height)
++            .put("parent_scroll_x",parent.scrollX).put("parent_scroll_y",parent.scrollY)
++            .put("all_characters_laid_out",layout.lineCount>0 && layout.getLineEnd(layout.lineCount-1)==view.text.length)
++            .put("expanded_layout_margin_px",margin).put("expanded_canvas_edge_touch",inkEdges)
++            .put("ink_measurement_limit","Nontransparent pixels in each native line box on a finite expanded canvas. Edge contact can mean the probe itself clips ink; inspect root and expanded pixels. Does not establish device behavior.")
++            .put("lines",lines)
++        java.io.File(directory,"$name.json").writeText(report.toString(2)+"\n")
+     }
+ }
+diff --git a/tools/commons_metadata_m04_composition_scope.py b/tools/commons_metadata_m04_composition_scope.py
+index b7bcece..b6e66f8 100644
+--- a/tools/commons_metadata_m04_composition_scope.py
++++ b/tools/commons_metadata_m04_composition_scope.py
+@@ -4,6 +4,7 @@ import json
+ from pathlib import Path
+ 
+ from commons_metadata_m04_scope import before_m04_catalogue
++from commons_metadata_m04_diagnostic_scope import before_diagnostic
+ from commons_metadata_m02_scope import before_m02_catalogue
+ from hungarian_attribution_c05_scope import before_c05
+ 
+@@ -38,7 +39,7 @@ def reverse(path, content, rows, strict=True):
+ 
+ def before_composed_m04(path, content):
+     """Recover the exact current-PR52 endpoint for its historical source checks."""
+-    return reverse(path, content, scope()['pr52_overlaps'])
++    return reverse(path, before_diagnostic(path, content), scope()['pr52_overlaps'])
+ 
+ 
+ def before_m04_composed_production(path, text):
+@@ -49,7 +50,7 @@ def before_m04_composed_production(path, text):
+ 
+ def as_standalone_m04_bytes(path, content):
+     """Preserve M04's original hashes without erasing accepted PR52 behavior."""
+-    return reverse(path, content, scope()['m04_overlaps'])
++    return reverse(path, before_diagnostic(path, content), scope()['m04_overlaps'])
+ 
+ 
+ def as_standalone_m04(path, text):
+diff --git a/tools/test_commons_metadata_m04_composition.py b/tools/test_commons_metadata_m04_composition.py
+index 5f38508..31051f8 100644
+--- a/tools/test_commons_metadata_m04_composition.py
++++ b/tools/test_commons_metadata_m04_composition.py
+@@ -12,8 +12,9 @@ import commons_metadata_m04_scope as m04
+ import hungarian_attribution_c05_scope as c05
+ from commons_metadata_composition_scope import COMBINED_HELPER
+ from commons_metadata_m04_composition_scope import (scope, FIXTURE, before_composed_m04,
+-    before_m04_composed_production, as_standalone_m04, as_standalone_m04_bytes)
++    before_m04_composed_production, as_standalone_m04, as_standalone_m04_bytes, reverse)
+ from commons_metadata_m04_font_scope import before_m04_font
++from commons_metadata_m04_diagnostic_scope import before_diagnostic
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ JAVA = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/'
+@@ -45,7 +46,7 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
+             self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()), row['path'])
+         for row in data['pr52_overlaps']:
+             content = (ROOT / row['path']).read_bytes()
+-            self.assertEqual(row['after_sha256'], digest(content), row['path'])
++            self.assertEqual(row['after_sha256'], digest(before_diagnostic(row['path'], content)), row['path'])
+             self.assertEqual(row['before_sha256'], digest(before_composed_m04(row['path'], content)), row['path'])
+         self.assertEqual(1, len(data['binary_overlaps']))
+         row = data['binary_overlaps'][0]
+@@ -99,7 +100,8 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
+             for edit in row['edits']:
+                 for bad in ('', edit['after'] * 2, edit['before']):
+                     with self.subTest(path=path, mutation=bad[:30]), self.assertRaises(AssertionError):
+-                        before_composed_m04(path, content.replace(edit['after'].encode(), bad.encode(), 1))
++                        reverse(path, before_diagnostic(path, content).replace(edit['after'].encode(), bad.encode(), 1),
++                                scope()['pr52_overlaps'])
+         for row in scope()['m04_overlaps']:
+             content = (ROOT / row['path']).read_bytes()
+             with self.assertRaises(AssertionError): as_standalone_m04_bytes(row['path'], content + b' ')
+diff --git a/tools/test_localized_dialog_composition.py b/tools/test_localized_dialog_composition.py
+index c207b01..c2ecfc4 100644
+--- a/tools/test_localized_dialog_composition.py
++++ b/tools/test_localized_dialog_composition.py
+@@ -13,6 +13,7 @@ import commons_metadata_m02_scope as m02
+ import commons_metadata_m03_scope as m03
+ from localized_dialog_develop_scope import before_develop_successor, scope as develop_scope
+ from commons_metadata_m04_composition_scope import scope as m04_composition_scope
++from commons_metadata_m04_diagnostic_scope import before_diagnostic
+ import test_commons_copy_credit_errors as c04
+ from app_instrumentation_matrix import app_partition, PHASE_TIMEOUTS
+ from run_android_instrumentation import declared_tests
+@@ -54,7 +55,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
+         self.assertEqual(2, len(m04_additions))
+         self.assertEqual(paths, {row['path'] for row in rows + additions + m04_additions})
+         for row in m04_additions:
+-            self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
++            self.assertEqual(row['sha256'], digest(before_diagnostic(row['path'], (ROOT / row['path']).read_bytes())))
+         for row in additions:
+             self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+         for row in rows:

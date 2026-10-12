@@ -12,8 +12,9 @@ import commons_metadata_m04_scope as m04
 import hungarian_attribution_c05_scope as c05
 from commons_metadata_composition_scope import COMBINED_HELPER
 from commons_metadata_m04_composition_scope import (scope, FIXTURE, before_composed_m04,
-    before_m04_composed_production, as_standalone_m04, as_standalone_m04_bytes)
+    before_m04_composed_production, as_standalone_m04, as_standalone_m04_bytes, reverse)
 from commons_metadata_m04_font_scope import before_m04_font
+from commons_metadata_m04_diagnostic_scope import before_diagnostic
 
 ROOT = Path(__file__).resolve().parents[1]
 JAVA = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/'
@@ -45,7 +46,7 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
             self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()), row['path'])
         for row in data['pr52_overlaps']:
             content = (ROOT / row['path']).read_bytes()
-            self.assertEqual(row['after_sha256'], digest(content), row['path'])
+            self.assertEqual(row['after_sha256'], digest(before_diagnostic(row['path'], content)), row['path'])
             self.assertEqual(row['before_sha256'], digest(before_composed_m04(row['path'], content)), row['path'])
         self.assertEqual(1, len(data['binary_overlaps']))
         row = data['binary_overlaps'][0]
@@ -99,7 +100,8 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
             for edit in row['edits']:
                 for bad in ('', edit['after'] * 2, edit['before']):
                     with self.subTest(path=path, mutation=bad[:30]), self.assertRaises(AssertionError):
-                        before_composed_m04(path, content.replace(edit['after'].encode(), bad.encode(), 1))
+                        reverse(path, before_diagnostic(path, content).replace(edit['after'].encode(), bad.encode(), 1),
+                                scope()['pr52_overlaps'])
         for row in scope()['m04_overlaps']:
             content = (ROOT / row['path']).read_bytes()
             with self.assertRaises(AssertionError): as_standalone_m04_bytes(row['path'], content + b' ')

@@ -13,6 +13,7 @@ import commons_metadata_m02_scope as m02
 import commons_metadata_m03_scope as m03
 from localized_dialog_develop_scope import before_develop_successor, scope as develop_scope
 from commons_metadata_m04_composition_scope import scope as m04_composition_scope
+from commons_metadata_m04_diagnostic_scope import before_diagnostic
 import test_commons_copy_credit_errors as c04
 from app_instrumentation_matrix import app_partition, PHASE_TIMEOUTS
 from run_android_instrumentation import declared_tests
@@ -54,7 +55,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
         self.assertEqual(2, len(m04_additions))
         self.assertEqual(paths, {row['path'] for row in rows + additions + m04_additions})
         for row in m04_additions:
-            self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+            self.assertEqual(row['sha256'], digest(before_diagnostic(row['path'], (ROOT / row['path']).read_bytes())))
         for row in additions:
             self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
         for row in rows:

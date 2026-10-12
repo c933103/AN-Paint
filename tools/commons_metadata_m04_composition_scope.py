@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from commons_metadata_m04_scope import before_m04_catalogue
+from commons_metadata_m04_diagnostic_scope import before_diagnostic
 from commons_metadata_m02_scope import before_m02_catalogue
 from hungarian_attribution_c05_scope import before_c05
 
@@ -38,7 +39,7 @@ def reverse(path, content, rows, strict=True):
 
 def before_composed_m04(path, content):
     """Recover the exact current-PR52 endpoint for its historical source checks."""
-    return reverse(path, content, scope()['pr52_overlaps'])
+    return reverse(path, before_diagnostic(path, content), scope()['pr52_overlaps'])
 
 
 def before_m04_composed_production(path, text):
@@ -49,7 +50,7 @@ def before_m04_composed_production(path, text):
 
 def as_standalone_m04_bytes(path, content):
     """Preserve M04's original hashes without erasing accepted PR52 behavior."""
-    return reverse(path, content, scope()['m04_overlaps'])
+    return reverse(path, before_diagnostic(path, content), scope()['m04_overlaps'])
 
 
 def as_standalone_m04(path, text):

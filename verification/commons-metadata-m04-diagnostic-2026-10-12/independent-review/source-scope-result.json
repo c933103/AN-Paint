@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "baseline_tree": "d80218496e45bbefcaa378d40e5cd9846b7988ee",
+  "baseline_leaves": 1947,
+  "unchanged_leaves": 1943,
+  "modified_leaves": 4,
+  "exact_reversed_endpoints": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt",
+      "before_sha256": "cf7ec9cf7561677f90e6740c07f99b08d2077ebe6c07c281031337604a4fff4d",
+      "after_sha256": "4624896010fa18484e64f60f97d7e56a81c520f1b4c8b6c14e2335468f207111",
+      "edits": 5
+    },
+    {
+      "path": "tools/commons_metadata_m04_composition_scope.py",
+      "before_sha256": "ecd218b50f90b8994d87beca421c5bed47eb8904f2e471d18f96667aa15e9972",
+      "after_sha256": "262966f354afacb90c9ae2c2a8f353948b08b0d771ea177c1557f1a8866b978c",
+      "edits": 3
+    },
+    {
+      "path": "tools/test_commons_metadata_m04_composition.py",
+      "before_sha256": "14ef607211080b010b16280f0cd8c4128dd301978a45f5d8ed928b84d44a6485",
+      "after_sha256": "e5d9c5e50e261c129ccc02c59e7109117bc9ab652144907464a088819e74e9d2",
+      "edits": 3
+    },
+    {
+      "path": "tools/test_localized_dialog_composition.py",
+      "before_sha256": "d8f9c35d8212c89b2b0ab75d4fc7e18cf88675d133763a7ccd8fe5ba59c01eda",
+      "after_sha256": "6da0417cd93b6365e214b9f5686e742713bd4c37a39607ccc0776aa7470f0cdf",
+      "edits": 2
+    }
+  ],
+  "new_source_paths": [
+    "tools/commons_metadata_m04_diagnostic_scope.py",
+    "tools/fixtures/commons_metadata_m04_diagnostic_successor_scope.json",
+    "tools/test_commons_metadata_m04_diagnostic.py"
+  ],
+  "new_evidence_paths": [
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/README.md",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/all-host-fail-fast.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/all-host.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/catalogue-command-correction.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/catalogue-structure.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/current-environment.json",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/expected-jvm-identities.json",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/failed-checkpoint.json",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/failed-pr55-CommonsMetadataQueryFailureFlowTest.xml",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/focused-host-optimized.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/in-progress-source-change-all-host.log",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/local-verification.json",
+    "verification/commons-metadata-m04-diagnostic-2026-10-12/source-projection-audit.json"
+  ],
+  "source_manifest": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt",
+      "sha256": "4624896010fa18484e64f60f97d7e56a81c520f1b4c8b6c14e2335468f207111",
+      "bytes": 39040
+    },
+    {
+      "path": "tools/commons_metadata_m04_composition_scope.py",
+      "sha256": "262966f354afacb90c9ae2c2a8f353948b08b0d771ea177c1557f1a8866b978c",
+      "bytes": 2557
+    },
+    {
+      "path": "tools/commons_metadata_m04_diagnostic_scope.py",
+      "sha256": "bb49df8436f8434fe2013267d80ebe401995583545962b858d453860a147102a",
+      "bytes": 1464
+    },
+    {
+      "path": "tools/fixtures/commons_metadata_m04_diagnostic_successor_scope.json",
+      "sha256": "b41ec5e2d53ea0cb8cc64f9cef5d6cd8800e3c2b9e8a07828d647eef7a895356",
+      "bytes": 23597
+    },
+    {
+      "path": "tools/test_commons_metadata_m04_composition.py",
+      "sha256": "e5d9c5e50e261c129ccc02c59e7109117bc9ab652144907464a088819e74e9d2",
+      "bytes": 9121
+    },
+    {
+      "path": "tools/test_commons_metadata_m04_diagnostic.py",
+      "sha256": "4f1881e3804e309ad082bfecd8ad1109d84cc52026731874662dd8bfd1b68a6d",
+      "bytes": 7463
+    },
+    {
+      "path": "tools/test_localized_dialog_composition.py",
+      "sha256": "6da0417cd93b6365e214b9f5686e742713bd4c37a39607ccc0776aa7470f0cdf",
+      "bytes": 8715
+    }
+  ],
+  "flow_test_identities": [
+    "everyTopLevelErrorValueIsTypedButNestedErrorAndValidMetadataAreNot",
+    "queryErrorFetchClosesInputDisconnectsAndClearsActiveWithoutProviderLeakage",
+    "httpResponseLimitFieldAndValidationReasonsRemainSeparate",
+    "bothActionsLocalizeTypedMetadataFailureKeepStateAndRetryWithValidMetadata",
+    "typedFailurePreservesAnUnacceptedCreditDraftForBothActions",
+    "queuedTypedFailureResolvesResourcesOnlyWhenTheAliveUiCallbackRuns",
+    "untypedQueryLookingAndPercentNewlineDetailsStayVerbatimOnBothActions",
+    "absentAndBlankUntypedReasonsRetainEachActionsExistingWrapper",
+    "destructionDropsQueuedTypedQueryFailures",
+    "duplicateAndDestroyedInFlightQueryRequestsRemainCancelled",
+    "destroyedActivityDropsAlreadyQueuedSuccessAndRemovesReturnedFile",
+    "repeatedVerticalQueryFailureResetsScrolledStatusToReadingStart",
+    "representativeM04StatusRetainsFullAccessibleTextAtNormalScale",
+    "representativeM04StatusRetainsFullAccessibleTextAtDoubleScale",
+    "shortLandscapeM04RetainsFullAccessibleTextAtNormalScale",
+    "shortLandscapeM04RetainsFullAccessibleTextAtDoubleScale"
+  ],
+  "original_guard_retained": true,
+  "jvm_expected_count": 890,
+  "limits": [
+    "Static source/projection verification and host tests cannot establish Kotlin compilation, actual diagnostic generation or resolution of the original JVM failure.",
+    "Historical failed PR55 source and evidence remain bound to baseline tree; new hosted checks must bind the actual successor commit/tree."
+  ]
+}

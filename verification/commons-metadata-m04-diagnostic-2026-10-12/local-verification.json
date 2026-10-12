@@ -1,0 +1,55 @@
+{
+  "scope": "Frozen diagnostic successor host/source validation only; not a production repair or Android acceptance",
+  "failed_source_tree": "d80218496e45bbefcaa378d40e5cd9846b7988ee",
+  "checks": [
+    {
+      "log": "all-host.log",
+      "sha256": "5415644253f2d0ef9f51743ee02ad278d87cd03ce3830382af2eeb7ac18da330",
+      "tests": 666,
+      "seconds": 182.529,
+      "result": "passed"
+    },
+    {
+      "log": "all-host-fail-fast.log",
+      "sha256": "e437bbc8bba286848d41a8fb6f24b94cd2c160e83135245848fd2524a4c1c854",
+      "tests": 666,
+      "seconds": 185.243,
+      "result": "passed"
+    },
+    {
+      "log": "focused-host-optimized.log",
+      "sha256": "ec2f4ca2c12bf8fb2deb84419d2da48d384d05a4ef7d74f02340381e302a8813",
+      "tests": 32,
+      "seconds": 7.405,
+      "result": "passed"
+    },
+    {
+      "log": "catalogue-structure.log",
+      "sha256": "7c652ab12e74ee09f33bbdefa3d25108ea0f93d324f96a321efac83ba01e886c",
+      "result": "passed",
+      "output": "Canonical translation catalogues are structurally valid"
+    }
+  ],
+  "source_hashes": {
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt": "4624896010fa18484e64f60f97d7e56a81c520f1b4c8b6c14e2335468f207111",
+    "tools/commons_metadata_m04_composition_scope.py": "262966f354afacb90c9ae2c2a8f353948b08b0d771ea177c1557f1a8866b978c",
+    "tools/test_commons_metadata_m04_composition.py": "e5d9c5e50e261c129ccc02c59e7109117bc9ab652144907464a088819e74e9d2",
+    "tools/test_localized_dialog_composition.py": "6da0417cd93b6365e214b9f5686e742713bd4c37a39607ccc0776aa7470f0cdf",
+    "tools/commons_metadata_m04_diagnostic_scope.py": "bb49df8436f8434fe2013267d80ebe401995583545962b858d453860a147102a",
+    "tools/fixtures/commons_metadata_m04_diagnostic_successor_scope.json": "b41ec5e2d53ea0cb8cc64f9cef5d6cd8800e3c2b9e8a07828d647eef7a895356",
+    "tools/test_commons_metadata_m04_diagnostic.py": "4f1881e3804e309ad082bfecd8ad1109d84cc52026731874662dd8bfd1b68a6d"
+  },
+  "git_diff_check": "passed",
+  "android_compilation": "unrun-no-local-Android-SDK",
+  "robolectric_native_rendering": "unrun-no-local-Android-SDK",
+  "installed_device_verification": "unrun",
+  "superseded_local_run": {
+    "log": "in-progress-source-change-all-host.log",
+    "sha256": "5d2c684e6f0e4b88a8a968b295309fcad8ff9c63f0dc6878cb3f29f2eed4b13a",
+    "result": "failed-source-changed-during-run",
+    "failures": 262,
+    "stale_fixture_pin_failures": 261,
+    "stale_raster_suffix_failures": 1
+  },
+  "current_jvm_expected_count": 890
+}
