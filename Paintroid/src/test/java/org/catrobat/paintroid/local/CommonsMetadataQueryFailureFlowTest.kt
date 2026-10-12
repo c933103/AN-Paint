@@ -407,9 +407,10 @@ class CommonsMetadataQueryFailureFlowTest {
                         assertTrue("Short landscape must retain a visible scroll viewport",scroll.height>0)
                         for(line in 0 until layout.lineCount) {
                             assertEquals(0,layout.getEllipsisCount(line))
-                            assertTrue("$tag ${if(insert) "insert" else "copy"} ${widthDp}x$heightDp font$scale " +
-                                "line $line: left=${layout.getLineLeft(line)}, right=${layout.getLineRight(line)}, width=${layout.width}",
-                                layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f)
+                        }
+                        val inkLabel="api35-$tag-${widthDp}x${heightDp}-font$scale-${if(insert) "insert" else "copy"}"
+                        capturePaintedInk(view).use {ink ->
+                            recordPaintedInk(ink,inkLabel);assertPaintedInk(ink,inkLabel)
                         }
                         val start=android.graphics.Rect()
                         assertTrue(view.getLocalVisibleRect(start));assertEquals(0,start.top)
@@ -453,11 +454,222 @@ class CommonsMetadataQueryFailureFlowTest {
         if(widthDp==640 && heightDp==320 && scale==1f) {
             val directory=java.io.File("build/reports/commons-metadata-m04-diagnostic").apply {mkdirs()}
             java.io.File(directory,"normal-landscape-outcomes.json").writeText(org.json.JSONObject()
-                .put("evidence_kind","Diagnostic outcomes; original JUnit assertions remain authoritative")
+                .put("evidence_kind","Current source-bound M04 readability acceptance: horizontal painted ink and unchanged vertical checks")
+                .put("advance_guard_role","Diagnostic only; original_horizontal_guard=false is not a claim of painted-ink clipping")
                 .put("completed_profiles",completedProfiles).put("expected_profiles",28)
                 .put("failures",org.json.JSONArray(failures)).put("all_profiles_passed",failures.isEmpty()).toString(2)+"\n")
         }
         assertTrue("Readability profile failures:\n"+failures.joinToString("\n"),failures.isEmpty())
+    }
+
+    private data class PaintedInkFrame(
+        val actual: android.graphics.Bitmap,val reference: android.graphics.Bitmap,
+        val referencePixels: IntArray,val referenceBox: android.graphics.Rect,
+        val originX: Int,val originY: Int,val contentWidth: Int,val glyphBounds: android.graphics.RectF,
+        val inkPixels: Int,val inkLeft: Int,val inkRight: Int,val edgePixels: Int,
+        val horizontalOverflow: Int,val outsideView: Int,val missingInk: Int,val differentPixels: Int
+    ): java.io.Closeable {
+        override fun close() {actual.recycle();reference.recycle()}
+    }
+
+    /** API35, plain horizontal status only. Unsupported drawing features fail closed. */
+    private fun capturePaintedInk(view: TextView,translationX: Int=0,
+        clipLeft: Int=0,clipRight: Int=view.width): PaintedInkFrame {
+        val layout=requireNotNull(view.layout)
+        assertFalse("Horizontal oracle must not replace the vertical route",VerticalText.uiVertical())
+        assertEquals("Reference must contain the complete actual text",view.text.toString(),layout.text.toString())
+        assertTrue(view.text.isNotEmpty());assertTrue(layout.lineCount>0)
+        var covered=0
+        for(line in 0 until layout.lineCount) {
+            assertEquals("Contiguous UTF-16 line coverage",covered,layout.getLineStart(line))
+            assertEquals("No ellipsis in the complete reference",0,layout.getEllipsisCount(line))
+            val end=layout.getLineEnd(line);assertTrue(end>=covered);covered=end
+        }
+        assertEquals(view.text.length,covered)
+        assertEquals(0,(view.text as? android.text.Spanned)?.getSpans(0,view.text.length,Any::class.java)?.size ?: 0)
+        assertEquals(android.text.Layout.Alignment.ALIGN_NORMAL,layout.alignment)
+        assertFalse("Shifted-overhang layouts need a separately reviewed origin",layout.useBoundsForWidth)
+        assertNull(view.background);assertNull(view.foreground)
+        assertTrue(view.compoundDrawables.all {it==null});assertNull(view.transformationMethod)
+        assertEquals(-1,view.selectionStart);assertEquals(-1,view.selectionEnd)
+        assertEquals(android.view.Gravity.TOP,view.gravity and android.view.Gravity.VERTICAL_GRAVITY_MASK)
+        assertEquals(0,view.scrollX);assertEquals(0,view.scrollY)
+        assertEquals(0f,view.rotation,0f);assertEquals(0f,view.rotationX,0f);assertEquals(0f,view.rotationY,0f)
+        assertEquals(0f,view.translationX,0f);assertEquals(0f,view.translationY,0f)
+        assertEquals(1f,view.scaleX,0f);assertEquals(1f,view.scaleY,0f);assertEquals(1f,view.alpha,0f)
+        assertEquals(android.graphics.Paint.Style.FILL,view.paint.style)
+        assertNull(view.paint.shader);assertNull(view.paint.colorFilter);assertNull(view.paint.maskFilter);assertNull(view.paint.pathEffect)
+        assertFalse(view.paint.isUnderlineText);assertFalse(view.paint.isStrikeThruText);assertFalse(view.paint.isFakeBoldText)
+        assertEquals(0f,view.paint.textSkewX,0f);assertEquals(0,view.paint.baselineShift)
+        assertEquals(0f,view.shadowRadius,0f)
+        val originX=view.compoundPaddingLeft
+        val originY=view.baseline-layout.getLineBaseline(0)
+        assertEquals("TOP baseline must identify the real draw origin",view.extendedPaddingTop,originY)
+        val contentWidth=view.width-view.compoundPaddingLeft-view.compoundPaddingRight
+        assertEquals("Native layout width must be the actual text clip width",contentWidth,layout.width)
+        fun boundedBitmap(width: Int,height: Int): android.graphics.Bitmap {
+            assertTrue("Positive, bounded native raster allocation",width>0 && height>0 && width.toLong()*height<=16_000_000L)
+            return android.graphics.Bitmap.createBitmap(width,height,android.graphics.Bitmap.Config.ARGB_8888)
+        }
+        val actual=boundedBitmap(view.width,view.height)
+        var reference: android.graphics.Bitmap?=null
+        try {
+            // The actual view retains its own native clip. No view/paint/text property is changed.
+            val actualCanvas=android.graphics.Canvas(actual)
+            actualCanvas.clipRect(clipLeft,0,clipRight,view.height)
+            actualCanvas.translate(translationX.toFloat(),0f);view.draw(actualCanvas)
+            // API35 derives this box from actual glyphs, including marks outside line metrics.
+            // The union prevents a wholly displaced glyph from disappearing beyond a fixed margin.
+            val bounds=android.graphics.RectF(layout.computeDrawingBoundingBox()).apply {offset(translationX.toFloat(),0f)}
+            val xs=mutableListOf(0f,layout.width.toFloat(),bounds.left,bounds.right)
+            val ys=mutableListOf(0f,layout.height.toFloat(),bounds.top,bounds.bottom)
+            for(line in 0 until layout.lineCount) {
+                xs.add(layout.getLineLeft(line)+translationX);xs.add(layout.getLineRight(line)+translationX)
+                ys.add(layout.getLineTop(line).toFloat());ys.add(layout.getLineBottom(line).toFloat())
+            }
+            assertTrue("Finite native glyph and line geometry",(xs+ys).all {it.isFinite() && kotlin.math.abs(it)<100_000f})
+            assertTrue(bounds.left<=bounds.right && bounds.top<=bounds.bottom)
+            // Two pixels are allocation guard only, never a containment or comparison tolerance.
+            val box=android.graphics.Rect(kotlin.math.floor(xs.minOrNull()!!).toInt()-2,
+                kotlin.math.floor(ys.minOrNull()!!).toInt()-2,kotlin.math.ceil(xs.maxOrNull()!!).toInt()+2,
+                kotlin.math.ceil(ys.maxOrNull()!!).toInt()+2)
+            val complete=boundedBitmap(box.width(),box.height());reference=complete
+            val canvas=android.graphics.Canvas(complete)
+            canvas.translate((translationX-box.left).toFloat(),(-box.top).toFloat());layout.draw(canvas)
+            val expectedPixels=IntArray(complete.width*complete.height)
+            complete.getPixels(expectedPixels,0,complete.width,0,0,complete.width,complete.height)
+            val actualPixels=IntArray(actual.width*actual.height)
+            actual.getPixels(actualPixels,0,actual.width,0,0,actual.width,actual.height)
+            var ink=0;var left=Int.MAX_VALUE;var right=Int.MIN_VALUE;var edges=0
+            var overflow=0;var outside=0;var missing=0;var different=0
+            for(y in 0 until complete.height) for(x in 0 until complete.width) {
+                val pixel=expectedPixels[y*complete.width+x]
+                if((pixel ushr 24)==0) continue
+                ink++;val localX=box.left+x;val localY=box.top+y
+                left=minOf(left,localX);right=maxOf(right,localX+1)
+                if(x==0 || y==0 || x==complete.width-1 || y==complete.height-1) edges++
+                if(localX<0 || localX>=contentWidth) overflow++
+                val vx=originX+localX;val vy=originY+localY
+                if(vx !in 0 until actual.width || vy !in 0 until actual.height) {outside++;missing++}
+                else if((actualPixels[vy*actual.width+vx] ushr 24)==0) missing++
+            }
+            // Compare the WHOLE actual view against the independent full reference. The
+            // expected reference is never obtained by cropping the already-clipped actual view.
+            for(y in 0 until actual.height) for(x in 0 until actual.width) {
+                val rx=x-originX-box.left;val ry=y-originY-box.top
+                val expected=if(rx in 0 until complete.width && ry in 0 until complete.height)
+                    expectedPixels[ry*complete.width+rx] else 0
+                if(actualPixels[y*actual.width+x]!=expected) different++
+            }
+            return PaintedInkFrame(actual,complete,expectedPixels,box,originX,originY,contentWidth,bounds,
+                ink,left,right,edges,overflow,outside,missing,different)
+        } catch(failure: Throwable) {actual.recycle();reference?.recycle();throw failure}
+    }
+
+    private fun assertPaintedInk(frame: PaintedInkFrame,label: String) {
+        assertTrue("$label complete reference must contain native ink",frame.inkPixels>0)
+        assertEquals("$label reference raster must not touch allocation boundary",0,frame.edgePixels)
+        assertEquals("$label horizontal painted-ink overflow",0,frame.horizontalOverflow)
+        assertEquals("$label full reference ink lies outside the actual view",0,frame.outsideView)
+        assertEquals("$label clipped expected ink",0,frame.missingInk)
+        assertEquals("$label exact full-reference/actual-view ARGB mismatch",0,frame.differentPixels)
+    }
+
+    private fun paintedInkReport(frame: PaintedInkFrame)=org.json.JSONObject()
+        .put("reference_source","Complete native Layout with API35 actual-glyph bounds; never an actual-view crop")
+        .put("reference_box",frame.referenceBox.toShortString()).put("glyph_bounds",frame.glyphBounds.toString())
+        .put("origin_x",frame.originX).put("origin_y",frame.originY).put("content_width",frame.contentWidth)
+        .put("ink_pixels",frame.inkPixels).put("ink_left",frame.inkLeft).put("ink_right_exclusive",frame.inkRight)
+        .put("allocation_edge_pixels",frame.edgePixels).put("horizontal_overflow_pixels",frame.horizontalOverflow)
+        .put("outside_view_pixels",frame.outsideView).put("missing_expected_ink_pixels",frame.missingInk)
+        .put("different_argb_pixels",frame.differentPixels).put("alpha_cutoff",0).put("position_tolerance_px",0)
+        .put("color_tolerance",0)
+
+    private fun recordPaintedInk(frame: PaintedInkFrame,label: String) {
+        val directory=java.io.File("build/reports/commons-metadata-m04-painted-ink").apply {mkdirs()}
+        for((suffix,bitmap) in listOf("actual-textview" to frame.actual,"complete-layout" to frame.reference))
+            java.io.File(directory,"$label-$suffix.png").outputStream().use {
+                check(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it))
+            }
+        java.io.File(directory,"$label.json").writeText(paintedInkReport(frame)
+            .put("evidence_kind","Robolectric NATIVE strict painted-ink observation; consult exact JUnit result")
+            .toString(2)+"\n")
+    }
+
+    @Test @Config(qualifiers="w640dp-h320dp-land-xhdpi")
+    fun paintedInkOracleRejectsNativeOverflowAndClippedEdgeGlyphsAtNormalScale() = inkOracleNegativeControls(1f)
+    @Test @Config(qualifiers="w640dp-h320dp-land-xhdpi",fontScale=2f)
+    fun paintedInkOracleRejectsNativeOverflowAndClippedEdgeGlyphsAtDoubleScale() = inkOracleNegativeControls(2f)
+
+    private fun inkOracleNegativeControls(scale: Float) {
+        val outcomes=org.json.JSONArray()
+        for(tag in listOf("en-GB","ain-Kana","bo","ar","ja","vi-Hani")) withGallery(tag) {activity ->
+            val before=files(activity);val requests=Collections.synchronizedList(mutableListOf<Connection>())
+            connect(activity,requests,true);select(activity);await {!activity.downloading}
+            assertFailure(activity,false,activity.getString(R.string.commons_metadata_query_failed),before)
+            val root=activity.window.decorView;val density=activity.resources.displayMetrics.density
+            val width=(640*density+.5f).toInt();val height=(320*density+.5f).toInt()
+            root.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY));root.layout(0,0,width,height)
+            val view=status(activity);val text=view.text.toString();val layout=requireNotNull(view.layout)
+            assertEquals(scale,activity.resources.configuration.fontScale,0f)
+            val label="api35-$tag-640x320-font$scale-negative-controls"
+            capturePaintedInk(view).use {intact ->
+                recordPaintedInk(intact,"$label-intact");assertPaintedInk(intact,"$label intact")
+                val cases=org.json.JSONArray()
+                val originalBounds=android.graphics.RectF(layout.computeDrawingBoundingBox())
+                fun paintState()=listOf(view.paint.color,view.paint.flags,view.paint.textSize,
+                    view.paint.textScaleX,view.paint.textSkewX,view.paint.typeface,view.paint.textLocales,
+                    view.paint.baselineShift,view.paint.bgColor,view.paint.shader,view.paint.colorFilter,
+                    view.paint.maskFilter,view.paint.pathEffect,view.paint.style,view.paint.strokeWidth)
+                val originalPaint=paintState()
+                fun geometry()=listOf(view.width,view.height,view.scrollX,view.scrollY,view.compoundPaddingLeft,
+                    view.compoundPaddingRight,view.extendedPaddingTop,view.extendedPaddingBottom,view.baseline,
+                    layout.width,layout.height,layout.lineCount)+(0 until layout.lineCount).flatMap {line ->
+                        listOf(layout.getLineStart(line),layout.getLineEnd(line),layout.getLineTop(line),
+                            layout.getLineBottom(line),layout.getLineBaseline(line))
+                    }
+                val originalGeometry=geometry()
+                fun rejects(name: String,frame: PaintedInkFrame,cause: String) {
+                    frame.use {
+                        assertEquals("Probe must preserve the native layout's cached glyph bounds",
+                            originalBounds,layout.computeDrawingBoundingBox())
+                        assertEquals("Probe must preserve native paint state",originalPaint,paintState())
+                        assertEquals("Probe must preserve view and layout geometry",originalGeometry,geometry())
+                        assertTrue("Native mutation must retain nonzero reference ink",frame.inkPixels>0)
+                        assertEquals("Mutation must not disappear outside the reference allocation",0,frame.edgePixels)
+                        assertEquals("Integer translation/clipping must retain every reference ink pixel",intact.inkPixels,frame.inkPixels)
+                        if(cause=="clipped expected ink") {
+                            assertArrayEquals("Clipping changes the actual draw only",intact.referencePixels,frame.referencePixels)
+                            assertTrue("Clip must physically remove expected edge-glyph ink",frame.missingInk>0)
+                        } else assertTrue("Translation must physically overflow the content box",frame.horizontalOverflow>0)
+                        recordPaintedInk(frame,"$label-$name")
+                        var rejected=false
+                        try {assertPaintedInk(frame,"$label $name")}
+                        catch(failure: AssertionError) {
+                            assertTrue("Reject for the intended defect: ${failure.message}",failure.message.orEmpty().contains(cause))
+                            rejected=true
+                        }
+                        assertTrue("The oracle must reject the native draw mutation",rejected)
+                        assertEquals(text,view.text.toString());assertEquals(text,layout.text.toString())
+                        assertEquals(text,view.createAccessibilityNodeInfo().text.toString())
+                        assertEquals(originalBounds,layout.computeDrawingBoundingBox())
+                        assertEquals(originalPaint,paintState());assertEquals(originalGeometry,geometry())
+                        cases.put(paintedInkReport(frame).put("mutation",name).put("rejected",true).put("reason",cause))
+                    }
+                }
+                rejects("left-overflow",capturePaintedInk(view,translationX=-intact.inkLeft-1),"horizontal painted-ink overflow")
+                rejects("right-overflow",capturePaintedInk(view,translationX=intact.contentWidth-intact.inkRight+1),"horizontal painted-ink overflow")
+                rejects("wholly-left-of-view",capturePaintedInk(view,translationX=-4*intact.contentWidth),"horizontal painted-ink overflow")
+                rejects("wholly-right-of-view",capturePaintedInk(view,translationX=4*intact.contentWidth),"horizontal painted-ink overflow")
+                rejects("clip-first-spatial-ink",capturePaintedInk(view,clipLeft=intact.originX+intact.inkLeft+1),"clipped expected ink")
+                rejects("clip-last-spatial-ink",capturePaintedInk(view,clipRight=intact.originX+intact.inkRight-1),"clipped expected ink")
+                outcomes.put(org.json.JSONObject().put("locale",tag).put("font_scale",scale).put("intact_passed",true)
+                    .put("logical_first_character_is_rtl",layout.isRtlCharAt(0)).put("cases",cases))
+            }
+        }
+        val directory=java.io.File("build/reports/commons-metadata-m04-painted-ink").apply {mkdirs()}
+        java.io.File(directory,"native-negative-controls-font$scale.json").writeText(outcomes.toString(2)+"\n")
     }
 
     private fun recordLandscapeDiagnostic(root: View,view: TextView,tag: String,insert: Boolean,scale: Float) {

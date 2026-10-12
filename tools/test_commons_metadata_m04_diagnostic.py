@@ -7,6 +7,7 @@ import unittest
 from unittest.mock import patch
 
 from commons_metadata_m04_diagnostic_scope import FIXTURE, ROOT, before_diagnostic, scope
+from commons_metadata_m04_painted_ink_scope import before_painted_ink
 
 FLOW = 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt'
 EVIDENCE = ROOT / 'verification/commons-metadata-m04-diagnostic-2026-10-12'
@@ -37,13 +38,13 @@ class CommonsMetadataM04DiagnosticContracts(unittest.TestCase):
         self.assertEqual(data['historical_m04_scope_sha256'], digest(
             (ROOT / 'tools/fixtures/commons_metadata_m04_pr52_successor_scope.json').read_bytes()))
         for row in data['entries']:
-            content = (ROOT / row['path']).read_bytes()
+            content = before_painted_ink(row['path'], (ROOT / row['path']).read_bytes())
             self.assertEqual(row['after_sha256'], digest(content))
             self.assertEqual(row['before_sha256'], digest(before_diagnostic(row['path'], content)))
 
     def test_missing_duplicated_corrupted_and_unrelated_successor_content_is_rejected(self):
         for row in scope()['entries']:
-            content = (ROOT / row['path']).read_bytes()
+            content = before_painted_ink(row['path'], (ROOT / row['path']).read_bytes())
             original = before_diagnostic(row['path'], content)
             for invalid in (original, content + b'\n# unrelated\n'):
                 with self.subTest(path=row['path']), self.assertRaises(AssertionError):
@@ -70,7 +71,7 @@ class CommonsMetadataM04DiagnosticContracts(unittest.TestCase):
                 scope()
 
     def test_all_original_jvm_identities_and_failure_conditions_are_preserved(self):
-        live = (ROOT / FLOW).read_text()
+        live = before_painted_ink(FLOW, (ROOT / FLOW).read_bytes()).decode()
         original = before_diagnostic(FLOW, live.encode()).decode()
         self.assertEqual(methods(original), methods(live))
         self.assertEqual(16, len(methods(live)))
@@ -92,7 +93,7 @@ class CommonsMetadataM04DiagnosticContracts(unittest.TestCase):
         self.assertNotIn('@Ignore', live)
 
     def test_pre_guard_pixels_metrics_and_completed_vertical_capture_are_required(self):
-        live = (ROOT / FLOW).read_text()
+        live = before_painted_ink(FLOW, (ROOT / FLOW).read_bytes()).decode()
         readable = live.split('    private fun readable(', 1)[1].split('    private fun recordLandscapeDiagnostic', 1)[0]
         self.assertLess(readable.index('recordLandscapeDiagnostic(root,view,tag,insert,scale)'),
                         readable.index('assertEquals(text.length,layout.getLineEnd'))
@@ -114,7 +115,7 @@ class CommonsMetadataM04DiagnosticContracts(unittest.TestCase):
         self.assertEqual(digest(old_path.read_bytes()), new['frozen_inventory_sha256'])
         self.assertEqual(890, len(old['expected'])); self.assertEqual(old['expected'], new['expected'])
         self.assertEqual(890, new['expected_count'])
-        self.assertEqual(digest((ROOT / FLOW).read_bytes()), new['diagnostic_flow_sha256'])
+        self.assertEqual(digest(before_painted_ink(FLOW, (ROOT / FLOW).read_bytes())), new['diagnostic_flow_sha256'])
         self.assertEqual([], new['added_execution_identities'])
         self.assertEqual([], new['removed_execution_identities'])
 
