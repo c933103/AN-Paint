@@ -6,7 +6,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 import translation_catalogues as catalogues
-from language_option_additions import ADDED_TAGS, ADDITIONS_PATH
+from language_option_additions import FIRST_ADDED_TAGS, ADDITIONS_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED = {'ha': 'Hausa', 'ig': 'Igbo', 'ln': 'Lingála', 'su': 'Sunda', 'yo': 'Yorùbá', 'zu': 'isiZulu'}
@@ -15,10 +15,10 @@ EXPECTED = {'ha': 'Hausa', 'ig': 'Igbo', 'ln': 'Lingála', 'su': 'Sunda', 'yo': 
 class LanguageOptionAdditionTests(unittest.TestCase):
     def test_six_requested_identities_match_picker_platform_metadata_and_catalogues(self):
         data = json.loads(ADDITIONS_PATH.read_text())
-        self.assertEqual(set(EXPECTED), ADDED_TAGS)
+        self.assertEqual(set(EXPECTED), FIRST_ADDED_TAGS)
         self.assertEqual(EXPECTED, {r['tag']: r['name'] for r in data['languages']})
         tags = catalogues.offered_tags()
-        self.assertEqual(146, len(tags)); self.assertEqual(146, len(set(tags)))
+        self.assertEqual(167, len(tags)); self.assertEqual(167, len(set(tags)))
         self.assertEqual(tags, [n.get('{http://schemas.android.com/apk/res/android}name')
                                for n in ET.parse(catalogues.RES / 'xml/app_locales.xml').getroot()])
         names = [n.text for n in ET.parse(catalogues.RES / 'values/app_language_names.xml').findall(

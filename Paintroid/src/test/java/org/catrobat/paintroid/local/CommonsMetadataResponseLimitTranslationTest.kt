@@ -120,7 +120,7 @@ class CommonsMetadataResponseLimitTranslationTest {
         assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
-        assertEquals(146,AppLanguage.tags(context).size)
+        assertEquals(167,AppLanguage.tags(context).size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
             val resources=resourcesFor(tag)
@@ -128,6 +128,6 @@ class CommonsMetadataResponseLimitTranslationTest {
             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_response_too_large))
             assertTrue(expected.contains("Commons"))
         }
-        assertEquals(87,fallbacks)
+        assertEquals(108,fallbacks)
     }
 }

@@ -74,7 +74,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
     def test_current_other_tags_have_explicit_unmodified_fallback_disposition(self):
         data = json.loads((EVIDENCE / 'translations.json').read_text())
         remaining = set(catalogues.offered_tags()) - SCOPED_TAGS
-        self.assertEqual(87, len(remaining))
+        self.assertEqual(108, len(remaining))
         self.assertEqual(remaining, set(data['remaining_other_offered_locales']) | ADDED_TAGS)
         for tag, path in catalogues.catalogue_paths().items():
             if tag not in SCOPED_TAGS:

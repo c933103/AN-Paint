@@ -33,7 +33,7 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         self.assertFalse(translated & blocked)
         self.assertEqual(set(SCOPED_TAGS), translated | blocked)
         unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(87, len(unscoped))
+        self.assertEqual(108, len(unscoped))
         self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']) | ADDED_TAGS)
         paths = catalogues.catalogue_paths()
         for tag, expected in manifest['translations'].items():

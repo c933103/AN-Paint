@@ -26,7 +26,7 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertEqual(set(SCOPED_TAGS), set(data['scope']))
         self.assertEqual(set(SCOPED_TAGS) | {'default'}, set(data['translations']))
         remaining = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(87, len(remaining))
+        self.assertEqual(108, len(remaining))
         self.assertEqual(remaining, set(data['remaining_other_offered_locales']) | ADDED_TAGS)
         for tag, path in catalogues.catalogue_paths().items():
             if tag not in SCOPED_TAGS:
