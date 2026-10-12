@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (DIALOG, DIALOG_METHODS, app_partition, coverage_paths, report_paths,
+from app_instrumentation_matrix import (DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, app_partition, coverage_paths, report_paths,
                                         verify_app_reports)
 from run_android_instrumentation import RESTART_SEED, RESTART_VERIFY, declared_tests
 from test_app_instrumentation_matrix import SOURCE, receipts
@@ -31,10 +31,10 @@ class LegacyInventoryTest(unittest.TestCase):
             self.assertEqual(result['receipt_scope'], 'sdk-ineligible-app-omission')
             self.assertEqual(result['completed_tests'], 0)
             self.assertEqual(result['selected_tests'], 0)
-            self.assertEqual(result['declared_tests'], 30)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 28)
-            self.assertEqual({(DIALOG, method) for method in DIALOG_METHODS},
-                             {tuple(item) for item in result['sdk_suppressed_tests'] if item[0] == DIALOG})
+            self.assertEqual(result['declared_tests'], 32)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 30)
+            self.assertEqual({(DIALOG, method) for method in DIALOG_METHODS} | {(COLOUR, method) for method in COLOUR_METHODS},
+                             {tuple(item) for item in result['sdk_suppressed_tests'] if item[0] in (DIALOG,COLOUR)})
             self.assertEqual(set(result['explicitly_excluded_tests']), expected)
             self.assertEqual(result['all_app_total_timeout_seconds'], 0)
             self.assertEqual(result['vertical_total_timeout_seconds'], 0)

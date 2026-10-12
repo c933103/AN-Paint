@@ -240,68 +240,6 @@ class LocalizedDialogDeviceTest {
      * The untouched-baseline installed comparison reproduces this failure;
      * the positive corrective gate remains separate.
      */
-    @Test fun unchangedAdvancedColourReportsShortLandscapeLimitation()=fixture("en-US",1f) {scenario ->
-        orient(true,scenario)
-        var committed=0;var closed=0
-        val dialog=onMain {AdvancedColourDialog(activity,android.graphics.Color.RED,false,
-            closed={closed++},initialMode=1) {committed++}.show()}
-        try {
-            val root=onMain {dialog.window!!.decorView}
-            await("colour limitation window laid out") {root.width>0 && root.height>0 && !root.isLayoutRequested}
-            settle(root)
-            val inner=onMain {root.findViewWithTag<ScrollView>("colour_editor_scroll")}
-            onMain {
-                val display=activity.window.decorView
-                val holder=root.findViewWithTag<View>("colour_dialog_holder")
-                val fixed=listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour")
-                    .map {root.findViewWithTag<View>(it)}
-                val frame=Rect();root.getWindowVisibleDisplayFrame(frame)
-                // Persist the measured limitation before asserting it, including
-                // collapsed geometry. These are layout parameters/measured sizes,
-                // not fabricated or intercepted parent MeasureSpec values.
-                evidence.observe(JSONObject().put("kind","colour-limitation-characterization")
-                    .put("classification","baseline-identical-source-limitation-characterization")
-                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED)
-                    .put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline())
-                    .put("device_sdk",Build.VERSION.SDK_INT).put("font_scale",activity.resources.configuration.fontScale)
-                    .put("density",activity.resources.displayMetrics.density)
-                    .put("display",colourGeometry(display)).put("dialog",colourGeometry(root))
-                    .put("visible_display_frame",rect(frame))
-                    .put("requested_window_size",JSONArray().put(dialog.window!!.attributes.width).put(dialog.window!!.attributes.height))
-                    .put("holder",colourGeometry(holder)).put("holder_parent",colourGeometry(holder.parent as View))
-                    .put("inner",colourGeometry(inner)).put("inner_content",colourGeometry(inner.getChildAt(0)))
-                    .put("fixed",JSONArray(fixed.map {colourGeometry(it)})))
-                assertEquals("Characterization is only for the measured short device",640,display.width)
-                assertEquals("Characterization is only for the measured short device",320,display.height)
-                assertEquals(1f,activity.resources.configuration.fontScale,0f)
-                assertTrue("The native holder exists and has positive bounds",holder.width>0 && holder.height>0)
-                assertTrue("The editor exists with laid-out content",inner.width>0 && inner.getChildAt(0).height>0)
-                assertEquals("Known limitation, never a positive viewport acceptance",0,inner.height)
-            }
-            evidence.capture("colour-limitation")
-            tap("colour cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
-            await("colour Cancel closes") {!dialog.isShowing}
-            onMain {
-                assertEquals(0,committed);assertEquals(1,closed)
-                evidence.observe(JSONObject().put("kind","colour-limitation-cancelled")
-                    .put("commit_callbacks",committed).put("closed_callbacks",closed).put("dialog_showing",dialog.isShowing)
-                    .put("positive_viewport_accepted",false).put("untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED)
-                    .put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline()))
-            }
-            settle(onMain {activity.window.decorView})
-            evidence.capture("colour-cancelled")
-        } finally {onMain {dialog.dismiss()}}
-    }
-
-    private fun colourGeometry(view: View): JSONObject {
-        val params=view.layoutParams
-        return geometry(view).put("width",view.width).put("height",view.height)
-            .put("measured_width",view.measuredWidth).put("measured_height",view.measuredHeight)
-            .put("layout_width",params?.width ?: JSONObject.NULL).put("layout_height",params?.height ?: JSONObject.NULL)
-            .put("layout_weight",(params as? android.widget.LinearLayout.LayoutParams)?.weight ?: JSONObject.NULL)
-            .put("padding",JSONArray().put(view.paddingLeft).put(view.paddingTop).put(view.paddingRight).put(view.paddingBottom))
-    }
-
     private fun fixture(tag: String,scale: Float,block: (ActivityScenario<ClassicPaintActivity>)->Unit) {
         assertEquals(35,Build.VERSION.SDK_INT)
         assertTrue("Run only on the declared emulator, not a personal device",

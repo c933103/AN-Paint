@@ -1,6 +1,9 @@
 """Synthetic archive contracts; these are not installed-device test results."""
 import copy
 import hashlib
+import io
+import struct
+import zlib
 import json
 import re
 from pathlib import Path
@@ -11,20 +14,33 @@ import textwrap
 import unittest
 import zipfile
 
-from dialog_evidence_transport import (METHOD_SCREENS, NOTICE_METHODS, BASELINE_INSTALLED, BASELINE_EVIDENCE, OWNER, TEST_CLASS, PNG,
-    extract, inspect_archive, source_binding, verify_receipt)
+from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, OWNER, TEST_CLASS, PNG,
+    extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
+
+from synthetic_colour_receipts import synthetic_colour_receipt
 
 DIGEST = 'a' * 64
 
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=5, completed_tests=5, missing=[], unexpected=[], errors=[],
-                included_tests=sorted(TEST_CLASS + '#' + name for name in METHOD_SCREENS),
-                cases=[dict(classname=TEST_CLASS, name=m, status='passed') for m in METHOD_SCREENS])
+                source_tests_sha256=DIGEST, expected_tests=7, completed_tests=7, missing=[], unexpected=[], errors=[],
+                included_tests=sorted(owner + '#' + name for name, owner in METHOD_CLASSES.items()),
+                cases=[dict(classname=owner, name=m, status='passed') for m, owner in METHOD_CLASSES.items()])
+
+
+
+def png():
+    # Small real PNG for host-only archive models; never installed-device evidence.
+    def chunk(kind, data):
+        return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data) & 0xffffffff)
+    return PNG + chunk(b'IHDR', struct.pack('>IIBBBBB', 1, 1, 8, 2, 0, 0, 0)) + chunk(
+        b'IDAT', zlib.compress(b'\0\xff\0\0')) + chunk(b'IEND', b'')
 
 
 def receipt(method):
+    if method in COLOUR_SCREENS:
+        return synthetic_colour_receipt(method, DIGEST)
     labels = ['notice copy', 'other terms', 'notice done', 'credit save', 'credit copy', 'credit done', 'colour cancel']
     geometry = dict(visible=[0, 0, 100, 100], raw=[0, 0, 100, 100])
     observations = [dict(kind='intrinsic-caption', lines=1, layout_height=20, available_text_height=30,
@@ -37,21 +53,6 @@ def receipt(method):
                  package=OWNER, outcome='passed', source_tests_sha256=DIGEST,
                  source_binding='runner-supplied-needs-host-comparison',
                  screenshots=METHOD_SCREENS[method], observations=observations)
-    if method == 'unchangedAdvancedColourReportsShortLandscapeLimitation':
-        classification = 'baseline-identical-source-limitation-characterization'
-        value.update(case_classification=classification, positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE))
-        def geometry(width, height, tag=None):
-            return dict(width=width, height=height, measured_width=width, measured_height=height,
-                        raw=[0, 0, width, height], visible=[0, 0, width, height],
-                        layout_width=-1, layout_height=-2, tag=tag)
-        observations.extend([
-            dict(kind='colour-limitation-characterization', classification=classification,
-                 positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE), device_sdk=35, font_scale=1,
-                 display=geometry(640, 320), dialog=geometry(384, 240), holder=geometry(360, 120),
-                 holder_parent=geometry(360, 120), inner=geometry(360, 0), inner_content=geometry(360, 700),
-                 fixed=[geometry(100, 40, tag) for tag in ('colour_advanced_tab', 'custom_colours_panel', 'add_custom_colour')]),
-            dict(kind='colour-limitation-cancelled', commit_callbacks=0, closed_callbacks=1, dialog_showing=False,
-                 positive_viewport_accepted=False, untouched_baseline_installed=BASELINE_INSTALLED, baseline_evidence=copy.deepcopy(BASELINE_EVIDENCE))])
     back_labels = ([f'notice-{NOTICE_METHODS[method]}-{action}' for action in ('nested', 'close')]
                    if method in NOTICE_METHODS else
                    ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
@@ -97,7 +98,7 @@ def write_archive(root, method, *, change_receipt=None, change_manifest=None, ex
     if change_receipt:
         change_receipt(data)
     files = {'receipt.json': json.dumps(data).encode()}
-    files.update({name: PNG + b'synthetic test payload' for name in METHOD_SCREENS[method]})
+    files.update({name: png() for name in METHOD_SCREENS[method]})
     manifest = dict(schema=1, owner=OWNER, method=method, device_sdk=35, test_passed=True,
                     files=[dict(path=name, bytes=len(value), sha256=hashlib.sha256(value).hexdigest())
                            for name, value in files.items()])
@@ -127,17 +128,24 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             write_archive(self.exports, method)
         self.method = next(iter(METHOD_SCREENS))
 
-    def test_exact_source_bound_five_case_export_and_atomic_extraction(self):
+    def test_exact_source_bound_seven_case_export_and_atomic_extraction(self):
         result = extract(self.exports, self.output, self.summary)
         self.assertTrue(result['success'])
         self.assertEqual(result['source_tests_sha256'], DIGEST)
-        self.assertEqual(len(result['cases']), 5)
-        self.assertEqual(len(list(self.output.rglob('*.png'))), 10)
-        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 5)
-        self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted-diagnostic-only')
-        self.assertEqual(result['untouched_baseline_installed'], BASELINE_INSTALLED)
-        self.assertEqual(result['baseline_evidence'], BASELINE_EVIDENCE)
-        self.assertIs(result['positive_colour_viewport_accepted'], False)
+        self.assertEqual(len(result['cases']), 7)
+        self.assertEqual(len(list(self.output.rglob('*.png'))), 21)
+        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 7)
+        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 7)
+        self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted')
+        self.assertIs(result['universal_colour_acceptance'], False)
+        self.assertIs(result['normal_font_colour_source_bound_pass'], True)
+        self.assertEqual(result['source_report_sha256'], hashlib.sha256(self.summary.read_bytes()).hexdigest())
+        self.assertEqual((self.output / 'source-summary.json').read_bytes(), self.summary.read_bytes())
+        for case in result['cases']:
+            raw = (self.output / case['method'] / 'manifest.json').read_bytes()
+            self.assertEqual(case['manifest_sha256'], hashlib.sha256(raw).hexdigest())
+            self.assertEqual(case['manifest_bytes'], len(raw))
+            self.assertEqual(case['test_class'], METHOD_CLASSES[case['method']])
         with self.assertRaises(ValueError):
             extract(self.exports, self.output, self.summary)
 
@@ -245,7 +253,7 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
         cls.flow = cls.source.split('private fun noticeFlow(index: Int)', 1)[1].split(
             '@Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()', 1)[0]
 
-    def test_exact_three_index_resource_title_asset_tuples_and_five_sdk35_methods(self):
+    def test_exact_three_notice_bindings_and_seven_two_class_sdk35_methods(self):
         expected = {
             'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
             'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
@@ -261,14 +269,18 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
             ('ui_gimp_translations31', 'ui_gimp_translations31', 'legal/GIMP_TRANSLATION_NOTICES.txt')])
         self.assertIn('=fixture("fr",2f)', self.flow)
         self.assertIn('val entry=cases[index]', self.flow)
-        self.assertEqual(set(re.findall(r'@Test fun (\w+)\(', self.source)), set(METHOD_SCREENS))
+        self.assertEqual(set(re.findall(r'@Test fun (\w+)\(', self.source)), set(DIALOG_SCREENS))
         rule = (self.root / 'app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt').read_text()
-        whitelist = rule.split('val METHODS=setOf(', 1)[1].split(')', 1)[0]
-        self.assertEqual(set(re.findall(r'"(\w+)"', whitelist)), set(METHOD_SCREENS))
+        mapping = rule.split('val METHOD_CLASSES=mapOf(', 1)[1].split(')', 1)[0]
+        self.assertEqual(dict(re.findall(r'"(\w+)" to "([^"]+)"', mapping)), METHOD_CLASSES)
+        self.assertIn('val METHODS=METHOD_CLASSES.keys', rule)
+        self.assertIn('check(METHOD_CLASSES[description.methodName]==description.className)', rule)
+        self.assertIn('check(description.methodName in METHODS)', rule)
         from run_android_instrumentation import declared_tests
         directory = self.root / 'app/src/androidTest'
-        self.assertEqual({name for owner, name in declared_tests(directory, sdk_level=35) if owner == TEST_CLASS}, set(METHOD_SCREENS))
-        self.assertFalse({name for owner, name in declared_tests(directory, sdk_level=30) if owner == TEST_CLASS})
+        self.assertEqual({name for owner, name in declared_tests(directory, sdk_level=35) if owner == TEST_CLASS}, set(DIALOG_SCREENS))
+        self.assertEqual({name for owner, name in declared_tests(directory, sdk_level=35) if owner == COLOUR_CLASS}, set(COLOUR_SCREENS))
+        self.assertFalse({name for owner, name in declared_tests(directory, sdk_level=30) if owner in (TEST_CLASS, COLOUR_CLASS)})
 
     def test_complete_original_notice_flow_and_first_case_rotations_are_preserved(self):
         body = self.flow.split('        openAbout()', 1)[1].rsplit('\n    }', 1)[0]
@@ -288,14 +300,15 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
                          'assertEquals("Actual menu callback loaded the bundled notice",expected,'):
             self.assertIn(required, normalized)
 
-    def test_exact_ten_pngs_keep_original_states_with_per_method_capture_indices(self):
+    def test_exact_twenty_one_pngs_preserve_profiles_and_capture_indices(self):
         self.assertEqual([METHOD_SCREENS[name] for name in NOTICE_METHODS], [
             ['0-about-portrait.png', '1-about-landscape.png', '2-notice-0-initial.png', '3-notice-0-portrait.png'],
             ['0-notice-1-initial.png'], ['0-notice-2-initial.png']])
-        self.assertEqual(len(METHOD_SCREENS), 5)
-        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 10)
+        self.assertEqual(len(METHOD_SCREENS), 7)
+        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 21)
         self.assertEqual(len(METHOD_SCREENS['retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']), 2)
-        self.assertEqual(len(METHOD_SCREENS['unchangedAdvancedColourReportsShortLandscapeLimitation']), 2)
+        self.assertNotIn('unchangedAdvancedColourReportsShortLandscapeLimitation', METHOD_SCREENS)
+        self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 13)
 
     def test_each_notice_requires_its_own_copy_nested_back_done_reopen_and_close_back(self):
         for method, index in NOTICE_METHODS.items():
@@ -672,95 +685,169 @@ class ClipboardOverlayFixtureContractTest(unittest.TestCase):
         self.assertTrue(inside(illustrative_overlay_region, tap))
 
 
-class ColourLimitationScopeContractTest(unittest.TestCase):
-    method = 'unchangedAdvancedColourReportsShortLandscapeLimitation'
-
-    def test_collector_rejects_positive_or_baseline_claims_and_wrong_observed_limitation(self):
-        mutations = [lambda r: r.update(positive_viewport_accepted=True),
-                     lambda r: r.update(untouched_baseline_installed='passed'),
-                     lambda r: r.update(case_classification='repaired'),
-                     lambda r: observation(r, 'colour-limitation-characterization').update(font_scale=2),
-                     lambda r: observation(r, 'colour-limitation-characterization').update(font_scale=True),
-                     lambda r: observation(r, 'colour-limitation-characterization').update(device_sdk=30),
-                     lambda r: observation(r, 'colour-limitation-characterization')['display'].update(height=321),
-                     lambda r: observation(r, 'colour-limitation-characterization')['inner'].update(height=10),
-                     lambda r: observation(r, 'colour-limitation-characterization').update(fixed=[]),
-                     lambda r: observation(r, 'colour-limitation-cancelled').update(commit_callbacks=1),
-                     lambda r: observation(r, 'colour-limitation-cancelled').update(closed_callbacks=2),
-                     lambda r: observation(r, 'colour-limitation-cancelled').update(closed_callbacks=True),
-                     lambda r: observation(r, 'colour-limitation-cancelled').update(dialog_showing=True)]
-        for mutate in mutations:
-            data = receipt(self.method)
-            mutate(data)
-            with self.subTest(mutate=mutate), self.assertRaises(ValueError):
-                verify_receipt(data, self.method, DIGEST)
-
-    def test_current_verified_baseline_evidence_is_exact_and_shared_by_kotlin_exporter(self):
-        self.assertEqual(BASELINE_INSTALLED, 'verified-original-positive-failure')
-        self.assertEqual(BASELINE_EVIDENCE['run_id'], 38112708313)
-        self.assertEqual(BASELINE_EVIDENCE['source_commit'], 'cecce0626dc730ba89120936b66de88e1c990335')
-        self.assertEqual(BASELINE_EVIDENCE['production_commit'], '691f8870649a1d21d1441f4e3d0e795660b23e9a')
-        self.assertIn('/8096234be003cd6a287660d32884c2541c518e65/', BASELINE_EVIDENCE['evidence_url'])
-        self.assertEqual(BASELINE_EVIDENCE['source_binding_sha256'],
-                         'd4072ad9c2b72403663e50ed6205f35c53ce7aaab2133d538f02f577d6835ea3')
-        self.assertEqual(BASELINE_EVIDENCE['receipt_sha256'],
-                         '03f20e26ac1d33be758bccc161c11e27a549bf917217ec7d4edcad23778080c2')
-        root = Path(__file__).resolve().parents[1]
-        rule = (root / 'app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt').read_text()
-        metadata = rule.split('fun verifiedColourBaseline()=JSONObject()', 1)[1].split('const val OWNER=', 1)[0]
-        kotlin = dict(re.findall(r'\.put\("([^"]+)","([^"]+)"\)', metadata))
-        kotlin['run_id'] = int(re.search(r'\.put\("run_id",(\d+)L\)', metadata)[1])
-        self.assertEqual(kotlin, BASELINE_EVIDENCE)
-        self.assertIn('const val BASELINE_INSTALLED="verified-original-positive-failure"', rule)
-        source = (root / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()
-        self.assertEqual(source.count('.put("baseline_evidence",DialogEvidenceExportRule.verifiedColourBaseline())'), 2)
-        self.assertIn('.put("baseline_evidence",verifiedColourBaseline())', rule)
-        data = receipt(self.method)
-        verify_receipt(data, self.method, DIGEST)
-        self.assertIs(data['positive_viewport_accepted'], False)
-
-    def test_stale_missing_foreign_or_changed_baseline_provenance_is_rejected_everywhere(self):
-        for kind in (None, 'colour-limitation-characterization', 'colour-limitation-cancelled'):
-            def target(data):
-                return data if kind is None else observation(data, kind)
-            for marker in ('pending', 'passed', True, None):
-                data = receipt(self.method); target(data)['untouched_baseline_installed'] = marker
-                with self.subTest(kind=kind, marker=marker), self.assertRaises(ValueError):
-                    verify_receipt(data, self.method, DIGEST)
-            for field in BASELINE_EVIDENCE:
-                data = receipt(self.method)
-                target(data)['baseline_evidence'][field] = 'foreign'
-                with self.subTest(kind=kind, field=field), self.assertRaises(ValueError):
-                    verify_receipt(data, self.method, DIGEST)
-            for evidence in (None, {}, {**BASELINE_EVIDENCE, 'extra': 'unverified'},
-                             {**BASELINE_EVIDENCE, 'run_id': float(BASELINE_EVIDENCE['run_id'])}):
-                data = receipt(self.method); target(data)['baseline_evidence'] = evidence
-                with self.subTest(kind=kind, evidence=evidence), self.assertRaises(ValueError):
-                    verify_receipt(data, self.method, DIGEST)
-
-    def test_collector_requires_exact_separate_five_method_phase(self):
-        data = summary()
-        data['cases'].append(dict(classname='paint.anpaint.android.EditorDeviceTest', name='extra', status='passed'))
+class ComposedColourEvidenceContractTest(unittest.TestCase):
+    """Synthetic current receipt contracts, never installed acceptance."""
+    def test_wrong_class_pairs_and_retired_method_are_rejected(self):
+        for method, owner in METHOD_CLASSES.items():
+            data = receipt(method)
+            data['test_class'] = COLOUR_CLASS if owner == TEST_CLASS else TEST_CLASS
+            with self.subTest(method=method), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+            report = summary()
+            next(c for c in report['cases'] if c['name'] == method)['classname'] = data['test_class']
+            with self.assertRaises(ValueError):
+                source_binding(report)
+        retired = 'unchangedAdvancedColourReportsShortLandscapeLimitation'
         with self.assertRaises(ValueError):
-            source_binding(data)
-        for field, value in [('expected_tests', 19), ('completed_tests', 2), ('included_tests', []),
+            verify_receipt({}, retired, DIGEST)
+        report = summary(); report['cases'][-1]['name'] = retired
+        with self.assertRaises(ValueError):
+            source_binding(report)
+        for field, value in [('expected_tests', 5), ('completed_tests', 6), ('included_tests', []),
                              ('missing', ['missing']), ('unexpected', ['extra']), ('errors', ['error'])]:
-            data = summary(); data[field] = value
+            report = summary(); report[field] = value
             with self.subTest(field=field), self.assertRaises(ValueError):
-                source_binding(data)
+                source_binding(report)
 
+    def test_colour_profile_does_not_weaken_notice_budget_or_invent_interval(self):
+        for method in COLOUR_SCREENS:
+            data = receipt(method)
+            verify_receipt(data, method, DIGEST)
+            self.assertFalse(any(o['kind'].startswith('interaction-') for o in data['observations']))
+            for mutation in (
+                lambda r: r['observations'].append(dict(kind='interaction-start')),
+                lambda r: r.update(fixture_setup_elapsed_ms=0),
+                lambda r: r.update(fixture_elapsed_ms=0),
+                lambda r: r.update(fixture_started_uptime_ms=True),
+                lambda r: r.update(fixture_elapsed_scope='interaction only'),
+                lambda r: observation(r, 'fixture').update(font_scale=2),
+                lambda r: observation(r, 'orientation').update(font_scale=2),
+            ):
+                bad = copy.deepcopy(data); mutation(bad)
+                with self.subTest(method=method, mutation=mutation), self.assertRaises(ValueError):
+                    verify_receipt(bad, method, DIGEST)
+        for method in DIALOG_SCREENS:
+            data = receipt(method)
+            data['observations'] = [o for o in data['observations'] if not o['kind'].startswith('interaction-')]
+            with self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
 
-    def test_current_characterization_emits_geometry_before_known_limitation_assertion(self):
-        source = (Path(__file__).resolve().parents[1] / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt').read_text()
-        block = source.split('fun unchangedAdvancedColourReportsShortLandscapeLimitation()', 1)[1].split('private fun colourGeometry', 1)[0]
-        self.assertLess(block.index('"colour-limitation-characterization"'), block.index('0,inner.height)'))
-        for text in ('640,display.width', '320,display.height', '1f,activity.resources.configuration.fontScale',
-                     '"holder_parent",colourGeometry(holder.parent as View)', '"inner_content",colourGeometry(inner.getChildAt(0))',
-                     'evidence.capture("colour-limitation")', 'evidence.capture("colour-cancelled")',
-                     'tap("colour cancel"', 'assertEquals(0,committed);assertEquals(1,closed)',
-                     '"positive_viewport_accepted",false', '"untouched_baseline_installed",DialogEvidenceExportRule.BASELINE_INSTALLED'):
-            self.assertIn(text, block)
-        self.assertNotIn('@Test fun normalAdvancedColourKeepsFiniteViewportAndFixedControls()', source)
+    def test_colour_geometry_scroll_and_caption_regressions_fail(self):
+        method = 'normalAdvancedColourKeepsFiniteViewportAndFixedControls'
+        mutations = [
+            lambda r: observation(r, 'colour-finite-bounds')['inner'].update(scroll_y=0),
+            lambda r: observation(r, 'colour-finite-bounds')['fixed'][0]['raw'].__setitem__(0, 271),
+            lambda r: observation(r, 'colour-pre-assert-allocation')['inner'].update(height=0),
+            lambda r: observation(r, 'colour-pre-assert-allocation')['inner_content'].update(height=1),
+            lambda r: observation(r, 'colour-native-scroll-route').update(x=29),
+            lambda r: observation(r, 'colour-native-scroll-route').update(gutter_pixels=True),
+            lambda r: observation(r, 'initial-editor-state').update(stage='passed'),
+            lambda r: r['observations'].remove(observation(r, 'colour-finite-bounds')),
+        ]
+        for mutation in mutations:
+            data = receipt(method); mutation(data)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+        for method in ('retainedColourStateSurvivesRotationImeCancelAndReopen', 'hungarianColourCaptionsFitPortraitAndLandscape'):
+            for mutation in (
+                lambda r: r['observations'].remove(observation(r, 'intrinsic-caption')),
+                lambda r: observation(r, 'intrinsic-caption')['line_metrics'][0].update(ellipsis=1),
+                lambda r: observation(r, 'intrinsic-caption')['geometry'].update(visible=[0, 0, 1, 1]),
+                lambda r: observation(r, 'orientation').update(landscape=True),
+                lambda r: observation(r, 'fixture').update(locale='foreign'),
+                lambda r: observation(r, 'pointer-before').update(tap=[-1, -1]),
+            ):
+                data = receipt(method); mutation(data)
+                with self.subTest(method=method, mutation=mutation), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+
+    def test_colour_state_ime_and_single_back_fail_closed(self):
+        method = 'retainedColourStateSurvivesRotationImeCancelAndReopen'
+        mutations = [
+            lambda r: observation(r, 'colour-surface-native-drag').update(after_colour=-15509605),
+            lambda r: observation(r, 'colour-surface-native-drag').update(scroll_after=1),
+            lambda r: observation(r, 'colour-native-ime-window').update(condition_passed=False),
+            lambda r: observation(r, 'colour-native-ime-window').update(stable_window_ms=249),
+            lambda r: observation(r, 'colour-native-ime-window').update(windows=[]),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(configured_ime=False),
+            lambda r: observation(r, 'native-back-before').update(postcondition_met=True),
+            lambda r: observation(r, 'native-back-injected').update(injection_count=2),
+            lambda r: observation(r, 'native-back-injected').update(route='UiDevice.pressBack()'),
+            lambda r: observation(r, 'native-back-after').update(completed=False),
+            lambda r: observation(r, 'native-back-after')['state'].update(dialog_showing=False),
+            lambda r: observation(r, 'native-back-after')['state'].update(value='#FF0000'),
+            lambda r: observation(r, 'native-back-after')['state'].update(closed_callbacks=1),
+            lambda r: observation(r, 'native-back-after')['state'].update(target_ime_visible=True),
+            lambda r: r['observations'].append(copy.deepcopy(observation(r, 'native-back-injected'))),
+            lambda r: observation(r, 'colour-retained-state-complete').update(commit_callbacks=0),
+            lambda r: observation(r, 'colour-retained-state-complete').update(selected='#FF0000'),
+        ]
+        for mutation in mutations:
+            data = receipt(method); mutation(data)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+        for field, value in [('target_attached', True), ('closed_callbacks', 1), ('commit_callbacks', 1),
+                             ('preview_colour', 0), ('focused_app_window_is_editor', False)]:
+            data = receipt(method)
+            backs = [o for o in data['observations'] if o['kind'] == 'native-back-after']
+            backs[-1]['state'][field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+
+    def test_colour_archive_partial_corrupt_foreign_and_inventory_failures(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for method in COLOUR_SCREENS:
+                for options in (
+                    dict(change_receipt=lambda r: r.update(test_class=TEST_CLASS)),
+                    dict(change_receipt=lambda r: r.update(source_tests_sha256='f' * 64)),
+                    dict(change_receipt=lambda r: r.update(outcome='failed')),
+                    dict(change_receipt=lambda r: r.update(failure='hidden')),
+                    dict(change_receipt=lambda r: r.update(screenshots=[])),
+                    dict(change_manifest=lambda m: m.update(test_passed=False)),
+                    dict(change_manifest=lambda m: m['files'][0].update(sha256='0' * 64)),
+                    dict(extra=('unrequested.png', png())), dict(corrupt=True),
+                ):
+                    write_archive(root, method, **options)
+                    with self.subTest(method=method, options=options), self.assertRaises(ValueError):
+                        inspect_archive(root / (method + '.zip'), method, DIGEST)
+
+    def test_corrupt_png_with_a_fresh_manifest_digest_still_fails(self):
+        valid = png(); verify_png(valid)
+        for malformed in (PNG + b'synthetic payload', valid[:-1], valid + b'junk',
+                          valid[:40] + bytes([valid[40] ^ 1]) + valid[41:]):
+            with self.assertRaises(ValueError):
+                verify_png(malformed)
+
+    def test_png_colour_depth_and_palette_structure_fail_closed(self):
+        def chunk(kind, value):
+            return struct.pack('>I', len(value)) + kind + value + struct.pack('>I', zlib.crc32(kind + value) & 0xffffffff)
+
+        def model(colour, depth, palettes=(), late=False):
+            channels = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}
+            row_bytes = (channels.get(colour, 1) * depth + 7) // 8
+            header = chunk(b'IHDR', struct.pack('>IIBBBBB', 1, 1, depth, colour, 0, 0, 0))
+            palette = b''.join(chunk(b'PLTE', value) for value in palettes)
+            pixels = chunk(b'IDAT', zlib.compress(b'\0' + bytes(row_bytes)))
+            return PNG + header + (pixels + palette if late else palette + pixels) + chunk(b'IEND', b'')
+
+        legal = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}
+        for colour, depths in legal.items():
+            for depth in (1, 2, 4, 8, 16):
+                value = model(colour, depth, [b'\xff\0\0'] if colour == 3 else [])
+                with self.subTest(colour=colour, depth=depth):
+                    if depth in depths:
+                        verify_png(value)
+                    else:
+                        with self.assertRaises(ValueError):
+                            verify_png(value)
+        malformed = [model(3, 8), model(3, 8, [b'']), model(3, 8, [b'xx']),
+                     model(3, 1, [bytes(9)]), model(3, 8, [bytes(771)]),
+                     model(3, 8, [bytes(3), bytes(3)]), model(3, 8, [bytes(3)], late=True),
+                     model(0, 8, [bytes(3)]), model(4, 8, [bytes(3)])]
+        for index, value in enumerate(malformed):
+            with self.subTest(palette_case=index), self.assertRaises(ValueError):
+                verify_png(value)
 
 
 if __name__ == '__main__':
