@@ -1,0 +1,136 @@
+{
+  "success": true,
+  "execution_status": "passed",
+  "inventory_validated": true,
+  "device_sdk": 35,
+  "source_tests_sha256": "146190bb18e714b4b92ba04475f4c16e70242f92f4c079cc35f4ac22788059bc",
+  "timeout_seconds_by_phase": {
+    "ordinary": 180,
+    "gallery-draft": 90,
+    "vertical-english-manchu": 180,
+    "vertical-literary-chinese-emoji": 180,
+    "seed": 60,
+    "verify": 60
+  },
+  "ordinary_and_gallery_total_timeout_seconds": 270,
+  "vertical_timeout_seconds_per_shard": 180,
+  "vertical_total_timeout_seconds": 360,
+  "receipt_scope": "complete-composed-app-union",
+  "all_app_total_timeout_seconds": 750,
+  "declared_tests": 25,
+  "sdk_eligible_tests": 25,
+  "sdk_suppressed_tests": [],
+  "selected_tests": 25,
+  "explicitly_excluded_tests": [],
+  "completed_tests": 25,
+  "phases": {
+    "ordinary": 16,
+    "gallery-draft": 3,
+    "vertical-english-manchu": 2,
+    "vertical-literary-chinese-emoji": 2,
+    "seed": 1,
+    "verify": 1
+  },
+  "completed": [
+    [
+      "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+      "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+    ],
+    [
+      "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+      "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+    ],
+    [
+      "paint.anpaint.android.EditorDeviceTest",
+      "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+    ],
+    [
+      "paint.anpaint.android.GalleryDraftDeviceTest",
+      "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+    ],
+    [
+      "paint.anpaint.android.GalleryDraftDeviceTest",
+      "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+    ],
+    [
+      "paint.anpaint.android.GalleryDraftDeviceTest",
+      "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+    ],
+    [
+      "paint.anpaint.android.GalleryViewportDeviceTest",
+      "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+    ],
+    [
+      "paint.anpaint.android.VerticalLocaleDeviceTest",
+      "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+    ],
+    [
+      "paint.anpaint.android.VerticalLocaleDeviceTest",
+      "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+    ],
+    [
+      "paint.anpaint.android.VerticalLocaleDeviceTest",
+      "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+    ],
+    [
+      "paint.anpaint.android.VerticalLocaleDeviceTest",
+      "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+    ]
+  ]
+}

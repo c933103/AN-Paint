@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-12",
+  "review_type": "Independent read-only rendered-status review",
+  "result": "No actionable M03 rendered-status defect identified within the inspected evidence; limitations below apply.",
+  "source_head": "d4ee9762580bbaf983fc58edb84755840c31626c",
+  "tested_merge_commit": "d43c6b33fdb79b93d1be137d8f332f9be579ca91",
+  "tested_tree": "c1d65b3f0f89a8af12a9dbe69eb1824ef19e28c1",
+  "provenance": {
+    "github_run": 38191148104,
+    "github_run_url": "https://github.com/c933103/AN-Paint/actions/runs/38191148104",
+    "github_artifact_id": 11720749614,
+    "archive_filename": "m03-successor-regression.zip",
+    "archive_sha256": "63bdbe65c224fe0f8dad1416b6d5ce7d4c2c623cdf94a2c73daf17d432367a1f",
+    "archive_digest_independently_recomputed": true,
+    "head_merge_tree_binding": "Parent-verified GitHub run and commit metadata, also recorded in runtime-summary.json. Sidecars do not embed commit IDs.",
+    "local_staged_tree_independently_recomputed_read_only": "c1d65b3f0f89a8af12a9dbe69eb1824ef19e28c1",
+    "local_source_manifest_nine_paths_sha256_match": true,
+    "runtime_summary_sha256": "a7248679c603b5ea854f73780e7afbe0b43935fc7d31f71f3382280b4cef2449",
+    "all_48_extracted_png_json_pairs_match_archive_bytes": true
+  },
+  "scope": {
+    "locales": [
+      "ain-Kana",
+      "ain-Latn",
+      "mnc-Mong",
+      "vi-Hani"
+    ],
+    "actions": [
+      "copy",
+      "insert"
+    ],
+    "font_scales": [
+      1.0,
+      2.0
+    ],
+    "visually_inspected_screenshots": 16,
+    "artifact_total_screenshots": 48,
+    "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+    "api": 35,
+    "viewport_dp": [
+      320,
+      640
+    ],
+    "viewport_px": [
+      640,
+      1280
+    ]
+  },
+  "junit_inspection": {
+    "method": "Read archived XML; not independently re-executed",
+    "suite_count": 87,
+    "tests": 820,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "m03_suites": [
+      {
+        "name": "org.catrobat.paintroid.local.CommonsMetadataResponseLimitFlowTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "archive_entry": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsMetadataResponseLimitFlowTest.xml",
+        "sha256": "fa483e88bf4c4ff0ca9396522f3489d13aa62bbe17756c9c554062d945b993a7"
+      },
+      {
+        "name": "org.catrobat.paintroid.local.CommonsMetadataResponseLimitTranslationTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "archive_entry": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsMetadataResponseLimitTranslationTest.xml",
+        "sha256": "741fccca4fc523cf177c8540843e47a9af9681085db3d693c4c0e446472491c5"
+      }
+    ]
+  },
+  "actual_defects_identified": [],
+  "observations": [
+    "All 16 metadata messages match their exact local resource wrapper plus M03 reason.",
+    "Both Ainu scripts and vi-Hani show the entire status at normal and double scale without apparent missing-glyph boxes or status clipping.",
+    "Manchu normal-scale status is wholly visible. Double-scale visible trailing columns show no apparent tofu or vertical ink clipping; earlier columns are offscreen at the captured terminal rail position.",
+    "U+8FD4 is visibly present in both vi-Hani action statuses at both scales. All four vi-Hani capture hashes equal the initial-head captures, now independently carried in the successor archive."
+  ],
+  "limitations": [
+    "All reviewed captures are Robolectric NATIVE host rendering at API 35, 320 x 640 dp, xhdpi. They are not installed-device screenshots.",
+    "Sixteen selected images were visually inspected. The other 32 M03 images were integrity/metadata checked, not visually reviewed in this successor review.",
+    "M03 asserts full source/accessibility text, no ellipsizing, measured layout coverage, and status visibility. For horizontal scripts it checks the complete visible status bounds. For vertical scripts it programmatically checks both rail ends and full-height visibility.",
+    "The vertical branch scrolls to 0 and end, calls resetToReadingStart(), then immediately draws without another explicit layout. The reset implementation requests layout. The Manchu 2x stills show the terminal tested position, not a fresh first-reading-position capture; this is a capture limitation, not an established application scrolling defect.",
+    "Visible scrollbars and source structure do not alone prove touch gesture behavior. This M03 review does not claim real-device M03 scrolling or per-pixel review of offscreen two-times-scale Manchu columns.",
+    "No competent-language, native-speaker, or typographic/shaping certification is claimed. Source/metadata equality and visible glyphs do not establish correct translation or every script-specific joining choice.",
+    "The previously disclosed Pillow/FreeType source-versus-subset U+8FD4 mismatch at 24 px is retained. Matching 48/96 px masks and preserved outlines/metrics do not imply all-size raster identity. No cause is inferred, and that non-equivalence is not itself classified as an application bug.",
+    "Bundled-font loading and hash verification in installed API 35 instrumentation is separate evidence. Its success would not directly exercise the M03 status text; it is not claimed here.",
+    "No source was edited, no heavy tests were run, and no remote write or merge/readiness decision was made during this review."
+  ],
+  "source_files_inspected": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt",
+      "sha256": "afc64a7508b29f649aa6d509a8bd04ff099cbc4ad915dda34a5bce464668dba0"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsSvgErrorReadabilityTest.kt",
+      "sha256": "95177320d66c4c0076dba3368c27cb4580a5a1fdde5caa0a2ddb81495cf9ce79"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt",
+      "sha256": "e7cb78bb7afb232ac2a38910d54adb2e6b0c9278bda01f84a7848221135e223a"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RibbonWidgets.kt",
+      "sha256": "def27ac78d3cca548dd7bd8d09be0ac5ec5da95161ce667dac71f97494461b18"
+    }
+  ],
+  "captures": [
+    {
+      "file": "api35-ain-Kana-font1.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Kana-font1.0-copy.png",
+      "sha256": "4e5cd4d48d59629d19bd1667daf6f4c23597f242f0dcce4a7b3916b4b7c79dd7",
+      "bytes": 91387,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Kana-font1.0-copy.json",
+      "metadata_sha256": "362710945c73cbf8974fd2b715c190fd291e69364fa550014f7c262e3e072143",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Kana",
+        "font_scale": 1,
+        "action": "copy",
+        "message": "ノカ オルㇱペ アアットゥㇷ゚テ エアイカㇷ゚: Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "source_resource_sha256": "3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408",
+      "visual_inspection": "Complete M03 status is visible through final punctuation. No apparent tofu, overlapping status lines, or clipped status ink."
+    },
+    {
+      "file": "api35-ain-Kana-font1.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Kana-font1.0-insert.png",
+      "sha256": "405d6fdb7e120867d16016d9bca765cdc1d5621e9a9d9af048ab14adc4cbee71",
+      "bytes": 90086,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Kana-font1.0-insert.json",
+      "metadata_sha256": "58ebada04356f886d1f029046505d56305bcfbe051bfdff1fdc3c517dd620f90",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Kana",
+        "font_scale": 1,
+        "action": "insert",
+        "message": "アウウォマレ ノカ アヌレ エアイカㇷ゚: Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "source_resource_sha256": "3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408",
+      "visual_inspection": "Complete M03 status is visible through final punctuation. No apparent tofu, overlapping status lines, or clipped status ink."
+    },
+    {
+      "file": "api35-ain-Kana-font2.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Kana-font2.0-copy.png",
+      "sha256": "945e082f2a07a87e1a0600fe5f3613262b09f1faf973289a71d558c45d1f066f",
+      "bytes": 92119,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Kana-font2.0-copy.json",
+      "metadata_sha256": "f5e152333b26189141dc8e4ecfb39325f6f10b82f26b0b2482c84506e0fdcfa4",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Kana",
+        "font_scale": 2,
+        "action": "copy",
+        "message": "ノカ オルㇱペ アアットゥㇷ゚テ エアイカㇷ゚: Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "source_resource_sha256": "3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408",
+      "visual_inspection": "Containing controls have scrolled to reveal the complete M03 status from the first line through final punctuation. No apparent tofu or clipped status ink. Lower controls continue below this viewport."
+    },
+    {
+      "file": "api35-ain-Kana-font2.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Kana-font2.0-insert.png",
+      "sha256": "30f455e32d00e56ea9bab89f106fcca2db8ea737855336c89e13eda9993142f9",
+      "bytes": 91292,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Kana-font2.0-insert.json",
+      "metadata_sha256": "4428c762fbc38c31a8a7766334383ff416c8d86f138e65b4b97cd4a5d3e937ae",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Kana",
+        "font_scale": 2,
+        "action": "insert",
+        "message": "アウウォマレ ノカ アヌレ エアイカㇷ゚: Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "source_resource_sha256": "3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408",
+      "visual_inspection": "Containing controls have scrolled to reveal the complete M03 status from the first line through final punctuation. No apparent tofu or clipped status ink. Lower controls continue below this viewport."
+    },
+    {
+      "file": "api35-ain-Latn-font1.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Latn-font1.0-copy.png",
+      "sha256": "b7576b5e72d99194bfcaba1d7f8f0d918c605653302210acb6b1f9cac04fb368",
+      "bytes": 61191,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Latn-font1.0-copy.json",
+      "metadata_sha256": "54d0e182200a1bd71747aa60093cb31f5a7e2f2b6202b4a2ccfdd1dc9271b1b1",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Latn",
+        "font_scale": 1,
+        "action": "copy",
+        "message": "Noka oruspe a=attupte eaykap: Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "source_resource_sha256": "b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a",
+      "visual_inspection": "Complete M03 status is visible through final punctuation. No apparent tofu, overlapping status lines, or clipped status ink."
+    },
+    {
+      "file": "api35-ain-Latn-font1.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Latn-font1.0-insert.png",
+      "sha256": "7468d51d717e2302dc8950aa5cc422a6455bf128c11ccc41e5e8d9f206ae7e67",
+      "bytes": 61711,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Latn-font1.0-insert.json",
+      "metadata_sha256": "6aed5d445d78bcf42f195e93416191b0d1135c252b3340e5233c9e3bf9dd38ef",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Latn",
+        "font_scale": 1,
+        "action": "insert",
+        "message": "A=uwomare noka a=nure eaykap: Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "source_resource_sha256": "b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a",
+      "visual_inspection": "Complete M03 status is visible through final punctuation. No apparent tofu, overlapping status lines, or clipped status ink."
+    },
+    {
+      "file": "api35-ain-Latn-font2.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Latn-font2.0-copy.png",
+      "sha256": "142ec30d5e5e634fb84f25bc8fe93879bb347e44648eca4853838c27d89182e2",
+      "bytes": 119038,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Latn-font2.0-copy.json",
+      "metadata_sha256": "e92efafdf55c6fdee5f5ff43b01a1974f75b812eb1e155a72eaa1ece61251017",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Latn",
+        "font_scale": 2,
+        "action": "copy",
+        "message": "Noka oruspe a=attupte eaykap: Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "source_resource_sha256": "b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a",
+      "visual_inspection": "Complete M03 status remains visible below the longer provider description. No apparent tofu or clipped status ink. Lower controls continue below this viewport."
+    },
+    {
+      "file": "api35-ain-Latn-font2.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-ain-Latn-font2.0-insert.png",
+      "sha256": "eddd39b6d9de72d5546ef640a53f18c004a6964561a2cd274ef4905af39cd3f7",
+      "bytes": 119371,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-ain-Latn-font2.0-insert.json",
+      "metadata_sha256": "c39774d3e002d7b108b06339967c0e60d3f7b9d0d0ea39112d767936a77b4fcd",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "ain-Latn",
+        "font_scale": 2,
+        "action": "insert",
+        "message": "A=uwomare noka a=nure eaykap: Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "source_resource_sha256": "b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a",
+      "visual_inspection": "Complete M03 status remains visible below the longer provider description. No apparent tofu or clipped status ink. Lower controls continue below this viewport."
+    },
+    {
+      "file": "api35-mnc-Mong-font1.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-mnc-Mong-font1.0-copy.png",
+      "sha256": "aa0b84f922f0adc50797cc0c1aaa9fc41cf1b30afcabf58fe3ec247b0a1bf365",
+      "bytes": 85874,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-mnc-Mong-font1.0-copy.json",
+      "metadata_sha256": "aee896c9f2ca30a307ec2a459217ced97a6855d2a8e05f4b7f70e1b09d7972d9",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "mnc-Mong",
+        "font_scale": 1,
+        "action": "copy",
+        "message": "ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡤᡝᠪᡠᠯᡝᡥᡝ ᠪᠠᡳᡨᠠ ᠪᡝ ᡩᡠᡵᠰᡠᡴᡳᠯᡝᠮᡝ ᠮᡠᡨᡝᡵᠠᡴᡡ: ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "source_resource_sha256": "1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff",
+      "visual_inspection": "Complete M03 status is shown in vertical columns. No apparent tofu or vertical ink clipping. This is visual rendering inspection, not Manchu shaping or linguistic certification."
+    },
+    {
+      "file": "api35-mnc-Mong-font1.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-mnc-Mong-font1.0-insert.png",
+      "sha256": "d7f89645478821b057928c1c47015e8dd21736f320bda125911020cd42a0744c",
+      "bytes": 85635,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-mnc-Mong-font1.0-insert.json",
+      "metadata_sha256": "982b19169b681b3a363a43e8367a3c2362e139226d343c91ef35c345473400c0",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "mnc-Mong",
+        "font_scale": 1,
+        "action": "insert",
+        "message": "ᠨᡳᡵᡠᡤᠠᠨ ᡨᡠᠸᠠᠪᡠᡵᡝ ᠪᠠ ᡳ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡩᠣᠰᡳᠮᠪᡠᠮᡝ ᠮᡠᡨᡝᡵᠠᡴᡡ: ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "source_resource_sha256": "1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff",
+      "visual_inspection": "Complete M03 status is shown in vertical columns. No apparent tofu or vertical ink clipping. This is visual rendering inspection, not Manchu shaping or linguistic certification."
+    },
+    {
+      "file": "api35-mnc-Mong-font2.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-mnc-Mong-font2.0-copy.png",
+      "sha256": "1310509942acd83490037d6dc0ecfc76cd561362beb4c349d782d9adeb31788e",
+      "bytes": 88287,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-mnc-Mong-font2.0-copy.json",
+      "metadata_sha256": "d10cef67c7769c77ab3619ec9c7f1826137d8cfd9fa649eb3a0d434f13ed650f",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "mnc-Mong",
+        "font_scale": 2,
+        "action": "copy",
+        "message": "ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡤᡝᠪᡠᠯᡝᡥᡝ ᠪᠠᡳᡨᠠ ᠪᡝ ᡩᡠᡵᠰᡠᡴᡳᠯᡝᠮᡝ ᠮᡠᡨᡝᡵᠠᡴᡡ: ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "source_resource_sha256": "1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff",
+      "visual_inspection": "Status rail is at its trailing horizontal scroll position. Earlier columns are outside this still and a left-edge column is partially visible. Visible trailing columns have no apparent tofu or vertical ink clipping. Full two-times-scale status raster is not visually certified by this one-position still."
+    },
+    {
+      "file": "api35-mnc-Mong-font2.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-mnc-Mong-font2.0-insert.png",
+      "sha256": "b9b91bbff37029dda35c11a9ade0b488567fe037456aa79b58ec71a75184fa8d",
+      "bytes": 88325,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-mnc-Mong-font2.0-insert.json",
+      "metadata_sha256": "a33864f288dc32873939506f8adb90d6b4f233f3e6b904f6700d1995504d1355",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "mnc-Mong",
+        "font_scale": 2,
+        "action": "insert",
+        "message": "ᠨᡳᡵᡠᡤᠠᠨ ᡨᡠᠸᠠᠪᡠᡵᡝ ᠪᠠ ᡳ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡩᠣᠰᡳᠮᠪᡠᠮᡝ ᠮᡠᡨᡝᡵᠠᡴᡡ: ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "source_resource_sha256": "1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff",
+      "visual_inspection": "Status rail is at its trailing horizontal scroll position. Earlier columns are outside this still and a left-edge column is partially visible. Visible trailing columns have no apparent tofu or vertical ink clipping. Full two-times-scale status raster is not visually certified by this one-position still."
+    },
+    {
+      "file": "api35-vi-Hani-font1.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-vi-Hani-font1.0-copy.png",
+      "sha256": "fc5a6ad103c672fb3538c0619918d13faff2f8f508e48d870bb5268ecaa514da",
+      "bytes": 82763,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-vi-Hani-font1.0-copy.json",
+      "metadata_sha256": "5b172bcfb4f087c0331c1399653283a954dfd078f31090609daa523af94f0b60",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "vi-Hani",
+        "font_scale": 1,
+        "action": "copy",
+        "message": "空 体 抄 劄 𥱬 功 形 影: 戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "source_resource_sha256": "fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202",
+      "visual_inspection": "Complete M03 status is visible through final punctuation; U+8FD4 is visibly drawn. No apparent tofu or clipped status ink."
+    },
+    {
+      "file": "api35-vi-Hani-font1.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-vi-Hani-font1.0-insert.png",
+      "sha256": "78ab06fd5746d87548921b256e133b7a6295bf5b2e58b2d71ca5c1f5b8f3e885",
+      "bytes": 81318,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-vi-Hani-font1.0-insert.json",
+      "metadata_sha256": "631ba8e09f6b35e44e42a766c23dbc49dd318613b64d8f9d8aff7c42f32fc714",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "vi-Hani",
+        "font_scale": 1,
+        "action": "insert",
+        "message": "空 体 載 影 書院: 戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "source_resource_sha256": "fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202",
+      "visual_inspection": "Complete M03 status is visible through final punctuation; U+8FD4 is visibly drawn. No apparent tofu or clipped status ink."
+    },
+    {
+      "file": "api35-vi-Hani-font2.0-copy.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-vi-Hani-font2.0-copy.png",
+      "sha256": "36c10cbecc8d1b53ba742d3a52b0ab8c1bbc792f531661b09ef64e3d491df442",
+      "bytes": 162806,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-vi-Hani-font2.0-copy.json",
+      "metadata_sha256": "d6a43c97e3f89c36aa23ff4ee76eb633d2aa524141cd4fd97ec711e3d6473520",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "vi-Hani",
+        "font_scale": 2,
+        "action": "copy",
+        "message": "空 体 抄 劄 𥱬 功 形 影: 戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "source_resource_sha256": "fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202",
+      "visual_inspection": "Complete M03 status is visible through final punctuation; U+8FD4 is visibly drawn. No apparent tofu or clipped status ink. Lower navigation continues below this viewport."
+    },
+    {
+      "file": "api35-vi-Hani-font2.0-insert.png",
+      "archive_entry": "Paintroid/build/reports/commons-metadata-m03/api35-vi-Hani-font2.0-insert.png",
+      "sha256": "d1a577a352985bbeffdd0718677b0fea2a228c784ba25217aee3b426ba68d808",
+      "bytes": 158759,
+      "dimensions": [
+        640,
+        1280
+      ],
+      "metadata_file": "api35-vi-Hani-font2.0-insert.json",
+      "metadata_sha256": "b8c1412434899eaadbf6f39adb625c297bacff10e8a184be6ed5f033eb3f6e32",
+      "metadata": {
+        "evidence_kind": "Robolectric NATIVE rendering, not installed-device capture",
+        "locale": "vi-Hani",
+        "font_scale": 2,
+        "action": "insert",
+        "message": "空 体 載 影 書院: 戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
+        "all_characters_laid_out": true
+      },
+      "source_resource_message_match": true,
+      "source_resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "source_resource_sha256": "fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202",
+      "visual_inspection": "Complete M03 status is visible through final punctuation; U+8FD4 is visibly drawn. No apparent tofu or clipped status ink. Lower navigation continues below this viewport."
+    }
+  ],
+  "initial_evidence_handling": "Initial 0c5073c7 captures were exploratory only. This report binds its reviewed copies to the successor artifact and does not transfer initial-head acceptance."
+}
