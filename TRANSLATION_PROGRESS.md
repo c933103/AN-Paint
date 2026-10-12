@@ -2,23 +2,22 @@
 
 This document is the per-language companion to the project’s tracking-PR workflow (master tracker #39). It is a manually refreshed snapshot; no scheduled updater is installed.
 
-## Requested options pending merge
+## Requested options merged
 
-**146 tracked choices = 140 offered on the pinned develop baseline + 6 requested
-options in [PR #57](https://github.com/c933103/AN-Paint/pull/57).**
+**146 offered and tracked choices = 140 from the original pinned baseline + 6 options in [PR #57](https://github.com/c933103/AN-Paint/pull/57).**
 The option-registration candidate is pinned to [be60964a5b62](https://github.com/c933103/AN-Paint/commit/be60964a5b62c73f6517ec2fa8f58b101ab05c99).
-It is unmerged at this tracker update. Hausa, Igbo, Lingala, Sundanese, Yoruba and
+PR57 merged into develop on 12 October 2026 at [`1011233a89a3`](https://github.com/c933103/AN-Paint/commit/1011233a89a3cac98f56fc2d46a902a9476a1e08). Hausa, Igbo, Lingala, Sundanese, Yoruba and
 Zulu each have an intentionally empty canonical catalogue: **0/695 strings and
 0/1 plurals translated, 696 gaps**. All 696 translatable app resource keys use default-English fallback.
 Autonym/tag verification is distinct from UI translation or linguistic acceptance.
-No Android runtime or installed-device pass is claimed for these six additions.
+[PR57 CI](https://github.com/c933103/AN-Paint/actions/runs/38258647977) passed, including bounded API30/35 identity and default-resource fallback checks. Full installed-language UI review and linguistic acceptance remain open.
 
-After the option PR merges, the offered inventory will be 146: 137 non-English
+The offered inventory is now 146: 137 non-English
 choices, 7 English choices and 2 test modes; 59 full and 87 partial catalogues.
-The six new rows below and [pending-option data](verification/translation-progress-2026-10-12/pending-language-options.json)
+The six added rows below and [option progress data](verification/translation-progress-2026-10-12/pending-language-options.json)
 track the requested work now. The original 140-choice coverage snapshot and
 historical reviews stay pinned and unchanged; their counts do not describe the
-unmerged candidate. Translation filling remains lower priority; shared locale
+merged option addition. Translation filling remains lower priority; shared locale
 improvements and new UI messages must include the six choices as applicable.
 
 ## Baseline and priority
@@ -30,7 +29,7 @@ Last source scan: **12 October 2026**, `develop` at [4231edaac45d](https://githu
 **59 exact catalogues contain every source resource; 81 are partial.** The 59 comprise 50 non-English choices, 7 English choices and 2 test modes. None of the 140 choices lacks a catalogue. No whole-language acceptance is inferred from these counts.
 
 Priorities requested by the maintainer:
-- Keep filling the 81 baseline partial catalogues and six pending empty catalogues as lower-priority work.
+- Keep filling the 81 baseline partial catalogues and six added empty catalogues as lower-priority work.
 - Apply relevant non-translation locale improvements across **all** offered languages, including those with incomplete catalogues; do not exclude them because their translations are partial.
 - Continue finding newly introduced or still-hardcoded user-facing text, externalize it, and track each new message across every applicable choice. Preserve English and test-mode conventions.
 
@@ -54,9 +53,9 @@ The [current reset register](https://github.com/c933103/AN-Paint/blob/ef9394f250
 
 Bounded review details: [follow-up record](https://github.com/c933103/AN-Paint/blob/4231edaac45d89c52f51e2b77d0f94a1176ad88c/verification/localization-followup-2026-10-06.md), [M03 three-language review](https://github.com/c933103/AN-Paint/blob/4231edaac45d89c52f51e2b77d0f94a1176ad88c/verification/commons-metadata-m03-languages-2026-10-12/REVIEW.md), [six-language cursor review](https://github.com/c933103/AN-Paint/blob/4231edaac45d89c52f51e2b77d0f94a1176ad88c/verification/shared-cursor-recheck-2026-10-06.md), [F01 individual cases](https://github.com/c933103/AN-Paint/blob/3981b84e6dc53f3a6ca772ae9ae1d7738699a5ea/verification/f01-tiff-wording-2026-10-10/combined-evidence/all-language-inventory.json), [M03 dispositions](https://github.com/c933103/AN-Paint/blob/4231edaac45d89c52f51e2b77d0f94a1176ad88c/verification/commons-metadata-m03-2026-10-11/all-language-dispositions.json). Bounded installed evidence: [vertical controls](https://github.com/c933103/AN-Paint/pull/18#issuecomment-6100769642), [PR34 receipt](https://github.com/c933103/AN-Paint/pull/34#issuecomment-6103368757).
 
-## Per-choice progress (140 baseline + 6 pending)
+## Per-choice progress (140 original baseline + 6 merged additions)
 
-Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. All rows remain open for their stated next action. Test modes are explicitly separated in their rows. Rows labelled “pending option” are candidate-source coverage, not yet offered on develop.
+Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. All rows remain open for their stated next action. Test modes are explicitly separated in their rows. Rows labelled “added in #57” are merged option registrations with empty catalogues; source-key presence and language acceptance remain distinct.
 
 | Choice / display name | Direct; gap | Independent / bounded review | Bounded UI evidence | Pending PR | Concrete next action |
 |---|---:|---|---|---|---|
@@ -106,7 +105,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `gd` Gàidhlig | 76+0 (10.92%); 620 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `gl` Galego | 116+0 (16.67%); 580 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `gu` ગુજરાતી | 72+0 (10.34%); 624 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `ha` Hausa **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `ha` Hausa **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 | `hak-Hant-TW` 臺灣客家語（四縣腔，漢字） | 695+1 (100.00%); 0 | Pending P06; paired context checked; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C015 |
 | `hak-Latn-TW` Hak-kâ-ngî (Thòi-vân, Si-yen, Pha̍k-fa-sṳ) | 695+1 (100.00%); 0 | Pending P06; paired context checked; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C016 |
 | `he` עברית | 134+0 (19.25%); 562 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -117,7 +116,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `hy` Հայերեն | 110+0 (15.80%); 586 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ia` Interlingua | 60+0 (8.62%); 636 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `id` Bahasa Indonesia | 695+1 (100.00%); 0 | Pending P03; 600 short entries checked; M03 pending | Routing | #52 M02; #55 M04 | Review excluded long text/P03; review M02/M03 |
-| `ig` Igbo **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `ig` Igbo **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 | `is` Íslenska | 110+0 (15.80%); 586 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `it` Italiano | 695+1 (100.00%); 0 | Pending P07; M03 pending | Routing | #52 M02; #55 M04 | Recheck P07; review M02/M03 |
 | `ja` 日本語 | 695+1 (100.00%); 0 | Pending P02; C03 one-key checked; M03 pending | Routing; host M02/M03 | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
@@ -134,7 +133,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `ku` Kurdî | 4+0 (0.57%); 692 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `ky` Кыргызча | 35+0 (5.03%); 661 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `la` Latina | 8+0 (1.15%); 688 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `ln` Lingála **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `ln` Lingála **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 | `lo` ລາວ | 31+0 (4.45%); 665 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `lt` Lietuvių | 695+1 (100.00%); 0 | Pending P04; crop counts 0–20 checked; M03 pending | Routing | #52 M02; #55 M04 | Recheck P04; review M02/M03 |
 | `lv` Latviešu | 695+1 (100.00%); 0 | Pending P04; M03 pending | Routing | #52 M02; #55 M04 | Recheck P04; review M02/M03 |
@@ -176,7 +175,7 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `sq` Shqip | 65+0 (9.34%); 631 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sr-Cyrl` Српски (Ћирилица) | 170+0 (24.43%); 526 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sr-Latn` Srpski (Latinica) | 168+0 (24.14%); 528 | Broader review not established; cursor context checked | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `su` Sunda **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `su` Sunda **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 | `sv` Svenska | 127+0 (18.25%); 569 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `sw` Kiswahili | 695+1 (100.00%); 0 | Pending P04; M03 pending | Routing | #52 M02; #55 M04 | Recheck P04; review M02/M03 |
 | `ta` தமிழ் | 96+0 (13.79%); 600 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
@@ -198,14 +197,14 @@ Direct = S+P, with percentage of 696 keys. Gap = absent exact-catalogue keys. Al
 | `wuu-Hans` 吴语（上海话书面语，简体） | 695+1 (100.00%); 0 | Pending P06; M03 pending | Routing | #52 M02; #55 M04 | Recheck P06; review M02/M03; F01-C032 |
 | `xh` IsiXhosa | 32+0 (4.60%); 664 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `yi` ייִדיש | 7+0 (1.01%); 689 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
-| `yo` Yorùbá **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `yo` Yorùbá **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 | `yue-Hant` 粵語（繁體） | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `yue-Latn` Cantonese (Latin) | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `za` Vahcuengh | 7+0 (1.01%); 689 | Broader review not established | Routing | #52/#55 shared only | Low priority: fill missing strings + plural; review in UI |
 | `zh-CN` 简体中文（中国大陆） | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `zh-HK` 繁體中文（香港） | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
 | `zh-TW` 繁體中文（台灣） | 695+1 (100.00%); 0 | Pending P02; M03 pending | Routing | #52 M02; #55 M04 | Recheck P02; review M02/M03 |
-| `zu` isiZulu **[pending option]** | 0+0 (0.00%); 696 | Translation/review not started | Not yet verified | #57 option registration | Complete option checks and merge; low priority: translate 695 strings + 1 plural, then review in UI |
+| `zu` isiZulu **[added in #57]** | 0+0 (0.00%); 696 | Translation/review not started | PR57 API30/35 identity/fallback; full UI pending | — | Low priority: translate 695 strings + 1 plural, then review in UI |
 
 ## Shared open message work and PR boundaries
 
