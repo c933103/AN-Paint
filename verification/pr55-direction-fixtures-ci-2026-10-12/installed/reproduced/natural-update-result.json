@@ -1,0 +1,62 @@
+{
+  "status": "PASS_NATURAL_LOG_CONSISTENCY",
+  "source_tests_sha256": "d2154e5cf450eb211df695931c3fb1e5cca0e293e940b7e9679cb952d231967c",
+  "logcat_sha256": "de74f25134fc8dd981ecb9102be732baa956bd2f2341bf532b1f90eabae0e0e2",
+  "records": {
+    "copy": {
+      "line_number": 56873,
+      "record": {
+        "schema": 1,
+        "route": "copy",
+        "source_tests_sha256": "d2154e5cf450eb211df695931c3fb1e5cca0e293e940b7e9679cb952d231967c",
+        "status_class": "org.catrobat.paintroid.classic.GlyphBoundsStatusView",
+        "old_message": "تعذر تحميل صورة المعرض: فشل الاستعلام عن بيانات Commons الوصفية",
+        "message": "تعذر نسخ اعتماد الصورة: فشل الاستعلام عن بيانات Commons الوصفية",
+        "old_layout_height": 88,
+        "view_width": 640,
+        "root_requested_before": false,
+        "view_requested_before": false,
+        "view_requested_after": true,
+        "root_requested_after": true,
+        "new_layout_height": 88,
+        "complete_layout_text": "تعذر نسخ اعتماد الصورة: فشل الاستعلام عن بيانات Commons الوصفية",
+        "root_requested_settled": false,
+        "view_requested_settled": false
+      },
+      "raster_record_sha256": "5b71a8881797996ef3bb92e9180eec5dd85b617ffe4d4d572a35b7dc16be4824",
+      "scope": "Natural-update receipt agrees with corresponding already-verified full raster record; PNG authenticity/recomputation remains separate."
+    },
+    "insert": {
+      "line_number": 57116,
+      "record": {
+        "schema": 1,
+        "route": "insert",
+        "source_tests_sha256": "d2154e5cf450eb211df695931c3fb1e5cca0e293e940b7e9679cb952d231967c",
+        "status_class": "org.catrobat.paintroid.classic.GlyphBoundsStatusView",
+        "old_message": "تعذر نسخ اعتماد الصورة: فشل الاستعلام عن بيانات Commons الوصفية",
+        "message": "تعذر تحميل صورة المعرض: فشل الاستعلام عن بيانات Commons الوصفية",
+        "old_layout_height": 88,
+        "view_width": 640,
+        "root_requested_before": false,
+        "view_requested_before": false,
+        "view_requested_after": true,
+        "root_requested_after": true,
+        "new_layout_height": 88,
+        "complete_layout_text": "تعذر تحميل صورة المعرض: فشل الاستعلام عن بيانات Commons الوصفية",
+        "root_requested_settled": false,
+        "view_requested_settled": false
+      },
+      "raster_record_sha256": "4f1a74153f465c47c233101f15bac896dfd61ead03d311607bb80279c7884928",
+      "scope": "Natural-update receipt agrees with corresponding already-verified full raster record; PNG authenticity/recomputation remains separate."
+    }
+  },
+  "limits": "Log/schema/source/raster-record consistency only. Requires official source/run/APK binding, exact successful ordinary-app raw protocol, full API30/API35 matrices, strict PNG decoder/recomputation and actual visual inspection. No hardware screenshot/network-route proof.",
+  "binding": {
+    "head": "6d603af92ee26d852af62cd1006468ef8472bfcf",
+    "merge": "30abe4aa8d6089b11949635dc2d81f7a4b692073",
+    "tree": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+    "run_id": 38290638790,
+    "source_tests_sha256": "d2154e5cf450eb211df695931c3fb1e5cca0e293e940b7e9679cb952d231967c",
+    "logcat_sha256": "de74f25134fc8dd981ecb9102be732baa956bd2f2341bf532b1f90eabae0e0e2"
+  }
+}

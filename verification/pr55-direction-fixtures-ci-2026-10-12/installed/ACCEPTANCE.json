@@ -1,0 +1,75 @@
+{
+  "status": "PASS_BOUNDED_INSTALLED_REVIEW",
+  "head": "6d603af92ee26d852af62cd1006468ef8472bfcf",
+  "tree": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+  "base": "71f4d288669858e7975ec4c094b7f47a9a1ff145",
+  "merge": "30abe4aa8d6089b11949635dc2d81f7a4b692073",
+  "merge_parents": [
+    "71f4d288669858e7975ec4c094b7f47a9a1ff145",
+    "6d603af92ee26d852af62cd1006468ef8472bfcf"
+  ],
+  "run_id": 38290638790,
+  "matrix": {
+    "API30": {
+      "selected": 95,
+      "passed": 95,
+      "eligible": 97,
+      "explicit_restart_omissions": 2
+    },
+    "API35": {
+      "selected": 104,
+      "passed": 104,
+      "eligible": 104
+    }
+  },
+  "source_digests": {
+    "app": "d2154e5cf450eb211df695931c3fb1e5cca0e293e940b7e9679cb952d231967c",
+    "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+  },
+  "native_vertical_pngs_actually_viewed": 192,
+  "arabic_pngs_actually_viewed": 4,
+  "expiry_safe_replay_exit": 0,
+  "receipts": [
+    {
+      "path": "reproduced/result.json",
+      "sha256": "831072127e1605f39f9c986e50958aee79fdb051616e69ac6a83200d6c536186"
+    },
+    {
+      "path": "reproduced/installed-matrix-result.json",
+      "sha256": "8dc4277160aa505c949a481039834acf8512d2d1f20cb892e078d27e895514c8"
+    },
+    {
+      "path": "reproduced/prebuilt-provenance-result.json",
+      "sha256": "e8b5220616738606e436dfd1c9107e2012d0d483e19ed342ed785197cb6b19c6"
+    },
+    {
+      "path": "reproduced/installed-pixel-result.json",
+      "sha256": "271550b048e8fe74b91e3f237828ef9fe6d2639f223c36806e9f1188b4214e45"
+    },
+    {
+      "path": "reproduced/natural-update-result.json",
+      "sha256": "e1ac31275c769a642032263a1d6bd35e61a99eada68bd5089be38e33a372a2c2"
+    },
+    {
+      "path": "reproduced/restart-boundary-result.json",
+      "sha256": "5a7d78960388381bee970bab411fd5e548e7e202e22b5b110bb0530faa1229b3"
+    },
+    {
+      "path": "visual-inspection.json",
+      "sha256": "ae339b2bae826708b2b710fbe6c392dc88ded967bedd29b7ee1a29c8fea3cbf0"
+    },
+    {
+      "path": "replayed-verified/results/result.json",
+      "sha256": "845cee0935dce1cea105d3ef0b2bf9e1c29beab6a3c0575980c5029cae3a0f4d"
+    },
+    {
+      "path": "payload-digest-result.json",
+      "sha256": "ca2339ccd469e6e4921ce3be62129a4faa5e92cddf1148179aec627a61363f49"
+    },
+    {
+      "path": "delivery-compiled-arabic-input.json",
+      "sha256": "f1c442deb90494eb2e2b89d0fe433ac24490e2f5c478583dcae407e16d2ace83"
+    }
+  ],
+  "limits": "Installed scope only; independent checks of separate JVM/host/lint/release gates are required. No fluent-language, hardware, real network/provider or unlogged callback/mounted-resource-locale inference."
+}
