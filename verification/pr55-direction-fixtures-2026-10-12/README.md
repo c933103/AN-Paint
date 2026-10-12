@@ -1,0 +1,9 @@
+# Narrow direction-fixture correction: authoring checkpoint
+
+Source [6d603af92ee26d852af62cd1006468ef8472bfcf](https://github.com/c933103/AN-Paint/commit/6d603af92ee26d852af62cd1006468ef8472bfcf), tree `d2379b932cc976bb5347515887ecdfc4729ee70d`, is an ordinary successor of da4. Only two JVM test files changed. Production/resources/fonts/installed tests, all12 native direction cases, rendering diagnostics and thresholds remain unchanged.
+
+The retained-dialog fixture now preserves selected resource locales before callbacks, with exact0/47 reader-offset assertions retained. API21/24 exercise supported direction/text/layout-scheduling behavior; real glyph geometry remains tested on API30/35 native graphics. Primary-source justification and the exact two-file diff are adjacent. The four historical failures remain at [8253567f](https://github.com/c933103/AN-Paint/tree/8253567f068e36c699ae3ab8bd51a4adc78f2dc8/verification/pr55-resource-direction-ci-2026-10-12).
+
+Both frozen host runs pass643/643 with zero skips/failures: ordinary144.120s, optimized155.518s, exit0 under the unchanged240s cap. Independent58-method checks pass both modes; its full-log auditor reconciles all current identities. The frozen independent11-file manifest is preserved, with its separately required four writer inputs beside this README. These are one-time authoring receipts, not application CI snapshot gates.
+
+Fresh Android run [38290638790](https://github.com/c933103/AN-Paint/actions/runs/38290638790) tests the verified same-tree merge `30abe4aa8d6089b11949635dc2d81f7a4b692073`. The fresh exact-head review request is linked in source-publication.json. This checkpoint claims no new runtime acceptance; all906 JVM executions, installed95/104 schedules, corresponding-source binding and complete current raster/control review remain fresh-run gates.

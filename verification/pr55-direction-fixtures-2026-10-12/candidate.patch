@@ -1,0 +1,140 @@
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt
+index 944f2dd..39d20c4 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt
+@@ -7,6 +7,7 @@ import android.app.Dialog
+ import android.content.ClipboardManager
+ import android.content.ClipData
+ import android.content.Context
++import android.content.res.Configuration
+ import android.content.res.Resources
+ import android.graphics.Bitmap
+ import android.graphics.Canvas
+@@ -304,7 +305,18 @@ class LocalizedDialogLayoutTest {
+             dialog.show();idle()
+             val root=dialog.window!!.decorView
+             val rails=listOf("terms_title_scroll","terms_actions_scroll").map {root.findViewWithTag<ScrollView>(it).getChildAt(0) as ResponsiveDialogColumns}
+-            val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
++            val selectedLocales=activity.resources.configuration.locales
++            val expectedDirection=if(tag=="lzh-Hant") TextDirection.VERTICAL_RL else TextDirection.VERTICAL_LR
++            val rightToLeft=tag=="lzh-Hant"
++            fun assertSelectedResources() {
++                assertEquals(tag,AppLanguage.selectedTag(activity))
++                assertEquals(tag,selectedLocales[0].toLanguageTag())
++                for(context in listOf(activity,dialog.context,root.context)+rails.map {it.context}) {
++                    assertEquals("Retained notice keeps the selected resource locales",selectedLocales,context.resources.configuration.locales)
++                    assertEquals("Retained notice keeps its reading direction",expectedDirection,VerticalText.uiDirection(context))
++                }
++            }
++            assertSelectedResources()
+             fun range(rail: ResponsiveDialogColumns)=(rail.getChildAt(0).width-rail.width+rail.paddingLeft+rail.paddingRight).coerceAtLeast(0)
+             fun offset(rail: ResponsiveDialogColumns)=if(rightToLeft) range(rail)-rail.scrollX else rail.scrollX
+             try {
+@@ -312,9 +324,11 @@ class LocalizedDialogLayoutTest {
+                     rails.forEach {assertTrue(range(it)>47);it.scrollTo(if(rightToLeft) range(it)-readerOffset else readerOffset,0)}
+                     for((index,qualifiers) in listOf("w320dp-h640dp-port-xhdpi","w640dp-h320dp-land-xhdpi").withIndex()) {
+                         resizeDisplay(activity,root,qualifiers)
++                        assertSelectedResources()
+                         // API35 can scope callbacks to the Activity; older APIs delegate to Application.
+                         activity.onConfigurationChanged(activity.resources.configuration)
+                         activity.application.onConfigurationChanged(activity.resources.configuration);idle()
++                        assertSelectedResources()
+                         assertTrue(dialog.isShowing)
+                         assertEquals((activity.resources.displayMetrics.widthPixels*.94f).toInt(),dialog.window!!.attributes.width)
+                         val rows=JSONArray()
+@@ -406,14 +420,27 @@ class LocalizedDialogLayoutTest {
+     }
+ 
+     private fun resizeDisplay(activity: Activity,root: View,qualifiers: String) {
++        val selectedLocales=activity.resources.configuration.locales
+         RuntimeEnvironment.setQualifiers(qualifiers)
++        // This plain Activity has no app-locale callback. setQualifiers replaces
++        // resources after its first display notification; restore the selected
++        // locale before changeDisplay drains the next resize-triggered traversal.
++        @Suppress("DEPRECATION")
++        activity.resources.updateConfiguration(Configuration(Resources.getSystem().configuration).apply {
++            setLocales(selectedLocales)
++        },Resources.getSystem().displayMetrics)
++        fun assertSelectedResources() {
++            assertEquals(selectedLocales,activity.resources.configuration.locales)
++            assertEquals(selectedLocales,root.context.resources.configuration.locales)
++        }
++        assertSelectedResources()
+         ShadowDisplayManager.changeDisplay(root.display.displayId,qualifiers)
+         // Resources-only changes leave Robolectric 4.14's ViewRoot frame stale.
+         // Deliver its supported resize callback; never directly measure a child.
+         Shadow.extract<ShadowViewRootImpl>(root.parent).callDispatchResized();idle()
+-        @Suppress("DEPRECATION")
+-        activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
++        assertSelectedResources()
+         root.dispatchConfigurationChanged(activity.resources.configuration);idle()
++        assertSelectedResources()
+     }
+ 
+     @Test @Config(fontScale=2f)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
+index 32e098a..66114ad 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/UiDirectionContextTest.kt
+@@ -7,6 +7,7 @@ import android.content.res.Configuration
+ import android.graphics.Bitmap
+ import android.graphics.Canvas
+ import android.graphics.Color
++import android.os.Build
+ import android.os.Looper
+ import android.util.DisplayMetrics
+ import android.graphics.Rect
+@@ -200,14 +201,45 @@ class UiDirectionContextTest {
+         val before=Locale.getDefault()
+         val base=RuntimeEnvironment.getApplication() as Context
+         try {
+-            val localized=base.createConfigurationContext(Configuration().apply {setLocale(Locale.forLanguageTag("lzh-Hant"))})
+-            val context=ContextThemeWrapper(localized,R.style.ClassicPaintTheme)
+-            Locale.setDefault(Locale.US)
+-            for(view in widgets(context)) {
+-                val spec=View.MeasureSpec.makeMeasureSpec(512,View.MeasureSpec.AT_MOST)
+-                view.measure(spec,spec);view.layout(0,0,view.measuredWidth,view.measuredHeight)
+-                assertTrue(view.width>0 && view.height>0)
+-                assertNull("Selected vertical context on legacy Android",view.layout)
++            // Robolectric 4.14.1 has no native graphics below API26. Its LEGACY
++            // Paint lacks real float font metrics, so this covers locale APIs,
++            // full text and redraw scheduling; native geometry stays above.
++            for((tag,expected) in listOf(
++                "lzh-Hant" to TextDirection.VERTICAL_RL,
++                "mnc-Mong" to TextDirection.VERTICAL_LR,
++                "en-XV" to TextDirection.VERTICAL_LR,
++                "qaa-Zsye-XV" to TextDirection.VERTICAL_RL,
++                "en-US" to TextDirection.HORIZONTAL
++            )) {
++                val localized=base.createConfigurationContext(Configuration().apply {setLocale(Locale.forLanguageTag(tag))})
++                val context=ContextThemeWrapper(localized,R.style.ClassicPaintTheme)
++                val vertical=expected!=TextDirection.HORIZONTAL
++                Locale.setDefault(opposite(vertical))
++                @Suppress("DEPRECATION")
++                val resourceLocale=if(Build.VERSION.SDK_INT>=24) context.resources.configuration.locales[0] else context.resources.configuration.locale
++                assertEquals(tag,resourceLocale.toLanguageTag())
++                assertNotEquals(Locale.getDefault(),resourceLocale)
++                assertEquals(expected,VerticalText.uiDirection(context))
++                assertEquals(vertical,VerticalText.uiVertical(context))
++                for(view in widgets(context)) {
++                    assertEquals("Sample 95\nNative text",view.text.toString())
++                    assertEquals(view.text.toString(),view.contentDescription.toString())
++                    if(vertical) {
++                        val spec=View.MeasureSpec.makeMeasureSpec(512,View.MeasureSpec.AT_MOST)
++                        view.measure(spec,spec);view.layout(0,0,view.measuredWidth,view.measuredHeight)
++                        assertNull("Selected vertical context on legacy Android",view.layout)
++                        assertFalse("Previous layout completed",view.isLayoutRequested)
++                        shadowOf(view).clearWasInvalidated()
++                        shadowOf(view).setDidRequestLayout(false)
++                        assertFalse(shadowOf(view).wasInvalidated())
++                        assertFalse(shadowOf(view).didRequestLayout())
++                        view.text="Sample 76\nNative text"
++                        assertEquals("Sample 76\nNative text",view.text.toString())
++                        assertTrue("Resource-bound vertical text requests layout",view.isLayoutRequested)
++                        assertTrue(shadowOf(view).didRequestLayout())
++                        assertTrue("Resource-bound vertical text invalidates ink",shadowOf(view).wasInvalidated())
++                    }
++                }
+             }
+         } finally {Locale.setDefault(before)}
+     }

@@ -1,0 +1,35 @@
+{
+  "source_tree_before": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+  "source_tree_after": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+  "mode": "ordinary",
+  "command": [
+    "timeout",
+    "--kill-after=5s",
+    "240s",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "timeout_seconds": 240,
+  "exit_code": 0,
+  "elapsed_seconds": 144.677,
+  "unittest_summaries": [
+    {
+      "tests": 643,
+      "seconds": 144.12
+    }
+  ],
+  "unittest_terminal_lines": [
+    "OK"
+  ],
+  "failure_status_lines": [],
+  "log_sha256": "c275e01ca5c5a731d01a5502022e791aef2bd06dfaed9d376ae51e4636aa96c2",
+  "log_bytes": 114218,
+  "android_local": "UNRUN: Android SDK unavailable"
+}
