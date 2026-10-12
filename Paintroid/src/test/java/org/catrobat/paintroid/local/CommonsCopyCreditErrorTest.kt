@@ -156,8 +156,8 @@ class CommonsCopyCreditErrorTest {
         )
         for((body,reason) in cases) checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,reason)}) {response(it,body)}
     }
-    @Test fun oversizedMetadataResponseAndAttributionFieldKeepTheirExistingReasons() {
-        checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,"Commons metadata exceeds the response limit")}) {
+    @Test fun oversizedMetadataResponseKeepsEnglishDefaultAndFieldLimitStaysSeparate() {
+        checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,it.getString(R.string.commons_metadata_response_too_large))}) {
             response(it," ".repeat(2*1024*1024+1))
         }
         checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,"Commons attribution field exceeds the text limit")}) {
