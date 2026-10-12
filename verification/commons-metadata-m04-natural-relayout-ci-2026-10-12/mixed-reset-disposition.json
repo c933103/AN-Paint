@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "run_id": 38269993000,
+  "head": "04b128889a4ff9159f199d1737bd07d41e22162d",
+  "tree": "3dcc1a82f878ad7e0e708cff25ec8d493b88bbc6",
+  "existing_gate": "FAIL; unchanged original assertion and actual JUnit preserved",
+  "review_disposition": "Low-severity antialias fringe loss in synthetic mixed-paragraph reset; no demonstrated material missing glyph, mark or line",
+  "scope": "Only the independently measured two samples in this exact observed frame. No universal numerical tolerance or acceptance for unexplained differences.",
+  "support": {
+    "lost_pixels": [
+      {
+        "layout_xy": [
+          1232,
+          29
+        ],
+        "reference_xy": [
+          2419,
+          31
+        ],
+        "actual_xy": [
+          1256,
+          29
+        ],
+        "reference_rgba": [
+          0,
+          0,
+          36,
+          7
+        ],
+        "actual_rgba": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "layout_xy": [
+          1232,
+          30
+        ],
+        "reference_xy": [
+          2419,
+          32
+        ],
+        "actual_xy": [
+          1256,
+          30
+        ],
+        "reference_rgba": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "actual_rgba": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "affected_components": [
+      {
+        "reference_samples": 78,
+        "missing_samples": 2,
+        "reference_alpha_sum": 10633,
+        "missing_alpha_sum": 8,
+        "max_reference_alpha": 255,
+        "max_missing_alpha": 7,
+        "component_entirely_missing": false
+      }
+    ],
+    "missing_opaque_equivalent_pixels": 0.03137254901960784,
+    "reference_allocation_edge_contact": 0,
+    "all_other_actual_reference_argb_samples_match": true
+  },
+  "coverage_limits": {
+    "observed_mutants": 60,
+    "absent_mutants": 12,
+    "absent_positive_frames": 14,
+    "missing_font2_summaries": 2
+  },
+  "source_changes": false,
+  "root_policy": "Root approved requirement-based acceptance with complete raster diagnostics and explicit reviewed dispositions; no new universal tolerance."
+}

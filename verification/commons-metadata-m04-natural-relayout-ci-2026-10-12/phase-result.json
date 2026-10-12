@@ -1,0 +1,123 @@
+{
+  "status": "RECEIPTS_CONSISTENT_JVM_FAILS",
+  "rows": [
+    {
+      "phase": "python",
+      "exit_status": 0,
+      "timing": {
+        "real_seconds": "165.927",
+        "user_seconds": "116.609",
+        "sys_seconds": "19.647",
+        "exit_status": "0"
+      },
+      "files": {
+        "python.log": {
+          "sha256": "c5dfc9e7755e19e2c2c9959788b9c059cdb6cf9a79705ab3db2d2c823d4f321c",
+          "bytes": 4142
+        },
+        "python.time": {
+          "sha256": "32c7fde86260b98241b2ebbcf541267260cf7ed2b250573f29ee43e5a7cf9954",
+          "bytes": 75
+        },
+        "python.started-at": {
+          "sha256": "79eb342d8951ca1637b4e00737f6b61c03e5e0d8468039f345fdf9ff80c9b841",
+          "bytes": 21
+        },
+        "python.ended-at": {
+          "sha256": "4747b804c60f4718e75bac5dfd88a79435424bdb5ce9d8e0dd5fc1c2d6f151bd",
+          "bytes": 21
+        }
+      },
+      "tests_discovered": 719,
+      "passed": 717,
+      "skipped": 2,
+      "elapsed_seconds": 165.575,
+      "skip_identity_limit": "Compact unittest output does not identify the two skips. They are not counted as executed passes."
+    },
+    {
+      "phase": "jvm",
+      "exit_status": 1,
+      "timing": {
+        "real_seconds": "493.823",
+        "user_seconds": "2.247",
+        "sys_seconds": "0.327",
+        "exit_status": "1"
+      },
+      "files": {
+        "jvm.log": {
+          "sha256": "455be821af3cf9409f7ff2c3db278eef5b1a9763397411b4eb5393d2b9035836",
+          "bytes": 23018
+        },
+        "jvm.time": {
+          "sha256": "f45aa29782d94660e229c31aef0053b81673c1c47e4a8bca32477624a307bb5f",
+          "bytes": 72
+        },
+        "jvm.started-at": {
+          "sha256": "4747b804c60f4718e75bac5dfd88a79435424bdb5ce9d8e0dd5fc1c2d6f151bd",
+          "bytes": 21
+        },
+        "jvm.ended-at": {
+          "sha256": "d930353c039e9ab9da3c6e54275f446fecc39613f118cab85202ed65e2c89efd",
+          "bytes": 21
+        }
+      }
+    },
+    {
+      "phase": "native",
+      "exit_status": 0,
+      "timing": {
+        "real_seconds": "65.973",
+        "user_seconds": "121.490",
+        "sys_seconds": "42.934",
+        "exit_status": "0"
+      },
+      "files": {
+        "native.log": {
+          "sha256": "acf05d9139becd7e379883c7d03b2d2be7c0b97c06e953fb3981dcdf654b3c67",
+          "bytes": 46882
+        },
+        "native.time": {
+          "sha256": "87ce76e61623f7960b0784bab6e27eaeaeccadd6268937668303dba68d917a11",
+          "bytes": 74
+        },
+        "native.started-at": {
+          "sha256": "d930353c039e9ab9da3c6e54275f446fecc39613f118cab85202ed65e2c89efd",
+          "bytes": 21
+        },
+        "native.ended-at": {
+          "sha256": "33b33884d0a89a0ee95c112e789f245df1b2dd6cb0ecf2705997a0bf4bcb5e19",
+          "bytes": 21
+        }
+      }
+    },
+    {
+      "phase": "lint",
+      "exit_status": 0,
+      "timing": {
+        "real_seconds": "90.791",
+        "user_seconds": "311.634",
+        "sys_seconds": "7.048",
+        "exit_status": "0"
+      },
+      "files": {
+        "lint.log": {
+          "sha256": "1d0cd9351a0b85f79b91f007458a909796dfda7360a5adc5e57baa4e253b86a2",
+          "bytes": 6059
+        },
+        "lint.time": {
+          "sha256": "56f933a983389b3f450cb8e1df6835e0bacbf66f5b4726ae903bd5a977d7b0dd",
+          "bytes": 73
+        },
+        "lint.started-at": {
+          "sha256": "33b33884d0a89a0ee95c112e789f245df1b2dd6cb0ecf2705997a0bf4bcb5e19",
+          "bytes": 21
+        },
+        "lint.ended-at": {
+          "sha256": "3bb979980c6bac78f3ed05c22cb6d1a714517e1d9de7ffded9c3d926c05d21aa",
+          "bytes": 21
+        }
+      }
+    }
+  ],
+  "limits": "Source/run/ZIP provenance is supplied by the separate archive audit; no local Android execution."
+}

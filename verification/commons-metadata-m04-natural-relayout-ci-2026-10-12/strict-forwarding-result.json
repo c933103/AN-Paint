@@ -1,0 +1,26 @@
+{
+  "status": "REPRODUCED_SCOPE_CONTRACT_GAP",
+  "head": "04b128889a4ff9159f199d1737bd07d41e22162d",
+  "tree": "3dcc1a82f878ad7e0e708cff25ec8d493b88bbc6",
+  "review_comment": "https://github.com/c933103/AN-Paint/pull/55#discussion_r4249731672",
+  "paths": [
+    {
+      "path": "tools/commons_metadata_m04_glyph_bounds_scope.py",
+      "before_sha256": "b149f7c0a9469c2dfe257afb3d2db4f2c2b22bd431cdf708dbadecc501033fff",
+      "current_sha256": "5b5e8701df574ed856797703ade1b0557659f17b3d94388b024fbd8409b03c49",
+      "direct_new_scope_rejects_reverted_bytes": true,
+      "delegating_old_scope_accepts_reverted_bytes_despite_allow_original_false": true,
+      "unrelated_mutation_rejected": true
+    },
+    {
+      "path": "tools/test_commons_metadata_m04_glyph_bounds.py",
+      "before_sha256": "35ebf22075fd5248dad9c6cb56a91552f074df6bfd4955b0316982c5d23d4528",
+      "current_sha256": "c934a224d0cdfa5f280964e08890235e808e79e5ec65b1689416c431e0c86c81",
+      "direct_new_scope_rejects_reverted_bytes": true,
+      "delegating_old_scope_accepts_reverted_bytes_despite_allow_original_false": true,
+      "unrelated_mutation_rejected": true
+    }
+  ],
+  "bounded_impact": "Only the newly delegated paths lose the explicit strict flag at this wrapper. Direct receiver-scope strict checks and current whole-file endpoint-hash tests still reject exact reverts; this is not proof of a bypass of the entire current host suite or an app rendering defect.",
+  "candidate": "Forward allow_original=allow_original in the early path-not-in-PATHS delegation, retain historical in-scope projection behavior, and add wrapper-entry strict revert tests."
+}
