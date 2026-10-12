@@ -130,7 +130,7 @@ class LocaleNumberInputTest {
         val old=Locale.getDefault()
         try {
             val tags=AppLanguage.tags(context)
-            assertEquals(140,tags.size)
+            assertEquals(146,tags.size)
             for(tag in tags) {
                 val locale=Locale.forLanguageTag(tag)
                 val localized=context.createConfigurationContext(Configuration(context.resources.configuration).apply {setLocale(locale);setLayoutDirection(locale)})

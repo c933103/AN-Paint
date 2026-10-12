@@ -10,6 +10,7 @@ import translation_catalogues as catalogues
 from commons_metadata_m03_scope import (catalogue_fixture, production_fixture,
     before_m03_catalogue, before_m03_production)
 from test_translations import SCOPED_TAGS
+from language_option_additions import ADDED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -59,12 +60,12 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
             if row['tag'] != 'default' and not row['tag'].startswith('en-'):
                 self.assertNotEqual(DEFAULT, actual)
 
-    def test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks(self):
+    def test_historical_140_dispositions_and_six_new_fallbacks_cover_current_options(self):
         data = json.loads((EVIDENCE / 'all-language-dispositions.json').read_text())
         rows = data['dispositions']
-        self.assertEqual(140, len(rows)); self.assertEqual(set(catalogues.offered_tags()), {r['tag'] for r in rows})
+        self.assertEqual(140, len(rows)); self.assertEqual(set(catalogues.offered_tags()), {r['tag'] for r in rows} | ADDED_TAGS)
         self.assertEqual(59, sum(r['value'] is not None for r in rows))
-        self.assertEqual(set(catalogues.offered_tags()) - SCOPED_TAGS, set(data['fallback_tags']))
+        self.assertEqual(set(catalogues.offered_tags()) - SCOPED_TAGS, set(data['fallback_tags']) | ADDED_TAGS)
         self.assertEqual(81, len(data['fallback_tags']))
         paths = catalogues.catalogue_paths()
         for row in rows:
@@ -80,10 +81,10 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
     def test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails(self):
         data = json.loads((EVIDENCE / 'all-language-dispositions.json').read_text())
         rows = data['dispositions']; paths = catalogues.catalogue_paths()
-        self.assertEqual(140, len(rows)); self.assertEqual(set(catalogues.offered_tags()), {r['tag'] for r in rows})
+        self.assertEqual(140, len(rows)); self.assertEqual(set(catalogues.offered_tags()), {r['tag'] for r in rows} | ADDED_TAGS)
         unresolved = {r['tag'] for r in rows if r['tag'] in SCOPED_TAGS and r['value'] is None}
         self.assertEqual(unresolved, set(data['unresolved_scoped_tags']))
-        self.assertEqual(set(catalogues.offered_tags()) - SCOPED_TAGS, set(data['fallback_tags']))
+        self.assertEqual(set(catalogues.offered_tags()) - SCOPED_TAGS, set(data['fallback_tags']) | ADDED_TAGS)
         self.assertEqual(81, len(data['fallback_tags']))
         for row in rows:
             self.assertEqual('not-established', row['linguistic_acceptance'])
@@ -186,7 +187,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertIn('@Config(sdk=[30,35])', resolved)
         self.assertIn('AppLanguage.select(context,tag)', resolved)
         self.assertIn('"ko-Kore-KR-anpaint"', resolved)
-        self.assertIn('assertEquals(81,fallbacks)', resolved)
+        self.assertIn('assertEquals(87,fallbacks)', resolved)
         for row in catalogue_fixture()['entries'][1:]:
             value = catalogues.read_strings(ROOT/row['path'])[KEY]
             expected = json.dumps(row['tag'])+' to '+json.dumps(value,ensure_ascii=False).replace('$','\\$')

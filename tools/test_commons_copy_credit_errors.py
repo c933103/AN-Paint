@@ -8,6 +8,7 @@ import unittest
 import translation_catalogues as catalogues
 from commons_metadata_m03_scope import before_m03_catalogue, before_m03_production
 from test_translations import SCOPED_TAGS
+from language_option_additions import ADDED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -70,11 +71,11 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
                     if not tag.startswith('en-') and tag != 'qaa-Zsye-XV':
                         self.assertNotEqual(KEYS[key], value)
 
-    def test_other_81_tags_have_explicit_unmodified_fallback_disposition(self):
+    def test_current_other_tags_have_explicit_unmodified_fallback_disposition(self):
         data = json.loads((EVIDENCE / 'translations.json').read_text())
         remaining = set(catalogues.offered_tags()) - SCOPED_TAGS
-        self.assertEqual(81, len(remaining))
-        self.assertEqual(remaining, set(data['remaining_other_offered_locales']))
+        self.assertEqual(87, len(remaining))
+        self.assertEqual(remaining, set(data['remaining_other_offered_locales']) | ADDED_TAGS)
         for tag, path in catalogues.catalogue_paths().items():
             if tag not in SCOPED_TAGS:
                 self.assertFalse(set(KEYS) & set(catalogues.read_strings(path)), tag)
@@ -107,7 +108,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
         for row in scope['unchanged_semantics_files']:
             self.assertEqual(row['sha256'], hashlib.sha256(before_m03_production(row['path'], (ROOT / row['path']).read_text()).encode()).hexdigest())
 
-    def test_android_tests_use_all_140_tags_and_actual_webview_route(self):
+    def test_android_tests_use_all_offered_tags_and_actual_webview_route(self):
         tests = ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local'
         resource = (tests / 'CommonsCopyCreditTranslationTest.kt').read_text()
         tags = re.search(r'private val scopedTags=setOf\((.*?)\n    \)', resource, re.S).group(1)
@@ -119,7 +120,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             expected = (kotlin(tag) + ' to listOf(' + ', '.join(kotlin(values[key]) for key in KEYS) + ')')
             self.assertIn(expected, resource, tag)
         fallback = re.search(r'private val fallbackTags=setOf\((.*?)\n    \)', resource, re.S).group(1)
-        self.assertEqual(set(data['remaining_other_offered_locales']), set(re.findall(r'"([\w-]+)"', fallback)))
+        self.assertEqual(set(data['remaining_other_offered_locales']) | ADDED_TAGS, set(re.findall(r'"([\w-]+)"', fallback)))
         self.assertIn('if(expectedMessages.getValue(tag)!=actual)', resource)
         self.assertIn('AppLanguage.select(context,tag)', resource)
         self.assertIn('val wrapped=AppLanguage.wrap(context)', resource)
