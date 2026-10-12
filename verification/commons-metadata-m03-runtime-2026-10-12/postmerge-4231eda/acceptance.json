@@ -1,0 +1,131 @@
+{
+  "merge_sha": "4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+  "reviewed_head": "d4ee9762580bbaf983fc58edb84755840c31626c",
+  "tree": "c1d65b3f0f89a8af12a9dbe69eb1824ef19e28c1",
+  "parents": [
+    "79b1f990a98eaf44c28351cd02c20157c70d8dff",
+    "d4ee9762580bbaf983fc58edb84755840c31626c"
+  ],
+  "code_review_completed_at": "2026-10-12T03:08:54.475773Z",
+  "security_review_completed_at": "2026-10-12T03:09:45.486751Z",
+  "review_bot_clean_reaction_at": "2026-10-12T03:09:48Z",
+  "findings": [],
+  "postmerge_run": 38198762160,
+  "postmerge_status": "success",
+  "postmerge_attempt": 1,
+  "all_four_jobs_success": true,
+  "jobs": [
+    {
+      "id": 114647221120,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 114647221276,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 114647221301,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 114648797747,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11725025998,
+      "name": "emulator-api-35-4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+      "size_in_bytes": 8071760,
+      "digest": "sha256:3396a8ea0eb9f2a76144d457ae5dbaf3c1786bd3f9ac6410030deda5d7f06049",
+      "expires_at": "2026-10-26T03:28:34Z"
+    },
+    {
+      "id": 11724678228,
+      "name": "instrumentation-apks-4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+      "size_in_bytes": 101881150,
+      "digest": "sha256:e3c22ff39667caee51ef68167e61a61141cea0f68f4ee496e78aebb343a331b3",
+      "expires_at": "2026-10-26T03:18:51Z"
+    },
+    {
+      "id": 11724489318,
+      "name": "regression-and-lint-4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+      "size_in_bytes": 39087871,
+      "digest": "sha256:1aab362296de885f80f75f5528c44d726cc52840c633dd8ba6cf2827a26cb16d",
+      "expires_at": "2026-10-26T03:24:13Z"
+    },
+    {
+      "id": 11724183212,
+      "name": "build-diagnostics-4231edaac45d89c52f51e2b77d0f94a1176ad88c-1",
+      "size_in_bytes": 24127,
+      "digest": "sha256:6de6ee7f6f4abf4eaa6508967fd86a89638da7c8fd7d9fc2e48327fa112db3a4",
+      "expires_at": "2026-10-26T03:17:21Z"
+    },
+    {
+      "id": 11723893888,
+      "name": "apk-and-source-4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+      "size_in_bytes": 154173018,
+      "digest": "sha256:cbdae3799e03490647ab96ec13d5db87d080b49c1191dd2a0ed55ccaa34781b2",
+      "expires_at": "2026-10-26T03:17:23Z"
+    },
+    {
+      "id": 11723873729,
+      "name": "exact-script-generation-4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+      "size_in_bytes": 6175,
+      "digest": "sha256:d9de6aebfdb7a0112d2c58cef9d145eec6e9062b5747730d48db012e379b59c2",
+      "expires_at": "2026-10-26T03:13:57Z"
+    }
+  ],
+  "hosted_python": {
+    "methods": 568,
+    "passed": 566,
+    "skipped": 2,
+    "elapsed_seconds": 148.125,
+    "skipped_tests": [
+      {
+        "zero_based_index": 247,
+        "test": "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder"
+      },
+      {
+        "zero_based_index": 250,
+        "test": "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+      }
+    ],
+    "skip_reason": "Both methods catch ImportError importing PIL.Image and explicitly skip their optional independent decoder checks. The other skip site (Node availability) is at a different index and passed.",
+    "local_supplement": "Local author aggregate passed all 568 methods without skips; the two named methods were independently rerun locally with Pillow 12.3.0 and passed."
+  },
+  "premerge_hosted_python_correction": {
+    "methods": 568,
+    "passed": 566,
+    "skipped": 2,
+    "elapsed_seconds": 147.091,
+    "prior_summaries": "Earlier shorthand claiming 568 hosted passes was inaccurate; both hosted logs explicitly report OK (skipped=2). Local author aggregate remains 568 passes."
+  },
+  "jvm": {
+    "passed": 820,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "installed": {
+    "native": 74,
+    "app": 25
+  },
+  "status_capture_pngs_identical_to_reviewed_premerge": 48,
+  "remaining_M03_defects_or_failed_gates": [],
+  "limits": [
+    "Source-assisted language review has moderate confidence, not native-speaker certification.",
+    "M03 status captures are Robolectric native graphics. Installed API35 validates fonts and broader app flows; exact M03 installed-device screenshots are not claimed.",
+    "Manchu double-scale captures show trailing scroll columns; offscreen columns are not visually certified.",
+    "24px source/subset pixel equivalence is not claimed; exact glyph outline/metrics and all existing glyphs are preserved.",
+    "Debug build and source identity do not constitute release or upgrade-signing verification."
+  ]
+}

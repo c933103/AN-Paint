@@ -1,5 +1,7 @@
 # M03 exact-head hosted runtime evidence
 
+Current result: PR54 is merged, with exact-tree postmerge CI successful. [Final postmerge acceptance and corrected hosted Python counts](postmerge-4231eda/README.md). Earlier dated failures and checkpoints below are retained.
+
 This evidence branch records validation of PR #54 code head
 `d4ee9762580bbaf983fc58edb84755840c31626c`; it does not change that reviewed source.
 GitHub's pull-request test merge `d43c6b33fdb79b93d1be137d8f332f9be579ca91` has the
@@ -42,11 +44,11 @@ source/subset pixel difference. No broad font replacement is proposed.
 The independent three-language recommendations remain moderate-confidence,
 source-assisted contextual paraphrases. This report does not claim native
 certification, every dialect's preferred wording, or universal device behavior.
-Readiness and merge are separate owner decisions.
+PR54 is now merged as `4231eda`; see the [postmerge receipt](postmerge-4231eda/README.md). Release/signing remain separate.
 
 ## Verified hosted result and collection failure
 
-Hosted Python: **568 pass**. Hosted JVM: **820 pass**, no failures/errors/skips,
+Hosted Python: **568 methods: 566 passed, 2 skipped** (two optional Pillow decoder checks; [exact correction and local coverage](postmerge-4231eda/README.md#python-count-correction)). Hosted JVM: **820 pass**, no failures/errors/skips,
 including all 12 M03 flow cases and four API 30/35 resource-routing/completeness
 cases. Lint, APK/source build and exact-script resource generation passed.
 `runtime-summary.json` binds the reports and all 48 screenshot hashes.

@@ -1,0 +1,17 @@
+{
+  "methods": 568,
+  "progress": ".......................................................................................................................................................................................................................................................s..s.............................................................................................................................................................................................................................................................................................................................",
+  "skips": [
+    {
+      "zero_based_index": 247,
+      "test": "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder"
+    },
+    {
+      "zero_based_index": 250,
+      "test": "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    }
+  ],
+  "mapping_basis": "Both GitHub jobs emitted the same 568-character sequential unittest progress string. Standard sorted discovery of the exact merged source maps zero-based indices 247 and 250 to these tests.",
+  "cause": "Both methods catch ImportError importing PIL.Image and explicitly skip their optional independent decoder checks. The other skip site (Node availability) is at a different index and passed.",
+  "coverage": "Local author aggregate passed all 568 methods without skips; the two named methods were independently rerun locally with Pillow 12.3.0 and passed."
+}
