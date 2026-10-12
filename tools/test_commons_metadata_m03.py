@@ -60,7 +60,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
             if row['tag'] != 'default' and not row['tag'].startswith('en-'):
                 self.assertNotEqual(DEFAULT, actual)
 
-    def test_historical_140_dispositions_and_six_new_fallbacks_cover_current_options(self):
+    def test_historical_140_dispositions_and_extensions_cover_current_options(self):
         data = json.loads((EVIDENCE / 'all-language-dispositions.json').read_text())
         rows = data['dispositions']
         self.assertEqual(140, len(rows)); self.assertEqual(set(catalogues.offered_tags()), {r['tag'] for r in rows} | ADDED_TAGS)
@@ -187,7 +187,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertIn('@Config(sdk=[30,35])', resolved)
         self.assertIn('AppLanguage.select(context,tag)', resolved)
         self.assertIn('"ko-Kore-KR-anpaint"', resolved)
-        self.assertIn('assertEquals(87,fallbacks)', resolved)
+        self.assertIn('assertEquals(108,fallbacks)', resolved)
         for row in catalogue_fixture()['entries'][1:]:
             value = catalogues.read_strings(ROOT/row['path'])[KEY]
             expected = json.dumps(row['tag'])+' to '+json.dumps(value,ensure_ascii=False).replace('$','\\$')

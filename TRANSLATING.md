@@ -24,7 +24,7 @@ temporary migration condition until the applicable catalogue work has been indep
 
 ## Six language options added on 12 October 2026
 
-The current inventory has 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
+The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
 Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
 Android App languages. Their exact canonical XML catalogues intentionally contain
 no translated entries yet: all 695 translatable source strings and the one plural
@@ -37,6 +37,37 @@ records the outstanding catalogue and review work. The addition fixture at
 `tools/fixtures/language_option_additions_20261012.json` records the six identities
 and status. Historical 140-choice/81-fallback evidence is preserved unchanged;
 current regression checks compose it with these six explicit additions.
+
+## Further options and principal varieties requested on 12 October 2026
+
+The successor inventory has **167 choices**, adding **21 options** to the merged
+146-choice baseline. Fourteen requested languages retain their individual option:
+Nigerian Pidgin (`pcm`), Somali (`so`), Assamese (`as`), Wolof (`wo`), Haitian Creole
+(`ht`), Tok Pisin (`tpi`), Navajo (`nv`), Cherokee (`chr`), Yucatec Maya (`yua`),
+Chamorro (`ch`), Samoan (`sm`), Māori (`mi`), Sanskrit (`sa`) and Tajik (`tg`).
+The current IANA registry marks Sanskrit as a macrolanguage; no narrower Sanskrit
+variety was requested.
+
+Following the clarification to use the main varieties, the broad `nah` and `qu`
+placeholders are replaced by seven concrete individual-language options:
+
+- Nahuatl: Central Huasteca (`nch`), Eastern Huasteca (`nhe`), Western Huasteca (`nhw`).
+- Quechua: Cusco (`quz`), Ayacucho / Chanka (`quy`), South Bolivian (`quh`),
+  Chimborazo Highland Quichua (`qug`).
+
+This is a practical principal-variety set, not an exhaustive catalogue. In
+particular, `quz` is not all Southern Quechua and `qug` is not all Ecuadorian Kichwa.
+Native-name bases are source-backed; regional qualifiers are explicit editorial
+disambiguators. No automatic fallback between these individual tags is implied.
+The source and selection limits are recorded with the addition fixture.
+
+Each new catalogue has **0/695 translatable strings and 0/1 plural resources**;
+all 696 app resource keys use default-English fallback pending actual translation.
+The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
+Historical 140-choice evidence and the first six-option fixture remain unchanged;
+current regressions compose both additions into **27 new options and 108 partial
+catalogues**. The earlier unpublished 162-choice candidate is superseded; its
+retained test/review evidence is historical and does not accept this successor.
 
 ## Editing a translation
 

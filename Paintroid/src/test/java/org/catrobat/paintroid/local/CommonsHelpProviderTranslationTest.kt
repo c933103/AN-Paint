@@ -71,7 +71,7 @@ class CommonsHelpProviderTranslationTest {
     @Test fun otherOfferedTagsUseTheGenuineDefaultHelpFallback() {
         // The host contract verifies these XML catalogues do not contain ui_help23.
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(87,remaining.size)
+        assertEquals(108,remaining.size)
         val english=resourcesFor("en-GB").getString(R.string.ui_help23)
         for(tag in remaining) assertEquals("$tag explicit incomplete/fallback",english,
             resourcesFor(tag).getString(R.string.ui_help23))
