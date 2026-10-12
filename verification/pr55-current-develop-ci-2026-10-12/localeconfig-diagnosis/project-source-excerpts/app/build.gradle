@@ -1,0 +1,160 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
+/**
+ *  Paintroid: An image manipulation application for Android.
+ *  Copyright (C) 2010-2022 The Catrobat Team
+ *  (<http://developer.catrobat.org/credits>)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Local build modified 2026-09-07: use a distinct application ID and display name.
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+ext {
+    appId = 'paint.anpaint.android'
+    appName = 'AN Paint'
+}
+
+if (project.hasProperty('independent')) {
+    def today = new Date()
+    appId += ".independent_${today.format('YYYYMMdd_HHmm')}"
+    appName = property('independent') ?: "Paint ${today.format('MMdd HH:mm')}"
+}
+
+if (!project.hasProperty("signingKeystore")) {
+    ext.signingKeystore = "dummyKeystore"
+}
+
+android {
+    ndkVersion "27.2.12479018"
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+
+    defaultConfig {
+        applicationId = appId
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        //noinspection OldTargetApi
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode = rootProject.ext.androidVersionCode
+        versionName = rootProject.ext.androidVersionName
+        manifestPlaceholders += [appName: appName]
+        testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions { jvmTarget = "17" }
+
+    signingConfigs {
+        // Local build 2026-09-07: reuse the derivative's saved key without
+        // overwriting another project's default Android debug key.
+        debug {
+            if (project.hasProperty('localDebugKeystore')) {
+                storeFile = file(project.property('localDebugKeystore'))
+            }
+        }
+        signedRelease {
+            storeFile = file(project.property("signingKeystore"))
+            storePassword = ""
+            keyAlias = ""
+            keyPassword = ""
+        }
+    }
+
+    if (project.hasProperty("signingKeystore") &&
+            project.hasProperty("signingKeystorePassword") &&
+            project.hasProperty("signingKeyAlias") &&
+            project.hasProperty("signingKeyPassword")) {
+
+        signingConfigs.signedRelease.storePassword = project.property("signingKeystorePassword")
+        signingConfigs.signedRelease.keyAlias = project.property("signingKeyAlias")
+        signingConfigs.signedRelease.keyPassword = project.property("signingKeyPassword")
+    }
+
+    testBuildType = project.findProperty("instrumentationBuildType") ?: System.getenv("BUILD_VARIANT") ?: "debug"
+
+    buildTypes {
+        debug {
+            //minifyEnabled true
+            //proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
+        }
+        release {
+            // Keep the same code paths in host tests and the shipped release.
+            minifyEnabled false
+            if (project.hasProperty("ciReleaseSigning")) signingConfig = signingConfigs.debug
+
+            proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
+        }
+        signedRelease {
+            initWith(release)
+            signingConfig = signingConfigs.signedRelease
+        }
+
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
+
+    namespace = "paint.anpaint.android"
+}
+
+tasks.withType(Detekt).configureEach {
+    jvmTarget = "1.8"
+    exclude("**/resources/**")
+    exclude("**/build/**")
+}
+
+dependencies {
+    implementation project(':Paintroid')
+    androidTestImplementation 'androidx.core:core:1.3.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    // Test-only pre-load containment for real gallery lifecycle tests.
+    androidTestImplementation 'androidx.webkit:webkit:1.12.1'
+}
+
+// Record the actual selected build variant; both variants use the same dependencies.
+tasks.register('writeDependencyInventory') {
+    doLast {
+        // Download published artifacts as well as their POMs so the notice
+        // generator can retain embedded LICENSE/NOTICE files before packaging.
+        def runtime = configurations.getByName((System.getenv("BUILD_VARIANT") ?: "debug") + "RuntimeClasspath")
+        runtime.incoming.artifactView {
+            componentFilter { it instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier }
+        }.files.files
+        def rows = runtime.incoming.resolutionResult.allComponents.findAll {
+            it.id instanceof org.gradle.api.artifacts.component.ModuleComponentIdentifier
+        }.collect {
+            [group: it.id.group, name: it.id.module, version: it.id.version]
+        }.sort { "${it.group}:${it.name}" }
+        def destination = layout.buildDirectory.file('runtime-dependencies.json').get().asFile
+        destination.parentFile.mkdirs()
+        destination.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(rows))
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "head": "b0697fd58a2a37fb94e351f4c4ec68757b0f6b5e",
+  "tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "merge": "e3dc717586539f8bbfe2ae3e3aae87e83db16d19",
+  "run_id": 38296205283,
+  "build_log_sha256": "0f0409fb304b3223254f54beef927a3df5cf653194dabdb456e69e7933e3a32b",
+  "build_log_bytes": 273512,
+  "artifact_id": 11767854139,
+  "artifact_sha256": "166167f4a05bf3ce6b0fb7300122fe6f89c85b2210bec24a96a566377a6acc85",
+  "ordered_build_and_upload_markers": [
+    {
+      "line": 111,
+      "text": "2026-10-12T19:13:33.9371300Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e3dc717586539f8bbfe2ae3e3aae87e83db16d19:refs/remotes/pull/55/merge"
+    },
+    {
+      "line": 138,
+      "text": "2026-10-12T19:13:35.2942210Z HEAD is now at e3dc717 Merge b0697fd58a2a37fb94e351f4c4ec68757b0f6b5e into 71f4d288669858e7975ec4c094b7f47a9a1ff145"
+    },
+    {
+      "line": 500,
+      "text": "2026-10-12T19:15:34.2726737Z > Task :Paintroid:bundleCorrespondingSource"
+    },
+    {
+      "line": 501,
+      "text": "2026-10-12T19:15:34.3726127Z > Task :Paintroid:generateExactScriptResources"
+    },
+    {
+      "line": 546,
+      "text": "2026-10-12T19:15:43.4726048Z > Task :app:processDebugResources"
+    },
+    {
+      "line": 550,
+      "text": "2026-10-12T19:16:12.3769391Z > Task :Paintroid:compileDebugKotlin"
+    },
+    {
+      "line": 1961,
+      "text": "2026-10-12T19:20:20.3724650Z > Task :app:packageDebug"
+    },
+    {
+      "line": 1963,
+      "text": "2026-10-12T19:20:20.3726161Z > Task :app:assembleDebug"
+    },
+    {
+      "line": 1973,
+      "text": "2026-10-12T19:20:20.3732233Z BUILD SUCCESSFUL in 5m 5s"
+    },
+    {
+      "line": 2055,
+      "text": "2026-10-12T19:20:22.0988010Z     source = z.read('assets/local-source/AN-Paint-source.zip')"
+    },
+    {
+      "line": 2058,
+      "text": "2026-10-12T19:20:22.0989475Z     'commit': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],"
+    },
+    {
+      "line": 2133,
+      "text": "2026-10-12T19:20:29.9958219Z SHA256 digest of uploaded artifact is 166167f4a05bf3ce6b0fb7300122fe6f89c85b2210bec24a96a566377a6acc85"
+    },
+    {
+      "line": 2135,
+      "text": "2026-10-12T19:20:30.4482408Z Artifact apk-and-source-e3dc717586539f8bbfe2ae3e3aae87e83db16d19 successfully finalized. Artifact ID 11767854139"
+    },
+    {
+      "line": 2137,
+      "text": "2026-10-12T19:20:30.4487727Z Artifact download URL: https://github.com/c933103/AN-Paint/actions/runs/38296205283/artifacts/11767854139"
+    }
+  ],
+  "limit": "Checks the parent-supplied log bytes, checkout/build/source-extraction/upload order and artifact binding. Job conclusion, remote authenticity, signing identity and installed execution are not inferred from log text."
+}

@@ -1,0 +1,237 @@
+--- official/gradle-8.13.0.pom:12-19 ---
+12:   <dependencies>
+13:     <dependency>
+14:       <groupId>com.android.tools.build</groupId>
+15:       <artifactId>builder</artifactId>
+16:       <version>8.13.0</version>
+17:       <scope>compile</scope>
+18:     </dependency>
+19:     <dependency>
+
+--- official/builder-8.13.0.pom:12-18 ---
+12:   <dependencies>
+13:     <dependency>
+14:       <groupId>com.android.tools.build</groupId>
+15:       <artifactId>manifest-merger</artifactId>
+16:       <version>31.13.0</version>
+17:       <scope>compile</scope>
+18:     </dependency>
+
+--- official/ManifestModel.java:341-350 ---
+341:                                         return OR_MERGING_POLICY.merge(
+342:                                                 higherPriority, lowerPriority);
+343:                                     }
+344:                                 }),
+345:                 AttributeModel.newModel(SdkConstants.ATTR_LOCALE_CONFIG)
+346:                         .setMergingPolicy(STRICT_MAIN_OR_OVERLAY_MERGING_POLICY),
+347:                 AttributeModel.newModel(SdkConstants.ATTR_USE_EMBEDDED_DEX)
+348:                         .setMergingPolicy(STRICT_MAIN_OR_OVERLAY_MERGING_POLICY),
+349:                 AttributeModel.newModel(SdkConstants.ATTR_EXTRACT_NATIVE_LIBS)
+350:                         .setMergingPolicy(STRICT_MAIN_OR_OVERLAY_MERGING_POLICY)),
+
+--- official/AttributeModel.java:266-287 ---
+266:     /** Similar to STRICT_MERGING_POLICY, but only allows merging from MAIN or OVERLAY manifests */
+267:     @NotNull
+268:     static final MergingPolicy STRICT_MAIN_OR_OVERLAY_MERGING_POLICY =
+269:             new MergingPolicy() {
+270: 
+271:                 @Override
+272:                 public boolean shouldMergeDefaultValues() {
+273:                     return false;
+274:                 }
+275: 
+276:                 @Override
+277:                 public boolean canMergeWithLowerPriority(@NotNull XmlDocument document) {
+278:                     return EnumSet.of(XmlDocument.Type.MAIN, XmlDocument.Type.OVERLAY)
+279:                             .contains(document.getFileType());
+280:                 }
+281: 
+282:                 @Nullable
+283:                 @Override
+284:                 public String merge(@NotNull String higherPriority, @NotNull String lowerPriority) {
+285:                     return STRICT_MERGING_POLICY.merge(higherPriority, lowerPriority);
+286:                 }
+287:             };
+
+--- official/XmlAttribute.java:198-207 ---
+198:         // the node is not defined in the higher priority element, it's defined in this lower
+199:         // priority element, we need to merge this lower priority attribute value with a potential
+200:         // higher priority default value (implicitly set on the higher priority element).
+201:         String mergedValue = mergeThisAndDefaultValue(mergingReport, higherPriorityElement);
+202:         if (mergedValue == null) {
+203:             return;
+204:         }
+205: 
+206:         // ok merge it in the higher priority element.
+207:         higherPriorityElement.addAttribute(this, mergedValue);
+
+--- official/XmlAttribute.java:343-353 ---
+343:     private String mergeThisAndDefaultValue(@NotNull MergingReport.Builder mergingReport,
+344:             @NotNull XmlElement implicitNode) {
+345: 
+346:         // check that this XmlAttribute's XmlDocument.Type is mergeable.
+347:         if (isNonMergeableFromLowerPriorityNode()) {
+348:             // record rejection and return null.
+349:             mergingReport
+350:                     .getActionRecorder()
+351:                     .recordAttributeAction(this, Actions.ActionType.REJECTED, null);
+352:             return null;
+353:         }
+
+--- official/XmlAttribute.java:489-497 ---
+489:     /** Returns whether this xmlAttribute can be merged from a lower priority node */
+490:     private boolean isNonMergeableFromLowerPriorityNode() {
+491:         if (mAttributeModel != null) {
+492:             return !mAttributeModel
+493:                     .getMergingPolicy()
+494:                     .canMergeWithLowerPriority(mOwnerElement.getDocument());
+495:         }
+496:         return false;
+497:     }
+
+--- official/ManifestMerger2.java:706-709 ---
+706:         // If generated locale config is present set it if user locale config is not present.
+707:         if (mMergeType == MergeType.APPLICATION && mGeneratedLocaleConfigAttribute != null) {
+708:             addLocaleConfig(xmlDocument, mGeneratedLocaleConfigAttribute);
+709:         }
+
+--- official/ManifestMerger2.java:1276-1283 ---
+1276:         for (Pair<String, File> libraryFile : Sets.newLinkedHashSet(mLibraryFiles)) {
+1277:             mLogger.verbose("Loading library manifest " + libraryFile.getSecond().getPath());
+1278:             ManifestInfo manifestInfo =
+1279:                     new ManifestInfo(
+1280:                             libraryFile.getFirst(),
+1281:                             libraryFile.getSecond(),
+1282:                             XmlDocument.Type.LIBRARY);
+1283:             File xmlFile = manifestInfo.mLocation;
+
+--- official/ManifestMerger2.java:1302-1312 ---
+1302:                     libraryDocument =
+1303:                             XmlLoader.load(
+1304:                                     selectors,
+1305:                                     mSystemPropertyResolver,
+1306:                                     manifestInfo.mName,
+1307:                                     xmlFile,
+1308:                                     mFileStreamProvider.getInputStream(xmlFile),
+1309:                                     XmlDocument.Type.LIBRARY,
+1310:                                     null, /* namespace */
+1311:                                     mModel,
+1312:                                     false);
+
+--- official/android-13.0.0_r1-LocaleConfig.java:63-74 ---
+63:     /**
+64:      * succeeded reading the LocaleConfig structure stored in an XML file.
+65:      */
+66:     public static final int STATUS_SUCCESS = 0;
+67:     /**
+68:      * No android:localeConfig tag on <application>.
+69:      */
+70:     public static final int STATUS_NOT_SPECIFIED = 1;
+71:     /**
+72:      * Malformed input in the XML file where the LocaleConfig was stored.
+73:      */
+74:     public static final int STATUS_PARSING_FAILED = 2;
+
+--- official/android-13.0.0_r1-LocaleConfig.java:92-108 ---
+92:     public LocaleConfig(@NonNull Context context) {
+93:         int resId = 0;
+94:         Resources res = context.getResources();
+95:         try {
+96:             //Get the resource id
+97:             resId = new ApplicationInfo(context.getApplicationInfo()).getLocaleConfigRes();
+98:             //Get the parser to read XML data
+99:             XmlResourceParser parser = res.getXml(resId);
+100:             parseLocaleConfig(parser, res);
+101:         } catch (Resources.NotFoundException e) {
+102:             Slog.w(TAG, "The resource file pointed to by the given resource ID isn't found.");
+103:             mStatus = STATUS_NOT_SPECIFIED;
+104:         } catch (XmlPullParserException | IOException e) {
+105:             Slog.w(TAG, "Failed to parse XML configuration from "
+106:                     + res.getResourceEntryName(resId), e);
+107:             mStatus = STATUS_PARSING_FAILED;
+108:         }
+
+--- official/android-13.0.0_r1-AppLocaleUtil.java:45-62 ---
+45:     public static boolean canDisplayLocaleUi(
+46:             @NonNull Context context,
+47:             @NonNull String packageName,
+48:             @NonNull List<ResolveInfo> infos) {
+49:         boolean isDisallowedPackage = isDisallowedPackage(context, packageName);
+50:         boolean hasLauncherEntry = hasLauncherEntry(packageName, infos);
+51:         boolean isSignedWithPlatformKey = isSignedWithPlatformKey(context, packageName);
+52:         boolean canDisplay = !isDisallowedPackage
+53:                 && !isSignedWithPlatformKey
+54:                 && hasLauncherEntry
+55:                 && isAppLocaleSupported(context, packageName);
+56: 
+57:         Log.i(TAG, "Can display preference - [" + packageName + "] :"
+58:                 + " isDisallowedPackage : " + isDisallowedPackage
+59:                 + " / isSignedWithPlatformKey : " + isSignedWithPlatformKey
+60:                 + " / hasLauncherEntry : " + hasLauncherEntry
+61:                 + " / canDisplay : " + canDisplay);
+62:         return canDisplay;
+
+--- official/android-13.0.0_r1-AppLocaleUtil.java:101-113 ---
+101:     public static boolean isAppLocaleSupported(Context context, String packageName) {
+102:         LocaleList localeList = getPackageLocales(context, packageName);
+103:         if (localeList != null && localeList.size() > 0) {
+104:             return true;
+105:         }
+106: 
+107:         if (FeatureFlagUtils.isEnabled(
+108:                 context, FeatureFlagUtils.SETTINGS_APP_LOCALE_OPT_IN_ENABLED)) {
+109:             return false;
+110:         }
+111: 
+112:         return getAssetLocales(context, packageName).length > 0;
+113:     }
+
+--- official/android-13.0.0_r1-AppLocaleUtil.java:143-154 ---
+143:     public static LocaleList getPackageLocales(Context context, String packageName) {
+144:         try {
+145:             LocaleConfig localeConfig =
+146:                     new LocaleConfig(context.createPackageContext(packageName, 0));
+147:             if (localeConfig.getStatus() == LocaleConfig.STATUS_SUCCESS) {
+148:                 return localeConfig.getSupportedLocales();
+149:             }
+150:         } catch (PackageManager.NameNotFoundException e) {
+151:             Log.w(TAG, "Can not found the package name : " + packageName + " / " + e);
+152:         }
+153:         return null;
+154:     }
+
+--- official/android-13.0.0_r1-FeatureFlagUtils.java:106-110 ---
+106:         DEFAULT_FLAGS.put(SETTINGS_SUPPORT_LARGE_SCREEN, "true");
+107:         DEFAULT_FLAGS.put("settings_search_always_expand", "true");
+108:         DEFAULT_FLAGS.put(SETTINGS_APP_LANGUAGE_SELECTION, "true");
+109:         DEFAULT_FLAGS.put(SETTINGS_APP_LOCALE_OPT_IN_ENABLED, "true");
+110:         DEFAULT_FLAGS.put(SETTINGS_ENABLE_MONITOR_PHANTOM_PROCS, "true");
+
+--- official/android-14.0.0_r1-LocaleConfig.java:120-146 ---
+120:     private LocaleConfig(@NonNull Context context, boolean allowOverride) {
+121:         if (allowOverride) {
+122:             LocaleManager localeManager = context.getSystemService(LocaleManager.class);
+123:             if (localeManager == null) {
+124:                 Slog.w(TAG, "LocaleManager is null, cannot get the override LocaleConfig");
+125:                 mStatus = STATUS_NOT_SPECIFIED;
+126:                 return;
+127:             }
+128:             LocaleConfig localeConfig = localeManager.getOverrideLocaleConfig();
+129:             if (localeConfig != null) {
+130:                 Slog.d(TAG, "Has the override LocaleConfig");
+131:                 mStatus = localeConfig.getStatus();
+132:                 mLocales = localeConfig.getSupportedLocales();
+133:                 return;
+134:             }
+135:         }
+136:         int resId = 0;
+137:         Resources res = context.getResources();
+138:         try {
+139:             //Get the resource id
+140:             resId = new ApplicationInfo(context.getApplicationInfo()).getLocaleConfigRes();
+141:             //Get the parser to read XML data
+142:             XmlResourceParser parser = res.getXml(resId);
+143:             parseLocaleConfig(parser, res);
+144:         } catch (Resources.NotFoundException e) {
+145:             Slog.w(TAG, "The resource file pointed to by the given resource ID isn't found.");
+146:             mStatus = STATUS_NOT_SPECIFIED;

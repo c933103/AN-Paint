@@ -1,0 +1,357 @@
+[
+  {
+    "path": "Paintroid/src/main/AndroidManifest.xml",
+    "line": 5,
+    "text": "    <application android:name=\"org.catrobat.paintroid.classic.PaintApplication\" android:largeHeap=\"true\" android:supportsRtl=\"true\" android:localeConfig=\"@xml/app_locales\">"
+  },
+  {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 35,
+    "text": "                    if (manager.applicationLocales.isEmpty && saved in tags(context))"
+  },
+  {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 36,
+    "text": "                        manager.applicationLocales = LocaleList.forLanguageTags(saved)"
+  },
+  {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 39,
+    "text": "                val current=if(manager.applicationLocales.isEmpty) \"\" else manager.applicationLocales[0].toLanguageTag()"
+  },
+  {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 42,
+    "text": "                    manager.applicationLocales=LocaleList.forLanguageTags(selected)"
+  },
+  {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 106,
+    "text": "            it.applicationLocales = LocaleList.forLanguageTags(tag)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+    "line": 45,
+    "text": "            previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+    "line": 51,
+    "text": "            context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+    "line": 92,
+    "text": "                context.getSystemService(LocaleManager::class.java)!!.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+    "line": 146,
+    "text": "        manager.applicationLocales=LocaleList.forLanguageTags(\"ko-Kore-KR\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+    "line": 149,
+    "text": "        assertEquals(\"ko-Kore-KR\",manager.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 65,
+    "text": "                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 67,
+    "text": "                manager.applicationLocales=LocaleList.forLanguageTags(\"en-001\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 69,
+    "text": "                manager.applicationLocales=LocaleList.forLanguageTags(tag)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 102,
+    "text": "                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 104,
+    "text": "                manager.applicationLocales=LocaleList.forLanguageTags(\"en-001\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 106,
+    "text": "                manager.applicationLocales=LocaleList.forLanguageTags(tag)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 268,
+    "text": "        manager.applicationLocales=LocaleList.forLanguageTags(\"zh-Hant\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 270,
+    "text": "        assertEquals(\"zh-TW\",manager.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 271,
+    "text": "        manager.applicationLocales=LocaleList.forLanguageTags(\"tai\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 273,
+    "text": "        assertEquals(\"tdd\",manager.applicationLocales[0].toLanguageTag())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 280,
+    "text": "                .applicationLocales=LocaleList.forLanguageTags(old)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 414,
+    "text": "        assertEquals(\"de\", manager.applicationLocales[0].language)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 415,
+    "text": "        manager.applicationLocales = LocaleList.forLanguageTags(\"ja\")"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+    "line": 419,
+    "text": "        assertTrue(manager.applicationLocales.isEmpty)"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditErrorTest.kt",
+    "line": 82,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditErrorTest.kt",
+    "line": 96,
+    "text": "            if(oldPlatform!=null) manager?.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt",
+    "line": 126,
+    "text": "        if(Build.VERSION.SDK_INT>=33) previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt",
+    "line": 130,
+    "text": "        if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt",
+    "line": 100,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt",
+    "line": 109,
+    "text": "            if(oldPlatform!=null) manager?.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpFlowTest.kt",
+    "line": 84,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpFlowTest.kt",
+    "line": 98,
+    "text": "            if(oldPlatform!=null) manager?.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt",
+    "line": 97,
+    "text": "        if(Build.VERSION.SDK_INT>=33) previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpTranslationTest.kt",
+    "line": 101,
+    "text": "        if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt",
+    "line": 88,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt",
+    "line": 102,
+    "text": "            if(oldPlatform!=null) manager?.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt",
+    "line": 97,
+    "text": "        if(Build.VERSION.SDK_INT>=33) previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureTranslationTest.kt",
+    "line": 101,
+    "text": "        if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt",
+    "line": 88,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt",
+    "line": 102,
+    "text": "            if(oldPlatform!=null) manager?.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt",
+    "line": 97,
+    "text": "        if(Build.VERSION.SDK_INT>=33) previousPlatform=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt",
+    "line": 101,
+    "text": "        if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java)!!.applicationLocales=previousPlatform!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt",
+    "line": 56,
+    "text": "        val oldPlatformLocales=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt",
+    "line": 72,
+    "text": "            if(oldPlatformLocales!=null) manager.applicationLocales=oldPlatformLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt",
+    "line": 68,
+    "text": "                        activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt",
+    "line": 230,
+    "text": "        val originalPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt",
+    "line": 232,
+    "text": "            if(originalPlatform!=null) manager.applicationLocales=originalPlatform"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditNotificationRecoveryTest.kt",
+    "line": 72,
+    "text": "            previousPlatformLocales=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditNotificationRecoveryTest.kt",
+    "line": 85,
+    "text": "                .applicationLocales=previousPlatformLocales!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditSessionErrorTest.kt",
+    "line": 67,
+    "text": "            previousPlatformLocales=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryCreditSessionErrorTest.kt",
+    "line": 80,
+    "text": "                .applicationLocales=previousPlatformLocales!!"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt",
+    "line": 71,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt",
+    "line": 79,
+    "text": "            oldPlatform?.let {manager?.applicationLocales=it}"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipControlsTest.kt",
+    "line": 46,
+    "text": "        platformLocales=context.getSystemService(LocaleManager::class.java)!!.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleTooltipControlsTest.kt",
+    "line": 53,
+    "text": "        context.getSystemService(LocaleManager::class.java)!!.applicationLocales=platformLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalCanvasCaptionTest.kt",
+    "line": 44,
+    "text": "        originalApplicationLocales=requireNotNull(application.getSystemService(LocaleManager::class.java)).applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalCanvasCaptionTest.kt",
+    "line": 49,
+    "text": "        requireNotNull(application.getSystemService(LocaleManager::class.java)).applicationLocales=originalApplicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalNoticeResizeCharacterizationTest.kt",
+    "line": 534,
+    "text": "        val oldPlatform=manager?.applicationLocales"
+  },
+  {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalNoticeResizeCharacterizationTest.kt",
+    "line": 536,
+    "text": "            if(oldPlatform!=null) manager.applicationLocales=oldPlatform"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+    "line": 108,
+    "text": "            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+    "line": 796,
+    "text": "                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+    "line": 813,
+    "text": "                        it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags() else org.json.JSONObject.NULL)"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+    "line": 854,
+    "text": "                .applicationLocales=LocaleList.forLanguageTags(originalLanguageTag)"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt",
+    "line": 60,
+    "text": "        val oldTag=if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/GalleryViewportDeviceTest.kt",
+    "line": 488,
+    "text": "            if(Build.VERSION.SDK_INT>=33) context.getSystemService(LocaleManager::class.java).applicationLocales=LocaleList.forLanguageTags(tag)"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt",
+    "line": 312,
+    "text": "        val oldTags=context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt",
+    "line": 340,
+    "text": "                context.getSystemService(LocaleManager::class.java).applicationLocales=LocaleList.forLanguageTags(tag)"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt",
+    "line": 378,
+    "text": "            cleanup {onMain {context.getSystemService(LocaleManager::class.java).applicationLocales=LocaleList.forLanguageTags(oldTags)}"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt",
+    "line": 95,
+    "text": "            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()"
+  },
+  {
+    "path": "app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt",
+    "line": 144,
+    "text": "                    .applicationLocales=LocaleList.forLanguageTags(originalLanguageTag)"
+  }
+]

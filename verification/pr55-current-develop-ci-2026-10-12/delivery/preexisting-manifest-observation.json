@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "observation": "The fresh and preceding direction-fixture APK AndroidManifest.xml files are byte-identical; both omit localeConfig from their 12 application attributes. Both source manifests are also unchanged between source trees. This is a pre-existing delivery/platform binding issue, not a regression introduced by current develop integration.",
+  "prior_tree": "d2379b932cc976bb5347515887ecdfc4729ee70d",
+  "current_tree": "b5d8cbeac9bf6d613ed7c3be787aa984826daafd",
+  "apk_observations": [
+    {
+      "label": "prior",
+      "apk_sha256": "1a51061a64cb628b239cf3b442a4e6d372563cc5d7be789a4a41489d6aa054b2",
+      "binary_manifest_sha256": "652f94b8e56061f9b4342d258d6d5724717ce059726cf2426a0d56e08f677bdb",
+      "binary_manifest_bytes": 5320,
+      "application_attributes": 12,
+      "localeConfig_bindings": []
+    },
+    {
+      "label": "current",
+      "apk_sha256": "fa3dbb33025652e037fd91d13bb96f9a40a65f72f472173b9baa2f3c5d2f4a85",
+      "binary_manifest_sha256": "652f94b8e56061f9b4342d258d6d5724717ce059726cf2426a0d56e08f677bdb",
+      "binary_manifest_bytes": 5320,
+      "application_attributes": 12,
+      "localeConfig_bindings": []
+    }
+  ],
+  "source_manifests": {
+    "Paintroid/src/main/AndroidManifest.xml": {
+      "sha256": "bc7b5ba28064f4a8061ea110c97424f7dad1e3e6312eaecc16a367b155169c64",
+      "bytes": 1523,
+      "unchanged": true
+    },
+    "app/src/main/AndroidManifest.xml": {
+      "sha256": "1768b79976f0302c8a492ed71e2aea6dd77dc7071137ab7c348e3d59649e62c1",
+      "bytes": 2593,
+      "unchanged": true
+    }
+  },
+  "limits": [
+    "One-time context comparison with hash-pinned prior artifact; previous review conclusions are not restored.",
+    "Cause within merging/packaging and installed system-settings behavior are not established by this comparison."
+  ]
+}
