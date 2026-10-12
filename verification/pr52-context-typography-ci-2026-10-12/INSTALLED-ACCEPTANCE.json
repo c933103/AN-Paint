@@ -1,0 +1,60 @@
+{
+  "head": "ff8553d29a4c135c16b00beadf9cabba1e8d6fae",
+  "tree": "cf1ffdb16e4e8401edce81a50b16ad6f21cdcaa8",
+  "merge": "a73e9482253d9774c14af72951697390d9f0141a",
+  "run_id": 38319915849,
+  "status": "PASS_BOUNDED_INSTALLED_REGRESSION",
+  "attempt": 1,
+  "matrices": {
+    "30": {
+      "status": "PASS",
+      "scheduled": 95,
+      "completed": 95,
+      "passed": 95,
+      "failed": 0,
+      "missing_phases": []
+    },
+    "35": {
+      "status": "PASS",
+      "scheduled": 104,
+      "completed": 104,
+      "passed": 104,
+      "failed": 0,
+      "missing_phases": []
+    }
+  },
+  "api30_eligible_declarations": 97,
+  "api30_explicit_omissions": [
+    [
+      "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+      "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+    ],
+    [
+      "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+      "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+    ]
+  ],
+  "gates": [
+    "Exact frozen-source identities, serial start/success/terminal raw protocol, XML, fingerprint, SDK exclusions and unchanged configured/actual phase deadlines",
+    "Both same-run digest-enforced main/test artifact download and install receipts; main APK/source payload hashes independently recomputed",
+    "API35 exact framework LocaleConfig 167-tag receipt within successful source-bound method window",
+    "Strict transport plus independent full-reference Arabic pixel recomputation, zero errors; fresh compiled-resource report binding",
+    "Natural same-height text replacements, successful live seed/force-stop/restart boundary",
+    "Native export, screenshot, control geometry/input receipts and locale Save telemetry",
+    "Fresh actual visual inspection of all 196 PNGs"
+  ],
+  "save_snapshots": {
+    "30": 72,
+    "35": 72
+  },
+  "visual_review": "visual-review-result.json",
+  "screen": "input-screen.json",
+  "limits": [
+    "API30 deliberately omits two restart methods; API35 covers them.",
+    "API33 LocaleConfig constructor and Android Settings UI not executed.",
+    "Save pre-click dialog resource locale is absent; this is not post-mount dialog-locale proof.",
+    "No independent installed on-device APK hash, release/upgrade signing, physical device, fluent-language or live Commons/external-provider acceptance.",
+    "Installed cases do not themselves force every stale process-default/font-locale disagreement; new JVM negative controls are separately reviewed.",
+    "Existing short-landscape characterization and intermediate-scroll clipping limits remain."
+  ]
+}
