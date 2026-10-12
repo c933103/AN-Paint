@@ -1,0 +1,1697 @@
+...........................................................................................................................................................F..........F.F....FFFF......................../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+.........................................................................................F...........................F......................FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF...............................................................................................................................................................................F...........................................................................................................
+======================================================================
+FAIL: test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim (test_commons_copy_credit_errors.CommonsCopyCreditErrorContracts.test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_copy_credit_errors.py", line 96, in test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim
+    path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/commons_metadata_m03_scope.py", line 42, in before_m03_production
+    raise AssertionError(f'{path}: expected the exact M03 producer/callback delta')
+AssertionError: Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt: expected the exact M03 producer/callback delta
+
+======================================================================
+FAIL: test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m02.CommonsMetadataM02Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m02.py", line 57, in test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior
+    entries = json.loads(raw)['entries']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'f30b50ad2e0c89356082ace268e241080efe54cf2c7c2c0307d26425efac4546' != '2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581'
+- f30b50ad2e0c89356082ace268e241080efe54cf2c7c2c0307d26425efac4546
++ 2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581
+
+
+======================================================================
+FAIL: test_only_one_message_added_to_default_and_exact_59_catalogues (test_commons_metadata_m02.CommonsMetadataM02Contracts.test_only_one_message_added_to_default_and_exact_59_catalogues)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m02.py", line 27, in test_only_one_message_added_to_default_and_exact_59_catalogues
+    text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+AssertionError: 'fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6' != '6c9740862c359fb70d01e56c2abf428b8dad5636bcc2c936371badf7181be2de'
+- fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6
++ 6c9740862c359fb70d01e56c2abf428b8dad5636bcc2c936371badf7181be2de
+
+
+======================================================================
+FAIL: test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m03.py", line 104, in test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails
+    entries = catalogue_fixture()['entries']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6' != '452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1'
+- fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6
++ 452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1
+
+
+======================================================================
+FAIL: test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m03.py", line 117, in test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior
+    self.assertNotEqual(DEFAULT, actual)
+AssertionError: '6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3' != '2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581'
+- 6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3
++ 2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581
+
+
+======================================================================
+FAIL: test_only_one_message_added_to_default_and_exact_59_catalogues (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_only_one_message_added_to_default_and_exact_59_catalogues)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m03.py", line 53, in test_only_one_message_added_to_default_and_exact_59_catalogues
+    self.assertEqual(DEFAULT, catalogues.read_strings(catalogues.RES/'values/strings.xml')[KEY])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6' != '452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1'
+- fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6
++ 452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1
+
+
+======================================================================
+FAIL: test_production_reversal_rejects_broader_or_untyped_changes (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_production_reversal_rejects_broader_or_untyped_changes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_commons_metadata_m03.py", line 156, in test_production_reversal_rejects_broader_or_untyped_changes
+    changed = text.replace('</resources>', '    <string name="unrelated">oops</string>\n</resources>')
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/commons_metadata_m03_scope.py", line 42, in before_m03_production
+    raise AssertionError(f'{path}: expected the exact M03 producer/callback delta')
+AssertionError: Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt: expected the exact M03 producer/callback delta
+
+======================================================================
+FAIL: test_exact_17_named_values_restore_the_entire_settled_base (test_hungarian_attribution_c05.HungarianAttributionC05Test.test_exact_17_named_values_restore_the_entire_settled_base)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_hungarian_attribution_c05.py", line 38, in test_exact_17_named_values_restore_the_entire_settled_base
+    c05_only = before_m02_catalogue(c05.PATH, before_m03_catalogue(c05.PATH, self.text))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'a940a7fe10cdd897d34059fd82bc2d3a1d1090f339b28aa15c4438aa432ab873' != '8048670091c2fdc030105ce4a26641cbdcdb6109b3be186a78d5d648a28b667b'
+- a940a7fe10cdd897d34059fd82bc2d3a1d1090f339b28aa15c4438aa432ab873
++ 8048670091c2fdc030105ce4a26641cbdcdb6109b3be186a78d5d648a28b667b
+
+
+======================================================================
+FAIL: test_current_legacy_omission_is_explicit_and_never_a_test_pass (test_legacy_compatibility.LegacyInventoryTest.test_current_legacy_omission_is_explicit_and_never_a_test_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_legacy_compatibility.py", line 34, in test_current_legacy_omission_is_explicit_and_never_a_test_pass
+    self.assertEqual(result['declared_tests'], 25)
+AssertionError: 30 != 25
+
+======================================================================
+FAIL: test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 45, in test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion
+    self.assertEqual(paths, {row['path'] for row in rows})
+AssertionError: Items in the first set but not the second:
+'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt'
+'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitTranslationTest.kt'
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='CI.md', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'b060830c6225fb5708663d4918fe8ec433090b1e0d45232ba44cea5584f7a2ec' != '44fbcc1f393da6ccb40d67e697526adc70ee63ecafb771c9def32dbf21ee5717'
+- b060830c6225fb5708663d4918fe8ec433090b1e0d45232ba44cea5584f7a2ec
++ 44fbcc1f393da6ccb40d67e697526adc70ee63ecafb771c9def32dbf21ee5717
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/app_instrumentation_matrix.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '20d66ee42e65d1187f3e54888014e5edb99bb75a71b3daf3aed038013d7c4f47' != '5df9d7cd26a6c6c1c7ff5fc733ccc981cbd4d504936f35568f70b03c6f7e2a24'
+- 20d66ee42e65d1187f3e54888014e5edb99bb75a71b3daf3aed038013d7c4f47
++ 5df9d7cd26a6c6c1c7ff5fc733ccc981cbd4d504936f35568f70b03c6f7e2a24
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/ci_emulator.sh', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '2b1d4d7fdad6895e7c76bee15f4c8fb6e58efb524311da5d8a393bdeccf24ccd' != '153ffad707a1b55b0b66d928c28869dbb183ccd4663eebe90a7093bec92f9229'
+- 2b1d4d7fdad6895e7c76bee15f4c8fb6e58efb524311da5d8a393bdeccf24ccd
++ 153ffad707a1b55b0b66d928c28869dbb183ccd4663eebe90a7093bec92f9229
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_app_instrumentation_matrix.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '631def6d22e2c9d1fd6822ef92b65b2f225d1aeecf0ea1fda890fc45fdd50c55' != 'ceb9f2f869f31157f098c997629820c7eafbe2840a4b37ec219e966017f38784'
+- 631def6d22e2c9d1fd6822ef92b65b2f225d1aeecf0ea1fda890fc45fdd50c55
++ ceb9f2f869f31157f098c997629820c7eafbe2840a4b37ec219e966017f38784
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_ci_emulator.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '60e9694e60e6e0c486c601f2bb17f69b57b4f9e2f61fd96e8702d8b1d9d9b44d' != '949b7cf037ee4eedd1b2882bc48039a6fda8a1340140e9fb1ccf8076fee44f3c'
+- 60e9694e60e6e0c486c601f2bb17f69b57b4f9e2f61fd96e8702d8b1d9d9b44d
++ 949b7cf037ee4eedd1b2882bc48039a6fda8a1340140e9fb1ccf8076fee44f3c
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_ci_timeout_budget.py', producer='pr49')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '574e7275f0bc5cfdb92dfaf4a330ff53e369e30fd5b88919b48d0c2baf083224' != 'e78bb72cec4d83950258c56e10d2e8d081d8d0c35531eb8cd77adee147c2cc38'
+- 574e7275f0bc5cfdb92dfaf4a330ff53e369e30fd5b88919b48d0c2baf083224
++ e78bb72cec4d83950258c56e10d2e8d081d8d0c35531eb8cd77adee147c2cc38
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'f30b50ad2e0c89356082ace268e241080efe54cf2c7c2c0307d26425efac4546' != '2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581'
+- f30b50ad2e0c89356082ace268e241080efe54cf2c7c2c0307d26425efac4546
++ 2f633207b34fd57d8ece98cc16590aa7876a042d795e5eb271808602518a8581
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a' != '9e3fedd2f18896b865c5e8e32d26c2bcb1303fd7f8f9de86f219bb9a596d913f'
+- 9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a
++ 9e3fedd2f18896b865c5e8e32d26c2bcb1303fd7f8f9de86f219bb9a596d913f
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-ar/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '85d48d3fa9a680ac5b275df834b9cb6efd57d4ab2f71f1ca003bead8e2bfb0e1' != '683a73335c7f1b44380a031fa93c8b9d63f5d565a8c55d330b6f0ac649559b6a'
+- 85d48d3fa9a680ac5b275df834b9cb6efd57d4ab2f71f1ca003bead8e2bfb0e1
++ 683a73335c7f1b44380a031fa93c8b9d63f5d565a8c55d330b6f0ac649559b6a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+af/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '0a5eb334aeb13524589b6ff792de5c8a4f68b8ff39b06b5a42f4ccbdcd390e1d' != 'cb16afb11f694dc2cb2d9634559ba5635ad807f12c89b2829fe7d185b54d6a61'
+- 0a5eb334aeb13524589b6ff792de5c8a4f68b8ff39b06b5a42f4ccbdcd390e1d
++ cb16afb11f694dc2cb2d9634559ba5635ad807f12c89b2829fe7d185b54d6a61
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ain+Kana/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '7ce5efa736c302289d724839eec01fa15bc79a85236452bb45268fb9a1a31a0e' != 'f395f728bb862edec4e12e68444bbe489f36f3139268adf10363d75c675dfcd2'
+- 7ce5efa736c302289d724839eec01fa15bc79a85236452bb45268fb9a1a31a0e
++ f395f728bb862edec4e12e68444bbe489f36f3139268adf10363d75c675dfcd2
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ain+Latn/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'b2fc862251b21ad356334a3b89bce6821dab0445940cc2302b0d60b9a371ed3f' != '2db3d8baa4a4f6dd12157278b5023c0c2dd2d7fa85a6a2ddd19e3f4cb9d2632d'
+- b2fc862251b21ad356334a3b89bce6821dab0445940cc2302b0d60b9a371ed3f
++ 2db3d8baa4a4f6dd12157278b5023c0c2dd2d7fa85a6a2ddd19e3f4cb9d2632d
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+bo/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '4509503f387c1a0d6ed4003f0d8ec579dfa6868008350faa78b4a37fc5a3ddd6' != '7e4158588cb03486cb1c89bffb81388f4530448ed37d54b0ee900fa78c4ee868'
+- 4509503f387c1a0d6ed4003f0d8ec579dfa6868008350faa78b4a37fc5a3ddd6
++ 7e4158588cb03486cb1c89bffb81388f4530448ed37d54b0ee900fa78c4ee868
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ceb/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'a0c56f5adb1719ee70e6b3e7348939285cc20698b6886caf372ab997a6865b22' != 'ed16375d7339d0fbff984c69790a7fa570b47d8b69d1b27255bc30e118313be1'
+- a0c56f5adb1719ee70e6b3e7348939285cc20698b6886caf372ab997a6865b22
++ ed16375d7339d0fbff984c69790a7fa570b47d8b69d1b27255bc30e118313be1
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+dz/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '1c0439b92c17fa6f36c882e7bcd7f0f9839bd7a46f7a031b61d6947496a8e526' != '94aee3d26fb310a3e631c648c5963332da4a506a571016e495174fcb2568894a'
+- 1c0439b92c17fa6f36c882e7bcd7f0f9839bd7a46f7a031b61d6947496a8e526
++ 94aee3d26fb310a3e631c648c5963332da4a506a571016e495174fcb2568894a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+en+001/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6d29b421123c02b9b9d58027d7663e111b8276c25935a4010fa5a9282739be21' != 'd61085dbac919da099931b06c67b130b7369b1ffd8ebaa9d15e92a046e388ab8'
+- 6d29b421123c02b9b9d58027d7663e111b8276c25935a4010fa5a9282739be21
++ d61085dbac919da099931b06c67b130b7369b1ffd8ebaa9d15e92a046e388ab8
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+en+XV/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'b82c1edc550560a8b0f3dfee74ce15d70cfbace867b0b81782a4b4cd24b7c6f0' != 'dacfca49d4e029146edcb94eb03252a8cd0c199be21c2941ea8ff5111fcc7556'
+- b82c1edc550560a8b0f3dfee74ce15d70cfbace867b0b81782a4b4cd24b7c6f0
++ dacfca49d4e029146edcb94eb03252a8cd0c199be21c2941ea8ff5111fcc7556
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+eo/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'bc78c869188f102f2ace8bc6de32bc17a5954202c5399a8c6c4bf0827d4d70c6' != 'e19e79490c09b65db2109a9f0ec5a33feddf95566c6a4621274599c461111666'
+- bc78c869188f102f2ace8bc6de32bc17a5954202c5399a8c6c4bf0827d4d70c6
++ e19e79490c09b65db2109a9f0ec5a33feddf95566c6a4621274599c461111666
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+es+419/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'c3bf79982a39a6a09f77e85ed63f0b3d53f614de426a347abe157ffb9bae1d12' != '7f2f130f210a3678da431cfcf62b15a014702348cbc3f74b731ea44e61c43e15'
+- c3bf79982a39a6a09f77e85ed63f0b3d53f614de426a347abe157ffb9bae1d12
++ 7f2f130f210a3678da431cfcf62b15a014702348cbc3f74b731ea44e61c43e15
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+es+ES/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '2cad9ea96268d2c32cba0d251a5dedc49f04ddac446a882c3688dd25b6a2cb14' != 'ad27d52fea48298d374479d2bc1dc3c0848b8eb36fea6712828ec2804a1bc089'
+- 2cad9ea96268d2c32cba0d251a5dedc49f04ddac446a882c3688dd25b6a2cb14
++ ad27d52fea48298d374479d2bc1dc3c0848b8eb36fea6712828ec2804a1bc089
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+et/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '4ccb8cc5569f8e5d6dcaa2399e8849f536d97e1f97da944f538203823e69da20' != '6df74e8d79447b6b5a127b9d5934bf8a254c4ca764badc165866f584734bd7b4'
+- 4ccb8cc5569f8e5d6dcaa2399e8849f536d97e1f97da944f538203823e69da20
++ 6df74e8d79447b6b5a127b9d5934bf8a254c4ca764badc165866f584734bd7b4
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '5b96046f45fc087ccafd3df617c6a429219435e4dd915be533a3421a1dfa9436' != '182f8b7458aa1576664368704d61e04343defd23f5ca8fe1de81a2ecb2829d3e'
+- 5b96046f45fc087ccafd3df617c6a429219435e4dd915be533a3421a1dfa9436
++ 182f8b7458aa1576664368704d61e04343defd23f5ca8fe1de81a2ecb2829d3e
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6b81ceb1feb09ce311702fb9df4f8ae66227b73dd50cdf757fdd9dd4b44aa0d2' != '7d293b7cfc7d364bd7a4c4e58209329fce14069c6c39fb91d9bd23dec543cdcf'
+- 6b81ceb1feb09ce311702fb9df4f8ae66227b73dd50cdf757fdd9dd4b44aa0d2
++ 7d293b7cfc7d364bd7a4c4e58209329fce14069c6c39fb91d9bd23dec543cdcf
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+jje/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '252b52d1df60b8639a62386144d248ba5b0c6981f817f6a118af7cad83043b4c' != 'c520acd62e865a4bf3b8c5b595112aa675b5c99b82811350aaa505e10bf47236'
+- 252b52d1df60b8639a62386144d248ba5b0c6981f817f6a118af7cad83043b4c
++ c520acd62e865a4bf3b8c5b595112aa675b5c99b82811350aaa505e10bf47236
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ko+KP/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'c9e11cd4609e0a47407d0f31edc171141659b000c3d6d46f68e1a194b734dc79' != 'b41314464a4feaff3767d9ba6e3d78d8733c711fca8468907d948519d9dac30d'
+- c9e11cd4609e0a47407d0f31edc171141659b000c3d6d46f68e1a194b734dc79
++ b41314464a4feaff3767d9ba6e3d78d8733c711fca8468907d948519d9dac30d
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ko+KR/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '1d039dc95b513ffa96c68499bc93c58901b188ddc2a109a9b6668cef77c117b1' != 'b3404e4e20aff8d0dac5ca5cfc05ef4f0ccf2f16a81e3e2d713e9739aa38027b'
+- 1d039dc95b513ffa96c68499bc93c58901b188ddc2a109a9b6668cef77c117b1
++ b3404e4e20aff8d0dac5ca5cfc05ef4f0ccf2f16a81e3e2d713e9739aa38027b
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '394c17b38c4fad6a723dc18e1c44d3e2448add01ad36bafb5d012883b225f784' != 'c14f44fcc38d35423d350f00b51dd8ae7b1025c39f6f30a5c46f11f9c2488fdb'
+- 394c17b38c4fad6a723dc18e1c44d3e2448add01ad36bafb5d012883b225f784
++ c14f44fcc38d35423d350f00b51dd8ae7b1025c39f6f30a5c46f11f9c2488fdb
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+lv/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'c3804a75e74fe6acad5f23f99577c67ac8bc984979633e913b06231b2ab9f254' != '939e2c0a0e9f8f379ee2731b9f315151e228923a2839fb5b0ad6b9aa9bf36185'
+- c3804a75e74fe6acad5f23f99577c67ac8bc984979633e913b06231b2ab9f254
++ 939e2c0a0e9f8f379ee2731b9f315151e228923a2839fb5b0ad6b9aa9bf36185
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+lzh+Hant/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'ef8160d2df311ed962e79f0b68da9a18740b9d8d57adf0ca3e8dc12ef8fc0f4c' != '9ab31213b0ca53c9e5cadf1f2b022a98d0ad357aa1890695d765d12f33e5016a'
+- ef8160d2df311ed962e79f0b68da9a18740b9d8d57adf0ca3e8dc12ef8fc0f4c
++ 9ab31213b0ca53c9e5cadf1f2b022a98d0ad357aa1890695d765d12f33e5016a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '1e1596118352555ab1ed3af403f8b86efeccfecfa5af33091442074b5568997b' != '17104fa1299e6d048bd53d8e85d7af34900e5f29f29f792326534fe2a3e87739'
+- 1e1596118352555ab1ed3af403f8b86efeccfecfa5af33091442074b5568997b
++ 17104fa1299e6d048bd53d8e85d7af34900e5f29f29f792326534fe2a3e87739
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+mn+Mong/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'd24859ad2609bee006cfb51b2d17c5e476671874c8db4ede11e359ced606bc66' != '9be08f32f29fa41dd314b8178fd92c53385bcdf074b4ac9aee82d47c86197877'
+- d24859ad2609bee006cfb51b2d17c5e476671874c8db4ede11e359ced606bc66
++ 9be08f32f29fa41dd314b8178fd92c53385bcdf074b4ac9aee82d47c86197877
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+mnc+Mong/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '0fd79ea12fa6af5c7decbfc8644b3a87dd2a86f685c8a4e701b48ffb58ad8abc' != '2e9649b15b2fb18a19eda37f8ecf6b6ffc1f345da34f9dbe28f76e745d73568b'
+- 0fd79ea12fa6af5c7decbfc8644b3a87dd2a86f685c8a4e701b48ffb58ad8abc
++ 2e9649b15b2fb18a19eda37f8ecf6b6ffc1f345da34f9dbe28f76e745d73568b
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '04ceadabc615db070ce5ed2da13276bc7a55cb9b0297e0ae3d9c4e72f4dfa3c6' != 'b4849ef5cdd516601612387fa20d4610c9dd80bbd6a32625303e98407a72d9f7'
+- 04ceadabc615db070ce5ed2da13276bc7a55cb9b0297e0ae3d9c4e72f4dfa3c6
++ b4849ef5cdd516601612387fa20d4610c9dd80bbd6a32625303e98407a72d9f7
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'f70ae932f4903b437b8ace6a752a075b8a19df1cc0454c3f39270a03a997e462' != '28d6f8770a0a90b1666013952a133f5c6627f77a5ca184308a15d2736537665d'
+- f70ae932f4903b437b8ace6a752a075b8a19df1cc0454c3f39270a03a997e462
++ 28d6f8770a0a90b1666013952a133f5c6627f77a5ca184308a15d2736537665d
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+pt+PT/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'edba1e884cbd0b69302c8c82dafb4222994e6e0e895f82ce9e99ad0b89338745' != '65dab62751eceefa25ad7bfe0f986ca73f54a23e37cc3e62985a42569a9eb965'
+- edba1e884cbd0b69302c8c82dafb4222994e6e0e895f82ce9e99ad0b89338745
++ 65dab62751eceefa25ad7bfe0f986ca73f54a23e37cc3e62985a42569a9eb965
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'eedfc97b15a0dea88e97ef99ce837c412e6b3c5311a487184a302de43e97f2f2' != 'fc40bf0ced795a0672171dd7b292d2d964a6adcaa6537746e6e7865da3f34fd0'
+- eedfc97b15a0dea88e97ef99ce837c412e6b3c5311a487184a302de43e97f2f2
++ fc40bf0ced795a0672171dd7b292d2d964a6adcaa6537746e6e7865da3f34fd0
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+ryu/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'c9d62ea35deeb083443baf3361ee07e1606381b42a2a59d75dc21c80b75f563d' != 'd8ea7ebda7cd6ef71ac6996efedd531d9f258ba2f78b683bbf053d6dd8f8fc1e'
+- c9d62ea35deeb083443baf3361ee07e1606381b42a2a59d75dc21c80b75f563d
++ d8ea7ebda7cd6ef71ac6996efedd531d9f258ba2f78b683bbf053d6dd8f8fc1e
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+vi+Hani/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '9602ed95407448cbafe86f19b5dec070884fe1c553de4e547b1414ba4bbdf4e6' != '0dff2cd2759dfb0fb8ad53fe0460ccfdd6f5e8f8a83429561a9d08c5347b346c'
+- 9602ed95407448cbafe86f19b5dec070884fe1c553de4e547b1414ba4bbdf4e6
++ 0dff2cd2759dfb0fb8ad53fe0460ccfdd6f5e8f8a83429561a9d08c5347b346c
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+wuu+Hans/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '86ff389dcb29ba16a9952589a97223b71ef70a075a8a8718a06e27e2b5cbc0bf' != '189c3e7cdbeedec3b92ff53f5eaa633ece89a6907afa77a0e5cba3189dcf5ce6'
+- 86ff389dcb29ba16a9952589a97223b71ef70a075a8a8718a06e27e2b5cbc0bf
++ 189c3e7cdbeedec3b92ff53f5eaa633ece89a6907afa77a0e5cba3189dcf5ce6
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+yue+Hant/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '327ee200fe78dadad71119ecd5ff44f9b62a8cc60974eff592840498de7a1d64' != '7d7ba30249b60b9af9b0874dff933935b718eb75248c8000a047e18fd236120f'
+- 327ee200fe78dadad71119ecd5ff44f9b62a8cc60974eff592840498de7a1d64
++ 7d7ba30249b60b9af9b0874dff933935b718eb75248c8000a047e18fd236120f
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-b+yue+Latn/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'd975a0fa330e31f2391a08a6a4d39d4b979707e387c506fff754cdc5601f6a94' != 'fa3e03e6f63849c161c4dacec2a7c80df54a76573d07eadb8117842091d91822'
+- d975a0fa330e31f2391a08a6a4d39d4b979707e387c506fff754cdc5601f6a94
++ fa3e03e6f63849c161c4dacec2a7c80df54a76573d07eadb8117842091d91822
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-de/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'd4c0fe9db8a426b73f20edcc8c28ff9c6c354fab4086cdfd1a23a40693a2f8a8' != '5a63d47bed1aacd1426e3bfaa927d9f1b76e2a4b926588ce485519ea9b7b7503'
+- d4c0fe9db8a426b73f20edcc8c28ff9c6c354fab4086cdfd1a23a40693a2f8a8
++ 5a63d47bed1aacd1426e3bfaa927d9f1b76e2a4b926588ce485519ea9b7b7503
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-el/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'a40659eab78c8008f7ba570a6b315874a40d1737488aa4d1b9e3bbdc646a53eb' != '2ae0b6d84d4aec67afc87d504b5cd1444aec6fc9de2dca672d9bbed96ede84da'
+- a40659eab78c8008f7ba570a6b315874a40d1737488aa4d1b9e3bbdc646a53eb
++ 2ae0b6d84d4aec67afc87d504b5cd1444aec6fc9de2dca672d9bbed96ede84da
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rAU/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'e3c86dd4b4693d4e3ea4a1b517290850141919f613d0c62f15517f164df17af6' != '0ac3c9d054153c6f20d9bfdd9b310ac7923c64a422fa5c48e8ab50f513131cf9'
+- e3c86dd4b4693d4e3ea4a1b517290850141919f613d0c62f15517f164df17af6
++ 0ac3c9d054153c6f20d9bfdd9b310ac7923c64a422fa5c48e8ab50f513131cf9
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rCA/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '53ce578ec2cc277200fd51ae51af0d59a447aa67f3e37bc8048ccdff4f42c0e2' != '24c3a4b54bac8246d8b77e4b04c48f3d37429687a3d7a207216fb24a1dd0761c'
+- 53ce578ec2cc277200fd51ae51af0d59a447aa67f3e37bc8048ccdff4f42c0e2
++ 24c3a4b54bac8246d8b77e4b04c48f3d37429687a3d7a207216fb24a1dd0761c
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rGB/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '7d972da130b44f19cfe824830b8545023dc01bccecb5d72dcd3142145aba25a1' != '017f3cfb38b65fd0066cd3d265583aa86d9d84b0c955b44ad6a156b9707e44c8'
+- 7d972da130b44f19cfe824830b8545023dc01bccecb5d72dcd3142145aba25a1
++ 017f3cfb38b65fd0066cd3d265583aa86d9d84b0c955b44ad6a156b9707e44c8
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rIN/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6b987a9e6dbca10946e4401b7bf47b0f9331a6322771f948e258fee0cba9f95e' != 'f34ad8e29ead9dba00436536ecfe6af0e589452c86e467233e55f9d69f8f5398'
+- 6b987a9e6dbca10946e4401b7bf47b0f9331a6322771f948e258fee0cba9f95e
++ f34ad8e29ead9dba00436536ecfe6af0e589452c86e467233e55f9d69f8f5398
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rSG/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '4f773fd931e54e363f64ee954a4fd412546b83b4b1f0567772c8d4ea3cd16dbf' != '81a014a95e9278c604b27fadeeaceba802cf1558a66097068c84276a4f15da5f'
+- 4f773fd931e54e363f64ee954a4fd412546b83b4b1f0567772c8d4ea3cd16dbf
++ 81a014a95e9278c604b27fadeeaceba802cf1558a66097068c84276a4f15da5f
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-en-rUS/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '60effe4fa76bb0ae04cf61e612954a485330f0b22e26488772604b04d7c7851b' != 'fcb0dfae230b5ed81595a077222d3c4451dec020e789cc725ea3dd7a3c01f2d4'
+- 60effe4fa76bb0ae04cf61e612954a485330f0b22e26488772604b04d7c7851b
++ fcb0dfae230b5ed81595a077222d3c4451dec020e789cc725ea3dd7a3c01f2d4
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-fi/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '2b333227d139a69d00e0802d2c982dc2ed4b40b28f0d2bb3a820b33ec6928163' != '370a611f38cb00116a1525e6286e5ead5cf08e388fe105fcc7c4da8ca80335cb'
+- 2b333227d139a69d00e0802d2c982dc2ed4b40b28f0d2bb3a820b33ec6928163
++ 370a611f38cb00116a1525e6286e5ead5cf08e388fe105fcc7c4da8ca80335cb
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-fr/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'f4c0e8e68564791a8a396b085a10e0a3d54de86bb55008850715d7a4444eefbc' != 'c24e17cce65e05bf10677d6ebc582ea687c3688e6961f705fdff603370514226'
+- f4c0e8e68564791a8a396b085a10e0a3d54de86bb55008850715d7a4444eefbc
++ c24e17cce65e05bf10677d6ebc582ea687c3688e6961f705fdff603370514226
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-in/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '67a94e29d82533f929bea89f8b24dc8d6af3e5c5c436e8cb7598d1974b95b8a5' != 'bd7b94c63a6d3dd1e030510e3896abe95046daecfbc59c16b0eb9e71076a8a3a'
+- 67a94e29d82533f929bea89f8b24dc8d6af3e5c5c436e8cb7598d1974b95b8a5
++ bd7b94c63a6d3dd1e030510e3896abe95046daecfbc59c16b0eb9e71076a8a3a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-it/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'a9db89643c907b319910a3eaca82ae3a445acc58ef77cc7b10d22ee206abdcc1' != 'bc54893171b3625f2b1fe7cc59d89ac34f9d85cdfc13b03c44b92903aedea922'
+- a9db89643c907b319910a3eaca82ae3a445acc58ef77cc7b10d22ee206abdcc1
++ bc54893171b3625f2b1fe7cc59d89ac34f9d85cdfc13b03c44b92903aedea922
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-ja/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6a18bef654053afc3f689f6d952398ead0a5bd39a223f9e3a379cc0a3d232d2e' != 'b78c58b40cd942520d9f82f7ff717a0a3583f86a5ec1560100d31e482e82659a'
+- 6a18bef654053afc3f689f6d952398ead0a5bd39a223f9e3a379cc0a3d232d2e
++ b78c58b40cd942520d9f82f7ff717a0a3583f86a5ec1560100d31e482e82659a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-lt/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '3685005c0610c29d0011cce7db7393295dabb20f8ef0cb9d8169238e45f34ee3' != '6e2b6a8cd4073b3fe84f6b915d9d16c44f1bbe8daab077ae89c795dc4d659f32'
+- 3685005c0610c29d0011cce7db7393295dabb20f8ef0cb9d8169238e45f34ee3
++ 6e2b6a8cd4073b3fe84f6b915d9d16c44f1bbe8daab077ae89c795dc4d659f32
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-ms/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '8d3182f3f20704dca398a4be21779f3b0ea087a68add89c8421810ca187c8200' != 'd3961628235903281cfbb673384a1efd59d2c96f0fd4f4321bfbaa838e65ab7e'
+- 8d3182f3f20704dca398a4be21779f3b0ea087a68add89c8421810ca187c8200
++ d3961628235903281cfbb673384a1efd59d2c96f0fd4f4321bfbaa838e65ab7e
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-nl/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '475a84b5ceef5997228a763063b8ca9bb7c47bc1265364082452ca3a388fc0cc' != '08f588571c1d517bf71071bfda62015d093438797748c010939184318e704052'
+- 475a84b5ceef5997228a763063b8ca9bb7c47bc1265364082452ca3a388fc0cc
++ 08f588571c1d517bf71071bfda62015d093438797748c010939184318e704052
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-pt-rBR/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '7a4055dff361e44fd65630833faf700bea29843844979d1559dfcd8087ce7357' != '1e99eabe74c0569548ee58b6fb3788ce82b840c312536e743fbe293ce1bae45a'
+- 7a4055dff361e44fd65630833faf700bea29843844979d1559dfcd8087ce7357
++ 1e99eabe74c0569548ee58b6fb3788ce82b840c312536e743fbe293ce1bae45a
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-ru/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'aa0d75028cbb95860da393152f5fb9dfed74ca24c3c729d1895fc58b4570c98a' != '8b3a7c7fb3c62b9c4ac0edfdd3e716cf123c419a0f8cf1602b23f63df3faf7e3'
+- aa0d75028cbb95860da393152f5fb9dfed74ca24c3c729d1895fc58b4570c98a
++ 8b3a7c7fb3c62b9c4ac0edfdd3e716cf123c419a0f8cf1602b23f63df3faf7e3
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-sw/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6a8462c0877403d8a21440bbcef2237c4dca0af2bbde7fa7d37793af8b0e803a' != 'a4060b47db6c445502fd0007e710166a7c5a052d71e1a3799e9cc1e47faf67e6'
+- 6a8462c0877403d8a21440bbcef2237c4dca0af2bbde7fa7d37793af8b0e803a
++ a4060b47db6c445502fd0007e710166a7c5a052d71e1a3799e9cc1e47faf67e6
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-tl/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '6d509b31c282dfdbcaebd2d0c182466aa39e2e6582ddbcb2c01530931979ac1c' != '60e70c90f6cb416b61e41acae179fcf9a54cca28be86513c6bad6277b76b3fa8'
+- 6d509b31c282dfdbcaebd2d0c182466aa39e2e6582ddbcb2c01530931979ac1c
++ 60e70c90f6cb416b61e41acae179fcf9a54cca28be86513c6bad6277b76b3fa8
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-tr/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'e59ad6167d4f2be6f1013e182cabf150b2089552fc1fe3d5379103c322d67380' != '569814bc62d23ee5a87fa1efe8cf289f49d9f6975761db19a7fedc2ba3330fbd'
+- e59ad6167d4f2be6f1013e182cabf150b2089552fc1fe3d5379103c322d67380
++ 569814bc62d23ee5a87fa1efe8cf289f49d9f6975761db19a7fedc2ba3330fbd
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-vi/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '600b9f58c376c90503a7f89f3378727e1fbd5d89ec64104ef52804c2ff1f3563' != 'f6a2c521baa15d3640b07c8bb65a38a7dfaa366943b49406eae490ecade3aadf'
+- 600b9f58c376c90503a7f89f3378727e1fbd5d89ec64104ef52804c2ff1f3563
++ f6a2c521baa15d3640b07c8bb65a38a7dfaa366943b49406eae490ecade3aadf
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-zh-rCN/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'cfe0e229403b7f02269d48612b932014c4be7244c8e3f4d60d66eeeca51c636f' != '9939d5a6302dae250d6dc60f5ed3b99e163a240ea90b18574d20a548959ce914'
+- cfe0e229403b7f02269d48612b932014c4be7244c8e3f4d60d66eeeca51c636f
++ 9939d5a6302dae250d6dc60f5ed3b99e163a240ea90b18574d20a548959ce914
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-zh-rHK/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '2c16d7a73fe8517d386a9bc391f3e6e5ac4b06c6ffc67928623d6853d942f064' != '485b1700e85c9d11371770214548f3a14587d1509dfd1557d35fb06339091ed7'
+- 2c16d7a73fe8517d386a9bc391f3e6e5ac4b06c6ffc67928623d6853d942f064
++ 485b1700e85c9d11371770214548f3a14587d1509dfd1557d35fb06339091ed7
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values-zh-rTW/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'b5bbd322440cfa269a09379e8e99b58799edb3b49f6804ed3ec351bed65e1855' != 'c8f8ccc3dca2219164eff0bef9154465f45af54db9838f5a4058086409058263'
+- b5bbd322440cfa269a09379e8e99b58799edb3b49f6804ed3ec351bed65e1855
++ c8f8ccc3dca2219164eff0bef9154465f45af54db9838f5a4058086409058263
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/main/res/values/strings.xml', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1' != '85493ba8193eb3387b7ef51f2e624e26a1af7be1f21e6e7350340d19c32365c5'
+- 452519c8401307e1c41a2dcece780693f107604d3b33460a03465a6a1a1043f1
++ 85493ba8193eb3387b7ef51f2e624e26a1af7be1f21e6e7350340d19c32365c5
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditErrorTest.kt', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '26e53918a11ca7950d554c3cec9d0882403866b44d410e2a36029c9de4d1f51b' != '4ecb98f1eb39325b46f76b6ea421493f5e022439f6776e33e9bd521a41b13356'
+- 26e53918a11ca7950d554c3cec9d0882403866b44d410e2a36029c9de4d1f51b
++ 4ecb98f1eb39325b46f76b6ea421493f5e022439f6776e33e9bd521a41b13356
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_svg_error_translations.py', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: '4d460dd0d1b918a86712f2489c11eb4a7e441aa49b7bed1b502fee8b0afbe06a' != '647fc64aadb087b0964deb38bacc8644ea878873f77ae473a7bb7a7ca69a6809'
+- 4d460dd0d1b918a86712f2489c11eb4a7e441aa49b7bed1b502fee8b0afbe06a
++ 647fc64aadb087b0964deb38bacc8644ea878873f77ae473a7bb7a7ca69a6809
+
+
+======================================================================
+FAIL: test_all_247_nonconflicting_producer_paths_keep_exact_bytes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_all_247_nonconflicting_producer_paths_keep_exact_bytes) (path='tools/test_tiff_c023_wording.py', producer='pr47')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 37, in test_all_247_nonconflicting_producer_paths_keep_exact_bytes
+    self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+AssertionError: 'ea6c8973ef3bd8582d0415af4152d6130c1253e00c11626ea436eb596b51582f' != '95b9e0d009362e3aaac2bee6cf16ee82e988d3eef0c6f633f264167d58e6dcf4'
+- ea6c8973ef3bd8582d0415af4152d6130c1253e00c11626ea436eb596b51582f
++ 95b9e0d009362e3aaac2bee6cf16ee82e988d3eef0c6f633f264167d58e6dcf4
+
+
+======================================================================
+FAIL: test_disjoint_about_and_m02_source_reversals_commute_and_restore_original_c04_hashes (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_disjoint_about_and_m02_source_reversals_commute_and_restore_original_c04_hashes) (path='Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 132, in test_disjoint_about_and_m02_source_reversals_commute_and_restore_original_c04_hashes
+    self.assertEqual(row['sha256'], digest(first))
+AssertionError: '3ca4e198067ba0f75a443158bc6d8db280e34cd642df9f6d4acf9dd078dbfe5f' != '6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3'
+- 3ca4e198067ba0f75a443158bc6d8db280e34cd642df9f6d4acf9dd078dbfe5f
++ 6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3
+
+
+======================================================================
+FAIL: test_hungarian_is_exactly_17_replacements_and_one_independent_m02_addition (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_hungarian_is_exactly_17_replacements_and_one_independent_m02_addition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 77, in test_hungarian_is_exactly_17_replacements_and_one_independent_m02_addition
+    self.assertEqual(scope['after_sha256'], c05.digest(c05_only))
+AssertionError: 'a940a7fe10cdd897d34059fd82bc2d3a1d1090f339b28aa15c4438aa432ab873' != '8048670091c2fdc030105ce4a26641cbdcdb6109b3be186a78d5d648a28b667b'
+- a940a7fe10cdd897d34059fd82bc2d3a1d1090f339b28aa15c4438aa432ab873
++ 8048670091c2fdc030105ce4a26641cbdcdb6109b3be186a78d5d648a28b667b
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6' != '6c9740862c359fb70d01e56c2abf428b8dad5636bcc2c936371badf7181be2de'
+- fe021d43f7feab77c6ea669ddb6fab8cdaf72a53882932745b504a5980e8c4f6
++ 6c9740862c359fb70d01e56c2abf428b8dad5636bcc2c936371badf7181be2de
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+af/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '90ce9eecd77f2a7cdbb607f052201806001b900f819fe2bacb5624afd448228b' != 'aff67778122ba49ce0352260de5f58aee760adab0f1b1cbf318e012799a8f2b2'
+- 90ce9eecd77f2a7cdbb607f052201806001b900f819fe2bacb5624afd448228b
++ aff67778122ba49ce0352260de5f58aee760adab0f1b1cbf318e012799a8f2b2
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ain+Kana/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '28363bde421d69f8582cfe1ecf5b1e6591d13f350587ae1bcce39499906bc9a1' != '3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408'
+- 28363bde421d69f8582cfe1ecf5b1e6591d13f350587ae1bcce39499906bc9a1
++ 3e8539c9925650564762d4eb6e57647fdb11f1a050281ab6543a5e112e68e408
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ain+Latn/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '7712bbe40d658328c9c905b9bcccff5b8cdfa8beba27f73954d7973afb4b52d8' != 'b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a'
+- 7712bbe40d658328c9c905b9bcccff5b8cdfa8beba27f73954d7973afb4b52d8
++ b943b85db765df4a77717438647fa7da7cfea226c52d73c99e58703d577a596a
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-ar/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'f5fc2ad9ef8ba8ba210aeb48130459a0046cfe4452f44b32e633b9bf56d2fcaa' != '7f1c87715a7f7edb89a3f7c96b2aa237a8ff90292817f9ea429950bb0e9e8da5'
+- f5fc2ad9ef8ba8ba210aeb48130459a0046cfe4452f44b32e633b9bf56d2fcaa
++ 7f1c87715a7f7edb89a3f7c96b2aa237a8ff90292817f9ea429950bb0e9e8da5
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+bo/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '7af1d25fc4a66c65015c0158e0c3fd2f9a077d248c66dc40d73253856da4e3cb' != 'ead9ac2c05cc0c2b833d3ec272bff62e9f71b301f724cf99e6aaa19346c7b19c'
+- 7af1d25fc4a66c65015c0158e0c3fd2f9a077d248c66dc40d73253856da4e3cb
++ ead9ac2c05cc0c2b833d3ec272bff62e9f71b301f724cf99e6aaa19346c7b19c
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ceb/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '301970b9fcd22838e11b732adb8c31e4170cce0a874effaf13e9bd842b6e46f4' != '73d0bc26c54b2171f80eb05c548fc32f84e59ec3f8d423720ceabcfe5d9b7517'
+- 301970b9fcd22838e11b732adb8c31e4170cce0a874effaf13e9bd842b6e46f4
++ 73d0bc26c54b2171f80eb05c548fc32f84e59ec3f8d423720ceabcfe5d9b7517
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-de/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '7edc3a7beb1c7a592e76ea46babd4a0c6afdf2d3a2d20347b670d2adabae1562' != '0df92ae0db0df16bb80194600a87e07b7bd44e0f04d0795afbd7e5826cdb0eca'
+- 7edc3a7beb1c7a592e76ea46babd4a0c6afdf2d3a2d20347b670d2adabae1562
++ 0df92ae0db0df16bb80194600a87e07b7bd44e0f04d0795afbd7e5826cdb0eca
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+dz/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '6fff13e3b01a2e8abab6d09d00c48c46f82f85afbc26e6da674bd8ba62c6f402' != 'd9877a3b2b9571a10d9d185d50317dd0f3466432d4b1bdbdcb9d14b604384c0d'
+- 6fff13e3b01a2e8abab6d09d00c48c46f82f85afbc26e6da674bd8ba62c6f402
++ d9877a3b2b9571a10d9d185d50317dd0f3466432d4b1bdbdcb9d14b604384c0d
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-el/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '52bb616198f0b5522c424a1448306bbe95d5c11aece3496558dcb068b0a32f19' != '30675eb3deccde6acfbbfa622e0438df9b30c9eba741f9fbb1d18a60551c4627'
+- 52bb616198f0b5522c424a1448306bbe95d5c11aece3496558dcb068b0a32f19
++ 30675eb3deccde6acfbbfa622e0438df9b30c9eba741f9fbb1d18a60551c4627
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+en+001/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '73d701d6bba43d5b6869a1b4a1363cfb34ad294a2c6068c68e38e384ac86d1cc' != '7997b38bf02c2aece8e3d84550e2e2615cfe05a7e09744dbce92274021cec6f9'
+- 73d701d6bba43d5b6869a1b4a1363cfb34ad294a2c6068c68e38e384ac86d1cc
++ 7997b38bf02c2aece8e3d84550e2e2615cfe05a7e09744dbce92274021cec6f9
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rAU/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'd7ad633bbc4f4d8471250b105ceacaaa482a2a54a48befcb5e5ae50f7d82904c' != 'd32b35e73842b3afac8f09d424ba49809499933fdf626313c8d2346db73935f0'
+- d7ad633bbc4f4d8471250b105ceacaaa482a2a54a48befcb5e5ae50f7d82904c
++ d32b35e73842b3afac8f09d424ba49809499933fdf626313c8d2346db73935f0
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rCA/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'ebf007c73f5ea2adb3a4a446cf8fe59ebef4395f2947b8b4699b8073c3155b9a' != '8ddb433d2c5ae3059d6e80c79588d31716c85d3eb74cab6171fe30a54c5c6d67'
+- ebf007c73f5ea2adb3a4a446cf8fe59ebef4395f2947b8b4699b8073c3155b9a
++ 8ddb433d2c5ae3059d6e80c79588d31716c85d3eb74cab6171fe30a54c5c6d67
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rGB/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'c0f414d45aa42a9bd707441636bee5f6a25239f33b420569faba35028df04e1e' != '1fae6fe624a6b74464c0be685a45a6e0cd60a302889cdf260c451c00f5af7fa3'
+- c0f414d45aa42a9bd707441636bee5f6a25239f33b420569faba35028df04e1e
++ 1fae6fe624a6b74464c0be685a45a6e0cd60a302889cdf260c451c00f5af7fa3
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rIN/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '3965ec602fc1f189dd15e8d98ff06969446a0bfe518ca3ff4e1a24aa6cf711cd' != '45ad2114e7d7c72d849f733c4dfe800882fce14792c7e53a1711082e84cc860e'
+- 3965ec602fc1f189dd15e8d98ff06969446a0bfe518ca3ff4e1a24aa6cf711cd
++ 45ad2114e7d7c72d849f733c4dfe800882fce14792c7e53a1711082e84cc860e
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rSG/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '46c441a5e68cdc2c1e70502ef14daa4ce2b6b72dcc472edeccc2a28c4803f388' != '96dcaaa3cba9d3e5686f4ce9ebdd376d6924a6e7e6f231b8faa627400699c568'
+- 46c441a5e68cdc2c1e70502ef14daa4ce2b6b72dcc472edeccc2a28c4803f388
++ 96dcaaa3cba9d3e5686f4ce9ebdd376d6924a6e7e6f231b8faa627400699c568
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-en-rUS/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '102020c021a533ee3b5d30a471177f2f92d86b0ee350423bec4574a42319da6f' != 'a4f557320e63ff74f16ca9a2d99a361e767e962b1b0b6981d45b195e5601eea2'
+- 102020c021a533ee3b5d30a471177f2f92d86b0ee350423bec4574a42319da6f
++ a4f557320e63ff74f16ca9a2d99a361e767e962b1b0b6981d45b195e5601eea2
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+en+XV/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '8312bcfa69ec9133b021702d4f3449a931fcf48dfa124f3288e91c9584c12eda' != '6d53956afc245be9938c6ef4b749408b77a251acb09cde509226e7ed83c1162e'
+- 8312bcfa69ec9133b021702d4f3449a931fcf48dfa124f3288e91c9584c12eda
++ 6d53956afc245be9938c6ef4b749408b77a251acb09cde509226e7ed83c1162e
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+eo/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a713cd16821b9aae55a55a573a027c27149bb6013c077bc86b97e876fc267985' != 'af8509eed4e4d0f18310d6c680ea9c0747c3078b3ffe2d52afb22716d2c515b8'
+- a713cd16821b9aae55a55a573a027c27149bb6013c077bc86b97e876fc267985
++ af8509eed4e4d0f18310d6c680ea9c0747c3078b3ffe2d52afb22716d2c515b8
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+es+419/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'fa159d8ea8b087f6a744c54e364e90451eb87f25ad768774a51c5dfb28fe330c' != 'f91a99a4b16de74f8bdcb09f0fd149d7a78a6ff76a13492c8142424cb653202c'
+- fa159d8ea8b087f6a744c54e364e90451eb87f25ad768774a51c5dfb28fe330c
++ f91a99a4b16de74f8bdcb09f0fd149d7a78a6ff76a13492c8142424cb653202c
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+es+ES/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'f071668730145aee85c76e96da4147734188257378e3653d01e3ba73217c3863' != '7411010f932c9868cef97d2011187153c06cc307c2ad402b65eefc6cd556aa7d'
+- f071668730145aee85c76e96da4147734188257378e3653d01e3ba73217c3863
++ 7411010f932c9868cef97d2011187153c06cc307c2ad402b65eefc6cd556aa7d
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+et/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a9b6ffd0ca8b5a2c50c77113e2e7f963e89970a41b88f325461b1052f9300f5f' != '1ca980d207362f956f51ac2e84582f91a40a2bbf3c7908f19ea122bbf2a5230d'
+- a9b6ffd0ca8b5a2c50c77113e2e7f963e89970a41b88f325461b1052f9300f5f
++ 1ca980d207362f956f51ac2e84582f91a40a2bbf3c7908f19ea122bbf2a5230d
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-fi/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'c100f9d18657c1a230d21f2188b8df4c32435bd9f9c81707b7650aebc241d397' != 'fb8476fceb91c007af3c5a949d220877eaae530dfe00a36e1291d8eccf3cd922'
+- c100f9d18657c1a230d21f2188b8df4c32435bd9f9c81707b7650aebc241d397
++ fb8476fceb91c007af3c5a949d220877eaae530dfe00a36e1291d8eccf3cd922
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-fr/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '1e6f07341ee9e039413bb9a17f02fbfd335caf0f2bc13f3b05466fa54ce44270' != '61ed421867169897b6b19ddce444739933dd282ab25ff4b0423a714d3a3cd0e5'
+- 1e6f07341ee9e039413bb9a17f02fbfd335caf0f2bc13f3b05466fa54ce44270
++ 61ed421867169897b6b19ddce444739933dd282ab25ff4b0423a714d3a3cd0e5
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '828ecfaee73ce648a72ec36019dadc3ed4a420d0937c93d8fd60773c370a5bd0' != '236fd9f2197fed5ec08bdf4b189cf138cab2152ccdcd64c9b4df8b262618c597'
+- 828ecfaee73ce648a72ec36019dadc3ed4a420d0937c93d8fd60773c370a5bd0
++ 236fd9f2197fed5ec08bdf4b189cf138cab2152ccdcd64c9b4df8b262618c597
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'b3993f3700adf12b5050ad79e47abbe9bca78faf6a998bfbf3d648ade5a43df9' != 'f8e74542c30fc8b42c412549886f3a4fd33635f101d1346806403c762a02fcd9'
+- b3993f3700adf12b5050ad79e47abbe9bca78faf6a998bfbf3d648ade5a43df9
++ f8e74542c30fc8b42c412549886f3a4fd33635f101d1346806403c762a02fcd9
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-hu/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '875ea876c5932181cea373362cc5f020b18f9eca63501e5fc249169521bc40b5' != '5c70c46cd834d3fca144371bf0a198ca83ec9161dcf11ce5ad77f54d6c7f76f9'
+- 875ea876c5932181cea373362cc5f020b18f9eca63501e5fc249169521bc40b5
++ 5c70c46cd834d3fca144371bf0a198ca83ec9161dcf11ce5ad77f54d6c7f76f9
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-in/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'bd84da4d2033a41bb418ccb3a780580c6c38590087241c574ef59239a6ebf24e' != 'b0d8dcf4e6134e81bfd40c3c916ae227eab2b51453d138aaa631444df467d269'
+- bd84da4d2033a41bb418ccb3a780580c6c38590087241c574ef59239a6ebf24e
++ b0d8dcf4e6134e81bfd40c3c916ae227eab2b51453d138aaa631444df467d269
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-it/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'c0ccd230d0ae9825f7fb731c325a0400cdd313ac5b0f23b920e68f96166c0212' != 'a24b283ec3d04769dde672ebadf162e540db089d56634c64bc83c3a1b6f1e0da'
+- c0ccd230d0ae9825f7fb731c325a0400cdd313ac5b0f23b920e68f96166c0212
++ a24b283ec3d04769dde672ebadf162e540db089d56634c64bc83c3a1b6f1e0da
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-ja/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a89bad1e78e1224979d6224102502bb457ecc2002defabd2fe1747c4c1cd241e' != 'df55bf82a03e5f514e4cad69576490dc03ac3e35cb17261a42996ac596bb6443'
+- a89bad1e78e1224979d6224102502bb457ecc2002defabd2fe1747c4c1cd241e
++ df55bf82a03e5f514e4cad69576490dc03ac3e35cb17261a42996ac596bb6443
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+jje/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'fd92dc1857005c38c9a694f8f697eb5c80c7217a31e428f435b8a0961ad73b03' != 'cbb2333b61b658e394e2677d30715a496e73c65c893f58eba2da4c0371d1e86f'
+- fd92dc1857005c38c9a694f8f697eb5c80c7217a31e428f435b8a0961ad73b03
++ cbb2333b61b658e394e2677d30715a496e73c65c893f58eba2da4c0371d1e86f
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ko+KP/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '8161b24de8cc35f39cc2cfd76a3265f6a21e85b1d98a6e3a14c3a6d6b04a33a9' != '343d62352ec5124b33d5b24cb7c5350fc19c76173e978933b43469740a058cc8'
+- 8161b24de8cc35f39cc2cfd76a3265f6a21e85b1d98a6e3a14c3a6d6b04a33a9
++ 343d62352ec5124b33d5b24cb7c5350fc19c76173e978933b43469740a058cc8
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ko+KR/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '43226985bb4587d579064aba800ab955e24fe42ed5c758ea134987a29281e94d' != 'f79bf50db463738ab96e4a50faaeb1461d8571c31a64b9d95fca6c87c4c7d130'
+- 43226985bb4587d579064aba800ab955e24fe42ed5c758ea134987a29281e94d
++ f79bf50db463738ab96e4a50faaeb1461d8571c31a64b9d95fca6c87c4c7d130
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '9d928efffd75d06b3a8b6016518c6869b407e95a3b6125b69c13a9482f2d6176' != 'f1ab7f67b87f82dcf476d08f0d0ee503a1bb58a38d0a2a658637e19249d71480'
+- 9d928efffd75d06b3a8b6016518c6869b407e95a3b6125b69c13a9482f2d6176
++ f1ab7f67b87f82dcf476d08f0d0ee503a1bb58a38d0a2a658637e19249d71480
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-lt/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '1090fd9c45037c5da993eb0d63760721076e2e5f4ebc6ef92b68db7094d2e370' != '2454357296436bf9f2035efbb5b4a9d98636439334f172ae5fa6ab20580c8f84'
+- 1090fd9c45037c5da993eb0d63760721076e2e5f4ebc6ef92b68db7094d2e370
++ 2454357296436bf9f2035efbb5b4a9d98636439334f172ae5fa6ab20580c8f84
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+lv/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'efc418754184505249764ad732b12e686823ec10de8913a500da53e655403840' != 'ca80c2306d66339957264ba6649cc5438e3723a9641d008bbb4e8d73f44955af'
+- efc418754184505249764ad732b12e686823ec10de8913a500da53e655403840
++ ca80c2306d66339957264ba6649cc5438e3723a9641d008bbb4e8d73f44955af
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+lzh+Hant/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a160f0e764398567eda04babe04f78fa7f1766c28b3c2194320432dc3c44cac7' != 'a071691d26be9039e2cfab72a062378653e07cf158899975a05b5f13b8149009'
+- a160f0e764398567eda04babe04f78fa7f1766c28b3c2194320432dc3c44cac7
++ a071691d26be9039e2cfab72a062378653e07cf158899975a05b5f13b8149009
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a922d09fcf9ef6073d8ed6aa5b12c667de77c0833334e13db778a0290751bb3d' != '91daac30f641cba0f6a46cc6675a8be9585ce773a38ba6e98841e63dc35f3d91'
+- a922d09fcf9ef6073d8ed6aa5b12c667de77c0833334e13db778a0290751bb3d
++ 91daac30f641cba0f6a46cc6675a8be9585ce773a38ba6e98841e63dc35f3d91
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+mn+Mong/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '6c1b22b811b1e3cdce566fc40c5c2c69a942b875beb5631c6e8c1406a15a3821' != '857ad5a906d6325c4bb0d1d0f69e012bd6bfbeaede3ad4b12354762fc1e53050'
+- 6c1b22b811b1e3cdce566fc40c5c2c69a942b875beb5631c6e8c1406a15a3821
++ 857ad5a906d6325c4bb0d1d0f69e012bd6bfbeaede3ad4b12354762fc1e53050
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+mnc+Mong/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '2eec719b162054ca1856aa299bb954f17e83621f8424b23f87a98ea5a0502630' != '1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff'
+- 2eec719b162054ca1856aa299bb954f17e83621f8424b23f87a98ea5a0502630
++ 1308c8924496fd8161b2cb7bb7341154b3fc50baebabfd3005a05fee758ebdff
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-ms/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '2716ddb8735783e724eaea9319dcebb30e96f0cb2790094f11986c03643fc613' != '6ea95d03202d264816c7a96be2a37ee466b14a8dbdac2b9487926da1a2a19507'
+- 2716ddb8735783e724eaea9319dcebb30e96f0cb2790094f11986c03643fc613
++ 6ea95d03202d264816c7a96be2a37ee466b14a8dbdac2b9487926da1a2a19507
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '7c5bbde3dd8a957c32f7fd38c414cd26eae589bf94bf02c3b210c8350e76d0c0' != 'b2077c5ed0db644801785f131bfa151c66c0ed0a794ce580e1eea81f458b6100'
+- 7c5bbde3dd8a957c32f7fd38c414cd26eae589bf94bf02c3b210c8350e76d0c0
++ b2077c5ed0db644801785f131bfa151c66c0ed0a794ce580e1eea81f458b6100
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '3091e3f857d302d4aa533b3879ac8e041a43cc2d2339f95638cedaea90c49d0f' != '7585a8f9b4cc49d54823186aca9e437f41c7f5471b5772be23111e40a86095e2'
+- 3091e3f857d302d4aa533b3879ac8e041a43cc2d2339f95638cedaea90c49d0f
++ 7585a8f9b4cc49d54823186aca9e437f41c7f5471b5772be23111e40a86095e2
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-nl/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'a54c9371b73bc1a17d56a3b43839f7412ceafb18096710d2d5a6563dd1b719c1' != '3fa4ef5426d528a5a1c2dfd96d5e377be65ad5781b39b84124332e8cea409d4d'
+- a54c9371b73bc1a17d56a3b43839f7412ceafb18096710d2d5a6563dd1b719c1
++ 3fa4ef5426d528a5a1c2dfd96d5e377be65ad5781b39b84124332e8cea409d4d
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-pt-rBR/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'bea18092fc01635007cda04ee845e99943150a237ffc91fbefb636b5713d2590' != 'c0481a7292bbc49ffd43d5e1656d137a70c284590fa1b5d860806e1808922bde'
+- bea18092fc01635007cda04ee845e99943150a237ffc91fbefb636b5713d2590
++ c0481a7292bbc49ffd43d5e1656d137a70c284590fa1b5d860806e1808922bde
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+pt+PT/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '41328bb29e5569fd84c941e5a28971197d450a71d25758dfa1039282bfe9ce3c' != '98357d28675a6ce17fe0ca91f29011da01081f0aab78f70b6572ede759261704'
+- 41328bb29e5569fd84c941e5a28971197d450a71d25758dfa1039282bfe9ce3c
++ 98357d28675a6ce17fe0ca91f29011da01081f0aab78f70b6572ede759261704
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '291f346515d30716cd67e481c69e3d54a2c73704b0606cb4a6a9067bfaaf59fd' != 'bea2041ec3891502b6741af8163984143cad0cc373f9b84490704d40ff356931'
+- 291f346515d30716cd67e481c69e3d54a2c73704b0606cb4a6a9067bfaaf59fd
++ bea2041ec3891502b6741af8163984143cad0cc373f9b84490704d40ff356931
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-ru/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '9c9f0a6abd2278f64c288238edbd261d897e99597fa47d3a49e49f182f4b297e' != '57118a741bfd753d2e7a8b41cc3ff41d7ee7ffa8d64bff0bb17b23db47795ed2'
+- 9c9f0a6abd2278f64c288238edbd261d897e99597fa47d3a49e49f182f4b297e
++ 57118a741bfd753d2e7a8b41cc3ff41d7ee7ffa8d64bff0bb17b23db47795ed2
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+ryu/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '59986c985511501469e9cc9655ddaad71df127c1cbf53516f89cd59a44a4e4af' != '5fc9c0576b2b8ba941118d61c567028c2e17ef5c6d9eee5df7e98423a11794dc'
+- 59986c985511501469e9cc9655ddaad71df127c1cbf53516f89cd59a44a4e4af
++ 5fc9c0576b2b8ba941118d61c567028c2e17ef5c6d9eee5df7e98423a11794dc
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-sw/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'dd4be74ba593f4a063b7103fe6590b6f29cfc04b4decb26fb9d6c8031a9df3f5' != 'de4145111d82f411286e3d8380bd09bbb93d58b623962b16f08a3c960acfb12e'
+- dd4be74ba593f4a063b7103fe6590b6f29cfc04b4decb26fb9d6c8031a9df3f5
++ de4145111d82f411286e3d8380bd09bbb93d58b623962b16f08a3c960acfb12e
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-tl/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '26eaab6d99ff5f91cc9ea91bec3a3a7b4bc5c4b1526d383c275be71e600792d1' != 'fcfe7eac430878f667e44b3066c20a1bc2850637b21be0576705f29fa2afc930'
+- 26eaab6d99ff5f91cc9ea91bec3a3a7b4bc5c4b1526d383c275be71e600792d1
++ fcfe7eac430878f667e44b3066c20a1bc2850637b21be0576705f29fa2afc930
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-tr/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'f5229a91ec85e0643d8fb67f6d569f0a7bdc7901db538922bc8e4864aabd5a0e' != 'c20ae8f02756319fc80eb2d9c3d3cc2bc7d9bb9484396429dd3127dcbd176f46'
+- f5229a91ec85e0643d8fb67f6d569f0a7bdc7901db538922bc8e4864aabd5a0e
++ c20ae8f02756319fc80eb2d9c3d3cc2bc7d9bb9484396429dd3127dcbd176f46
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-vi/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '0fc39e4815cd3d14c3be35c0177be75fe51eeb7a8581601d64bed88f0b8023ba' != 'ae2e7c42bb704358c70e267bf37f0939a4ff6427541b6dee7c90380f2c599f7e'
+- 0fc39e4815cd3d14c3be35c0177be75fe51eeb7a8581601d64bed88f0b8023ba
++ ae2e7c42bb704358c70e267bf37f0939a4ff6427541b6dee7c90380f2c599f7e
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+vi+Hani/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'c94b3f3c6c774e0fda57aa23f74ac5f09de96bc25ae6ded2c3bb4a13575ea703' != 'fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202'
+- c94b3f3c6c774e0fda57aa23f74ac5f09de96bc25ae6ded2c3bb4a13575ea703
++ fea8127afcc774ccebfb84f54932786c7e26b30d227fbee834656eaccd899202
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+wuu+Hans/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '7d2851fe0967311d22b647bff8c368d68dfcd6ad997296c1a313c92ea157ebc0' != '45533032008b6e8fbea38d5b7477374f7e9cf30260870e87f51c2877ae3dbfd0'
+- 7d2851fe0967311d22b647bff8c368d68dfcd6ad997296c1a313c92ea157ebc0
++ 45533032008b6e8fbea38d5b7477374f7e9cf30260870e87f51c2877ae3dbfd0
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+yue+Hant/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '68f6547d0a83dfa96b1ec3a22eb8faba2c495574c8d27518af3da8801babbaeb' != '489a7905bbf3b1105c57a6fdefa549a45f99d6a66a7660e864fbb1c82443c51f'
+- 68f6547d0a83dfa96b1ec3a22eb8faba2c495574c8d27518af3da8801babbaeb
++ 489a7905bbf3b1105c57a6fdefa549a45f99d6a66a7660e864fbb1c82443c51f
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-b+yue+Latn/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'bc4576d07fdb38ef61a1adc267120503ff64816cd933fe0c55ff3e1dd38de250' != '203658b95776746fff7bfe5c3eb42553d2acdb8e0064f67a592208960cbb92d1'
+- bc4576d07fdb38ef61a1adc267120503ff64816cd933fe0c55ff3e1dd38de250
++ 203658b95776746fff7bfe5c3eb42553d2acdb8e0064f67a592208960cbb92d1
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-zh-rCN/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '2d9a732edeb07c15461ddbbfe7c70907b6369a50287273146a3db408c041b2fc' != '7cc78226401a5f19d090dce2055ae4582e16d28a99324d646692112e8a8789cc'
+- 2d9a732edeb07c15461ddbbfe7c70907b6369a50287273146a3db408c041b2fc
++ 7cc78226401a5f19d090dce2055ae4582e16d28a99324d646692112e8a8789cc
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-zh-rHK/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: 'f00df68971822b4652a2024314c4a1051f024539453af75a301a5c44f445ef3d' != '56cde061a30df92171aa3584eb1b71f13ff61fd9fa8935af2b740eea639edecf'
+- f00df68971822b4652a2024314c4a1051f024539453af75a301a5c44f445ef3d
++ 56cde061a30df92171aa3584eb1b71f13ff61fd9fa8935af2b740eea639edecf
+
+
+======================================================================
+FAIL: test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints (test_localized_dialog_composition.LocalizedDialogCompositionContracts.test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints) (path='Paintroid/src/main/res/values-zh-rTW/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_localized_dialog_composition.py", line 97, in test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints
+    self.assertEqual(row['before_sha256'], c05.digest(first))
+AssertionError: '0bd2630412a508002785ce869fec163376dfb6ba363148ad040ec02c339480ac' != 'd0af3d22dc17ba90933385b3a70fc265b7a5e3d72a27b54cd57dba96e9c54f9a'
+- 0bd2630412a508002785ce869fec163376dfb6ba363148ad040ec02c339480ac
++ d0af3d22dc17ba90933385b3a70fc265b7a5e3d72a27b54cd57dba96e9c54f9a
+
+
+======================================================================
+FAIL: test_only_typed_svg_failures_are_translated_at_the_display_boundary (test_svg_error_translations.SvgErrorTranslationTests.test_only_typed_svg_failures_are_translated_at_the_display_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/test_svg_error_translations.py", line 77, in test_only_typed_svg_failures_are_translated_at_the_display_boundary
+    source = without_m03_production(path, (ROOT / path).read_text())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr52-current-develop-20261012/tools/commons_metadata_m03_scope.py", line 42, in before_m03_production
+    raise AssertionError(f'{path}: expected the exact M03 producer/callback delta')
+AssertionError: Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt: expected the exact M03 producer/callback delta
+
+----------------------------------------------------------------------
+Ran 630 tests in 188.808s
+
+FAILED (failures=143)
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}

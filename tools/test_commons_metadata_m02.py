@@ -8,6 +8,8 @@ from unittest.mock import patch
 import translation_catalogues as catalogues
 from hungarian_attribution_c05_scope import before_c05
 from commons_metadata_m02_scope import fixture, before_m02_catalogue, before_m02_producer
+from commons_metadata_m03_scope import before_m03_catalogue
+from commons_metadata_composition_scope import without_m03_production
 from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -22,6 +24,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
         self.assertEqual(60, len(data['entries']))
         for row in data['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else without_m03_production(row['path'], text))
             # C05's exact 17 replacements are independent of this one addition.
             historical = before_c05(row['path'], before_m02_catalogue(row['path'], text))
             self.assertEqual(row['before_sha256'], hashlib.sha256(historical.encode()).hexdigest())
@@ -54,6 +58,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
         self.assertEqual(2, len(entries))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else without_m03_production(row['path'], text))
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
             for edit in reversed(row['edits']):
                 self.assertEqual(1, text.count(edit['after']))
@@ -74,6 +80,8 @@ class CommonsMetadataM02Contracts(unittest.TestCase):
     def test_rejects_missing_duplicated_changed_and_unrelated_catalogue_edits(self):
         for row in fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = (before_m03_catalogue(row['path'], text) if row['path'].endswith('/strings.xml')
+                    else without_m03_production(row['path'], text))
             for bad in ('', row['line']*2, row['line'].replace('HTTP ', 'HTTPX ')):
                 with self.subTest(tag=row['tag'], mutation=bad):
                     with self.assertRaises(AssertionError):

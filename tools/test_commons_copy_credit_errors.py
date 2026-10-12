@@ -8,6 +8,8 @@ import unittest
 from commons_metadata_m02_scope import before_m02_catalogue, before_m02_producer
 import translation_catalogues as catalogues
 from hungarian_attribution_c05_scope import before_c05
+from commons_metadata_m03_scope import before_m03_catalogue
+from commons_metadata_composition_scope import without_m03_production
 from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -23,6 +25,7 @@ KEYS = {
 def catalogue_before_copy_credit_and_f01(path, text):
     """Reverse only the two reviewed resource deltas; keep the original full-file hash."""
     text = before_c05(path, text)
+    text = before_m03_catalogue(path, text)
     for key in KEYS:
         text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
         if count != 1:
@@ -90,7 +93,8 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             self.assertEqual(row['before_sha256'], hashlib.sha256(text.encode()).hexdigest(), row['path'])
 
     def test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim(self):
-        text = (JAVA / 'MediaGalleryActivity.kt').read_text()
+        path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
+        text = without_m03_production(path, (ROOT / path).read_text())
         copy = text.split('    private fun copyCommonsCredit(', 1)[1].split('    private fun showStatus(', 1)[0]
         self.assertIn('val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}', copy)
         self.assertIn('ui(R.string.commons_credit_copy_failed_reason,reason)', copy)
@@ -106,7 +110,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             self.assertNotIn('R.string.' + key, before + after)
         scope = json.loads((EVIDENCE / 'source-scope.json').read_text())
         for row in scope['unchanged_semantics_files']:
-            current = before_m02_producer(row['path'], (ROOT / row['path']).read_bytes())
+            current = before_m02_producer(row['path'], without_m03_production(row['path'], (ROOT / row['path']).read_text()).encode())
             if row['path'] == 'Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt':
                 # Preserve the historical whole-file endpoint. The separate About
                 # layout repair permits exactly one pinned presentation-only edit.

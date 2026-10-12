@@ -22,6 +22,7 @@ GALLERY_METHODS = {
     'confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor',
     'savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft',
 }
+SUPPORTED_SDKS = (21, 24, 30, 35)
 DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
 DIALOG_METHODS = {
     'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow',
@@ -37,8 +38,8 @@ SELECTED_PHASES = {'gallery-draft', 'dialog', *VERTICAL_SHARDS}
 
 def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]:
     """Keep future ordinary methods; require an explicit update for new gallery cases."""
-    if type(sdk) is not int or sdk not in (30, 35):
-        raise ValueError('The emulator matrix supports SDK 30 or 35')
+    if type(sdk) is not int or sdk not in SUPPORTED_SDKS:
+        raise ValueError('The emulator matrix supports SDK 21, 24, 30 or 35')
     gallery = {item for item in expected if item[0] == GALLERY_DRAFT}
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
@@ -46,17 +47,24 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     dialog = {item for item in expected if item[0] == DIALOG}
     ordinary = expected - gallery - dialog - vertical - seed - verify
     shards = list(VERTICAL_SHARDS.values())
-    if (vertical != {(VERTICAL, name) for name in VERTICAL_METHODS}
+    if sdk < 30:
+        # These whole classes are SDK-suppressed by their source annotations.
+        # An unexpected eligible method is a mismatch, never quietly excluded.
+        if gallery or vertical or ordinary:
+            raise ValueError('Legacy app omission requires no eligible ordinary, gallery or vertical methods')
+    elif (vertical != {(VERTICAL, name) for name in VERTICAL_METHODS}
             or len(shards) != 2 or any(len(part) != 2 for part in shards)
             or shards[0] & shards[1] or set.union(*shards) != vertical):
         raise ValueError('Vertical shards must be an exact disjoint two-by-two source inventory')
-    if gallery != {(GALLERY_DRAFT, method) for method in GALLERY_METHODS} or not ordinary:
+    if sdk >= 30 and (gallery != {(GALLERY_DRAFT, method) for method in GALLERY_METHODS} or not ordinary):
         raise ValueError('The exact three gallery-draft methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} if sdk == 35 else set()):
         raise ValueError('The exact five API35 dialog methods and API30 suppression are required')
-    parts = {'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS}
+    parts = {}
+    if sdk >= 30:
+        parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS})
     if sdk == 35:
         parts.update(dialog=dialog, seed=seed, verify=verify)
     return parts
@@ -91,16 +99,20 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
             raise ValueError(f'{phase} does not prove its exact successful SDK-specific inventory')
         completed.update(identities)
         counts[phase] = len(wanted)
-    excluded = {item for item in expected if sdk == 30 and item[0] in (RESTART_SEED, RESTART_VERIFY)}
+    excluded = {item for item in expected if sdk < 35 and item[0] in (RESTART_SEED, RESTART_VERIFY)}
     if completed != expected - excluded or completed & suppressed:
         raise ValueError('App reports omit selected SDK-eligible source tests')
-    return dict(success=True, device_sdk=sdk, source_tests_sha256=source_digest,
+    return dict(success=True if parts else None,
+                execution_status='passed' if parts else 'not-run-no-sdk-eligible-selected-tests',
+                inventory_validated=True, device_sdk=sdk, source_tests_sha256=source_digest,
                 timeout_seconds_by_phase={phase: PHASE_TIMEOUTS[phase] for phase in parts},
-                ordinary_and_gallery_total_timeout_seconds=270,
                 dialog_timeout_seconds=300 if sdk == 35 else 0,
                 colour_scope='known-baseline-identical-limitation; positive viewport acceptance remains separate',
-                vertical_timeout_seconds_per_shard=180, vertical_total_timeout_seconds=360,
-                receipt_scope="complete-composed-app-union",
+                ordinary_and_gallery_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts
+                                                               if phase in ('ordinary', 'gallery-draft')),
+                vertical_timeout_seconds_per_shard=180 if sdk >= 30 else None,
+                vertical_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts if phase in VERTICAL_SHARDS),
+                receipt_scope="complete-composed-app-union" if parts else "sdk-ineligible-app-omission",
                 all_app_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts),
                 declared_tests=len(expected | suppressed), sdk_eligible_tests=len(expected),
                 sdk_suppressed_tests=sorted(suppressed),
@@ -109,12 +121,14 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
 
 
 def report_paths(root: Path, sdk: int) -> dict[str, Path]:
-    if type(sdk) is not int or sdk not in (30, 35):
-        raise ValueError('The emulator matrix supports SDK 30 or 35')
-    paths = {'ordinary': root/'app/androidTest-results/summary.json',
-             'gallery-draft': root/'app-gallery-draft/androidTest-results/summary.json'}
-    paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
-                  for phase in VERTICAL_SHARDS})
+    if type(sdk) is not int or sdk not in SUPPORTED_SDKS:
+        raise ValueError('The emulator matrix supports SDK 21, 24, 30 or 35')
+    paths = {}
+    if sdk >= 30:
+        paths['ordinary'] = root/'app/androidTest-results/summary.json'
+        paths['gallery-draft'] = root/'app-gallery-draft/androidTest-results/summary.json'
+        paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
+                      for phase in VERTICAL_SHARDS})
     if sdk == 35:
         paths['dialog'] = root/'app-dialog/androidTest-results/summary.json'
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
@@ -149,7 +163,12 @@ def verify_reports(source: Path, root: Path, sdk: int) -> dict:
     result = verify_app_reports(expected, sdk, reports, source_tests_sha256(source),
                                 declared_tests(source) - expected)
     content = json.dumps(result, indent=2)+'\n'
-    selected_outputs = outputs if sdk == 35 else outputs[:-1]
+    if sdk == 35:
+        selected_outputs = outputs
+    elif sdk >= 30:
+        selected_outputs = outputs[:-1]
+    else:
+        selected_outputs = outputs[:1]
     for output in selected_outputs:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(content)
@@ -159,7 +178,7 @@ def verify_reports(source: Path, root: Path, sdk: int) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-tests', type=Path, required=True)
-    parser.add_argument('--sdk', type=int, choices=(30, 35), required=True)
+    parser.add_argument('--sdk', type=int, choices=SUPPORTED_SDKS, required=True)
     parser.add_argument('--root', type=Path, required=True)
     args = parser.parse_args()
     print(json.dumps(verify_reports(args.source_tests, args.root, args.sdk)))

@@ -1,0 +1,32 @@
+test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks) ... FAIL
+test_all_catalogues_reject_missing_duplicated_changed_and_unrelated_edits (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_all_catalogues_reject_missing_duplicated_changed_and_unrelated_edits) ... ok
+test_android_contracts_cover_stream_boundaries_both_real_routes_and_late_results (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_android_contracts_cover_stream_boundaries_both_real_routes_and_late_results) ... ok
+test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_every_current_disposition_and_present_entry_is_checked_even_when_completeness_fails) ... ok
+test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior) ... ok
+test_only_one_message_added_to_default_and_exact_59_catalogues (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_only_one_message_added_to_default_and_exact_59_catalogues) ... FAIL
+test_production_reversal_rejects_broader_or_untyped_changes (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_production_reversal_rejects_broader_or_untyped_changes) ... ok
+test_resource_and_production_pins_reject_fixture_corruption (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_resource_and_production_pins_reject_fixture_corruption) ... ok
+
+======================================================================
+FAIL: test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m03-20261011/tools/test_commons_metadata_m03.py", line 42, in test_all_140_tags_have_individual_dispositions_and_81_explicit_fallbacks
+    self.assertEqual(59, sum(r['value'] is not None for r in rows))
+AssertionError: 59 != 56
+
+======================================================================
+FAIL: test_only_one_message_added_to_default_and_exact_59_catalogues (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_only_one_message_added_to_default_and_exact_59_catalogues)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-m03-20261011/tools/test_commons_metadata_m03.py", line 24, in test_only_one_message_added_to_default_and_exact_59_catalogues
+    self.assertEqual({'default'} | SCOPED_TAGS, {e['tag'] for e in data['entries']})
+AssertionError: Items in the first set but not the second:
+'mnc-Mong'
+'ain-Kana'
+'ain-Latn'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.568s
+
+FAILED (failures=2)

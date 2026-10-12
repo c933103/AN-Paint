@@ -1,0 +1,85 @@
+{
+  "code_tree": "cad5e3baf65ff0e34965e4010b12f4e5f73d8f50",
+  "local_snapshot_only_commit": "f7b22df53d7ccb59863dd2dbf18a74d7405b6009",
+  "remote_parents": [
+    "2755e30573d6ea2c071a128b6fa2940fc675af1a",
+    "4231edaac45d89c52f51e2b77d0f94a1176ad88c"
+  ],
+  "results": {
+    "develop-baseline-host.log": {
+      "tests": 568,
+      "seconds": 181.068,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "d118cc41692babdc9d571f5fe8f2ea3173e7b1b2530c77655caf9a50cd08ce0e"
+    },
+    "initial-historical-oracle-failures.log": {
+      "tests": 630,
+      "seconds": 188.808,
+      "passed": false,
+      "failure_summary": "failures=143",
+      "sha256": "709a32b3e16e9ae3fcd9e4455693d2f954141b670b6679efe22fe19c93e8a899"
+    },
+    "intermediate-legacy-oracle-failure.log": {
+      "tests": 636,
+      "seconds": 186.639,
+      "passed": false,
+      "failure_summary": "failures=1",
+      "sha256": "7ce8f62003c86cfe9add044df22bc5e226493308b7974c05213bb915bd5b4830"
+    },
+    "frozen-host.log": {
+      "tests": 636,
+      "seconds": 180.99,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "c0537985f06f1225bb5535855a4dbd79fe9dfabd367adf5d0a1199b3ac9feb9d"
+    },
+    "metadata-host.log": {
+      "tests": 21,
+      "seconds": 1.529,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "c2b4ff7418cdcedf1984b2f170e0f33fb40884fc737b558b37b6778cd189e5f0"
+    },
+    "composition-host.log": {
+      "tests": 34,
+      "seconds": 1.033,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "efabc228dced26133ca56f37c430cc4db0dabae8f00a7a7efe319366a451ef78"
+    },
+    "partition-host.log": {
+      "tests": 10,
+      "seconds": 49.473,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "66e1763a37098471aefe4cd5b5efde6b411c2b8412f58342b82f0257edde9798"
+    },
+    "legacy-host.log": {
+      "tests": 7,
+      "seconds": 14.146,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "51a3bcd986b7f9aaaa0ff1faf3629a849a1bab7ab17d20e9a44181692c109562"
+    },
+    "union-host.log": {
+      "tests": 6,
+      "seconds": 0.328,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "de161501b22bae42debd87662130297954e82a5f960fccc8cc8a40c0998e5f94"
+    },
+    "optimized-host.log": {
+      "tests": 63,
+      "seconds": 3.763,
+      "passed": true,
+      "failure_summary": null,
+      "sha256": "72e3c0f7a86dabcc90d43961d4a321b3f279631ede7ba965d5ec33b40c2d7778"
+    }
+  },
+  "shell_syntax": "bash -n tools/ci_emulator.sh passed",
+  "diff_whitespace": "git diff --check passed",
+  "android_runtime": "Not run locally; exact published head requires hosted JVM/lint, resource-generation, build and API35 installed evidence.",
+  "source_frozen_for_full_candidate_run": true,
+  "failure_disposition": "Initial standalone endpoint failures and intermediate legacy count failure retained, fixed by strict composition-aware projections and explicit five-dialog suppression identity checks. No test waived."
+}

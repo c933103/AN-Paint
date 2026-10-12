@@ -7,6 +7,8 @@ import xml.etree.ElementTree as ET
 
 import hungarian_attribution_c05_scope as c05
 import commons_metadata_m02_scope as m02
+import commons_metadata_m03_scope as m03
+from localized_dialog_develop_scope import before_develop_successor, scope as develop_scope
 import test_commons_copy_credit_errors as c04
 from app_instrumentation_matrix import app_partition, PHASE_TIMEOUTS
 from run_android_instrumentation import declared_tests
@@ -34,7 +36,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
         self.assertEqual(247, len({row['path'] for row in rows}))
         for row in rows:
             with self.subTest(path=row['path'], producer=row['producer']):
-                self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+                self.assertEqual(row['sha256'], digest(before_develop_successor(row['path'], (ROOT / row['path']).read_bytes())))
 
     def test_all_116_jvm_and_installed_source_files_preserve_every_original_method_and_assertion(self):
         rows = composition_scope()['all_kotlin_test_sources']
@@ -42,10 +44,14 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
                  for folder in ('test', 'androidTest')
                  for path in (ROOT / module / 'src' / folder).rglob('*.kt')}
         self.assertEqual(116, len(rows))
-        self.assertEqual(paths, {row['path'] for row in rows})
+        additions = develop_scope()['added_kotlin_test_sources']
+        self.assertEqual(2, len(additions))
+        self.assertEqual(paths, {row['path'] for row in rows + additions})
+        for row in additions:
+            self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
         for row in rows:
             with self.subTest(path=row['path']):
-                self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()))
+                self.assertEqual(row['sha256'], digest(before_develop_successor(row['path'], (ROOT / row['path']).read_bytes())))
 
     def test_exact_sdk_aware_phase_union_and_all_original_deadlines_survive(self):
         self.assertEqual({'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
@@ -71,7 +77,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
         scope = c05.scope()
         self.assertEqual(17, len(scope['entries']))
         row = next(row for row in m02.fixture()['entries'] if row['path'] == c05.PATH)
-        text = (ROOT / c05.PATH).read_text()
+        text = m03.before_m03_catalogue(c05.PATH, (ROOT / c05.PATH).read_text())
         self.assertEqual(1, text.count(row['line']))
         c05_only = m02.before_m02_catalogue(c05.PATH, text)
         self.assertEqual(scope['after_sha256'], c05.digest(c05_only))
@@ -89,7 +95,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
     def test_resource_reversals_commute_for_every_m02_catalogue_and_restore_pinned_endpoints(self):
         for row in m02.fixture()['entries']:
             path = row['path']
-            text = (ROOT / path).read_text()
+            text = m03.before_m03_catalogue(path, (ROOT / path).read_text())
             with self.subTest(path=path):
                 first = c05.before_c05(path, m02.before_m02_catalogue(path, text))
                 second = m02.before_m02_catalogue(path, c05.before_c05(path, text))
@@ -124,7 +130,7 @@ class LocalizedDialogCompositionContracts(unittest.TestCase):
             return restored
         for row in json.loads((c04.EVIDENCE / 'source-scope.json').read_text())['unchanged_semantics_files']:
             path = row['path']
-            content = (ROOT / path).read_bytes()
+            content = before_develop_successor(path, (ROOT / path).read_bytes())
             with self.subTest(path=path):
                 first = before_dialog(path, m02.before_m02_producer(path, content))
                 second = m02.before_m02_producer(path, before_dialog(path, content))

@@ -427,10 +427,9 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
             self.assertEqual((retained/'stderr.log').read_text(),'known child error')
         finally:shutil.rmtree(retained)
 
-    def test_api30_omission_and_phase_deadlines_are_explicit(self):
+    def test_restart_and_instrumentation_phase_deadlines_are_explicit(self):
         source=SCRIPT.read_text()
         self.assertIn('if test "$TEST_API" = 35',source)
-        self.assertIn('API35-only; both phase classes excluded on API30',source)
         self.assertEqual(source.count('--timeout-seconds 60'),2)
         self.assertEqual(source.count('--timeout-seconds 180'),4)
         self.assertEqual(source.count('--timeout-seconds 90'),1)

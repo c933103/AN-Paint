@@ -7,6 +7,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from commons_metadata_m02_scope import before_m02_catalogue
+from commons_metadata_m03_scope import before_m03_catalogue
 import hungarian_attribution_c05_scope as c05
 import test_commons_copy_credit_errors as c04
 import translation_catalogues as catalogues
@@ -34,7 +35,7 @@ class HungarianAttributionC05Test(unittest.TestCase):
         self.assertEqual('691f8870649a1d21d1441f4e3d0e795660b23e9a', self.scope['source_commit'])
         # Remove only M02's separately pinned single addition before the
         # unchanged C05 whole-file endpoints; keep all 17 replacements required.
-        c05_only = before_m02_catalogue(c05.PATH, self.text)
+        c05_only = before_m02_catalogue(c05.PATH, before_m03_catalogue(c05.PATH, self.text))
         self.assertEqual(self.scope['after_sha256'], c05.digest(c05_only))
         self.assertEqual(self.scope['before_sha256'], c05.digest(c05.before_c05(c05.PATH, c05_only)))
 

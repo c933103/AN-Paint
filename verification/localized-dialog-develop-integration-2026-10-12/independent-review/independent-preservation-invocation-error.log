@@ -1,0 +1,17 @@
+fatal: empty string is not a valid pathspec. please use . instead if you meant to match all paths
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr52-review-20261012/independent_check.py", line 109, in <module>
+    accepted_kotlin=[p for p in paths('accepted-pr52') if p.endswith('.kt') and ('/src/test/' in p or '/src/androidTest/' in p)]
+                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr52-review-20261012/independent_check.py", line 8, in paths
+    def paths(ref,prefix=''): return git('ls-tree','-r','--name-only',ref,'--',prefix).decode().splitlines()
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/shared/anpaint-pr52-review-20261012/independent_check.py", line 5, in git
+    def git(*args): return subprocess.check_output(['git','-C',str(ROOT),*args])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/workspace/shared/anpaint-pr52-current-develop-20261012', 'ls-tree', '-r', '--name-only', 'accepted-pr52', '--', '']' returned non-zero exit status 128.
