@@ -1,0 +1,35 @@
+{
+  "base_commit": "4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+  "entries": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "before_sha256": "6511dc8fbcbb79b25b2c818fe075d641e068a6ea38a77d3256919b69c48723c3",
+      "after_sha256": "964ed63e6539a6459f369b635761adf358ebbf788c30ff9dadc6f555c62448b0",
+      "edits": [
+        {
+          "before": "    class ResponseLimitException: IOException()\n",
+          "after": "    class ResponseLimitException: IOException()\n\n    /** Application-owned API error presence; keep provider error fields out of UI text. */\n    class QueryFailureException: IOException()\n"
+        },
+        {
+          "before": "if (root.has(\"error\")) throw IOException(\"Commons metadata query failed\")",
+          "after": "if (root.has(\"error\")) throw QueryFailureException()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "before_sha256": "a1796251c8cc5351df26a22b1dd29f051651cb2d22fc7df53b51392a81cc8507",
+      "after_sha256": "130b09e0fe824cf9d2d400ae40c946891958fe7b3aa9b40642f2c5dd404c5fc1",
+      "edits": [
+        {
+          "before": "    /** Translate only this application-owned failure; preserve provider/framework details verbatim. */",
+          "after": "    /** Translate only typed application-owned failures; preserve provider/framework details verbatim. */"
+        },
+        {
+          "before": "        if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)\n        else error.message",
+          "after": "        if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)\n        else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)\n        else error.message"
+        }
+      ]
+    }
+  ]
+}

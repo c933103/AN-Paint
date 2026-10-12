@@ -18,6 +18,9 @@ internal object CommonsAttribution {
     /** Application-owned streaming response limit; localize only at the alive UI boundary. */
     class ResponseLimitException: IOException()
 
+    /** Application-owned API error presence; keep provider error fields out of UI text. */
+    class QueryFailureException: IOException()
+
     private const val MAX_RESPONSE = 2 * 1024 * 1024
     private const val MAX_FIELD = 64 * 1024
     private val fields = listOf("ObjectName", "Artist", "Credit", "Attribution", "LicenseShortName",
@@ -88,7 +91,7 @@ internal object CommonsAttribution {
     fun parse(json: String, expectedSource: String): Record {
         require(json.length <= MAX_RESPONSE)
         val root = JSONObject(json)
-        if (root.has("error")) throw IOException("Commons metadata query failed")
+        if (root.has("error")) throw QueryFailureException()
         val pages = root.getJSONObject("query").getJSONArray("pages")
         if (pages.length() != 1) throw IOException("Commons metadata returned an ambiguous file")
         val page = pages.getJSONObject(0)

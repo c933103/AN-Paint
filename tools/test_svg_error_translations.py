@@ -4,6 +4,7 @@ import pathlib
 import unittest
 
 import translation_catalogues as catalogues
+from commons_metadata_m04_scope import before_m04_production
 from commons_metadata_m03_scope import before_m03_production
 from test_translations import SCOPED_TAGS
 
@@ -74,7 +75,7 @@ class SvgErrorTranslationTests(unittest.TestCase):
 
     def test_only_typed_svg_failures_are_translated_at_the_display_boundary(self):
         path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
-        source = before_m03_production(path, (ROOT / path).read_text())
+        source = before_m03_production(path, before_m04_production(path, (ROOT / path).read_text()))
         self.assertIn('SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable', source)
         self.assertIn('SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large', source)
         self.assertIn('if(error is SvgOriginalSize.SizeException)', source)

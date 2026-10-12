@@ -1,0 +1,783 @@
+{
+  "ain-Kana": {
+    "decision": "unresolved",
+    "original_value": "Commons オㇿ タ ノカ オルㇱペ アコピシ エアイカㇷ゚.",
+    "value": null,
+    "backtranslation": "It was not possible to inquire at Commons about the image information.",
+    "confidence": "low",
+    "rationale": "The Kana and Latin spellings correspond, including final consonant signs and handakuten, but script correctness does not validate the clause. The dictionary treats kopisi principally as asking someone; the bare noka oruspe phrase does not independently establish an about-metadata argument. That paraphrase may also mean image story/information rather than metadata. Do not accept a word-for-word assembled sentence without resolving both issues.",
+    "source_ids": [
+      "ain_dictionary"
+    ],
+    "script_convention": "Kana target is respected; Commons is a permitted Latin proper name. Full small-kana/combining-mark shaping is still untested.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Confirm a natural Ainu machine-query construction, its queried object/source arguments and a metadata-specific descriptive term; then align both scripts."
+  },
+  "ain-Latn": {
+    "decision": "unresolved",
+    "original_value": "Commons or ta noka oruspe a=kopisi eaykap.",
+    "value": null,
+    "backtranslation": "It was not possible to inquire at Commons about the image information.",
+    "confidence": "low",
+    "rationale": "The a= notation is a valid Ainu person-prefix convention, not an English fallback. The same kopisi argument-structure and noka oruspe metadata-specificity questions remain as in ain-Kana. The inability predicate is plausible, but does not alone validate the full message.",
+    "source_ids": [
+      "ain_dictionary"
+    ],
+    "script_convention": "Latin Ainu orthography and person-affix notation are respected; no Japanese substitution.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Review jointly with ain-Kana; no independent acceptance of one member of the pair."
+  },
+  "mnc-Mong": {
+    "decision": "unresolved",
+    "original_value": "Commons ᠴᡳ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠮᡝᠵᡳᡤᡝ ᠪᡝ ᡶᠣᠨᠵᡳᠮᡝ ᠮᡠᡨᡝᡥᡝᡴᡡ.",
+    "value": null,
+    "backtranslation": "Could not inquire of Commons for the image information.",
+    "confidence": "low",
+    "rationale": "The text is genuinely Manchu-script and the ability/negative morphology is compositionally plausible. The primary grammar supports asking but uses de for the person asked in one worked example; ci as the source of this API inquiry still needs checking. nirugan i mejige is broader image information/news and has not been shown to identify metadata. Suffix-i shaping/spacing also requires actual-script review.",
+    "source_ids": [
+      "mnc_grammar",
+      "unicode_mongolian"
+    ],
+    "script_convention": "Manchu letters occur within the Mongolian Unicode block; this is not a Mongolian-language substitution. Suffix separation needs review.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Resolve the source/addressee case and metadata paraphrase; choose suffix-gap encoding and punctuation with Manchu expertise and Android rendering evidence."
+  },
+  "af": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Die navraag vir Commons-metadata het misluk",
+    "value": "Die navraag vir Commons-metadata het misluk",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "The finite past predicate het misluk clearly applies to the metadata inquiry; vir denotes the requested object without naming a cause.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ar": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "فشل الاستعلام عن بيانات Commons الوصفية",
+    "value": "فشل الاستعلام عن بيانات Commons الوصفية",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "الاستعلام عن identifies a query for information; بيانات ... الوصفية identifies metadata. The past failure verb is cause-neutral. Preserve Latin proper name within Arabic RTL layout.",
+    "source_ids": [],
+    "script_convention": "Arabic body with Latin brand. Mixed-direction rendering requires UI verification.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "bo": {
+    "decision": "unresolved",
+    "original_value": "Commons ཀྱི་མེ་ཊ་གནས་ཚུལ་འདྲི་ཞིབ་བྱེད་པ་ལམ་ལྷོངས་མ་བྱུང་།",
+    "value": null,
+    "backtranslation": "The inquiry for Commons metadata did not succeed.",
+    "confidence": "low",
+    "rationale": "The failure-to-succeed predicate is plausible Tibetan, but the proposed meta-plus-information term and computing inquiry phrase were not substantiated well enough. The upstream Tibetan MediaWiki catalogue offers a different metadata term; it is evidence of variation, not grounds to copy it. Full sentence naturalness remains uncertain.",
+    "source_ids": [
+      "bo_terminology",
+      "bo_mediawiki"
+    ],
+    "script_convention": "Tibetan script is correct for the tag; language-specific morphology must remain distinct.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Obtain a Tibetan technical-language check for metadata, query and the nominalized predicate. No approved replacement is supplied."
+  },
+  "ceb": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Wala molampos ang pagpangayo sa metadata gikan sa Commons",
+    "value": "Wala molampos ang pagpangayo sa metadata gikan sa Commons",
+    "backtranslation": "The request for metadata from Commons did not succeed.",
+    "confidence": "medium",
+    "rationale": "Wala molampos states non-success of the completed request. pagpangayo sa metadata gikan sa Commons is a request for metadata from the source, not an image download.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "de": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Die Abfrage der Commons-Metadaten ist fehlgeschlagen",
+    "value": "Die Abfrage der Commons-Metadaten ist fehlgeschlagen",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "Abfrage der ... Metadaten and ist fehlgeschlagen are ordinary technical German and identify the failed operation.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "dz": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons གི་མེ་ཊ་གནས་སྡུད་འདྲི་དཔྱད་འབད་མ་ཚུགས།",
+    "value": "Commons གི་མེ་ཊ་གནས་སྡུད་འདྲི་དཔྱད་འབད་མ་ཚུགས།",
+    "backtranslation": "Could not query Commons metadata.",
+    "confidence": "medium",
+    "rationale": "Independent lexical evidence now supports both terms: the older primary computer glossary has the query noun and MediaWiki’s actual image-metadata label uses the same meta-plus-data loan. The Dzongkha gi possessive and འབད་མ་ཚུགས inability-after-attempt predicate coherently yield “Could not query Commons metadata.” The 2018 DDC glossary supplies alternative terms, so no exclusive official standard is claimed.",
+    "source_ids": [
+      "dz_glossary_2007",
+      "dz_glossary_2018",
+      "dz_mediawiki"
+    ],
+    "script_convention": "Tibetan script is correct for the tag; language-specific morphology must remain distinct.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "resolved_original_flag": true
+  },
+  "el": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Το ερώτημα για τα μεταδεδομένα του Commons απέτυχε",
+    "value": "Το ερώτημα για τα μεταδεδομένα του Commons απέτυχε",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "ερώτημα is a computing query in this context; μεταδεδομένα and απέτυχε preserve object and failure.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-001": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-AU": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-CA": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-GB": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-IN": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-SG": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-US": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "en-XV": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadata query failed",
+    "value": "Commons metadata query failed",
+    "backtranslation": "Commons metadata query failed",
+    "confidence": "high",
+    "rationale": "The English default is repeated exactly; this neutral technical sentence has no regional spelling differences. Exact tag is retained.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "eo": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "La peto pri metadatenoj de Commons malsukcesis",
+    "value": "La peto pri metadatenoj de Commons malsukcesis",
+    "backtranslation": "The request for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "peto pri metadatenoj is a request for metadata; malsukcesis reports past non-success without a cause.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "es-419": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Falló la consulta de metadatos de Commons",
+    "value": "Falló la consulta de metadatos de Commons",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "consulta de metadatos and falló are appropriate neutral technical Spanish; no regional distinction is needed for this sentence.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "es-ES": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Falló la consulta de metadatos de Commons",
+    "value": "Falló la consulta de metadatos de Commons",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "consulta de metadatos and falló are appropriate neutral technical Spanish; sharing wording with es-419 is justified here.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "et": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commonsi metaandmete päring ebaõnnestus",
+    "value": "Commonsi metaandmete päring ebaõnnestus",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "Commonsi is the proper-name genitive; metaandmete päring and ebaõnnestus preserve request and failure.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "fi": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons-metatietojen kysely epäonnistui",
+    "value": "Commons-metatietojen kysely epäonnistui",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "Commons-metatietojen kysely is a clear metadata query compound; epäonnistui reports failure.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "fr": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "La requête de métadonnées de Commons a échoué",
+    "value": "La requête de métadonnées de Commons a échoué",
+    "backtranslation": "The Commons metadata request failed.",
+    "confidence": "high",
+    "rationale": "requête de métadonnées and a échoué express a failed metadata request. No transport or absence claim is introduced.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "hak-Hant-TW": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "查 Commons 个中繼資料失敗。",
+    "value": "查 Commons 个中繼資料失敗。",
+    "backtranslation": "Querying Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "The Sixian lookup verb 查 and possessive 个 form a target-variety sentence. Technical 中繼資料 is a bounded modern loan compound; 失敗 is the outcome. Semantically aligned with the PFS value.",
+    "source_ids": [
+      "hak_query",
+      "hak_fail"
+    ],
+    "script_convention": "Traditional Han target preserved; Commons is a recognizable proper name.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "hak-Latn-TW": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Chhà Commons ke chûng-ki chṳ̂-liau sṳt-phai.",
+    "value": "Chhà Commons ke chûng-ki chṳ̂-liau sṳt-phai.",
+    "backtranslation": "Querying Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "PFS chhà, ke, chûng-ki, chṳ̂-liau and sṳt-phai correspond to the Sixian Han sentence. This is not Mandarin transcription. Tone marks and dotted-u sequence must be preserved.",
+    "source_ids": [
+      "hak_query",
+      "hak_fail",
+      "hak_data",
+      "hak_ki"
+    ],
+    "script_convention": "Sixian Pha̍k-fa-sṳ, with tone diacritics and U+0324 dotted-u combining sequence preserved.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "hu": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "A Commons metaadatainak lekérdezése sikertelen",
+    "value": "A Commons metaadatainak lekérdezése sikertelen",
+    "backtranslation": "The query of Commons metadata is unsuccessful.",
+    "confidence": "high",
+    "rationale": "lekérdezése denotes querying the Commons metadata. sikertelen is a normal terse UI failed-state predicate; a past auxiliary is unnecessary.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "id": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Kueri metadata Commons gagal",
+    "value": "Kueri metadata Commons gagal",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "Kueri metadata is an ordinary Indonesian technical noun phrase; gagal applies to the operation.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "it": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "La richiesta dei metadati di Commons non è riuscita",
+    "value": "La richiesta dei metadati di Commons non è riuscita",
+    "backtranslation": "The request for Commons metadata did not succeed.",
+    "confidence": "high",
+    "rationale": "richiesta dei metadati and non è riuscita denote failure of the request, compatible with the source operation.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ja": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commonsのメタデータの問い合わせに失敗しました",
+    "value": "Commonsのメタデータの問い合わせに失敗しました",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "メタデータの問い合わせに失敗しました clearly states a failed inquiry, without converting it to network or image-download failure.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "jje": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 메타데이터 질의가 실패헷수다.",
+    "value": "Commons 메타데이터 질의가 실패헷수다.",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "The subject is the metadata query, and 실패헷수다 is a compositional failure predicate using attested Jejueo completed polite morphology. Shared modern technical nouns are retained; this is not a claim that an entire sentence is conventionally attested.",
+    "source_ids": [
+      "jje_grammar",
+      "jje_corpus"
+    ],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ko-KP": {
+    "decision": "revise",
+    "original_value": "Commons 메타자료 조회에 실패하였습니다.",
+    "value": "Commons 메타자료 요청에 실패하였습니다.",
+    "backtranslation": "The request for Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "Replace 조회 with 요청 to use a source-grounded request noun. A mirrored DPRK Education Ministry computing text explicitly uses 메타자료 and 자료요청. The new phrase is ordinary Korean formal completed failure morphology and remains within query/request failure semantics. This is a regional evidence improvement; the original 조회 is not proved ungrammatical. Full sentence remains model composition.",
+    "source_ids": [
+      "ko_kp_book"
+    ],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "resolved_original_flag": true
+  },
+  "ko-KR": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 메타데이터 조회에 실패했습니다.",
+    "value": "Commons 메타데이터 조회에 실패했습니다.",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "메타데이터 조회에 실패했습니다 is a standard cause-neutral Korean lookup-failure sentence.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ko-Kore-KR": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 메타데이터 照會에 失敗했습니다.",
+    "value": "Commons 메타데이터 照會에 失敗했습니다.",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "照會 and 失敗 are the correct Hanja for the Korean readings in the otherwise aligned Hangul sentence. Kore appropriately allows mixed Hangul/Han.",
+    "source_ids": [],
+    "script_convention": "Intentional Hangul/Hanja mix is correct for the requested Kore convention; exact-tag dispatch still needs app tests.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "lt": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "„Commons“ metaduomenų užklausa nepavyko",
+    "value": "„Commons“ metaduomenų užklausa nepavyko",
+    "backtranslation": "The Commons metadata request failed.",
+    "confidence": "high",
+    "rationale": "metaduomenų užklausa identifies the metadata request and nepavyko reports failure. The quoted brand is preserved.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "lv": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons metadatu vaicājums neizdevās",
+    "value": "Commons metadatu vaicājums neizdevās",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "metadatu vaicājums identifies the metadata query; neizdevās reports non-success.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "lzh-Hant": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "查詢 Commons 中繼資料未成。",
+    "value": "查詢 Commons 中繼資料未成。",
+    "backtranslation": "The inquiry for Commons metadata did not succeed.",
+    "confidence": "medium",
+    "rationale": "查詢 ... 未成 is compact technical Literary Chinese. Modern 中繼資料 is permitted by the stated catalogue convention and does not require an obscure archaism.",
+    "source_ids": [],
+    "script_convention": "Traditional Han technical Literary Chinese as specified in TRANSLATING.md.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "mn-Cyrl-MN": {
+    "decision": "revise",
+    "original_value": "Commons-ийн мета өгөгдлийн хүсэлт амжилтгүй боллоо.",
+    "value": "Commons-ын мета өгөгдлийн хүсэлт амжилтгүй боллоо.",
+    "backtranslation": "The request for Commons metadata was unsuccessful.",
+    "confidence": "medium",
+    "rationale": "Change Commons-ийн to Commons-ын. Given the ordinary back-vowel pronunciation of Commons, official foreign-word suffix rules §49.5–6 require the back-vowel suffix. The rest of the message clearly identifies an unsuccessful metadata request. Retain the existing transparent two-word spelling of мета өгөгдөл; the NUM source uses a hyphenated variant, which does not change its meaning.",
+    "source_ids": [
+      "mn_orthography",
+      "mn_metadata"
+    ],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "mn-Mong": {
+    "decision": "unresolved",
+    "original_value": "Commons ᠤᠨ ᠮᠧᠲ᠋ᠠ ᠥᠭᠭᠦᠭᠳᠡᠯ ᠦᠨ ᠬᠦᠰᠡᠯᠲᠡ ᠠᠮᠵᠢᠯᠲᠠ ᠦᠭᠡᠢ ᠪᠣᠯᠪᠠ᠃",
+    "value": null,
+    "backtranslation": "The request for Commons metadata was unsuccessful.",
+    "confidence": "low",
+    "rationale": "The traditional-script proposal cannot be accepted merely by converting the Cyrillic meaning. The technical loan spelling, traditional lexical forms and full inflection remain insufficiently checked. Ordinary spaces before suffixes also bypass script-sensitive suffix shaping. Unicode 17 describes MVS for this role and legacy NNBSP compatibility, so a blind whitespace replacement is not enough.",
+    "source_ids": [
+      "mn_metadata",
+      "mn_request",
+      "unicode_mongolian"
+    ],
+    "script_convention": "Traditional Mongolian target is respected at block level, but suffix-gap encoding and shaping are not approved.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Review traditional Mongolian technical vocabulary and morphology, then verify appropriate suffix encoding and rendering in this app. No approved replacement is supplied."
+  },
+  "ms": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Pertanyaan metadata Commons gagal",
+    "value": "Pertanyaan metadata Commons gagal",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "pertanyaan is a query/inquiry in Malay technical register; metadata and gagal preserve the intended object and failed state. No lexical change is needed merely to prefer another synonym.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "nan-Hant-TW": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "查詢 Commons 的中繼資料失敗。",
+    "value": "查詢 Commons 的中繼資料失敗。",
+    "backtranslation": "Querying Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "查詢, possessive 的 read ê, and 失敗 form the Taiwanese sentence aligned with the POJ candidate. 中繼資料 is explicitly treated as a modern technical loan, not an ancient or universal Taiwanese norm.",
+    "source_ids": [
+      "nan_query"
+    ],
+    "script_convention": "Traditional Han target preserved; Commons is a recognizable proper name.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "nan-Latn-TW": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Chhâ-sûn Commons ê tiong-kè chu-liāu sit-pāi.",
+    "value": "Chhâ-sûn Commons ê tiong-kè chu-liāu sit-pāi.",
+    "backtranslation": "Querying Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "chhâ-sûn and chu-liāu are POJ, not Tâi-lô tsh/tsu spellings. ê is the Taiwanese possessive and sit-pāi the failure predicate; all align with the Han counterpart.",
+    "source_ids": [
+      "nan_query",
+      "hak_ki"
+    ],
+    "script_convention": "Taiwanese Pe̍h-ōe-jī, using chh/chu rather than Tâi-lô tsh/tsu.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "nl": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "De aanvraag voor Commons-metadata is mislukt",
+    "value": "De aanvraag voor Commons-metadata is mislukt",
+    "backtranslation": "The request for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "aanvraag voor ... metadata states a request for metadata; is mislukt is cause-neutral. Request is allowed by the actual operation.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "pt-BR": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Falha na consulta aos metadados do Commons",
+    "value": "Falha na consulta aos metadados do Commons",
+    "backtranslation": "Failure in the query for Commons metadata.",
+    "confidence": "high",
+    "rationale": "Falha na consulta aos metadados is a normal concise error nominalization and preserves the query object.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "pt-PT": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "A consulta aos metadados do Commons falhou",
+    "value": "A consulta aos metadados do Commons falhou",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "A consulta aos metadados ... falhou clearly identifies a failed metadata query.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "qaa-Zsye-XV": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "⚠️ Commons 🗂️ 🔎 ❌",
+    "value": "⚠️ Commons 🗂️ 🔎 ❌",
+    "backtranslation": "Warning: Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "Accept only as the explicitly designated symbolic locale convention: warning + Commons + metadata-folder + search + failure. The symbol sequence is inherently less precise than language; accessibility and emoji rendering remain separate gates.",
+    "source_ids": [],
+    "script_convention": "Explicit private symbolic locale convention, including emoji variation selectors; not a natural-language certification.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ru": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Запрос метаданных Commons завершился ошибкой",
+    "value": "Запрос метаданных Commons завершился ошибкой",
+    "backtranslation": "The Commons metadata request ended in an error.",
+    "confidence": "high",
+    "rationale": "Запрос метаданных ... завершился ошибкой reports an unsuccessful metadata request without specifying the provider error contents or a transport cause.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "ryu": {
+    "decision": "unresolved",
+    "original_value": "Commonsぬメタデータぬ問い合わせー、ないびらんたん。",
+    "value": null,
+    "backtranslation": "The query for Commons metadata could not be carried out.",
+    "confidence": "low",
+    "rationale": "The proper name and modern loans remain recognizable and nu is plausible, but the nominal 問い合わせー plus ないびらんたん construction has not been established as a natural failed-query sentence. Generic negative/past examples do not validate the nominal connection or rule out a Japanese calque. The exact negative-form example cited by the proposer could not be independently recovered from the extractable paper text.",
+    "source_ids": [
+      "ryu_corpus",
+      "ryu_dictionary"
+    ],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "Intended to express query/request failure, but the exact non-English sentence has not been established as adequate; do not implement this candidate as accepted.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+    "required_resolution": "Have an Okinawan/Shuri reviewer settle the query noun and its ability/failure predicate; do not merely swap Japanese particles or certify from an unrelated corpus example."
+  },
+  "sw": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Ombi la metadata ya Commons halikufaulu",
+    "value": "Ombi la metadata ya Commons halikufaulu",
+    "backtranslation": "The request for Commons metadata did not succeed.",
+    "confidence": "medium",
+    "rationale": "Ombi is a request; agreement in la ... halikufaulu is consistent with its noun class. The technical borrowing metadata is bounded and the predicate adds no cause.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "tl": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Nabigo ang kahilingan para sa metadata ng Commons",
+    "value": "Nabigo ang kahilingan para sa metadata ng Commons",
+    "backtranslation": "The request for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "Nabigo ang kahilingan ... states failure of a request for Commons metadata. It does not imply missing metadata.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "tr": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons meta verileri sorgusu başarısız oldu",
+    "value": "Commons meta verileri sorgusu başarısız oldu",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "meta verileri sorgusu identifies querying the metadata; başarısız oldu reports failure in the past.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "vi": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Truy vấn siêu dữ liệu của Commons thất bại",
+    "value": "Truy vấn siêu dữ liệu của Commons thất bại",
+    "backtranslation": "The query for Commons metadata failed.",
+    "confidence": "high",
+    "rationale": "Truy vấn siêu dữ liệu ... thất bại is normal Vietnamese computing wording with a neutral failure predicate.",
+    "source_ids": [],
+    "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "vi-Hani": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "追問超與料𧵑 Commons 失敗。",
+    "value": "追問超與料𧵑 Commons 失敗。",
+    "backtranslation": "Truy vấn siêu dữ liệu của Commons thất bại. / The query for Commons metadata failed.",
+    "confidence": "medium",
+    "rationale": "The character sequence reads the same Vietnamese sentence as vi, including native possessive 𧵑 của; it is not Chinese word order. 追問 maps truy vấn and 與料 maps dữ liệu. Retain all three missing glyphs, including the appropriate sentence-final 。.",
+    "source_ids": [
+      "vi_nom_reference",
+      "vi_query",
+      "vi_of"
+    ],
+    "script_convention": "Vietnamese Hán/Nôm, including supplementary-plane 𧵑; English occurs only as the brand Commons.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review. This is a modern constructed Hán/Nôm sentence, not a claimed historic orthographic standard. 。 is not the only imaginable punctuation choice, but is appropriate and retained for linguistic consistency, not removed to evade glyph work.",
+    "glyph_requirements": [
+      {
+        "character": "追",
+        "codepoint": "U+8FFD",
+        "required_for_retained_value": true
+      },
+      {
+        "character": "問",
+        "codepoint": "U+554F",
+        "required_for_retained_value": true
+      },
+      {
+        "character": "。",
+        "codepoint": "U+3002",
+        "required_for_retained_value": true
+      }
+    ]
+  },
+  "wuu-Hans": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 个元数据查询失败。",
+    "value": "Commons 个元数据查询失败。",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "Shanghainese-basis written Wu uses possessive 个 and shared modern technical vocabulary. This short technical register need not force a colloquial paraphrase. All Han is Simplified as requested; no standardized pan-Wu norm is claimed.",
+    "source_ids": [],
+    "script_convention": "Simplified Han, Shanghainese basis; supplemental font coverage is not full fallback-chain evidence.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "yue-Hant": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 嘅中繼資料查詢失敗。",
+    "value": "Commons 嘅中繼資料查詢失敗。",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "嘅 supplies Cantonese grammar; 中繼資料查詢失敗 is clear technical wording and is semantically aligned with Jyutping.",
+    "source_ids": [],
+    "script_convention": "Traditional Han target preserved; Commons is a recognizable proper name.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "yue-Latn": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons ge3 zung1 gai3 zi1 liu6 caa4 seon1 sat1 baai6.",
+    "value": "Commons ge3 zung1 gai3 zi1 liu6 caa4 seon1 sat1 baai6.",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "medium",
+    "rationale": "ge3, zung1 gai3 zi1 liu6, caa4 seon1 and sat1 baai6 are valid Jyutping lexical readings. The unmodified lexical tone liu6 is acceptable; colloquial changed-tone liu2 does not make it mandatory. No Han fallback is inserted.",
+    "source_ids": [
+      "jyutping"
+    ],
+    "script_convention": "Jyutping, with lexical tone numbers and no Han body text.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "zh-CN": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 元数据查询失败",
+    "value": "Commons 元数据查询失败",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "元数据查询失败 is exact cause-neutral Simplified Chinese technical wording.",
+    "source_ids": [],
+    "script_convention": "Simplified Han target preserved.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "zh-HK": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 中繼資料查詢失敗",
+    "value": "Commons 中繼資料查詢失敗",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "中繼資料查詢失敗 is an acceptable Traditional Chinese computing-register form; other Hong Kong terminology preferences are stylistic, not a semantic defect here.",
+    "source_ids": [],
+    "script_convention": "Traditional Han target preserved; Commons is a recognizable proper name.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  },
+  "zh-TW": {
+    "decision": "acceptable bounded model proposal",
+    "original_value": "Commons 中繼資料查詢失敗",
+    "value": "Commons 中繼資料查詢失敗",
+    "backtranslation": "The Commons metadata query failed.",
+    "confidence": "high",
+    "rationale": "中繼資料查詢失敗 is standard Taiwan Traditional Chinese technical wording.",
+    "source_ids": [],
+    "script_convention": "Traditional Han target preserved; Commons is a recognizable proper name.",
+    "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+    "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+  }
+}

@@ -6,6 +6,7 @@ import re
 import unittest
 
 import translation_catalogues as catalogues
+from commons_metadata_m04_scope import before_m04_catalogue, before_m04_production
 from commons_metadata_m03_scope import before_m03_catalogue, before_m03_production
 from test_translations import SCOPED_TAGS
 
@@ -21,7 +22,7 @@ KEYS = {
 
 def catalogue_before_copy_credit_and_f01(path, text):
     """Reverse only the two reviewed resource deltas; keep the original full-file hash."""
-    text = before_m03_catalogue(path, text)
+    text = before_m03_catalogue(path, before_m04_catalogue(path, text))
     for key in KEYS:
         text, count = re.subn(r'    <string name="' + key + r'">[^\n]*</string>\n', '', text)
         if count != 1:
@@ -89,7 +90,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
 
     def test_catch_change_is_confined_to_metadata_copy_and_keeps_detail_verbatim(self):
         path = 'Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt'
-        text = before_m03_production(path, (ROOT / path).read_text())
+        text = before_m03_production(path, before_m04_production(path, (ROOT / path).read_text()))
         copy = text.split('    private fun copyCommonsCredit(', 1)[1].split('    private fun showStatus(', 1)[0]
         self.assertIn('val reason=error.message?.takeIf {it.isNotBlank()}', copy)
         self.assertIn('ui(R.string.commons_credit_copy_failed_reason,reason)', copy)
@@ -105,7 +106,7 @@ class CommonsCopyCreditErrorContracts(unittest.TestCase):
             self.assertNotIn('R.string.' + key, before + after)
         scope = json.loads((EVIDENCE / 'source-scope.json').read_text())
         for row in scope['unchanged_semantics_files']:
-            self.assertEqual(row['sha256'], hashlib.sha256(before_m03_production(row['path'], (ROOT / row['path']).read_text()).encode()).hexdigest())
+            self.assertEqual(row['sha256'], hashlib.sha256(before_m03_production(row['path'], before_m04_production(row['path'], (ROOT / row['path']).read_text())).encode()).hexdigest())
 
     def test_android_tests_use_all_140_tags_and_actual_webview_route(self):
         tests = ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local'

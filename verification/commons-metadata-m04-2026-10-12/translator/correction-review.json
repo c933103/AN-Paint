@@ -1,0 +1,84 @@
+{
+  "task": "AN Paint M04 — independent review of two proposed corrections only",
+  "checked_utc": "2026-10-12T03:51:00Z",
+  "resource_key": "commons_metadata_query_failed",
+  "source_default": "Commons metadata query failed",
+  "input_sha256": {
+    "decisions.json": "e03248ca4f3b5ed3530fbb9c7502a7ac8357e05cb07f1d446e08f2dfa24c7578",
+    "sources.json": "d4af30ce0324b81cd9c7825d67d5fcd95726e33a54a61148a91f12c97d2c3ca0"
+  },
+  "semantic_scope": "The Commons metadata query/request failed; any top-level error member triggers the branch regardless of null, false or empty-object value. No cause or additional operation is implied.",
+  "decisions": {
+    "ko-KP": {
+      "value": "Commons 메타자료 요청에 실패하였습니다.",
+      "decision": "confirm_as_bounded_model_proposal",
+      "confidence": "medium",
+      "backtranslation": "The request for Commons metadata failed.",
+      "rationale": "The independently retrieved computing textbook explicitly uses 메타자료 for metadata and 자료요청 for a logical data request. 요청 therefore has regional source support absent from the original proposal’s 조회. 실패하였습니다 is a formal completed-failure predicate. The whole construction identifies failure of the metadata request and does not say request transmission, the network, HTTP, metadata absence or image downloading failed.",
+      "change_assessment": "Supports replacing 조회 with 요청 on evidence grounds; does not prove that 조회 was ungrammatical or semantically wrong.",
+      "review_limit": [
+        "The complete UI sentence is model-composed, not quoted or independently attested in the source.",
+        "The book identifies 교육성 교육정보쎈터 as its issuing institution, but the retrieved copy is on a third-party mirror; authenticity, edition and present-day official terminology have not been independently established.",
+        "Medium confidence is bounded language/semantic review, not native-speaker certification or release acceptance. No Android runtime/rendering check was performed."
+      ],
+      "sources": [
+        {
+          "title": "JAVA자료기지프로그람작성법",
+          "url": "https://mirror.adversec.com/dprk/dprk-34c4/DPRK-34C3-PDFs/RedStarBooks/05_JDBP.pdf",
+          "kind": "mirrored primary textbook",
+          "independently_retrieved": true,
+          "locations": [
+            "Printed p.5, final paragraph: 자료요청 in data-system request context.",
+            "Printed p.141, section 7: 메타자료(MetaData) and definition of metadata.",
+            "Headers on printed pp.5 and 141 identify 교육성 교육정보쎈터."
+          ],
+          "support_limit": "Lexical and contextual evidence; neither the failure predicate nor this entire UI message is attested by these passages."
+        }
+      ],
+      "blocking_wording_issue_found": false
+    },
+    "mn-Cyrl-MN": {
+      "value": "Commons-ын мета өгөгдлийн хүсэлт амжилтгүй боллоо.",
+      "decision": "confirm_as_bounded_model_proposal",
+      "confidence": "medium",
+      "backtranslation": "The request for Commons metadata was unsuccessful.",
+      "rationale": "The official foreign-word rules §49.5–6 require back-vowel suffixes for a foreign word containing a back vowel. Applying that rule to the ordinary pronunciation of Commons supports Commons-ын rather than Commons-ийн. The remainder identifies a metadata request and states its unsuccessful result without inventing a cause.",
+      "change_assessment": "Confirms the -ийн to -ын correction under the ordinary spoken reading of Commons. The proper name remains recognizable and in Latin letters.",
+      "review_limit": [
+        "Suffix choice is an application of the official rule to the ordinary pronunciation of Commons, not a source-attested inflected spelling of this particular product name.",
+        "The NUM source writes мета-өгөгдөл with a hyphen; it validates the metadata concept, not an exclusive rule against the proposed transparent two-word spelling мета өгөгдөл.",
+        "The complete sentence is model-reviewed, not externally attested, native-speaker certified or release accepted. No Android runtime/rendering check was performed."
+      ],
+      "sources": [
+        {
+          "title": "Монгол хэлний зөв бичих дүрмийн журамласан толь — §49.5–6",
+          "url": "https://toli.gov.mn/r",
+          "kind": "official primary orthographic rules",
+          "independently_retrieved": true,
+          "support": "Back-vowel vs front-vowel suffix selection for foreign words.",
+          "support_limit": "The page does not name Commons; applying its rule to Commons is a stated inference."
+        },
+        {
+          "title": "National University of Mongolia Open Data — About",
+          "url": "https://data.num.edu.mn/en/about",
+          "kind": "primary institutional terminology usage",
+          "independently_retrieved": true,
+          "support": "Defines мета-өгөгдөл as data describing data.",
+          "support_limit": "Does not attest the complete sentence or its particular compound spacing."
+        }
+      ],
+      "blocking_wording_issue_found": false
+    }
+  },
+  "unresolved_tags_unchanged": [
+    "ain-Kana",
+    "ain-Latn",
+    "mnc-Mong",
+    "bo",
+    "mn-Mong",
+    "ryu"
+  ],
+  "other_translations_reassessed": false,
+  "production_or_github_changes": false,
+  "native_speaker_certification": false
+}

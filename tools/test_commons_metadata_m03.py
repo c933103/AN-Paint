@@ -7,6 +7,7 @@ import unicodedata
 from unittest.mock import patch
 
 import translation_catalogues as catalogues
+from commons_metadata_m04_scope import before_m04_catalogue, before_m04_production
 from commons_metadata_m03_scope import (catalogue_fixture, production_fixture,
     before_m03_catalogue, before_m03_production)
 from test_translations import SCOPED_TAGS
@@ -50,6 +51,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(DEFAULT, catalogues.read_strings(catalogues.RES/'values/strings.xml')[KEY])
         for row in data['entries']:
             text = (ROOT / row['path']).read_text()
+            text = before_m04_catalogue(row['path'], text) if '/res/' in row['path'] else before_m04_production(row['path'], text)
             self.assertEqual(row['before_sha256'], hashlib.sha256(before_m03_catalogue(row['path'], text).encode()).hexdigest())
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
             actual = catalogues.read_strings(ROOT / row['path'])[KEY]
@@ -101,6 +103,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(len(entries), len({r['tag'] for r in entries}))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = before_m04_catalogue(row['path'], text) if '/res/' in row['path'] else before_m04_production(row['path'], text)
             self.assertEqual(row['before_sha256'], hashlib.sha256(before_m03_catalogue(row['path'], text).encode()).hexdigest())
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
             actual = catalogues.read_strings(ROOT / row['path'])[KEY]
@@ -114,10 +117,11 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
         self.assertEqual(2, len(entries))
         for row in entries:
             text = (ROOT / row['path']).read_text()
+            text = before_m04_catalogue(row['path'], text) if '/res/' in row['path'] else before_m04_production(row['path'], text)
             self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
             original = before_m03_production(row['path'], text)
             self.assertEqual(row['before_sha256'], hashlib.sha256(original.encode()).hexdigest())
-        producer = (JAVA / 'CommonsAttribution.kt').read_text()
+        producer = before_m04_production((JAVA / 'CommonsAttribution.kt').relative_to(ROOT).as_posix(), (JAVA / 'CommonsAttribution.kt').read_text())
         self.assertIn('class ResponseLimitException: IOException()', producer)
         self.assertIn('if (bytes.size().toLong() + count > MAX_RESPONSE) throw ResponseLimitException()', producer)
         self.assertNotIn(DEFAULT, producer)
@@ -127,7 +131,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
                          'if (html.length > MAX_FIELD) throw IOException("Commons attribution field exceeds the text limit")',
                          'finally { connection.disconnect(); active(null) }']:
             self.assertIn(original, producer)
-        gallery = (JAVA / 'MediaGalleryActivity.kt').read_text()
+        gallery = before_m04_production((JAVA / 'MediaGalleryActivity.kt').relative_to(ROOT).as_posix(), (JAVA / 'MediaGalleryActivity.kt').read_text())
         self.assertEqual(2, gallery.count('commonsMetadataReason(error)'))
         self.assertIn('if(error is CommonsAttribution.ResponseLimitException) ui(R.string.'+KEY+')', gallery)
         self.assertIn('else error.message', gallery)
@@ -138,6 +142,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
     def test_all_catalogues_reject_missing_duplicated_changed_and_unrelated_edits(self):
         for row in catalogue_fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = before_m04_catalogue(row['path'], text) if '/res/' in row['path'] else before_m04_production(row['path'], text)
             for bad in ('', row['line']*2, row['line'].replace('Commons', 'CommonX')):
                 with self.subTest(tag=row['tag'], mutation=bad):
                     with self.assertRaises(AssertionError):
@@ -148,6 +153,7 @@ class CommonsMetadataM03Contracts(unittest.TestCase):
     def test_production_reversal_rejects_broader_or_untyped_changes(self):
         for row in production_fixture()['entries']:
             text = (ROOT / row['path']).read_text()
+            text = before_m04_catalogue(row['path'], text) if '/res/' in row['path'] else before_m04_production(row['path'], text)
             for edit in row['edits']:
                 for replacement in ('', edit['after']*2, edit['before']):
                     with self.subTest(path=row['path'], replacement=replacement):

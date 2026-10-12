@@ -8,6 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from commons_metadata_m04_font_scope import before_m04_font, before_m04_inventory
 from commons_metadata_m03_font_scope import before_m03_font, font_fixture
 from test_locale_font_coverage import mapped_codepoints
 
@@ -24,19 +25,20 @@ def tables(data):
 
 class CommonsMetadataM03FontContracts(unittest.TestCase):
     def test_exact_one_glyph_delta_restores_the_unchanged_historical_font(self):
-        after = FONT.read_bytes(); scope = font_fixture(); before = before_m03_font(after)
+        after = before_m04_font(FONT.read_bytes()); scope = font_fixture(); before = before_m03_font(after)
         self.assertEqual('U+8FD4', scope['addition'])
         self.assertEqual('797ac4ef00f0dd8a982d5216dbd78db3edda07b578b9f8642d0156add90bd526', hashlib.sha256(before).hexdigest())
         self.assertEqual('4ae4cab599622f6c9d66b8a99074f2a291ffc32000a78ba69f241fc12eb64e05', hashlib.sha256(after).hexdigest())
         with tempfile.TemporaryDirectory() as folder:
             baseline = Path(folder)/'pre-m03.ttf'; baseline.write_bytes(before)
-            self.assertEqual({0x8FD4}, mapped_codepoints(FONT)-mapped_codepoints(baseline))
-            self.assertLessEqual(mapped_codepoints(baseline), mapped_codepoints(FONT))
+            current = Path(folder)/'m03.ttf'; current.write_bytes(after)
+            self.assertEqual({0x8FD4}, mapped_codepoints(current)-mapped_codepoints(baseline))
+            self.assertLessEqual(mapped_codepoints(baseline), mapped_codepoints(current))
         self.assertEqual(736, struct.unpack_from('>H', tables(before)['maxp'], 4)[0])
         self.assertEqual(737, struct.unpack_from('>H', tables(after)['maxp'], 4)[0])
 
     def test_all_old_outlines_metrics_and_name_licence_global_tables_are_preserved(self):
-        raw = FONT.read_bytes(); before, after = tables(before_m03_font(raw)), tables(raw)
+        raw = before_m04_font(FONT.read_bytes()); before, after = tables(before_m03_font(raw)), tables(raw)
         self.assertEqual(set(before), set(after))
         for tag in ('OS/2', 'hhea', 'name', 'post'):
             self.assertEqual(before[tag], after[tag], tag)
@@ -49,7 +51,7 @@ class CommonsMetadataM03FontContracts(unittest.TestCase):
         self.assertEqual(4, len(after['loca'])-len(before['loca']))
 
     def test_added_outline_metrics_inventory_and_licence_match_pinned_evidence(self):
-        record = json.loads(EVIDENCE.read_text()); raw = FONT.read_bytes(); parts = tables(raw)
+        record = json.loads(EVIDENCE.read_text()); raw = before_m04_font(FONT.read_bytes()); parts = tables(raw)
         self.assertEqual('U+8FD4', record['addition']['codepoint'])
         self.assertEqual(736, record['addition']['glyph_id'])
         self.assertTrue(record['addition']['identical_to_pinned_source'])
@@ -60,18 +62,18 @@ class CommonsMetadataM03FontContracts(unittest.TestCase):
         width = struct.unpack_from('>H',parts['hmtx'],(full_metrics-1)*4)[0]
         bearing = struct.unpack_from('>h',parts['hmtx'],len(parts['hmtx'])-2)[0]
         self.assertEqual(record['addition']['metrics'],[width,bearing])
-        inventory = json.loads((FONT.parent/'inventory.json').read_text())
+        inventory = json.loads(before_m04_inventory((FONT.parent/'inventory.json').read_text()))
         font = next(r for r in inventory if r['id']=='anpaintnomui')
         self.assertTrue(font['ui_only']); self.assertEqual(record['output']['sha256'],font['sha256'])
         notice = ROOT / record['licence']['unchanged_notice_path']
         self.assertEqual(record['licence']['unchanged_notice_sha256'],hashlib.sha256(notice.read_bytes()).hexdigest())
         # Inventory changes only this digest; sources and licensing are unchanged.
-        inventory_text=(FONT.parent/'inventory.json').read_text()
+        inventory_text=before_m04_inventory((FONT.parent/'inventory.json').read_text())
         restored=inventory_text.replace(record['output']['sha256'],record['base']['sha256'])
         self.assertEqual(INVENTORY_BEFORE_SHA,hashlib.sha256(restored.encode()).hexdigest())
 
     def test_reversal_rejects_old_font_unrelated_damage_missing_and_duplicated_extension(self):
-        data = FONT.read_bytes()
+        data = before_m04_font(FONT.read_bytes())
         for bad in [before_m03_font(data), data[:-1], data+b'\0', data[:100]+bytes([data[100]^1])+data[101:]]:
             with self.subTest(length=len(bad)), self.assertRaises(AssertionError): before_m03_font(bad)
         raw=(ROOT/'tools/fixtures/commons_metadata_m03_font_scope.json').read_bytes()

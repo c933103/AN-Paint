@@ -252,9 +252,10 @@ class MediaGalleryActivity : Activity() {
         return record
     }
 
-    /** Translate only this application-owned failure; preserve provider/framework details verbatim. */
+    /** Translate only typed application-owned failures; preserve provider/framework details verbatim. */
     private fun commonsMetadataReason(error: Exception): String? =
         if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
+        else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)
         else error.message
 
     /** Copying source credit fetches metadata only, not image bytes, and does not register an insertion. */
