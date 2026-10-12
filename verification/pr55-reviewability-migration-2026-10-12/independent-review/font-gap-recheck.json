@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "scope": "Four originally accepted malformed-font/licence cases now rejected in memory; original font passes. No product files changed.",
+  "cases": [
+    {
+      "mutation": "zero-format4-length",
+      "contract_errors": [
+        "invalid font or contract: cmap format 4: invalid subtable length"
+      ],
+      "coverage_rejection": "cmap format 4: invalid subtable length",
+      "checksums_and_inventory_corrected": true
+    },
+    {
+      "mutation": "nonexistent-supplementary-glyph",
+      "contract_errors": [
+        "invalid font or contract: cmap format 12: glyph ID outside maxp range"
+      ],
+      "coverage_rejection": "cmap format 12: glyph ID outside maxp range",
+      "checksums_and_inventory_corrected": true
+    },
+    {
+      "mutation": "unrelated-source-notices",
+      "contract_errors": [
+        "MIT required paragraph 1 absent from legal/fonts/nom-na-tong-MIT.txt",
+        "MIT required paragraph 2 absent from legal/fonts/nom-na-tong-MIT.txt",
+        "MIT required paragraph 3 absent from legal/fonts/nom-na-tong-MIT.txt",
+        "MIT required paragraph 4 absent from legal/fonts/nom-na-tong-MIT.txt",
+        "MIT required paragraph 5 absent from legal/fonts/nom-na-tong-MIT.txt",
+        "source attribution absent from legal/fonts/nom-na-tong-MIT.txt",
+        "OFL-1.1 required paragraph 1 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 2 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 3 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 4 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 5 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 6 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 7 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 8 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 9 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 10 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 11 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 12 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 13 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 14 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 15 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 16 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 17 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 18 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 19 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 20 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 21 absent from legal/fonts/gothic-nguyen-OFL.txt"
+      ]
+    },
+    {
+      "mutation": "all-ofl-permission-and-conditions-removed",
+      "contract_errors": [
+        "OFL-1.1 required paragraph 14 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 14 absent from legal/fonts/anpaintnomui-NOTICE.txt",
+        "OFL-1.1 required paragraph 15 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 15 absent from legal/fonts/anpaintnomui-NOTICE.txt",
+        "OFL-1.1 required paragraph 16 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 16 absent from legal/fonts/anpaintnomui-NOTICE.txt",
+        "OFL-1.1 required paragraph 17 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 17 absent from legal/fonts/anpaintnomui-NOTICE.txt",
+        "OFL-1.1 required paragraph 18 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 18 absent from legal/fonts/anpaintnomui-NOTICE.txt",
+        "OFL-1.1 required paragraph 19 absent from legal/fonts/gothic-nguyen-OFL.txt",
+        "OFL-1.1 required paragraph 19 absent from legal/fonts/anpaintnomui-NOTICE.txt"
+      ]
+    }
+  ]
+}

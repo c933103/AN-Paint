@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "purpose": "One-time archived migration receipt; not a permanent source-snapshot CI requirement",
+  "predecessor_commit": "04b128889a4ff9159f199d1737bd07d41e22162d",
+  "predecessor_tree": "3dcc1a82f878ad7e0e708cff25ec8d493b88bbc6",
+  "archive_ref": "archive/pr55-before-evidence-migration-20261012",
+  "reviewed_tree": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+  "source_counts": {
+    "before_leaves": 2123,
+    "after_leaves": 1061,
+    "rename_aware": {
+      "added": 13,
+      "modified": 16,
+      "renamed": 1,
+      "deleted": 1075
+    },
+    "without_rename_detection": {
+      "added": 14,
+      "modified": 16,
+      "deleted": 1076
+    }
+  },
+  "historical_verification_removed": {
+    "files": 1025,
+    "bytes": 27383586,
+    "retained_under_predecessor_archive": true
+  },
+  "unchanged_product_scope": [
+    "production code",
+    "resource catalogues",
+    "fonts",
+    "app/library installed tests",
+    "workflow and timeouts",
+    "source bundler",
+    "operational release inputs"
+  ],
+  "current_compact_expectations": {
+    "wording_values": 677,
+    "scoped_locales": 59,
+    "open_fallback_locales": 81,
+    "host_identities": 642
+  },
+  "host_identity_migration": {
+    "retained": 590,
+    "retired": 129,
+    "added": 52,
+    "historical_total": 719,
+    "current_total": 642
+  },
+  "native_expected_not_yet_run": {
+    "jvm_identities": 892,
+    "original_render_pairs": 112,
+    "original_diagnostic_profiles": 28,
+    "ink_triplets": 189,
+    "aggregate_summaries": 4,
+    "rejected_native_mutations": 78,
+    "installed_api30_scheduled": 95,
+    "installed_api35_scheduled": 104
+  },
+  "rendering_policy": "JVM positives preserve full unmasked exact pixel diagnostics; whole-component or completely missing opaque ink is a hard failure. Other differences remain review_required. Installed zero-difference gates remain unchanged. No general tolerance or production change in this migration.",
+  "prior_current_run": {
+    "run_id": 38269993000,
+    "jvm_passed": 891,
+    "jvm_failed": 1,
+    "ink_triplets_present": 155,
+    "ink_triplets_expected": 181,
+    "installed_api30_passed": 95,
+    "installed_api35_passed": 104,
+    "checkpoint_commit": "8a7dd2b59b491e8fc401072a9d8dd0d93f6aee17",
+    "specific_mixed_arabic_disposition": "Two antialias fringe samples alpha7/1; complete component/stroke retained. Historical strict gate remains failed and capture inventory incomplete."
+  },
+  "local_android": "UNRUN: no Android SDK",
+  "published_head": "43ab6622cdf6aac957a8d31cf2c5c20009e71d6e",
+  "synthetic_merge": "e191c4660ef8709450df213cb75bd4bcf0810cb2",
+  "run_id": 38279470164,
+  "host_receipts": [
+    {
+      "source_tree_before": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+      "source_tree_after": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+      "mode": "ordinary",
+      "command": [
+        "timeout",
+        "--kill-after=5s",
+        "240s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "timeout_seconds": 240,
+      "exit_code": 0,
+      "elapsed_seconds": 215.013,
+      "unittest_summaries": [
+        {
+          "tests": 642,
+          "seconds": 214.453
+        }
+      ],
+      "unittest_terminal_lines": [
+        "OK"
+      ],
+      "failure_status_lines": [],
+      "log_sha256": "f71109321b5e7ccff47ab5fe37e0b8ddd6213e61170ab9565fe58e34019c621b",
+      "log_bytes": 114010,
+      "android_local": "UNRUN: Android SDK unavailable"
+    },
+    {
+      "source_tree_before": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+      "source_tree_after": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+      "mode": "optimized",
+      "command": [
+        "timeout",
+        "--kill-after=5s",
+        "240s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "timeout_seconds": 240,
+      "exit_code": 0,
+      "elapsed_seconds": 214.158,
+      "unittest_summaries": [
+        {
+          "tests": 642,
+          "seconds": 212.766
+        }
+      ],
+      "unittest_terminal_lines": [
+        "OK"
+      ],
+      "failure_status_lines": [],
+      "log_sha256": "3942cab3ac18f97ddb603c5ae963b66474a304b09a9dba71bb3895e8d02cd263",
+      "log_bytes": 114010,
+      "android_local": "UNRUN: Android SDK unavailable"
+    }
+  ],
+  "remote_verification": {
+    "leaves": 1061,
+    "contents_and_modes": "exact",
+    "intended_removals": "all absent",
+    "tree": "592a60877524c5c118695cb45a4d0d5cd257b25a",
+    "parent": "04b128889a4ff9159f199d1737bd07d41e22162d",
+    "base": "71f4d288669858e7975ec4c094b7f47a9a1ff145",
+    "lease": "non-force expected04"
+  }
+}

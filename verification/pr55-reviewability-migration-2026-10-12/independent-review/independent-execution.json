@@ -1,0 +1,41 @@
+{
+  "scope": "Independent reviewer execution, with tool-observed process exits; Android unrun",
+  "cwd": "/workspace/shared/anpaint-pr55-reviewability-migration-20261012",
+  "focused_modules": [
+    "test_current_font_contract",
+    "test_locale_font_coverage",
+    "test_font_disclosures_pr12",
+    "test_current_localization_contracts",
+    "test_help_commons_provider",
+    "test_localized_dialog_composition",
+    "test_ci_timeout_budget",
+    "test_translations",
+    "test_extend_nom_ui_font"
+  ],
+  "runs": [
+    {
+      "mode": "ordinary",
+      "tests": 114,
+      "unittest_seconds": 16.692,
+      "exit_code": 0,
+      "log": "focused-normal.log",
+      "sha256": "14e4b7e7f4f8f976e17bea213e3ee8164dcadfc5024dba1b3bcc9eb462a0514d"
+    },
+    {
+      "mode": "optimized",
+      "tests": 114,
+      "unittest_seconds": 14.029,
+      "exit_code": 0,
+      "log": "focused-optimized.log",
+      "sha256": "df024ba297d44f33d6a150e1b94ee18f272b9c0469443a551db8995d9424c170"
+    },
+    {
+      "mode": "font-only ordinary",
+      "tests": 38,
+      "unittest_seconds": 2.375,
+      "exit_code": 0,
+      "log": "font-focused.log",
+      "sha256": "c5447828d6901fce8fb8bdaeb8219cf35fe446f9d1c024de4781026f3a886abd"
+    }
+  ]
+}
