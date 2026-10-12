@@ -2,7 +2,7 @@
 
 - Build, test and delivery rules: [CI.md](CI.md).
 - Current localization regression data: `tools/fixtures/current_localization/`.
-  Exact wording coverage is not native-speaker acceptance; 81 other offered
+  Exact wording coverage is not native-speaker acceptance; 108 other offered
   locales remain outside the bounded 59-locale work.
 - Current PR55 work: typed Commons query failures, full accessible localized
   status text, native/installed lifecycle and rendering regressions.

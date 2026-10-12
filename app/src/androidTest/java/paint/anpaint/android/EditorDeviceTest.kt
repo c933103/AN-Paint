@@ -4,6 +4,7 @@ package paint.anpaint.android
 import android.app.Activity
 import android.app.Dialog
 import android.app.Instrumentation
+import android.app.LocaleConfig
 import android.app.LocaleManager
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -744,6 +745,23 @@ class EditorDeviceTest {
 
     @Test @SdkSuppress(minSdkVersion=33)
     fun deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches() {
+        // Read the installed app's manifest-bound platform configuration, not the XML
+        // directly. This proves framework discovery, not visibility in a Settings UI.
+        val expected=context.resources.getStringArray(R.array.app_language_tags).toList()
+        val config=if(Build.VERSION.SDK_INT>=34) LocaleConfig.fromContextIgnoringOverride(context)
+            else LocaleConfig(context)
+        android.util.Log.i("LanguagePickerTest","platformLocaleConfigStatus=${config.status} " +
+            "expected=${expected.joinToString(",")} actual=${config.supportedLocales?.toLanguageTags()}")
+        assertEquals("Installed app declares a readable platform locale configuration",
+            LocaleConfig.STATUS_SUCCESS,config.status)
+        val supported=config.supportedLocales
+            ?: throw AssertionError("Successful locale configuration must expose supported locales")
+        val actual=(0 until supported.size()).map {supported[it].toLanguageTag()}
+        assertTrue("The current picker inventory must not be empty",expected.isNotEmpty())
+        assertEquals("Current picker tags are unique",expected.size,expected.toSet().size)
+        assertEquals("Platform and picker locale counts match",expected.size,actual.size)
+        assertEquals("Platform exposes every exact current picker tag",expected.toSet(),actual.toSet())
+
         // The repository's emulator fixture boots in en-US. Keep this oracle independent
         // of AppLanguage.deviceDefaultLabel and the app-overridden resource context.
         assertEquals("Controlled emulator device locale","en-US",
