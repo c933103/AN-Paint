@@ -1,0 +1,1421 @@
+{
+  "schema": 1,
+  "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+  "test_method": "aboutArtworkNoticeCompletesNativeFooterFlow",
+  "device_sdk": 35,
+  "fingerprint": "google\/sdk_gphone64_x86_64\/emu64xa:15\/AE3A.240806.043\/12960925:userdebug\/dev-keys",
+  "package": "paint.anpaint.android",
+  "version_name": "0.0.38",
+  "version_code": 95,
+  "source_tests_sha256": "aaaeee9481ac0d47a8724e29b82fc3adbe7d6d8f3b5597be85ed591d213e75e9",
+  "source_binding": "runner-supplied-needs-host-comparison",
+  "observations": [
+    {
+      "kind": "interaction-start",
+      "started_uptime_ms": 281471,
+      "deadline_uptime_ms": 326471,
+      "budget_ms": 45000
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "fixture-ready",
+      "requested_appearance_wait": false,
+      "content_found": false,
+      "window_showing": false
+    },
+    {
+      "kind": "orientation",
+      "landscape": false,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "fixture",
+      "locale": "fr",
+      "font_scale": 2,
+      "setup": "real installed dialogs; synthetic editor data; native pointer actions"
+    },
+    {
+      "kind": "orientation",
+      "landscape": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "dialog_title",
+      "lines": 2,
+      "layout_height": 86,
+      "available_text_height": 86,
+      "text_padding": [
+        24,
+        16,
+        24,
+        12
+      ],
+      "caption_length": 35,
+      "layout_width": 336,
+      "line_metrics": [
+        {
+          "end": 22,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 312.66797
+        },
+        {
+          "end": 35,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 229.36719
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "dialog_title",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        56,
+        488,
+        100
+      ]
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        100,
+        488,
+        142
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "dialog_title",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          -4,
+          512,
+          110
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        56,
+        488,
+        98
+      ]
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "About-row",
+      "lines": 2,
+      "layout_height": 71,
+      "available_text_height": 71,
+      "text_padding": [
+        24,
+        0,
+        24,
+        0
+      ],
+      "caption_length": 48,
+      "layout_width": 336,
+      "line_metrics": [
+        {
+          "end": 28,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 331.7422
+        },
+        {
+          "end": 48,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 267.1953
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          210,
+          512,
+          281
+        ],
+        "visible": [
+          128,
+          210,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        210,
+        488,
+        247
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          210,
+          512,
+          281
+        ],
+        "visible": [
+          128,
+          210,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "About-row",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          167,
+          512,
+          238
+        ],
+        "visible": [
+          128,
+          167,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        167,
+        488,
+        204
+      ]
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        204,
+        488,
+        238
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          167,
+          512,
+          238
+        ],
+        "visible": [
+          128,
+          167,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "About-row",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          138,
+          512,
+          209
+        ],
+        "visible": [
+          128,
+          138,
+          512,
+          209
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        175,
+        488,
+        209
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "About row: Crédits des icônes, polices et œuvres graphiques",
+      "tap": [
+        320,
+        173
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          138,
+          512,
+          209
+        ],
+        "visible": [
+          128,
+          138,
+          512,
+          209
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "About row: Crédits des icônes, polices et œuvres graphiques"
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "terms_title",
+      "lines": 2,
+      "layout_height": 76,
+      "available_text_height": 76,
+      "text_padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "caption_length": 48,
+      "layout_width": 545,
+      "line_metrics": [
+        {
+          "end": 38,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 492.4453
+        },
+        {
+          "end": 48,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 148.41406
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowTextView",
+        "tag": "terms_title",
+        "raw": [
+          47,
+          48,
+          592,
+          124
+        ],
+        "visible": [
+          47,
+          48,
+          592,
+          108
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "terms_title",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowTextView",
+        "tag": "terms_title",
+        "raw": [
+          47,
+          48,
+          592,
+          124
+        ],
+        "visible": [
+          47,
+          48,
+          592,
+          108
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        47,
+        48,
+        592,
+        87
+      ]
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        47,
+        87,
+        592,
+        124
+      ],
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowTextView",
+        "tag": "terms_title",
+        "raw": [
+          47,
+          48,
+          592,
+          124
+        ],
+        "visible": [
+          47,
+          48,
+          592,
+          108
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "terms_title",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowTextView",
+        "tag": "terms_title",
+        "raw": [
+          47,
+          32,
+          592,
+          108
+        ],
+        "visible": [
+          47,
+          48,
+          592,
+          108
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        47,
+        71,
+        592,
+        108
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "notice-sentinel",
+      "requested_appearance_wait": true,
+      "content_found": true,
+      "window_showing": false
+    },
+    {
+      "kind": "clipboard-overlay-native-dismiss",
+      "phase": "notice-sentinel",
+      "target": [
+        80,
+        174,
+        128,
+        222
+      ],
+      "tap": [
+        104,
+        198
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-after",
+      "phase": "notice-sentinel",
+      "content_gone": true,
+      "window_gone": true
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "terms_copy",
+      "lines": 1,
+      "layout_height": 33,
+      "available_text_height": 34,
+      "text_padding": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "caption_length": 11,
+      "layout_width": 121,
+      "line_metrics": [
+        {
+          "end": 11,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 121
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_copy",
+        "raw": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "visible": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "terms_copy",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_copy",
+        "raw": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "visible": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        53,
+        231,
+        174,
+        264
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "notice copy",
+      "tap": [
+        113,
+        248
+      ],
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_copy",
+        "raw": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "visible": [
+          47,
+          224,
+          180,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "notice copy"
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "notice-copy",
+      "requested_appearance_wait": true,
+      "content_found": true,
+      "window_showing": false
+    },
+    {
+      "kind": "clipboard-overlay-native-dismiss",
+      "phase": "notice-copy",
+      "target": [
+        80,
+        174,
+        128,
+        222
+      ],
+      "tap": [
+        104,
+        198
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-after",
+      "phase": "notice-copy",
+      "content_gone": true,
+      "window_gone": true
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "terms_more",
+      "lines": 1,
+      "layout_height": 33,
+      "available_text_height": 34,
+      "text_padding": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "caption_length": 17,
+      "layout_width": 189,
+      "line_metrics": [
+        {
+          "end": 17,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 189
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_more",
+        "raw": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "visible": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "terms_more",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_more",
+        "raw": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "visible": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        186,
+        231,
+        375,
+        264
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "other terms",
+      "tap": [
+        280,
+        248
+      ],
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_more",
+        "raw": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "visible": [
+          180,
+          224,
+          381,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "other terms"
+    },
+    {
+      "kind": "native-back-before",
+      "label": "notice-1-nested",
+      "state": {
+        "target_attached": true,
+        "target_showing": true,
+        "target_focused": true,
+        "target_insets_available": true,
+        "target_ime_visible": false,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": true,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_retained": true,
+        "notice_focused": false
+      },
+      "postcondition_met": false
+    },
+    {
+      "kind": "native-back-injected",
+      "label": "notice-1-nested",
+      "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+      "keycode": 4,
+      "injection_count": 1,
+      "injected": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_retained": true,
+        "notice_focused": true
+      }
+    },
+    {
+      "kind": "native-back-after",
+      "label": "notice-1-nested",
+      "injected": true,
+      "completed": true,
+      "postcondition_met": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_retained": true,
+        "notice_focused": true
+      }
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "terms_done",
+      "lines": 1,
+      "layout_height": 33,
+      "available_text_height": 34,
+      "text_padding": [
+        6,
+        7,
+        6,
+        7
+      ],
+      "caption_length": 7,
+      "layout_width": 87,
+      "line_metrics": [
+        {
+          "end": 7,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 87
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_done",
+        "raw": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "visible": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "terms_done",
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_done",
+        "raw": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "visible": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        387,
+        231,
+        474,
+        264
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "notice done",
+      "tap": [
+        430,
+        248
+      ],
+      "geometry": {
+        "class": "org.catrobat.paintroid.classic.FlowButton",
+        "tag": "terms_done",
+        "raw": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "visible": [
+          381,
+          224,
+          480,
+          272
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "notice done"
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "dialog_title",
+      "lines": 2,
+      "layout_height": 86,
+      "available_text_height": 86,
+      "text_padding": [
+        24,
+        16,
+        24,
+        12
+      ],
+      "caption_length": 35,
+      "layout_width": 336,
+      "line_metrics": [
+        {
+          "end": 22,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 312.66797
+        },
+        {
+          "end": 35,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 229.36719
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "dialog_title",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        56,
+        488,
+        100
+      ]
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        100,
+        488,
+        142
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          40,
+          512,
+          154
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "dialog_title",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": "dialog_title",
+        "raw": [
+          128,
+          -3,
+          512,
+          111
+        ],
+        "visible": [
+          128,
+          40,
+          512,
+          110
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        57,
+        488,
+        99
+      ]
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "About-row",
+      "lines": 2,
+      "layout_height": 71,
+      "available_text_height": 71,
+      "text_padding": [
+        24,
+        0,
+        24,
+        0
+      ],
+      "caption_length": 48,
+      "layout_width": 336,
+      "line_metrics": [
+        {
+          "end": 28,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 331.7422
+        },
+        {
+          "end": 48,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 267.1953
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          208,
+          512,
+          279
+        ],
+        "visible": [
+          128,
+          208,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        208,
+        488,
+        245
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          208,
+          512,
+          279
+        ],
+        "visible": [
+          128,
+          208,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "About-row",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          170,
+          512,
+          241
+        ],
+        "visible": [
+          128,
+          170,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        170,
+        488,
+        207
+      ]
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        152,
+        207,
+        488,
+        241
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          170,
+          512,
+          241
+        ],
+        "visible": [
+          128,
+          170,
+          512,
+          216
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "About-row",
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          136,
+          512,
+          207
+        ],
+        "visible": [
+          128,
+          136,
+          512,
+          207
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        173,
+        488,
+        207
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "About row: Crédits des icônes, polices et œuvres graphiques",
+      "tap": [
+        320,
+        171
+      ],
+      "geometry": {
+        "class": "android.widget.TextView",
+        "tag": null,
+        "raw": [
+          128,
+          136,
+          512,
+          207
+        ],
+        "visible": [
+          128,
+          136,
+          512,
+          207
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "About row: Crédits des icônes, polices et œuvres graphiques"
+    },
+    {
+      "kind": "native-back-before",
+      "label": "notice-1-close",
+      "state": {
+        "target_attached": true,
+        "target_showing": true,
+        "target_focused": true,
+        "target_insets_available": true,
+        "target_ime_visible": false,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": true,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_present": true,
+        "editor_focused": false
+      },
+      "postcondition_met": false
+    },
+    {
+      "kind": "native-back-injected",
+      "label": "notice-1-close",
+      "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+      "keycode": 4,
+      "injection_count": 1,
+      "injected": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": true,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_present": false,
+        "editor_focused": true
+      }
+    },
+    {
+      "kind": "native-back-after",
+      "label": "notice-1-close",
+      "injected": true,
+      "completed": true,
+      "postcondition_met": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": true,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "notice_present": false,
+        "editor_focused": true
+      }
+    },
+    {
+      "kind": "interaction-end",
+      "started_uptime_ms": 281471,
+      "ended_uptime_ms": 299542,
+      "deadline_uptime_ms": 326471,
+      "elapsed_ms": 18071,
+      "budget_ms": 45000,
+      "block_completed": true,
+      "within_deadline": true
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "fixture-restored",
+      "requested_appearance_wait": true,
+      "content_found": true,
+      "window_showing": false
+    },
+    {
+      "kind": "clipboard-overlay-native-dismiss",
+      "phase": "fixture-restored",
+      "target": [
+        80,
+        494,
+        128,
+        542
+      ],
+      "tap": [
+        104,
+        518
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-after",
+      "phase": "fixture-restored",
+      "content_gone": true,
+      "window_gone": true
+    }
+  ],
+  "screenshots": [
+    "0-notice-1-initial.png"
+  ],
+  "outcome": "passed",
+  "fixture_started_uptime_ms": 281032,
+  "fixture_ended_uptime_ms": 303367,
+  "fixture_elapsed_ms": 22335,
+  "fixture_elapsed_scope": "setup+interaction+teardown; excludes export",
+  "fixture_setup_elapsed_ms": 439,
+  "fixture_teardown_elapsed_ms": 3825
+}

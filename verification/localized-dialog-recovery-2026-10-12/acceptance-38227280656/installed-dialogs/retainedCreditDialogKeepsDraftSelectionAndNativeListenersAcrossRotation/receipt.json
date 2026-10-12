@@ -1,0 +1,1058 @@
+{
+  "schema": 1,
+  "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+  "test_method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+  "device_sdk": 35,
+  "fingerprint": "google\/sdk_gphone64_x86_64\/emu64xa:15\/AE3A.240806.043\/12960925:userdebug\/dev-keys",
+  "package": "paint.anpaint.android",
+  "version_name": "0.0.38",
+  "version_code": 95,
+  "source_tests_sha256": "aaaeee9481ac0d47a8724e29b82fc3adbe7d6d8f3b5597be85ed591d213e75e9",
+  "source_binding": "runner-supplied-needs-host-comparison",
+  "observations": [
+    {
+      "kind": "interaction-start",
+      "started_uptime_ms": 243324,
+      "deadline_uptime_ms": 288324,
+      "budget_ms": 45000
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "fixture-ready",
+      "requested_appearance_wait": false,
+      "content_found": false,
+      "window_showing": false
+    },
+    {
+      "kind": "orientation",
+      "landscape": false,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "fixture",
+      "locale": "hu",
+      "font_scale": 2,
+      "setup": "real installed dialogs; synthetic editor data; native pointer actions"
+    },
+    {
+      "kind": "orientation",
+      "landscape": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "retained-credit-state",
+      "landscape": true,
+      "same_field": true,
+      "synthetic_draft_matches": true,
+      "selection_start": 3,
+      "selection_end": 8,
+      "save_calls": 0,
+      "dismiss_calls": 0,
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "gallery_credit_text",
+        "raw": [
+          140,
+          396,
+          500,
+          633
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "About-row",
+      "lines": 1,
+      "layout_height": 41,
+      "available_text_height": 41,
+      "text_padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "caption_length": 24,
+      "layout_width": 336,
+      "line_metrics": [
+        {
+          "end": 24,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 334.03516
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "com.android.internal.widget.DialogTitle",
+        "tag": null,
+        "raw": [
+          152,
+          58,
+          488,
+          99
+        ],
+        "visible": [
+          152,
+          58,
+          488,
+          99
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "About-row",
+      "geometry": {
+        "class": "com.android.internal.widget.DialogTitle",
+        "tag": null,
+        "raw": [
+          152,
+          58,
+          488,
+          99
+        ],
+        "visible": [
+          152,
+          58,
+          488,
+          99
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        152,
+        58,
+        488,
+        99
+      ]
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "gallery_credit_save",
+      "lines": 1,
+      "layout_height": 36,
+      "available_text_height": 36,
+      "text_padding": [
+        12,
+        10,
+        12,
+        10
+      ],
+      "caption_length": 6,
+      "layout_width": 103,
+      "line_metrics": [
+        {
+          "end": 6,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 103
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          373,
+          340,
+          500,
+          396
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        385,
+        350,
+        488,
+        386
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          373,
+          340,
+          500,
+          396
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        385,
+        294,
+        488,
+        330
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          373,
+          284,
+          500,
+          340
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "gallery_credit_save",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          373,
+          225,
+          500,
+          281
+        ],
+        "visible": [
+          373,
+          225,
+          500,
+          280
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        385,
+        235,
+        488,
+        271
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "credit save",
+      "tap": [
+        436,
+        252
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          373,
+          225,
+          500,
+          281
+        ],
+        "visible": [
+          373,
+          225,
+          500,
+          280
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "credit save"
+    },
+    {
+      "kind": "orientation",
+      "landscape": false,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "retained-credit-state",
+      "landscape": false,
+      "same_field": true,
+      "synthetic_draft_matches": true,
+      "selection_start": 3,
+      "selection_end": 8,
+      "save_calls": 1,
+      "dismiss_calls": 0,
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "gallery_credit_text",
+        "raw": [
+          28,
+          489,
+          292,
+          726
+        ],
+        "visible": [
+          28,
+          489,
+          292,
+          514
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "About-row",
+      "lines": 2,
+      "layout_height": 76,
+      "available_text_height": 76,
+      "text_padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "caption_length": 24,
+      "layout_width": 240,
+      "line_metrics": [
+        {
+          "end": 16,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 233.03516
+        },
+        {
+          "end": 24,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 101
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "com.android.internal.widget.DialogTitle",
+        "tag": null,
+        "raw": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "visible": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "About-row",
+      "geometry": {
+        "class": "com.android.internal.widget.DialogTitle",
+        "tag": null,
+        "raw": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "visible": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        40,
+        58,
+        280,
+        97
+      ]
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "About-row",
+      "geometry": {
+        "class": "com.android.internal.widget.DialogTitle",
+        "tag": null,
+        "raw": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "visible": [
+          40,
+          58,
+          280,
+          134
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        40,
+        97,
+        280,
+        134
+      ]
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "gallery_credit_save",
+      "lines": 1,
+      "layout_height": 36,
+      "available_text_height": 36,
+      "text_padding": [
+        12,
+        10,
+        12,
+        10
+      ],
+      "caption_length": 6,
+      "layout_width": 103,
+      "line_metrics": [
+        {
+          "end": 6,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 103
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          165,
+          545,
+          292,
+          601
+        ],
+        "visible": [
+          165,
+          545,
+          292,
+          600
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "gallery_credit_save",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          165,
+          545,
+          292,
+          601
+        ],
+        "visible": [
+          165,
+          545,
+          292,
+          600
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        177,
+        555,
+        280,
+        591
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "credit save",
+      "tap": [
+        228,
+        572
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_save",
+        "raw": [
+          165,
+          545,
+          292,
+          601
+        ],
+        "visible": [
+          165,
+          545,
+          292,
+          600
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "credit save"
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "gallery_credit_copy",
+      "lines": 2,
+      "layout_height": 66,
+      "available_text_height": 66,
+      "text_padding": [
+        12,
+        10,
+        12,
+        10
+      ],
+      "caption_length": 25,
+      "layout_width": 240,
+      "line_metrics": [
+        {
+          "end": 14,
+          "ellipsis": 0,
+          "left": 6,
+          "right": 234
+        },
+        {
+          "end": 25,
+          "ellipsis": 0,
+          "left": 33,
+          "right": 207
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_copy",
+        "raw": [
+          28,
+          459,
+          292,
+          545
+        ],
+        "visible": [
+          28,
+          514,
+          292,
+          545
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        40,
+        469,
+        280,
+        503
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_copy",
+        "raw": [
+          28,
+          459,
+          292,
+          545
+        ],
+        "visible": [
+          28,
+          514,
+          292,
+          545
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "gallery_credit_copy",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_copy",
+        "raw": [
+          28,
+          512,
+          292,
+          598
+        ],
+        "visible": [
+          28,
+          514,
+          292,
+          598
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        40,
+        522,
+        280,
+        556
+      ]
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 1,
+      "tag": "gallery_credit_copy",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_copy",
+        "raw": [
+          28,
+          512,
+          292,
+          598
+        ],
+        "visible": [
+          28,
+          514,
+          292,
+          598
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        40,
+        556,
+        280,
+        588
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "credit copy",
+      "tap": [
+        160,
+        556
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_copy",
+        "raw": [
+          28,
+          512,
+          292,
+          598
+        ],
+        "visible": [
+          28,
+          514,
+          292,
+          598
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "credit copy"
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "credit-copy",
+      "requested_appearance_wait": true,
+      "content_found": true,
+      "window_showing": false
+    },
+    {
+      "kind": "clipboard-overlay-native-dismiss",
+      "phase": "credit-copy",
+      "target": [
+        80,
+        494,
+        128,
+        542
+      ],
+      "tap": [
+        104,
+        518
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-after",
+      "phase": "credit-copy",
+      "content_gone": true,
+      "window_gone": true
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "gallery_credit_done",
+      "lines": 1,
+      "layout_height": 36,
+      "available_text_height": 36,
+      "text_padding": [
+        12,
+        10,
+        12,
+        10
+      ],
+      "caption_length": 4,
+      "layout_width": 62,
+      "line_metrics": [
+        {
+          "end": 4,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 62
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_done",
+        "raw": [
+          206,
+          456,
+          292,
+          512
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        218,
+        466,
+        280,
+        502
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_done",
+        "raw": [
+          206,
+          456,
+          292,
+          512
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "caption-line-reached",
+      "line": 0,
+      "tag": "gallery_credit_done",
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_done",
+        "raw": [
+          206,
+          508,
+          292,
+          564
+        ],
+        "visible": [
+          206,
+          514,
+          292,
+          564
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "line_rect": [
+        218,
+        518,
+        280,
+        554
+      ]
+    },
+    {
+      "kind": "pointer-before",
+      "label": "credit done",
+      "tap": [
+        249,
+        539
+      ],
+      "geometry": {
+        "class": "android.widget.Button",
+        "tag": "gallery_credit_done",
+        "raw": [
+          206,
+          508,
+          292,
+          564
+        ],
+        "visible": [
+          206,
+          514,
+          292,
+          564
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "pointer-injected",
+      "label": "credit done"
+    },
+    {
+      "kind": "native-back-before",
+      "label": "credit-discard",
+      "state": {
+        "target_attached": true,
+        "target_showing": true,
+        "target_focused": true,
+        "target_insets_available": true,
+        "target_ime_visible": false,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": true,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "dialog_showing": true,
+        "save_calls": 4,
+        "dismiss_calls": 1,
+        "saved_draft_unchanged": true
+      },
+      "postcondition_met": false
+    },
+    {
+      "kind": "native-back-injected",
+      "label": "credit-discard",
+      "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+      "keycode": 4,
+      "injection_count": 1,
+      "injected": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": true,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "dialog_showing": false,
+        "save_calls": 4,
+        "dismiss_calls": 2,
+        "saved_draft_unchanged": true
+      }
+    },
+    {
+      "kind": "native-back-after",
+      "label": "credit-discard",
+      "injected": true,
+      "completed": true,
+      "postcondition_met": true,
+      "state": {
+        "target_attached": false,
+        "target_showing": false,
+        "target_focused": false,
+        "target_insets_available": false,
+        "target_ime_visible": null,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": false,
+        "focused_app_window_is_editor": true,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "dialog_showing": false,
+        "save_calls": 4,
+        "dismiss_calls": 2,
+        "saved_draft_unchanged": true
+      }
+    },
+    {
+      "kind": "credit-listeners-complete",
+      "save_calls": 4,
+      "dismiss_calls": 2,
+      "back_discarded_synthetic_draft": true
+    },
+    {
+      "kind": "interaction-end",
+      "started_uptime_ms": 243324,
+      "ended_uptime_ms": 252918,
+      "deadline_uptime_ms": 288324,
+      "elapsed_ms": 9594,
+      "budget_ms": 45000,
+      "block_completed": true,
+      "within_deadline": true
+    },
+    {
+      "kind": "clipboard-overlay-before",
+      "phase": "fixture-restored",
+      "requested_appearance_wait": true,
+      "content_found": true,
+      "window_showing": false
+    },
+    {
+      "kind": "clipboard-overlay-native-dismiss",
+      "phase": "fixture-restored",
+      "target": [
+        80,
+        494,
+        128,
+        542
+      ],
+      "tap": [
+        104,
+        518
+      ]
+    },
+    {
+      "kind": "clipboard-overlay-after",
+      "phase": "fixture-restored",
+      "content_gone": true,
+      "window_gone": true
+    }
+  ],
+  "screenshots": [
+    "0-credit-landscape.png",
+    "1-credit-portrait.png"
+  ],
+  "outcome": "passed",
+  "fixture_started_uptime_ms": 242775,
+  "fixture_ended_uptime_ms": 256051,
+  "fixture_elapsed_ms": 13276,
+  "fixture_elapsed_scope": "setup+interaction+teardown; excludes export",
+  "fixture_setup_elapsed_ms": 549,
+  "fixture_teardown_elapsed_ms": 3133
+}

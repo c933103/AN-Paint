@@ -1,0 +1,99 @@
+[
+  {
+    "case": "positive-schema-and-identical-visuals",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/positive-schema-and-identical-visuals.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/positive-schema-and-identical-visuals.json"
+    ],
+    "returncode": 0,
+    "output_created": true,
+    "artifact_sha256": "47ec1bc5cb740a0c5f7ed8a27a1a771c4284ded42e62c50c232695bf0ef91bdd",
+    "lint_issues": 0,
+    "unique_identities": 869,
+    "visual_difference_count": 0
+  },
+  {
+    "case": "malformed-lint-root",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/malformed-lint-root.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/malformed-lint-root.json"
+    ],
+    "returncode": 0,
+    "output_created": true,
+    "artifact_sha256": "89e147bd80d3b4e76b20da78bd272758f3854b2bf6ed29e618d792e62323b083",
+    "lint_issues": 0,
+    "unique_identities": 869,
+    "visual_difference_count": 0
+  },
+  {
+    "case": "negative-root-lint-issues-hidden",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/negative-root-lint-issues-hidden.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/negative-root-lint-issues-hidden.json"
+    ],
+    "returncode": 0,
+    "output_created": true,
+    "artifact_sha256": "26db3255147b18cbc47f228ba09e2f6abb5df87bb7f888857fc483856e4a6873",
+    "lint_issues": 0,
+    "unique_identities": 869,
+    "visual_difference_count": 0
+  },
+  {
+    "case": "duplicate-visual-path",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/duplicate-visual-path.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/duplicate-visual-path.json"
+    ],
+    "returncode": 0,
+    "output_created": true,
+    "artifact_sha256": "ceaaa0bf1e8bf4040ab39a2b6525da82f79c97f789ce9195bcad4642a5436da5",
+    "lint_issues": 0,
+    "unique_identities": 869,
+    "visual_difference_count": 0
+  },
+  {
+    "case": "invalid-png",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/invalid-png.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/invalid-png.json"
+    ],
+    "returncode": 0,
+    "output_created": true,
+    "artifact_sha256": "85dff7bdb949541a45e741a10a577ec26137265b550db48ff6f632681573ab1c",
+    "lint_issues": 0,
+    "unique_identities": 869,
+    "visual_difference_count": 1
+  },
+  {
+    "case": "optimized-zero-jvm",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-O",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_regression.py",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/optimized-zero-jvm.zip",
+      "--output",
+      "/workspace/shared/anpaint-pr52-verifier-review-20261012/optimized-zero-jvm.json"
+    ],
+    "returncode": 1,
+    "output_created": false,
+    "artifact_sha256": "8b2dba46608229afc212d9f396e3cca7abef35eadde0ed179e92a38e37f8e6de",
+    "lint_issues": null,
+    "unique_identities": null,
+    "visual_difference_count": null
+  }
+]

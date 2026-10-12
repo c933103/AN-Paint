@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "restart": {
+    "seed_pid": 6849,
+    "live_checks": 3,
+    "force_stop_then_absence_before_verify": true,
+    "boundary_log_sha256": "d10e3c22f123479716044ecd406f5f500db234f7983fcac156d3846064b35e90"
+  },
+  "dialogs": [
+    {
+      "method": "aboutArtworkNoticeCompletesNativeFooterFlow",
+      "interaction_ms": 18071,
+      "fixture_ms": 22335,
+      "native_back_injections": 2,
+      "original_receipt_sha256": "7e2eb0580a27f591181e3d8fa522076072b6eb34c940266df745f833f777887e"
+    },
+    {
+      "method": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+      "interaction_ms": 20621,
+      "fixture_ms": 24917,
+      "native_back_injections": 2,
+      "original_receipt_sha256": "b446f9f43dafe91b28601b714df870ca323e90c621820abca9d43f7da1a9e608"
+    },
+    {
+      "method": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+      "interaction_ms": 22634,
+      "fixture_ms": 26178,
+      "native_back_injections": 2,
+      "original_receipt_sha256": "d4bfaf56414ddddec0dbc9a6ca9bd804e8fe1be525a69ce26a5d060e01844bc0"
+    },
+    {
+      "method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+      "interaction_ms": 9594,
+      "fixture_ms": 13276,
+      "native_back_injections": 1,
+      "original_receipt_sha256": "f167c861c7176537f3a18336f9911bc41ba823b47260996540deebb3cbbb47e0"
+    },
+    {
+      "method": "unchangedAdvancedColourReportsShortLandscapeLimitation",
+      "interaction_ms": 1673,
+      "fixture_ms": 5962,
+      "native_back_injections": 0,
+      "original_receipt_sha256": "c57610aea8fa0411acdec0ce6d9ce3cf2769ea2ada9aa7ee1274deb46c3ccb5e"
+    }
+  ],
+  "korean_phases": [
+    {
+      "api": 35,
+      "phase": "mixed-selected",
+      "requested_tag": "ko-Kore-KR",
+      "persisted_tag": "ko-Kore-KR",
+      "configured_tag": "ko-Kore-KR-anpaint",
+      "default_tag": "ko-Kore-KR",
+      "platform_tag": "ko-Kore-KR",
+      "orientation": 1,
+      "screen_width_dp": 320,
+      "screen_height_dp": 640,
+      "strings": {
+        "ui_save": "貯藏",
+        "commons_credit_copy_failed": "이미지 크레딧을 複寫할 수 없습니다.",
+        "commons_credit_copy_failed_reason": "이미지 크레딧을 複寫할 수 없습니다: probe",
+        "commons_credit_copy_out_of_memory": "이미지 크레딧을 複寫할 메모리가 부족합니다."
+      }
+    },
+    {
+      "api": 35,
+      "phase": "mixed-after-rotation",
+      "requested_tag": "ko-Kore-KR",
+      "persisted_tag": "ko-Kore-KR",
+      "configured_tag": "ko-Kore-KR-anpaint",
+      "default_tag": "ko-Kore-KR",
+      "platform_tag": "ko-Kore-KR",
+      "orientation": 2,
+      "screen_width_dp": 640,
+      "screen_height_dp": 320,
+      "strings": {
+        "ui_save": "貯藏",
+        "commons_credit_copy_failed": "이미지 크레딧을 複寫할 수 없습니다.",
+        "commons_credit_copy_failed_reason": "이미지 크레딧을 複寫할 수 없습니다: probe",
+        "commons_credit_copy_out_of_memory": "이미지 크레딧을 複寫할 메모리가 부족합니다."
+      }
+    },
+    {
+      "api": 35,
+      "phase": "ordinary-selected",
+      "requested_tag": "ko-KR",
+      "persisted_tag": "ko-KR",
+      "configured_tag": "ko-KR",
+      "default_tag": "ko-KR",
+      "platform_tag": "ko-KR",
+      "orientation": 2,
+      "screen_width_dp": 640,
+      "screen_height_dp": 320,
+      "strings": {
+        "ui_save": "저장",
+        "commons_credit_copy_failed": "이미지 크레딧을 복사할 수 없습니다.",
+        "commons_credit_copy_failed_reason": "이미지 크레딧을 복사할 수 없습니다: probe",
+        "commons_credit_copy_out_of_memory": "이미지 크레딧을 복사할 메모리가 부족합니다."
+      }
+    },
+    {
+      "api": 35,
+      "phase": "mixed-reselected",
+      "requested_tag": "ko-Kore-KR",
+      "persisted_tag": "ko-Kore-KR",
+      "configured_tag": "ko-Kore-KR-anpaint",
+      "default_tag": "ko-Kore-KR",
+      "platform_tag": "ko-Kore-KR",
+      "orientation": 2,
+      "screen_width_dp": 640,
+      "screen_height_dp": 320,
+      "strings": {
+        "ui_save": "貯藏",
+        "commons_credit_copy_failed": "이미지 크레딧을 複寫할 수 없습니다.",
+        "commons_credit_copy_failed_reason": "이미지 크레딧을 複寫할 수 없습니다: probe",
+        "commons_credit_copy_out_of_memory": "이미지 크레딧을 複寫할 메모리가 부족합니다."
+      }
+    }
+  ],
+  "visual_review": {
+    "original_dialog_pngs_inspected": 10,
+    "inspection": "All ten images inspected in contact sheets, with full-resolution follow-up on short-landscape About and Hungarian credit captures. Scrollable text can be outside the initial viewport; original line-reachability/native input receipts establish successive reachability, not simultaneous full-text fit. No new compositional visual defect observed.",
+    "colour": "The existing advanced-colour short-landscape limitation is still characterized, not fixed or accepted as positive viewport usability."
+  },
+  "scope": "Original installed observations, explicit restart boundary, and bounded visual review. Not physical-device, TalkBack, linguistic, release or all-language acceptance."
+}

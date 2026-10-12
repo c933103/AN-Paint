@@ -1,0 +1,76 @@
+{
+  "helper_sha256": "fdada552d309d339e368267fe56665a1f52152c65a9b5769c10e5fbf5ed0fcb9",
+  "controls": [
+    {
+      "case": "positive-protocol-xml",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-positive-protocol-xml"
+      ],
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "malformed-xml-root",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-malformed-xml-root"
+      ],
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "xml-count-mismatch",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-xml-count-mismatch"
+      ],
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "negative-elapsed",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-negative-elapsed"
+      ],
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "raw-protocol-failure",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-raw-protocol-failure"
+      ],
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "wrong-coverage",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-wrong-coverage"
+      ],
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "optimized-mode",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-O",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/original-verify_installed.py",
+        "/workspace/shared/anpaint-pr52-verifier-review-20261012/installed-optimized-mode"
+      ],
+      "exit": 1,
+      "output_created": false
+    }
+  ]
+}

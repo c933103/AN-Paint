@@ -1,0 +1,40 @@
+{
+  "helper_sha256": "16d60686ca6ef61088834fde209c958406a943b50c804a4b2e5913d4868e61ea",
+  "controls": [
+    {
+      "case": "positive-protocol-xml",
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "malformed-xml-root",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "xml-count-mismatch",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "negative-elapsed",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "raw-protocol-failure",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "wrong-coverage",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "optimized-mode",
+      "exit": 1,
+      "output_created": false
+    }
+  ]
+}

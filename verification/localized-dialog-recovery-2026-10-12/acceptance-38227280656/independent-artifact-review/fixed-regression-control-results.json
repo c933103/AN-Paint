@@ -1,0 +1,35 @@
+{
+  "helper_sha256": "c8f88789bce501685e696b3157ef070b49ab36075264691700c26fdef4a3fb72",
+  "controls": [
+    {
+      "case": "positive-schema-and-identical-visuals",
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "malformed-lint-root",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "negative-root-lint-issues-hidden",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "duplicate-visual-path",
+      "exit": 1,
+      "output_created": false
+    },
+    {
+      "case": "invalid-png",
+      "exit": 0,
+      "output_created": true
+    },
+    {
+      "case": "optimized-zero-jvm",
+      "exit": 1,
+      "output_created": false
+    }
+  ]
+}
