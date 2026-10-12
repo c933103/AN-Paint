@@ -1,0 +1,57 @@
+# Provisional Android35 bounds-mode review
+
+This is a new review, separate from the frozen failed run 38250189049 artifact report. No production candidate has been accepted or executed by this reviewer. Root authorized investigating a bounded layout repair; the writer owns edits.
+
+## What is established
+
+The published app targets SDK35 and uses Robolectric 4.14.1. The failed native helper reached its assertion that `layout.useBoundsForWidth` is false. It independently demonstrates two clipped low-alpha Arabic pixels at scale2. It does not establish the same state or defect on an installed app.
+
+The [public TextView contract](https://developer.android.com/reference/android/widget/TextView#setUseBoundsForWidth(boolean)) describes a target35-dependent default. Exact [Android15 TextView source](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java) adds another gate: without an explicit style value, compatibility change 63938206 must be enabled, then the width mode comes from ClientFlags. An explicit setter changes the field and invalidates an existing layout.
+
+[ClientFlags](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/ClientFlags.java) delegates to [TextFlags](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/TextFlags.java), which reads an AppGlobals core-setting integer with fallback zero. [AppGlobals](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/app/AppGlobals.java) and [ActivityThread](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/app/ActivityThread.java) return the supplied fallback when the activity thread/core settings are absent. Thus target SDK alone does not prove the actual flag value.
+
+Pinned [Robolectric ShadowTextView](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowTextView.java) has no width-mode override. Its [compatibility shadow](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/shadows/ShadowCompatibility.java) does not explicitly special-case change 63938206. Inspected [AndroidTestEnvironment](https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/robolectric/src/main/java/org/robolectric/android/internal/AndroidTestEnvironment.java) creates the application and installs compatibility callbacks without supplying this text core setting; inspected ShadowActivityThread also does not initialize it. These sources support a missing core-setting explanation, but the exact hosted value was not recorded. That causal step remains an inference, not measured runtime evidence.
+
+`primary-source-index.json` records the independently fetched exact tag URLs, byte lengths and Git blob hashes of ten upstream files. Android15 TextView hashes to f7e0ec8158f4e359457cb294d978b7e2d313aacb; Layout to 0dec13ff0c02c9fea649d4caa272954f8e6d5dd2. These are reference-version source bytes, not a claim of byte identity with every hosted android-all or emulator framework binary.
+
+## Origin guard and a material effectiveness question
+
+The [Android15 Layout source](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/Layout.java) performs a global left-overhang translation only when both width-bounds and shift-overhang modes are enabled. Consequently allowing width-bounds mode while explicitly rejecting shifted-overhang mode can preserve the current padding/baseline origin model. Require both view and layout shift flags false, width-mode agreement, unchanged TOP/zero-scroll/alignment assumptions, and the same complete-reference/actual pixel comparison. Do not merely delete the old unsupported-mode guard.
+
+However, setter-only repair effectiveness is **unproven**. In the same source, normal RTL drawing still anchors at the paragraph's right edge; unspanned paragraph right is the layout width. TextView retains its content-bound clip. Bounds mode changes measurement and line breaking, but the inspected drawing path does not plainly move a right-overhanging first Arabic glyph inward. The optional global shift addresses negative left bounds. A focused before/after native pixel check must therefore establish that the exact two right-edge pixels become contained; a setter value or changed line count is insufficient.
+
+## Bounded candidate constraints
+
+- Only API35+ horizontal gallery status may opt into reviewed bounds-based layout. Preserve API30 and all vertical behavior, original wording/fonts/provider/timing and every unrelated oracle.
+- Keep strict nonzero-alpha containment, exact ARGB equality, full text/accessibility/line coverage and native mutation controls. No tolerance, clipped expected reference, ignored glyph column or forced environment flag is acceptable.
+- Record SDK/target, real font scale and text size, viewport/density, fresh default TextView mode, actual status view/layout width and shift flags, actual line/glyph bounds and the complete raster.
+- A source-bound native pass plus installed mode/geometry observations supports a candidate gate. Claiming installed behavior verified additionally requires the matching enlarged Arabic COPY/INSERT ink check. This may be a narrow addition to the existing GalleryViewportDeviceTest while preserving its French/Mongolian checks. It does not require a new emulator job or timeout change.
+- Installed TextView software-raster comparison must be labelled as such; it is not automatically hardware screenshot proof. A fresh-default flag observation is not an earlier installed-app before-image.
+
+## Proposed installed evidence transport
+
+Extra final `Instrumentation.addResults(Bundle)` fields are a reasonable candidate transport, subject to actual source review. They must have exact route keys and schema; source/profile binding; explicit PNG hashes/dimensions; strict JSON/base64 decoding; and small per-record plus aggregate byte caps comfortably below Binder limits. Preserve original final result/status parsing and old identities. Malformed, truncated, duplicated and missing route records must fail closed. Extra keys cannot manufacture a successful test result. Raw output transport and runtime behavior remain unrun until an exact-source installed receipt proves them.
+
+## Current disposition
+
+No production repair is accepted. The conditional unshifted-bounds origin design is supported by the inspected primary source. The actual effect on RTL right-edge ink and installed behavior remain gating questions for the writer's concrete successor and fresh evidence.
+
+## Concrete candidate review, in progress
+
+The writer replaced the setter-only idea with a private API35 horizontal status subclass. It enables width-based glyph measurement, disables global shifted-overhang drawing, and reserves a measured uniform logical-leading margin with exactly one full-message `LeadingMarginSpan.Standard`. The measured API box is copied and interpreted as an absolute inset requirement. This avoids repeated additive growth. The message and typography remain unchanged; new messages and width/font-signature changes reset the margin. Measurement performs at most three extra native passes and limits the inset to twice the font size. Those bounds prevent an uncontrolled layout loop; they are not proof that arbitrary provider text converges or becomes unclipped. The exact target profiles and reset/reflow controls still need native execution.
+
+The API35 `Layout.computeDrawingBoundingBox()` implementation inspected here omits paragraph-margin positioning. The candidate's reference canvas therefore takes the union of full line extents and the raw glyph box expanded by the exact allowed uniform margin in both directions. That is a conservative allocation bound for the whitelisted standard span, while containment still scans the original content coordinates with zero tolerance. The expected image remains a full independent `Layout.draw`, and actual TextView clipping remains active. Unsupported spans and shifted origins must continue to fail closed.
+
+Early review identified two pre-freeze source issues and reported both to the writer and root: (1) the copied installed helper referenced Paintroid's internal `VerticalText` from the separate app/androidTest module; (2) the API35-class method call in `showStatus` lacked an explicit API branch and risked NewApi lint. The writer has started correcting both. No Android compiler or lint is locally available; source review is not a substitute for the fresh hosted gate.
+
+The installed extension preserves the existing French and Mongolian viewport checks and adds Arabic at API35. It injects exact COPY/INSERT status text into the real status view and reports native software raster evidence; it does not drive network failures and must not be represented as that end-to-end route. Its final-result records must be independently decoded from the raw installed receipt, bound to the source inventory and checked against the exact compiled strings. Existing native host flow tests remain responsible for the real mocked query-failure routes.
+
+## Frozen-source disposition
+
+The candidate is bound by `reviewed-source-manifest.json`. Both early Kotlin/API issues are corrected. The installed decoder now derives the exact 16-identity ordinary-app partition from the checked-out source bytes and rejects a matching producer-only subset; the whole installed API35 audit still requires 104 identities. Its synthetic adversarial controls and the original runner tests passed in both normal and optimized Python.
+
+The first 11-file snapshot passed 89 focused checks in each Python mode but failed three historical composition/M02/M03 contracts in both timed-out full runs. A shared fragment adapter had bypassed the newer strict inverse layer. The corrected 12-file snapshot changes that shared adapter too, with seven exact reversible predecessor files. The Gallery mutation assertion now rejects unapproved bytes earlier; its original form remains in the inverse fixture, and the unchanged CommonsAttribution path retains the original mismatch check. Fresh expanded 111-method review runs pass normally and optimized, including all three prior failures. Earlier hashes/results are preserved under `pre-projection-repair` and are not rebound.
+
+The newly selected API30 matrix has 97 eligible declarations but only 95 scheduled methods: 73 library and 22 app, with the two API35 restart identities explicitly omitted. The initial 97-executed expectation was corrected before publication. API35 remains 104 scheduled methods. These inventory expectations are not device results.
+
+No remaining blocking source-design issue was identified in the bounded status-only candidate. This is clearance for an exact-source hosted experiment, not acceptance of a working repair. The three-pass/2em defensive limits do not establish convergence for arbitrary provider strings, all fonts, all devices or every Android35+ framework revision. The current native reset/overflow controls, 14-locale status render matrix and installed Arabic profiles must establish their stated outcomes on the actual successor. No claim is made that the failed predecessor clipped on an installed device.

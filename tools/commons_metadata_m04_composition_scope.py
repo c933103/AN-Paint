@@ -45,7 +45,7 @@ def before_composed_m04(path, content):
 def before_m04_composed_production(path, text):
     """Undo only M04 fragments; caller retains its original complete-file oracle."""
     rows = [row for row in scope()['pr52_overlaps'] if row['kind'] == 'production']
-    return reverse(path, text.encode(), rows, strict=False).decode()
+    return reverse(path, before_diagnostic(path, text.encode()), rows, strict=False).decode()
 
 
 def as_standalone_m04_bytes(path, content):

@@ -8,10 +8,15 @@ from unittest.mock import patch
 
 from commons_metadata_m04_painted_ink_scope import ROOT, FIXTURE, scope, before_painted_ink
 from commons_metadata_m04_diagnostic_scope import before_diagnostic
+from commons_metadata_m04_glyph_bounds_scope import before_glyph_bounds
 
 FLOW = 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt'
 EVIDENCE = ROOT / 'verification/commons-metadata-m04-painted-ink-2026-10-12'
 GUARD = 'layout.getLineLeft(line)>=-1f && layout.getLineRight(line)<=layout.width+1f'
+
+
+def source_bytes(path):
+    return before_glyph_bounds(path, (ROOT / path).read_bytes())
 
 
 def digest(content): return hashlib.sha256(content).hexdigest()
@@ -34,7 +39,7 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
         self.assertEqual(data['historical_diagnostic_scope_sha256'],digest(
             (ROOT/'tools/fixtures/commons_metadata_m04_diagnostic_successor_scope.json').read_bytes()))
         for row in data['entries']:
-            content=(ROOT/row['path']).read_bytes()
+            content=source_bytes(row['path'])
             self.assertEqual(row['after_sha256'],digest(content))
             restored=before_painted_ink(row['path'],content,allow_original=False)
             self.assertEqual(row['before_sha256'],digest(restored))
@@ -42,7 +47,7 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
 
     def test_live_source_rejects_deleted_restored_duplicated_corrupted_and_unrelated_oracle(self):
         for row in scope()['entries']:
-            content=(ROOT/row['path']).read_bytes()
+            content=source_bytes(row['path'])
             old=before_painted_ink(row['path'],content,allow_original=False)
             for invalid in (old,content+b'\n// unrelated\n'):
                 with self.assertRaises(AssertionError): before_painted_ink(row['path'],invalid,allow_original=False)
@@ -64,7 +69,7 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
             with patch.object(Path,'read_bytes',lambda p:raw if p==FIXTURE else original(p)),self.assertRaises(AssertionError):scope()
 
     def test_only_horizontal_landscape_proxy_changes_while_all_other_original_guards_restore(self):
-        live=(ROOT/FLOW).read_text();old=before_painted_ink(FLOW,live.encode(),allow_original=False).decode()
+        live=source_bytes(FLOW).decode();old=before_painted_ink(FLOW,live.encode(),allow_original=False).decode()
         self.assertEqual(2,old.count(GUARD));self.assertEqual(1,live.count(GUARD))
         self.assertIn('.put("original_horizontal_guard",'+GUARD+')',live)
         self.assertIn('.put("advance_guard_role","Diagnostic only;',live)
@@ -87,7 +92,7 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
         self.assertEqual(before_diagnostic(FLOW,old.encode()),before_diagnostic(FLOW,live.encode()))
 
     def test_complete_native_geometry_and_exact_unmasked_pixels_drive_acceptance(self):
-        live=(ROOT/FLOW).read_text()
+        live=source_bytes(FLOW).decode()
         for token in ['android.graphics.RectF(layout.computeDrawingBoundingBox()).apply','kotlin.math.floor(xs.minOrNull()!!)','kotlin.math.ceil(xs.maxOrNull()!!)',
                       'ys.add(layout.getLineTop(line).toFloat())','view.baseline-layout.getLineBaseline(0)',
                       'assertEquals(android.view.Gravity.TOP','assertEquals(0,view.scrollX);assertEquals(0,view.scrollY)',
@@ -104,7 +109,7 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
             self.assertNotIn(forbidden,body)
 
     def test_native_negative_controls_reach_exact_rejection_with_unchanged_full_reference(self):
-        live=(ROOT/FLOW).read_text()
+        live=source_bytes(FLOW).decode()
         controls=live.split('    private fun inkOracleNegativeControls(',1)[1].split('    private fun recordLandscapeDiagnostic',1)[0]
         self.assertIn('listOf("en-GB","ain-Kana","bo","ar","ja","vi-Hani")',controls)
         self.assertIn('assertPaintedInk(intact,"$label intact")',controls)
@@ -125,11 +130,11 @@ class CommonsMetadataM04PaintedInkContracts(unittest.TestCase):
         self.assertEqual(890,len(old['expected']));self.assertEqual(892,new['expected_count'])
         self.assertEqual(set(map(tuple,old['expected']))|set(map(tuple,new['added_execution_identities'])),set(map(tuple,new['expected'])))
         self.assertEqual(2,len(new['added_execution_identities']));self.assertEqual([],new['removed_execution_identities'])
-        self.assertEqual(digest((ROOT/FLOW).read_bytes()),new['flow_source_sha256'])
+        self.assertEqual(digest(source_bytes(FLOW)),new['flow_source_sha256'])
         failure=json.loads((EVIDENCE/'historical-failure-binding.json').read_text())
         self.assertEqual(0,failure['line0']['painted_pixels_outside_layout'])
         self.assertGreater(failure['line0']['advance_right'],failure['line0']['layout_width']+failure['line0']['original_allowance_px'])
-        for row in failure['files']:self.assertEqual(row['sha256'],digest((ROOT/row['path']).read_bytes()))
+        for row in failure['files']:self.assertEqual(row['sha256'],digest(source_bytes(row['path'])))
 
 
 if __name__=='__main__':unittest.main()

@@ -35,7 +35,7 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
         values = ROOT / 'verification/commons-metadata-m04-2026-10-12/linguistic-review/successor-recovered/accepted-and-proposed-values-v4.json'
         self.assertEqual(data['accepted_values_sha256'], digest(values.read_bytes()))
         for row in data['immutable_m04_inputs']:
-            self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()), row['path'])
+            self.assertEqual(row['sha256'], digest(before_diagnostic(row['path'], (ROOT / row['path']).read_bytes())), row['path'])
 
     def test_every_pr52_leaf_is_preserved_exactly_or_has_an_explicit_reversible_delta(self):
         data = scope()
@@ -43,7 +43,7 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
         self.assertEqual(1805, len(rows))
         self.assertEqual(1805, len({row['path'] for row in rows}))
         for row in data['inherited_unchanged_paths']:
-            self.assertEqual(row['sha256'], digest((ROOT / row['path']).read_bytes()), row['path'])
+            self.assertEqual(row['sha256'], digest(before_diagnostic(row['path'], (ROOT / row['path']).read_bytes())), row['path'])
         for row in data['pr52_overlaps']:
             content = (ROOT / row['path']).read_bytes()
             self.assertEqual(row['after_sha256'], digest(before_diagnostic(row['path'], content)), row['path'])
@@ -114,7 +114,12 @@ class CommonsMetadataM04CompositionContracts(unittest.TestCase):
                 for bad in ('', edit['after'] * 2, edit['before']):
                     with self.assertRaises(AssertionError):
                         before_m04_composed_production(path, text.replace(edit['after'], bad, 1))
-            self.assertNotEqual(row['before_sha256'], digest(before_m04_composed_production(path, text + '\n// unrelated\n').encode()))
+            if path.endswith('/MediaGalleryActivity.kt'):
+                # The explicit later glyph successor adds a strict whole-file inverse.
+                with self.assertRaises(AssertionError):
+                    before_m04_composed_production(path, text + '\n// unrelated\n')
+            else:
+                self.assertNotEqual(row['before_sha256'], digest(before_m04_composed_production(path, text + '\n// unrelated\n').encode()))
 
     def test_fixture_corruption_and_scope_expansion_fail_without_python_asserts(self):
         original_read = Path.read_bytes

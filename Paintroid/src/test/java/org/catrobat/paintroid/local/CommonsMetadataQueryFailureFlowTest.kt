@@ -466,6 +466,7 @@ class CommonsMetadataQueryFailureFlowTest {
         val actual: android.graphics.Bitmap,val reference: android.graphics.Bitmap,
         val referencePixels: IntArray,val referenceBox: android.graphics.Rect,
         val originX: Int,val originY: Int,val contentWidth: Int,val glyphBounds: android.graphics.RectF,
+        val viewBoundsWidth: Boolean,val layoutBoundsWidth: Boolean,val shiftedStart: Boolean,val leadingInset: Int,
         val inkPixels: Int,val inkLeft: Int,val inkRight: Int,val edgePixels: Int,
         val horizontalOverflow: Int,val outsideView: Int,val missingInk: Int,val differentPixels: Int
     ): java.io.Closeable {
@@ -474,7 +475,7 @@ class CommonsMetadataQueryFailureFlowTest {
 
     /** API35, plain horizontal status only. Unsupported drawing features fail closed. */
     private fun capturePaintedInk(view: TextView,translationX: Int=0,
-        clipLeft: Int=0,clipRight: Int=view.width): PaintedInkFrame {
+        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true): PaintedInkFrame {
         val layout=requireNotNull(view.layout)
         assertFalse("Horizontal oracle must not replace the vertical route",VerticalText.uiVertical())
         assertEquals("Reference must contain the complete actual text",view.text.toString(),layout.text.toString())
@@ -486,9 +487,24 @@ class CommonsMetadataQueryFailureFlowTest {
             val end=layout.getLineEnd(line);assertTrue(end>=covered);covered=end
         }
         assertEquals(view.text.length,covered)
-        assertEquals(0,(view.text as? android.text.Spanned)?.getSpans(0,view.text.length,Any::class.java)?.size ?: 0)
+        val spanned=view.text as? android.text.Spanned
+        val spans=spanned?.getSpans(0,view.text.length,Any::class.java).orEmpty()
+        assertTrue("Only one measured geometry-only paragraph margin is supported",spans.size<=1)
+        var leadingInset=0
+        for(span in spans) {
+            assertEquals(android.text.style.LeadingMarginSpan.Standard::class.java,span.javaClass)
+            assertEquals(0,spanned!!.getSpanStart(span));assertEquals(view.text.length,spanned.getSpanEnd(span))
+            assertEquals(android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,spanned.getSpanFlags(span))
+            val margin=span as android.text.style.LeadingMarginSpan.Standard
+            leadingInset=margin.getLeadingMargin(true)
+            assertTrue(leadingInset>0 && leadingInset<=kotlin.math.ceil(view.paint.textSize*2f).toInt())
+            assertEquals(leadingInset,margin.getLeadingMargin(false))
+        }
         assertEquals(android.text.Layout.Alignment.ALIGN_NORMAL,layout.alignment)
-        assertFalse("Shifted-overhang layouts need a separately reviewed origin",layout.useBoundsForWidth)
+        assertEquals("Explicitly bound width-mode for this observation",expectedBoundsWidth,view.useBoundsForWidth)
+        assertEquals("View and native Layout must agree on bounds-based width",view.useBoundsForWidth,layout.useBoundsForWidth)
+        assertFalse("Shifted-overhang views need a separately reviewed origin",view.shiftDrawingOffsetForStartOverhang)
+        assertFalse("Shifted-overhang layouts need a separately reviewed origin",layout.shiftDrawingOffsetForStartOverhang)
         assertNull(view.background);assertNull(view.foreground)
         assertTrue(view.compoundDrawables.all {it==null});assertNull(view.transformationMethod)
         assertEquals(-1,view.selectionStart);assertEquals(-1,view.selectionEnd)
@@ -521,7 +537,9 @@ class CommonsMetadataQueryFailureFlowTest {
             // API35 derives this box from actual glyphs, including marks outside line metrics.
             // The union prevents a wholly displaced glyph from disappearing beyond a fixed margin.
             val bounds=android.graphics.RectF(layout.computeDrawingBoundingBox()).apply {offset(translationX.toFloat(),0f)}
-            val xs=mutableListOf(0f,layout.width.toFloat(),bounds.left,bounds.right)
+            // API35 glyph bounds omit paragraph margins. The exact allowed span can
+            // move any paragraph by at most this measured inset in either direction.
+            val xs=mutableListOf(0f,layout.width.toFloat(),bounds.left-leadingInset,bounds.right+leadingInset)
             val ys=mutableListOf(0f,layout.height.toFloat(),bounds.top,bounds.bottom)
             for(line in 0 until layout.lineCount) {
                 xs.add(layout.getLineLeft(line)+translationX);xs.add(layout.getLineRight(line)+translationX)
@@ -562,7 +580,7 @@ class CommonsMetadataQueryFailureFlowTest {
                 if(actualPixels[y*actual.width+x]!=expected) different++
             }
             return PaintedInkFrame(actual,complete,expectedPixels,box,originX,originY,contentWidth,bounds,
-                ink,left,right,edges,overflow,outside,missing,different)
+                view.useBoundsForWidth,layout.useBoundsForWidth,layout.shiftDrawingOffsetForStartOverhang,leadingInset,ink,left,right,edges,overflow,outside,missing,different)
         } catch(failure: Throwable) {actual.recycle();reference?.recycle();throw failure}
     }
 
@@ -579,6 +597,8 @@ class CommonsMetadataQueryFailureFlowTest {
         .put("reference_source","Complete native Layout with API35 actual-glyph bounds; never an actual-view crop")
         .put("reference_box",frame.referenceBox.toShortString()).put("glyph_bounds",frame.glyphBounds.toString())
         .put("origin_x",frame.originX).put("origin_y",frame.originY).put("content_width",frame.contentWidth)
+        .put("view_use_bounds_for_width",frame.viewBoundsWidth).put("layout_use_bounds_for_width",frame.layoutBoundsWidth)
+        .put("shift_drawing_offset_for_start_overhang",frame.shiftedStart).put("measured_leading_inset_px",frame.leadingInset)
         .put("ink_pixels",frame.inkPixels).put("ink_left",frame.inkLeft).put("ink_right_exclusive",frame.inkRight)
         .put("allocation_edge_pixels",frame.edgePixels).put("horizontal_overflow_pixels",frame.horizontalOverflow)
         .put("outside_view_pixels",frame.outsideView).put("missing_expected_ink_pixels",frame.missingInk)
@@ -602,7 +622,7 @@ class CommonsMetadataQueryFailureFlowTest {
     fun paintedInkOracleRejectsNativeOverflowAndClippedEdgeGlyphsAtDoubleScale() = inkOracleNegativeControls(2f)
 
     private fun inkOracleNegativeControls(scale: Float) {
-        val outcomes=org.json.JSONArray()
+        val outcomes=org.json.JSONArray();val resetOutcomes=org.json.JSONArray()
         for(tag in listOf("en-GB","ain-Kana","bo","ar","ja","vi-Hani")) withGallery(tag) {activity ->
             val before=files(activity);val requests=Collections.synchronizedList(mutableListOf<Connection>())
             connect(activity,requests,true);select(activity);await {!activity.downloading}
@@ -614,6 +634,29 @@ class CommonsMetadataQueryFailureFlowTest {
             val view=status(activity);val text=view.text.toString();val layout=requireNotNull(view.layout)
             assertEquals(scale,activity.resources.configuration.fontScale,0f)
             val label="api35-$tag-640x320-font$scale-negative-controls"
+            if(tag=="ar" && scale==2f) {
+                // Independent original plain TextView at the same native width, text and font.
+                // The real repaired status is never switched back or edited for this control.
+                val beforeView=TextView(activity).apply {
+                    paint.set(view.paint);setTextColor(view.currentTextColor)
+                    setPadding(view.paddingLeft,view.paddingTop,view.paddingRight,view.paddingBottom)
+                    gravity=view.gravity;layoutDirection=view.layoutDirection;textDirection=view.textDirection
+                    textAlignment=view.textAlignment;includeFontPadding=view.includeFontPadding
+                    setLineSpacing(view.lineSpacingExtra,view.lineSpacingMultiplier)
+                    breakStrategy=view.breakStrategy;hyphenationFrequency=view.hyphenationFrequency
+                    justificationMode=view.justificationMode;lineBreakStyle=view.lineBreakStyle;lineBreakWordStyle=view.lineBreakWordStyle
+                    useBoundsForWidth=false;shiftDrawingOffsetForStartOverhang=false;text=view.text.toString()
+                }
+                beforeView.measure(View.MeasureSpec.makeMeasureSpec(view.width,View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+                beforeView.layout(0,0,beforeView.measuredWidth,beforeView.measuredHeight)
+                capturePaintedInk(beforeView,expectedBoundsWidth=false).use {beforeInk ->
+                    recordPaintedInk(beforeInk,"$label-original-plain-before")
+                    assertTrue("Original Arabic native start bearing must overflow",beforeInk.horizontalOverflow>0)
+                    assertTrue("Original Arabic draw must really lose expected ink",beforeInk.missingInk>0)
+                    assertEquals(0,beforeInk.edgePixels)
+                }
+            }
             capturePaintedInk(view).use {intact ->
                 recordPaintedInk(intact,"$label-intact");assertPaintedInk(intact,"$label intact")
                 val cases=org.json.JSONArray()
@@ -625,7 +668,12 @@ class CommonsMetadataQueryFailureFlowTest {
                 val originalPaint=paintState()
                 fun geometry()=listOf(view.width,view.height,view.scrollX,view.scrollY,view.compoundPaddingLeft,
                     view.compoundPaddingRight,view.extendedPaddingTop,view.extendedPaddingBottom,view.baseline,
-                    layout.width,layout.height,layout.lineCount)+(0 until layout.lineCount).flatMap {line ->
+                    (view.text as? android.text.Spanned)?.let {s ->
+                        s.getSpans(0,s.length,android.text.style.LeadingMarginSpan.Standard::class.java).map {
+                            listOf(s.getSpanStart(it),s.getSpanEnd(it),s.getSpanFlags(it),it.getLeadingMargin(true),it.getLeadingMargin(false))
+                        }
+                    },layout.width,layout.height,layout.lineCount,view.useBoundsForWidth,layout.useBoundsForWidth,
+                    view.shiftDrawingOffsetForStartOverhang,layout.shiftDrawingOffsetForStartOverhang)+(0 until layout.lineCount).flatMap {line ->
                         listOf(layout.getLineStart(line),layout.getLineEnd(line),layout.getLineTop(line),
                             layout.getLineBottom(line),layout.getLineBaseline(line))
                     }
@@ -667,9 +715,54 @@ class CommonsMetadataQueryFailureFlowTest {
                 outcomes.put(org.json.JSONObject().put("locale",tag).put("font_scale",scale).put("intact_passed",true)
                     .put("logical_first_character_is_rtl",layout.isRtlCharAt(0)).put("cases",cases))
             }
+            resetOutcomes.put(checkInsetReset(activity,view,width,height,label))
         }
         val directory=java.io.File("build/reports/commons-metadata-m04-painted-ink").apply {mkdirs()}
         java.io.File(directory,"native-negative-controls-font$scale.json").writeText(outcomes.toString(2)+"\n")
+        java.io.File(directory,"native-inset-resets-font$scale.json").writeText(resetOutcomes.toString(2)+"\n")
+    }
+
+    private fun checkInsetReset(activity: MediaGalleryActivity,view: TextView,width: Int,height: Int,label: String): org.json.JSONObject {
+        val root=activity.window.decorView
+        val original=view.text.toString();val originalSize=view.textSize
+        fun inset()=(view.text as? android.text.Spanned)?.let {s ->
+            s.getSpans(0,s.length,android.text.style.LeadingMarginSpan.Standard::class.java).singleOrNull()?.getLeadingMargin(true)
+        } ?: 0
+        val initialInset=inset()
+        fun measure(w: Int=width) {
+            root.requestLayout();root.measure(View.MeasureSpec.makeMeasureSpec(w,View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY));root.layout(0,0,w,height)
+        }
+        fun show(message: String) {
+            MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
+                .apply {isAccessible=true}.invoke(activity,message)
+        }
+        val results=org.json.JSONArray()
+        fun check(name: String,message: String) {
+            assertEquals(message,view.text.toString());assertEquals(message,view.createAccessibilityNodeInfo().text.toString())
+            capturePaintedInk(view).use {frame ->
+                recordPaintedInk(frame,"$label-reset-$name");assertPaintedInk(frame,"$label reset $name")
+                results.put(paintedInkReport(frame).put("case",name).put("message",message)
+                    .put("text_size_px",view.textSize).put("view_width",view.width))
+            }
+        }
+        try {
+            repeat(3) {measure();assertEquals("Remeasure must not accumulate the margin",initialInset,inset())}
+            measure(width-48);check("width",original)
+            view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,originalSize*.75f)
+            measure();check("font",original)
+            view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,originalSize)
+            val mixed=original+"\nABC\nالعربية"
+            show(mixed);measure();check("mixed-paragraphs",mixed)
+            show("OK");measure();check("short-message","OK")
+            assertEquals("A new short status must not retain the old margin",0,inset())
+            show(original);measure();check("restored",original)
+            assertEquals("Restoring the same font, width and text restores its measured margin",initialInset,inset())
+        } finally {
+            view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,originalSize);show(original);measure()
+        }
+        return org.json.JSONObject().put("profile",label).put("initial_inset",initialInset)
+            .put("repeat_count",3).put("cases",results).put("all_passed",true)
     }
 
     private fun recordLandscapeDiagnostic(root: View,view: TextView,tag: String,insert: Boolean,scale: Float) {

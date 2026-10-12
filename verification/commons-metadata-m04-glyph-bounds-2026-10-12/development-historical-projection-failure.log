@@ -1,0 +1,41 @@
+test_both_exact_standalone_producers_are_recoverable_with_unchanged_original_pins (test_commons_metadata_composition.CommonsMetadataCompositionContracts.test_both_exact_standalone_producers_are_recoverable_with_unchanged_original_pins) ... FAIL
+test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m02.CommonsMetadataM02Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior) ... FAIL
+test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior) ... FAIL
+
+======================================================================
+FAIL: test_both_exact_standalone_producers_are_recoverable_with_unchanged_original_pins (test_commons_metadata_composition.CommonsMetadataCompositionContracts.test_both_exact_standalone_producers_are_recoverable_with_unchanged_original_pins)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-glyph-bounds-20261012/tools/test_commons_metadata_composition.py", line 50, in test_both_exact_standalone_producers_are_recoverable_with_unchanged_original_pins
+    self.assertEqual(old02['after_sha256'], digest(standalone02))
+AssertionError: '9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a' != '867f33d8b049a5233b9572c0312e6e1b0370ba4289ad6cc2c56bcf7631bff963'
+- 9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a
++ 867f33d8b049a5233b9572c0312e6e1b0370ba4289ad6cc2c56bcf7631bff963
+
+
+======================================================================
+FAIL: test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m02.CommonsMetadataM02Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-glyph-bounds-20261012/tools/test_commons_metadata_m02.py", line 70, in test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior
+    self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
+AssertionError: '9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a' != '867f33d8b049a5233b9572c0312e6e1b0370ba4289ad6cc2c56bcf7631bff963'
+- 9c0c56ead10a558b53c6ff5367bab79a8702d9b565670ba68efd65a18612500a
++ 867f33d8b049a5233b9572c0312e6e1b0370ba4289ad6cc2c56bcf7631bff963
+
+
+======================================================================
+FAIL: test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior (test_commons_metadata_m03.CommonsMetadataM03Contracts.test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/shared/anpaint-pr55-glyph-bounds-20261012/tools/test_commons_metadata_m03.py", line 135, in test_exact_two_file_production_delta_preserves_all_other_reasons_and_behavior
+    self.assertEqual(row['after_sha256'], hashlib.sha256(text.encode()).hexdigest())
+AssertionError: 'a1796251c8cc5351df26a22b1dd29f051651cb2d22fc7df53b51392a81cc8507' != '16a2cfafc47a2f05cecf48cacc8bb3f5d3498caf8f9489c9ed913ac29deeb945'
+- a1796251c8cc5351df26a22b1dd29f051651cb2d22fc7df53b51392a81cc8507
++ 16a2cfafc47a2f05cecf48cacc8bb3f5d3498caf8f9489c9ed913ac29deeb945
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.061s
+
+FAILED (failures=3)

@@ -1,0 +1,34 @@
+{
+  "scope": "Primary Android15 source explains candidate geometry; it does not replace exact runtime proof",
+  "platform_tag": "android-15.0.0_r1",
+  "files": [
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/widget/TextView.java",
+      "git_blob": "f7e0ec8158f4e359457cb294d978b7e2d313aacb"
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/Layout.java",
+      "git_blob": "0dec13ff0c02c9fea649d4caa272954f8e6d5dd2"
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/ClientFlags.java",
+      "git_blob": "5d84d17bdb6e4ee797abce90d124c721be020f5a"
+    },
+    {
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-15.0.0_r1/core/java/android/text/TextFlags.java",
+      "git_blob": "9e02460d263730e53f5cfef829e0bbf5a17ffb36"
+    }
+  ],
+  "findings": [
+    "TextView default width mode depends on compat63938206 and ClientFlags core setting; targetSDK35 alone does not establish the test runtime value.",
+    "TextView clips at compound-padding content edges and translates by compound-left/extended-top padding.",
+    "Plain ALIGN_NORMAL RTL Layout drawing still anchors at paragraph right; bounds-width setter alone is not established as the observed right-edge fix.",
+    "Layout standard leading margin subtracts from RTL right or adds to LTR left; one exact uniform full-range span is geometry-only.",
+    "computeDrawingBoundingBox omits paragraph-margin offsets. Use an absolute required leading inset and allocate complete references conservatively by ±known inset.",
+    "Global drawing shift occurs only when both width-bounds and start-overhang-shift flags are true; candidate explicitly keeps shift false."
+  ],
+  "runtime_api": 35,
+  "compile_sdk": 35,
+  "target_sdk": 35,
+  "local_compilation": "UNRUN; no SDK"
+}
