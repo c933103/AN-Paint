@@ -1,0 +1,52 @@
+{
+  "candidate_tree": "ab6f5497e147e81d4c50f4954ea87f364be087aa",
+  "reviewer_host_checks": [
+    {
+      "log": "focused-normal.log",
+      "sha256": "ae5957dd9051fb60bb694f718b812ed93f507ef213d46f09fa7ce52bd6513b08",
+      "tests": 90,
+      "seconds": 20.779,
+      "status": "PASS",
+      "process_exit_code": 0,
+      "exit_code_source": "terminal exec result; shell saved Python status and exited with it",
+      "optimized": false
+    },
+    {
+      "log": "reachability-normal.log",
+      "sha256": "411fa7819d5c659d397815f9113fd62ad0b5d6d3f18cd304605e32a685cb0f4c",
+      "tests": 11,
+      "seconds": 0.049,
+      "status": "PASS",
+      "process_exit_code": 0,
+      "exit_code_source": "terminal exec result; shell saved Python status and exited with it",
+      "optimized": false
+    },
+    {
+      "log": "focused-optimized.log",
+      "sha256": "b1df71bff96f015906f8326c43a10f1472dc6de7b2f0369e815826af40b804d7",
+      "tests": 101,
+      "seconds": 18.09,
+      "status": "PASS",
+      "process_exit_code": 0,
+      "exit_code_source": "terminal exec result; shell saved Python status and exited with it",
+      "optimized": true
+    }
+  ],
+  "normal_selected_total": 101,
+  "optimized_selected_total": 101,
+  "normal_modules": [
+    "test_assembly_help_pr8",
+    "test_picker_fallback_notice_pr6",
+    "test_vertical_evidence_transport",
+    "test_vertical_text_redraw",
+    "test_vertical_locale_matrix",
+    "test_current_localization_contracts",
+    "test_vertical_control_reachability"
+  ],
+  "python_environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools",
+  "writer_candidate_patch_sha256": "d3b0e52cbe8589cbfc0cb93b634cbfa3abe1a6bd8a2c04047d2163bb9cd5752a",
+  "limits": [
+    "These Python host checks do not compile Kotlin or run Android.",
+    "The complete ordinary/optimized writer aggregates are separately bound when terminal."
+  ]
+}

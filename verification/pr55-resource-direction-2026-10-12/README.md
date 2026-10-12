@@ -1,0 +1,13 @@
+# Resource-context UI direction: authoring checkpoint
+
+Published source: [da4b40bd47a5d76d45b21d86fdc59368b4b52fd2](https://github.com/c933103/AN-Paint/commit/da4b40bd47a5d76d45b21d86fdc59368b4b52fd2), tree `ab6f5497e147e81d4c50f4954ea87f364be087aa`, ordinary successor of `43ab6622cdf6aac957a8d31cf2c5c20009e71d6e`. PR55 remains stacked on PR52 base `71f4d288669858e7975ec4c094b7f47a9a1ff145`.
+
+The 23-path patch resolves UI direction from each rendering Context, preserves explicit row-locale/font/model semantics, adds controlled opposite-process-default and rotation/recreation coverage, and retains compact Save failure telemetry. It changes no wording, font, rendering tolerance, timeout or workflow. The independent report gives exact scope and limitations.
+
+Both frozen full host runs passed all 643 current methods with no skips under the unchanged 240-second cap. Independent focused checks passed 101 methods in each mode. The manifest in `independent-review/` binds its 12 exact files and names the four writer replay inputs alongside this README. The source/log auditors are one-time review tools, not permanent application snapshot tests.
+
+The separate prior-run diagnosis includes the three manifest-bound comparison images. Actual prior API30 was 94/95 with a Literary Chinese Save-layout failure; process-default/resource mismatch is supported by pixels and source, while the exact reset callback was not logged. Full actual evidence remains at [50d63280](https://github.com/c933103/AN-Paint/tree/50d632805721ea0099bdf4b16400d24b94104abf/verification/pr55-migration-ci-2026-10-12); its large replay archive uses verified lossless transport parts.
+
+Fresh hosted validation is [run38285607590](https://github.com/c933103/AN-Paint/actions/runs/38285607590). `source-publication.json` records verified head/base/ordered merge/tree/run pins and the fresh exact-head review request. This authoring checkpoint does not claim any fresh Android completion. Expected inventories must be derived from current source (906 JVM executions; scheduled installed API30 95 and API35 104). Existing M04 full pixels/control diagnostics require a fresh actual-run review. No prior visual disposition is carried forward automatically.
+
+Replay the host audits against the published source checkout using `independent-review/audit_host_aggregates.py` and the four adjacent writer log/receipt files. Exact commands are available through each auditor's `--help`; the source-scope auditor is specifically a staged-checkout one-time authoring comparison. Application code remains free of these bulky authoring records.
