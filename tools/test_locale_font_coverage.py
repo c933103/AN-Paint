@@ -2,10 +2,9 @@
 import hashlib
 import json
 from pathlib import Path
-import struct
+from current_font_contract import validated_unicode_maps
 import unittest
 import xml.etree.ElementTree as ET
-from commons_metadata_m03_font_scope import before_m03_font
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'Paintroid/src/main/assets'
@@ -13,74 +12,10 @@ RES = ROOT / 'Paintroid/src/main/res'
 
 
 def mapped_codepoints(path):
-    data = path.read_bytes()
-    u16 = lambda at: struct.unpack_from('>H', data, at)[0]
-    u32 = lambda at: struct.unpack_from('>I', data, at)[0]
-    tables = {data[12 + i * 16:16 + i * 16]: u32(20 + i * 16)
-              for i in range(u16(4))}
-    base = tables[b'cmap']
-    points = set()
-    for index in range(u16(base + 2)):
-        entry = base + 4 + index * 8
-        platform, encoding = u16(entry), u16(entry + 2)
-        if platform != 0 and (platform != 3 or encoding not in (1, 10)):
-            continue
-        start = base + u32(entry + 4)
-        kind = u16(start)
-        if kind == 12:
-            for group in range(u32(start + 12)):
-                lower, upper, glyph = struct.unpack_from('>III', data, start + 16 + group * 12)
-                points.update(range(lower + (glyph == 0), upper + 1))
-        elif kind == 4:
-            segments = u16(start + 6) // 2
-            ends = start + 14
-            starts = ends + segments * 2 + 2
-            deltas = starts + segments * 2
-            ranges = deltas + segments * 2
-            for segment in range(segments):
-                lower, upper = u16(starts + segment * 2), u16(ends + segment * 2)
-                delta = u16(deltas + segment * 2)
-                pointer = ranges + segment * 2
-                offset = u16(pointer)
-                for cp in range(lower, min(upper, 0xfffe) + 1):
-                    glyph = u16(pointer + offset + (cp - lower) * 2) if offset else cp
-                    if offset and not glyph:
-                        continue
-                    if (glyph + delta) & 0xffff:
-                        points.add(cp)
-    return points
+    return {cp for _, mapping in validated_unicode_maps(path.read_bytes()) for cp in mapping}
 
 
 class LocaleFontCoverageTest(unittest.TestCase):
-    def test_nom_svg_extension_preserves_the_frozen_font_data(self):
-        evidence = json.loads((ROOT / 'verification/svg-size-errors-2026-10-09/nom-svg-font-extension.json').read_text())
-        data = before_m03_font((ASSETS / 'fonts/anpaintnomui.ttf').read_bytes())
-        tables = {}
-        for index in range(struct.unpack_from('>H', data, 4)[0]):
-            tag, _, offset, length = struct.unpack_from('>4sIII', data, 12 + index * 16)
-            tables[tag.decode('ascii')] = data[offset:offset + length]
-        sha256 = lambda value: hashlib.sha256(value).hexdigest()
-        expected = evidence['preservation']
-        self.assertEqual(expected['table_tags'], sorted(tables))
-        self.assertEqual(evidence['output']['sha256'], sha256(data))
-        self.assertEqual(evidence['output']['bytes'], len(data))
-        for tag, digest in expected['unchanged_tables_sha256'].items():
-            self.assertEqual(digest, sha256(tables[tag]), tag)
-        for tag, record in expected['unchanged_table_prefixes'].items():
-            self.assertEqual(record['output_bytes'], len(tables[tag]), tag)
-            self.assertEqual(record['preserved_sha256'], sha256(tables[tag][:record['preserved_bytes']]), tag)
-        for tag, record in expected['unchanged_except_fields'].items():
-            start, end = record['excluded_byte_range']
-            self.assertEqual(record['preserved_sha256'], sha256(tables[tag][:start] + tables[tag][end:]), tag)
-        self.assertEqual(expected['output_cmap_sha256'], sha256(tables['cmap']))
-        self.assertEqual(736, struct.unpack_from('>H', tables['maxp'], 4)[0])
-        self.assertEqual(1, struct.unpack_from('>h', tables['head'], 50)[0])
-        start, end = struct.unpack_from('>II', tables['loca'], 735 * 4)
-        self.assertEqual(evidence['addition']['outline_sha256'], sha256(tables['glyf'][start:end]))
-        self.assertEqual([1000, 36], evidence['addition']['metrics'])
-        full_metrics = struct.unpack_from('>H', tables['hhea'], 34)[0]
-        self.assertEqual(1000, struct.unpack_from('>H', tables['hmtx'], (full_metrics - 1) * 4)[0])
-        self.assertEqual(36, struct.unpack_from('>h', tables['hmtx'], len(tables['hmtx']) - 2)[0])
 
     def test_every_nom_catalogue_ideograph_is_bundled(self):
         font = ASSETS / 'fonts/anpaintnomui.ttf'

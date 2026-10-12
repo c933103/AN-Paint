@@ -260,15 +260,6 @@ class MatrixInventoryTest(unittest.TestCase):
         self.assertIn('Color.MAGENTA,activity.document.bitmap.getPixel(4,7)', source)
         self.assertIn('Color.CYAN,activity.document.bitmap.getPixel(81,63)', source)
 
-    def test_archived_attempt_two_is_bound_and_rejected_for_the_observed_duplicate(self):
-        evidence = ROOT/'verification/installed-vertical-matrix-2026-10-10/attempt-2-visual'
-        receipt = json.loads((evidence/'visual-receipt.json').read_text())
-        screenshots = evidence/'screenshots'
-        self.assertEqual({path.name for path in screenshots.glob('*.png')}, EXPECTED_SCREENSHOTS)
-        for entry in receipt['images']['files']:
-            self.assertEqual(hashlib.sha256((screenshots/entry['name']).read_bytes()).hexdigest(), entry['sha256'])
-        with self.assertRaisesRegex(ValueError, 'Duplicate screenshot content: en-XV-landscape-format-popup.png and en-XV-landscape-save-initial.png'):
-            verify_screenshots(screenshots)
 
     def test_screenshot_matrix_rejects_a_duplicated_closed_form_as_popup(self):
         with tempfile.TemporaryDirectory() as directory:

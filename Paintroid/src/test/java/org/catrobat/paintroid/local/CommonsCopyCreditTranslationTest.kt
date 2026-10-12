@@ -19,7 +19,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-/** All 140 offered tags have explicit exact-catalogue or default-fallback disposition. */
+/** All 167 offered tags have explicit exact-catalogue or default-fallback disposition. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[30,35])
 class CommonsCopyCreditTranslationTest {
@@ -97,6 +97,8 @@ class CommonsCopyCreditTranslationTest {
         "zh-TW" to listOf("無法複製圖片致謝資訊。", "無法複製圖片致謝資訊：%1\$s", "記憶體不足，無法複製圖片致謝資訊。")
     )
     private val fallbackTags=setOf(
+        "as", "ch", "chr", "ht", "mi", "nch", "nhe", "nhw", "nv", "pcm", "qug", "quh", "quy", "quz", "sa", "sm", "so", "tg", "tpi", "wo", "yua",
+        "ha", "ig", "ln", "su", "yo", "zu",
         "am", "ast", "az", "be", "bg", "bn", "br", "bs",
         "ca", "ca-ES-valencia", "ckb", "cs", "csb", "cy", "da", "eu-ES",
         "fa", "fa-IR", "fy", "ga", "gd", "gl", "gu", "he",
@@ -172,9 +174,9 @@ class CommonsCopyCreditTranslationTest {
         assertTrue("Every exact manifest message must resolve through persisted app-language selection:\n"+
             mismatches.joinToString("\n"),mismatches.isEmpty())
     }
-    @Test fun remaining81OfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
+    @Test fun remainingOfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(140,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(81,remaining.size)
+        assertEquals(167,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(108,remaining.size)
         assertEquals(fallbackTags,remaining.toSet())
         for(tag in remaining) assertEquals("$tag documented default fallback is incomplete localization",
             defaultMessages,keys.map {resourcesFor(tag).getString(it)})

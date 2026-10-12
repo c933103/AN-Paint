@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.local
 
 import android.content.Context
+import android.content.res.Configuration
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.TextView
@@ -25,10 +26,13 @@ import java.util.Locale
 class VerticalTextRedrawTest {
     private fun eachVerticalWidget(check: (String,TextView)->Unit) {
         val original=Locale.getDefault()
-        val context=ContextThemeWrapper(RuntimeEnvironment.getApplication() as Context,R.style.ClassicPaintTheme)
+        val base=RuntimeEnvironment.getApplication() as Context
         try {
             for(tag in listOf("en-XV","mnc-Mong","lzh-Hant","qaa-Zsye-XV")) {
-                Locale.setDefault(Locale.forLanguageTag(tag))
+                val locale=Locale.forLanguageTag(tag)
+                Locale.setDefault(locale)
+                val localized=base.createConfigurationContext(Configuration().apply {setLocale(locale)})
+                val context=ContextThemeWrapper(localized,R.style.ClassicPaintTheme)
                 for(view in listOf<TextView>(FlowButton(context),FlowTextView(context)))
                     check("$tag/${view.javaClass.simpleName}",view)
             }

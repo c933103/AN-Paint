@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.widget.EditText
+import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
@@ -94,7 +95,7 @@ class GalleryViewportDeviceTest {
                 network.assertHealthy();network.requests().any {it.startsWith("CONNECT gallery-viewport.invalid:443 ")}
             }
             onMain {probe!!.stopLoading();probe!!.destroy();probe=null}
-            for(tag in listOf("fr","mn-Mong")) {
+            for(tag in if(Build.VERSION.SDK_INT>=35) listOf("fr","mn-Mong","ar") else listOf("fr","mn-Mong")) {
                 selectLanguage(tag)
                 // A real system configuration transition also refreshes the
                 // app-wide selected-language resources on pre-LocaleManager APIs.
@@ -151,6 +152,7 @@ class GalleryViewportDeviceTest {
                                 assertTrue("Real WebView must retain the declared usable area",web.height>=reserve)
                                 val controls=root.findViewWithTag<View>("gallery_controls_scroll")
                                 assertTrue("Browser must follow the controls without overlap",web.top>=controls.bottom)
+                                if(Build.VERSION.SDK_INT>=35) recordStatusGlyphWidthFlags(gallery,tag,orientation)
                                 android.util.Log.i("GalleryViewportDeviceTest",JSONObject().put("locale",tag).put("font_scale",2)
                                     .put("orientation",orientation).put("root_width",root.width).put("root_height",root.height)
                                     .put("controls_height",controls.height).put("browser_width",web.width).put("browser_height",web.height)
@@ -159,6 +161,7 @@ class GalleryViewportDeviceTest {
                                     .put("search_input_type",editorInfo.inputType)
                                     .put("provider","real installed WebView; verified rejecting proxy; local HTML").toString())
                             }
+                            if(Build.VERSION.SDK_INT>=35 && tag=="ar" && landscape) checkInstalledArabicStatusInk(gallery)
                         }
                     } finally {onMain {gallery.requestedOrientation=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}}
                 }
@@ -196,6 +199,287 @@ class GalleryViewportDeviceTest {
             }
         }
     }
+
+    /** Installed-device observation; no compatibility flags or core settings are changed. */
+    @androidx.annotation.RequiresApi(35)
+    private fun recordStatusGlyphWidthFlags(gallery: MediaGalleryActivity,tag: String,orientation: Int) {
+        val view=gallery.window.decorView.findViewWithTag<android.widget.TextView>("gallery_status")
+        val layout=requireNotNull(view.layout)
+        val plain=android.widget.TextView(gallery)
+        val vertical=tag=="mn-Mong"
+        assertEquals(35,context.applicationInfo.targetSdkVersion)
+        assertEquals(view.useBoundsForWidth,layout.useBoundsForWidth)
+        if(vertical) {
+            assertEquals("Vertical status retains the platform default",plain.useBoundsForWidth,view.useBoundsForWidth)
+        } else {
+            assertTrue("Installed horizontal status reserves glyph bounds",view.useBoundsForWidth)
+            assertFalse(view.shiftDrawingOffsetForStartOverhang)
+            assertFalse(layout.shiftDrawingOffsetForStartOverhang)
+        }
+        val report=JSONObject().put("locale",tag).put("font_scale",gallery.resources.configuration.fontScale)
+            .put("orientation",orientation).put("target_sdk",context.applicationInfo.targetSdkVersion)
+            .put("default_textview_use_bounds_for_width",plain.useBoundsForWidth)
+            .put("status_use_bounds_for_width",view.useBoundsForWidth).put("layout_use_bounds_for_width",layout.useBoundsForWidth)
+            .put("shift_drawing_offset_for_start_overhang",view.shiftDrawingOffsetForStartOverhang)
+            .put("layout_shift_drawing_offset_for_start_overhang",layout.shiftDrawingOffsetForStartOverhang)
+            .put("status_width",view.width).put("layout_width",layout.width).put("line_count",layout.lineCount)
+            .put("compound_padding_left",view.compoundPaddingLeft).put("compound_padding_right",view.compoundPaddingRight)
+            .put("baseline",view.baseline).put("layout_first_baseline",layout.getLineBaseline(0))
+            .put("vertical_route",vertical).put("message",view.text.toString())
+        if(!vertical) {
+            assertEquals(view.width-view.compoundPaddingLeft-view.compoundPaddingRight,layout.width)
+            report.put("glyph_bounds",android.graphics.RectF(layout.computeDrawingBoundingBox()).toString())
+        }
+        android.util.Log.i("GalleryStatusGlyphBounds",report.toString())
+    }
+
+    @androidx.annotation.RequiresApi(35)
+    private fun checkInstalledArabicStatusInk(gallery: MediaGalleryActivity) {
+        val allResults=android.os.Bundle()
+        val failures=mutableListOf<String>()
+        val source=InstrumentationRegistry.getArguments().getString("anpaint_source_tests_sha256")
+        assertTrue("Installed evidence must bind to the runner's exact source inventory",source?.matches(Regex("[0-9a-f]{64}"))==true)
+        fun statusMessage(insert: Boolean): String {
+            val reason=gallery.getString(R.string.commons_metadata_query_failed)
+            return gallery.getString(if(insert) R.string.ui_could_not_load_gallery_image else R.string.commons_credit_copy_failed_reason,reason)
+        }
+        fun show(value: String) {
+            MediaGalleryActivity::class.java.getDeclaredMethod("showStatus",String::class.java)
+                .apply {isAccessible=true}.invoke(gallery,value)
+        }
+        fun settled(value: String)=onMain {
+            val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+            !root.isLayoutRequested && !view.isLayoutRequested && view.layout?.text?.toString()==value
+        }
+        // Establish a visible fixed-width status through ordinary traversal. The two
+        // replacements below must schedule their own measure, with no test-forced layout.
+        val baseline=onMain {statusMessage(true).also {show(it)}}
+        await("installed Arabic baseline layout") {settled(baseline)}
+        instrumentation.waitForIdleSync()
+        for(insert in listOf(false,true)) {
+            val route=if(insert) "insert" else "copy"
+            val message=onMain {statusMessage(insert)}
+            val naturalUpdate=onMain {
+                val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+                assertEquals("org.catrobat.paintroid.classic.GlyphBoundsStatusView",view.javaClass.name)
+                assertTrue(view.isShown);assertTrue(view.width>0)
+                assertFalse("Root is settled before replacement",root.isLayoutRequested)
+                assertFalse("Status is settled before replacement",view.isLayoutRequested)
+                val oldText=view.text.toString();val oldHeight=requireNotNull(view.layout).height
+                assertTrue("Replace a different full message",oldText!=message);assertTrue(oldHeight>0)
+                show(message)
+                val requested=view.isLayoutRequested
+                assertTrue("Production setter must request glyph remeasurement",requested)
+                JSONObject().put("schema",1).put("route",route).put("source_tests_sha256",source)
+                    .put("status_class",view.javaClass.name).put("old_message",oldText).put("message",message)
+                    .put("old_layout_height",oldHeight).put("view_width",view.width)
+                    .put("root_requested_before",false).put("view_requested_before",false)
+                    .put("view_requested_after",requested).put("root_requested_after",root.isLayoutRequested)
+            }
+            await("installed Arabic M04 $route layout") {onMain {
+                val root=gallery.window.decorView;val view=root.findViewWithTag<TextView>("gallery_status")
+                !root.isLayoutRequested && !view.isLayoutRequested && view.layout?.text?.toString()==message
+            }}
+            instrumentation.waitForIdleSync()
+            onMain {
+                val root=gallery.window.decorView
+                val view=root.findViewWithTag<TextView>("gallery_status")
+                assertEquals("ar",gallery.resources.configuration.locales[0].language)
+                assertEquals(2f,gallery.resources.configuration.fontScale,0f)
+                assertEquals(Configuration.ORIENTATION_LANDSCAPE,gallery.resources.configuration.orientation)
+                assertEquals(message,view.text.toString());assertEquals(message,view.createAccessibilityNodeInfo().text.toString())
+                assertFalse(root.isLayoutRequested);assertFalse(view.isLayoutRequested)
+                assertEquals("Same-height replacement exercises TextView's relayout shortcut",
+                    naturalUpdate.getInt("old_layout_height"),requireNotNull(view.layout).height)
+                assertEquals(naturalUpdate.getInt("view_width"),view.width)
+                naturalUpdate.put("new_layout_height",view.layout.height).put("complete_layout_text",view.layout.text.toString())
+                    .put("root_requested_settled",root.isLayoutRequested).put("view_requested_settled",view.isLayoutRequested)
+                android.util.Log.i("GalleryStatusNaturalUpdate",naturalUpdate.toString())
+                capturePaintedInk(view).use {frame ->
+                    fun png(bitmap: android.graphics.Bitmap): JSONObject {
+                        val bytes=java.io.ByteArrayOutputStream().use {out ->
+                            check(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out));out.toByteArray()
+                        }
+                        return JSONObject().put("width",bitmap.width).put("height",bitmap.height).put("bytes",bytes.size)
+                            .put("sha256",java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") {"%02x".format(it)})
+                            .put("base64",android.util.Base64.encodeToString(bytes,android.util.Base64.NO_WRAP))
+                    }
+                    val report=paintedInkReport(frame).put("schema",1).put("route",route).put("locale","ar")
+                        .put("evidence_kind","Installed API35 native software raster of injected actual status text; not network-route or hardware screenshot proof")
+                        .put("source_tests_sha256",source).put("font_scale",2).put("api",Build.VERSION.SDK_INT)
+                        .put("target_sdk",context.applicationInfo.targetSdkVersion).put("fingerprint",Build.FINGERPRINT)
+                        .put("density",gallery.resources.displayMetrics.density).put("density_dpi",gallery.resources.displayMetrics.densityDpi)
+                        .put("root_width",root.width).put("root_height",root.height).put("orientation",Configuration.ORIENTATION_LANDSCAPE)
+                        .put("default_textview_use_bounds_for_width",TextView(gallery).useBoundsForWidth)
+                        .put("message",message).put("accessibility_text",view.createAccessibilityNodeInfo().text.toString())
+                        .put("complete_layout_text",view.layout.text.toString())
+                        .put("actual_png",png(frame.actual)).put("reference_png",png(frame.reference))
+                    val encoded=report.toString()
+                    check(encoded.toByteArray(Charsets.UTF_8).size<=128*1024) {"Bounded installed ink record exceeded"}
+                    val key="anpaint_m04_glyph_bounds_$route"
+                    check(!allResults.containsKey(key));allResults.putString(key,encoded)
+                    val parcel=android.os.Parcel.obtain()
+                    try {parcel.writeBundle(allResults);check(parcel.dataSize()<=512*1024) {"Bounded installed ink Bundle exceeded"}}
+                    finally {parcel.recycle()}
+                    // Extra final-result data cannot create a test start or passing test result.
+                    instrumentation.addResults(android.os.Bundle().apply {putString(key,encoded)})
+                    try {assertPaintedInk(frame,"installed Arabic $route")}
+                    catch(failure: AssertionError) {failures.add("$route: ${failure.message}")}
+                }
+            }
+        }
+        assertEquals(2,allResults.size())
+        assertTrue("Installed Arabic ink failures: ${failures.joinToString()}",failures.isEmpty())
+    }
+
+    @androidx.annotation.RequiresApi(35)
+    private data class PaintedInkFrame(
+        val actual: android.graphics.Bitmap,val reference: android.graphics.Bitmap,
+        val referencePixels: IntArray,val referenceBox: android.graphics.Rect,
+        val originX: Int,val originY: Int,val contentWidth: Int,val glyphBounds: android.graphics.RectF,
+        val viewBoundsWidth: Boolean,val layoutBoundsWidth: Boolean,val shiftedStart: Boolean,val leadingInset: Int,
+        val inkPixels: Int,val inkLeft: Int,val inkRight: Int,val edgePixels: Int,
+        val horizontalOverflow: Int,val outsideView: Int,val missingInk: Int,val differentPixels: Int
+    ): java.io.Closeable {
+        override fun close() {actual.recycle();reference.recycle()}
+    }
+
+    /** API35, plain horizontal status only. Unsupported drawing features fail closed. */
+    @androidx.annotation.RequiresApi(35)
+    private fun capturePaintedInk(view: TextView,translationX: Int=0,
+        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true): PaintedInkFrame {
+        val layout=requireNotNull(view.layout)
+        assertEquals("Installed oracle is explicitly the horizontal Arabic profile","ar",view.resources.configuration.locales[0].language)
+        assertEquals("gallery_status",view.tag)
+        assertEquals("Reference must contain the complete actual text",view.text.toString(),layout.text.toString())
+        assertTrue(view.text.isNotEmpty());assertTrue(layout.lineCount>0)
+        var covered=0
+        for(line in 0 until layout.lineCount) {
+            assertEquals("Contiguous UTF-16 line coverage",covered,layout.getLineStart(line))
+            assertEquals("No ellipsis in the complete reference",0,layout.getEllipsisCount(line))
+            val end=layout.getLineEnd(line);assertTrue(end>=covered);covered=end
+        }
+        assertEquals(view.text.length,covered)
+        val spanned=view.text as? android.text.Spanned
+        val spans=spanned?.getSpans(0,view.text.length,Any::class.java).orEmpty()
+        assertTrue("Only one measured geometry-only paragraph margin is supported",spans.size<=1)
+        var leadingInset=0
+        for(span in spans) {
+            assertEquals(android.text.style.LeadingMarginSpan.Standard::class.java,span.javaClass)
+            assertEquals(0,spanned!!.getSpanStart(span));assertEquals(view.text.length,spanned.getSpanEnd(span))
+            assertEquals(android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,spanned.getSpanFlags(span))
+            val margin=span as android.text.style.LeadingMarginSpan.Standard
+            leadingInset=margin.getLeadingMargin(true)
+            assertTrue(leadingInset>0 && leadingInset<=kotlin.math.ceil(view.paint.textSize*2f).toInt())
+            assertEquals(leadingInset,margin.getLeadingMargin(false))
+        }
+        assertEquals(android.text.Layout.Alignment.ALIGN_NORMAL,layout.alignment)
+        assertEquals("Explicitly bound width-mode for this observation",expectedBoundsWidth,view.useBoundsForWidth)
+        assertEquals("View and native Layout must agree on bounds-based width",view.useBoundsForWidth,layout.useBoundsForWidth)
+        assertFalse("Shifted-overhang views need a separately reviewed origin",view.shiftDrawingOffsetForStartOverhang)
+        assertFalse("Shifted-overhang layouts need a separately reviewed origin",layout.shiftDrawingOffsetForStartOverhang)
+        assertNull(view.background);assertNull(view.foreground)
+        assertTrue(view.compoundDrawables.all {it==null});assertNull(view.transformationMethod)
+        assertEquals(-1,view.selectionStart);assertEquals(-1,view.selectionEnd)
+        assertEquals(android.view.Gravity.TOP,view.gravity and android.view.Gravity.VERTICAL_GRAVITY_MASK)
+        assertEquals(0,view.scrollX);assertEquals(0,view.scrollY)
+        assertEquals(0f,view.rotation,0f);assertEquals(0f,view.rotationX,0f);assertEquals(0f,view.rotationY,0f)
+        assertEquals(0f,view.translationX,0f);assertEquals(0f,view.translationY,0f)
+        assertEquals(1f,view.scaleX,0f);assertEquals(1f,view.scaleY,0f);assertEquals(1f,view.alpha,0f)
+        assertEquals(android.graphics.Paint.Style.FILL,view.paint.style)
+        assertNull(view.paint.shader);assertNull(view.paint.colorFilter);assertNull(view.paint.maskFilter);assertNull(view.paint.pathEffect)
+        assertFalse(view.paint.isUnderlineText);assertFalse(view.paint.isStrikeThruText);assertFalse(view.paint.isFakeBoldText)
+        assertEquals(0f,view.paint.textSkewX,0f);assertEquals(0,view.paint.baselineShift)
+        assertEquals(0f,view.shadowRadius,0f)
+        val originX=view.compoundPaddingLeft
+        val originY=view.baseline-layout.getLineBaseline(0)
+        assertEquals("TOP baseline must identify the real draw origin",view.extendedPaddingTop,originY)
+        val contentWidth=view.width-view.compoundPaddingLeft-view.compoundPaddingRight
+        assertEquals("Native layout width must be the actual text clip width",contentWidth,layout.width)
+        fun boundedBitmap(width: Int,height: Int): android.graphics.Bitmap {
+            assertTrue("Positive, bounded native raster allocation",width>0 && height>0 && width.toLong()*height<=16_000_000L)
+            return android.graphics.Bitmap.createBitmap(width,height,android.graphics.Bitmap.Config.ARGB_8888)
+        }
+        val actual=boundedBitmap(view.width,view.height)
+        var reference: android.graphics.Bitmap?=null
+        try {
+            // The actual view retains its own native clip. No view/paint/text property is changed.
+            val actualCanvas=android.graphics.Canvas(actual)
+            actualCanvas.clipRect(clipLeft,0,clipRight,view.height)
+            actualCanvas.translate(translationX.toFloat(),0f);view.draw(actualCanvas)
+            // API35 derives this box from actual glyphs, including marks outside line metrics.
+            // The union prevents a wholly displaced glyph from disappearing beyond a fixed margin.
+            val bounds=android.graphics.RectF(layout.computeDrawingBoundingBox()).apply {offset(translationX.toFloat(),0f)}
+            // API35 glyph bounds omit paragraph margins. The exact allowed span can
+            // move any paragraph by at most this measured inset in either direction.
+            val xs=mutableListOf(0f,layout.width.toFloat(),bounds.left-leadingInset,bounds.right+leadingInset)
+            val ys=mutableListOf(0f,layout.height.toFloat(),bounds.top,bounds.bottom)
+            for(line in 0 until layout.lineCount) {
+                xs.add(layout.getLineLeft(line)+translationX);xs.add(layout.getLineRight(line)+translationX)
+                ys.add(layout.getLineTop(line).toFloat());ys.add(layout.getLineBottom(line).toFloat())
+            }
+            assertTrue("Finite native glyph and line geometry",(xs+ys).all {it.isFinite() && kotlin.math.abs(it)<100_000f})
+            assertTrue(bounds.left<=bounds.right && bounds.top<=bounds.bottom)
+            // Two pixels are allocation guard only, never a containment or comparison tolerance.
+            val box=android.graphics.Rect(kotlin.math.floor(xs.minOrNull()!!).toInt()-2,
+                kotlin.math.floor(ys.minOrNull()!!).toInt()-2,kotlin.math.ceil(xs.maxOrNull()!!).toInt()+2,
+                kotlin.math.ceil(ys.maxOrNull()!!).toInt()+2)
+            val complete=boundedBitmap(box.width(),box.height());reference=complete
+            val canvas=android.graphics.Canvas(complete)
+            canvas.translate((translationX-box.left).toFloat(),(-box.top).toFloat());layout.draw(canvas)
+            val expectedPixels=IntArray(complete.width*complete.height)
+            complete.getPixels(expectedPixels,0,complete.width,0,0,complete.width,complete.height)
+            val actualPixels=IntArray(actual.width*actual.height)
+            actual.getPixels(actualPixels,0,actual.width,0,0,actual.width,actual.height)
+            var ink=0;var left=Int.MAX_VALUE;var right=Int.MIN_VALUE;var edges=0
+            var overflow=0;var outside=0;var missing=0;var different=0
+            for(y in 0 until complete.height) for(x in 0 until complete.width) {
+                val pixel=expectedPixels[y*complete.width+x]
+                if((pixel ushr 24)==0) continue
+                ink++;val localX=box.left+x;val localY=box.top+y
+                left=minOf(left,localX);right=maxOf(right,localX+1)
+                if(x==0 || y==0 || x==complete.width-1 || y==complete.height-1) edges++
+                if(localX<0 || localX>=contentWidth) overflow++
+                val vx=originX+localX;val vy=originY+localY
+                if(vx !in 0 until actual.width || vy !in 0 until actual.height) {outside++;missing++}
+                else if((actualPixels[vy*actual.width+vx] ushr 24)==0) missing++
+            }
+            // Compare the WHOLE actual view against the independent full reference. The
+            // expected reference is never obtained by cropping the already-clipped actual view.
+            for(y in 0 until actual.height) for(x in 0 until actual.width) {
+                val rx=x-originX-box.left;val ry=y-originY-box.top
+                val expected=if(rx in 0 until complete.width && ry in 0 until complete.height)
+                    expectedPixels[ry*complete.width+rx] else 0
+                if(actualPixels[y*actual.width+x]!=expected) different++
+            }
+            return PaintedInkFrame(actual,complete,expectedPixels,box,originX,originY,contentWidth,bounds,
+                view.useBoundsForWidth,layout.useBoundsForWidth,layout.shiftDrawingOffsetForStartOverhang,leadingInset,ink,left,right,edges,overflow,outside,missing,different)
+        } catch(failure: Throwable) {actual.recycle();reference?.recycle();throw failure}
+    }
+
+    @androidx.annotation.RequiresApi(35)
+    private fun assertPaintedInk(frame: PaintedInkFrame,label: String) {
+        assertTrue("$label complete reference must contain native ink",frame.inkPixels>0)
+        assertEquals("$label reference raster must not touch allocation boundary",0,frame.edgePixels)
+        assertEquals("$label horizontal painted-ink overflow",0,frame.horizontalOverflow)
+        assertEquals("$label full reference ink lies outside the actual view",0,frame.outsideView)
+        assertEquals("$label clipped expected ink",0,frame.missingInk)
+        assertEquals("$label exact full-reference/actual-view ARGB mismatch",0,frame.differentPixels)
+    }
+
+    @androidx.annotation.RequiresApi(35)
+    private fun paintedInkReport(frame: PaintedInkFrame)=org.json.JSONObject()
+        .put("reference_source","Complete native Layout with API35 actual-glyph bounds; never an actual-view crop")
+        .put("reference_box",frame.referenceBox.toShortString()).put("glyph_bounds",frame.glyphBounds.toString())
+        .put("origin_x",frame.originX).put("origin_y",frame.originY).put("content_width",frame.contentWidth)
+        .put("view_use_bounds_for_width",frame.viewBoundsWidth).put("layout_use_bounds_for_width",frame.layoutBoundsWidth)
+        .put("shift_drawing_offset_for_start_overhang",frame.shiftedStart).put("measured_leading_inset_px",frame.leadingInset)
+        .put("ink_pixels",frame.inkPixels).put("ink_left",frame.inkLeft).put("ink_right_exclusive",frame.inkRight)
+        .put("allocation_edge_pixels",frame.edgePixels).put("horizontal_overflow_pixels",frame.horizontalOverflow)
+        .put("outside_view_pixels",frame.outsideView).put("missing_expected_ink_pixels",frame.missingInk)
+        .put("different_argb_pixels",frame.differentPixels).put("alpha_cutoff",0).put("position_tolerance_px",0)
+        .put("color_tolerance",0)
+
 
     private fun selectLanguage(tag: String) {
         onMain {

@@ -42,6 +42,73 @@ class AppLanguageTest {
         Locale.setDefault(oldLocale)
     }
 
+    @Test @Config(sdk=[30,35]) fun sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback() {
+        val expectedNames=mapOf("ha" to "Hausa", "ig" to "Igbo", "ln" to "Lingála",
+            "su" to "Sunda", "yo" to "Yorùbá", "zu" to "isiZulu")
+        assertEquals(167,AppLanguage.tags(context).size)
+        for((tag,name) in expectedNames) {
+            assertTrue(tag in AppLanguage.tags(context))
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            PaintApplication.currentResources=wrapped.resources
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,Locale.getDefault().toLanguageTag())
+            assertEquals("$name [$tag]",AppLanguage.name(tag))
+            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+            assertEquals("Save",wrapped.getString(R.string.ui_save))
+            assertTrue(wrapped.getString(R.string.language20_translation_note)
+                .contains("New or untranslated text appears in English."))
+            if(android.os.Build.VERSION.SDK_INT>=33) {
+                val manager=context.getSystemService(LocaleManager::class.java)!!
+                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())
+                // A system-side switch back to the exact tag remains the same app choice.
+                manager.applicationLocales=LocaleList.forLanguageTags("en-001")
+                assertEquals("en-001",AppLanguage.selectedTag(context))
+                manager.applicationLocales=LocaleList.forLanguageTags(tag)
+                assertEquals(tag,AppLanguage.selectedTag(context))
+            }
+        }
+    }
+
+    @Test @Config(sdk=[30,35]) fun furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback() {
+        val expectedNames=mapOf("pcm" to "Naijá", "so" to "Soomaaliga", "as" to "অসমীয়া",
+            "wo" to "Wolof", "ht" to "Kreyòl ayisyen", "tpi" to "Tok Pisin", "nv" to "Diné bizaad",
+            "chr" to "ᏣᎳᎩ", "yua" to "Maaya t’aan",
+            "nch" to "Mexicano (Central Huasteca)", "nhe" to "Náhuatl (Eastern Huasteca)",
+            "nhw" to "Náhuatl (Western Huasteca)", "quz" to "Qichwa (Cusco)",
+            "quy" to "Qichwa (Ayacucho / Chanka)", "quh" to "Qhichwa (South Bolivian)",
+            "qug" to "Kichwa (Chimborazo)",
+            "ch" to "Chamoru", "sm" to "Gagana Samoa", "mi" to "Māori", "sa" to "संस्कृतम्",
+            "tg" to "Тоҷикӣ")
+        assertEquals(167,AppLanguage.tags(context).size)
+        for((tag,name) in expectedNames) {
+            assertTrue(tag in AppLanguage.tags(context))
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            PaintApplication.currentResources=wrapped.resources
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,Locale.getDefault().toLanguageTag())
+            assertEquals("$name [$tag]",AppLanguage.name(tag))
+            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+            assertEquals("Save",wrapped.getString(R.string.ui_save))
+            assertTrue(wrapped.getString(R.string.language20_translation_note)
+                .contains("New or untranslated text appears in English."))
+            if(android.os.Build.VERSION.SDK_INT>=33) {
+                val manager=context.getSystemService(LocaleManager::class.java)!!
+                assertEquals(tag,manager.applicationLocales[0].toLanguageTag())
+                // A system-side switch back to the exact tag remains the same app choice.
+                manager.applicationLocales=LocaleList.forLanguageTags("en-001")
+                assertEquals("en-001",AppLanguage.selectedTag(context))
+                manager.applicationLocales=LocaleList.forLanguageTags(tag)
+                assertEquals(tag,AppLanguage.selectedTag(context))
+            }
+        }
+    }
+
     @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {
         val tags=AppLanguage.tags(context)
         assertEquals("en-001",tags.first())

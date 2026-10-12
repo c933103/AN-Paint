@@ -93,7 +93,7 @@ internal class ResponsiveDialogTitle(context: Context,title: CharSequence): Scro
 internal class ResponsiveDialogColumns(context: Context): HorizontalScrollView(context) {
     private var previousRange: Int?=null
     override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {
-        val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+        val rightToLeft=VerticalText.uiDirection(context)==TextDirection.VERTICAL_RL
         val offset=previousRange?.let {if(rightToLeft) (it-scrollX).coerceAtLeast(0) else scrollX} ?: 0
         super.onLayout(changed,left,top,right,bottom)
         if(childCount==0 || width<=0) return

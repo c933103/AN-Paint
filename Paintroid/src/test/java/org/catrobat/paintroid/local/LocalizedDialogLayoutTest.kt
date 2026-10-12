@@ -7,6 +7,7 @@ import android.app.Dialog
 import android.content.ClipboardManager
 import android.content.ClipData
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -304,7 +305,18 @@ class LocalizedDialogLayoutTest {
             dialog.show();idle()
             val root=dialog.window!!.decorView
             val rails=listOf("terms_title_scroll","terms_actions_scroll").map {root.findViewWithTag<ScrollView>(it).getChildAt(0) as ResponsiveDialogColumns}
-            val rightToLeft=VerticalText.uiDirection()==TextDirection.VERTICAL_RL
+            val selectedLocales=activity.resources.configuration.locales
+            val expectedDirection=if(tag=="lzh-Hant") TextDirection.VERTICAL_RL else TextDirection.VERTICAL_LR
+            val rightToLeft=tag=="lzh-Hant"
+            fun assertSelectedResources() {
+                assertEquals(tag,AppLanguage.selectedTag(activity))
+                assertEquals(tag,selectedLocales[0].toLanguageTag())
+                for(context in listOf(activity,dialog.context,root.context)+rails.map {it.context}) {
+                    assertEquals("Retained notice keeps the selected resource locales",selectedLocales,context.resources.configuration.locales)
+                    assertEquals("Retained notice keeps its reading direction",expectedDirection,VerticalText.uiDirection(context))
+                }
+            }
+            assertSelectedResources()
             fun range(rail: ResponsiveDialogColumns)=(rail.getChildAt(0).width-rail.width+rail.paddingLeft+rail.paddingRight).coerceAtLeast(0)
             fun offset(rail: ResponsiveDialogColumns)=if(rightToLeft) range(rail)-rail.scrollX else rail.scrollX
             try {
@@ -312,9 +324,11 @@ class LocalizedDialogLayoutTest {
                     rails.forEach {assertTrue(range(it)>47);it.scrollTo(if(rightToLeft) range(it)-readerOffset else readerOffset,0)}
                     for((index,qualifiers) in listOf("w320dp-h640dp-port-xhdpi","w640dp-h320dp-land-xhdpi").withIndex()) {
                         resizeDisplay(activity,root,qualifiers)
+                        assertSelectedResources()
                         // API35 can scope callbacks to the Activity; older APIs delegate to Application.
                         activity.onConfigurationChanged(activity.resources.configuration)
                         activity.application.onConfigurationChanged(activity.resources.configuration);idle()
+                        assertSelectedResources()
                         assertTrue(dialog.isShowing)
                         assertEquals((activity.resources.displayMetrics.widthPixels*.94f).toInt(),dialog.window!!.attributes.width)
                         val rows=JSONArray()
@@ -406,14 +420,27 @@ class LocalizedDialogLayoutTest {
     }
 
     private fun resizeDisplay(activity: Activity,root: View,qualifiers: String) {
+        val selectedLocales=activity.resources.configuration.locales
         RuntimeEnvironment.setQualifiers(qualifiers)
+        // This plain Activity has no app-locale callback. setQualifiers replaces
+        // resources after its first display notification; restore the selected
+        // locale before changeDisplay drains the next resize-triggered traversal.
+        @Suppress("DEPRECATION")
+        activity.resources.updateConfiguration(Configuration(Resources.getSystem().configuration).apply {
+            setLocales(selectedLocales)
+        },Resources.getSystem().displayMetrics)
+        fun assertSelectedResources() {
+            assertEquals(selectedLocales,activity.resources.configuration.locales)
+            assertEquals(selectedLocales,root.context.resources.configuration.locales)
+        }
+        assertSelectedResources()
         ShadowDisplayManager.changeDisplay(root.display.displayId,qualifiers)
         // Resources-only changes leave Robolectric 4.14's ViewRoot frame stale.
         // Deliver its supported resize callback; never directly measure a child.
         Shadow.extract<ShadowViewRootImpl>(root.parent).callDispatchResized();idle()
-        @Suppress("DEPRECATION")
-        activity.resources.updateConfiguration(Resources.getSystem().configuration,Resources.getSystem().displayMetrics)
+        assertSelectedResources()
         root.dispatchConfigurationChanged(activity.resources.configuration);idle()
+        assertSelectedResources()
     }
 
     @Test @Config(fontScale=2f)
