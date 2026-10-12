@@ -15,7 +15,7 @@ checks for the first six options. This is not complete installed-language UI or
 linguistic acceptance. PR58 merged as `484d1b31cb113c88351e6d0dbdaa0d503e5dd834`. Its merge tree equals the reviewed source tree. The accepted source is pinned to
 [`e3c56d3b70e6`](https://github.com/c933103/AN-Paint/commit/e3c56d3b70e6bf9c87f007c93d247ccb60d01808).
 
-PR58's [accepted four-job CI](https://github.com/c933103/AN-Paint/actions/runs/38264239986) includes API30/35 exact-identity and default-resource fallback assertions, build/source, lint, exact-script generation and the installed API35 suite. This is bounded technical evidence, not full-language UI, glyph or linguistic acceptance. Post-merge push CI is tracked separately; no release publication is claimed.
+PR58's [accepted four-job CI](https://github.com/c933103/AN-Paint/actions/runs/38264239986) includes API30/35 exact-identity and default-resource fallback assertions, build/source, lint, exact-script generation and the installed API35 suite. This is bounded technical evidence, not full-language UI, glyph or linguistic acceptance. The separate [post-merge push CI](https://github.com/c933103/AN-Paint/actions/runs/38266883873) also passed all four jobs on merge `484d1b31cb113c88351e6d0dbdaa0d503e5dd834`. No release publication is claimed.
 
 The first six are Hausa, Yoruba, Lingala, Sundanese, Igbo and Zulu. The next sixteen requested language groups
 are Nigerian Pidgin, Somali, Assamese, Wolof, Haitian Creole, Tok Pisin, Navajo,
