@@ -1,0 +1,46 @@
+test_changed_command_rejected (test_probe_checker.ProbeCheckerTest.test_changed_command_rejected) ... ok
+test_false_log_hash_rejected (test_probe_checker.ProbeCheckerTest.test_false_log_hash_rejected) ... ok
+test_false_success_rejected (test_probe_checker.ProbeCheckerTest.test_false_success_rejected) ... ok
+test_missing_clean_task_rejected_even_with_consistent_log_receipts (test_probe_checker.ProbeCheckerTest.test_missing_clean_task_rejected_even_with_consistent_log_receipts) ... ok
+test_missing_generated_receipt_rejected (test_probe_checker.ProbeCheckerTest.test_missing_generated_receipt_rejected) ... ok
+test_missing_probe_rejected (test_probe_checker.ProbeCheckerTest.test_missing_probe_rejected) ... ok
+test_producer_order_rejected_even_with_consistent_log_receipts (test_probe_checker.ProbeCheckerTest.test_producer_order_rejected_even_with_consistent_log_receipts) ... ok
+test_stale_generated_entry_rejected (test_probe_checker.ProbeCheckerTest.test_stale_generated_entry_rejected) ... ok
+test_summary_source_mismatch_rejected (test_probe_checker.ProbeCheckerTest.test_summary_source_mismatch_rejected) ... ok
+test_valid_current_receipts (test_probe_checker.ProbeCheckerTest.test_valid_current_receipts) ... ok
+test_wrong_generated_content_rejected (test_probe_checker.ProbeCheckerTest.test_wrong_generated_content_rejected) ... ok
+test_wrong_wrapper_hash_rejected (test_probe_checker.ProbeCheckerTest.test_wrong_wrapper_hash_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.184s
+
+OK
+{
+  "development_only": true,
+  "not_current_artifact_conclusion": true,
+  "probe_checker_tests": 12,
+  "prior_source_delivery_checker": "PASS",
+  "prior_tracked_leaves": 1061,
+  "native_roots": [
+    {
+      "root": "Paintroid/build/jxl-source",
+      "files": 1583,
+      "ordered_path_content_mode_manifest_sha256": "da1e0bd223e00c3591e495447252e6a1408ec9b7dd222340874f8e231d453b96"
+    },
+    {
+      "root": "Paintroid/build/webp-source",
+      "files": 338,
+      "ordered_path_content_mode_manifest_sha256": "75cf9329305a19fde3d883925f79849cfe5c2d4d62cc565c7d537851b0800663"
+    },
+    {
+      "root": "Paintroid/build/heif-source",
+      "files": 2663,
+      "ordered_path_content_mode_manifest_sha256": "ff12a90b673c768367ca50ff5277f9339f99b5af449f7fed32ed9fda1252f046"
+    },
+    {
+      "root": "Paintroid/build/tiff-source",
+      "files": 1674,
+      "ordered_path_content_mode_manifest_sha256": "2904c67911bd90dfe017d18a8dd3093ea0edc15d5a642e5ac40f4044c37a32bb"
+    }
+  ]
+}

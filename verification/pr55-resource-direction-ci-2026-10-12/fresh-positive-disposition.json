@@ -1,0 +1,113 @@
+{
+  "run_id": 38285607590,
+  "head": "da4b40bd47a5d76d45b21d86fdc59368b4b52fd2",
+  "merge": "daab4b4f2c87bc6475ba6a0d2c0f9b35ea36b7e0",
+  "tree": "ab6f5497e147e81d4c50f4954ea87f364be087aa",
+  "profile": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+  "classification": "REVIEWED_LOW_SEVERITY_ANTIALIAS_FRINGE",
+  "exact_pixel_comparison_passed": false,
+  "producer_review_required_retained": true,
+  "manual_disposition": "Fresh actual and complete-reference images inspected. Two boundary antialias samples are absent; no material whole-glyph, mark, line or opaque-stroke disappearance demonstrated. Exact differences remain visible and recorded. This specific positive frame does not justify a production workaround or numeric tolerance.",
+  "metrics": {
+    "ink_components": 57,
+    "missing_complete_components": 0,
+    "missing_opaque_reference_pixels": 0,
+    "ink_pixels": 16844,
+    "ink_left": 0,
+    "ink_right_exclusive": 1233,
+    "allocation_edge_pixels": 0,
+    "horizontal_overflow_pixels": 2,
+    "outside_view_pixels": 0,
+    "missing_expected_ink_pixels": 2,
+    "different_argb_pixels": 2
+  },
+  "lost_pixels": [
+    {
+      "layout_xy": [
+        1232,
+        29
+      ],
+      "reference_xy": [
+        2419,
+        31
+      ],
+      "actual_xy": [
+        1256,
+        29
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        36,
+        7
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "layout_xy": [
+        1232,
+        30
+      ],
+      "reference_xy": [
+        2419,
+        32
+      ],
+      "actual_xy": [
+        1256,
+        30
+      ],
+      "reference_rgba": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "actual_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "affected_components": [
+    {
+      "reference_samples": 78,
+      "missing_samples": 2,
+      "reference_alpha_sum": 10633,
+      "missing_alpha_sum": 8,
+      "max_reference_alpha": 255,
+      "max_missing_alpha": 7,
+      "component_entirely_missing": false
+    }
+  ],
+  "reference_and_actual_file_bindings": [
+    {
+      "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs.json",
+      "sha256": "da3f2a0c06cc3361100044cc4c11563399b8613e3ba6f0a9840f7b265a7538c3"
+    },
+    {
+      "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+      "sha256": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf"
+    },
+    {
+      "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png",
+      "sha256": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3"
+    }
+  ],
+  "directly_viewed_images": [
+    "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+    "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png"
+  ],
+  "visual_limit": "Complete-reference image was displayed at 2048x270 from original2519x332; exact original pixels were separately recomputed without resizing/cropping. No linguistic fluency review.",
+  "reference_sha256_equal_prior_run43": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3",
+  "actual_sha256_equal_prior_run43": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf",
+  "prior_equality_role": "Corroboration only; fresh bytes, metrics and images were reviewed independently.",
+  "whole_current_gate": "FAIL: four separate JVM assertions remain failed.",
+  "universal_tolerance": null
+}
