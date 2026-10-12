@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.os.Build
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.graphics.Rect
@@ -200,14 +201,45 @@ class UiDirectionContextTest {
         val before=Locale.getDefault()
         val base=RuntimeEnvironment.getApplication() as Context
         try {
-            val localized=base.createConfigurationContext(Configuration().apply {setLocale(Locale.forLanguageTag("lzh-Hant"))})
-            val context=ContextThemeWrapper(localized,R.style.ClassicPaintTheme)
-            Locale.setDefault(Locale.US)
-            for(view in widgets(context)) {
-                val spec=View.MeasureSpec.makeMeasureSpec(512,View.MeasureSpec.AT_MOST)
-                view.measure(spec,spec);view.layout(0,0,view.measuredWidth,view.measuredHeight)
-                assertTrue(view.width>0 && view.height>0)
-                assertNull("Selected vertical context on legacy Android",view.layout)
+            // Robolectric 4.14.1 has no native graphics below API26. Its LEGACY
+            // Paint lacks real float font metrics, so this covers locale APIs,
+            // full text and redraw scheduling; native geometry stays above.
+            for((tag,expected) in listOf(
+                "lzh-Hant" to TextDirection.VERTICAL_RL,
+                "mnc-Mong" to TextDirection.VERTICAL_LR,
+                "en-XV" to TextDirection.VERTICAL_LR,
+                "qaa-Zsye-XV" to TextDirection.VERTICAL_RL,
+                "en-US" to TextDirection.HORIZONTAL
+            )) {
+                val localized=base.createConfigurationContext(Configuration().apply {setLocale(Locale.forLanguageTag(tag))})
+                val context=ContextThemeWrapper(localized,R.style.ClassicPaintTheme)
+                val vertical=expected!=TextDirection.HORIZONTAL
+                Locale.setDefault(opposite(vertical))
+                @Suppress("DEPRECATION")
+                val resourceLocale=if(Build.VERSION.SDK_INT>=24) context.resources.configuration.locales[0] else context.resources.configuration.locale
+                assertEquals(tag,resourceLocale.toLanguageTag())
+                assertNotEquals(Locale.getDefault(),resourceLocale)
+                assertEquals(expected,VerticalText.uiDirection(context))
+                assertEquals(vertical,VerticalText.uiVertical(context))
+                for(view in widgets(context)) {
+                    assertEquals("Sample 95\nNative text",view.text.toString())
+                    assertEquals(view.text.toString(),view.contentDescription.toString())
+                    if(vertical) {
+                        val spec=View.MeasureSpec.makeMeasureSpec(512,View.MeasureSpec.AT_MOST)
+                        view.measure(spec,spec);view.layout(0,0,view.measuredWidth,view.measuredHeight)
+                        assertNull("Selected vertical context on legacy Android",view.layout)
+                        assertFalse("Previous layout completed",view.isLayoutRequested)
+                        shadowOf(view).clearWasInvalidated()
+                        shadowOf(view).setDidRequestLayout(false)
+                        assertFalse(shadowOf(view).wasInvalidated())
+                        assertFalse(shadowOf(view).didRequestLayout())
+                        view.text="Sample 76\nNative text"
+                        assertEquals("Sample 76\nNative text",view.text.toString())
+                        assertTrue("Resource-bound vertical text requests layout",view.isLayoutRequested)
+                        assertTrue(shadowOf(view).didRequestLayout())
+                        assertTrue("Resource-bound vertical text invalidates ink",shadowOf(view).wasInvalidated())
+                    }
+                }
             }
         } finally {Locale.setDefault(before)}
     }
