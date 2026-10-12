@@ -7,6 +7,7 @@ import unittest
 
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
+from language_option_additions import ADDED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -25,8 +26,8 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertEqual(set(SCOPED_TAGS), set(data['scope']))
         self.assertEqual(set(SCOPED_TAGS) | {'default'}, set(data['translations']))
         remaining = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(81, len(remaining))
-        self.assertEqual(remaining, set(data['remaining_other_offered_locales']))
+        self.assertEqual(87, len(remaining))
+        self.assertEqual(remaining, set(data['remaining_other_offered_locales']) | ADDED_TAGS)
         for tag, path in catalogues.catalogue_paths().items():
             if tag not in SCOPED_TAGS:
                 self.assertNotIn(KEY, catalogues.read_strings(path), tag)

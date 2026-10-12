@@ -5,6 +5,7 @@ import unittest
 
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
+from language_option_additions import ADDED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
@@ -32,8 +33,8 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         self.assertFalse(translated & blocked)
         self.assertEqual(set(SCOPED_TAGS), translated | blocked)
         unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(81, len(unscoped))
-        self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']))
+        self.assertEqual(87, len(unscoped))
+        self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']) | ADDED_TAGS)
         paths = catalogues.catalogue_paths()
         for tag, expected in manifest['translations'].items():
             with self.subTest(tag=tag):

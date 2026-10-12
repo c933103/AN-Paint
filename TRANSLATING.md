@@ -22,6 +22,22 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Six language options added on 12 October 2026
+
+The current inventory has 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
+Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
+Android App languages. Their exact canonical XML catalogues intentionally contain
+no translated entries yet: all 695 translatable source strings and the one plural
+resource currently use default English fallback. Selecting a language is not a
+claim of translated UI, linguistic review, or installed-device verification.
+
+The existing picker explains untranslated English fallback. The dedicated
+[translation progress tracker](https://github.com/c933103/AN-Paint/pull/56)
+records the outstanding catalogue and review work. The addition fixture at
+`tools/fixtures/language_option_additions_20261012.json` records the six identities
+and status. Historical 140-choice/81-fallback evidence is preserved unchanged;
+current regression checks compose it with these six explicit additions.
+
 ## Editing a translation
 
 Edit the locale directly, for example:
