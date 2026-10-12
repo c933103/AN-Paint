@@ -11,7 +11,7 @@ class NomNotificationSourceTest(unittest.TestCase):
     def test_current_api_bundled_horizontal_route_keeps_nom_and_includes_wu(self):
         text=(JAVA/'LocaleTypography.kt').read_text()
         self.assertIn('fun showMessage(',text)
-        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()',text)
+        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context)',text)
         self.assertIn('val font=typeface(context)',text)
         self.assertNotIn('asset()=="fonts/anpaintnomui.ttf"',text)
         self.assertIn('if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return',text)

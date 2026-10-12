@@ -130,7 +130,8 @@ class UiDirectionContextTest {
     @Test fun rotationAndRecreationPreserveSelectedDirectionDespiteLaterDefaultReset() {
         for((tag,vertical,rtl) in listOf(
                 Triple("lzh-Hant",true,true),Triple("mnc-Mong",true,false),
-                Triple("en-XV",true,false),Triple("qaa-Zsye-XV",true,true),Triple("en-US",false,false))) {
+                Triple("en-XV",true,false),Triple("qaa-Zsye-XV",true,true),Triple("en-US",false,false),
+                Triple("vi-Hani",false,false),Triple("wuu-Hans",false,false))) {
             withEditor(tag) {controller ->
                 var activity=controller.get()
                 activity.document.newImage(17,11)
@@ -186,6 +187,19 @@ class UiDirectionContextTest {
         assertEquals(tag,AppLanguage.selectedTag(activity))
         assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
         assertEquals(opposite(vertical),Locale.getDefault())
+        val asset=when(tag) {
+            "mnc-Mong" -> "fonts/notosansmongolian.ttf"
+            "vi-Hani" -> "fonts/anpaintnomui.ttf"
+            "wuu-Hans" -> "fonts/anpaintwuufallback.ttf"
+            else -> null
+        }
+        asset?.let {path ->
+            val expected=android.graphics.Typeface.createFromAsset(activity.assets,path)
+            for(view in widgets(activity)) {
+                assertEquals("New control after callback/default reset: $tag",expected,view.typeface)
+                assertEquals("Sample 95\nNative text",view.text.toString())
+            }
+        }
         val root=activity.window.decorView
         assertEquals("Workspace scaffold follows resources",vertical,root.findViewWithTag<View>("vertical_status_rail")!=null)
         val file=root.findViewWithTag<TextView>("menu_File")

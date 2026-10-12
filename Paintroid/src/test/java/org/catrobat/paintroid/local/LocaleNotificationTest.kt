@@ -3,6 +3,7 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.graphics.Insets
@@ -38,29 +39,76 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class LocaleNotificationTest {
-    private lateinit var controller: ActivityController<Activity>
+    class NotificationActivity: Activity() {
+        override fun attachBaseContext(base: Context) {
+            val config=Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())}
+            super.attachBaseContext(base.createConfigurationContext(config))
+        }
+    }
+
+    private lateinit var controller: ActivityController<NotificationActivity>
     private lateinit var previous: Locale
+    private lateinit var previousConfiguration: Configuration
     private val activity get()=controller.get()
     private val host get()=activity.findViewById<FrameLayout>(android.R.id.content)
     private fun notice()=host.findViewWithTag<View>("locale_notification")
     private fun message()=host.findViewWithTag<TextView>("locale_notification_text")
     private fun advance(ms: Long)=shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(ms))
     private fun show(text: String,duration: Int=Toast.LENGTH_SHORT)=LocaleTypography.showMessage(activity,text,duration)
+    @Suppress("DEPRECATION")
+    private fun selectLocale(locale: Locale) {
+        Locale.setDefault(locale)
+        // Only this fixture's configuration context changes; application resources stay untouched.
+        val config=Configuration(activity.resources.configuration).apply {setLocale(locale)}
+        activity.resources.updateConfiguration(config,activity.resources.displayMetrics)
+    }
 
     @Before fun setup() {
         previous=Locale.getDefault()
         Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
-        controller=Robolectric.buildActivity(Activity::class.java).setup()
+        controller=Robolectric.buildActivity(NotificationActivity::class.java).setup()
+        previousConfiguration=Configuration(activity.resources.configuration)
         activity.setContentView(FrameLayout(activity))
         controller.visible().windowFocusChanged(true)
         assertTrue("Lifecycle regressions require a real attached parent",host.isAttachedToWindow)
         ShadowToast.reset()
     }
+    @Suppress("DEPRECATION")
     @After fun cleanup() {
         controller.close()
         advance(0)
+        activity.resources.updateConfiguration(previousConfiguration,activity.resources.displayMetrics)
         Locale.setDefault(previous)
         ShadowToast.reset()
+    }
+
+    @Test fun notificationRouteUsesResourcesDespiteAnOppositeProcessDefault() {
+        assertTrue("Real attached notification host",host.isAttachedToWindow)
+        for((tag,asset,value) in listOf(
+                Triple("vi-Hani","fonts/anpaintnomui.ttf","𡨸喃 𮞶"),
+                Triple("wuu-Hans","fonts/anpaintwuufallback.ttf","𠲎.png"))) {
+            selectLocale(Locale.forLanguageTag(tag))
+            Locale.setDefault(Locale.forLanguageTag("mn-Mong"))
+            assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+            assertNotEquals(Locale.getDefault(),activity.resources.configuration.locales[0])
+            ShadowToast.reset();show(value)
+            assertNotNull("Resource-bound horizontal notice: $tag",notice())
+            assertEquals(value,message().text.toString())
+            assertEquals(android.graphics.Typeface.createFromAsset(activity.assets,asset),message().typeface)
+            assertEquals(value,message().createAccessibilityNodeInfo().text.toString())
+            assertNull(ShadowToast.getLatestToast())
+            advance(2100);assertNull("Normal short-notice timeout retained",notice())
+        }
+        for(tag in listOf("mn-Mong","en-US")) {
+            selectLocale(Locale.forLanguageTag(tag))
+            Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+            assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+            assertNotEquals(Locale.getDefault(),activity.resources.configuration.locales[0])
+            val value="$tag complete fallback message"
+            ShadowToast.reset();show(value)
+            assertNull("Resource-bound vertical/ordinary fallback: $tag",notice())
+            assertEquals(value,ShadowToast.getTextOfLatestToast())
+        }
     }
 
     @Test fun currentApiNomMessageUsesBundledFontAndFullResourceThroughWrappedContext() {
@@ -79,7 +127,7 @@ class LocaleNotificationTest {
 
     @Test fun currentApiWuSaveFeedbackUsesItsBundledSupplementaryGlyph() {
         val locale=Locale.forLanguageTag("wuu-Hans")
-        Locale.setDefault(locale)
+        selectLocale(locale)
         val config=Configuration(activity.resources.configuration).apply {setLocale(locale)}
         // The current canned Wu toast strings contain no supplementary glyph.
         // A saved filename is user text and can contain the bundled U+20C8E.
@@ -100,7 +148,7 @@ class LocaleNotificationTest {
         val tags=activity.resources.getStringArray(R.array.app_language_tags).toList()
         assertTrue(tags.containsAll(bundledHorizontal))
         for(tag in tags) {
-            Locale.setDefault(Locale.forLanguageTag(tag))
+            selectLocale(Locale.forLanguageTag(tag))
             ShadowToast.reset()
             show(tag)
             if(tag in bundledHorizontal) {
@@ -119,7 +167,7 @@ class LocaleNotificationTest {
     }
 
     @Test fun wuDialogAnchorAndBackgroundFallbackRetainTheirWindowBoundaries() {
-        Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
+        selectLocale(Locale.forLanguageTag("wuu-Hans"))
         val dialog=Dialog(activity)
         val anchor=TextView(activity)
         dialog.setContentView(anchor)
@@ -365,7 +413,7 @@ class LocaleNotificationTest {
 
     @Test fun ordinaryLocalesKeepTheirSystemToastBehavior() {
         for(tag in listOf("vi","ko-KR","ko-KP","ko-Kore-KR","en")) {
-            Locale.setDefault(Locale.forLanguageTag(tag))
+            selectLocale(Locale.forLanguageTag(tag))
             show(tag)
             assertNull(notice())
             assertEquals(tag,ShadowToast.getTextOfLatestToast())

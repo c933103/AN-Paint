@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.res.Configuration
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.widget.EditText
@@ -23,6 +24,10 @@ import java.util.Locale
 @Config(sdk=[30])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class LocaleTypographyTest {
+    private fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
+        base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
+    }
+
     @Test fun uiSubsetsStayOutOfDrawingChoicesAndPreserveExplicitFonts() {
         val context=RuntimeEnvironment.getApplication()
         val old=Locale.getDefault()
@@ -33,7 +38,7 @@ class LocaleTypographyTest {
             assertTrue(explicit>0)
             for((tag,text) in listOf("vi-Hani" to "𡨸喃", "wuu-Hans" to "𠲎")) {
                 Locale.setDefault(Locale.forLanguageTag(tag))
-                val fallback=Typeface.create(LocaleTypography.typeface(context),Typeface.BOLD)
+                val fallback=Typeface.create(LocaleTypography.typeface(context,Locale.getDefault()),Typeface.BOLD)
                 assertSame(tag,fallback,catalog.faceForText(0,text,Typeface.BOLD))
                 assertSame(tag,catalog.face(explicit),catalog.faceForText(explicit,text))
             }
@@ -44,10 +49,10 @@ class LocaleTypographyTest {
         } finally {Locale.setDefault(old)}
     }
     @Test fun nomFontReachesNativeControlsButPreservesExplicitTextFonts() {
-        val context=RuntimeEnvironment.getApplication()
         val old=Locale.getDefault()
         try {
             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
+            val context=localizedContext()
             val font=LocaleTypography.typeface(context)!!
             val paint=Paint().apply {typeface=font;textSize=32f}
             for(text in listOf("𡨸","𥻂","𦻳","𮞶")) assertTrue(text,paint.hasGlyph(text))
@@ -77,9 +82,10 @@ class LocaleTypographyTest {
             assertSame(font,popupRow.typeface)
             assertEquals("𮞶",popupRow.text.toString())
             Locale.setDefault(Locale.forLanguageTag("wuu-Hans"))
-            val wu=LocaleTypography.typeface(context)!!
+            val wuContext=localizedContext()
+            val wu=LocaleTypography.typeface(wuContext)!!
             assertTrue(Paint().apply {typeface=wu}.hasGlyph("𠲎"))
-            val catalog=org.catrobat.paintroid.classic.FontCatalog(context)
+            val catalog=org.catrobat.paintroid.classic.FontCatalog(wuContext)
             assertFalse(catalog.fonts.any {it.id=="anpaintwuufallback"})
         } finally {Locale.setDefault(old)}
     }

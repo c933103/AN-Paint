@@ -25,7 +25,7 @@ internal object LocaleTypography {
         locale.language=="wuu" && locale.script=="Hans" -> "fonts/anpaintwuufallback.ttf"
         else -> null
     }
-    fun typeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? {
+    fun typeface(context: Context,locale: Locale=VerticalText.uiLocale(context)): Typeface? {
         val asset=asset(locale) ?: return null
         return faces.getOrPut(asset) {Typeface.createFromAsset(context.assets,asset)}
     }
@@ -41,7 +41,7 @@ internal object LocaleTypography {
      * Background/application contexts retain a standard, system-rendered text toast.
      */
     fun showMessage(context: Context,text: CharSequence,duration: Int,anchor: View?=null) {
-        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()) {
+        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context)) {
             val font=typeface(context)
             if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return
         }

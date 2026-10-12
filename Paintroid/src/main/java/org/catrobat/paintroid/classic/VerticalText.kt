@@ -28,14 +28,14 @@ internal object VerticalText {
     // the process default during configuration dispatch after our activity's
     // override has already been applied; that must not turn existing UI sideways.
     @Suppress("DEPRECATION")
-    fun uiDirection(context: Context): TextDirection {
+    fun uiLocale(context: Context): Locale {
         val configuration=context.resources.configuration
-        val locale=if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
-        return uiDirection(locale)
+        return if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
     }
+    fun uiDirection(context: Context): TextDirection = uiDirection(uiLocale(context))
     fun uiVertical(context: Context)=uiDirection(context)!=TextDirection.HORIZONTAL
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
-    fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
+    fun uiTypeface(context: Context,locale: Locale=uiLocale(context)): Typeface? = LocaleTypography.typeface(context,locale)
     /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */
     fun clusters(text: String): List<String> {
         val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0

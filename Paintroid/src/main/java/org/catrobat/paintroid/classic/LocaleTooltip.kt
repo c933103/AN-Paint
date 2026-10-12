@@ -22,7 +22,7 @@ internal object LocaleTooltip {
     internal fun format(context: Context,text: CharSequence?): CharSequence? {
         if(text.isNullOrEmpty()) return text
         val previous=(text as? Spanned)?.getSpans(0,text.length,Face::class.java).orEmpty()
-        val font=if(VerticalText.uiVertical()) null else LocaleTypography.typeface(context)
+        val font=if(VerticalText.uiVertical(context)) null else LocaleTypography.typeface(context)
         if(font==null && previous.isEmpty()) return text
         // Copy rather than mutate caller-owned text; retain every unrelated span.
         return SpannableString(text).apply {
