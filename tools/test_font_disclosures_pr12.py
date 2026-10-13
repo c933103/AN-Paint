@@ -20,6 +20,63 @@ NOM_DISCLOSURE = (
 WU_DISCLOSURE = 'AN Paint Wu Fallback is a glyph-only subset of Nom Na Tong under MIT.'
 
 
+def notice_reference_errors(inventory, asset_bytes, original_notices):
+    """Resolve asset-relative pointers and retain the original per-font text.
+
+    A pointer may name a dedicated notice or an aggregate containing it. The
+    repository's original notice files are text inputs, not licence decisions.
+    """
+    errors = []
+    for row in inventory:
+        notice = asset_bytes.get(row['licence_file'], b'').decode('utf-8')
+        if not notice.strip():
+            errors.append(f"{row['id']}: missing packaged notice")
+        elif row['id'] in original_notices and original_notices[row['id']].strip() not in notice:
+            errors.append(f"{row['id']}: original notice absent from declared asset")
+    return errors
+
+
+class FontNoticeReferenceTest(unittest.TestCase):
+    def setUp(self):
+        self.inventory = json.loads((ASSETS / 'fonts/inventory.json').read_text())
+        self.assets = {path.relative_to(ASSETS).as_posix(): path.read_bytes()
+                       for path in (ASSETS / 'legal').rglob('*.txt')}
+        self.originals = {path.name.removesuffix('-OFL.txt'): path.read_text()
+                          for path in (ROOT / 'legal/fonts').glob('*-OFL.txt')}
+
+    def test_every_font_reference_resolves_to_a_packaged_notice(self):
+        self.assertEqual([], notice_reference_errors(self.inventory, self.assets, self.originals))
+
+    def test_missing_reference_is_rejected_for_every_font(self):
+        for row in self.inventory:
+            with self.subTest(font=row['id']):
+                changed = dict(row, licence_file='legal/missing-NOTICE.txt')
+                self.assertIn(f"{row['id']}: missing packaged notice",
+                              notice_reference_errors([changed], self.assets, self.originals))
+
+    def test_existing_unrelated_notice_cannot_replace_an_original(self):
+        for row in self.inventory:
+            if row['id'] not in self.originals:
+                continue
+            with self.subTest(font=row['id']):
+                changed = dict(row, licence_file='legal/fonts/notosansmongolian-OFL.txt')
+                self.assertIn(f"{row['id']}: original notice absent from declared asset",
+                              notice_reference_errors([changed], self.assets, self.originals))
+
+    def test_original_copyright_and_complete_terms_are_required(self):
+        for row in self.inventory:
+            if row['id'] not in self.originals:
+                continue
+            original = self.originals[row['id']].strip()
+            for incomplete in (original.split('\n', 1)[1], original.split('PREAMBLE', 1)[0]):
+                with self.subTest(font=row['id'], incomplete=incomplete[:40]):
+                    assets = dict(self.assets)
+                    assets[row['licence_file']] = assets[row['licence_file']].replace(
+                        original.encode(), incomplete.encode())
+                    self.assertIn(f"{row['id']}: original notice absent from declared asset",
+                                  notice_reference_errors([row], assets, self.originals))
+
+
 def disclosure_errors(inventory, about, ci_section, asset_bytes):
     """Validate the current custom-family statements against actual declared files.
 
