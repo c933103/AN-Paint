@@ -1,0 +1,30 @@
+{
+  "mode": "optimized",
+  "source_tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "240s",
+    "python3",
+    "-O",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "started_at": "2026-10-13T00:02:50.625619+00:00",
+  "finished_at": "2026-10-13T00:05:04.997038+00:00",
+  "wall_seconds": 134.36052394199942,
+  "exit_code": 0,
+  "declared_timeout_seconds": 240,
+  "reported_summary": [
+    "662",
+    "133.765"
+  ],
+  "log_sha256": "37045d3f4bba63b318e11654aed6d1187f2987c252310281df5d1337fc514d3d",
+  "source_unchanged": true
+}

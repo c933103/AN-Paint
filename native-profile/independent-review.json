@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "review": "Independent source and host-contract review of the finite native screenshot PNG profile",
+  "repository": "https://github.com/c933103/AN-Paint",
+  "pull_request": "https://github.com/c933103/AN-Paint/pull/59",
+  "reviewed_tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "comparison_tree": "147ce2c796c46da567499b41b5dec9c970a53770",
+  "publication_context": {
+    "reported_head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+    "verification_scope": "The publishing worker reported this head. This reviewer independently verified the local source tree, not the remote ref."
+  },
+  "result": "passed-bounded-source-and-host-contract-review",
+  "review_completed_at_utc": "2026-10-13T00:00:18Z",
+  "receipt_created_at_utc": "2026-10-13T00:09:52.297512+00:00",
+  "source_scope": {
+    "exact_three_file_delta": true,
+    "working_tree_matches_reviewed_tree": true,
+    "files": [
+      {
+        "path": "CI.md",
+        "mode": "100644",
+        "git_blob": "2b062bba179cd131266dba8dfd184432e373c56a",
+        "sha256": "6eef1f41dd5f1b060f2c3d23ec7192956a7336e3ff5d7128c29ff1447be33359"
+      },
+      {
+        "path": "tools/dialog_evidence_transport.py",
+        "mode": "100644",
+        "git_blob": "798dcbd5b84d9684a1dae0b68996aae4dafa359c",
+        "sha256": "a84c272551f3cbdea878bb7a7b990909d0e0c04f6cc8d888f244692e426fd7b5"
+      },
+      {
+        "path": "tools/test_dialog_evidence_transport.py",
+        "mode": "100644",
+        "git_blob": "418a0da65213026bfe35f2d4abf9a1166ec5464c",
+        "sha256": "d3d3ca52daea93b195a3545536e75af4230a5e13c2f37b89670bd2dc9c92239c"
+      }
+    ],
+    "unchanged": "Application and installed-test source, receipt/source binding, archive hashes and extraction checks are outside this three-file delta."
+  },
+  "independent_checks": {
+    "transport_unittests": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -B -m unittest test_dialog_evidence_transport -q",
+        "tests": 38,
+        "seconds": 0.515,
+        "result": "passed"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -B -O -m unittest test_dialog_evidence_transport -q",
+        "tests": 38,
+        "seconds": 0.442,
+        "result": "passed"
+      }
+    ],
+    "chunk_grammar": {
+      "sequences": 55986,
+      "token_lengths": [
+        1,
+        6
+      ],
+      "accepted": 28,
+      "rejected": 55958,
+      "tokens": {
+        "H": "valid IHDR",
+        "S": "valid sRGB",
+        "B": "valid sBIT",
+        "D": "complete compressed image in IDAT",
+        "Z": "empty IDAT",
+        "E": "empty IEND"
+      },
+      "independent_expected_regex": "H(?:SB|BS|S|B)?Z*DZ*E",
+      "result": "Every observed acceptance or rejection matched the independent grammar oracle."
+    },
+    "multirow_scanlines": {
+      "colour_types": [
+        2,
+        6
+      ],
+      "widths": [
+        1,
+        3
+      ],
+      "height": 2,
+      "valid_two_row_filter_combinations": 100,
+      "invalid_second_row_filter_rejections": 1004,
+      "valid_filters": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid_second_row_filters_inclusive": [
+        5,
+        255
+      ],
+      "result": "passed"
+    },
+    "direct_file_size_bound": {
+      "max_file_bytes": 2097152,
+      "oversized_input_rejected": true
+    },
+    "accepted_capture_compatibility": {
+      "api30_original_pngs": 96,
+      "api35_original_pngs": 106,
+      "inventory_and_every_sha256_revalidated": true,
+      "all_original_png_bytes_passed_current_parser": true,
+      "receipt": "accepted-capture-compatibility.json",
+      "receipt_sha256": "c5f0595a501338a791d954a388c000d15333e21d5454ab7fd8f02dee04057c2b"
+    },
+    "source_and_documentation_review": "Finite RGB8/RGBA8 profile, supported metadata lengths/values/order/uniqueness, header/end grammar, CRCs, bounded exact zlib completion and scanline envelope reviewed. Unsupported formats fail explicitly; documentation retains separate decoder and visual review."
+  },
+  "limits": [
+    "This is a bounded native screenshot profile, not general PNG conformance or a universal Android output guarantee.",
+    "The grammar enumeration covers token lengths one through six; it is not an exhaustive proof over unbounded inputs.",
+    "The capture check establishes byte-preserving compatibility with previously accepted captures, not a fresh installed run.",
+    "No Android compilation, emulator execution, native rendering or visual/input acceptance was performed by this review.",
+    "Full host aggregate results are recorded separately; the reviewer did not rerun those aggregates.",
+    "No repository source was modified and no remote publication was performed by this reviewer."
+  ]
+}
