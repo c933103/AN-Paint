@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "observed_at_utc": "2026-10-13T05:55:00Z",
+  "observed_at_utc": "2026-10-13T06:40:00Z",
   "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
   "denominator": {
     "strings": 697,
@@ -14,15 +14,15 @@
     "missing": "No nonempty entry in exact canonical catalogue; parent-language inheritance and runtime fallback are distinct.",
     "arithmetic": "reviewed_current + needs_rereview + unreviewed_or_unknown + missing = total (698) per choice. Broad reset flags are not added to that sum.",
     "broad_reset": "57 original natural/regional catalogues retain broader independent/reconciliation obligations even when bounded current receipts exist. These are language-level obligations, not a proven key-by-key count of previous reviews.",
-    "scope": "Fresh Indonesian current-pair review accepted; Russian full plural accepted after the four warning corrections were independently reviewed and merged in PR62. No other entry gains review credit. This tracker update changes no app source/workflow/release.",
+    "scope": "Fresh Indonesian current-pair review accepted; Russian full plural accepted after the four warning corrections were independently reviewed and merged in PR62. No entry outside these explicitly accepted batches gains review credit. This tracker update changes no app source/workflow/release. Ten French shape entries independently accepted unchanged in source context; P05-003, GH-013 and CAT-021 remain open.",
     "no_human_prerequisite": "Native-speaker certification is not claimed and is not introduced as a mandatory gate."
   },
   "summary": {
     "total": 116566,
     "present": 47082,
-    "reviewed_current": 1275,
+    "reviewed_current": 1285,
     "needs_rereview": 0,
-    "unreviewed_or_unknown": 45807,
+    "unreviewed_or_unknown": 45797,
     "missing": 69484,
     "language_status_counts": {
       "broad-re-review-required": 57,
@@ -780,13 +780,23 @@
       "language_status": "broad-re-review-required",
       "total": 698,
       "present": 698,
-      "reviewed_current": 1,
+      "reviewed_current": 11,
       "needs_rereview": 0,
-      "unreviewed_or_unknown": 697,
+      "unreviewed_or_unknown": 687,
       "missing": 0,
       "broad_rereview_mandate": true,
       "reviewed_current_keys": [
-        "string/commons_metadata_query_failed"
+        "string/commons_metadata_query_failed",
+        "string/ui_arrow",
+        "string/ui_curve",
+        "string/ui_drag_between_opposite_corners_to_draw_a_five",
+        "string/ui_ellipse",
+        "string/ui_heart",
+        "string/ui_line",
+        "string/ui_polygon",
+        "string/ui_rectangle",
+        "string/ui_rounded_rectangle",
+        "string/ui_star"
       ],
       "needs_rereview_keys": [],
       "catalogue_path": "Paintroid/src/main/res/values-fr/strings.xml"
