@@ -298,6 +298,8 @@ class ColourViewportDeviceTest {
                 assertEquals(1f,activity.resources.displayMetrics.density,0f)
                 assertEquals(2f,activity.resources.configuration.fontScale,0f)
                 assertComplete(editor);assertComplete(controls)
+                assertTrue("Large-font rail width is applied: ${geometry(controls)}",controls.width>220)
+                assertTrue("At least half the columns remain for editing",editor.width>=controls.width)
                 assertTrue(editor.getChildAt(0).height>editor.height)
                 assertTrue(add.height>=48*add.resources.displayMetrics.density)
                 assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,

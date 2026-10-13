@@ -266,27 +266,20 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                 (editorPanel.layoutParams as LinearLayout.LayoutParams).apply {
                     width=if(columns) 0 else -1;height=if(columns) -1 else 0;weight=1f
                 }
+                // Reserve caption width from the rendering configuration before
+                // measuring. Repeated parent measurements use the same widths;
+                // normal-font geometry stays unchanged and the editor keeps half.
+                val railWidth=if(columns) (dp(220)*activity.resources.configuration.fontScale.coerceAtLeast(1f))
+                    .toInt().coerceAtMost((MeasureSpec.getSize(widthMeasureSpec)-shell.paddingLeft-
+                        shell.paddingRight-dp(12))/2) else dp(220)
                 (controlsScroll.layoutParams as LinearLayout.LayoutParams).apply {
-                    width=if(columns) dp(220) else -1;height=-2;weight=0f
+                    width=if(columns) railWidth else -1;height=-2;weight=0f
                     marginStart=if(columns) dp(12) else 0
                 }
-                sampleColumn.layoutParams.width=dp(76)
+                sampleColumn.layoutParams.width=if(columns) dp(76)*railWidth/dp(220) else dp(76)
                 shell.layoutParams.height=minOf(preferredHeight(),available)
                 shell.forceLayout()
                 super.onMeasure(widthMeasureSpec,heightMeasureSpec)
-                // A scrollable rail cannot reveal a preview row taller than its
-                // viewport. Give wrapped captions more width only when needed,
-                // while retaining at least half the available width for editing.
-                if(columns && previewRow.measuredHeight>controlsScroll.measuredHeight) {
-                    val railWidth=(MeasureSpec.getSize(widthMeasureSpec)-shell.paddingLeft-
-                        shell.paddingRight-dp(12))/2
-                    if(railWidth>dp(220)) {
-                        controlsScroll.layoutParams.width=railWidth
-                        sampleColumn.layoutParams.width=railWidth*76/220
-                        shell.forceLayout()
-                        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
-                    }
-                }
             }
         }.apply {
             tag="colour_dialog_holder"

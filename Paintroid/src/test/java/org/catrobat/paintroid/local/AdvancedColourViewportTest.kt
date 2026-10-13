@@ -72,6 +72,11 @@ class AdvancedColourViewportTest {
       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
         val root=dialog.window!!.decorView
         val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        val density=inner.resources.displayMetrics.density
+        assertEquals("Normal-font rail width is unchanged",(220*density+.5f).toInt(),
+            root.findViewWithTag<ScrollView>("colour_controls_scroll").width)
+        assertEquals("Normal-font preview caption width is unchanged",(76*density+.5f).toInt(),
+            root.findViewWithTag<TextView>("selected_colour_caption").width)
         complete(inner)
         assertTrue("Editor content must overflow",inner.getChildAt(0).height>inner.height)
         for(tag in listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour")) {
@@ -134,7 +139,7 @@ class AdvancedColourViewportTest {
         holder.layout(holder.left,holder.top,holder.right,holder.top+height)
         val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
         val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
-        assertTrue("Only the overflowing preview rail needs more width",controls.width>220*density)
+        assertTrue("Large-font captions receive more rail width",controls.width>220*density)
         assertTrue("At least half the columns remain for editing",editor.width>=controls.width)
         assertTrue("The editor still has a finite viewport",editor.height>0)
         assertEquals((104*density+.5f).toInt(),controls.height)
