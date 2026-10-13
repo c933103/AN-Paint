@@ -402,6 +402,7 @@ def verify_large_colour_rail(method, observations):
             'Hungarian long caption must exercise overflow')
     require(type(reached.get('editor_before')) is int
             and reached['editor']['scroll_y'] == reached['editor_before'], 'Rail scroll moved colour editor')
+    endpoint_before, endpoint_after = verify_colour_endpoint(observations, reached)
     top = one(observations, 'colour-large-rail-top-reached')
     for key, tag in (('heading', 'custom_colour_selection'), ('slot', 'custom_colour_0'),
                      ('controls', 'colour_controls_scroll')):
@@ -415,9 +416,41 @@ def verify_large_colour_rail(method, observations):
             and cancelled.get('dialog_attached') is False and cancelled.get('dialog_showing') is False,
             'Large colour Cancel must close without committing')
     before, injected = one(observations, 'pointer-before'), one(observations, 'pointer-injected')
-    require(observations.index(reached) < observations.index(top) < observations.index(before)
+    require(observations.index(reached) < observations.index(endpoint_before) < observations.index(endpoint_after)
+            < observations.index(top) < observations.index(before)
             < observations.index(injected) < observations.index(cancelled), 'Large rail native outcome order changed')
     require(not any(o.get('kind', '').startswith('native-back-') for o in observations), 'Unexpected colour Back')
+
+
+def verify_colour_endpoint(observations, reached):
+    before, after = (one(observations, 'colour-endpoint-' + stage) for stage in ('before', 'after'))
+    limit = reached['content_height'] - reached['viewport_height']
+    require(limit > 0 and before.get('setup') == 'synthetic one-pixel offset; reveal uses native input'
+            and before.get('framework_can_scroll') is False, 'Missing last-pixel regression precondition')
+    for event, offset in ((before, limit - 1), (after, limit)):
+        require(type(event.get('scroll_limit')) is int and event['scroll_limit'] == limit,
+                'Wrong native rail scroll limit')
+        colour_geometry(event.get('controls'), complete=True, tag='colour_controls_scroll')
+        require(event['controls']['raw'] == reached['controls']['raw']
+                and event['controls']['scroll_y'] == offset, 'Native last-pixel scroll endpoint not reached')
+        colour_geometry(event.get('sample'), complete=event is after, tag='new_colour_preview')
+    raw = before['sample']['raw']
+    visible = before['sample']['visible']
+    require(raw == [v + (1 if i in (1, 3) else 0) for i, v in enumerate(after['sample']['raw'])]
+            and visible == [raw[0], raw[1], raw[2], raw[3] - 1]
+            and raw[3] == before['controls']['raw'][3] + 1,
+            'Last-pixel precondition must hide exactly one bottom pixel')
+    require(after['sample']['raw'] == reached['sample']['raw'], 'Native endpoint changed preview allocation')
+    colour_geometry(after.get('editor'), complete=True, tag='colour_editor_scroll')
+    require(after['editor']['raw'] == reached['editor']['raw']
+            and after['editor']['scroll_y'] == reached['editor_before'], 'Endpoint gesture moved colour editor')
+    gestures = [o for o in observations[observations.index(before) + 1:observations.index(after)]
+                if o.get('kind') == 'native-scroll-injected']
+    require(len(gestures) == 1 and gestures[0].get('viewport') == before['controls']['visible']
+            and type(gestures[0].get('direction')) is int and gestures[0]['direction'] == 1
+            and type(gestures[0].get('hidden')) is int and gestures[0]['hidden'] == 1,
+            'One native gesture must reveal the last pixel before endpoint acceptance')
+    return before, after
 
 
 def verify_colour_allocation(observations):

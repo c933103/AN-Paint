@@ -10,6 +10,28 @@ MODEL = ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedCol
 
 
 class ColourViewportContractTest(unittest.TestCase):
+    def test_native_reveal_uses_exact_scrollview_range_and_forces_last_pixel_regression(self):
+        source = INSTALLED.read_text()
+        for required in ('candidate,direction)', 'view.height-view.paddingTop-view.paddingBottom',
+                         'direction<0 -> view.scrollY>0', 'direction>0 -> view.scrollY<scrollLimit(view)',
+                         'else view.canScrollVertically(direction)', 'controls.scrollTo(controls.scrollX,maximum-1)',
+                         'assertEquals(limit-1,controls.scrollY)', 'controls.canScrollVertically(1)',
+                         'assertEquals("Native gesture reaches the exact endpoint",limit,controls.scrollY)',
+                         'assertFalse("No route beyond the endpoint",canRevealVertically(controls,1))',
+                         'assertFalse("No route before the top endpoint",canRevealVertically(controls,-1))',
+                         'repeat(12)', 'seen.add(onMain {geometry(view).toString()})'):
+            self.assertIn(required, source)
+        self.assertNotIn('candidate.canScrollVertically(direction)', source)
+        setup = source.index('controls.scrollTo(controls.scrollX,maximum-1)')
+        before = source.index('"colour-endpoint-before"', setup)
+        reveal = source.index('reveal(sample) {rawBounds(sample)}', before)
+        after = source.index('"colour-endpoint-after"', reveal)
+        self.assertLess(source.index('evidence.capture("colour-large-preview-reached")'), setup)
+        self.assertLess(after, source.index('"colour-large-rail-top-reached"'))
+        helper = source.split('private fun reveal(', 1)[1].split('private fun scrollLimit', 1)[0]
+        self.assertNotIn('.scrollTo(', helper)
+        self.assertIn('visibleBounds(view).contains(target())', helper)
+
     def test_all_direction_decisions_use_the_rendering_context(self):
         source = PRODUCTION.read_text()
         self.assertEqual(re.findall(r'VerticalText.uiVertical\(([^)]*)\)', source), ['activity'] * 4)
