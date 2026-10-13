@@ -1,0 +1,305 @@
+{
+  "commit": "2b144237836a11b4bf42ea037a1ab5b88366e098",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "success": true,
+  "probes": [
+    {
+      "name": "01-clean",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:clean"
+      ],
+      "exit_code": 0,
+      "log_sha256": "5ba64cd3c5adc4f9ccada231a1b731adb28cff59c3c60e44ccc88ae420074ee1",
+      "tasks": [
+        [
+          ":Paintroid:externalNativeBuildCleanDebug",
+          ""
+        ],
+        [
+          ":Paintroid:externalNativeBuildCleanRelease",
+          ""
+        ],
+        [
+          ":Paintroid:externalNativeBuildCleanSignedRelease",
+          ""
+        ],
+        [
+          ":Paintroid:clean",
+          " UP-TO-DATE"
+        ]
+      ]
+    },
+    {
+      "name": "02-clean-debug-release",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:mergeDebugResources",
+        ":Paintroid:mergeReleaseResources"
+      ],
+      "exit_code": 0,
+      "log_sha256": "5e81573592fb2ef30d213bc1d00c4db8bb3c99b2ebe7f1a0a1b57ebdcac37b0e",
+      "tasks": [
+        [
+          ":Paintroid:generateExactScriptResources",
+          ""
+        ],
+        [
+          ":Paintroid:preBuild",
+          ""
+        ],
+        [
+          ":Paintroid:preDebugBuild",
+          ""
+        ],
+        [
+          ":Paintroid:generateDebugResValues",
+          ""
+        ],
+        [
+          ":Paintroid:generateDebugResources",
+          ""
+        ],
+        [
+          ":Paintroid:mergeDebugResources",
+          ""
+        ],
+        [
+          ":Paintroid:preReleaseBuild",
+          ""
+        ],
+        [
+          ":Paintroid:generateReleaseResValues",
+          ""
+        ],
+        [
+          ":Paintroid:generateReleaseResources",
+          ""
+        ],
+        [
+          ":Paintroid:mergeReleaseResources",
+          ""
+        ]
+      ],
+      "generated_sha256": {
+        "values-b+ko+Kore+KR+anpaint/strings.xml": "795c7783613c8acc6f3c206d0b0963a1b381d5d23f03e286709659ab0913b1a5"
+      }
+    },
+    {
+      "name": "03-unchanged",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:generateExactScriptResources"
+      ],
+      "exit_code": 0,
+      "log_sha256": "0bfbd249d7a56d5ad897fb33955e9ae9d36fe71412e8a8b40b56cd3e0aa7f892",
+      "tasks": [
+        [
+          ":Paintroid:generateExactScriptResources",
+          " UP-TO-DATE"
+        ]
+      ]
+    },
+    {
+      "name": "04-input-change-and-stale-output",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:mergeDebugResources"
+      ],
+      "exit_code": 0,
+      "log_sha256": "035e0e46e94445924dc32c785cdda6f4f8ca6f8806d87256deeab10ae88ada0a",
+      "tasks": [
+        [
+          ":Paintroid:generateExactScriptResources",
+          ""
+        ],
+        [
+          ":Paintroid:preBuild",
+          ""
+        ],
+        [
+          ":Paintroid:preDebugBuild",
+          ""
+        ],
+        [
+          ":Paintroid:generateDebugResValues",
+          " UP-TO-DATE"
+        ],
+        [
+          ":Paintroid:generateDebugResources",
+          ""
+        ],
+        [
+          ":Paintroid:mergeDebugResources",
+          ""
+        ]
+      ],
+      "generated_sha256": {
+        "values-b+ko+Kore+KR+anpaint/strings.xml": "3d73a19c5fd6738b89a306a14002c9516d47cf1fd980abebb72a7fa960e7fa35"
+      }
+    },
+    {
+      "name": "05-restored-input-release",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:mergeReleaseResources"
+      ],
+      "exit_code": 0,
+      "log_sha256": "d0048f49676b30e9110f7da30d6d9dc0c8693a8b5bff04b20ed26b1b1eee74a5",
+      "tasks": [
+        [
+          ":Paintroid:generateExactScriptResources",
+          ""
+        ],
+        [
+          ":Paintroid:preBuild",
+          ""
+        ],
+        [
+          ":Paintroid:preReleaseBuild",
+          ""
+        ],
+        [
+          ":Paintroid:generateReleaseResValues",
+          " UP-TO-DATE"
+        ],
+        [
+          ":Paintroid:generateReleaseResources",
+          " UP-TO-DATE"
+        ],
+        [
+          ":Paintroid:mergeReleaseResources",
+          " UP-TO-DATE"
+        ]
+      ],
+      "generated_sha256": {
+        "values-b+ko+Kore+KR+anpaint/strings.xml": "795c7783613c8acc6f3c206d0b0963a1b381d5d23f03e286709659ab0913b1a5"
+      }
+    },
+    {
+      "name": "06-second-clean",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:clean"
+      ],
+      "exit_code": 0,
+      "log_sha256": "9bccdbe4d281e2139af2ea2ce3bcb16eeb2f894e65f347cc9c311167f33627b8",
+      "tasks": [
+        [
+          ":Paintroid:externalNativeBuildCleanDebug",
+          ""
+        ],
+        [
+          ":Paintroid:externalNativeBuildCleanRelease",
+          ""
+        ],
+        [
+          ":Paintroid:externalNativeBuildCleanSignedRelease",
+          ""
+        ],
+        [
+          ":Paintroid:clean",
+          ""
+        ]
+      ]
+    },
+    {
+      "name": "07-release-first-after-clean",
+      "command": [
+        "bash",
+        "gradlew",
+        "--no-daemon",
+        "--max-workers=2",
+        "--parallel",
+        "--console=plain",
+        "-PnativeAbis=x86_64",
+        "-x",
+        ":Paintroid:bundleCorrespondingSource",
+        ":Paintroid:mergeReleaseResources"
+      ],
+      "exit_code": 0,
+      "log_sha256": "7bf8a17519b2198a87feb57c14a542ea6d3c204df69a9ab067645f7e4aa88505",
+      "tasks": [
+        [
+          ":Paintroid:generateExactScriptResources",
+          ""
+        ],
+        [
+          ":Paintroid:preBuild",
+          ""
+        ],
+        [
+          ":Paintroid:preReleaseBuild",
+          ""
+        ],
+        [
+          ":Paintroid:generateReleaseResValues",
+          ""
+        ],
+        [
+          ":Paintroid:generateReleaseResources",
+          ""
+        ],
+        [
+          ":Paintroid:mergeReleaseResources",
+          ""
+        ]
+      ],
+      "generated_sha256": {
+        "values-b+ko+Kore+KR+anpaint/strings.xml": "795c7783613c8acc6f3c206d0b0963a1b381d5d23f03e286709659ab0913b1a5"
+      }
+    }
+  ],
+  "excluded_task": ":Paintroid:bundleCorrespondingSource",
+  "scope": "Pinned Gradle resource graph; ordinary CI separately builds APK/source.",
+  "wrapper_sha256": "5b4eb40ab2eb707a90219fecd11b1770585ae30927966790b739f5714300084e",
+  "root_build_sha256": "cd59014a5c556089fb8c07568fa64c8f24b1778879ef843f730570460239bb9d"
+}

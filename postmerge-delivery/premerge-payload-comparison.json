@@ -1,0 +1,24 @@
+{
+  "comparison": "Fresh postmerge push APK compared with the exact prior PR59 final-run APK",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "prior_run": 38325525117,
+  "postmerge_run": 38328484887,
+  "prior_apk_sha256": "0d92f4eb55c9c50a411c77f4df25247ab15dfda68857f19d63dfdcf1ed5c5b94",
+  "postmerge_apk_sha256": "4f83079c328ae84c593b28323bf5c2dd86d80d6abfc15dcfee62e0bc9a4ff3c8",
+  "same_zip_entry_set": true,
+  "entry_count": 660,
+  "changed_zip_entries": [
+    {
+      "path": "META-INF/CERT.RSA",
+      "premerge_sha256": "625d7b1502d07a2e2b66dd4eeaaba04582d86e6c9864a18fd11dcc56276176a0",
+      "postmerge_sha256": "83a84277f49ccf98783a1333191523e699cbecf2946a07982689cbf03e074dd3"
+    }
+  ],
+  "non_signature_zip_member_bytes_equal": true,
+  "excluded_jar_signature_member_names": [
+    "META-INF/CERT.RSA",
+    "META-INF/CERT.SF",
+    "META-INF/MANIFEST.MF"
+  ],
+  "limit": "Comparison addresses decompressed ZIP member bytes. APK signing blocks, ZIP layout and timestamps are outside that comparison. It does not turn prior API30 execution into a fresh postmerge run."
+}
