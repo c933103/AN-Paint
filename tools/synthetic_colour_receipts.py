@@ -51,13 +51,13 @@ def synthetic_colour_receipt(method, digest):
         observations.extend([
             dict(kind='colour-large-rail-reached', display=geometry(bounds=(0, 0, 640, 320)),
                  density=1, font_scale=2, text_size=24, expected_text_size=24, overflow=True,
-                 content_height=190, viewport_height=140, controls=geometry('colour_controls_scroll', (400, 40, 620, 180), scroll_y=50),
-                 editor=geometry('colour_editor_scroll', (20, 40, 380, 180)), editor_before=0,
-                 add=geometry('add_custom_colour', (476, 90, 620, 170)),
-                 selected=geometry('selected_colour_caption', (400, 70, 476, 100)), sample=geometry('new_colour_preview', (400, 140, 464, 164))),
-            dict(kind='colour-large-rail-top-reached', heading=geometry('custom_colour_selection', (400, 40, 620, 72)),
-                 slot=geometry('custom_colour_0', (400, 72, 444, 116)),
-                 controls=geometry('colour_controls_scroll', (400, 40, 620, 180)))])
+                 content_height=190, viewport_height=140, controls=geometry('colour_controls_scroll', (330, 40, 620, 180), scroll_y=50),
+                 editor=geometry('colour_editor_scroll', (20, 40, 310, 180)), editor_before=0,
+                 add=geometry('add_custom_colour', (430, 90, 620, 170)),
+                 selected=geometry('selected_colour_caption', (330, 70, 430, 100)), sample=geometry('new_colour_preview', (330, 140, 394, 164))),
+            dict(kind='colour-large-rail-top-reached', heading=geometry('custom_colour_selection', (330, 40, 620, 72)),
+                 slot=geometry('custom_colour_0', (330, 72, 374, 116)),
+                 controls=geometry('colour_controls_scroll', (330, 40, 620, 180)))])
         pointer(COLOUR_POINTERS[method][0])
         observations.append(dict(kind='colour-large-cancelled', commit_callbacks=0, closed_callbacks=1,
                                  dialog_attached=False, dialog_showing=False))

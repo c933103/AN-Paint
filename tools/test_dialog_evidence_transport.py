@@ -17,7 +17,7 @@ import zipfile
 from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
-from synthetic_colour_receipts import synthetic_colour_receipt
+from synthetic_colour_receipts import geometry, synthetic_colour_receipt
 
 DIGEST = 'a' * 64
 
@@ -741,6 +741,33 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
             data = receipt(method); mutation(data)
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 verify_receipt(data, method, DIGEST)
+
+    def test_large_rail_width_and_editor_share_are_exported_requirements(self):
+        for method in ('largeEnglishColourCaptionsAndPreviewRemainReachable',
+                       'largeHungarianColourCaptionsAndPreviewRemainReachable'):
+            def sized(rail_width, editor_width):
+                data = receipt(method)
+                reached = observation(data, 'colour-large-rail-reached')
+                top = observation(data, 'colour-large-rail-top-reached')
+                left = 620 - rail_width
+                reached['controls'] = geometry('colour_controls_scroll', (left, 40, 620, 180), scroll_y=50)
+                reached['editor'] = geometry('colour_editor_scroll', (20, 40, 20 + editor_width, 180))
+                reached['add'] = geometry('add_custom_colour', (left + 76, 90, 620, 170))
+                reached['selected'] = geometry('selected_colour_caption', (left, 70, left + 76, 100))
+                reached['sample'] = geometry('new_colour_preview', (left, 140, left + 64, 164))
+                top['controls'] = geometry('colour_controls_scroll', (left, 40, 620, 180))
+                top['heading'] = geometry('custom_colour_selection', (left, 40, 620, 72))
+                top['slot'] = geometry('custom_colour_0', (left, 72, left + 44, 116))
+                return data
+
+            # Every child remains inside the rail/display; these fail specifically
+            # on width, not because a malformed child happens to be out of bounds.
+            for rail_width in (219, 220):
+                with self.subTest(method=method, rail_width=rail_width), self.assertRaisesRegex(ValueError, 'wider than 220px'):
+                    verify_colour_profile(method, sized(rail_width, 290)['observations'])
+            with self.subTest(method=method, editor='starved'), self.assertRaisesRegex(ValueError, 'starve editor width'):
+                verify_colour_profile(method, sized(290, 289)['observations'])
+            verify_colour_profile(method, sized(221, 221)['observations'])
 
     def test_large_rail_rejects_simultaneous_controls_moved_outside_display(self):
         method = 'largeHungarianColourCaptionsAndPreviewRemainReachable'

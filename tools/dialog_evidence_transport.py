@@ -383,6 +383,10 @@ def verify_large_colour_rail(method, observations):
         if key in ('add', 'selected', 'sample'):
             require(contains(reached['controls']['raw'], raw), 'Large preview control outside its rail')
     add, sample = reached['add']['raw'], reached['sample']['raw']
+    controls, editor = reached['controls']['raw'], reached['editor']['raw']
+    rail_width = controls[2] - controls[0]
+    require(rail_width > 220, 'Large-font rail must be wider than 220px at mdpi')
+    require(editor[2] - editor[0] >= rail_width, 'Large-font rail must not starve editor width')
     require(add[3] - add[1] >= 48 and sample[2] - sample[0] == 64 and sample[3] - sample[1] == 24,
             'Large rail must preserve the action and preview sizes')
     require(type(reached.get('content_height')) is int and type(reached.get('viewport_height')) is int
