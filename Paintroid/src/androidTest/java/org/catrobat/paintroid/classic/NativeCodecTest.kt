@@ -101,6 +101,10 @@ class NativeCodecTest {
             val digest=MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") {"%02x".format(it.toInt() and 255)}
             assertEquals(path,row.getString("sha256"),digest)
             assertNotNull(path,Typeface.createFromAsset(context.assets,path))
+            // Inventory notice paths are asset-relative, including aggregate notices.
+            val noticePath=row.getString("licence_file")
+            val notice=context.assets.open(noticePath).bufferedReader().use {it.readText()}
+            assertTrue(noticePath,notice.isNotBlank())
         }
     }
     @Test fun losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary() {
