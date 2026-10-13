@@ -17,7 +17,7 @@ import zipfile
 from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
-from synthetic_colour_receipts import geometry, synthetic_colour_receipt
+from synthetic_colour_receipts import geometry, synthetic_colour_receipt, synthetic_colour_endpoint
 
 DIGEST = 'a' * 64
 
@@ -754,10 +754,12 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
                 reached['editor'] = geometry('colour_editor_scroll', (20, 40, 20 + editor_width, 180))
                 reached['add'] = geometry('add_custom_colour', (left + 76, 90, 620, 170))
                 reached['selected'] = geometry('selected_colour_caption', (left, 70, left + 76, 100))
-                reached['sample'] = geometry('new_colour_preview', (left, 140, left + 64, 164))
+                reached['sample'] = geometry('new_colour_preview', (left, 156, left + 64, 180))
                 top['controls'] = geometry('colour_controls_scroll', (left, 40, 620, 180))
                 top['heading'] = geometry('custom_colour_selection', (left, 40, 620, 72))
                 top['slot'] = geometry('custom_colour_0', (left, 72, left + 44, 116))
+                for event in synthetic_colour_endpoint(reached):
+                    observation(data, event['kind']).update(event)
                 return data
 
             # Every child remains inside the rail/display; these fail specifically
@@ -768,6 +770,28 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
             with self.subTest(method=method, editor='starved'), self.assertRaisesRegex(ValueError, 'starve editor width'):
                 verify_colour_profile(method, sized(290, 289)['observations'])
             verify_colour_profile(method, sized(221, 221)['observations'])
+
+    def test_last_pixel_requires_exact_precondition_native_gesture_and_endpoint_in_order(self):
+        for method in ('largeEnglishColourCaptionsAndPreviewRemainReachable',
+                       'largeHungarianColourCaptionsAndPreviewRemainReachable'):
+            for mutation in (
+                lambda r: observation(r, 'colour-endpoint-before').update(framework_can_scroll=True),
+                lambda r: observation(r, 'colour-endpoint-before').update(scroll_limit=True),
+                lambda r: observation(r, 'colour-endpoint-before')['controls'].update(scroll_y=50),
+                lambda r: observation(r, 'colour-endpoint-before')['sample'].update(visible=[330, 157, 394, 181]),
+                lambda r: observation(r, 'native-scroll-injected').update(direction=-1),
+                lambda r: observation(r, 'native-scroll-injected').update(hidden=True),
+                lambda r: observation(r, 'native-scroll-injected').update(viewport=[0, 0, 640, 320]),
+                lambda r: r['observations'].remove(observation(r, 'native-scroll-injected')),
+                lambda r: r['observations'].insert(0, r['observations'].pop(r['observations'].index(observation(r, 'native-scroll-injected')))),
+                lambda r: r['observations'].insert(0, r['observations'].pop(r['observations'].index(observation(r, 'colour-endpoint-before')))),
+                lambda r: observation(r, 'colour-endpoint-after')['controls'].update(scroll_y=49),
+                lambda r: observation(r, 'colour-endpoint-after')['sample'].update(visible=[330, 156, 394, 179]),
+                lambda r: observation(r, 'colour-endpoint-after')['editor'].update(scroll_y=1),
+            ):
+                data = receipt(method); mutation(data)
+                with self.subTest(method=method, mutation=mutation), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
 
     def test_large_rail_rejects_simultaneous_controls_moved_outside_display(self):
         method = 'largeHungarianColourCaptionsAndPreviewRemainReachable'

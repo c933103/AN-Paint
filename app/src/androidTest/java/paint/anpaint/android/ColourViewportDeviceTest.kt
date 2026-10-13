@@ -330,10 +330,41 @@ class ColourViewportDeviceTest {
                     .put("selected",geometry(selected)).put("sample",geometry(sample)))
             }
             evidence.capture("colour-large-preview-reached")
+            // Separate deterministic regression after the ordinary native route.
+            // Seed the final missing pixel; only an injected gesture may reveal it.
+            val limit=onMain {
+                assertEquals(0,controls.paddingTop+controls.paddingBottom)
+                scrollLimit(controls).also {maximum ->
+                    assertTrue("Rail has a final pixel to exercise",maximum>0)
+                    controls.scrollTo(controls.scrollX,maximum-1)
+                }
+            }
+            settle(sample)
+            onMain {
+                assertEquals(limit-1,controls.scrollY)
+                assertEquals(visibleBounds(controls).bottom+1,rawBounds(sample).bottom)
+                assertFalse("Framework hint omits the last reachable pixel",controls.canScrollVertically(1))
+                assertTrue("Exact native route includes that pixel",canRevealVertically(controls,1))
+                evidence.observe(JSONObject().put("kind","colour-endpoint-before")
+                    .put("setup","synthetic one-pixel offset; reveal uses native input")
+                    .put("scroll_limit",limit).put("framework_can_scroll",controls.canScrollVertically(1))
+                    .put("controls",geometry(controls)).put("sample",geometry(sample)))
+            }
+            reveal(sample) {rawBounds(sample)}
+            onMain {
+                assertEquals("Native gesture reaches the exact endpoint",limit,controls.scrollY)
+                assertFalse("No route beyond the endpoint",canRevealVertically(controls,1))
+                assertComplete(sample);assertComplete(selected);assertComplete(add)
+                assertEquals(editorOffset,editor.scrollY)
+                evidence.observe(JSONObject().put("kind","colour-endpoint-after")
+                    .put("scroll_limit",limit).put("controls",geometry(controls))
+                    .put("sample",geometry(sample)).put("editor",geometry(editor)))
+            }
             val heading=onMain {root.findViewWithTag<TextView>("custom_colour_selection")}
             revealText(heading);reveal(heading) {rawBounds(heading)}
             onMain {
                 assertComplete(heading);assertComplete(root.findViewWithTag("custom_colour_0"))
+                assertFalse("No route before the top endpoint",canRevealVertically(controls,-1))
                 assertEquals(editorOffset,editor.scrollY)
                 evidence.observe(JSONObject().put("kind","colour-large-rail-top-reached")
                     .put("heading",geometry(heading)).put("slot",geometry(root.findViewWithTag("custom_colour_0")))
@@ -588,7 +619,7 @@ class ColourViewportDeviceTest {
                     val candidate=parent;val visible=visibleBounds(candidate)
                     if(candidate is ScrollView || candidate is ListView) {
                         val direction=when {wanted.top<visible.top -> -1;wanted.bottom>visible.bottom -> 1;else -> 0}
-                        if(!visible.isEmpty && direction!=0 && candidate.canScrollVertically(direction)) {
+                        if(!visible.isEmpty && direction!=0 && canRevealVertically(candidate,direction)) {
                             val hidden=if(direction<0) visible.top-wanted.top else wanted.bottom-visible.bottom
                             found=Triple(visible,direction,hidden)
                         }
@@ -602,6 +633,19 @@ class ColourViewportDeviceTest {
             swipe(route.first,route.second,route.third);settle(view)
         }
         throw AssertionError("Caption not reached within native gesture bound")
+    }
+    private fun scrollLimit(view: ScrollView): Int = if(view.childCount==0) 0 else
+        (view.getChildAt(0).height-(view.height-view.paddingTop-view.paddingBottom)).coerceAtLeast(0)
+    private fun canRevealVertically(view: View,direction: Int): Boolean {
+        // View.canScrollVertically(1) uses offset < range-1, omitting the last
+        // pixel. ScrollView's actual scrollTo/getScrollRange clamp permits it.
+        // Use the exact range only for ScrollView; retain ListView's own routing.
+        // https://android.googlesource.com/platform/frameworks/base/+/main/core/java/android/widget/ScrollView.java
+        return if(view is ScrollView) when {
+            direction<0 -> view.scrollY>0
+            direction>0 -> view.scrollY<scrollLimit(view)
+            else -> false
+        } else view.canScrollVertically(direction)
     }
     private fun swipe(bounds: Rect,direction: Int,hidden: Int?=null) {
         checkDeadline();assertTrue("Scroll viewport has finite area",bounds.width()>8 && bounds.height()>16)
@@ -627,6 +671,8 @@ class ColourViewportDeviceTest {
         val start=Point(x,if(direction>0) high else low)
         val end=Point(x,start.y-if(direction>0) distance else -distance)
         assertTrue("Native scroll gesture",device.swipe(arrayOf(start,end,end,end),16))
+        evidence.observe(JSONObject().put("kind","native-scroll-injected").put("viewport",rect(bounds))
+            .put("direction",direction).put("hidden",hidden ?: JSONObject.NULL))
         instrumentation.waitForIdleSync()
     }
     private fun settle(view: View) {

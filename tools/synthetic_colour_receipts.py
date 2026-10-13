@@ -13,6 +13,22 @@ def geometry(tag=None, bounds=(10, 20, 110, 60), **changes):
     return value
 
 
+def synthetic_colour_endpoint(reached):
+    """Authored one-pixel precondition and native-input outcome model."""
+    limit = reached['content_height'] - reached['viewport_height']
+    controls = copy.deepcopy(reached['controls'])
+    sample = copy.deepcopy(reached['sample'])
+    controls['scroll_y'] = limit - 1
+    sample['raw'] = [v + (1 if i in (1, 3) else 0) for i, v in enumerate(sample['raw'])]
+    sample['visible'] = sample['raw'][:]
+    sample['visible'][3] -= 1
+    return [dict(kind='colour-endpoint-before', setup='synthetic one-pixel offset; reveal uses native input',
+                 scroll_limit=limit, framework_can_scroll=False, controls=controls, sample=sample),
+            dict(kind='native-scroll-injected', viewport=controls['visible'][:], direction=1, hidden=1),
+            dict(kind='colour-endpoint-after', scroll_limit=limit, controls=copy.deepcopy(reached['controls']),
+                 sample=copy.deepcopy(reached['sample']), editor=copy.deepcopy(reached['editor']))]
+
+
 def synthetic_colour_receipt(method, digest):
     """Deliberately invented dimensions/times for validating accepted/rejected schemas."""
     retained = method.startswith('retained')
@@ -54,10 +70,11 @@ def synthetic_colour_receipt(method, digest):
                  content_height=190, viewport_height=140, controls=geometry('colour_controls_scroll', (330, 40, 620, 180), scroll_y=50),
                  editor=geometry('colour_editor_scroll', (20, 40, 310, 180)), editor_before=0,
                  add=geometry('add_custom_colour', (430, 90, 620, 170)),
-                 selected=geometry('selected_colour_caption', (330, 70, 430, 100)), sample=geometry('new_colour_preview', (330, 140, 394, 164))),
+                 selected=geometry('selected_colour_caption', (330, 70, 430, 100)), sample=geometry('new_colour_preview', (330, 156, 394, 180))),
             dict(kind='colour-large-rail-top-reached', heading=geometry('custom_colour_selection', (330, 40, 620, 72)),
                  slot=geometry('custom_colour_0', (330, 72, 374, 116)),
                  controls=geometry('colour_controls_scroll', (330, 40, 620, 180)))])
+        observations[-1:-1] = synthetic_colour_endpoint(observations[-2])
         pointer(COLOUR_POINTERS[method][0])
         observations.append(dict(kind='colour-large-cancelled', commit_callbacks=0, closed_callbacks=1,
                                  dialog_attached=False, dialog_showing=False))
