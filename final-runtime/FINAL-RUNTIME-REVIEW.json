@@ -1,0 +1,369 @@
+{
+  "status": "PASS_BOUNDED_CURRENT_PR59_RUNTIME_ACCEPTANCE",
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38325525117",
+  "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "tested_revision": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+  "event": "pull_request",
+  "all_five_ci_jobs": "success",
+  "current_gates": {
+    "jvm_passed": 942,
+    "jvm_failed": 0,
+    "jvm_skipped": 0,
+    "jvm_missing": 0,
+    "hosted_python_passed": 660,
+    "hosted_python_skipped": 2,
+    "hosted_python_failed": 0,
+    "android_lint_issues": 0,
+    "installed_api30_passed": 95,
+    "installed_api35_passed": 106,
+    "installed_failed": 0,
+    "installed_missing": 0,
+    "exact_script_probes": 7
+  },
+  "source_identity_method": "Current Kotlin declarations/SDK eligibility and model SDK expansion reconciled against actual JUnit XML, raw instrumentation protocol and summaries; counts are results, not frozen oracles.",
+  "source_test_digests": {
+    "app": "d64e9ae5ef03e7492728c5917b98f78f2ffe6c7ea34f54dd29467ee93ca142d2",
+    "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+  },
+  "phase_results": {
+    "30": {
+      "ordinary": {
+        "passed": 15,
+        "failed": 0,
+        "elapsed_seconds": 82.41222913899998,
+        "timeout_seconds": 180
+      },
+      "gallery-draft": {
+        "passed": 3,
+        "failed": 0,
+        "elapsed_seconds": 34.71440319499999,
+        "timeout_seconds": 90
+      },
+      "vertical-english-manchu": {
+        "passed": 2,
+        "failed": 0,
+        "elapsed_seconds": 109.32966461799998,
+        "timeout_seconds": 180
+      },
+      "vertical-literary-chinese-emoji": {
+        "passed": 2,
+        "failed": 0,
+        "elapsed_seconds": 100.13534284000002,
+        "timeout_seconds": 180
+      },
+      "library": {
+        "passed": 73,
+        "failed": 0,
+        "elapsed_seconds": 29.14705614799999,
+        "timeout_seconds": 180
+      }
+    },
+    "35": {
+      "ordinary": {
+        "passed": 16,
+        "failed": 0,
+        "elapsed_seconds": 114.13585026800001,
+        "timeout_seconds": 180
+      },
+      "gallery-draft": {
+        "passed": 3,
+        "failed": 0,
+        "elapsed_seconds": 42.301819258999956,
+        "timeout_seconds": 90
+      },
+      "vertical-english-manchu": {
+        "passed": 2,
+        "failed": 0,
+        "elapsed_seconds": 108.74949470199999,
+        "timeout_seconds": 180
+      },
+      "vertical-literary-chinese-emoji": {
+        "passed": 2,
+        "failed": 0,
+        "elapsed_seconds": 100.91943139399996,
+        "timeout_seconds": 180
+      },
+      "dialog": {
+        "passed": 7,
+        "failed": 0,
+        "elapsed_seconds": 104.54223192199998,
+        "timeout_seconds": 300
+      },
+      "seed": {
+        "passed": 1,
+        "failed": 0,
+        "elapsed_seconds": 5.329412322000053,
+        "timeout_seconds": 60
+      },
+      "verify": {
+        "passed": 1,
+        "failed": 0,
+        "elapsed_seconds": 6.548177334999991,
+        "timeout_seconds": 60
+      },
+      "library": {
+        "passed": 74,
+        "failed": 0,
+        "elapsed_seconds": 50.81416385,
+        "timeout_seconds": 180
+      }
+    }
+  },
+  "api30_explicit_exclusions": [
+    [
+      "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+      "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+    ],
+    [
+      "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+      "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+    ]
+  ],
+  "api30_sdk_suppression": "Seven dialog methods are SDK35-only. Platform-language and Arabic profiles are unselected on API30; the API33 platform fallback remains unrun. API30 has no installed colour-dialog acceptance claim.",
+  "normal_font_colour_and_retained_dialog": {
+    "passed_methods": 7,
+    "colour_methods": 3,
+    "notice_credit_methods": 4,
+    "elapsed_seconds": 104.54223192199998,
+    "cap_seconds": 300,
+    "interaction_budget_ms": 45000,
+    "colour_fixture_ms": {
+      "normalAdvancedColourKeepsFiniteViewportAndFixedControls": 2346,
+      "retainedColourStateSurvivesRotationImeCancelAndReopen": 13265,
+      "hungarianColourCaptionsFitPortraitAndLandscape": 2285
+    },
+    "notice_interaction_ms": {
+      "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow": 20897,
+      "aboutArtworkNoticeCompletesNativeFooterFlow": 17901,
+      "aboutGimpTranslationNoticeCompletesNativeFooterFlow": 20648,
+      "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation": 10216
+    },
+    "actual_dialog_pngs_decoded_and_viewed": 21,
+    "colour_pngs": 13,
+    "notice_credit_pngs": 8,
+    "scope": "API35 normal-font state/rotation/native IME/single Back/callback/Hungarian/native swipe acceptance, with four unchanged notice/credit paths composed in the same phase."
+  },
+  "retained_native": {
+    "vertical_pngs_decoded_and_viewed": 192,
+    "slider_gestures_per_api": 28,
+    "touch_events_per_api": 980,
+    "save_opens_per_api": 24,
+    "arrow_selections_per_api": 8,
+    "arabic_api35": "Both exact-zero software rasters pass independent decoder/pixel checks and natural same-height88-to88 relayout; all four PNGs viewed."
+  },
+  "retained_models": {
+    "focused": {
+      "C05": {
+        "status": "PASS",
+        "source_expected_count": 8,
+        "actual_count": 8
+      },
+      "M02": {
+        "status": "PASS",
+        "source_expected_count": 9,
+        "actual_count": 9
+      },
+      "M03": {
+        "status": "PASS",
+        "source_expected_count": 16,
+        "actual_count": 16
+      },
+      "M04": {
+        "status": "PASS",
+        "source_expected_count": 22,
+        "actual_count": 22
+      },
+      "context_typography": {
+        "status": "PASS",
+        "source_expected_count": 22,
+        "actual_count": 22
+      },
+      "context_direction_lifecycle": {
+        "status": "PASS",
+        "source_expected_count": 14,
+        "actual_count": 14
+      },
+      "positive_colour": {
+        "status": "PASS",
+        "source_expected_count": 10,
+        "actual_count": 10
+      },
+      "colour_diagnostic_not_acceptance": {
+        "status": "PASS",
+        "source_expected_count": 4,
+        "actual_count": 4
+      },
+      "localized_dialog_and_retention": {
+        "status": "PASS",
+        "source_expected_count": 28,
+        "actual_count": 28
+      }
+    },
+    "m02_profiles": 40,
+    "m03_profiles": 48,
+    "m04_profiles": 112,
+    "m04_ink_frames": 189,
+    "m04_native_negative_mutants": 78,
+    "m04_positive_exact": 109,
+    "m04_positive_reviewed_fringe": 1,
+    "retained_notice_pairs": 16
+  },
+  "source_prebuilt_provenance": "130 audited source inputs match exact tree bytes/modes. Same-run digest-enforced download/install receipts, current build compile/upload ordering and locally hashed test APK archive pass. No independent on-device APK rehash claim.",
+  "artifact_receipts": [
+    {
+      "kind": "regression",
+      "id": 11780629921,
+      "name": "regression-and-lint-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+      "bytes": 79283691,
+      "sha256": "c7348916543b51b112fccbc92b26cb32523f5833658944c2afeff3eea446c7de",
+      "run_id": 38325525117,
+      "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+      "expires_at": "2026-10-27T00:23:33Z"
+    },
+    {
+      "kind": "api30",
+      "id": 11780369693,
+      "name": "emulator-api-30-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+      "bytes": 6756679,
+      "sha256": "356cbc4aa12ee9c890490f23c4646744701d29d5e392a1eb3d1ba0f4e8f9067e",
+      "run_id": 38325525117,
+      "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+      "expires_at": "2026-10-27T00:22:23Z"
+    },
+    {
+      "kind": "api35",
+      "id": 11780684982,
+      "name": "emulator-api-35-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+      "bytes": 9924408,
+      "sha256": "1bdd1c29a8c4c3ec5a15bf07a122ecd0bc720d69258ec872cb4b30d50cfe44bd",
+      "run_id": 38325525117,
+      "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+      "expires_at": "2026-10-27T00:25:28Z"
+    },
+    {
+      "kind": "instrumentation",
+      "id": 11780493909,
+      "name": "instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+      "bytes": 94777137,
+      "sha256": "ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef",
+      "run_id": 38325525117,
+      "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+      "expires_at": "2026-10-27T00:14:49Z"
+    },
+    {
+      "kind": "exact-script",
+      "id": 11780981679,
+      "name": "exact-script-generation-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+      "bytes": 6175,
+      "sha256": "748fdc510210d753caefeff2f48d26d9bde35e5fedf7b40baafd7a4ea47914f9",
+      "run_id": 38325525117,
+      "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+      "expires_at": "2026-10-27T00:08:29Z"
+    }
+  ],
+  "report_receipts": [
+    {
+      "path": "binding.json",
+      "sha256": "b30c1e6e3d03d57da08bfcae3eccc3a898277922ed1c642efff0912c9924d6e4",
+      "bytes": 66321
+    },
+    {
+      "path": "source-input-result.json",
+      "sha256": "7081c64cdd9cd8d4c6b81ed21c6f76327b34333a49cbb5f1e7c0311b8f9da329",
+      "bytes": 35029
+    },
+    {
+      "path": "deadline-result.json",
+      "sha256": "e630810e87bf01700ead9cfafa2fcc2b6af2db0c73dc6291f213fec9af518a7c",
+      "bytes": 1709
+    },
+    {
+      "path": "exact-script-result.json",
+      "sha256": "7940af4f58e81d8b78b9d688892f8a485c10e73ff6fc2195c04dbd21bc2b6568",
+      "bytes": 337
+    },
+    {
+      "path": "instrumentation-payloads.json",
+      "sha256": "74a38298e0b16db491b1eba135c03af504bee2c9739e20e9f57fdf219cb6d115",
+      "bytes": 434
+    },
+    {
+      "path": "prebuilt-provenance-result.json",
+      "sha256": "e1b270ba323d49da213d4be7bf1fd401c4b8ca7ab40a510b32543bf8a2e6e81a",
+      "bytes": 18589
+    },
+    {
+      "path": "installed-matrix-result.json",
+      "sha256": "67367a4d14a48b2a43386b679d7ce5a58d22878580866b3059613432acbbae6d",
+      "bytes": 158884
+    },
+    {
+      "path": "restart-boundary-result.json",
+      "sha256": "3417d2eefa9ca7ae1dc8233b3864b5760f4e43921928df35924e839819946df6",
+      "bytes": 485
+    },
+    {
+      "path": "platform-locale-result.json",
+      "sha256": "82ac3d2df9d6f5f9c7dd544bfa33a51ef588984b960a5dad8137acd45ba13219",
+      "bytes": 6736
+    },
+    {
+      "path": "dialog-result.json",
+      "sha256": "627a7a1d91ecb089612b753a1020b018a2325743340d840722fb1b154edd4548",
+      "bytes": 37048
+    },
+    {
+      "path": "dialog-visual-review.json",
+      "sha256": "948af9d4bf6697100b409f7f78ff1c188ad512912361aa64fb1a15fcd1460ece",
+      "bytes": 10736
+    },
+    {
+      "path": "jvm-review/JVM-MODEL-VERDICT.json",
+      "sha256": "fba61ae1cbbd0697e02e1da79529e2bae82f2cbe3f466ed54de351fbb59b82d9",
+      "bytes": 8453
+    },
+    {
+      "path": "jvm-review/job-binding.json",
+      "sha256": "4c5bc46f57150a5c71a781c043e1a6b53000f14c9b21fe32a77c25ae7ebab401",
+      "bytes": 2517
+    },
+    {
+      "path": "jvm-review/phase-receipts.json",
+      "sha256": "2f0de3c56315d627dba14b5671a1f236003ce61c5745542e90809433f39a662a",
+      "bytes": 4966
+    },
+    {
+      "path": "jvm-review/fresh-positive-disposition.json",
+      "sha256": "b11f1104e177fcb72211886fb945437b134f1481e64f781c1ec6751fa3faf2e4",
+      "bytes": 4413
+    },
+    {
+      "path": "retained-controls-review/retained-controls-result.json",
+      "sha256": "aaad71711a62b0e13008a161a9af73edaf848415ca86ed59a9d8af022cd48ad1",
+      "bytes": 18153
+    },
+    {
+      "path": "retained-controls-review/installed-pixel-result.json",
+      "sha256": "69a93786ddcdb2078a07986d82e8b406be50e4f5727c204750a1ebabcd553f64",
+      "bytes": 3114
+    },
+    {
+      "path": "retained-controls-review/natural-update-result.json",
+      "sha256": "a502c26f6e9c2f52fe2f3299dd35351c89adeadef924cc49987c1e1afa093f53",
+      "bytes": 3549
+    }
+  ],
+  "remaining_limits": [
+    "2x short-landscape colour remains diagnostic and unaccepted; Add Custom Colour intrinsic fit fails in API30 en-US/hu and API35 hu model diagnostics.",
+    "C05 intrinsic captions fit but12/16 current2x model captures retain incomplete ancestor visibility after programmatic reveal; no full2x visibility acceptance.",
+    "Model swipe traces do not establish real scrolling; fresh installed normal-font native inputs supply the bounded positive evidence.",
+    "One fresh M04 Arabic mixed-paragraph reset has two alpha7/1 fringe differences; exact=false/review_required=true preserved, narrowly reviewed without accepting a general tolerance.",
+    "No physical-device, TalkBack, real-provider network, linguistic/fluency or full localization acceptance.",
+    "No simultaneous fullscreen IME/field/footer fit; early retained-colour screenshots preserve transient synthetic save toasts.",
+    "API35 undimmed editor status-bar contrast is a separate incidental observation with regression attribution unestablished.",
+    "API33 platform LocaleConfig fallback is unrun.",
+    "Two hosted Python skips receive no pass credit; compiler and Gradle warnings remain distinct from zero Android lint issues."
+  ],
+  "publication_boundary": "Compact current receipts prepared locally. Parent owns repository publication and PR state; no remote writes or source/ref changes performed by this audit."
+}

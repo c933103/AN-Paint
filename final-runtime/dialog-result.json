@@ -1,0 +1,1065 @@
+{
+  "status": "PASS_EXACT_DIALOG_TRANSPORT_AND_STANDARD_PNG_DECODER",
+  "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "tested_revision": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+  "run_id": 38325525117,
+  "phase_seconds": 104.54223192199998,
+  "phase_cap_seconds": 300,
+  "passed_methods": 7,
+  "failed_methods": 0,
+  "missing_methods": 0,
+  "standard_decoder": "Pillow 12.3.0",
+  "png_count": 21,
+  "colour_png_count": 13,
+  "methods": [
+    {
+      "method": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "fixture_elapsed_ms": 25074,
+      "interaction_ms": 20897,
+      "colour_interaction_scope": null,
+      "observation_counts": {
+        "interaction-start": 1,
+        "clipboard-overlay-before": 4,
+        "orientation": 4,
+        "fixture": 1,
+        "intrinsic-caption": 11,
+        "caption-line-reached": 16,
+        "reveal-before": 3,
+        "pointer-before": 5,
+        "pointer-injected": 5,
+        "clipboard-overlay-native-dismiss": 3,
+        "clipboard-overlay-after": 3,
+        "native-back-before": 2,
+        "native-back-injected": 2,
+        "native-back-after": 2,
+        "interaction-end": 1
+      },
+      "native_backs": [
+        {
+          "kind": "native-back-before",
+          "label": "notice-0-nested",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-0-nested",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-0-nested",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-before",
+          "label": "notice-0-close",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": true,
+            "editor_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-0-close",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-0-close",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        }
+      ],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/0-about-portrait.png",
+          "sha256": "e20a7a440a9add7d6dc30e7b2dd29092395bf6cacc0f8ab7640829a62f6cf30d",
+          "width": 320,
+          "height": 640,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/1-about-landscape.png",
+          "sha256": "82cca4fcb4cb81fbc59452528aa2aed089102e9e3ba106e50246e96ffb7f3834",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/2-notice-0-initial.png",
+          "sha256": "c10e413dfafe82700dce5b8fda8819577aaf29a820a578e730382c043a8cc546",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/3-notice-0-portrait.png",
+          "sha256": "8b2540e4ac52584797dc07093be4ad15ac2e6863bb49ce5763b54fe2e9858e60",
+          "width": 320,
+          "height": 640,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "aboutArtworkNoticeCompletesNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "fixture_elapsed_ms": 22194,
+      "interaction_ms": 17901,
+      "colour_interaction_scope": null,
+      "observation_counts": {
+        "interaction-start": 1,
+        "clipboard-overlay-before": 4,
+        "orientation": 2,
+        "fixture": 1,
+        "intrinsic-caption": 8,
+        "caption-line-reached": 13,
+        "reveal-before": 7,
+        "pointer-before": 5,
+        "pointer-injected": 5,
+        "clipboard-overlay-native-dismiss": 3,
+        "clipboard-overlay-after": 3,
+        "native-back-before": 2,
+        "native-back-injected": 2,
+        "native-back-after": 2,
+        "interaction-end": 1
+      },
+      "native_backs": [
+        {
+          "kind": "native-back-before",
+          "label": "notice-1-nested",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-1-nested",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-1-nested",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-before",
+          "label": "notice-1-close",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": true,
+            "editor_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-1-close",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-1-close",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        }
+      ],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/aboutArtworkNoticeCompletesNativeFooterFlow/0-notice-1-initial.png",
+          "sha256": "58f4eeef34e29812d5c848431faba2b55c97484f541abd6ccafac4eb36162ac9",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "fixture_elapsed_ms": 24203,
+      "interaction_ms": 20648,
+      "colour_interaction_scope": null,
+      "observation_counts": {
+        "interaction-start": 1,
+        "clipboard-overlay-before": 4,
+        "orientation": 2,
+        "fixture": 1,
+        "intrinsic-caption": 8,
+        "caption-line-reached": 12,
+        "reveal-before": 6,
+        "pointer-before": 5,
+        "pointer-injected": 5,
+        "clipboard-overlay-native-dismiss": 3,
+        "clipboard-overlay-after": 3,
+        "native-back-before": 2,
+        "native-back-injected": 2,
+        "native-back-after": 2,
+        "interaction-end": 1
+      },
+      "native_backs": [
+        {
+          "kind": "native-back-before",
+          "label": "notice-2-nested",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-2-nested",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-2-nested",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_retained": true,
+            "notice_focused": true
+          }
+        },
+        {
+          "kind": "native-back-before",
+          "label": "notice-2-close",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": true,
+            "editor_focused": false
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "notice-2-close",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "notice-2-close",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "notice_present": false,
+            "editor_focused": true
+          }
+        }
+      ],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/aboutGimpTranslationNoticeCompletesNativeFooterFlow/0-notice-2-initial.png",
+          "sha256": "5b2e0b5fc3c59d9b032638ae79e8367adab320c7274fa3aaf74364aafbc6bcb3",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "fixture_elapsed_ms": 13888,
+      "interaction_ms": 10216,
+      "colour_interaction_scope": null,
+      "observation_counts": {
+        "interaction-start": 1,
+        "clipboard-overlay-before": 3,
+        "clipboard-overlay-native-dismiss": 3,
+        "clipboard-overlay-after": 3,
+        "orientation": 3,
+        "fixture": 1,
+        "retained-credit-state": 2,
+        "intrinsic-caption": 6,
+        "caption-line-reached": 8,
+        "reveal-before": 4,
+        "pointer-before": 4,
+        "pointer-injected": 4,
+        "native-back-before": 1,
+        "native-back-injected": 1,
+        "native-back-after": 1,
+        "credit-listeners-complete": 1,
+        "interaction-end": 1
+      },
+      "native_backs": [
+        {
+          "kind": "native-back-before",
+          "label": "credit-discard",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": true,
+            "save_calls": 4,
+            "dismiss_calls": 1,
+            "saved_draft_unchanged": true
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "credit-discard",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": false,
+            "save_calls": 4,
+            "dismiss_calls": 2,
+            "saved_draft_unchanged": true
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "credit-discard",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": false,
+            "save_calls": 4,
+            "dismiss_calls": 2,
+            "saved_draft_unchanged": true
+          }
+        }
+      ],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/0-credit-landscape.png",
+          "sha256": "a18a082b66599263dc86186d54256c53ea8a39663c0aa3e209d7f6af75a7f598",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/1-credit-portrait.png",
+          "sha256": "2440cdaed181c04285e38f4c14c8e604caba3a7992d57c4e0307f5a6eb3d947b",
+          "width": 320,
+          "height": 640,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "fixture_elapsed_ms": 2346,
+      "interaction_ms": null,
+      "colour_interaction_scope": "original source-enforced 45000ms deadline; no exported whole-interval measurement",
+      "observation_counts": {
+        "initial-editor-state": 2,
+        "orientation": 2,
+        "fixture": 1,
+        "colour-pre-assert-allocation": 1,
+        "colour-native-scroll-route": 1,
+        "colour-finite-bounds": 1,
+        "intrinsic-caption": 1,
+        "caption-line-reached": 1,
+        "pointer-before": 1,
+        "pointer-injected": 1
+      },
+      "native_backs": [],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/normalAdvancedColourKeepsFiniteViewportAndFixedControls/0-colour-pre-assert-allocation.png",
+          "sha256": "d7f8868aef0142f28e7afa85b74f87c486ae5f31963824ba6143ffccb859362f",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/normalAdvancedColourKeepsFiniteViewportAndFixedControls/1-colour-normal-before.png",
+          "sha256": "569ba353a57748693ab292b0848ccac589344cc8678d86e5d6ee52b9c1403695",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/normalAdvancedColourKeepsFiniteViewportAndFixedControls/2-colour-normal-scrolled.png",
+          "sha256": "0d29a4f745f00e5385a3e76ae07371453988e6e1bcf81fc51a80329d87d6e6bd",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "fixture_elapsed_ms": 13265,
+      "interaction_ms": null,
+      "colour_interaction_scope": "original source-enforced 45000ms deadline; no exported whole-interval measurement",
+      "observation_counts": {
+        "initial-editor-state": 2,
+        "orientation": 4,
+        "fixture": 1,
+        "intrinsic-caption": 22,
+        "colour-surface-native-drag": 1,
+        "reveal-before": 4,
+        "colour-native-scroll-route": 4,
+        "caption-line-reached": 4,
+        "pointer-before": 4,
+        "pointer-injected": 4,
+        "colour-native-ime-window": 2,
+        "native-back-before": 2,
+        "native-back-injected": 2,
+        "native-back-after": 2,
+        "colour-retained-state-complete": 1
+      },
+      "native_backs": [
+        {
+          "kind": "native-back-before",
+          "label": "hide colour IME",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": true,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": true,
+            "dialog_showing": true,
+            "value": "#13579B",
+            "ime_inset_bottom": 0,
+            "commit_callbacks": 0,
+            "closed_callbacks": 0
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "hide colour IME",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": true,
+            "value": "#13579B",
+            "ime_inset_bottom": 0,
+            "commit_callbacks": 0,
+            "closed_callbacks": 0
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "hide colour IME",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": true,
+            "value": "#13579B",
+            "ime_inset_bottom": 0,
+            "commit_callbacks": 0,
+            "closed_callbacks": 0
+          }
+        },
+        {
+          "kind": "native-back-before",
+          "label": "close reopened colour picker",
+          "state": {
+            "target_attached": true,
+            "target_showing": true,
+            "target_focused": true,
+            "target_insets_available": true,
+            "target_ime_visible": false,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": true,
+            "focused_app_window_is_editor": false,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": true,
+            "commit_callbacks": 0,
+            "closed_callbacks": 1,
+            "selected_colour": -65536,
+            "preview_colour": -65536
+          },
+          "postcondition_met": false
+        },
+        {
+          "kind": "native-back-injected",
+          "label": "close reopened colour picker",
+          "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+          "keycode": 4,
+          "injection_count": 1,
+          "injected": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": false,
+            "commit_callbacks": 0,
+            "closed_callbacks": 2,
+            "selected_colour": -65536,
+            "preview_colour": -65536
+          }
+        },
+        {
+          "kind": "native-back-after",
+          "label": "close reopened colour picker",
+          "injected": true,
+          "completed": true,
+          "postcondition_met": true,
+          "state": {
+            "target_attached": false,
+            "target_showing": false,
+            "target_focused": false,
+            "target_insets_available": false,
+            "target_ime_visible": null,
+            "focused_app_window_present": true,
+            "focused_app_window_is_target": false,
+            "focused_app_window_is_editor": true,
+            "focused_insets_available": true,
+            "focused_app_window_ime_visible": false,
+            "dialog_showing": false,
+            "commit_callbacks": 0,
+            "closed_callbacks": 2,
+            "selected_colour": -65536,
+            "preview_colour": -65536
+          }
+        }
+      ],
+      "ime": [
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": true,
+          "condition_passed": true,
+          "windows": [
+            {
+              "id": 243,
+              "type": 2,
+              "bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "root_bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "package": "com.google.android.inputmethod.latin",
+              "root_visible": true,
+              "root_children": 2,
+              "configured_ime": true
+            }
+          ],
+          "stable_window_ms": 267,
+          "ime_visible": true,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": true,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              181,
+              354,
+              220
+            ],
+            "visible": [
+              28,
+              181,
+              354,
+              220
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        },
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": false,
+          "condition_passed": true,
+          "windows": [],
+          "stable_window_ms": 253,
+          "ime_visible": false,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": false,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              181,
+              354,
+              220
+            ],
+            "visible": [
+              28,
+              181,
+              354,
+              220
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        }
+      ],
+      "images": [
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/0-retained-landscape.png",
+          "sha256": "fd85730661613839ad3ed81601561c0dfe7cea0aa6c8af339adeca2b7d828031",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/1-retained-portrait.png",
+          "sha256": "2405ea04fc7b79d7b81b19cdc02d372d24dfbe7bc2a980029b775fce129850f2",
+          "width": 320,
+          "height": 640,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/2-retained-landscape.png",
+          "sha256": "4cb7975bad3d910d72994310027dcba909cda7a6a3f25f082eceb393f57960cd",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/3-colour-surface-dragged.png",
+          "sha256": "1a73069594a4e545b715aea1714a4647316bc1e85249f87776d701f4663f7aa6",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/4-colour-ime-visible.png",
+          "sha256": "1fca1be1e1a6e5e03caa691955b50bd34aecbdf0279d96464f5514a7ebe9a732",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/5-colour-ime-hidden.png",
+          "sha256": "7987a644aa8472eab7c931fba32a482436a7d9e9c8496d4e4791f984ccf3b4bb",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/6-colour-ime-hidden-retained.png",
+          "sha256": "7987a644aa8472eab7c931fba32a482436a7d9e9c8496d4e4791f984ccf3b4bb",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/retainedColourStateSurvivesRotationImeCancelAndReopen/7-colour-reopened-back-closed.png",
+          "sha256": "8ab9ff8138a6ff8afce5adc2d7ce4d93df28c3dcc299c5545e0c8c4741667e0d",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "method": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "fixture_elapsed_ms": 2285,
+      "interaction_ms": null,
+      "colour_interaction_scope": "original source-enforced 45000ms deadline; no exported whole-interval measurement",
+      "observation_counts": {
+        "initial-editor-state": 2,
+        "orientation": 3,
+        "fixture": 1,
+        "intrinsic-caption": 13,
+        "hungarian-colour-captions-fit": 2,
+        "caption-line-reached": 1,
+        "pointer-before": 1,
+        "pointer-injected": 1
+      },
+      "native_backs": [],
+      "ime": [],
+      "images": [
+        {
+          "path": "dialog-decoded/hungarianColourCaptionsFitPortraitAndLandscape/0-hungarian-captions-landscape.png",
+          "sha256": "cd0d0c71aa65b3a5f2b160cfa138f958efe18569c560985e1deb308398865ae6",
+          "width": 640,
+          "height": 320,
+          "mode": "RGB"
+        },
+        {
+          "path": "dialog-decoded/hungarianColourCaptionsFitPortraitAndLandscape/1-hungarian-captions-portrait.png",
+          "sha256": "e812d2dba34b2438e65543dd1a526f531b84fddba9c131062c27047fb798d9b3",
+          "width": 320,
+          "height": 640,
+          "mode": "RGB"
+        }
+      ]
+    }
+  ],
+  "visual_review": "pending explicit inspection of actual images",
+  "limits": [
+    "Emulator/native input evidence only.",
+    "No 2x short-landscape colour, simultaneous IME/field/footer fit, physical-device, TalkBack or fluency acceptance.",
+    "PNG profile is bounded corruption/profile check, not general conformance."
+  ]
+}

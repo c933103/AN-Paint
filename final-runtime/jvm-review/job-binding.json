@@ -1,0 +1,64 @@
+{
+  "status": "PASS_PR_MERGE_CHECKOUT_EXECUTION_AND_UPLOAD_BINDING",
+  "event": "pull_request",
+  "run_id": 38325525117,
+  "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "tested_revision": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+  "artifact_id": 11780629921,
+  "artifact_sha256": "c7348916543b51b112fccbc92b26cb32523f5833658944c2afeff3eea446c7de",
+  "artifact_bytes": 79283691,
+  "job_log_sha256": "d0bca66e90b817d9ed562396b9dee8295dba8d14d6787531a9a53ca8995c4983",
+  "job_log_bytes": 156832,
+  "job_log_evidence": [
+    {
+      "line": 111,
+      "text": "2026-10-13T00:05:49.0834616Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +edb7bf96480b2cf3cf44080afca9e2a9aa0bc899:refs/remotes/pull/59/merge"
+    },
+    {
+      "line": 120,
+      "text": "2026-10-13T00:05:50.1735317Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/59/merge"
+    },
+    {
+      "line": 140,
+      "text": "2026-10-13T00:05:50.3440037Z [command]/usr/bin/git log -1 --format=%H"
+    },
+    {
+      "line": 141,
+      "text": "2026-10-13T00:05:50.3476380Z edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+    },
+    {
+      "line": 699,
+      "text": "2026-10-13T00:12:11.2743680Z > Task :Paintroid:compileDebugUnitTestKotlin"
+    },
+    {
+      "line": 775,
+      "text": "2026-10-13T00:13:01.2746748Z > Task :Paintroid:testDebugUnitTest"
+    },
+    {
+      "line": 790,
+      "text": "2026-10-13T00:20:07.5751035Z BUILD SUCCESSFUL in 10m 6s"
+    },
+    {
+      "line": 1227,
+      "text": "2026-10-13T00:21:27.0616204Z BUILD SUCCESSFUL in 1m 19s"
+    },
+    {
+      "line": 1346,
+      "text": "2026-10-13T00:23:31.9252519Z > Task :app:lintDebug"
+    },
+    {
+      "line": 1356,
+      "text": "2026-10-13T00:23:32.0295150Z BUILD SUCCESSFUL in 2m 4s"
+    },
+    {
+      "line": 1442,
+      "text": "2026-10-13T00:23:37.9074678Z SHA256 digest of uploaded artifact is c7348916543b51b112fccbc92b26cb32523f5833658944c2afeff3eea446c7de"
+    },
+    {
+      "line": 1445,
+      "text": "2026-10-13T00:23:38.2964257Z Artifact regression-and-lint-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 has been successfully uploaded! Final size is 79283691 bytes. Artifact ID is 11780629921"
+    }
+  ],
+  "limit": "GitHub retrieval authenticity and tested-merge tree equality are externally verified by parent. This audit verifies supplied authentic receipts, source identity linkage, upload digest and extracted bytes."
+}

@@ -1,0 +1,455 @@
+{
+  "status": "PASS_BOUNDED_PREBUILT_PROVENANCE",
+  "payload_hash_recomputed": true,
+  "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "tested_revision": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+  "run_id": 38325525117,
+  "build_info": {
+    "commit": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+    "run_id": "38325525117",
+    "build_variant": "debug",
+    "apk_sha256": "0d92f4eb55c9c50a411c77f4df25247ab15dfda68857f19d63dfdcf1ed5c5b94",
+    "source_sha256": "d6fa3f1576512b9531379ffd236f157c3f23d5ea2d4c50f41f59a36e929f7cc2",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "install_driver_sha256": "633b0482c6ed82e41989fcac4d943a896f3120852c3a8e8df32dab2cd977c98d",
+  "downloads": {
+    "apk-and-source": {
+      "artifact_id": 11780767938,
+      "sha256": "965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0"
+    },
+    "instrumentation-apks": {
+      "artifact_id": 11780493909,
+      "sha256": "ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef"
+    }
+  },
+  "jobs": [
+    {
+      "api": 30,
+      "job_log_sha256": "42e6a80712c236f3197e5c4bd297f65f3eb6841a2119dc784678c120afb16540",
+      "job_log_bytes": 161191,
+      "test_install_receipts": [
+        {
+          "path": "api30/Paintroid/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api30/app/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api30/app-gallery-draft/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api30/app-vertical/english-manchu/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api30/app-vertical/literary-chinese-emoji/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        }
+      ],
+      "evidence": [
+        {
+          "line": 52,
+          "text": "2026-10-13T00:15:02.5176004Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 104,
+          "text": "2026-10-13T00:15:02.6599967Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +edb7bf96480b2cf3cf44080afca9e2a9aa0bc899:refs/remotes/pull/59/merge"
+        },
+        {
+          "line": 106,
+          "text": "2026-10-13T00:15:03.6364307Z  * [new ref]         edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 -> pull/59/merge"
+        },
+        {
+          "line": 113,
+          "text": "2026-10-13T00:15:03.6440596Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/59/merge"
+        },
+        {
+          "line": 133,
+          "text": "2026-10-13T00:15:03.7289694Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 134,
+          "text": "2026-10-13T00:15:03.7303083Z edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 165,
+          "text": "2026-10-13T00:15:03.8079708Z   name: apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 169,
+          "text": "2026-10-13T00:15:03.8082536Z   run-id: 38325525117"
+        },
+        {
+          "line": 171,
+          "text": "2026-10-13T00:15:03.8083725Z   digest-mismatch: error"
+        },
+        {
+          "line": 173,
+          "text": "2026-10-13T00:15:03.8084808Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 177,
+          "text": "2026-10-13T00:15:04.0853212Z - apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 (ID: 11780767938, Size: 139762288, Expected Digest: sha256:965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0)"
+        },
+        {
+          "line": 182,
+          "text": "2026-10-13T00:15:06.8462841Z SHA256 digest of downloaded artifact is 965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0"
+        },
+        {
+          "line": 188,
+          "text": "2026-10-13T00:15:06.8563406Z   name: instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 192,
+          "text": "2026-10-13T00:15:06.8564073Z   run-id: 38325525117"
+        },
+        {
+          "line": 194,
+          "text": "2026-10-13T00:15:06.8564333Z   digest-mismatch: error"
+        },
+        {
+          "line": 196,
+          "text": "2026-10-13T00:15:06.8564575Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 200,
+          "text": "2026-10-13T00:15:07.1193013Z - instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 (ID: 11780493909, Size: 94777137, Expected Digest: sha256:ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef)"
+        },
+        {
+          "line": 205,
+          "text": "2026-10-13T00:15:09.2658430Z SHA256 digest of downloaded artifact is ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef"
+        },
+        {
+          "line": 214,
+          "text": "2026-10-13T00:15:09.3090736Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 215,
+          "text": "2026-10-13T00:15:09.3090872Z   TEST_API: 30"
+        },
+        {
+          "line": 412,
+          "text": "2026-10-13T00:15:54.4253450Z ##[group]Run bash tools/ci_emulator.sh"
+        },
+        {
+          "line": 416,
+          "text": "2026-10-13T00:15:54.4287020Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 417,
+          "text": "2026-10-13T00:15:54.4287149Z   TEST_API: 30"
+        },
+        {
+          "line": 454,
+          "text": "2026-10-13T00:16:20.0169084Z [+26s] Install main APK (60s maximum)"
+        },
+        {
+          "line": 1887,
+          "text": "2026-10-13T00:22:23.2692708Z   name: emulator-api-30-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 1895,
+          "text": "2026-10-13T00:22:23.2693867Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 1900,
+          "text": "2026-10-13T00:22:23.6351287Z Uploading artifact: emulator-api-30-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899.zip"
+        },
+        {
+          "line": 1906,
+          "text": "2026-10-13T00:22:24.7177863Z Artifact emulator-api-30-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 successfully finalized. Artifact ID 11780369693"
+        },
+        {
+          "line": 1907,
+          "text": "2026-10-13T00:22:24.7178779Z Artifact emulator-api-30-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 has been successfully uploaded! Final size is 6756679 bytes. Artifact ID is 11780369693"
+        }
+      ]
+    },
+    {
+      "api": 35,
+      "job_log_sha256": "80b090f3585059f437745f409d0d8e9b168ecb26036d8139185510ca7bcba75f",
+      "job_log_bytes": 246261,
+      "test_install_receipts": [
+        {
+          "path": "api35/Paintroid/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app/accepted-credit-restart/seed/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app/accepted-credit-restart/verify/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app-dialog/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app-gallery-draft/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app-vertical/english-manchu/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        },
+        {
+          "path": "api35/app-vertical/literary-chinese-emoji/androidTest-results/install.log",
+          "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+        }
+      ],
+      "evidence": [
+        {
+          "line": 52,
+          "text": "2026-10-13T00:15:02.3318881Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 104,
+          "text": "2026-10-13T00:15:02.4686847Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +edb7bf96480b2cf3cf44080afca9e2a9aa0bc899:refs/remotes/pull/59/merge"
+        },
+        {
+          "line": 106,
+          "text": "2026-10-13T00:15:03.4932496Z  * [new ref]         edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 -> pull/59/merge"
+        },
+        {
+          "line": 113,
+          "text": "2026-10-13T00:15:03.4977423Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/59/merge"
+        },
+        {
+          "line": 133,
+          "text": "2026-10-13T00:15:03.5832383Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 134,
+          "text": "2026-10-13T00:15:03.5845141Z edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 165,
+          "text": "2026-10-13T00:15:03.6558413Z   name: apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 169,
+          "text": "2026-10-13T00:15:03.6561127Z   run-id: 38325525117"
+        },
+        {
+          "line": 171,
+          "text": "2026-10-13T00:15:03.6562269Z   digest-mismatch: error"
+        },
+        {
+          "line": 173,
+          "text": "2026-10-13T00:15:03.6563322Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 177,
+          "text": "2026-10-13T00:15:03.8988731Z - apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 (ID: 11780767938, Size: 139762288, Expected Digest: sha256:965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0)"
+        },
+        {
+          "line": 182,
+          "text": "2026-10-13T00:15:06.6763610Z SHA256 digest of downloaded artifact is 965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0"
+        },
+        {
+          "line": 188,
+          "text": "2026-10-13T00:15:06.6867420Z   name: instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 192,
+          "text": "2026-10-13T00:15:06.6868100Z   run-id: 38325525117"
+        },
+        {
+          "line": 194,
+          "text": "2026-10-13T00:15:06.6868430Z   digest-mismatch: error"
+        },
+        {
+          "line": 196,
+          "text": "2026-10-13T00:15:06.6868681Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 200,
+          "text": "2026-10-13T00:15:06.9337549Z - instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 (ID: 11780493909, Size: 94777137, Expected Digest: sha256:ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef)"
+        },
+        {
+          "line": 205,
+          "text": "2026-10-13T00:15:08.9994172Z SHA256 digest of downloaded artifact is ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef"
+        },
+        {
+          "line": 214,
+          "text": "2026-10-13T00:15:09.0664561Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 215,
+          "text": "2026-10-13T00:15:09.0664698Z   TEST_API: 35"
+        },
+        {
+          "line": 413,
+          "text": "2026-10-13T00:16:00.8498400Z ##[group]Run bash tools/ci_emulator.sh"
+        },
+        {
+          "line": 417,
+          "text": "2026-10-13T00:16:00.8530173Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 418,
+          "text": "2026-10-13T00:16:00.8530301Z   TEST_API: 35"
+        },
+        {
+          "line": 460,
+          "text": "2026-10-13T00:16:27.2236044Z [+27s] Install main APK (60s maximum)"
+        },
+        {
+          "line": 2101,
+          "text": "2026-10-13T00:25:28.7420307Z   name: emulator-api-35-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+        },
+        {
+          "line": 2109,
+          "text": "2026-10-13T00:25:28.7421478Z   BUILD_VARIANT: debug"
+        },
+        {
+          "line": 2114,
+          "text": "2026-10-13T00:25:29.0966522Z Uploading artifact: emulator-api-35-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899.zip"
+        },
+        {
+          "line": 2121,
+          "text": "2026-10-13T00:25:30.5351435Z Artifact emulator-api-35-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 successfully finalized. Artifact ID 11780684982"
+        },
+        {
+          "line": 2122,
+          "text": "2026-10-13T00:25:30.5352042Z Artifact emulator-api-35-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 has been successfully uploaded! Final size is 9924408 bytes. Artifact ID is 11780684982"
+        }
+      ]
+    }
+  ],
+  "build_receipt": {
+    "job_log_sha256": "2b6d647771741eeea307174cf813e5857ef2e29bdb6fc991802262b8f7e96396",
+    "job_log_bytes": 273011,
+    "evidence": [
+      {
+        "line": 111,
+        "text": "2026-10-13T00:05:48.1077938Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +edb7bf96480b2cf3cf44080afca9e2a9aa0bc899:refs/remotes/pull/59/merge"
+      },
+      {
+        "line": 113,
+        "text": "2026-10-13T00:05:48.8414620Z  * [new ref]         edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 -> pull/59/merge"
+      },
+      {
+        "line": 120,
+        "text": "2026-10-13T00:05:48.8532224Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/59/merge"
+      },
+      {
+        "line": 140,
+        "text": "2026-10-13T00:05:49.0230625Z [command]/usr/bin/git log -1 --format=%H"
+      },
+      {
+        "line": 141,
+        "text": "2026-10-13T00:05:49.0265153Z edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+      },
+      {
+        "line": 463,
+        "text": "2026-10-13T00:06:56.7783782Z BUILD SUCCESSFUL in 32s"
+      },
+      {
+        "line": 1954,
+        "text": "2026-10-13T00:12:57.7777726Z > Task :app:assembleDebug"
+      },
+      {
+        "line": 1964,
+        "text": "2026-10-13T00:12:57.8774476Z BUILD SUCCESSFUL in 6m"
+      },
+      {
+        "line": 2004,
+        "text": "2026-10-13T00:12:58.2728819Z   name: build-diagnostics-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899-1"
+      },
+      {
+        "line": 2030,
+        "text": "2026-10-13T00:12:58.6408131Z Uploading artifact: build-diagnostics-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899-1.zip"
+      },
+      {
+        "line": 2034,
+        "text": "2026-10-13T00:12:58.7920065Z SHA256 digest of uploaded artifact is 1dff3cc94b808495fd58dad5715e83860efa012cc5fe31d49ac992f71511da2b"
+      },
+      {
+        "line": 2036,
+        "text": "2026-10-13T00:12:59.0203885Z Artifact build-diagnostics-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899-1 successfully finalized. Artifact ID 11780718116"
+      },
+      {
+        "line": 2037,
+        "text": "2026-10-13T00:12:59.0206579Z Artifact build-diagnostics-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899-1 has been successfully uploaded! Final size is 24096 bytes. Artifact ID is 11780718116"
+      },
+      {
+        "line": 2073,
+        "text": "2026-10-13T00:12:59.5977627Z   name: apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+      },
+      {
+        "line": 2104,
+        "text": "2026-10-13T00:12:59.9307416Z Uploading artifact: apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899.zip"
+      },
+      {
+        "line": 2124,
+        "text": "2026-10-13T00:13:06.4847617Z SHA256 digest of uploaded artifact is 965009f58481b75679d5b3ee3ab018ae327ecd8e497ee7c6c137d83f718c0ad0"
+      },
+      {
+        "line": 2126,
+        "text": "2026-10-13T00:13:06.7111115Z Artifact apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 successfully finalized. Artifact ID 11780767938"
+      },
+      {
+        "line": 2127,
+        "text": "2026-10-13T00:13:06.7113297Z Artifact apk-and-source-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 has been successfully uploaded! Final size is 139762288 bytes. Artifact ID is 11780767938"
+      },
+      {
+        "line": 2199,
+        "text": "2026-10-13T00:13:58.1625920Z > Task :Paintroid:compileDebugAndroidTestKotlin"
+      },
+      {
+        "line": 2256,
+        "text": "2026-10-13T00:14:27.0699020Z > Task :Paintroid:assembleDebugAndroidTest"
+      },
+      {
+        "line": 2275,
+        "text": "2026-10-13T00:14:47.1635787Z > Task :app:compileDebugAndroidTestKotlin"
+      },
+      {
+        "line": 2294,
+        "text": "2026-10-13T00:14:49.2604682Z > Task :app:assembleDebugAndroidTest"
+      },
+      {
+        "line": 2304,
+        "text": "2026-10-13T00:14:49.3184174Z BUILD SUCCESSFUL in 1m 42s"
+      },
+      {
+        "line": 2309,
+        "text": "2026-10-13T00:14:49.6535325Z   name: instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899"
+      },
+      {
+        "line": 2335,
+        "text": "2026-10-13T00:14:50.0634413Z Uploading artifact: instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899.zip"
+      },
+      {
+        "line": 2350,
+        "text": "2026-10-13T00:14:53.1912649Z SHA256 digest of uploaded artifact is ceb62c4bffad731b1c440214f3c22eac96da86a94b4b0aaae627027b7ab4adef"
+      },
+      {
+        "line": 2352,
+        "text": "2026-10-13T00:14:53.4062498Z Artifact instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 successfully finalized. Artifact ID 11780493909"
+      },
+      {
+        "line": 2353,
+        "text": "2026-10-13T00:14:53.4065436Z Artifact instrumentation-apks-edb7bf96480b2cf3cf44080afca9e2a9aa0bc899 has been successfully uploaded! Final size is 94777137 bytes. Artifact ID is 11780493909"
+      }
+    ]
+  },
+  "limitations": [
+    "Same-run digest-enforced main/test artifact download and install receipts verified. Payload equality independently rehashed only when payload_hash_recomputed is true; expiry-safe receipt replay intentionally omits APK/source payloads.",
+    "Instrumentation APK archive not independently extracted or hashed on the emulator; install success/source-test fingerprints/raw identities provide the bounded test-APK provenance.",
+    "CI debug signing; no release signing or upgrade-key claim."
+  ]
+}

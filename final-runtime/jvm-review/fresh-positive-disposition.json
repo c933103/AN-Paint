@@ -1,0 +1,142 @@
+{
+  "run": 38325525117,
+  "head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "fresh_positive_review_required_count": 1,
+  "frames": [
+    {
+      "profile": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+      "record": {
+        "stem": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs",
+        "independent_metrics": {
+          "ink_components": 57,
+          "missing_complete_components": 0,
+          "missing_opaque_reference_pixels": 0,
+          "ink_pixels": 16844,
+          "ink_left": 0,
+          "ink_right_exclusive": 1233,
+          "allocation_edge_pixels": 0,
+          "horizontal_overflow_pixels": 2,
+          "outside_view_pixels": 0,
+          "missing_expected_ink_pixels": 2,
+          "different_argb_pixels": 2
+        },
+        "files": [
+          {
+            "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs.json",
+            "sha256": "da3f2a0c06cc3361100044cc4c11563399b8613e3ba6f0a9840f7b265a7538c3"
+          },
+          {
+            "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-actual-textview.png",
+            "sha256": "f03c6bb40996c18b1993af680e593665d420c4341d36e160d14c3549a9c231bf"
+          },
+          {
+            "name": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-complete-layout.png",
+            "sha256": "a203d8f1942dff8d5bd23d665bcf64f1d3e2275e4cdb8ffa98456276147764c3"
+          }
+        ]
+      },
+      "exact_pixel_comparison_passed": false,
+      "review_required": true,
+      "difference_box_actual": [
+        1256,
+        29,
+        1257,
+        31
+      ],
+      "lost_pixels": [
+        {
+          "reference_xy": [
+            2419,
+            31
+          ],
+          "layout_xy": [
+            1232,
+            29
+          ],
+          "actual_xy": [
+            1256,
+            29
+          ],
+          "reference_rgba": [
+            0,
+            0,
+            36,
+            7
+          ],
+          "actual_rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "reference_xy": [
+            2419,
+            32
+          ],
+          "layout_xy": [
+            1232,
+            30
+          ],
+          "actual_xy": [
+            1256,
+            30
+          ],
+          "reference_rgba": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "actual_rgba": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "affected_components": [
+        {
+          "reference_samples": 78,
+          "missing_samples": 2,
+          "reference_alpha_sum": 10633,
+          "missing_alpha_sum": 8,
+          "max_missing_alpha": 7,
+          "component_entirely_missing": false
+        }
+      ],
+      "full_actual_dimensions": [
+        1280,
+        336
+      ],
+      "full_reference_dimensions": [
+        2519,
+        332
+      ],
+      "review_crops": [
+        {
+          "path": "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs-fresh-difference-review.png",
+          "actual_coordinate_crop": [
+            1244,
+            17,
+            1269,
+            43
+          ],
+          "nearest_neighbour_zoom": 8
+        }
+      ],
+      "visual_disposition": "Accept this specific low-severity antialias-fringe difference for the bounded readable-status requirement. Fresh actual, complete-reference and 8x nearest-neighbor crop inspected; two edge samples of alpha 7 and 1 are absent from one otherwise surviving 78-sample component. No complete ink component or opaque sample is absent. exact_pixel_comparison_passed=false and review_required=true are retained. This is not an exact-pixel pass, universal tolerance, language fluency or full glyph/grapheme guarantee.",
+      "visual_inspection_limit": "Full 2519x332 reference was displayed resized to 2048x270; actual was 1280x336. Original-resolution arrays and a loss-coordinate 8x crop were used for local severity assessment."
+    }
+  ],
+  "limits": [
+    "No prior visual disposition is imported.",
+    "Components are 8-connected alpha ink, not glyph/grapheme segmentation.",
+    "Exact comparison booleans are preserved."
+  ],
+  "status": "FRESH_EXPLICIT_VISUAL_DISPOSITION_COMPLETE",
+  "prior_disposition_reused": false
+}
