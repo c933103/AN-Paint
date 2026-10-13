@@ -117,6 +117,23 @@ class AppLanguageResourceRoutingTest {
         assertEquals("이미지 크레딧을 複寫할 수 없습니다.",resources.getString(R.string.commons_credit_copy_failed))
     }
 
+    @Test fun russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove() {
+        AppLanguage.select(context,"ru")
+        val resources=AppLanguage.wrap(context).resources
+        // All reachable selections, including None (0), within the 20-image cap.
+        for(count in 0..20) {
+            val targets=when(count) {
+                1 -> "Применить к 1 изображению."
+                in 2..4 -> "Применить к $count изображениям."
+                else -> "Изображений для обрезки: $count."
+            }
+            val expected="Предпросмотр: 123 × 45 px\n$targets " +
+                "Обрезка размещённых изображений перемещает присоединённые к ним изображения."
+            assertEquals("Russian selected count=$count",expected,
+                resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
+        }
+    }
+
     @Test fun refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches() {
         val controller=Robolectric.buildActivity(Activity::class.java).setup()
         try {
