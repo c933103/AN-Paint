@@ -91,13 +91,28 @@ before retrying; use the affected scope, not a repeated full matrix by default.
 
 ## Localized dialog evidence and separate phase
 
-The five installed dialog methods run in the exact five-method `app-dialog` report.
-The API35 partition covers all current app methods, discovered from current source. The dialog 300-second
-cap includes a 225 seconds controlled-path model and 75-second operational allowance;
-it is not the sum of every permitted helper timeout. Historical timing observations
-do not determine current test counts or promise future runtimes.
-The unchanged advanced-colour short-landscape limitation remains separately
-characterized; its diagnostic method does not establish positive viewport acceptance.
+Seven installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases plus three normal-font colour cases. Source discovery
+still requires every SDK-eligible app identity, without duplication or omission.
+The colour cases replace the old zero-height limitation characterization; its
+original failed positive and measured negative results remain historical evidence,
+not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
+
+The dialog 300-second cancellation cap and each 45-second interaction limit stay
+unchanged. Seven individual maxima exceed that aggregate cap; fresh actual combined
+execution must fit, and a timeout remains a failure. Neither historical timings
+nor synthetic transport fixtures prove the combined runtime. Font 2x short-landscape
+colour remains diagnostic and unaccepted.
+
+The dialog collector checks a bounded native-screenshot PNG profile: noninterlaced
+RGB8/RGBA8, with IHDR, optional single sRGB/sBIT before consecutive IDAT chunks,
+and final IEND. It checks CRCs, small metadata fields, size limits and the exact
+zlib/scanline envelope. Other encodings or chunks fail as **unsupported profile**;
+this is not a general PNG decoder or conformance claim. UiDevice promises PNG,
+not this exact encoding, so a future producer change needs explicit review.
+The current API30/API35 capture corpus fits this profile. Actual images still
+need standard-decoder and visual/input review; source/hash checks alone cannot
+establish rendered correctness. No new image-decoder dependency is installed.
 
 ## Historical composed cancellation budgets
 

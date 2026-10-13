@@ -35,7 +35,8 @@ import java.util.Locale
 
 /** Identical baseline/candidate diagnostic. A successful capture is NOT a fit pass.
  * Negative geometry and unhandled/unreachable pointer attempts are retained as data.
- * The separate strict LocalizedDialogLayoutTest remains the candidate acceptance gate. */
+ * AdvancedColourViewportTest and the installed positive method cover 1x;
+ * 2x remains diagnostic and has no usability acceptance. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[30,35],qualifiers="w640dp-h320dp-land-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)

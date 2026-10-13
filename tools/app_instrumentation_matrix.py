@@ -24,12 +24,17 @@ GALLERY_METHODS = {
 }
 SUPPORTED_SDKS = (21, 24, 30, 35)
 DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
+COLOUR = 'paint.anpaint.android.ColourViewportDeviceTest'
+COLOUR_METHODS = {
+    'normalAdvancedColourKeepsFiniteViewportAndFixedControls',
+    'retainedColourStateSurvivesRotationImeCancelAndReopen',
+    'hungarianColourCaptionsFitPortraitAndLandscape',
+}
 DIALOG_METHODS = {
     'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow',
     'aboutArtworkNoticeCompletesNativeFooterFlow',
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
-    'unchangedAdvancedColourReportsShortLandscapeLimitation',
 }
 PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
                   **{phase: 180 for phase in VERTICAL_SHARDS}, 'seed': 60, 'verify': 60}
@@ -44,7 +49,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
-    dialog = {item for item in expected if item[0] == DIALOG}
+    dialog = {item for item in expected if item[0] in (DIALOG, COLOUR)}
     ordinary = expected - gallery - dialog - vertical - seed - verify
     shards = list(VERTICAL_SHARDS.values())
     if sdk < 30:
@@ -60,8 +65,9 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The exact three gallery-draft methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
-    if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} if sdk == 35 else set()):
-        raise ValueError('The exact five API35 dialog methods and API30 suppression are required')
+    if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
+                  {(COLOUR, method) for method in COLOUR_METHODS} if sdk == 35 else set()):
+        raise ValueError('The exact seven API35 method/class pairs and lower-SDK suppression are required')
     parts = {}
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS})
@@ -107,7 +113,7 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
                 inventory_validated=True, device_sdk=sdk, source_tests_sha256=source_digest,
                 timeout_seconds_by_phase={phase: PHASE_TIMEOUTS[phase] for phase in parts},
                 dialog_timeout_seconds=300 if sdk == 35 else 0,
-                colour_scope='known-baseline-identical-limitation; positive viewport acceptance remains separate',
+                colour_scope='source-bound-positive-normal-font; 2x-short-landscape remains diagnostic',
                 ordinary_and_gallery_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts
                                                                if phase in ('ordinary', 'gallery-draft')),
                 vertical_timeout_seconds_per_shard=180 if sdk >= 30 else None,
