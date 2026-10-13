@@ -1,0 +1,587 @@
+{
+  "status": "PASS_BOUNDED_PACKAGE_AUDIT",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "local_content_and_modes_equal": 1099,
+  "source_delta_from_develop": [
+    "M\tCI.md",
+    "M\tPaintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "M\tPaintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourLayoutDiagnosticTest.kt",
+    "A\tPaintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt",
+    "A\tapp/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt",
+    "M\tapp/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt",
+    "M\tapp/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt",
+    "M\ttools/app_instrumentation_matrix.py",
+    "M\ttools/ci_emulator.sh",
+    "M\ttools/dialog_evidence_transport.py",
+    "A\ttools/synthetic_colour_receipts.py",
+    "M\ttools/test_app_instrumentation_matrix.py",
+    "M\ttools/test_ci_emulator.py",
+    "M\ttools/test_ci_timeout_budget.py",
+    "A\ttools/test_colour_viewport_contract.py",
+    "M\ttools/test_dialog_evidence_transport.py",
+    "M\ttools/test_legacy_compatibility.py",
+    "M\ttools/test_vertical_locale_matrix.py"
+  ],
+  "apk_sha256": "0d92f4eb55c9c50a411c77f4df25247ab15dfda68857f19d63dfdcf1ed5c5b94",
+  "package": "paint.anpaint.android",
+  "version_name": "0.0.38",
+  "version_code": 95,
+  "min_sdk": 21,
+  "target_sdk": 35,
+  "debuggable": true,
+  "native_libraries": [
+    {
+      "path": "lib/arm64-v8a/libanpaint_heif.so",
+      "bytes": 12098312,
+      "sha256": "ef636a51c40d2ad03015418b74e6d133a9cc3d20cbb4f16205d8695a1c49a16f",
+      "elf_class_bits": 64,
+      "elf_machine": 183,
+      "zip_data_offset": 2572288,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 11893248,
+          "virtual_address": 11909632,
+          "alignment": 16384
+        },
+        {
+          "offset": 12070664,
+          "virtual_address": 12103432,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libanpaint_jxl.so",
+      "bytes": 17192264,
+      "sha256": "7d8ae9e59fe49af30d653e1ab762a29f8ed484babe4bee817281ba63707e3b6c",
+      "elf_class_bits": 64,
+      "elf_machine": 183,
+      "zip_data_offset": 14680064,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 17135072,
+          "virtual_address": 17151456,
+          "alignment": 16384
+        },
+        {
+          "offset": 17189208,
+          "virtual_address": 17221976,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libanpaint_tiff.so",
+      "bytes": 2066560,
+      "sha256": "9417696d1c9c4986a1f9af8d8ef9d4931055f51febec21ccbbe0b8b65cf562c7",
+      "elf_class_bits": 64,
+      "elf_machine": 183,
+      "zip_data_offset": 31883264,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 2029824,
+          "virtual_address": 2046208,
+          "alignment": 16384
+        },
+        {
+          "offset": 2064112,
+          "virtual_address": 2096880,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/arm64-v8a/libanpaint_webp.so",
+      "bytes": 968544,
+      "sha256": "f0c8ce9aec1517eaed3256bdc75ff21a23c2f513475a93e958f387b5142b6670",
+      "elf_class_bits": 64,
+      "elf_machine": 183,
+      "zip_data_offset": 33964032,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 947648,
+          "virtual_address": 964032,
+          "alignment": 16384
+        },
+        {
+          "offset": 965944,
+          "virtual_address": 998712,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/armeabi-v7a/libanpaint_heif.so",
+      "bytes": 7474352,
+      "sha256": "d89bf6a49852c35b292bd556a6fcd6a04111c4f05f2165ccbc5d5dcf2e68a94a",
+      "elf_class_bits": 32,
+      "elf_machine": 40,
+      "zip_data_offset": 34947072,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 7355888,
+          "virtual_address": 7372272,
+          "alignment": 16384
+        },
+        {
+          "offset": 7448776,
+          "virtual_address": 7481544,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/armeabi-v7a/libanpaint_jxl.so",
+      "bytes": 5600436,
+      "sha256": "7316fcbee197693bcbf85b4c954d49fdbc09d6c75fc5ce228e69878055590f8b",
+      "elf_class_bits": 32,
+      "elf_machine": 40,
+      "zip_data_offset": 42434560,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 5583824,
+          "virtual_address": 5600208,
+          "alignment": 16384
+        },
+        {
+          "offset": 5598192,
+          "virtual_address": 5630960,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/armeabi-v7a/libanpaint_tiff.so",
+      "bytes": 1359492,
+      "sha256": "2d558b82226216de04c5a547faf361f64c827c37f91de679874acf9c59a97192",
+      "elf_class_bits": 32,
+      "elf_machine": 40,
+      "zip_data_offset": 48037888,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 1337488,
+          "virtual_address": 1353872,
+          "alignment": 16384
+        },
+        {
+          "offset": 1357824,
+          "virtual_address": 1390592,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/armeabi-v7a/libanpaint_webp.so",
+      "bytes": 656720,
+      "sha256": "ccb576855cdf3ea8304d572d314c05759c890b6729a3970e903a4b0e6fbe5c90",
+      "elf_class_bits": 32,
+      "elf_machine": 40,
+      "zip_data_offset": 49397760,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 645824,
+          "virtual_address": 662208,
+          "alignment": 16384
+        },
+        {
+          "offset": 654976,
+          "virtual_address": 687744,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86/libanpaint_heif.so",
+      "bytes": 13721236,
+      "sha256": "77c587c5fe787fc844e9e380cac474669c3b771de644aa37719b77f46343aa93",
+      "elf_class_bits": 32,
+      "elf_machine": 3,
+      "zip_data_offset": 50069504,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 13602448,
+          "virtual_address": 13618832,
+          "alignment": 16384
+        },
+        {
+          "offset": 13695672,
+          "virtual_address": 13728440,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86/libanpaint_jxl.so",
+      "bytes": 13373692,
+      "sha256": "c0012eed6106379b5feb1aecddccf58c3b4e01499a97c4f2a9740818216d67c9",
+      "elf_class_bits": 32,
+      "elf_machine": 3,
+      "zip_data_offset": 63799296,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 13350496,
+          "virtual_address": 13366880,
+          "alignment": 16384
+        },
+        {
+          "offset": 13371192,
+          "virtual_address": 13403960,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86/libanpaint_tiff.so",
+      "bytes": 2282152,
+      "sha256": "fb661a470158fac92791546505935a4f38ad5e61788cec181cf47a24ffe5d047",
+      "elf_class_bits": 32,
+      "elf_machine": 3,
+      "zip_data_offset": 77185024,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 2259840,
+          "virtual_address": 2276224,
+          "alignment": 16384
+        },
+        {
+          "offset": 2280516,
+          "virtual_address": 2313284,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86/libanpaint_webp.so",
+      "bytes": 1313180,
+      "sha256": "ac905ff6a067f5088dece3e58b4be21d73b9b45f8386e1126cf0ab147ed95c0a",
+      "elf_class_bits": 32,
+      "elf_machine": 3,
+      "zip_data_offset": 79478784,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 1302192,
+          "virtual_address": 1318576,
+          "alignment": 16384
+        },
+        {
+          "offset": 1311468,
+          "virtual_address": 1344236,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86_64/libanpaint_heif.so",
+      "bytes": 12576816,
+      "sha256": "e39bf975d6d65730d7f79a5d8f976a014f1a165521c10ec5800b3bed025ceb1b",
+      "elf_class_bits": 64,
+      "elf_machine": 62,
+      "zip_data_offset": 80805888,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 12372448,
+          "virtual_address": 12388832,
+          "alignment": 16384
+        },
+        {
+          "offset": 12548976,
+          "virtual_address": 12581744,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86_64/libanpaint_jxl.so",
+      "bytes": 13559288,
+      "sha256": "3296ae31c6d66d2d3c1d85bf7d066fd889bbe001e21601f056a887089c8847fd",
+      "elf_class_bits": 64,
+      "elf_machine": 62,
+      "zip_data_offset": 93388800,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 13511696,
+          "virtual_address": 13528080,
+          "alignment": 16384
+        },
+        {
+          "offset": 13556016,
+          "virtual_address": 13588784,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86_64/libanpaint_tiff.so",
+      "bytes": 2303704,
+      "sha256": "cb255e483e045ebbf62e6cac6871ff822037a46da08ede1e5ca854000d23aeb3",
+      "elf_class_bits": 64,
+      "elf_machine": 62,
+      "zip_data_offset": 106954752,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 2267088,
+          "virtual_address": 2283472,
+          "alignment": 16384
+        },
+        {
+          "offset": 2301328,
+          "virtual_address": 2334096,
+          "alignment": 16384
+        }
+      ]
+    },
+    {
+      "path": "lib/x86_64/libanpaint_webp.so",
+      "bytes": 1223312,
+      "sha256": "8deb5d3fb4c90725d8bdf826dc4a52ca073d9086e3367fe3e501cba001912008",
+      "elf_class_bits": 64,
+      "elf_machine": 62,
+      "zip_data_offset": 109264896,
+      "zip_stored": true,
+      "load_segments": [
+        {
+          "offset": 0,
+          "virtual_address": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 1203520,
+          "virtual_address": 1219904,
+          "alignment": 16384
+        },
+        {
+          "offset": 1220784,
+          "virtual_address": 1253552,
+          "alignment": 16384
+        }
+      ]
+    }
+  ],
+  "four_abis_exact": true,
+  "elf_and_apk_native_16k_alignment_pass": true,
+  "signature": {
+    "schemes_v1_v2_valid": true,
+    "certificate_sha256": "eb32be7d26264e6b8898b173278a29a092b1fa61920fb4aad9ecf752e7f6b568",
+    "ci_debug_identity": true,
+    "matches_existing_upgrade_certificate": false,
+    "release_or_upgrade_delivery": false,
+    "apksigner_warning_count": 29
+  },
+  "source_native_revision_markers": [
+    {
+      "codec": "jxl",
+      "subdirectory": "",
+      "repository": "libjxl/libjxl",
+      "revision": "a7a9c787341cf703dede03c2009fa460cae5e5df"
+    },
+    {
+      "codec": "jxl",
+      "subdirectory": "third_party/brotli",
+      "repository": "google/brotli",
+      "revision": "028fb5a23661f123017c060daa546b55cf4bde29"
+    },
+    {
+      "codec": "jxl",
+      "subdirectory": "third_party/highway",
+      "repository": "google/highway",
+      "revision": "457c891775a7397bdb0376bb1031e6e027af1c48"
+    },
+    {
+      "codec": "jxl",
+      "subdirectory": "third_party/skcms",
+      "repository": "google/skcms",
+      "revision": "96d9171c94b937a1b5f0293de7309ac16311b722"
+    },
+    {
+      "codec": "heif",
+      "subdirectory": "libheif",
+      "repository": "strukturag/libheif",
+      "revision": "4e14f5942c1732ace9611b9522cc991501445463"
+    },
+    {
+      "codec": "heif",
+      "subdirectory": "libde265",
+      "repository": "strukturag/libde265",
+      "revision": "d0bcab76380c079358a3156b3e3b37d17c00a078"
+    },
+    {
+      "codec": "heif",
+      "subdirectory": "kvazaar",
+      "repository": "ultravideo/kvazaar",
+      "revision": "6040962bed5cc68c5ad01234c38c08b8b2822068"
+    },
+    {
+      "codec": "heif",
+      "subdirectory": "aom",
+      "repository": "libsdl-org/aom",
+      "revision": "de4c1d1edc49723a78954d30a83690aa1937422f"
+    },
+    {
+      "codec": "webp",
+      "subdirectory": "",
+      "repository": "webmproject/libwebp",
+      "revision": "4fa21912338357f89e4fd51cf2368325b59e9bd9"
+    },
+    {
+      "codec": "tiff",
+      "subdirectory": "libtiff",
+      "version": "4.7.2",
+      "source_url": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+      "archive_sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a"
+    },
+    {
+      "codec": "tiff",
+      "subdirectory": "libjpeg-turbo",
+      "version": "3.2.0",
+      "source_url": "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/3.2.0/libjpeg-turbo-3.2.0.tar.gz",
+      "archive_sha256": "6f30092cef9fb839779646608f4ee14ae3cbac989c47fa05e841b0841f09878e"
+    }
+  ],
+  "runtime_dependencies_in_notice": [
+    "androidx.annotation:annotation:1.1.0",
+    "androidx.appcompat:appcompat:1.0.0",
+    "androidx.arch.core:core-common:2.0.0",
+    "androidx.arch.core:core-runtime:2.0.0",
+    "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
+    "androidx.collection:collection:1.0.0",
+    "androidx.coordinatorlayout:coordinatorlayout:1.0.0",
+    "androidx.core:core:1.3.2",
+    "androidx.core:core-ktx:1.3.2",
+    "androidx.cursoradapter:cursoradapter:1.0.0",
+    "androidx.customview:customview:1.0.0",
+    "androidx.documentfile:documentfile:1.0.0",
+    "androidx.drawerlayout:drawerlayout:1.0.0",
+    "androidx.exifinterface:exifinterface:1.3.2",
+    "androidx.fragment:fragment:1.0.0",
+    "androidx.interpolator:interpolator:1.0.0",
+    "androidx.legacy:legacy-support-core-ui:1.0.0",
+    "androidx.legacy:legacy-support-core-utils:1.0.0",
+    "androidx.lifecycle:lifecycle-common:2.0.0",
+    "androidx.lifecycle:lifecycle-livedata:2.0.0",
+    "androidx.lifecycle:lifecycle-livedata-core:2.0.0",
+    "androidx.lifecycle:lifecycle-runtime:2.0.0",
+    "androidx.lifecycle:lifecycle-viewmodel:2.0.0",
+    "androidx.loader:loader:1.0.0",
+    "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0",
+    "androidx.print:print:1.0.0",
+    "androidx.slidingpanelayout:slidingpanelayout:1.0.0",
+    "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
+    "androidx.vectordrawable:vectordrawable:1.0.0",
+    "androidx.vectordrawable:vectordrawable-animated:1.0.0",
+    "androidx.versionedparcelable:versionedparcelable:1.1.0",
+    "androidx.viewpager:viewpager:1.0.0",
+    "com.caverock:androidsvg-aar:1.4",
+    "org.jetbrains.kotlin:kotlin-stdlib:1.9.24",
+    "org.jetbrains:annotations:13.0"
+  ],
+  "native_runtime_notice_receipt": {
+    "ndk_revision": "27.2.12479018",
+    "runtime_components": [
+      "LLVM libc++",
+      "LLVM libc++abi",
+      "LLVM libunwind",
+      "LLVM compiler-rt built-ins"
+    ],
+    "notice_path": "toolchains/llvm/prebuilt/linux-x86_64/NOTICE",
+    "notice_sha256": "f96f763beb66a7ba7a667647fc64c0226ace875e590c831fdd9579ec1c1d91e1",
+    "notice_bytes": 130424,
+    "android_compiler_version": "18.0.3\nbased on r522817c\nfor additional information on LLVM revision and cherry-picks, see clang_source_info.md",
+    "generated_asset_sha256": "b26b9bbc634a69cd62d6f39b610829575c7fc0089c800f267d9b58426cd073de"
+  },
+  "limits": [
+    "CI debug delivery only; the existing private upgrade certificate is different.",
+    "Native source revision markers and complete archived bytes were checked; upstream archives were not independently refetched.",
+    "This package audit does not execute native libraries, Android UI, installed tests or release publication.",
+    "Apksigner emits 29 v1 META-INF metadata warnings; v2 signature verifies and raw warnings are retained."
+  ]
+}
