@@ -82,6 +82,40 @@ class AdvancedColourViewportTest {
         complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
       }
     }
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun largeShortLandscapeKeepsNaturalCaptionsAndReachablePreviewRail() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+        val root=dialog.window!!.decorView
+        val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
+        val add=root.findViewWithTag<TextView>("add_custom_colour")
+        val selected=root.findViewWithTag<TextView>("selected_colour_caption")
+        val sample=root.findViewWithTag<View>("new_colour_preview")
+        assertEquals(2f,add.resources.configuration.fontScale,0f)
+        assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
+            12f,add.resources.displayMetrics),add.textSize,0f)
+        caption(add);caption(selected)
+        complete(editor);complete(controls)
+        assertTrue(editor.getChildAt(0).height>editor.height)
+        val density=add.resources.displayMetrics.density
+        assertTrue(add.height>=48*density)
+        assertEquals((64*density+.5f).toInt(),sample.width)
+        assertEquals((24*density+.5f).toInt(),sample.height)
+        val overflowing=controls.getChildAt(0).height>controls.height
+        if(tag=="hu") assertTrue("The long caption exercises the scrolling rail",overflowing)
+        val editorOffset=editor.scrollY
+        controls.fullScroll(View.FOCUS_DOWN);idle()
+        if(overflowing) assertTrue(controls.scrollY>0)
+        complete(add);complete(selected);complete(sample)
+        assertEquals("Preview scrolling is independent of the colour editor",editorOffset,editor.scrollY)
+        controls.fullScroll(View.FOCUS_UP);idle()
+        assertEquals(0,controls.scrollY)
+        complete(root.findViewWithTag("custom_colour_selection"))
+        complete(root.findViewWithTag("custom_colour_0"))
+        complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
+      }
+    }
+
     @Test @Config(qualifiers="w320dp-h640dp-port-mdpi")
     fun portraitKeepsAllSixteenSavedSlotsAtFiniteWidths() {
       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->

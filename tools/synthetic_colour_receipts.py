@@ -2,7 +2,7 @@
 import copy
 
 from dialog_evidence_transport import (COLOUR_CAPTIONS, COLOUR_CLASS, COLOUR_POINTERS,
-                                       COLOUR_SCREENS, OWNER)
+                                       COLOUR_SCREENS, LARGE_COLOUR_METHODS, LARGE_COLOUR_CAPTIONS, OWNER)
 
 
 def geometry(tag=None, bounds=(10, 20, 110, 60), **changes):
@@ -17,14 +17,16 @@ def synthetic_colour_receipt(method, digest):
     """Deliberately invented dimensions/times for validating accepted/rejected schemas."""
     retained = method.startswith('retained')
     normal = method.startswith('normal')
-    locale = 'hu' if method.startswith('hungarian') else 'en-US'
-    observations = [dict(kind='fixture', locale=locale, font_scale=1)]
-    orientations = [False, True] if normal else [False, True, False, True] if retained else [False, True, False]
+    large = method in LARGE_COLOUR_METHODS
+    scale = 2 if large else 1
+    locale = LARGE_COLOUR_METHODS[method] if large else ('hu' if method.startswith('hungarian') else 'en-US')
+    observations = [dict(kind='fixture', locale=locale, font_scale=scale)]
+    orientations = [False, True] if normal or large else [False, True, False, True] if retained else [False, True, False]
     for landscape in orientations:
         bounds = (0, 0, 640, 320) if landscape else (0, 0, 320, 640)
-        observations.append(dict(kind='orientation', landscape=landscape, font_scale=1,
+        observations.append(dict(kind='orientation', landscape=landscape, font_scale=scale,
                                  root=geometry(bounds=bounds)))
-    ready = dict(locale=locale, font_scale=1, startup_ready=True, window_focus=True,
+    ready = dict(locale=locale, font_scale=scale, startup_ready=True, window_focus=True,
                  root_attached=True, busy=False, activity_destroyed=False, activity_finishing=False,
                  io_error_present=False, autosave_error_present=False, startup_view_present=False,
                  canvas=geometry('paint_canvas'))
@@ -36,16 +38,30 @@ def synthetic_colour_receipt(method, digest):
             dict(kind='intrinsic-caption', tag=tag, lines=1, layout_height=20,
                  available_text_height=30, caption_length=5, layout_width=100,
                  line_metrics=[dict(end=5, ellipsis=0, left=0, right=99)], geometry=geometry(tag)),
-            dict(kind='caption-line-reached', geometry=geometry(tag), line_rect=[11, 21, 100, 40])])
+            dict(kind='caption-line-reached', tag=tag, line=0, geometry=geometry(tag), line_rect=[11, 21, 100, 40])])
 
-    for tag in ['cancel'] if normal else COLOUR_CAPTIONS * (3 if retained else 2):
+    for tag in (LARGE_COLOUR_CAPTIONS if large else ['cancel'] if normal else COLOUR_CAPTIONS * (3 if retained else 2)):
         caption(tag)
 
     def pointer(label):
         observations.extend([dict(kind='pointer-before', label=label, tap=[50, 40], geometry=geometry()),
                              dict(kind='pointer-injected', label=label)])
 
-    if normal:
+    if large:
+        observations.extend([
+            dict(kind='colour-large-rail-reached', display=geometry(bounds=(0, 0, 640, 320)),
+                 density=1, font_scale=2, text_size=24, expected_text_size=24, overflow=True,
+                 content_height=190, viewport_height=140, controls=geometry('colour_controls_scroll', (400, 40, 620, 180), scroll_y=50),
+                 editor=geometry('colour_editor_scroll', (20, 40, 380, 180)), editor_before=0,
+                 add=geometry('add_custom_colour', (476, 90, 620, 170)),
+                 selected=geometry('selected_colour_caption', (400, 70, 476, 100)), sample=geometry('new_colour_preview', (400, 140, 464, 164))),
+            dict(kind='colour-large-rail-top-reached', heading=geometry('custom_colour_selection', (400, 40, 620, 72)),
+                 slot=geometry('custom_colour_0', (400, 72, 444, 116)),
+                 controls=geometry('colour_controls_scroll', (400, 40, 620, 180)))])
+        pointer(COLOUR_POINTERS[method][0])
+        observations.append(dict(kind='colour-large-cancelled', commit_callbacks=0, closed_callbacks=1,
+                                 dialog_attached=False, dialog_showing=False))
+    elif normal:
         inner = geometry('colour_editor_scroll', (20, 90, 384, 176))
         fixed = [geometry(tag, (400, 60+i*50, 600, 100+i*50))
                  for i, tag in enumerate(('colour_advanced_tab', 'custom_colours_panel', 'add_custom_colour'))]

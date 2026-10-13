@@ -275,6 +275,80 @@ class ColourViewportDeviceTest {
         } finally {onMain {dialog.dismiss()}}
     }
 
+    @Test fun largeEnglishColourCaptionsAndPreviewRemainReachable()=largeColourRail("en-US")
+    @Test fun largeHungarianColourCaptionsAndPreviewRemainReachable()=largeColourRail("hu")
+
+    private fun largeColourRail(tag: String)=fixture(tag,2f) {scenario ->
+        orient(true,scenario)
+        var commits=0;var closes=0
+        val dialog=onMain {AdvancedColourDialog(activity,android.graphics.Color.RED,false,
+            closed={closes++},initialMode=1) {commits++}.show()}
+        try {
+            await("large colour rail laid out") {dialog.window!!.decorView.hasWindowFocus() &&
+                dialog.window!!.decorView.findViewWithTag<ScrollView>("colour_controls_scroll").height>0}
+            val root=onMain {dialog.window!!.decorView}
+            val controls=onMain {root.findViewWithTag<ScrollView>("colour_controls_scroll")}
+            val editor=onMain {root.findViewWithTag<ScrollView>("colour_editor_scroll")}
+            val add=onMain {root.findViewWithTag<TextView>("add_custom_colour")}
+            val selected=onMain {root.findViewWithTag<TextView>("selected_colour_caption")}
+            val sample=onMain {root.findViewWithTag<View>("new_colour_preview")}
+            onMain {
+                val display=activity.window.decorView
+                assertEquals(640,display.width);assertEquals(320,display.height)
+                assertEquals(1f,activity.resources.displayMetrics.density,0f)
+                assertEquals(2f,activity.resources.configuration.fontScale,0f)
+                assertComplete(editor);assertComplete(controls)
+                assertTrue(editor.getChildAt(0).height>editor.height)
+                assertTrue(add.height>=48*add.resources.displayMetrics.density)
+                assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
+                    12f,add.resources.displayMetrics),add.textSize,0f)
+                assertEquals(64,sample.width);assertEquals(24,sample.height)
+            }
+            evidence.capture("colour-large-initial")
+            val editorOffset=onMain {editor.scrollY}
+            // Every line must first fit the natural control, then be reachable
+            // through native ancestor gestures. No requestRectangle/performClick.
+            for(view in listOf(selected,add)) revealText(view)
+            reveal(add) {rawBounds(add)}
+            reveal(sample) {rawBounds(sample)}
+            val overflow=onMain {controls.getChildAt(0).height>controls.height}
+            onMain {
+                assertComplete(add);assertComplete(selected);assertComplete(sample)
+                if(overflow) assertTrue("Native input reaches the lower rail",controls.scrollY>0)
+                if(tag=="hu") assertTrue("Long caption exercises overflow",overflow)
+                assertEquals(editorOffset,editor.scrollY)
+                evidence.observe(JSONObject().put("kind","colour-large-rail-reached")
+                    .put("display",geometry(activity.window.decorView)).put("density",activity.resources.displayMetrics.density)
+                    .put("font_scale",activity.resources.configuration.fontScale).put("text_size",add.textSize)
+                    .put("expected_text_size",android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
+                        12f,add.resources.displayMetrics)).put("overflow",overflow)
+                    .put("content_height",controls.getChildAt(0).height).put("viewport_height",controls.height)
+                    .put("controls",geometry(controls)).put("editor",geometry(editor))
+                    .put("editor_before",editorOffset).put("add",geometry(add))
+                    .put("selected",geometry(selected)).put("sample",geometry(sample)))
+            }
+            evidence.capture("colour-large-preview-reached")
+            val heading=onMain {root.findViewWithTag<TextView>("custom_colour_selection")}
+            revealText(heading);reveal(heading) {rawBounds(heading)}
+            onMain {
+                assertComplete(heading);assertComplete(root.findViewWithTag("custom_colour_0"))
+                assertEquals(editorOffset,editor.scrollY)
+                evidence.observe(JSONObject().put("kind","colour-large-rail-top-reached")
+                    .put("heading",geometry(heading)).put("slot",geometry(root.findViewWithTag("custom_colour_0")))
+                    .put("controls",geometry(controls)))
+            }
+            evidence.capture("colour-large-top-reached")
+            tap("large colour Cancel",onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)})
+            await("large colour Cancel closes") {!dialog.isShowing && !root.isAttachedToWindow}
+            onMain {
+                assertEquals(0,commits);assertEquals(1,closes)
+                evidence.observe(JSONObject().put("kind","colour-large-cancelled")
+                    .put("commit_callbacks",commits).put("closed_callbacks",closes)
+                    .put("dialog_attached",root.isAttachedToWindow).put("dialog_showing",dialog.isShowing))
+            }
+        } finally {onMain {dialog.dismiss()}}
+    }
+
     private fun backWindowState(root: View): JSONObject {
         val focused=WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}
         val targetInsets=root.rootWindowInsets

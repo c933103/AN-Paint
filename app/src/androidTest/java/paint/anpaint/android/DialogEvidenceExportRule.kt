@@ -217,7 +217,9 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
             "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation" to "paint.anpaint.android.LocalizedDialogDeviceTest",
             "normalAdvancedColourKeepsFiniteViewportAndFixedControls" to "paint.anpaint.android.ColourViewportDeviceTest",
             "retainedColourStateSurvivesRotationImeCancelAndReopen" to "paint.anpaint.android.ColourViewportDeviceTest",
-            "hungarianColourCaptionsFitPortraitAndLandscape" to "paint.anpaint.android.ColourViewportDeviceTest")
+            "hungarianColourCaptionsFitPortraitAndLandscape" to "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeEnglishColourCaptionsAndPreviewRemainReachable" to "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeHungarianColourCaptionsAndPreviewRemainReachable" to "paint.anpaint.android.ColourViewportDeviceTest")
         val METHODS=METHOD_CLASSES.keys
     }
 }

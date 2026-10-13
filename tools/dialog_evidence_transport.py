@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -44,13 +45,21 @@ COLOUR_SCREENS = {
     'hungarianColourCaptionsFitPortraitAndLandscape': [
         '0-hungarian-captions-landscape.png', '1-hungarian-captions-portrait.png'],
 }
+LARGE_COLOUR_METHODS = {
+    'largeEnglishColourCaptionsAndPreviewRemainReachable': 'en-US',
+    'largeHungarianColourCaptionsAndPreviewRemainReachable': 'hu',
+}
+for method in LARGE_COLOUR_METHODS:
+    COLOUR_SCREENS[method] = ['0-colour-large-initial.png', '1-colour-large-preview-reached.png',
+                              '2-colour-large-top-reached.png']
+LARGE_COLOUR_CAPTIONS = ['selected_colour_caption', 'add_custom_colour', 'custom_colour_selection']
 METHOD_SCREENS = {**DIALOG_SCREENS, **COLOUR_SCREENS}
 # Identity is a method-to-class mapping, never a Cartesian product of two lists.
 METHOD_CLASSES = {**dict.fromkeys(DIALOG_SCREENS, TEST_CLASS),
                   **dict.fromkeys(COLOUR_SCREENS, COLOUR_CLASS)}
 MAX_FILE = 2 * 1024 * 1024
 MAX_CASE = 24 * 1024 * 1024
-MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; seven cases contain 21 PNGs.
+MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; nine cases contain 27 PNGs.
 MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
@@ -69,12 +78,12 @@ def source_binding(summary):
     require(len(cases) == len(expected)
             and {(c.get('classname'), c.get('name')) for c in cases} == expected
             and all(c.get('status') == 'passed' for c in cases),
-            'All seven exact method/class pairs must pass in dedicated dialog report')
-    require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == 7
-            and type(summary.get('completed_tests')) is int and summary['completed_tests'] == 7
+            'All nine exact method/class pairs must pass in dedicated dialog report')
+    require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == len(METHOD_CLASSES)
+            and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(METHOD_CLASSES)
             and summary.get('missing') == [] and summary.get('unexpected') == [] and summary.get('errors') == []
             and summary.get('included_tests') == sorted(owner + '#' + method for method, owner in METHOD_CLASSES.items()),
-            'Exact selected seven-method two-class dialog phase required')
+            'Exact selected nine-method two-class dialog phase required')
     return digest
 
 
@@ -232,6 +241,7 @@ COLOUR_POINTERS = {
         'colour hex field', 'colour state cancel', 'invalid colour rejected', 'valid colour committed'],
     'hungarianColourCaptionsFitPortraitAndLandscape': ['Hungarian colour Cancel'],
 }
+COLOUR_POINTERS.update(dict.fromkeys(LARGE_COLOUR_METHODS, ['large colour Cancel']))
 COLOUR_CAPTIONS = ['colour_mode_0', 'colour_mode_3', 'colour_advanced_tab',
                    'colour_mode_1', 'colour_mode_2', 'add_custom_colour']
 
@@ -281,15 +291,17 @@ def verify_colour_profile(method, observations):
     """
     require(method in COLOUR_SCREENS, 'Unknown colour profile')
     fixture = one(observations, 'fixture')
-    locale = 'hu' if method == 'hungarianColourCaptionsFitPortraitAndLandscape' else 'en-US'
+    large = method in LARGE_COLOUR_METHODS
+    scale = 2 if large else 1
+    locale = LARGE_COLOUR_METHODS[method] if large else ('hu' if method == 'hungarianColourCaptionsFitPortraitAndLandscape' else 'en-US')
     require(fixture.get('locale') == locale and type(fixture.get('font_scale')) in (int, float)
-            and fixture['font_scale'] == 1, 'Colour acceptance is locale-specific and normal font only')
-    expected_orientations = ([False, True] if method.startswith('normal') else
+            and fixture['font_scale'] == scale, 'Colour acceptance requires its exact locale and font scale')
+    expected_orientations = ([False, True] if large or method.startswith('normal') else
                              [False, True, False, True] if method.startswith('retained') else [False, True, False])
     orientations = [o for o in observations if o.get('kind') == 'orientation']
     require([o.get('landscape') for o in orientations] == expected_orientations
             and all(type(o.get('landscape')) is bool and type(o.get('font_scale')) in (int, float)
-                    and o['font_scale'] == 1 for o in orientations), 'Incomplete colour rotation coverage')
+                    and o['font_scale'] == scale for o in orientations), 'Incomplete colour rotation coverage')
     for orientation in orientations:
         raw = colour_geometry(orientation.get('root'), complete=True)
         require((raw[2] - raw[0] > raw[3] - raw[1]) == orientation['landscape'],
@@ -301,7 +313,7 @@ def verify_colour_profile(method, observations):
             and all(ready.get(k) is False for k in ('busy', 'activity_destroyed', 'activity_finishing',
                                                     'io_error_present', 'autosave_error_present', 'startup_view_present'))
             and ready.get('locale') == locale and type(ready.get('font_scale')) in (int, float)
-            and ready['font_scale'] == 1, 'Colour fixture editor was not ready')
+            and ready['font_scale'] == scale, 'Colour fixture editor was not ready')
     colour_geometry(ready.get('canvas'), complete=True, tag='paint_canvas')
     pointers = [o for o in observations if o.get('kind') == 'pointer-before']
     require([o.get('label') for o in pointers] == COLOUR_POINTERS[method], 'Wrong colour native action sequence')
@@ -320,7 +332,9 @@ def verify_colour_profile(method, observations):
         left, right = ((bounds[0], bounds[0] + route['gutter_pixels']) if route['rtl'] else
                        (bounds[2] - route['gutter_pixels'], bounds[2]))
         require(left <= route['x'] < right, 'Colour scroll must use the native gutter')
-    if method.startswith('normal'):
+    if large:
+        verify_large_colour_rail(method, observations)
+    elif method.startswith('normal'):
         verify_colour_allocation(observations)
         require(not any(o.get('kind', '').startswith('native-back-') for o in observations), 'Unexpected colour Back')
     else:
@@ -340,6 +354,66 @@ def verify_colour_profile(method, observations):
                 colour_geometry(fit.get('inner'), complete=True, tag='colour_editor_scroll')
                 colour_geometry(fit.get('add'), complete=True, tag='add_custom_colour')
             require(not any(o.get('kind', '').startswith('native-back-') for o in observations), 'Unexpected colour Back')
+
+
+def verify_large_colour_rail(method, observations):
+    captions = [o for o in observations if o.get('kind') == 'intrinsic-caption'
+                and o.get('tag') in LARGE_COLOUR_CAPTIONS]
+    require([o.get('tag') for o in captions] == LARGE_COLOUR_CAPTIONS, 'Missing large colour captions')
+    for caption in captions:
+        lines = [o for o in observations if o.get('kind') == 'caption-line-reached'
+                 and o.get('tag') == caption['tag']]
+        require(all(type(o.get('line')) is int and o.get('geometry', {}).get('tag') == caption['tag'] for o in lines)
+                and [o.get('line') for o in lines] == list(range(caption['lines'])),
+                'Every large caption line must be reached with native input')
+    reached = one(observations, 'colour-large-rail-reached')
+    require(type(reached.get('density')) in (int, float) and reached['density'] == 1
+            and type(reached.get('font_scale')) in (int, float) and reached['font_scale'] == 2,
+            'Large colour fixture must retain 2x at mdpi')
+    display = colour_geometry(reached.get('display'), complete=True)
+    require(display[2] - display[0] == 640 and display[3] - display[1] == 320,
+            'Large colour fixture must be short landscape')
+    require(type(reached.get('text_size')) in (int, float) and math.isfinite(reached['text_size']) and reached['text_size'] > 12
+            and reached['text_size'] == reached.get('expected_text_size'), 'Scaled 12sp caption changed')
+    for key, tag in (('controls', 'colour_controls_scroll'), ('editor', 'colour_editor_scroll'),
+                     ('add', 'add_custom_colour'), ('selected', 'selected_colour_caption'),
+                     ('sample', 'new_colour_preview')):
+        raw = colour_geometry(reached.get(key), complete=True, tag=tag)
+        require(contains(display, raw), 'Large rail control outside display')
+        if key in ('add', 'selected', 'sample'):
+            require(contains(reached['controls']['raw'], raw), 'Large preview control outside its rail')
+    add, sample = reached['add']['raw'], reached['sample']['raw']
+    require(add[3] - add[1] >= 48 and sample[2] - sample[0] == 64 and sample[3] - sample[1] == 24,
+            'Large rail must preserve the action and preview sizes')
+    require(type(reached.get('content_height')) is int and type(reached.get('viewport_height')) is int
+            and reached['viewport_height'] == reached['controls']['raw'][3] - reached['controls']['raw'][1] > 0
+            and reached['content_height'] > 0 and type(reached.get('overflow')) is bool
+            and reached['overflow'] == (reached['content_height'] > reached['viewport_height']),
+            'Invalid large rail allocation')
+    require(0 <= reached['controls']['scroll_y'] <= max(0, reached['content_height'] - reached['viewport_height']),
+            'Large rail scroll outside its content range')
+    require(not reached['overflow'] or reached['controls']['scroll_y'] > 0,
+            'Overflow must be reached by native scrolling')
+    require(method != 'largeHungarianColourCaptionsAndPreviewRemainReachable' or reached['overflow'],
+            'Hungarian long caption must exercise overflow')
+    require(type(reached.get('editor_before')) is int
+            and reached['editor']['scroll_y'] == reached['editor_before'], 'Rail scroll moved colour editor')
+    top = one(observations, 'colour-large-rail-top-reached')
+    for key, tag in (('heading', 'custom_colour_selection'), ('slot', 'custom_colour_0'),
+                     ('controls', 'colour_controls_scroll')):
+        raw = colour_geometry(top.get(key), complete=True, tag=tag)
+        require(contains(display, raw) and contains(top['controls']['raw'], raw), 'Large saved controls outside rail/display')
+    require(top['controls']['raw'] == reached['controls']['raw'] and top['controls']['scroll_y'] == 0,
+            'The same rail must return to its top endpoint')
+    cancelled = one(observations, 'colour-large-cancelled')
+    require(type(cancelled.get('commit_callbacks')) is int and cancelled['commit_callbacks'] == 0
+            and type(cancelled.get('closed_callbacks')) is int and cancelled['closed_callbacks'] == 1
+            and cancelled.get('dialog_attached') is False and cancelled.get('dialog_showing') is False,
+            'Large colour Cancel must close without committing')
+    before, injected = one(observations, 'pointer-before'), one(observations, 'pointer-injected')
+    require(observations.index(reached) < observations.index(top) < observations.index(before)
+            < observations.index(injected) < observations.index(cancelled), 'Large rail native outcome order changed')
+    require(not any(o.get('kind', '').startswith('native-back-') for o in observations), 'Unexpected colour Back')
 
 
 def verify_colour_allocation(observations):
@@ -604,6 +678,8 @@ def extract(exports, destination, dialog_summary):
             'source_tests_sha256': digest, 'source_report': 'dedicated dialog instrumentation summary',
             'source_report_sha256': hashlib.sha256(summary_bytes).hexdigest(), 'device_sdk': 35,
             'cases': receipts, 'normal_font_colour_source_bound_pass': True,
+            'large_font_preview_rail_source_bound_pass': True,
+            'large_font_preview_rail_scope': 'API35 en-US/hu 2x 640x320 mdpi, native caption/preview/top reachability and Cancel only',
             'universal_colour_acceptance': False,
             'colour_interaction_timing': 'original source-enforced 45000ms deadline; no exported whole-interval measurement',
             'large_text_short_landscape_advanced_colour': 'not-accepted',

@@ -219,7 +219,9 @@ run_dialog_regression() {
     --include-test "$dialog_class#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation" \
     --include-test "$colour_class#normalAdvancedColourKeepsFiniteViewportAndFixedControls" \
     --include-test "$colour_class#retainedColourStateSurvivesRotationImeCancelAndReopen" \
-    --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape"
+    --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape" \
+    --include-test "$colour_class#largeEnglishColourCaptionsAndPreviewRemainReachable" \
+    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable"
 }
 
 cleanup() {

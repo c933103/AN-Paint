@@ -91,18 +91,19 @@ before retrying; use the affected scope, not a repeated full matrix by default.
 
 ## Localized dialog evidence and separate phase
 
-Seven installed dialog method/class pairs run in the `app-dialog` report: four
-current notice/credit cases plus three normal-font colour cases. Source discovery
+Nine installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases plus three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
 still requires every SDK-eligible app identity, without duplication or omission.
 The colour cases replace the old zero-height limitation characterization; its
 original failed positive and measured negative results remain historical evidence,
 not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
 
 The dialog 300-second cancellation cap and each 45-second interaction limit stay
-unchanged. Seven individual maxima exceed that aggregate cap; fresh actual combined
+unchanged. Nine individual maxima exceed that aggregate cap; fresh actual combined
 execution must fit, and a timeout remains a failure. Neither historical timings
-nor synthetic transport fixtures prove the combined runtime. Font 2x short-landscape
-colour remains diagnostic and unaccepted.
+nor synthetic transport fixtures prove the combined runtime. The new 2× cases cover English/Hungarian caption and preview-rail reachability
+only. Large-font IME/footer, physical-device and TalkBack coverage remain separate
+limits; C05 large-font ancestor visibility is still open.
 
 The dialog collector checks a bounded native-screenshot PNG profile: noninterlaced
 RGB8/RGBA8, with IHDR, optional single sRGB/sBIT before consecutive IDAT chunks,

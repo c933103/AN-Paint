@@ -70,7 +70,10 @@ class ColourViewportContractTest(unittest.TestCase):
         self.assertEqual(re.findall(r'@Test fun (\w+)', source), [
             'normalAdvancedColourKeepsFiniteViewportAndFixedControls',
             'retainedColourStateSurvivesRotationImeCancelAndReopen',
-            'hungarianColourCaptionsFitPortraitAndLandscape'])
+            'hungarianColourCaptionsFitPortraitAndLandscape',
+            'largeEnglishColourCaptionsAndPreviewRemainReachable',
+            'largeHungarianColourCaptionsAndPreviewRemainReachable',
+        ])
 
     def test_validation_and_callbacks_are_not_replaced_by_layout_changes(self):
         source = PRODUCTION.read_text()
