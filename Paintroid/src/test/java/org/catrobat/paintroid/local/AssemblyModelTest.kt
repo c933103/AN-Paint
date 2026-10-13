@@ -45,8 +45,11 @@ class AssemblyModelTest {
     @Test fun cropReflowsAttachmentsAndAnInvalidBatchIsAtomicWithUndoRedoAndPersistence() {
         val a=item("a"); val b=item("b",60,100); val c=item("c",100,60); val d=item("d",50,50)
         model.add(listOf(a,b,c,d)); model.place(a.id,Attachment(null,null)); model.place(b.id,Attachment(a.id,SnapEdge.RIGHT)); model.place(c.id,Attachment(a.id,SnapEdge.BOTTOM)); model.place(d.id,Attachment(c.id,SnapEdge.RIGHT))
+        val attachments=model.images.associate { it.id to it.attachment }
         val source=a.file.readBytes(); model.crop(a.id,Rect(0,0,50,100))
         assertEquals(Rect(50,0,110,100),model.layout()[b.id]); assertArrayEquals(source,a.file.readBytes())
+        // The child image moves; its anchor/edge relationship does not change.
+        assertEquals(attachments,model.images.associate { it.id to it.attachment })
         val snapshot=model.layout(); val saved=File(model.directory,"project.json").readBytes()
         assertThrows(IllegalArgumentException::class.java) { model.crop(mapOf(a.id to Rect(0,0,100,50),b.id to Rect(0,0,60,100))) }
         assertEquals(snapshot,model.layout()); assertArrayEquals(saved,File(model.directory,"project.json").readBytes())
