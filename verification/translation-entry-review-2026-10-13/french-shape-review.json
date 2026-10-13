@@ -8,18 +8,20 @@
   "requirements": [
     {
       "id": "P05-003",
-      "scope": "French tail and corrupted Star repair; batch partially contributes only"
+      "scope": "French tail and corrupted Star repair; batch partially contributes only",
+      "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-recheck-register.md#L187"
     },
     {
       "id": "GH-013",
-      "scope": "French Star corruption; current label and complete tool hint only"
+      "scope": "French Star corruption; current label and complete tool hint only",
+      "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-recheck-register.md#L486"
     },
     {
       "id": "CAT-021",
-      "scope": "French catalogue; 10 entries only"
+      "scope": "French catalogue; 10 entries only",
+      "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-evidence-rechecks.md#L307"
     }
   ],
-  "requirement_source": "https://github.com/c933103/AN-Paint/blob/95923e7cd663614c04c15bfe5f14873674448b4b/verification/localization-recheck-register.md",
   "original_star_finding": "https://github.com/c933103/AN-Paint/pull/5#discussion_r4078788608",
   "value_hash_format": "SHA-256 of UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators comma/colon; strings retain Android escape sequences; plural values map quantities to text.",
   "files": [
@@ -456,5 +458,9 @@
     "global_unknown_after": 45797,
     "global_missing_after": 69484,
     "broad_mandates_after": 57
+  },
+  "requirement_source_correction": {
+    "review_finding": "https://github.com/c933103/AN-Paint/pull/56#discussion_r4255587945",
+    "reason": "CAT-021 is recorded in localization-evidence-rechecks.md; P05-003 and GH-013 are recorded in localization-recheck-register.md. Each requirement now links its own immutable register row. No values, hashes, decisions, counts or statuses change."
   }
 }

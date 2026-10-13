@@ -1,258 +1,304 @@
 {
   "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
-  "current_french_delta_review": {
+  "current_requirement_provenance_fix": {
     "result": "ACCEPT",
-    "scope": "Independent data-delta/source-identity validation; no new whole-language, human/native-speaker or Android runtime/rendering certification and no GitHub mutation.",
-    "reviewed_at_utc": "2026-10-13T06:45:00.552584+00:00",
-    "preceding_tracker_revision": "95923e7cd663614c04c15bfe5f14873674448b4b",
-    "current_source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
-    "preceding_published_artifact_git_blobs_verified": 11,
-    "resource_file_git_and_sha256_identities_recomputed": 178,
-    "french_source_file_git_and_sha256_identities_recomputed": 9,
-    "source_tree_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
-    "receipt_pair_hashes_recomputed": 1285,
-    "preceding_active_receipts_preserved": 1275,
-    "new_french_receipts": 10,
-    "new_receipt_overlap": 0,
-    "superseded_historical_receipts_preserved": 2,
-    "changed_language_rows": [
-      "fr"
-    ],
-    "picker_system_and_partition_rows_recomputed": 167,
-    "rendered_tables_checked": 3,
-    "summary": {
-      "total": 116566,
-      "present": 47082,
-      "reviewed_current": 1285,
-      "needs_rereview": 0,
-      "unreviewed_or_unknown": 45797,
-      "missing": 69484,
-      "language_status_counts": {
-        "broad-re-review-required": 57,
-        "review-not-established": 75,
-        "translation-not-started": 27,
-        "test-mode": 2,
-        "bounded-partial-review": 6
-      },
-      "full_catalogues": 59,
-      "partial_nonempty_catalogues": 81,
-      "empty_catalogues": 27,
-      "fully_reviewed_languages": 0,
-      "test_mode_current_convention_receipts": 2
-    },
-    "fr_count_delta": {
-      "reviewed_current": [
-        1,
-        11
-      ],
-      "unreviewed_or_unknown": [
-        697,
-        687
-      ],
-      "needs_rereview": [
-        0,
-        0
-      ],
-      "missing": [
-        0,
-        0
-      ]
-    },
-    "historical_tracker_suffix_bytes_preserved": true,
-    "historical_report_bytes_preserved": [
-      "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md",
-      "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md",
-      "verification/translation-entry-review-2026-10-13/russian-review-identities.json",
-      "verification/translation-entry-review-2026-10-13/source-identities.json"
-    ],
-    "previous_validation_records_preserved": true,
-    "editorial_correction_provenance": [
+    "scope": "Narrow requirement-provenance correction only. No GitHub mutation.",
+    "reviewed_at_utc": "2026-10-13T06:57:53.546715+00:00",
+    "published_baseline_revision": "2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e",
+    "baseline_french_review_git_blob_sha": "661ddcc38b0a7fa8ae9b8f58cfefff823fc747db",
+    "candidate_path": "verification/translation-entry-review-2026-10-13/french-shape-review.json",
+    "candidate_sha256": "6b05b09c597eafe3974dd0704174974d2f347bfe4caa32aa6865d1041bf0a5fa",
+    "verified_requirement_rows": [
       {
-        "key": "string/ui_heart",
-        "original_artifact_sha256": "99cb867a380fa60ccca7f708682e48371aa13e1176d44a35e8f84820fe1836ee",
-        "before": "The œ ligature and accent-bearing label are intact.",
-        "after": "The œ ligature is intact.",
-        "reason": "Cœur contains the œ ligature, not an accent. Review metadata only; resource values and their hashes are unchanged."
+        "id": "P05-003",
+        "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-recheck-register.md#L187",
+        "exact_row": "| P05-003 | Recheck the French tail and corrupted Star repair. | Pending full recheck |",
+        "git_blob_sha": "441b952db21c210d8bb06535ddcbae1637078a91"
+      },
+      {
+        "id": "GH-013",
+        "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-recheck-register.md#L486",
+        "exact_row": "| GH-013 | Inline finding 03: PR5 French Star corruption. | Pending full recheck |",
+        "git_blob_sha": "441b952db21c210d8bb06535ddcbae1637078a91"
+      },
+      {
+        "id": "CAT-021",
+        "source": "https://github.com/c933103/AN-Paint/blob/2cb80542fb6d1bbadbdd0e64b9d0042e34e6755e/verification/localization-evidence-rechecks.md#L307",
+        "exact_row": "| CAT-021 | PR #5: `fr` | Pending full recheck |",
+        "git_blob_sha": "47d736a334a9100d79e3dacab0026a7a994c3f23"
       }
     ],
-    "broader_requirements_closed": [],
-    "technical_status_refresh": {
-      "source": "https://github.com/c933103/AN-Paint/pull/63#issuecomment-6139753224",
-      "verified_comment_created_at": "2026-10-13T06:32:21Z",
-      "result": "Only composed-successor CI status refreshed; all four jobs and 108 installed tests supported. Attempt-one failed collection retained. No French technical acceptance added."
+    "checks": {
+      "all_three_immutable_source_files_git_blob_verified": true,
+      "baseline_matches_previously_accepted_artifact_bytes": true,
+      "only_three_requirement_sources_added": true,
+      "misleading_shared_requirement_source_removed": true,
+      "correction_provenance_recorded": true,
+      "all_ten_receipts_values_hashes_and_decisions_unchanged": true,
+      "source_file_identities_context_limits_and_acceptance_unchanged": true,
+      "counts_and_broad_statuses_unchanged": true,
+      "source_and_tracker_revision_fields_unchanged": true,
+      "unrelated_candidate_files": 0
     },
-    "candidate_sha256_excluding_independent_validation": {
-      "TRANSLATION_PROGRESS.md": "8348de0e6f5d3b5bbd32e63816a6a2e081ee78a39ba71a5a39290812f97b43a3",
-      "verification/translation-entry-review-2026-10-13/current-entry-review.md": "0759d80ba19d0874a95bbff3f5748bf1c6734fa9469833ea00f788e981a81235",
-      "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ca464e3758945d7709d35ad19e00e85c371630dffcf58d23e02bfed196ea8a62",
-      "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "aa4c9e2237ff1437a6e0c9f36e4a27e20d4663e6d3898164ab87443296598b91",
-      "verification/translation-entry-review-2026-10-13/french-shape-review.json": "14ea1a759b60e2b08e17c8bb7335769fb152b1a4f8cb45fa1f46687a8f393c63",
-      "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md": "5c1efa5db855c6d1509827240df8a76833e615cbc6ee8ddf60baac0c2a8fbf21",
-      "verification/translation-entry-review-2026-10-13/merged-russian-current-review.md": "7840f0cf0140d6c3e436b09cabc837f5b394573768d8237828d0038729420562",
-      "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md": "1c2bd4c9cf02c897336c447962cea4da9c4121a615d25fe28fb93525cf042cfb",
-      "verification/translation-entry-review-2026-10-13/russian-review-identities.json": "f9bd30e908590415d4cdbe50592adad75404fd162f99dc7f41c66e252d28b836",
-      "verification/translation-entry-review-2026-10-13/source-identities.json": "942e85260ed0095c7c87a42520388d2c79a8acec944f3fda0c2a1d2c00e7777a",
-      "verification/translation-entry-review-2026-10-13/validation.json": "f25eead666cadb0f7ac922be8f0c8886dbefe431843e6df930e1d8cf97806fc2",
-      "new-opening-body.md": "57424b25f9ab258baed4f01d8d763548056c2ee55237267dec7dbd9e69b1cdc4"
-    },
-    "limitations": [
-      "All 57 broad mandates and P05-003/GH-013/CAT-021 remain open.",
-      "Unknown/unmapped entries are not asserted never reviewed; bounded receipt mapping remains incomplete.",
-      "No app source/workflow/release change is present in this candidate.",
-      "CI summary verified against the linked final receipt, not a rerun or new artifact inspection in this data review."
-    ]
+    "requirements_closed": [],
+    "limitation": "Acceptance applies only to exact provenance correction, retaining the original bounded review and its existing limits."
   },
   "prior_accepted_validation": {
     "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
-    "current_merged_delta_review": {
+    "current_french_delta_review": {
       "result": "ACCEPT",
-      "scope": "Independent data-delta verification only; not a new whole-language or rendering review. No GitHub write performed.",
-      "preceding_published_checkpoint": "93a876abdef2b5f7a0ab46c9a983468399bc75ce",
+      "scope": "Independent data-delta/source-identity validation; no new whole-language, human/native-speaker or Android runtime/rendering certification and no GitHub mutation.",
+      "reviewed_at_utc": "2026-10-13T06:45:00.552584+00:00",
+      "preceding_tracker_revision": "95923e7cd663614c04c15bfe5f14873674448b4b",
       "current_source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
-      "fresh_remote_tree_verified": true,
-      "resource_identity_checks": 178,
-      "unchanged_context_file_checks": 7,
-      "resource_file_delta": [
-        "Paintroid/src/main/res/values-ru/strings.xml"
+      "preceding_published_artifact_git_blobs_verified": 11,
+      "resource_file_git_and_sha256_identities_recomputed": 178,
+      "french_source_file_git_and_sha256_identities_recomputed": 9,
+      "source_tree_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+      "receipt_pair_hashes_recomputed": 1285,
+      "preceding_active_receipts_preserved": 1275,
+      "new_french_receipts": 10,
+      "new_receipt_overlap": 0,
+      "superseded_historical_receipts_preserved": 2,
+      "changed_language_rows": [
+        "fr"
       ],
-      "receipt_pair_hashes_recomputed": 1275,
-      "only_changed_receipt": [
-        "ru",
-        "plurals/ui_crop_preview_images"
-      ],
-      "rows_recomputed": 167,
-      "changed_rows": [
-        "ru"
-      ],
+      "picker_system_and_partition_rows_recomputed": 167,
+      "rendered_tables_checked": 3,
       "summary": {
         "total": 116566,
         "present": 47082,
-        "reviewed_current": 1275,
+        "reviewed_current": 1285,
         "needs_rereview": 0,
-        "unreviewed_or_unknown": 45807,
-        "missing": 69484
+        "unreviewed_or_unknown": 45797,
+        "missing": 69484,
+        "language_status_counts": {
+          "broad-re-review-required": 57,
+          "review-not-established": 75,
+          "translation-not-started": 27,
+          "test-mode": 2,
+          "bounded-partial-review": 6
+        },
+        "full_catalogues": 59,
+        "partial_nonempty_catalogues": 81,
+        "empty_catalogues": 27,
+        "fully_reviewed_languages": 0,
+        "test_mode_current_convention_receipts": 2
       },
-      "status_counts": {
-        "broad-re-review-required": 57,
-        "review-not-established": 75,
-        "translation-not-started": 27,
-        "test-mode": 2,
-        "bounded-partial-review": 6
+      "fr_count_delta": {
+        "reviewed_current": [
+          1,
+          11
+        ],
+        "unreviewed_or_unknown": [
+          697,
+          687
+        ],
+        "needs_rereview": [
+          0,
+          0
+        ],
+        "missing": [
+          0,
+          0
+        ]
       },
-      "catalogue_coverage": {
-        "full": 59,
-        "partial": 81,
-        "empty": 27
+      "historical_tracker_suffix_bytes_preserved": true,
+      "historical_report_bytes_preserved": [
+        "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md",
+        "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md",
+        "verification/translation-entry-review-2026-10-13/russian-review-identities.json",
+        "verification/translation-entry-review-2026-10-13/source-identities.json"
+      ],
+      "previous_validation_records_preserved": true,
+      "editorial_correction_provenance": [
+        {
+          "key": "string/ui_heart",
+          "original_artifact_sha256": "99cb867a380fa60ccca7f708682e48371aa13e1176d44a35e8f84820fe1836ee",
+          "before": "The œ ligature and accent-bearing label are intact.",
+          "after": "The œ ligature is intact.",
+          "reason": "Cœur contains the œ ligature, not an accent. Review metadata only; resource values and their hashes are unchanged."
+        }
+      ],
+      "broader_requirements_closed": [],
+      "technical_status_refresh": {
+        "source": "https://github.com/c933103/AN-Paint/pull/63#issuecomment-6139753224",
+        "verified_comment_created_at": "2026-10-13T06:32:21Z",
+        "result": "Only composed-successor CI status refreshed; all four jobs and 108 installed tests supported. Attempt-one failed collection retained. No French technical acceptance added."
       },
-      "old_indonesian_stale_receipt_preserved": true,
-      "full_prior_russian_open_receipt_preserved": true,
-      "other_1274_active_receipts_unchanged": true,
-      "historical_report_bytes_preserved": true,
-      "unchanged_historical_tracker_suffix_lines": 303,
-      "rendered_tables_checked": 3,
-      "current_russian_blob": "9e8d65b25065a9d0fb04990cafa2ff6bb2ce8c5c",
       "candidate_sha256_excluding_independent_validation": {
-        "TRANSLATION_PROGRESS.md": "ff3e6fcc37b109c876d1a68756c261f319f95f6d2e81e86494c1438fe688fcca",
-        "verification/translation-entry-review-2026-10-13/current-entry-review.md": "b64be48820e2cfb73f3341c72ab56c399eec92a6987a3fcd41577a368e6a0e93",
-        "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md": "1c2bd4c9cf02c897336c447962cea4da9c4121a615d25fe28fb93525cf042cfb",
-        "verification/translation-entry-review-2026-10-13/merged-russian-current-review.md": "7ca9c2feb9eb6333a10fbabc14c4598fa49fccffc8a06f4eb17f377c0b9f1d40",
-        "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "757a5d050fce282631bcb9597ca17a1000f440ede9a9e33f90997707bdfc9247",
-        "verification/translation-entry-review-2026-10-13/validation.json": "05076d7b42fc65c29481304b18a7e6b8abfb0a53b12a36e851a35bbbd71a3280",
-        "verification/translation-entry-review-2026-10-13/source-identities.json": "942e85260ed0095c7c87a42520388d2c79a8acec944f3fda0c2a1d2c00e7777a",
-        "verification/translation-entry-review-2026-10-13/russian-review-identities.json": "f9bd30e908590415d4cdbe50592adad75404fd162f99dc7f41c66e252d28b836",
+        "TRANSLATION_PROGRESS.md": "8348de0e6f5d3b5bbd32e63816a6a2e081ee78a39ba71a5a39290812f97b43a3",
+        "verification/translation-entry-review-2026-10-13/current-entry-review.md": "0759d80ba19d0874a95bbff3f5748bf1c6734fa9469833ea00f788e981a81235",
+        "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ca464e3758945d7709d35ad19e00e85c371630dffcf58d23e02bfed196ea8a62",
+        "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "aa4c9e2237ff1437a6e0c9f36e4a27e20d4663e6d3898164ab87443296598b91",
+        "verification/translation-entry-review-2026-10-13/french-shape-review.json": "14ea1a759b60e2b08e17c8bb7335769fb152b1a4f8cb45fa1f46687a8f393c63",
         "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md": "5c1efa5db855c6d1509827240df8a76833e615cbc6ee8ddf60baac0c2a8fbf21",
-        "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ff90f6f97d52cfe6679c527db2ec12df6639f60c53aa822a8d4054e6f29b0f44",
-        "new-opening-body.md": "15095a94bb75fc377b1993c70021f7760b36dcbffb25a14b8967cb937f6c5411"
+        "verification/translation-entry-review-2026-10-13/merged-russian-current-review.md": "7840f0cf0140d6c3e436b09cabc837f5b394573768d8237828d0038729420562",
+        "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md": "1c2bd4c9cf02c897336c447962cea4da9c4121a615d25fe28fb93525cf042cfb",
+        "verification/translation-entry-review-2026-10-13/russian-review-identities.json": "f9bd30e908590415d4cdbe50592adad75404fd162f99dc7f41c66e252d28b836",
+        "verification/translation-entry-review-2026-10-13/source-identities.json": "942e85260ed0095c7c87a42520388d2c79a8acec944f3fda0c2a1d2c00e7777a",
+        "verification/translation-entry-review-2026-10-13/validation.json": "f25eead666cadb0f7ac922be8f0c8886dbefe431843e6df930e1d8cf97806fc2",
+        "new-opening-body.md": "57424b25f9ab258baed4f01d8d763548056c2ee55237267dec7dbd9e69b1cdc4"
       },
       "limitations": [
-        "Postmerge cancellation and successor CI are separate from linguistic/data acceptance.",
-        "Zero mapped stale/open receipts does not clear 57 broad mandates or unknown entries.",
-        "Two accepted receipts are test-mode conventions."
-      ],
-      "defects": []
+        "All 57 broad mandates and P05-003/GH-013/CAT-021 remain open.",
+        "Unknown/unmapped entries are not asserted never reviewed; bounded receipt mapping remains incomplete.",
+        "No app source/workflow/release change is present in this candidate.",
+        "CI summary verified against the linked final receipt, not a rerun or new artifact inspection in this data review."
+      ]
     },
     "prior_accepted_validation": {
-      "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
-      "prior_accepted_validation": {
-        "verdict": "accepted for bounded tracker publication",
-        "source_revision": "7e3aa5ca403a23c6652e32c3f967d6ec7b83689a",
-        "reviewed_at_utc": "2026-10-13T03:20:38Z",
-        "checks": [
-          "Independently reparsed exact picker/system/source inventory: 167 choices, 698 resource keys.",
-          "Verified all 178 current source-file SHA-256 and Git blob identities.",
-          "Verified current English/localized receipt hashes and states, including two stale receipts.",
-          "Verified unique receipt keys, disjoint per-row partitions and aggregate totals.",
-          "Verified markdown, JSON and PR opening-body rows agree.",
-          "Historical cohorts clearly labelled; current PR52 and PR55 merge state distinguished from dated claims.",
-          "Broad reset mandates remain separate from bounded entry receipts; unknown does not mean never reviewed."
+      "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+      "current_merged_delta_review": {
+        "result": "ACCEPT",
+        "scope": "Independent data-delta verification only; not a new whole-language or rendering review. No GitHub write performed.",
+        "preceding_published_checkpoint": "93a876abdef2b5f7a0ab46c9a983468399bc75ce",
+        "current_source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+        "fresh_remote_tree_verified": true,
+        "resource_identity_checks": 178,
+        "unchanged_context_file_checks": 7,
+        "resource_file_delta": [
+          "Paintroid/src/main/res/values-ru/strings.xml"
         ],
-        "blockers": [],
-        "scope_limit": "No new linguistic, UI, runtime or whole-language acceptance. Additional historical partial-term/manual/producer receipts remain unmapped.",
-        "reviewed_artifacts": {
-          "TRANSLATION_PROGRESS.md": "99ecdc4ba13fcb5a710796dd179b09d01032bd8b948542e04ca000c8db74d7ff",
-          "verification/translation-entry-review-2026-10-13/current-entry-review.md": "fe959e154d90e5b9107f332e5f29b1bce0150d7026fc25d0b8cd92794fc249f8",
-          "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "cf08ff197c55b03c3ed8904c0c331bf054541415f6b40d3e3c2123479f77fbee",
-          "verification/translation-entry-review-2026-10-13/validation.json": "71ff75f9d4388ef9d97a133add56b4e564a6aa1b842630882704cc2b4cde0b92",
-          "verification/translation-entry-review-2026-10-13/source-identities.json": "8492d940ee5717121809672bdf5c36d4490df27ae97d0bd9db0edee9061305ae",
-          "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ebe052a1f1e688c8728ea01f01e9f2a577f7b990b0efcfa23b700d1a1e4f23dd"
-        }
-      },
-      "current_successor_validation": {
-        "verdict": "accepted for bounded tracker successor publication",
-        "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
-        "prior_accepted_publication_commit": "08a3a7e873ef443f89f818a3203c6e995dcbcd47",
-        "reviewed_at_utc": "2026-10-13T05:02:13Z",
-        "checks": [
-          "Independently hashed and parsed all 178 current resource files; SHA-256 and Git blob identities match the pinned current recursive tree and remain unchanged from the prior accepted snapshot.",
-          "Reparsed the picker tags and display names: exactly 167 distinct offered choices. Reparsed the default source: 697 strings and one plural resource, 698 keys total.",
-          "Recomputed the exact current English/localized hashes for all 1,275 active receipts; receipt keys are unique, and states agree with exact-pair identity. Per-choice current and open keys match the counts JSON.",
-          "Recomputed catalogue presence and disjoint current/open/unknown/missing partitions for all 167 rows. Every row totals 698; summary arithmetic and catalogue/status counts agree with validation.json.",
-          "Only Indonesian string/ui_fits_the_current_budget gains one current receipt. Its exact current English/Indonesian pair is supported by the fresh source/context linguistic report. The old mismatched receipt remains intact as superseded history.",
-          "Russian plurals/ui_crop_preview_images remains the single open receipt. The prior stale receipt is unchanged apart from the appended fresh-review finding; quantity grammar acceptance does not confer whole-resource acceptance, and the warning correction is explicitly unapplied.",
-          "Verified fresh report provenance: both published reviews equal the final supplied reports after trailing-whitespace normalization; source-revision/blob references match the current tree. Russian companion file hashes and exact parsed resource values match available verified bytes.",
-          "Verified the six quoted English/Russian plural items, placeholder sets and newline escapes. Independently reran host Russian category selection for all integers 0–20 with Node 24.19.0 / ICU 78.3 / CLDR 48.0; results match the published receipt.",
-          "All 167 current Markdown rows and summary values agree with JSON in TRANSLATION_PROGRESS.md, current-entry-review.md and the prepared PR56 opening body. They consistently state that only Indonesian gains credit and Russian remains open.",
-          "All 57 broad language mandates, all other row data, historical cohorts and the preserved historical narrative remain unchanged. Prior validation/review objects are retained; prior artifact SHA-256 and publication Git blob identities verify against the accepted local snapshot and publication receipt.",
-          "Scanned the publication files and prepared opening body for internal/local file paths and common credential patterns; no matches were found."
+        "receipt_pair_hashes_recomputed": 1275,
+        "only_changed_receipt": [
+          "ru",
+          "plurals/ui_crop_preview_images"
+        ],
+        "rows_recomputed": 167,
+        "changed_rows": [
+          "ru"
         ],
         "summary": {
           "total": 116566,
           "present": 47082,
-          "reviewed_current": 1274,
-          "needs_rereview": 1,
+          "reviewed_current": 1275,
+          "needs_rereview": 0,
           "unreviewed_or_unknown": 45807,
-          "missing": 69484,
-          "language_status_counts": {
-            "broad-re-review-required": 57,
-            "review-not-established": 75,
-            "translation-not-started": 27,
-            "test-mode": 2,
-            "bounded-partial-review": 6
-          },
-          "full_catalogues": 59,
-          "partial_nonempty_catalogues": 81,
-          "empty_catalogues": 27,
-          "fully_reviewed_languages": 0,
-          "test_mode_current_convention_receipts": 2
+          "missing": 69484
         },
-        "active_receipts": 1275,
-        "superseded_historical_receipts": 1,
-        "blockers": [],
-        "scope_limit": "This is an independent data/provenance review of the pinned tracker successor. It does not independently re-adjudicate linguistic judgments, perform an Android build/runtime/rendering test, approve the proposed Russian source change, close a broad language mandate, or establish whole-language acceptance. Additional historical receipt mapping remains open.",
-        "publication_requirement": "Replace the pending successor marker in independent-validation.json with this acceptance while preserving the attributed prior report. Verify the actual remote publication separately.",
-        "artifact_hash_format": "SHA-256 of exact UTF-8 file bytes. independent-validation.json is deliberately excluded to avoid circular/self-referential coverage when this report is inserted.",
-        "reviewed_artifacts": {
-          "TRANSLATION_PROGRESS.md": "dc49f7e30f65825e8606f76ae729bb9171a688de25356400fa73361e3d729241",
-          "verification/translation-entry-review-2026-10-13/current-entry-review.md": "b4037d825c9d59c1e919383587eb36dba9a3ea64be8aa7aa1e5df4aa00340f2f",
-          "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "fc0523d484e2d30ac76ca6e55682c1a36ed2b90c842c04facb63d62faa5bc4e8",
-          "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "7009e9d300616fc082ecce3949ad4fb4c1fc5234ae9c5d37a8462ee32b7ef9a7",
-          "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md": "5c1efa5db855c6d1509827240df8a76833e615cbc6ee8ddf60baac0c2a8fbf21",
+        "status_counts": {
+          "broad-re-review-required": 57,
+          "review-not-established": 75,
+          "translation-not-started": 27,
+          "test-mode": 2,
+          "bounded-partial-review": 6
+        },
+        "catalogue_coverage": {
+          "full": 59,
+          "partial": 81,
+          "empty": 27
+        },
+        "old_indonesian_stale_receipt_preserved": true,
+        "full_prior_russian_open_receipt_preserved": true,
+        "other_1274_active_receipts_unchanged": true,
+        "historical_report_bytes_preserved": true,
+        "unchanged_historical_tracker_suffix_lines": 303,
+        "rendered_tables_checked": 3,
+        "current_russian_blob": "9e8d65b25065a9d0fb04990cafa2ff6bb2ce8c5c",
+        "candidate_sha256_excluding_independent_validation": {
+          "TRANSLATION_PROGRESS.md": "ff3e6fcc37b109c876d1a68756c261f319f95f6d2e81e86494c1438fe688fcca",
+          "verification/translation-entry-review-2026-10-13/current-entry-review.md": "b64be48820e2cfb73f3341c72ab56c399eec92a6987a3fcd41577a368e6a0e93",
           "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md": "1c2bd4c9cf02c897336c447962cea4da9c4121a615d25fe28fb93525cf042cfb",
+          "verification/translation-entry-review-2026-10-13/merged-russian-current-review.md": "7ca9c2feb9eb6333a10fbabc14c4598fa49fccffc8a06f4eb17f377c0b9f1d40",
+          "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "757a5d050fce282631bcb9597ca17a1000f440ede9a9e33f90997707bdfc9247",
+          "verification/translation-entry-review-2026-10-13/validation.json": "05076d7b42fc65c29481304b18a7e6b8abfb0a53b12a36e851a35bbbd71a3280",
+          "verification/translation-entry-review-2026-10-13/source-identities.json": "942e85260ed0095c7c87a42520388d2c79a8acec944f3fda0c2a1d2c00e7777a",
           "verification/translation-entry-review-2026-10-13/russian-review-identities.json": "f9bd30e908590415d4cdbe50592adad75404fd162f99dc7f41c66e252d28b836",
-          "verification/translation-entry-review-2026-10-13/source-identities.json": "b4ab7826b6d1ccc89839d6f220d12dcfda12f44504feab23afc3b7aa2a02e34f",
-          "verification/translation-entry-review-2026-10-13/validation.json": "926ac393804ec210062718745994fa49e389b83cb81be1599927d3f8ff70b8a1"
+          "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md": "5c1efa5db855c6d1509827240df8a76833e615cbc6ee8ddf60baac0c2a8fbf21",
+          "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ff90f6f97d52cfe6679c527db2ec12df6639f60c53aa822a8d4054e6f29b0f44",
+          "new-opening-body.md": "15095a94bb75fc377b1993c70021f7760b36dcbffb25a14b8967cb937f6c5411"
         },
-        "reviewed_pr56_opening_body_sha256": "d14bc695be6f4a3e937d0a46a5becc1907636fd832020a753ab1b5d55a16fed8"
+        "limitations": [
+          "Postmerge cancellation and successor CI are separate from linguistic/data acceptance.",
+          "Zero mapped stale/open receipts does not clear 57 broad mandates or unknown entries.",
+          "Two accepted receipts are test-mode conventions."
+        ],
+        "defects": []
+      },
+      "prior_accepted_validation": {
+        "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
+        "prior_accepted_validation": {
+          "verdict": "accepted for bounded tracker publication",
+          "source_revision": "7e3aa5ca403a23c6652e32c3f967d6ec7b83689a",
+          "reviewed_at_utc": "2026-10-13T03:20:38Z",
+          "checks": [
+            "Independently reparsed exact picker/system/source inventory: 167 choices, 698 resource keys.",
+            "Verified all 178 current source-file SHA-256 and Git blob identities.",
+            "Verified current English/localized receipt hashes and states, including two stale receipts.",
+            "Verified unique receipt keys, disjoint per-row partitions and aggregate totals.",
+            "Verified markdown, JSON and PR opening-body rows agree.",
+            "Historical cohorts clearly labelled; current PR52 and PR55 merge state distinguished from dated claims.",
+            "Broad reset mandates remain separate from bounded entry receipts; unknown does not mean never reviewed."
+          ],
+          "blockers": [],
+          "scope_limit": "No new linguistic, UI, runtime or whole-language acceptance. Additional historical partial-term/manual/producer receipts remain unmapped.",
+          "reviewed_artifacts": {
+            "TRANSLATION_PROGRESS.md": "99ecdc4ba13fcb5a710796dd179b09d01032bd8b948542e04ca000c8db74d7ff",
+            "verification/translation-entry-review-2026-10-13/current-entry-review.md": "fe959e154d90e5b9107f332e5f29b1bce0150d7026fc25d0b8cd92794fc249f8",
+            "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "cf08ff197c55b03c3ed8904c0c331bf054541415f6b40d3e3c2123479f77fbee",
+            "verification/translation-entry-review-2026-10-13/validation.json": "71ff75f9d4388ef9d97a133add56b4e564a6aa1b842630882704cc2b4cde0b92",
+            "verification/translation-entry-review-2026-10-13/source-identities.json": "8492d940ee5717121809672bdf5c36d4490df27ae97d0bd9db0edee9061305ae",
+            "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "ebe052a1f1e688c8728ea01f01e9f2a577f7b990b0efcfa23b700d1a1e4f23dd"
+          }
+        },
+        "current_successor_validation": {
+          "verdict": "accepted for bounded tracker successor publication",
+          "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
+          "prior_accepted_publication_commit": "08a3a7e873ef443f89f818a3203c6e995dcbcd47",
+          "reviewed_at_utc": "2026-10-13T05:02:13Z",
+          "checks": [
+            "Independently hashed and parsed all 178 current resource files; SHA-256 and Git blob identities match the pinned current recursive tree and remain unchanged from the prior accepted snapshot.",
+            "Reparsed the picker tags and display names: exactly 167 distinct offered choices. Reparsed the default source: 697 strings and one plural resource, 698 keys total.",
+            "Recomputed the exact current English/localized hashes for all 1,275 active receipts; receipt keys are unique, and states agree with exact-pair identity. Per-choice current and open keys match the counts JSON.",
+            "Recomputed catalogue presence and disjoint current/open/unknown/missing partitions for all 167 rows. Every row totals 698; summary arithmetic and catalogue/status counts agree with validation.json.",
+            "Only Indonesian string/ui_fits_the_current_budget gains one current receipt. Its exact current English/Indonesian pair is supported by the fresh source/context linguistic report. The old mismatched receipt remains intact as superseded history.",
+            "Russian plurals/ui_crop_preview_images remains the single open receipt. The prior stale receipt is unchanged apart from the appended fresh-review finding; quantity grammar acceptance does not confer whole-resource acceptance, and the warning correction is explicitly unapplied.",
+            "Verified fresh report provenance: both published reviews equal the final supplied reports after trailing-whitespace normalization; source-revision/blob references match the current tree. Russian companion file hashes and exact parsed resource values match available verified bytes.",
+            "Verified the six quoted English/Russian plural items, placeholder sets and newline escapes. Independently reran host Russian category selection for all integers 0–20 with Node 24.19.0 / ICU 78.3 / CLDR 48.0; results match the published receipt.",
+            "All 167 current Markdown rows and summary values agree with JSON in TRANSLATION_PROGRESS.md, current-entry-review.md and the prepared PR56 opening body. They consistently state that only Indonesian gains credit and Russian remains open.",
+            "All 57 broad language mandates, all other row data, historical cohorts and the preserved historical narrative remain unchanged. Prior validation/review objects are retained; prior artifact SHA-256 and publication Git blob identities verify against the accepted local snapshot and publication receipt.",
+            "Scanned the publication files and prepared opening body for internal/local file paths and common credential patterns; no matches were found."
+          ],
+          "summary": {
+            "total": 116566,
+            "present": 47082,
+            "reviewed_current": 1274,
+            "needs_rereview": 1,
+            "unreviewed_or_unknown": 45807,
+            "missing": 69484,
+            "language_status_counts": {
+              "broad-re-review-required": 57,
+              "review-not-established": 75,
+              "translation-not-started": 27,
+              "test-mode": 2,
+              "bounded-partial-review": 6
+            },
+            "full_catalogues": 59,
+            "partial_nonempty_catalogues": 81,
+            "empty_catalogues": 27,
+            "fully_reviewed_languages": 0,
+            "test_mode_current_convention_receipts": 2
+          },
+          "active_receipts": 1275,
+          "superseded_historical_receipts": 1,
+          "blockers": [],
+          "scope_limit": "This is an independent data/provenance review of the pinned tracker successor. It does not independently re-adjudicate linguistic judgments, perform an Android build/runtime/rendering test, approve the proposed Russian source change, close a broad language mandate, or establish whole-language acceptance. Additional historical receipt mapping remains open.",
+          "publication_requirement": "Replace the pending successor marker in independent-validation.json with this acceptance while preserving the attributed prior report. Verify the actual remote publication separately.",
+          "artifact_hash_format": "SHA-256 of exact UTF-8 file bytes. independent-validation.json is deliberately excluded to avoid circular/self-referential coverage when this report is inserted.",
+          "reviewed_artifacts": {
+            "TRANSLATION_PROGRESS.md": "dc49f7e30f65825e8606f76ae729bb9171a688de25356400fa73361e3d729241",
+            "verification/translation-entry-review-2026-10-13/current-entry-review.md": "b4037d825c9d59c1e919383587eb36dba9a3ea64be8aa7aa1e5df4aa00340f2f",
+            "verification/translation-entry-review-2026-10-13/entry-review-counts.json": "fc0523d484e2d30ac76ca6e55682c1a36ed2b90c842c04facb63d62faa5bc4e8",
+            "verification/translation-entry-review-2026-10-13/entry-review-receipts.json": "7009e9d300616fc082ecce3949ad4fb4c1fc5234ae9c5d37a8462ee32b7ef9a7",
+            "verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md": "5c1efa5db855c6d1509827240df8a76833e615cbc6ee8ddf60baac0c2a8fbf21",
+            "verification/translation-entry-review-2026-10-13/russian-crop-rereview.md": "1c2bd4c9cf02c897336c447962cea4da9c4121a615d25fe28fb93525cf042cfb",
+            "verification/translation-entry-review-2026-10-13/russian-review-identities.json": "f9bd30e908590415d4cdbe50592adad75404fd162f99dc7f41c66e252d28b836",
+            "verification/translation-entry-review-2026-10-13/source-identities.json": "b4ab7826b6d1ccc89839d6f220d12dcfda12f44504feab23afc3b7aa2a02e34f",
+            "verification/translation-entry-review-2026-10-13/validation.json": "926ac393804ec210062718745994fa49e389b83cb81be1599927d3f8ff70b8a1"
+          },
+          "reviewed_pr56_opening_body_sha256": "d14bc695be6f4a3e937d0a46a5becc1907636fd832020a753ab1b5d55a16fed8"
+        }
       }
     }
   }
