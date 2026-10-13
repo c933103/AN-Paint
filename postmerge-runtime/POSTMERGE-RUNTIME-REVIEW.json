@@ -1,0 +1,482 @@
+{
+  "schema": 1,
+  "status": "PASS_BOUNDED_POSTMERGE_RUNTIME_ACCEPTANCE",
+  "primary_scope_defects": [],
+  "review_completed_utc": "2026-10-13T01:10:31.464475+00:00",
+  "head": "2b144237836a11b4bf42ea037a1ab5b88366e098",
+  "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+  "tested_revision": "2b144237836a11b4bf42ea037a1ab5b88366e098",
+  "run_id": 38328484887,
+  "event": "push",
+  "repository": "c933103/AN-Paint",
+  "pull_request": 59,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38328484887",
+  "ordered_parents": [
+    "b20a827979d5bf9cd9e20898c65dcdc05fc7736a",
+    "575a23220f5baac57fbfafa26c66bbfbea268c7a"
+  ],
+  "jobs": [
+    {
+      "id": 115072589610,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success"
+    },
+    {
+      "id": 115072589772,
+      "name": "Regression tests and lint",
+      "conclusion": "success"
+    },
+    {
+      "id": 115072589819,
+      "name": "Exact-script resource generation",
+      "conclusion": "success"
+    },
+    {
+      "id": 115074516172,
+      "name": "Emulator API 35",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11781807452,
+      "name": "instrumentation-apks-2b144237836a11b4bf42ea037a1ab5b88366e098",
+      "bytes": 94777145,
+      "sha256": "f4f8a19da55764d89fccb0894abe9136b2a3789acd3b12187ce327301a78621e",
+      "local_archive": "instrumentation.zip",
+      "local_extracted": "instrumentation/"
+    },
+    {
+      "id": 11781398564,
+      "name": "regression-and-lint-2b144237836a11b4bf42ea037a1ab5b88366e098",
+      "bytes": 79283660,
+      "sha256": "7bd173db9a93a758addba3f224634c79db983859e86b4a2d81eb124f35f5aafb",
+      "local_archive": "regression.zip",
+      "local_extracted": "regression/"
+    },
+    {
+      "id": 11781723891,
+      "name": "emulator-api-35-2b144237836a11b4bf42ea037a1ab5b88366e098",
+      "bytes": 9924941,
+      "sha256": "f33e679fbc5c52608c170bf74cf482c0a2fd284a32da9e86db9ebdceaab25536",
+      "local_archive": "api35.zip",
+      "local_extracted": "api35/"
+    }
+  ],
+  "source_binding": {
+    "source_tests_sha256": {
+      "app": "d64e9ae5ef03e7492728c5917b98f78f2ffe6c7ea34f54dd29467ee93ca142d2",
+      "library": "1412fb3f410c439d3543daab499667dd288f720368b958275158edc2a9dd6e0b"
+    },
+    "tree_verified_inputs": 130,
+    "method": "Fresh exact-tree source discovery compared with current XML/protocol identities; current build/download/install and test producer digests verified. Local checkout HEAD is synthetic and was not used as source identity.",
+    "device_rehash_claim": false
+  },
+  "fresh_counts": {
+    "jvm": {
+      "expected": 942,
+      "passed": 942,
+      "failed": 0,
+      "skipped": 0,
+      "missing": 0,
+      "unexpected": 0
+    },
+    "hosted_python": {
+      "executed": 662,
+      "passed": 660,
+      "skipped": 2,
+      "test_seconds": 141.584,
+      "skipped_identity_limit": "Compact CI output may omit skipped identities; no pass credit is assigned to them."
+    },
+    "lint": {
+      "status": "PASS",
+      "issues": 0,
+      "xml_sha256": "9bb42b0dda1d361b9662aa9e79b1da9081a3e0a127e3cae77d5f772b8aba8d3c"
+    },
+    "installed_api35": {
+      "eligible": 106,
+      "selected": 106,
+      "passed": 106,
+      "failed": 0,
+      "missing": 0,
+      "explicitly_excluded": 0,
+      "library": 74,
+      "app": 32,
+      "phase_counts": {
+        "ordinary": 16,
+        "gallery-draft": 3,
+        "vertical-english-manchu": 2,
+        "vertical-literary-chinese-emoji": 2,
+        "dialog": 7,
+        "seed": 1,
+        "verify": 1,
+        "library": 74
+      }
+    },
+    "installed_api30": {
+      "executed_in_this_push": 0,
+      "status": "NOT_SELECTED_BY_PUSH_WORKFLOW"
+    }
+  },
+  "dialog": {
+    "passed_methods": 7,
+    "failed": 0,
+    "missing": 0,
+    "colour_methods": 3,
+    "unchanged_notice_credit_methods": 4,
+    "identities": [
+      {
+        "class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "method": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      },
+      {
+        "class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "method": "aboutArtworkNoticeCompletesNativeFooterFlow"
+      },
+      {
+        "class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "method": "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      },
+      {
+        "class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      },
+      {
+        "class": "paint.anpaint.android.ColourViewportDeviceTest",
+        "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+      },
+      {
+        "class": "paint.anpaint.android.ColourViewportDeviceTest",
+        "method": "retainedColourStateSurvivesRotationImeCancelAndReopen"
+      },
+      {
+        "class": "paint.anpaint.android.ColourViewportDeviceTest",
+        "method": "hungarianColourCaptionsFitPortraitAndLandscape"
+      }
+    ],
+    "phase_seconds": 126.12413533299991,
+    "unchanged_phase_cap_seconds": 300,
+    "unchanged_interaction_cap_seconds": 45,
+    "actual_pngs_decoded_and_viewed": 21,
+    "colour_pngs": 13,
+    "notice_credit_pngs": 8,
+    "interaction_timing_note": "All source-enforced 45 s assertions pass. Four notice/credit methods provide explicit interaction intervals; the three colour receipts provide fixture elapsed time, not a separately serialized interaction interval. No fabricated interval is inferred.",
+    "observations": [
+      "Normal advanced colour has a finite scrollable body and fixed visible controls; the palette moves while footer controls remain fixed.",
+      "Retained portrait honeycomb label wraps over two lines, with all 16 palette slots present. Rotation retains selected and custom colours, hex text and selection.",
+      "Actual fullscreen Google Latin IME is visible with #13579B selected. Native single Back first hides IME and preserves the original dialog/value/selection without callbacks. Later single Back closes the reopened dialog. No simultaneous IME/body/footer visibility claim.",
+      "Native colour-surface drag changes the colour without body scroll; callback receipt remains one commit, three closes and final #2468AC.",
+      "Hungarian portrait and landscape captions are visibly complete at the tested scale. This is fit and state evidence, not linguistic fluency.",
+      "Notice text is intentionally scrollable; landscape top/bottom clipping at individual scroll positions is consistent with native line reachability receipts. Footer captions remain clear. Retained credit keeps state and native listener flow.",
+      "Compared with prior final-run colour captures, early current colour captures have no lingering synthetic save toast. IME suggestion content and status-bar clock are incidental runtime differences. The retained-credit portrait still contains its fixture-generated save toast.",
+      "Undimmed editor status-bar text remains low contrast in some API35 captures; this incidental observation is not attributed as a new regression."
+    ]
+  },
+  "retained_controls": {
+    "actual_current_pngs_viewed": 96,
+    "cases": 8,
+    "native_slider_gestures": 28,
+    "touchscreen_events": 980,
+    "native_arrow_selections": 8,
+    "save_opens": 24,
+    "bounded_status": "PASS_BOUNDED_FRESH_RETAINED_CONTROLS",
+    "fresh_visual_differences": [
+      "All 96 current screenshots actually inspected. Native vertical format menus, filename, description, Cancel and Choose location are reachable in their respective captured scroll states. Text clipped at a viewport edge is not represented as simultaneous full-content visibility.",
+      "Minimum/maximum slider captures agree with native touchscreen traces, preserved scroll offsets and locale-specific direction.",
+      "Fresh captures vary from prior full-run frames in clock digits, native input/scroll positions and intermediate display states. They were reviewed as current evidence, not treated as pixel-identical acceptance.",
+      "Landscape Arrow can extend beneath its clipped tool viewport. Its visible-center native tap and selected state pass; whole-rectangle reachability applies only to separately asserted Save controls.",
+      "Undimmed editor status bar has the same incidental low-contrast observation; dimmed dialog status bars are legible."
+    ]
+  },
+  "arabic": {
+    "actual_and_reference_rasters_viewed": 4,
+    "standard_decoder": "12.3.0",
+    "routes": [
+      {
+        "route": "copy",
+        "independent_metrics": {
+          "ink_pixels": 4287,
+          "ink_left": 27,
+          "ink_right_exclusive": 616,
+          "allocation_edge_pixels": 0,
+          "horizontal_overflow_pixels": 0,
+          "outside_view_pixels": 0,
+          "missing_expected_ink_pixels": 0,
+          "different_argb_pixels": 0
+        },
+        "png": {
+          "actual": {
+            "sha256": "f4367327cc27ae4ff5cc7b3791d66a37acdbb1388ea97a7d9ce07deace746c0a",
+            "dimensions": [
+              640,
+              92
+            ]
+          },
+          "reference": {
+            "sha256": "965bc76a61b6f3e6322f8048ca19cda8cc834aa008d1e21f96e99329eea5c614",
+            "dimensions": [
+              622,
+              92
+            ]
+          }
+        },
+        "root_dimensions": [
+          640,
+          320
+        ]
+      },
+      {
+        "route": "insert",
+        "independent_metrics": {
+          "ink_pixels": 4435,
+          "ink_left": 6,
+          "ink_right_exclusive": 616,
+          "allocation_edge_pixels": 0,
+          "horizontal_overflow_pixels": 0,
+          "outside_view_pixels": 0,
+          "missing_expected_ink_pixels": 0,
+          "different_argb_pixels": 0
+        },
+        "png": {
+          "actual": {
+            "sha256": "8b919e1bd86ba48d7d950966777395bd18134bead30559df55ad18771849754c",
+            "dimensions": [
+              640,
+              92
+            ]
+          },
+          "reference": {
+            "sha256": "597a6c9d4ef224f6013daff4c3fce650d3dc529af226ac3337544334c5c30e26",
+            "dimensions": [
+              622,
+              92
+            ]
+          }
+        },
+        "root_dimensions": [
+          640,
+          320
+        ]
+      }
+    ],
+    "natural_updates": {
+      "copy": [
+        88,
+        88
+      ],
+      "insert": [
+        88,
+        88
+      ]
+    },
+    "disposition": "Current rendered text is complete and the independent pixel metrics remain zero for overflow, outside view, missing expected ink and different ARGB."
+  },
+  "retained_model_gates": {
+    "focused": {
+      "C05": {
+        "status": "PASS",
+        "source_expected_count": 8,
+        "actual_count": 8
+      },
+      "M02": {
+        "status": "PASS",
+        "source_expected_count": 9,
+        "actual_count": 9
+      },
+      "M03": {
+        "status": "PASS",
+        "source_expected_count": 16,
+        "actual_count": 16
+      },
+      "M04": {
+        "status": "PASS",
+        "source_expected_count": 22,
+        "actual_count": 22
+      },
+      "context_typography": {
+        "status": "PASS",
+        "source_expected_count": 22,
+        "actual_count": 22
+      },
+      "context_direction_lifecycle": {
+        "status": "PASS",
+        "source_expected_count": 14,
+        "actual_count": 14
+      },
+      "positive_colour": {
+        "status": "PASS",
+        "source_expected_count": 10,
+        "actual_count": 10
+      },
+      "colour_diagnostic_not_acceptance": {
+        "status": "PASS",
+        "source_expected_count": 4,
+        "actual_count": 4
+      },
+      "localized_dialog_and_retention": {
+        "status": "PASS",
+        "source_expected_count": 28,
+        "actual_count": 28
+      }
+    },
+    "render_profiles": {
+      "m02": 40,
+      "m03": 48,
+      "m04": 112
+    },
+    "painted_ink_frames": 189,
+    "fresh_standard_decoded_model_images": 1450,
+    "fresh_vs_prior_identical_pixels": 1449,
+    "fresh_changed_frame_review": {
+      "path": "classic-preview/size-controls.png",
+      "actual_current_pixels_viewed": true,
+      "actual_prior_pixels_viewed": true,
+      "change": "Runtime-dependent safe budget number72.19 MP to41.90 MP; all other pixels equal,579 differing pixels in rectangle[294,494,352,513].",
+      "source": "ClassicPaintActivity.kt uses ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels); ImageMemoryPolicy derives available runtime/system memory.",
+      "disposition": "Expected environment-dependent budget observation; no geometry/source regression inferred. Current full source-derived behavioral execution passed."
+    },
+    "m04_positive_review_required": [
+      "api35-ar-640x320-font2.0-negative-controls-reset-mixed-paragraphs"
+    ],
+    "fresh_fringe_disposition": "Current actual/reference and enlarged difference pixels inspected; only two alpha7/1 antialias fringe samples differ with no whole-component or opaque-sample loss. Bounded readable-status disposition only; exact=false/review_required=true retained.",
+    "c05_incomplete_visibility_profiles": [
+      "api30-font2.0-about-2131493278",
+      "api30-font2.0-about-2131493306",
+      "api30-font2.0-about-2131493380",
+      "api30-font2.0-editor",
+      "api30-font2.0-notice-2131493306",
+      "api30-font2.0-notice-2131493380",
+      "api35-font2.0-about-2131493278",
+      "api35-font2.0-about-2131493306",
+      "api35-font2.0-about-2131493380",
+      "api35-font2.0-editor",
+      "api35-font2.0-notice-2131493306",
+      "api35-font2.0-notice-2131493380"
+    ],
+    "colour2x_fit_failure_profiles": [
+      {
+        "profile": "api30-en-US-font2.0",
+        "controls": [
+          "add_custom_colour"
+        ]
+      },
+      {
+        "profile": "api30-hu-font2.0",
+        "controls": [
+          "add_custom_colour"
+        ]
+      },
+      {
+        "profile": "api35-hu-font2.0",
+        "controls": [
+          "add_custom_colour"
+        ]
+      }
+    ]
+  },
+  "all_other_selected_installed_phases": "PASS: ordinary, gallery-draft, both vertical groups, seed, verify and library. Strict source-derived matrix, phase caps, protocol identities, compiled platform locales and restart boundary are verified.",
+  "prior_api30_attribution": {
+    "run_id": 38325525117,
+    "run_url": "https://github.com/c933103/AN-Paint/actions/runs/38325525117",
+    "pr_head": "575a23220f5baac57fbfafa26c66bbfbea268c7a",
+    "tested_merge": "edb7bf96480b2cf3cf44080afca9e2a9aa0bc899",
+    "tree": "5194abcd7521c26b97a3e4bbffec36911272323a",
+    "passed": 95,
+    "failed": 0,
+    "library": 73,
+    "app": 22,
+    "explicitly_excluded_restart_tests": 2,
+    "prior_receipt_sha256": "8f4c1b82ebde71c3b04ea51446b7494a258f039b2edbbfda52872593ade41a3f",
+    "claim": "Retained historical full-run evidence on the same source tree; no fresh API30 installed result in this push."
+  },
+  "delivery_cross_reference": {
+    "owner": "Separate fresh delivery audit",
+    "fresh_apk_sha256": "4f83079c328ae84c593b28323bf5c2dd86d80d6abfc15dcfee62e0bc9a4ff3c8",
+    "source_zip_sha256": "d6fa3f1576512b9531379ffd236f157c3f23d5ea2d4c50f41f59a36e929f7cc2",
+    "receipt_url": "https://github.com/c933103/AN-Paint/blob/19f0748325605d4e902c40a29885b61cda3b2dd2/postmerge-delivery/REVIEW-RESULT.json"
+  },
+  "limitations": [
+    "Font 2x short-landscape composition remains unaccepted: 12 of 16 C05 profiles have incomplete ancestor visibility despite intrinsic fit; colour diagnostic Add custom colour fails intrinsic fit on API30 en-US/hu and API35 hu.",
+    "No physical-device, TalkBack, linguistic fluency, live-provider, external encoding or hardware-reference acceptance.",
+    "Model swipes remain diagnostics, not evidence of Android input dispatch.",
+    "Current push selected API35 only; prior full-run API30 is separately attributed and receives no fresh postmerge execution credit.",
+    "Save observer runs before dispatch; dialog resource locale is absent there and is not post-mount resource proof.",
+    "Choose-location fixture intercepts with RESULT_CANCELED; it does not test an external provider or encode output.",
+    "Arabic software Layout/View fixtures use actual compiled route strings and natural requestLayout observations; no real network failure or hardware screenshot claim.",
+    "M04 positive mixed-paragraph reset frame still has exact=false and review_required=true: two alpha 7/1 fringe samples differ, with no whole component or opaque sample missing. Fresh actual/reference and enlarged difference were inspected for bounded readable-status disposition only.",
+    "Producer provenance from PR51/53 is retained, but acceptance here is established from fresh run artifacts; prior acceptance is not substituted.",
+    "Python two skips receive no pass credit. Warning lines are recorded separately in the JVM model verdict."
+  ],
+  "supporting_reports": [
+    {
+      "path": "binding.json",
+      "bytes": 35624,
+      "sha256": "69c94a23f9a6437594a7e8f2d72c3f313222ac5e8ff9bb23e1b68399df65fb28"
+    },
+    {
+      "path": "source-input-result.json",
+      "bytes": 35029,
+      "sha256": "a4aa8f88d3e233a26b347f4baaddc287d0f7d746f8b78775e353a854754abc8d"
+    },
+    {
+      "path": "checker-reuse.json",
+      "bytes": 12278,
+      "sha256": "b69cb5b1637c14c72e5ad211d1b7abbeb49a6e7704f80b0fd9166b6e1b3cb4e9"
+    },
+    {
+      "path": "deadline-result.json",
+      "bytes": 1679,
+      "sha256": "8eb8e577d0caa7448b29152b29e3a650e72f77b5bb09c10e34c3f5c42873303d"
+    },
+    {
+      "path": "build-compile-upload-receipt.json",
+      "bytes": 4722,
+      "sha256": "a6e7dab14514005fcb797017fef19faf79da6151da4d765020355b1690ea9e26"
+    },
+    {
+      "path": "prebuilt-provenance-result.json",
+      "bytes": 13144,
+      "sha256": "2bf93ce2cdafbc3927cf7a03e5b53e9b483948b2f43aef3d8ee741219b09edb4"
+    },
+    {
+      "path": "installed-matrix-result.json",
+      "bytes": 84832,
+      "sha256": "541a044ba2b4f2d19d950e75eba7246310ef00c3814af28336f5660c481c75b1"
+    },
+    {
+      "path": "restart-boundary-result.json",
+      "bytes": 485,
+      "sha256": "4dbd9bbd34fd2de7be65e96e27e8a80ed441cafa3c711ccf03a9e23d4fc7a4a2"
+    },
+    {
+      "path": "platform-locale-result.json",
+      "bytes": 6743,
+      "sha256": "80ee2a5af5f679694ee33acdf3adc4ff7115ce1d4f1703720d6013eb490b57a8"
+    },
+    {
+      "path": "dialog-result.json",
+      "bytes": 37048,
+      "sha256": "789e28c18adff5905d27420c1bd973f99173335643f67411ba3ce158ac86bb93"
+    },
+    {
+      "path": "dialog-visual-review.json",
+      "bytes": 7597,
+      "sha256": "0ac121f11cc143cd26f4f4bdce48bad21a88d7fbfeec0ededbeb7bf261fca461"
+    },
+    {
+      "path": "retained-controls-result.json",
+      "bytes": 6168,
+      "sha256": "3c157d39da58b80a24cdc5832d40f539be390f72dafe675dcd9ce5360eb192ab"
+    },
+    {
+      "path": "jvm-review/JVM-MODEL-VERDICT.json",
+      "bytes": 5678,
+      "sha256": "d5e82edfedfecf344031adb6bf66767477d86a6044ff7573046e7465d4f6bb47"
+    },
+    {
+      "path": "final-jobs.json",
+      "bytes": 10255,
+      "sha256": "9c89eb3e30da62b2aa59dbed13dfcfafad184a27321b93794d787aeb983304b3"
+    }
+  ]
+}
