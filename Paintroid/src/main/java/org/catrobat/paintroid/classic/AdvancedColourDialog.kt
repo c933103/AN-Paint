@@ -83,7 +83,16 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         val editorPanel=column()
         val fixedPanel=column()
         shell.addView(editorPanel,LinearLayout.LayoutParams(-1,0,1f))
-        shell.addView(fixedPanel,LinearLayout.LayoutParams(-1,-2))
+        // Measure the saved colours and preview at their natural text height.
+        // Short windows may scroll this rail independently instead of squeezing
+        // a wrapped Add caption (or the selected-colour preview) to the remainder.
+        val controlsScroll=ScrollView(activity).apply {
+            tag="colour_controls_scroll"
+            isVerticalScrollBarEnabled=true;isScrollbarFadingEnabled=false
+            scrollBarStyle=View.SCROLLBARS_INSIDE_OVERLAY
+            addView(fixedPanel)
+        }
+        shell.addView(controlsScroll,LinearLayout.LayoutParams(-1,-2))
         val body = column().apply { setPadding(0, dp(4), 0, dp(8)) }
         // Wrapped captions must align by their view bounds, not their differing
         // text baselines, which can move a taller button outside the row.
@@ -199,7 +208,7 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         fixedPanel.addView(customPanel)
         val previewRow = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
         val sampleColumn=column()
-        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)))
+        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)).apply {tag="selected_colour_caption"})
         sample = object : View(activity) {
             override fun onDraw(canvas: Canvas) {
                 val p = Paint()
@@ -257,11 +266,19 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                 (editorPanel.layoutParams as LinearLayout.LayoutParams).apply {
                     width=if(columns) 0 else -1;height=if(columns) -1 else 0;weight=1f
                 }
-                (fixedPanel.layoutParams as LinearLayout.LayoutParams).apply {
-                    width=if(columns) dp(220) else -1;height=-2;weight=0f
+                // Reserve caption width from the rendering configuration before
+                // measuring. Repeated parent measurements use the same widths;
+                // normal-font geometry stays unchanged and the editor keeps half.
+                val railWidth=if(columns) (dp(220)*activity.resources.configuration.fontScale.coerceAtLeast(1f))
+                    .toInt().coerceAtMost((MeasureSpec.getSize(widthMeasureSpec)-shell.paddingLeft-
+                        shell.paddingRight-dp(12))/2) else dp(220)
+                (controlsScroll.layoutParams as LinearLayout.LayoutParams).apply {
+                    width=if(columns) railWidth else -1;height=-2;weight=0f
                     marginStart=if(columns) dp(12) else 0
                 }
+                sampleColumn.layoutParams.width=if(columns) dp(76)*railWidth/dp(220) else dp(76)
                 shell.layoutParams.height=minOf(preferredHeight(),available)
+                shell.forceLayout()
                 super.onMeasure(widthMeasureSpec,heightMeasureSpec)
             }
         }.apply {

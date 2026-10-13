@@ -70,7 +70,10 @@ class ColourViewportContractTest(unittest.TestCase):
         self.assertEqual(re.findall(r'@Test fun (\w+)', source), [
             'normalAdvancedColourKeepsFiniteViewportAndFixedControls',
             'retainedColourStateSurvivesRotationImeCancelAndReopen',
-            'hungarianColourCaptionsFitPortraitAndLandscape'])
+            'hungarianColourCaptionsFitPortraitAndLandscape',
+            'largeEnglishColourCaptionsAndPreviewRemainReachable',
+            'largeHungarianColourCaptionsAndPreviewRemainReachable',
+        ])
 
     def test_validation_and_callbacks_are_not_replaced_by_layout_changes(self):
         source = PRODUCTION.read_text()
@@ -83,6 +86,19 @@ class ColourViewportContractTest(unittest.TestCase):
                          'parent?.requestDisallowInterceptTouchEvent(true)'):
             self.assertIn(expected, source)
         self.assertNotIn('setTextSize(', source)
+
+    def test_large_rail_reserves_scaled_width_before_measurement_without_shrinking(self):
+        source = PRODUCTION.read_text()
+        self.assertIn('activity.resources.configuration.fontScale.coerceAtLeast(1f)', source)
+        self.assertIn('sampleColumn.layoutParams.width=if(columns) dp(76)*railWidth/dp(220) else dp(76)', source)
+        self.assertLess(source.index('val railWidth=if(columns)'), source.index('super.onMeasure(widthMeasureSpec,heightMeasureSpec)'))
+        self.assertIn('controls.width>220', INSTALLED.read_text())
+        self.assertIn('editor.width>=controls.width', INSTALLED.read_text())
+        model = MODEL.read_text()
+        for required in ('largePreviewRailReflowsWithinTheInstalledShortViewport',
+                         'editor.width>=controls.width', 'editor.height>0',
+                         'caption(view);complete(view)', 'controls.isSmoothScrollingEnabled=false'):
+            self.assertIn(required, model)
 
 
 if __name__ == '__main__':

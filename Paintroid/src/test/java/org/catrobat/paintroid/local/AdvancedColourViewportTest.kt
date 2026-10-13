@@ -72,6 +72,11 @@ class AdvancedColourViewportTest {
       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
         val root=dialog.window!!.decorView
         val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        val density=inner.resources.displayMetrics.density
+        assertEquals("Normal-font rail width is unchanged",(220*density+.5f).toInt(),
+            root.findViewWithTag<ScrollView>("colour_controls_scroll").width)
+        assertEquals("Normal-font preview caption width is unchanged",(76*density+.5f).toInt(),
+            root.findViewWithTag<TextView>("selected_colour_caption").width)
         complete(inner)
         assertTrue("Editor content must overflow",inner.getChildAt(0).height>inner.height)
         for(tag in listOf("colour_advanced_tab","custom_colours_panel","add_custom_colour")) {
@@ -82,6 +87,70 @@ class AdvancedColourViewportTest {
         complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
       }
     }
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
+    fun largeShortLandscapeKeepsNaturalCaptionsAndReachablePreviewRail() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+        val root=dialog.window!!.decorView
+        val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
+        val add=root.findViewWithTag<TextView>("add_custom_colour")
+        val selected=root.findViewWithTag<TextView>("selected_colour_caption")
+        val sample=root.findViewWithTag<View>("new_colour_preview")
+        assertEquals(2f,add.resources.configuration.fontScale,0f)
+        assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
+            12f,add.resources.displayMetrics),add.textSize,0f)
+        caption(add);caption(selected)
+        complete(editor);complete(controls)
+        assertTrue(editor.getChildAt(0).height>editor.height)
+        val density=add.resources.displayMetrics.density
+        assertTrue(add.height>=48*density)
+        assertEquals((64*density+.5f).toInt(),sample.width)
+        assertEquals((24*density+.5f).toInt(),sample.height)
+        val overflowing=controls.getChildAt(0).height>controls.height
+        if(tag=="hu") assertTrue("The long caption exercises the scrolling rail",overflowing)
+        val editorOffset=editor.scrollY
+        // fullScroll otherwise animates after this assertion's looper turn.
+        // Installed coverage below uses real gestures; this is a layout model.
+        controls.isSmoothScrollingEnabled=false
+        controls.fullScroll(View.FOCUS_DOWN);idle()
+        if(overflowing) assertTrue(controls.scrollY>0)
+        complete(add);complete(selected);complete(sample)
+        assertEquals("Preview scrolling is independent of the colour editor",editorOffset,editor.scrollY)
+        controls.fullScroll(View.FOCUS_UP);idle()
+        assertEquals(0,controls.scrollY)
+        complete(root.findViewWithTag("custom_colour_selection"))
+        complete(root.findViewWithTag("custom_colour_0"))
+        complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
+      }
+    }
+
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-mdpi")
+    fun largePreviewRailReflowsWithinTheInstalledShortViewport() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+        val root=dialog.window!!.decorView
+        val holder=root.findViewWithTag<FrameLayout>("colour_dialog_holder")
+        // API35's retained native failure has a 104px Hungarian rail. Reproduce
+        // that parent constraint, including the shell's 8dp vertical padding,
+        // instead of relying on Robolectric's taller dialog title/footer model.
+        val density=holder.resources.displayMetrics.density
+        val height=(112*density+.5f).toInt()
+        holder.measure(View.MeasureSpec.makeMeasureSpec(holder.width,View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY))
+        holder.layout(holder.left,holder.top,holder.right,holder.top+height)
+        val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
+        val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        assertTrue("Large-font captions receive more rail width",controls.width>220*density)
+        assertTrue("At least half the columns remain for editing",editor.width>=controls.width)
+        assertTrue("The editor still has a finite viewport",editor.height>0)
+        assertEquals((104*density+.5f).toInt(),controls.height)
+        controls.scrollTo(0,controls.getChildAt(0).height)
+        for(name in listOf("add_custom_colour","selected_colour_caption")) {
+            val view=root.findViewWithTag<TextView>(name);caption(view);complete(view)
+        }
+        complete(root.findViewWithTag("new_colour_preview"))
+      }
+    }
+
     @Test @Config(qualifiers="w320dp-h640dp-port-mdpi")
     fun portraitKeepsAllSixteenSavedSlotsAtFiniteWidths() {
       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->

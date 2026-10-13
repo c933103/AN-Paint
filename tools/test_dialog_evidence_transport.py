@@ -17,14 +17,14 @@ import zipfile
 from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
-from synthetic_colour_receipts import synthetic_colour_receipt
+from synthetic_colour_receipts import geometry, synthetic_colour_receipt
 
 DIGEST = 'a' * 64
 
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=7, completed_tests=7, missing=[], unexpected=[], errors=[],
+                source_tests_sha256=DIGEST, expected_tests=9, completed_tests=9, missing=[], unexpected=[], errors=[],
                 included_tests=sorted(owner + '#' + name for name, owner in METHOD_CLASSES.items()),
                 cases=[dict(classname=owner, name=m, status='passed') for m, owner in METHOD_CLASSES.items()])
 
@@ -133,17 +133,21 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             write_archive(self.exports, method)
         self.method = next(iter(METHOD_SCREENS))
 
-    def test_exact_source_bound_seven_case_export_and_atomic_extraction(self):
+    def test_exact_source_bound_nine_case_export_and_atomic_extraction(self):
         result = extract(self.exports, self.output, self.summary)
         self.assertTrue(result['success'])
         self.assertEqual(result['source_tests_sha256'], DIGEST)
-        self.assertEqual(len(result['cases']), 7)
-        self.assertEqual(len(list(self.output.rglob('*.png'))), 21)
-        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 7)
-        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 7)
+        self.assertEqual(len(result['cases']), 9)
+        self.assertEqual(len(list(self.output.rglob('*.png'))), 27)
+        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 9)
+        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 9)
         self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted')
         self.assertIs(result['universal_colour_acceptance'], False)
         self.assertIs(result['normal_font_colour_source_bound_pass'], True)
+        self.assertIs(result['large_font_preview_rail_source_bound_pass'], True)
+        self.assertIn('en-US/hu 2x 640x320 mdpi', result['scope'])
+        self.assertIn('preview-rail reachability and Cancel only', result['scope'])
+        self.assertIn('whole-dialog and universal 2x not accepted', result['scope'])
         self.assertEqual(result['source_report_sha256'], hashlib.sha256(self.summary.read_bytes()).hexdigest())
         self.assertEqual((self.output / 'source-summary.json').read_bytes(), self.summary.read_bytes())
         for case in result['cases']:
@@ -258,7 +262,7 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
         cls.flow = cls.source.split('private fun noticeFlow(index: Int)', 1)[1].split(
             '@Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()', 1)[0]
 
-    def test_exact_three_notice_bindings_and_seven_two_class_sdk35_methods(self):
+    def test_exact_three_notice_bindings_and_nine_two_class_sdk35_methods(self):
         expected = {
             'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
             'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
@@ -305,15 +309,15 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
                          'assertEquals("Actual menu callback loaded the bundled notice",expected,'):
             self.assertIn(required, normalized)
 
-    def test_exact_twenty_one_pngs_preserve_profiles_and_capture_indices(self):
+    def test_exact_twenty_seven_pngs_preserve_profiles_and_capture_indices(self):
         self.assertEqual([METHOD_SCREENS[name] for name in NOTICE_METHODS], [
             ['0-about-portrait.png', '1-about-landscape.png', '2-notice-0-initial.png', '3-notice-0-portrait.png'],
             ['0-notice-1-initial.png'], ['0-notice-2-initial.png']])
-        self.assertEqual(len(METHOD_SCREENS), 7)
-        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 21)
+        self.assertEqual(len(METHOD_SCREENS), 9)
+        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 27)
         self.assertEqual(len(METHOD_SCREENS['retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']), 2)
         self.assertNotIn('unchangedAdvancedColourReportsShortLandscapeLimitation', METHOD_SCREENS)
-        self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 13)
+        self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 19)
 
     def test_each_notice_requires_its_own_copy_nested_back_done_reopen_and_close_back(self):
         for method, index in NOTICE_METHODS.items():
@@ -714,6 +718,67 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 source_binding(report)
 
+    def test_large_rail_rejects_missing_lines_shrunk_text_clipping_and_unreached_overflow(self):
+        method = 'largeHungarianColourCaptionsAndPreviewRemainReachable'
+        for mutation in (
+            lambda r: observation(r, 'colour-large-rail-reached').update(text_size=12),
+            lambda r: observation(r, 'colour-large-rail-reached').update(text_size=float('inf'), expected_text_size=float('inf')),
+            lambda r: observation(r, 'colour-large-rail-reached').update(viewport_height=1),
+            lambda r: observation(r, 'colour-large-rail-reached')['controls'].update(scroll_y=100000),
+            lambda r: observation(r, 'caption-line-reached').update(line=False),
+            lambda r: observation(r, 'caption-line-reached')['geometry'].update(tag='unrelated'),
+            lambda r: r['observations'].insert(0, r['observations'].pop(-1)),
+            lambda r: observation(r, 'colour-large-rail-reached').update(font_scale=1),
+            lambda r: observation(r, 'colour-large-rail-reached')['add'].update(visible=[476, 90, 620, 160]),
+            lambda r: observation(r, 'colour-large-rail-reached')['controls'].update(scroll_y=0),
+            lambda r: observation(r, 'colour-large-rail-reached')['editor'].update(scroll_y=1),
+            lambda r: observation(r, 'colour-large-rail-reached').update(overflow=False),
+            lambda r: observation(r, 'caption-line-reached').update(line=1),
+            lambda r: observation(r, 'colour-large-rail-top-reached')['slot'].update(visible=[10, 20, 110, 40]),
+            lambda r: observation(r, 'colour-large-cancelled').update(commit_callbacks=1),
+            lambda r: observation(r, 'colour-large-cancelled').update(dialog_attached=True),
+        ):
+            data = receipt(method); mutation(data)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                verify_receipt(data, method, DIGEST)
+
+    def test_large_rail_width_and_editor_share_are_exported_requirements(self):
+        for method in ('largeEnglishColourCaptionsAndPreviewRemainReachable',
+                       'largeHungarianColourCaptionsAndPreviewRemainReachable'):
+            def sized(rail_width, editor_width):
+                data = receipt(method)
+                reached = observation(data, 'colour-large-rail-reached')
+                top = observation(data, 'colour-large-rail-top-reached')
+                left = 620 - rail_width
+                reached['controls'] = geometry('colour_controls_scroll', (left, 40, 620, 180), scroll_y=50)
+                reached['editor'] = geometry('colour_editor_scroll', (20, 40, 20 + editor_width, 180))
+                reached['add'] = geometry('add_custom_colour', (left + 76, 90, 620, 170))
+                reached['selected'] = geometry('selected_colour_caption', (left, 70, left + 76, 100))
+                reached['sample'] = geometry('new_colour_preview', (left, 140, left + 64, 164))
+                top['controls'] = geometry('colour_controls_scroll', (left, 40, 620, 180))
+                top['heading'] = geometry('custom_colour_selection', (left, 40, 620, 72))
+                top['slot'] = geometry('custom_colour_0', (left, 72, left + 44, 116))
+                return data
+
+            # Every child remains inside the rail/display; these fail specifically
+            # on width, not because a malformed child happens to be out of bounds.
+            for rail_width in (219, 220):
+                with self.subTest(method=method, rail_width=rail_width), self.assertRaisesRegex(ValueError, 'wider than 220px'):
+                    verify_colour_profile(method, sized(rail_width, 290)['observations'])
+            with self.subTest(method=method, editor='starved'), self.assertRaisesRegex(ValueError, 'starve editor width'):
+                verify_colour_profile(method, sized(290, 289)['observations'])
+            verify_colour_profile(method, sized(221, 221)['observations'])
+
+    def test_large_rail_rejects_simultaneous_controls_moved_outside_display(self):
+        method = 'largeHungarianColourCaptionsAndPreviewRemainReachable'
+        data = receipt(method)
+        reached = observation(data, 'colour-large-rail-reached')
+        for key in ('controls', 'editor', 'add', 'selected', 'sample'):
+            for bounds in ('raw', 'visible'):
+                reached[key][bounds] = [v + 10000 for v in reached[key][bounds]]
+        with self.assertRaises(ValueError):
+            verify_receipt(data, method, DIGEST)
+
     def test_colour_profile_does_not_weaken_notice_budget_or_invent_interval(self):
         for method in COLOUR_SCREENS:
             data = receipt(method)
@@ -725,8 +790,8 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
                 lambda r: r.update(fixture_elapsed_ms=0),
                 lambda r: r.update(fixture_started_uptime_ms=True),
                 lambda r: r.update(fixture_elapsed_scope='interaction only'),
-                lambda r: observation(r, 'fixture').update(font_scale=2),
-                lambda r: observation(r, 'orientation').update(font_scale=2),
+                lambda r: observation(r, 'fixture').update(font_scale=1 if method.startswith('large') else 2),
+                lambda r: observation(r, 'orientation').update(font_scale=1 if method.startswith('large') else 2),
             ):
                 bad = copy.deepcopy(data); mutation(bad)
                 with self.subTest(method=method, mutation=mutation), self.assertRaises(ValueError):
