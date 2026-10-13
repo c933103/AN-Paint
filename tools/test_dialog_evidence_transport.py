@@ -145,6 +145,9 @@ class DialogEvidenceTransportTest(unittest.TestCase):
         self.assertIs(result['universal_colour_acceptance'], False)
         self.assertIs(result['normal_font_colour_source_bound_pass'], True)
         self.assertIs(result['large_font_preview_rail_source_bound_pass'], True)
+        self.assertIn('en-US/hu 2x 640x320 mdpi', result['scope'])
+        self.assertIn('preview-rail reachability and Cancel only', result['scope'])
+        self.assertIn('whole-dialog and universal 2x not accepted', result['scope'])
         self.assertEqual(result['source_report_sha256'], hashlib.sha256(self.summary.read_bytes()).hexdigest())
         self.assertEqual((self.output / 'source-summary.json').read_bytes(), self.summary.read_bytes())
         for case in result['cases']:

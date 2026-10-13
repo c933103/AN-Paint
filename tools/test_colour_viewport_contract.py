@@ -87,6 +87,17 @@ class ColourViewportContractTest(unittest.TestCase):
             self.assertIn(expected, source)
         self.assertNotIn('setTextSize(', source)
 
+    def test_large_rail_reflows_only_after_natural_measurement_without_shrinking(self):
+        source = PRODUCTION.read_text()
+        self.assertIn('if(columns && previewRow.measuredHeight>controlsScroll.measuredHeight)', source)
+        self.assertIn('sampleColumn.layoutParams.width=dp(76)', source)
+        self.assertIn('sampleColumn.layoutParams.width=railWidth*76/220', source)
+        model = MODEL.read_text()
+        for required in ('largePreviewRailReflowsWithinTheInstalledShortViewport',
+                         'editor.width>=controls.width', 'editor.height>0',
+                         'caption(view);complete(view)', 'controls.isSmoothScrollingEnabled=false'):
+            self.assertIn(required, model)
+
 
 if __name__ == '__main__':
     unittest.main()

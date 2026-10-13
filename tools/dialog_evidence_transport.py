@@ -674,7 +674,9 @@ def extract(exports, destination, dialog_summary):
                         require(bounded_digest(source, entry['bytes'], output) == entry['sha256'], 'Dialog data changed')
         require(not os.path.lexists(destination), 'Destination appeared during validation')
         os.rename(staged, destination)
-    return {'success': True, 'scope': 'source-bound-installed-api35-notice-credit-and-normal-font-colour',
+    return {'success': True, 'scope': ('source-bound-installed-api35-notice-credit-and-normal-font-colour; '
+                                     'en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; '
+                                     'whole-dialog and universal 2x not accepted'),
             'source_tests_sha256': digest, 'source_report': 'dedicated dialog instrumentation summary',
             'source_report_sha256': hashlib.sha256(summary_bytes).hexdigest(), 'device_sdk': 35,
             'cases': receipts, 'normal_font_colour_source_bound_pass': True,
