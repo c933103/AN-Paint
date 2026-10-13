@@ -4,6 +4,14 @@ This document is the per-language companion to master tracker #39. The original
 140-choice source scan remains pinned below; requested option registrations are
 tracked separately from translated UI and release acceptance.
 
+## Current denominator checkpoint: 13 October 2026
+
+Current develop [`7e3aa5ca403a23c6652e32c3f967d6ec7b83689a`](https://github.com/c933103/AN-Paint/commit/7e3aa5ca403a23c6652e32c3f967d6ec7b83689a) offers 167 choices and declares **697 translatable strings + 1 plural resource = 698 resource keys**. A read-only check of the current default resources and all 27 added canonical catalogues confirms **0/697 strings + 0/1 plurals**, or 698 exact-catalogue gaps each. They remain empty with default-English fallback; translation and linguistic review have not advanced.
+
+The 695-string/696-key figures and per-row data below belong to their explicitly pinned historical cohorts and remain unchanged. This checkpoint does not rescan or reclassify the other catalogues, transfer technical acceptance into linguistic acceptance, or change the 475-row reset register: **3 structural + 1 bounded semantic/source distinction complete, 471 pending**.
+
+PR60 changes font notice metadata, tests and documentation only; it changes no translated text, catalogue or licence terms. No new translation work was performed for this count correction.
+
 ## Requested option progress
 
 **167 tracked choices = 140 pinned-baseline choices + 6 options from
@@ -20,7 +28,7 @@ PR58's [accepted four-job CI](https://github.com/c933103/AN-Paint/actions/runs/3
 The first six are Hausa, Yoruba, Lingala, Sundanese, Igbo and Zulu. The next sixteen requested language groups
 are Nigerian Pidgin, Somali, Assamese, Wolof, Haitian Creole, Tok Pisin, Navajo,
 Cherokee, Nahuatl, Yucatec Maya, Quechua, Chamorro, Samoan, Māori, Sanskrit and Tajik.
-All 27 exact catalogues intentionally have **0/695 strings and 0/1 plural resources**,
+At the pinned PR57/PR58 snapshots, all 27 exact catalogues have **0/695 strings and 0/1 plural resources**,
 with 696 gaps each. These translatable app resource keys use default-English
 fallback. Translation and linguistic review have not started.
 
@@ -48,7 +56,7 @@ applicable offered choice.
 
 ## Baseline and priority
 
-Last source scan: **12 October 2026**, `develop` at [4231edaac45d](https://github.com/c933103/AN-Paint/commit/4231edaac45d89c52f51e2b77d0f94a1176ad88c). Review/PR snapshot: 12 October 2026, 12:29 UTC. This is a source/review tracker, not a release certification.
+Pinned baseline source scan: **12 October 2026**, `develop` at [4231edaac45d](https://github.com/c933103/AN-Paint/commit/4231edaac45d89c52f51e2b77d0f94a1176ad88c). Review/PR snapshot: 12 October 2026, 12:29 UTC. This is a source/review tracker, not a release certification.
 
 **140 offered choices: 131 non-English locale/script/region choices, 7 English regional choices, and 2 explicitly labelled test modes.** Device default is a setting, not another language. Both the in-app and Android system inventories agree.
 
@@ -61,11 +69,11 @@ Priorities requested by the maintainer:
 
 ## What the numbers mean
 
-- The common denominator is **695 translatable strings (S) + 1 plural resource (P) = 696 resource keys**. There are no translatable string-arrays. Exclude 3 fixed-filename strings and the nontranslatable name/tag/alias arrays. A plural counts as one resource, regardless of quantity count; language-required plural forms still need review.
+- The pinned baseline denominator is **695 translatable strings (S) + 1 plural resource (P) = 696 resource keys**. There are no translatable string-arrays. Exclude 3 fixed-filename strings and the nontranslatable name/tag/alias arrays. A plural counts as one resource, regardless of quantity count; language-required plural forms still need review.
 - Direct coverage counts nonempty entries in the **exact canonical locale catalogue**. A local resource reference counts as present; all such references point to entries in the same catalogue. “Gap” is the exact-catalogue missing-key count, not an assertion that each key displays English. Android can inherit same-language parent/shared resources before default English (for example, fa-IR and ca-ES-valencia). Runtime fallback was not simulated by this scan.
 - Equal-to-English text is **not** automatically untranslated and is not subtracted: proper names, codec names, symbols and numeric templates may legitimately match. The detailed JSON lists equality only as a review aid.
 - Canonical locale XML is source-authored/maintained. Historical translations/coverage.json, language-options.json and imported catalogues are provenance, not live progress. The generated ko-Kore-KR-anpaint directory only mirrors the mixed-Korean source for routing; it is not another language or translation. Unoffered es/ko catalogues are auxiliary resources.
-- Source-key presence, linguistic review, technical checks, representative host rendering, installed-emulator checks, merging and release are separate states. Hardcoded UI, dependency strings, external content and verbatim licence bodies are outside the 696-key denominator.
+- Source-key presence, linguistic review, technical checks, representative host rendering, installed-emulator checks, merging and release are separate states. Hardcoded UI, dependency strings, external content and verbatim licence bodies are outside that pinned 696-key denominator.
 - Read-only structural/placeholder validation at the pinned revision passed. The stricter completeness check reports 162 expected missing-resource errors across the 81 partial catalogues. No Android test or new linguistic review was performed for this tracker.
 
 ## Reading the review and UI columns
