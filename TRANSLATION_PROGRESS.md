@@ -2,16 +2,16 @@
 
 ## Current review overview — 13 October 2026
 
-Source: [develop `6a774428`](https://github.com/c933103/AN-Paint/commit/6a77442847e385742ab274b059cb4d022c364e08). **697 strings + 1 plural resource = 698 entries per choice.** A plural is one entry regardless of its quantity forms. Direct coverage: **59 full catalogues, 81 nonempty partial catalogues and 27 empty catalogues** (108 partial in total).
+Source: [develop `5cb65ac4`](https://github.com/c933103/AN-Paint/commit/5cb65ac454fed1a5b730240d0a06bc8c3c69285a). **697 strings + 1 plural resource = 698 entries per choice.** A plural is one entry regardless of its quantity forms. Direct coverage: **59 full catalogues, 81 nonempty partial catalogues and 27 empty catalogues** (108 partial in total).
 
 Language-level status, mutually exclusive: **0 fully reviewed; 57 broad re-review required; 6 bounded-partial outside that reset; 75 review not established; 27 translation/review not started; 2 test modes.** The six bounded-partial choices are Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
-Entry totals across all 167 choices: **1,274 current bounded receipts, 1 entry requiring correction/re-review, 45,807 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
+Entry totals across all 167 choices: **1,275 current bounded receipts, 0 identified stale/open receipts, 45,807 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
 
 ### How to read these counts
 
 - **Reviewed current** is a verified lower bound of entry-level source/context or independent linguistic reviews whose exact English and localized values still match. Bounded scope and confidence remain attached to each receipt. It does not mean every aspect of that entry or its screen is certified.
-- **Needs re-review¹** counts the one exact entry still lacking an acceptable current whole-entry receipt; its old receipt is stale and fresh review identifies a warning correction. It is separate from the **57 broad language re-review mandates**, which overlap current bounded receipts and remain open. Those mandates do not supply a reliable per-key count of all past reviews and must not be added to entry totals.
+- **Needs re-review¹** is zero for the bounded mapped receipt set after the two exact follow-ups. This does not clear unknown entries or broader language review obligations. It is separate from the **57 broad language re-review mandates**, which overlap current bounded receipts and remain open. Those mandates do not supply a reliable per-key count of all past reviews and must not be added to entry totals.
 - **Unreviewed / unknown** means no mapped current or stale entry receipt in this checkpoint. Historical partial-term/manual reviews and other unmapped evidence remain for reconciliation; zero current receipts does not prove no review ever happened.
 - **Missing** is absence from the exact catalogue. Android may inherit a same-language parent before default English. Equal-to-English text is not automatically untranslated.
 - The first four numeric columns sum to **698** in every row. Current bounded receipts do not close the broad reset: **475 obligations, 3 structural + 1 bounded source/semantic complete, 471 pending**. Technical/UI tests, merging, and release are separate from linguistic review. No native-speaker prerequisite is introduced.
@@ -21,7 +21,7 @@ Entry totals across all 167 choices: **1,274 current bounded receipts, 1 entry r
 - Malay: **604** historical short entries still match + **1 M04** = **605** current receipts; 93 present entries remain unknown/unmapped.
 - Indonesian: **599** unchanged historical short entries + **1** fresh current budget-entry review + **1 M04** = **601** current receipts. The new independent review accepts “Masih dalam batas memori saat ini.” against both real memory-admission callsites; no source edit is needed.
 - M04: **59** exact current query-failure values, including 2 test-mode conventions. M03: **3** exact current Ainu/Manchu response-limit values. Six cursor-help entries still match.
-- Lithuanian and Arabic crop plurals still match their bounded 0–20 source reviews. Fresh Russian review accepts the current quantity grammar, including `many`, but the full plural remains open: all four warnings say cropping moves connections, whereas the app preserves attachment relationships and repositions attached images. Next fix: replace the affected-object wording consistently, preserve placeholders and quantity forms, and verify the exact successor.
+- Lithuanian and Arabic crop plurals still match their bounded 0–20 source reviews. The corrected Russian whole plural now has independent source/context acceptance and is merged in PR62. All four warnings explicitly name the attached images whose positions move; quantity wording and placeholders remain intact. Russian has **2** current receipts, including M04.
 - Other bounded terminology, manual/clause, F01 and producer reviews are retained in the historical evidence but are **not silently expanded into whole-entry acceptance**. Next action: map those receipts to exact current keys/source values and deduplicate them, then refresh the unknown counts.
 
 [Machine-readable counts](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-counts.json) · [Exact-key receipts and scopes](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-receipts.json) · [Current source identities](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/source-identities.json)
@@ -148,7 +148,7 @@ Entry totals across all 167 choices: **1,274 current bounded receipts, 1 entry r
 | `quy` Qichwa (Ayacucho / Chanka) | 0 | 0 | 0 | 698 | 698 | Not started |
 | `quz` Qichwa (Cusco) | 0 | 0 | 0 | 698 | 698 | Not started |
 | `ro` Română | 0 | 0 | 127 | 571 | 698 | Not established |
-| `ru` Русский | 1 | 1 | 696 | 0 | 698 | Broad re-review |
+| `ru` Русский | 2 | 0 | 696 | 0 | 698 | Broad re-review |
 | `rw` Ikinyarwanda | 0 | 0 | 14 | 684 | 698 | Not established |
 | `ryu` うちなーぐち | 1 | 0 | 697 | 0 | 698 | Broad re-review |
 | `sa` संस्कृतम् | 0 | 0 | 0 | 698 | 698 | Not started |
@@ -198,9 +198,9 @@ Entry totals across all 167 choices: **1,274 current bounded receipts, 1 entry r
 | `zh-TW` 繁體中文（台灣） | 1 | 0 | 697 | 0 | 698 | Broad re-review |
 | `zu` isiZulu | 0 | 0 | 0 | 698 | 698 | Not started |
 
-### Fresh review evidence and remaining exact correction
+### Fresh review evidence and merged correction
 
-[Indonesian current-pair review](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md) · [Russian full-resource review and proposed correction](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md). These reviews are pinned to develop `6a774428`; none of the 57 broader language mandates is closed.
+[Indonesian current-pair review](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md) · [Russian full-resource review and proposed correction](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md). The original fresh reviews are pinned to `6a774428`; the [corrected Russian acceptance and current-source binding](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/merged-russian-current-review.md) bind its merged successor to develop `5cb65ac4`. None of the 57 broader language mandates is closed.
 
 ## Preserved historical cohorts and evidence
 

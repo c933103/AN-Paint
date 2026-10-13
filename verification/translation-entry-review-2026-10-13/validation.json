@@ -1,20 +1,21 @@
 {
-  "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
+  "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
   "source_file_hashes_verified": 178,
+  "unchanged_resource_blobs": 177,
+  "changed_resource_blobs": 1,
+  "unchanged_reviewed_context_files": 7,
   "offered_rows": 167,
   "unique_rows": 167,
   "denominator": 698,
   "all_row_arithmetic_passed": true,
-  "all_reviewed_and_stale_keys_present": true,
-  "exact_catalogue_presence_matches_current_scan": true,
-  "active_receipt_keys_unique": true,
+  "all_1275_active_exact_pair_hashes_match": true,
   "active_receipts": 1275,
-  "superseded_historical_receipts": 1,
+  "superseded_historical_receipts": 2,
   "summary": {
     "total": 116566,
     "present": 47082,
-    "reviewed_current": 1274,
-    "needs_rereview": 1,
+    "reviewed_current": 1275,
+    "needs_rereview": 0,
     "unreviewed_or_unknown": 45807,
     "missing": 69484,
     "language_status_counts": {
@@ -30,47 +31,15 @@
     "fully_reviewed_languages": 0,
     "test_mode_current_convention_receipts": 2
   },
-  "stale_entries": [
-    {
-      "tag": "ru",
-      "key": "plurals/ui_crop_preview_images",
-      "cohort": "crop-pr5",
-      "state": "needs_rereview",
-      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
-      "current_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
-      "reviewed_localized_sha256": "2c5f05e7945d2eecc89f031c7eb8512d0aea732bea4578e8d6a3e3ab04beb442",
-      "current_localized_sha256": "652235ea4b4cdc879ea388a2754b4daf1ae9d3c5cc8fc1d4424f6b6bdfec993a",
-      "reviewed_value": {
-        "one": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображению. Обрезка размещённых изображений перемещает их связи.",
-        "few": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
-        "many": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
-        "other": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи."
-      },
-      "current_value": {
-        "one": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображению. Обрезка размещённых изображений перемещает их связи.",
-        "few": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
-        "many": "Предпросмотр: %1$d × %2$d px\\nИзображений для обрезки: %3$d. Обрезка размещённых изображений перемещает их связи.",
-        "other": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи."
-      },
-      "reason": "localized value changed",
-      "fresh_review": {
-        "source": "https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md",
-        "reviewed_resource_revision": "6a77442847e385742ab274b059cb4d022c364e08",
-        "quantity_form_decision": "Current one/few/many/other grammar and 0–20 count semantics acceptable.",
-        "whole_resource_decision": "Needs correction: all four warnings name moving connections, while crop preserves attachment relationships and repositions attached images.",
-        "proposed_warning": "Обрезка размещённых изображений перемещает присоединённые к ним изображения.",
-        "applied": false
-      }
-    }
-  ],
+  "stale_entries": [],
   "fresh_linguistic_reviews": {
     "id/string/ui_fits_the_current_budget": "accepted exact current pair",
-    "ru/plurals/ui_crop_preview_images": "count forms accepted; warning correction required; whole entry remains open"
+    "ru/plurals/ui_crop_preview_images": "accepted corrected whole plural; reviewed blob matches current develop"
   },
-  "app_or_workflow_changes": false,
+  "app_or_workflow_changes_in_tracker": false,
   "historical_cohort_files_modified": false,
-  "previous_validation": {
-    "source_revision": "7e3aa5ca403a23c6652e32c3f967d6ec7b83689a",
+  "prior_checkpoint_validation": {
+    "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
     "source_file_hashes_verified": 178,
     "offered_rows": 167,
     "unique_rows": 167,
@@ -78,12 +47,14 @@
     "all_row_arithmetic_passed": true,
     "all_reviewed_and_stale_keys_present": true,
     "exact_catalogue_presence_matches_current_scan": true,
-    "duplicate_receipts_deduplicated": 0,
+    "active_receipt_keys_unique": true,
+    "active_receipts": 1275,
+    "superseded_historical_receipts": 1,
     "summary": {
       "total": 116566,
       "present": 47082,
-      "reviewed_current": 1273,
-      "needs_rereview": 2,
+      "reviewed_current": 1274,
+      "needs_rereview": 1,
       "unreviewed_or_unknown": 45807,
       "missing": 69484,
       "language_status_counts": {
@@ -100,19 +71,6 @@
       "test_mode_current_convention_receipts": 2
     },
     "stale_entries": [
-      {
-        "tag": "id",
-        "key": "string/ui_fits_the_current_budget",
-        "cohort": "short-ms-id",
-        "state": "needs_rereview",
-        "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-        "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-        "reviewed_localized_sha256": "7907374181eabf997cb92cbfb93f1604c389d266f2f8cfbd1c0e4945a4fdb000",
-        "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
-        "reviewed_value": "Pemuatan masih dalam batas saat ini.",
-        "current_value": "Masih dalam batas memori saat ini.",
-        "reason": "localized value changed"
-      },
       {
         "tag": "ru",
         "key": "plurals/ui_crop_preview_images",
@@ -134,13 +92,97 @@
           "many": "Предпросмотр: %1$d × %2$d px\\nИзображений для обрезки: %3$d. Обрезка размещённых изображений перемещает их связи.",
           "other": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи."
         },
-        "reason": "localized value changed"
+        "reason": "localized value changed",
+        "fresh_review": {
+          "source": "https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md",
+          "reviewed_resource_revision": "6a77442847e385742ab274b059cb4d022c364e08",
+          "quantity_form_decision": "Current one/few/many/other grammar and 0–20 count semantics acceptable.",
+          "whole_resource_decision": "Needs correction: all four warnings name moving connections, while crop preserves attachment relationships and repositions attached images.",
+          "proposed_warning": "Обрезка размещённых изображений перемещает присоединённые к ним изображения.",
+          "applied": false
+        }
       }
     ],
-    "new_linguistic_review_performed": false,
+    "fresh_linguistic_reviews": {
+      "id/string/ui_fits_the_current_budget": "accepted exact current pair",
+      "ru/plurals/ui_crop_preview_images": "count forms accepted; warning correction required; whole entry remains open"
+    },
     "app_or_workflow_changes": false,
     "historical_cohort_files_modified": false,
-    "remaining_action": "Reconcile additional historical partial-term/manual and producer review receipts; do not treat unknown as never reviewed."
+    "previous_validation": {
+      "source_revision": "7e3aa5ca403a23c6652e32c3f967d6ec7b83689a",
+      "source_file_hashes_verified": 178,
+      "offered_rows": 167,
+      "unique_rows": 167,
+      "denominator": 698,
+      "all_row_arithmetic_passed": true,
+      "all_reviewed_and_stale_keys_present": true,
+      "exact_catalogue_presence_matches_current_scan": true,
+      "duplicate_receipts_deduplicated": 0,
+      "summary": {
+        "total": 116566,
+        "present": 47082,
+        "reviewed_current": 1273,
+        "needs_rereview": 2,
+        "unreviewed_or_unknown": 45807,
+        "missing": 69484,
+        "language_status_counts": {
+          "broad-re-review-required": 57,
+          "review-not-established": 75,
+          "translation-not-started": 27,
+          "test-mode": 2,
+          "bounded-partial-review": 6
+        },
+        "full_catalogues": 59,
+        "partial_nonempty_catalogues": 81,
+        "empty_catalogues": 27,
+        "fully_reviewed_languages": 0,
+        "test_mode_current_convention_receipts": 2
+      },
+      "stale_entries": [
+        {
+          "tag": "id",
+          "key": "string/ui_fits_the_current_budget",
+          "cohort": "short-ms-id",
+          "state": "needs_rereview",
+          "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+          "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+          "reviewed_localized_sha256": "7907374181eabf997cb92cbfb93f1604c389d266f2f8cfbd1c0e4945a4fdb000",
+          "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
+          "reviewed_value": "Pemuatan masih dalam batas saat ini.",
+          "current_value": "Masih dalam batas memori saat ini.",
+          "reason": "localized value changed"
+        },
+        {
+          "tag": "ru",
+          "key": "plurals/ui_crop_preview_images",
+          "cohort": "crop-pr5",
+          "state": "needs_rereview",
+          "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+          "current_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+          "reviewed_localized_sha256": "2c5f05e7945d2eecc89f031c7eb8512d0aea732bea4578e8d6a3e3ab04beb442",
+          "current_localized_sha256": "652235ea4b4cdc879ea388a2754b4daf1ae9d3c5cc8fc1d4424f6b6bdfec993a",
+          "reviewed_value": {
+            "one": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображению. Обрезка размещённых изображений перемещает их связи.",
+            "few": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
+            "many": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
+            "other": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи."
+          },
+          "current_value": {
+            "one": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображению. Обрезка размещённых изображений перемещает их связи.",
+            "few": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи.",
+            "many": "Предпросмотр: %1$d × %2$d px\\nИзображений для обрезки: %3$d. Обрезка размещённых изображений перемещает их связи.",
+            "other": "Предпросмотр: %1$d × %2$d px\\nПрименить к %3$d изображениям. Обрезка размещённых изображений перемещает их связи."
+          },
+          "reason": "localized value changed"
+        }
+      ],
+      "new_linguistic_review_performed": false,
+      "app_or_workflow_changes": false,
+      "historical_cohort_files_modified": false,
+      "remaining_action": "Reconcile additional historical partial-term/manual and producer review receipts; do not treat unknown as never reviewed."
+    },
+    "remaining_action": "Correct the Russian attachment warning in all four quantity forms and verify the exact successor; broader historical receipt mapping remains open."
   },
-  "remaining_action": "Correct the Russian attachment warning in all four quantity forms and verify the exact successor; broader historical receipt mapping remains open."
+  "technical_scope": "PR62 premerge CI passed; its later postmerge run was cancelled/superseded by the composed successor. This linguistic receipt is independent of that pending postmerge run and does not claim full-language/UI release acceptance."
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
+  "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
   "value_hash_format": "SHA-256 of UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators comma/colon; strings retain Android escape sequences; plural values map quantities to text.",
   "cohorts": {
     "short-ms-id": {
@@ -36,6 +36,15 @@
       "source": "https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md",
       "reviewed_resource_revision": "6a77442847e385742ab274b059cb4d022c364e08",
       "scope": "Fresh independent full-entry source/context and linguistic review of exactly Fits the current budget. / Masih dalam batas memori saat ini.; both actual memory-admission callsites checked. High confidence; no runtime or whole-language acceptance."
+    },
+    "ru-crop-corrected-20261013": {
+      "source": "https://github.com/c933103/AN-Paint/pull/62#issuecomment-6138662274",
+      "reviewed_resource_revision": "21f659e2c0a23e10273cdb13efdcf642375eac1f",
+      "reviewed_resource_git_blob": "9e8d65b25065a9d0fb04990cafa2ff6bb2ce8c5c",
+      "merge_commit": "de1dfc8698b1c7cc295b479997db9e0264e56e2f",
+      "current_resource_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+      "scope": "Independent corrected-source review of all four Russian crop plural forms against actual crop/layout semantics; grammar, count meaning, warning referent and placeholders accepted. Exact accepted blob is on current develop. No whole-language or rendering sign-off.",
+      "technical_evidence_separate": "https://github.com/c933103/AN-Paint/pull/62#issuecomment-6138884440"
     }
   },
   "receipts": [
@@ -12760,6 +12769,53 @@
       "current_localized_sha256": "e9355dff735ec57b56448ed3e3e6b5eb95491c08fecd205e4a9a08fa62080a86"
     },
     {
+      "tag": "ar",
+      "key": "plurals/ui_crop_preview_images",
+      "cohort": "crop-pr5",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "reviewed_localized_sha256": "ca960a7ac040c6d70777e8a827b1168072ceaffe2204536da6dd04c0fa83b2ef",
+      "current_localized_sha256": "ca960a7ac040c6d70777e8a827b1168072ceaffe2204536da6dd04c0fa83b2ef"
+    },
+    {
+      "tag": "id",
+      "key": "string/ui_fits_the_current_budget",
+      "cohort": "id-budget-rereview-20261013",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+      "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+      "reviewed_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
+      "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f"
+    },
+    {
+      "tag": "ru",
+      "key": "plurals/ui_crop_preview_images",
+      "cohort": "ru-crop-corrected-20261013",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "reviewed_localized_sha256": "8137b5814e788a0ec5a00762417b7c900f3c12e57d6855a8ae9f905b2cb0421a",
+      "current_localized_sha256": "8137b5814e788a0ec5a00762417b7c900f3c12e57d6855a8ae9f905b2cb0421a"
+    }
+  ],
+  "superseded_receipts": [
+    {
+      "tag": "id",
+      "key": "string/ui_fits_the_current_budget",
+      "cohort": "short-ms-id",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+      "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
+      "reviewed_localized_sha256": "7907374181eabf997cb92cbfb93f1604c389d266f2f8cfbd1c0e4945a4fdb000",
+      "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
+      "reviewed_value": "Pemuatan masih dalam batas saat ini.",
+      "current_value": "Masih dalam batas memori saat ini.",
+      "reason": "localized value changed",
+      "superseded_by": "id-budget-rereview-20261013",
+      "note": "Historical mismatched pair retained; fresh exact current review below replaces its stale status."
+    },
+    {
       "tag": "ru",
       "key": "plurals/ui_crop_preview_images",
       "cohort": "crop-pr5",
@@ -12788,44 +12844,9 @@
         "whole_resource_decision": "Needs correction: all four warnings name moving connections, while crop preserves attachment relationships and repositions attached images.",
         "proposed_warning": "Обрезка размещённых изображений перемещает присоединённые к ним изображения.",
         "applied": false
-      }
-    },
-    {
-      "tag": "ar",
-      "key": "plurals/ui_crop_preview_images",
-      "cohort": "crop-pr5",
-      "state": "reviewed_current",
-      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
-      "current_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
-      "reviewed_localized_sha256": "ca960a7ac040c6d70777e8a827b1168072ceaffe2204536da6dd04c0fa83b2ef",
-      "current_localized_sha256": "ca960a7ac040c6d70777e8a827b1168072ceaffe2204536da6dd04c0fa83b2ef"
-    },
-    {
-      "tag": "id",
-      "key": "string/ui_fits_the_current_budget",
-      "cohort": "id-budget-rereview-20261013",
-      "state": "reviewed_current",
-      "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-      "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-      "reviewed_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
-      "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f"
-    }
-  ],
-  "superseded_receipts": [
-    {
-      "tag": "id",
-      "key": "string/ui_fits_the_current_budget",
-      "cohort": "short-ms-id",
-      "state": "needs_rereview",
-      "reviewed_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-      "current_english_sha256": "722003bc50aea93719a9494cb313fc1cfd3aa442f857ce0e1a880f177192ac4f",
-      "reviewed_localized_sha256": "7907374181eabf997cb92cbfb93f1604c389d266f2f8cfbd1c0e4945a4fdb000",
-      "current_localized_sha256": "f4880e962a2e0890b5cde6597777f826ce644f4d1af88492ea236cbfcde4079f",
-      "reviewed_value": "Pemuatan masih dalam batas saat ini.",
-      "current_value": "Masih dalam batas memori saat ini.",
-      "reason": "localized value changed",
-      "superseded_by": "id-budget-rereview-20261013",
-      "note": "Historical mismatched pair retained; fresh exact current review below replaces its stale status."
+      },
+      "superseded_by": "ru-crop-corrected-20261013",
+      "note": "Stale count receipt and pre-fix finding preserved; exact corrected plural now has independent full-resource source/context acceptance and is merged."
     }
   ]
 }
