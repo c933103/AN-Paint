@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "observed_at_utc": "2026-10-13T03:16:00Z",
-  "source_revision": "7e3aa5ca403a23c6652e32c3f967d6ec7b83689a",
+  "observed_at_utc": "2026-10-13T04:55:00Z",
+  "source_revision": "6a77442847e385742ab274b059cb4d022c364e08",
   "denominator": {
     "strings": 697,
     "plural_resources": 1,
@@ -9,19 +9,19 @@
   },
   "policy": {
     "reviewed_current": "Mapped bounded entry receipt whose reviewed English and localized values match current source. This is a verified lower bound, not universal linguistic sign-off. Test-mode receipts are convention checks only.",
-    "needs_rereview": "Mapped receipt is stale because English or localized value changed; exact key-level lower bound. Broad language reset is separate and overlapping. A changed value is not automatically wrong.",
+    "needs_rereview": "Exact entry lacks an acceptable current whole-entry receipt: the prior receipt is stale and fresh Russian review identifies a warning correction. Historical superseded stale receipts are not counted.",
     "unreviewed_or_unknown": "Present entries without a mapped current/stale entry receipt in this checkpoint; may have historical or partial-term evidence not yet reconciled. Does not assert nobody reviewed them.",
     "missing": "No nonempty entry in exact canonical catalogue; parent-language inheritance and runtime fallback are distinct.",
     "arithmetic": "reviewed_current + needs_rereview + unreviewed_or_unknown + missing = total (698) per choice. Broad reset flags are not added to that sum.",
     "broad_reset": "57 original natural/regional catalogues retain broader independent/reconciliation obligations even when bounded current receipts exist. These are language-level obligations, not a proven key-by-key count of previous reviews.",
-    "scope": "No new linguistic review, app source, workflow, release or merge change. Entry identity validation does not re-execute historical app-context tests. Unknown/unmapped reviews remain a next action.",
+    "scope": "Fresh independent source/context linguistic review accepted only Indonesian ui_fits_the_current_budget. Russian crop quantity grammar passes, but the full plural remains open for an affected-object warning correction. No app source, workflow, release or merge change.",
     "no_human_prerequisite": "Native-speaker certification is not claimed and is not introduced as a mandatory gate."
   },
   "summary": {
     "total": 116566,
     "present": 47082,
-    "reviewed_current": 1273,
-    "needs_rereview": 2,
+    "reviewed_current": 1274,
+    "needs_rereview": 1,
     "unreviewed_or_unknown": 45807,
     "missing": 69484,
     "language_status_counts": {
@@ -1064,8 +1064,8 @@
       "language_status": "broad-re-review-required",
       "total": 698,
       "present": 698,
-      "reviewed_current": 600,
-      "needs_rereview": 1,
+      "reviewed_current": 601,
+      "needs_rereview": 0,
       "unreviewed_or_unknown": 97,
       "missing": 0,
       "broad_rereview_mandate": true,
@@ -1360,6 +1360,7 @@
         "string/ui_fit_entire_canvas_in_view",
         "string/ui_fit_image",
         "string/ui_fit_selection34",
+        "string/ui_fits_the_current_budget",
         "string/ui_flip_horizontal",
         "string/ui_flip_vertical",
         "string/ui_font",
@@ -1671,9 +1672,7 @@
         "string/ui_zoom_in",
         "string/ui_zoom_out"
       ],
-      "needs_rereview_keys": [
-        "string/ui_fits_the_current_budget"
-      ],
+      "needs_rereview_keys": [],
       "catalogue_path": "Paintroid/src/main/res/values-in/strings.xml"
     },
     {
