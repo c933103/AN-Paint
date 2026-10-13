@@ -30,12 +30,17 @@ def summary():
 
 
 
+def png_chunk(kind, data):
+    return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data) & 0xffffffff)
+
+
+def png_header(width=1, height=1, depth=8, colour=2, compression=0, filtering=0, interlace=0):
+    return png_chunk(b'IHDR', struct.pack('>IIBBBBB', width, height, depth, colour, compression, filtering, interlace))
+
+
 def png():
     # Small real PNG for host-only archive models; never installed-device evidence.
-    def chunk(kind, data):
-        return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data) & 0xffffffff)
-    return PNG + chunk(b'IHDR', struct.pack('>IIBBBBB', 1, 1, 8, 2, 0, 0, 0)) + chunk(
-        b'IDAT', zlib.compress(b'\0\xff\0\0')) + chunk(b'IEND', b'')
+    return PNG + png_header() + png_chunk(b'IDAT', zlib.compress(b'\0\xff\0\0')) + png_chunk(b'IEND', b'')
 
 
 def receipt(method):
@@ -819,54 +824,86 @@ class ComposedColourEvidenceContractTest(unittest.TestCase):
             with self.assertRaises(ValueError):
                 verify_png(malformed)
 
-    def test_png_colour_depth_and_palette_structure_fail_closed(self):
-        def chunk(kind, value):
-            return struct.pack('>I', len(value)) + kind + value + struct.pack('>I', zlib.crc32(kind + value) & 0xffffffff)
+    def test_native_png_profile_accepts_rgb_rgba_and_rejects_other_encodings(self):
+        for colour in (2, 6):
+            pixels = png_chunk(b'IDAT', zlib.compress(bytes(4 if colour == 2 else 5)))
+            ending = pixels + png_chunk(b'IEND', b'')
+            verify_png(PNG + png_header(colour=colour) + ending)
+            for depth in (1, 2, 4, 16):
+                with self.subTest(colour=colour, depth=depth), self.assertRaisesRegex(ValueError, 'Unsupported native'):
+                    verify_png(PNG + png_header(colour=colour, depth=depth) + ending)
+        for changes in [dict(colour=c) for c in (0, 1, 3, 4, 5, 7)] + [
+                dict(compression=1), dict(filtering=1), dict(interlace=1)]:
+            with self.subTest(changes=changes), self.assertRaisesRegex(ValueError, 'Unsupported native'):
+                verify_png(PNG + png_header(**changes) + png()[33:])
 
-        def model(colour, depth, palettes=(), late=False):
-            channels = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}
-            row_bytes = (channels.get(colour, 1) * depth + 7) // 8
-            header = chunk(b'IHDR', struct.pack('>IIBBBBB', 1, 1, depth, colour, 0, 0, 0))
-            palette = b''.join(chunk(b'PLTE', value) for value in palettes)
-            pixels = chunk(b'IDAT', zlib.compress(b'\0' + bytes(row_bytes)))
-            return PNG + header + (pixels + palette if late else palette + pixels) + chunk(b'IEND', b'')
+    def test_native_png_profile_supported_metadata_lengths_values_order_and_uniqueness(self):
+        for colour, channels in ((2, 3), (6, 4)):
+            header = PNG + png_header(colour=colour)
+            pixels = png_chunk(b'IDAT', zlib.compress(bytes(channels + 1)))
+            end = png_chunk(b'IEND', b'')
+            for intent in range(4):
+                rgb = png_chunk(b'sRGB', bytes([intent]))
+                for bits in (bytes([1]) * channels, bytes([8]) * channels):
+                    significant = png_chunk(b'sBIT', bits)
+                    for extra in (b'', rgb, significant, rgb + significant, significant + rgb):
+                        with self.subTest(colour=colour, intent=intent, bits=bits, extra=extra):
+                            verify_png(header + extra + pixels + end)
+            for kind, value in ((b'sRGB', b''), (b'sRGB', b'\0\0'), (b'sRGB', b'\4'),
+                                (b'sBIT', b''), (b'sBIT', bytes([8]) * (channels - 1)),
+                                (b'sBIT', bytes([8]) * (channels + 1)),
+                                (b'sBIT', bytes([0]) * channels), (b'sBIT', bytes([9]) * channels)):
+                with self.subTest(colour=colour, kind=kind, value=value), self.assertRaises(ValueError):
+                    verify_png(header + png_chunk(kind, value) + pixels + end)
+            for extra in (png_chunk(b'sRGB', b'\0'), png_chunk(b'sBIT', bytes([8]) * channels)):
+                for malformed in (header + extra * 2 + pixels + end, header + pixels + extra + end,
+                                  PNG + extra + png_header(colour=colour) + pixels + end):
+                    with self.subTest(colour=colour, misplaced=extra), self.assertRaises(ValueError):
+                        verify_png(malformed)
 
-        legal = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}
-        for colour, depths in legal.items():
-            for depth in (1, 2, 4, 8, 16):
-                value = model(colour, depth, [b'\xff\0\0'] if colour == 3 else [])
-                with self.subTest(colour=colour, depth=depth):
-                    if depth in depths:
-                        verify_png(value)
-                    else:
-                        with self.assertRaises(ValueError):
-                            verify_png(value)
-        malformed = [model(3, 8), model(3, 8, [b'']), model(3, 8, [b'xx']),
-                     model(3, 1, [bytes(9)]), model(3, 8, [bytes(771)]),
-                     model(3, 8, [bytes(3), bytes(3)]), model(3, 8, [bytes(3)], late=True),
-                     model(0, 8, [bytes(3)]), model(4, 8, [bytes(3)])]
-        for index, value in enumerate(malformed):
-            with self.subTest(palette_case=index), self.assertRaises(ValueError):
-                verify_png(value)
-
-    def test_png_unknown_critical_and_invalid_chunk_types_fail_closed(self):
+    def test_native_png_profile_rejects_unsupported_and_malformed_chunk_types(self):
         valid = png()
-
-        def inserted(kind, offset):
-            payload = b'new extension'
-            chunk = (struct.pack('>I', len(payload)) + kind + payload
-                     + struct.pack('>I', zlib.crc32(kind + payload) & 0xffffffff))
-            return valid[:offset] + chunk + valid[offset:]
-
-        # Unknown ancillary chunks remain legal before or after the image data.
-        # The same extension marked critical cannot be safely interpreted.
+        # Legal general-PNG extensions can still be unsupported by this finite profile.
         for offset in (len(PNG) + 25, len(valid) - 12):
-            for kind in (b'abCD', b'abCd'):
-                with self.subTest(ancillary=kind, offset=offset):
-                    verify_png(inserted(kind, offset))
-            for kind in (b'ABCD', b'AbCd', b'a1CD', b'ab\x00D', b'\xe1bCD'):
-                with self.subTest(invalid=kind, offset=offset), self.assertRaises(ValueError):
-                    verify_png(inserted(kind, offset))
+            for kind in (b'abCD', b'abCd', b'ABCD', b'AbCd', b'a1CD', b'ab\x00D', b'\xe1bCD',
+                         b'abcD', b'abcd', b'PLTE', b'tRNS', b'iCCP', b'gAMA', b'acTL', b'fdAT'):
+                value = valid[:offset] + png_chunk(kind, b'extension') + valid[offset:]
+                with self.subTest(unsupported=kind, offset=offset), self.assertRaisesRegex(ValueError, 'Unsupported native'):
+                    verify_png(value)
+
+    def test_png_image_data_chunks_must_be_consecutive(self):
+        header, end = PNG + png_header(), png_chunk(b'IEND', b'')
+        payload = zlib.compress(b'\0\xff\0\0')
+        for split in (0, 1, len(payload) // 2, len(payload)):
+            first, second = png_chunk(b'IDAT', payload[:split]), png_chunk(b'IDAT', payload[split:])
+            with self.subTest(valid_split=split):
+                verify_png(header + first + second + end)
+            for extra in (png_chunk(b'sRGB', b'\0'), png_chunk(b'sBIT', b'\10' * 3)):
+                with self.subTest(invalid_split=split, extra=extra), self.assertRaises(ValueError):
+                    verify_png(header + first + extra + second + end)
+
+    def test_native_png_profile_envelope_and_scanline_boundaries(self):
+        header, ending = PNG + png_header(), png_chunk(b'IEND', b'')
+        compressed = zlib.compress(b'\0\xff\0\0')
+        pixels = png_chunk(b'IDAT', compressed)
+        for filter_type in range(5):
+            verify_png(header + png_chunk(b'IDAT', zlib.compress(bytes([filter_type]) + bytes(3))) + ending)
+        malformed = [
+            PNG, header, header + ending, header + pixels, header + pixels + ending + ending,
+            header + pixels + png_chunk(b'IEND', b'x'), header + png_header() + pixels + ending,
+            header + pixels + png_header() + ending, PNG + pixels + png_header() + ending,
+            PNG + png_chunk(b'IHDR', b'x' * 12) + pixels + ending,
+            header + png_chunk(b'IDAT', b'') + ending,
+        ]
+        for changes in (dict(width=0), dict(height=0), dict(width=4097), dict(height=4097),
+                        dict(width=4096, height=4096, colour=6)):
+            malformed.append(PNG + png_header(**changes) + pixels + ending)
+        for value in (compressed[:-1], compressed + b'x', compressed + compressed,
+                      zlib.compress(bytes(3)), zlib.compress(bytes(5)), zlib.compress(b'\5' + bytes(3))):
+            malformed.append(header + png_chunk(b'IDAT', value) + ending)
+        for index, value in enumerate(malformed):
+            with self.subTest(boundary=index), self.assertRaises(ValueError):
+                verify_png(value)
 
 
 if __name__ == '__main__':

@@ -465,50 +465,52 @@ def verify_colour_state(observations):
 
 
 def verify_png(data):
-    """Reject corrupt chunk streams even if a manifest was recomputed."""
-    require(data.startswith(PNG), 'Non-PNG screenshot')
-    offset, chunks, compressed = len(PNG), [], []
-    palette_entries = None
+    """Check the bounded static RGB8/RGBA8 native profile, not general PNG.
+
+    Unsupported encodings/chunks fail explicitly. Pixel interpretation and visual
+    acceptance still require review of the original image with a standard decoder.
+    """
+    require(0 < len(data) <= MAX_FILE and data.startswith(PNG), 'Non-PNG or oversized screenshot')
+    offset, compressed, metadata = len(PNG), [], set()
+    header_seen = ended = False
     while offset < len(data):
         require(offset + 12 <= len(data), 'Truncated PNG chunk')
         size = struct.unpack('>I', data[offset:offset + 4])[0]
         kind = data[offset + 4:offset + 8]
-        require(all(65 <= byte <= 90 or 97 <= byte <= 122 for byte in kind),
-                'Invalid PNG chunk type')
-        require(kind[0] & 0x20 or kind in (b'IHDR', b'PLTE', b'IDAT', b'IEND'),
-                'Unknown critical PNG chunk')
+        require(kind in (b'IHDR', b'sRGB', b'sBIT', b'IDAT', b'IEND'),
+                f'Unsupported native screenshot PNG chunk: {kind!r}')
         end = offset + 12 + size
         require(end <= len(data), 'Truncated PNG payload')
         require(zlib.crc32(data[offset + 4:end - 4]) & 0xffffffff ==
                 struct.unpack('>I', data[end - 4:end])[0], 'Corrupt PNG CRC')
-        chunks.append(kind)
-        if len(chunks) == 1:
-            require(kind == b'IHDR' and size == 13, 'Missing PNG header')
-            width, height, depth, colour, compression, filtering, interlace = struct.unpack(
-                '>IIBBBBB', data[offset + 8:end - 4])
+        require(header_seen or kind == b'IHDR', 'Missing PNG header')
+        value = data[offset + 8:end - 4]
+        if kind == b'IHDR':
+            require(not header_seen and size == 13, 'Duplicate or invalid PNG header')
+            width, height, depth, colour, compression, filtering, interlace = struct.unpack('>IIBBBBB', value)
             require(0 < width <= 4096 and 0 < height <= 4096, 'Invalid screenshot dimensions')
-            channels = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}
-            legal_depths = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8),
-                            4: (8, 16), 6: (8, 16)}
-            require(colour in legal_depths and depth in legal_depths[colour]
-                    and compression == filtering == interlace == 0, 'Unsupported native screenshot encoding')
-            row_bytes = (width * channels[colour] * depth + 7) // 8
+            require(colour in (2, 6) and depth == 8 and compression == filtering == interlace == 0,
+                    'Unsupported native screenshot encoding: expected noninterlaced RGB8/RGBA8')
+            channels = 3 if colour == 2 else 4
+            row_bytes = width * channels
             expected = height * (row_bytes + 1)
             require(expected <= MAX_CASE, 'Oversized decoded screenshot')
-        if kind == b'PLTE':
-            require(palette_entries is None and b'IDAT' not in chunks and colour in (2, 3, 6)
-                    and 0 < size <= 768 and size % 3 == 0, 'Invalid, duplicate or late PNG palette')
-            palette_entries = size // 3
-            require(colour != 3 or palette_entries <= 1 << depth,
-                    'PNG palette exceeds indexed bit depth')
-        if kind == b'IDAT':
-            compressed.append(data[offset + 8:end - 4])
-        if kind == b'IEND':
-            require(size == 0 and end == len(data), 'Trailing PNG data')
+            header_seen = True
+        elif kind in (b'sRGB', b'sBIT'):
+            require(kind not in metadata and not compressed, 'Duplicate or late native screenshot metadata')
+            if kind == b'sRGB':
+                require(size == 1 and value[0] <= 3, 'Invalid native screenshot sRGB intent')
+            else:
+                require(size == channels and all(1 <= byte <= 8 for byte in value),
+                        'Invalid native screenshot significant bits')
+            metadata.add(kind)
+        elif kind == b'IDAT':
+            compressed.append(value)
+        else:
+            require(size == 0 and end == len(data), 'Invalid PNG ending or trailing data')
+            ended = True
         offset = end
-    require(chunks and chunks[-1] == b'IEND' and b'IDAT' in chunks and chunks.count(b'IHDR') == 1,
-            'Incomplete PNG screenshot')
-    require(colour != 3 or palette_entries is not None, 'Indexed PNG requires a palette')
+    require(ended and compressed, 'Incomplete PNG screenshot')
     decoder = zlib.decompressobj()
     try:
         pixels = decoder.decompress(b''.join(compressed), expected + 1)

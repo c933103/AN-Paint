@@ -104,6 +104,16 @@ execution must fit, and a timeout remains a failure. Neither historical timings
 nor synthetic transport fixtures prove the combined runtime. Font 2x short-landscape
 colour remains diagnostic and unaccepted.
 
+The dialog collector checks a bounded native-screenshot PNG profile: noninterlaced
+RGB8/RGBA8, with IHDR, optional single sRGB/sBIT before consecutive IDAT chunks,
+and final IEND. It checks CRCs, small metadata fields, size limits and the exact
+zlib/scanline envelope. Other encodings or chunks fail as **unsupported profile**;
+this is not a general PNG decoder or conformance claim. UiDevice promises PNG,
+not this exact encoding, so a future producer change needs explicit review.
+The current API30/API35 capture corpus fits this profile. Actual images still
+need standard-decoder and visual/input review; source/hash checks alone cannot
+establish rendered correctness. No new image-decoder dependency is installed.
+
 ## Historical composed cancellation budgets
 
 Older budgets, timings, raw captures and source-preservation checks are in the
