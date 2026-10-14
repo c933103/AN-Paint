@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "finding": "F01-C007",
+  "tag": "ceb",
+  "key": "string/formats22_tiff_description",
+  "baseline_development_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+  "implementation_revision": "a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa",
+  "implementation_tree": "6b2a28fe8561dea74fa51eef328efb67db89e655",
+  "implementation_pull_request": "https://github.com/c933103/AN-Paint/pull/64",
+  "resource_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+  "english_path": "Paintroid/src/main/res/values/strings.xml",
+  "english_value": "Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.",
+  "previous_localized_value": "Motipig og usa ka panid sa RGB. Ang pagpaminos sa gidak-on sa file dili mousab sa mga pixel; palonga kini aron matipigan ang TIFF nga wala gipagamay.",
+  "accepted_proposal_value": "Motipig og usa ka panid sa RGB. Ang pag-compress mahimong makapakunhod sa gidak-on sa file. Dili kini mousab sa mga pixel. Palonga ang pag-compress aron matipigan ang TIFF nga wala gi-compress.",
+  "english_value_sha256": "53a27a59510f28633bb8483bee95bb5f40e6aeabd3c477ed8fbd3e17fa7ba701",
+  "accepted_proposal_value_sha256": "dad04a2533b713a67258b00b9aae02dc457c28d2e8180ed21079deeb6770c150",
+  "implementation_resource_git_blob": "6b395f031c89fdbf75d3ac3d13a42846930ed303",
+  "proposal_review": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6157641756",
+  "current_head_review_request": "https://github.com/c933103/AN-Paint/pull/64#issuecomment-6158275567",
+  "proposal_review_status": "independently accepted proposed replacement; confidence and limitations retained",
+  "confidence": {
+    "technical_semantic": "high",
+    "idiomatic": "moderate"
+  },
+  "preserved_technical_points": [
+    "one RGB page",
+    "compression may reduce file size",
+    "compression does not change pixels",
+    "compression can be turned off",
+    "uncompressed TIFF output"
+  ],
+  "actual_context": {
+    "dialog_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+    "description_tag": "export_description",
+    "checkbox_tag": "export_tiff_compressed",
+    "encoder_path": "Paintroid/src/main/cpp/tiff_bridge.cpp",
+    "compression": "Deflate or none"
+  },
+  "scope": "Description only. The separately reviewed 14 October checkbox-label amendment remains proposed and is unchanged by PR64.",
+  "technical_validation": {
+    "local_resource_checks": "passed: unique definition, attributes, placeholders, Android string syntax; only description resource changed",
+    "local_python_tests": {
+      "passed": 674
+    },
+    "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/38491601846",
+    "hosted_checks": "pending",
+    "native_robolectric_captures": "pending generation and visual inspection: portrait/landscape, both compression choices",
+    "installed_cebuano_specific_rendering": "not established; no new Cebuano-specific installed test",
+    "physical_device": "not established"
+  },
+  "integration_status": "applied only on PR64 source branch; not yet merged into develop",
+  "current_development_review_credit_added": 0,
+  "current_count_checkpoint": {
+    "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+    "reviewed_current": 1285,
+    "needs_rereview": 0,
+    "unreviewed_or_unknown": 45797,
+    "missing": 69484,
+    "cebuano_reviewed_current": 1,
+    "cebuano_unreviewed_or_unknown": 697
+  },
+  "completion_limits": [
+    "Whole-language review remains incomplete.",
+    "No broad reset mandate or register row is closed.",
+    "Independent model/source-assisted review does not certify native-speaker fluency.",
+    "Current-development credit awaits exact merged-value binding."
+  ]
+}

@@ -509,3 +509,12 @@ Source authority: [English source](https://github.com/c933103/AN-Paint/blob/4231
 
 
 </details>
+
+
+### Cebuano TIFF description correction — 14 October 2026
+
+[PR64](https://github.com/c933103/AN-Paint/pull/64) applies the independently reviewed F01-C007 description at exact source `a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa`, based on unchanged develop `5cb65ac4`. [Exact English, previous Cebuano and accepted proposal values, identities and limits](verification/translation-entry-review-2026-10-13/cebuano-tiff-correction-20261014.json) are recorded. Technical-semantic confidence is high; idiomatic confidence is moderate. The description retains one RGB page, possible size reduction, unchanged pixels, disabling compression and uncompressed TIFF output. The separately reviewed checkbox-label amendment remains proposed.
+
+Resource constraints and 674 local Python contracts pass. [Hosted Android checks](https://github.com/c933103/AN-Paint/actions/runs/38491601846), exact-head independent review and the new native Robolectric portrait/landscape capture inspection remain pending. Native Robolectric rendering is distinct from installed-device and physical-device verification; no new Cebuano-specific installed rendering test is claimed.
+
+The correction is on a review branch, not current develop. This update adds **zero current-development review receipts**: Cebuano remains 1 current / 697 unknown; aggregate 1,285 current / 0 mapped stale / 45,797 unknown / 69,484 missing. After successful integration, bind the exact merged English/localized values before adding one bounded description receipt. Whole-Cebuano review and all broader obligations remain incomplete.
