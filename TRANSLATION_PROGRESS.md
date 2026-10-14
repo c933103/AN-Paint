@@ -25,7 +25,7 @@ Source: [develop `647a4b56`](https://github.com/c933103/AN-Paint/commit/647a4b56
 
 Language-level status, mutually exclusive: **0 fully reviewed; 57 broad re-review required; 6 bounded-partial outside that reset; 75 review not established; 27 translation/review not started; 2 test modes.** The six bounded-partial choices are Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
-Entry totals across all 167 choices: **1,286 current bounded receipts, 0 identified stale/open receipts, 45,796 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
+Entry totals across all 167 choices: **1,290 current bounded receipts, 0 identified stale/open receipts, 45,792 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
 
 ### How to read these counts
 
@@ -39,7 +39,7 @@ Entry totals across all 167 choices: **1,286 current bounded receipts, 0 identif
 
 - Malay: **604** historical short entries still match + **1 M04** = **605** current receipts; 93 present entries remain unknown/unmapped.
 - Indonesian: **599** unchanged historical short entries + **1** fresh current budget-entry review + **1 M04** = **601** current receipts. The new independent review accepts “Masih dalam batas memori saat ini.” against both real memory-admission callsites; no source edit is needed.
-- French: **10** shape entries independently accepted unchanged (nine tool labels plus the complete Star hint) + **1 M04** = **11** current receipts; **687** present entries remain unknown/unmapped. P05-003, GH-013 and CAT-021 remain open outside this exact batch.
+- French: **10** shape entries + **4** complete Save/export and unsaved-changes entries independently accepted unchanged + **1 M04** = **15** current receipts; **683** present entries remain unknown/unmapped. These are bounded linguistic/source-context reviews; P05-003, GH-013 and CAT-021 remain open.
 - M04: **59** exact current query-failure values, including 2 test-mode conventions. M03: **3** exact current Ainu/Manchu response-limit values. Six cursor-help entries still match.
 - Lithuanian and Arabic crop plurals still match their bounded 0–20 source reviews. The corrected Russian whole plural now has independent source/context acceptance and is merged in PR62. All four warnings explicitly name the attached images whose positions move; quantity wording and placeholders remain intact. Russian has **2** current receipts, including M04.
 - Other bounded terminology, manual/clause, F01 and producer reviews are retained in the historical evidence but are **not silently expanded into whole-entry acceptance**. Next action: map those receipts to exact current keys/source values and deduplicate them, then refresh the unknown counts.
@@ -93,7 +93,7 @@ Entry totals across all 167 choices: **1,286 current bounded receipts, 0 identif
 | `fa` فارسی | 0 | 0 | 113 | 585 | 698 | Not established |
 | `fa-IR` فارسی (ایران) | 0 | 0 | 57 | 641 | 698 | Not established |
 | `fi` Suomi | 1 | 0 | 697 | 0 | 698 | Broad re-review |
-| `fr` Français | 11 | 0 | 687 | 0 | 698 | Broad re-review |
+| `fr` Français | 15 | 0 | 683 | 0 | 698 | Broad re-review |
 | `fy` Frysk | 0 | 0 | 41 | 657 | 698 | Not established |
 | `ga` Gaeilge | 0 | 0 | 11 | 687 | 698 | Not established |
 | `gd` Gàidhlig | 0 | 0 | 76 | 622 | 698 | Not established |
@@ -225,6 +225,12 @@ Entry totals across all 167 choices: **1,286 current bounded receipts, 0 identif
 ### Bounded French shape review
 
 [Ten exact French entries and independent acceptance](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/french-shape-review.json): Ligne, Courbe, Rectangle, Rectangle arrondi, Ellipse, Polygone, Cœur, Étoile, Flèche and the complete five-pointed Star hint. Values are unchanged; the former Écanevas corruption is absent from these exact entries. The Cœur finding was editorially corrected to describe its œ ligature accurately; the original artifact hash and correction are recorded. This does not close P05-003, GH-013, CAT-021 or a broader language mandate, and supplies no French runtime/rendering approval.
+
+### Bounded French Save/export review — 14 October 2026
+
+[Four exact current pairs and independent acceptance](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6160338774), with [compact machine-readable receipt](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/french-save-export-review-20261014.json): Save settings reuse, export preserving the image and remembered destination, successful export distinct from saving, and unsaved-change warning. Both independent reviews accept the complete current values unchanged at `647a4b56`; high bounded semantic confidence. One optional idiomatic alternative is recorded without changing the accepted text. No runtime/rendering or whole-language acceptance.
+
+This successor adds exactly four previously unmapped `(fr, key)` receipts: French **15 current / 683 unknown**, aggregate **1,290 current / 0 mapped stale / 45,792 unknown / 69,484 missing**. All preceding 1,286 receipts and superseded history remain unchanged; 167 choices × 698 entries, all broad mandates and the unapplied Cebuano checkbox remain unchanged. The earlier Cebuano checkpoint’s dated 1,286 aggregate recorded in this document is preserved as prior history and is superseded by this current total. Proposed PR66 priority metadata was only a batch-selection aid.
 
 ## Preserved historical cohorts and evidence
 
