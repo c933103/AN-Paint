@@ -19,13 +19,13 @@
 
 ---
 
-## Current review overview — 13 October 2026
+## Current review overview — 14 October 2026
 
-Source: [develop `5cb65ac4`](https://github.com/c933103/AN-Paint/commit/5cb65ac454fed1a5b730240d0a06bc8c3c69285a). **697 strings + 1 plural resource = 698 entries per choice.** A plural is one entry regardless of its quantity forms. Direct coverage: **59 full catalogues, 81 nonempty partial catalogues and 27 empty catalogues** (108 partial in total).
+Source: [develop `647a4b56`](https://github.com/c933103/AN-Paint/commit/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb). **697 strings + 1 plural resource = 698 entries per choice.** A plural is one entry regardless of its quantity forms. Direct coverage: **59 full catalogues, 81 nonempty partial catalogues and 27 empty catalogues** (108 partial in total).
 
 Language-level status, mutually exclusive: **0 fully reviewed; 57 broad re-review required; 6 bounded-partial outside that reset; 75 review not established; 27 translation/review not started; 2 test modes.** The six bounded-partial choices are Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
-Entry totals across all 167 choices: **1,285 current bounded receipts, 0 identified stale/open receipts, 45,797 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
+Entry totals across all 167 choices: **1,286 current bounded receipts, 0 identified stale/open receipts, 45,796 present entries unreviewed/unknown, 69,484 exact-catalogue gaps; 116,566 total slots.** The current-receipt count includes 2 test-mode convention checks, which are not natural-language reviews.
 
 ### How to read these counts
 
@@ -67,7 +67,7 @@ Entry totals across all 167 choices: **1,285 current bounded receipts, 0 identif
 | `bs` Bosanski | 0 | 0 | 117 | 581 | 698 | Not established |
 | `ca` Català | 0 | 0 | 127 | 571 | 698 | Not established |
 | `ca-ES-valencia` Valencià | 0 | 0 | 95 | 603 | 698 | Not established |
-| `ceb` Cebuano | 1 | 0 | 697 | 0 | 698 | Broad re-review |
+| `ceb` Cebuano | 2 | 0 | 696 | 0 | 698 | Broad re-review |
 | `ch` Chamoru | 0 | 0 | 0 | 698 | 698 | Not started |
 | `chr` ᏣᎳᎩ | 0 | 0 | 0 | 698 | 698 | Not started |
 | `ckb` کوردی | 0 | 0 | 40 | 658 | 698 | Not established |
@@ -220,7 +220,7 @@ Entry totals across all 167 choices: **1,285 current bounded receipts, 0 identif
 
 ### Fresh review evidence and merged correction
 
-[Indonesian current-pair review](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md) · [Russian full-resource review and proposed correction](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md). The original fresh reviews are pinned to `6a774428`; the [corrected Russian acceptance and current-source binding](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/merged-russian-current-review.md) bind its merged successor to develop `5cb65ac4`. None of the 57 broader language mandates is closed.
+[Indonesian current-pair review](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/indonesian-budget-rereview.md) · [Russian full-resource review and proposed correction](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/russian-crop-rereview.md). The original fresh reviews are pinned to `6a774428`; the [corrected Russian acceptance and current-source binding](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/merged-russian-current-review.md) bind its merged successor to develop `5cb65ac4`; the unchanged reviewed pair remains current at `647a4b56`. None of the 57 broader language mandates is closed.
 
 ### Bounded French shape review
 
@@ -532,8 +532,8 @@ Source authority: [English source](https://github.com/c933103/AN-Paint/blob/4231
 
 ### Cebuano TIFF description correction — 14 October 2026
 
-[PR64](https://github.com/c933103/AN-Paint/pull/64) applies the independently reviewed F01-C007 description at exact source `a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa`, based on unchanged develop `5cb65ac4`. [Exact English, previous Cebuano and accepted proposal values, identities and limits](verification/translation-entry-review-2026-10-13/cebuano-tiff-correction-20261014.json) are recorded. Technical-semantic confidence is high; idiomatic confidence is moderate. The description retains one RGB page, possible size reduction, unchanged pixels, disabling compression and uncompressed TIFF output. The separately reviewed checkbox-label amendment remains proposed.
+[PR64](https://github.com/c933103/AN-Paint/pull/64) is merged at develop [`647a4b56`](https://github.com/c933103/AN-Paint/commit/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb). Its tree equals the independently reviewed implementation and composed CI tree. The exact English and accepted Cebuano values, resource identities, original proposal, historical unmerged checkpoint and current outcomes are preserved in [the bounded receipt](verification/translation-entry-review-2026-10-13/cebuano-tiff-correction-20261014.json). Technical-semantic confidence remains high; idiomatic confidence remains moderate. The separately proposed checkbox-label amendment is unchanged and earns no receipt.
 
-Resource constraints and 674 local Python contracts pass. [Hosted Android checks](https://github.com/c933103/AN-Paint/actions/runs/38491601846), exact-head independent review and the new native Robolectric portrait/landscape capture inspection remain pending. Native Robolectric rendering is distinct from installed-device and physical-device verification; no new Cebuano-specific installed rendering test is claimed.
+The implementation has completed clean exact-head code and security reviews. [PR CI attempt 2](https://github.com/c933103/AN-Paint/actions/runs/38491601846) and [exact merge CI attempt 1](https://github.com/c933103/AN-Paint/actions/runs/38495011152) passed regression/JVM/lint, resource generation, APK/corresponding source and API35. The initial failed API35 evidence-collection attempt remains recorded as failed. All four portrait/landscape PNGs with compression off/on were loaded with Pillow and visually inspected: complete description, ordinary wrapping, reachable description and visible destination button. Captures are preserved on this evidence ref. These are native Robolectric software captures; no Cebuano-specific installed-render or physical-device proof is claimed.
 
-The correction is on a review branch, not current develop. This update adds **zero current-development review receipts**: Cebuano remains 1 current / 697 unknown; aggregate 1,285 current / 0 mapped stale / 45,797 unknown / 69,484 missing. After successful integration, bind the exact merged English/localized values before adding one bounded description receipt. Whole-Cebuano review and all broader obligations remain incomplete.
+Exactly one bounded description receipt is now current: Cebuano **2 current / 696 unknown**; aggregate **1,286 current / 0 mapped stale / 45,796 unknown / 69,484 missing**, denominator 698 across 167 choices. All preceding 1,285 active receipts and historical superseded receipts remain unchanged. All 167 catalogue partitions and source identities were recomputed. Independent exact-head evidence review is recorded in PR56 discussion. Whole-Cebuano review, all broader obligations and the intentional tracking draft remain open. No release is authorized or published.
