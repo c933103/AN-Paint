@@ -41,7 +41,7 @@ class AssemblyRendererTest {
 
     private fun solid(w: Int,h: Int,color: Int) = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888).apply { eraseColor(color) }
 
-    @Test fun unevenNumericRowsReconstructEveryOriginalPixelWithoutResizing() {
+    @Test fun unevenSnapRowsReconstructEveryOriginalPixelWithoutResizing() {
         val original = Bitmap.createBitmap(11,10,Bitmap.Config.ARGB_8888)
         for (y in 0 until original.height) for (x in 0 until original.width) {
             original.setPixel(x,y,Color.rgb((x*83+y*47)%256,(x*31+y*113)%256,(x*197+y*71)%256))
@@ -53,7 +53,12 @@ class AssemblyRendererTest {
             try { source(bitmap) } finally { bitmap.recycle() }
         }
         model.add(pieces)
-        model.arrangeNumeric("12\n3\n456")
+        model.place(pieces[0].id,Attachment(null,null))
+        model.place(pieces[1].id,Attachment(pieces[0].id,SnapEdge.RIGHT))
+        model.place(pieces[2].id,Attachment(pieces[0].id,SnapEdge.BOTTOM))
+        model.place(pieces[3].id,Attachment(pieces[2].id,SnapEdge.BOTTOM))
+        model.place(pieces[4].id,Attachment(pieces[3].id,SnapEdge.RIGHT))
+        model.place(pieces[5].id,Attachment(pieces[4].id,SnapEdge.RIGHT))
         assertEquals(ImageDimensions(original.width,original.height),model.size())
         pieces.zip(regions).forEach { (image,rect) -> assertEquals(rect,model.layout()[image.id]) }
         val output = AssemblyRenderer(context,model.images,model.layout(),0).render(model.size()!!)
@@ -62,7 +67,7 @@ class AssemblyRendererTest {
             val actual = IntArray(expected.size)
             original.getPixels(expected,0,original.width,0,0,original.width,original.height)
             output.getPixels(actual,0,output.width,0,0,output.width,output.height)
-            assertArrayEquals("Every source pixel must survive splitting and numeric assembly",expected,actual)
+            assertArrayEquals("Every source pixel must survive splitting and assembly",expected,actual)
         } finally { output.recycle(); original.recycle() }
     }
 

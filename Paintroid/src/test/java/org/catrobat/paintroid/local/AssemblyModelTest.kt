@@ -157,49 +157,23 @@ class AssemblyModelTest {
         for (i in rects.indices) for (j in i+1 until rects.size) assertFalse(Rect.intersects(rects[i],rects[j]))
     }
 
-    @Test fun numericRowsUseImportIdsAndEachRowsMaximumHeightWithoutResizing() {
-        val items=listOf(item("z",12,9),item("y",7,15),item("x",19,6),item("w",5,4),item("v",6,3),item("u",8,5),item("unused",1,1))
-        model.add(items); model.place(items.last().id,Attachment(null,null))
-        model.sorted(AssemblySort.NAME_ASC) // Sorting the tray must not redefine numeric IDs.
-        model.arrangeNumeric("12\n3\n456")
-        val expected=listOf(Rect(0,0,12,9),Rect(12,0,19,15),Rect(0,15,19,21),Rect(0,21,5,25),Rect(5,21,11,24),Rect(11,21,19,26))
-        expected.forEachIndexed { index,rect -> assertEquals(rect,model.layout()[items[index].id]) }
-        assertEquals(ImageDimensions(19,26),model.size()); assertFalse(model.image(items.last().id).isPlaced)
-        items.forEach { assertEquals(it.croppedSize,model.image(it.id).placedSize); assertNull(model.image(it.id).attachment) }
-        val snapshot=model.layout(); model.undo(); assertEquals(setOf(items.last().id),model.layout().keys)
-        model.redo(); assertEquals(snapshot,model.layout()); assertEquals(snapshot,ImageAssembly(model.directory).layout())
+    @Test fun absoluteCoordinatesPlaceImagesBelowAnUnequalHeightRowWithoutResizing() {
+        val a=item("a",10,50); val b=item("b",20,100); val c=item("c",30,20); model.add(listOf(a,b,c))
+        model.place(a.id,Attachment(null,null)); model.place(b.id,Attachment(a.id,SnapEdge.RIGHT))
+        assertThrows(IllegalArgumentException::class.java) { model.place(c.id,Attachment(a.id,SnapEdge.BOTTOM)) }
+        model.position(c.id,0,100)
+        assertEquals(Rect(0,0,10,50),model.layout()[a.id]); assertEquals(Rect(10,0,30,100),model.layout()[b.id])
+        assertEquals(Rect(0,100,30,120),model.layout()[c.id]); assertEquals(ImageDimensions(30,120),model.size())
+        model.images.forEach { assertEquals(it.dimensions,it.placedSize); assertNull(it.normalization) }
     }
 
-    @Test fun numericLayoutSupportsSpacingEmptyRowsAndBracketedIdsThroughTwenty() {
-        val items=(1..20).map { item("$it",1,1) }; model.add(items)
-        model.arrangeNumeric("9 [10][20]\r\n\r\n1",blankWidth=4,blankHeight=7)
-        assertEquals(Rect(0,0,1,1),model.layout()[items[8].id])
-        assertEquals(Rect(5,0,6,1),model.layout()[items[9].id])
-        assertEquals(Rect(6,0,7,1),model.layout()[items[19].id])
-        assertEquals(Rect(0,8,1,9),model.layout()[items[0].id]); assertEquals(4,model.layout().size)
-        model.arrangeNumeric("1\t2",blankWidth=3)
-        assertEquals(Rect(4,0,5,1),model.layout()[items[1].id])
-    }
-
-    @Test fun numericLayoutPreservesChosenCropsAndNormalization() {
+    @Test fun absoluteCoordinatesPreserveChosenCropsAndNormalization() {
         val a=item("a",20,10); val b=item("b",10,20); model.add(listOf(a,b))
         model.crop(a.id,Rect(5,0,15,10)); model.normalize(NormalizeAxis.HEIGHT,10)
         val before=model.images.associate { it.id to (it.crop to it.normalization) }
-        model.arrangeNumeric("12")
+        model.position(a.id,3,4); model.position(b.id,13,4)
         assertEquals(before,model.images.associate { it.id to (it.crop to it.normalization) })
-        assertEquals(Rect(0,0,10,10),model.layout()[a.id]); assertEquals(Rect(10,0,15,10),model.layout()[b.id])
-    }
-
-    @Test fun invalidNumericLayoutsAreAtomicAndDoNotConsumeUndo() {
-        val a=item("a",2,3); val b=item("b",4,5); model.add(listOf(a,b)); model.arrangeNumeric("12")
-        val before=model.images; val saved=File(model.directory,"project.json").readBytes()
-        for (pattern in listOf(""," \n","0","3","[21]","[x]","[","[]","[999999999999999999999]","11","1\n1","1,2","1".repeat(ImageAssembly.MAX_LAYOUT_LENGTH+1))) {
-            assertThrows("pattern=$pattern",IllegalArgumentException::class.java) { model.arrangeNumeric(pattern) }
-            assertEquals(before,model.images); assertArrayEquals(saved,File(model.directory,"project.json").readBytes())
-        }
-        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12",blankWidth=-1) }
-        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12",blankHeight=-1) }
-        model.undo(); assertTrue(model.layout().isEmpty())
+        assertEquals(Rect(3,4,13,14),model.layout()[a.id]); assertEquals(Rect(13,4,18,14),model.layout()[b.id])
     }
 
     @Test fun absoluteCoordinatesAllowIntentionalOverlapsAndPersistWithUndoRedo() {
@@ -246,20 +220,20 @@ class AssemblyModelTest {
         assertEquals(before.filterKeys { it != a.id },model.layout()); assertEquals(model.layout(),ImageAssembly(model.directory).layout())
     }
 
-    @Test fun coordinateAndNumericOverflowRejectWithoutChangingTheSavedProject() {
-        val a=item("a",1,1); val b=item("b",1,1); model.add(listOf(a,b)); model.arrangeNumeric("12")
+    @Test fun invalidCoordinatesAreAtomicAndDoNotConsumeUndo() {
+        val a=item("a",1,1); val b=item("b",1,1); model.add(listOf(a,b))
+        model.position(a.id,0,0); model.position(b.id,1,0)
         val before=model.images; val saved=File(model.directory,"project.json").readBytes()
         for ((x,y) in listOf(-1 to 0,0 to -1,Int.MAX_VALUE to 0,0 to Int.MAX_VALUE)) {
             assertThrows(IllegalArgumentException::class.java) { model.position(a.id,x,y) }
         }
         assertThrows(IllegalArgumentException::class.java) { model.position("missing-source",0,0) }
-        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("1 2",blankWidth=Int.MAX_VALUE) }
-        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("\n1",blankHeight=Int.MAX_VALUE) }
         assertEquals(before,model.images); assertArrayEquals(saved,File(model.directory,"project.json").readBytes())
+        model.undo(); assertEquals(setOf(a.id),model.layout().keys); assertFalse(model.image(b.id).isPlaced)
         model.clear()
         val huge=a.copy(dimensions=ImageDimensions(Int.MAX_VALUE,1),crop=Rect(0,0,Int.MAX_VALUE,1),attachment=null,position=null)
         model.add(listOf(huge,b)); val unplaced=model.images
-        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12") }; assertEquals(unplaced,model.images)
+        assertThrows(IllegalArgumentException::class.java) { model.position(huge.id,1,0) }; assertEquals(unplaced,model.images)
     }
 
     @Test fun legacyAttachmentsStillLoadAndMalformedStoredPositionsAreRejected() {

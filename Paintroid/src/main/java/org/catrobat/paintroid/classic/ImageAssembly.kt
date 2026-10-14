@@ -53,7 +53,7 @@ data class CropMargins(val left: Double, val top: Double, val right: Double, val
 
 /** Original files stay on disk. Crops and attachments are reversible metadata edits. */
 class ImageAssembly(val directory: File) {
-    companion object { const val MAX_IMAGES = 20; const val MAX_LAYOUT_LENGTH = 4096 }
+    companion object { const val MAX_IMAGES = 20 }
     private val saved = AtomicFile(File(directory,"project.json"))
     private var state = emptyList<AssemblyImage>()
     private val undo = java.util.ArrayDeque<List<AssemblyImage>>()
@@ -176,51 +176,6 @@ class ImageAssembly(val directory: File) {
                 else -> it
             }
         })
-    }
-    /**
-     * IDs refer to import order, irrespective of the palette's current sort order. Digits 1–9
-     * are compact IDs; brackets allow larger IDs, for example [10]. Spaces and tabs each add
-     * blankWidth pixels, and an empty line adds blankHeight pixels. Unlisted images are unplaced.
-     */
-    fun arrangeNumeric(pattern: String, blankWidth: Int = 0, blankHeight: Int = 0) {
-        require(blankWidth >= 0 && blankHeight >= 0) { ui(R.string.ui_assembly_spacing_nonnegative) }
-        require(pattern.length <= MAX_LAYOUT_LENGTH) { ui(R.string.ui_assembly_numeric_too_long) }
-        val positions = linkedMapOf<String,ImagePosition>()
-        var y = 0L
-        for (row in pattern.replace("\r\n","\n").replace('\r','\n').split('\n')) {
-            var x = 0L; var height = 0; var index = 0
-            while (index < row.length) {
-                val c = row[index]
-                if (c == ' ' || c == '\t') {
-                    x += blankWidth.toLong(); index++
-                    require(x <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }
-                    continue
-                }
-                val number: Int
-                if (c == '[') {
-                    val end = row.indexOf(']',index+1)
-                    require(end > index+1) { ui(R.string.ui_assembly_numeric_invalid) }
-                    val token = row.substring(index+1,end)
-                    require(token.all { it in '0'..'9' }) { ui(R.string.ui_assembly_numeric_invalid) }
-                    number = token.toIntOrNull() ?: throw IllegalArgumentException(ui(R.string.ui_assembly_numeric_unknown_id))
-                    index = end+1
-                } else {
-                    require(c in '1'..'9') { ui(R.string.ui_assembly_numeric_invalid) }
-                    number = c-'0'; index++
-                }
-                require(number in 1..state.size) { ui(R.string.ui_assembly_numeric_unknown_id) }
-                val item = state[number-1]
-                require(item.id !in positions) { ui(R.string.ui_assembly_numeric_duplicate) }
-                val size = item.placedSize
-                require(x + size.width <= Int.MAX_VALUE && y + size.height <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }
-                positions[item.id] = ImagePosition(x.toInt(),y.toInt())
-                x += size.width; height = maxOf(height,size.height)
-            }
-            y += if (height == 0) blankHeight.toLong() else height.toLong()
-            require(y <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }
-        }
-        require(positions.isNotEmpty()) { ui(R.string.ui_assembly_numeric_empty) }
-        change(state.map { it.copy(attachment = null,position = positions[it.id]) })
     }
     fun targets(id: String): List<SnapTarget> {
         val item = image(id); val base = detached(id)

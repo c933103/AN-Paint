@@ -227,99 +227,11 @@ class AssemblyActivityTest {
         assertEquals(before,activity.assembly.layout()); assertNull(board.ghost)
     }
 
-    @Test fun numericRowsUseStableImportNumbersAfterSortingAndApplyAsOneUndoableEdit() {
-        load(6)
-        val imported=activity.assembly.images.toList()
-        val sort=activity.window.decorView.findViewWithTag<Spinner>("assembly_sort")
-        for (order in listOf(AssemblySort.NAME_DESC,AssemblySort.OLDEST)) {
-            sort.setSelection(order.ordinal); idle()
-            imported.forEachIndexed { index,item ->
-                val label=activity.window.decorView.findViewWithTag<TextView>("assembly_name_${item.id}").text.toString()
-                assertTrue(label,label.startsWith("Image ${index+1} · "))
-                assertTrue(label,label.endsWith(item.name))
-            }
-        }
-        val sources=imported.associate { it.id to it.file.readBytes() }
-        click("assembly_numeric_layout")
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<EditText>("assembly_layout_pattern").setText("12\n3\n456")
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-        assertFalse(dialog.isShowing)
-        val expected=imported.map { it.id }.zip(listOf(
-            Rect(0,0,24,16),Rect(24,0,36,20),Rect(0,20,18,28),
-            Rect(0,28,10,38),Rect(10,28,20,38),Rect(20,28,30,38)
-        )).toMap()
-        assertEquals(expected,activity.assembly.layout()); assertEquals(ImageDimensions(36,38),activity.assembly.size())
-        assertTrue(activity.assembly.images.all { it.normalization==null })
-        imported.forEach { assertArrayEquals(sources.getValue(it.id),it.file.readBytes()) }
-        click("assembly_undo"); assertTrue(activity.assembly.layout().isEmpty())
-        click("assembly_redo"); assertEquals(expected,activity.assembly.layout())
-    }
-
-    @Test fun numericLayoutBlankDimensionsControlOnlyTypedSpacesAndEmptyRows() {
-        load(); click("assembly_numeric_layout")
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog; val root=dialog.window!!.decorView
-        root.findViewWithTag<EditText>("assembly_layout_pattern").setText("1 2\n\n3")
-        root.findViewWithTag<EditText>("assembly_blank_width").setText("5")
-        root.findViewWithTag<EditText>("assembly_blank_height").setText("7")
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-        assertFalse(dialog.isShowing)
-        assertEquals(Rect(0,0,24,16),activity.assembly.layout()[image("b.png").id])
-        assertEquals(Rect(29,0,41,20),activity.assembly.layout()[image("a.png").id])
-        assertEquals(Rect(0,27,18,35),activity.assembly.layout()[image("c.png").id])
-    }
-
-    @Test fun originalSizesButtonRemovesResizingWhilePreservingTheCropAndCanBeUndone() {
-        load(); click("assembly_item_${image("b.png").id}"); click("assembly_crop")
-        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<EditText>("crop_left").setText("6")
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-        click("assembly_same_width"); dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<EditText>("normalize_value").setText("10")
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-        assertTrue(activity.assembly.images.all { it.placedSize.width==10 })
-        click("assembly_original_sizes")
-        assertTrue(activity.assembly.images.all { it.normalization==null })
-        assertEquals(Rect(6,0,24,16),image("b.png").crop)
-        assertEquals(ImageDimensions(18,16),image("b.png").placedSize)
-        assertEquals(ImageDimensions(12,20),image("a.png").placedSize)
-        click("assembly_undo"); assertTrue(activity.assembly.images.all { it.placedSize.width==10 })
-        assertEquals(Rect(6,0,24,16),image("b.png").crop)
-    }
-
-    @Test fun invalidNumericLayoutAndCancelLeavePlacementAndSavedProjectUntouched() {
-        load(); placeThree()
-        val before=activity.assembly.layout(); val saved=File(activity.assembly.directory,"project.json").readBytes()
-        click("assembly_numeric_layout")
-        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog; val root=dialog.window!!.decorView
-        val pattern=root.findViewWithTag<EditText>("assembly_layout_pattern")
-        val blankWidth=root.findViewWithTag<EditText>("assembly_blank_width")
-        val blankHeight=root.findViewWithTag<EditText>("assembly_blank_height")
-        for ((value,width,height) in listOf(
-            Triple("4","0","0"),Triple("11","0","0"),Triple("1?","0","0"),Triple("","0","0"),
-            Triple("12\n3","1.5","0"),Triple("12\n3","0","-1")
-        )) {
-            pattern.setText(value); blankWidth.setText(width); blankHeight.setText(height)
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-            assertTrue(value,dialog.isShowing)
-            val error=root.findViewWithTag<TextView>("assembly_layout_error")
-            assertTrue(error.isShown); assertTrue(error.text.isNotBlank())
-            assertEquals(before,activity.assembly.layout()); assertArrayEquals(saved,File(activity.assembly.directory,"project.json").readBytes())
-        }
-        pattern.setText("321"); blankWidth.setText("0"); blankHeight.setText("0")
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
-        assertFalse(dialog.isShowing); assertEquals(before,activity.assembly.layout())
-        assertArrayEquals(saved,File(activity.assembly.directory,"project.json").readBytes())
-    }
-
     @Test fun exactPositionMovesOnlySelectedImageAllowsOverlapAndSurvivesReopening() {
-        load(); click("assembly_numeric_layout")
-        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        dialog.window!!.decorView.findViewWithTag<EditText>("assembly_layout_pattern").setText("12\n3")
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+        load(); placeThree()
         val before=activity.assembly.layout(); val selected=image("a.png").id
         click("assembly_item_$selected"); click("assembly_position")
-        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val root=dialog.window!!.decorView
         assertEquals("24",root.findViewWithTag<EditText>("assembly_position_x").text.toString())
         assertEquals("0",root.findViewWithTag<EditText>("assembly_position_y").text.toString())
@@ -361,20 +273,15 @@ class AssemblyActivityTest {
         assertArrayEquals(saved,File(activity.assembly.directory,"project.json").readBytes())
     }
 
-    @Test @Config(qualifiers = "w900dp-h412dp-land-xhdpi") fun numericAndPositionDialogsKeepInputsAndActionsReachableInShortLandscape() {
-        load(); click("assembly_numeric_layout")
-        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+    @Test @Config(qualifiers = "w900dp-h412dp-land-xhdpi") fun positionDialogKeepsInputsAndActionsReachableInShortLandscape() {
+        load(); click("assembly_item_${image("b.png").id}"); click("assembly_position")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         fun reachable(view: View) {
             assertTrue(view.width>0 && view.height>0)
             view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true); idle()
             val visible=Rect(); assertTrue(view.getGlobalVisibleRect(visible))
             assertEquals(view.height,visible.height())
         }
-        for (tag in listOf("assembly_layout_pattern","assembly_blank_width","assembly_blank_height")) reachable(dialog.window!!.decorView.findViewWithTag<View>(tag))
-        reachable(dialog.getButton(AlertDialog.BUTTON_POSITIVE)); reachable(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
-        click("assembly_item_${image("b.png").id}"); click("assembly_position")
-        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         for (tag in listOf("assembly_position_x","assembly_position_y")) reachable(dialog.window!!.decorView.findViewWithTag<View>(tag))
         reachable(dialog.getButton(AlertDialog.BUTTON_POSITIVE)); reachable(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
