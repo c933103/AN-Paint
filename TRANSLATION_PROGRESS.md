@@ -1,5 +1,24 @@
 # Translation entry review: all 167 offered choices
 
+## Pending language identity and option changes — PR #65 (14 October 2026)
+
+[PR #65](https://github.com/c933103/AN-Paint/pull/65), exact proposal head [`e3c5a135`](https://github.com/c933103/AN-Paint/commit/e3c5a1354dd96541b0f3a9b859f73b3a029387c4), **is not part of the pinned 167-choice review snapshot below unless and until merged and re-baselined**. These requested new choices are option-and-tracking registrations only, not translations. Their proposed status is:
+
+| Proposed option | Tag | Canonical catalogue | Translation | Linguistic review | Direct entries | Fallback |
+|---|---|---|---|---|---:|---|
+| Old English — Ænglisc | `ang` | `values-b+ang/strings.xml` | Not started | Not started | 0 strings + 0 plurals | Default English |
+| Old Norse — Norrœna | `non` | `values-b+non/strings.xml` | Not started | Not started | 0 strings + 0 plurals | Default English |
+| Moroccan Arabic — الدارجة المغربية | `ary` | `values-b+ary/strings.xml` | Not started | Not started | 0 strings + 0 plurals | Default English |
+| Amazigh — Standard Moroccan Tamazight | `zgh` | `values-b+zgh/strings.xml` | Not started | Not started | 0 strings + 0 plurals | Default English |
+
+`ary` does not substitute for existing `ar`. `zgh` represents the specifically standardized Moroccan Tamazight language, **not all Amazigh/Berber languages** and not existing Kabyle `kab`; no unrequested parent-language fallback is assumed. Old English and Old Norse are historical language identities, not varieties of modern English/Norwegian.
+
+**Filipino identity update:** Proposed picker/Android-languages tag `fil` replaces `tl` (Tagalog), with exact previous `values-tl/strings.xml` content moved unchanged to `values-b+fil/strings.xml`. Saved `tl` selections receive a `fil` compatibility alias. This resource transfer **does not establish Filipino linguistic correctness or re-accept any Tagalog/Filipino review**. The pinned `tl` source row and its exact-key review receipts remain historical evidence and must be reconciled against the merged `fil` catalogue before counting any as current.
+
+**Projected post-merge inventory:** 171 offered choices; 59 full/scoped (including `fil` in place of `tl`); 112 outside-scope fallbacks, of which 31 are entirely empty. Each new exact catalogue would have 698 missing English-source entries **at the pinned 13 October source-key denominator**, subject to a fresh denominator check before changing live totals. The table and percentages below remain the pinned baseline; neither the 4 pending rows nor the `fil` migration is added retroactively to those counts. Track code, CI, and linguistic review independently.
+
+---
+
 ## Current review overview — 13 October 2026
 
 Source: [develop `5cb65ac4`](https://github.com/c933103/AN-Paint/commit/5cb65ac454fed1a5b730240d0a06bc8c3c69285a). **697 strings + 1 plural resource = 698 entries per choice.** A plural is one entry regardless of its quantity forms. Direct coverage: **59 full catalogues, 81 nonempty partial catalogues and 27 empty catalogues** (108 partial in total).
