@@ -4,6 +4,9 @@ package org.catrobat.paintroid.local
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Rect
 import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
@@ -23,6 +26,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import java.util.Locale
+import java.io.File
 
 /** F01: production resources and SaveOptionsDialog, without invoking an encoder. */
 @RunWith(RobolectricTestRunner::class)
@@ -98,7 +102,11 @@ class TiffDescriptionDialogTest {
         assertEquals(0, cancellations)
     }
 
-    private fun expected(tag: String) = if (tag == "pt-BR") PORTUGUESE else ENGLISH
+    private fun expected(tag: String) = when (tag) {
+        "pt-BR" -> PORTUGUESE
+        "ceb" -> CEBUANO
+        else -> ENGLISH
+    }
 
     @Test fun sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices() {
         for (tag in listOf("en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US")) {
@@ -140,7 +148,7 @@ class TiffDescriptionDialogTest {
     }
 
     @Test fun togglingCompressionKeepsTheDescriptionAndSubmitsTheChosenFlag() {
-        for (tag in listOf("en-US", "pt-BR", "cy")) for (initial in listOf(false, true)) {
+        for (tag in listOf("en-US", "pt-BR", "cy", "ceb")) for (initial in listOf(false, true)) {
             val dialog = open(tag, initial)
             assertTiff(dialog, expected(tag), initial)
             dialog.compression().performClick(); idle()
@@ -150,7 +158,7 @@ class TiffDescriptionDialogTest {
     }
 
     @Test fun switchingFormatsRestoresDescriptionAndRetainsCompressionChoice() {
-        for (tag in listOf("en-GB", "pt-BR", "cy")) for (compressed in listOf(false, true)) {
+        for (tag in listOf("en-GB", "pt-BR", "cy", "ceb")) for (compressed in listOf(false, true)) {
             val dialog = open(tag, compressed)
             EditorTestNavigation.format(dialog.format(), ImageFormat.DIB)
             assertEquals(View.GONE, dialog.compression().visibility)
@@ -163,7 +171,7 @@ class TiffDescriptionDialogTest {
     }
 
     @Test fun buttonAndCancelEventNeverConfirmAnExportForEitherCompressionChoice() {
-        for (tag in listOf("en-US", "pt-BR", "cy")) for (compressed in listOf(false, true)) {
+        for (tag in listOf("en-US", "pt-BR", "cy", "ceb")) for (compressed in listOf(false, true)) {
             for (cancelEvent in listOf(false, true)) {
                 val dialog = open(tag, compressed)
                 assertTiff(dialog, expected(tag), compressed)
@@ -208,7 +216,52 @@ class TiffDescriptionDialogTest {
         }
     }
 
+    @Test fun cebuanoDescriptionFitsTheActualPortraitDialog() = renderCebuano("portrait", 760, 1640)
+
+    @Test @Config(qualifiers = "w900dp-h412dp-land-xhdpi")
+    fun cebuanoDescriptionRemainsReachableInTheActualLandscapeDialog() = renderCebuano("landscape", 1100, 680)
+
+    private fun renderCebuano(name: String, width: Int, height: Int) {
+        for (compressed in listOf(false, true)) {
+            val dialog = open("ceb", compressed)
+            val root = dialog.window!!.decorView
+            root.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST))
+            root.layout(0, 0, root.measuredWidth, root.measuredHeight)
+            assertTiff(dialog, CEBUANO, compressed)
+            val description = dialog.description()
+            val layout = checkNotNull(description.layout)
+            assertTrue(layout.lineCount > 0)
+            assertEquals(CEBUANO.length, layout.getLineEnd(layout.lineCount - 1))
+            for (line in 0 until layout.lineCount) {
+                assertEquals(0, layout.getEllipsisCount(line))
+                assertTrue(layout.getLineLeft(line) >= 0f)
+                assertTrue(layout.getLineRight(line) <= description.width - description.compoundPaddingLeft - description.compoundPaddingRight)
+            }
+            assertTrue(layout.height <= description.height - description.compoundPaddingTop - description.compoundPaddingBottom)
+            assertEquals(CEBUANO, description.createAccessibilityNodeInfo().text.toString())
+            description.requestRectangleOnScreen(Rect(0, 0, description.width, description.height), true)
+            idle()
+            val bounds = Rect()
+            assertTrue(description.getGlobalVisibleRect(bounds))
+            assertEquals(description.height, bounds.height())
+            assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).getGlobalVisibleRect(Rect()))
+            val bitmap = Bitmap.createBitmap(root.width, root.height, Bitmap.Config.ARGB_8888)
+            try {
+                root.draw(Canvas(bitmap))
+                val file = File("build/reports/classic-preview", "tiff-cebuano-$name-$compressed.png")
+                file.parentFile.mkdirs()
+                file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
+            } finally { bitmap.recycle() }
+            dialog.cancel(); idle()
+            assertTrue(requests.isEmpty())
+            assertEquals(1, cancellations)
+        }
+    }
+
     companion object {
+        private const val CEBUANO = "Motipig og usa ka panid sa RGB. Ang pag-compress mahimong makapakunhod sa gidak-on sa file. " +
+            "Dili kini mousab sa mga pixel. Palonga ang pag-compress aron matipigan ang TIFF nga wala gi-compress."
         private const val MONGOLIAN_C023 = "Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана."
         private const val ENGLISH = "Saves one RGB page. Compression may reduce file size without changing " +
             "pixels; turn it off for uncompressed TIFF."
