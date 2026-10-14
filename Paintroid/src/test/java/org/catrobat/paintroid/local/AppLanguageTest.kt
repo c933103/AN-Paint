@@ -45,7 +45,7 @@ class AppLanguageTest {
     @Test @Config(sdk=[30,35]) fun sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback() {
         val expectedNames=mapOf("ha" to "Hausa", "ig" to "Igbo", "ln" to "Lingála",
             "su" to "Sunda", "yo" to "Yorùbá", "zu" to "isiZulu")
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         for((tag,name) in expectedNames) {
             assertTrue(tag in AppLanguage.tags(context))
             AppLanguage.select(context,tag)
@@ -82,7 +82,7 @@ class AppLanguageTest {
             "qug" to "Kichwa (Chimborazo)",
             "ch" to "Chamoru", "sm" to "Gagana Samoa", "mi" to "Māori", "sa" to "संस्कृतम्",
             "tg" to "Тоҷикӣ")
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         for((tag,name) in expectedNames) {
             assertTrue(tag in AppLanguage.tags(context))
             AppLanguage.select(context,tag)
@@ -106,6 +106,54 @@ class AppLanguageTest {
                 manager.applicationLocales=LocaleList.forLanguageTags(tag)
                 assertEquals(tag,AppLanguage.selectedTag(context))
             }
+        }
+    }
+
+
+    @Test @Config(sdk=[30,35]) fun historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback() {
+        val names=mapOf("ang" to "Ænglisc", "non" to "Norrœna",
+            "ary" to "الدارجة المغربية",
+            "zgh" to "ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)")
+        assertEquals(171,AppLanguage.tags(context).size)
+        assertFalse(AppLanguage.tags(context).contains("tl"))
+        for((tag,name) in names) {
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            PaintApplication.currentResources=wrapped.resources
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertEquals("$name [$tag]",AppLanguage.name(tag))
+            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+            assertEquals("Save",wrapped.getString(R.string.ui_save))
+            assertTrue(wrapped.getString(R.string.language20_translation_note)
+                .contains("New or untranslated text appears in English."))
+            if(android.os.Build.VERSION.SDK_INT>=33)
+                assertEquals(tag,context.getSystemService(LocaleManager::class.java)!!
+                    .applicationLocales[0].toLanguageTag())
+        }
+    }
+
+    @Test @Config(sdk=[30,35]) fun filipinoKeepsExistingCatalogueAndMigratesSavedTagalog() {
+        assertTrue("fil" in AppLanguage.tags(context))
+        assertFalse("tl" in AppLanguage.tags(context))
+        context.getSharedPreferences("app-language",0).edit().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",context.getSharedPreferences("app-language",0)
+            .getString("language-tag",null))
+        val wrapped=AppLanguage.wrap(context)
+        PaintApplication.currentResources=wrapped.resources
+        assertEquals("fil",wrapped.resources.configuration.locales[0].toLanguageTag())
+        assertEquals("Filipino [fil]",AppLanguage.name("fil"))
+        assertEquals("Pambura",wrapped.getString(R.string.ui_eraser))
+        assertEquals("I-save",wrapped.getString(R.string.ui_save))
+        if(android.os.Build.VERSION.SDK_INT>=33) {
+            val manager=context.getSystemService(LocaleManager::class.java)!!
+            assertEquals("fil",manager.applicationLocales[0].toLanguageTag())
+            manager.applicationLocales=LocaleList.forLanguageTags("tl")
+            assertEquals("fil",AppLanguage.selectedTag(context))
+            assertEquals("fil",manager.applicationLocales[0].toLanguageTag())
         }
     }
 

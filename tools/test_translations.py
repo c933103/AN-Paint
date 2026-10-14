@@ -21,7 +21,7 @@ import translation_catalogues as translations
 # All earlier progress is withdrawn; preserve every key-coverage assertion.
 SCOPED_TAGS = set("""
     ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
-    tl ceb ms id sw fi hu af nl et lv lt
+    fil ceb ms id sw fi hu af nl et lv lt
     es-ES es-419 fr de ru ar eo
     lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
     en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr

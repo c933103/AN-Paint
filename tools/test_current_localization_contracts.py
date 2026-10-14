@@ -57,7 +57,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
         scope = fixture('locale_contract_scope.json')
         scoped, fallback = require_locale_scope(scope, SCOPED_TAGS, catalogues.offered_tags())
         self.assertEqual(59, len(scoped))
-        self.assertEqual(108, len(fallback))
+        self.assertEqual(112, len(fallback))
         self.assertEqual(27, len(ADDED_TAGS))
         self.assertLessEqual(ADDED_TAGS, fallback)
         self.assertEqual(fallback, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
