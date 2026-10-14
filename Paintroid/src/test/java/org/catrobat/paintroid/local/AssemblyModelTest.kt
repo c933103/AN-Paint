@@ -157,4 +157,123 @@ class AssemblyModelTest {
         for (i in rects.indices) for (j in i+1 until rects.size) assertFalse(Rect.intersects(rects[i],rects[j]))
     }
 
+    @Test fun numericRowsUseImportIdsAndEachRowsMaximumHeightWithoutResizing() {
+        val items=listOf(item("z",12,9),item("y",7,15),item("x",19,6),item("w",5,4),item("v",6,3),item("u",8,5),item("unused",1,1))
+        model.add(items); model.place(items.last().id,Attachment(null,null))
+        model.sorted(AssemblySort.NAME_ASC) // Sorting the tray must not redefine numeric IDs.
+        model.arrangeNumeric("12\n3\n456")
+        val expected=listOf(Rect(0,0,12,9),Rect(12,0,19,15),Rect(0,15,19,21),Rect(0,21,5,25),Rect(5,21,11,24),Rect(11,21,19,26))
+        expected.forEachIndexed { index,rect -> assertEquals(rect,model.layout()[items[index].id]) }
+        assertEquals(ImageDimensions(19,26),model.size()); assertFalse(model.image(items.last().id).isPlaced)
+        items.forEach { assertEquals(it.croppedSize,model.image(it.id).placedSize); assertNull(model.image(it.id).attachment) }
+        val snapshot=model.layout(); model.undo(); assertEquals(setOf(items.last().id),model.layout().keys)
+        model.redo(); assertEquals(snapshot,model.layout()); assertEquals(snapshot,ImageAssembly(model.directory).layout())
+    }
+
+    @Test fun numericLayoutSupportsSpacingEmptyRowsAndBracketedIdsThroughTwenty() {
+        val items=(1..20).map { item("$it",1,1) }; model.add(items)
+        model.arrangeNumeric("9 [10][20]\r\n\r\n1",blankWidth=4,blankHeight=7)
+        assertEquals(Rect(0,0,1,1),model.layout()[items[8].id])
+        assertEquals(Rect(5,0,6,1),model.layout()[items[9].id])
+        assertEquals(Rect(6,0,7,1),model.layout()[items[19].id])
+        assertEquals(Rect(0,8,1,9),model.layout()[items[0].id]); assertEquals(4,model.layout().size)
+        model.arrangeNumeric("1\t2",blankWidth=3)
+        assertEquals(Rect(4,0,5,1),model.layout()[items[1].id])
+    }
+
+    @Test fun numericLayoutPreservesChosenCropsAndNormalization() {
+        val a=item("a",20,10); val b=item("b",10,20); model.add(listOf(a,b))
+        model.crop(a.id,Rect(5,0,15,10)); model.normalize(NormalizeAxis.HEIGHT,10)
+        val before=model.images.associate { it.id to (it.crop to it.normalization) }
+        model.arrangeNumeric("12")
+        assertEquals(before,model.images.associate { it.id to (it.crop to it.normalization) })
+        assertEquals(Rect(0,0,10,10),model.layout()[a.id]); assertEquals(Rect(10,0,15,10),model.layout()[b.id])
+    }
+
+    @Test fun invalidNumericLayoutsAreAtomicAndDoNotConsumeUndo() {
+        val a=item("a",2,3); val b=item("b",4,5); model.add(listOf(a,b)); model.arrangeNumeric("12")
+        val before=model.images; val saved=File(model.directory,"project.json").readBytes()
+        for (pattern in listOf(""," \n","0","3","[21]","[x]","[","[]","[999999999999999999999]","11","1\n1","1,2","1".repeat(ImageAssembly.MAX_LAYOUT_LENGTH+1))) {
+            assertThrows("pattern=$pattern",IllegalArgumentException::class.java) { model.arrangeNumeric(pattern) }
+            assertEquals(before,model.images); assertArrayEquals(saved,File(model.directory,"project.json").readBytes())
+        }
+        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12",blankWidth=-1) }
+        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12",blankHeight=-1) }
+        model.undo(); assertTrue(model.layout().isEmpty())
+    }
+
+    @Test fun absoluteCoordinatesAllowIntentionalOverlapsAndPersistWithUndoRedo() {
+        val a=item("a",10,10); val b=item("b",6,6); model.add(listOf(a,b)); model.place(a.id,Attachment(null,null))
+        model.position(b.id,5,5)
+        assertTrue(model.image(b.id).isPlaced); assertNull(model.image(b.id).attachment)
+        assertEquals(ImagePosition(5,5),model.image(b.id).position); assertEquals(Rect(5,5,11,11),model.layout()[b.id])
+        assertEquals(ImageDimensions(11,11),model.size()); val snapshot=model.layout()
+        assertEquals(snapshot,ImageAssembly(model.directory).layout())
+        model.undo(); assertFalse(model.image(b.id).isPlaced); model.redo(); assertEquals(snapshot,model.layout())
+        model.unplace(b.id); assertFalse(model.image(b.id).isPlaced); model.undo(); assertEquals(snapshot,model.layout())
+    }
+
+    @Test fun changingExactCoordinatesOfASnapRootOrMiddleMovesOnlyThatImage() {
+        val a=item("a",10,10); val b=item("b",10,10); val c=item("c",10,10); model.add(listOf(a,b,c))
+        model.place(a.id,Attachment(null,null)); model.place(b.id,Attachment(a.id,SnapEdge.BOTTOM)); model.place(c.id,Attachment(b.id,SnapEdge.BOTTOM))
+        val before=model.layout()
+        model.position(b.id,7,3)
+        assertEquals(Rect(7,3,17,13),model.layout()[b.id]); assertEquals(before[a.id],model.layout()[a.id]); assertEquals(before[c.id],model.layout()[c.id])
+        assertEquals(ImagePosition(0,20),model.image(c.id).position)
+        model.undo(); assertEquals(before,model.layout()); model.position(a.id,50,50)
+        assertEquals(Rect(50,50,60,60),model.layout()[a.id]); assertEquals(before[b.id],model.layout()[b.id]); assertEquals(before[c.id],model.layout()[c.id])
+        assertEquals(ImagePosition(0,10),model.image(b.id).position); assertEquals(Attachment(b.id,SnapEdge.BOTTOM),model.image(c.id).attachment)
+        assertEquals(model.layout(),ImageAssembly(model.directory).layout())
+    }
+
+    @Test fun snapsToExplicitAnchorsStillPreventCollisionsAndClearAbsoluteCoordinates() {
+        val a=item("a",10,10); val b=item("b",5,5); val c=item("c",5,5); model.add(listOf(a,b,c))
+        model.position(a.id,20,30); model.position(b.id,30,30); model.position(c.id,0,0)
+        val before=model.layout()
+        assertThrows(IllegalArgumentException::class.java) { model.place(c.id,Attachment(a.id,SnapEdge.RIGHT)) }
+        assertEquals(before,model.layout()); assertFalse(model.targets(c.id).any { it.attachment == Attachment(a.id,SnapEdge.RIGHT) })
+        model.place(c.id,Attachment(b.id,SnapEdge.RIGHT))
+        assertNull(model.image(c.id).position); assertEquals(Rect(35,30,40,35),model.layout()[c.id])
+    }
+
+    @Test fun removingExplicitAnchorPreservesItsSnappedSuccessorsAtTheirExactCoordinates() {
+        val a=item("a",10,10); val b=item("b",4,4); val c=item("c",3,3); model.add(listOf(a,b,c))
+        model.position(a.id,25,30); model.place(b.id,Attachment(a.id,SnapEdge.RIGHT)); model.place(c.id,Attachment(b.id,SnapEdge.RIGHT))
+        val before=model.layout(); model.unplace(a.id)
+        assertFalse(model.image(a.id).isPlaced); assertEquals(before[b.id],model.layout()[b.id]); assertEquals(before[c.id],model.layout()[c.id])
+        assertEquals(ImagePosition(35,30),model.image(b.id).position); assertEquals(Attachment(b.id,SnapEdge.RIGHT),model.image(c.id).attachment)
+        model.undo(); assertEquals(before,model.layout()); model.remove(a.id)
+        assertEquals(before.filterKeys { it != a.id },model.layout()); assertEquals(model.layout(),ImageAssembly(model.directory).layout())
+    }
+
+    @Test fun coordinateAndNumericOverflowRejectWithoutChangingTheSavedProject() {
+        val a=item("a",1,1); val b=item("b",1,1); model.add(listOf(a,b)); model.arrangeNumeric("12")
+        val before=model.images; val saved=File(model.directory,"project.json").readBytes()
+        for ((x,y) in listOf(-1 to 0,0 to -1,Int.MAX_VALUE to 0,0 to Int.MAX_VALUE)) {
+            assertThrows(IllegalArgumentException::class.java) { model.position(a.id,x,y) }
+        }
+        assertThrows(IllegalArgumentException::class.java) { model.position("missing-source",0,0) }
+        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("1 2",blankWidth=Int.MAX_VALUE) }
+        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("\n1",blankHeight=Int.MAX_VALUE) }
+        assertEquals(before,model.images); assertArrayEquals(saved,File(model.directory,"project.json").readBytes())
+        model.clear()
+        val huge=a.copy(dimensions=ImageDimensions(Int.MAX_VALUE,1),crop=Rect(0,0,Int.MAX_VALUE,1),attachment=null,position=null)
+        model.add(listOf(huge,b)); val unplaced=model.images
+        assertThrows(IllegalArgumentException::class.java) { model.arrangeNumeric("12") }; assertEquals(unplaced,model.images)
+    }
+
+    @Test fun legacyAttachmentsStillLoadAndMalformedStoredPositionsAreRejected() {
+        val a=item("a",2,2); model.add(listOf(a)); model.place(a.id,Attachment(null,null))
+        val file=File(model.directory,"project.json")
+        val legacy=org.json.JSONObject(file.readText()).put("version",3)
+        file.writeText(legacy.toString()); assertEquals(model.layout(),ImageAssembly(model.directory).layout())
+        for (coordinates in listOf(listOf<Any>(-1,0),listOf<Any>(Int.MAX_VALUE.toLong()+1,0),listOf<Any>(0.5,0),listOf<Any>("0",0),listOf<Any>(0))) {
+            val malformed=org.json.JSONObject(legacy.toString())
+            malformed.getJSONArray("images").getJSONObject(0).remove("placed")
+            malformed.getJSONArray("images").getJSONObject(0).put("position",org.json.JSONArray(coordinates))
+            file.writeText(malformed.toString())
+            assertThrows(IllegalArgumentException::class.java) { ImageAssembly(model.directory) }
+        }
+    }
+
 }

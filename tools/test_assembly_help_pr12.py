@@ -75,7 +75,7 @@ class AssemblyHelpPr12Tests(unittest.TestCase):
         model = (CLASSIC / 'ImageAssembly.kt').read_text()
         tray = kotlin_block(activity, 'private fun renderTray() {')
         self.assertTrue(code_locations(tray, 'item.placedSize.width, item.placedSize.height'))
-        self.assertTrue(code_locations(tray, 'card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (item.attachment == null) "" else " · " + ui(R.string.ui_placed)}",10f))'))
+        self.assertTrue(code_locations(tray, 'card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (!item.isPlaced) "" else " · " + ui(R.string.ui_placed)}",10f))'))
         placed = kotlin_block(model, 'val placedSize: ImageDimensions get() {')
         self.assertTrue(code_locations(placed, 'val n = normalization ?: return croppedSize'))
         self.assertTrue(code_locations(model, 'val croppedSize get() = ImageDimensions(crop.width(),crop.height())'))

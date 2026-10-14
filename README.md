@@ -50,7 +50,8 @@ armeabi-v7a, x86_64 and x86.
 - Foreground/background previews, recent colours, sixteen saved colour slots
   and an advanced colour picker.
 - A separate assembly workspace for up to 20 images, with cropping, normalization,
-  alignment, direct PNG saving and transfer to the editor.
+  edge snapping, numeric row layouts, exact X/Y positions, direct PNG saving and
+  transfer to the editor. See [image assembly controls](docs/IMAGE_ASSEMBLY.md).
 
 Both editing workspaces produce opaque images. Layers, transparency controls,
 Smudge, automatic crop and native project formats are absent. Large imports

@@ -712,4 +712,23 @@
     <string name="commons_metadata_response_too_large">Commons metadata exceeds the response limit</string>
     <!-- Application-owned query failure: any top-level API error key, without provider detail or an asserted cause. -->
     <string name="commons_metadata_query_failed">Commons metadata query failed</string>
+    <string name="ui_assembly_numeric_layout">Numeric layout</string>
+    <string name="ui_assembly_exact_position">Exact position</string>
+    <!-- Source IDs deliberately use ASCII strings to match the numeric layout syntax. -->
+    <string name="ui_assembly_numbered_source">Image %1$s · %2$s</string>
+    <string name="ui_assembly_numeric_sources">Image IDs follow import order. Sorting the tray does not change them; removing an image renumbers the remaining list.</string>
+    <string name="ui_assembly_numeric_help">Type image IDs to place adjacent images. For example, 12 on the first line, 3 on the second, and 456 on the third makes rows of two, one and three images. Start each row with a new line. Use brackets for IDs above 9, such as [10]. Spaces add the blank width; empty lines add the empty-row height. Each image can appear once; omitted images return to the tray. Current crops and sizes are kept. Use Restore original sizes to remove size normalization.</string>
+    <string name="ui_assembly_blank_width">Blank width (px per space)</string>
+    <string name="ui_assembly_blank_height">Empty-row height (px)</string>
+    <string name="ui_assembly_target_x">Target X (pixels from left)</string>
+    <string name="ui_assembly_target_y">Target Y (pixels from top)</string>
+    <string name="ui_assembly_position_help">Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.</string>
+    <string name="ui_assembly_numeric_empty">Enter at least one image ID.</string>
+    <string name="ui_assembly_numeric_invalid">Use image IDs 1–9, bracketed IDs such as [10], spaces and new lines.</string>
+    <string name="ui_assembly_numeric_unknown_id">The layout contains an unknown image ID.</string>
+    <string name="ui_assembly_numeric_duplicate">Each image ID can appear only once.</string>
+    <string name="ui_assembly_position_nonnegative">X and Y must be whole numbers from zero to 2147483647.</string>
+    <string name="ui_assembly_spacing_nonnegative">Spacing must be a whole number from zero to 2147483647.</string>
+    <string name="ui_assembly_numeric_too_long">The layout is too long.</string>
+    <string name="ui_assembly_unknown_image">The selected image is no longer in this assembly.</string>
 </resources>
