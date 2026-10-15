@@ -303,6 +303,8 @@ class CommonsCreditFlowTest {
         try {
             setClipboard("previous text")
             activity.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+            // The dialog's onShow callback installs the tagged Copy button and listener.
+            shadowOf(Looper.getMainLooper()).idle()
             val dialog=ShadowAlertDialog.getLatestAlertDialog()
             dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText("")
             dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_copy").performClick()
