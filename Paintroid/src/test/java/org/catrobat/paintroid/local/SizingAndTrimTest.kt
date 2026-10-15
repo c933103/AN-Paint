@@ -101,7 +101,7 @@ class SizingAndTrimTest {
     }
     private fun newImageOmitsResizePromiseAndResetsDocument(language: String) {
         AppLanguage.select(activity,language); AppLanguage.refresh(activity)
-        assertEquals(language,activity.resources.configuration.locales[0].language)
+        assertEquals(java.util.Locale.forLanguageTag(language).language,activity.resources.configuration.locales[0].language)
         val doc = activity.document
         doc.bitmap.setPixel(8,9,Color.RED)
         doc.bitmap.setPixel(180,90,Color.BLUE)
@@ -135,7 +135,7 @@ class SizingAndTrimTest {
         doc.undo(); assertEquals(60,doc.bitmap.width); assertEquals(doc.background,doc.bitmap.getPixel(8,9))
         original.recycle()
     }
-    @Test fun newImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("en")
+    @Test fun newImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("en-001")
     @Test
     fun frenchNewImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("fr")
     @Test
@@ -163,7 +163,18 @@ class SizingAndTrimTest {
         assertEquals(Color.RED,doc.bitmap.getPixel(8,9)); assertTrue(doc.canUndo)
         val pixels = IntArray(60*40); doc.bitmap.getPixels(pixels,0,60,0,0,60,40)
         assertFalse(pixels.contains(Color.BLUE))
-        doc.undo(); assertTrue(original.sameAs(doc.bitmap)); original.recycle()
+        doc.undo()
+        assertEquals(original.width,doc.bitmap.width); assertEquals(original.height,doc.bitmap.height)
+        assertEquals(original.config,doc.bitmap.config)
+        // History stores exact ARGB samples. A resize undo allocates a new bitmap,
+        // whose alpha-type metadata differs from the opaque original; sameAs also
+        // compares that metadata. Compare every restored sample without a tolerance.
+        val expected = IntArray(original.width * original.height)
+        val restored = IntArray(expected.size)
+        original.getPixels(expected,0,original.width,0,0,original.width,original.height)
+        doc.bitmap.getPixels(restored,0,doc.bitmap.width,0,0,doc.bitmap.width,doc.bitmap.height)
+        assertArrayEquals("Undo must restore every original ARGB pixel",expected,restored)
+        original.recycle()
     }
     @Test fun visibleSelectAllCanMoveImageBeyondCanvasThenTouchTrimAndUndoRestoreIt() {
         val doc = activity.document; doc.bitmap.eraseColor(Color.BLUE)
