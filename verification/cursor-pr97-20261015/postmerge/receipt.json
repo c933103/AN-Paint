@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-15T11:14:00Z",
+  "repository": "c933103/AN-Paint",
+  "pull_request": 97,
+  "merged_commit": "cb7a629ed7f0191c53834e5eef8fa3e3aab7229f",
+  "reviewed_head": "316532ae6902001ff659969fbd05b1c56fd13e63",
+  "tree": "8ae4f823184e79497c9a764b1ff9314356d8cef9",
+  "merge_tree_matches_reviewed_and_tested_tree": true,
+  "run": {
+    "id": 38723088044,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/38723088044",
+    "head": "cb7a629ed7f0191c53834e5eef8fa3e3aab7229f",
+    "event": "push",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": [
+    {
+      "id": 116382214846,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116382215220,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116382215385,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116385786871,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "jvm": {
+    "suites": 101,
+    "tests": 990,
+    "passed": 990,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "scoped_suites": {
+      "CursorDrawingTest": 18,
+      "FrenchCursorGuidanceTest": 2
+    }
+  },
+  "python": {
+    "total": 696,
+    "passed": 694,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "note": "Pre-merge run reported the same total/skipped result. Earlier wording that all 696 passed is corrected in the linked PR comments."
+  },
+  "api35": {
+    "native_tests": 74,
+    "app_tests": 35,
+    "inventory_validated": true,
+    "source_tests_sha256": "15c95c51dd423dfea588cae7a1ec8f431b1e17c443da3de022767554b06b5276",
+    "app_selected_tests": 35,
+    "app_completed_tests": 35,
+    "app_suppressed": [],
+    "app_excluded": []
+  },
+  "downloaded_artifacts": [
+    {
+      "id": 11968525561,
+      "sha256": "cdf01898ab044d37ce9b73efda43f135878db299f3f5ab8ea91fe0562bb31f62",
+      "digest_verified": true
+    },
+    {
+      "id": 11968156609,
+      "sha256": "d5a2fc0954cf188ec8a256ed1c08b9c447a619937e63e1ee276bffff0a113dd5",
+      "digest_verified": true
+    }
+  ],
+  "merged_blobs": {
+    "Paintroid/src/main/res/values-fr/strings.xml": "c4e2e9c05ad56a24dd8af19e7d68c71c2c83b681",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CursorDrawingTest.kt": "e50c6e2dbbe8a096d22c344e6d3e8e4a1c1616e6",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/FrenchCursorGuidanceTest.kt": "6843027eedbff98e1a5a01f966ad9e62943d8716"
+  },
+  "superseded_pr": {
+    "number": 93,
+    "state": "closed",
+    "merged": false,
+    "head": "ef01b9e5a6431f895c2a4077ea1c33afbd3150df",
+    "branch": "fix/french-cursor-guidance-89",
+    "branch_preserved": true,
+    "receipt": "https://github.com/c933103/AN-Paint/pull/93#issuecomment-6190381202"
+  },
+  "limits": [
+    "Two JVM test files changed; the accepted PR95 French wording is unchanged.",
+    "This record does not certify a full language, physical device or release.",
+    "The separate processing-label authorization stop and unrelated PR96 acceptance remain outside this change."
+  ]
+}
