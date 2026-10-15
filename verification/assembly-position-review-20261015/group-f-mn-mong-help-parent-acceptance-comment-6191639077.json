@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "record_kind": "archived_existing_complete_value_acceptance",
+  "source_repository": "c933103/AN-Paint",
+  "source_pull_request": 67,
+  "comment": {
+    "id": 6191639077,
+    "node_id": "IC_kwDOUTkwWc8AAAABcQzqJQ",
+    "url": "https://api.github.com/repos/c933103/AN-Paint/issues/comments/6191639077",
+    "html_url": "https://github.com/c933103/AN-Paint/pull/67#issuecomment-6191639077",
+    "issue_url": "https://api.github.com/repos/c933103/AN-Paint/issues/67",
+    "created_at": "2026-10-15T12:06:03Z",
+    "updated_at": "2026-10-15T12:06:03Z",
+    "author_association": "OWNER",
+    "body": "Saved [3e012974](https://github.com/c933103/AN-Paint/commit/3e01297441a58214c5dc705fc9a41ceff51f0311) on `review/assembly-position-catalogues-20261015`, directly based on PR head 1ec079c. Its complete 1,124-blob tree/modes, parent/ref and four changed files were read back exactly. The PR branch stays at 1ec079c while run 530 finishes API 35, avoiding cancellation of that already-running diagnostic. Its JVM step has passed; lint/API 35 remain pending.\n\nThis adds the six fully reviewed traditional Mongolian values, bringing the source branch to 294 values / 49 scoped catalogues, with ten still unresolved. Original draft SHA256 caeaa3bc01377181e47b369f36ec5f5f20d37052a70da08f6eb1c69de327800e was retained. Independent full-value review found one crop-noun spelling correction: `ᠣᠭᠲᠣᠯᠣᠯᠲᠠ` → `ᠣᠭᠲᠤᠯᠤᠯᠲᠠ`, confirmed in the [official dictionary](https://mongoltoli.mn/dictionary/detail/66635). Original Help SHA256 7d4dae12d1928384d82a482fb1da46cc295afd49c0cb21de36ff7f89000ab7e5; corrected complete Help 1527a65c2ac9e2dfc808e4386c7825cba0756ec46de92a10cf5de55959625bf1 was independently reread and accepted. Physical axes, integer/zero/ceiling, unchanged other images/crops/sizes, overlap, later-import stacking and expansion all remain. Idiom confidence is moderate; no native-speaker or whole-language certification.\n\nThe suffix-encoding review also exposed an implementation defect: Kotlin's `isBlank()` consumes U+202F, so vertical wrapping replaced a Mongolian nonbreaking suffix boundary with ASCII space. That changes spacing and suffix glyph selection, not just line breaks. [Unicode section 13.5](https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-13/) distinguishes legacy NNBSP suffix boundaries from ordinary spaces. A local HarfBuzz 10.2.0 probe with the exact bundled font (SHA256 805a55e10492c547ccadc1ad04faabdef61a74a5c02ecce69748378d66ef032d) confirmed differing glyph sequences for ASCII substitution. This probe is not Android raster evidence.\n\nThe bounded fix keeps nonbreaking glue atomic across sideways/CJK/emoji neighbors and preserves it during trimming; draw orientation is unchanged. Four new native regressions cover complete six-value preservation, tiny/wide wraps, CJK/emoji and ordinary/horizontal controls, exact native ink versus the ASCII-substitution negative control, and full caption spans with ellipsis disabled. An atomic word may exceed the requested wrap height; no full-viewport usability claim is made. Local all-resource AAPT2 and 82 focused assembly host checks pass; full host runs and exact-source hosted native tests are pending. No completeness assertions or raster tolerances were weakened.",
+    "author": {
+      "login": "c933103",
+      "id": 1525293,
+      "node_id": "MDQ6VXNlcjE1MjUyOTM=",
+      "type": "User"
+    }
+  },
+  "comment_body_utf8_sha256": "faaf580a1d75ec9c8da1ffb6e7845c8eb519636dec4c5d74c132ea03ad754238",
+  "pair_binding": {
+    "tag": "mn-Mong",
+    "key": "string/ui_assembly_position_help",
+    "english": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+    "localized": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ ᠤᠨ ᠵᠡᠭᠦᠨ ᠳᠡᠭᠡᠳᠦ ᠪᠤᠯᠤᠩ ᠤᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢ ᠭᠠᠷᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠳᠤ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃ X ᠪᠠ Y ᠨᠢ 0 ᠡᠴᠡ ᠡᠬᠢᠯᠡᠬᠦ ᠫᠢᠺᠰᠧᠯ ᠦᠨ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ ᠶᠤᠮ᠃ ᠪᠤᠰᠤᠳ ᠵᠢᠷᠤᠭ ᠣᠳᠣ ᠶᠢᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ ᠬᠠᠳᠠᠭᠠᠯᠠᠨ᠎ᠠ᠃ ᠡᠨᠳᠡ ᠵᠢᠷᠤᠭ ᠳᠠᠪᠬᠤᠴᠠᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ᠃ ᠬᠣᠵᠢᠮ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠤᠳ ᠡᠮᠦᠨᠡᠬᠢ ᠵᠢᠷᠤᠭ ᠤᠳ ᠤᠨ ᠳᠡᠭᠡᠷ᠎ᠡ ᠵᠢᠷᠤᠭᠳᠠᠨ᠎ᠠ᠃ ᠲᠠᠯᠪᠠᠢ ᠪᠠᠶᠢᠷᠢᠯᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠪᠦᠬᠦ ᠵᠢᠷᠤᠭ ᠢ ᠪᠠᠭᠲᠠᠭᠠᠬᠤ ᠶᠢᠨ ᠲᠤᠯᠠ ᠲᠡᠯᠡᠨ᠎ᠡ᠃ ᠣᠭᠲᠤᠯᠤᠯᠲᠠ ᠪᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠳᠡᠬᠦ ᠦᠭᠡᠢ᠃",
+    "source_utf8_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+    "target_utf8_sha256": "1527a65c2ac9e2dfc808e4386c7825cba0756ec46de92a10cf5de55959625bf1",
+    "conditional_report": "group-f-mn-mong-independent-review.json",
+    "conditional_report_sha256": "6e7fa4ab305f4c56abbfee8190d0c7cfc3e0a7e11fdb70231a6ea1dc120ed96b",
+    "conditional_report_pointer": "/revisions/0",
+    "acceptance_quote": "corrected complete Help 1527a65c2ac9e2dfc808e4386c7825cba0756ec46de92a10cf5de55959625bf1 was independently reread and accepted.",
+    "acceptance_quote_utf8_sha256": "4a7df3f3839ebd21e870826c9cb22027920cfac240ebb7e530e601926ddb87f7"
+  },
+  "scope": "Exact existing comment identity and complete body, with a mechanical full-value binding to the preserved conditional review. This archive records the prior acceptance; it is not a new linguistic decision or certification."
+}
