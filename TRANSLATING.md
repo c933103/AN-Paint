@@ -4,6 +4,21 @@
 
 See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
 
+## Translation importance tiers
+
+Each translatable source key belongs to exactly one P0–P3 importance tier,
+independent of its language-specific coverage and linguistic-review status.
+P0 prioritizes data loss/recovery and irreversible warnings; P1 covers basic
+editing; P2 covers extended features; P3 covers detailed help and reference.
+This does not exempt any tier from eventual translation or legal obligations.
+
+See [the tier policy](translations/STRING_IMPORTANCE.md) and the exact
+[per-key manifest](translations/string-importance.json). Run
+`python3 tools/string_importance.py --locale ceb --missing-keys` for a
+P0-first gap list for a locale. The tool counts exact-catalogue presence only;
+neither presence nor tier classification certifies that a translation was
+reviewed. Existing withdrawn translation-review claims remain withdrawn.
+
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
 `Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
 plural and string-array in that file so the translation-service source is complete.
