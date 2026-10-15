@@ -26,7 +26,7 @@ FIXTURE='position-merged-reconciliation-20261015.json'
 INDEX='position-review-evidence-index.json'
 NEW_KEYS={ 'string/'+x for x in ('ui_assembly_exact_position','ui_assembly_target_x','ui_assembly_target_y','ui_assembly_position_help','ui_assembly_position_nonnegative','ui_assembly_unknown_image') }
 EARLY_REPORTS={'group-a-independent-review.json','group-b-independent-review.json','group-c-independent-review.json','group-d-independent-review.json','group-e-independent-review.json','group-english-fixtures-independent-review.json'}
-EXPECTED={'current_resource_manifest_sha256': 'e38bb1105760edb14d768218c8664138f5a7266e82f8ca6a6d5ef53d0a46cc36', 'previous_resource_manifest_sha256': 'fda0471261e5871f8ff5d558f2a93549068ffa008d9d092860661d023d68af85', 'source_context_manifest_sha256': '6f84a99fc1fbd5e228a5d3d3bb0925940978f534f4cf0a24519974f3ba13dcf8', 'new_pairs_sha256': 'f6514eb8fbefb4a1952f4ae8ab5e0bd9c24d7562c880aa92a26c4237dabd5c84', 'review_bindings_sha256': '91a421c6e54f7969dad2359b4bbaabbdfdd6b471c799a1e3a5cac95f8e8843c3', 'complete_evidence_pairs_sha256': '2b21eb1401fd4a35d9b94fe71e736ebe287626e0c917417f1ae60e5bb4cf100a', 'index_sha256': '6ee8057a5b2a4b64f7eb0d085ff910eb1d0245d5faa4b161bff5eac79740232a', 'old_receipts_sha256': 'bcfa717be010cc15fb5d651837173065748cbdf0aeed1d5de751c36c48cfd557', 'old_cohorts_sha256': '6dce198081d223922c8a4ea83d3e533e363d646aba0ecadddbabc3708bc7cc3e', 'old_history_sha256': '65a914b4a8cf1889c7701f9a6b695f6c41f3d5f6db1cd151b8318bcc0d8960c4', 'old_partial_sha256': 'ed40cde25ca4466446799cf432a0a2989a5a1a2b23db0816e2e360e6feda35dd', 'language_identity_sha256': 'f147f620cb9f053b1cfe662eba80635ece98c6dc5063fbd1d3aa73f7b9a9c4e1', 'reconciliation_fixture_sha256': 'e29a676c19fb69ed44d766ede1ddbaa58f82ee39d76d8c565dceb2efe823dbb7'}
+EXPECTED={'current_resource_manifest_sha256': 'e38bb1105760edb14d768218c8664138f5a7266e82f8ca6a6d5ef53d0a46cc36', 'previous_resource_manifest_sha256': 'fda0471261e5871f8ff5d558f2a93549068ffa008d9d092860661d023d68af85', 'source_context_manifest_sha256': '6f84a99fc1fbd5e228a5d3d3bb0925940978f534f4cf0a24519974f3ba13dcf8', 'new_pairs_sha256': 'f6514eb8fbefb4a1952f4ae8ab5e0bd9c24d7562c880aa92a26c4237dabd5c84', 'review_bindings_sha256': '91a421c6e54f7969dad2359b4bbaabbdfdd6b471c799a1e3a5cac95f8e8843c3', 'complete_evidence_pairs_sha256': '155dc83c911cbcdb05023193a19b903242e288b1750358ed0ad5cc7d0eeabd47', 'index_sha256': '7bf3b3ffc1f20e77acd26648b4234a40739c7d635b658eb3830c9f6a922255ab', 'old_receipts_sha256': 'bcfa717be010cc15fb5d651837173065748cbdf0aeed1d5de751c36c48cfd557', 'old_cohorts_sha256': '6dce198081d223922c8a4ea83d3e533e363d646aba0ecadddbabc3708bc7cc3e', 'old_history_sha256': '65a914b4a8cf1889c7701f9a6b695f6c41f3d5f6db1cd151b8318bcc0d8960c4', 'old_partial_sha256': 'ed40cde25ca4466446799cf432a0a2989a5a1a2b23db0816e2e360e6feda35dd', 'language_identity_sha256': 'f147f620cb9f053b1cfe662eba80635ece98c6dc5063fbd1d3aa73f7b9a9c4e1', 'reconciliation_fixture_sha256': 'e29a676c19fb69ed44d766ede1ddbaa58f82ee39d76d8c565dceb2efe823dbb7', 'additional_acceptance_bindings_sha256': '41c90a3c0bedcc232c79796330256a0eecef1748e7479dc6d837c00f2768807d'}
 read=legacy.read
 require=legacy.require
 value_hash=legacy.value_hash
@@ -63,7 +63,43 @@ def resolve_pointer(report,pointer):
         current=current[int(part)] if isinstance(current,list) else current[part]
     return current
 
-def check_accepted_entry(pair,report):
+ACCEPTANCE_RECORD='group-f-mn-mong-help-parent-acceptance-comment-6191639077.json'
+COMMENT_URL='https://github.com/c933103/AN-Paint/pull/67#issuecomment-6191639077'
+COMMENT_BODY_SHA256='faaf580a1d75ec9c8da1ffb6e7845c8eb519636dec4c5d74c132ea03ad754238'
+
+
+def check_additional_acceptance(pair,records):
+    """Require the archived existing parent acceptance, not a mutable URL alone."""
+    require(pair.get('additional_complete_acceptance')==COMMENT_URL,'Original parent acceptance provenance missing')
+    require(pair.get('additional_complete_acceptance_record')==ACCEPTANCE_RECORD,'Immutable parent acceptance record missing')
+    require(isinstance(records,dict) and ACCEPTANCE_RECORD in records,'Complete archived parent acceptance unavailable')
+    record=records[ACCEPTANCE_RECORD]
+    require(record.get('schema_version')==1 and record.get('record_kind')=='archived_existing_complete_value_acceptance','Wrong acceptance record schema')
+    require(record.get('source_repository')=='c933103/AN-Paint' and record.get('source_pull_request')==67,'Wrong acceptance repository/PR')
+    comment=record.get('comment',{})
+    identity={'id':6191639077,'node_id':'IC_kwDOUTkwWc8AAAABcQzqJQ','url':'https://api.github.com/repos/c933103/AN-Paint/issues/comments/6191639077','html_url':COMMENT_URL,'issue_url':'https://api.github.com/repos/c933103/AN-Paint/issues/67','created_at':'2026-10-15T12:06:03Z','updated_at':'2026-10-15T12:06:03Z','author_association':'OWNER','author':{'login':'c933103','id':1525293,'node_id':'MDQ6VXNlcjE1MjUyOTM=','type':'User'}}
+    require(all(type(comment.get(k)) is type(v) and comment[k]==v for k,v in identity.items()),'Archived acceptance comment identity changed')
+    body=comment.get('body')
+    require(isinstance(body,str) and hashlib.sha256(body.encode()).hexdigest()==record.get('comment_body_utf8_sha256')==COMMENT_BODY_SHA256,'Archived complete comment body changed')
+    binding=record.get('pair_binding',{})
+    expected={'tag':pair['tag'],'key':pair['key'],'english':pair['english'],'localized':pair['localized'],'source_utf8_sha256':pair['source_utf8_sha256'],'target_utf8_sha256':pair['target_utf8_sha256'],'conditional_report':pair['report'],'conditional_report_sha256':'6e7fa4ab305f4c56abbfee8190d0c7cfc3e0a7e11fdb70231a6ea1dc120ed96b','conditional_report_pointer':pair['pointer']}
+    require(pair['tag']=='mn-Mong' and pair['key']=='string/ui_assembly_position_help' and pair['report']=='group-f-mn-mong-independent-review.json' and pair['pointer']=='/revisions/0','Acceptance attached to wrong complete pair')
+    require(all(binding.get(k)==v for k,v in expected.items()),'Archived acceptance complete pair/value/report binding changed')
+    require(hashlib.sha256(binding['english'].encode()).hexdigest()==binding['source_utf8_sha256'] and hashlib.sha256(binding['localized'].encode()).hexdigest()==binding['target_utf8_sha256'],'Archived acceptance full value hash mismatch')
+    quote='corrected complete Help '+pair['target_utf8_sha256']+' was independently reread and accepted.'
+    require(binding.get('acceptance_quote')==quote and binding.get('acceptance_quote_utf8_sha256')==hashlib.sha256(quote.encode()).hexdigest() and body.count(quote)==1,'Exact complete-value acceptance text absent')
+    return record
+
+
+def evidence_bindings(index):
+    additional=index.get('additional_acceptance_records')
+    require(isinstance(additional,dict) and set(additional)=={ACCEPTANCE_RECORD},'Immutable additional acceptance record missing')
+    require(value_hash(additional)==EXPECTED['additional_acceptance_bindings_sha256'],'Pinned additional acceptance identity changed')
+    require(not set(index['reports']) & set(additional),'Acceptance/report identities overlap')
+    return dict(index['reports'],**additional)
+
+
+def check_accepted_entry(pair,report,additional_acceptances=None):
     name=pair['report'];key=pair['key'].split('/',1)[1]
     r=resolve_pointer(report,pair['pointer'])
     target_hash=r.get('target_sha256',r.get('new_sha256'))
@@ -75,7 +111,7 @@ def check_accepted_entry(pair,report):
         if pair['pointer']=='/revisions/0':
             require(pair['tag']=='mn-Mong' and key=='ui_assembly_position_help','Mongolian replacement identity changed')
             require(r.get('verdict')=='complete revised value source-semantically acceptable to this reviewer; parent check required before publication','Complete Mongolian revised review missing')
-            require(pair.get('additional_complete_acceptance')=='https://github.com/c933103/AN-Paint/pull/67#issuecomment-6191639077','Mongolian full-value reread receipt missing')
+            check_additional_acceptance(pair,additional_acceptances)
             require(r.get('new_target')==pair['localized'] and len(r.get('semantic_anchors',[]))==9,'Incomplete Mongolian full-value review')
         else:
             require(r.get('verdict')=='accepted_source_semantics','Mongolian original is held')
@@ -96,7 +132,7 @@ def check_reports(evidence_root,index):
     require(value_hash(index['reports'])==EXPECTED['review_bindings_sha256'],'Pinned report identity/receipt bindings changed')
     require(len(index['reports'])==21,'Report history omitted')
     reports={}
-    for name,b in index['reports'].items():
+    for name,b in evidence_bindings(index).items():
         p=Path(b['path']);require(not p.is_absolute() and '..' not in p.parts and p.name==name,'Unsafe or mismatched report path')
         revision=b['durable_revision']
         require(re.fullmatch('[0-9a-f]{40}',revision) is not None,'Durable review revision not immutable')
@@ -110,8 +146,8 @@ def check_reports(evidence_root,index):
         require(pair.get('accepted') is True and pair['key'] in NEW_KEYS,'Pair is not fully accepted or key outside scope')
         require(hashlib.sha256(pair['english'].encode()).hexdigest()==pair['source_utf8_sha256'],'Full English raw hash mismatch')
         require(hashlib.sha256(pair['localized'].encode()).hexdigest()==pair['target_utf8_sha256'],'Full target raw hash mismatch')
-        check_accepted_entry(pair,reports[pair['report']])
-    return reports
+        check_accepted_entry(pair,reports[pair['report']],reports)
+    return {name:reports[name] for name in index['reports']}
 
 def check_new_receipts(receipts,index,counts,english,catalogues):
     rows={r['tag']:r for r in counts['languages']}
@@ -217,7 +253,7 @@ def validate(source,previous=None,directory=HERE,evidence_root=None):
             require(prior.split('### Current per-language entry counts',1)[0] in current,'Pre-position overview lost')
         for n in ('fr-assembly-merged-reconciliation-20261015.json','four-crop-merged-reconciliation-20261015.json',legacy.FIXTURE):
             require((directory/n).read_bytes()==(previous/n).read_bytes(),'Historical complete review fixture edited')
-    return {'status':'PASS','source_revision':REV,'source_tree':TREE,'preceding_tracker_revision':OLDHEAD,'source_identity_files':182,'source_context_identity_files':8,'active_english_hashes':3356,'active_localized_hashes':3356,'catalogue_partitions':171,'new_complete_review_pairs':354,'bound_complete_reports':21,'preserved_active_pairs':3002,'superseded_history':59,'partial_records':56,'processing_holds':4,'previous_checkpoint_compared':bool(previous),'table_files':tables,'summary':counts['summary'],'scope':'Mechanical source/report validation only; original complete-review/history gates retained. No new application/native-speaker/full-language/runtime certification.'}
+    return {'status':'PASS','source_revision':REV,'source_tree':TREE,'preceding_tracker_revision':OLDHEAD,'source_identity_files':182,'source_context_identity_files':8,'active_english_hashes':3356,'active_localized_hashes':3356,'catalogue_partitions':171,'new_complete_review_pairs':354,'bound_complete_reports':21,'bound_additional_acceptance_records':1,'preserved_active_pairs':3002,'superseded_history':59,'partial_records':56,'processing_holds':4,'previous_checkpoint_compared':bool(previous),'table_files':tables,'summary':counts['summary'],'scope':'Mechanical source/report validation only; original complete-review/history gates retained. No new application/native-speaker/full-language/runtime certification.'}
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)

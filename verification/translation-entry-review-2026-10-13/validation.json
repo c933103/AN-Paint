@@ -1005,12 +1005,12 @@
     ]
   },
   "actual_validator_execution": {
-    "normal_tests": 60,
-    "optimized_tests": 60,
+    "normal_tests": 68,
+    "optimized_tests": 68,
     "normal_exit_code": 0,
     "optimized_exit_code": 0,
-    "normal_log_sha256": "8004c90706dd98b6994efc07dae26d5cd94f8945cdfe979b165d7f838b4ddd78",
-    "optimized_log_sha256": "b31b6912dd3666cd827ebb3495f4c6a9dfe051e5af1fec50289bc7501bda710e",
+    "normal_log_sha256": "3fb748df714ea4ee134b9cb3419879b2e23bc9562d7ecc61878003e38ac199c3",
+    "optimized_log_sha256": "e4e0262a201cc48e63bd8ad62057e72f22a09cb2f4a9d4b9eabbd79b853d9051",
     "source_validations": [
       "normal",
       "optimized"
@@ -1019,13 +1019,26 @@
       "normal",
       "optimized"
     ],
-    "normal_runtime_seconds": 15.314,
-    "optimized_runtime_seconds": 16.116,
+    "normal_runtime_seconds": 18.239,
+    "optimized_runtime_seconds": 18.702,
     "table_marker_controls": "Both progress/table documents reject removed/renamed markers and removed/duplicated rows, with and without previous checkpoint; only compact PR body may omit its table.",
-    "external_evidence_contract": "All21 complete reports are required through an explicit separate root. Exact immutable byte/hash/size/pointer/acceptance checks retained. Missing/corrupt evidence fails. Offline materializer validates all inputs and full values before writing. No network or URL-only trust.",
+    "external_evidence_contract": "All 21 complete reports plus the immutable archived existing parent-acceptance record are required through an explicit separate root. Exact commit/path/blob/hash/size, full content, complete pair/value, pointer, acceptance and history gates are checked offline. Missing/corrupt or URL-only evidence fails before materialization output.",
     "actual_publication_layout": "Both current and previous tracker snapshots validated with root TRANSLATION_PROGRESS.md and nested data directories; renamed current root marker and altered predecessor history both rejected.",
     "duplicated_position_reports_in_tracker": 0,
-    "app_tests_rerun": false
+    "app_tests_rerun": false,
+    "acceptance_archive_negative_controls": [
+      "mutable URL only",
+      "missing archive binding",
+      "missing external record",
+      "modified record bytes",
+      "rewritten and rehashed complete comment",
+      "wrong comment identity",
+      "wrong acceptance quote/hash",
+      "wrong complete English/target",
+      "wrong pair/report/pointer",
+      "mutable/wrong immutable index binding",
+      "missing record before materializer output"
+    ]
   },
   "superseded_validator_execution_before_marker_fix": {
     "normal_tests": 54,
@@ -1089,5 +1102,40 @@
     "duplicated_position_reports_in_tracker": 0,
     "app_tests_rerun": false,
     "limitation": "The intermediate59-test package did not exercise both actual repository snapshot layouts for predecessor comparison. Corrected root-document resolution and the60th end-to-end test supersede this intermediate result."
+  },
+  "prior_position_validator_execution_before_acceptance_archive": {
+    "normal_tests": 60,
+    "optimized_tests": 60,
+    "normal_exit_code": 0,
+    "optimized_exit_code": 0,
+    "normal_log_sha256": "8004c90706dd98b6994efc07dae26d5cd94f8945cdfe979b165d7f838b4ddd78",
+    "optimized_log_sha256": "b31b6912dd3666cd827ebb3495f4c6a9dfe051e5af1fec50289bc7501bda710e",
+    "source_validations": [
+      "normal",
+      "optimized"
+    ],
+    "internal_validations": [
+      "normal",
+      "optimized"
+    ],
+    "normal_runtime_seconds": 15.314,
+    "optimized_runtime_seconds": 16.116,
+    "table_marker_controls": "Both progress/table documents reject removed/renamed markers and removed/duplicated rows, with and without previous checkpoint; only compact PR body may omit its table.",
+    "external_evidence_contract": "All21 complete reports are required through an explicit separate root. Exact immutable byte/hash/size/pointer/acceptance checks retained. Missing/corrupt evidence fails. Offline materializer validates all inputs and full values before writing. No network or URL-only trust.",
+    "actual_publication_layout": "Both current and previous tracker snapshots validated with root TRANSLATION_PROGRESS.md and nested data directories; renamed current root marker and altered predecessor history both rejected.",
+    "duplicated_position_reports_in_tracker": 0,
+    "app_tests_rerun": false,
+    "reviewed_tracker_head": "716ac2b042e61de413b015eec8de36ecf9dd7776",
+    "limitation": "The 60-test run omitted immutable full-content verification of the parent acceptance required by the mn-Mong Help conditional review. Superseded by the 68-test acceptance-archive gate run; counts and original review decisions did not change."
+  },
+  "acceptance_gate_fix": {
+    "reviewed_tracker_head": "716ac2b042e61de413b015eec8de36ecf9dd7776",
+    "review_discussion": 4286164945,
+    "archived_comment_id": 6191639077,
+    "evidence_revision": "15295e6ca392fef2ec41f2ab29e741dbd83ab9e3",
+    "record_sha256": "4f73005fdb60d8e159eb330e14167f34f9d0584f901e6ae96aabafcc9f551461",
+    "new_linguistic_decision": false,
+    "ledger_and_counts_changed": false,
+    "original_reports_changed": false
   }
 }

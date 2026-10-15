@@ -30,22 +30,22 @@ def materialize(archive_root,output_root,index_path=v.HERE/v.INDEX):
     v.require(output_root!=v.HERE.resolve() and v.HERE.resolve() not in output_root.parents,'Output must be external to the tracker directory')
     index=v.read(Path(index_path))
     v.require(v.value_hash(index)==v.EXPECTED['index_sha256'],'Evidence index differs from pinned complete reviews')
-    contents={};reports={}
-    for name,binding in index['reports'].items():
+    contents={};reports={};bindings=v.evidence_bindings(index)
+    for name,binding in bindings.items():
         data=safe_path(archive_root,binding['archive_path']).read_bytes()
         v.require(len(data)==binding['size'] and hashlib.sha256(data).hexdigest()==binding['sha256'] and v.blob_hash(data)==binding['git_blob_sha1'],'Evidence checkout bytes differ: '+name)
         safe_path(output_root,binding['path'])
         contents[name]=data
         reports[name]=json.loads(data)
     for pair in index['complete_pairs']:
-        v.check_accepted_entry(pair,reports[pair['report']])
+        v.check_accepted_entry(pair,reports[pair['report']],reports)
     # No output/cache mutation until every input and every complete acceptance passes.
-    for name,binding in index['reports'].items():
+    for name,binding in bindings.items():
         target=safe_path(output_root,binding['path'])
         target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes(contents[name])
     v.check_reports(output_root,index)
-    return {'status':'PASS','reports':len(reports),'bytes':sum(map(len,contents.values())),'complete_pairs':len(index['complete_pairs']),'evidence_root':str(output_root),'immutable_evidence_revisions':sorted({b['durable_revision'] for b in index['reports'].values()}),'network_requests':0,'scope':'Exact report content and full-value acceptance materialization only; no new language or runtime review.'}
+    return {'status':'PASS','reports':len(index['reports']),'additional_acceptance_records':len(index['additional_acceptance_records']),'bytes':sum(map(len,contents.values())),'complete_pairs':len(index['complete_pairs']),'evidence_root':str(output_root),'immutable_evidence_revisions':sorted({b['durable_revision'] for b in bindings.values()}),'network_requests':0,'scope':'Exact report content and full-value acceptance materialization only; no new language or runtime review.'}
 
 
 if __name__=='__main__':

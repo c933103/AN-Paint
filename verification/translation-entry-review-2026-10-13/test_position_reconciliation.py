@@ -19,7 +19,7 @@ class PositionGates(unittest.TestCase):
         cls.fixture=v.read(v.HERE/v.FIXTURE)
         cls.index=v.read(v.HERE/v.INDEX)
         cls.evidence_root=v.evidence_location(cls.directory)
-        cls.reports={n:v.read(cls.evidence_root/b['path']) for n,b in cls.index['reports'].items()}
+        cls.reports={n:v.read(cls.evidence_root/b['path']) for n,b in v.evidence_bindings(cls.index).items()}
         cls.source=Path(os.environ['AN_PAINT_SOURCE']) if os.environ.get('AN_PAINT_SOURCE') else None
         cls.english={p['key']:p['english'] for p in cls.index['complete_pairs']}
         cls.catalogues={}
@@ -97,9 +97,9 @@ class PositionGates(unittest.TestCase):
     def test_mongolian_revised_whole_paragraph_and_parent_reread_required(self):
         p=next(p for p in self.index['complete_pairs'] if p['tag']=='mn-Mong' and p['key'].endswith('_help'))
         bad=copy.deepcopy(p);bad.pop('additional_complete_acceptance')
-        with self.assertRaises(ValueError):v.check_accepted_entry(bad,self.reports[p['report']])
+        with self.assertRaises(ValueError):v.check_accepted_entry(bad,self.reports[p['report']],self.reports)
         d=copy.deepcopy(self.reports[p['report']]);d['revisions'][0]['semantic_anchors'].pop()
-        with self.assertRaises(ValueError):v.check_accepted_entry(p,d)
+        with self.assertRaises(ValueError):v.check_accepted_entry(p,d,self.reports)
     def test_okinawan_author_candidate_is_not_accepted_without_full_successor(self):
         p=next(p for p in self.index['complete_pairs'] if p['report']=='group-h-okinawan-help-replacement-review.json')
         d=copy.deepcopy(self.reports[p['report']]);d['independent_complete_value_review']['verdict']='pending'
@@ -224,7 +224,7 @@ class PositionGates(unittest.TestCase):
         from materialize_position_review_evidence import materialize
         with tempfile.TemporaryDirectory() as tmp:
             d=Path(tmp);archive=d/'archive';out=d/'external';archive.mkdir()
-            for binding in self.index['reports'].values():
+            for binding in v.evidence_bindings(self.index).values():
                 target=archive/binding['archive_path'];target.parent.mkdir(parents=True,exist_ok=True)
                 shutil.copyfile(self.evidence_root/binding['path'],target)
             result=materialize(archive,out,self.directory/v.INDEX)
@@ -258,5 +258,64 @@ class PositionGates(unittest.TestCase):
             old_progress=previous_data.parents[1]/'TRANSLATION_PROGRESS.md'
             old_progress.write_text(old_progress.read_text()+'\nAltered historical prose.\n')
             with self.assertRaises(ValueError):v.validate(self.source,previous_data,directory=current_data,evidence_root=self.evidence_root)
+
+    def mongolian_help(self):
+        return next(p for p in self.index['complete_pairs'] if p['tag']=='mn-Mong' and p['key']=='string/ui_assembly_position_help')
+    def test_archived_existing_parent_acceptance_binds_exact_complete_pair(self):
+        pair=self.mongolian_help()
+        self.assertEqual(v.check_additional_acceptance(pair,self.reports)['comment']['id'],6191639077)
+        v.check_accepted_entry(pair,self.reports[pair['report']],self.reports)
+    def test_mutable_comment_url_alone_never_closes_conditional_review(self):
+        pair=self.mongolian_help()
+        for records in (None,{}):
+            with self.subTest(records=records),self.assertRaises(ValueError):
+                v.check_accepted_entry(pair,self.reports[pair['report']],records)
+        bad=copy.deepcopy(pair);bad.pop('additional_complete_acceptance_record')
+        with self.assertRaises(ValueError):v.check_accepted_entry(bad,self.reports[pair['report']],self.reports)
+    def test_archived_comment_body_tampering_cannot_be_rehashed(self):
+        import hashlib
+        for body in ('',self.reports[v.ACCEPTANCE_RECORD]['comment']['body'].replace('was independently reread and accepted.','remains pending.')):
+            records=copy.deepcopy(self.reports);record=records[v.ACCEPTANCE_RECORD]
+            record['comment']['body']=body;record['comment_body_utf8_sha256']=hashlib.sha256(body.encode()).hexdigest()
+            with self.subTest(body_length=len(body)),self.assertRaises(ValueError):v.check_additional_acceptance(self.mongolian_help(),records)
+    def test_archived_comment_identity_and_exact_acceptance_quote_required(self):
+        for field,value in [('id',1),('html_url','https://example.invalid'),('created_at','2026-10-16T12:06:03Z'),('author',{'login':'other'})]:
+            records=copy.deepcopy(self.reports);records[v.ACCEPTANCE_RECORD]['comment'][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):v.check_additional_acceptance(self.mongolian_help(),records)
+        for field in ('acceptance_quote','acceptance_quote_utf8_sha256'):
+            records=copy.deepcopy(self.reports);records[v.ACCEPTANCE_RECORD]['pair_binding'][field]='pending'
+            with self.subTest(field=field),self.assertRaises(ValueError):v.check_additional_acceptance(self.mongolian_help(),records)
+    def test_archived_acceptance_wrong_complete_value_pair_or_report_rejected(self):
+        for field in ('tag','key','english','localized','source_utf8_sha256','target_utf8_sha256','conditional_report','conditional_report_sha256','conditional_report_pointer'):
+            records=copy.deepcopy(self.reports);records[v.ACCEPTANCE_RECORD]['pair_binding'][field]='wrong'
+            with self.subTest(field=field),self.assertRaises(ValueError):v.check_additional_acceptance(self.mongolian_help(),records)
+        pair=copy.deepcopy(self.mongolian_help());pair['tag']='mn'
+        with self.assertRaises(ValueError):v.check_additional_acceptance(pair,self.reports)
+    def test_missing_or_modified_external_acceptance_snapshot_fails(self):
+        for mutation in ('missing','altered'):
+            with self.subTest(mutation=mutation),tempfile.TemporaryDirectory() as tmp:
+                d=Path(tmp);shutil.copytree(self.evidence_root/'position-review-evidence',d/'position-review-evidence')
+                p=d/self.index['additional_acceptance_records'][v.ACCEPTANCE_RECORD]['path']
+                if mutation=='missing':
+                    p.unlink()
+                    with self.assertRaises(FileNotFoundError):v.check_reports(d,self.index)
+                else:
+                    p.write_bytes(p.read_bytes()+b' ')
+                    with self.assertRaises(ValueError):v.check_reports(d,self.index)
+    def test_additional_acceptance_index_requires_exact_immutable_binding(self):
+        for mutation in ('missing','mutable_revision','wrong_hash'):
+            index=copy.deepcopy(self.index)
+            if mutation=='missing':index.pop('additional_acceptance_records')
+            else:index['additional_acceptance_records'][v.ACCEPTANCE_RECORD]['durable_revision' if mutation=='mutable_revision' else 'sha256']='main'
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):v.check_reports(self.evidence_root,index)
+    def test_materializer_requires_archive_before_any_output(self):
+        from materialize_position_review_evidence import materialize
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);archive=root/'archive';out=root/'external';archive.mkdir()
+            for binding in self.index['reports'].values():
+                target=archive/binding['archive_path'];target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copyfile(self.evidence_root/binding['path'],target)
+            with self.assertRaises(FileNotFoundError):materialize(archive,out,self.directory/v.INDEX)
+            self.assertFalse(out.exists())
 
 if __name__=='__main__':unittest.main()
