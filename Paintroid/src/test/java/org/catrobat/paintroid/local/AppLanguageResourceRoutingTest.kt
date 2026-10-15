@@ -10,6 +10,8 @@ import android.os.LocaleList
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.PaintApplication
+import org.catrobat.paintroid.classic.TextDirection
+import org.catrobat.paintroid.classic.VerticalText
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.After
@@ -57,10 +59,11 @@ class AppLanguageResourceRoutingTest {
         PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
     }
 
-    @Test fun onlyTheCollidingPublicTagUsesAnInternalResourceVariant() {
+    @Test fun onlyTheTwoSpecialCataloguesUseInternalResourceVariants() {
         for(tag in AppLanguage.tags(context)) {
             val chosen=Locale.forLanguageTag(tag)
-            val expected=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+            val expected=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"
+                        else if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
             assertEquals(tag,expected,AppLanguage.resourceLocale(chosen).toLanguageTag())
         }
         assertFalse(AppLanguage.tags(context).any {it.contains("anpaint")})
@@ -115,6 +118,77 @@ class AppLanguageResourceRoutingTest {
         assertEquals(expected,resources.getQuantityString(R.plurals.ui_crop_preview_images,2,12,34,2))
         assertEquals("貯藏",resources.getString(R.string.ui_save))
         assertEquals("이미지 크레딧을 複寫할 수 없습니다.",resources.getString(R.string.commons_credit_copy_failed))
+    }
+
+    @Test @Config(sdk=[21,24,30,35])
+    fun emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches() {
+        val controller=Robolectric.buildActivity(Activity::class.java).setup()
+        try {
+            val activity=controller.get()
+            // Repeated switches also guard against the private English mirror
+            // winning ordinary English selection or retaining stale plural rules.
+            for(tag in listOf("qaa-Zsye-XV","en-XV","en-001","en-AU","en-CA","en-GB",
+                    "en-IN","en-SG","en-US","fr","qaa-Zsye-XV")) {
+                AppLanguage.select(context,tag)
+                val wrapped=AppLanguage.wrap(context)
+                val changed=Configuration(activity.resources.configuration).apply {
+                    fontScale=2f;screenWidthDp=640;screenHeightDp=320
+                    orientation=Configuration.ORIENTATION_LANDSCAPE
+                }
+                AppLanguage.refresh(activity,changed)
+                val emoji=tag=="qaa-Zsye-XV"
+                val expectedTag=if(emoji) "en-Zsye-XV-anpaint" else tag
+                assertEquals(tag,AppLanguage.selectedTag(context))
+                assertEquals(tag,context.getSharedPreferences("app-language",Context.MODE_PRIVATE)
+                    .getString("language-tag",null))
+                assertEquals(tag,Locale.getDefault().toLanguageTag())
+                if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
+                    context.getSystemService(LocaleManager::class.java)!!.applicationLocales.toLanguageTags())
+                for(localized in listOf(wrapped,activity)) {
+                    val resources=localized.resources
+                    @Suppress("DEPRECATION")
+                    val resourceLocale=if(Build.VERSION.SDK_INT>=24) resources.configuration.locales[0]
+                        else resources.configuration.locale
+                    assertEquals(expectedTag,resourceLocale.toLanguageTag())
+                    val direction=when(tag) {
+                        "qaa-Zsye-XV" -> TextDirection.VERTICAL_RL
+                        "en-XV" -> TextDirection.VERTICAL_LR
+                        else -> TextDirection.HORIZONTAL
+                    }
+                    assertEquals(direction,VerticalText.uiDirection(localized))
+                    assertEquals(when {emoji -> "💾 Save";tag=="fr" -> "Enregistrer";else -> "Save"},
+                        resources.getString(R.string.ui_save))
+                    if(emoji) {
+                        assertEquals("📁 File",resources.getString(R.string.ui_menu_file))
+                        assertEquals("🌐 Use device language",resources.getString(R.string.language20_device_default))
+                        for(count in 0..20) {
+                            val noun=if(count==1) "image" else "images"
+                            assertEquals("Emoji English count=$count",
+                                "✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images repositions their attachments.",
+                                resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
+                        }
+                    }
+                }
+                assertEquals(640,activity.resources.configuration.screenWidthDp)
+                assertEquals(320,activity.resources.configuration.screenHeightDp)
+                assertEquals(2f,activity.resources.configuration.fontScale,0f)
+                assertEquals(Configuration.ORIENTATION_LANDSCAPE,activity.resources.configuration.orientation)
+            }
+        } finally {controller.pause().stop().destroy()}
+    }
+
+    @Test @Config(sdk=[35]) fun systemEmojiSelectionAndDeviceLabelKeepThePublicTag() {
+        AppLanguage.select(context,"")
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("qaa-Zsye-XV")
+        assertEquals("qaa-Zsye-XV",AppLanguage.selectedTag(context))
+        assertEquals("💾 Save",AppLanguage.wrap(context).getString(R.string.ui_save))
+        assertEquals("qaa-Zsye-XV",manager.applicationLocales.toLanguageTags())
+        assertEquals("qaa-Zsye-XV",AppLanguage.locale(context).toLanguageTag())
+        AppLanguage.select(context,"fr")
+        assertEquals("🌐 Use device language",
+            AppLanguage.deviceDefaultLabel(context,Locale.forLanguageTag("qaa-Zsye-XV")))
+        assertEquals("fr",AppLanguage.selectedTag(context))
     }
 
     @Test fun russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove() {

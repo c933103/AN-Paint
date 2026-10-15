@@ -66,11 +66,15 @@ internal object AppLanguage {
     /** Keep the public preference distinct from an internal resource-selection qualifier.
      * Android infers Kore for ko-KR, so ko-KR and ko-Kore-KR otherwise tie. The
      * build mirrors the complete exact catalogue under this private app variant.
-     * The preference and default locale retain the requested public tag.
+     * Emoji English uses an English resource locale so its one/other forms use
+     * English plural rules rather than qaa's root rules. Its complete catalogue
+     * is mirrored too; the public preference/default locale retain qaa-Zsye-XV.
      */
     internal fun resourceLocale(chosen: Locale): Locale =
         if(chosen.toLanguageTag()=="ko-Kore-KR")
             Locale.Builder().setLocale(chosen).setVariant("anpaint").build()
+        else if(chosen.toLanguageTag()=="qaa-Zsye-XV")
+            Locale.forLanguageTag("en-Zsye-XV-anpaint")
         else chosen
 
     fun wrap(context: Context): Context {
