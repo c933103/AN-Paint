@@ -23,9 +23,9 @@ RESOURCE_TAGS = frozenset(("string", "plurals", "string-array"))
 RESOURCE_NAME = re.compile(r"[a-zA-Z_][a-zA-Z_0-9]*")
 
 
-def resource_names(path: Path, *, translatable_only: bool = True) -> set[str]:
-    """Read Android resource identities; plural and array each count as one."""
-    result: set[str] = set()
+def resource_identities(path: Path, *, translatable_only: bool = True) -> set[tuple[str, str]]:
+    """Read typed Android identities; plural and array each count as one."""
+    result: set[tuple[str, str]] = set()
     for element in ET.parse(path).getroot():
         if element.tag not in RESOURCE_TAGS:
             continue
@@ -34,22 +34,34 @@ def resource_names(path: Path, *, translatable_only: bool = True) -> set[str]:
         name = element.get("name")
         if not name or not RESOURCE_NAME.fullmatch(name):
             raise ValueError(f"{path}: malformed resource name {name!r}")
-        if name in result:
-            raise ValueError(f"{path}: duplicate resource name {name}")
-        result.add(name)
+        identity = (element.tag, name)
+        if identity in result:
+            raise ValueError(f"{path}: duplicate resource {element.tag}/{name}")
+        result.add(identity)
     return result
+
+
+def resource_names(path: Path, *, translatable_only: bool = True) -> set[str]:
+    return {name for _, name in resource_identities(path, translatable_only=translatable_only)}
+
+
+def default_resource_types() -> dict[str, str]:
+    """Resolve manifest names to types, rejecting ambiguous canonical names."""
+    resources: dict[str, str] = {}
+    for path in sorted((catalogues.RES / "values").glob("*.xml")):
+        for kind, name in sorted(resource_identities(path)):
+            if name in resources:
+                if resources[name] == kind:
+                    raise ValueError(f"{path}: duplicate default resource {kind}/{name}")
+                raise ValueError(f"{path}: ambiguous default key {name}: "
+                                 "bare-name manifest cannot represent multiple resource types")
+            resources[name] = kind
+    return resources
 
 
 def default_resource_names() -> set[str]:
     """Find every translatable default entry, not only entries in strings.xml."""
-    resources: set[str] = set()
-    for path in sorted((catalogues.RES / "values").glob("*.xml")):
-        current = resource_names(path)
-        duplicate = resources & current
-        if duplicate:
-            raise ValueError(f"{path}: duplicate default keys {sorted(duplicate)}")
-        resources.update(current)
-    return resources
+    return set(default_resource_types())
 
 
 def load_manifest(path: Path = MANIFEST) -> dict:
@@ -121,7 +133,9 @@ def locale_coverage(manifest: dict, tag: str, include_missing: bool = False) -> 
     path = catalogues.catalogue_paths().get(tag)
     if path is None:
         raise ValueError(f"No exact canonical catalogue for {tag!r}")
-    present = resource_names(path, translatable_only=False)
+    identities = resource_identities(path, translatable_only=False)
+    source_types = default_resource_types()
+    present = {name for name, kind in source_types.items() if (kind, name) in identities}
     result = {}
     for tier in manifest["tiers"]:
         keys = set(tier["keys"])

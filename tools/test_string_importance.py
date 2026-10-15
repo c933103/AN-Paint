@@ -99,11 +99,59 @@ class StringImportanceTests(unittest.TestCase):
             manifest = {"tiers": [{"id": "P0", "keys": ["label", "count", "choices", "absent"]}]}
             self.assertEqual({"unclassified"}, importance.resource_names(path))
             with patch.object(catalogues, "offered_tags", return_value=["test"]), \
-                    patch.object(catalogues, "catalogue_paths", return_value={"test": path}):
+                    patch.object(catalogues, "catalogue_paths", return_value={"test": path}), \
+                    patch.object(importance, "default_resource_types", return_value={
+                        "label": "string", "count": "plurals", "choices": "string-array",
+                        "absent": "string",
+                    }):
                 self.assertEqual(
                     {"P0": {"present": 3, "missing": 1, "total": 4, "missing_keys": ["absent"]}},
                     importance.locale_coverage(manifest, "test", include_missing=True),
                 )
+
+    def test_locale_presence_requires_matching_type_and_allows_shared_names(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "values").mkdir()
+            (root / "values" / "strings.xml").write_text(
+                '<resources><plurals name="count"><item quantity="other">%d</item></plurals>'
+                '<string-array name="choices"><item>A</item></string-array>'
+                '<string name="fixed" translatable="false">Fixed</string></resources>',
+                encoding="utf-8",
+            )
+            locale = root / "locale.xml"
+            locale.write_text(
+                '<resources><string name="count">Wrong type</string>'
+                '<string name="choices">Different type, same name</string>'
+                '<string-array name="choices" translatable="false"><item>A</item></string-array>'
+                '</resources>', encoding="utf-8",
+            )
+            manifest = {"tiers": [{"id": "P0", "keys": ["count", "choices"]}]}
+            with patch.object(catalogues, "RES", root), \
+                    patch.object(catalogues, "offered_tags", return_value=["test"]), \
+                    patch.object(catalogues, "catalogue_paths", return_value={"test": locale}):
+                self.assertEqual({"count", "choices"}, importance.default_resource_names())
+                self.assertEqual(
+                    {"P0": {"present": 1, "missing": 1, "total": 2, "missing_keys": ["count"]}},
+                    importance.locale_coverage(manifest, "test", include_missing=True),
+                )
+
+    def test_duplicate_typed_resources_and_ambiguous_default_names_fail(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "values").mkdir()
+            path = root / "values" / "strings.xml"
+            path.write_text('<resources><string name="same">A</string>'
+                            '<string name="same" translatable="false">B</string></resources>',
+                            encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "duplicate resource string/same"):
+                importance.resource_identities(path, translatable_only=False)
+            path.write_text('<resources><string name="same">A</string>'
+                            '<plurals name="same"><item quantity="other">%d</item></plurals>'
+                            '</resources>', encoding="utf-8")
+            with patch.object(catalogues, "RES", root), \
+                    self.assertRaisesRegex(ValueError, "ambiguous default key same"):
+                importance.default_resource_names()
 
     def test_direct_coverage_bounds_and_language_fallback_distinction(self):
         tags = catalogues.offered_tags()
