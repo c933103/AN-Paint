@@ -1,0 +1,106 @@
+{
+  "base_commit": "b765b8b2396d9b4c05f7272fa982d115ce18469a",
+  "patch_sha256": "5586fd0361a5d2ae19f5d05b427d233b4242f8ae98bc618551e56f118e188267",
+  "focused_final": {
+    "status": "passed",
+    "tests": 47,
+    "seconds": 4.061,
+    "log": "focused-rebased.log"
+  },
+  "host_final_serial": {
+    "status": "passed",
+    "tests": 729,
+    "seconds": 168.336,
+    "log": "host-rebased-serial.log"
+  },
+  "host_final_optimized_serial": {
+    "status": "passed",
+    "tests": 729,
+    "seconds": 178.237,
+    "log": "host-rebased-optimized-serial.log"
+  },
+  "negative_control": {
+    "status": "passed",
+    "baseline_values_rejected": 60,
+    "receipt": "final-negative-control.json",
+    "scope": "resource contracts; not Android execution"
+  },
+  "patch_reconstruction": {
+    "status": "passed",
+    "files": 1146,
+    "receipt": "patch-verification.json"
+  },
+  "rebase_preservation": {
+    "status": "passed",
+    "fresh_blobs_verified": 1142,
+    "empty_credit_values_retained": 60,
+    "merged_copy_onshow_idle_retained": true,
+    "receipt": "fresh-rebase-verification.json"
+  },
+  "previous_runs": [
+    {
+      "status": "passed",
+      "tests": 725,
+      "seconds": 169.008,
+      "log": "host-full.log",
+      "scope": "initial base and pre-final wording refinements"
+    },
+    {
+      "status": "failed",
+      "tests": 725,
+      "errors": 1,
+      "seconds": 235.525,
+      "log": "host-final.log",
+      "reason": "existing 10-second instrumentation verifier subprocess timeout during concurrent aggregates"
+    },
+    {
+      "status": "failed",
+      "tests": 725,
+      "errors": 2,
+      "seconds": 220.83,
+      "log": "host-final-optimized.log",
+      "reason": "same unchanged subprocess gates during concurrent aggregates"
+    },
+    {
+      "status": "passed",
+      "tests": 1,
+      "seconds": 57.024,
+      "log": "timeout-focused-rerun.log",
+      "scope": "exact timed-out method isolated with original timeout/assertions"
+    },
+    {
+      "status": "failed_setup",
+      "log": "focused-rebase-cwd-error.log",
+      "reason": "shell retained renamed old source directory; new empty-credit module absent there; corrected fresh-directory rerun passed47"
+    }
+  ],
+  "authored_not_executed": {
+    "jvm_class": "org.catrobat.paintroid.local.GalleryRedirectTest",
+    "test_methods": 10,
+    "declared_sdks": [
+      30,
+      35
+    ],
+    "source_review": "test-source-review.txt"
+  },
+  "unrun": [
+    "Kotlin compilation",
+    "Robolectric execution",
+    "Android lint/native build/APK",
+    "Gradle generated exact-script resource tasks",
+    "emulator/instrumentation",
+    "installed-device rendering/accessibility",
+    "live-provider behavior"
+  ],
+  "toolchain_limit": "No available gradle/kotlinc/adb/sdkmanager executable or configured SDK; known Gradle8.13 cache only contains incomplete download markers. JDK21 is installed, project documents JDK17. No dependency download attempted under task restriction.",
+  "publication": "none; parent owns exact-source review/CI and tracker reconciliation",
+  "language_limits": {
+    "reviewed_values": 60,
+    "high": 39,
+    "medium": 15,
+    "low": 6,
+    "native_speaker_certification": false,
+    "receipt": "final-language-coverage.json"
+  },
+  "status": "prepared and checked locally; no publication; Android runtime gates remain unrun"
+}
