@@ -1634,7 +1634,7 @@
     "Paintroid/src/main/res/values/strings.xml": "3044f7a83014224fe2d1ef6d2a34746471766a9d"
   },
   "previous_current_resource_revision": "244c37c4558a90b1e210885a3c7312dd754d7345",
-  "resource_identity_continuity": "All182 current resource identities verified against actual merged e53b2e6a. Relative to PR96 merge244c37c4, exactly four target catalogue blobs change: LT/AR/RU/JA, one crop plural each and14 forms total; their699 other entries remain exact. English and178 other resource blobs remain exact. All3002 current English/localized active-pair hashes are recomputed. Four exact complete-pair successors resolve four PR96 source holds; three changed-English holds remain. All1121 merged source blobs match the inspected checkout.",
+  "resource_identity_continuity": "All 182 resource identities remain exact at merged e53b2e6a; no resource or application change. Fresh complete Japanese Help, HK Help and HK crop-plural reviews bind the three remaining stale pairs to current English/target hashes. All 3,002 active pairs are mechanically checked; no stale-source pairs remain. The four paused processing findings and all unrelated data remain unchanged. Earlier source/context verification retains its original scope.",
   "unchanged_reviewed_context_files": [
     {
       "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
@@ -2109,5 +2109,190 @@
       67
     ],
     "scope": "Four complete plural resources after actual merge. Earlier PR96 phase remains separately recorded and no phase grants unmerged credit."
+  },
+  "previous_resource_identity_continuity_at_current_pair_review": "All182 current resource identities verified against actual merged e53b2e6a. Relative to PR96 merge244c37c4, exactly four target catalogue blobs change: LT/AR/RU/JA, one crop plural each and14 forms total; their699 other entries remain exact. English and178 other resource blobs remain exact. All3002 current English/localized active-pair hashes are recomputed. Four exact complete-pair successors resolve four PR96 source holds; three changed-English holds remain. All1121 merged source blobs match the inspected checkout.",
+  "current_assembly_pair_rereview": {
+    "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+    "preceding_tracker_revision": "f507f4c4d8fde2731434ad5ee2b122d747ec6d6d",
+    "review_bindings": {
+      "ja": {
+        "path": "current-assembly-review-evidence/japanese-review.json",
+        "sha256": "bebad46b4d2c2abf2fa2125af9d6c74427eafa502b641ba97f90ffc8e516e5c2",
+        "durable_receipt": "https://github.com/c933103/AN-Paint/blob/1422e223df2c9a06dc3c959fb326abdc9e0ac8d7/verification/current-assembly-help-review-20261015/japanese.json",
+        "review_id": "JA-ASSEMBLY-COMPLETE-CURRENT-20261015",
+        "final": true,
+        "reviewed_source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870"
+      },
+      "zh-HK": {
+        "path": "current-assembly-review-evidence/hk-review.json",
+        "sha256": "05615a99edde6bd04ecc21b04eb1fcbfdc1589d0e591e132c1c236bdb2e97975",
+        "durable_receipt": "https://github.com/c933103/AN-Paint/blob/1422e223df2c9a06dc3c959fb326abdc9e0ac8d7/verification/current-assembly-help-review-20261015/hong-kong.json",
+        "review_id": "HK-ASSEMBLY-CURRENT-20261015-E53B2E6",
+        "final": true,
+        "reviewed_source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870"
+      }
+    },
+    "complete_pairs": [
+      {
+        "tag": "ja",
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "english": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+        "localized": "Android のファイル選択画面から最大20枚の画像を追加できます。下部のトレイには、サムネイル、ファイル名、トリミングと［同じ幅］または［同じ高さ］の調整を反映した画像寸法が表示されます。提供元からファイル更新日時を取得できる場合は、その日時も表示されます。ファイル名または更新日時で並べ替えられますが、並べ替えても配置済み画像の位置は変わりません。\\n\\nサムネイルをタップして選択します。［画像をトリミング］はその画像をトリミングし、［一括トリミング］は選択した画像にピクセルまたは百分率の余白指定を適用します。トリミングハンドルをドラッグするか、数値を入力してください。［トリミングをリセット］で元の端に戻せます。トリミングは非破壊で、元に戻すこともできます。\\n\\nサムネイルを長押しするか、作業領域に配置済みの画像をドラッグし、強調表示された辺へドロップします。半透明のプレビューにはスナップ後の正確な結果が表示されます。右側への接続では上端がそろい、下側への接続では左端がそろいます。サムネイルをタップしてから「+」のターゲットをタップすることもできます。最初の画像は原点に配置されます。親画像をトリミングすると、そこに接続した画像も移動する場合があります。重なりは許可されません。\\n\\n［同じ幅］と［同じ高さ］では、各画像固有の縦横比を維持したまま、すべての入力画像の寸法をそろえます。ピクセル、百分率、最小、最大から選択してください。［元のサイズに戻す］では寸法の統一だけを解除し、トリミングは保持します。\\n\\n［配置解除］は選択した画像だけをトレイへ戻します。後続の画像は隙間を詰めますが、配置済みのままです。［削除］はその入力画像だけを削除します。［元に戻す］／［やり直し］でこれらの変更を復元できます。配置済み画像をドラッグすると並べ替えられ、空白部分をドラッグすると表示を移動できます。ピンチでズームできます。［すべて表示］は結合画像全体が見える倍率に変更するだけで、出力寸法は変更しません。\\n\\n［PNG を保存］は結合済み画像を直接保存します。［Paintで編集］はメインエディターへ転送し、元に戻せる画像置換として扱います。出力がメモリ上限を超える場合は、選択画面が表示されたときに小さい出力コピーを選択してください。ごく小さい出力でもメモリ上限を超える場合は、サイズの選択画面の代わりにメモリ警告が表示されます。元の画像ファイルは変更されません。現在の結合状態は端末内に保存され、戻ってきたときに再度開かれます。\\n\\nこのモードには、メインエディターの［ファイル］→［このアプリについて・ライセンス・クレジット］メニューに記載されているものと同じ Catrobat/AGPL および素材クレジットが適用されます。",
+        "english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+        "localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+        "review_id": "JA-ASSEMBLY-COMPLETE-CURRENT-20261015",
+        "review_evidence": "https://github.com/c933103/AN-Paint/blob/1422e223df2c9a06dc3c959fb326abdc9e0ac8d7/verification/current-assembly-help-review-20261015/japanese.json",
+        "reviewed_source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "decision": "accept_unchanged",
+        "complete_value_review": true,
+        "localized_unchanged": true,
+        "english_paragraphs": 7,
+        "localized_paragraphs": 7
+      },
+      {
+        "tag": "zh-HK",
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "english": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+        "localized": "可使用 Android 的檔案選擇器加入最多 20 張圖片。下方托盤會顯示縮圖、檔案名稱，以及裁剪及「相同闊度」或「相同高度」調整後的圖片尺寸。如檔案提供者有提供修改時間，亦會顯示該時間。你可按檔案名稱或修改時間排序；排序不會重新排列已放置的圖片。\\n\\n點按縮圖以選取圖片。「裁剪圖片」會裁剪該圖片；「批次裁剪」會以像素或百分比邊距套用至所選圖片。拖動裁剪控制點或輸入數值。「重設裁剪」會還原原來邊緣。裁剪屬非破壞性操作，可復原。\\n\\n按住縮圖，或拖動工作區內已放置的圖片，再放到反白顯示的邊緣。半透明預覽會顯示準確的貼齊結果。接到右方時會對齊頂端；接到下方時會對齊左邊。你亦可先點按縮圖，再點按「+」目標。第一張圖片由原點開始。裁剪母圖片時，連接到它的圖片可能會移動。不允許圖片互相重疊。\\n\\n「相同闊度」和「相同高度」會在保留各圖片本身長寬比例的情況下，為所有輸入圖片設定共同尺寸。可選像素、百分比、最小或最大。「還原原本大小」會取消尺寸統一，但保留裁剪。\\n\\n「取消放置」只會將所選圖片放回托盤。後面的圖片會填補空位，但仍維持已放置狀態。「移除」只會刪除該輸入圖片。「復原／重做」可還原這些變更。拖動已放置圖片可重新排列；拖動空白位置可平移視圖。以雙指縮放。「顯示全部」只會縮放視圖以顯示整個拼合結果，不會改變輸出尺寸。\\n\\n「儲存 PNG」會直接儲存拼合後的圖片。「在 Paint 編輯」會將圖片傳送到主編輯器，作為可復原的圖片取代操作。如果輸出超出記憶體上限，而應用程式提供了尺寸選擇畫面，請選擇較小的輸出副本。如果連極小的輸出也超出記憶體上限，應用程式會顯示記憶體警告，而不會顯示尺寸選擇畫面。原始圖片檔案不會被修改。目前的拼合狀態會儲存在裝置內，返回此功能時會重新開啟。\\n\\n此模式使用主編輯器「檔案」>「關於、授權及鳴謝」選單內相同的 Catrobat/AGPL 及素材鳴謝資料。",
+        "english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+        "localized_sha256": "8881b9b8a8ad618c3fa751f43fe5ccafc5c9cb1541516bada2e48ce9a6a57a2f",
+        "review_id": "HK-ASSEMBLY-CURRENT-20261015-E53B2E6",
+        "review_evidence": "https://github.com/c933103/AN-Paint/blob/1422e223df2c9a06dc3c959fb326abdc9e0ac8d7/verification/current-assembly-help-review-20261015/hong-kong.json",
+        "reviewed_source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "decision": "accept_unchanged",
+        "complete_value_review": true,
+        "localized_unchanged": true,
+        "english_paragraphs": 7,
+        "localized_paragraphs": 7
+      },
+      {
+        "tag": "zh-HK",
+        "key": "plurals/ui_crop_preview_images",
+        "english": {
+          "one": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images.",
+          "other": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+        },
+        "localized": {
+          "other": "預覽：%1$d × %2$d px\\n套用至 %3$d 張圖片。裁剪已放置圖片時，連接到它們的圖片可能會移動。"
+        },
+        "english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+        "localized_sha256": "c9f6bfe05e215cc3a8a86be7f2b1984aba5d63b647cdd0243600e36ead9fefa6",
+        "review_id": "HK-ASSEMBLY-CURRENT-20261015-E53B2E6",
+        "review_evidence": "https://github.com/c933103/AN-Paint/blob/1422e223df2c9a06dc3c959fb326abdc9e0ac8d7/verification/current-assembly-help-review-20261015/hong-kong.json",
+        "reviewed_source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "decision": "accept_unchanged",
+        "complete_value_review": true,
+        "localized_unchanged": true,
+        "quantity_forms": 1,
+        "english_quantity_forms": 2
+      }
+    ],
+    "superseded_predecessors": [
+      {
+        "tag": "ja",
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "cohort": "JA-THREE-MERGED-20261015",
+        "state": "needs_rereview",
+        "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+        "current_english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+        "reviewed_localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+        "current_localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+        "disposition": "accepted_static",
+        "review_scope": "complete_linguistic_and_static_source_context",
+        "en_line": 21,
+        "localized_line": 236,
+        "additional_context": "Movement may occur but is not universal: RIGHT child may remain stationary on height-only crop; BOTTOM child on width-only crop. Proposed Help warning uses may-move wording.",
+        "correction_applied": true,
+        "reviewed_source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+        "confidence": "high_bounded",
+        "source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+        "independent_review_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+        "merged_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+        "localized_blob_sha": "7497d73287c4c297f949c7bd13aea6cb24aef225",
+        "scope_limit": "Complete corrected Japanese value independently reviewed and matched to merged XML; no other locale, whole-language or device-layout acceptance.",
+        "source_pair_status": "current_english_changed_since_complete_review",
+        "source_pair_changed_at_revision": "244c37c4558a90b1e210885a3c7312dd754d7345",
+        "source_pair_change_source": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6192260350",
+        "source_pair_review_note": "The localized value is unchanged, but the accepted English hash differs from current merged English. Prior complete review is preserved; a new exact-pair review is required. This stale-source disposition is not itself a new confirmed wording defect."
+      },
+      {
+        "tag": "zh-HK",
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "cohort": "HK-ASSEMBLY-MERGED-20261015",
+        "state": "needs_rereview",
+        "reviewed_source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+        "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+        "current_english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+        "reviewed_localized_sha256": "8881b9b8a8ad618c3fa751f43fe5ccafc5c9cb1541516bada2e48ce9a6a57a2f",
+        "current_localized_sha256": "8881b9b8a8ad618c3fa751f43fe5ccafc5c9cb1541516bada2e48ce9a6a57a2f",
+        "disposition": "accepted_static",
+        "review_scope": "complete_linguistic_and_static_source_context",
+        "confidence": "high_bounded",
+        "source": "https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185032467",
+        "finding_kind": "localized_semantic_and_shared_source_context",
+        "finding_status": "resolved",
+        "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+        "tracker_sources": [
+          "https://github.com/c933103/AN-Paint/pull/77",
+          "https://github.com/c933103/AN-Paint/pull/75"
+        ],
+        "context_limit": "Complete corrected HK value and static callsite semantics reviewed. Exact merged bytes match the independently accepted implementation. No HK device-layout or whole-language certification.",
+        "correction_applied": true,
+        "finding_resolution_source": "https://github.com/c933103/AN-Paint/pull/90",
+        "implementation_revision": "388fa3a571ead0ddf084900d8a44e41fbd8ea3e0",
+        "merged_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+        "source_pair_status": "current_english_changed_since_complete_review",
+        "source_pair_changed_at_revision": "244c37c4558a90b1e210885a3c7312dd754d7345",
+        "source_pair_change_source": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6192260350",
+        "source_pair_review_note": "The localized value is unchanged, but the accepted English hash differs from current merged English. Prior complete review is preserved; a new exact-pair review is required. This stale-source disposition is not itself a new confirmed wording defect."
+      },
+      {
+        "tag": "zh-HK",
+        "key": "plurals/ui_crop_preview_images",
+        "cohort": "HK-ASSEMBLY-MERGED-20261015",
+        "state": "needs_rereview",
+        "reviewed_source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+        "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+        "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+        "reviewed_localized_sha256": "c9f6bfe05e215cc3a8a86be7f2b1984aba5d63b647cdd0243600e36ead9fefa6",
+        "current_localized_sha256": "c9f6bfe05e215cc3a8a86be7f2b1984aba5d63b647cdd0243600e36ead9fefa6",
+        "disposition": "accepted_static",
+        "review_scope": "complete_linguistic_and_static_source_context",
+        "confidence": "high_bounded",
+        "source": "https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185032467",
+        "finding_kind": "shared_source_context",
+        "finding_status": "resolved",
+        "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+        "tracker_sources": [
+          "https://github.com/c933103/AN-Paint/pull/75"
+        ],
+        "context_limit": "Complete corrected HK value and static callsite semantics reviewed. Exact merged bytes match the independently accepted implementation. No HK device-layout or whole-language certification.",
+        "correction_applied": true,
+        "finding_resolution_source": "https://github.com/c933103/AN-Paint/pull/90",
+        "implementation_revision": "388fa3a571ead0ddf084900d8a44e41fbd8ea3e0",
+        "merged_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+        "source_pair_status": "current_english_changed_since_complete_review",
+        "source_pair_changed_at_revision": "244c37c4558a90b1e210885a3c7312dd754d7345",
+        "source_pair_change_source": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6192260350",
+        "source_pair_review_note": "The localized value is unchanged, but the accepted English hash differs from current merged English. Prior complete review is preserved; a new exact-pair review is required. This stale-source disposition is not itself a new confirmed wording defect."
+      }
+    ],
+    "source_files_changed": 0,
+    "new_unique_receipts": 0,
+    "resolved_source_stale_pairs": 3,
+    "remaining_source_stale_pairs": [],
+    "unchanged_active_pairs": 2999,
+    "preserved_history_sha256": "d12163e9584a3962a8e95bd1bce68f3950be6b4b9dd65a873d95271dedc25734",
+    "preserved_partial_sha256": "ed40cde25ca4466446799cf432a0a2989a5a1a2b23db0816e2e360e6feda35dd",
+    "preserved_cohorts_sha256": "46f1359193cbfbb4f7d76e47a9574804aad05dfaebefd211bfada893ba40fcb3",
+    "unaffected_active_receipts_sha256": "4cab6a37dcc25d8c2d2e36041c28738af32c405b71c746a6b8463144d314ccc5",
+    "preserved_superseded_records": 56,
+    "new_superseded_records": 3,
+    "preserved_partial_records": 56,
+    "excluded_unmerged_prs": [
+      67
+    ],
+    "excluded_new_keys": "PR67 six new keys remain outside this 700-entry current-source denominator.",
+    "scope": "Data-only exact current-pair acceptance, after final complete independent reviews and durable receipts; earlier seven accepted assembly pairs, all historical evidence and four paused processing findings preserved."
   }
 }
