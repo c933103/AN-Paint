@@ -15,6 +15,13 @@ from validate_entry_review import validate as validate_internal
 
 HERE = Path(__file__).resolve().parent
 REV = 'e53b2e6aaaa9ac231cfdd38485e28ee9d638e870'
+# SHA-256 of newline-joined sorted resource paths from this pinned source.
+EXPECTED_PATHS_SHA256 = 'a668c272bd68c7c67fd0bd1ba9ff2dea23a4596cec3520cddf3d7e0add3d94fe'
+FRENCH_PAIRS = {('fr', key) for key in (
+    'string/ui_add_up_to_20_images_with_android_s',
+    'string/ui_drop_at_a_highlighted_edge_right_top_aligned',
+    'plurals/ui_crop_preview_images')}
+CROP_PAIRS = {(tag, 'plurals/ui_crop_preview_images') for tag in ('lt', 'ar', 'ru', 'ja')}
 
 def require(condition, message):
     if not condition:
@@ -28,6 +35,32 @@ def value_hash(value):
 
 def blob_hash(data):
     return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+
+def check_identity_scope(identities, counts):
+    require(identities.get('source_revision') == REV, 'Identity source revision changed')
+    paths = [item['path'] for item in identities['current_source_files']]
+    require(len(paths) == len(set(paths)) == 182, 'Expected 182 unique source identity paths')
+    require(hashlib.sha256('\n'.join(sorted(paths)).encode()).hexdigest() == EXPECTED_PATHS_SHA256,
+            'Source identity path set differs from pinned source')
+    catalogues = [row['catalogue_path'] for row in counts['languages']]
+    require(len(catalogues) == len(set(catalogues)) == 171, 'Expected 171 unique catalogues')
+    require(set(catalogues) <= set(paths), 'Catalogue missing from source identities')
+    return len(paths)
+
+def check_successor_scope(item, pair):
+    require(pair in FRENCH_PAIRS | CROP_PAIRS, 'Unexpected successor pair')
+    is_french = pair in FRENCH_PAIRS
+    evidence = ('https://github.com/c933103/AN-Paint/pull/96#issuecomment-6188585935'
+                if is_french else 'https://github.com/c933103/AN-Paint/pull/99#issuecomment-6192351710')
+    revision = '244c37c4558a90b1e210885a3c7312dd754d7345' if is_french else REV
+    require((item.get('disposition'), item.get('review_scope')) ==
+            ('accepted_static', 'complete_linguistic_and_static_source_context'),
+            'Successor requires complete static/linguistic scope: ' + str(pair))
+    require(item.get('source') == item.get('independent_review_source') == evidence,
+            'Successor evidence source mismatch: ' + str(pair))
+    require(item.get('reviewed_source_revision') == item.get('merged_revision') == revision,
+            'Successor reviewed/merged revision mismatch: ' + str(pair))
+    require(item.get('correction_applied') is True, 'Successor correction not applied')
 
 def values(path):
     result = {}
@@ -47,9 +80,12 @@ def check_pairs(receipts, fixture, english, catalogues):
         require(item['current_english_sha256'] == value_hash(english[pair[1]]), 'Current English mismatch: ' + str(pair))
         require(item['current_localized_sha256'] == value_hash(catalogues[pair[0]][pair[1]]), 'Current target mismatch: ' + str(pair))
     require(len(fixture['complete_french_pairs']) == 7, 'French accepted scope changed')
+    require({(item['tag'], item['key']) for item in fixture['complete_french_pairs']} == FRENCH_PAIRS | CROP_PAIRS,
+            'Successor fixture must contain each of the seven distinct pairs')
     for complete in fixture['complete_french_pairs']:
         pair = (complete['tag'], complete['key'])
         item = pairs[pair]
+        check_successor_scope(item, pair)
         require(complete['english'] == english[pair[1]] and complete['localized'] == catalogues[pair[0]][pair[1]], 'Complete French pair differs from source')
         require(item['state'] == 'reviewed_current' and item.get('finding_status') != 'open', 'French disposition not resolved')
         for kind, value in [('english', complete['english']), ('localized', complete['localized'])]:
@@ -74,6 +110,7 @@ def validate(source, previous=None):
     resolved = {(item['tag'], item['key']) for item in successor['complete_crop_pairs']}
     fixture['stale_other_pairs'] = [item for item in fixture['stale_other_pairs'] if (item['tag'], item['key']) not in resolved]
     require(summary['source_revision'] == fixture['source_revision'] == REV, 'Wrong source revision')
+    identity_count = check_identity_scope(identities, counts)
     for item in identities['current_source_files']:
         data = (source / item['path']).read_bytes()
         require(blob_hash(data) == item['git_blob_sha'], 'Source blob mismatch: ' + item['path'])
@@ -142,7 +179,7 @@ def validate(source, previous=None):
         pass
     else:
         raise ValueError('Negative control accepted bad target hash')
-    return {'status': 'PASS', 'source_revision': REV, 'source_identity_files': 182, 'active_english_hashes': 3002, 'active_localized_hashes': 3002, 'catalogue_partitions': 171, 'table_files': len(table_files), 'resolved_french_pairs': 3, 'source_stale_pairs': 3, 'resolved_crop_pairs': 4, 'accepted_crop_quantity_forms': 14, 'unaffected_active_pairs': 2992, 'superseded_history': 56, 'partial_records': 56, 'processing_holds': 4, 'negative_controls': 2, 'previous_checkpoint_compared': bool(previous), 'strict_validator': summary}
+    return {'status': 'PASS', 'source_revision': REV, 'source_identity_files': identity_count, 'active_english_hashes': 3002, 'active_localized_hashes': 3002, 'catalogue_partitions': 171, 'table_files': len(table_files), 'resolved_french_pairs': 3, 'source_stale_pairs': 3, 'resolved_crop_pairs': 4, 'accepted_crop_quantity_forms': 14, 'unaffected_active_pairs': 2992, 'superseded_history': 56, 'partial_records': 56, 'processing_holds': 4, 'negative_controls': 2, 'previous_checkpoint_compared': bool(previous), 'strict_validator': summary}
 
 if __name__ == '__main__':
     result = validate(Path(sys.argv[1]), Path(sys.argv[2]) if len(sys.argv) > 2 else None)
