@@ -34,7 +34,7 @@ class StringImportanceTests(unittest.TestCase):
             "string/ui_save", "string/ui_save_your_changes", "string/ui_autosave_failed_use_save",
             "string/ui_share_explanation34",
             "string/ui_sampled_resize_memory_explanation",
-            "string/formats22_pdf_raster_hint", "string/save20_lossy_quality_description",
+            "string/formats22_ascii_description", "string/formats22_pdf_raster_hint", "string/save20_lossy_quality_description",
             "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
             "string/save20_gif_description",
             "string/ui_the_image_was_saved_but_android_could_not",
