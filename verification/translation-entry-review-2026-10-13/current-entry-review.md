@@ -32,7 +32,7 @@ This publication changes review data, documentation and a data-validator only. I
 
 ### Hong Kong Chinese bounded successor
 
-[Complete 270-key receipt and independently reviewed repairs](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042): 260 active static accepts, 4 dormant linguistic-only accepts and 6 open findings, disjoint from the two preceding HK receipts. Current **Hong Kong Chinese:266 reviewed /6 open /428 unknown**. Five coherent cohorts cover save/recovery, formats/import/export, memory/errors and assembly/crop controls; this is not a completed HK catalogue pass.
+[Complete 270-key receipt and independently reviewed repairs](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042): 260 active static accepts, 4 linguistic-only accepts and 6 open findings, disjoint from the two preceding HK receipts. Current **Hong Kong Chinese:266 reviewed /6 open /428 unknown**. Five coherent cohorts cover save/recovery, formats/import/export, memory/errors and assembly/crop controls; this is not a completed HK catalogue pass.
 
 The live picker and New-image hint contexts are corrected in merged source. The old BMP/GIF diagnostic is now accepted as dormant wording, and the new generic-colour value has complete current HK review. Six findings remain explicit: unproven generic-busy reachability, external-link diagnosis, native-component diagnosis, dormant background wording, long-help provider/movement wording and crop-plural movement wording. The two resource repair candidates are independently approved but not applied by this data checkpoint.
 

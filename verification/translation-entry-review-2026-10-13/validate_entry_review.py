@@ -21,12 +21,30 @@ def require(condition, message):
     if not condition:
         raise ValueError(message)
 
+COMPLETE_REVIEW_SCOPES = {
+    "accepted_static": {
+        "complete_linguistic_and_static_source_context",
+        "complete_value_bounded_semantic",
+    },
+    "accepted_linguistic_only": {
+        "complete_linguistic_only",
+        "complete_linguistic_only_dormant",
+        "complete_linguistic_only_no_current_caller_claim",
+        "complete_linguistic_only_no_live_callsite",
+    },
+    "accepted_linguistic_only_dormant": {"complete_linguistic_only_dormant"},
+    "accepted_test_convention": {
+        "complete_value_test_mode_convention",
+        "test_mode_complete_value_convention",
+    },
+}
+
 def historical_partial_link_valid(partial, complete):
     """Allow preserved partial evidence only with an exact complete-review successor."""
     link = partial.get("superseded_by_complete_review", {})
     return (
         partial.get("partial_review_is_historical") is True
-        and complete.get("review_scope", "").startswith("complete_")
+        and complete.get("review_scope") in COMPLETE_REVIEW_SCOPES.get(complete.get("disposition"), set())
         and link.get("cohort") == complete.get("cohort") != partial.get("cohort")
         and bool(link.get("source"))
         and link["source"] == complete.get("source")
@@ -99,12 +117,15 @@ def validate(directory):
     require(expected_state(dict(control, current_localized_sha256="changed")) == "needs_rereview", "Changed-value control failed")
     require(expected_state(dict(control, current_localized_sha256="changed", finding_status="open")) == "needs_rereview", "Changed open control failed")
     partial_control = {"cohort": "partial", "reviewed_english_sha256": "a", "reviewed_localized_sha256": "b"}
-    complete_control = dict(control, cohort="complete", source="receipt", review_scope="complete_linguistic")
+    complete_control = dict(control, cohort="complete", source="receipt", disposition="accepted_static", review_scope="complete_linguistic_and_static_source_context")
     require(not historical_partial_link_valid(partial_control, complete_control), "Unmarked partial overlap incorrectly accepted")
     linked = dict(partial_control, partial_review_is_historical=True, superseded_by_complete_review={"cohort": "complete", "source": "receipt", "english_sha256": "a", "localized_sha256": "b"})
     require(historical_partial_link_valid(linked, complete_control), "Exact historical partial successor rejected")
     require(not historical_partial_link_valid(linked, dict(complete_control, reviewed_localized_sha256="changed")), "Mismatched historical partial hash accepted")
     require(not historical_partial_link_valid(linked, dict(complete_control, review_scope="delta_only")), "Partial successor accepted as complete")
+    require(not historical_partial_link_valid(linked, dict(complete_control, review_scope="complete_delta_only")), "Prefixed partial scope accepted as complete")
+    require(not historical_partial_link_valid(linked, dict(complete_control, review_scope="complete_unknown")), "Unknown complete-prefixed scope accepted")
+    require(not historical_partial_link_valid(linked, dict(complete_control, disposition="partial_review_not_counted")), "Wrong disposition accepted as complete")
     return {"source_revision": revision, "languages": len(rows), "entries": len(keys), "active_pairs": len(pairs), **totals}
 
 if __name__ == "__main__":
