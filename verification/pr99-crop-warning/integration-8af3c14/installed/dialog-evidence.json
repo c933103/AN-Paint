@@ -1,0 +1,297 @@
+{
+  "success": true,
+  "scope": "source-bound-installed-api35-notice-credit-and-normal-font-colour; en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted",
+  "source_tests_sha256": "fd74765d14daf7d52524858f263807822bb2b7bb88a513d795f591a64d24c782",
+  "source_report": "dedicated dialog instrumentation summary",
+  "source_report_sha256": "1e20e02bb47686d7762490383d028871d673aac43bdc2788d5af3b947b6c8197",
+  "device_sdk": 35,
+  "cases": [
+    {
+      "method": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "profile": "dialog-whole-interaction",
+      "zip_bytes": 174038,
+      "zip_sha256": "7ff3cb58b8016a2d463956e4d81c613978ac9619daa493240cf0fa17c5bc0f2f",
+      "manifest_bytes": 765,
+      "manifest_sha256": "b6b96075f7b8cf1d9a1f3033f55cb5045fb7b9763f850ff209188a0deb7c8f3f",
+      "files": [
+        {
+          "path": "0-about-portrait.png",
+          "bytes": 41705,
+          "sha256": "cd38e1c52fff212e35fa782a2421e6d73b2f261d235ae6df4b47bcd8cb6780cd"
+        },
+        {
+          "path": "1-about-landscape.png",
+          "bytes": 41773,
+          "sha256": "d6f85ae9ce6def9a91cb498ed8e41eb87cb4f8a28c20de27ffccc1d458aac52d"
+        },
+        {
+          "path": "2-notice-0-initial.png",
+          "bytes": 40683,
+          "sha256": "098800ce8f8bf8db553bda09795b95d8589ca6eb8ef55d91e314801f5d52b85e"
+        },
+        {
+          "path": "3-notice-0-portrait.png",
+          "bytes": 51010,
+          "sha256": "42525c8d89fe62a156b73ef12daeadbf4150db787e849cfc090d7b20f147bd2c"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 32119,
+          "sha256": "fb5930ebd6989eac60a095d06badbd104b3c08af19bc7853e3113ad419acaa73"
+        }
+      ]
+    },
+    {
+      "method": "aboutArtworkNoticeCompletesNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "profile": "dialog-whole-interaction",
+      "zip_bytes": 46879,
+      "zip_sha256": "66312558e55cc612176beb460244b34ac907db6a2f85d91111adfa2445c05b82",
+      "manifest_bytes": 383,
+      "manifest_sha256": "44a9fa82e256d5b405a6551a722b4b859564009282903e74ebe523d660c10aa2",
+      "files": [
+        {
+          "path": "0-notice-1-initial.png",
+          "bytes": 44552,
+          "sha256": "24a8b7fe7a922f5bc2eef49b0addb5974e19b38c97dd51c67e7627671aebc839"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 28418,
+          "sha256": "3c3154334741e6f66c64cae17248ca89cfc4348c6c2e32b2a1809809eeeb8c2b"
+        }
+      ]
+    },
+    {
+      "method": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "profile": "dialog-whole-interaction",
+      "zip_bytes": 44086,
+      "zip_sha256": "e4b6a11206f8aae24cdc32f53f2d6eb9c6bb545580b5d86b6d8e6918261d7745",
+      "manifest_bytes": 391,
+      "manifest_sha256": "b8adc40cbc79bc13e951fce44cb4eede5b676c8c12b347541e6b8d6325e3319f",
+      "files": [
+        {
+          "path": "0-notice-2-initial.png",
+          "bytes": 41738,
+          "sha256": "848b5b248190da647de16fbc623e72d5da2437d3d6132adc6959d75244816505"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 27225,
+          "sha256": "0c50169a81618668dc1e7ec91f487e73334b27e7dc38807d0c2e097bc6bfb4fe"
+        }
+      ]
+    },
+    {
+      "method": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+      "test_class": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "profile": "dialog-whole-interaction",
+      "zip_bytes": 97855,
+      "zip_sha256": "521aab3b2d0b2b4dbc1187f0a5bd120219b767dd37f3b4d7773396db1b2d591d",
+      "manifest_bytes": 534,
+      "manifest_sha256": "f8a25d64513f2a3b805dab3e7775163561c515d5778258a5db894f1e53881f5f",
+      "files": [
+        {
+          "path": "0-credit-landscape.png",
+          "bytes": 46361,
+          "sha256": "b3dcb22387d2ae3712c940740be02d6c19c6aab52e3457eb95ae5184b8c51a81"
+        },
+        {
+          "path": "1-credit-portrait.png",
+          "bytes": 50041,
+          "sha256": "0f39e030d91cfb3f27c58efa5edfb2d63e3efb6cf0404cdadfd9e3665be356bd"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 21865,
+          "sha256": "a27df8f3983071bfb7ddbe3501be5d529746477926e36374fc74f6cd6e23d3e8"
+        }
+      ]
+    },
+    {
+      "method": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "profile": "colour-original-deadline",
+      "zip_bytes": 75022,
+      "zip_sha256": "1f1623481eb37ebef6124f23ae64f32eb3dee8be90ef568532023c410fa54209",
+      "manifest_bytes": 665,
+      "manifest_sha256": "40bff4b42eb02642f06ebe521e9477f983f1a90db8695be2cc9901c621c971c5",
+      "files": [
+        {
+          "path": "0-colour-pre-assert-allocation.png",
+          "bytes": 23793,
+          "sha256": "5b826349211b3f2333cf38d4b4f1a89e68f772c45ff372112af947f16c0df91d"
+        },
+        {
+          "path": "1-colour-normal-before.png",
+          "bytes": 23770,
+          "sha256": "fb81a604f4ae8b5228fb610b37a9ab1b938676b9dd000fa4df46b18bb52f3d8b"
+        },
+        {
+          "path": "2-colour-normal-scrolled.png",
+          "bytes": 25524,
+          "sha256": "a9d4338a437e3e350ba8a373f006c0c43c04b346ae1f10d278af3128b8831f86"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 18773,
+          "sha256": "7be6e37bda59daad566acbb06b9306c1cbd5a5991df133c250ceb0585dcf223d"
+        }
+      ]
+    },
+    {
+      "method": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "profile": "colour-original-deadline",
+      "zip_bytes": 206729,
+      "zip_sha256": "08a63cbf77351fe77789894598c3d6eee5eced0e66ad9d00a99be01d54daf982",
+      "manifest_bytes": 1296,
+      "manifest_sha256": "8c0b3426729728053edfd155d2061ac0b2c22c942c1a4daa5a0fde35d5640184",
+      "files": [
+        {
+          "path": "0-retained-landscape.png",
+          "bytes": 23368,
+          "sha256": "a30c9020548cc3080a59e1d5a149d432c26a46a26eef979265915e349f6078a8"
+        },
+        {
+          "path": "1-retained-portrait.png",
+          "bytes": 40392,
+          "sha256": "663453a80ba04b6d1a0c10ef14ccde4bd5b36b6f0568476b2ef753d87932d8c5"
+        },
+        {
+          "path": "2-retained-landscape.png",
+          "bytes": 23361,
+          "sha256": "8e7bc71a56b2ba028465a2bd3f51abd2e2be1a587b68eac0549aacc46acee7b1"
+        },
+        {
+          "path": "3-colour-surface-dragged.png",
+          "bytes": 23983,
+          "sha256": "fedb5210d6cdfa561b3786ca268fd3c9e135372aaaaedaa4ec72425ec5398c35"
+        },
+        {
+          "path": "4-colour-ime-visible.png",
+          "bytes": 27555,
+          "sha256": "d0b25a1413535ea1876c0ef4bb98743ef8c615ff60d880c4f197f7d7a0611a91"
+        },
+        {
+          "path": "5-colour-ime-hidden.png",
+          "bytes": 23492,
+          "sha256": "6be1196be954c5fe38dfd4584a34b8c2a26ca5db3085468eb0fa9e114c54a971"
+        },
+        {
+          "path": "6-colour-ime-hidden-retained.png",
+          "bytes": 23492,
+          "sha256": "6be1196be954c5fe38dfd4584a34b8c2a26ca5db3085468eb0fa9e114c54a971"
+        },
+        {
+          "path": "7-colour-reopened-back-closed.png",
+          "bytes": 20355,
+          "sha256": "b32d14043f115ca8059cb6f0f53e6a682c727b7f188d33243b545263e730cdae"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 41277,
+          "sha256": "eb36266434c625b3508cfea5a902b17f871bf42de5e9232bb0e5cf176f7fef5c"
+        }
+      ]
+    },
+    {
+      "method": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "profile": "colour-original-deadline",
+      "zip_bytes": 62566,
+      "zip_sha256": "a66998d797247706286d9d90be222410e4421d40bf131ff8aa33f99f6cec827d",
+      "manifest_bytes": 533,
+      "manifest_sha256": "7901d7a7f178d3f6b5391edd76f592d622e28c76e58b6b830b3070f4788e757b",
+      "files": [
+        {
+          "path": "0-hungarian-captions-landscape.png",
+          "bytes": 25176,
+          "sha256": "e5eb143bb66f9717f7a28d3975af097c4372a6215821d4b2f7996439ed919a52"
+        },
+        {
+          "path": "1-hungarian-captions-portrait.png",
+          "bytes": 35898,
+          "sha256": "36c7621541436b81c2e0b7e3fe4ebd59e906db6461aae31b4a4bdcdaef541240"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 20224,
+          "sha256": "4e2d8a96c0cab80b2ee3221fca78b7faf93c1f1c0d7dd0ef3b8edff8ab17c848"
+        }
+      ]
+    },
+    {
+      "method": "largeEnglishColourCaptionsAndPreviewRemainReachable",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "profile": "colour-original-deadline",
+      "zip_bytes": 96884,
+      "zip_sha256": "abf9b4306239ff7da02345c5773d9aa9d91a3e7b72ab904ab118a9fda11e1fa2",
+      "manifest_bytes": 663,
+      "manifest_sha256": "9d76cd6434128b6dea23f9e4274b4dc6badbc60723db0e05477f6ce5dbf01d45",
+      "files": [
+        {
+          "path": "0-colour-large-initial.png",
+          "bytes": 32028,
+          "sha256": "c974e6908cace7d763eff22ffefb2ae52dab8533b458bc24381ce771e8b454ac"
+        },
+        {
+          "path": "1-colour-large-preview-reached.png",
+          "bytes": 31165,
+          "sha256": "5ab1f0a771d55264ed2f3b8b9b372d455d962315333e46acd619bcf2f56ac026"
+        },
+        {
+          "path": "2-colour-large-top-reached.png",
+          "bytes": 32083,
+          "sha256": "47681510f4d0097cf3a722bea7216436f8f13897ccd92336d1dbeb16a45e9a57"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 21722,
+          "sha256": "3e315d2ed3425f9e3ad3a81e267cdff189a355f2604589091bbcb73d1682ab1c"
+        }
+      ]
+    },
+    {
+      "method": "largeHungarianColourCaptionsAndPreviewRemainReachable",
+      "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+      "profile": "colour-original-deadline",
+      "zip_bytes": 96732,
+      "zip_sha256": "5a6ec2f5d3610d1d6c9f97f24349dfb1bec7c5ca3a59de6ea9fd7b60ad51b0d7",
+      "manifest_bytes": 665,
+      "manifest_sha256": "e1f32db8a370731959095bb4b8f9ef755403af15e9f4a5671c2dbc8ba98d7108",
+      "files": [
+        {
+          "path": "0-colour-large-initial.png",
+          "bytes": 30943,
+          "sha256": "824a4919d671f742360eb2f813d5a775483f60dace27118f626ed67ce8db057f"
+        },
+        {
+          "path": "1-colour-large-preview-reached.png",
+          "bytes": 33156,
+          "sha256": "2c4842c8d4f2de5cd49025efb170e16af80c49c07f5f8aa678dc700e889800f2"
+        },
+        {
+          "path": "2-colour-large-top-reached.png",
+          "bytes": 30678,
+          "sha256": "4998d18a4f0457dc15234fabe7b49cf06d4b37100ebdc239192355bd04493d56"
+        },
+        {
+          "path": "receipt.json",
+          "bytes": 23024,
+          "sha256": "0b5a8863657503dbf1c38e447a7a1f3537735da05ba679ca72d4818641bfba25"
+        }
+      ]
+    }
+  ],
+  "normal_font_colour_source_bound_pass": true,
+  "large_font_preview_rail_source_bound_pass": true,
+  "large_font_preview_rail_scope": "API35 en-US/hu 2x 640x320 mdpi, native caption/preview/top reachability and Cancel only",
+  "universal_colour_acceptance": false,
+  "colour_interaction_timing": "original source-enforced 45000ms deadline; no exported whole-interval measurement",
+  "large_text_short_landscape_advanced_colour": "not-accepted",
+  "simultaneous_ime_field_footer_fit": "not-accepted",
+  "physical_device_or_linguistic_acceptance": false
+}

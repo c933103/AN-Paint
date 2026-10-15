@@ -1,0 +1,294 @@
+{
+  "head": "244c37c4558a90b1e210885a3c7312dd754d7345",
+  "tree": "d9a934b729c27708ef6098f0e6afcfa327453f38",
+  "run": 38736128901,
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    "Exact-script resource generation",
+    "Build APK and corresponding source",
+    "Regression tests and lint",
+    "Emulator API 35"
+  ],
+  "regression_artifact": {
+    "id": 11974753693,
+    "sha256": "15b85465a826f1158a614d96d55f1ef86f331bb590c99f7cb235698fb0c5ce81",
+    "download_digest_verified": true
+  },
+  "original_junit": [
+    {
+      "file": "TEST-org.catrobat.paintroid.local.AppLanguageResourceRoutingTest.xml",
+      "sha256": "d26913288bec3ebb97d801e69ac7dc3fa405d218ce9cedbddfbbbc39aab9dc3a",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "test_cases": [
+        "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection[30]",
+        "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection",
+        "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove[30]",
+        "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove",
+        "systemEmojiSelectionAndDeviceLabelKeepThePublicTag",
+        "systemAppLanguageKeepsThePublicMixedScriptTag",
+        "onlyTheTwoSpecialCataloguesUseInternalResourceVariants[30]",
+        "onlyTheTwoSpecialCataloguesUseInternalResourceVariants",
+        "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments[30]",
+        "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments",
+        "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue[30]",
+        "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue",
+        "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches[30]",
+        "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches",
+        "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[21]",
+        "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[24]",
+        "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[30]",
+        "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches"
+      ]
+    },
+    {
+      "file": "TEST-org.catrobat.paintroid.local.AssemblyActivityTest.xml",
+      "sha256": "e198127d37ddc38703549a0d0bd7736ced57bb119e7a12662277ef4a010a9616",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "test_cases": [
+        "editInPaintTransfersCompositeAndMainUndoRestoresPreviousCanvas",
+        "sameWidthAndHeightOfferPercentPreserveRatiosAndUndoWithoutChangingSources",
+        "frenchHeaderTracksAddPlaceUnplaceAndRemoveIncludingOne",
+        "reopeningAssemblyRestoresOriginalFilesCropsAndAttachments",
+        "twentyImagesLoadAndAnOversizedPickerBatchIsRejectedBeforeReading",
+        "everyEnglishOverrideAndFrenchQualifiesWholeCropQuantityMessages",
+        "capacityRefusalUsesTrueRemainingCountBeforeReadingAndAcceptsAnExactFit",
+        "unplaceButtonRemovesOnlySelectedRootAndPromotesRemainingImages",
+        "individualAndBatchCropUsePercentAndAreUndoableBeforePlacement",
+        "multiPickerLoadsNamesTimesAndThumbnailsThenNativeDragEventsSnapBothDirections",
+        "placedImageCanBeDraggedByTouchWithVisibleSnappingAndCancelledSafely",
+        "frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage",
+        "landscapeTrayAndWorkspaceRemainReachable",
+        "savePngStreamsExactCompositeAndCancelRemovesOnlyTemporaryOutput",
+        "frenchActualBatchCropShowsCompleteWarningForZeroOneAndTwoSelectedImages",
+        "renderingOneAndTwoImagesDisplaysEachActualProgressCallbackAndCreatesOutput",
+        "cropTouchHandlesKeepTrackingAcrossMovesAndPixelPercentChoiceIsVisible"
+      ]
+    },
+    {
+      "file": "TEST-org.catrobat.paintroid.local.AssemblyModelTest.xml",
+      "sha256": "857154fa826825ab9efa6bd11f3cfa056e14ec58bee3a0594195d890cf7fd588",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "test_cases": [
+        "regionCropUsesOrientedCoordinatesForRotatedAndMirroredPhotos",
+        "unplaceClosesHorizontalAndVerticalGapsWithoutUnplacingSuccessors",
+        "removingBranchRootAndNormalizationKeepAllOtherImagesWithoutOverlap",
+        "exportUsesCroppedOriginalPixelsAndFlattensImportsAndEmptySpaceOnWhite",
+        "batchMarginsUseEachOriginalSizeAndTwentyImageCapPreservesExistingItems",
+        "cropReflowsAttachmentsAndAnInvalidBatchIsAtomicWithUndoRedoAndPersistence",
+        "movingFirstImageAfterItsFormerSuccessorsKeepsEveryOtherImagePlaced",
+        "attachToAnyPlacedImageWithExactTopOrLeftAlignmentAndPreventOverlap",
+        "sortByNameOrRealModificationTimeDoesNotChangePlacementAndUnknownTimesStayLast",
+        "normalizedExportUsesOriginalImagesAndFlattensAlphaAtTheSharedEdge",
+        "normalizationPreservesEachAspectRatioCropsAndProjectPersistence",
+        "attachmentMovementDependsOnTheCroppedDimensionAndKeepsTheRelationship"
+      ]
+    }
+  ],
+  "hosted_python": {
+    "tests": 696,
+    "seconds": 166.805,
+    "skips": 2,
+    "status": "passed"
+  },
+  "api35_native": {
+    "expected": 74,
+    "completed": 74,
+    "status": "passed"
+  },
+  "api35_app": {
+    "success": true,
+    "execution_status": "passed",
+    "inventory_validated": true,
+    "device_sdk": 35,
+    "source_tests_sha256": "fd74765d14daf7d52524858f263807822bb2b7bb88a513d795f591a64d24c782",
+    "timeout_seconds_by_phase": {
+      "ordinary": 180,
+      "gallery-draft": 90,
+      "vertical-english-manchu": 180,
+      "vertical-literary-chinese-emoji": 180,
+      "dialog": 300,
+      "seed": 60,
+      "verify": 60
+    },
+    "dialog_timeout_seconds": 300,
+    "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted",
+    "ordinary_and_gallery_total_timeout_seconds": 270,
+    "vertical_timeout_seconds_per_shard": 180,
+    "vertical_total_timeout_seconds": 360,
+    "receipt_scope": "complete-composed-app-union",
+    "all_app_total_timeout_seconds": 1050,
+    "declared_tests": 35,
+    "sdk_eligible_tests": 35,
+    "sdk_suppressed_tests": [],
+    "selected_tests": 35,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 35,
+    "phases": {
+      "ordinary": 17,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "dialog": 9,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "hungarianColourCaptionsFitPortraitAndLandscape"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "retainedColourStateSurvivesRotationImeCancelAndReopen"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutArtworkNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      ],
+      [
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ]
+  },
+  "receipt_url": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6192687454",
+  "limitations": [
+    "No release, native-speaker, whole-language, TalkBack or crop-warning installed-layout certification",
+    "No PR56 acceptance-counter changes"
+  ]
+}
