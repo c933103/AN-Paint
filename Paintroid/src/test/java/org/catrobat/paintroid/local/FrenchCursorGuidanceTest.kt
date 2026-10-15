@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.os.LocaleList
 import android.os.Looper
+import android.view.View
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
@@ -87,6 +88,15 @@ class FrenchCursorGuidanceTest {
             val shown=dialog.findViewById<TextView>(android.R.id.message).text.toString()
             assertEquals(help+"\n\n"+ui(R.string.ui_cursor_tap_hint37)+"\n\n"+ui(R.string.ui_cursor_marker_help31),shown)
             dialog.dismiss()
+            // The drawing tool's Help button takes the separate legacy-alias route.
+            click("tool_BRUSH")
+            assertTrue(activity.paintCanvas.cursorMode)
+            assertEquals(PaintTool.BRUSH,activity.paintCanvas.tool)
+            assertTrue(activity.window.decorView.findViewWithTag<View>("tool_help").isShown)
+            click("tool_help")
+            val toolDialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertEquals(help,toolDialog.findViewById<TextView>(android.R.id.message).text.toString())
+            toolDialog.dismiss()
             click("cursor_draw_toggle");assertTrue(activity.paintCanvas.cursorDrawing)
             assertEquals(draw,ShadowToast.getTextOfLatestToast())
             click("cursor_draw_toggle");assertFalse(activity.paintCanvas.cursorDrawing)
