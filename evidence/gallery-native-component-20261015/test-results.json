@@ -1,0 +1,74 @@
+{
+  "base_commit": "b765b8b2396d9b4c05f7272fa982d115ce18469a",
+  "base_tree": "690cad93cea0968cbe6b280e9f51c3977af54c4d",
+  "candidate_tree": "4311d103479b85f9c4ab84e185a04e33972d4048",
+  "executed": [
+    {
+      "name": "focused wording",
+      "command": "python3 -m unittest discover -s tools -p 'test_gallery_native_component_wording.py' -v",
+      "status": "passed",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "focused-wording.log"
+    },
+    {
+      "name": "focused wording/catalogue/font/importance",
+      "command": "python3 -m unittest -v test_gallery_native_component_wording test_translations test_locale_font_coverage test_string_importance",
+      "cwd": "source/tools",
+      "status": "passed",
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "log": "focused-resource-font.log"
+    },
+    {
+      "name": "complete host normal",
+      "command": "python3 -m unittest discover -s tools -p 'test_*.py' -v",
+      "status": "passed",
+      "tests": 730,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 177.39,
+      "log": "host-normal.log"
+    },
+    {
+      "name": "complete host optimized",
+      "command": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+      "status": "passed",
+      "log": "host-optimized.log",
+      "tests": 730,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 168.884
+    }
+  ],
+  "non_runtime_verification": {
+    "negative_control": "60 old converter-specific values rejected; negative-control.json",
+    "patch": "All 1,146 files/modes reconstructed, no whitespace errors; patch-verification.json",
+    "integration": "All 60 PR103 values and PR102/other resource bytes preserved in isolated rehearsal; integration-rehearsal.json",
+    "source_review": "resolved locale restoration issue, no remaining blocking source findings; test-source-review.txt",
+    "language_review": "60 complete statements; six cross-reviewed corrections; 31 high / 21 medium / eight low confidence; final-language-coverage.json"
+  },
+  "jvm_attempt": {
+    "command": "GRADLE_USER_HOME=/tmp/anpaint-native-pr88/gradle-home timeout 30s ./gradlew --offline --no-daemon :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.GalleryNativeComponentFailureTest",
+    "status": "bootstrap_failed_before_compilation",
+    "exit_code": 1,
+    "reason": "Gradle 8.13 is not locally cached; its services.gradle.org distribution request failed with java.net.SocketException: Network is unreachable",
+    "log": "gradle-attempt.log"
+  },
+  "unrun": [
+    "Kotlin compilation",
+    "Seven Robolectric methods declared on API30 and API35",
+    "Android lint",
+    "compiled/generated resources",
+    "native codecs/APK/source build",
+    "installed Android/API30/API35 tests",
+    "live image-provider tests"
+  ],
+  "publication": "No GitHub writes, workflow trigger, review request, tracker mutation or release performed."
+}
