@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
@@ -41,27 +40,22 @@ def resource_identities(path: Path, *, translatable_only: bool = True) -> set[tu
     return result
 
 
-def resource_names(path: Path, *, translatable_only: bool = True) -> set[str]:
-    return {name for _, name in resource_identities(path, translatable_only=translatable_only)}
+def resource_keys(path: Path, *, translatable_only: bool = True) -> set[str]:
+    """Serialize typed identities without losing resources that share a name."""
+    return {f"{kind}/{name}" for kind, name in
+            resource_identities(path, translatable_only=translatable_only)}
 
 
-def default_resource_types() -> dict[str, str]:
-    """Resolve manifest names to types, rejecting ambiguous canonical names."""
-    resources: dict[str, str] = {}
+def default_resource_keys() -> set[str]:
+    """Find every translatable default identity across all values XML files."""
+    resources: set[str] = set()
     for path in sorted((catalogues.RES / "values").glob("*.xml")):
-        for kind, name in sorted(resource_identities(path)):
-            if name in resources:
-                if resources[name] == kind:
-                    raise ValueError(f"{path}: duplicate default resource {kind}/{name}")
-                raise ValueError(f"{path}: ambiguous default key {name}: "
-                                 "bare-name manifest cannot represent multiple resource types")
-            resources[name] = kind
+        keys = resource_keys(path)
+        duplicates = resources & keys
+        if duplicates:
+            raise ValueError(f"{path}: duplicate default resource {', '.join(sorted(duplicates))}")
+        resources.update(keys)
     return resources
-
-
-def default_resource_names() -> set[str]:
-    """Find every translatable default entry, not only entries in strings.xml."""
-    return set(default_resource_types())
 
 
 def load_manifest(path: Path = MANIFEST) -> dict:
@@ -76,7 +70,7 @@ def validate(manifest: dict, source: set[str] | None = None) -> list[str]:
         return ["priority manifest must be an object"]
     if set(manifest) != {"schema_version", "source_catalogue", "tiers"}:
         errors.append("priority manifest has unexpected or missing top-level fields")
-    if type(manifest.get("schema_version")) is not int or manifest.get("schema_version") != 1:
+    if type(manifest.get("schema_version")) is not int or manifest.get("schema_version") != 2:
         errors.append("unsupported priority manifest schema_version")
     if manifest.get("source_catalogue") != SOURCE:
         errors.append("source_catalogue must point to the canonical English strings.xml")
@@ -84,9 +78,9 @@ def validate(manifest: dict, source: set[str] | None = None) -> list[str]:
     if not isinstance(tiers, list) or len(tiers) != len(TIERS):
         return errors + ["tiers must be a four-element list (P0, P1, P2, P3)"]
     if source is None:
-        source = default_resource_names()
+        source = default_resource_keys()
     if not isinstance(source, set) or not all(isinstance(s, str) for s in source):
-        return errors + ["source resource names must be a set of strings"]
+        return errors + ["source resource identities must be a set of typed keys"]
 
     seen: dict[str, str] = {}
     for index, tier in enumerate(tiers):
@@ -105,7 +99,8 @@ def validate(manifest: dict, source: set[str] | None = None) -> list[str]:
         if keys != sorted(keys):
             errors.append(f"tier {index}: keys must be alphabetically sorted")
         for key in keys:
-            if not RESOURCE_NAME.fullmatch(key):
+            kind, separator, name = key.partition("/")
+            if not separator or kind not in RESOURCE_TAGS or not RESOURCE_NAME.fullmatch(name):
                 errors.append(f"tier {index}: invalid resource key {key!r}")
                 continue
             if key in seen:
@@ -133,9 +128,7 @@ def locale_coverage(manifest: dict, tag: str, include_missing: bool = False) -> 
     path = catalogues.catalogue_paths().get(tag)
     if path is None:
         raise ValueError(f"No exact canonical catalogue for {tag!r}")
-    identities = resource_identities(path, translatable_only=False)
-    source_types = default_resource_types()
-    present = {name for name, kind in source_types.items() if (kind, name) in identities}
+    present = resource_keys(path, translatable_only=False)
     result = {}
     for tier in manifest["tiers"]:
         keys = set(tier["keys"])
@@ -159,7 +152,7 @@ def main() -> int:
         parser.error("--missing-keys requires --locale")
     try:
         manifest = load_manifest()
-        source = default_resource_names()
+        source = default_resource_keys()
         errors = validate(manifest, source)
         if errors:
             for error in errors:
@@ -195,3 +188,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

@@ -33,8 +33,8 @@ Current partition (15 October 2026):
 
 | Tier | Source entries |
 | --- | ---: |
-| P0 | 84 |
-| P1 | 248 |
+| P0 | 85 |
+| P1 | 247 |
 | P2 | 288 |
 | P3 | 78 |
 | **Total** | **698** (697 strings and 1 plural) |
@@ -87,3 +87,11 @@ queues without reviving any rejected review claims.
 The manifest covers translatable string, plurals and string-array identities
 in the default values XML directory. It never changes runtime UI or language
 fallback behavior.
+
+
+Manifest schema 2 and missing-key reports use explicit `type/name` keys, for
+example `string/ui_save`, `plurals/ui_crop_preview_images` and
+`string-array/choices`. The type is the canonical XML resource tag. Different
+types may share a name and are classified independently; a duplicate of the
+same type and name is rejected. Consumers joining review receipts must retain
+both type and name. Bare-name schema 1 manifests are rejected, not guessed.
