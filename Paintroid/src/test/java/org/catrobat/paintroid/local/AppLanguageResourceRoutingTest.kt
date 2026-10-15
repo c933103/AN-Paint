@@ -202,7 +202,7 @@ class AppLanguageResourceRoutingTest {
                 else -> "Изображений для обрезки: $count."
             }
             val expected="Предпросмотр: 123 × 45 px\n$targets " +
-                "Обрезка размещённых изображений перемещает присоединённые к ним изображения."
+                "При обрезке размещённых изображений присоединённые к ним изображения могут переместиться."
             assertEquals("Russian selected count=$count",expected,
                 resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
         }
