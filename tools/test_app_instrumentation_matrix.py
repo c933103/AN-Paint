@@ -37,19 +37,28 @@ def receipts(source, sdk):
 
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
-        for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}}),
-                            (35, {'ordinary':17, 'dialog':9, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
+        for sdk, counts in ((30, {'ordinary':23, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}}),
+                            (35, {'ordinary':24, 'dialog':9, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 35)
-            self.assertEqual(result['completed_tests'], 23 if sdk==30 else 35)
+            self.assertEqual(result['declared_tests'], 42)
+            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 42)
             self.assertEqual(len(result['sdk_suppressed_tests']), 10 if sdk==30 else 0)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
             self.assertIn(('paint.anpaint.android.PageCountWordingDeviceTest',
                 'oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench'), app_partition(expected,sdk)['ordinary'])
+            position = 'paint.anpaint.android.AssemblyPositionDeviceTest'
+            position_methods = {
+                'ainuKanaPositionTextAndNativeEditing', 'ainuLatinPositionTextAndNativeEditing',
+                'manchuPositionColumnsAndNativeEditing', 'tibetanPositionTextAndNativeEditing',
+                'dzongkhaPositionTextAndNativeEditing', 'jejuPositionTextAndNativeEditing',
+                'nomPositionTextAndNativeEditing',
+            }
+            self.assertEqual({(position, method) for method in position_methods},
+                             {item for item in app_partition(expected,sdk)['ordinary'] if item[0]==position})
             self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],270)
             self.assertEqual(result['all_app_total_timeout_seconds'],630 if sdk==30 else 1050)
             if sdk == 35:
@@ -238,7 +247,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],23 if sdk==30 else 35)
+                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 42)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
                         for subtree in ('app','app-gallery-draft','app-dialog','app-vertical'):

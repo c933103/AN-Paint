@@ -191,3 +191,24 @@ APK and reuses strict SDK-aware native/app inventory checks. SDK-ineligible app
 phases are explicitly NOT RUN; no fake empty passing report is produced. This
 workflow does not expand ordinary API35/full API30+35 or implicit release gates.
 Emulator results do not establish physical ARM-device or vendor-picker coverage.
+
+## Exact-position dialog coverage
+
+Seven installed `AssemblyPositionDeviceTest` methods are source-discovered in
+the ordinary app phase on API30/API35: Ainu Kana/Latin, Manchu, Tibetan,
+Dzongkha, Jeju and Nôm. They exercise the actual production position dialog
+with explicit locale/image-metadata fixtures, full caption and accessibility
+text, line/vertical-column extent and native scroll reachability in portrait
+and landscape. Native focus/input, invalid-value rejection, Apply, saved-project
+reload, Cancel and Back are separate assertions. Manchu must mount the
+left-to-right vertical shell and retain its complete vertical caption spans.
+
+The ordinary 180-second phase cap and existing matrix remain unchanged. Each
+new method has a 45-second interaction bound. Added methods must fit the real
+combined phase; count/selector contracts and synthetic receipts do not prove
+Android execution or runtime. No existing test is removed or filtered. These
+checks cover native layout boxes and input, not pixel-level glyph clipping,
+linguistic acceptance, picker/import/export, forced IME visibility, enlarged-font
+layouts, physical devices or all catalogue languages. The production dialog is
+opened as a fixture; the assembly toolbar launch route retains its separate JVM
+coverage. The existing glyph/font checks remain complementary.
