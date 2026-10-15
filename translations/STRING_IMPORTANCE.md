@@ -82,16 +82,21 @@ revalidate an entry-review receipt; the independent corrections in
 
 ## Current source partition
 
-Current partition (15 October 2026). Before this audit the counts were
-P0/P1/P2/P3 = 92/246/286/76; afterward:
+Current partition (15 October 2026), including the six exact-position controls
+added by PR #67. Before the source-role audit the counts were
+P0/P1/P2/P3 = 92/246/286/76; the audit produced 92/249/288/71.
+The six new labels, active coordinate instructions and validation messages are
+P2 because they operate the specialized assembly dialog. The inline
+`ui_assembly_position_help` is required position guidance, not the optional
+general assembly how-to guide. No existing identity changes tier.
 
 | Tier | Source entries |
 | --- | ---: |
 | P0 | 92 |
 | P1 | 249 |
-| P2 | 288 |
+| P2 | 294 |
 | P3 | 71 |
-| **Total** | **700** (699 strings and 1 plural) |
+| **Total** | **706** (705 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or
 accepted reviews. The validator recomputes totals and fails when an English

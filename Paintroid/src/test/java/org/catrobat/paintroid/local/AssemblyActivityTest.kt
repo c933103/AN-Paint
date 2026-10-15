@@ -17,6 +17,7 @@ import android.view.DragEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
 import org.junit.After
@@ -339,6 +340,68 @@ class AssemblyActivityTest {
         override fun update(uri: Uri,values: ContentValues?,selection: String?,args: Array<out String>?)=0
         override fun delete(uri: Uri,selection: String?,args: Array<out String>?)=0
     }
+    @Test fun exactPositionMovesOnlySelectedImageAllowsOverlapAndSurvivesReopening() {
+        load(); placeThree()
+        val before=activity.assembly.layout(); val selected=image("a.png").id
+        click("assembly_item_$selected"); click("assembly_position")
+        var dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val root=dialog.window!!.decorView
+        assertEquals("24",root.findViewWithTag<EditText>("assembly_position_x").text.toString())
+        assertEquals("0",root.findViewWithTag<EditText>("assembly_position_y").text.toString())
+        root.findViewWithTag<EditText>("assembly_position_x").setText("5")
+        root.findViewWithTag<EditText>("assembly_position_y").setText("4")
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+        assertFalse(dialog.isShowing)
+        val expected=before.toMutableMap().apply { put(selected,Rect(5,4,17,24)) }
+        assertEquals(expected,activity.assembly.layout()); assertEquals(ImagePosition(5,4),image("a.png").position)
+        assertTrue(Rect.intersects(activity.assembly.layout().getValue(selected),activity.assembly.layout().getValue(image("b.png").id)))
+        click("assembly_undo"); assertEquals(before,activity.assembly.layout())
+        click("assembly_redo"); assertEquals(expected,activity.assembly.layout())
+        controller.pause().stop().destroy()
+        controller=Robolectric.buildActivity(AssemblyActivity::class.java); activity=controller.setup().get(); waitForWork()
+        assertEquals(expected,activity.assembly.layout()); assertEquals(ImagePosition(5,4),image("a.png").position)
+        assertEquals(3,provider.reads)
+        click("assembly_item_$selected"); click("assembly_position")
+        dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertEquals("5",dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_x").text.toString())
+        assertEquals("4",dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_y").text.toString())
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+    }
+
+    @Test fun invalidPositionAndCancelDoNotChangeImagesOrTheSavedProject() {
+        load(); placeThree(); click("assembly_item_${image("a.png").id}")
+        val before=activity.assembly.layout(); val saved=File(activity.assembly.directory,"project.json").readBytes()
+        click("assembly_position")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog; val root=dialog.window!!.decorView
+        val x=root.findViewWithTag<EditText>("assembly_position_x"); val y=root.findViewWithTag<EditText>("assembly_position_y")
+        for ((left,top) in listOf("-1" to "0","1.5" to "0","0" to "","2147483648" to "0","2147483647" to "0")) {
+            x.setText(left); y.setText(top); dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+            assertTrue("$left,$top",dialog.isShowing)
+            val error=root.findViewWithTag<TextView>("assembly_position_error")
+            assertTrue(error.isShown); assertTrue(error.text.isNotBlank())
+            assertEquals(before,activity.assembly.layout()); assertArrayEquals(saved,File(activity.assembly.directory,"project.json").readBytes())
+        }
+        x.setText("5"); y.setText("4"); dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+        assertFalse(dialog.isShowing); assertEquals(before,activity.assembly.layout())
+        assertArrayEquals(saved,File(activity.assembly.directory,"project.json").readBytes())
+    }
+
+    @Test @Config(qualifiers = "w900dp-h412dp-land-xhdpi") fun positionDialogKeepsInputsAndActionsReachableInShortLandscape() {
+        load(); click("assembly_item_${image("b.png").id}"); click("assembly_position")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        fun reachable(view: View) {
+            assertTrue(view.width>0 && view.height>0)
+            view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true); idle()
+            val visible=Rect(); assertTrue(view.getGlobalVisibleRect(visible))
+            assertEquals(view.height,visible.height())
+        }
+        for (tag in listOf("assembly_position_x","assembly_position_y")) reachable(dialog.window!!.decorView.findViewWithTag<View>(tag))
+        reachable(dialog.getButton(AlertDialog.BUTTON_POSITIVE)); reachable(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+        assertTrue(activity.assembly.layout().isEmpty())
+    }
+
+
 
     @Test fun frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage() = withLanguage("fr") {
         click("assembly_help")

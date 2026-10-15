@@ -73,6 +73,10 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     }
     @Suppress("DEPRECATION")
     fun decodeCrop(item: AssemblyImage, target: ImageDimensions, resident: Long = residentPixels): Bitmap {
+        // A crop exported at its original size is an integer pixel copy, including
+        // right-angle EXIF transforms. Filtering/dithering is reserved for resizing.
+        val resizing = target != item.croppedSize
+        val paint = Paint(0).apply { isFilterBitmap = resizing; isDither = resizing }
         val jxl=JxlCodec.isJxl(item.file)
         val tiff=TiffCodec.isTiff(item.file)
         val pdf=PdfCodec.isPdf(item.file)
@@ -91,7 +95,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
             val input=source.decode(plan,policy.workingBytes,resident+target.pixels)
             try {
                 val output=Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
-                try {Canvas(output).drawBitmap(input,item.crop,Rect(0,0,target.width,target.height),Paint(Paint.FILTER_BITMAP_FLAG));return output}
+                try {Canvas(output).drawBitmap(input,item.crop,Rect(0,0,target.width,target.height),paint);return output}
                 catch(error: Throwable) {output.recycle();throw error}
             } finally {input.recycle()}
         }
@@ -121,7 +125,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
                     val rotated = RectF(0f,0f,decoded.width.toFloat(),decoded.height.toFloat()); local.mapRect(rotated)
                     local.postScale(target.width/rotated.width(),target.height/rotated.height())
                     output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
-                    Canvas(output).drawBitmap(decoded,local,Paint(Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
+                    Canvas(output).drawBitmap(decoded,local,paint)
                 } else {
                     // Some older platform codecs have no region decoder. Use a bounded full
                     // decode, and fail visibly if preserving the requested crop detail cannot fit.
@@ -136,7 +140,7 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
                         item.crop.right.toFloat()*decoded.width/item.dimensions.width,item.crop.bottom.toFloat()*decoded.height/item.dimensions.height)
                     output = Bitmap.createBitmap(target.width,target.height,Bitmap.Config.ARGB_8888)
                     val matrix = Matrix().apply { setRectToRect(region,RectF(0f,0f,target.width.toFloat(),target.height.toFloat()),Matrix.ScaleToFit.FILL) }
-                    Canvas(output).drawBitmap(decoded,matrix,Paint(Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
+                    Canvas(output).drawBitmap(decoded,matrix,paint)
                 }
                 output!!.also { output = null }
             } finally { decoder?.recycle(); input?.recycle(); output?.recycle() }

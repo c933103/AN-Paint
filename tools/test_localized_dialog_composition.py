@@ -32,4 +32,4 @@ class InstalledPhaseContracts(unittest.TestCase):
     def test_current_operational_phase_deadlines(self):
         self.assertEqual({'ordinary':180,'gallery-draft':90,'dialog':300,
             'vertical-english-manchu':180,'vertical-literary-chinese-emoji':180,
-            'seed':60,'verify':60},PHASE_TIMEOUTS)
+            'seed':60,'verify':60,'position-ainu-manchu':180,'position-tibetan-jeju-nom':180},PHASE_TIMEOUTS)

@@ -33,8 +33,8 @@ those prebuilt binaries through `adb shell am instrument -w -r`, without Gradle
 or native-codec rebuilds. SDK-aware source discovery determines the expected
 identities and explicit exclusions; never freeze a past test count as a source
 oracle. API30 omits SDK-ineligible tests and the explicitly API35 restart pair.
-API35 includes ordinary, gallery-draft, dialog, two vertical shards and the
-external force-stop seed/verify phases. A missing or excluded test is not a pass.
+API35 includes ordinary, gallery-draft, dialog, two vertical shards, two position
+shards and the external force-stop seed/verify phases. A missing or excluded test is not a pass.
 
 The exact-script job tests clean debug/release resource merges, release-first,
 producer-before-consumer order, identical generated XML, an unchanged up-to-date
@@ -67,8 +67,14 @@ Focused checks do not turn an incomplete aggregate into a pass.
   Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.
 - Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds;
   API35 dialog phase: 300 seconds; each vertical shard: 180 seconds; seed and
-  verify: 60 seconds each. App ceilings total 630 seconds on API30 and 1,050 seconds on API35.
+  verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,050 seconds on API35.
   Including native gives 810 / 1,230 seconds before setup/collection.
+- Separate position job: two 180-second invocations, a 16-minute execution step,
+  6-minute image step and 26-minute job cap. Its controlled path is 270 seconds
+  startup + 360 instrumentation + 180 preparation + 10 capture tails + 20 failure
+  recovery + 36 cleanup = 876 seconds; a 60-second processing allowance rounds
+  up to 16 minutes. These are cancellation budgets, not proven runtime bounds.
+  Across both jobs, app ceilings total 990 / 1,410 seconds on API30 / API35.
 - The current 43-minute step includes separately bounded setup, processing and
   cleanup allowances. Inner deadlines and failure behavior must not be relaxed
   to obtain green results. Test/installation failures are not automatically retried.
@@ -191,3 +197,38 @@ APK and reuses strict SDK-aware native/app inventory checks. SDK-ineligible app
 phases are explicitly NOT RUN; no fake empty passing report is produced. This
 workflow does not expand ordinary API35/full API30+35 or implicit release gates.
 Emulator results do not establish physical ARM-device or vendor-picker coverage.
+
+## Exact-position dialog coverage
+
+Seven installed `AssemblyPositionDeviceTest` methods are source-discovered in
+two explicit position shards on API30/API35: Ainu Kana/Latin, Manchu, Tibetan,
+Dzongkha, Jeju and Nôm. They exercise the actual production position dialog
+with explicit locale/image-metadata fixtures, full caption and accessibility
+text, line/vertical-column extent and native scroll reachability in portrait
+and landscape. Native focus/input, invalid-value rejection, Apply, saved-project
+reload, Cancel and Back are separate assertions. Manchu must mount the
+left-to-right vertical shell and retain its complete vertical caption spans.
+
+The ordinary 180-second phase cap remains unchanged. The seven position methods
+run once in a separate emulator job: Ainu Kana/Latin + Manchu (three), and
+Tibetan/Dzongkha + Jeju + Nôm (four), each capped at 180 seconds. Each method keeps
+its 45-second interaction bound. Native Back dismisses a previous field's IME
+before revealing/tapping the next field; view clipping alone does not account
+for keyboard occlusion. Native focus/input and all persistence assertions remain.
+
+Core and position jobs use the same API selection and prebuilt artifacts. Their
+partial receipts cannot stand in for the complete union. The final `Emulator API`
+gate requires both jobs to succeed, identical checkout/run/variant,
+main/test APK and corresponding-source hashes, and the exact disjoint source-bound
+app report union. Exact-identity groups from earlier attempts of the same run may
+be reused; both positive attempt numbers are recorded and cannot be in the future.
+Missing/failed/duplicate methods, wrong selectors/deadlines,
+stale artifacts and SDK mismatches fail closed. All 42 declared methods remain
+required according to their existing SDK rules (30 selected on API30; 42 on API35).
+Count/selector contracts and synthetic receipts do not prove Android execution
+or runtime. These
+checks cover native layout boxes and input, not pixel-level glyph clipping,
+linguistic acceptance, picker/import/export, forced IME visibility, enlarged-font
+layouts, physical devices or all catalogue languages. The production dialog is
+opened as a fixture; the assembly toolbar launch route retains its separate JVM
+coverage. The existing glyph/font checks remain complementary.
