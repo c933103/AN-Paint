@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "pull_request": "https://github.com/c933103/AN-Paint/pull/85",
+  "failed_application_commit": "e26e5e6d8bad02b49b7f2fbfc55b26d80dc257ee",
+  "failed_application_tree": "faa0cf1d9976061ca970c92a8625e11febbc3929",
+  "expected_corrected_tree": "7b5641d6b4b041e49fa7442d894353b4f65275f6",
+  "hosted_failure": {
+    "run": "https://github.com/c933103/AN-Paint/actions/runs/38772508852",
+    "job": "https://github.com/c933103/AN-Paint/actions/runs/38772508852/job/116551694000",
+    "stage": "Kotlin test compilation",
+    "file": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryExternalLinkTest.kt",
+    "line": 185,
+    "diagnostic": "Cannot access '<init>': it is package-private in WebResourceError",
+    "jvm_test_execution": "did not run"
+  },
+  "correction": "Replace only the invalid anonymous WebResourceError subclass with a typed Mockito mock that returns the same ERROR_CONNECT code and fixture description. Add Mockito 4.11.0 as a testImplementation dependency; production code and all resource values remain unchanged.",
+  "dependency_rationale": "The selected version matches Robolectric 4.14.1’s own Mockito test dependency. Its default subclass maker uses Objenesis construction rather than invoking the SDK constructor. This does not configure inline-agent attachment. Gradle resolution and runtime still require exact-head CI.",
+  "primary_sources": [
+    "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/gradle/libs.versions.toml",
+    "https://github.com/mockito/mockito/blob/v4.11.0/src/main/java/org/mockito/internal/configuration/plugins/DefaultMockitoPlugins.java",
+    "https://github.com/mockito/mockito/blob/v4.11.0/src/main/java/org/mockito/internal/creation/instance/ObjenesisInstantiator.java"
+  ],
+  "files": [
+    {
+      "path": "Paintroid/build.gradle",
+      "mode": "100644",
+      "base_blob": "07e5a048c5b76999a6f128226638a53f5752937e",
+      "blob": "64ad5ef6900e585b3e579b5f9eb1e4ceb73a3943",
+      "sha256": "b74ae486acc62b53b9121de3775d8ea1581e224cec3df03248a3c86283450ca4",
+      "bytes": 9066
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryExternalLinkTest.kt",
+      "mode": "100644",
+      "base_blob": "468ed8e652ddff70d64c0dd6f477b9316f48d3f0",
+      "blob": "eb07a795198cf246198379df8b865de5871955e3",
+      "sha256": "70e5db302291ae9a1cf709d0b0d0e925fac51bc21fd775d5e6d3bba8ec984061",
+      "bytes": 12740
+    }
+  ],
+  "target_file_count": 1136,
+  "removed_files": 0,
+  "mode_changes": 0,
+  "independent_review": {
+    "type": "Independent model-assisted code/test review",
+    "conclusion": "The exact two-file delta passes bounded review. All six test bodies, callbacks, assertions, resource loop and cleanup remain byte-for-byte unchanged.",
+    "prior_review_correction": "Earlier static review missed the SDK constructor accessibility defect; hosted compilation establishes that gap. The prior review is not evidence that these JVM tests compiled or ran."
+  },
+  "checks": {
+    "focused_normal": {
+      "passed": 35,
+      "run": 35
+    },
+    "focused_optimized": {
+      "passed": 35,
+      "run": 35
+    },
+    "host_normal": {
+      "run": 717,
+      "passed": 717,
+      "elapsed_seconds": 221.448,
+      "exit_code": 0,
+      "log_sha256": "fd0c5a133b7261c4ae87236830f65b1b0ba33fa2cc972b3a2a1f4448e7423598"
+    },
+    "host_optimized": {
+      "run": 717,
+      "passed": 717,
+      "elapsed_seconds": 216.049,
+      "exit_code": 0,
+      "log_sha256": "f177c567431dc4fc3d275842093d20448e2ec36dca5952f3e88d09e90a89f412"
+    },
+    "patch_applies_with_whitespace_error": true,
+    "all_1136_source_blobs_modes_checked": true
+  },
+  "earlier_invocation": "The first focused module invocation from repository root lacked the tools import path and reported three import errors. The corrected invocation from tools ran 35/35 in both modes; the bad invocation is not a pass.",
+  "unchanged_statement_review": "The complete 59-statement cross-review and all idiom limits remain bound to identical resource/fixture bytes; this correction adds no new linguistic acceptance credit.",
+  "local_android": "Unrun locally: Gradle distribution unavailable in this execution environment. Hosted exact-head dependency resolution, Kotlin compilation and all six Robolectric methods configured on API30/API35 remain required.",
+  "scope_limits": [
+    "No installed-device/browser/provider-network result is inferred.",
+    "Existing processing-label holds and unrelated inherited Hakka wording issue remain unchanged."
+  ],
+  "published_corrected_commit": "76301426120cc6fd0245887c47136daa2752ed1f",
+  "published_corrected_tree": "7b5641d6b4b041e49fa7442d894353b4f65275f6",
+  "publication_readback": "Parent verified published commit and exact tree. This local source was verified against the same tree.",
+  "previous_evidence_commit": "909225195174c3aae87d0270f60770727b7da0e2",
+  "previous_evidence_url": "https://github.com/c933103/AN-Paint/tree/909225195174c3aae87d0270f60770727b7da0e2/evidence/pr85-gallery-external-link",
+  "lineage": "This is an additive correction record. Earlier e26 source/test preparation evidence remains preserved at its own immutable ref, including the defect exposed by hosted test compilation. This record binds only the bounded two-file correction and subsequent host checks to the corrected application tree; it does not replace the 59-statement review or claim Android runtime success."
+}
