@@ -231,7 +231,8 @@ class LegacyImageCreditsActivityTest {
         fun launch(request: Intent,code: Int,options: Bundle?) {
             intent=Intent(request);requestCode=code
             failure?.let {throw it}
-            super.startActivityForResult(request,code,options)
+            // A successful launch returns without delivering a result. The test
+            // supplies cancellation explicitly, just as Android does later.
         }
     }
 
