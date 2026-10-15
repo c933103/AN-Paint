@@ -193,6 +193,8 @@ class CmapBoundaryTest(unittest.TestCase):
     def test_format4_each_protected_mapping_corruption_is_rejected(self):
         for glyph in FIXTURE['glyphs']:
             cp=int(glyph['codepoint'][2:],16)
+            if cp > 0xffff:
+                continue  # Supplementary mappings exist only in format 12.
             with self.subTest(codepoint=glyph['codepoint']):
                 data=bytearray(FONT)
                 for first,last,delta_at,offset_at in format4_segments(data):
@@ -209,6 +211,14 @@ class CmapBoundaryTest(unittest.TestCase):
                 data=valid_checksums(data)
                 self.assertIn(glyph['codepoint']+' cmap identity mismatch',
                               errors(data,with_matching_inventory(data),ASSETS,FIXTURE))
+
+    def test_supplementary_position_glyphs_are_mapped_only_in_format12(self):
+        maps=validated_unicode_maps(FONT)
+        for cp in (0x2a700,0x2ca20):
+            glyph=next(g for g in FIXTURE['glyphs'] if int(g['codepoint'][2:],16)==cp)
+            for kind,mapping in maps:
+                if kind==12:self.assertEqual(glyph['glyph_id'],mapping.get(cp))
+                else:self.assertNotIn(cp,mapping)
 
     def test_format12_nonexistent_supplementary_glyph_rejected(self):
         data=bytearray(FONT)

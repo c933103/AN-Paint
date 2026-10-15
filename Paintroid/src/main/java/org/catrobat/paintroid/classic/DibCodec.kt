@@ -18,7 +18,7 @@ object DibCodec {
                 temporary.outputStream().buffered().use { PackedDib.toBmp(file, it) }
                 LegacyColourMetadata.check(temporary)
             } catch (error: LegacyColourMetadata.UnsupportedColour) {
-                throw IOException(ui(R.string.save20_unsupported_tagged_colour), error)
+                throw IOException(ui(R.string.save20_unsupported_image_colour), error)
             }
             return block(temporary)
         } finally { temporary.delete() }

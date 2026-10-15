@@ -41,14 +41,14 @@ import java.util.Locale
 @LooperMode(LooperMode.Mode.PAUSED)
 class GalleryBackDirectionTest {
     // Independent script-direction oracle for the current picker, not the production expression.
-    private val rtlTags=setOf("ar","ckb","fa","fa-IR","he","ps","sd","ug","ur","yi")
-    private val captureTags=setOf("en-001","ar","he","mn-Mong","mnc-Mong","lzh-Hant","qaa-Zsye-XV")
+    private val rtlTags=setOf("ar","ary","ckb","fa","fa-IR","he","ps","sd","ug","ur","yi")
+    private val captureTags=setOf("en-001","ar","ary","he","mn-Mong","mnc-Mong","lzh-Hant","qaa-Zsye-XV")
     private val app get()=RuntimeEnvironment.getApplication() as Context
 
     @Test @Config(fontScale=2f)
     fun everyOfferedLocaleUsesAccessibleBackAndKeepsBothNavigationBranches()=withLanguageState {
         val tags=AppLanguage.tags(app)
-        assertEquals(167,tags.size)
+        assertEquals(171,tags.size)
         assertTrue(tags.containsAll(rtlTags))
         val records=JSONArray()
         try {
@@ -58,7 +58,8 @@ class GalleryBackDirectionTest {
                 val controller=open(provider)
                 try {
                     val activity=controller.get()
-                    val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+                    val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"
+                        else if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
                     assertEquals(resourceTag,activity.resources.configuration.locales[0].toLanguageTag())
                     assertEquals(tag,AppLanguage.selectedTag(activity))
                     assertEquals(tag,activity.getSharedPreferences("app-language",Context.MODE_PRIVATE)
@@ -112,7 +113,7 @@ class GalleryBackDirectionTest {
     @Test @Config(qualifiers="ar-w320dp-h640dp-port-xhdpi")
     fun explicitAppOverridesAndDeviceDefaultUseTheEffectiveActivityLocale()=withLanguageState {
         assertEquals("ar",Resources.getSystem().configuration.locales[0].language)
-        for((tag,expected) in listOf("en-001" to "←","" to "→","he" to "→","en-001" to "←")) {
+        for((tag,expected) in listOf("en-001" to "←","" to "→","ary" to "→","he" to "→","en-001" to "←")) {
             select(tag)
             val controller=open(IllustrationSource.COMMONS)
             try {
@@ -179,7 +180,7 @@ class GalleryBackDirectionTest {
         root.layout(0,0,width,height)
         val button=root.findViewWithTag<TextView>("gallery_back")
         assertTrue(button.isAttachedToWindow)
-        assertEquals(expected,button.text.toString())
+        assertEquals("Back arrow for ${config.locales[0].toLanguageTag()}",expected,button.text.toString())
         assertEquals(if(expected=="→") View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR,config.layoutDirection)
         assertEquals(activity.getString(R.string.ui_gallery_back34),button.contentDescription.toString())
         val node=button.createAccessibilityNodeInfo()

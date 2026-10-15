@@ -2,7 +2,11 @@
 package org.catrobat.paintroid.local
 
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -26,6 +30,34 @@ import java.util.Locale
 class LocaleTypographyTest {
     private fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
         base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
+    }
+
+    @Test fun nomPositionGlyphsEachProduceDistinctUnclippedNativeInk() {
+        val context=RuntimeEnvironment.getApplication()
+        val font=Typeface.createFromAsset(context.assets,"fonts/anpaintnomui.ttf")
+        val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply {typeface=font;textSize=64f;color=Color.BLACK}
+        // The byte-level font contract verifies each bundled cmap/outline identity;
+        // hasGlyph alone would not rule out Android fallback.
+        assertFalse(paint.hasGlyph(String(Character.toChars(0x10ffff))))
+        val rasters=mutableListOf<IntArray>()
+        for(point in listOf(0x4efd,0x6089,0x6578,0x91cd,0x2a700,0x2ca20)) {
+            val text=String(Character.toChars(point));val label="U+${point.toString(16)}"
+            assertTrue(label,paint.hasGlyph(text))
+            val bounds=Rect();paint.getTextBounds(text,0,text.length,bounds)
+            assertFalse(label,bounds.isEmpty);assertTrue(label,paint.measureText(text)>0f)
+            val bitmap=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888)
+            try {
+                Canvas(bitmap).drawText(text,32f,88f,paint)
+                val pixels=IntArray(128*128);bitmap.getPixels(pixels,0,128,0,0,128,128)
+                assertTrue(label,pixels.count {Color.alpha(it)>0}>0)
+                for(i in 0 until 128) {
+                    assertEquals(label,0,Color.alpha(pixels[i]));assertEquals(label,0,Color.alpha(pixels[127*128+i]))
+                    assertEquals(label,0,Color.alpha(pixels[i*128]));assertEquals(label,0,Color.alpha(pixels[i*128+127]))
+                }
+                assertFalse("$label duplicated another glyph raster",rasters.any {it.contentEquals(pixels)})
+                rasters.add(pixels)
+            } finally {bitmap.recycle()}
+        }
     }
 
     @Test fun uiSubsetsStayOutOfDrawingChoicesAndPreserveExplicitFonts() {

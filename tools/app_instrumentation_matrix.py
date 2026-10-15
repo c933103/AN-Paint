@@ -22,6 +22,15 @@ GALLERY_METHODS = {
     'confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor',
     'savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft',
 }
+POSITION = 'paint.anpaint.android.AssemblyPositionDeviceTest'
+POSITION_SHARDS = {
+    'position-ainu-manchu': {(POSITION, method) for method in (
+        'ainuKanaPositionTextAndNativeEditing', 'ainuLatinPositionTextAndNativeEditing',
+        'manchuPositionColumnsAndNativeEditing')},
+    'position-tibetan-jeju-nom': {(POSITION, method) for method in (
+        'tibetanPositionTextAndNativeEditing', 'dzongkhaPositionTextAndNativeEditing',
+        'jejuPositionTextAndNativeEditing', 'nomPositionTextAndNativeEditing')},
+}
 SUPPORTED_SDKS = (21, 24, 30, 35)
 DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
 COLOUR = 'paint.anpaint.android.ColourViewportDeviceTest'
@@ -40,8 +49,15 @@ DIALOG_METHODS = {
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
 }
 PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
-                  **{phase: 180 for phase in VERTICAL_SHARDS}, 'seed': 60, 'verify': 60}
-SELECTED_PHASES = {'gallery-draft', 'dialog', *VERTICAL_SHARDS}
+                  **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
+SELECTED_PHASES = {'gallery-draft', 'dialog', *VERTICAL_SHARDS, *POSITION_SHARDS}
+
+
+def selected_phases(parts: dict, group: str) -> dict:
+    if group not in ('all', 'core', 'position'):
+        raise ValueError('Unknown app report group')
+    return {phase: value for phase, value in parts.items()
+            if group == 'all' or (phase in POSITION_SHARDS) == (group == 'position')}
 
 
 def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]:
@@ -53,7 +69,10 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
     dialog = {item for item in expected if item[0] in (DIALOG, COLOUR)}
-    ordinary = expected - gallery - dialog - vertical - seed - verify
+    position = {item for item in expected if item[0] == POSITION}
+    ordinary = expected - gallery - dialog - vertical - seed - verify - position
+    if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
+        raise ValueError('Position shards require the exact seven source identities and lower-SDK suppression')
     shards = list(VERTICAL_SHARDS.values())
     if sdk < 30:
         # These whole classes are SDK-suppressed by their source annotations.
@@ -73,17 +92,18 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The exact nine API35 method/class pairs and lower-SDK suppression are required')
     parts = {}
     if sdk >= 30:
-        parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS})
+        parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
     if sdk == 35:
         parts.update(dialog=dialog, seed=seed, verify=verify)
     return parts
 
 
 def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dict],
-                       source_digest: str, suppressed: set[Identity]) -> dict:
+                       source_digest: str, suppressed: set[Identity], group: str = 'all') -> dict:
     if not isinstance(source_digest, str) or not re.fullmatch(r'[0-9a-f]{64}', source_digest):
         raise ValueError('Exact Kotlin test source digest is required')
-    parts = app_partition(expected, sdk)
+    all_parts = app_partition(expected, sdk)
+    parts = selected_phases(all_parts, group)
     if set(reports) != set(parts):
         raise ValueError('Completed reports must match every selected app phase exactly')
     completed: set[Identity] = set()
@@ -109,7 +129,8 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
         completed.update(identities)
         counts[phase] = len(wanted)
     excluded = {item for item in expected if sdk < 35 and item[0] in (RESTART_SEED, RESTART_VERIFY)}
-    if completed != expected - excluded or completed & suppressed:
+    deferred = set().union(*(value for phase, value in all_parts.items() if phase not in parts))
+    if completed != expected - excluded - deferred or completed & suppressed:
         raise ValueError('App reports omit selected SDK-eligible source tests')
     return dict(success=True if parts else None,
                 execution_status='passed' if parts else 'not-run-no-sdk-eligible-selected-tests',
@@ -123,15 +144,17 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
                                                                if phase in ('ordinary', 'gallery-draft')),
                 vertical_timeout_seconds_per_shard=180 if sdk >= 30 else None,
                 vertical_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts if phase in VERTICAL_SHARDS),
-                receipt_scope="complete-composed-app-union" if parts else "sdk-ineligible-app-omission",
+                receipt_scope=("complete-composed-app-union" if group == 'all' else f"partial-{group}-app-union")
+                              if parts else "sdk-ineligible-app-omission",
+                deferred_tests=sorted(deferred),
                 all_app_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts),
                 declared_tests=len(expected | suppressed), sdk_eligible_tests=len(expected),
                 sdk_suppressed_tests=sorted(suppressed),
-                selected_tests=len(expected-excluded), explicitly_excluded_tests=sorted(excluded),
+                selected_tests=len(expected-excluded-deferred), explicitly_excluded_tests=sorted(excluded),
                 completed_tests=len(completed), phases=counts, completed=sorted(completed))
 
 
-def report_paths(root: Path, sdk: int) -> dict[str, Path]:
+def report_paths(root: Path, sdk: int, group: str = 'all') -> dict[str, Path]:
     if type(sdk) is not int or sdk not in SUPPORTED_SDKS:
         raise ValueError('The emulator matrix supports SDK 21, 24, 30 or 35')
     paths = {}
@@ -140,18 +163,20 @@ def report_paths(root: Path, sdk: int) -> dict[str, Path]:
         paths['gallery-draft'] = root/'app-gallery-draft/androidTest-results/summary.json'
         paths.update({phase: root/'app-vertical'/phase.removeprefix('vertical-')/'androidTest-results/summary.json'
                       for phase in VERTICAL_SHARDS})
+        paths.update({phase: root/'app-position'/phase.removeprefix('position-')/'androidTest-results/summary.json'
+                      for phase in POSITION_SHARDS})
     if sdk == 35:
         paths['dialog'] = root/'app-dialog/androidTest-results/summary.json'
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
                       for phase in ('seed', 'verify')})
-    return paths
+    return selected_phases(paths, group)
 
 
-def read_app_reports(root: Path, sdk: int) -> dict[str, dict]:
-    paths = report_paths(root, sdk)
+def read_app_reports(root: Path, sdk: int, group: str = 'all') -> dict[str, dict]:
+    paths = report_paths(root, sdk, group)
     wanted = set(paths.values())
     actual = set().union(*((root/name).rglob('summary.json')
-                          for name in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical')))
+                          for name in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical', 'app-position')))
     if actual != wanted:
         raise ValueError(f'Exact composed app report inventory required: missing={sorted(map(str, wanted-actual))}, '
                          f'unexpected={sorted(map(str, actual-wanted))}')
@@ -165,16 +190,18 @@ def coverage_paths(root: Path) -> list[Path]:
             root/'app/vertical-coverage.json', root/'app/accepted-credit-restart/coverage.json']
 
 
-def verify_reports(source: Path, root: Path, sdk: int) -> dict:
+def verify_reports(source: Path, root: Path, sdk: int, group: str = 'all') -> dict:
     outputs = coverage_paths(root)
-    for output in outputs:
+    for output in outputs + [root/'core-coverage.json', root/'position-coverage.json']:
         output.unlink(missing_ok=True)
-    reports = read_app_reports(root, sdk)
+    reports = read_app_reports(root, sdk, group)
     expected = declared_tests(source, sdk_level=sdk)
     result = verify_app_reports(expected, sdk, reports, source_tests_sha256(source),
-                                declared_tests(source) - expected)
+                                declared_tests(source) - expected, group)
     content = json.dumps(result, indent=2)+'\n'
-    if sdk == 35:
+    if group != 'all':
+        selected_outputs = [root/f'{group}-coverage.json']
+    elif sdk == 35:
         selected_outputs = outputs
     elif sdk >= 30:
         selected_outputs = outputs[:-1]
@@ -191,8 +218,9 @@ def main() -> None:
     parser.add_argument('--source-tests', type=Path, required=True)
     parser.add_argument('--sdk', type=int, choices=SUPPORTED_SDKS, required=True)
     parser.add_argument('--root', type=Path, required=True)
+    parser.add_argument('--group', choices=('all', 'core', 'position'), default='all')
     args = parser.parse_args()
-    print(json.dumps(verify_reports(args.source_tests, args.root, args.sdk)))
+    print(json.dumps(verify_reports(args.source_tests, args.root, args.sdk, args.group)))
 
 
 if __name__ == '__main__':

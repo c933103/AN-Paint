@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.classic
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -112,8 +113,14 @@ class LegacyImageCreditsActivity : Activity() {
                         addCategory(Intent.CATEGORY_OPENABLE);type="text/plain"
                         putExtra(Intent.EXTRA_TITLE,"AN-Paint-legacy-credit.txt")
                     },EXPORT_TEXT)
-                } catch(_: Exception) {
-                    pendingExportToken=null;status.text=ui(R.string.ui_android_could_not_find_a_file_picker_enable)
+                } catch(error: Exception) {
+                    pendingExportToken=null
+                    status.text=when(error) {
+                        is ActivityNotFoundException -> ui(R.string.ui_android_could_not_find_a_file_picker_enable)
+                        is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,
+                            error.message ?: ui(R.string.ui_could_not_complete_the_operation))
+                        else -> ui(R.string.ui_could_not_complete_the_operation)
+                    }
                 }
             }
         }

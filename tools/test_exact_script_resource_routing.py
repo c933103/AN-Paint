@@ -12,17 +12,21 @@ FIXTURE = ROOT / 'Paintroid/src/test/resources/exact-script-resources/expected.j
 
 
 class ExactScriptResourceRoutingContracts(unittest.TestCase):
-    def test_only_one_internal_variant_and_public_tag_catalogue_are_unchanged(self):
+    def test_only_two_internal_variants_and_public_tag_catalogues_are_unchanged(self):
         source = JAVA.read_text()
         method = source.split('internal fun resourceLocale(', 1)[1].split('    fun wrap(', 1)[0]
         self.assertIn('chosen.toLanguageTag()=="ko-Kore-KR"', method)
         self.assertIn('setLocale(chosen).setVariant("anpaint")', method)
+        self.assertIn('chosen.toLanguageTag()=="qaa-Zsye-XV"', method)
+        self.assertIn('Locale.forLanguageTag("en-Zsye-XV-anpaint")', method)
         self.assertIn('else chosen', method)
         self.assertNotIn('R.string', method)
         self.assertNotIn('複寫', source)
         self.assertIn('ko-Kore-KR', catalogues.offered_tags())
+        self.assertIn('qaa-Zsye-XV', catalogues.offered_tags())
         self.assertFalse(any('anpaint' in tag for tag in catalogues.offered_tags()))
         self.assertFalse((catalogues.RES / 'values-b+ko+Kore+KR+anpaint').exists())
+        self.assertFalse((catalogues.RES / 'values-b+en+Zsye+XV+anpaint').exists())
 
     def test_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild(self):
         build = (ROOT / 'Paintroid/build.gradle').read_text()
@@ -31,6 +35,9 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
         self.assertIn("from('src/main/res/values-b+ko+Kore+KR')", task)
         self.assertIn("include '*.xml'", task)
         self.assertIn("into 'values-b+ko+Kore+KR+anpaint'", task)
+        self.assertIn("from('src/main/res/values-b+qaa+Zsye+XV')", task)
+        self.assertIn("into 'values-b+en+Zsye+XV+anpaint'", task)
+        self.assertEqual(2, task.count("include '*.xml'"))
         self.assertIn('into exactScriptResourceDirectory', task)
         self.assertIn('android.sourceSets.main.res.srcDir(exactScriptResourceDirectory)', task)
         self.assertIn("tasks.named('preBuild').configure { dependsOn(generateExactScriptResources) }", task)
@@ -49,8 +56,9 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
         for row in rows:
             tag = row['requested_tag']
             strings = catalogues.read_strings(catalogues.catalogue_paths()[tag])
-            self.assertEqual(tag + '-anpaint' if tag == 'ko-Kore-KR' else tag,
-                             row['resource_tag'])
+            expected = {'ko-Kore-KR': 'ko-Kore-KR-anpaint',
+                        'qaa-Zsye-XV': 'en-Zsye-XV-anpaint'}.get(tag, tag)
+            self.assertEqual(expected, row['resource_tag'])
             self.assertEqual({key: strings.get(key, defaults[key]).strip('"')
                               for key in ('ui_save', 'ui_menu_file', 'language20_device_default')},
                              row['expected'])

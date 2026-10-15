@@ -9,24 +9,42 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 class ExactScriptGenerationProbeTests(unittest.TestCase):
-    def test_byte_identical_mirror_passes_and_changed_or_stale_outputs_fail(self):
+    def test_byte_identical_mirrors_pass_and_changed_missing_or_stale_outputs_fail(self):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
-            canonical = root / probe.CANONICAL
-            generated = root / probe.GENERATED / probe.QUALIFIER
-            canonical.mkdir(parents=True)
-            generated.mkdir(parents=True)
-            data = '<resources><string name="probe">複寫</string></resources>\n'.encode()
-            (canonical / 'strings.xml').write_bytes(data)
-            (generated / 'strings.xml').write_bytes(data)
-            self.assertEqual({f'{probe.QUALIFIER}/strings.xml': probe.sha(data)}, probe.mirror_hashes(root))
-            (generated / 'strings.xml').write_bytes(data + b' ')
-            with self.assertRaisesRegex(AssertionError, 'differs'):
-                probe.mirror_hashes(root)
-            (generated / 'strings.xml').write_bytes(data)
-            (generated / 'stale.xml').write_text('<resources/>')
-            with self.assertRaisesRegex(AssertionError, 'stale'):
-                probe.mirror_hashes(root)
+            expected = {}
+            for canonical, qualifier in probe.MIRRORS.items():
+                source = root / canonical
+                generated = root / probe.GENERATED / qualifier
+                source.mkdir(parents=True)
+                generated.mkdir(parents=True)
+                data = f'<resources><string name="probe">{qualifier} 💾 複寫</string></resources>\n'.encode()
+                (source / 'strings.xml').write_bytes(data)
+                (generated / 'strings.xml').write_bytes(data)
+                expected[f'{qualifier}/strings.xml'] = probe.sha(data)
+            self.assertEqual(expected, probe.mirror_hashes(root))
+            for canonical, qualifier in probe.MIRRORS.items():
+                with self.subTest(qualifier=qualifier):
+                    source = root / canonical / 'strings.xml'
+                    generated = root / probe.GENERATED / qualifier / 'strings.xml'
+                    data = source.read_bytes()
+                    generated.write_bytes(data + b' ')
+                    with self.assertRaisesRegex(AssertionError, 'differs'):
+                        probe.mirror_hashes(root)
+                    generated.unlink()
+                    with self.assertRaisesRegex(AssertionError, 'differs'):
+                        probe.mirror_hashes(root)
+                    generated.write_bytes(data)
+                    stale = generated.with_name('stale.xml')
+                    stale.write_text('<resources/>')
+                    with self.assertRaisesRegex(AssertionError, 'stale'):
+                        probe.mirror_hashes(root)
+                    stale.unlink()
+                    source.unlink()
+                    with self.assertRaisesRegex(AssertionError, 'inputs are missing'):
+                        probe.mirror_hashes(root)
+                    source.write_bytes(data)
+                    self.assertEqual(expected, probe.mirror_hashes(root))
 
     def test_missing_canonical_inputs_fail_closed(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -90,7 +108,8 @@ class ExactScriptGenerationProbeTests(unittest.TestCase):
         self.assertIn('if(deviceTag=="ko-Kore-KR") "시스템 言語 使用"', expected)
         self.assertNotIn('AppLanguage.', expected)
         gallery = (directory / 'GalleryBackDirectionTest.kt').read_text()
-        self.assertIn('if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag', gallery)
+        self.assertIn('if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"', gallery)
+        self.assertIn('if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag', gallery)
         self.assertIn('assertEquals(tag,AppLanguage.selectedTag(activity))', gallery)
         self.assertIn('assertEquals(tag,Locale.getDefault().toLanguageTag())', gallery)
         self.assertIn('applicationLocales.toLanguageTags()', gallery)

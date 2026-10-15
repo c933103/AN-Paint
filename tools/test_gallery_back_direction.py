@@ -40,7 +40,7 @@ class GalleryBackDirectionContractTest(unittest.TestCase):
                 .find('string-array').findall('item')}
         declared = re.search(r'private val rtlTags=setOf\((.*?)\)', source).group(1)
         rtl = set(re.findall(r'"(.*?)"', declared))
-        self.assertEqual({'ar', 'ckb', 'fa', 'fa-IR', 'he', 'ps', 'sd', 'ug', 'ur', 'yi'}, rtl)
+        self.assertEqual({'ar', 'ary', 'ckb', 'fa', 'fa-IR', 'he', 'ps', 'sd', 'ug', 'ur', 'yi'}, rtl)
         self.assertTrue(rtl <= tags)
         self.assertIn('for((index,tag) in tags.withIndex())', source)
         self.assertIn('controller.pause().stop().saveInstanceState(state).destroy()', source)

@@ -1,8 +1,10 @@
 # Missing external-link handler is reported as a gallery network failure
 
-**Status:** Open shared source-context diagnostic bug; documentation-only tracking PR. No fix is applied. **Baseline:** develop `647a4b5647cabf3e51cb6dcf20d41ae08143ccdb`. Independently reviewed static paths and complete English/French/Japanese values; no runtime/provider/native incident, outage or security vulnerability is claimed. Faithful translations share the source mismatch. [Board](https://github.com/c933103/AN-Paint/pull/39) · [French review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182795516) · [Japanese review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182776352).
+**Current status:** A bounded implementation is prepared on merged develop `0aa6c89c9d3a4d133a8b231e7002783b60ead46d`; see the [fix, resource scope and verification limits](../gallery-external-link-handler.md). Exact-head Android compilation and runtime checks remain pending. This tracker stays open until its acceptance gates are met.
 
-## Expected and actual
+**Original diagnostic status (before the prepared fix):** Open shared source-context diagnostic bug; documentation-only tracking PR. No fix is applied. **Baseline:** develop `647a4b5647cabf3e51cb6dcf20d41ae08143ccdb`. Independently reviewed static paths and complete English/French/Japanese values; no runtime/provider/native incident, outage or security vulnerability is claimed. Faithful translations share the source mismatch. [Board](https://github.com/c933103/AN-Paint/pull/39) · [French review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182795516) · [Japanese review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182776352).
+
+## Expected and actual at the original baseline
 
 Expected: when Android cannot find an app to open the external Terms link, the user receives a link-opening/handler explanation.
 
@@ -24,6 +26,6 @@ Impact: in that failure condition, users are directed to check connectivity inst
 - Enumerate all uses of the selected resources and update/review all affected locale values and fallback behavior if new text is needed.
 - Complete focused intent/message regressions and current-source review/testing; no handler installation, permission or system-setting changes are part of this fix.
 
-## Next action
+## Original tracker next action
 
 Repair the bounded exception-to-message mapping and verify the actual launch/error branch. Preserve Terms destinations and gallery behavior. No application/resource/test edits, runtime results, merge or release are made by this tracker.

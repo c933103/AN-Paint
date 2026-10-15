@@ -2,8 +2,41 @@
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
 
-from extend_nom_ui_font import extend
+from extend_nom_ui_font import extend, checked_additions, cmap_additions, check_horizontal_metrics
+
+
+class NomFontSupplementaryCmapTest(unittest.TestCase):
+    def test_added_metrics_must_fit_each_preserved_horizontal_extremum(self):
+        glyph=SimpleNamespace(xMin=5,xMax=95)
+        limits=SimpleNamespace(advanceWidthMax=100,minLeftSideBearing=5,
+                               minRightSideBearing=5,xMaxExtent=95)
+        check_horizontal_metrics(glyph,(100,5),limits)
+        for field,value in (('advanceWidthMax',99),('minLeftSideBearing',6),
+                            ('minRightSideBearing',6),('xMaxExtent',94)):
+            changed=SimpleNamespace(**vars(limits));setattr(changed,field,value)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError,'horizontal metric extrema'):
+                check_horizontal_metrics(glyph,(100,5),changed)
+
+    def test_only_unicode_format12_receives_supplementary_additions(self):
+        points = (0x4efd, 0x6089, 0x6578, 0x91cd, 0x2a700, 0x2ca20)
+        source = {cp: f'g{cp:X}' for cp in points}
+        self.assertEqual(points, checked_additions(iter(points)))
+        class Table:
+            def __init__(self, kind, unicode=True):
+                self.format, self.unicode = kind, unicode
+            def isUnicode(self): return self.unicode
+        self.assertEqual({cp: source[cp] for cp in points[:4]}, cmap_additions(Table(4), source, points))
+        self.assertEqual(source, cmap_additions(Table(12), source, points))
+        for table in (Table(4, False), Table(12, False), Table(6), Table(14)):
+            self.assertEqual({}, cmap_additions(table, source, points))
+
+    def test_invalid_or_repeated_scalars_are_rejected(self):
+        for points in ((), (0x4efd, 0x4efd), (-1,), (0x110000,), (0xd800,), (0xdfff,), ('x',), (True,)):
+            with self.subTest(points=points), self.assertRaisesRegex(ValueError, 'Unicode scalar'):
+                checked_additions(points)
+        self.assertEqual((0xd7ff, 0xe000, 0x10000, 0x10ffff), checked_additions((0xd7ff, 0xe000, 0x10000, 0x10ffff)))
 
 
 class NomFontInputPreservationTest(unittest.TestCase):

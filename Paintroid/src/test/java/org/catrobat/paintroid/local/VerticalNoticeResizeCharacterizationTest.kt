@@ -488,7 +488,9 @@ class VerticalNoticeResizeCharacterizationTest {
         a.setContentView(FrameLayout(a))
         controller.visible().windowFocusChanged(true);settle()
         try {
-            assertEquals(tag,a.resources.configuration.locales[0].toLanguageTag())
+            val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+            assertEquals(resourceTag,a.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,AppLanguage.selectedTag(a))
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertTrue(host(a).isAttachedToWindow);assertTrue(host(a).width>0 && host(a).height>0)
             assertEquals(1f,a.resources.configuration.fontScale,0f)

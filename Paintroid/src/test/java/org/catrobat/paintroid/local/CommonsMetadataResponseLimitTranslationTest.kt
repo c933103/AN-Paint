@@ -74,7 +74,7 @@ class CommonsMetadataResponseLimitTranslationTest {
         "ru" to "Метаданные Commons превышают лимит размера ответа",
         "ryu" to "Commonsぬメタデータ応答や、応答サイズぬ上限やか まぎさいびーん。",
         "sw" to "Metadata kutoka Commons inazidi kikomo cha ukubwa wa jibu",
-        "tl" to "Lumampas ang metadata mula sa Commons sa limitasyon ng laki ng tugon",
+        "fil" to "Lumampas ang metadata mula sa Commons sa limitasyon ng laki ng tugon",
         "tr" to "Commons meta verileri yanıt boyutu sınırını aşıyor",
         "vi" to "Siêu dữ liệu từ Commons vượt quá giới hạn kích thước phản hồi",
         "vi-Hani" to "戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
@@ -109,9 +109,10 @@ class CommonsMetadataResponseLimitTranslationTest {
         AppLanguage.select(context,tag)
         assertEquals("Persist the exact requested application tag",tag,AppLanguage.selectedTag(context))
         val wrapped=AppLanguage.wrap(context)
-        // Preference identity is unchanged; this one catalogue uses an internal
-        // variant so Android cannot tie it with implicit-script ordinary Korean.
-        val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+        // Public identity is unchanged. Private resource variants separate Korean
+        // catalogues and supply English grammar for the emoji catalogue.
+        val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"
+            else if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
         assertEquals(resourceTag,wrapped.resources.configuration.locales[0].toLanguageTag())
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
@@ -120,7 +121,7 @@ class CommonsMetadataResponseLimitTranslationTest {
         assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
             val resources=resourcesFor(tag)
@@ -128,6 +129,6 @@ class CommonsMetadataResponseLimitTranslationTest {
             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_response_too_large))
             assertTrue(expected.contains("Commons"))
         }
-        assertEquals(108,fallbacks)
+        assertEquals(112,fallbacks)
     }
 }

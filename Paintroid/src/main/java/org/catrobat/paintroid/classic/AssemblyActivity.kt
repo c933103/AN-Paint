@@ -84,7 +84,8 @@ class AssemblyActivity : Activity() {
             root.addView(HorizontalScrollView(this).apply { isHorizontalScrollBarEnabled = false; addView(row) }); return row
         }
         add = button(ui(R.string.ui_add_images),"assembly_add") { launchAdd() }
-        actionRow(add,button(ui(R.string.ui_save_png),"assembly_save") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),"assembly_edit") { requestOutput(true) },button(ui(R.string.ui_how_to_use),"assembly_help") { showHelp() })
+        actionRow(add,button(ui(R.string.ui_assembly_exact_position),"assembly_position") { exactPosition() },
+            button(ui(R.string.ui_save_png),"assembly_save") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),"assembly_edit") { requestOutput(true) },button(ui(R.string.ui_how_to_use),"assembly_help") { showHelp() })
         board = AssemblyCanvas(this,assembly) { previews[it] }.apply {
             tag = "assembly_canvas"; onError = { message(it.message ?: ui(R.string.ui_could_not_place_the_image)) }
             onSelect = { id -> selected = id; for (i in 0 until tray.childCount) tray.getChildAt(i).setBackgroundColor(if (tray.getChildAt(i).tag == "assembly_item_$id") EditorColours.primaryContainer else EditorColours.surfaceContainerHigh) }; onStatus = { if (!busy) info.text = it }
@@ -138,7 +139,7 @@ class AssemblyActivity : Activity() {
             val card = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL; tag = "assembly_item_${item.id}"; isFocusable = true; isClickable = true
                 setPadding(dp(6),dp(4),dp(6),dp(4)); setBackgroundColor(if (item.id == selected) EditorColours.primaryContainer else EditorColours.surfaceContainerHigh)
-                contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (item.attachment == null) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)
+                contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)
                 setOnClickListener { if (!busy) { selected = item.id; board.select(item.id); renderTray() } }
                 setOnLongClickListener {
                     if (busy) false else {
@@ -153,7 +154,7 @@ class AssemblyActivity : Activity() {
             card.addView(AssemblyThumbnail(this,item,previews[item.id]),LinearLayout.LayoutParams(-1,dp(if (compact()) 44 else 70)))
             card.addView(text(item.name,12f).apply { tag = "assembly_name_${item.id}"; maxLines = 2; ellipsize = TextUtils.TruncateAt.END },LinearLayout.LayoutParams(-1,dp(if (compact()) 28 else 34)))
             card.addView(text(item.timestamp?.let { DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(it)) } ?: ui(R.string.ui_time_unavailable),10f).apply { maxLines = 1; ellipsize = TextUtils.TruncateAt.END })
-            card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (item.attachment == null) "" else " · " + ui(R.string.ui_placed)}",10f))
+            card.addView(text("${item.placedSize.width} × ${item.placedSize.height}${if (!item.isPlaced) "" else " · " + ui(R.string.ui_placed)}",10f))
             tray.addView(card,LinearLayout.LayoutParams(dp(138),-1).apply { setMargins(dp(3),0,dp(3),0) })
         }
     }
@@ -267,6 +268,11 @@ class AssemblyActivity : Activity() {
     private fun normalize(axis: NormalizeAxis) {
         if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }
         NormalizeImagesDialog(this,assembly,axis).show()
+    }
+    private fun exactPosition() {
+        val id = selected
+        if (id == null) { message(ui(R.string.ui_tap_an_image_thumbnail_first)); return }
+        AssemblyPositionDialog(this, assembly, id).show()
     }
     private fun crop(batch: Boolean) {
         val images = if (batch) assembly.images else assembly.images.filter { it.id == selected }

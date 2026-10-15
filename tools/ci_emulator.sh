@@ -285,6 +285,9 @@ main() {
   case "$TEST_API" in 21|24|30|35) ;; *) exit 2;; esac
   emulator_abi="${EMULATOR_ABI:-x86_64}"
   case "$emulator_abi" in x86|x86_64) ;; *) exit 2;; esac
+  app_group="${APP_TEST_GROUP:-core}"
+  if (( TEST_API < 30 )); then app_group=all; fi
+  case "$app_group" in all|core) ;; position) (( TEST_API >= 30 )) || exit 2;; *) exit 2;; esac
   variant="${BUILD_VARIANT:-debug}"
   case "$variant" in debug|release) ;; *) exit 2;; esac
   export ANDROID_SERIAL=emulator-5554
@@ -352,6 +355,13 @@ main() {
   phase='Install main APK (60s maximum)'
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" install -r -t "build/prebuilt/app/build/outputs/apk/$variant/app-$variant.apk"
+  # Separate job, same bounded startup/cleanup and exact prebuilt APKs. It does
+  # not add invocations to the already-budgeted 43-minute core execution step.
+  if [[ "$app_group" == position ]]; then
+    source tools/ci_position.sh
+    run_position_regression
+    exit "$?"
+  fi
   failed=0
   extra=()
   if (( TEST_API < 35 )); then
@@ -380,6 +390,7 @@ main() {
       --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
       --exclude-class paint.anpaint.android.GalleryDraftDeviceTest \
       --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest \
+      --exclude-class paint.anpaint.android.AssemblyPositionDeviceTest \
       --exclude-class paint.anpaint.android.ColourViewportDeviceTest || editor_failed=1
   else
     mkdir -p "$report/app"
@@ -416,10 +427,10 @@ main() {
     printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API %s\n' "$TEST_API" \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
-  phase='Verify complete SDK-specific app phase inventory'
+  phase='Verify core SDK-specific app phase inventory (position job required separately)'
   progress "$phase"
   python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest \
-    --sdk "$TEST_API" --root "$report" || failed=1
+    --sdk "$TEST_API" --root "$report" --group "$app_group" || failed=1
   phase='Instrumentation complete'
   progress "$phase (result $failed)"
   exit "$failed"

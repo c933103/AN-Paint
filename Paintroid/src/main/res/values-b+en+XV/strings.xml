@@ -41,7 +41,7 @@
     <string name="ui_add_images_then_drag_a_thumbnail_here">Add images, then drag a thumbnail here</string>
     <string name="ui_add_text">Add text</string>
     <string name="ui_add_to_custom_colours">Add to custom colours</string>
-    <string name="ui_add_up_to_20_images_with_android_s">Add up to 20 images with Android\'s file picker. The bottom tray shows thumbnails, filenames, crop dimensions and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\n\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\n\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Existing attachments move when their parent is cropped. Overlaps are rejected.\n\nSame width and Same height give every input a common dimension while preserving each image\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\n\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\n\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\n\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\'s «File &gt; About, licences &amp; credits» panel.</string>
+    <string name="ui_add_up_to_20_images_with_android_s">Add up to 20 images with Android\'s file picker. The bottom tray shows thumbnails, filenames, crop dimensions and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\n\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\n\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\n\nSame width and Same height give every input a common dimension while preserving each image\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\n\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\n\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\n\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\'s «File &gt; About, licences &amp; credits» panel.</string>
     <string name="ui_advanced">Advanced</string>
     <string name="ui_airbrush">Airbrush</string>
     <string name="ui_all">All</string>
@@ -150,7 +150,7 @@
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Custom colours · hold a swatch to replace it</string>
     <string name="ui_cut">Cut</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Delete selection</string>
     <string name="ui_disable_cursor_drawing">Disable cursor drawing</string>
     <string name="ui_discard">Discard</string>
@@ -202,6 +202,7 @@
     <string name="ui_eraser">Eraser</string>
     <string name="ui_estimated_memory_current_working_budget">Estimated memory: %1$s\nCurrent working budget: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. Imports use the selected opaque background; the original file stays unchanged.</string>
+    <string name="ui_sampled_resize_memory_explanation">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.</string>
     <string name="ui_expand_colour_palette">Expand colour palette</string>
     <string name="ui_expand_toolbox">Expand toolbox</string>
     <string name="ui_export_recovery_copy">Export recovery copy…</string>
@@ -341,7 +342,7 @@
     <string name="ui_rectangle_select">Rectangle select</string>
     <string name="ui_redo">Redo</string>
     <string name="ui_remove">Remove</string>
-    <string name="ui_rendering_images">Rendering %1$s / %2$s images…</string>
+    <string name="ui_rendering_images">Images processed: %1$s / %2$s…</string>
     <string name="ui_reset_crop">Reset crop</string>
     <string name="ui_reset_to_black_white">Reset to black / white</string>
     <string name="ui_resize_and_load">Resize and load</string>
@@ -488,7 +489,7 @@
     <string name="ui_width_in">Width in %1$s</string>
     <string name="ui_widths">Widths</string>
     <string name="ui_working">Working…</string>
-    <string name="ui_you_can_add_more_images_select_fewer_files">You can add %1$s more images. Select fewer files.</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">Number of images you can still add: %1$s. Select fewer files.</string>
     <string name="ui_your_current_image_has_unsaved_changes">Your current image has unsaved changes.</string>
     <string name="ui_zoom_in">Zoom in</string>
     <string name="ui_zoom_out">Zoom out</string>
@@ -507,8 +508,8 @@
     <string name="ui_png_encoding_failed">PNG encoding failed.</string>
     <string name="ui_trim_in_percent">%1$s trim in percent</string>
     <plurals name="ui_crop_preview_images">
-        <item quantity="one">Preview: %1$d × %2$d px\nApply to %3$d image. Cropping placed images repositions their attachments.</item>
-        <item quantity="other">Preview: %1$d × %2$d px\nApply to %3$d images. Cropping placed images repositions their attachments.</item>
+        <item quantity="one">Preview: %1$d × %2$d px\nApply to %3$d image. Cropping placed images may move their attached images.</item>
+        <item quantity="other">Preview: %1$d × %2$d px\nApply to %3$d images. Cropping placed images may move their attached images.</item>
     </plurals>
     <string name="ui_colour_component_range">0–%1$d</string>
     <string name="ui_colour_red_range">R · 0–255</string>
@@ -587,7 +588,7 @@
     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
     <string name="formats22_select_page">Choose a page</string>
-    <string name="formats22_page_description">%1$s · %2$s\n%3$d pages. Choose one page to edit as an image.</string>
+    <string name="formats22_page_description">%1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.</string>
     <string name="formats22_pdf_raster_hint">PDF pages are rendered at 144 dpi. Text and vector objects become pixels.</string>
     <string name="formats22_page_number">Page number</string>
     <string name="formats22_previous_page">Previous page</string>
@@ -703,4 +704,12 @@
     <string name="commons_metadata_http_error">Commons metadata: HTTP %1$s</string>
     <string name="commons_metadata_response_too_large">Commons metadata exceeds the response limit</string>
     <string name="commons_metadata_query_failed">Commons metadata query failed</string>
+    <string name="save20_unsupported_image_colour">This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.</string>
+    <string name="ui_assembly_exact_position">Exact position</string>
+    <string name="ui_assembly_target_x">Target X (pixels from left)</string>
+    <string name="ui_assembly_target_y">Target Y (pixels from top)</string>
+    <string name="ui_assembly_position_help">Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.</string>
+    <string name="ui_assembly_position_nonnegative">X and Y must be whole numbers from zero to 2147483647.</string>
+    <string name="ui_assembly_unknown_image">The selected image is no longer in this assembly.</string>
+    <string name="gallery_external_link_no_handler">Android could not find an app to open this link.</string>
 </resources>

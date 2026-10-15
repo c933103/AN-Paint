@@ -32,7 +32,15 @@
       }
     ],
     "derivation": "The same exact 59 scoped and 81 missing-key fallback tags are cross-checked across all five independent records and against current offered_tags()/SCOPED_TAGS. No scope is inferred from which strings happen to be present.",
-    "current_integration": {
+    "current_identity_migration": {
+      "fixture": "tools/fixtures/language_option_additions_20261014.json",
+      "scoped_tag_rename": {"tl": "fil"},
+      "added_fallback_tags": ["ang", "ary", "non", "zgh"],
+      "current_scoped_count": 59,
+      "current_fallback_count": 112,
+      "derivation": "Current fixtures use fil for the unchanged inherited tl wording and add four empty fallback catalogues. Historical identities and counts below remain provenance, not current scope or linguistic acceptance."
+    },
+    "previous_integration": {
       "accepted_develop_commit": "484d1b31cb113c88351e6d0dbdaa0d503e5dd834",
       "added_fallback_tags": [
         "as",

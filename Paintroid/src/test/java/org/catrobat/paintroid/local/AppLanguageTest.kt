@@ -45,7 +45,7 @@ class AppLanguageTest {
     @Test @Config(sdk=[30,35]) fun sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback() {
         val expectedNames=mapOf("ha" to "Hausa", "ig" to "Igbo", "ln" to "Lingála",
             "su" to "Sunda", "yo" to "Yorùbá", "zu" to "isiZulu")
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         for((tag,name) in expectedNames) {
             assertTrue(tag in AppLanguage.tags(context))
             AppLanguage.select(context,tag)
@@ -82,7 +82,7 @@ class AppLanguageTest {
             "qug" to "Kichwa (Chimborazo)",
             "ch" to "Chamoru", "sm" to "Gagana Samoa", "mi" to "Māori", "sa" to "संस्कृतम्",
             "tg" to "Тоҷикӣ")
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         for((tag,name) in expectedNames) {
             assertTrue(tag in AppLanguage.tags(context))
             AppLanguage.select(context,tag)
@@ -107,6 +107,109 @@ class AppLanguageTest {
                 assertEquals(tag,AppLanguage.selectedTag(context))
             }
         }
+    }
+
+
+    @Test @Config(sdk=[30,35]) fun historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback() {
+        val names=mapOf("ang" to "Ænglisc", "non" to "Norrœna",
+            "ary" to "الدارجة المغربية",
+            "zgh" to "ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)")
+        assertEquals(171,AppLanguage.tags(context).size)
+        assertFalse(AppLanguage.tags(context).contains("tl"))
+        for((tag,name) in names) {
+            AppLanguage.select(context,tag)
+            val wrapped=AppLanguage.wrap(context)
+            PaintApplication.currentResources=wrapped.resources
+            assertEquals(tag,AppLanguage.selectedTag(wrapped))
+            assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
+            assertEquals("$name [$tag]",AppLanguage.name(tag))
+            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+            assertEquals("Save",wrapped.getString(R.string.ui_save))
+            assertTrue(wrapped.getString(R.string.language20_translation_note)
+                .contains("New or untranslated text appears in English."))
+            if(android.os.Build.VERSION.SDK_INT>=33)
+                assertEquals(tag,context.getSystemService(LocaleManager::class.java)!!
+                    .applicationLocales[0].toLanguageTag())
+        }
+    }
+
+    @Test @Config(sdk=[30,35]) fun filipinoKeepsExistingCatalogueAndMigratesSavedTagalog() {
+        assertTrue("fil" in AppLanguage.tags(context))
+        assertFalse("tl" in AppLanguage.tags(context))
+        context.getSharedPreferences("app-language",0).edit().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",context.getSharedPreferences("app-language",0)
+            .getString("language-tag",null))
+        val wrapped=AppLanguage.wrap(context)
+        PaintApplication.currentResources=wrapped.resources
+        assertEquals("fil",wrapped.resources.configuration.locales[0].toLanguageTag())
+        assertEquals("Filipino [fil]",AppLanguage.name("fil"))
+        assertEquals("Pambura",wrapped.getString(R.string.ui_eraser))
+        assertEquals("I-save",wrapped.getString(R.string.ui_save))
+        if(android.os.Build.VERSION.SDK_INT>=33) {
+            val manager=context.getSystemService(LocaleManager::class.java)!!
+            assertEquals("fil",manager.applicationLocales[0].toLanguageTag())
+        }
+    }
+
+    @Test @Config(sdk=[33,35]) fun savedTagalogImportPersistsAcrossReadsAndNewContext() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.getEmptyLocaleList()
+
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",preferences.getString("language-tag",null))
+        assertTrue(preferences.getBoolean("platform-initialized",false))
+        assertEquals("fil",manager.applicationLocales.toLanguageTags())
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        // A new context in this process checks shared state, not process-restart durability.
+        val fresh=context.createConfigurationContext(Configuration())
+        assertEquals("fil",AppLanguage.selectedTag(fresh))
+        assertEquals("fil",fresh.getSharedPreferences("app-language",0).getString("language-tag",null))
+        assertEquals("I-save",AppLanguage.wrap(fresh).getString(R.string.ui_save))
+    }
+
+    @Test @Config(sdk=[33,35]) fun platformTagalogAliasMigratesWithoutSavedPreference() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("tl")
+
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",manager.applicationLocales.toLanguageTags())
+        assertEquals("fil",preferences.getString("language-tag",null))
+    }
+
+    @Test @Config(sdk=[33,35]) fun existingPlatformChoiceWinsOverUninitializedSavedAlias() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("ja")
+
+        assertEquals("ja",AppLanguage.selectedTag(context))
+        assertTrue(preferences.getBoolean("platform-initialized",false))
+        assertEquals("ja",AppLanguage.selectedTag(context))
+        assertEquals("ja",manager.applicationLocales.toLanguageTags())
+        assertEquals("保存",AppLanguage.wrap(context).getString(R.string.ui_save))
+    }
+
+    @Test @Config(sdk=[33,35]) fun initializedDeviceDefaultWinsOverSavedAlias() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",true).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.getEmptyLocaleList()
+
+        assertEquals("",AppLanguage.selectedTag(context))
+        assertTrue(manager.applicationLocales.isEmpty)
+        val fresh=context.createConfigurationContext(Configuration())
+        assertEquals("",AppLanguage.selectedTag(fresh))
+        assertTrue(manager.applicationLocales.isEmpty)
     }
 
     @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {
@@ -290,7 +393,11 @@ class AppLanguageTest {
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
             AppLanguage.select(context,tag)
             val selected=AppLanguage.wrap(context)
-            assertEquals(tag,selected.resources.configuration.locales[0].toLanguageTag())
+            val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+            assertEquals(resourceTag,selected.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,AppLanguage.selectedTag(context))
+            assertEquals(tag,Locale.getDefault().toLanguageTag())
+            assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection(selected))
             assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection())
             assertTrue(AppLanguage.name(tag).contains("vertical"))
             if(tag=="en-XV") assertEquals("Save",selected.getString(R.string.ui_save))
