@@ -2,7 +2,7 @@
 
 **Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (12 October 2026) is 167 locale options: 59 scoped catalogues and 108 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 108 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 167-option scope.
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
 
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
 `Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
@@ -41,7 +41,7 @@ resources and the explicit current scope directly.
 
 ## Further options and principal varieties requested on 12 October 2026
 
-The successor inventory has **167 choices**, adding **21 options** to the merged
+The 12 October inventory had **167 choices**, adding **21 options** to the merged
 146-choice baseline. Fourteen requested languages retain their individual option:
 Nigerian Pidgin (`pcm`), Somali (`so`), Assamese (`as`), Wolof (`wo`), Haitian Creole
 (`ht`), Tok Pisin (`tpi`), Navajo (`nv`), Cherokee (`chr`), Yucatec Maya (`yua`),
@@ -65,11 +65,18 @@ The source and selection limits are recorded with the addition fixture.
 Each new catalogue has **zero translated strings and plural resources**;
 all current translatable keys use default-English fallback pending actual translation.
 The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
-The explicit current scope preserves the original 59 scoped catalogues and all
+That inventory preserved the original 59 scoped catalogues and all
 81 existing fallback identities, adding **27 empty catalogues for 108 fallbacks**.
+The 14 October additions below extend the current contract to 112 fallbacks.
 It checks current identity, status, resource values and fallback behavior without
 reconstructing historical snapshots. The earlier unpublished 162-choice candidate is superseded; its
 retained test/review evidence is historical and does not accept this successor.
+
+## Further languages and Filipino — 14 October 2026
+
+Four individually registered selectable tags bring the inventory to **171**: Old English (`ang`, Ænglisc), Old Norse (`non`, Norrœna), Moroccan Arabic (`ary`, الدارجة المغربية) and Standard Moroccan Tamazight (`zgh`, ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)). Moroccan Arabic is distinct from `ar`; `zgh` is not all Amazigh languages, including the existing separate Kabyle `kab`. The first two are historical languages, not variants of modern English or Norwegian.
+
+These four have empty exact canonical XML catalogues with **0 strings and 0 plurals translated**, default-English fallback, no linguistic review, and no claim of historical phrasing or script/font acceptance. See `tools/fixtures/language_option_additions_20261014.json`. The `tl` Tagalog menu identity is replaced with **Filipino (`fil`)**. Its pre-existing translations are transferred byte-identically to `values-b+fil/strings.xml`, and saved `tl` preferences and Android 13 choices migrate to `fil`. This is **not** independent linguistic review for Filipino. Historical `tl` import/provenance files remain, but `tl` is not a duplicate selectable option. The 59 scoped catalogues now include `fil` instead of `tl`; fallback count rises to **112**. All previous review obligations remain open.
 
 ## Editing a translation
 

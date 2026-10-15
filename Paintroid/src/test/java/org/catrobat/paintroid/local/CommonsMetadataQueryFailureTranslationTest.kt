@@ -74,7 +74,7 @@ class CommonsMetadataQueryFailureTranslationTest {
         "ru" to "Запрос метаданных Commons завершился ошибкой",
         "ryu" to "Commonsんかい メタデータ たぬむしぬ ないはんちゃん。",
         "sw" to "Ombi la metadata ya Commons halikufaulu",
-        "tl" to "Nabigo ang kahilingan para sa metadata ng Commons",
+        "fil" to "Nabigo ang kahilingan para sa metadata ng Commons",
         "tr" to "Commons meta verileri sorgusu başarısız oldu",
         "vi" to "Truy vấn siêu dữ liệu của Commons thất bại",
         "vi-Hani" to "追問超與料𧵑 Commons 失敗。",
@@ -120,7 +120,7 @@ class CommonsMetadataQueryFailureTranslationTest {
         assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
             val resources=resourcesFor(tag)
@@ -128,6 +128,6 @@ class CommonsMetadataQueryFailureTranslationTest {
             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_query_failed))
             assertTrue(expected.contains("Commons"))
         }
-        assertEquals(108,fallbacks)
+        assertEquals(112,fallbacks)
     }
 }

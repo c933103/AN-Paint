@@ -21,7 +21,7 @@ import translation_catalogues as translations
 # All earlier progress is withdrawn; preserve every key-coverage assertion.
 SCOPED_TAGS = set("""
     ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
-    tl ceb ms id sw fi hu af nl et lv lt
+    fil ceb ms id sw fi hu af nl et lv lt
     es-ES es-419 fr de ru ar eo
     lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
     en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr
@@ -164,7 +164,7 @@ class TranslationCatalogueTests(unittest.TestCase):
         data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
         requested = set(
             "ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru "
-            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th "
+            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi fil th "
             "el sr-Cyrl sr-Latn tr hy".split()
         )
         self.assertEqual(requested, set(data["locales"]))

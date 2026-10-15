@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.LocaleList
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
+import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,7 +21,7 @@ import java.util.concurrent.AbstractExecutorService
 import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [33])
+@Config(sdk = [33], qualifiers = "en-rGB")
 class TaggedColourImportTest {
     private val context get() = RuntimeEnvironment.getApplication()
     private val neutral = "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing."
@@ -35,10 +36,10 @@ class TaggedColourImportTest {
     private fun ico(space: Int) = byteArrayOf(0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 24, 0,
         132.toByte(), 0, 0, 0, 22, 0, 0, 0) + dib(space, icon = true)
 
-    private fun assertNeutralFailure(action: () -> Unit) {
+    private fun assertNeutralFailure(expectedMessage: String = neutral, action: () -> Unit) {
         try { action(); fail("Expected unsupported-profile rejection") }
         catch (expected: IOException) {
-            assertEquals(neutral, expected.message)
+            assertEquals(expectedMessage, expected.message)
             assertTrue(expected.cause is LegacyColourMetadata.UnsupportedColour)
         }
     }
@@ -60,6 +61,20 @@ class TaggedColourImportTest {
                 file.delete()
             }
         } finally { folder.deleteRecursively() }
+    }
+
+    @Test @Config(qualifiers = "en-rUS")
+    fun americanEnglishImportsUseTheAmericanResource() {
+        val expected = neutral.replace("colour", "color")
+        assertEquals(expected, context.getString(R.string.save20_unsupported_image_colour))
+        val file = File.createTempFile("tagged-us-", ".bin", context.cacheDir)
+        try {
+            for (bytes in listOf(dib(0x4d424544), ico(0x4d424544))) {
+                file.writeBytes(bytes)
+                assertNeutralFailure(expected) { ImportedImage(file, "profile.bin") }
+                assertArrayEquals(bytes, file.readBytes())
+            }
+        } finally { file.delete() }
     }
 
     @Test fun explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection() {
@@ -103,22 +118,24 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
-    @Test fun everyOfferedLanguageResolvesNeutralMessageOrExplicitEnglishFallback() {
+    @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
+        // Fixed, reviewed full-text expectations for the 59 scoped catalogues.
+        // The other offered languages still have explicit English fallback.
+        val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
+            .bufferedReader().use { JSONObject(it.readText()) }
+        assertEquals(59, expected.length())
+        assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
         for (tag in AppLanguage.tags(context)) {
             val configuration = Configuration(context.resources.configuration).apply {
-                setLocales(LocaleList(Locale.forLanguageTag(tag)))
+                setLocales(LocaleList(AppLanguage.resourceLocale(Locale.forLanguageTag(tag))))
             }
             val message = context.createConfigurationContext(configuration).getString(R.string.save20_unsupported_image_colour)
             assertFalse(tag, message.contains("BMP"))
             assertFalse(tag, message.contains("GIF"))
             assertTrue(tag, message.contains("sRGB"))
             assertTrue(tag, message.contains("PNG"))
-            when (tag) {
-                "fr" -> assertTrue(message.startsWith("Cette image"))
-                "en-US" -> assertEquals(neutral.replace("colour", "color"), message)
-                "qaa-Zsye-XV" -> assertEquals("💾 $neutral", message)
-                else -> assertEquals("Neutral English or explicit fallback for $tag; fallback is not translation acceptance", neutral, message)
-            }
+            assertEquals("Scoped message or explicit English fallback for $tag",
+                expected.optString(tag, neutral), message)
         }
     }
 }

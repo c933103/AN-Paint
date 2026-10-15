@@ -39,7 +39,7 @@ class CommonsHelpProviderTranslationTest {
         "hak-Latn-TW", "hu", "id", "it", "ja", "jje", "ko-KP", "ko-KR",
         "ko-Kore-KR", "lt", "lv", "lzh-Hant", "mn-Cyrl-MN", "mn-Mong", "mnc-Mong", "ms",
         "nan-Hant-TW", "nan-Latn-TW", "nl", "pt-BR", "pt-PT", "qaa-Zsye-XV", "ru", "ryu",
-        "sw", "tl", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
+        "sw", "fil", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
         "zh-CN", "zh-HK", "zh-TW"
     )
     private fun resourcesFor(tag: String)=context.createConfigurationContext(Configuration().apply {
@@ -71,7 +71,7 @@ class CommonsHelpProviderTranslationTest {
     @Test fun otherOfferedTagsUseTheGenuineDefaultHelpFallback() {
         // The host contract verifies these XML catalogues do not contain ui_help23.
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(108,remaining.size)
+        assertEquals(112,remaining.size)
         val english=resourcesFor("en-GB").getString(R.string.ui_help23)
         for(tag in remaining) assertEquals("$tag explicit incomplete/fallback",english,
             resourcesFor(tag).getString(R.string.ui_help23))
