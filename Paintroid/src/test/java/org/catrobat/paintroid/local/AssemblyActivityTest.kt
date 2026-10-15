@@ -367,8 +367,9 @@ class AssemblyActivityTest {
     }
 
     @Test fun everyEnglishOverrideAndFrenchQualifiesWholeCropQuantityMessages() {
-        for(tag in listOf("en","en-001","en-AU","en-CA","en-GB","en-IN","en-SG","en-US","en-XV","fr")) withLanguage(tag) {
+        for(tag in listOf("en","en-001","en-AU","en-CA","en-GB","en-IN","en-SG","en-US","en-XV","fr","qaa-Zsye-XV")) withLanguage(tag) {
             val helpText=ui(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s)
+            if(tag=="qaa-Zsye-XV") assertEquals("Complete emoji-English Help", "💾 Add up to 20 images with Android's file picker. The bottom tray shows thumbnails, filenames, crop dimensions and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\n\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\n\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\n\nSame width and Same height give every input a common dimension while preserving each image's own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\n\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «🧪 Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\n\nSave PNG saves the assembled image directly. «🎨 Edit in Paint» transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\n\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor's «📁 File > ℹ️ About, licences & credits» panel.", helpText)
             assertTrue(tag,helpText.contains(if(tag=="fr") "Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée." else "Attached images may move when their parent is cropped."))
             assertFalse(tag,helpText.contains("Existing attachments move"))
             for(count in listOf(0,1,2,20)) {
@@ -377,6 +378,7 @@ class AssemblyActivityTest {
                     "Aperçu : 24 × 16 px\nAppliquer à $count $noun. Le recadrage des images placées peut déplacer les images qui leur sont rattachées."
                 } else {
                     val noun=if(count==1) "image" else "images"
+                    (if(tag=="qaa-Zsye-XV") "✅ " else "") +
                     "Preview: 24 × 16 px\nApply to $count $noun. Cropping placed images may move their attached images."
                 }
                 assertEquals(tag,expected,activity.resources.getQuantityString(org.catrobat.paintroid.R.plurals.ui_crop_preview_images,count,24,16,count))
