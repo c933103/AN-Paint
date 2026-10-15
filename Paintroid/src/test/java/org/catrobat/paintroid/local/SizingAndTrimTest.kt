@@ -87,6 +87,95 @@ class SizingAndTrimTest {
         assertEquals(0xff00ff00.toInt(),activity.document.bitmap.getPixel(8,9)); assertEquals(Color.WHITE,activity.document.bitmap.getPixel(180,9))
         activity.document.undo(); assertEquals(100,activity.document.bitmap.width)
     }
+    private fun dialogTexts(view: View): List<String> = when (view) {
+        is android.widget.TextView -> listOf(view.text.toString())
+        is android.view.ViewGroup -> (0 until view.childCount).flatMap { dialogTexts(view.getChildAt(it)) }
+        else -> emptyList()
+    }
+    private fun dimensionDialog() = ShadowAlertDialog.getLatestAlertDialog() as android.app.AlertDialog
+    private fun setDimensions(dialog: android.app.AlertDialog, width: Int, height: Int) {
+        val root = dialog.window!!.decorView
+        root.findViewWithTag<CheckBox>("size_lock").isChecked = false
+        root.findViewWithTag<android.widget.EditText>("size_width").setText(width.toString())
+        root.findViewWithTag<android.widget.EditText>("size_height").setText(height.toString())
+    }
+    private fun newImageOmitsResizePromiseAndResetsDocument(language: String) {
+        AppLanguage.select(activity,language); AppLanguage.refresh(activity)
+        assertEquals(java.util.Locale.forLanguageTag(language).language,activity.resources.configuration.locales[0].language)
+        val doc = activity.document
+        doc.bitmap.setPixel(8,9,Color.RED)
+        doc.bitmap.setPixel(180,90,Color.BLUE)
+        doc.invert(); doc.invert(); doc.undo()
+        assertTrue(doc.dirty); assertTrue(doc.canUndo); assertTrue(doc.canRedo)
+        val original = doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+        val history = doc.historySnapshot()
+        val resizeHint = ui(org.catrobat.paintroid.R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas)
+        val stretchHint = ui(org.catrobat.paintroid.R.string.ui_scales_the_image_unlock_the_ratio_to_stretch)
+        fun openNew() {
+            EditorTestNavigation.command(activity,"File",0)
+            val confirmation = dimensionDialog()
+            assertTrue(dialogTexts(confirmation.window!!.decorView).contains(
+                ui(org.catrobat.paintroid.R.string.ui_your_current_image_has_unsaved_changes)))
+            confirmation.getButton(android.app.AlertDialog.BUTTON_NEUTRAL).performClick()
+            EditorTestNavigation.idle()
+            val texts = dialogTexts(dimensionDialog().window!!.decorView)
+            assertFalse(texts.contains(resizeHint)); assertFalse(texts.contains(stretchHint))
+        }
+        openNew()
+        setDimensions(dimensionDialog(),60,40)
+        dimensionDialog().getButton(android.app.AlertDialog.BUTTON_NEGATIVE).performClick()
+        assertTrue(original.sameAs(doc.bitmap)); assertEquals(history,doc.historySnapshot()); assertTrue(doc.dirty)
+        openNew()
+        setDimensions(dimensionDialog(),60,40)
+        dimensionDialog().getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
+        assertEquals(60,doc.bitmap.width); assertEquals(40,doc.bitmap.height)
+        val pixels = IntArray(60*40); doc.bitmap.getPixels(pixels,0,60,0,0,60,40)
+        assertTrue(pixels.all { it == doc.background })
+        assertFalse(doc.canUndo); assertFalse(doc.canRedo); assertFalse(doc.dirty)
+        doc.undo(); assertEquals(60,doc.bitmap.width); assertEquals(doc.background,doc.bitmap.getPixel(8,9))
+        original.recycle()
+    }
+    @Test fun newImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("en-001")
+    @Test
+    fun frenchNewImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("fr")
+    @Test
+    fun japaneseNewImageDoesNotPromisePreservationOrUndo() = newImageOmitsResizePromiseAndResetsDocument("ja")
+
+    @Test fun canvasAndStretchHintsRemainDistinctAndCanvasCropIsUndoable() {
+        val doc = activity.document
+        doc.bitmap.setPixel(8,9,Color.RED); doc.bitmap.setPixel(180,90,Color.BLUE)
+        val original = doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+        val resizeHint = ui(org.catrobat.paintroid.R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas)
+        val stretchHint = ui(org.catrobat.paintroid.R.string.ui_scales_the_image_unlock_the_ratio_to_stretch)
+        EditorTestNavigation.command(activity,"Edit",5)
+        var dialog = dimensionDialog()
+        var texts = dialogTexts(dialog.window!!.decorView)
+        assertTrue(texts.contains(stretchHint)); assertFalse(texts.contains(resizeHint))
+        setDimensions(dialog,60,40)
+        dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).performClick()
+        assertTrue(original.sameAs(doc.bitmap)); assertFalse(doc.canUndo); assertFalse(doc.canRedo)
+        EditorTestNavigation.command(activity,"Edit",3)
+        dialog = dimensionDialog(); texts = dialogTexts(dialog.window!!.decorView)
+        assertTrue(texts.contains(resizeHint)); assertFalse(texts.contains(stretchHint))
+        setDimensions(dialog,60,40)
+        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
+        assertEquals(60,doc.bitmap.width); assertEquals(40,doc.bitmap.height)
+        assertEquals(Color.RED,doc.bitmap.getPixel(8,9)); assertTrue(doc.canUndo)
+        val pixels = IntArray(60*40); doc.bitmap.getPixels(pixels,0,60,0,0,60,40)
+        assertFalse(pixels.contains(Color.BLUE))
+        doc.undo()
+        assertEquals(original.width,doc.bitmap.width); assertEquals(original.height,doc.bitmap.height)
+        assertEquals(original.config,doc.bitmap.config)
+        // History stores exact ARGB samples. A resize undo allocates a new bitmap,
+        // whose alpha-type metadata differs from the opaque original; sameAs also
+        // compares that metadata. Compare every restored sample without a tolerance.
+        val expected = IntArray(original.width * original.height)
+        val restored = IntArray(expected.size)
+        original.getPixels(expected,0,original.width,0,0,original.width,original.height)
+        doc.bitmap.getPixels(restored,0,doc.bitmap.width,0,0,doc.bitmap.width,doc.bitmap.height)
+        assertArrayEquals("Undo must restore every original ARGB pixel",expected,restored)
+        original.recycle()
+    }
     @Test fun visibleSelectAllCanMoveImageBeyondCanvasThenTouchTrimAndUndoRestoreIt() {
         val doc = activity.document; doc.bitmap.eraseColor(Color.BLUE)
         Canvas(doc.bitmap).drawRect(0f,0f,40f,100f,Paint().apply { color = Color.RED })
