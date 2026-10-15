@@ -1,0 +1,32 @@
+# French cursor guidance describes viewport motion instead of cursor dragging
+
+**Status:** Open translation/context bug; documentation-only issue-style tracking PR. Three active keys share one translation cause and are tracked together. **Source:** develop `647a4b5647cabf3e51cb6dcf20d41ae08143ccdb`, 15 October 2026. Independent French and source reviews agree; evidence is static source and full-value review, not an executed gesture/device reproduction. [Project board](https://github.com/c933103/AN-Paint/pull/39) · [Translation review](https://github.com/c933103/AN-Paint/pull/56).
+
+## Expected, actual and impact
+
+Expected: in supported cursor-drawing mode, single-finger dragging positions the cursor or draws through its motion, according to the drawing toggle. Guidance should not direct the user to move the viewport for this gesture.
+
+Actual: three French resources turn ambiguous English “pan” into the specific instruction “déplacez la vue” (move the view). In the cited supported-cursor branch, that drag changes cursor coordinates; viewport panning follows separate branches. Users can misunderstand which object moves and how drawing starts. This does not allege that actual cursor mechanics or viewport navigation are broken.
+
+## Source evidence and affected keys
+
+- [PaintCanvas.kt L676–715](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L676-L715): when cursor drawing is supported and no trim is active, ACTION_MOVE/ACTION_UP offset `cursor` at L692/L704, optionally stroke, then return. The normal drawing-button toggle remains part of this interaction.
+- Separate viewport movement is explicit in the [multi-touch branch L652–663](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L652-L663) and [navigation branch L769–777](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L769-L777). Scrollbar handling is also separate; this report does not deny those supported navigation paths.
+- `ui_cursor_help31`: [EN L648](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L648), [FR L155](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L155). French says “puis déplacez la vue pour dessiner”. Called by [ClassicPaintActivity.kt L1504](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1504).
+- `ui_cursor_pan_draw32`: [EN L657](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L657), [FR L153](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L153). French begins “Déplacez la vue pour commencer à dessiner”.
+- `ui_cursor_pan_move32`: [EN L658](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L658), [FR L154](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L154). French begins “Déplacez la vue pour positionner le curseur”. These status messages are emitted by [ClassicPaintActivity.kt L198](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L198); the move instruction also appears at [L1513](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1513).
+- `ui_cursor_help29` is an alias to `ui_cursor_help31` ([EN L646](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L646), [FR L659](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L659)) and is used at [ClassicPaintActivity.kt L794](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L794). Correct the target, retaining the alias; it is not a fourth distinct wording defect.
+
+## Complete proposed French corrections
+
+- [ ] `ui_cursor_help31`: “Faites glisser pour positionner le curseur. Touchez le bouton de dessin à l’écran, puis faites glisser pour dessiner. Touchez-le à nouveau pour arrêter. Choisissez le pinceau et les réglages du trait sous Dessiner → Dessin.”
+- [ ] `ui_cursor_pan_draw32`: “Faites glisser pour commencer à dessiner. Touchez à nouveau pour arrêter.”
+- [ ] `ui_cursor_pan_move32`: “Faites glisser pour positionner le curseur. Touchez le bouton de dessin pour commencer.”
+
+These candidates preserve the full remaining instruction and button/menu meanings. They are proposed, not applied. None has placeholders; preserve the existing formatting metadata and alias relationship. Audit any same-context translations that also specifically assert viewport motion, without treating all uses of “pan” as independently proven translation bugs.
+
+## Acceptance and next action
+
+Apply the three bounded French corrections after complete-value/context review. Exercise the actual supported-cursor gesture with drawing off and on: cursor position changes, strokes only follow the intended active state, and the cited single-finger interior drag does not alter viewport pan coordinates. Include toggle/stop, help through both direct and alias callers, and separate multi-touch/navigation/scrollbar controls to avoid disabling genuine panning. Test the current integrated source and preserve behavior, undo and existing gesture cancellation.
+
+Coordinate with current cursor implementation work before accepting final call sites; this pinned record does not validate later changes. Run structural resource checks and focused interaction tests, obtain exact-head implementation review, and only then consider closure. No app/resource/test/workflow edits, runtime test result, translation-count update or merge is made by this tracker.
