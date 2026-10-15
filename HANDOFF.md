@@ -2,10 +2,12 @@
 
 - Build, test and delivery rules: [CI.md](CI.md).
 - Current localization regression data: `tools/fixtures/current_localization/`.
-  Exact wording coverage is not native-speaker acceptance; 108 other offered
-  locales remain outside the bounded 59-locale work.
-- Current PR55 work: typed Commons query failures, full accessible localized
-  status text, native/installed lifecycle and rendering regressions.
+  Exact wording coverage is not native-speaker acceptance. The picker offers
+  171 locales: 59 scoped catalogues and 112 other offered locales outside the
+  bounded work, with explicit English fallback.
+- PR55's typed Commons query failures, full accessible localized status text,
+  and native/installed lifecycle and rendering regressions are integrated through
+  PR52. Use the project board and current child receipts for remaining work.
 - Verification history and failures: [archive index](verification/README.md).
 - Active release publication inputs remain in `verification/releases/`;
   migrating audit history does not publish or sign a release.

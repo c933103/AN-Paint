@@ -75,7 +75,8 @@ class AssemblyRenderer(private val context: Context, private val images: List<As
     fun decodeCrop(item: AssemblyImage, target: ImageDimensions, resident: Long = residentPixels): Bitmap {
         // A crop exported at its original size is an integer pixel copy, including
         // right-angle EXIF transforms. Filtering/dithering is reserved for resizing.
-        val paint = Paint(if (target == item.croppedSize) 0 else Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG)
+        val resizing = target != item.croppedSize
+        val paint = Paint(0).apply { isFilterBitmap = resizing; isDither = resizing }
         val jxl=JxlCodec.isJxl(item.file)
         val tiff=TiffCodec.isTiff(item.file)
         val pdf=PdfCodec.isPdf(item.file)

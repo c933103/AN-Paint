@@ -150,7 +150,7 @@
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">🎨 Custom colours · hold a swatch to replace it</string>
     <string name="ui_cut">✂️ Cut</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">🎨 %1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">🧪 %1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">🧪 %1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">🗑️ Delete selection</string>
     <string name="ui_disable_cursor_drawing">✏️ Disable cursor drawing</string>
     <string name="ui_discard">🧪 Discard</string>
@@ -202,6 +202,7 @@
     <string name="ui_eraser">🧽 Eraser</string>
     <string name="ui_estimated_memory_current_working_budget">🧪 Estimated memory: %1$s\nCurrent working budget: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">📁 Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. Imports use the selected opaque background; the original file stays unchanged.</string>
+    <string name="ui_sampled_resize_memory_explanation">📁 Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.</string>
     <string name="ui_expand_colour_palette">🎨 Expand colour palette</string>
     <string name="ui_expand_toolbox">🧪 Expand toolbox</string>
     <string name="ui_export_recovery_copy">📤 Export recovery copy…</string>
@@ -341,7 +342,7 @@
     <string name="ui_rectangle_select">☑️ Rectangle select</string>
     <string name="ui_redo">↪️ Redo</string>
     <string name="ui_remove">🧪 Remove</string>
-    <string name="ui_rendering_images">🖼️ Rendering %1$s / %2$s images…</string>
+    <string name="ui_rendering_images">🖼️ Images processed: %1$s / %2$s…</string>
     <string name="ui_reset_crop">🧪 Reset crop</string>
     <string name="ui_reset_to_black_white">🧪 Reset to black / white</string>
     <string name="ui_resize_and_load">📏 Resize and load</string>
@@ -488,7 +489,7 @@
     <string name="ui_width_in">↔️ Width in %1$s</string>
     <string name="ui_widths">↔️ Widths</string>
     <string name="ui_working">🧪 Working…</string>
-    <string name="ui_you_can_add_more_images_select_fewer_files">📁 You can add %1$s more images. Select fewer files.</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">📁 Number of images you can still add: %1$s. Select fewer files.</string>
     <string name="ui_your_current_image_has_unsaved_changes">💾 Your current image has unsaved changes.</string>
     <string name="ui_zoom_in">🔍 Zoom in</string>
     <string name="ui_zoom_out">🔍 Zoom out</string>
@@ -587,7 +588,7 @@
     <string name="formats22_dib_size_limit">📁 The image exceeds the DIB file-size limit.</string>
     <string name="formats22_import_limit">📁 This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
     <string name="formats22_select_page">☑️ Choose a page</string>
-    <string name="formats22_page_description">🖼️ %1$s · %2$s\n%3$d pages. Choose one page to edit as an image.</string>
+    <string name="formats22_page_description">🖼️ %1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.</string>
     <string name="formats22_pdf_raster_hint">🔤 PDF pages are rendered at 144 dpi. Text and vector objects become pixels.</string>
     <string name="formats22_page_number">🔢 Page number</string>
     <string name="formats22_previous_page">🧪 Previous page</string>
@@ -703,4 +704,11 @@
     <string name="commons_metadata_http_error">⚠️ Commons metadata: HTTP %1$s</string>
     <string name="commons_metadata_response_too_large">⚠️ Commons 🗂️ 📥📏 &gt; 🚧</string>
     <string name="commons_metadata_query_failed">⚠️ Commons 🗂️ 🔎 ❌</string>
+    <string name="save20_unsupported_image_colour">💾 This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.</string>
+    <string name="ui_assembly_exact_position">📍 Exact position</string>
+    <string name="ui_assembly_target_x">📍 Target X (pixels from left)</string>
+    <string name="ui_assembly_target_y">📍 Target Y (pixels from top)</string>
+    <string name="ui_assembly_position_help">🖼️ Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.</string>
+    <string name="ui_assembly_position_nonnegative">🧪 X and Y must be whole numbers from zero to 2147483647.</string>
+    <string name="ui_assembly_unknown_image">🖼️ The selected image is no longer in this assembly.</string>
 </resources>

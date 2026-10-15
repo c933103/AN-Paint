@@ -337,6 +337,7 @@
     <string name="ui_enter_valid_dimensions">請輸入有效尺寸。</string>
     <string name="ui_estimated_memory_current_working_budget">估算記憶體：%1$s\n目前工作上限：%2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">估算包括目前畫布及剪貼簿、取樣解碼及編輯緩衝區。實際記憶體用量會有所不同。較小的副本會損失細節。匯入時會使用所選不透明背景；原始檔案不會改變。</string>
+    <string name="ui_sampled_resize_memory_explanation">估算包括目前畫布及剪貼簿、取樣解碼及編輯緩衝區。實際記憶體用量會有所不同。較小的副本會損失細節。原始檔案不會改變。</string>
     <string name="ui_expand_colour_palette">展開調色盤</string>
     <string name="ui_expand_toolbox">展開工具箱</string>
     <string name="ui_export_recovery_copy_144b8a">匯出復原副本</string>
@@ -702,4 +703,11 @@
     <string name="commons_metadata_http_error">Commons 中繼資料：HTTP %1$s</string>
     <string name="commons_metadata_response_too_large">Commons 中繼資料超出回應大小上限</string>
     <string name="commons_metadata_query_failed">Commons 中繼資料查詢失敗</string>
+    <string name="save20_unsupported_image_colour">此圖片使用 AN Paint 尚未能轉換的色彩描述檔。請先在支援色彩管理的編輯器中轉換為 sRGB PNG，再匯入。</string>
+    <string name="ui_assembly_exact_position">精確位置</string>
+    <string name="ui_assembly_target_x">X 座標（距左邊緣的像素數）</string>
+    <string name="ui_assembly_target_y">Y 座標（距上邊緣的像素數）</string>
+    <string name="ui_assembly_position_help">設定這張圖片的左上角在輸出畫布上的位置。X 和 Y 以整數像素為單位，從零開始。其他圖片保持目前的位置。此處允許重疊；較晚匯入的圖片會繪製在上層。畫布會擴展以容納所有已放置的圖片。裁切範圍和尺寸保持不變。</string>
+    <string name="ui_assembly_position_nonnegative">X 和 Y 必須是 0 到 2147483647 之間的整數。</string>
+    <string name="ui_assembly_unknown_image">所選圖片已不在此拼接中。</string>
 </resources>

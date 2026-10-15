@@ -63,7 +63,10 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         canvas.save(); canvas.clipRect(rect)
         val unscaled = bitmap.width == item.dimensions.width && bitmap.height == item.dimensions.height &&
             rect.width() == crop.width() && rect.height() == crop.height()
-        canvas.drawBitmap(bitmap,matrix,Paint(if (unscaled) 0 else Paint.FILTER_BITMAP_FLAG).apply { this.alpha = alpha }); canvas.restore()
+        // Paint(0) still enables bitmap filtering on Android Q and newer.
+        // Keep original-size source pixels crisp even when the workspace is zoomed.
+        val paint = Paint(0).apply { isFilterBitmap = !unscaled; this.alpha = alpha }
+        canvas.drawBitmap(bitmap,matrix,paint); canvas.restore()
     }
     // Attachment resolution may insert an anchor into layout before its child.
     // Layer order follows the source list, just as it does during export.

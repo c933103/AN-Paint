@@ -6,6 +6,9 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.Paint
+import android.graphics.Matrix
+import android.graphics.RectF
 import android.view.MotionEvent
 import android.view.View
 import org.catrobat.paintroid.classic.*
@@ -21,7 +24,7 @@ import java.io.File
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [33],shadows = [PixelRegionDecoderShadow::class])
+@Config(sdk = [33],qualifiers = "mdpi",shadows = [PixelRegionDecoderShadow::class])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class AssemblyRendererTest {
     private lateinit var context: Context
@@ -79,17 +82,76 @@ class AssemblyRendererTest {
         model.position(images[0].id,0,0)
         model.position(images[1].id,4,4)
         val output = AssemblyRenderer(context,model.images,model.layout(),0).render(model.size()!!)
-        val view = measuredCanvas(images.zip(listOf(base,overlay)).associate { it.first.id to it.second })
-        val preview = Bitmap.createBitmap(view.width,view.height,Bitmap.Config.ARGB_8888)
         try {
-            view.draw(Canvas(preview))
             assertEquals(Color.RED,output.getPixel(8,8))
             assertEquals(0xff7f0080.toInt(),output.getPixel(9,9))
-            for ((x,y) in listOf(8 to 8,9 to 9,2 to 2)) {
-                val screen = view.toScreen(x+.5f,y+.5f)
-                assertEquals("Preview and export at $x,$y",output.getPixel(x,y),preview.getPixel(screen.x.toInt(),screen.y.toInt()))
+            // A 20px assembly plus 30px padding on each side gives 1x, 2.35x
+            // and 17x views. Retain the original failing 400px fitted view.
+            for ((edge,scale) in listOf(80 to 1f,107 to 2.35f,400 to 17f)) {
+                val view = measuredCanvas(images.zip(listOf(base,overlay)).associate { it.first.id to it.second },edge)
+                assertEquals("Workspace zoom at $edge",scale,view.zoom,0.00001f)
+                val preview = Bitmap.createBitmap(view.width,view.height,Bitmap.Config.ARGB_8888)
+                try {
+                    view.draw(Canvas(preview))
+                    for ((x,y) in listOf(8 to 8,9 to 9,2 to 2)) {
+                        val screen = view.toScreen(x+.5f,y+.5f)
+                        assertEquals("Preview and export at $x,$y, zoom $scale",output.getPixel(x,y),preview.getPixel(screen.x.toInt(),screen.y.toInt()))
+                    }
+                } finally { preview.recycle() }
             }
-        } finally { preview.recycle(); output.recycle(); base.recycle(); overlay.recycle() }
+        } finally { output.recycle(); base.recycle(); overlay.recycle() }
+    }
+
+    @Test fun nativeFilteringControlDistinguishesPaintZeroFromExplicitNearestSampling() {
+        val source = solid(10,10,0x800000ff.toInt()).apply { setPixel(4,4,Color.TRANSPARENT) }
+        val matrix = Matrix().apply { setScale(17f,17f) }
+        fun sample(paint: Paint): Int {
+            val bitmap = solid(170,170,Color.RED)
+            try {
+                Canvas(bitmap).drawBitmap(source,matrix,paint)
+                return bitmap.getPixel(75,75)
+            } finally { bitmap.recycle() }
+        }
+        try {
+            val constructorOnly = Paint(0)
+            assertTrue("Android Q+ Paint(0) retains the default filter flag",constructorOnly.isFilterBitmap)
+            assertNotEquals("Negative control must expose interpolation around transparent pixels",Color.RED,sample(constructorOnly))
+            assertEquals(Color.RED,sample(Paint(0).apply { isFilterBitmap = false }))
+        } finally { source.recycle() }
+    }
+
+    @Test fun normalizedAndSampledPreviewsRetainFilteredSampling() {
+        val full = solid(20,20,Color.BLUE).apply { setPixel(8,8,Color.RED) }
+        val sampled = solid(10,10,Color.BLUE).apply { setPixel(4,4,Color.RED) }
+        val item = source(full)
+        model.add(listOf(item)); model.position(item.id,0,0)
+        try {
+            for (thumbnail in listOf(false,true)) {
+                if (!thumbnail) model.normalize(NormalizeAxis.WIDTH,40)
+                else model.resetSizes()
+                val bitmap = if (thumbnail) sampled else full
+                val view = measuredCanvas(mapOf(item.id to bitmap),400)
+                val actual = Bitmap.createBitmap(400,400,Bitmap.Config.ARGB_8888)
+                val filtered = Bitmap.createBitmap(400,400,Bitmap.Config.ARGB_8888)
+                val nearest = Bitmap.createBitmap(400,400,Bitmap.Config.ARGB_8888)
+                val rect = model.layout().getValue(item.id)
+                val start = view.toScreen(rect.left.toFloat(),rect.top.toFloat())
+                val end = view.toScreen(rect.right.toFloat(),rect.bottom.toFloat())
+                val destination = RectF(start.x,start.y,end.x,end.y)
+                val matrix = Matrix().apply {
+                    setRectToRect(RectF(0f,0f,bitmap.width.toFloat(),bitmap.height.toFloat()),destination,Matrix.ScaleToFit.FILL)
+                }
+                val point = if (thumbnail) view.toScreen(8.5f,8.5f) else view.toScreen(16.5f,16.5f)
+                try {
+                    view.draw(Canvas(actual))
+                    Canvas(filtered).drawBitmap(bitmap,matrix,Paint(0).apply { isFilterBitmap = true })
+                    Canvas(nearest).drawBitmap(bitmap,matrix,Paint(0).apply { isFilterBitmap = false })
+                    val x=point.x.toInt(); val y=point.y.toInt()
+                    assertNotEquals("Sampling control must distinguish filtering; thumbnail=$thumbnail",nearest.getPixel(x,y),filtered.getPixel(x,y))
+                    assertEquals("Resized/sampled previews remain filtered; thumbnail=$thumbnail",filtered.getPixel(x,y),actual.getPixel(x,y))
+                } finally { actual.recycle(); filtered.recycle(); nearest.recycle() }
+            }
+        } finally { full.recycle(); sampled.recycle() }
     }
 
     @Test fun previewAndTouchUseExportLayerOrderWhenAttachmentResolutionChangesMapOrder() {
@@ -118,8 +180,8 @@ class AssemblyRendererTest {
         } finally { output.recycle(); preview.recycle(); child.recycle(); middle.recycle(); last.recycle() }
     }
 
-    private fun measuredCanvas(previews: Map<String,Bitmap>) = AssemblyCanvas(context,model) { previews[it] }.apply {
-        measure(View.MeasureSpec.makeMeasureSpec(400,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(400,View.MeasureSpec.EXACTLY))
-        layout(0,0,400,400)
+    private fun measuredCanvas(previews: Map<String,Bitmap>,edge: Int = 400) = AssemblyCanvas(context,model) { previews[it] }.apply {
+        measure(View.MeasureSpec.makeMeasureSpec(edge,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(edge,View.MeasureSpec.EXACTLY))
+        layout(0,0,edge,edge)
     }
 }
