@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
+import android.content.res.Configuration
 import android.system.Os
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -183,6 +185,38 @@ class PdfCodecTest {
             assertFalse(PdfCodec.isPdf(file))
             expectInvalid { PdfCodec.pageCount(file) }
         } finally { file.delete() }
+    }
+
+    @Test fun japaneseMalformedPdfRetainsUncertaintyAndSpecificPageErrorsRemainSpecific() {
+        val previous = PaintApplication.currentResources
+        val japanese = context.createConfigurationContext(Configuration(context.resources.configuration).apply {
+            setLocale(Locale.JAPANESE)
+        }).resources
+        val file = File.createTempFile("pdf-ja-failure-", ".pdf", context.cacheDir)
+        fun message(action: () -> Unit): String {
+            try { action(); fail("Expected PDF rejection") }
+            catch (error: IOException) { return checkNotNull(error.message) }
+            error("PDF was unexpectedly accepted")
+        }
+        try {
+            PaintApplication.currentResources = japanese
+            val expected = "PDFを読み込めませんでした。ファイルが破損しているか、このAndroidバージョンでは対応していない機能が使われている可能性があります。"
+            assertEquals(expected, japanese.getString(R.string.formats22_pdf_invalid))
+            file.writeText("Not a PDF document")
+            assertEquals(expected, message { PdfCodec.pageCount(file) })
+            file.writeText("%PDF-1.7\nThis is deliberately not a PDF object graph.\n%%EOF\n")
+            assertTrue(PdfCodec.isPdf(file))
+            assertEquals(expected, message { PdfCodec.pageCount(file) })
+            withDocument { valid ->
+                assertEquals(japanese.getString(R.string.formats22_pdf_page_index),
+                    message { PdfCodec.dimensions(valid, 2) })
+                assertEquals(japanese.getString(R.string.formats22_pdf_crop),
+                    message { PdfCodec.decode(valid, ImageDimensions(8, 8), budget, Rect(0, 0, 0, 0)).recycle() })
+            }
+        } finally {
+            PaintApplication.currentResources = previous
+            file.delete()
+        }
     }
 
     @Test fun pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection() {
