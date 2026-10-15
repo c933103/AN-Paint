@@ -1,0 +1,439 @@
+{
+  "status": "FOUR_COMPLETE_VALUES_READY_FOR_SEPARATE_LANGUAGE_REVIEW_NOT_INTEGRATION",
+  "locale": "mnc-Mong",
+  "created_at_utc": "2026-10-15T14:39:24.154516+00:00",
+  "author": "finish_manchu_position_wording",
+  "scope": "Only the four remaining PR67 exact-position values. Native chat-side research and temporary files only. No repository/app/PR modifications, no publication, no restoration of withdrawn historical acceptance.",
+  "prior_inputs": [
+    {
+      "file": "group-i-mnc-mong-hold-draft.json",
+      "sha256": "b243b47daf63016c2d96042534193b853f9491e4e5b9e49c45bbc6a998ec8c77"
+    },
+    {
+      "file": "group-i-mnc-mong-independent-review.json",
+      "sha256": "03140fcb3a271d06d78bd2cc93575606475500ceded877591051f50babb69a37"
+    },
+    {
+      "file": "group-i-mnc-mong-finite-domain-candidate.json",
+      "sha256": "d4e3d57197f93949e1c908bb298f8d060fec280cdea81e34dff7c486d0f91121"
+    }
+  ],
+  "entries": [
+    {
+      "target": "ᠪᠠ ᠪᡝ ᡨᠣᠪ ᠰᡝᠮᡝ ᡨᠣᡴᡨᠣᠪᡠᡵᡝ",
+      "manual_reading": "ba be tob seme toktobure",
+      "backtranslation": "Setting/specifying the position exactly",
+      "source_ids": [
+        "Q",
+        "J",
+        "M",
+        "A"
+      ],
+      "semantic_confidence": "moderate",
+      "idiom_confidence": "moderate",
+      "assessment": "A complete action-title alternative. Exact position becomes exact position-setting, retaining the control function. Accusative ba is the object of toktobure; tob seme modifies setting precisely. Primary spatial use of tob seme plus primary numerical-dimension toktobure support the composition. This does not claim the position is locked permanently.",
+      "independent_review_questions": [
+        "Is the complete action-title natural for a coordinate dialog, and does it convey precision rather than merely correctness?",
+        "Check the nominal use of final toktobure. No exact historical collocation or native UI certification is claimed."
+      ],
+      "key": "ui_assembly_exact_position",
+      "locale": "mnc-Mong",
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target_sha256": "bf716554524ac244294eb56444a26cd577836219f130980d2c529f6a7ba522a2",
+      "status": "complete_candidate_for_independent_review",
+      "approved_for_integration": false,
+      "language_accepted": false,
+      "publication_ready": false,
+      "whole_value_independently_reviewed": false
+    },
+    {
+      "target": "ᠰᠣᠨᠵᠣᡥᠣ ᠨᡳᡵᡠᡤᠠᠨ ᡝᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᠠᠴᠠᠪᡠᠨ ᡳ ᡩᠣᡵᡤᡳ ᡩᡝ ᠪᡳᡥᡝ, ᡨᡝ ᠠᡴᡡ.",
+      "manual_reading": "sonjoho nirugan ere nirugan acabun i dorgi de bihe, te akū.",
+      "backtranslation": "The selected image was inside this image assembly; now it is absent [from there].",
+      "source_ids": [
+        "M",
+        "G",
+        "Q",
+        "L"
+      ],
+      "semantic_confidence": "moderate-high",
+      "idiom_confidence": "moderate",
+      "assessment": "The past existence predicate and present negative existence predicate explicitly contrast prior membership with present absence. The final clause shares the selected image and assembly location. Nirugan acabun is the project’s descriptive image-assembly noun phrase, based on combination/union, not a certified Qing compound.",
+      "independent_review_questions": [
+        "Is the assembly locative naturally retained in the elliptical te akū clause?",
+        "Does the project noun nirugan acabun denote the image assembly rather than a finished output image or a different union?"
+      ],
+      "key": "ui_assembly_unknown_image",
+      "locale": "mnc-Mong",
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target_sha256": "73dcaf29ca6c045923efad37a69afad52bef6354f204100988f6bfdd47f70162",
+      "status": "complete_candidate_for_independent_review",
+      "approved_for_integration": false,
+      "language_accepted": false,
+      "publication_ready": false,
+      "whole_value_independently_reviewed": false
+    },
+    {
+      "target": "0, 1, 2, …, 2147483647 ᠰᡝᡵᡝ ᡨᠣᠨ ᡳ ᡩᠣᡵᡤᡳᠴᡳ X ᠵᠠᡳ Y ᠪᡝ ᠰᠣᠨᠵᠣ.",
+      "manual_reading": "0, 1, 2, …, 2147483647 sere ton i dorgici X jai Y be sonjo.",
+      "backtranslation": "Choose X and Y from the numbers 0, 1, 2, …, 2147483647.",
+      "source_ids": [
+        "A",
+        "F",
+        "M",
+        "Q"
+      ],
+      "semantic_confidence": "moderate-high_for_explicit_domain",
+      "idiom_confidence": "moderate",
+      "assessment": "Resubmitted byte-for-byte finite-domain candidate. Both endpoints and the consecutive whole-number pattern are explicit. Ordinary ton is not claimed to be a specialized integer term. Sonjo is an imperative rather than permission. The earlier unapproved status remains unchanged.",
+      "independent_review_questions": [
+        "Is the complete numeric-list + sere ton i dorgici + coordinated object + imperative construction idiomatic enough for this validation message?",
+        "Does the modern reader unambiguously understand the ellipsis as all consecutive whole values, including both endpoints, rather than an incomplete example list?",
+        "Does the ordinary imperative select/choose communicate entering valid coordinate values here without implying a drop-down or distinct X and Y values?",
+        "Verify the manually written Manchu spelling and mixed Latin/digit punctuation in the actual Android UI."
+      ],
+      "key": "ui_assembly_position_nonnegative",
+      "locale": "mnc-Mong",
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target_sha256": "57f0000a4c96a72e469ccacbcd4891176e7f15d3ddcf7248f2bf8fa122c47636",
+      "status": "complete_candidate_for_independent_review",
+      "approved_for_integration": false,
+      "language_accepted": false,
+      "publication_ready": false,
+      "whole_value_independently_reviewed": false
+    },
+    {
+      "target": "ᡝᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᡵᡤᡳ ᡥᠠᠰᡥᡡ ᡥᠣᡧᠣ ᠪᡝ ᡨᡠᠴᡳᠪᡠᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᡩᡝ ᠰᡳᠨᡩᠠ. X ᠵᠠᡳ Y ᠪᡝ px ᡳ ᠪᠣᡩᠣᠮᡝ, 0, 1, 2, … ᠰᡝᡵᡝ ᡨᠣᠨ ᡳ ᡩᠣᡵᡤᡳᠴᡳ ᠰᠣᠨᠵᠣ. ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡡᠸᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡨᡝ ᠪᡳᠰᡳᡵᡝ ᠪᠠ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ. ᡠᠪᠠ ᡩᡝ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠵᡳᠪᠰᡳᠪᡠᠴᡳ ᠣᠮᠪᡳ. ᠠᠮᠠᡤᠠ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠨᡝᠨᡝᠮᡝ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᠯᡝ ᠨᡳᡵᡠᠮᠪᡳ. ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᠰᡳᠨᡩᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡤᡝᠮᡠ ᠪᠠᡴᡨᠠᡵᠠ ᠵᠠᠯᡳᠨ ᠠᠮᠪᠠ ᠣᠮᠪᡳ. ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡳᡵᡳᡵᡝ ᠪᠠ ᠵᠠᡳ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ.",
+      "manual_reading": "ere nirugan i dergi hashū hošo be tucibure nirugan i nirure ba de sinda. X jai Y be px i bodome, 0, 1, 2, … sere ton i dorgici sonjo. ere baita gūwa nirugan i te bisire ba be halarakū. uba de nirugan be jibsibuci ombi. amaga dosimbuha nirugan be neneme dosimbuha nirugan i dele nirumbi. nirure ba sindaha nirugan be gemu baktara jalin amba ombi. ere baita girire ba jai nirugan i amba ajige be halarakū.",
+      "backtranslation": "Set this image’s upper-left corner on the drawing area of the output image. Counting X and Y in px, choose them from the numbers 0, 1, 2, … . This operation does not change the places where the other images currently are. Here, images may be placed in overlapping layers. [The program] draws the images brought in later on top of the images brought in earlier. The drawing area becomes larger in order to contain all the placed images. This operation does not change the crop regions or the sizes of the images.",
+      "source_ids": [
+        "Q",
+        "M",
+        "G",
+        "A",
+        "F",
+        "E",
+        "L"
+      ],
+      "semantic_confidence": "moderate_pending_complete_paragraph_review",
+      "idiom_confidence": "moderate_to_low_for_modern_technical_phrases",
+      "assessment": "First complete Manchu-script candidate for the entire Help paragraph. The finite-count method avoids inventing an integer category; physical corner, current placement, overlap permission, later import order, all placed images, and unchanged crop/size claims are each represented. Complete paragraph review, not just clause review, is still required.",
+      "independent_review_questions": [
+        "Read all seven clauses together for idiom, scope, and all source invariants. In particular, test the numeric selection sentence, overlap metaphor, import-order clause, contain/enlarge grammar and crop-region interpretation.",
+        "Confirm that adding an explicit operation subject and changing the whole-pixel declarative to a selection instruction preserve the intended help function.",
+        "Check mixed digits/Latin literals and lengthy native-script text in Android; cmap coverage is insufficient."
+      ],
+      "clauses": [
+        {
+          "id": "H1",
+          "source": "Set the top-left corner of this image on the output canvas.",
+          "target": "ᡝᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᡵᡤᡳ ᡥᠠᠰᡥᡡ ᡥᠣᡧᠣ ᠪᡝ ᡨᡠᠴᡳᠪᡠᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᡩᡝ ᠰᡳᠨᡩᠠ.",
+          "reading": "ere nirugan i dergi hashū hošo be tucibure nirugan i nirure ba de sinda.",
+          "backtranslation": "Set this image’s upper-left corner on the drawing area of the output image.",
+          "grammar": "Genitive image phrase; two spatial modifiers of corner; accusative corner; locative drawing area; bare-stem imperative. Output is the image to be brought out, rather than a new name for a canvas fabric.",
+          "sources": [
+            "Q",
+            "G",
+            "M"
+          ],
+          "confidence": "moderate",
+          "review_focus": "The nested output-image/drawing-area phrase is deliberate descriptive software terminology; check its readability and that upper-left selects the physical corner.",
+          "target_sha256": "f6c58eebc9e28dbeeae831d5b7f47f314c0bf43a1ca77b4100661ae636673a1a"
+        },
+        {
+          "id": "H2",
+          "source": "X and Y are whole pixels, starting at zero.",
+          "target": "X ᠵᠠᡳ Y ᠪᡝ px ᡳ ᠪᠣᡩᠣᠮᡝ, 0, 1, 2, … ᠰᡝᡵᡝ ᡨᠣᠨ ᡳ ᡩᠣᡵᡤᡳᠴᡳ ᠰᠣᠨᠵᠣ.",
+          "reading": "X jai Y be px i bodome, 0, 1, 2, … sere ton i dorgici sonjo.",
+          "backtranslation": "Counting X and Y in px, choose them from the numbers 0, 1, 2, … .",
+          "grammar": "Shared accusative coordinates governed by the measuring converb and final choose imperative. Instrumental px sets the unit. Numeric list + sere ton names the nonnegative consecutive counts, and genitive + dorgici supplies the selection domain.",
+          "sources": [
+            "A",
+            "F",
+            "M",
+            "Q"
+          ],
+          "confidence": "moderate",
+          "review_focus": "Modern ellipsis is a consecutive-count convention, not an attested Qing notation. Check that the complete sentence means integer pixel counts and does not imply distinct X/Y values or a dropdown. The Help sentence has no explicit maximum in English, so no maximum is added.",
+          "target_sha256": "d24862116c30ed86844575c5ec6332f47781d08ec70c071ad2ca00a9d062c7c8"
+        },
+        {
+          "id": "H3",
+          "source": "Other images keep their current positions.",
+          "target": "ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡡᠸᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡨᡝ ᠪᡳᠰᡳᡵᡝ ᠪᠠ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ.",
+          "reading": "ere baita gūwa nirugan i te bisire ba be halarakū.",
+          "backtranslation": "This operation does not change the places where the other images currently are.",
+          "grammar": "Explicit operation subject avoids an uncertain active/passive or causative reading. The current-existence participle qualifies the positions of other images; accusative precedes a negated nonpast predicate.",
+          "sources": [
+            "M",
+            "G",
+            "Q"
+          ],
+          "confidence": "moderate",
+          "review_focus": "Check the relative phrase te bisire ba and its association with other images. It expresses unchanged current placement, not a ban on future independent edits.",
+          "target_sha256": "3d4a06e63311fc12df9500bea6ad0654b42f72f7d266537ac6c93ab85866080b"
+        },
+        {
+          "id": "H4",
+          "source": "Overlap is allowed here;",
+          "target": "ᡠᠪᠠ ᡩᡝ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠵᡳᠪᠰᡳᠪᡠᠴᡳ ᠣᠮᠪᡳ.",
+          "reading": "uba de nirugan be jibsibuci ombi.",
+          "backtranslation": "Here, images may be placed in overlapping layers.",
+          "grammar": "Local here phrase; images as object of the overlapping/stacking causative; conditional plus ombi explicitly expresses permission.",
+          "sources": [
+            "Q",
+            "E",
+            "M"
+          ],
+          "confidence": "moderate",
+          "review_focus": "The Qing overlap entry supports the layering metaphor; check that this reads as permission for image overlap rather than a mandatory stacking action or cloth folding.",
+          "target_sha256": "9b795a997905ed88310b9805298d893854ca2e48b416685a6b566429de0806dd"
+        },
+        {
+          "id": "H5",
+          "source": "images imported later are drawn on top.",
+          "target": "ᠠᠮᠠᡤᠠ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠨᡝᠨᡝᠮᡝ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᠯᡝ ᠨᡳᡵᡠᠮᠪᡳ.",
+          "reading": "amaga dosimbuha nirugan be neneme dosimbuha nirugan i dele nirumbi.",
+          "backtranslation": "[The program] draws the images brought in later on top of the images brought in earlier.",
+          "grammar": "Later-imported image is the accusative object; earlier-imported image is the genitive complement of dele. The nonpast drawing predicate has the normal implicit UI actor. Earlier is supplied as the reference already implied by on top.",
+          "sources": [
+            "Q",
+            "G",
+            "M"
+          ],
+          "confidence": "moderate",
+          "review_focus": "The temporal modifier applies to importing, not editing. The complement of dele is earlier images, so this is stacking order rather than a move toward the physical upper edge. Imported is a descriptive extension of bring/put into, not a historical technical term.",
+          "target_sha256": "d4eb286e743627e6f40843025d3c8fda7b73f38eb9b673c0a22b9d9d788a916e"
+        },
+        {
+          "id": "H6",
+          "source": "The canvas expands to include all placed images.",
+          "target": "ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᠰᡳᠨᡩᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡤᡝᠮᡠ ᠪᠠᡴᡨᠠᡵᠠ ᠵᠠᠯᡳᠨ ᠠᠮᠪᠠ ᠣᠮᠪᡳ.",
+          "reading": "nirure ba sindaha nirugan be gemu baktara jalin amba ombi.",
+          "backtranslation": "The drawing area becomes larger in order to contain all the placed images.",
+          "grammar": "Drawing area is the main subject. The placed images are the accusative object of contain; gemu scopes over all of them. Participle plus jalin marks purpose, and adjective plus ombi expresses a size change.",
+          "sources": [
+            "G",
+            "Q",
+            "M"
+          ],
+          "confidence": "moderate",
+          "review_focus": "Check transitive baktara with the canvas as understood subject of its purpose clause, and that amba ombi conveys sufficient enlargement. This avoids the earlier selgiyembi (proclaim) proposal. It does not say the images themselves are enlarged.",
+          "target_sha256": "040a8db7ab73235428324186a36e47d0fb3a9dd7a96a94fb880dcd3c4e15b980"
+        },
+        {
+          "id": "H7",
+          "source": "Crops and sizes stay unchanged.",
+          "target": "ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡳᡵᡳᡵᡝ ᠪᠠ ᠵᠠᡳ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ.",
+          "reading": "ere baita girire ba jai nirugan i amba ajige be halarakū.",
+          "backtranslation": "This operation does not change the crop regions or the sizes of the images.",
+          "grammar": "Explicit operation subject; coordinated crop-region and image-size objects share final accusative and the unchanged-operation predicate.",
+          "sources": [
+            "Q",
+            "M",
+            "L"
+          ],
+          "confidence": "moderate-low",
+          "review_focus": "Girire ba is an authored crop-region phrase based on trimming, not a historically attested digital-crop term. Check that readers take it as crop bounds/retained region rather than the discarded strip. Size explicitly belongs to images, avoiding contradiction with the canvas enlargement sentence.",
+          "target_sha256": "514d28672ebfc46833a2957e3f965b586b8a7554e7575afffa3e47400ffde8cf"
+        }
+      ],
+      "key": "ui_assembly_position_help",
+      "locale": "mnc-Mong",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target_sha256": "eef87a671516be06fea2aac92d7093020c83ba68ad01dc0cc04f2a3771fc057e",
+      "status": "complete_candidate_for_independent_review",
+      "approved_for_integration": false,
+      "language_accepted": false,
+      "publication_ready": false,
+      "whole_value_independently_reviewed": false
+    }
+  ],
+  "translations": {
+    "mnc-Mong": {
+      "ui_assembly_exact_position": "ᠪᠠ ᠪᡝ ᡨᠣᠪ ᠰᡝᠮᡝ ᡨᠣᡴᡨᠣᠪᡠᡵᡝ",
+      "ui_assembly_unknown_image": "ᠰᠣᠨᠵᠣᡥᠣ ᠨᡳᡵᡠᡤᠠᠨ ᡝᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᠠᠴᠠᠪᡠᠨ ᡳ ᡩᠣᡵᡤᡳ ᡩᡝ ᠪᡳᡥᡝ, ᡨᡝ ᠠᡴᡡ.",
+      "ui_assembly_position_nonnegative": "0, 1, 2, …, 2147483647 ᠰᡝᡵᡝ ᡨᠣᠨ ᡳ ᡩᠣᡵᡤᡳᠴᡳ X ᠵᠠᡳ Y ᠪᡝ ᠰᠣᠨᠵᠣ.",
+      "ui_assembly_position_help": "ᡝᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᡵᡤᡳ ᡥᠠᠰᡥᡡ ᡥᠣᡧᠣ ᠪᡝ ᡨᡠᠴᡳᠪᡠᡵᡝ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᡩᡝ ᠰᡳᠨᡩᠠ. X ᠵᠠᡳ Y ᠪᡝ px ᡳ ᠪᠣᡩᠣᠮᡝ, 0, 1, 2, … ᠰᡝᡵᡝ ᡨᠣᠨ ᡳ ᡩᠣᡵᡤᡳᠴᡳ ᠰᠣᠨᠵᠣ. ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡡᠸᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡨᡝ ᠪᡳᠰᡳᡵᡝ ᠪᠠ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ. ᡠᠪᠠ ᡩᡝ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠵᡳᠪᠰᡳᠪᡠᠴᡳ ᠣᠮᠪᡳ. ᠠᠮᠠᡤᠠ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠨᡝᠨᡝᠮᡝ ᡩᠣᠰᡳᠮᠪᡠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᠯᡝ ᠨᡳᡵᡠᠮᠪᡳ. ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᠰᡳᠨᡩᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡤᡝᠮᡠ ᠪᠠᡴᡨᠠᡵᠠ ᠵᠠᠯᡳᠨ ᠠᠮᠪᠠ ᠣᠮᠪᡳ. ᡝᡵᡝ ᠪᠠᡳᡨᠠ ᡤᡳᡵᡳᡵᡝ ᠪᠠ ᠵᠠᡳ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ."
+    }
+  },
+  "unchanged_previously_accepted_xy": {
+    "mnc-Mong": {
+      "ui_assembly_target_x": "ᠰᡳᠨᡩᠠᡵᠠ X (ᡥᠠᠰᡥᡡ ᡩᠠᠯᠪᠠ ᠴᡳ px ᡳ ᠪᠣᡩᠣᡥᠣᠩᡤᡝ)",
+      "ui_assembly_target_y": "ᠰᡳᠨᡩᠠᡵᠠ Y (ᡩᡝᡵᡤᡳ ᡩᠠᠯᠪᠠ ᠴᡳ px ᡳ ᠪᠣᡩᠣᡥᠣᠩᡤᡝ)"
+    }
+  },
+  "source_assessment": {
+    "aku_oho": "An idiomatic death gloss is attested with animate subjects and in a mourning category. It cannot decide an entire inanimate location-qualified sentence. The original image candidate can compositionally mean that the image has become absent from this assembly; the arithmetic text independently shows akū + ombi with an inanimate remainder. The new candidate uses past presence and current absence for a simpler explicit contrast, not because death was proven to be the original meaning.",
+    "ton": "The arithmetic article explicitly says that ton means number(s) generally, then narrows it within its specific manuscript. It is invalid to extend that local Euclidean definition to ordinary Manchu. The finite and open consecutive lists encode the intended domains without calling ton a historical technical word for integer.",
+    "historical_catalogue": "Existing app strings were consulted only to identify its authored technical vocabulary. All historical audit claims remain withdrawn. Nirure ba, nirugan acabun, girire ba and importing/drawing extensions are evaluated here as current compositions, not automatically accepted catalogue language."
+  },
+  "sources": [
+    {
+      "id": "Q",
+      "title": "Hitoshi Kuribayashi, Manchu index to the Qing trilingual dictionary",
+      "url": "https://gerel.net/articles/roncho/A47All.pdf",
+      "kind": "Scholarly index of primary Qing lexical material",
+      "local_file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/qing-triglot.pdf",
+      "sha256": "e9896f9a05fd76bf9eb84a22f9f6baf4a1200f197acf3904676fa0fa77486fb7",
+      "locators": [
+        "tob seme: 11-37b3 / 1.1402-4(5308); toktobumbi: 8-46a3 (physical aiming/fixing)",
+        "ba: 3-2b4 / 1.153-2(584); ton: 7-38a1 / 1.833-1(3144)",
+        "dergi upper: 3-45a1 / 1.239-1(915); hashū: 3-49a4 / 1.247-3(948); hošo: 3-47a4 / 1.243-4(934)",
+        "nirugan: 7-37a1 / 1.822-3(3107); nirumbi: 25-48a2 / 3.3671-2(13803); sindambi: 15-45a1 / 2.2105-4(7950)",
+        "jibsibumbi: 5-15b4 / 1.461-3(1750); dele: 3-45a2 / 1.239-2(916)",
+        "amaga: 2-14b4 / 1.100-2(381); neneme: 2-7a3 / 1.85-2(322); dosimbumbi: 6-15a3 / 1.626-1(2366)",
+        "baktambi: 24-26b2 / 3.3464-1(13032); amba: 24-58a1 / 3.3523-1(13251)",
+        "girimbi: 23-62a2 / 2.3363-4(12653); halambi: 5-29b4 / 1.490-3(1860)",
+        "akū: 13-38a2 / 2.1739-1(6558); bihe: 18-80b4 / 2.2612-2(9839); akū oho in mourning section: 6-30b4 / 1.668-3(2526)"
+      ],
+      "support": "Separately corroborates ordinary number/count, physical directions, corner, place/set/draw, overlap and size vocabulary. Historical lexical senses require modern compositional extension; the entries alone are not whole-sentence certification."
+    },
+    {
+      "id": "M",
+      "title": "P. G. von Möllendorff, A Manchu Grammar (1892)",
+      "url": "https://en.wikisource.org/wiki/A_Manchu_Grammar",
+      "kind": "Primary historical grammar and analysed native-script dialogue",
+      "locators": [
+        "II.1 case marking",
+        "II.4 participles, stem imperative and negative predicates; bimbi/ombi paradigms",
+        "II.6 compound postpositions",
+        "III syntax"
+      ],
+      "support": "Case marking, head-final placement, relative participles, nominal verbal labels, and past/present existence contrast. Used for composed grammar; no claim that it attests a digital interface."
+    },
+    {
+      "id": "G",
+      "title": "Liliya M. Gorelova, Manchu Grammar (Brill, 2002)",
+      "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/Tungusic/Manchu%20Grammar%20%28Gorelova%29.pdf",
+      "kind": "Author-authored linguistic research with primary examples; retrieved scan is a third-party mirror",
+      "local_file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/gorelova-grammar.pdf",
+      "sha256": "bce95d116856485a094ac18b1ed74af33e16f3b18f48f1599c3c04d4c1aeb31e",
+      "locators": [
+        "pp.346–347, genitive-governing spatial postpositions including dele and dorgide",
+        "p.363, uninflected participle + jalin for purpose",
+        "pp.420–421, nominal predicates and bimbi/ombi tense forms",
+        "p.330, bakta- contain/encompass; p.505, containment example"
+      ],
+      "support": "The spatial and purpose constructions were checked directly. Supports the grammatical framework; modern technical collocations and exact sentence idiom remain compositional.",
+      "inspected_pages": [
+        {
+          "file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/gorelova-grammar-p388.png",
+          "sha256": "11173e402803f6c80b0048a8748ca1909be923e11d34161dffd40c787b9469bf",
+          "printed_page": 363
+        }
+      ]
+    },
+    {
+      "id": "J",
+      "title": "Andrew Jonathan Joseph, The Historical Phonology of Manchu Dialects (Cornell dissertation, 2018)",
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/dafbcc0b-b09d-41ba-99b2-41eabe98a3b4/content",
+      "kind": "Institutionally hosted original research with primary Manchu passage",
+      "local_file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/cornell-phonology.pdf",
+      "sha256": "50ac2e5689bf738f36d1ba0762b56d721d57604b7bda96411fdee5a1586f93a6",
+      "locators": [
+        "printed p.60, example numbered (58), Huilian/Yuxiao passage"
+      ],
+      "short_excerpt": "tob seme amargi de",
+      "support": "A contextual physical-location use of exact/right, rather than an examiner/person adjective. Supports spatial precision but not the newly authored full title.",
+      "inspected_pages": [
+        {
+          "file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/cornell-phonology-p73.png",
+          "sha256": "1849fd1bd6c665853ee99a4b7bede85befe0239ed630f56e1415c9a26d63e6b2",
+          "printed_page": 60
+        }
+      ],
+      "retrieval": "Web open failed; ordinary institutional download succeeded and the page was visually checked."
+    },
+    {
+      "id": "A",
+      "title": "Junsei Watanabe, A Manchu manuscript on arithmetic, SCIAMVS 6 (2005), 177–264",
+      "url": "https://www.sciamvs.org/files/SCIAMVS_06_177-264_Watanabe.pdf",
+      "kind": "Primary manuscript edition and original research",
+      "local_file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/arithmetic.pdf",
+      "sha256": "f455f61b86ce82b293b7af642f362620a30e808e89c7c509057b4dae363676c6",
+      "locators": [
+        "p.188 (PDF page13), note to ton-i fulehe: general number meaning versus manuscript-specific technical usage",
+        "pp.196–197 (PDF pages20–21), numerical specification of line dimensions with toktobure",
+        "p.219 (PDF page43), remainder becoming absent: funcerengge akū ombi",
+        "p.222 (PDF page46), numeric list followed by sere duin ton"
+      ],
+      "support": "Ordinary ton is explicitly distinguished from the text’s narrower Euclidean convention. Numeral-list construction and dimension specification are contextual evidence. Inanimate absence + ombi shows productive non-death usage, although it is not the exact location-qualified past phrase."
+    },
+    {
+      "id": "F",
+      "title": "TUFS-hosted transcription of Qing dictionary definitions, A029_8",
+      "url": "https://tufs.repo.nii.ac.jp/record/7514/files/A029_8.pdf",
+      "kind": "Institutionally hosted primary Qing definitions in scholarly transcription",
+      "local_file": "/workspace/shared/pr67-position-drafts/manchu-nom-sources/qing-selection.pdf",
+      "sha256": "24e539e9769c883bd07418ab9c14215e5d457e3cbb1627d27e714e055ccdcc4c",
+      "locators": [
+        "printed p.244, entry001398",
+        "printed p.252, entries001513 and001516"
+      ],
+      "short_excerpt": "hiya sai dorgici sain ningge be sonjofi",
+      "support": "Selection from a genitive group, accusative object and sonjombi. Both cited pages were visually rechecked. It does not itself attest an ellipsis or a numeric UI field."
+    },
+    {
+      "id": "E",
+      "title": "Mark Elliott, Handout 3: Verbs (Summer2013, 2020 publication)",
+      "url": "https://www.manchustudiesgroup.org/wp-content/uploads/2020/07/Handout-3-Verbs.pdf",
+      "kind": "Author-authored pedagogical source",
+      "locators": [
+        "p.1, bare stem imperative",
+        "p.3, conditional + ombi permission",
+        "p.3, adjective/obumbi size-change example"
+      ],
+      "support": "Distinguishes an imperative from permission. Used for explicit overlap permission rather than a must condition."
+    },
+    {
+      "id": "L",
+      "title": "Concise Manchu-English lexicon transcription attributed to Jerry Norman",
+      "url": "https://studylib.net/doc/7052336/21-826-entries",
+      "kind": "Secondary lexicon mirror; provenance and transcription limitations retained",
+      "locators": [
+        "ACABUN; AMBA AJIGE; GIRIMBI; DOSIMBUMBI; AKŪ; AKŪ OHO"
+      ],
+      "support": "Corroborates the union, size and trimming senses underlying modern descriptive terms. Its death idiom is a context-sensitive lexical entry, not proof that every qualified inanimate absence sentence means death. Not used as independent approval."
+    }
+  ],
+  "validation": {
+    "sha256_method": "SHA-256 of exact UTF-8 target bytes, without trailing newline",
+    "per_value": {
+      "ui_assembly_exact_position": {
+        "sha256": "bf716554524ac244294eb56444a26cd577836219f130980d2c529f6a7ba522a2",
+        "nfc": true,
+        "unexpected_controls": [],
+        "missing_font_codepoints": []
+      },
+      "ui_assembly_unknown_image": {
+        "sha256": "73dcaf29ca6c045923efad37a69afad52bef6354f204100988f6bfdd47f70162",
+        "nfc": true,
+        "unexpected_controls": [],
+        "missing_font_codepoints": []
+      },
+      "ui_assembly_position_nonnegative": {
+        "sha256": "57f0000a4c96a72e469ccacbcd4891176e7f15d3ddcf7248f2bf8fa122c47636",
+        "nfc": true,
+        "unexpected_controls": [],
+        "missing_font_codepoints": []
+      },
+      "ui_assembly_position_help": {
+        "sha256": "eef87a671516be06fea2aac92d7093020c83ba68ad01dc0cc04f2a3771fc057e",
+        "nfc": true,
+        "unexpected_controls": [],
+        "missing_font_codepoints": []
+      }
+    },
+    "font_path": "/workspace/shared/pr67-repair/source/Paintroid/src/main/assets/fonts/notosansmongolian.ttf",
+    "font_sha256": "805a55e10492c547ccadc1ad04faabdef61a74a5c02ecce69748378d66ef032d",
+    "runtime_status": "Not tested: Android shaping, orientation, line breaking, fallback, clipping, bidi and accessibility. Cmap coverage is not rendering acceptance.",
+    "native_script_authoring": "Targets manually composed in Manchu script; Latin readings manually supplied for review. No other language was transliterated to generate targets."
+  },
+  "integration_gate": "Every newly submitted full value remains unapproved until a distinct reviewer checks these exact bytes against the full English. The prior X/Y approval is unchanged and does not extend to these entries. A semantic review cannot certify native idiom or runtime layout.",
+  "remaining_work": "Independent full-value language review, then authorized integration and separate runtime/layout checks if accepted."
+}
