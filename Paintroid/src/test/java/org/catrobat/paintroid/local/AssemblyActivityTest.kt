@@ -225,6 +225,87 @@ class AssemblyActivityTest {
         touch(android.view.MotionEvent.ACTION_DOWN,start); touch(android.view.MotionEvent.ACTION_MOVE,next); touch(android.view.MotionEvent.ACTION_CANCEL,next)
         assertEquals(before,activity.assembly.layout()); assertNull(board.ghost)
     }
+    private fun withLanguage(tag: String, block: () -> Unit) {
+        val oldTag = AppLanguage.selectedTag(activity)
+        val oldLocale = java.util.Locale.getDefault()
+        val oldResources = PaintApplication.currentResources
+        try { AppLanguage.select(activity, tag); AppLanguage.refresh(activity); block() }
+        finally {
+            AppLanguage.select(activity, oldTag)
+            PaintApplication.currentResources = oldResources
+            java.util.Locale.setDefault(oldLocale)
+        }
+    }
+
+    @Test fun frenchHeaderTracksAddPlaceUnplaceAndRemoveIncludingOne() = withLanguage("fr") {
+        val header = ReflectionHelpers.getField<android.widget.TextView>(activity, "count")
+        fun checkCount(inputs: Int, placed: Int) = assertEquals(
+            "AN Paint · Assemblage d’images\nImages : $inputs/20 · Images placées : $placed", header.text.toString())
+        ReflectionHelpers.callInstanceMethod<Unit>(activity, "refresh"); checkCount(0, 0)
+        load(2); checkCount(2, 0)
+        drag(image("b.png").id, 0f, 0f); checkCount(2, 1)
+        drag(image("a.png").id, 24f, 0f); checkCount(2, 2)
+        click("assembly_item_${image("a.png").id}"); click("assembly_unplace"); checkCount(2, 1)
+        click("assembly_remove"); checkCount(1, 1)
+        click("assembly_item_${image("b.png").id}"); click("assembly_remove"); checkCount(0, 0)
+    }
+
+    @Test fun capacityRefusalUsesTrueRemainingCountBeforeReadingAndAcceptsAnExactFit() {
+        load(17)
+        for (tag in listOf("en-US", "fr")) withLanguage(tag) {
+            for (remaining in listOf(3, 1)) {
+                // Reuse actual loaded sources to reach 19, without a separate fake formatting path.
+                if (remaining == 1 && activity.assembly.images.size == 17) load(2)
+                if (remaining == 3 && activity.assembly.images.size == 19) {
+                    activity.assembly.images.takeLast(2).map { it.id }.forEach { activity.assembly.remove(it) }
+                }
+                val clip = ClipData.newUri(activity.contentResolver, "images", Uri.parse("content://assembly.fixture/0"))
+                repeat(remaining) { clip.addItem(ClipData.Item(Uri.parse("content://assembly.fixture/${it + 1}"))) }
+                val reads = provider.reads
+                activity.onActivityResult(AssemblyActivity.ADD_IMAGES, Activity.RESULT_OK, Intent().apply { clipData = clip })
+                val expected = if (tag == "fr") "Nombre d’images pouvant encore être ajoutées : $remaining. Sélectionnez moins de fichiers."
+                    else "Number of images you can still add: $remaining. Select fewer files."
+                assertEquals(expected, activity.lastError)
+                assertEquals(expected, shadowOf(ShadowAlertDialog.getLatestAlertDialog()).message.toString())
+                assertEquals(reads, provider.reads)
+                assertEquals(20 - remaining, activity.assembly.images.size)
+                ShadowAlertDialog.getLatestAlertDialog().dismiss()
+            }
+        }
+        load(1); assertEquals(20, activity.assembly.images.size)
+    }
+
+    @Test fun renderingOneAndTwoImagesDisplaysEachActualProgressCallbackAndCreatesOutput() {
+        load(2)
+        for (tag in listOf("en-US", "fr")) withLanguage(tag) {
+            for (item in activity.assembly.images) activity.assembly.unplace(item.id)
+            for (total in 1..2) {
+                val item = activity.assembly.images[total - 1]
+                activity.assembly.place(item.id, Attachment(if (total == 1) null else activity.assembly.images[0].id,
+                    if (total == 1) null else SnapEdge.RIGHT))
+                val info = activity.window.decorView.findViewWithTag<android.widget.TextView>("assembly_status")
+                val messages = mutableListOf<String>()
+                val watcher = object : android.text.TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { messages += s.toString() }
+                    override fun afterTextChanged(s: android.text.Editable?) = Unit
+                }
+                info.addTextChangedListener(watcher)
+                click("assembly_save"); waitForWork()
+                info.removeTextChangedListener(watcher)
+                val expected = (1..total).map { if (tag == "fr") "Images rendues : $it / $total…" else "Images rendered: $it / $total…" }
+                assertEquals(expected, messages.filter { it.startsWith(if (tag == "fr") "Images rendues :" else "Images rendered:") })
+                val launch = shadowOf(activity).nextStartedActivityForResult
+                assertEquals(Intent.ACTION_CREATE_DOCUMENT, launch.intent.action)
+                val output = activity.filesDir.listFiles()!!.single { it.name.startsWith("assembly-output-") }
+                val bitmap = BitmapFactory.decodeFile(output.path)
+                assertNotNull(bitmap); assertEquals(Color.RED, bitmap.getPixel(0, 0)); bitmap.recycle()
+                shadowOf(activity).receiveResult(launch.intent, Activity.RESULT_CANCELED, null); waitForWork()
+                assertFalse(output.exists())
+            }
+        }
+    }
+
     private fun render(view: View,name: String) {
         idle()
         if (name.contains("crop")) {
