@@ -322,4 +322,32 @@ class CursorDrawingTest {
         assertTrue(board.magnifierVisible);assertFalse(board.cursorDrawing);assertFalse(board.document.canUndo)
         board.document.close()
     }
+
+    @Test fun singleFingerCursorDragMovesTheCursorWithoutPanningTheViewport() {
+        for (drawing in listOf(false,true)) {
+            val board=board();board.zoomAt(2f);board.document.strokeSmoothing=false
+            board.setCursorDrawing(drawing)
+            val before=board.draftState()
+            val origin=board.toScreen(0f,0f)
+            val original=pixels(board)
+            try {
+                // Start away from the cursor so this is an unambiguous drag, not its tap toggle.
+                touch(board,MotionEvent.ACTION_DOWN,100f,500f)
+                touch(board,MotionEvent.ACTION_MOVE,140f,520f)
+                touch(board,MotionEvent.ACTION_UP,140f,520f)
+                val after=board.draftState()
+                assertEquals(before.getDouble("cursor_x")+20.0,after.getDouble("cursor_x"),.001)
+                assertEquals(before.getDouble("cursor_y")+10.0,after.getDouble("cursor_y"),.001)
+                val fixed=board.toScreen(0f,0f)
+                assertEquals(origin.x,fixed.x,0f);assertEquals(origin.y,fixed.y,0f)
+                assertEquals(drawing,board.cursorDrawing)
+                if(drawing) {
+                    assertFalse(original.contentEquals(pixels(board)));assertTrue(board.document.canUndo)
+                    board.document.undo();assertArrayEquals(original,pixels(board))
+                } else {
+                    assertArrayEquals(original,pixels(board));assertFalse(board.document.canUndo)
+                }
+            } finally {board.document.close()}
+        }
+    }
 }
