@@ -130,7 +130,7 @@
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Custom colours · hold a swatch to replace it</string>
     <string name="ui_cut">Cut</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Delete selection</string>
     <string name="ui_disable_cursor_drawing">Disable cursor drawing</string>
     <string name="ui_discard">Discard</string>
@@ -321,7 +321,7 @@
     <string name="ui_rectangle_select">Rectangle select</string>
     <string name="ui_redo">Redo</string>
     <string name="ui_remove">Remove</string>
-    <string name="ui_rendering_images">Images rendered: %1$s / %2$s…</string>
+    <string name="ui_rendering_images">Images processed: %1$s / %2$s…</string>
     <string name="ui_reset_crop">Reset crop</string>
     <string name="ui_reset_to_black_white">Reset to black / white</string>
     <string name="ui_resize_and_load">Resize and load</string>
@@ -557,6 +557,8 @@
     <string name="ui_save_as_heic">Save as HEIC…</string>
     <string name="ui_save_as_avif">Save as AVIF…</string>
     <string name="ui_image_codec_licences">Image codec licences</string>
+    <!-- Background-neutral across Commons, insertion and document replacement. -->
+    <string name="ui_sampled_resize_memory_explanation">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.</string>
     <string name="ui_codec_resize_memory_floor">This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.</string>
     <string name="ui_no_resize_fits_decoder_memory">Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.</string>
     <string name="formats22_base64_label">Base64 text</string>
@@ -712,4 +714,6 @@
     <string name="commons_metadata_response_too_large">Commons metadata exceeds the response limit</string>
     <!-- Application-owned query failure: any top-level API error key, without provider detail or an asserted cause. -->
     <string name="commons_metadata_query_failed">Commons metadata query failed</string>
+    <!-- Shared by BMP, GIF, ICO and packed DIB imports. -->
+    <string name="save20_unsupported_image_colour">This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.</string>
 </resources>

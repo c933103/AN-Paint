@@ -112,7 +112,7 @@ internal class PlatformImageColour private constructor(
         fun read(file: File): PlatformImageColour {
             try { LegacyColourMetadata.check(file) }
             catch (error: LegacyColourMetadata.UnsupportedColour) {
-                throw IOException(ui(R.string.save20_unsupported_tagged_colour),error)
+                throw IOException(ui(R.string.save20_unsupported_image_colour),error)
             } catch (error: IOException) {
                 throw IOException(ui(R.string.colour_invalid_metadata),error)
             }

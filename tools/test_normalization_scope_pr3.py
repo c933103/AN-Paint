@@ -3,7 +3,7 @@ import unittest
 import translation_catalogues as translations
 
 KEYS = {'ui_normalize_height_info', 'ui_normalize_height_input_percent', 'ui_normalize_height_intro', 'ui_normalize_width_info', 'ui_normalize_width_input_percent', 'ui_normalize_width_intro'}
-SCOPE = ('tl', 'ceb', 'ms', 'id')
+SCOPE = ('fil', 'ceb', 'ms', 'id')
 
 
 class NormalizationScopePr3Test(unittest.TestCase):

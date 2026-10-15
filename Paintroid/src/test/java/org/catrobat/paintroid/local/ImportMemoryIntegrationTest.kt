@@ -9,6 +9,7 @@ import android.os.Looper
 import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.classic.*
+import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -86,6 +87,7 @@ class ImportMemoryIntegrationTest {
             // reading the initial estimate or pressing its guarded action button.
             shadowOf(Looper.getMainLooper()).idle()
             val view=dialog.window!!.decorView
+            assertEquals(activity.getString(R.string.ui_codec_resize_memory_floor),view.findViewWithTag<TextView>("resize_explanation").text.toString())
             assertTrue(view.findViewWithTag<TextView>("resize_original").text.contains(memoryLabel(native.estimatedBytes(ImportPlan.create(source,source),10000))))
             assertTrue(view.findViewWithTag<TextView>("resize_estimate").text.contains("smallest output"))
             assertFalse(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)

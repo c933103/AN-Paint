@@ -1004,7 +1004,7 @@ class ClassicPaintActivity : Activity() {
         val column = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(20), dp(6), dp(20), dp(6)) }
         val sizing = DimensionControls(this,ImageDimensions(document.bitmap.width,document.bitmap.height),locked = stretch)
         column.addView(sizing)
-        column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))
+        if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))
         column.addView(label(String.format(java.util.Locale.ROOT, ui(R.string.ui_current_safe_budget_2f_mp), ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))
         val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {

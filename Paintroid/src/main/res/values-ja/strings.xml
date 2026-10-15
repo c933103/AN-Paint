@@ -156,7 +156,7 @@
     <string name="formats22_open_still">静止画を開く</string>
     <string name="formats22_derived_exported">%1$sを書き出しました。編集中の画像には未保存の変更が残っています。別の画像に切り替える前に、元のサイズの画像としても保存してください。</string>
     <string name="formats22_animation_unknown">この%1$sは構造が複雑なため、複数のフレームが含まれているか確認できません。静止画だけを開き、アニメーションは保持されません。</string>
-    <string name="formats22_pdf_invalid">PDFを読み込めませんでした。ファイルが破損しているか、このAndroidバージョンで対応していない機能が使われています。</string>
+    <string name="formats22_pdf_invalid">PDFを読み込めませんでした。ファイルが破損しているか、このAndroidバージョンでは対応していない機能が使われている可能性があります。</string>
     <string name="formats22_pdf_encrypted">PDFにパスワードが必要か、対応していない暗号化が使われています。保護を解除したコピーを保存してから読み込んでください。</string>
     <string name="formats22_pdf_file_size">PDFは空ではなく、512 MiB以下のファイルである必要があります。</string>
     <string name="formats22_pdf_page_count">PDFのページ数は1から%1$dの範囲である必要があります。</string>
@@ -364,6 +364,7 @@
     <string name="ui_enter_valid_dimensions">有効な寸法を入力してください。</string>
     <string name="ui_estimated_memory_current_working_budget">推定メモリ: %1$s\n現在の作業上限: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">推定値には、現在のキャンバスとクリップボード、サンプリング用デコード領域、編集用バッファーが含まれます。実際のメモリ使用量は変動します。小さいコピーでは細部が失われます。読み込み時は選択した不透明な背景色を使用し、元ファイルは変更しません。</string>
+    <string name="ui_sampled_resize_memory_explanation">推定値には、現在のキャンバスとクリップボード、サンプリング用デコード領域、編集用バッファーが含まれます。実際のメモリ使用量は変動します。小さいコピーでは細部が失われます。元ファイルは変更しません。</string>
     <string name="ui_expand_colour_palette">カラーパレットを展開</string>
     <string name="ui_expand_toolbox">ツールボックスを展開</string>
     <string name="ui_export_recovery_copy_144b8a">復元用コピーをエクスポート</string>
@@ -702,4 +703,5 @@
     <string name="commons_metadata_http_error">Commons のメタデータ: HTTP %1$s</string>
     <string name="commons_metadata_response_too_large">Commonsのメタデータが応答サイズの上限を超えています</string>
     <string name="commons_metadata_query_failed">Commonsのメタデータの問い合わせに失敗しました</string>
+    <string name="save20_unsupported_image_colour">この画像は、AN Paint がまだ変換できないカラープロファイルを使用しています。読み込む前に、カラーマネジメント対応エディターで sRGB PNG に変換してください。</string>
 </resources>

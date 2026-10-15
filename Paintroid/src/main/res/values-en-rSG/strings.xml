@@ -127,7 +127,7 @@
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Custom colours · hold a swatch to replace it</string>
     <string name="ui_cut">Cut</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Delete selection</string>
     <string name="ui_disable_cursor_drawing">Disable cursor drawing</string>
     <string name="ui_discard">Discard</string>
@@ -179,6 +179,7 @@
     <string name="ui_eraser">Eraser</string>
     <string name="ui_estimated_memory_current_working_budget">Estimated memory: %1$s\nCurrent working budget: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. Imports use the selected opaque background; the original file stays unchanged.</string>
+    <string name="ui_sampled_resize_memory_explanation">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.</string>
     <string name="ui_expand_colour_palette">Expand colour palette</string>
     <string name="ui_expand_toolbox">Expand toolbox</string>
     <string name="ui_export_recovery_copy">Export recovery copy…</string>
@@ -318,7 +319,7 @@
     <string name="ui_rectangle_select">Rectangle select</string>
     <string name="ui_redo">Redo</string>
     <string name="ui_remove">Remove</string>
-    <string name="ui_rendering_images">Images rendered: %1$s / %2$s…</string>
+    <string name="ui_rendering_images">Images processed: %1$s / %2$s…</string>
     <string name="ui_reset_crop">Reset crop</string>
     <string name="ui_reset_to_black_white">Reset to black / white</string>
     <string name="ui_resize_and_load">Resize and load</string>
@@ -703,4 +704,5 @@
     <string name="commons_metadata_http_error">Commons metadata: HTTP %1$s</string>
     <string name="commons_metadata_response_too_large">Commons metadata exceeds the response limit</string>
     <string name="commons_metadata_query_failed">Commons metadata query failed</string>
+    <string name="save20_unsupported_image_colour">This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.</string>
 </resources>

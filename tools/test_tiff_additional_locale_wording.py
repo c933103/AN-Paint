@@ -32,7 +32,7 @@ EXPECTED = {
     "values-nl": "Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
     "values-ru": "Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.",
     "values-sw": "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
-    "values-tl": "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
+    "values-b+fil": "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
     "values-tr": "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.",
     "values-vi": "Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén."
 }

@@ -32,9 +32,12 @@ internal object AppLanguage {
                 // Migrate the preference once when a device upgrades from Android 12.
                 if (!preferences.getBoolean("platform-initialized", false)) {
                     val saved = supportedTag(context,preferences.getString(LANGUAGE, "").orEmpty())
-                    if (manager.applicationLocales.isEmpty && saved in tags(context))
+                    val migration = preferences.edit().putBoolean("platform-initialized", true)
+                    if (manager.applicationLocales.isEmpty && saved in tags(context)) {
                         manager.applicationLocales = LocaleList.forLanguageTags(saved)
-                    preferences.edit().putBoolean("platform-initialized", true).apply()
+                        migration.putString(LANGUAGE, saved)
+                    }
+                    migration.apply()
                 }
                 val current=if(manager.applicationLocales.isEmpty) "" else manager.applicationLocales[0].toLanguageTag()
                 val selected=supportedTag(context,current)

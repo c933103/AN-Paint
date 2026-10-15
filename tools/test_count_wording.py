@@ -6,15 +6,17 @@ import xml.etree.ElementTree as ET
 
 RES = Path(__file__).resolve().parents[1] / 'Paintroid/src/main/res'
 ENGLISH = {
+    'ui_d_d_px_d_pixels_2f_mp': '%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)',
     'formats22_page_description': r'%1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.',
     'ui_you_can_add_more_images_select_fewer_files': 'Number of images you can still add: %1$s. Select fewer files.',
-    'ui_rendering_images': 'Images rendered: %1$s / %2$s…',
+    'ui_rendering_images': 'Images processed: %1$s / %2$s…',
 }
 FRENCH = {
+    'ui_d_d_px_d_pixels_2f_mp': '%1$d × %2$d px · Nombre de pixels : %3$,d (%4$.2f MP)',
     'formats22_page_description': r'%1$s · %2$s\nNombre de pages : %3$d. Choisissez une page à modifier comme image.',
     'ui_an_paint_image_assembly_20_images_placed': r'AN Paint · Assemblage d’images\nImages : %1$s/20 · Images placées : %2$s',
     'ui_you_can_add_more_images_select_fewer_files': 'Nombre d’images pouvant encore être ajoutées : %1$s. Sélectionnez moins de fichiers.',
-    'ui_rendering_images': 'Images rendues : %1$s / %2$s…',
+    'ui_rendering_images': 'Images traitées : %1$s / %2$s…',
 }
 
 
@@ -29,7 +31,8 @@ class CountWordingTest(unittest.TestCase):
         for folder in folders:
             for key, expected in ENGLISH.items():
                 with self.subTest(folder=folder, key=key):
-                    prefix = ('📁 ' if key == 'ui_you_can_add_more_images_select_fewer_files' else '🖼️ ') if folder == 'values-b+qaa+Zsye+XV' else ''
+                    prefixes = {'ui_you_can_add_more_images_select_fewer_files': '📁 ', 'ui_d_d_px_d_pixels_2f_mp': '🧪 '}
+                    prefix = prefixes.get(key, '🖼️ ') if folder == 'values-b+qaa+Zsye+XV' else ''
                     self.assertEqual(prefix + expected, strings(folder)[key])
 
     def test_french_complete_reviewed_values_and_argument_types(self):
@@ -37,8 +40,8 @@ class CountWordingTest(unittest.TestCase):
         for key, expected in FRENCH.items():
             with self.subTest(key=key):
                 self.assertEqual(expected, actual[key])
-                self.assertEqual(re.findall(r'%\d+\$[sd]', strings('values')[key]),
-                                 re.findall(r'%\d+\$[sd]', actual[key]))
+                self.assertEqual(re.findall(r'%\d+\$[,.\d]*[sdf]', strings('values')[key]),
+                                 re.findall(r'%\d+\$[,.\d]*[sdf]', actual[key]))
 
     def test_japanese_page_count_keeps_its_valid_invariant_wording(self):
         self.assertEqual(r'%1$s · %2$s\n全%3$dページ。画像として編集するページを1つ選んでください。',

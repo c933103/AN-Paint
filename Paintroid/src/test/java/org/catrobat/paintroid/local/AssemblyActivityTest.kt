@@ -228,11 +228,10 @@ class AssemblyActivityTest {
     private fun withLanguage(tag: String, block: () -> Unit) {
         val oldTag = AppLanguage.selectedTag(activity)
         val oldLocale = java.util.Locale.getDefault()
-        val oldResources = PaintApplication.currentResources
-        try { AppLanguage.select(activity, tag); AppLanguage.refresh(activity); block() }
+        try { AppLanguage.select(activity, if (tag == "en") "" else tag); AppLanguage.refresh(activity); block() }
         finally {
             AppLanguage.select(activity, oldTag)
-            PaintApplication.currentResources = oldResources
+            AppLanguage.refresh(activity)
             java.util.Locale.setDefault(oldLocale)
         }
     }
@@ -252,13 +251,12 @@ class AssemblyActivityTest {
 
     @Test fun capacityRefusalUsesTrueRemainingCountBeforeReadingAndAcceptsAnExactFit() {
         load(17)
-        for (tag in listOf("en-US", "fr")) withLanguage(tag) {
-            for (remaining in listOf(3, 1)) {
-                // Reuse actual loaded sources to reach 19, without a separate fake formatting path.
-                if (remaining == 1 && activity.assembly.images.size == 17) load(2)
-                if (remaining == 3 && activity.assembly.images.size == 19) {
-                    activity.assembly.images.takeLast(2).map { it.id }.forEach { activity.assembly.remove(it) }
-                }
+        for (tag in listOf("en", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US", "en-XV", "fr")) withLanguage(tag) {
+            for (remaining in listOf(3, 1, 0)) {
+                // Reach each boundary through real loaded inputs, retaining the refusal branch.
+                val target = 20 - remaining
+                while (activity.assembly.images.size > target) activity.assembly.remove(activity.assembly.images.last().id)
+                if (activity.assembly.images.size < target) load(target - activity.assembly.images.size)
                 val clip = ClipData.newUri(activity.contentResolver, "images", Uri.parse("content://assembly.fixture/0"))
                 repeat(remaining) { clip.addItem(ClipData.Item(Uri.parse("content://assembly.fixture/${it + 1}"))) }
                 val reads = provider.reads
@@ -272,12 +270,13 @@ class AssemblyActivityTest {
                 ShadowAlertDialog.getLatestAlertDialog().dismiss()
             }
         }
+        activity.assembly.remove(activity.assembly.images.last().id)
         load(1); assertEquals(20, activity.assembly.images.size)
     }
 
     @Test fun renderingOneAndTwoImagesDisplaysEachActualProgressCallbackAndCreatesOutput() {
         load(2)
-        for (tag in listOf("en-US", "fr")) withLanguage(tag) {
+        for (tag in listOf("en", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US", "en-XV", "fr")) withLanguage(tag) {
             for (item in activity.assembly.images) activity.assembly.unplace(item.id)
             for (total in 1..2) {
                 val item = activity.assembly.images[total - 1]
@@ -293,8 +292,8 @@ class AssemblyActivityTest {
                 info.addTextChangedListener(watcher)
                 click("assembly_save"); waitForWork()
                 info.removeTextChangedListener(watcher)
-                val expected = (1..total).map { if (tag == "fr") "Images rendues : $it / $total…" else "Images rendered: $it / $total…" }
-                assertEquals(expected, messages.filter { it.startsWith(if (tag == "fr") "Images rendues :" else "Images rendered:") })
+                val expected = (1..total).map { if (tag == "fr") "Images traitées : $it / $total…" else "Images processed: $it / $total…" }
+                assertEquals(expected, messages.filter { it.startsWith(if (tag == "fr") "Images traitées :" else "Images processed:") })
                 val launch = shadowOf(activity).nextStartedActivityForResult
                 assertEquals(Intent.ACTION_CREATE_DOCUMENT, launch.intent.action)
                 val output = activity.filesDir.listFiles()!!.single { it.name.startsWith("assembly-output-") }

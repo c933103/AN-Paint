@@ -163,7 +163,7 @@ class DeviceLanguagePickerTest {
 
     @Test fun everyOfferedDeviceLocaleUsesTheSameFormattingAsExplicitChoices()=withActivity { activity ->
         val tags=AppLanguage.tags(activity)
-        assertEquals(167,tags.size)
+        assertEquals(171,tags.size)
         for(tag in tags) {
             languages(activity,tag,"ja")
             val picker=AppLanguage.showPicker(activity) {}

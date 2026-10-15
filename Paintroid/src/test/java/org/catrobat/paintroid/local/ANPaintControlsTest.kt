@@ -322,7 +322,7 @@ class ANPaintControlsTest {
         }
         val resize = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val originalText = resize.window!!.decorView.findViewWithTag<android.widget.TextView>("resize_original").text.toString()
-        assertTrue(originalText,originalText.contains("40000 × 40000")); assertTrue(originalText.contains("1,600,000,000 pixels"))
+        assertTrue(originalText,originalText.contains("40000 × 40000")); assertTrue(originalText.contains("Pixel count: 1,600,000,000"))
         assertTrue(originalText.contains("6.0 GiB")); assertTrue(originalText.contains("17.9 GiB"))
         assertSame(original,doc.bitmap); assertEquals(Color.RED,doc.bitmap.getPixel(2,3)); assertTrue(activity.busy)
         resize.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); waitForIo()

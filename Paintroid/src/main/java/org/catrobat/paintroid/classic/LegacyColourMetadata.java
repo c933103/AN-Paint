@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 public final class LegacyColourMetadata {
     private LegacyColourMetadata() { }
     public static final class UnsupportedColour extends IOException {
-        UnsupportedColour() { super("This BMP/GIF colour profile is not supported."); }
+        UnsupportedColour() { super("This image colour profile is not supported."); }
     }
     private static int octet(RandomAccessFile input) throws IOException {
         int n=input.read(); if(n<0) throw new IOException("Truncated BMP/GIF metadata."); return n;
