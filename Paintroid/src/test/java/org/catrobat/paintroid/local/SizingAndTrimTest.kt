@@ -49,6 +49,47 @@ class SizingAndTrimTest {
             val e = MotionEvent.obtain(0,20,action,p.x,p.y,0); assertTrue(activity.paintCanvas.dispatchTouchEvent(e)); e.recycle()
         }
     }
+
+    @Test fun countInvariantSummaryUsesRealNewAndResizeDialogsInEveryOfferedEnglishLocaleAndFrench() {
+        val oldTag = AppLanguage.selectedTag(activity)
+        val oldLocale = java.util.Locale.getDefault()
+        try {
+            for (tag in listOf("", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US", "en-XV", "fr")) {
+                AppLanguage.select(activity, tag); AppLanguage.refresh(activity)
+                val label = if (tag == "fr") "Nombre de pixels : " else "Pixel count: "
+                for (fresh in listOf(true, false)) {
+                    activity.document.markSaved()
+                    EditorTestNavigation.command(activity, if (fresh) "File" else "Edit", if (fresh) 0 else 5)
+                    val dialog = dimensionDialog()
+                    val root = dialog.window!!.decorView
+                    val result = root.findViewWithTag<android.widget.TextView>("size_result")
+                    for ((size, suffix) in listOf(
+                        ImageDimensions(1, 1) to "1 (0.00 MP)",
+                        ImageDimensions(2, 3) to "6 (0.00 MP)",
+                        ImageDimensions(2000, 1000) to "2,000,000 (2.00 MP)")) {
+                        setDimensions(dialog, size.width, size.height)
+                        assertEquals("$tag / fresh=$fresh", "${size.width} × ${size.height} px · $label$suffix", result.text.toString())
+                    }
+                    val original = activity.document.bitmap
+                    for (invalid in listOf("0", "-1", "NaN", "")) {
+                        root.findViewWithTag<android.widget.EditText>("size_width").setText(invalid)
+                        assertEquals(ui(org.catrobat.paintroid.R.string.ui_enter_positive_dimensions_that_resolve_to_at_least),
+                            result.text.toString())
+                        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
+                        assertTrue(dialog.isShowing); assertSame(original, activity.document.bitmap)
+                    }
+                    setDimensions(dialog, 1, 1)
+                    dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick()
+                    assertFalse(dialog.isShowing)
+                    assertEquals(1, activity.document.bitmap.width); assertEquals(1, activity.document.bitmap.height)
+                }
+            }
+        } finally {
+            AppLanguage.select(activity, oldTag); AppLanguage.refresh(activity)
+            java.util.Locale.setDefault(oldLocale)
+        }
+    }
+
     @Test fun percentSizingLocksOrSeparatesAxesAndSwitchingUnitsPreservesExactPixels() {
         val controls = DimensionControls(activity,ImageDimensions(1600,2400),ImageDimensions(713,1069))
         repeat(10) { controls.findViewWithTag<View>("size_percent").performClick(); controls.findViewWithTag<View>("size_pixels").performClick() }

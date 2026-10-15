@@ -148,11 +148,11 @@ class ImageResizeFlowTest {
         activity.document.background = Color.MAGENTA; load()
         val dialog = resizeDialog(); assertSampledGuidance(dialog); val root = dialog.window!!.decorView
         val text = root.findViewWithTag<TextView>("resize_original").text.toString()
-        assertTrue(text,text.contains("1600 × 2400")); assertTrue(text.contains("3,840,000 pixels"))
+        assertTrue(text,text.contains("1600 × 2400")); assertTrue(text.contains("Pixel count: 3,840,000"))
         assertTrue(text.contains("14.6 MiB")); assertTrue(text.contains("44.0 MiB"))
         setWidth(dialog,"800")
         assertEquals("1200",root.findViewWithTag<EditText>("resize_height").text.toString())
-        assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.contains("960,000 pixels"))
+        assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.contains("Pixel count: 960,000"))
         render(dialog,"resize-image.png")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idleUntil { !activity.busy }
         val image = activity.document.bitmap
