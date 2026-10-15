@@ -162,6 +162,60 @@ class UnifiedEditorTest {
         val inset=20*activity.resources.displayMetrics.density
         assertEquals((board.width-inset)/2,centre.x,1f);assertEquals((board.height-inset)/2,centre.y,1f)
     }
+
+    @Test fun frenchCursorGuidanceMatchesHelpToggleAndCursorMotionWithoutViewportPanning() {
+        val oldTag = AppLanguage.selectedTag(activity)
+        val oldLocale = Locale.getDefault()
+        val help = "Faites glisser pour positionner le curseur. Touchez le bouton de dessin à l’écran, puis faites glisser pour dessiner. Touchez-le à nouveau pour arrêter. Choisissez le pinceau et les réglages du trait sous Dessiner → Dessin."
+        val move = "Faites glisser pour positionner le curseur. Touchez le bouton de dessin pour commencer."
+        val draw = "Faites glisser pour commencer à dessiner. Touchez à nouveau pour arrêter."
+        try {
+            AppLanguage.select(activity, "fr")
+            activity.onConfigurationChanged(activity.resources.configuration)
+            EditorTestNavigation.command(activity, "View", 2)
+            click("cursor_mode_enabled")
+            assertTrue(board.cursorMode); assertFalse(board.cursorDrawing)
+            assertEquals(move + "\n" + ui(org.catrobat.paintroid.R.string.ui_cursor_tap_hint37),
+                org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
+            click("cursor_help")
+            var dialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertEquals(help + "\n\n" + ui(org.catrobat.paintroid.R.string.ui_cursor_tap_hint37) +
+                "\n\n" + ui(org.catrobat.paintroid.R.string.ui_cursor_marker_help31), shadowOf(dialog).message.toString())
+            dialog.dismiss()
+            EditorTestNavigation.click(activity, "tool_BRUSH")
+            click("tool_help")
+            dialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertEquals(help, shadowOf(dialog).message.toString())
+            assertEquals(help, ui(org.catrobat.paintroid.R.string.ui_cursor_help29))
+            dialog.dismiss()
+            val original = pixels()
+            val before = board.draftState()
+            drag(20f, 20f, 30f, 20f)
+            assertTrue(board.draftState().getDouble("cursor_x") > before.getDouble("cursor_x"))
+            assertEquals(before.getDouble("pan_x"), board.draftState().getDouble("pan_x"), 0.0)
+            assertEquals(before.getDouble("pan_y"), board.draftState().getDouble("pan_y"), 0.0)
+            assertArrayEquals(original, pixels()); assertFalse(doc.canUndo)
+            click("cursor_draw_toggle")
+            assertTrue(board.cursorDrawing)
+            assertEquals(draw, org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
+            drag(20f, 20f, 40f, 30f)
+            assertFalse(original.contentEquals(pixels())); assertTrue(doc.canUndo)
+            assertEquals(before.getDouble("pan_x"), board.draftState().getDouble("pan_x"), 0.0)
+            assertEquals(before.getDouble("pan_y"), board.draftState().getDouble("pan_y"), 0.0)
+            click("cursor_draw_toggle")
+            assertFalse(board.cursorDrawing)
+            assertEquals(move, org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
+            val ink = pixels()
+            drag(20f, 20f, 25f, 20f)
+            assertArrayEquals(ink, pixels())
+            doc.undo(); assertArrayEquals(original, pixels()); assertFalse(doc.canUndo)
+        } finally {
+            ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+            AppLanguage.select(activity, oldTag); AppLanguage.refresh(activity)
+            Locale.setDefault(oldLocale)
+        }
+    }
+
     @Test fun otherImagesGroupsDeviceAndIllustrationSourcesUnderDrawInsert() {
         click("menu_File")
         val names=EditorTestNavigation.buttons(root.findViewWithTag("panel_File_commands")).map {it.text.toString()}

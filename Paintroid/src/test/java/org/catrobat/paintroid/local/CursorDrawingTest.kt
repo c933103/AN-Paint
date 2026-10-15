@@ -309,6 +309,58 @@ class CursorDrawingTest {
         board.document.close()
     }
 
+
+    @Test fun cursorDragsKeepViewportFixedWhileNavigationScrollbarsAndTwoFingersStillPan() {
+        val document = PaintDocument().apply { newImage(1200, 900); foreground = Color.RED }
+        val board = PaintCanvas(context, document).apply {
+            layout(0, 0, 824, 1000); fit(); zoomAt(2f); setCursorMode(true)
+        }
+        try {
+            for (drawing in listOf(false, true)) {
+                board.setCursorDrawing(drawing)
+                val before = board.draftState()
+                touch(board, MotionEvent.ACTION_DOWN, 100f, 500f)
+                touch(board, MotionEvent.ACTION_MOVE, 140f, 520f)
+                touch(board, MotionEvent.ACTION_UP, 140f, 520f)
+                assertTrue(board.draftState().getDouble("cursor_x") > before.getDouble("cursor_x"))
+                assertEquals(before.getDouble("pan_x"), board.panX.toDouble(), 0.0)
+                assertEquals(before.getDouble("pan_y"), board.panY.toDouble(), 0.0)
+                assertEquals(drawing, document.canUndo)
+                if (drawing) document.undo()
+            }
+            board.setCursorDrawing(false)
+            board.selectTool(PaintTool.ZOOM)
+            var oldPan = board.panX
+            touch(board, MotionEvent.ACTION_DOWN, 100f, 500f)
+            touch(board, MotionEvent.ACTION_MOVE, 140f, 520f)
+            touch(board, MotionEvent.ACTION_UP, 140f, 520f)
+            assertNotEquals(oldPan, board.panX)
+            board.selectTool(PaintTool.BRUSH)
+            oldPan = board.panX
+            touch(board, MotionEvent.ACTION_DOWN, 10f, board.height - 2f)
+            touch(board, MotionEvent.ACTION_MOVE, 750f, board.height - 2f)
+            touch(board, MotionEvent.ACTION_UP, 750f, board.height - 2f)
+            assertNotEquals(oldPan, board.panX)
+            board.fit(); board.zoomAt(2f)
+            oldPan = board.panX
+            touch(board, MotionEvent.ACTION_DOWN, 300f, 400f)
+            val properties = Array(2) { i -> MotionEvent.PointerProperties().apply { id = i; toolType = MotionEvent.TOOL_TYPE_FINGER } }
+            val coordinates = Array(2) { i -> MotionEvent.PointerCoords().apply { x = 300f + i * 100; y = 400f; pressure = 1f; size = 1f } }
+            fun multi(action: Int) {
+                val event = MotionEvent.obtain(0, 30, action, 2, properties, coordinates, 0, 0, 1f, 1f, 0, 0,
+                    android.view.InputDevice.SOURCE_TOUCHSCREEN, 0)
+                board.onTouchEvent(event); event.recycle()
+            }
+            multi(MotionEvent.ACTION_POINTER_DOWN or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT))
+            coordinates.forEach { it.x += 40f; it.y += 20f }
+            multi(MotionEvent.ACTION_MOVE)
+            assertNotEquals(oldPan, board.panX)
+            multi(MotionEvent.ACTION_POINTER_UP or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT))
+            touch(board, MotionEvent.ACTION_UP, 340f, 420f)
+            assertFalse(board.cursorDrawing); assertFalse(document.canUndo)
+        } finally { document.close() }
+    }
+
     @Test fun aSecondFingerCancelsACursorTapAndPreviewReturnsAfterPinching() {
         val board=board();val point=board.toScreen(50f,50f)
         touch(board,MotionEvent.ACTION_DOWN,point.x,point.y)
