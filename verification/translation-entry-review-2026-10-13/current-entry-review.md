@@ -2,9 +2,9 @@
 
 ## Current review overview — 15 October 2026
 
-Pinned current source: [develop `edd566a6`](https://github.com/c933103/AN-Paint/commit/edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0). **699 strings + 1 plural resource = 700 entries per choice; 171 offered choices.** A plural is one entry regardless of quantity forms. Direct coverage is **59 full catalogues, 81 nonempty partial catalogues and 31 empty catalogues**.
+Pinned current source: [develop `06ae3699`](https://github.com/c933103/AN-Paint/commit/06ae3699ea36fc52abfc5f36875e471562775655). **699 strings + 1 plural resource = 700 entries per choice; 171 offered choices.** A plural is one entry regardless of quantity forms. Direct coverage is **59 full catalogues, 81 nonempty partial catalogues and 31 empty catalogues**.
 
-Across all choices: **2,967 reviewed-current bounded receipts; 35 entries needing re-review; 44,198 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
+Across all choices: **2,970 reviewed-current bounded receipts; 32 entries needing re-review; 44,198 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
 
 Language-level status remains **0 fully reviewed, 57 broad re-review required, 6 bounded-partial outside that reset, 75 review not established, 31 translation/review not started and 2 test modes**. Bounded partial choices: Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
@@ -18,14 +18,15 @@ Language-level status remains **0 fully reviewed, 57 broad re-review required, 6
 
 ### French and Japanese catalogue pass and merged follow-ups
 
-- Current **French:680 reviewed /20 open**, including 68 dormant linguistic-only acceptances. **Japanese:689 reviewed /11 open**, including 68 dormant linguistic-only acceptances. Each of the 700 entries now has an explicit current/open disposition; these are completed catalogue passes with remaining findings, not unqualified acceptance.
+- Current **French:680 reviewed /20 open**, including 68 dormant linguistic-only acceptances. **Japanese:692 reviewed /8 open**, including 68 dormant linguistic-only acceptances. Each of the 700 entries now has an explicit current/open disposition; these are completed catalogue passes with remaining findings, not unqualified acceptance.
 - The original pass at `647a4b56` added 675 French and 697 Japanese records, plus eight deduplicated earlier French confirmations/helpers. The original 1,290 baseline records and all earlier history remain preserved; one baseline Tagalog record is now historical rather than counted as Filipino.
 - Merged [PR78](https://github.com/c933103/AN-Paint/pull/78),[PR79](https://github.com/c933103/AN-Paint/pull/79) and[PR81](https://github.com/c933103/AN-Paint/pull/81) close five exact FR/JA findings after static guard, error-routing and corrected-Japanese-text review. Original findings remain in superseded history.
 - Merged [PR80](https://github.com/c933103/AN-Paint/pull/80) supplies the background-neutral memory key. [Complete-value review evidence](https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640) supports 50 bounded H/M reviews; 49 remained current after the Tagalog→Filipino identity change; the one identity hold is now independently accepted by the fresh Filipino review below. Nine other values retain partial-only inheritance evidence.
 - Merged [PR65](https://github.com/c933103/AN-Paint/pull/65) adds empty `ang`,`ary`,`non` and`zgh` catalogues and changes the offered identity from`tl` to`fil`. Each new empty catalogue has700 missing entries. Two old Tagalog reviews remain historical. Both corresponding current values now have fresh Filipino-specific acceptance below; unchanged bytes alone did not transfer acceptance.
 - Merged [PR86](https://github.com/c933103/AN-Paint/pull/86) switches all four unsupported-profile message sites to a new format-neutral key. The two old FR/JA literals are now dormant linguistic-only acceptances. Twelve new values have complete bounded review: French, Japanese, eight English variants, emoji-English test mode, and [fresh Filipino-specific review](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184251067), with [exact-head Codex response](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184285983). The historical 47 [handoff deltas](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6183064757) retain their narrow historical scope; a later complete HK review below supplies credit for that one value, while the other 46 remain unknown.
 - **Filipino:3 reviewed /0 needing identity review /697 unknown.** The [fresh two-entry complete Filipino review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544) accepts the Commons failure and sampled-memory guidance unchanged, in addition to the earlier generic colour-error review. Semantic confidence is high and idiomatic confidence moderate; no whole-catalogue or device-rendering claim.
-- Active mapped records total **3,002 = 2,967 current + 35 open**. Fifteen superseded records are historical, not extra active credits. Fifty-six historical partial records (9 memory + 47 colour) do not themselves earn current credit; one HK colour value is now counted through its later complete receipt.
+- Merged [PR92](https://github.com/c933103/AN-Paint/pull/92) resolves exactly three complete Japanese values after independent review and [merged-source verification](https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896): draft-pending status, language-picker maintenance/English-fallback note, and assembly Help. Its implementation passed exact-head Code/Security review and all four hosted jobs. Shared English/source and other-locale findings remain open; no whole-language/device-layout claim.
+- Active mapped records total **3,002 = 2,970 current + 32 open**. Eighteen superseded records are historical, not extra active credits. Fifty-six historical partial records (9 memory + 47 colour) do not themselves earn current credit; one HK colour value is now counted through its later complete receipt.
 - [Exact receipts](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-receipts.json) · [Per-language counts and exact keys](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-counts.json) · [Historical FR/JA source/evidence reconciliation](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/fr-ja-full-catalogue-review-20261015.json).
 
 This publication changes review data, documentation and a data-validator only. It does not rerun or independently certify application tests, installed layout, fonts, external-provider terms, release readiness or whole-language acceptance.
@@ -107,7 +108,7 @@ The live picker and New-image hint contexts are corrected in merged source. The 
 | `ig` Igbo | 0 | 0 | 0 | 700 | 700 | Not started |
 | `is` Íslenska | 0 | 0 | 110 | 590 | 700 | Not established |
 | `it` Italiano | 2 | 0 | 698 | 0 | 700 | Broad re-review |
-| `ja` 日本語 | 689 | 11 | 0 | 0 | 700 | Broad re-review |
+| `ja` 日本語 | 692 | 8 | 0 | 0 | 700 | Broad re-review |
 | `jje` 제주말 | 1 | 0 | 699 | 0 | 700 | Broad re-review |
 | `jv` Jawa | 0 | 0 | 5 | 695 | 700 | Not established |
 | `ka` ქართული | 0 | 0 | 121 | 579 | 700 | Not established |

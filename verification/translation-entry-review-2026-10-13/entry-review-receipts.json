@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+  "source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
   "value_hash_format": "SHA-256 of UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators comma/colon; strings retain Android escape sequences; plural values map quantities to text.",
   "cohorts": {
     "short-ms-id": {
@@ -817,6 +817,58 @@
         }
       ],
       "limits": "No whole-Filipino catalogue, native-speaker or device-rendering acceptance. Existing inherited Tagalog receipts remain history."
+    },
+    "JA-THREE-MERGED-20261015": {
+      "source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "implementation_revision": "f0cc151518368c53798c52c13e6298dfa6c3ffeb",
+      "merged_pull_request": "https://github.com/c933103/AN-Paint/pull/92",
+      "scope": "Three complete current Japanese values only: pending draft status, language-picker maintenance/fallback title, and entire seven-paragraph assembly Help. Both independent reviews accepted exact values and current call sites.",
+      "counts": {
+        "accepted_static": 3,
+        "total": 3
+      },
+      "context_files": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "blob": "4cecd1ddd3ebe5f7b0fae83d3966e9d26aa4b44b"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "blob": "7391229f13d4bc53702c0be60da57c6dbe344d99"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "blob": "dea06f0eb76052b40cd1e22b478b1b6de86672a7"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "blob": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f"
+        }
+      ],
+      "merged_resource_blob": "7497d73287c4c297f949c7bd13aea6cb24aef225",
+      "complete_value_hashes": [
+        {
+          "key": "string/ui_draft_pending",
+          "english_sha256": "f26a16b2c8cbf93136a6b0aca878a9dda2815cd9dc75e28ff2e8e9f156284065",
+          "previous_localized_sha256": "f59c06dd4bc7b3f94e7124fae830adcf2b7a15d5e7741d99babb774beb6f6991",
+          "localized_sha256": "d30400e8497ce38f6770cf2317dbb0a1c08d8da6dc211abb3cd55f90c994231e"
+        },
+        {
+          "key": "string/language20_translation_note",
+          "english_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+          "previous_localized_sha256": "341cc7e98d298f4d0fac702ad4cc931dd689d446fa2c22a5d49a8afdfa919eb8",
+          "localized_sha256": "24716730948e4f0e39df71636d6c017501b08702fb7ff9ba492ca0892af19337"
+        },
+        {
+          "key": "string/ui_add_up_to_20_images_with_android_s",
+          "english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+          "previous_localized_sha256": "8d93ba393cbaf8f0fc8df74252ba1491b4eb7341a862560cc75cd2e85f3c56d4",
+          "localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997"
+        }
+      ],
+      "premerge_ci": "https://github.com/c933103/AN-Paint/actions/runs/38691588447",
+      "review_evidence": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6185835698"
     }
   },
   "receipts": [
@@ -24485,20 +24537,24 @@
     {
       "tag": "ja",
       "key": "string/ui_draft_pending",
-      "cohort": "FULL-CATALOGUE-JA03-20261015",
-      "state": "needs_rereview",
+      "cohort": "JA-THREE-MERGED-20261015",
+      "state": "reviewed_current",
       "reviewed_english_sha256": "f26a16b2c8cbf93136a6b0aca878a9dda2815cd9dc75e28ff2e8e9f156284065",
       "current_english_sha256": "f26a16b2c8cbf93136a6b0aca878a9dda2815cd9dc75e28ff2e8e9f156284065",
-      "reviewed_localized_sha256": "f59c06dd4bc7b3f94e7124fae830adcf2b7a15d5e7741d99babb774beb6f6991",
-      "current_localized_sha256": "f59c06dd4bc7b3f94e7124fae830adcf2b7a15d5e7741d99babb774beb6f6991",
-      "disposition": "correction_needed",
+      "reviewed_localized_sha256": "d30400e8497ce38f6770cf2317dbb0a1c08d8da6dc211abb3cd55f90c994231e",
+      "current_localized_sha256": "d30400e8497ce38f6770cf2317dbb0a1c08d8da6dc211abb3cd55f90c994231e",
+      "disposition": "accepted_static",
       "review_scope": "complete_linguistic_and_static_source_context",
       "en_line": 140,
       "localized_line": 327,
-      "finding_kind": "localized_semantic_or_grammar_correction",
-      "finding_status": "open",
-      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182512441",
-      "correction_applied": false
+      "correction_applied": true,
+      "reviewed_source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "confidence": "high_bounded",
+      "source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "independent_review_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "merged_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "localized_blob_sha": "7497d73287c4c297f949c7bd13aea6cb24aef225",
+      "scope_limit": "Complete corrected Japanese value independently reviewed and matched to merged XML; no other locale, whole-language or device-layout acceptance."
     },
     {
       "tag": "ja",
@@ -24984,21 +25040,25 @@
     {
       "tag": "ja",
       "key": "string/ui_add_up_to_20_images_with_android_s",
-      "cohort": "FULL-CATALOGUE-JA04-20261015",
-      "state": "needs_rereview",
+      "cohort": "JA-THREE-MERGED-20261015",
+      "state": "reviewed_current",
       "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
       "current_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
-      "reviewed_localized_sha256": "8d93ba393cbaf8f0fc8df74252ba1491b4eb7341a862560cc75cd2e85f3c56d4",
-      "current_localized_sha256": "8d93ba393cbaf8f0fc8df74252ba1491b4eb7341a862560cc75cd2e85f3c56d4",
-      "disposition": "correction_needed",
+      "reviewed_localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+      "current_localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+      "disposition": "accepted_static",
       "review_scope": "complete_linguistic_and_static_source_context",
       "en_line": 21,
       "localized_line": 236,
-      "finding_kind": "localized_semantic_or_grammar_correction",
       "additional_context": "Movement may occur but is not universal: RIGHT child may remain stationary on height-only crop; BOTTOM child on width-only crop. Proposed Help warning uses may-move wording.",
-      "finding_status": "open",
-      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182566863",
-      "correction_applied": false
+      "correction_applied": true,
+      "reviewed_source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "confidence": "high_bounded",
+      "source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "independent_review_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "merged_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "localized_blob_sha": "7497d73287c4c297f949c7bd13aea6cb24aef225",
+      "scope_limit": "Complete corrected Japanese value independently reviewed and matched to merged XML; no other locale, whole-language or device-layout acceptance."
     },
     {
       "tag": "ja",
@@ -28428,20 +28488,24 @@
     {
       "tag": "ja",
       "key": "string/language20_translation_note",
-      "cohort": "FULL-CATALOGUE-JA08-20261015",
-      "state": "needs_rereview",
+      "cohort": "JA-THREE-MERGED-20261015",
+      "state": "reviewed_current",
       "reviewed_english_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
       "current_english_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
-      "reviewed_localized_sha256": "341cc7e98d298f4d0fac702ad4cc931dd689d446fa2c22a5d49a8afdfa919eb8",
-      "current_localized_sha256": "341cc7e98d298f4d0fac702ad4cc931dd689d446fa2c22a5d49a8afdfa919eb8",
-      "disposition": "correction_needed",
+      "reviewed_localized_sha256": "24716730948e4f0e39df71636d6c017501b08702fb7ff9ba492ca0892af19337",
+      "current_localized_sha256": "24716730948e4f0e39df71636d6c017501b08702fb7ff9ba492ca0892af19337",
+      "disposition": "accepted_static",
       "review_scope": "complete_linguistic_and_static_source_context",
       "en_line": 625,
       "localized_line": 648,
-      "finding_kind": "localized_semantic_or_grammar_correction",
-      "finding_status": "open",
-      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182748155",
-      "correction_applied": false
+      "correction_applied": true,
+      "reviewed_source_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "confidence": "high_bounded",
+      "source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "independent_review_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896",
+      "merged_revision": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "localized_blob_sha": "7497d73287c4c297f949c7bd13aea6cb24aef225",
+      "scope_limit": "Complete corrected Japanese value independently reviewed and matched to merged XML; no other locale, whole-language or device-layout acceptance."
     },
     {
       "tag": "ja",
@@ -38776,6 +38840,70 @@
       "superseded_at_source": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
       "resolution_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
       "resolution_note": "Fresh complete Filipino-specific review independently accepted both current values unchanged. The original Tagalog evidence and this identity hold remain historical."
+    },
+    {
+      "tag": "ja",
+      "key": "string/ui_draft_pending",
+      "cohort": "FULL-CATALOGUE-JA03-20261015",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "f26a16b2c8cbf93136a6b0aca878a9dda2815cd9dc75e28ff2e8e9f156284065",
+      "current_english_sha256": "f26a16b2c8cbf93136a6b0aca878a9dda2815cd9dc75e28ff2e8e9f156284065",
+      "reviewed_localized_sha256": "f59c06dd4bc7b3f94e7124fae830adcf2b7a15d5e7741d99babb774beb6f6991",
+      "current_localized_sha256": "f59c06dd4bc7b3f94e7124fae830adcf2b7a15d5e7741d99babb774beb6f6991",
+      "disposition": "correction_needed",
+      "review_scope": "complete_linguistic_and_static_source_context",
+      "en_line": 140,
+      "localized_line": 327,
+      "finding_kind": "localized_semantic_or_grammar_correction",
+      "finding_status": "open",
+      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182512441",
+      "correction_applied": false,
+      "superseded_by": "JA-THREE-MERGED-20261015",
+      "superseded_at_source": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "resolution_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896"
+    },
+    {
+      "tag": "ja",
+      "key": "string/ui_add_up_to_20_images_with_android_s",
+      "cohort": "FULL-CATALOGUE-JA04-20261015",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+      "current_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+      "reviewed_localized_sha256": "8d93ba393cbaf8f0fc8df74252ba1491b4eb7341a862560cc75cd2e85f3c56d4",
+      "current_localized_sha256": "8d93ba393cbaf8f0fc8df74252ba1491b4eb7341a862560cc75cd2e85f3c56d4",
+      "disposition": "correction_needed",
+      "review_scope": "complete_linguistic_and_static_source_context",
+      "en_line": 21,
+      "localized_line": 236,
+      "finding_kind": "localized_semantic_or_grammar_correction",
+      "additional_context": "Movement may occur but is not universal: RIGHT child may remain stationary on height-only crop; BOTTOM child on width-only crop. Proposed Help warning uses may-move wording.",
+      "finding_status": "open",
+      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182566863",
+      "correction_applied": false,
+      "superseded_by": "JA-THREE-MERGED-20261015",
+      "superseded_at_source": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "resolution_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896"
+    },
+    {
+      "tag": "ja",
+      "key": "string/language20_translation_note",
+      "cohort": "FULL-CATALOGUE-JA08-20261015",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "current_english_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "reviewed_localized_sha256": "341cc7e98d298f4d0fac702ad4cc931dd689d446fa2c22a5d49a8afdfa919eb8",
+      "current_localized_sha256": "341cc7e98d298f4d0fac702ad4cc931dd689d446fa2c22a5d49a8afdfa919eb8",
+      "disposition": "correction_needed",
+      "review_scope": "complete_linguistic_and_static_source_context",
+      "en_line": 625,
+      "localized_line": 648,
+      "finding_kind": "localized_semantic_or_grammar_correction",
+      "finding_status": "open",
+      "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182748155",
+      "correction_applied": false,
+      "superseded_by": "JA-THREE-MERGED-20261015",
+      "superseded_at_source": "06ae3699ea36fc52abfc5f36875e471562775655",
+      "resolution_source": "https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896"
     }
   ],
   "partial_reviews": [
