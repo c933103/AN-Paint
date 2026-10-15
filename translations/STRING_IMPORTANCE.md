@@ -46,33 +46,51 @@ not a character-count threshold or a `help`/`description` name. In particular:
   BMP/DIB descriptions. Its compression choice preserves pixels. TIFF controls
   remain P2; lossy quality, GIF palette/frame loss, PDF rasterization and
   non-reopenable ASCII output explanations remain P0.
-- An accessibility description is an operational label when it identifies an
-  interactive surface. `string/ui_image_assembly_workspace_drag_placed_images_or_drop`
-  therefore belongs in P2 with the assembly controls, even though it is a full
-  sentence. It is the canvas content description, not the optional Help dialog.
+- Accessibility descriptions that identify interactive surfaces or controls are
+  operational labels. The main drawing canvas and Fit action belong in P1;
+  assembly canvas, crop-image selector and thumbnail tray belong in P2. Their
+  prose-like wording does not make them optional Help.
+- `string/ui_paste_hint34` is a failed-Paste prerequisite/recovery message (P1).
+  `string/ui_px_drag_an_image_to_move_hold_a` combines current assembly dimensions
+  with teaching text (P2). Mixed identities take the operational role's priority.
+- Inline teaching can still be P3 when separate controls/feedback carry the
+  operation: selection handles, Navigate gestures, canvas-bounds gestures,
+  vertical-text behavior and assembly empty-state reminders are examples.
 - Crop previews, normalization dimensions/reflow notices and input guidance stay
   P2. Data-loss, unsaved-work, destructive-confirmation and recovery messages stay
   P0 regardless of length, including `string/ui_sampled_resize_memory_explanation`
   and `string/ui_a_separate_recovery_copy_has_been_kept_use`.
+- Unreferenced legacy descriptions retain their existing priority conservatively;
+  their wording alone does not establish a current UI role. The live language
+  picker note is a mixed heading/explanation (P1), and Commons credit-record
+  guidance is operational P2 despite its explanatory wording.
 
-The 15 October explanatory-text audit changes only three assignments: cursor
-how-to alias and TIFF reference P2 → P3; assembly accessibility description
-P3 → P2. It preserves all 700 typed identities, canonical resource text,
-language-level coverage and review statuses. P3 is still part of the eventual
+The 15 October catalogue-wide source-role audit read all 700 identities. Broad
+name/sentence/word-count screening selected 275; manual/reference-role checks
+added 88, for 363 detailed dispositions. The other 337 ordinary entries were
+included in the full read. Of the detailed set, 285 originally higher-tier
+entries stay at their assigned tier, two move P2 → P3, 69 original P3 entries
+stay P3, and seven move higher (three P1, four P2). The grouped exact-key sets,
+source call sites, screening reproduction and legacy-use limits are recorded in
+[PR #91's audit](https://github.com/c933103/AN-Paint/pull/91#issuecomment-6185966530).
+
+These nine changes preserve all 700 typed identities, canonical resource text,
+language-level coverage and review statuses. P3 remains part of the eventual
 translation/support scope. A priority change cannot close a wording defect or
 revalidate an entry-review receipt; the independent corrections in
 [PR #90](https://github.com/c933103/AN-Paint/pull/90) remain separate.
 
 ## Current source partition
 
-Current partition (15 October 2026):
+Current partition (15 October 2026). Before this audit the counts were
+P0/P1/P2/P3 = 92/246/286/76; afterward:
 
 | Tier | Source entries |
 | --- | ---: |
 | P0 | 92 |
-| P1 | 246 |
-| P2 | 285 |
-| P3 | 77 |
+| P1 | 249 |
+| P2 | 288 |
+| P3 | 71 |
 | **Total** | **700** (699 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or

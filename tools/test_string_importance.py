@@ -71,11 +71,21 @@ class StringImportanceTests(unittest.TestCase):
     def test_actionable_and_accessible_instructions_are_not_demoted_as_prose(self):
         assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
         for key in (
+            "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+            "string/ui_fit_entire_canvas_in_view", "string/ui_paste_hint34",
+            "string/language20_translation_note",
+        ):
+            self.assertEqual("P1", assigned[key], key)
+        for key in (
             "string/ui_image_assembly_workspace_drag_placed_images_or_drop",
+            "string/ui_image_shown_in_crop_preview",
+            "string/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more",
+            "string/ui_px_drag_an_image_to_move_hold_a",
             "string/ui_cursor_tap_hint37", "string/ui_cursor_pan_draw32",
             "string/ui_cursor_pan_move32", "plurals/ui_crop_preview_images",
             "string/ui_normalize_width_intro", "string/ui_normalize_height_intro",
             "string/ui_normalize_width_info", "string/ui_normalize_height_info",
+            "string/commons_check_file_licence", "string/gallery_credit_edit_hint",
             "string/ui_trim_from_the_original_edges_drag_the_handles",
         ):
             self.assertEqual("P2", assigned[key], key)
@@ -91,6 +101,19 @@ class StringImportanceTests(unittest.TestCase):
             "string/formats22_pdf_raster_hint", "string/formats22_ascii_description",
         ):
             self.assertEqual("P0", assigned[key], key)
+
+    def test_inline_teaching_is_not_automatically_an_operational_label(self):
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        for key in (
+            "string/ui_corners_and_edges_resize_round_handle_rotates",
+            "string/ui_pinch_to_zoom_drag_to_pan",
+            "string/ui_drag_out_to_expand_in_to_trim_drag",
+            "string/ui_vertical_hint23", "string/ui_pencil_crisp_adjustable_strokes",
+            "string/ui_hold_a_thumbnail_and_drag_it_here_or",
+            "string/ui_drag_placed_images_to_move_them_hold_and",
+            "string/ui_shows_the_whole_assembly_image_and_output_sizes",
+        ):
+            self.assertEqual("P3", assigned[key], key)
 
     def test_new_source_resource_must_not_silently_enter_a_default_tier(self):
         errors = importance.validate(self.manifest, self.source | {"string/new_important_warning"})
