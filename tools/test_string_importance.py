@@ -48,10 +48,49 @@ class StringImportanceTests(unittest.TestCase):
             "string/ui_zoom_in", "string/language20_app_language", "string/ui_category_brush",
         ):
             self.assertEqual("P1", assigned[key], key)
-        for key in ("string/ui_image_assembly", "string/formats22_tiff_description", "plurals/ui_crop_preview_images"):
+        for key in ("string/ui_image_assembly", "string/formats22_tiff_compression", "plurals/ui_crop_preview_images"):
             self.assertEqual("P2", assigned[key], key)
         for key in ("string/ui_the_arrow_on_the_left_directly_below_the", "string/ui_help23"):
             self.assertEqual("P3", assigned[key], key)
+
+    def test_optional_help_and_lossless_reference_have_lower_priority(self):
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        # These are deliberate contextual decisions, not a length/name heuristic.
+        for key in (
+            "string/ui_add_up_to_20_images_with_android_s",
+            "string/ui_the_arrow_on_the_left_directly_below_the", "string/ui_help23",
+            "string/ui_cursor_help29", "string/ui_cursor_help31",
+            "string/ui_cursor_marker_help31", "string/ui_pixel_grid_help33",
+            "string/formats22_tiff_description", "string/save20_bmp_description",
+            "string/formats22_dib_description", "string/formats22_base64_description",
+        ):
+            self.assertEqual("P3", assigned[key], key)
+        source = catalogues.read_strings(importance.ROOT / importance.SOURCE)
+        self.assertEqual("@string/ui_cursor_help31", source["ui_cursor_help29"])
+
+    def test_actionable_and_accessible_instructions_are_not_demoted_as_prose(self):
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        for key in (
+            "string/ui_image_assembly_workspace_drag_placed_images_or_drop",
+            "string/ui_cursor_tap_hint37", "string/ui_cursor_pan_draw32",
+            "string/ui_cursor_pan_move32", "plurals/ui_crop_preview_images",
+            "string/ui_normalize_width_intro", "string/ui_normalize_height_intro",
+            "string/ui_normalize_width_info", "string/ui_normalize_height_info",
+            "string/ui_trim_from_the_original_edges_drag_the_handles",
+        ):
+            self.assertEqual("P2", assigned[key], key)
+        for key in (
+            "string/ui_a_separate_recovery_copy_has_been_kept_use",
+            "string/ui_autosave_is_paused_to_protect_that_draft_use",
+            "string/ui_sampled_resize_memory_explanation",
+            "string/ui_assembly_source_memory_floor",
+            "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+            "string/ui_your_current_image_has_unsaved_changes", "string/ui_discard_changes23",
+            "string/ui_save_explanation23", "string/ui_export_explanation23",
+            "string/save20_lossy_quality_description", "string/save20_gif_description",
+            "string/formats22_pdf_raster_hint", "string/formats22_ascii_description",
+        ):
+            self.assertEqual("P0", assigned[key], key)
 
     def test_new_source_resource_must_not_silently_enter_a_default_tier(self):
         errors = importance.validate(self.manifest, self.source | {"string/new_important_warning"})
@@ -184,6 +223,15 @@ class StringImportanceTests(unittest.TestCase):
         for tag in tags:
             coverage = importance.locale_coverage(self.manifest, tag)
             self.assertEqual(list(importance.TIERS), list(coverage))
+            present = importance.resource_keys(catalogues.catalogue_paths()[tag],
+                                               translatable_only=False)
+            # Repartitioning tiers must not change the source denominator or
+            # any locale's total direct presence/missing count.
+            self.assertEqual(len(self.source), sum(row["total"] for row in coverage.values()))
+            self.assertEqual(len(self.source & present),
+                             sum(row["present"] for row in coverage.values()))
+            self.assertEqual(len(self.source - present),
+                             sum(row["missing"] for row in coverage.values()))
             for row in coverage.values():
                 self.assertEqual(row["total"], row["present"] + row["missing"])
                 self.assertGreaterEqual(row["missing"], 0)
@@ -204,4 +252,3 @@ class StringImportanceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
