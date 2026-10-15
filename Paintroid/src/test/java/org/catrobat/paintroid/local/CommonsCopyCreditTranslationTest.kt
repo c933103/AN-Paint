@@ -19,7 +19,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-/** All 167 offered tags have explicit exact-catalogue or default-fallback disposition. */
+/** All 171 offered tags have explicit exact-catalogue or default-fallback disposition. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[30,35])
 class CommonsCopyCreditTranslationTest {
@@ -31,7 +31,7 @@ class CommonsCopyCreditTranslationTest {
         "hak-Latn-TW", "hu", "id", "it", "ja", "jje", "ko-KP", "ko-KR",
         "ko-Kore-KR", "lt", "lv", "lzh-Hant", "mn-Cyrl-MN", "mn-Mong", "mnc-Mong", "ms",
         "nan-Hant-TW", "nan-Latn-TW", "nl", "pt-BR", "pt-PT", "qaa-Zsye-XV", "ru", "ryu",
-        "sw", "tl", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
+        "sw", "fil", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
         "zh-CN", "zh-HK", "zh-TW"
     )
     // Exact language-tag expectations are independent of Android's fallback resolution.
@@ -85,7 +85,7 @@ class CommonsCopyCreditTranslationTest {
         "ru" to listOf("Не удалось скопировать сведения об авторстве изображения.", "Не удалось скопировать сведения об авторстве изображения: %1\$s", "Недостаточно памяти для копирования сведений об авторстве изображения."),
         "ryu" to listOf("画像クレジットや コピーさらびらんたん。", "画像クレジットや コピーさらびらんたん: %1\$s", "画像クレジット コピーすんためぬメモリぬ足らびらん。"),
         "sw" to listOf("Sifa za picha hazikuweza kunakiliwa.", "Sifa za picha hazikuweza kunakiliwa: %1\$s", "Kumbukumbu haitoshi kunakili sifa za picha."),
-        "tl" to listOf("Hindi makopya ang pagkilala para sa larawan.", "Hindi makopya ang pagkilala para sa larawan: %1\$s", "Kulang ang memory para kopyahin ang pagkilala para sa larawan."),
+        "fil" to listOf("Hindi makopya ang pagkilala para sa larawan.", "Hindi makopya ang pagkilala para sa larawan: %1\$s", "Kulang ang memory para kopyahin ang pagkilala para sa larawan."),
         "tr" to listOf("Görüntünün atıf bilgisi kopyalanamadı.", "Görüntünün atıf bilgisi kopyalanamadı: %1\$s", "Görüntünün atıf bilgisini kopyalamak için yeterli bellek yok."),
         "vi" to listOf("Không thể sao chép ghi công hình ảnh.", "Không thể sao chép ghi công hình ảnh: %1\$s", "Không đủ bộ nhớ để sao chép ghi công hình ảnh."),
         "vi-Hani" to listOf("空 体 抄 劄 𥱬 功 形 影.", "空 体 抄 劄 𥱬 功 形 影: %1\$s", "空 𨁥 部𢖵 抵 抄 劄 𥱬 功 形 影."),
@@ -97,6 +97,7 @@ class CommonsCopyCreditTranslationTest {
         "zh-TW" to listOf("無法複製圖片致謝資訊。", "無法複製圖片致謝資訊：%1\$s", "記憶體不足，無法複製圖片致謝資訊。")
     )
     private val fallbackTags=setOf(
+        "ang", "ary", "non", "zgh",
         "as", "ch", "chr", "ht", "mi", "nch", "nhe", "nhw", "nv", "pcm", "qug", "quh", "quy", "quz", "sa", "sm", "so", "tg", "tpi", "wo", "yua",
         "ha", "ig", "ln", "su", "yo", "zu",
         "am", "ast", "az", "be", "bg", "bn", "br", "bs",
@@ -176,7 +177,7 @@ class CommonsCopyCreditTranslationTest {
     }
     @Test fun remainingOfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(167,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(108,remaining.size)
+        assertEquals(171,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(112,remaining.size)
         assertEquals(fallbackTags,remaining.toSet())
         for(tag in remaining) assertEquals("$tag documented default fallback is incomplete localization",
             defaultMessages,keys.map {resourcesFor(tag).getString(it)})

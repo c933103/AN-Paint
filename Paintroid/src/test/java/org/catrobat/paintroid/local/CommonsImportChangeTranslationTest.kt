@@ -72,7 +72,7 @@ class CommonsImportChangeTranslationTest {
             "hak-Latn-TW", "hu", "id", "it", "ja", "jje", "ko-KP", "ko-KR",
             "ko-Kore-KR", "lt", "lv", "lzh-Hant", "mn-Cyrl-MN", "mn-Mong", "mnc-Mong", "ms",
             "nan-Hant-TW", "nan-Latn-TW", "nl", "pt-BR", "pt-PT", "qaa-Zsye-XV", "ru", "ryu",
-            "sw", "tl", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
+            "sw", "fil", "tr", "vi", "vi-Hani", "wuu-Hans", "yue-Hant", "yue-Latn",
             "zh-CN", "zh-HK", "zh-TW"
         )
         for(tag in tags) withLanguage(tag) {

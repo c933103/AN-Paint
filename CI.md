@@ -11,7 +11,7 @@ Current source/test discovery and per-run APK/source binding remain required.
 
 Localization status remains scoped: earlier withdrawn review conclusions are
 not restored by this migration. The compact 59-locale wording fixtures preserve
-current regression expectations and explicitly retain the 108 open fallbacks;
+current regression expectations and explicitly retain the 112 open fallbacks;
 matching them does not certify fluency or complete linguistic review.
 
 ## What runs
