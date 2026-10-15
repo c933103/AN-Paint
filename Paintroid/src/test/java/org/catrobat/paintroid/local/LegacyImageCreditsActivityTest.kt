@@ -32,8 +32,11 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.android.controller.ActivityController
+import org.robolectric.annotation.Implementation
+import org.robolectric.annotation.Implements
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.LooperMode
+import org.robolectric.shadows.ShadowActivity
 import org.robolectric.shadows.ShadowContentResolver
 import java.io.File
 import java.io.IOException
@@ -175,6 +178,60 @@ class LegacyImageCreditsActivityTest {
         } finally {
             if(priorDraft==null)draft.delete() else draft.writeBytes(priorDraft)
             ImageCreditArchive.releaseAccepted(context,retained)
+        }
+    }
+
+    @Test @Config(shadows=[ExportLaunchShadow::class])
+    fun exportLaunchFailuresAreClassifiedAndClearStateBeforeRetry() {
+        seed("Stored credit");val before=preferences.all;launch()
+        val failures=listOf(
+            ActivityNotFoundException("No handler") to activity.getString(R.string.ui_android_could_not_find_a_file_picker_enable),
+            SecurityException("Access denied") to activity.getString(R.string.ui_android_blocked_the_file_picker,"Access denied"),
+            SecurityException() to activity.getString(R.string.ui_android_blocked_the_file_picker,
+                activity.getString(R.string.ui_could_not_complete_the_operation)),
+            IllegalStateException("Other launch failure") to activity.getString(R.string.ui_could_not_complete_the_operation))
+        try {
+            for((failure,expected) in failures) {
+                ExportLaunchShadow.failure=failure
+                click("legacy_credit_export")
+                assertEquals(expected,activity.window.decorView.findViewWithTag<TextView>("legacy_credit_status").text.toString())
+                val failedState=Bundle();controller.saveInstanceState(failedState)
+                assertNull("Failed launch must not retain an export token",failedState.getString("export_token"))
+                assertEquals(Intent.ACTION_CREATE_DOCUMENT,ExportLaunchShadow.intent!!.action)
+                assertEquals("text/plain",ExportLaunchShadow.intent!!.type)
+                assertTrue(ExportLaunchShadow.intent!!.hasCategory(Intent.CATEGORY_OPENABLE))
+                assertEquals(LegacyImageCreditsActivity.EXPORT_TEXT,ExportLaunchShadow.requestCode)
+
+                // A subsequent selection must be used instead of the failed selection.
+                activity.window.decorView.findViewWithTag<Spinner>("legacy_credit_source").setSelection(1)
+                shadowOf(Looper.getMainLooper()).idle()
+                ExportLaunchShadow.failure=null
+                click("legacy_credit_export")
+                val retryState=Bundle();controller.saveInstanceState(retryState)
+                assertEquals(ImageCreditArchive.selectionToken(ImageCredit(second,"")),retryState.getString("export_token"))
+                activity.onActivityResult(LegacyImageCreditsActivity.EXPORT_TEXT,Activity.RESULT_CANCELED,null)
+                val cancelledState=Bundle();controller.saveInstanceState(cancelledState)
+                assertNull(cancelledState.getString("export_token"))
+                assertEquals(before,preferences.all)
+                activity.window.decorView.findViewWithTag<Spinner>("legacy_credit_source").setSelection(0)
+                shadowOf(Looper.getMainLooper()).idle()
+            }
+        } finally {ExportLaunchShadow.failure=null;ExportLaunchShadow.intent=null}
+    }
+
+    /** Replace only the Android launch boundary; the actual export click and state run normally. */
+    @Implements(Activity::class)
+    class ExportLaunchShadow: ShadowActivity() {
+        companion object {
+            var failure: Exception?=null
+            var intent: Intent?=null
+            var requestCode=0
+        }
+        @Implementation(methodName="startActivityForResult")
+        fun launch(request: Intent,code: Int,options: Bundle?) {
+            intent=Intent(request);requestCode=code
+            failure?.let {throw it}
+            super.startActivityForResult(request,code,options)
         }
     }
 
