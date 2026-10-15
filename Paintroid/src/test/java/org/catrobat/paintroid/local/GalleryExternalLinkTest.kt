@@ -24,6 +24,7 @@ import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -182,9 +183,10 @@ class GalleryExternalLinkTest {
         override fun getMethod()="GET"
         override fun getRequestHeaders(): MutableMap<String,String> = mutableMapOf()
     }
-    private fun networkError()=object: WebResourceError() {
-        override fun getErrorCode()=WebViewClient.ERROR_CONNECT
-        override fun getDescription(): CharSequence="fixture: connection failed"
+    // WebResourceError is abstract and its constructor is not public in the Android SDK.
+    private fun networkError(): WebResourceError=Mockito.mock(WebResourceError::class.java).apply {
+        Mockito.`when`(errorCode).thenReturn(WebViewClient.ERROR_CONNECT)
+        Mockito.`when`(description).thenReturn("fixture: connection failed")
     }
 
     private fun withGallery(provider: IllustrationSource,tag: String="en-001",check: (MediaGalleryActivity)->Unit)=withLanguageState {
