@@ -166,6 +166,7 @@ class PdfCodecTest {
     }
 
     @Test fun malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors() {
+        japaneseMalformedPdfRetainsUncertaintyAndSpecificPageErrorsRemainSpecific()
         val file = File.createTempFile("pdf-malformed-", ".bin", context.cacheDir)
         try {
             file.writeText("%PDF-1.7\nThis is deliberately not a PDF object graph.\n%%EOF\n")
@@ -187,7 +188,7 @@ class PdfCodecTest {
         } finally { file.delete() }
     }
 
-    @Test fun japaneseMalformedPdfRetainsUncertaintyAndSpecificPageErrorsRemainSpecific() {
+    private fun japaneseMalformedPdfRetainsUncertaintyAndSpecificPageErrorsRemainSpecific() {
         val previous = PaintApplication.currentResources
         val japanese = context.createConfigurationContext(Configuration(context.resources.configuration).apply {
             setLocale(Locale.JAPANESE)
