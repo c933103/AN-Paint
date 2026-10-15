@@ -397,6 +397,8 @@ class CursorDrawingTest {
                 }
                 // The first touch can begin cursor ink; adding the second must cancel it.
                 touch(board,MotionEvent.ACTION_DOWN,300f,400f)
+                assertEquals("Initial touch must start ink only when drawing is enabled",
+                    drawing,!original.sameAs(document.bitmap))
                 multi(MotionEvent.ACTION_POINTER_DOWN or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT))
                 coordinates.forEach {it.x+=40f;it.y+=20f}
                 multi(MotionEvent.ACTION_MOVE)
