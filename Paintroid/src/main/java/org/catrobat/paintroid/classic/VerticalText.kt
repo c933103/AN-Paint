@@ -115,23 +115,37 @@ internal object VerticalText {
     /** Wrap at CJK cluster or word boundaries, never inside a joined Mongolian word. */
     fun wrapLabel(text: String,paint: Paint,height: Float,direction: TextDirection=uiDirection()): String {
         if(direction==TextDirection.HORIZONTAL) return text
+        fun noBreak(char: Char)=char=='\u202f' || char=='\u00a0' || char=='\u2007'
+        fun breakableSpace(char: Char)=char.isWhitespace() && !noBreak(char)
         val columns=mutableListOf<String>()
         text.split('\n').forEach {paragraph ->
             val tokens=mutableListOf<String>();var word=""
             fun flush() {if(word.isNotEmpty()) {tokens.add(word);word=""}}
             clusters(paragraph).forEach {cluster ->
-                when {upright(cluster)->{flush();tokens.add(cluster)}
+                when {
+                    // Kotlin considers nonbreaking spaces blank. Keep them in
+                    // the word: Mongolian NNBSP also selects suffix glyph forms.
+                    // Glue upright neighbors too, without changing their draw orientation.
+                    cluster.length==1 && noBreak(cluster[0])->{
+                        if(word.isEmpty() && tokens.lastOrNull()?.all {breakableSpace(it)}==false)
+                            word=tokens.removeAt(tokens.lastIndex)
+                        word+=cluster
+                    }
+                    upright(cluster)->{
+                        if(word.lastOrNull()?.let {noBreak(it)}==true) {word+=cluster;flush()}
+                        else {flush();tokens.add(cluster)}
+                    }
                     cluster.isBlank()->{flush();tokens.add(" ")}
                     else->word+=cluster}
             };flush()
             var line=""
             tokens.forEach {token ->
                 val candidate=line+token
-                if(line.isNotBlank() && bounds(candidate,paint,direction,GlyphOrientation.MIXED,1f).height()>height) {
-                    columns.add(line.trim());line=token.trimStart()
+                if(line.any {!breakableSpace(it)} && bounds(candidate,paint,direction,GlyphOrientation.MIXED,1f).height()>height) {
+                    columns.add(line.trim {breakableSpace(it)});line=token.trimStart {breakableSpace(it)}
                 } else line=candidate
             }
-            columns.add(line.trim())
+            columns.add(line.trim {breakableSpace(it)})
         }
         return columns.joinToString("\n")
     }
