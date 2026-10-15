@@ -22,12 +22,22 @@ def safe_path(root,relative):
     return resolved
 
 
+def external_cache_boundary(archive,output):
+    """Reject overlap with the evidence checkout or actual tracker repository."""
+    archive=Path(archive).resolve();output=Path(output).resolve();tracker=Path(v.HERE).resolve()
+    if tracker.name=='translation-entry-review-2026-10-13' and tracker.parent.name=='verification':
+        tracker=tracker.parents[1]
+    for root,label in ((archive,'evidence checkout'),(tracker,'tracker repository')):
+        v.require(output!=root and root not in output.parents and output not in root.parents,
+                  'Output must not overlap the '+label)
+    return archive,output
+
+
 def materialize(archive_root,output_root,index_path=v.HERE/v.INDEX):
     archive_root=Path(archive_root).resolve()
     output_root=Path(output_root).resolve()
     v.require(archive_root.is_dir(),'Evidence checkout is unavailable')
-    v.require(output_root!=archive_root and archive_root not in output_root.parents,'Output must be external to the evidence checkout')
-    v.require(output_root!=v.HERE.resolve() and v.HERE.resolve() not in output_root.parents,'Output must be external to the tracker directory')
+    external_cache_boundary(archive_root,output_root)
     index=v.read(Path(index_path))
     v.require(v.value_hash(index)==v.EXPECTED['index_sha256'],'Evidence index differs from pinned complete reviews')
     contents={};reports={};bindings=v.evidence_bindings(index)

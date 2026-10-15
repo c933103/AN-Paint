@@ -1314,5 +1314,54 @@
     "fixture_repair": "Copy required progress through document_path, retaining repository-root placement in real-layout fixtures. Create the compact-body schema input explicitly within its test; the published checkout needs no draft-body file.",
     "relative_link_repair": "The new root overview now uses the full repository-relative gallery index path. The data-local overview retains its local path. A strict gate and negative control resolve all four newly authored relative links from their published document locations; earlier historical links are untouched.",
     "receipt_count_or_linguistic_changes": false
+  },
+  "cache_boundary_fix": {
+    "reviewed_tracker_head": "3ead1121da07d22067c595f8a0b7ea25063dc788",
+    "review_comment": "https://github.com/c933103/AN-Paint/pull/56#discussion_r4286905516",
+    "scope": "Cache output must be disjoint from the actual tracker repository and evidence checkout after resolving symlinks; ancestor, descendant, equal and in-repository sibling paths fail before index reads or output writes. A genuinely external sibling cache remains allowed.",
+    "materializers": [
+      "materialize_position_review_evidence.py",
+      "materialize_gallery_review_evidence.py"
+    ],
+    "position_materializer_exact_predecessor_sha256": "b4c11aa7d525e62d888bdd18fae786ddca63a20e2191bac6df013f7e408a87ee",
+    "position_materializer_exact_hardened_sha256": "6901a3b1726aa5861bd407a4f890225ade9206750ece00cb13f41a48c5c889ff",
+    "prior_gate_contract": "Exact equality remains accepted; only the pinned original-to-hardened position materializer transition is additionally recognized. Unrelated edits are rejected by a negative control. All complete-value and immutable evidence gates remain unchanged.",
+    "tests": {
+      "tests-normal.txt": {
+        "tests": 35,
+        "seconds": 16.223,
+        "exit_code": 0,
+        "skipped": 0,
+        "log_sha256": "24e779b7ad5a0323c4aa26ee4258c748f8a3fa6fae7a90311c7d19f751b0f62c"
+      },
+      "tests-optimized.txt": {
+        "tests": 35,
+        "seconds": 28.535,
+        "exit_code": 0,
+        "skipped": 0,
+        "log_sha256": "964c0bbf8e7741a38f4e0d825814992fcba53e90f8590827ef8b336d944d2fb3"
+      },
+      "tests-published-normal.txt": {
+        "tests": 35,
+        "seconds": 28.124,
+        "exit_code": 0,
+        "skipped": 0,
+        "log_sha256": "9fb6ea5183642e4adb8b37f6b5e27bebfe707fa4685825e4bc0aa0bbbea8cdc1"
+      },
+      "tests-published-optimized.txt": {
+        "tests": 35,
+        "seconds": 20.575,
+        "exit_code": 0,
+        "skipped": 0,
+        "log_sha256": "75ff34473d6268e8234d508a3a61043b1ebd2a7c855e41a911160906a969ca31"
+      }
+    },
+    "new_test_methods": 7,
+    "original_gallery_test_methods": 28,
+    "actual_publication_layout_tested": true,
+    "rejected_paths_leave_no_output": true,
+    "linguistic_decisions": 0,
+    "receipt_count_or_source_identity_changes": false,
+    "app_tests_rerun": false
   }
 }

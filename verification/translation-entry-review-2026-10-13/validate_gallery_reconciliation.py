@@ -210,7 +210,12 @@ def validate(source,previous=None,directory=HERE,evidence_root=None):
             require(current.split('### Preserved earlier review checkpoints',1)[1]==prior.split('### Preserved earlier review checkpoints',1)[1],'Historical checkpoint prose changed')
             require(prior.split('### Current per-language entry counts',1)[0] in current,'Pre-gallery overview omitted')
         for name in (position.INDEX,position.FIXTURE,'materialize_position_review_evidence.py','validate_position_reconciliation.py','test_position_reconciliation.py','position-reconciliation-report-20261015.md'):
-            require((directory/name).read_bytes()==(previous/name).read_bytes(),'Prior strict acceptance/report/test artifact changed: '+name)
+            current_bytes=(directory/name).read_bytes();prior_bytes=(previous/name).read_bytes()
+            if name=='materialize_position_review_evidence.py':
+                hardened=(hashlib.sha256(prior_bytes).hexdigest(),hashlib.sha256(current_bytes).hexdigest())==('b4c11aa7d525e62d888bdd18fae786ddca63a20e2191bac6df013f7e408a87ee', '6901a3b1726aa5861bd407a4f890225ade9206750ece00cb13f41a48c5c889ff')
+                require(current_bytes==prior_bytes or hardened,'Prior position materializer differs beyond exact cache-boundary fix')
+            else:
+                require(current_bytes==prior_bytes,'Prior strict acceptance/report/test artifact changed: '+name)
     return {'status':'PASS','source_revision':REV,'source_tree':TREE,'preceding_tracker_revision':OLDHEAD,'active_pairs':3415,'new_full_statement_records':59,'new_reviewed_current':54,'new_open_idiom_reviews':5,'preserved_active_pairs':3356,'processing_holds':4,'source_identity_files':182,'source_context_files':len(fixture['source_context_files']),'table_files':tables,'new_relative_links':link_count,'previous_checkpoint_compared':bool(previous),'summary':counts['summary'],'scope':'Mechanical source/evidence binding with all earlier strict acceptance/history gates. No new linguistic decision or app/native execution.'}
 
 if __name__=='__main__':

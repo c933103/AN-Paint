@@ -11,11 +11,21 @@ import json
 from pathlib import Path
 import validate_gallery_reconciliation as v
 
+def external_cache_boundary(archive,output):
+    """Reject overlap with the evidence checkout or actual tracker repository."""
+    archive=Path(archive).resolve();output=Path(output).resolve();tracker=Path(v.HERE).resolve()
+    if tracker.name=='translation-entry-review-2026-10-13' and tracker.parent.name=='verification':
+        tracker=tracker.parents[1]
+    for root,label in ((archive,'evidence checkout'),(tracker,'tracker repository')):
+        v.require(output!=root and root not in output.parents and output not in root.parents,
+                  'Output must not overlap the '+label)
+    return archive,output
+
+
 def materialize(archive,output,index_path=v.HERE/v.INDEX):
     archive=Path(archive).resolve();output=Path(output).resolve()
     v.require(archive.is_dir(),'Separate evidence checkout unavailable')
-    v.require(output!=archive and archive not in output.parents,'Cache must be external to evidence checkout')
-    v.require(output!=v.HERE.resolve() and v.HERE.resolve() not in output.parents,'Cache must be external to tracker directory')
+    external_cache_boundary(archive,output)
     index=v.read(Path(index_path));v.require(v.value_hash(index)==v.EXPECTED['index'],'Pinned gallery evidence index changed')
     contents={};docs={}
     for name,b in index['reports'].items():
