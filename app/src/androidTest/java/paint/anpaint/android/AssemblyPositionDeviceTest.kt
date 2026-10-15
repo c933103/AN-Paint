@@ -309,15 +309,12 @@ class AssemblyPositionDeviceTest {
         // giant rectangle to fit simultaneously would mistake scrolling for loss.
         val tile=onMain {(64*view.resources.displayMetrics.density).toInt().coerceAtLeast(1)}
         for(region in regions) {
-            var top=region.top
-            while(top<region.bottom) {
-                var left=region.left
-                while(left<region.right) {
-                    val piece=Rect(left,top,minOf(left+tile,region.right),minOf(top+tile,region.bottom))
-                    reveal(view) {rawBounds(view).let {raw ->Rect(piece).apply {offset(raw.left,raw.top)}}}
-                    left+=tile
-                }
-                top+=tile
+            // Finish each column before advancing horizontally. Row-major order
+            // swept a wide vertical caption back to its start for every tile row.
+            // The helper emits exactly the same bounded rectangles, once each.
+            CaptionTileTraversal.visit(region.left,region.top,region.right,region.bottom,tile) {left,top,right,bottom ->
+                val piece=Rect(left,top,right,bottom)
+                reveal(view) {rawBounds(view).let {raw ->Rect(piece).apply {offset(raw.left,raw.top)}}}
             }
         }
     }
@@ -387,7 +384,9 @@ class AssemblyPositionDeviceTest {
     private fun await(label: String,condition: ()->Boolean) {
         val until=minOf(deadline,SystemClock.uptimeMillis()+8000)
         while(SystemClock.uptimeMillis()<until) {if(onMain(condition)) return;SystemClock.sleep(25)}
-        throw AssertionError("Timed out: $label")
+        if(SystemClock.uptimeMillis()>=deadline)
+            throw AssertionError("Position dialog exceeded 45-second interaction budget while waiting for: $label")
+        throw AssertionError("Timed out at 8-second wait bound: $label")
     }
     private fun <T> onMain(action: ()->T): T {
         if(Looper.myLooper()==Looper.getMainLooper()) return action()

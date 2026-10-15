@@ -189,6 +189,11 @@ run_position_regression
         self.assertIn('45-second interaction budget',source)
         self.assertNotIn('requestFocus(',source)
         self.assertNotIn('.setText(',source)
+        self.assertIn('CaptionTileTraversal.visit(region.left,region.top,region.right,region.bottom,tile)',source)
+        self.assertIn('reveal(view) {rawBounds(view).let {raw ->Rect(piece).apply {offset(raw.left,raw.top)}}}',source)
+        self.assertIn('SystemClock.uptimeMillis()>=deadline',source)
+        self.assertIn('45-second interaction budget while waiting for: $label',source)
+        self.assertIn('Timed out at 8-second wait bound: $label',source)
 
 
 if __name__=='__main__':unittest.main()

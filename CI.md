@@ -215,6 +215,12 @@ Tibetan/Dzongkha + Jeju + Nôm (four), each capped at 180 seconds. Each method k
 its 45-second interaction bound. Native Back dismisses a previous field's IME
 before revealing/tapping the next field; view clipping alone does not account
 for keyboard occlusion. Native focus/input and all persistence assertions remain.
+Caption reveal visits the same 64dp tiles column-first, avoiding a repeated
+horizontal sweep for every row of a wide vertical caption. Host checks execute
+the device helper and compare the exact tile set/area with the former row order;
+their scroll model is not an Android runtime measurement. Timeout diagnostics
+distinguish the shared 45-second budget from the individual 8-second wait bound.
+Neither deadline nor any text/input/persistence assertion is relaxed.
 
 Core and position jobs use the same API selection and prebuilt artifacts. Their
 partial receipts cannot stand in for the complete union. The final `Emulator API`
