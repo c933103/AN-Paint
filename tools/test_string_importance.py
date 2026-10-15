@@ -32,6 +32,7 @@ class StringImportanceTests(unittest.TestCase):
         assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
         for key in (
             "ui_save", "ui_save_your_changes", "ui_autosave_failed_use_save",
+            "ui_share_explanation34",
             "ui_export_did_not_save23", "ui_keep_editing23", "save20_destination_error",
             "formats22_animation_message", "ui_the_previous_draft_could_not_be_restored",
         ):

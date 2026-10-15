@@ -29,12 +29,12 @@ nontranslatable identifiers, file names and language-option arrays are excluded.
 
 ## Current source partition
 
-Initial snapshot (14 October 2026):
+Current partition (15 October 2026):
 
 | Tier | Source entries |
 | --- | ---: |
-| P0 | 83 |
-| P1 | 249 |
+| P0 | 84 |
+| P1 | 248 |
 | P2 | 288 |
 | P3 | 78 |
 | **Total** | **698** (697 strings and 1 plural) |
