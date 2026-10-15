@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "repository": "c933103/AN-Paint",
+  "source_base_commit_as_supplied_by_parent": "5ece04b6c604b98fc0e59db600c728e541d08261",
+  "review_date_utc": "2026-10-15",
+  "key": "ui_android_could_not_find_a_file_picker_enable",
+  "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+  "source": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+  "unchanged_han": "Android 尋毋著檔案揀器。請在 Android 設定肚啟用「Files」抑係「文件」程式，過試看。",
+  "before": "Android chhìm m̀ cho̍k tóng-on kién-hi. Chhiáng chhai Android sat-thin tú khí-yung “Files” ia-he “vùn-khien” chhàng-sṳt, ko chhṳ khon.",
+  "accepted_pfs": "Android chhìm m̀ tó tóng-on kién-hi. Chhiáng chhai Android sat-thin tú khí-yung “Files” ya-he “vùn-khien” chhàng-sṳt, ko chhṳ khon.",
+  "utf8_text_sha256": {
+    "source": "18e9d5e1891a06c3eeb7881a4f22acdcdaa2b33c8d0a04388c87886224178264",
+    "han": "89ebbed893c14047d118d1bf549eadf264cf9832f262be7f48af0bb0d887e8e2",
+    "before": "d6b3e1b1b06747bdf95535e9ed958d127c62f62987fd9ff6613a2f4c1200603c",
+    "accepted_pfs": "07fe35aff37807b08ed23760cd653a8236d133718a5cb9a1078610a9d2a66c4f"
+  },
+  "scope": "Exact one inherited warning in hak-Latn-TW; complete warning reviewed against source, Han counterpart and both call sites. No other locale keys changed.",
+  "change_classification": [
+    {
+      "before": "chhìm m̀ cho̍k",
+      "after": "chhìm m̀ tó",
+      "classification": "confirmed contextual pronunciation defect"
+    },
+    {
+      "before": "ia-he",
+      "after": "ya-he",
+      "classification": "directly attested PFS orthographic alignment, not a claim that every initial-ia spelling is invalid"
+    }
+  ],
+  "meaning_review": {
+    "trigger": "ClassicPaintActivity.launchPicker handles ActivityNotFoundException, including failure of ACTION_GET_CONTENT fallback after ACTION_OPEN_DOCUMENT; LegacyImageCreditsActivity uses the warning on ACTION_CREATE_DOCUMENT ActivityNotFoundException. SecurityException has a distinct warning.",
+    "failure": "Android cannot locate a file picker. No mistaken statement that a file was lost, denied, or unreadable.",
+    "recovery": "Enable Files or Documents in Android settings, then retry. Alternative apps, Android target, enabling action and retry are all retained.",
+    "labels": "Android and Files are preserved; vùn-khien is the same Documents label as 文件 in the unchanged Han counterpart.",
+    "register": "Polite software instruction using Chhiáng. No new account, installation or deletion instruction."
+  },
+  "term_review": [
+    {
+      "han": "尋毋著",
+      "pfs": "chhìm m̀ tó",
+      "reading": "qim11 m11 do31",
+      "reason": "failed-finding result complement, not the correct/incorrect reading cog5",
+      "urls": [
+        "https://teric.naer.edu.tw/wSite/PDFReader?fileName=1483859607633&format=pdf&xmlId=1899982",
+        "https://hakka.ncu.edu.tw/Hakka_ePaper/paper/paper304/304(1).html",
+        "https://hakka.fhl.net/HKSK_PhFS/old.html"
+      ]
+    },
+    {
+      "han": "檔案揀器",
+      "pfs": "tóng-on kién-hi",
+      "reading": "dong31 on55 gien31 hi55",
+      "reason": "retained computing noun plus choose/tool; compound matches file picker, without changing picker type",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=5154",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=8622",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=9594"
+      ]
+    },
+    {
+      "han": "請在",
+      "pfs": "Chhiáng chhai",
+      "reading": "qiang31 cai55",
+      "reason": "polite instruction; cai entry explicitly permits locative preposition",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=13832",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=6234"
+      ]
+    },
+    {
+      "han": "設定肚",
+      "pfs": "sat-thin tú",
+      "reading": "sad2 tin55 du31",
+      "reason": "settings plus inside; 設定 is retained technical wording, with component readings supported",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=14120",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=15569",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=7469"
+      ]
+    },
+    {
+      "han": "啟用",
+      "pfs": "khí-yung",
+      "reading": "ki31 iung55",
+      "reason": "enable/begin using; retained technical wording; 啟 supports opening/beginning, 用 supported in 採用",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=10822",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=6231"
+      ]
+    },
+    {
+      "han": "抑係",
+      "pfs": "ya-he",
+      "reading": "ia55 he55",
+      "reason": "or; the pronunciation is unchanged, while ya-he aligns the Latin spelling with directly attested PFS usage",
+      "urls": [
+        "https://hakka.fhl.net/HKSK_PhFS/old.html",
+        "https://cb.fhl.net/read1.php?TABFLAG=2&VERSION18=thv12h&VERSION19=thv2e&id=17524",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=250"
+      ]
+    },
+    {
+      "han": "文件",
+      "pfs": "vùn-khien",
+      "reading": "vun11 kien55",
+      "reason": "retains the Han counterpart’s localized Documents label, and Files remains literal",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=906"
+      ]
+    },
+    {
+      "han": "程式",
+      "pfs": "chhàng-sṳt",
+      "reading": "cang11 siid2",
+      "reason": "retains program/app computing term; component readings supported",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=6275",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=14647"
+      ]
+    },
+    {
+      "han": "過試看",
+      "pfs": "ko chhṳ khon",
+      "reading": "go55 cii55 kon55",
+      "reason": "try again; dictionary explicitly supports go55 in the sense again and cii kon for try",
+      "urls": [
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=8900",
+        "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=6449"
+      ]
+    }
+  ],
+  "orthography_note": "MOE uses the official Hakka romanization, not PFS. PFS renderings apply the target orthographic convention; do31 maps to tó (unaspirated t; shang acute). Comparison of the complete sentence is linguistic reasoning, not a mechanical character substitution or dictionary certification of the whole UI message.",
+  "review_status": "Author and independent reviewer accept the same complete final sentence; exact receipt in independent-review.json.",
+  "limits": [
+    "AI author and independent AI reviewer, not native-speaker certification.",
+    "The remaining catalogues, earlier withdrawn review claims, PR85 new key and processing holds are outside this patch.",
+    "No Android build, install, screenshot, or device-level verification by this worker.",
+    "Primary dictionary data supports individual words/components; computing compounds and full sentence are contextual translation judgments.",
+    "Direct fetch of the NYCU PFS research PDF returned 502 and web cache misses, so that full PDF is not claimed as read by this author."
+  ],
+  "independent_review_file": "independent-review.json",
+  "changed_files": [
+    {
+      "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+      "sha256": "88c715bf8997339d67b3be7e3a92c31d773b5219d5f6c546e3dfb5b00e70396c"
+    },
+    {
+      "path": "tools/test_hakka_context.py",
+      "sha256": "a21c7ed2ab152fe1fe67e9b8b1e5dbc272c4975ab90a0438c134aa175485da72"
+    },
+    {
+      "path": "tools/fixtures/hakka_file_picker_warning.json",
+      "sha256": "71e59df64538b915022f18e49407fb5dc133c80a1c922b0303049bba482911dc"
+    }
+  ],
+  "patch_sha256": "ac1adc4ce63314ea761ec984020527268ee3afbc4aef2b0d82bc433f75069ed6",
+  "source_base_tree_as_supplied_by_parent": "7b5641d6b4b041e49fa7442d894353b4f65275f6",
+  "validation_base_note": "The first full host suite was interrupted after the parent reported a newly merged develop commit; the minimal patch was applied with git apply --check to the complete supplied new-source snapshot. No result from the interrupted older-baseline host run is counted.",
+  "preservation": {
+    "gallery_external_link_no_handler_unchanged": true,
+    "only_changed_hakka_key": "ui_android_could_not_find_a_file_picker_enable",
+    "han_resource_byte_identical": true
+  },
+  "primary_pfs_usage": {
+    "url": "https://hakka.fhl.net/HKSK_PhFS/old.html",
+    "retrieval": "Web tool successfully opened the public corpus index; separate urllib request returned HTTP 403 and was not retried.",
+    "attested_forms": [
+      "chhìm m̀-tó",
+      "ya-he"
+    ],
+    "application": "Direct target-orthography usage supports the complement spelling and conjunction; word grouping around m̀ does not change meaning."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "base_commit": "5ece04b6c604b98fc0e59db600c728e541d08261",
+  "normal_host": {
+    "command": "python3 -m unittest discover -s tools -p 'test_*.py'",
+    "tests": 718,
+    "seconds": 206.111,
+    "exit_code": 0,
+    "status": "passed"
+  },
+  "optimized_host": {
+    "command": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+    "status": "passed",
+    "tests": 718,
+    "seconds": 207.932,
+    "exit_code": 0
+  },
+  "focused_hakka_normal_new_base": {
+    "tests": 4,
+    "exit_code": 0,
+    "status": "passed"
+  },
+  "focused_hakka_optimized_new_base": {
+    "tests": 4,
+    "exit_code": 0,
+    "status": "passed"
+  },
+  "negative_regression": {
+    "status": "passed",
+    "description": "The new full-warning guard failed against the inherited original warning; it passed after the resource repair. The inherited original warning is byte-identical across the two supplied develop baselines."
+  },
+  "scope_checks": {
+    "only_three_source_files_changed": true,
+    "only_one_hakka_key_changed": true,
+    "han_resource_unchanged": true,
+    "pr85_gallery_key_unchanged": true,
+    "exact_author_reviewer_sentence_sha256_match": true,
+    "patch_applies_to_new_base": true
+  },
+  "unrun": [
+    "Android build",
+    "installed-device tests",
+    "runtime screenshots"
+  ],
+  "non_counted_run": "Older-base full host test interrupted after develop advanced; no pass claim.",
+  "final_diff_paths": [
+    "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+    "tools/fixtures/hakka_file_picker_warning.json",
+    "tools/test_hakka_context.py"
+  ]
+}
