@@ -20,6 +20,9 @@ internal object VerticalText {
     fun uiDirection(locale: Locale=Locale.getDefault()): TextDirection = when {
         locale.script=="Mong" -> TextDirection.VERTICAL_LR
         locale.language=="lzh" -> TextDirection.VERTICAL_RL
+        // The private resource alias keeps emoji columns right-to-left while
+        // supplying English grammar. Ordinary en-XV remains left-to-right.
+        locale.toLanguageTag()=="en-Zsye-XV-anpaint" -> TextDirection.VERTICAL_RL
         locale.language=="en" && locale.country=="XV" -> TextDirection.VERTICAL_LR
         locale.language=="qaa" && locale.script=="Zsye" && locale.country=="XV" -> TextDirection.VERTICAL_RL
         else -> TextDirection.HORIZONTAL

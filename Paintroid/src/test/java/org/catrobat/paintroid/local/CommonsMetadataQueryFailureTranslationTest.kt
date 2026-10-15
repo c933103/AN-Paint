@@ -109,9 +109,10 @@ class CommonsMetadataQueryFailureTranslationTest {
         AppLanguage.select(context,tag)
         assertEquals("Persist the exact requested application tag",tag,AppLanguage.selectedTag(context))
         val wrapped=AppLanguage.wrap(context)
-        // Preference identity is unchanged; this one catalogue uses an internal
-        // variant so Android cannot tie it with implicit-script ordinary Korean.
-        val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+        // Public identity is unchanged. Private resource variants separate Korean
+        // catalogues and supply English grammar for the emoji catalogue.
+        val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"
+            else if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
         assertEquals(resourceTag,wrapped.resources.configuration.locales[0].toLanguageTag())
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
