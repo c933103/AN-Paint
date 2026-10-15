@@ -14,11 +14,14 @@ object JxlCodec {
         external fun decode(path: String,target: Bitmap,left: Int,top: Int,right: Int,bottom: Int,budget: Long)
         external fun encode(image: Bitmap,path: String,quality: Int,lossless: Boolean,budget: Long)
     }
+    // Keep failure injection at the native-info boundary: gallery validation still
+    // sniffs the downloaded bytes and constructs the real ImportedImage.
+    @Volatile internal var readNativeInfo: (String)->IntArray = {Native.info(it)}
     fun isJxl(file: File): Boolean = file.inputStream().use {
         val b=ByteArray(12);val n=it.read(b)
         n>=2 && b[0]==0xff.toByte() && b[1]==0x0a.toByte() || n==12 && b.contentEquals(byteArrayOf(0,0,0,12,0x4a,0x58,0x4c,0x20,13,10,-121,10))
     }
-    fun dimensions(file: File): ImageDimensions = Native.info(file.path).let {ImageDimensions(it[0],it[1])}
+    fun dimensions(file: File): ImageDimensions = readNativeInfo(file.path).let {ImageDimensions(it[0],it[1])}
     internal fun sourceBitDepth(file: File): Int = Native.info(file.path)[2]
     fun decode(file: File,size: ImageDimensions,budget: Long,crop: Rect? = null): Bitmap {
         // createBitmap with ARGB_8888 supplies sRGB on every supported API;
