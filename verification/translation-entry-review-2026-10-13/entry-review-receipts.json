@@ -764,6 +764,59 @@
       ],
       "codex_evidence": "https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185043356",
       "premerge_ci_receipt": "https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185299268"
+    },
+    "FIL-COMPLETE-TWO-20261015": {
+      "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+      "scope": "Two complete current Filipino values independently accepted unchanged with explicit Filipino identity, complete semantics and current static call-site review.",
+      "counts": {
+        "accepted_static": 2,
+        "total": 2
+      },
+      "confidence": "high_semantic_moderate_idiomatic",
+      "value_hash_format": "SHA256 of UTF-8 JSON scalar serialization with Unicode retained (ensure_ascii=False / JSON.stringify), not raw text.",
+      "localized_path": "Paintroid/src/main/res/values-b+fil/strings.xml",
+      "localized_blob": "376e3e53f5f957825baa73f74e7cae5f198cec20",
+      "english_blob": "7d222b1846705314a7da7c18fc0ddeeae37ae93f",
+      "context_files": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "blob": "3cee6f0c41b0b49bb55edf0ca16a06fb19c7f941"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "blob": "41b7c0ef8327acebea3daf72a2a88978b2f0c7d3"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "blob": "e32559bdb5aed67939bc517c7cda992ae1c2c346"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "blob": "71eec7816d29f35b9b921042edc32fb3e1384036"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "blob": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "blob": "4cecd1ddd3ebe5f7b0fae83d3966e9d26aa4b44b"
+        }
+      ],
+      "complete_value_hashes": [
+        {
+          "key": "string/commons_metadata_query_failed",
+          "english_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
+          "localized_sha256": "d41fc26a9932a085e928f6504128ecb6693bce6ed0b466edd349b8196dea8468"
+        },
+        {
+          "key": "string/ui_sampled_resize_memory_explanation",
+          "english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+          "localized_sha256": "00a8d9f13b8c919f3a5ab9f7e547a11d47c25873d1c1688c274283cdeb401fa2"
+        }
+      ],
+      "limits": "No whole-Filipino catalogue, native-speaker or device-rendering acceptance. Existing inherited Tagalog receipts remain history."
     }
   },
   "receipts": [
@@ -33989,46 +34042,42 @@
     {
       "tag": "fil",
       "key": "string/commons_metadata_query_failed",
-      "cohort": "FIL-IDENTITY-TRANSFER-20261015",
-      "state": "needs_rereview",
+      "cohort": "FIL-COMPLETE-TWO-20261015",
+      "state": "reviewed_current",
       "reviewed_english_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
       "current_english_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
       "reviewed_localized_sha256": "d41fc26a9932a085e928f6504128ecb6693bce6ed0b466edd349b8196dea8468",
       "current_localized_sha256": "d41fc26a9932a085e928f6504128ecb6693bce6ed0b466edd349b8196dea8468",
-      "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+      "reviewed_source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
       "en_line": 716,
       "localized_line": 705,
       "localized_blob_sha": "376e3e53f5f957825baa73f74e7cae5f198cec20",
-      "disposition": "identity_review_required",
-      "review_scope": "inherited_tagalog_review_not_filipino_acceptance",
-      "finding_kind": "language_identity_transfer_requires_review",
-      "finding_status": "open",
-      "prior_tag": "tl",
-      "prior_cohort": "M04",
-      "finding_source": "https://github.com/c933103/AN-Paint/pull/65",
-      "note": "Exact values match the historical Tagalog receipt, but the current Filipino-specific review covers only the new generic colour-error key."
+      "disposition": "accepted_static",
+      "review_scope": "complete_linguistic_and_static_source_context",
+      "confidence": "high_semantic_moderate_idiomatic",
+      "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "independent_review_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "scope_limit": "Fresh Filipino-specific complete-entry review; no native-speaker, device-rendering or whole-catalogue certification. Historical Tagalog reviews are not transferred automatically."
     },
     {
       "tag": "fil",
       "key": "string/ui_sampled_resize_memory_explanation",
-      "cohort": "FIL-IDENTITY-TRANSFER-20261015",
-      "state": "needs_rereview",
+      "cohort": "FIL-COMPLETE-TWO-20261015",
+      "state": "reviewed_current",
       "reviewed_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
       "current_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
       "reviewed_localized_sha256": "00a8d9f13b8c919f3a5ab9f7e547a11d47c25873d1c1688c274283cdeb401fa2",
       "current_localized_sha256": "00a8d9f13b8c919f3a5ab9f7e547a11d47c25873d1c1688c274283cdeb401fa2",
-      "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+      "reviewed_source_revision": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
       "en_line": 561,
       "localized_line": 282,
       "localized_blob_sha": "376e3e53f5f957825baa73f74e7cae5f198cec20",
-      "disposition": "identity_review_required",
-      "review_scope": "inherited_tagalog_review_not_filipino_acceptance",
-      "finding_kind": "language_identity_transfer_requires_review",
-      "finding_status": "open",
-      "prior_tag": "tl",
-      "prior_cohort": "SAMPLED-MEMORY-20261015",
-      "finding_source": "https://github.com/c933103/AN-Paint/pull/65",
-      "note": "Exact values match the historical Tagalog receipt, but the current Filipino-specific review covers only the new generic colour-error key."
+      "disposition": "accepted_static",
+      "review_scope": "complete_linguistic_and_static_source_context",
+      "confidence": "high_semantic_moderate_idiomatic",
+      "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "independent_review_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "scope_limit": "Fresh Filipino-specific complete-entry review; no native-speaker, device-rendering or whole-catalogue certification. Historical Tagalog reviews are not transferred automatically."
     },
     {
       "tag": "fr",
@@ -38675,6 +38724,58 @@
       "superseded_by": "HK-ASSEMBLY-MERGED-20261015",
       "superseded_at_source": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
       "note": "The complete corrected HK value was independently reviewed, merged in PR90 and exactly matched to merged source. Only this HK finding is resolved; shared findings in other catalogues remain open."
+    },
+    {
+      "tag": "fil",
+      "key": "string/commons_metadata_query_failed",
+      "cohort": "FIL-IDENTITY-TRANSFER-20261015",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
+      "current_english_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
+      "reviewed_localized_sha256": "d41fc26a9932a085e928f6504128ecb6693bce6ed0b466edd349b8196dea8468",
+      "current_localized_sha256": "d41fc26a9932a085e928f6504128ecb6693bce6ed0b466edd349b8196dea8468",
+      "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+      "en_line": 716,
+      "localized_line": 705,
+      "localized_blob_sha": "376e3e53f5f957825baa73f74e7cae5f198cec20",
+      "disposition": "identity_review_required",
+      "review_scope": "inherited_tagalog_review_not_filipino_acceptance",
+      "finding_kind": "language_identity_transfer_requires_review",
+      "finding_status": "open",
+      "prior_tag": "tl",
+      "prior_cohort": "M04",
+      "finding_source": "https://github.com/c933103/AN-Paint/pull/65",
+      "note": "Exact values match the historical Tagalog receipt, but the current Filipino-specific review covers only the new generic colour-error key.",
+      "superseded_by": "FIL-COMPLETE-TWO-20261015",
+      "superseded_at_source": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+      "resolution_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "resolution_note": "Fresh complete Filipino-specific review independently accepted both current values unchanged. The original Tagalog evidence and this identity hold remain historical."
+    },
+    {
+      "tag": "fil",
+      "key": "string/ui_sampled_resize_memory_explanation",
+      "cohort": "FIL-IDENTITY-TRANSFER-20261015",
+      "state": "needs_rereview",
+      "reviewed_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+      "current_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+      "reviewed_localized_sha256": "00a8d9f13b8c919f3a5ab9f7e547a11d47c25873d1c1688c274283cdeb401fa2",
+      "current_localized_sha256": "00a8d9f13b8c919f3a5ab9f7e547a11d47c25873d1c1688c274283cdeb401fa2",
+      "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+      "en_line": 561,
+      "localized_line": 282,
+      "localized_blob_sha": "376e3e53f5f957825baa73f74e7cae5f198cec20",
+      "disposition": "identity_review_required",
+      "review_scope": "inherited_tagalog_review_not_filipino_acceptance",
+      "finding_kind": "language_identity_transfer_requires_review",
+      "finding_status": "open",
+      "prior_tag": "tl",
+      "prior_cohort": "SAMPLED-MEMORY-20261015",
+      "finding_source": "https://github.com/c933103/AN-Paint/pull/65",
+      "note": "Exact values match the historical Tagalog receipt, but the current Filipino-specific review covers only the new generic colour-error key.",
+      "superseded_by": "FIL-COMPLETE-TWO-20261015",
+      "superseded_at_source": "edd566a62fe59d8e95bb08fe00f71a2c87dc6ad0",
+      "resolution_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544",
+      "resolution_note": "Fresh complete Filipino-specific review independently accepted both current values unchanged. The original Tagalog evidence and this identity hold remain historical."
     }
   ],
   "partial_reviews": [
