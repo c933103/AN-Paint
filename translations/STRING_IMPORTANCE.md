@@ -90,13 +90,16 @@ P2 because they operate the specialized assembly dialog. The inline
 `ui_assembly_position_help` is required position guidance, not the optional
 general assembly how-to guide. No existing identity changes tier.
 
+PR85 adds the P2 external-link handler diagnostic. The merged tracker denominator
+changes only when this additional key merges.
+
 | Tier | Source entries |
 | --- | ---: |
 | P0 | 92 |
 | P1 | 249 |
-| P2 | 294 |
+| P2 | 295 |
 | P3 | 71 |
-| **Total** | **706** (705 strings and 1 plural) |
+| **Total** | **707** (706 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or
 accepted reviews. The validator recomputes totals and fails when an English

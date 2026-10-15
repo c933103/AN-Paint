@@ -43,6 +43,7 @@ class MediaGalleryActivity : Activity() {
     private lateinit var controlsScroll: GalleryControlsScroll
     private val worker=Executors.newSingleThreadExecutor()
     internal var openConnection: (URL)->HttpURLConnection = { it.openConnection() as HttpURLConnection }
+    internal var launchExternalActivity: (Intent)->Unit = { startActivity(it) }
     @Volatile private var activeConnection: HttpURLConnection?=null
     @Volatile internal var downloading=false; private set
     override fun onCreate(state: Bundle?) {
@@ -296,7 +297,8 @@ class MediaGalleryActivity : Activity() {
     }
     private fun hideStatus() {status.visibility=View.GONE;statusHost.visibility=View.GONE}
     private fun openExternal(uri: Uri) {
-        try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
+        try {launchExternalActivity(Intent(Intent.ACTION_VIEW,uri))}
+        catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.gallery_external_link_no_handler))}
     }
     private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty(),author: String="",licence: String="",authorUrl: String="") {
         if(downloading || isFinishing || isDestroyed)return
