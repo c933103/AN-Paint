@@ -1,0 +1,472 @@
+{
+  "reviewer": "review_tibetic_position_controls, independent full-value review",
+  "reviewed_at_utc": "2026-10-15T12:56:27Z",
+  "draft_file": "group-g-tibetic-draft.json",
+  "draft_file_sha256": "e588bcf55565fcf3da254f717b6087e6bd3f819b6a5d71ffa1bca721cd493e5f",
+  "source_messages_sha256": "f2fbb4194073a29b8a3efc64c91f9fc767a0df3b5ed4d6a4e419bc2d835dc88d",
+  "translations_sha256": "fd6d8d7cdd4cc24d47355df03cfc3b6dee5fa7121f30e382619a34713824b4d5",
+  "scope": "All twelve complete bo/dz position-control values compared to the exact English, independently parsed and checked at clause level. Primary sources checked anew where uncertain. No source/repository modifications.",
+  "summary": {
+    "reviewed_values": 12,
+    "accepted_values": 11,
+    "held_values": 1,
+    "revision_required_values": 0,
+    "native_speaker_certification": false,
+    "runtime_or_layout_certification": false
+  },
+  "entries": [
+    {
+      "language": "bo",
+      "key": "ui_assembly_exact_position",
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target": "གནས་ས་ཏག་ཏག",
+      "target_sha256": "f3b657cfc57fd1f68a9b8e12d58de79616cb403de3fa06b011dd5e04addddef6",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "Exact/precise location is expressed by a complete noun-plus-modifier label. It does not mean only a location in this UI context.",
+      "source_ids": [
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "language": "bo",
+      "key": "ui_assembly_target_x",
+      "source": "Target X (pixels from left)",
+      "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+      "target": "X ཡི་དམིགས་ཚད་ (གཡོན་མཐའ་ནས་བརྩིས་པའི་པིག་སེལ)",
+      "target_sha256": "e0a6fc47f504e007b4197aa2280a0c829ffdd257b4d14a69945bf113c1df084c",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "Reads as the intended value of X, in pixels counted from the left edge. The relative clause modifies pixels; its origin is physical left, not logical start, and X remains the labelled coordinate.",
+      "source_ids": [
+        "R7"
+      ]
+    },
+    {
+      "language": "bo",
+      "key": "ui_assembly_target_y",
+      "source": "Target Y (pixels from top)",
+      "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+      "target": "Y ཡི་དམིགས་ཚད་ (སྟེང་མཐའ་ནས་བརྩིས་པའི་པིག་སེལ)",
+      "target_sha256": "59b4a99f0d76d2ebee9e0778a6503a04cc069d389adb18b3286d14e67c7b7689",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "Reads as the intended value of Y, in pixels counted from the upper edge. The corresponding label structure is coherent; top is physical rather than later draw order.",
+      "source_ids": [
+        "R8"
+      ]
+    },
+    {
+      "language": "bo",
+      "key": "ui_assembly_position_help",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "པར་རིས་འདིའི་གཡོན་སྟེང་གི་ཟུར་དེ་གྲུབ་འབྲས་ཀྱི་རས་གཞིའི་ཐོག་གནས་འཇོག་བྱོས། X དང་ Y ནི་པིག་སེལ་གྱི་ཧྲིལ་གྲངས་ཡིན་ཞིང་ 0 ནས་འགོ་འཛུགས། པར་རིས་གཞན་རྣམས་རང་རང་གི་ད་ལྟའི་གནས་སུ་གནས། འདིར་པར་རིས་ཕན་ཚུན་བརྩེགས་ཆོག རྗེས་སུ་ནང་འཇུག་བྱས་པའི་པར་རིས་རྣམས་སྔོན་གྱི་པར་རིས་རྣམས་ཀྱི་སྟེང་དུ་འབྲི། གནས་བཞག་ཟིན་པའི་པར་རིས་ཚང་མ་ཤོང་བར་རས་གཞི་ཆེ་རུ་འགྱུར། གཅོད་ཁུལ་དང་ཆེ་ཆུང་རྣམས་མི་འགྱུར།",
+      "target_sha256": "e97e1b2bcadf5e571ef3cfbcd04d39fb4d36950f00fc860927747312e0e87358",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "All seven source units were read in order as a connected instruction. It places this image’s top-left corner, states integer-pixel coordinates beginning at 0, leaves other positions, allows overlap, renders later imports over earlier ones, grows the canvas to accommodate every placed image, and leaves both crop regions and sizes. The result-canvas and positioning compounds are somewhat literal but recoverable and not a meaning-changing defect.",
+      "source_ids": [
+        "R7",
+        "R8",
+        "R11",
+        "R12"
+      ]
+    },
+    {
+      "language": "bo",
+      "key": "ui_assembly_position_nonnegative",
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target": "X དང་ Y གཉིས་ཀ་ 0 ནས་ 2147483647 བར་གྱི་ཧྲིལ་གྲངས་ཡིན་དགོས།",
+      "target_sha256": "23e92aba94f5eae6615b6b0c457f3f0eea2bb16502db2d499b9ba0968562de7c",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate-high",
+      "note": "The dual subject is explicit; integer type, obligation and both exact endpoints are retained. The from-through construction restricts each coordinate, without permitting fractions or adding negative values.",
+      "source_ids": [
+        "R12"
+      ]
+    },
+    {
+      "language": "bo",
+      "key": "ui_assembly_unknown_image",
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target": "བདམས་པའི་པར་རིས་དེ་ད་ནི་མཉམ་སྒྲིག་འདིའི་ནང་མེད།",
+      "target_sha256": "60e346f4d16dedad2854b9776cac5680a45e85afa62b3ee0be26f822a7d61409",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "Selected image remains singular and absence is restricted to this assembly. Contrastive now plus absence conveys the changed present state in this error context, without asserting file deletion or loss of all images.",
+      "source_ids": []
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_exact_position",
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target": "ས་གནས་ཏག་ཏག",
+      "target_sha256": "ac3066c6534c4f93a7e59f4d76a671261102bd6285760ff170a2350267cc84ae",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "The complete label expresses a precise location. sa gnas is broader than the alternative technical gnas sa but is comprehensible for position here; this is not a required terminology correction.",
+      "source_ids": [
+        "R6",
+        "R13"
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_target_x",
+      "source": "Target X (pixels from left)",
+      "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+      "target": "X གི་དམིགས་ཚད་ (གཡོན་མཐའ་ལས་བརྩི་མི་པིག་སེལ)",
+      "target_sha256": "c245063aa9d99d8c624d4f357d11a9ab0e0efb5f98311d8298d6ddcb6c9f52c7",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "The target value of X is qualified by a from-left-edge counting clause and pixel units. The mi relative construction modifies the pixel expression and preserves the physical origin. No mirrored/right-side meaning is introduced.",
+      "source_ids": [
+        "R1",
+        "R2",
+        "R5"
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_target_y",
+      "source": "Target Y (pixels from top)",
+      "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+      "target": "Y གི་དམིགས་ཚད་ (མགོའི་མཐའ་ལས་བརྩི་མི་པིག་སེལ)",
+      "target_sha256": "75b7c23856f04803cfa23f5bcd20d1080a0a400b16c2e72919986b5527f7ab7e",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "The same complete label structure identifies Y and counts pixels from the top edge. mgo is used spatially in this technical context, not as start in the text-direction sense.",
+      "source_ids": [
+        "R2",
+        "R5"
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_position_help",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "གཟུགས་བརྙན་འདི་གི་གཡོན་མགོའི་ཟུར་འདི་ གྲུབ་འབྲས་ཀྱི་འབྲི་གཞི་ནང་བཞག X དང་ Y འདི་པིག་སེལ་གྱི་ཧྲིལ་གྲངས་ཨིནམ་དང་ 0 ལས་འགོ་བཙུགསཔ་ཨིན། གཟུགས་བརྙན་གཞན་ཚུ་ རང་རང་གི་ད་ལྟོའི་ས་གནས་ནང་རང་སྡོདཔ་ཨིན། ནཱ་ལུ་གཟུགས་བརྙན་ཚུ་གཅིག་གི་ཐོག་ཁར་གཅིག་བཞག་ཆོག ཤུལ་ལས་ནང་འདྲེན་འབད་མི་གཟུགས་བརྙན་ཚུ་ ཧེ་མའི་གཟུགས་བརྙན་ཚུ་གི་ཐོག་ཁར་འབྲིཝ་ཨིན། བཞག་ཚར་མི་གཟུགས་བརྙན་ཆ་མཉམ་ཤོང་ནི་ལུ་ འབྲི་གཞི་རྒྱ་བསྐྱེད་འབདཝ་ཨིན། བཏོག་ཁུལ་དང་ཚད་ཚུ་མི་བསྒྱུར།",
+      "target_sha256": "ba72c4dbae9cf72ac2c76ec36c510ed5fe71dd0fb6932989d5f7c31043417810",
+      "decision": "hold",
+      "verdict": "held_complete_value_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "semantic_confidence": "moderate-high",
+      "idiom_confidence": "insufficient_for_whole_paragraph_acceptance",
+      "note": "All seven intended facts are recoverable, but source-assisted confidence in the whole composed Dzongkha paragraph remains insufficient for integration. In particular the nominal whole-pixel predication and compressed all-images-fit/canvas-does-expansion sentence should be reviewed together as target prose. This is a linguistic-confidence hold, not a claim that shong or rgya bskyed is wrong. Independent primary sources now clear those lexical senses.",
+      "source_ids": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_position_nonnegative",
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target": "X དང་ Y གཉིས་ཆ་ར་ 0 ལས་ 2147483647 ཚུན་གྱི་ཧྲིལ་གྲངས་ཨིན་དགོ།",
+      "target_sha256": "bca979441c321b3d1495bced5e7f7d7d240d4376ba99aba463dc0ee44f4b5a0e",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "Both X and Y are constrained to integer values from 0 through 2147483647; the obligation predicate and numerical endpoints survive. The reading is a requirement, not a rounding instruction.",
+      "source_ids": [
+        "R1",
+        "R4"
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_unknown_image",
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target": "སེལ་འཐུ་འབད་མི་གཟུགས་བརྙན་འདི་ ད་ལྟོ་སྒྲིག་སྦྱོར་འདི་ནང་མེད།",
+      "target_sha256": "40d7cbc77a963fd79b653eff6179a773a1bc83c14edddd1314d443cca3920bc0",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_readable_language_form",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "note": "The full sentence says that the selected image is now absent within this assembly. In the selection-error context this communicates no longer present; it neither claims the image file was deleted nor broadens absence to all images. Primary grammar confirms that now plus a negative state can express no longer when previous state is contextual.",
+      "source_ids": [
+        "R1",
+        "R2"
+      ]
+    }
+  ],
+  "help_semantic_clause_audit": {
+    "bo": [
+      {
+        "source_clause": "Set the top-left corner of this image on the output canvas.",
+        "target_clause": "པར་རིས་འདིའི་གཡོན་སྟེང་གི་ཟུར་དེ་གྲུབ་འབྲས་ཀྱི་རས་གཞིའི་ཐོག་གནས་འཇོག་བྱོས།",
+        "semantic_reading_preserved": true,
+        "independent_note": "The command locates the image corner, not the whole image centre; output is rendered as result."
+      },
+      {
+        "source_clause": "X and Y are whole pixels, starting at zero.",
+        "target_clause": "X དང་ Y ནི་པིག་སེལ་གྱི་ཧྲིལ་གྲངས་ཡིན་ཞིང་ 0 ནས་འགོ་འཛུགས།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Whole-number pixel quantities and zero origin are explicit."
+      },
+      {
+        "source_clause": "Other images keep their current positions.",
+        "target_clause": "པར་རིས་གཞན་རྣམས་རང་རང་གི་ད་ལྟའི་གནས་སུ་གནས།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Each other image retains its current location."
+      },
+      {
+        "source_clause": "Overlap is allowed here;",
+        "target_clause": "འདིར་པར་རིས་ཕན་ཚུན་བརྩེགས་ཆོག",
+        "semantic_reading_preserved": true,
+        "independent_note": "Permission to stack/overlap is affirmative."
+      },
+      {
+        "source_clause": "images imported later are drawn on top.",
+        "target_clause": "རྗེས་སུ་ནང་འཇུག་བྱས་པའི་པར་རིས་རྣམས་སྔོན་གྱི་པར་རིས་རྣམས་ཀྱི་སྟེང་དུ་འབྲི།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Later import modifies the image group; drawn over earlier images is z-order, not a top-coordinate instruction."
+      },
+      {
+        "source_clause": "The canvas expands to include all placed images.",
+        "target_clause": "གནས་བཞག་ཟིན་པའི་པར་རིས་ཚང་མ་ཤོང་བར་རས་གཞི་ཆེ་རུ་འགྱུར།",
+        "semantic_reading_preserved": true,
+        "independent_note": "All already-placed images must fit; the canvas becomes larger, and image scaling is not requested."
+      },
+      {
+        "source_clause": "Crops and sizes stay unchanged.",
+        "target_clause": "གཅོད་ཁུལ་དང་ཆེ་ཆུང་རྣམས་མི་འགྱུར།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Crop regions and dimensions are both unchanged."
+      }
+    ],
+    "dz": [
+      {
+        "source_clause": "Set the top-left corner of this image on the output canvas.",
+        "target_clause": "གཟུགས་བརྙན་འདི་གི་གཡོན་མགོའི་ཟུར་འདི་ གྲུབ་འབྲས་ཀྱི་འབྲི་གཞི་ནང་བཞག",
+        "semantic_reading_preserved": true,
+        "independent_note": "The top-left corner and result drawing surface are recoverable."
+      },
+      {
+        "source_clause": "X and Y are whole pixels, starting at zero.",
+        "target_clause": "X དང་ Y འདི་པིག་སེལ་གྱི་ཧྲིལ་གྲངས་ཨིནམ་དང་ 0 ལས་འགོ་བཙུགསཔ་ཨིན།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Integer/pixel/0 intent is clear, but the complete nominal predication needs focused language-form review."
+      },
+      {
+        "source_clause": "Other images keep their current positions.",
+        "target_clause": "གཟུགས་བརྙན་གཞན་ཚུ་ རང་རང་གི་ད་ལྟོའི་ས་གནས་ནང་རང་སྡོདཔ་ཨིན།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Other images stay at their own current places."
+      },
+      {
+        "source_clause": "Overlap is allowed here;",
+        "target_clause": "ནཱ་ལུ་གཟུགས་བརྙན་ཚུ་གཅིག་གི་ཐོག་ཁར་གཅིག་བཞག་ཆོག",
+        "semantic_reading_preserved": true,
+        "independent_note": "The periphrasis permits one image on top of another."
+      },
+      {
+        "source_clause": "images imported later are drawn on top.",
+        "target_clause": "ཤུལ་ལས་ནང་འདྲེན་འབད་མི་གཟུགས་བརྙན་ཚུ་ ཧེ་མའི་གཟུགས་བརྙན་ཚུ་གི་ཐོག་ཁར་འབྲིཝ་ཨིན།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Later imports are drawn over earlier images; no reordering of X/Y is implied."
+      },
+      {
+        "source_clause": "The canvas expands to include all placed images.",
+        "target_clause": "བཞག་ཚར་མི་གཟུགས་བརྙན་ཆ་མཉམ་ཤོང་ནི་ལུ་ འབྲི་གཞི་རྒྱ་བསྐྱེད་འབདཝ་ཨིན།",
+        "semantic_reading_preserved": true,
+        "independent_note": "All placed images fitting and canvas expansion are recoverable; the entire compressed purpose/subject/predicate construction remains held."
+      },
+      {
+        "source_clause": "Crops and sizes stay unchanged.",
+        "target_clause": "བཏོག་ཁུལ་དང་ཚད་ཚུ་མི་བསྒྱུར།",
+        "semantic_reading_preserved": true,
+        "independent_note": "Both crop regions and sizes have a negative-change predicate."
+      }
+    ]
+  },
+  "replacement_candidates": [
+    {
+      "language": "dz",
+      "key": "ui_assembly_position_help",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "replaces_target_sha256": "ba72c4dbae9cf72ac2c76ec36c510ed5fe71dd0fb6932989d5f7c31043417810",
+      "replacement": "གཟུགས་བརྙན་འདི་གི་གཡོན་མགོའི་ཟུར་འདི་ གྲུབ་འབྲས་ཀྱི་འབྲི་གཞི་ནང་བཞག། X དང་ Y འདི་པིག་སེལ་གྱི་གྱངས་ཁ་ཨིནམ་དང་ ཧྲིལ་གྲངས་སྦེ་ 0 ལས་འགོ་བཙུགསཔ་ཨིན། གཟུགས་བརྙན་གཞན་ཚུ་ རང་རང་གི་ད་ལྟོའི་ས་གནས་ནང་རང་སྡོདཔ་ཨིན། ནཱ་ལུ་གཟུགས་བརྙན་ཚུ་གཅིག་གི་ཐོག་ཁར་གཅིག་བཞག་ཆོག། ཤུལ་ལས་ནང་འདྲེན་འབད་མི་གཟུགས་བརྙན་ཚུ་ ཧེ་མའི་གཟུགས་བརྙན་ཚུ་གི་ཐོག་ཁར་འབྲིཝ་ཨིན། བཞག་ཚར་མི་གཟུགས་བརྙན་ཆ་མཉམ་ཤོང་ནིའི་དོན་ལུ་ འབྲི་གཞི་གི་ཚད་རྒྱ་བསྐྱེད་འབདཝ་ཨིན། བཏོག་ཁུལ་དང་ཚད་ཚུ་མི་བསྒྱུར།",
+      "replacement_sha256": "0eb11baa954c0434eff818e65c514c666e3a13d52d273eb1a22683c6b7c22444",
+      "status": "candidate_for_independent_full_value_review_not_accepted",
+      "approved_for_integration": false,
+      "source_ids": [
+        "R1",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "changes": [
+        "Make X/Y pixel counts explicit, retaining the integer restriction and zero.",
+        "Expand the purposive phrase and make the canvas size the expansion object.",
+        "Add explicit sentence punctuation after the two g-final command/permission clauses."
+      ],
+      "backtranslation": "Place this image’s top-left corner on the output/result drawing surface. X and Y are pixel counts, in whole numbers starting at 0. Other images stay in their current positions. Here images can be placed one over another; later-imported images are drawn over earlier images. The canvas size is expanded so that every placed image fits. Crop regions and sizes do not change.",
+      "remaining_review": "Review the entire replacement as fluent Dzongkha, including the first coordinate-predication sentence and transitive expansion construction. Sources support grammar and terms, not this exact complete paragraph."
+    }
+  ],
+  "sources": {
+    "R1": {
+      "title": "Tshering and van Driem (2019), The Grammar of Dzongkha, HL Archive 7",
+      "url": "https://escholarship.org/uc/item/1h4211k0",
+      "pdf_url": "https://escholarship.org/content/qt1h4211k0/qt1h4211k0_noSplash_b3843a79888f78f39713ded5f61ad772.pdf?t=s10u2j",
+      "access": "Primary author-published scholarly grammar; full relevant text read, clean Tibetan in cited passages. No page-image verification.",
+      "supports": "Printed p210/PDF index219 attests physical shong (fit) in a vehicle-capacity example. Printed pp215-216/PDF224-225 discusses all/everybody and purpose constructions. Printed pp221-223/PDF230-232 covers obligatory dgo. Printed p388/PDF397 example45 translates now plus a negative state as no longer in prior-state context. These attestations do not certify this new help paragraph."
+    },
+    "R2": {
+      "title": "LibreOffice Dzongkha, Align Objects",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/01/05070000.html",
+      "access": "Relevant HTML read",
+      "supports": "Physical left and top headings; selected-object morphology. English fallback portions were not treated as Dzongkha evidence."
+    },
+    "R3": {
+      "title": "LibreOffice Dzongkha, Grid",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/optionen/01070300.html",
+      "access": "Relevant HTML read",
+      "supports": "Extend edges heading uses rgya bskyed byed-form in spatial geometry, independent of corrupt DCT extraction."
+    },
+    "R4": {
+      "title": "LibreOffice Dzongkha, Mathematical Functions",
+      "url": "https://help.libreoffice.org/latest/dz/text/scalc/01/04060106.html",
+      "access": "Relevant HTML read",
+      "supports": "INT/RANDBETWEEN/ROUND use hril grangs for integers; RANDBETWEEN explicitly describes inclusive numeric bounds. Confirms target technical noun independently of broken dictionary extracts."
+    },
+    "R5": {
+      "title": "LibreOffice Dzongkha, Image Filter Bar",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/02/24010000.html",
+      "access": "Relevant HTML read",
+      "supports": "Pixel appears as pi-g sel with Dzongkha plural tshu in Invert and Aging descriptions. Confirms draft loanword; English plural suffix is unnecessary."
+    },
+    "R6": {
+      "title": "LibreOffice Dzongkha, Position and Size",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/01/05230100.html",
+      "access": "Relevant HTML read",
+      "supports": "Technical position and size terminology; selected-object and current-position constructions. Exact-position sentences that remain English are not target-language evidence."
+    },
+    "R7": {
+      "title": "Rangjung Yeshe Tibetan dictionary, g.yon",
+      "url": "https://rywiki.tsadra.org/index.php/g.yon",
+      "access": "HTML entry read",
+      "supports": "Physical left."
+    },
+    "R8": {
+      "title": "Rangjung Yeshe Tibetan dictionary, steng",
+      "url": "https://rywiki.tsadra.org/index.php/steng",
+      "access": "HTML entry read",
+      "supports": "Top and on-top spatial senses."
+    },
+    "R9": {
+      "title": "Rangjung Yeshe Tibetan dictionary, gnas sa",
+      "url": "https://rywiki.tsadra.org/index.php/gnas_sa",
+      "access": "HTML entry read",
+      "supports": "Place/location."
+    },
+    "R10": {
+      "title": "Rangjung Yeshe Tibetan dictionary, tag tag",
+      "url": "https://rywiki.tsadra.org/index.php/tag_tag",
+      "access": "Full indexed entry visible; direct open cache miss",
+      "supports": "Exact/precise sense, not merely its knocking/only homonyms."
+    },
+    "R11": {
+      "title": "Rangjung Yeshe Tibetan dictionary, shong ba",
+      "url": "https://rywiki.tsadra.org/index.php/shong_ba",
+      "access": "Full indexed entry visible; direct open cache miss",
+      "supports": "Fit within/be contained; appropriate capacity sense for the Tibetan expansion clause."
+    },
+    "R12": {
+      "title": "LibreOffice Tibetan, Mathematical Functions",
+      "url": "https://help.libreoffice.org/latest/bo/text/scalc/01/04060106.html",
+      "access": "Relevant HTML read",
+      "supports": "INT uses hril grangs and contrasts fractional values. Supports integer noun, not every translation on this mixed-language page."
+    },
+    "R13": {
+      "title": "DDC English-Dzongkha Pocket Dictionary",
+      "url": "https://www.dzongkha.gov.bt/uploads/files/publications/English-Dzongkha_Pocket_Dictionary_fcbe977ea0f17fa3c90a8cd9a0b6c4f1.pdf",
+      "access": "Indexed entry excerpts; full page-image unavailable",
+      "supports": "Supporting exact/expand lexical senses only. Not the sole basis for whole-value acceptance or expansion validation."
+    },
+    "R14": {
+      "title": "DzongkhaLinux Team, Dzongkha Computer Terms",
+      "url": "https://www.cle.org.pk/research/rep/DCT.pdf",
+      "access": "Primary publisher PDF text opened; screenshot requests for PDF indices32,72,150 failed. Local download timed out with zero bytes.",
+      "supports": "Entry locations and intended English headwords only where target extraction is corrupt. No acceptance rests on reconstructing damaged Tibetan glyphs."
+    }
+  },
+  "source_reliability_findings": [
+    "DCT text extraction maps Tibetan stacks to unrelated scripts and displaces vowel marks. No damaged spelling was treated as verified; page-image attempts failed.",
+    "Physical Dzongkha fit/capacity is verified by an independent primary grammar, not inferred from Tibetan or from capacity noun alone.",
+    "Spatial expansion, pixel and integer are independently corroborated in HTML technical documentation. These lexical confirmations do not by themselves clear the held full help value.",
+    "The no-longer interpretation is a context-sensitive temporal reading of now plus negated state. The grammar provides an analogous complete example, not a mechanical dictionary equivalent.",
+    "The TUFS Dzongkha Expressions PDF also had broken extraction and failed screenshot retrieval; it was not used for spelling or full-sentence acceptance.",
+    "No claim of native-speaker certification, exact-phrase attestation, or Android font/rendering validation is made."
+  ],
+  "validation": {
+    "all_input_value_hashes_recomputed_and_matched": true,
+    "all_six_english_values_match_repository_xml": true,
+    "all_twelve_values_read_completely": true,
+    "only_ascii_variables_are_X_Y": true,
+    "both_numeric_endpoints_preserved": true,
+    "values_nfc_normalized": true,
+    "draft_modified": false,
+    "repository_modified": false,
+    "replacement_candidate_nfc": true
+  },
+  "integration_rule": "Only accept entries with decision=accept and matching target_sha256. The Dzongkha help and its full replacement candidate are not approved for integration until another full-value language review clears one exact hash."
+}

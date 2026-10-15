@@ -1,0 +1,267 @@
+{
+  "reviewer": "review_revised_help_paragraphs, independent replacement full-value review",
+  "reviewed_at_utc": "2026-10-15T13:08:43.011416+00:00",
+  "scope": "Only the two specified complete replacement help paragraphs. Prior reviews, the exact English, all complete target clauses and primary grammatical/technical evidence were read. No repository edits or modifications to candidates.",
+  "summary": {
+    "reviewed_values": 2,
+    "accepted_values": 2,
+    "revision_required_values": 0,
+    "held_values": 0,
+    "new_candidates_authored": 0,
+    "native_speaker_certification": false,
+    "runtime_or_layout_certification": false
+  },
+  "entries": [
+    {
+      "language": "jje",
+      "key": "ui_assembly_position_help",
+      "candidate_file": "group-g-jeju-help-replacement-candidate.json",
+      "candidate_file_sha256": "ebb95755b381621afdff8c0bd5dc77f66b03d91fb5dd6b0d13190b33230c3883",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "출력 캔버스에서 이 이미지의 왼쪽 위 모서리 위치를 정헙서. X영 Y는 0서 시작허는 정수 픽셀 값이우다. 다른 이미지의 위치는 바꾸지 안헙네다. 이디서는 이미지가 겹쳐도 뒙네다. 나중에 불러온 이미지를 먼저 불러온 이미지 위에 그립네다. 놓은 이미지가 몬딱 들어가게 캔버스를 더 크게 헙네다. 잘라낸 범위영 크기는 바꾸지 안헙네다.",
+      "target_sha256": "cbb2058ff499cb0649ca6a34ea90e48887d05ed3e41d4214bdd48643bfbaed73",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_connected_target_language_form",
+      "approved_for_integration": true,
+      "whole_value_reviewed": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "source_confidence": "high_for_core_grammar_and_technical_meanings; moderate_for_new_composed_technical_prose",
+      "native_speaker_certification": false,
+      "runtime_or_layout_certification": false,
+      "note": "The replacement is acceptable as a continuous modern technical-loan Jeju help paragraph. Its discourse moves from one user command to coordinates and application behavior, with consistent polite narration. The decision is based on the complete new wording and its grammatical dependencies, not merely on seven recoverable English facts or the author's clause audit.",
+      "connected_language_assessment": [
+        "The opening imperative 정헙서 instructs the user. Copular 값이우다 then defines X/Y, while subsequent -ㅂ네다 clauses explain routine behavior. This change of speech act is coherent, and the later clauses do not read as additional commands.",
+        "In 다른 이미지의 위치는 바꾸지 안헙네다, 는 topicalizes the affected positions. The unspoken application subject is consistent with the later active rendering and canvas-enlargement clauses. The negative predicate states non-modification rather than forbidding a later user edit. The same construction closes the paragraph for crop extents and sizes.",
+        "The active object-plus-spatial-complement sequence 나중에 불러온 이미지를 먼저 불러온 이미지 위에 그립네다 is grammatical and makes the two import times explicit. Repetition of 이미지 is useful here: the earlier image is the surface-relative complement and the later image is the rendered object. It is not a command to move the later image upward.",
+        "놓은 이미지가 몬딱 들어가게 is a complete result/purpose clause, followed by 캔버스를 더 크게 헙네다. The overt object of enlargement is the canvas. The all-images quantifier has clear scope over the placed images, and the next sentence rules out image resizing. This resolves the old compressed containment/inchoative concern.",
+        "The familiar technical nouns form a loanword UI register. Shared Korean vocabulary alone is not proof of Jeju idiom; acceptance here also rests on the Jeju coordination, copula, imperative, negation and polite descriptive sequence. No demand for an unattested exact paragraph in a corpus was imposed."
+      ],
+      "clause_audit": [
+        {
+          "source_unit": "physical top-left on output canvas",
+          "target_span": "출력 캔버스에서 이 이미지의 왼쪽 위 모서리 위치를 정헙서.",
+          "preserved": true,
+          "note": "Physical left and upper corner are explicit; output canvas remains the placement reference."
+        },
+        {
+          "source_unit": "whole-pixel X/Y values beginning at zero",
+          "target_span": "X영 Y는 0서 시작허는 정수 픽셀 값이우다.",
+          "preserved": true,
+          "note": "Both axes are integer pixel values. Zero is the numerical origin, not the first imported image."
+        },
+        {
+          "source_unit": "other current positions unchanged",
+          "target_span": "다른 이미지의 위치는 바꾸지 안헙네다.",
+          "preserved": true,
+          "note": "Other images are the affected group; not changing their positions preserves the current positions without needing 지금."
+        },
+        {
+          "source_unit": "overlap permitted here",
+          "target_span": "이디서는 이미지가 겹쳐도 뒙네다.",
+          "preserved": true,
+          "note": "The concession-plus-permission predicate allows overlap."
+        },
+        {
+          "source_unit": "later imports rendered above earlier imports",
+          "target_span": "나중에 불러온 이미지를 먼저 불러온 이미지 위에 그립네다.",
+          "preserved": true,
+          "note": "Import-time order is explicit and correct; rendering above is distinguished from the corner coordinates."
+        },
+        {
+          "source_unit": "canvas expands to contain every placed image",
+          "target_span": "놓은 이미지가 몬딱 들어가게 캔버스를 더 크게 헙네다.",
+          "preserved": true,
+          "note": "All placed images must fit by enlargement of the canvas, with no scale operation on those images."
+        },
+        {
+          "source_unit": "crop extents and image sizes unchanged",
+          "target_span": "잘라낸 범위영 크기는 바꾸지 안헙네다.",
+          "preserved": true,
+          "note": "Coordination covers both crop extent and size under the same negative-change predicate."
+        }
+      ],
+      "source_ids": [
+        "J1",
+        "J2",
+        "J3",
+        "J4"
+      ],
+      "limits": [
+        "Source-assisted linguistic review at moderate idiom confidence; this is not a native-speaker endorsement or a claim that every Jeju regional variety would choose these words.",
+        "The exact new strings 바꾸지 안헙네다 and 그립네다 were not found as complete corpus quotations. They are evaluated as productive compositions.",
+        "The prior candidate hash fb01231be653989c5a292de0d04563d7144a096bf422829af6123a1f0034cd24 remains held; this acceptance is not retroactive."
+      ]
+    },
+    {
+      "language": "dz",
+      "key": "ui_assembly_position_help",
+      "candidate_file": "group-g-tibetic-help-replacement-candidate.json",
+      "candidate_file_sha256": "0a8daeb30f31a1a1075123210a7b3e5aa21c03462bfc0d48ef4b64ef5b2a988f",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "གཟུགས་བརྙན་འདི་གི་གཡོན་མགོའི་ཟུར་འདི་ གྲུབ་འབྲས་ཀྱི་འབྲི་གཞི་ནང་བཞག། X དང་ Y འདི་པིག་སེལ་གྱི་གྱངས་ཁ་ཨིནམ་དང་ ཧྲིལ་གྲངས་སྦེ་ 0 ལས་འགོ་བཙུགསཔ་ཨིན། གཟུགས་བརྙན་གཞན་ཚུ་ རང་རང་གི་ད་ལྟོའི་ས་གནས་ནང་རང་སྡོདཔ་ཨིན། ནཱ་ལུ་གཟུགས་བརྙན་ཚུ་གཅིག་གི་ཐོག་ཁར་གཅིག་བཞག་ཆོག། ཤུལ་ལས་ནང་འདྲེན་འབད་མི་གཟུགས་བརྙན་ཚུ་ ཧེ་མའི་གཟུགས་བརྙན་ཚུ་གི་ཐོག་ཁར་འབྲིཝ་ཨིན། བཞག་ཚར་མི་གཟུགས་བརྙན་ཆ་མཉམ་ཤོང་ནིའི་དོན་ལུ་ འབྲི་གཞི་གི་ཚད་རྒྱ་བསྐྱེད་འབདཝ་ཨིན། བཏོག་ཁུལ་དང་ཚད་ཚུ་མི་བསྒྱུར།",
+      "target_sha256": "0eb11baa954c0434eff818e65c514c666e3a13d52d273eb1a22683c6b7c22444",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics_and_connected_target_language_form",
+      "approved_for_integration": true,
+      "whole_value_reviewed": true,
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "source_confidence": "high_for_core_grammar_and_technical_meanings; moderate_for_new_composed_technical_prose",
+      "native_speaker_certification": false,
+      "runtime_or_layout_certification": false,
+      "note": "The replacement is acceptable as a complete explanatory Dzongkha paragraph at moderate idiom confidence. The revised coordinate sentence supplies an actual count noun, and the expansion sentence now has an explicit purpose and a definite object of enlargement. Reading those clauses together removes the earlier composition hold; no new correction is required for the exact reviewed bytes.",
+      "connected_language_assessment": [
+        "The opening placement command and the following explanatory sentences form a coherent instruction sequence. Image, image corner, canvas, other images and already-placed images retain distinct referents; the paragraph does not shift the placement anchor to the image center or canvas corner.",
+        "The coordinate sentence first predicates pixel count of X and Y, then describes those values as whole numbers beginning at 0. The count head avoids treating X/Y as physical pixel objects. The adverbial whole-number qualification is attached to the same coordinated subject and does not request rounding.",
+        "The other-images clause is a state-of-remaining statement. Its distributive possessive and emphatic location wording establish that each other image stays where it currently is. The following permission is locally limited by here and does not impose mandatory stacking.",
+        "Later-imported images are the rendered items, while the earlier images are the overt on-top-of complement. The implicit rendering agent is coherent in software help. The factual narration is not an instruction that the user manually draw or move the images.",
+        "The all-placed-images-fit clause now precedes an expanded purpose expression. The canvas's size is the object of expansion; it is no longer a compressed canvas-does-expansion juxtaposition. The closing negative-change clause naturally returns to image crop regions and image sizes. It does not negate the immediately stated growth of the canvas.",
+        "Output/result drawing surface and crop region are literal but usable technical compounds in this context. The paragraph is explanatory translated UI prose rather than conversational Dzongkha; that register is consistent throughout. Exact-phrase corpus attestation is not asserted."
+      ],
+      "clause_audit": [
+        {
+          "source_unit": "physical top-left on output canvas",
+          "target_span": "གཟུགས་བརྙན་འདི་གི་གཡོན་མགོའི་ཟུར་འདི་ གྲུབ་འབྲས་ཀྱི་འབྲི་གཞི་ནང་བཞག།",
+          "preserved": true,
+          "note": "The possessive chain identifies this image's left-upper corner; the output drawing surface is its destination."
+        },
+        {
+          "source_unit": "whole-pixel X/Y values beginning at zero",
+          "target_span": "X དང་ Y འདི་པིག་སེལ་གྱི་གྱངས་ཁ་ཨིནམ་དང་ ཧྲིལ་གྲངས་སྦེ་ 0 ལས་འགོ་བཙུགསཔ་ཨིན།",
+          "preserved": true,
+          "note": "Pixel counts, integer representation and zero origin all refer to the two axes. Fractions are not allowed by this statement."
+        },
+        {
+          "source_unit": "other current positions unchanged",
+          "target_span": "གཟུགས་བརྙན་གཞན་ཚུ་ རང་རང་གི་ད་ལྟོའི་ས་གནས་ནང་རང་སྡོདཔ་ཨིན།",
+          "preserved": true,
+          "note": "Each other image stays at its own current location."
+        },
+        {
+          "source_unit": "overlap permitted here",
+          "target_span": "ནཱ་ལུ་གཟུགས་བརྙན་ཚུ་གཅིག་གི་ཐོག་ཁར་གཅིག་བཞག་ཆོག།",
+          "preserved": true,
+          "note": "One over another is permitted, not required."
+        },
+        {
+          "source_unit": "later imports rendered above earlier imports",
+          "target_span": "ཤུལ་ལས་ནང་འདྲེན་འབད་མི་གཟུགས་བརྙན་ཚུ་ ཧེ་མའི་གཟུགས་བརྙན་ཚུ་གི་ཐོག་ཁར་འབྲིཝ་ཨིན།",
+          "preserved": true,
+          "note": "The later import modifier and earlier-image complement preserve stacking order."
+        },
+        {
+          "source_unit": "canvas expands to contain every placed image",
+          "target_span": "བཞག་ཚར་མི་གཟུགས་བརྙན་ཆ་མཉམ་ཤོང་ནིའི་དོན་ལུ་ འབྲི་གཞི་གི་ཚད་རྒྱ་བསྐྱེད་འབདཝ་ཨིན།",
+          "preserved": true,
+          "note": "Every already-placed image must fit; the size expanded is specifically the canvas's."
+        },
+        {
+          "source_unit": "crop extents and image sizes unchanged",
+          "target_span": "བཏོག་ཁུལ་དང་ཚད་ཚུ་མི་བསྒྱུར།",
+          "preserved": true,
+          "note": "Both coordinated crop regions and sizes are unchanged; these refer to the images, not the canvas whose size was just explicitly expanded."
+        }
+      ],
+      "source_ids": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "limits": [
+        "Moderate source-assisted idiom confidence, not native-speaker certification. No claim is made that the newly composed full paragraph occurs in a published source.",
+        "LibreOffice target-language passages were used only where Tibetan-script Dzongkha text was present; English fallback sentences were not counted as Dzongkha prose evidence.",
+        "No decision relies on corrupt Tibetan extraction from the computer-terms dictionary.",
+        "The previous target hash ba72c4dbae9cf72ac2c76ec36c510ed5fe71dd0fb6932989d5f7c31043417810 remains held; only the replacement hash is accepted."
+      ]
+    }
+  ],
+  "sources": {
+    "J1": {
+      "title": "Jeju dialect characteristics, National Institute of Korean Language, Jeong Seung-cheol (1998)",
+      "url": "https://www.korean.go.kr/nkview/nklife/1998_4/8-7.html",
+      "inspection": "Direct primary scholarly text reread",
+      "supports": "Coordination, polite copular morphology and imperative system; distinguishes dynamic predication from simply attaching the copular ending to any stem.",
+      "confidence": "high"
+    },
+    "J2": {
+      "title": "Jeju official oral corpus, Seongsan-eup Goseong-ri, food (2017)",
+      "url": "https://www.jeju.go.kr/jedu/map/record.htm?page=206",
+      "inspection": "Target-language speaker lines read directly, separately from standard-language glosses",
+      "supports": "Routine 헙네다 narration in context.",
+      "confidence": "high"
+    },
+    "J3": {
+      "title": "Jeju official oral corpus, Pyoseon-myeon Pyoseon-ri, housing (2017)",
+      "url": "https://www.jeju.go.kr/jedu/map/record.htm?page=258",
+      "inspection": "Target-language speaker lines read directly, separately from standard-language glosses",
+      "supports": "Negative -지 안 허- and fit-purpose clauses, including 들어가게 and 들어가도록 허는; making physical space broad enough. These constructions support the revised composition rather than prove the exact new sentences.",
+      "confidence": "high_for_constructions"
+    },
+    "J4": {
+      "title": "Jeju dialect grammar hosted by Jeju Studies Research Center",
+      "url": "https://www.jst.re.kr/upload/pdf/RC00084319.pdf",
+      "inspection": "Indexed primary-PDF passage inspected; direct open returned Internal Error",
+      "supports": "Section 6 classifies -ㅂ네다 as a declarative ending and illustrates routine 돌아봅네다. Corroborative only; direct corpus J2 independently supports the register.",
+      "confidence": "moderate_access_limited"
+    },
+    "D1": {
+      "title": "Tshering and van Driem, The Grammar of Dzongkha (2019)",
+      "url": "https://escholarship.org/uc/item/1h4211k0",
+      "pdf_url": "https://escholarship.org/content/qt1h4211k0/qt1h4211k0_noSplash_b3843a79888f78f39713ded5f61ad772.pdf?t=s10u2j",
+      "inspection": "Primary grammar relevant extracted text reread; Unicode Tibetan legible; no page-image certification",
+      "supports": "Factual-present construction (printed pp190–192); physical fit/capacity (p210); infinitive plus genitive-purpose expression and all/every distinctions (pp215–216); adverbializer including སྦེ་ spelling (pp292–295).",
+      "confidence": "high_for_described_grammar"
+    },
+    "D2": {
+      "title": "LibreOffice Dzongkha, Align Objects",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/01/05070000.html",
+      "inspection": "Direct HTML",
+      "supports": "Physical left and upper-edge terminology, including the mgo top heading.",
+      "confidence": "high_for_term"
+    },
+    "D3": {
+      "title": "LibreOffice Dzongkha, Grid",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/optionen/01070300.html",
+      "inspection": "Direct HTML",
+      "supports": "Spatial extend-edges heading with rgya bskyed and the transitive do construction.",
+      "confidence": "high_for_term_and_construction"
+    },
+    "D4": {
+      "title": "LibreOffice Dzongkha, Mathematical Functions",
+      "url": "https://help.libreoffice.org/latest/dz/text/scalc/01/04060106.html",
+      "inspection": "Direct HTML",
+      "supports": "Integer terminology and a coherent technical explanatory register using factual predicates.",
+      "confidence": "high_for_term; moderate_for_prose_style"
+    },
+    "D5": {
+      "title": "LibreOffice Dzongkha, Image Filter Bar",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/02/24010000.html",
+      "inspection": "Direct HTML",
+      "supports": "Pixel spelling, all-pixels quantification, and number/count-of-pixels technical usage.",
+      "confidence": "high_for_terms"
+    },
+    "D6": {
+      "title": "LibreOffice Dzongkha, Crop Image",
+      "url": "https://help.libreoffice.org/latest/dz/text/shared/01/05030800.html",
+      "inspection": "Direct HTML",
+      "supports": "Crop-related b tog terminology and image-size context; this does not attest the candidate's exact crop-region compound.",
+      "confidence": "moderate_for_composed_crop_region"
+    }
+  },
+  "validation": {
+    "both_target_hashes_recomputed_and_match_assignment": true,
+    "source_hashes_recomputed_and_match": true,
+    "both_complete_targets_read": true,
+    "targets_nfc": true,
+    "all_seven_semantic_units_preserved_in_each": true,
+    "candidate_files_modified": false,
+    "repository_modified": false
+  },
+  "integration_rule": "Acceptance applies only to the exact target_sha256 in each entry. Rewording requires independent full-value review of the new hash. These linguistic decisions do not certify Android layout, font shaping, runtime behavior or other locale values."
+}
