@@ -50,6 +50,15 @@ The existing document path retains the original page-description name so previou
 
 [Independent French remaining-capacity/render-progress review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182642343) supports cases 3–4.
 
+## Explicit regional-English overrides
+
+[Expanded-head review](https://github.com/c933103/AN-Paint/pull/74#discussion_r4278250038) identified explicit overrides that a default-only correction would miss. At the pinned baseline, [en-AU](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rAU/strings.xml), [en-CA](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rCA/strings.xml), [en-GB](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rGB/strings.xml), [en-IN](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rIN/strings.xml), [en-SG](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rSG/strings.xml), [en-US](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-en-rUS/strings.xml) all redeclare the same affected values: `formats22_page_description` at L563, `ui_you_can_add_more_images_select_fewer_files` at L468, and `ui_rendering_images` at L321. Each file was read and these exact values verified.
+
+- [ ] Correct or deliberately remove each of the 18 broken regional overrides so the six offered locale options cannot retain the old wording; preserve regional distinctions unrelated to these keys.
+- [ ] Run the actual one/many page, capacity and render-message controls under default English and all six regional English locales, plus the French affected cases. Verify actual resource selection/fallback, not just default XML edits.
+
+This named scope supplements the audit of other localized expressions. Later clean review summaries do not erase an earlier unresolved substantive finding; this section explicitly addresses that gap.
+
 ## Shared fix rules and next action
 
 Count-invariant labels can preserve current string APIs. Correct plural resources are an alternative if implemented end to end with proper locale quantities. Candidates above are proposed, not applied. Audit affected localized expressions and correct confirmed cases; do not rewrite already valid count-invariant languages for cosmetic uniformity.
