@@ -89,7 +89,9 @@ class ImageResizeFlowTest {
         provider.file.copyTo(galleryFile,overwrite=true)
         EditorTestNavigation.otherImage(activity,4)
         val intent = shadowOf(activity).nextStartedActivityForResult.intent
+        val sessionToken = requireNotNull(intent.getStringExtra(CreditEditSession.EXTRA_SESSION))
         shadowOf(activity).receiveResult(intent,Activity.RESULT_OK,Intent()
+            .putExtra(CreditEditSession.EXTRA_SESSION,sessionToken)
             .putExtra("gallery_file",galleryFile.name)
             .putExtra("gallery_source","https://upload.wikimedia.org/wikipedia/commons/a/ab/Resize.png")
             .putExtra("gallery_provider",IllustrationSource.COMMONS.name)
