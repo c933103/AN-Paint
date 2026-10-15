@@ -2,9 +2,9 @@
 
 ## Current review overview — 15 October 2026
 
-Pinned current source: [develop `06ae3699`](https://github.com/c933103/AN-Paint/commit/06ae3699ea36fc52abfc5f36875e471562775655). **699 strings + 1 plural resource = 700 entries per choice; 171 offered choices.** A plural is one entry regardless of quantity forms. Direct coverage is **59 full catalogues, 81 nonempty partial catalogues and 31 empty catalogues**.
+Pinned current source: [develop `77d7599`](https://github.com/c933103/AN-Paint/commit/77d7599af4b68228724d3ec3360e5e6dedcec350). **699 strings + 1 plural resource = 700 entries per choice; 171 offered choices.** A plural is one entry regardless of quantity forms. Direct coverage is **59 full catalogues, 81 nonempty partial catalogues and 31 empty catalogues**.
 
-Across all choices: **2,970 reviewed-current bounded receipts; 32 entries needing re-review; 44,198 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
+Across all choices: **2,971 reviewed-current bounded receipts; 31 entries needing re-review; 44,198 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
 
 Language-level status remains **0 fully reviewed, 57 broad re-review required, 6 bounded-partial outside that reset, 75 review not established, 31 translation/review not started and 2 test modes**. Bounded partial choices: Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
@@ -18,7 +18,7 @@ Language-level status remains **0 fully reviewed, 57 broad re-review required, 6
 
 ### French and Japanese catalogue pass and merged follow-ups
 
-- Current **French:680 reviewed /20 open**, including 68 dormant linguistic-only acceptances. **Japanese:692 reviewed /8 open**, including 68 dormant linguistic-only acceptances. Each of the 700 entries now has an explicit current/open disposition; these are completed catalogue passes with remaining findings, not unqualified acceptance.
+- Current **French:685 reviewed /15 open**, including 68 dormant linguistic-only acceptances. **Japanese:691 reviewed /9 open**, including 68 dormant linguistic-only acceptances. Each of the 700 entries now has an explicit current/open disposition; these are completed catalogue passes with remaining findings, not unqualified acceptance.
 - The original pass at `647a4b56` added 675 French and 697 Japanese records, plus eight deduplicated earlier French confirmations/helpers. The original 1,290 baseline records and all earlier history remain preserved; one baseline Tagalog record is now historical rather than counted as Filipino.
 - Merged [PR78](https://github.com/c933103/AN-Paint/pull/78),[PR79](https://github.com/c933103/AN-Paint/pull/79) and[PR81](https://github.com/c933103/AN-Paint/pull/81) close five exact FR/JA findings after static guard, error-routing and corrected-Japanese-text review. Original findings remain in superseded history.
 - Merged [PR80](https://github.com/c933103/AN-Paint/pull/80) supplies the background-neutral memory key. [Complete-value review evidence](https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640) supports 50 bounded H/M reviews; 49 remained current after the Tagalog→Filipino identity change; the one identity hold is now independently accepted by the fresh Filipino review below. Nine other values retain partial-only inheritance evidence.
@@ -26,16 +26,17 @@ Language-level status remains **0 fully reviewed, 57 broad re-review required, 6
 - Merged [PR86](https://github.com/c933103/AN-Paint/pull/86) switches all four unsupported-profile message sites to a new format-neutral key. The two old FR/JA literals are now dormant linguistic-only acceptances. Twelve new values have complete bounded review: French, Japanese, eight English variants, emoji-English test mode, and [fresh Filipino-specific review](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184251067), with [exact-head Codex response](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184285983). The historical 47 [handoff deltas](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6183064757) retain their narrow historical scope; a later complete HK review below supplies credit for that one value, while the other 46 remain unknown.
 - **Filipino:3 reviewed /0 needing identity review /697 unknown.** The [fresh two-entry complete Filipino review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6185844544) accepts the Commons failure and sampled-memory guidance unchanged, in addition to the earlier generic colour-error review. Semantic confidence is high and idiomatic confidence moderate; no whole-catalogue or device-rendering claim.
 - Merged [PR92](https://github.com/c933103/AN-Paint/pull/92) resolves exactly three complete Japanese values after independent review and [merged-source verification](https://github.com/c933103/AN-Paint/pull/92#issuecomment-6187873896): draft-pending status, language-picker maintenance/English-fallback note, and assembly Help. Its implementation passed exact-head Code/Security review and all four hosted jobs. Shared English/source and other-locale findings remain open; no whole-language/device-layout claim.
-- Active mapped records total **3,002 = 2,970 current + 32 open**. Eighteen superseded records are historical, not extra active credits. Fifty-six historical partial records (9 memory + 47 colour) do not themselves earn current credit; one HK colour value is now counted through its later complete receipt.
+- Merged [PR83](https://github.com/c933103/AN-Paint/pull/83) resolves five French count-wording findings. [All20 affected existing pairs were freshly reviewed](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6188271171):11 other count-neutral pairs remain current; four ms/id/ja/zh-HK progress labels now require processed-input wording because skipped zero-area draws still advance progress. These four remain open pending correction. Net change:+1 current /−1 open.
+- Active mapped records total **3,002 = 2,971 current + 31 open**. Thirty-eight superseded records are historical, not extra active credits. Fifty-six historical partial records (9 memory + 47 colour) do not themselves earn current credit; one HK colour value is now counted through its later complete receipt.
 - [Exact receipts](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-receipts.json) · [Per-language counts and exact keys](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-counts.json) · [Historical FR/JA source/evidence reconciliation](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/fr-ja-full-catalogue-review-20261015.json).
 
 This publication changes review data, documentation and a data-validator only. It does not rerun or independently certify application tests, installed layout, fonts, external-provider terms, release readiness or whole-language acceptance.
 
 ### Hong Kong Chinese bounded successor
 
-[Original complete 270-key receipt and independently reviewed repairs](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042): 260 active static accepts, 4 linguistic-only accepts and 6 open findings, disjoint from the two preceding HK receipts. After the two merged PR90 repairs, current **Hong Kong Chinese:268 reviewed /4 open /428 unknown**. Five coherent cohorts cover save/recovery, formats/import/export, memory/errors and assembly/crop controls; this is not a completed HK catalogue pass.
+[Original complete 270-key receipt and independently reviewed repairs](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042): 260 active static accepts, 4 linguistic-only accepts and 6 open findings, disjoint from the two preceding HK receipts. After the two merged PR90 repairs, current **Hong Kong Chinese:267 reviewed /5 open /428 unknown**. Five coherent cohorts cover save/recovery, formats/import/export, memory/errors and assembly/crop controls; this is not a completed HK catalogue pass.
 
-The live picker and New-image hint contexts are corrected in merged source. The old BMP/GIF diagnostic is now accepted as dormant wording, and the new generic-colour value has complete current HK review. Four findings remain explicit: unproven generic-busy reachability, external-link diagnosis, native-component diagnosis and dormant background wording. Merged [PR90](https://github.com/c933103/AN-Paint/pull/90) applies the independently accepted complete help and crop-plural corrections. [Exact-value acceptance](https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185032467) matches merged source; [clean Codex and four-job premerge CI](https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185299268) are separate technical evidence. Only these two HK findings move from open to current; their original findings remain in superseded history. Shared English/French/Japanese findings and broader obligations remain open.
+The live picker and New-image hint contexts are corrected in merged source. The old BMP/GIF diagnostic is now accepted as dormant wording, and the new generic-colour value has complete current HK review. Five findings remain explicit: unproven generic-busy reachability, external-link diagnosis, native-component diagnosis, dormant background wording and the newly re-reviewed processing-counter wording. Merged [PR90](https://github.com/c933103/AN-Paint/pull/90) applies the independently accepted complete help and crop-plural corrections. [Exact-value acceptance](https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185032467) matches merged source; [clean Codex and four-job premerge CI](https://github.com/c933103/AN-Paint/pull/90#issuecomment-6185299268) are separate technical evidence. Only these two HK findings move from open to current; their original findings remain in superseded history. Shared English/French/Japanese findings and broader obligations remain open.
 
 ### Current per-language entry counts
 
@@ -87,7 +88,7 @@ The live picker and New-image hint contexts are corrected in merged source. The 
 | `fa-IR` فارسی (ایران) | 0 | 0 | 57 | 643 | 700 | Not established |
 | `fi` Suomi | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `fil` Filipino | 3 | 0 | 697 | 0 | 700 | Broad re-review |
-| `fr` Français | 680 | 20 | 0 | 0 | 700 | Broad re-review |
+| `fr` Français | 685 | 15 | 0 | 0 | 700 | Broad re-review |
 | `fy` Frysk | 0 | 0 | 41 | 659 | 700 | Not established |
 | `ga` Gaeilge | 0 | 0 | 11 | 689 | 700 | Not established |
 | `gd` Gàidhlig | 0 | 0 | 76 | 624 | 700 | Not established |
@@ -104,11 +105,11 @@ The live picker and New-image hint contexts are corrected in merged source. The 
 | `hu` Magyar | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `hy` Հայերեն | 1 | 0 | 109 | 590 | 700 | Bounded partial |
 | `ia` Interlingua | 0 | 0 | 60 | 640 | 700 | Not established |
-| `id` Bahasa Indonesia | 602 | 0 | 98 | 0 | 700 | Broad re-review |
+| `id` Bahasa Indonesia | 601 | 1 | 98 | 0 | 700 | Broad re-review |
 | `ig` Igbo | 0 | 0 | 0 | 700 | 700 | Not started |
 | `is` Íslenska | 0 | 0 | 110 | 590 | 700 | Not established |
 | `it` Italiano | 2 | 0 | 698 | 0 | 700 | Broad re-review |
-| `ja` 日本語 | 692 | 8 | 0 | 0 | 700 | Broad re-review |
+| `ja` 日本語 | 691 | 9 | 0 | 0 | 700 | Broad re-review |
 | `jje` 제주말 | 1 | 0 | 699 | 0 | 700 | Broad re-review |
 | `jv` Jawa | 0 | 0 | 5 | 695 | 700 | Not established |
 | `ka` ქართული | 0 | 0 | 121 | 579 | 700 | Not established |
@@ -135,7 +136,7 @@ The live picker and New-image hint contexts are corrected in merged source. The 
 | `mn-Mong` ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `mnc-Mong` ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `mr` मराठी | 0 | 0 | 99 | 601 | 700 | Not established |
-| `ms` Bahasa Melayu | 606 | 0 | 94 | 0 | 700 | Broad re-review |
+| `ms` Bahasa Melayu | 605 | 1 | 94 | 0 | 700 | Broad re-review |
 | `mww` Hmong Daw | 0 | 0 | 4 | 696 | 700 | Not established |
 | `my` မြန်မာဘာသာ | 0 | 0 | 74 | 626 | 700 | Not established |
 | `nan-Hant-TW` 臺灣台語（漢字） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
@@ -209,7 +210,7 @@ The live picker and New-image hint contexts are corrected in merged source. The 
 | `za` Vahcuengh | 0 | 0 | 7 | 693 | 700 | Not established |
 | `zgh` ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco) | 0 | 0 | 0 | 700 | 700 | Not started |
 | `zh-CN` 简体中文（中国大陆） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
-| `zh-HK` 繁體中文（香港） | 268 | 4 | 428 | 0 | 700 | Broad re-review |
+| `zh-HK` 繁體中文（香港） | 267 | 5 | 428 | 0 | 700 | Broad re-review |
 | `zh-TW` 繁體中文（台灣） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `zu` isiZulu | 0 | 0 | 0 | 700 | 700 | Not started |
 
