@@ -1,8 +1,9 @@
-"""Narrow guards for the Hakka contextual readings rechecked on 2026-10-06.
+"""Narrow guards for Hakka contextual readings and the missing-picker warning.
 
 These compare reviewed Han/PFS terms in their resource context. They do not
 certify the rest of either catalogue or generate translations.
 """
+import json
 import pathlib
 import re
 import unittest
@@ -35,6 +36,18 @@ class HakkaContextTests(unittest.TestCase):
                     self.han[key].count(han_term),
                     len(re.findall(pfs_pattern, self.latin[key], re.IGNORECASE)),
                 )
+
+    def test_full_missing_picker_warning_keeps_failure_and_recovery_steps(self):
+        # The fixture binds all clauses, not just the corrected result complement.
+        # Matching it does not certify fluency or the rest of either catalogue.
+        fixture = json.loads(
+            (pathlib.Path(__file__).with_name("fixtures") /
+             "hakka_file_picker_warning.json").read_text(encoding="utf-8")
+        )
+        key = fixture["key"]
+        self.assertEqual(fixture["source"], strings("values")[key])
+        self.assertEqual(fixture["han"], self.han[key])
+        self.assertEqual(fixture["pfs"], self.latin[key])
 
     def test_spatial_back_is_not_the_carrying_reading(self):
         # MOE boi55 -> PFS poi; ba11 -> pà is the verb "carry".
