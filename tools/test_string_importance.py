@@ -33,6 +33,7 @@ class StringImportanceTests(unittest.TestCase):
         for key in (
             "string/ui_save", "string/ui_save_your_changes", "string/ui_autosave_failed_use_save",
             "string/ui_share_explanation34",
+            "string/ui_sampled_resize_memory_explanation",
             "string/ui_the_image_was_saved_but_android_could_not",
             "string/ui_export_did_not_save23", "string/ui_keep_editing23", "string/save20_destination_error",
             "string/formats22_animation_message", "string/ui_the_previous_draft_could_not_be_restored",

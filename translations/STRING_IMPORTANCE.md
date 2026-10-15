@@ -33,11 +33,11 @@ Current partition (15 October 2026):
 
 | Tier | Source entries |
 | --- | ---: |
-| P0 | 85 |
+| P0 | 86 |
 | P1 | 247 |
 | P2 | 288 |
 | P3 | 78 |
-| **Total** | **698** (697 strings and 1 plural) |
+| **Total** | **699** (698 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or
 accepted reviews. The validator recomputes totals and fails when an English
