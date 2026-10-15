@@ -36,9 +36,13 @@ class PageCountWordingDeviceTest {
     private val context get() = instrumentation.targetContext
 
     @Test fun oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench() {
-        val oldTag = if (Build.VERSION.SDK_INT >= 33)
-            context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
-            else context.getSharedPreferences("app-language", 0).getString("language-tag", "").orEmpty()
+        val preferences = context.getSharedPreferences("app-language", 0)
+        val hadLanguage = preferences.contains("language-tag")
+        val oldPreference = preferences.getString("language-tag", null)
+        val hadInitialization = preferences.contains("platform-initialized")
+        val oldInitialization = preferences.getBoolean("platform-initialized", false)
+        val oldPlatform = if (Build.VERSION.SDK_INT >= 33)
+            context.getSystemService(LocaleManager::class.java).applicationLocales else null
         val oldLocale = Locale.getDefault()
         val worker = Executors.newSingleThreadExecutor()
         val launch = Intent(context, AssemblyActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -100,15 +104,38 @@ class PageCountWordingDeviceTest {
                         }
                     }
                 } finally {
-                    languageFixture(oldTag)
+                    restoreConfiguredLanguage(oldPreference, oldPlatform)
                     scenario.onActivity { it.onConfigurationChanged(Configuration(it.resources.configuration)) }
                 }
             }
         } finally {
-            Locale.setDefault(oldLocale)
-            worker.shutdownNow()
-            assertTrue(worker.awaitTermination(10, TimeUnit.SECONDS))
+            try {
+                // Settle platform callbacks with migration guarded, then restore each
+                // original preference independently, including absent keys.
+                restoreConfiguredLanguage(oldPreference, oldPlatform)
+            } finally {
+                instrumentation.runOnMainSync {
+                    preferences.edit().apply {
+                        if (hadLanguage) putString("language-tag", oldPreference) else remove("language-tag")
+                        if (hadInitialization) putBoolean("platform-initialized", oldInitialization)
+                        else remove("platform-initialized")
+                    }.commit()
+                    Locale.setDefault(oldLocale)
+                }
+                worker.shutdownNow()
+                assertTrue(worker.awaitTermination(10, TimeUnit.SECONDS))
+            }
         }
+    }
+
+    private fun restoreConfiguredLanguage(preference: String?, platform: LocaleList?) {
+        instrumentation.runOnMainSync {
+            context.getSharedPreferences("app-language", 0).edit().putString("language-tag", preference)
+                .putBoolean("platform-initialized", true).commit()
+            if (Build.VERSION.SDK_INT >= 33)
+                context.getSystemService(LocaleManager::class.java).applicationLocales = requireNotNull(platform)
+        }
+        instrumentation.waitForIdleSync()
     }
 
     private fun languageFixture(tag: String) {
