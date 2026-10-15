@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "repository": "c933103/AN-Paint",
+  "pull_request": 85,
+  "original_develop_commit": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+  "application_base_commit": "0aa6c89c9d3a4d133a8b231e7002783b60ead46d",
+  "application_base_tree": "36ee786caf7b728ee1dada5c4c971ff4830e965c",
+  "previous_pr_head": "67ef4516c6359e613688af6830ec129c30536ad3",
+  "expected_application_tree": "faa0cf1d9976061ca970c92a8625e11febbc3929",
+  "publication_status": "Prepared tree binding. Publication must confirm the actual application commit resolves to this exact tree; no application commit identity is invented here.",
+  "changed_files": 68,
+  "target_files": 1136,
+  "removed_files": 0,
+  "mode_changes": 0,
+  "principal_sources": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "sha256": "325c53bd0b81a9011799c47919577f9ab8d0c6d99b733fd0e9d34ca7b619ccd3",
+      "git_blob": "a741972de4344a116b06ff200a54baec8ec379b3"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryExternalLinkTest.kt",
+      "sha256": "af6359ed69c0edf035f7f4073a03af8bfc6949dfe0b94233d11d50455e7d48f4",
+      "git_blob": "468ed8e652ddff70d64c0dd6f477b9316f48d3f0"
+    },
+    {
+      "path": "tools/test_gallery_external_link_wording.py",
+      "sha256": "b63c622fb6ad2a9c2945effb63ebbc0139de0a00dbe636ff12e08e61b6a657ea",
+      "git_blob": "d47b8a7e650409b537d2a600ad773f7e10c54e35"
+    },
+    {
+      "path": "tools/fixtures/current_localization/gallery_external_link_current_wording.json",
+      "sha256": "59ceb22785a62e3015216598de60b23bb552f14eacfe6f6582e3d3f7a8b064bb",
+      "git_blob": "6ba0e691291bcace99f3d7859d6a21d79a90def8"
+    },
+    {
+      "path": "tools/fixtures/current_localization/locale_contract_scope.json",
+      "sha256": "7d579d22a9ddbaf88afc23e4f9ec8edf036794beaba8f427bd896fa2fc3b532d",
+      "git_blob": "f2e046fa5327b72a86bcb00ba1e50d5748addb8b"
+    },
+    {
+      "path": "translations/string-importance.json",
+      "sha256": "f461bffe00868913abf7421cddc5d7d79f9b31098565551c8ba493a3e4f9ec7e",
+      "git_blob": "a8123ea987fbb4ae5e93f63544b93f818de83bb5"
+    },
+    {
+      "path": "translations/STRING_IMPORTANCE.md",
+      "sha256": "e67e23f14616242e34ca36f1c65b1445be336b2d3801212827c4ad3bf581feb5",
+      "git_blob": "b7d9c6cd65531af8db82d8a355075c33bc111b68"
+    },
+    {
+      "path": "docs/gallery-external-link-handler.md",
+      "sha256": "0141fd543c62dcb18ef02aa4ba70cf5495628233cc1ddfeb2dc8d4289e8dc973",
+      "git_blob": "e520b8973c8f117f8f71b92b762ef2ce5d64e95b"
+    },
+    {
+      "path": "docs/bugs/gallery-terms-missing-handler-message.md",
+      "sha256": "6f69ad711a5179c67c2c9fca65fdc9d832dea2eaa039f387793a1c84d28ba3f5",
+      "git_blob": "1adf6d99e95ce3176605edb10ecb42475a9afaad"
+    }
+  ],
+  "complete_statement_review_sha256": "1e57074a9affe504921e37346572e6dbc2fb8e858b0145b57abc516a29468ae7",
+  "binding_method": "Parse canonical XML from each listed catalogue, require one occurrence of the key, and compare the complete decoded text and its UTF-8 SHA-256 with both independent review and application wording fixture. Verify 59 unique scoped tags, no additions or omissions, plus exact default English.",
+  "default_text": "Android could not find an app to open this link.",
+  "default_text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e",
+  "all_59_statements_match_review_and_fixture": true,
+  "all_59_bindings": [
+    {
+      "tag": "af",
+      "text_sha256": "0e84c2558d388742958297c3ae330de6a69d8fcee714b4b060f38daea55c225f"
+    },
+    {
+      "tag": "ain-Kana",
+      "text_sha256": "4e58c46acab30c3f54e712e4de576791a6e7fd755cb1bf593d54586fe65ed6ad"
+    },
+    {
+      "tag": "ain-Latn",
+      "text_sha256": "e9c14f5fb3c1ed0c69d17a7d05ddf4078a80f9b2c60a8c85647639f230affb48"
+    },
+    {
+      "tag": "ar",
+      "text_sha256": "60629e21d32ac67330be115f44c6f1d948a95d6be0263d7757449d62bf37be2c"
+    },
+    {
+      "tag": "bo",
+      "text_sha256": "c518b70a7cf0840b95e9fa607bb44947a324920bb0c8d8ecbba66d0b95324f63"
+    },
+    {
+      "tag": "ceb",
+      "text_sha256": "83acfa6ba8913aa1f1a04fa9d712e9551b9fbbb859e1bae0c8e6ccf344592452"
+    },
+    {
+      "tag": "de",
+      "text_sha256": "cbadc0caaededea72a118ec9d0b25e6f336374f3e264bd6591bd0db11426963a"
+    },
+    {
+      "tag": "dz",
+      "text_sha256": "48bf9162173e84b87469be9584a0bb8017cf843450956fb701f123004aded815"
+    },
+    {
+      "tag": "el",
+      "text_sha256": "cdb16aa13fe1387aeffb7170b32dbbc9656e90074e9ca1bbcad735be2b4dcadf"
+    },
+    {
+      "tag": "en-001",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-AU",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-CA",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-GB",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-IN",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-SG",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-US",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "en-XV",
+      "text_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e"
+    },
+    {
+      "tag": "eo",
+      "text_sha256": "16adb27b356b03739f849f99ba060e88424081d0c72ea4cf032f8acb3cecb199"
+    },
+    {
+      "tag": "es-419",
+      "text_sha256": "6da97fea53ca9f741687166cb33a149e1abfa2213244c630c0e9354e626a1800"
+    },
+    {
+      "tag": "es-ES",
+      "text_sha256": "6da97fea53ca9f741687166cb33a149e1abfa2213244c630c0e9354e626a1800"
+    },
+    {
+      "tag": "et",
+      "text_sha256": "23f0e1d0f96d0469addae0fc63bb1fbe9d97e94de1ec2b2bceaf406ded879159"
+    },
+    {
+      "tag": "fi",
+      "text_sha256": "252d27d6dd8b991c3844e1c166b45565f7d50fda5f9e1f2d402d646c99586962"
+    },
+    {
+      "tag": "fil",
+      "text_sha256": "a7c62cc3d2fede5632f6a4c0707b7aca77205a751c054dad23d52260baf8882b"
+    },
+    {
+      "tag": "fr",
+      "text_sha256": "d08c935bda78d521ed07277cc5e86fbbf8ffac2bc60f6f2222371d4c7bafdd19"
+    },
+    {
+      "tag": "hak-Hant-TW",
+      "text_sha256": "dc7ce89ea3cc9db1753515e4509f7dd8541a96f4f8934dc0d757ecc72e99b68d"
+    },
+    {
+      "tag": "hak-Latn-TW",
+      "text_sha256": "c5ae75b158df4d45395d4ba422197e4a2ddf4e99464875d084bb799efe5e4684"
+    },
+    {
+      "tag": "hu",
+      "text_sha256": "52070c952e5412668a62cd4682e76b271ba854e50921bf9b76176c159773a51d"
+    },
+    {
+      "tag": "id",
+      "text_sha256": "13750836cde08c50268b952bd75394542a050ff6b76a31eab9b85c53f876f558"
+    },
+    {
+      "tag": "it",
+      "text_sha256": "d9e4e0108ac745a281afe4f85d4775381c2e051b9e7b3239a018c01ab223680b"
+    },
+    {
+      "tag": "ja",
+      "text_sha256": "4c19f194c4ae4fff2c45ff9b8c7708521e97241f750512828764b554ca59c47e"
+    },
+    {
+      "tag": "jje",
+      "text_sha256": "238aa17b2f8d6f0142917f749679026ee103bec7f0572f8df2920f18f97366b9"
+    },
+    {
+      "tag": "ko-KP",
+      "text_sha256": "b5cffc90221262251f487b92be3875ab413fce4ef8d1201c4a5e70b27fce5a76"
+    },
+    {
+      "tag": "ko-KR",
+      "text_sha256": "db1eedc224b8a0daee9117c4f6af84ea205c5ae6fcbf16f6d6f5957b7af4760f"
+    },
+    {
+      "tag": "ko-Kore-KR",
+      "text_sha256": "db1eedc224b8a0daee9117c4f6af84ea205c5ae6fcbf16f6d6f5957b7af4760f"
+    },
+    {
+      "tag": "lt",
+      "text_sha256": "1f8b398c0c133503c09ae5e97d13e794e0af8d7a0772e58c04c8e365dafb6d39"
+    },
+    {
+      "tag": "lv",
+      "text_sha256": "f5125092dd67689dc0790758bda021e94b98e259d944e794b2f26b158a80c9c5"
+    },
+    {
+      "tag": "lzh-Hant",
+      "text_sha256": "add0e7be7464c2cf2609ae0f026d0a44b2edc319bb7c02564b3b15cd2a123f47"
+    },
+    {
+      "tag": "mn-Cyrl-MN",
+      "text_sha256": "69619ace9179460f7dbb773c8b1a941b02767a7e348a8c0c4467231aeb345ea5"
+    },
+    {
+      "tag": "mn-Mong",
+      "text_sha256": "2deacdc23c827c36dafa892aee01c084b1a23f552d47e8230bb294e56ab662ec"
+    },
+    {
+      "tag": "mnc-Mong",
+      "text_sha256": "ab31b2b7c2c9fd013e8d06d4d11e681247a4c3bedd4f598d6287f2f3090ab4ba"
+    },
+    {
+      "tag": "ms",
+      "text_sha256": "3ccd7d5ad29bc6c8da8235d7d7646218ad1983b3dfaed58dd45df69f9525339b"
+    },
+    {
+      "tag": "nan-Hant-TW",
+      "text_sha256": "1c37cfb3cafa3e0063cfd81b3dfbaca68dcc56d9cc9e18854964d80e04faf6fe"
+    },
+    {
+      "tag": "nan-Latn-TW",
+      "text_sha256": "c73307680b10ed2db72c75bebb7d15dff40318e9e6c344b3896a8926fe164c34"
+    },
+    {
+      "tag": "nl",
+      "text_sha256": "d8bad86d781c4c8e0a85e420f28418c87548e42b1c79574d4a6dcf08a4b1202e"
+    },
+    {
+      "tag": "pt-BR",
+      "text_sha256": "3922e7c159445f10c93ad30a8c722dac45acb50483e5d79c1800a5647d1d18ed"
+    },
+    {
+      "tag": "pt-PT",
+      "text_sha256": "4288a2cfa51368e7fb84089cd99959a730ad61b8c9f887f966f2c161a94d54d4"
+    },
+    {
+      "tag": "qaa-Zsye-XV",
+      "text_sha256": "36562373df766c0de45bc7b80a2150922c6fbfe60b86312d79a0cd70d96f5072"
+    },
+    {
+      "tag": "ru",
+      "text_sha256": "ba09e745b68f67730911fbc1ce79dd481ce4beea1aa146b5aa01d076d95068a8"
+    },
+    {
+      "tag": "ryu",
+      "text_sha256": "9d2ad529e29600dc271143897dfaced40729fe98ee15b78e89baec8ab217cebf"
+    },
+    {
+      "tag": "sw",
+      "text_sha256": "50f51f1a2f4d84f82b50aa352a907b4def1cb6dde372be4fe0515df65fff13be"
+    },
+    {
+      "tag": "tr",
+      "text_sha256": "e316f5f0fbb7392207e17de627d5aa39bf9c6000a600d7d12af5446647f0a59e"
+    },
+    {
+      "tag": "vi",
+      "text_sha256": "7567f6403d8194c41b56957ff595f724e2853e69d74c65184385c99d8c3f7e3b"
+    },
+    {
+      "tag": "vi-Hani",
+      "text_sha256": "8c1dc32e10bf8ddac88386e5eaf8ada701d1feef5e2bf5e747a0f9432179c265"
+    },
+    {
+      "tag": "wuu-Hans",
+      "text_sha256": "4df6de246d6956ead5fbcec29949dc62d4f81148224dfcb0ad560f77a6ad5b27"
+    },
+    {
+      "tag": "yue-Hant",
+      "text_sha256": "d354fe8c7acbd224ec356b481a032f2152d72317471f0d0b9d473440c3d6d0d6"
+    },
+    {
+      "tag": "yue-Latn",
+      "text_sha256": "9bf158ff630f29acf04e95f657938a9773b7ec2e0e12158d0d4e9ae2c8e09695"
+    },
+    {
+      "tag": "zh-CN",
+      "text_sha256": "992968cc36e34e93399edc0615e3a6a2b0b026a247583a2d1809116e23dd5ca3"
+    },
+    {
+      "tag": "zh-HK",
+      "text_sha256": "7ce9080db47de7cf5a4af15749cfa6a641ceb6b8b4acd93cc488fec1d435f6b5"
+    },
+    {
+      "tag": "zh-TW",
+      "text_sha256": "7ce9080db47de7cf5a4af15749cfa6a641ceb6b8b4acd93cc488fec1d435f6b5"
+    }
+  ],
+  "scope": {
+    "translated_nonenglish": 50,
+    "ordinary_english": 7,
+    "synthetic": 2,
+    "outside_scope_english_fallbacks": 112,
+    "default_values": 1
+  },
+  "unresolved_low_idiom_confidence_tags": [
+    "ain-Kana",
+    "ain-Latn",
+    "hak-Latn-TW",
+    "mnc-Mong",
+    "ryu"
+  ],
+  "tracker_denominator": "706 merged-source identities until this key merges; candidate source total is 707. No existing linguistic completion credit is restored.",
+  "prior_processing_label_holds": "Unchanged; this bounded new-key evidence does not resolve existing holds."
+}
