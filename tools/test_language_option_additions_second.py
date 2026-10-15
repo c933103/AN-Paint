@@ -29,7 +29,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertFalse(FIRST_ADDED_TAGS & SECOND_ADDED_TAGS)
         self.assertEqual(27, len(ADDED_TAGS))
         tags = catalogues.offered_tags()
-        self.assertEqual(171, len(tags)); self.assertEqual(167, len(set(tags)))
+        self.assertEqual(171, len(tags)); self.assertEqual(171, len(set(tags)))
         self.assertEqual(tags, [n.get('{http://schemas.android.com/apk/res/android}name')
                                for n in ET.parse(catalogues.RES / 'xml/app_locales.xml').getroot()])
         names = [n.text for n in ET.parse(catalogues.RES / 'values/app_language_names.xml').findall(

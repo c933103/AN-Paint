@@ -151,10 +151,65 @@ class AppLanguageTest {
         if(android.os.Build.VERSION.SDK_INT>=33) {
             val manager=context.getSystemService(LocaleManager::class.java)!!
             assertEquals("fil",manager.applicationLocales[0].toLanguageTag())
-            manager.applicationLocales=LocaleList.forLanguageTags("tl")
-            assertEquals("fil",AppLanguage.selectedTag(context))
-            assertEquals("fil",manager.applicationLocales[0].toLanguageTag())
         }
+    }
+
+    @Test @Config(sdk=[33,35]) fun savedTagalogImportPersistsAcrossReadsAndNewContext() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.getEmptyLocaleList()
+
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",preferences.getString("language-tag",null))
+        assertTrue(preferences.getBoolean("platform-initialized",false))
+        assertEquals("fil",manager.applicationLocales.toLanguageTags())
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        // A new context in this process checks shared state, not process-restart durability.
+        val fresh=context.createConfigurationContext(Configuration())
+        assertEquals("fil",AppLanguage.selectedTag(fresh))
+        assertEquals("fil",fresh.getSharedPreferences("app-language",0).getString("language-tag",null))
+        assertEquals("I-save",AppLanguage.wrap(fresh).getString(R.string.ui_save))
+    }
+
+    @Test @Config(sdk=[33,35]) fun platformTagalogAliasMigratesWithoutSavedPreference() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("tl")
+
+        assertEquals("fil",AppLanguage.selectedTag(context))
+        assertEquals("fil",manager.applicationLocales.toLanguageTags())
+        assertEquals("fil",preferences.getString("language-tag",null))
+    }
+
+    @Test @Config(sdk=[33,35]) fun existingPlatformChoiceWinsOverUninitializedSavedAlias() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",false).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.forLanguageTags("ja")
+
+        assertEquals("ja",AppLanguage.selectedTag(context))
+        assertTrue(preferences.getBoolean("platform-initialized",false))
+        assertEquals("ja",AppLanguage.selectedTag(context))
+        assertEquals("ja",manager.applicationLocales.toLanguageTags())
+        assertEquals("保存",AppLanguage.wrap(context).getString(R.string.ui_save))
+    }
+
+    @Test @Config(sdk=[33,35]) fun initializedDeviceDefaultWinsOverSavedAlias() {
+        val preferences=context.getSharedPreferences("app-language",0)
+        preferences.edit().clear().putString("language-tag","tl")
+            .putBoolean("platform-initialized",true).commit()
+        val manager=context.getSystemService(LocaleManager::class.java)!!
+        manager.applicationLocales=LocaleList.getEmptyLocaleList()
+
+        assertEquals("",AppLanguage.selectedTag(context))
+        assertTrue(manager.applicationLocales.isEmpty)
+        val fresh=context.createConfigurationContext(Configuration())
+        assertEquals("",AppLanguage.selectedTag(fresh))
+        assertTrue(manager.applicationLocales.isEmpty)
     }
 
     @Test fun regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate() {

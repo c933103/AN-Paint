@@ -74,7 +74,7 @@ class CommonsMetadataHttpTranslationTest {
         "ru" to "Метаданные Commons: HTTP %1\$s",
         "ryu" to "Commons ぬメタデータ: HTTP %1\$s",
         "sw" to "Metadata ya Commons: HTTP %1\$s",
-        "tl" to "Metadata ng Commons: HTTP %1\$s",
+        "fil" to "Metadata ng Commons: HTTP %1\$s",
         "tr" to "Commons meta verileri: HTTP %1\$s",
         "vi" to "Siêu dữ liệu Commons: HTTP %1\$s",
         "vi-Hani" to "超 與 料 Commons: HTTP %1\$s",
@@ -117,7 +117,7 @@ class CommonsMetadataHttpTranslationTest {
         return wrapped.resources
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
-        assertEquals(167,AppLanguage.tags(context).size)
+        assertEquals(171,AppLanguage.tags(context).size)
         assertEquals(59,expectedMessages.size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
@@ -131,6 +131,6 @@ class CommonsMetadataHttpTranslationTest {
                 assertTrue(expected.contains("HTTP ${code}"))
             }
         }
-        assertEquals(108,fallbacks)
+        assertEquals(112,fallbacks)
     }
 }

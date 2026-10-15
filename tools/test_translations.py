@@ -164,7 +164,7 @@ class TranslationCatalogueTests(unittest.TestCase):
         data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
         requested = set(
             "ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru "
-            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th "
+            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi fil th "
             "el sr-Cyrl sr-Latn tr hy".split()
         )
         self.assertEqual(requested, set(data["locales"]))

@@ -140,7 +140,7 @@ class TiffDescriptionLocaleTest {
             "nl" to "Slaat één RGB-pagina op. Compressie kan het bestand verkleinen zonder pixels te wijzigen; schakel deze uit voor ongecomprimeerde TIFF.",
             "ru" to "Сохраняет одну RGB-страницу. Сжатие может уменьшить размер файла без изменения пикселей; отключите его для несжатого TIFF.",
             "sw" to "Huhifadhi ukurasa mmoja wa RGB. Mgandamizo unaweza kupunguza ukubwa wa faili bila kubadilisha pikseli; uzime kwa TIFF isiyogandamizwa.",
-            "tl" to "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
+            "fil" to "Nagse-save ng isang RGB page. Maaaring bawasan ng compression ang laki ng file nang hindi binabago ang pixels; i-off ito para sa uncompressed TIFF.",
             "tr" to "Tek bir RGB sayfası kaydeder. Sıkıştırma, pikselleri değiştirmeden dosya boyutunu azaltabilir; sıkıştırılmamış TIFF için kapatın.",
             "vi" to "Lưu một trang RGB. Nén có thể làm giảm kích thước tệp mà không đổi điểm ảnh; tắt để lưu TIFF không nén."
         )
