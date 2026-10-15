@@ -8,15 +8,15 @@
 
 Pinned current source: [develop `b243e5b6`](https://github.com/c933103/AN-Paint/commit/b243e5b671a9b7608ca4689e7dbe0a54610428fe). **699 strings + 1 plural resource = 700 entries per choice; 171 offered choices.** A plural is one entry regardless of quantity forms. Direct coverage is **59 full catalogues, 81 nonempty partial catalogues and 31 empty catalogues**.
 
-Across all choices: **2,699 reviewed-current bounded receipts; 33 entries needing re-review; 44,468 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
+Across all choices: **2,963 reviewed-current bounded receipts; 39 entries needing re-review; 44,198 present entries unreviewed/unknown; 72,500 exact-catalogue gaps. Total: 119,700 slots (171 × 700).** Six current receipts are test-mode convention checks.
 
 Language-level status remains **0 fully reviewed, 57 broad re-review required, 6 bounded-partial outside that reset, 75 review not established, 31 translation/review not started and 2 test modes**. Bounded partial choices: Hebrew, Armenian, Polish, Serbian Cyrillic, Serbian Latin and Thai.
 
 ### What the entry counts mean
 
 - **Reviewed current** requires matching exact source values and accepted bounded review scope without an unresolved finding. Complete dormant linguistic-only and moderate-confidence semantic reviews retain their explicit limits. This is not whole-language, runtime or release certification.
-- **Needs re-review¹** includes required corrections, shared source/context concerns, affected aliases and language-identity transfer review, even when hashes match. The draft-saving diagnosis remains an **unproven reachability** investigation rather than a confirmed visible bug. Two legacy background-promise entries remain open with their removed live callsite recorded.
-- **Unreviewed / unknown** means no mapped complete current/open receipt. Historical or partial-term evidence may exist. Nine memory-key inheritance checks and 47 other colour-error narrow-delta reviews remain partial evidence without complete-entry credit.
+- **Needs re-review¹** includes required corrections, shared source/context concerns, affected aliases and language-identity transfer review, even when hashes match. The draft-saving diagnosis remains an **unproven reachability** investigation rather than a confirmed visible bug. Three legacy background-promise entries remain open with their removed live callsite recorded.
+- **Unreviewed / unknown** means no mapped complete current/open receipt. Historical or partial-term evidence may exist. Nine memory-key inheritance checks and 47 historical colour-error narrow-delta reviews remain preserved as partial evidence. One of those HK values now has a later complete review; the other 46 still have no complete-entry credit.
 - **Missing** means absent from the exact catalogue. Android inheritance and default-English fallback are separate.
 - Broader language mandates and all historical receipts remain preserved. Confidence is not a substitute for scope: a complete bounded review may count; a delta-only review does not become full-entry credit merely because confidence is high.
 
@@ -27,12 +27,18 @@ Language-level status remains **0 fully reviewed, 57 broad re-review required, 6
 - Merged [PR78](https://github.com/c933103/AN-Paint/pull/78),[PR79](https://github.com/c933103/AN-Paint/pull/79) and[PR81](https://github.com/c933103/AN-Paint/pull/81) close five exact FR/JA findings after static guard, error-routing and corrected-Japanese-text review. Original findings remain in superseded history.
 - Merged [PR80](https://github.com/c933103/AN-Paint/pull/80) supplies the background-neutral memory key. [Complete-value review evidence](https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640) supports 50 bounded H/M reviews; 49 remain current after the Tagalog→Filipino identity change, one is held for identity review, and nine other values have partial-only inheritance evidence.
 - Merged [PR65](https://github.com/c933103/AN-Paint/pull/65) adds empty `ang`,`ary`,`non` and`zgh` catalogues and changes the offered identity from`tl` to`fil`. Each new empty catalogue has700 missing entries. Two old Tagalog reviews are retained historically and require Filipino-specific review; unchanged bytes alone do not transfer acceptance.
-- Merged [PR86](https://github.com/c933103/AN-Paint/pull/86) switches all four unsupported-profile message sites to a new format-neutral key. The two old FR/JA literals are now dormant linguistic-only acceptances. Twelve new values have complete bounded review: French, Japanese, eight English variants, emoji-English test mode, and [fresh Filipino-specific review](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184251067), with [exact-head Codex response](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184285983). The remaining 47 [handoff deltas](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6183064757) stay partial/unknown because inherited wording was outside complete-value acceptance.
+- Merged [PR86](https://github.com/c933103/AN-Paint/pull/86) switches all four unsupported-profile message sites to a new format-neutral key. The two old FR/JA literals are now dormant linguistic-only acceptances. Twelve new values have complete bounded review: French, Japanese, eight English variants, emoji-English test mode, and [fresh Filipino-specific review](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184251067), with [exact-head Codex response](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6184285983). The historical 47 [handoff deltas](https://github.com/c933103/AN-Paint/pull/86#issuecomment-6183064757) retain their narrow historical scope; a later complete HK review below supplies credit for that one value, while the other 46 remain unknown.
 - **Filipino:1 reviewed /2 needing identity review /697 unknown.** This includes the fresh new generic colour-error review rather than credit inferred from old`tl` evidence.
-- Active mapped records total **2,732 = 2,699 current + 33 open**. Eleven superseded records are historical, not extra active credits. Fifty-six partial records (9 memory + 47 colour) are also excluded from current totals.
+- Active mapped records total **3,002 = 2,963 current + 39 open**. Eleven superseded records are historical, not extra active credits. Fifty-six historical partial records (9 memory + 47 colour) do not themselves earn current credit; one HK colour value is now counted through its later complete receipt.
 - [Exact receipts](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-receipts.json) · [Per-language counts and exact keys](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/entry-review-counts.json) · [Consolidated source/evidence reconciliation](https://github.com/c933103/AN-Paint/blob/tracking/language-translation-progress-20261012/verification/translation-entry-review-2026-10-13/fr-ja-full-catalogue-review-20261015.json).
 
 This publication changes review data, documentation and a data-validator only. It does not rerun or independently certify application tests, installed layout, fonts, external-provider terms, release readiness or whole-language acceptance.
+
+### Hong Kong Chinese bounded successor
+
+[Complete 270-key receipt and independently reviewed repairs](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042): 260 active static accepts, 4 dormant linguistic-only accepts and 6 open findings, disjoint from the two preceding HK receipts. Current **Hong Kong Chinese:266 reviewed /6 open /428 unknown**. Five coherent cohorts cover save/recovery, formats/import/export, memory/errors and assembly/crop controls; this is not a completed HK catalogue pass.
+
+The live picker and New-image hint contexts are corrected in merged source. The old BMP/GIF diagnostic is now accepted as dormant wording, and the new generic-colour value has complete current HK review. Six findings remain explicit: unproven generic-busy reachability, external-link diagnosis, native-component diagnosis, dormant background wording, long-help provider/movement wording and crop-plural movement wording. The two resource repair candidates are independently approved but not applied by this data checkpoint.
 
 ### Current per-language entry counts
 
@@ -206,7 +212,7 @@ This publication changes review data, documentation and a data-validator only. I
 | `za` Vahcuengh | 0 | 0 | 7 | 693 | 700 | Not established |
 | `zgh` ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco) | 0 | 0 | 0 | 700 | 700 | Not started |
 | `zh-CN` 简体中文（中国大陆） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
-| `zh-HK` 繁體中文（香港） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
+| `zh-HK` 繁體中文（香港） | 266 | 6 | 428 | 0 | 700 | Broad re-review |
 | `zh-TW` 繁體中文（台灣） | 2 | 0 | 698 | 0 | 700 | Broad re-review |
 | `zu` isiZulu | 0 | 0 | 0 | 700 | 700 | Not started |
 

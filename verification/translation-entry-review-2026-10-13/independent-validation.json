@@ -412,25 +412,134 @@
     "exact_head_review": "To be requested once after guarded publication; no result yet claimed."
   },
   "current_checkpoint": {
-    "result": "ACCEPT",
-    "checked_at_utc": "2026-10-15T04:40:00Z",
-    "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
-    "on_disk_artifact_sha256": "08c3eb73643a656505df5aeb5e3063f1073fa2cd682afcef91ff510f544d6cec",
-    "normalized_one_newline_artifact_sha256": "fb384c1f5078a877cc600f3033d09c3dd338927745868c651f535d7ed35e672b",
-    "artifact_hash_note": "The on-disk temporary artifact has two terminal newlines; normalized hash has one. Parsed JSON values are identical.",
-    "checks": [
-      "171 rows ×700 entries partition119700 exactly;2699 current,33 open,44468 unknown,72500 missing",
-      "2732 unique active pairs and matching current/reviewed hashes for current receipts",
-      "Fresh immutable GitHub tree confirms all182 source paths/blob SHAs",
-      "Live PR80/PR86/Filipino receipt scopes inspected; only fil generic key accepted, two identity-transfer holds remain"
+    "status": "PASS",
+    "validation_scope": "Independent JSON parsing, immutable-source identity, exact complete-entry value hashing, receipt overlap and count arithmetic only. No substitute linguistic review, application execution, runtime certification, Work task or GitHub mutation.",
+    "tracker_revision": "a5013e4f743862426401c51a182ef3b739c0c844",
+    "source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+    "published_file_blobs_verified_against_fresh_GitHub_fetch": {
+      "entry-review-receipts.json": "6f2b219465bc5079630c7182eabac375c73b1e52",
+      "entry-review-counts.json": "44eb918f7280dc47b0d9cb792f14ade5f85c90c7"
+    },
+    "source_XML": {
+      "en": {
+        "git_blob_sha": "7d222b1846705314a7da7c18fc0ddeeae37ae93f",
+        "sha256": "d45c563481ac1e9520a0f8f82492e88da8a9561eeef45d8fb290d55ab34d7c4a",
+        "raw_resources": 703,
+        "review_denominator": 700,
+        "excluded_nontranslatable_keys": [
+          "string/ui_an_paint_assembly_png",
+          "string/ui_an_paint_recovery_zip",
+          "string/ui_an_paint_source_zip"
+        ],
+        "matched_value_hashes": 270
+      },
+      "hk": {
+        "git_blob_sha": "d44dab423806e1e7f45b82a7efc6f2b97d0c1f5a",
+        "sha256": "46e0e0e2ca45a65b8e38258d096436ccb97e8355bd510a23f54f08d286820944",
+        "raw_resources": 700,
+        "review_denominator": 700,
+        "excluded_nontranslatable_keys": [],
+        "matched_value_hashes": 270
+      }
+    },
+    "batch_sizes": [
+      50,
+      60,
+      58,
+      50,
+      52
     ],
-    "scope": "Independent data/source reconciliation only; no new linguistic or runtime certification.",
+    "unique_new_receipts": 270,
+    "overlap_with_published_active_receipts": 0,
+    "accepted_static": 260,
+    "accepted_linguistic_only": 4,
+    "linguistic_only_scopes": [
+      {
+        "key": "string/ui_discard",
+        "scope": "complete_linguistic_only"
+      },
+      {
+        "key": "string/formats22_derived_exported",
+        "scope": "complete_linguistic_only"
+      },
+      {
+        "key": "string/save20_unsupported_tagged_colour",
+        "scope": "complete_linguistic_only_dormant"
+      },
+      {
+        "key": "string/ui_preview_memory_error",
+        "scope": "complete_linguistic_only_no_current_caller_claim"
+      }
+    ],
+    "open_findings": [
+      {
+        "key": "string/ui_the_draft_is_saving_try_again_shortly",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_source_context_open"
+      },
+      {
+        "key": "string/ui_the_online_gallery_could_not_be_loaded_check",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_review_with_active_context_hold"
+      },
+      {
+        "key": "string/colour_converter_unavailable",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_review_with_active_context_hold"
+      },
+      {
+        "key": "string/ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+        "disposition": "context_hold",
+        "scope": "dormant_complete_language_review_with_source_claim_hold"
+      },
+      {
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "disposition": "correction_required",
+        "scope": "complete_entry_review_with_open_finding"
+      },
+      {
+        "key": "plurals/ui_crop_preview_images",
+        "disposition": "context_hold",
+        "scope": "complete_entry_review_with_open_finding"
+      }
+    ],
+    "open_findings_exactly_preserved": true,
+    "projected_counts": {
+      "reviewed_current": 2963,
+      "needs_rereview": 39,
+      "present_unknown": 44198,
+      "missing": 72500,
+      "total": 119700,
+      "zh_HK": {
+        "reviewed_current": 266,
+        "needs_rereview": 6,
+        "present_unknown": 428,
+        "missing": 0,
+        "total": 700
+      }
+    },
+    "conditions": [
+      "Counts are a proposal until a successor is published.",
+      "Publication must preserve each limited review scope and all six open findings.",
+      "Source identity must remain pinned or hashes must be recomputed.",
+      "Whole-language and runtime claims are not established."
+    ],
+    "input_files_sha256": {
+      "hk-independent-reconciliation-20261015.json": "5ae1f0a2e1c145d4b042e181d9358cd838b6a9d3533b1dcb4b2d4a494e8f1641",
+      "hk-independent-batch01-20261015.json": "fc9e2dd4512b901ec53106d6e703d9b3f038f002f580fe3555d4dc734a28d3d0",
+      "hk-independent-batch02-20261015.json": "9ba1029eca9b4d432099f24e5e7fdd1048e34bb317270893166f0ef57e3526d4",
+      "hk-independent-batch03-20261015.json": "4452ed8318e514503f589cfe6bf1e48a73508a48325f9dac88fe6fb2bb558ee5",
+      "hk-independent-batch04-20261015.json": "03d8dd069a04d94318b8f811336ce71c94127bff5f7803f4e595d41d1d208ba6",
+      "hk-independent-batch05-20261015.json": "99cf773adfb5eab02abcba70736894bbe876556930b42dd5f7563d15ec566146"
+    },
+    "checked_at_utc": "2026-10-15T05:15:00Z",
+    "public_review_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
     "summary": {
       "total": 119700,
       "present": 47200,
-      "reviewed_current": 2699,
-      "needs_rereview": 33,
-      "unreviewed_or_unknown": 44468,
+      "reviewed_current": 2963,
+      "needs_rereview": 39,
+      "unreviewed_or_unknown": 44198,
       "missing": 72500,
       "language_status_counts": {
         "broad-re-review-required": 57,
@@ -444,6 +553,63 @@
       "empty_catalogues": 31,
       "fully_reviewed_languages": 0,
       "test_mode_current_convention_receipts": 6
+    },
+    "payload_validation": {
+      "status": "PASS",
+      "payload_sha256": "7c497c00a94128bef641ddb04783c1142d0fd18688404d9191e8164b1ff6d1af",
+      "prior_active_receipt_prefix_exactly_preserved": 2732,
+      "new_receipts": 270,
+      "new_static": 260,
+      "new_linguistic_only": 4,
+      "new_open": 6,
+      "active_total": 3002,
+      "all_added_scopes_hashes_and_open_states_match_review": true,
+      "all_3002_states_match_hash_open_classifier": true,
+      "classifier_positive_negative_controls_passed": 4,
+      "superseded_history_preserved": 11,
+      "historical_partial_evidence_preserved": 56,
+      "all_171_partitions_and_memberships_pass": true,
+      "unchanged_non_HK_language_rows": 170,
+      "markdown": {
+        "TRANSLATION_PROGRESS.md": {
+          "current_table_rows": 171,
+          "all_numbers_and_status_labels_match": true,
+          "historical_suffix_exactly_preserved": true
+        },
+        "verification/translation-entry-review-2026-10-13/current-entry-review.md": {
+          "current_table_rows": 171,
+          "all_numbers_and_status_labels_match": true,
+          "historical_suffix_exactly_preserved": true
+        }
+      },
+      "current_markdown_sections_identical": true,
+      "summary": {
+        "total": 119700,
+        "present": 47200,
+        "reviewed_current": 2963,
+        "needs_rereview": 39,
+        "unreviewed_or_unknown": 44198,
+        "missing": 72500,
+        "language_status_counts": {
+          "broad-re-review-required": 57,
+          "review-not-established": 75,
+          "translation-not-started": 31,
+          "test-mode": 2,
+          "bounded-partial-review": 6
+        },
+        "full_catalogues": 59,
+        "partial_nonempty_catalogues": 81,
+        "empty_catalogues": 31,
+        "fully_reviewed_languages": 0,
+        "test_mode_current_convention_receipts": 6
+      },
+      "historical_partial_complete_overlap": [
+        [
+          "zh-HK",
+          "string/save20_unsupported_image_colour"
+        ]
+      ],
+      "historical_partial_link_validation": "Verified by updated data-only published validator with four linkage controls."
     }
   },
   "full_fr_ja_catalogue_rebound_20261015": {
@@ -497,5 +663,241 @@
       "Live PR80/PR86/Filipino receipt scopes inspected; only fil generic key accepted, two identity-transfer holds remain"
     ],
     "scope": "Independent data/source reconciliation only; no new linguistic or runtime certification."
+  },
+  "previous_hk_preceding_checkpoint": {
+    "result": "ACCEPT",
+    "checked_at_utc": "2026-10-15T04:40:00Z",
+    "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+    "on_disk_artifact_sha256": "08c3eb73643a656505df5aeb5e3063f1073fa2cd682afcef91ff510f544d6cec",
+    "normalized_one_newline_artifact_sha256": "fb384c1f5078a877cc600f3033d09c3dd338927745868c651f535d7ed35e672b",
+    "artifact_hash_note": "The on-disk temporary artifact has two terminal newlines; normalized hash has one. Parsed JSON values are identical.",
+    "checks": [
+      "171 rows ×700 entries partition119700 exactly;2699 current,33 open,44468 unknown,72500 missing",
+      "2732 unique active pairs and matching current/reviewed hashes for current receipts",
+      "Fresh immutable GitHub tree confirms all182 source paths/blob SHAs",
+      "Live PR80/PR86/Filipino receipt scopes inspected; only fil generic key accepted, two identity-transfer holds remain"
+    ],
+    "scope": "Independent data/source reconciliation only; no new linguistic or runtime certification.",
+    "summary": {
+      "total": 119700,
+      "present": 47200,
+      "reviewed_current": 2699,
+      "needs_rereview": 33,
+      "unreviewed_or_unknown": 44468,
+      "missing": 72500,
+      "language_status_counts": {
+        "broad-re-review-required": 57,
+        "review-not-established": 75,
+        "translation-not-started": 31,
+        "test-mode": 2,
+        "bounded-partial-review": 6
+      },
+      "full_catalogues": 59,
+      "partial_nonempty_catalogues": 81,
+      "empty_catalogues": 31,
+      "fully_reviewed_languages": 0,
+      "test_mode_current_convention_receipts": 6
+    }
+  },
+  "hk_bounded_270_20261015": {
+    "status": "PASS",
+    "validation_scope": "Independent JSON parsing, immutable-source identity, exact complete-entry value hashing, receipt overlap and count arithmetic only. No substitute linguistic review, application execution, runtime certification, Work task or GitHub mutation.",
+    "tracker_revision": "a5013e4f743862426401c51a182ef3b739c0c844",
+    "source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+    "published_file_blobs_verified_against_fresh_GitHub_fetch": {
+      "entry-review-receipts.json": "6f2b219465bc5079630c7182eabac375c73b1e52",
+      "entry-review-counts.json": "44eb918f7280dc47b0d9cb792f14ade5f85c90c7"
+    },
+    "source_XML": {
+      "en": {
+        "git_blob_sha": "7d222b1846705314a7da7c18fc0ddeeae37ae93f",
+        "sha256": "d45c563481ac1e9520a0f8f82492e88da8a9561eeef45d8fb290d55ab34d7c4a",
+        "raw_resources": 703,
+        "review_denominator": 700,
+        "excluded_nontranslatable_keys": [
+          "string/ui_an_paint_assembly_png",
+          "string/ui_an_paint_recovery_zip",
+          "string/ui_an_paint_source_zip"
+        ],
+        "matched_value_hashes": 270
+      },
+      "hk": {
+        "git_blob_sha": "d44dab423806e1e7f45b82a7efc6f2b97d0c1f5a",
+        "sha256": "46e0e0e2ca45a65b8e38258d096436ccb97e8355bd510a23f54f08d286820944",
+        "raw_resources": 700,
+        "review_denominator": 700,
+        "excluded_nontranslatable_keys": [],
+        "matched_value_hashes": 270
+      }
+    },
+    "batch_sizes": [
+      50,
+      60,
+      58,
+      50,
+      52
+    ],
+    "unique_new_receipts": 270,
+    "overlap_with_published_active_receipts": 0,
+    "accepted_static": 260,
+    "accepted_linguistic_only": 4,
+    "linguistic_only_scopes": [
+      {
+        "key": "string/ui_discard",
+        "scope": "complete_linguistic_only"
+      },
+      {
+        "key": "string/formats22_derived_exported",
+        "scope": "complete_linguistic_only"
+      },
+      {
+        "key": "string/save20_unsupported_tagged_colour",
+        "scope": "complete_linguistic_only_dormant"
+      },
+      {
+        "key": "string/ui_preview_memory_error",
+        "scope": "complete_linguistic_only_no_current_caller_claim"
+      }
+    ],
+    "open_findings": [
+      {
+        "key": "string/ui_the_draft_is_saving_try_again_shortly",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_source_context_open"
+      },
+      {
+        "key": "string/ui_the_online_gallery_could_not_be_loaded_check",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_review_with_active_context_hold"
+      },
+      {
+        "key": "string/colour_converter_unavailable",
+        "disposition": "context_hold",
+        "scope": "complete_linguistic_review_with_active_context_hold"
+      },
+      {
+        "key": "string/ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+        "disposition": "context_hold",
+        "scope": "dormant_complete_language_review_with_source_claim_hold"
+      },
+      {
+        "key": "string/ui_add_up_to_20_images_with_android_s",
+        "disposition": "correction_required",
+        "scope": "complete_entry_review_with_open_finding"
+      },
+      {
+        "key": "plurals/ui_crop_preview_images",
+        "disposition": "context_hold",
+        "scope": "complete_entry_review_with_open_finding"
+      }
+    ],
+    "open_findings_exactly_preserved": true,
+    "projected_counts": {
+      "reviewed_current": 2963,
+      "needs_rereview": 39,
+      "present_unknown": 44198,
+      "missing": 72500,
+      "total": 119700,
+      "zh_HK": {
+        "reviewed_current": 266,
+        "needs_rereview": 6,
+        "present_unknown": 428,
+        "missing": 0,
+        "total": 700
+      }
+    },
+    "conditions": [
+      "Counts are a proposal until a successor is published.",
+      "Publication must preserve each limited review scope and all six open findings.",
+      "Source identity must remain pinned or hashes must be recomputed.",
+      "Whole-language and runtime claims are not established."
+    ],
+    "input_files_sha256": {
+      "hk-independent-reconciliation-20261015.json": "5ae1f0a2e1c145d4b042e181d9358cd838b6a9d3533b1dcb4b2d4a494e8f1641",
+      "hk-independent-batch01-20261015.json": "fc9e2dd4512b901ec53106d6e703d9b3f038f002f580fe3555d4dc734a28d3d0",
+      "hk-independent-batch02-20261015.json": "9ba1029eca9b4d432099f24e5e7fdd1048e34bb317270893166f0ef57e3526d4",
+      "hk-independent-batch03-20261015.json": "4452ed8318e514503f589cfe6bf1e48a73508a48325f9dac88fe6fb2bb558ee5",
+      "hk-independent-batch04-20261015.json": "03d8dd069a04d94318b8f811336ce71c94127bff5f7803f4e595d41d1d208ba6",
+      "hk-independent-batch05-20261015.json": "99cf773adfb5eab02abcba70736894bbe876556930b42dd5f7563d15ec566146"
+    },
+    "checked_at_utc": "2026-10-15T05:15:00Z",
+    "public_review_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "summary": {
+      "total": 119700,
+      "present": 47200,
+      "reviewed_current": 2963,
+      "needs_rereview": 39,
+      "unreviewed_or_unknown": 44198,
+      "missing": 72500,
+      "language_status_counts": {
+        "broad-re-review-required": 57,
+        "review-not-established": 75,
+        "translation-not-started": 31,
+        "test-mode": 2,
+        "bounded-partial-review": 6
+      },
+      "full_catalogues": 59,
+      "partial_nonempty_catalogues": 81,
+      "empty_catalogues": 31,
+      "fully_reviewed_languages": 0,
+      "test_mode_current_convention_receipts": 6
+    }
+  },
+  "hk_successor_payload_validation_20261015": {
+    "status": "PASS",
+    "payload_sha256": "7c497c00a94128bef641ddb04783c1142d0fd18688404d9191e8164b1ff6d1af",
+    "prior_active_receipt_prefix_exactly_preserved": 2732,
+    "new_receipts": 270,
+    "new_static": 260,
+    "new_linguistic_only": 4,
+    "new_open": 6,
+    "active_total": 3002,
+    "all_added_scopes_hashes_and_open_states_match_review": true,
+    "all_3002_states_match_hash_open_classifier": true,
+    "classifier_positive_negative_controls_passed": 4,
+    "superseded_history_preserved": 11,
+    "historical_partial_evidence_preserved": 56,
+    "all_171_partitions_and_memberships_pass": true,
+    "unchanged_non_HK_language_rows": 170,
+    "markdown": {
+      "TRANSLATION_PROGRESS.md": {
+        "current_table_rows": 171,
+        "all_numbers_and_status_labels_match": true,
+        "historical_suffix_exactly_preserved": true
+      },
+      "verification/translation-entry-review-2026-10-13/current-entry-review.md": {
+        "current_table_rows": 171,
+        "all_numbers_and_status_labels_match": true,
+        "historical_suffix_exactly_preserved": true
+      }
+    },
+    "current_markdown_sections_identical": true,
+    "summary": {
+      "total": 119700,
+      "present": 47200,
+      "reviewed_current": 2963,
+      "needs_rereview": 39,
+      "unreviewed_or_unknown": 44198,
+      "missing": 72500,
+      "language_status_counts": {
+        "broad-re-review-required": 57,
+        "review-not-established": 75,
+        "translation-not-started": 31,
+        "test-mode": 2,
+        "bounded-partial-review": 6
+      },
+      "full_catalogues": 59,
+      "partial_nonempty_catalogues": 81,
+      "empty_catalogues": 31,
+      "fully_reviewed_languages": 0,
+      "test_mode_current_convention_receipts": 6
+    },
+    "historical_partial_complete_overlap": [
+      [
+        "zh-HK",
+        "string/save20_unsupported_image_colour"
+      ]
+    ],
+    "historical_partial_link_validation": "Verified by updated data-only published validator with four linkage controls."
   }
 }
