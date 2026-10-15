@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PHASE_TIMEOUTS,
+from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -37,8 +37,8 @@ def receipts(source, sdk):
 
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
-        for sdk, counts in ((30, {'ordinary':23, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}}),
-                            (35, {'ordinary':24, 'dialog':9, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, 'seed':1, 'verify':1})):
+        for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
+                            (35, {'ordinary':17, 'dialog':9, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
@@ -58,9 +58,9 @@ class AppPartitionTest(unittest.TestCase):
                 'nomPositionTextAndNativeEditing',
             }
             self.assertEqual({(position, method) for method in position_methods},
-                             {item for item in app_partition(expected,sdk)['ordinary'] if item[0]==position})
+                             set.union(*(app_partition(expected,sdk)[phase] for phase in POSITION_SHARDS)))
             self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],270)
-            self.assertEqual(result['all_app_total_timeout_seconds'],630 if sdk==30 else 1050)
+            self.assertEqual(result['all_app_total_timeout_seconds'],990 if sdk==30 else 1410)
             if sdk == 35:
                 self.assertIn('API35 en-US/hu 2x 640x320 mdpi', result['colour_scope'])
                 self.assertIn('preview-rail reachability and Cancel only', result['colour_scope'])
@@ -73,7 +73,7 @@ class AppPartitionTest(unittest.TestCase):
         future=('paint.anpaint.android.FutureTest','newCase')
         self.assertIn(future,app_partition(expected|{future},35)['ordinary'])
         with self.assertRaises(ValueError): verify_app_reports(expected|{future},35,reports,digest,suppressed)
-        for changed in (expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'unknownColour')},
+        for changed in (expected|{(POSITION,'newPositionCase')}, expected-{next(iter(POSITION_SHARDS['position-ainu-manchu']))}, expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'unknownColour')},
                         expected-{(COLOUR,next(iter(COLOUR_METHODS)))},
                         expected-{(DIALOG,next(iter(DIALOG_METHODS)))},
                         expected-{(GALLERY_DRAFT,next(iter(GALLERY_METHODS)))},
@@ -173,7 +173,7 @@ class ComposedDriverTest(unittest.TestCase):
         harness=r"""
 set -euo pipefail
 report="$TEST_ROOT/report"; mkdir -p "$report"
-adb=unused; variant=debug
+adb=unused; variant=debug; app_group=core
 progress() { :; }
 python3() {
   printf 'python3'; printf ' %s' "$@"; printf '\n'
@@ -207,7 +207,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
                         self.assertIn('--timeout-seconds 180',ordinary[0])
-                        for owner in (GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
+                        for owner in (POSITION,GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
                             self.assertIn('--exclude-class '+owner,ordinary[0])
                     if sdk<35:
                         status=(Path(directory)/'report/app/accepted-credit-restart/verify-status.txt').read_text()
@@ -250,7 +250,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(result['completed_tests'],30 if sdk==30 else 42)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
-                        for subtree in ('app','app-gallery-draft','app-dialog','app-vertical'):
+                        for subtree in ('app','app-gallery-draft','app-dialog','app-vertical','app-position'):
                             extra=root/subtree/'old/summary.json';extra.parent.mkdir(parents=True)
                             extra.write_text('{}')
                             for output in outputs:

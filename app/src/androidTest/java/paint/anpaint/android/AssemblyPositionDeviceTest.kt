@@ -142,7 +142,8 @@ class AssemblyPositionDeviceTest {
             revealText(onMain {root.findViewWithTag("assembly_position_error")})
             onMain {assertEquals(before,assembly.layout())}
             assertArrayEquals("Invalid native input cannot save",beforeSaved,File(directory,"project.json").readBytes())
-            replace(x,"5");replace(y,"4")
+            replace(x,"5")
+            replace(y,"4")
             hideIme(root)
             tap(onMain {current.getButton(AlertDialog.BUTTON_POSITIVE)})
             await("native Apply commits and dismisses") {!current.isShowing}
@@ -236,12 +237,22 @@ class AssemblyPositionDeviceTest {
     }
 
     private fun replace(field: EditText,value: String) {
+        // A previous edit can leave the keyboard over the next field. Native
+        // view clipping does not subtract IME occlusion; dismiss it before
+        // measuring/revealing the next touch target, just as before Apply.
+        hideIme(onMain {field.rootView})
         tap(field)
-        await("native field focus") {field.hasFocus() && field.hasWindowFocus()}
+        try {
+            await("native field focus: ${field.tag}") {field.hasFocus() && field.hasWindowFocus()}
+        } catch(error: AssertionError) {
+            throw AssertionError(onMain {"${error.message}; raw=${rawBounds(field)} visible=${visibleBounds(field)} " +
+                "focused=${field.rootView.findFocus()?.tag} windowFocus=${field.hasWindowFocus()} " +
+                "ime=${field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())}"},error)
+        }
         assertTrue(device.pressKeyCode(KeyEvent.KEYCODE_A,KeyEvent.META_CTRL_ON))
         assertTrue(device.pressKeyCode(KeyEvent.KEYCODE_DEL))
         if(value.isNotEmpty()) instrumentation.sendStringSync(value)
-        await("native field input") {field.text.toString()==value}
+        await("native field input: ${field.tag}") {field.text.toString()==value}
     }
     private fun hideIme(root: View) {
         await("window insets available") {root.rootWindowInsets!=null}
