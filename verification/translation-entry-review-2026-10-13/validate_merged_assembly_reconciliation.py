@@ -323,6 +323,9 @@ def check_tables(directory, counts, previous=None):
 
 
 def validate(source, previous=None, directory=HERE):
+    if read(directory / 'entry-review-counts.json')['source_revision'] == '5ece04b6c604b98fc0e59db600c728e541d08261':
+        from validate_gallery_reconciliation import validate as validate_gallery
+        return validate_gallery(source, previous, directory)
     if read(directory / 'entry-review-counts.json')['source_revision'] == '0aa6c89c9d3a4d133a8b231e7002783b60ead46d':
         from validate_position_reconciliation import validate as validate_position
         return validate_position(source, previous, directory)

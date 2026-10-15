@@ -1,5 +1,203 @@
 # Translation entry review: all 171 offered choices
 
+## Current review overview — PR85 merged, 15 October 2026
+
+Pinned source [develop 5ece04b6](https://github.com/c933103/AN-Paint/commit/5ece04b6c604b98fc0e59db600c728e541d08261), tree `7b5641d6b4b041e49fa7442d894353b4f65275f6`. **706 strings + 1 plural = 707 entries per choice; 120,897 slots.** Direct coverage: 59 full, 81 nonempty partial, 31 empty exact catalogues.
+
+**3,386 current / 29 open / 44,198 present unknown / 73,284 exact-catalogue gaps.** There are 3,415 mapped records, 20 current layout-test conventions, zero whole-language approvals and 57 broader re-review obligations.
+
+Merged PR85 adds one P2 gallery diagnostic. All 59 complete statements exactly match the independent immutable report and actual merged resources: 54 earn bounded current credit, while ain-Kana, ain-Latn, hak-Latn-TW, mnc-Mong and ryu retain five mapped open idiom/attestation reviews. Those open limits are not asserted translation defects. Other disclosed medium-confidence and script limits remain unchanged. See [full pair bindings](verification/translation-entry-review-2026-10-13/gallery-review-evidence-index.json) and [original complete reviews](https://github.com/c933103/AN-Paint/blob/97c91f05bb2192f13db309d1ce2927cc3f328024/evidence/pr85-gallery-external-link/complete-statement-review.json). Presence, hashes and CI do not grant semantic acceptance.
+
+French 699/8; Japanese 698/9; Hong Kong Chinese 274/5/428 unknown. All 3,356 earlier active records, 59 historical records, 56 partial records and four paused processing-label holds are unchanged. The 21 PR67 reports and immutable Mongolian parent-acceptance gate remain required. The new key adds 112 exact-catalogue gaps outside the 59 scoped catalogues; fallback earns no exact-catalogue credit.
+
+Existing [same-tree evidence](https://github.com/c933103/AN-Paint/pull/85#issuecomment-6198435476) covers six new JVM methods on API30/35 and the separate inherited 42-case installed API35 union. The new gallery methods are offline Robolectric evidence, not installed-browser/provider-network proof. This tracker runs no application tests and grants no new linguistic, native-speaker, whole-language, device or full-layout certification. Earlier source/context evidence remains dated to its original scope.
+
+### Current per-language entry counts
+
+
+
+| Language / choice | Reviewed current | Needs re-review¹ | Unreviewed / unknown | Missing | Total | Broader status |
+|---|---:|---:|---:|---:|---:|---|
+| `en-001` English (International) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `af` Afrikaans | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ain-Kana` アイヌ イタㇰ | 8 | 1 | 698 | 0 | 707 | Broad re-review |
+| `ain-Latn` Aynu itak | 8 | 1 | 698 | 0 | 707 | Broad re-review |
+| `am` አማርኛ | 0 | 0 | 12 | 695 | 707 | Not established |
+| `ang` Ænglisc | 0 | 0 | 0 | 707 | 707 | Not started |
+| `ar` العربية | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `ary` الدارجة المغربية | 0 | 0 | 0 | 707 | 707 | Not started |
+| `as` অসমীয়া | 0 | 0 | 0 | 707 | 707 | Not started |
+| `ast` Asturianu | 0 | 0 | 86 | 621 | 707 | Not established |
+| `az` Azərbaycanca | 0 | 0 | 57 | 650 | 707 | Not established |
+| `be` Беларуская | 0 | 0 | 108 | 599 | 707 | Not established |
+| `bg` Български | 0 | 0 | 127 | 580 | 707 | Not established |
+| `bn` বাংলা | 0 | 0 | 103 | 604 | 707 | Not established |
+| `bo` བོད་ཡིག | 8 | 0 | 699 | 0 | 707 | Broad re-review |
+| `br` Brezhoneg | 0 | 0 | 85 | 622 | 707 | Not established |
+| `bs` Bosanski | 0 | 0 | 117 | 590 | 707 | Not established |
+| `ca` Català | 0 | 0 | 127 | 580 | 707 | Not established |
+| `ca-ES-valencia` Valencià | 0 | 0 | 95 | 612 | 707 | Not established |
+| `ceb` Cebuano | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `ch` Chamoru | 0 | 0 | 0 | 707 | 707 | Not started |
+| `chr` ᏣᎳᎩ | 0 | 0 | 0 | 707 | 707 | Not started |
+| `ckb` کوردی | 0 | 0 | 40 | 667 | 707 | Not established |
+| `cs` Čeština | 0 | 0 | 121 | 586 | 707 | Not established |
+| `csb` Kaszëbsczi | 0 | 0 | 3 | 704 | 707 | Not established |
+| `cy` Cymraeg | 0 | 0 | 38 | 669 | 707 | Not established |
+| `da` Dansk | 0 | 0 | 127 | 580 | 707 | Not established |
+| `de` Deutsch | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `dz` ཇོང་ཁ | 8 | 0 | 699 | 0 | 707 | Broad re-review |
+| `el` Ελληνικά | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `en-AU` English (Australia) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-CA` English (Canada) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-GB` English (United Kingdom) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-IN` English (India) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-SG` English (Singapore) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-US` English (United States) | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `en-XV` English (vertical layout test) | 10 | 0 | 697 | 0 | 707 | Test mode |
+| `eo` Esperanto | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `es-419` Español (América Latina) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `es-ES` Español (España) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `et` Eesti | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `eu-ES` Euskara (Espainia) | 0 | 0 | 123 | 584 | 707 | Not established |
+| `fa` فارسی | 0 | 0 | 113 | 594 | 707 | Not established |
+| `fa-IR` فارسی (ایران) | 0 | 0 | 57 | 650 | 707 | Not established |
+| `fi` Suomi | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `fil` Filipino | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `fr` Français | 699 | 8 | 0 | 0 | 707 | Broad re-review |
+| `fy` Frysk | 0 | 0 | 41 | 666 | 707 | Not established |
+| `ga` Gaeilge | 0 | 0 | 11 | 696 | 707 | Not established |
+| `gd` Gàidhlig | 0 | 0 | 76 | 631 | 707 | Not established |
+| `gl` Galego | 0 | 0 | 116 | 591 | 707 | Not established |
+| `gu` ગુજરાતી | 0 | 0 | 72 | 635 | 707 | Not established |
+| `ha` Hausa | 0 | 0 | 0 | 707 | 707 | Not started |
+| `hak-Hant-TW` 臺灣客家語（四縣腔，漢字） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `hak-Latn-TW` Hak-kâ-ngî (Thòi-vân, Si-yen, Pha̍k-fa-sṳ) | 7 | 1 | 699 | 0 | 707 | Broad re-review |
+| `he` עברית | 1 | 0 | 133 | 573 | 707 | Bounded partial |
+| `hi` हिन्दी | 0 | 0 | 59 | 648 | 707 | Not established |
+| `hne` छत्तीसगढ़ी | 0 | 0 | 16 | 691 | 707 | Not established |
+| `hr` Hrvatski | 0 | 0 | 98 | 609 | 707 | Not established |
+| `ht` Kreyòl ayisyen | 0 | 0 | 0 | 707 | 707 | Not started |
+| `hu` Magyar | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `hy` Հայերեն | 1 | 0 | 109 | 597 | 707 | Bounded partial |
+| `ia` Interlingua | 0 | 0 | 60 | 647 | 707 | Not established |
+| `id` Bahasa Indonesia | 608 | 1 | 98 | 0 | 707 | Broad re-review |
+| `ig` Igbo | 0 | 0 | 0 | 707 | 707 | Not started |
+| `is` Íslenska | 0 | 0 | 110 | 597 | 707 | Not established |
+| `it` Italiano | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ja` 日本語 | 698 | 9 | 0 | 0 | 707 | Broad re-review |
+| `jje` 제주말 | 8 | 0 | 699 | 0 | 707 | Broad re-review |
+| `jv` Jawa | 0 | 0 | 5 | 702 | 707 | Not established |
+| `ka` ქართული | 0 | 0 | 121 | 586 | 707 | Not established |
+| `kab` Taqbaylit | 0 | 0 | 103 | 604 | 707 | Not established |
+| `kk` Қазақша | 0 | 0 | 123 | 584 | 707 | Not established |
+| `km` ភាសាខ្មែរ | 0 | 0 | 41 | 666 | 707 | Not established |
+| `kn` ಕನ್ನಡ | 0 | 0 | 70 | 637 | 707 | Not established |
+| `ko-Kore-KR` 한국어 (한글·漢字 혼용, 대한민국) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ko-KP` 조선말 (조선민주주의인민공화국) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ko-KR` 한국어 (대한민국) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ku` Kurdî | 0 | 0 | 4 | 703 | 707 | Not established |
+| `ky` Кыргызча | 0 | 0 | 35 | 672 | 707 | Not established |
+| `la` Latina | 0 | 0 | 8 | 699 | 707 | Not established |
+| `ln` Lingála | 0 | 0 | 0 | 707 | 707 | Not started |
+| `lo` ລາວ | 0 | 0 | 31 | 676 | 707 | Not established |
+| `lt` Lietuvių | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `lv` Latviešu | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `lzh-Hant` 文言（繁體） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `mai` मैथिली | 0 | 0 | 38 | 669 | 707 | Not established |
+| `mi` Māori | 0 | 0 | 0 | 707 | 707 | Not started |
+| `mk` Македонски | 0 | 0 | 74 | 633 | 707 | Not established |
+| `ml-IN` മലയാളം (ഇന്ത്യ) | 0 | 0 | 59 | 648 | 707 | Not established |
+| `mn-Cyrl-MN` Монгол (Кирилл, Монгол Улс) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `mn-Mong` ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `mnc-Mong` ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ | 8 | 1 | 698 | 0 | 707 | Broad re-review |
+| `mr` मराठी | 0 | 0 | 99 | 608 | 707 | Not established |
+| `ms` Bahasa Melayu | 612 | 1 | 94 | 0 | 707 | Broad re-review |
+| `mww` Hmong Daw | 0 | 0 | 4 | 703 | 707 | Not established |
+| `my` မြန်မာဘာသာ | 0 | 0 | 74 | 633 | 707 | Not established |
+| `nan-Hant-TW` 臺灣台語（漢字） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `nan-Latn-TW` Tâi-gí (Tâi-oân, Pe̍h-ōe-jī) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `nch` Mexicano (Central Huasteca) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `nds` Plattdüütsch | 0 | 0 | 32 | 675 | 707 | Not established |
+| `ne` नेपाली | 0 | 0 | 74 | 633 | 707 | Not established |
+| `nhe` Náhuatl (Eastern Huasteca) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `nhw` Náhuatl (Western Huasteca) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `nl` Nederlands | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `nn` Norsk nynorsk | 0 | 0 | 110 | 597 | 707 | Not established |
+| `no` Norsk | 0 | 0 | 115 | 592 | 707 | Not established |
+| `non` Norrœna | 0 | 0 | 0 | 707 | 707 | Not started |
+| `nv` Diné bizaad | 0 | 0 | 0 | 707 | 707 | Not started |
+| `oc` Occitan | 0 | 0 | 88 | 619 | 707 | Not established |
+| `pa-IN` ਪੰਜਾਬੀ (ਭਾਰਤ) | 0 | 0 | 107 | 600 | 707 | Not established |
+| `pcm` Naijá | 0 | 0 | 0 | 707 | 707 | Not started |
+| `pl` Polski | 1 | 0 | 165 | 541 | 707 | Bounded partial |
+| `ps` پښتو | 0 | 0 | 45 | 662 | 707 | Not established |
+| `pt-BR` Português (Brasil) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `pt-PT` Português (Portugal) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `qaa-Zsye-XV` 😀 Emoji (vertical test; English hints) | 10 | 0 | 697 | 0 | 707 | Test mode |
+| `qug` Kichwa (Chimborazo) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `quh` Qhichwa (South Bolivian) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `quy` Qichwa (Ayacucho / Chanka) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `quz` Qichwa (Cusco) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `ro` Română | 0 | 0 | 127 | 580 | 707 | Not established |
+| `ru` Русский | 10 | 0 | 697 | 0 | 707 | Broad re-review |
+| `rw` Ikinyarwanda | 0 | 0 | 14 | 693 | 707 | Not established |
+| `ryu` うちなーぐち | 7 | 1 | 699 | 0 | 707 | Broad re-review |
+| `sa` संस्कृतम् | 0 | 0 | 0 | 707 | 707 | Not started |
+| `sd` سنڌي | 0 | 0 | 60 | 647 | 707 | Not established |
+| `se` Davvisámegiella | 0 | 0 | 28 | 679 | 707 | Not established |
+| `shn` တႆး | 0 | 0 | 9 | 698 | 707 | Not established |
+| `si` සිංහල | 0 | 0 | 52 | 655 | 707 | Not established |
+| `sk` Slovenčina | 0 | 0 | 127 | 580 | 707 | Not established |
+| `sl` Slovenščina | 0 | 0 | 127 | 580 | 707 | Not established |
+| `sm` Gagana Samoa | 0 | 0 | 0 | 707 | 707 | Not started |
+| `so` Soomaaliga | 0 | 0 | 0 | 707 | 707 | Not started |
+| `sq` Shqip | 0 | 0 | 65 | 642 | 707 | Not established |
+| `sr-Cyrl` Српски (Ћирилица) | 1 | 0 | 169 | 537 | 707 | Bounded partial |
+| `sr-Latn` Srpski (Latinica) | 1 | 0 | 167 | 539 | 707 | Bounded partial |
+| `su` Sunda | 0 | 0 | 0 | 707 | 707 | Not started |
+| `sv` Svenska | 0 | 0 | 127 | 580 | 707 | Not established |
+| `sw` Kiswahili | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `ta` தமிழ் | 0 | 0 | 96 | 611 | 707 | Not established |
+| `tdd` ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ | 0 | 0 | 7 | 700 | 707 | Not established |
+| `te` తెలుగు | 0 | 0 | 97 | 610 | 707 | Not established |
+| `tg` Тоҷикӣ | 0 | 0 | 0 | 707 | 707 | Not started |
+| `th` ไทย | 1 | 0 | 163 | 543 | 707 | Bounded partial |
+| `tok` toki pona | 0 | 0 | 9 | 698 | 707 | Not established |
+| `tpi` Tok Pisin | 0 | 0 | 0 | 707 | 707 | Not started |
+| `tr` Türkçe | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `tt-Cyrl` Татарча (Кирилл) | 0 | 0 | 19 | 688 | 707 | Not established |
+| `tt-Latn` Tatarça (Latin) | 0 | 0 | 19 | 688 | 707 | Not established |
+| `ug` ئۇيغۇرچە / Uyghurche | 0 | 0 | 69 | 638 | 707 | Not established |
+| `uk` Українська | 0 | 0 | 127 | 580 | 707 | Not established |
+| `ur` اردو | 0 | 0 | 48 | 659 | 707 | Not established |
+| `uz-Latn` Oʻzbekcha | 0 | 0 | 33 | 674 | 707 | Not established |
+| `vi` Tiếng Việt | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `vi-Hani` 㗂越（𡨸喃） | 8 | 0 | 699 | 0 | 707 | Broad re-review |
+| `wa` Walon | 0 | 0 | 24 | 683 | 707 | Not established |
+| `wo` Wolof | 0 | 0 | 0 | 707 | 707 | Not started |
+| `wuu-Hans` 吴语（上海话书面语，简体） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `xh` IsiXhosa | 0 | 0 | 32 | 675 | 707 | Not established |
+| `yi` ייִדיש | 0 | 0 | 7 | 700 | 707 | Not established |
+| `yo` Yorùbá | 0 | 0 | 0 | 707 | 707 | Not started |
+| `yua` Maaya t’aan | 0 | 0 | 0 | 707 | 707 | Not started |
+| `yue-Hant` 粵語（繁體） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `yue-Latn` Cantonese (Latin) | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `za` Vahcuengh | 0 | 0 | 7 | 700 | 707 | Not established |
+| `zgh` ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco) | 0 | 0 | 0 | 707 | 707 | Not started |
+| `zh-CN` 简体中文（中国大陆） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `zh-HK` 繁體中文（香港） | 274 | 5 | 428 | 0 | 707 | Broad re-review |
+| `zh-TW` 繁體中文（台灣） | 9 | 0 | 698 | 0 | 707 | Broad re-review |
+| `zu` isiZulu | 0 | 0 | 0 | 707 | 707 | Not started |
+
+¹ An open source/linguistic/identity finding remains needing re-review even when exact values are unchanged. No automatic acceptance follows from merge, resource presence, matching hashes, or a test passing.
+
+### Preserved pre-gallery overview — source0aa6c89c
+
+The following706-entry overview is historical. Its PR85-unmerged statements are superseded above.
+
+# Translation entry review: all 171 offered choices
+
 ## Current review overview — PR67 merged, 15 October 2026
 
 Pinned current source: [develop `0aa6c89c`](https://github.com/c933103/AN-Paint/commit/0aa6c89c9d3a4d133a8b231e7002783b60ead46d), tree `36ee786caf7b728ee1dada5c4c971ff4830e965c`. **705 strings + 1 plural = 706 typed entries per choice; 171 choices, 120,726 slots.** Direct coverage remains 59 full, 81 nonempty partial and 31 empty exact catalogues.
@@ -13,185 +211,6 @@ French is **698 current /8 open**; Japanese **697/9**; Hong Kong Chinese **273/5
 The six new entries add 672 exact-catalogue gaps across 112 outside-scope choices. English fallback and inherited resources do not earn exact-catalogue translation or review credit. Counts are mechanically recomputed rather than inferred from fixture coverage.
 
 Existing [same-tree premerge API35 evidence](https://github.com/c933103/AN-Paint/pull/67#issuecomment-6197244190) establishes seven added position methods and the complete 42-method union. This tracker reruns no application tests and grants no whole-language, native-speaker, physical-device, font-pixel or full-runtime/layout certification. Earlier source/context records retain their original pinned scope; hash continuity is not a new context review.
-
-### Current per-language entry counts
-
-
-| Language / choice | Reviewed current | Needs re-review¹ | Unreviewed / unknown | Missing | Total | Broader status |
-|---|---:|---:|---:|---:|---:|---|
-| `en-001` English (International) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `af` Afrikaans | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ain-Kana` アイヌ イタㇰ | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ain-Latn` Aynu itak | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `am` አማርኛ | 0 | 0 | 12 | 694 | 706 | Not established |
-| `ang` Ænglisc | 0 | 0 | 0 | 706 | 706 | Not started |
-| `ar` العربية | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `ary` الدارجة المغربية | 0 | 0 | 0 | 706 | 706 | Not started |
-| `as` অসমীয়া | 0 | 0 | 0 | 706 | 706 | Not started |
-| `ast` Asturianu | 0 | 0 | 86 | 620 | 706 | Not established |
-| `az` Azərbaycanca | 0 | 0 | 57 | 649 | 706 | Not established |
-| `be` Беларуская | 0 | 0 | 108 | 598 | 706 | Not established |
-| `bg` Български | 0 | 0 | 127 | 579 | 706 | Not established |
-| `bn` বাংলা | 0 | 0 | 103 | 603 | 706 | Not established |
-| `bo` བོད་ཡིག | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `br` Brezhoneg | 0 | 0 | 85 | 621 | 706 | Not established |
-| `bs` Bosanski | 0 | 0 | 117 | 589 | 706 | Not established |
-| `ca` Català | 0 | 0 | 127 | 579 | 706 | Not established |
-| `ca-ES-valencia` Valencià | 0 | 0 | 95 | 611 | 706 | Not established |
-| `ceb` Cebuano | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `ch` Chamoru | 0 | 0 | 0 | 706 | 706 | Not started |
-| `chr` ᏣᎳᎩ | 0 | 0 | 0 | 706 | 706 | Not started |
-| `ckb` کوردی | 0 | 0 | 40 | 666 | 706 | Not established |
-| `cs` Čeština | 0 | 0 | 121 | 585 | 706 | Not established |
-| `csb` Kaszëbsczi | 0 | 0 | 3 | 703 | 706 | Not established |
-| `cy` Cymraeg | 0 | 0 | 38 | 668 | 706 | Not established |
-| `da` Dansk | 0 | 0 | 127 | 579 | 706 | Not established |
-| `de` Deutsch | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `dz` ཇོང་ཁ | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `el` Ελληνικά | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `en-AU` English (Australia) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-CA` English (Canada) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-GB` English (United Kingdom) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-IN` English (India) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-SG` English (Singapore) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-US` English (United States) | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `en-XV` English (vertical layout test) | 9 | 0 | 697 | 0 | 706 | Test mode |
-| `eo` Esperanto | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `es-419` Español (América Latina) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `es-ES` Español (España) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `et` Eesti | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `eu-ES` Euskara (Espainia) | 0 | 0 | 123 | 583 | 706 | Not established |
-| `fa` فارسی | 0 | 0 | 113 | 593 | 706 | Not established |
-| `fa-IR` فارسی (ایران) | 0 | 0 | 57 | 649 | 706 | Not established |
-| `fi` Suomi | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `fil` Filipino | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `fr` Français | 698 | 8 | 0 | 0 | 706 | Broad re-review |
-| `fy` Frysk | 0 | 0 | 41 | 665 | 706 | Not established |
-| `ga` Gaeilge | 0 | 0 | 11 | 695 | 706 | Not established |
-| `gd` Gàidhlig | 0 | 0 | 76 | 630 | 706 | Not established |
-| `gl` Galego | 0 | 0 | 116 | 590 | 706 | Not established |
-| `gu` ગુજરાતી | 0 | 0 | 72 | 634 | 706 | Not established |
-| `ha` Hausa | 0 | 0 | 0 | 706 | 706 | Not started |
-| `hak-Hant-TW` 臺灣客家語（四縣腔，漢字） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `hak-Latn-TW` Hak-kâ-ngî (Thòi-vân, Si-yen, Pha̍k-fa-sṳ) | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `he` עברית | 1 | 0 | 133 | 572 | 706 | Bounded partial |
-| `hi` हिन्दी | 0 | 0 | 59 | 647 | 706 | Not established |
-| `hne` छत्तीसगढ़ी | 0 | 0 | 16 | 690 | 706 | Not established |
-| `hr` Hrvatski | 0 | 0 | 98 | 608 | 706 | Not established |
-| `ht` Kreyòl ayisyen | 0 | 0 | 0 | 706 | 706 | Not started |
-| `hu` Magyar | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `hy` Հայերեն | 1 | 0 | 109 | 596 | 706 | Bounded partial |
-| `ia` Interlingua | 0 | 0 | 60 | 646 | 706 | Not established |
-| `id` Bahasa Indonesia | 607 | 1 | 98 | 0 | 706 | Broad re-review |
-| `ig` Igbo | 0 | 0 | 0 | 706 | 706 | Not started |
-| `is` Íslenska | 0 | 0 | 110 | 596 | 706 | Not established |
-| `it` Italiano | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ja` 日本語 | 697 | 9 | 0 | 0 | 706 | Broad re-review |
-| `jje` 제주말 | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `jv` Jawa | 0 | 0 | 5 | 701 | 706 | Not established |
-| `ka` ქართული | 0 | 0 | 121 | 585 | 706 | Not established |
-| `kab` Taqbaylit | 0 | 0 | 103 | 603 | 706 | Not established |
-| `kk` Қазақша | 0 | 0 | 123 | 583 | 706 | Not established |
-| `km` ភាសាខ្មែរ | 0 | 0 | 41 | 665 | 706 | Not established |
-| `kn` ಕನ್ನಡ | 0 | 0 | 70 | 636 | 706 | Not established |
-| `ko-Kore-KR` 한국어 (한글·漢字 혼용, 대한민국) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ko-KP` 조선말 (조선민주주의인민공화국) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ko-KR` 한국어 (대한민국) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ku` Kurdî | 0 | 0 | 4 | 702 | 706 | Not established |
-| `ky` Кыргызча | 0 | 0 | 35 | 671 | 706 | Not established |
-| `la` Latina | 0 | 0 | 8 | 698 | 706 | Not established |
-| `ln` Lingála | 0 | 0 | 0 | 706 | 706 | Not started |
-| `lo` ລາວ | 0 | 0 | 31 | 675 | 706 | Not established |
-| `lt` Lietuvių | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `lv` Latviešu | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `lzh-Hant` 文言（繁體） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `mai` मैथिली | 0 | 0 | 38 | 668 | 706 | Not established |
-| `mi` Māori | 0 | 0 | 0 | 706 | 706 | Not started |
-| `mk` Македонски | 0 | 0 | 74 | 632 | 706 | Not established |
-| `ml-IN` മലയാളം (ഇന്ത്യ) | 0 | 0 | 59 | 647 | 706 | Not established |
-| `mn-Cyrl-MN` Монгол (Кирилл, Монгол Улс) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `mn-Mong` ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `mnc-Mong` ᠮᠠᠨᠵᡠ ᡤᡳᠰᡠᠨ | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `mr` मराठी | 0 | 0 | 99 | 607 | 706 | Not established |
-| `ms` Bahasa Melayu | 611 | 1 | 94 | 0 | 706 | Broad re-review |
-| `mww` Hmong Daw | 0 | 0 | 4 | 702 | 706 | Not established |
-| `my` မြန်မာဘာသာ | 0 | 0 | 74 | 632 | 706 | Not established |
-| `nan-Hant-TW` 臺灣台語（漢字） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `nan-Latn-TW` Tâi-gí (Tâi-oân, Pe̍h-ōe-jī) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `nch` Mexicano (Central Huasteca) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `nds` Plattdüütsch | 0 | 0 | 32 | 674 | 706 | Not established |
-| `ne` नेपाली | 0 | 0 | 74 | 632 | 706 | Not established |
-| `nhe` Náhuatl (Eastern Huasteca) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `nhw` Náhuatl (Western Huasteca) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `nl` Nederlands | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `nn` Norsk nynorsk | 0 | 0 | 110 | 596 | 706 | Not established |
-| `no` Norsk | 0 | 0 | 115 | 591 | 706 | Not established |
-| `non` Norrœna | 0 | 0 | 0 | 706 | 706 | Not started |
-| `nv` Diné bizaad | 0 | 0 | 0 | 706 | 706 | Not started |
-| `oc` Occitan | 0 | 0 | 88 | 618 | 706 | Not established |
-| `pa-IN` ਪੰਜਾਬੀ (ਭਾਰਤ) | 0 | 0 | 107 | 599 | 706 | Not established |
-| `pcm` Naijá | 0 | 0 | 0 | 706 | 706 | Not started |
-| `pl` Polski | 1 | 0 | 165 | 540 | 706 | Bounded partial |
-| `ps` پښتو | 0 | 0 | 45 | 661 | 706 | Not established |
-| `pt-BR` Português (Brasil) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `pt-PT` Português (Portugal) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `qaa-Zsye-XV` 😀 Emoji (vertical test; English hints) | 9 | 0 | 697 | 0 | 706 | Test mode |
-| `qug` Kichwa (Chimborazo) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `quh` Qhichwa (South Bolivian) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `quy` Qichwa (Ayacucho / Chanka) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `quz` Qichwa (Cusco) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `ro` Română | 0 | 0 | 127 | 579 | 706 | Not established |
-| `ru` Русский | 9 | 0 | 697 | 0 | 706 | Broad re-review |
-| `rw` Ikinyarwanda | 0 | 0 | 14 | 692 | 706 | Not established |
-| `ryu` うちなーぐち | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `sa` संस्कृतम् | 0 | 0 | 0 | 706 | 706 | Not started |
-| `sd` سنڌي | 0 | 0 | 60 | 646 | 706 | Not established |
-| `se` Davvisámegiella | 0 | 0 | 28 | 678 | 706 | Not established |
-| `shn` တႆး | 0 | 0 | 9 | 697 | 706 | Not established |
-| `si` සිංහල | 0 | 0 | 52 | 654 | 706 | Not established |
-| `sk` Slovenčina | 0 | 0 | 127 | 579 | 706 | Not established |
-| `sl` Slovenščina | 0 | 0 | 127 | 579 | 706 | Not established |
-| `sm` Gagana Samoa | 0 | 0 | 0 | 706 | 706 | Not started |
-| `so` Soomaaliga | 0 | 0 | 0 | 706 | 706 | Not started |
-| `sq` Shqip | 0 | 0 | 65 | 641 | 706 | Not established |
-| `sr-Cyrl` Српски (Ћирилица) | 1 | 0 | 169 | 536 | 706 | Bounded partial |
-| `sr-Latn` Srpski (Latinica) | 1 | 0 | 167 | 538 | 706 | Bounded partial |
-| `su` Sunda | 0 | 0 | 0 | 706 | 706 | Not started |
-| `sv` Svenska | 0 | 0 | 127 | 579 | 706 | Not established |
-| `sw` Kiswahili | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `ta` தமிழ் | 0 | 0 | 96 | 610 | 706 | Not established |
-| `tdd` ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ | 0 | 0 | 7 | 699 | 706 | Not established |
-| `te` తెలుగు | 0 | 0 | 97 | 609 | 706 | Not established |
-| `tg` Тоҷикӣ | 0 | 0 | 0 | 706 | 706 | Not started |
-| `th` ไทย | 1 | 0 | 163 | 542 | 706 | Bounded partial |
-| `tok` toki pona | 0 | 0 | 9 | 697 | 706 | Not established |
-| `tpi` Tok Pisin | 0 | 0 | 0 | 706 | 706 | Not started |
-| `tr` Türkçe | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `tt-Cyrl` Татарча (Кирилл) | 0 | 0 | 19 | 687 | 706 | Not established |
-| `tt-Latn` Tatarça (Latin) | 0 | 0 | 19 | 687 | 706 | Not established |
-| `ug` ئۇيغۇرچە / Uyghurche | 0 | 0 | 69 | 637 | 706 | Not established |
-| `uk` Українська | 0 | 0 | 127 | 579 | 706 | Not established |
-| `ur` اردو | 0 | 0 | 48 | 658 | 706 | Not established |
-| `uz-Latn` Oʻzbekcha | 0 | 0 | 33 | 673 | 706 | Not established |
-| `vi` Tiếng Việt | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `vi-Hani` 㗂越（𡨸喃） | 7 | 0 | 699 | 0 | 706 | Broad re-review |
-| `wa` Walon | 0 | 0 | 24 | 682 | 706 | Not established |
-| `wo` Wolof | 0 | 0 | 0 | 706 | 706 | Not started |
-| `wuu-Hans` 吴语（上海话书面语，简体） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `xh` IsiXhosa | 0 | 0 | 32 | 674 | 706 | Not established |
-| `yi` ייִדיש | 0 | 0 | 7 | 699 | 706 | Not established |
-| `yo` Yorùbá | 0 | 0 | 0 | 706 | 706 | Not started |
-| `yua` Maaya t’aan | 0 | 0 | 0 | 706 | 706 | Not started |
-| `yue-Hant` 粵語（繁體） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `yue-Latn` Cantonese (Latin) | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `za` Vahcuengh | 0 | 0 | 7 | 699 | 706 | Not established |
-| `zgh` ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco) | 0 | 0 | 0 | 706 | 706 | Not started |
-| `zh-CN` 简体中文（中国大陆） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `zh-HK` 繁體中文（香港） | 273 | 5 | 428 | 0 | 706 | Broad re-review |
-| `zh-TW` 繁體中文（台灣） | 8 | 0 | 698 | 0 | 706 | Broad re-review |
-| `zu` isiZulu | 0 | 0 | 0 | 706 | 706 | Not started |
-
-¹ An open source/linguistic/identity finding remains needing re-review even when exact values are unchanged. No automatic acceptance follows from merge, resource presence, matching hashes, or a test passing.
 
 ### Preserved pre-position overview — source e53b2e6a
 
