@@ -12,7 +12,7 @@ from translation_catalogues import android_string_errors, placeholders
 
 RES = Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
 KEY = "ui_crop_preview_images"
-WARNING = "Обрезка размещённых изображений перемещает присоединённые к ним изображения."
+WARNING = "При обрезке размещённых изображений присоединённые к ним изображения могут переместиться."
 COUNTS = {
     "one": "Применить к %3$d изображению.",
     "few": "Применить к %3$d изображениям.",

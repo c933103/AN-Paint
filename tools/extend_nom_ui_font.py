@@ -6,7 +6,8 @@ Requires fonttools. No downloads, translation changes, or inventory edits.
 The old subset and source must match the pinned hashes. Existing glyph order,
 compiled outlines, advances, bearings, global metrics and name/licence metadata
 are retained; by default only U+651D and U+671D are appended. Pinned follow-on
-extensions can call extend with an explicit base hash and additions. The full
+extensions can call extend with an explicit base hash and additions. Supplementary
+characters are added only to format-12 Unicode subtables, never format 4. The full
 two-source builder is not used for these preservation-only deltas.
 """
 import argparse
@@ -20,15 +21,37 @@ BASE_SHA = '399798cabc8de4d86e219ab92934bbac4fc9587e547487761ee7cf30167110aa'
 ADDITIONS = (0x651D, 0x671D)
 
 
+def checked_additions(additions):
+    additions = tuple(additions)
+    if (not additions or any(type(cp) is not int or cp < 0 or cp > 0x10ffff
+                             or 0xd800 <= cp <= 0xdfff for cp in additions)
+            or len(set(additions)) != len(additions)):
+        raise ValueError('Expected distinct Unicode scalar codepoints')
+    return additions
+
+
+def cmap_additions(table, source_map, additions):
+    if not table.isUnicode() or table.format not in (4, 12):
+        return {}
+    return {cp: source_map[cp] for cp in additions if table.format == 12 or cp <= 0xffff}
+
+
+def check_horizontal_metrics(glyph, metrics, horizontal):
+    advance, left = metrics
+    extent = left + glyph.xMax - glyph.xMin
+    right = advance - extent
+    if (advance > horizontal.advanceWidthMax or left < horizontal.minLeftSideBearing
+            or right < horizontal.minRightSideBearing or extent > horizontal.xMaxExtent):
+        raise ValueError('New glyph exceeds the preserved horizontal metric extrema')
+
+
 def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions=ADDITIONS):
     primary_path, base_path, output_path = map(Path, (primary_path, base_path, output_path))
     inputs = (primary_path, base_path)
     if (output_path.resolve() in tuple(path.resolve() for path in inputs)
             or output_path.exists() and any(output_path.samefile(path) for path in inputs)):
         raise ValueError('Output must not overwrite either pinned input')
-    additions = tuple(additions)
-    if not additions or len(set(additions)) != len(additions) or any(cp < 0 or cp > 0xffff for cp in additions):
-        raise ValueError('Expected distinct BMP codepoints for the existing cmap formats')
+    additions = checked_additions(additions)
     if hashlib.sha256(primary_path.read_bytes()).hexdigest() != PRIMARY_SHA:
         raise ValueError('Unexpected Nom Na Tong v5.18 source')
     if hashlib.sha256(base_path.read_bytes()).hexdigest() != base_sha:
@@ -42,6 +65,9 @@ def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions
         raise ValueError('Source and subset units per em differ')
     source_map, old_map = source.getBestCmap(), dict(font.getBestCmap())
     old_order = list(font.getGlyphOrder())
+    if any(cp > 0xffff for cp in additions) and not any(
+            table.isUnicode() and table.format == 12 for table in font['cmap'].tables):
+        raise ValueError('Supplementary additions require an existing Unicode format-12 cmap')
     if set(additions) & old_map.keys():
         raise ValueError('Additions must be absent from the pre-extension subset')
     for cp in additions:
@@ -58,12 +84,14 @@ def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions
         if any(getattr(glyph, key) < getattr(font['head'], key) for key in ('xMin', 'yMin')) or any(
                 getattr(glyph, key) > getattr(font['head'], key) for key in ('xMax', 'yMax')):
             raise ValueError('New outline exceeds the preserved global bounds')
+        check_horizontal_metrics(glyph, source['hmtx'].metrics[name], font['hhea'])
         font['glyf'].glyphs[name] = copy.deepcopy(glyph)
         font['hmtx'].metrics[name] = source['hmtx'].metrics[name]
         font.setGlyphOrder(font.getGlyphOrder() + [name])
         for table in font['cmap'].tables:
-            if table.isUnicode() and table.format in (4, 12):
-                table.cmap[cp] = name
+            delta = cmap_additions(table, source_map, (cp,))
+            if delta:
+                table.cmap.update(delta)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     font.save(output_path)
     check = TTFont(output_path, recalcBBoxes=False, recalcTimestamp=False)
@@ -82,8 +110,7 @@ def extend(primary_path, base_path, output_path, *, base_sha=BASE_SHA, additions
                 after.platformID, after.platEncID, after.format, after.language):
             raise AssertionError('An existing cmap subtable identity changed')
         expected = dict(before.cmap)
-        if before.isUnicode() and before.format in (4, 12):
-            expected.update({cp: source_map[cp] for cp in additions})
+        expected.update(cmap_additions(before, source_map, additions))
         if after.cmap != expected:
             raise AssertionError('Unexpected cmap subtable mapping delta')
     for name in old_order:
