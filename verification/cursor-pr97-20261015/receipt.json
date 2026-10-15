@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-15T10:48:00Z",
+  "repository": "c933103/AN-Paint",
+  "pull_request": 97,
+  "reviewed_head": "316532ae6902001ff659969fbd05b1c56fd13e63",
+  "base": "6568e3b48d501169958518ef0f3fe931a434eaa9",
+  "tested_pr_merge": "b5e3ec5e18bbf60fb390e6ebfbc5e4a3703fb83e",
+  "tested_and_reviewed_tree": "8ae4f823184e79497c9a764b1ff9314356d8cef9",
+  "tested_merge_parents_verified": true,
+  "run": {
+    "id": 38719734629,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/38719734629",
+    "attempt": 1,
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": [
+    {
+      "id": 116371313118,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116371313520,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116371313626,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 116375205337,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "regression_artifact": {
+    "id": 11966665560,
+    "name": "regression-and-lint-b5e3ec5e18bbf60fb390e6ebfbc5e4a3703fb83e",
+    "bytes": 79719249,
+    "sha256": "36dc30bc1ffed79ce466141509f6d8b7f42fa991e73b9d2bfebf9ef272defbb8",
+    "download_digest_verified": true
+  },
+  "python_tests": 696,
+  "jvm": {
+    "suites": 101,
+    "tests": 990,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "preserved_junit_files": [
+    "TEST-org.catrobat.paintroid.local.CursorDrawingTest.xml",
+    "TEST-org.catrobat.paintroid.local.FrenchCursorGuidanceTest.xml"
+  ],
+  "scoped_suites": {
+    "CursorDrawingTest": {
+      "tests": 18,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "FrenchCursorGuidanceTest": {
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "scoped_obligations": [
+    "Actual French legacy tool-help dialog route and complete message",
+    "Navigate-tool panning with cursor mode enabled, unchanged zoom/cursor/pixels/Undo",
+    "Two-finger panning with cursor mode and ink off/on; positive initial-ink assertion and exact cancellation",
+    "Existing direct cursor help/alias/start-stop, single-finger fixed-viewport and cursor scrollbar coverage retained"
+  ],
+  "api35": {
+    "native_tests": 74,
+    "app_tests": 35,
+    "app_inventory_validated": true,
+    "app_selected_tests": 35,
+    "app_completed_tests": 35,
+    "app_suppressed": [],
+    "app_explicitly_excluded": [],
+    "app_source_tests_sha256": "15c95c51dd423dfea588cae7a1ec8f431b1e17c443da3de022767554b06b5276"
+  },
+  "limits": [
+    "PR97 changes two JVM test files only. No application or translation changes.",
+    "CI tests the standard PR merge commit, whose tree exactly equals the reviewed head tree.",
+    "No local Android compilation or application tests executed in this continuation.",
+    "This evidence does not certify a full language, physical device or release."
+  ]
+}
