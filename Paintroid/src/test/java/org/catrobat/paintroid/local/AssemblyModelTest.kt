@@ -157,4 +157,25 @@ class AssemblyModelTest {
         for (i in rects.indices) for (j in i+1 until rects.size) assertFalse(Rect.intersects(rects[i],rects[j]))
     }
 
+
+    @Test fun attachmentMovementDependsOnTheCroppedDimensionAndKeepsTheRelationship() {
+        for(edge in SnapEdge.values()) {
+            model.clear()
+            val parent=item("parent",100,80);val child=item("child",20,30)
+            model.add(listOf(parent,child));model.place(parent.id,Attachment(null,null))
+            val attachment=Attachment(parent.id,edge);model.place(child.id,attachment)
+            val before=model.layout();val original=parent.file.readBytes()
+            val orthogonal=if(edge==SnapEdge.RIGHT) Rect(0,10,100,60) else Rect(10,0,70,80)
+            model.crop(parent.id,orthogonal)
+            assertEquals("Orthogonal crop need not move the child",before[child.id],model.layout()[child.id])
+            assertEquals(attachment,model.image(child.id).attachment)
+            model.undo();assertEquals(before,model.layout())
+            val relevant=if(edge==SnapEdge.RIGHT) Rect(10,0,70,80) else Rect(0,10,100,60)
+            model.crop(parent.id,relevant)
+            val expected=if(edge==SnapEdge.RIGHT) Rect(60,0,80,30) else Rect(0,50,20,80)
+            assertEquals(expected,model.layout()[child.id])
+            assertEquals(attachment,model.image(child.id).attachment);assertArrayEquals(original,parent.file.readBytes())
+            model.undo();assertEquals(before,model.layout());model.redo();assertEquals(expected,model.layout()[child.id])
+        }
+    }
 }

@@ -164,7 +164,7 @@ class AppLanguageResourceRoutingTest {
                         for(count in 0..20) {
                             val noun=if(count==1) "image" else "images"
                             assertEquals("Emoji English count=$count",
-                                "✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images repositions their attachments.",
+                                "✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images may move their attached images.",
                                 resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
                         }
                     }

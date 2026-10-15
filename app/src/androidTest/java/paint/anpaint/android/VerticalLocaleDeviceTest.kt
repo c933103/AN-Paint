@@ -391,7 +391,7 @@ class VerticalLocaleDeviceTest {
             assertEquals("📁 File",activity.getString(R.string.ui_menu_file))
             for(count in listOf(0,1,2,20)) {
                 val noun=if(count==1) "image" else "images"
-                assertEquals("✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images repositions their attachments.",
+                assertEquals("✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images may move their attached images.",
                     activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
             }
         }
