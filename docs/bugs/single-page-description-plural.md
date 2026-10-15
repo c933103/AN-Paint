@@ -1,42 +1,54 @@
-# Single-page PDF/TIFF description says “1 pages” in English and French
+# Count-sensitive UI text uses fixed plural wording
 
-**Status:** Open bug; documentation-only issue-style tracking PR, not an applied fix. Keep open/draft pending separately reviewed implementation and acceptance evidence.
+**Status:** Open, low-severity UI-language bug group; documentation-only issue-style tracking PR, not an applied fix. Four independently confirmed occurrences of the same count-agreement cause are tracked separately below. Keep open/draft until each applicable checklist is verified through a separately reviewed implementation.
 
-**Source baseline:** develop `647a4b5647cabf3e51cb6dcf20d41ae08143ccdb`, checked 15 October 2026. **Evidence boundary:** independently confirmed linguistic/static-source finding only; no runtime/device reproduction, CI or whole-language acceptance. [Project board](https://github.com/c933103/AN-Paint/pull/39) and [translation review](https://github.com/c933103/AN-Paint/pull/56) track related work. Issues remain disabled; visibility/settings are unchanged.
+**Source baseline:** develop `647a4b5647cabf3e51cb6dcf20d41ae08143ccdb`, checked 15 October 2026. **Verification boundary:** independent linguistic/static-source review only. No runtime/device reproduction, incorrect numeric counts, import/export failures or whole-language acceptance is claimed. [Project board](https://github.com/c933103/AN-Paint/pull/39) · [Translation tracker](https://github.com/c933103/AN-Paint/pull/56). Issues remain disabled; settings/visibility are unchanged.
 
 ## Expected and actual
 
-Expected: the page chooser describes valid one-page and multi-page PDF/TIFF inputs using grammatical count wording.
+Expected: labels for one item and multiple items use grammatical quantity wording without changing the true numeric count or workflow.
 
-Actual: the English and French `formats22_page_description` strings contain the unconditional phrase `%3$d pages`. The chooser accepts count 1 and formats that string, producing “1 pages”. This is a shared count/message design defect; Japanese `全%3$dページ` does not share the grammatical problem.
+Actual: the resources below append fixed plural nouns/adjectives to counts that can equal one. Examples derived from the real formatting paths are “1 pages”, French “1 placées”, “1 images supplémentaires”, and “1 / 1 images”. Impact is low-severity incorrect displayed grammar; this does not establish wrong counts or lost data.
 
-Impact: visibly incorrect count agreement for a valid one-page input. No incorrect page count, lost page, import failure or runtime reproduction is claimed by this static finding.
+The existing document path retains the original page-description name so previous links stay valid. The scope now consolidates the four same-cause count defects rather than opening separate minor trackers.
 
-## Static path and evidence
+## Per-key evidence and acceptance checklist
 
-- [English L570](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L570): `%1$s · %2$s\n%3$d pages. Choose one page to edit as an image.`
-- [French L595](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L595): `%1$s · %2$s\n%3$d pages. Choisissez une page à modifier comme image.`
-- [Japanese control L139](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-ja/strings.xml#L139) uses the count-invariant expression `全%3$dページ`.
-- [ImportSelection.kt L55–60](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L55-L60) calls `showPages` for PDF/TIFF without excluding one-page inputs. [L98–101](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L98-L101) accepts every positive count and formats this string with kind, name and count.
-- [PdfCodec.kt L110–112](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt#L110-L112) explicitly permits a page count of 1.
+### 1. Page chooser: `formats22_page_description` (English/French)
 
-Independent review receipt: [French priority batch 03](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182504034).
+- [ ] Correct the complete one-/multi-page descriptions while preserving type, filename, true count and selection controls.
+- [EN L570](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L570) / [FR L595](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L595) contain unconditional `%3$d pages`.
+- [ImportSelection.kt L55–60](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L55-L60) calls `showPages` for every PDF/TIFF. [L98–101](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L98-L101) accepts all positive counts and passes kind, name and count to the string. [PdfCodec.kt L110–112](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt#L110-L112) permits one page.
+- Count-invariant candidates: EN `%1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.`; FR `%1$s · %2$s\nNombre de pages : %3$d. Choisissez une page à modifier comme image.`
+- Test actual one-page and multi-page PDF/TIFF chooser messages, preserving `%1$s`, `%2$s`, `%3$d` and Android newline escaping. Japanese `全%3$dページ` is a valid control, not a defect.
+- [Independent French page review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182504034).
 
-## Bounded fix and acceptance
+### 2. Assembly header: `ui_an_paint_image_assembly_20_images_placed` (French)
 
-A count-invariant wording can preserve the existing string API and placeholders:
+- [ ] Correct the French placed-image count for zero, one and multiple placed images without changing image or placement totals.
+- [FR L197](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L197) ends `%2$s placées`; [AssemblyActivity.kt L128](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L128) passes `assembly.images.size` and `assembly.layout().size`, which can be one.
+- Candidate complete FR value: `AN Paint · Assemblage d’images\nImages : %1$s/20 · Images placées : %2$s`.
+- Preserve the two indexed string slots and newline; exercise the actual header after adding, placing, unplacing and removing images.
+- [Independent French assembly review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182571039).
 
-- EN candidate: `%1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.`
-- FR candidate: `%1$s · %2$s\nNombre de pages : %3$d. Choisissez une page à modifier comme image.`
+### 3. Remaining capacity: `ui_you_can_add_more_images_select_fewer_files` (English/French)
 
-Alternatively, introduce genuine plural resources and update the call site with correct locale-specific quantities. The candidates are proposed, not applied.
+- [ ] Correct the capacity refusal for one remaining slot and larger remaining counts while retaining the selection-limit meaning.
+- [EN L471](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L471): “You can add %1$s more images. Select fewer files.” [FR L525](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L525): “Vous pouvez ajouter %1$s images supplémentaires. Sélectionnez moins de fichiers.”
+- [AssemblyActivity.kt L216–218](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L216-L218) compares selection size with `20-assembly.images.size` and formats that remainder. Nineteen existing inputs plus two selected files gives one remaining slot.
+- Invariant candidates: EN “Number of images you can still add: %1$s. Select fewer files.”; FR “Nombre d’images pouvant encore être ajoutées : %1$s. Sélectionnez moins de fichiers.”
+- Preserve `%1$s`, the 20-image cap and refusal behavior. Test the actual over-capacity branch at one remaining slot and other counts, with accepted-within-capacity controls.
 
-- Verify actual PDF/TIFF chooser descriptions for one-page and multi-page fixtures, preserving the true count, filename/type, page selection and cancellation behavior.
-- Keep placeholder types/indexes `%1$s`, `%2$s`, `%3$d` and newline handling correct; test complete rendered messages rather than only counting keys.
-- Audit every affected localized count expression for singular/multiple cases. Correct confirmed affected values; do not rewrite already valid Japanese/count-invariant forms merely for uniformity.
-- If using plurals, cover each relevant locale's quantity rules and preserve existing import bounds and page-index behavior.
-- Perform independent full-value/context review and applicable current-source structural/UI tests before crediting the corrected entries.
+### 4. Rendering progress: `ui_rendering_images` (English/French)
 
-## Next action and dependencies
+- [ ] Correct the one-image and multi-image progress messages without changing progress values or output generation.
+- [EN L324](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values/strings.xml#L324): `Rendering %1$s / %2$s images…`; [FR L410](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/res/values-fr/strings.xml#L410): `Rendu de %1$s / %2$s images…`.
+- [AssemblyRenderer.kt L56–64](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt#L56-L64) filters placed entries and calls `progress(index+1,entries.size)`. One placed image yields 1/1; [AssemblyActivity.kt L317](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L317) formats the message from that callback.
+- Invariant candidates: EN `Images rendered: %1$s / %2$s…`; FR `Images rendues : %1$s / %2$s…`.
+- Preserve both indexed string slots; exercise actual one- and multi-image progress callbacks, successful output, and existing failure cleanup.
 
-Choose the smallest grammatical message design, enumerate affected locales, implement it with real one-/multi-page chooser regressions, and complete current-source review/test gates. Coordinate receipt replacement in PR56 without double-counting old rejected values. Independent of the Japanese PDF error-cause bug and other trackers. This PR adds only this documentation.
+## Shared fix rules and next action
+
+Count-invariant labels can preserve current string APIs. Correct plural resources are an alternative if implemented end to end with proper locale quantities. Candidates above are proposed, not applied. Audit affected localized expressions and correct confirmed cases; do not rewrite already valid count-invariant languages for cosmetic uniformity.
+
+Implement all four bounded resource corrections with per-path one/many controls, preserve placeholder types/indexes and line breaks, and complete current-source structural, focused behavioral and code-review gates. Independently review final complete values/context before replacing PR56 receipts. Coordinate with active assembly PR67 at the final integration source; this pinned evidence is not acceptance of later assembly changes. No app/resource/test/workflow change, merge or runtime fix is made by this tracking PR.
