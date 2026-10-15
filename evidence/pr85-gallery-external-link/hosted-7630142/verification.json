@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "pull_request": 85,
+  "workflow_run": 38775681153,
+  "regression_job": 116562681792,
+  "workflow_url": "https://github.com/c933103/AN-Paint/actions/runs/38775681153",
+  "job_url": "https://github.com/c933103/AN-Paint/actions/runs/38775681153/job/116562681792",
+  "application_head": "76301426120cc6fd0245887c47136daa2752ed1f",
+  "tested_merge_commit": "515078d1c4d11323bb88347df0d5e413a25ee343",
+  "tested_tree": "7b5641d6b4b041e49fa7442d894353b4f65275f6",
+  "head_and_tested_merge_tree_match": true,
+  "tree_readback_source": "https://api.github.com/repos/c933103/AN-Paint/git/commits/515078d1c4d11323bb88347df0d5e413a25ee343",
+  "artifact": {
+    "id": 11993564222,
+    "name": "regression-and-lint-515078d1c4d11323bb88347df0d5e413a25ee343",
+    "bytes": 79709819,
+    "sha256": "61b3e26188b7aed34fbc6a9902f9fee45591e93dbea0440b1d90d6417c24cd57",
+    "digest_verified": true,
+    "workflow_head_verified": true,
+    "expires_at": "2026-10-29T17:33:03Z"
+  },
+  "safe_extraction": "Verified archive digest and byte size before parsing; rejected duplicate/absolute/traversal/backslash/symlink paths; extracted only this size-bounded XML. Compilation receipt was inspected directly in the ZIP. No archive commands or contents were executed.",
+  "test_source": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryExternalLinkTest.kt",
+    "sha256": "70e5db302291ae9a1cf709d0b0d0e925fac51bc21fd775d5e6d3bba8ec984061",
+    "configured_sdks": [
+      30,
+      35
+    ]
+  },
+  "junit": {
+    "archive_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.GalleryExternalLinkTest.xml",
+    "sha256": "a14067bdbe697a4144568e100c69a246a39e70d1e887db1b12faca254ac80041",
+    "bytes": 2403,
+    "suite": {
+      "name": "org.catrobat.paintroid.local.GalleryExternalLinkTest",
+      "tests": "12",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-10-15T17:27:12.690Z",
+      "hostname": "runnervmwvtoz",
+      "time": "2.402"
+    },
+    "testcase_elements": 12,
+    "expected_unique_methods": 6,
+    "missing": [],
+    "unexpected": [],
+    "duplicate": [],
+    "passed_by_sdk": {
+      "30": 6,
+      "35": 6
+    }
+  },
+  "sdk_identity_method": "Every source method has exactly one [30] case and one unsuffixed case. Pinned Robolectric 4.14.1 iterates selected SDKs and suppresses the marker for the last SDK; the source config selects [30,35], so the unsuffixed instance is API35. This identification combines the JUnit names with the source config and pinned runner naming implementation rather than pretending the XML explicitly labels [35].",
+  "runner_naming_source": "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/robolectric/src/main/java/org/robolectric/RobolectricTestRunner.java#L170-L204",
+  "cases": [
+    {
+      "method": "actualGalleryMainFrameFailureRetainsNetworkMessageAndSubresourceErrorsDoNotReplaceIt",
+      "xml_name": "actualGalleryMainFrameFailureRetainsNetworkMessageAndSubresourceErrorsDoNotReplaceIt[30]",
+      "sdk": 30,
+      "seconds": 0.518,
+      "result": "passed"
+    },
+    {
+      "method": "actualGalleryMainFrameFailureRetainsNetworkMessageAndSubresourceErrorsDoNotReplaceIt",
+      "xml_name": "actualGalleryMainFrameFailureRetainsNetworkMessageAndSubresourceErrorsDoNotReplaceIt",
+      "sdk": 35,
+      "seconds": 0.46,
+      "result": "passed"
+    },
+    {
+      "method": "successfulTermsClickUsesDefaultAndroidLaunchAndKeepsGalleryState",
+      "xml_name": "successfulTermsClickUsesDefaultAndroidLaunchAndKeepsGalleryState[30]",
+      "sdk": 30,
+      "seconds": 0.089,
+      "result": "passed"
+    },
+    {
+      "method": "successfulTermsClickUsesDefaultAndroidLaunchAndKeepsGalleryState",
+      "xml_name": "successfulTermsClickUsesDefaultAndroidLaunchAndKeepsGalleryState",
+      "sdk": 35,
+      "seconds": 0.114,
+      "result": "passed"
+    },
+    {
+      "method": "missingHandlerFromActualTermsClickShowsLinkExplanationForEveryProvider",
+      "xml_name": "missingHandlerFromActualTermsClickShowsLinkExplanationForEveryProvider[30]",
+      "sdk": 30,
+      "seconds": 0.197,
+      "result": "passed"
+    },
+    {
+      "method": "missingHandlerFromActualTermsClickShowsLinkExplanationForEveryProvider",
+      "xml_name": "missingHandlerFromActualTermsClickShowsLinkExplanationForEveryProvider",
+      "sdk": 35,
+      "seconds": 0.356,
+      "result": "passed"
+    },
+    {
+      "method": "unrelatedSecurityExceptionIsNotMisclassifiedAsMissingHandler",
+      "xml_name": "unrelatedSecurityExceptionIsNotMisclassifiedAsMissingHandler[30]",
+      "sdk": 30,
+      "seconds": 0.033,
+      "result": "passed"
+    },
+    {
+      "method": "unrelatedSecurityExceptionIsNotMisclassifiedAsMissingHandler",
+      "xml_name": "unrelatedSecurityExceptionIsNotMisclassifiedAsMissingHandler",
+      "sdk": 35,
+      "seconds": 0.049,
+      "result": "passed"
+    },
+    {
+      "method": "externalHttpsNavigationUsesSameExplanationWithoutChangingNavigationPolicy",
+      "xml_name": "externalHttpsNavigationUsesSameExplanationWithoutChangingNavigationPolicy[30]",
+      "sdk": 30,
+      "seconds": 0.034,
+      "result": "passed"
+    },
+    {
+      "method": "externalHttpsNavigationUsesSameExplanationWithoutChangingNavigationPolicy",
+      "xml_name": "externalHttpsNavigationUsesSameExplanationWithoutChangingNavigationPolicy",
+      "sdk": 35,
+      "seconds": 0.052,
+      "result": "passed"
+    },
+    {
+      "method": "everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback",
+      "xml_name": "everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback[30]",
+      "sdk": 30,
+      "seconds": 0.238,
+      "result": "passed"
+    },
+    {
+      "method": "everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback",
+      "xml_name": "everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback",
+      "sdk": 35,
+      "seconds": 0.259,
+      "result": "passed"
+    }
+  ],
+  "compilation": {
+    "status": "passed",
+    "task_receipt": "> Task :Paintroid:compileDebugUnitTestKotlin",
+    "test_task_receipt": "> Task :Paintroid:testDebugUnitTest",
+    "build_receipt": "BUILD SUCCESSFUL in 9m 54s",
+    "jvm_log_sha256": "d2b0963aea7cbef8ea54a5bf8ab79074b5b171cfd54a2d02094245e7f0814f75",
+    "phase_times": {
+      "started-at": "2026-10-15T17:19:44Z",
+      "ended-at": "2026-10-15T17:29:39Z"
+    }
+  },
+  "coverage": [
+    "Actual Terms clicks for all four providers; missing handler and successful default startActivity paths.",
+    "Full EN/FR/JA failure message and retained gallery state, including repeated missing-handler attempts.",
+    "Actual main-frame and subresource WebView error callbacks, retaining their distinct diagnostics.",
+    "External HTTPS behavior, unchanged provider/non-HTTPS navigation policy and independent SecurityException control.",
+    "Complete compiled new-message resolution for the existing picker scope and explicit English fallbacks."
+  ],
+  "limits": [
+    "These are offline Robolectric JVM executions, not installed browser/provider-network tests.",
+    "This receipt does not claim the separately running core emulator job has passed.",
+    "Linguistic idiom limits and unrelated processing-label holds remain unchanged.",
+    "The earlier e26 test-compilation failure remains historical evidence; this corrected-head pass does not erase it."
+  ],
+  "new_findings": "No new failing, skipped, missing or duplicated GalleryExternalLinkTest execution found."
+}
