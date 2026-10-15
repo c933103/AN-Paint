@@ -1,4 +1,4 @@
-# Commons import-resize guidance incorrectly promises selected background
+# Import-resize guidance misstates context-specific transparency handling
 
 **Status:** Open bug; documentation-only issue-style tracking PR, not an applied fix. Keep open/draft pending separately reviewed implementation and acceptance evidence.
 
@@ -6,11 +6,11 @@
 
 ## Expected and actual
 
-Expected: the resize/import explanation reflects the background policy of the current import. For Commons images forced onto white, it must not promise the selected opaque background.
+Expected: the resize/import explanation reflects the actual destination path: Commons insertion uses forced white, ordinary insertion retains alpha over existing canvas pixels, and Load Image replacement composites onto the selected background.
 
 Actual: `ui_estimates_include_the_current_canvas_and_clipboard_sampled` says “Imports use the selected opaque background” in the non-native resize explanation. The Commons import path carries `whiteBacking=true` outside the dialog and explicitly fills transparency with white, regardless of the selected background colour.
 
-Impact: a user resizing a transparent Commons image while a nonwhite background is selected receives misleading guidance about the imported result. This is a context/wording bug, not a request to remove the existing Commons white-backing behavior or an allegation that that policy is itself incorrect. French and Japanese faithfully reproduce the English claim.
+Impact: a user resizing a transparent Commons image while a nonwhite background is selected receives misleading guidance about the imported result. Ordinary insertion also must not be described as selected-background replacement: its transparency is composited over existing canvas pixels. This is a context/wording bug, not a request to change any of these compositing policies. French and Japanese faithfully reproduce the English claim.
 
 ## Static path and evidence
 
@@ -22,11 +22,15 @@ Impact: a user resizing a transparent Commons image while a nonwhite background 
 
 Independent review receipt: [French priority batch 02](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6182490731).
 
+## Correction to the original test plan
+
+[Codex review](https://github.com/c933103/AN-Paint/pull/71#discussion_r4278213686) correctly identified an invalid original non-Commons test expectation. [ClassicPaintActivity L1313–1324](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1313-L1324) calls `paste` for insertion and `replace` for Load Image. [PaintDocument L395–402](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L395-L402) retains insertion alpha as a floating mask, later composited over the existing canvas; [replace L197–201](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L197-L201) instead uses selected background. [CanvasColourBoundaryTest L22–41](https://github.com/c933103/AN-Paint/blob/647a4b5647cabf3e51cb6dcf20d41ae08143ccdb/Paintroid/src/test/java/org/catrobat/paintroid/local/CanvasColourBoundaryTest.kt#L22-L41) encodes the green-canvas/white-selected-background insertion control. This test source was inspected, not executed in this review. The initial expectation that ordinary insertion uses selected background is withdrawn.
+
 ## Bounded fix and acceptance
 
-- Make the explanation aware of forced-white versus selected-background policy, or use wording accurate for both. Preserve existing Commons compositing and ordinary import behavior.
+- Make the explanation aware of forced-white insertion, ordinary insertion over existing pixels, and replacement onto selected background, or use wording accurate for all three. Preserve the existing compositing behavior.
 - Test the real oversized Commons import/resize branch with a transparent image and a nonwhite selected background: guidance must not promise that selected colour; accepted decode must use the existing white policy and preserve opaque pixels.
-- Add an ordinary non-Commons control using the selected background, plus cancellation/no-document-mutation and applicable native-codec guidance controls.
+- Add separate controls: ordinary non-Commons insertion retains alpha and composites over existing canvas pixels even when the selected background differs; Load Image replacement composites onto the selected background. Keep cancellation/no-document-mutation and applicable native-codec guidance controls.
 - Preserve memory limits, estimate qualification, smaller-copy detail loss and source-file immutability. Do not weaken guards to avoid showing the dialog.
 - Enumerate/update every affected localized value if text changes, and re-review the full explanations in their actual contexts. A shared call-site repair must cover all locales/fallbacks, not only French/Japanese.
 
