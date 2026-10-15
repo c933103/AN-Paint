@@ -1,0 +1,163 @@
+{
+  "reviewer": "independent implementation owner, not the draft author",
+  "source_commit": "5d145e17b52200a6c132d847d0e12e892fa1c657",
+  "draft_sha256": "caeaa3bc01377181e47b369f36ec5f5f20d37052a70da08f6eb1c69de327800e",
+  "scope": "Complete-value source semantics and bounded spelling/grammar review. No native-speaker, whole-catalogue, Android shaping or visual layout acceptance.",
+  "accepted_original_values": 5,
+  "held_original_values": 1,
+  "proposed_revision_requires_parent_review": true,
+  "per_key": {
+    "ui_assembly_exact_position": {
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target": "ᠶᠠᠭ ᠲᠠᠭ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ",
+      "target_sha256": "6682d61b62746fef50a79c0183c9bd0ef9cb648f312c76ae7390056ae6a635f7",
+      "verdict": "accepted_source_semantics",
+      "review": "The exact-fitting idiom yag tag qualifies location; it does not mean all positions or whole image. The official dictionary confirms the idiom meaning and the individual written spellings; the compound UI collocation remains moderate idiomatic confidence."
+    },
+    "ui_assembly_target_x": {
+      "source": "Target X (pixels from left)",
+      "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+      "target": "X ᠪᠠᠶᠢᠷᠢᠯᠠᠯ (ᠵᠡᠭᠦᠨ ᠵᠠᠬ᠎ᠠ ᠠᠴᠠ᠂ ᠫᠢᠺᠰᠧᠯ)",
+      "target_sha256": "8ee3606c979a8fca446fd93c5ab79ffe7af8e3b252307092ab64c2201035d1d1",
+      "verdict": "accepted_source_semantics",
+      "review": "X position, from the physical left edge, in pixels. jegün qualifies left edge, not the start of a vertical line. Abbreviated unit phrase after a comma is intelligible; not claimed as a native-preferred wording."
+    },
+    "ui_assembly_target_y": {
+      "source": "Target Y (pixels from top)",
+      "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+      "target": "Y ᠪᠠᠶᠢᠷᠢᠯᠠᠯ (ᠳᠡᠭᠡᠳᠦ ᠵᠠᠬ᠎ᠠ ᠠᠴᠠ᠂ ᠫᠢᠺᠰᠧᠯ)",
+      "target_sha256": "3a9fef9cabf59d7cc6bd14696eb3e5dd2e162156bf7f81c52a92f897fedb64ec",
+      "verdict": "accepted_source_semantics",
+      "review": "Y position, from the physical upper edge, in pixels. degedü jaqa specifies the spatial top edge, not reading direction. No coordinate mirroring introduced."
+    },
+    "ui_assembly_position_help": {
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ ᠤᠨ ᠵᠡᠭᠦᠨ ᠳᠡᠭᠡᠳᠦ ᠪᠤᠯᠤᠩ ᠤᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢ ᠭᠠᠷᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠳᠤ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃ X ᠪᠠ Y ᠨᠢ 0 ᠡᠴᠡ ᠡᠬᠢᠯᠡᠬᠦ ᠫᠢᠺᠰᠧᠯ ᠦᠨ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ ᠶᠤᠮ᠃ ᠪᠤᠰᠤᠳ ᠵᠢᠷᠤᠭ ᠣᠳᠣ ᠶᠢᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ ᠬᠠᠳᠠᠭᠠᠯᠠᠨ᠎ᠠ᠃ ᠡᠨᠳᠡ ᠵᠢᠷᠤᠭ ᠳᠠᠪᠬᠤᠴᠠᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ᠃ ᠬᠣᠵᠢᠮ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠤᠳ ᠡᠮᠦᠨᠡᠬᠢ ᠵᠢᠷᠤᠭ ᠤᠳ ᠤᠨ ᠳᠡᠭᠡᠷ᠎ᠡ ᠵᠢᠷᠤᠭᠳᠠᠨ᠎ᠠ᠃ ᠲᠠᠯᠪᠠᠢ ᠪᠠᠶᠢᠷᠢᠯᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠪᠦᠬᠦ ᠵᠢᠷᠤᠭ ᠢ ᠪᠠᠭᠲᠠᠭᠠᠬᠤ ᠶᠢᠨ ᠲᠤᠯᠠ ᠲᠡᠯᠡᠨ᠎ᠡ᠃ ᠣᠭᠲᠣᠯᠣᠯᠲᠠ ᠪᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠳᠡᠬᠦ ᠦᠭᠡᠢ᠃",
+      "target_sha256": "7d4dae12d1928384d82a482fb1da46cc295afd49c0cb21de36ff7f89000ab7e5",
+      "verdict": "held_for_spelling_correction",
+      "review": "All complete clauses were reread, including the revised final sentence. One dictionary-confirmed crop-noun vowel correction is required; original and proposed complete values are retained below. Other source contracts are present. The paragraph is composed technical Mongolian, not an attested whole quotation."
+    },
+    "ui_assembly_position_nonnegative": {
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target": "X ᠪᠠ Y ᠨᠢ 0 ᠡᠴᠡ 2147483647 ᠬᠦᠷᠲᠡᠯᠡᠬᠢ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤ ᠶᠣᠰᠤᠲᠠᠢ᠃",
+      "target_sha256": "1793d80ac10c8b5e4d1f365141c1edaea7be128a2ab84879b1f056cf486ffda6",
+      "verdict": "accepted_source_semantics",
+      "review": "Both X and Y must be whole numbers starting at zero and through 2147483647. The obligatory yosutai is retained; no negative or fractional value is allowed and zero is not excluded."
+    },
+    "ui_assembly_unknown_image": {
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target": "ᠰᠣᠩᠭᠣᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠡᠨᠡ ᠨᠡᠶᠢᠯᠡᠯ ᠳᠦ ᠪᠠᠶᠢᠬᠤ ᠪᠠᠨ ᠪᠣᠯᠢᠭᠰᠠᠨ᠃",
+      "target_sha256": "74d7287dffc302e225d7e5804347e5af7bc5da017133c3a14dc724235a161501",
+      "verdict": "accepted_source_semantics",
+      "review": "The chosen image has ceased to be in this assembly. The reflexive suffix -ban after the vowel-final infinitive bayiqu is supported by written-Mongolian grammar. The cease-being expression is supported by the official dictionary. No deletion, corrupt file, or other unmentioned cause is asserted."
+    }
+  },
+  "revisions": [
+    {
+      "key": "ui_assembly_position_help",
+      "old_target": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ ᠤᠨ ᠵᠡᠭᠦᠨ ᠳᠡᠭᠡᠳᠦ ᠪᠤᠯᠤᠩ ᠤᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢ ᠭᠠᠷᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠳᠤ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃ X ᠪᠠ Y ᠨᠢ 0 ᠡᠴᠡ ᠡᠬᠢᠯᠡᠬᠦ ᠫᠢᠺᠰᠧᠯ ᠦᠨ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ ᠶᠤᠮ᠃ ᠪᠤᠰᠤᠳ ᠵᠢᠷᠤᠭ ᠣᠳᠣ ᠶᠢᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ ᠬᠠᠳᠠᠭᠠᠯᠠᠨ᠎ᠠ᠃ ᠡᠨᠳᠡ ᠵᠢᠷᠤᠭ ᠳᠠᠪᠬᠤᠴᠠᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ᠃ ᠬᠣᠵᠢᠮ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠤᠳ ᠡᠮᠦᠨᠡᠬᠢ ᠵᠢᠷᠤᠭ ᠤᠳ ᠤᠨ ᠳᠡᠭᠡᠷ᠎ᠡ ᠵᠢᠷᠤᠭᠳᠠᠨ᠎ᠠ᠃ ᠲᠠᠯᠪᠠᠢ ᠪᠠᠶᠢᠷᠢᠯᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠪᠦᠬᠦ ᠵᠢᠷᠤᠭ ᠢ ᠪᠠᠭᠲᠠᠭᠠᠬᠤ ᠶᠢᠨ ᠲᠤᠯᠠ ᠲᠡᠯᠡᠨ᠎ᠡ᠃ ᠣᠭᠲᠣᠯᠣᠯᠲᠠ ᠪᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠳᠡᠬᠦ ᠦᠭᠡᠢ᠃",
+      "old_sha256": "7d4dae12d1928384d82a482fb1da46cc295afd49c0cb21de36ff7f89000ab7e5",
+      "new_target": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ ᠤᠨ ᠵᠡᠭᠦᠨ ᠳᠡᠭᠡᠳᠦ ᠪᠤᠯᠤᠩ ᠤᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢ ᠭᠠᠷᠤᠯᠲᠠ ᠶᠢᠨ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠳᠤ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃ X ᠪᠠ Y ᠨᠢ 0 ᠡᠴᠡ ᠡᠬᠢᠯᠡᠬᠦ ᠫᠢᠺᠰᠧᠯ ᠦᠨ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ ᠶᠤᠮ᠃ ᠪᠤᠰᠤᠳ ᠵᠢᠷᠤᠭ ᠣᠳᠣ ᠶᠢᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ ᠬᠠᠳᠠᠭᠠᠯᠠᠨ᠎ᠠ᠃ ᠡᠨᠳᠡ ᠵᠢᠷᠤᠭ ᠳᠠᠪᠬᠤᠴᠠᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ᠃ ᠬᠣᠵᠢᠮ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠤᠳ ᠡᠮᠦᠨᠡᠬᠢ ᠵᠢᠷᠤᠭ ᠤᠳ ᠤᠨ ᠳᠡᠭᠡᠷ᠎ᠡ ᠵᠢᠷᠤᠭᠳᠠᠨ᠎ᠠ᠃ ᠲᠠᠯᠪᠠᠢ ᠪᠠᠶᠢᠷᠢᠯᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠪᠦᠬᠦ ᠵᠢᠷᠤᠭ ᠢ ᠪᠠᠭᠲᠠᠭᠠᠬᠤ ᠶᠢᠨ ᠲᠤᠯᠠ ᠲᠡᠯᠡᠨ᠎ᠡ᠃ ᠣᠭᠲᠤᠯᠤᠯᠲᠠ ᠪᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠳᠡᠬᠦ ᠦᠭᠡᠢ᠃",
+      "new_sha256": "1527a65c2ac9e2dfc808e4386c7825cba0756ec46de92a10cf5de55959625bf1",
+      "change": "Only oγtololta → dictionary-attested oγtululta; two U+1823 O replaced with U+1824 U.",
+      "verdict": "complete revised value source-semantically acceptable to this reviewer; parent check required before publication",
+      "semantic_anchors": [
+        {
+          "meaning": "selected image physical top-left on output canvas",
+          "target_anchor": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ",
+          "review": "The first clause sets the position of this image’s left-upper corner in the output image area, not its center or a crop handle."
+        },
+        {
+          "meaning": "X and Y whole pixel units",
+          "target_anchor": "ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭ᠎ᠠ",
+          "review": "The two variables are integer pixel counts; whole qualifies number rather than an unscaled bitmap."
+        },
+        {
+          "meaning": "zero origin",
+          "target_anchor": "0 ᠡᠴᠡ",
+          "review": "The numeric origin is zero."
+        },
+        {
+          "meaning": "other images retain current positions",
+          "target_anchor": "ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ",
+          "review": "Other images keep their own current positions; reflexive -iyan follows the consonant-final noun."
+        },
+        {
+          "meaning": "overlap locally permitted",
+          "target_anchor": "ᠳᠠᠪᠬᠤᠴᠠᠵᠤ ᠪᠣᠯᠣᠨ᠎ᠠ",
+          "review": "Images may overlap here; the permission does not override unrelated controls."
+        },
+        {
+          "meaning": "later import stack order",
+          "target_anchor": "ᠬᠣᠵᠢᠮ ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ",
+          "review": "Later-imported images are drawn above earlier images; placement order is separately expressed in the next clause."
+        },
+        {
+          "meaning": "canvas includes all placed images by expanding",
+          "target_anchor": "ᠪᠠᠭᠲᠠᠭᠠᠬᠤ ᠶᠢᠨ ᠲᠤᠯᠠ ᠲᠡᠯᠡᠨ᠎ᠡ",
+          "review": "The image area expands in order to contain every placed image; this is not scaling the images."
+        },
+        {
+          "meaning": "crop invariant",
+          "target_anchor": "ᠣᠭᠲᠤᠯᠤᠯᠲᠠ",
+          "review": "The corrected cutting-result noun denotes cropping in the image context, not intersecting sets."
+        },
+        {
+          "meaning": "size invariant",
+          "target_anchor": "ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+          "review": "Both crop and size are governed by the unchanged predicate."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/66635",
+      "supports": "Spelling oγtululta and result-of-cutting noun; corrects two O letters to U. This is not mathematical intersection."
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/19811",
+      "supports": "The mathematical whole-number phrase bükhüli toγ-a."
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/29845",
+      "supports": "Overlapping/coinciding verb dabqučaqu."
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/10778",
+      "supports": "Existential bayiqu and Cyrillic bayikhaa bolikh cease-being construction."
+    },
+    {
+      "url": "https://mongoltoli.mn/search.php?opt=1&ug_id=138472&word=%D0%AF%D0%93",
+      "supports": "Yag tag exact fitting, without excess or deficiency."
+    },
+    {
+      "url": "https://www.jstage.jst.go.jp/article/gengo1939/1965/47/1965_36/_pdf/-char/ja",
+      "supports": "Ozawa, page 1: written-Mongolian reflexive -ban after vowels and -iyan after consonants. Supports both explicit suffix choices; not whole-paragraph idiom."
+    },
+    {
+      "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART000926490",
+      "supports": "Research abstract enumerates written-Mongolian passive -γda/-gde. Applying it to the drawing verb is a compositional inference, not a retrieved exact form."
+    },
+    {
+      "url": "https://www11.ihp.sinica.edu.tw/storage/w2_file/1631FHdYipu.pdf",
+      "supports": "Primary edited written-Mongolian text contains medekü-yin tula: purpose construction. Supports infinitive-genitive plus tula, not identical software wording."
+    },
+    {
+      "url": "https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-13/",
+      "supports": "Section 13.5 distinguishes lexical MVS and suffix separation. Unicode 16+ uses MVS; legacy NNBSP retains compatibility support."
+    }
+  ],
+  "idiomatic_confidence": "moderate; technical pixel loan and abbreviated unit labels are intelligible but not certified as native preferred",
+  "encoding": {
+    "choice": "Retain legacy U+202F separated-suffix boundaries in these values for current Android/font compatibility; lexical U+180E stays unchanged. No blanket conversion to ordinary space or modern MVS.",
+    "local_probe": "mn-mong-shaping-probe.json",
+    "probe_scope": "HarfBuzz 10.2.0 with exact bundled font: three complete noun/infinitive+suffix examples have nonzero glyphs. NNBSP and MVS shape alike, while ASCII-space substitution changes suffix glyph forms in two examples and spacing in all three. Desktop glyph evidence, not Android pixels.",
+    "source_layout_issue": "VerticalText.wrapLabel currently calls cluster.isBlank(), which includes NNBSP, and emits ASCII space. This can destroy suffix glyph context or wrap before the suffix. This is a separate implementation issue and prevents runtime/layout acceptance.",
+    "remaining_uncertainty": "Android native raster/layout check for exact complete values remains pending."
+  }
+}

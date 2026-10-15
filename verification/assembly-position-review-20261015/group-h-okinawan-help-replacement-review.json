@@ -1,0 +1,79 @@
+{
+  "status": "replacement_candidate_needs_independent_full_value_review",
+  "language": "ryu",
+  "key": "ui_assembly_position_help",
+  "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+  "source_commit": "5d145e17b52200a6c132d847d0e12e892fa1c657",
+  "old_target": "出力ぬキャンバスんかい、くぬ画像ぬ左上ぬ角ぬとぅくま ちわみてぃ くぃみそーれー。XとぅYや 整数ぬピクセル値やいびーん。0から始まやびーん。別ぬ画像ぬとぅくまや なまぬまま やいびーん。くまんかいや、画像 かさびてぃん しまびーん。あとぅから入れーたる画像や 上んかい描画さびーん。キャンバスや、置ちぇーる画像 むる 入るぐとぅ 広がやびーん。トリミングとぅサイズや うぬまま やいびーん。",
+  "old_target_sha256": "a22d7f1b5417ab06ec1026a40afb2b57ed73588674b24ca71b14ed7f9a41e18c",
+  "candidate": "出力ぬキャンバスんかい、くぬ画像ぬ左上ぬ角ぬとぅくま ちわみてぃ くぃみそーれー。XとぅYや 整数ぬピクセル値やいびーん。0から始まやびーん。別ぬ画像ぬとぅくまや なまぬまま やいびーん。くまんかいや、画像 かさびてぃん しまびーん。あとぅからいりたる画像や 上んかい描画さびーん。キャンバスや、置ちぇーる画像 むる 入るぐとぅ 広がやびーん。トリミングとぅサイズや うぬまま やいびーん。",
+  "candidate_sha256": "825cb4534927d1d5bfc91b95a7deff232953eeaba08e6d29c181aa61ea5c0663",
+  "changes": [
+    {
+      "from": "入れーたる",
+      "to": "いりたる",
+      "reason": "Use the attested put-in stem iri rather than Japanese ire. The simple past/attributive form is composed from iri-ti and the productive -taru pattern; dictionary iritakii independently supports the irita- stem."
+    }
+  ],
+  "primary_evidence": [
+    {
+      "url": "https://mmsrv.ninjal.ac.jp/okinawago/",
+      "entries": [
+        {
+          "row": 4669,
+          "dictionary_page": "259",
+          "headword": "?iri=juN",
+          "grammatical_label": "他=raN,=ti",
+          "summary": "put in; insertion"
+        },
+        {
+          "row": 4686,
+          "dictionary_page": "260",
+          "headword": "?iritakii",
+          "grammatical_label": "名",
+          "summary": "state of having left something inserted"
+        }
+      ]
+    },
+    {
+      "url": "https://www.tufs.ac.jp/icjs/images/publications/journal_004.pdf",
+      "location": "printed pp119–120",
+      "scope": "Past attributives, topic/object syntax, commands, permission, negative existence and purpose patterns; not this exact paragraph."
+    }
+  ],
+  "semantic_audit": {
+    "image_corner": "top left",
+    "reference_surface": "output canvas",
+    "integer_zero": true,
+    "other_positions_stable": true,
+    "overlap_permitted": true,
+    "later_imports_on_top": true,
+    "canvas_expands_for_all": true,
+    "crops_sizes_stable": true
+  },
+  "confidence": {
+    "semantic": "high",
+    "idiomatic": "low_to_moderate"
+  },
+  "publication_accepted": false,
+  "review_warning": "New authoring is not independent acceptance. Re-read the entire candidate, especially the purpose/expansion clause and topical zero-start linkage; do not promote it merely because this local verb correction is supported.",
+  "independent_complete_value_review": {
+    "reviewer": "assembly implementation owner; independent of this bounded replacement author",
+    "scope": "Reread the complete revised value, not merely the changed stem. Root separately reread all six values and accepted the corrected complete Help.",
+    "verdict": "accepted_source_semantics",
+    "target_sha256": "825cb4534927d1d5bfc91b95a7deff232953eeaba08e6d29c181aa61ea5c0663",
+    "idiom_confidence": "low_to_moderate",
+    "native_certification": false,
+    "layout_certification": false,
+    "clauses": {
+      "corner": "Selected image top-left position on output canvas explicitly set.",
+      "coordinates": "X and Y whole-number pixel values; following zero-start sentence retains topic.",
+      "other_images": "Current positions of other images retained.",
+      "overlap": "Here overlap is explicitly permitted.",
+      "import_order": "Later put-in/imported images drawn above earlier ones. iri-taru is a supported past attributive of the native put-in stem.",
+      "canvas": "Canvas expands so that every placed image fits; all-object mur(u) and purpose gutu preserve the dependency rather than describing unrelated expansion.",
+      "invariants": "Both crop and size remain as they are."
+    },
+    "source_note": "NINJAL iri=juN and iritakii support the corrected stem; TUFS 2014 productive past-attributive/purpose grammar. These are component supports for a complete compositional review, not an attested whole UI paragraph."
+  }
+}

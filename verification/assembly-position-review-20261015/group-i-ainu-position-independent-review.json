@@ -1,0 +1,566 @@
+{
+  "reviewer": "review_ainu_position_controls; independent source-assisted full-value review",
+  "reviewed_at": "2026-10-15T12:59:05.494124+00:00",
+  "draft_file": "/workspace/shared/pr67-position-drafts/group-i-ainu-position-draft.json",
+  "draft_file_sha256": "a1d16fc6ed44bd95a44443c736995cc40530cc7b0fc8279a56800181999ae0a5",
+  "candidate_set_sha256": "151159bd121914901bc6a4eaf81380fe2b2fb0e7972bae9299ff5dfd9a9ac775",
+  "source_messages_sha256": "f2fbb4194073a29b8a3efc64c91f9fc767a0df3b5ed4d6a4e419bc2d835dc88d",
+  "hash_scheme": "UTF-8 SHA-256 for individual exact strings; candidate set uses JSON ensure_ascii=false, sort_keys=true, separators=(comma,colon).",
+  "scope": "All twelve complete candidate values in both scripts. Source clauses, actual phrasing, relational syntax and script pairing examined. No repository edits.",
+  "summary": {
+    "reviewed_values": 12,
+    "accepted_values": 6,
+    "held_values": 6,
+    "revision_required_values": 0,
+    "approved_replacement_values": 0,
+    "native_speaker_certification": false,
+    "runtime_or_layout_certification": false
+  },
+  "entries": [
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_exact_position",
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target": "A=nuye cipiskip koraci a=anu uske",
+      "target_sha256": "06136b2c71af3a02ec47e96c61945773f45fec51a33ac90d057b726bbc20a4d5",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "moderate",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "The complete phrase has a plausible head-final reading: a place of placement corresponding to written numbers. It does not directly name precision, and a correspondence/comparison between a number and a placed location is newly composed. The context may make the intended exact numeric positioning clear, but neither a source equivalent nor an adequately evidenced whole-value idiom was established. Do not certify it simply because every word has a gloss.",
+      "source_ids": [
+        "A4",
+        "A5",
+        "A10",
+        "A16",
+        "C1"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_target_x",
+      "source": "Target X (pixels from left)",
+      "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+      "target": "A=anu uske kor X (harkisam wano, pixel ani)",
+      "target_sha256": "34fb7a19f6e76ad50899f7263effca9ae77e9cd8ea7c2f488085b02c778f68f7",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "Read as the X coordinate of the place to set, from the physical left, using pixels. The relative placement-place phrase, coordinate property linked with kor, spatial origin wano, and instrumental unit caption combine coherently in this short UI label. This is an independent compositional judgment with a technical-unit extension; no direct dictionary quotation or native certification is claimed.",
+      "source_ids": [
+        "G1",
+        "A1",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_target_y",
+      "source": "Target Y (pixels from top)",
+      "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+      "target": "A=anu uske kor Y (tuyka wano, pixel ani)",
+      "target_sha256": "cd91e3a78ba72c750f07801548fda65ca18d41942e0fe48d0a51382e6bbe752b",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "Read as the Y coordinate of the place to set, from the physical top edge, using pixels. The structure matches the X label and tuyka supplies the intended upper edge rather than stacking surface. The complete label is accepted as contextual software phrasing with moderate idiomatic confidence.",
+      "source_ids": [
+        "G1",
+        "A2",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_position_help",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "A=sanke noka a=nuye uske or ta, tan noka harkisama ta an tuyka un sikkewe anu yan. X newa Y anak 0, 1, 2, 3, … pixel ne; 0 wano a=piski. Mosma noka sinep sinep anak tane a=anu uske or ta an. Te ta noka a=ukaomare yakka pirka; oka ta a=omare noka anak hoski a=omare noka ka ta a=nuye. A=ari noka opitta onnay ta oka kuni, noka a=nuye uske poro. A=tuye uske newa noka kor pororu anak a=sinnare ka somo ki.",
+      "target_sha256": "d89eec5b424608f143d3f633a351d6e28e48d1d7588610e56d8d981351f7c48c",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "moderate",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "All English clauses were compared with the actual Ainu paragraph. The top-left phrase has competing modifier attachment: harkisama ta an precedes tuyka un sikkewe, without securely demonstrating that both directions identify one corner of this image. The bare list-plus-pixel copular predicate does not explicitly select one integer value for each coordinate; intended set-membership relies on notation and context. Current-position an is plausible but less explicit about invariance. Permission, plural placement/existence and bare purpose kuni are independently supported and are not errors. Novel output-canvas and crop/size phrases remain technical extensions. These whole-value gaps prevent acceptance even though import ordering and expansion intent are recoverable. In the expansion purpose clause, onnay has no explicit canvas possessor; the immediately preceding placed-images noun phrase also admits a locative attachment. The logical roles of all images as subject and canvas as containing region need clearer confirmation. Valid purpose kuni alone cannot close this gap.",
+      "source_ids": [
+        "G1",
+        "A1",
+        "A2",
+        "A3",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "C1",
+        "A20",
+        "A21",
+        "A22"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_position_nonnegative",
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target": "X ka Y ka, 0, 1, 2, 3, …, 2147483647 or wa a=numke cipiskip ne kuni ne.",
+      "target_sha256": "14c42a0535aa56fee36c30a26cd8533fe571e36815c94b8cb9ab3f5a13f75608",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "high for intended domain; moderate for complete wording",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "The written 0,1,2,3,…,2147483647 sequence includes zero and the upper bound and shows unit increments. The complete predication says both variables are a number selected from that sequence and has an attested expected/obligatory-state frame. However, or wa treating a numeric enumeration as a collection-source and the validation force of ne kuni ne remain newly composed; mathematical notation cannot itself certify the Ainu construction. There is no claim that the ellipsis is missing text or that the values allow fractions.",
+      "source_ids": [
+        "A8",
+        "A11",
+        "A18",
+        "A19",
+        "C1"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_unknown_image",
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target": "A=numke noka anak tane tan 「Noka ukote」 or ta isam.",
+      "target_sha256": "7e882397c7075ce34518ec0dfc01ae9a9c1967ffa7e2d19bfa67808e986d0793",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate-to-high",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "The selected-image relative clause, topic, now-absent predicate and assembly location form a coherent full sentence. Attested numke relative syntax and tane isam support the intended no-longer-present reading. Quoting Noka ukote identifies the existing feature name; acceptance does not certify that older feature label.",
+      "source_ids": [
+        "G1",
+        "A8",
+        "A9",
+        "A19",
+        "A22"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_exact_position",
+      "source": "Exact position",
+      "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+      "target": "アヌイェ チピㇱキㇷ゚ コラチ アアヌ ウㇱケ",
+      "target_sha256": "65ac30d6bf086902341db8cb33048f5e4f1f0e8b691c150703ddb3f1e19f0f85",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "moderate",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "The complete phrase has a plausible head-final reading: a place of placement corresponding to written numbers. It does not directly name precision, and a correspondence/comparison between a number and a placed location is newly composed. The context may make the intended exact numeric positioning clear, but neither a source equivalent nor an adequately evidenced whole-value idiom was established. Do not certify it simply because every word has a gloss.",
+      "source_ids": [
+        "A4",
+        "A5",
+        "A10",
+        "A16",
+        "C1"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_target_x",
+      "source": "Target X (pixels from left)",
+      "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+      "target": "アアヌ ウㇱケ コㇿ X (ハㇻキサㇺ ワノ, pixel アニ)",
+      "target_sha256": "dbb1a3749692d18bd90d0385080e204e8279352cbc96736e34cb063914a02678",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "Read as the X coordinate of the place to set, from the physical left, using pixels. The relative placement-place phrase, coordinate property linked with kor, spatial origin wano, and instrumental unit caption combine coherently in this short UI label. This is an independent compositional judgment with a technical-unit extension; no direct dictionary quotation or native certification is claimed.",
+      "source_ids": [
+        "G1",
+        "A1",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_target_y",
+      "source": "Target Y (pixels from top)",
+      "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+      "target": "アアヌ ウㇱケ コㇿ Y (トゥイカ ワノ, pixel アニ)",
+      "target_sha256": "9b5c2f3cbf0f69c536fab981c0bc9e700e50d83aa1746e0bb89991e5f3511117",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "Read as the Y coordinate of the place to set, from the physical top edge, using pixels. The structure matches the X label and tuyka supplies the intended upper edge rather than stacking surface. The complete label is accepted as contextual software phrasing with moderate idiomatic confidence.",
+      "source_ids": [
+        "G1",
+        "A2",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_position_help",
+      "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+      "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+      "target": "アサンケ ノカ アヌイェ ウㇱケ オㇿ タ, タン ノカ ハㇻキサマ タ アン トゥイカ ウン シッケウェ アヌ ヤン. X ネワ Y アナㇰ 0, 1, 2, 3, … pixel ネ; 0 ワノ アピㇱキ. モㇱマ ノカ シネㇷ゚ シネㇷ゚ アナㇰ タネ アアヌ ウㇱケ オㇿ タ アン. テ タ ノカ アウカオマレ ヤッカ ピㇼカ; オカ タ アオマレ ノカ アナㇰ ホㇱキ アオマレ ノカ カ タ アヌイェ. アアリ ノカ オピッタ オンナイ タ オカ クニ, ノカ アヌイェ ウㇱケ ポロ. アトゥイェ ウㇱケ ネワ ノカ コㇿ ポロル アナㇰ アシンナレ カ ソモ キ.",
+      "target_sha256": "fd4f733270fc5203e87c3646f261e345699921cd8eeffdbbe1dafd7421092e97",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "moderate",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "All English clauses were compared with the actual Ainu paragraph. The top-left phrase has competing modifier attachment: harkisama ta an precedes tuyka un sikkewe, without securely demonstrating that both directions identify one corner of this image. The bare list-plus-pixel copular predicate does not explicitly select one integer value for each coordinate; intended set-membership relies on notation and context. Current-position an is plausible but less explicit about invariance. Permission, plural placement/existence and bare purpose kuni are independently supported and are not errors. Novel output-canvas and crop/size phrases remain technical extensions. These whole-value gaps prevent acceptance even though import ordering and expansion intent are recoverable. In the expansion purpose clause, onnay has no explicit canvas possessor; the immediately preceding placed-images noun phrase also admits a locative attachment. The logical roles of all images as subject and canvas as containing region need clearer confirmation. Valid purpose kuni alone cannot close this gap.",
+      "source_ids": [
+        "G1",
+        "A1",
+        "A2",
+        "A3",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "A17",
+        "A18",
+        "A19",
+        "C1",
+        "A20",
+        "A21",
+        "A22"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_position_nonnegative",
+      "source": "X and Y must be whole numbers from zero to 2147483647.",
+      "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+      "target": "X カ Y カ, 0, 1, 2, 3, …, 2147483647 オㇿ ワ アヌㇺケ チピㇱキㇷ゚ ネ クニ ネ.",
+      "target_sha256": "92f32c05727ba8579a73e247fe4564f0b33b5ba32830838a85cf2cdddde907fe",
+      "decision": "hold",
+      "verdict": "hold_for_full_value_linguistic_resolution",
+      "semantic_confidence": "high for intended domain; moderate for complete wording",
+      "idiom_confidence": "low-to-moderate",
+      "whole_value_reviewed": true,
+      "approved_for_integration": false,
+      "note": "The written 0,1,2,3,…,2147483647 sequence includes zero and the upper bound and shows unit increments. The complete predication says both variables are a number selected from that sequence and has an attested expected/obligatory-state frame. However, or wa treating a numeric enumeration as a collection-source and the validation force of ne kuni ne remain newly composed; mathematical notation cannot itself certify the Ainu construction. There is no claim that the ellipsis is missing text or that the values allow fractions.",
+      "source_ids": [
+        "A8",
+        "A11",
+        "A18",
+        "A19",
+        "C1"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_unknown_image",
+      "source": "The selected image is no longer in this assembly.",
+      "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+      "target": "アヌㇺケ ノカ アナㇰ タネ タン 「ノカ ウコテ」 オㇿ タ イサㇺ.",
+      "target_sha256": "7d1b04916317eb73904b0aea8664a56167e06d411838e7769feda5d8418760b6",
+      "decision": "accept",
+      "verdict": "accepted_source_semantics",
+      "semantic_confidence": "high",
+      "idiom_confidence": "moderate-to-high",
+      "whole_value_reviewed": true,
+      "approved_for_integration": true,
+      "note": "The selected-image relative clause, topic, now-absent predicate and assembly location form a coherent full sentence. Attested numke relative syntax and tane isam support the intended no-longer-present reading. Quoting Noka ukote identifies the existing feature name; acceptance does not certify that older feature label.",
+      "source_ids": [
+        "G1",
+        "A8",
+        "A9",
+        "A19",
+        "A22"
+      ],
+      "paired_script_checked": true,
+      "pairing_result": "No mismatch detected; actual words, affixes, numbers, Latin technical identifiers, final consonants and gemination were manually compared."
+    }
+  ],
+  "sources": {
+    "G1": {
+      "url": "https://ainugo.nam.go.jp/pages/ainu_basic.html",
+      "type": "Primary published Saru grammar by Tamura Suzuko",
+      "evidence": "Sections 2, 4, 5, 6, and 7: prenominal modifiers, nominal possession with kor where appropriate, locatives, indefinite-person marking, number, copular predicates, and imperative yan. Used to evaluate syntax, not as attestation of the new UI prose."
+    },
+    "A1": {
+      "url": "https://ainugo.nam.go.jp/dic?word=harki",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "harkisam is left side, harkisama its relational/possessed counterpart. Physical left is supported; no reading-direction interpretation is needed."
+    },
+    "A2": {
+      "url": "https://ainugo.nam.go.jp/dic?word=tuyka",
+      "type": "Tamura primary dictionary",
+      "evidence": "tuyka includes an upper end and is expressly distinguished from a table or paper surface, ka. This supports the physical-edge versus stacking distinction, not the full nested top-left phrase."
+    },
+    "A3": {
+      "url": "https://ainugo.nam.go.jp/dic?word=sikkew",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "sikkew/sikkewe denotes a corner; the possessed example explicitly attaches to the object whose corner it is. Does not demonstrate the draft’s two-level directional modifier."
+    },
+    "A4": {
+      "url": "https://ainugo.nam.go.jp/dic?word=anu",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "Placement verb anu, including the complete polite command anu yan. Relative place phrases additionally checked against uske."
+    },
+    "A5": {
+      "url": "https://ainugo.nam.go.jp/dic?word=uske",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "uske is a modified place expression. Independently attested an uske supports location phrasing; this is no claim that a coordinate-label expression is lexicalized."
+    },
+    "A6": {
+      "url": "https://ainugo.nam.go.jp/dic?word=ani",
+      "type": "Tamura primary dictionary",
+      "evidence": "Instrumental/means ani includes a measuring-instrument example. Applying it to a unit, pixel, is a transparent technical extension assessed in the complete X/Y labels."
+    },
+    "A7": {
+      "url": "https://ainugo.nam.go.jp/dic?word=wano",
+      "type": "Tamura primary dictionary",
+      "evidence": "The starting point can be spatial or temporal; wano is not restricted to time. Supports physical-origin captions and the intended zero origin."
+    },
+    "A8": {
+      "url": "https://ainugo.nam.go.jp/dic?word=numke",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "Transitive choose/select; an attested relative clause a=numke a kur directly supports the selected-item construction. Selection from an abstract enumerated numeric domain remains an application not attested here."
+    },
+    "A9": {
+      "url": "https://ainugo.nam.go.jp/dic?word=isam",
+      "type": "Kayano and Tamura primary dictionaries",
+      "evidence": "Absence/nonexistence; Kayano explicitly uses tane isam for something formerly present but now gone."
+    },
+    "A10": {
+      "url": "https://ainugo.nam.go.jp/dic?word=koraci",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "Similarity/correspondence expressions, including doing according to words; koracipo is an intensified comparison. They do not by themselves establish numerical-exactness terminology."
+    },
+    "A11": {
+      "url": "https://ainugo.nam.go.jp/dic?word=kuni",
+      "type": "Tamura primary dictionary",
+      "evidence": "Sense 2 is explicitly purpose. Sense 3 also permits following ne for intended/expected state. Therefore neither bare purpose kuni nor terminal kuni ne is rejected as inherently ungrammatical. Whether the latter adequately imposes a validation requirement is a separate UI judgment."
+    },
+    "A12": {
+      "url": "https://ainugo.nam.go.jp/dic?word=yakka",
+      "type": "Tamura primary dictionary",
+      "evidence": "yakka pirka is expressly permission, so the overlap clause has a supported permissive construction."
+    },
+    "A13": {
+      "url": "https://ainugo.nam.go.jp/dic?word=ari",
+      "type": "Tamura primary dictionary",
+      "evidence": "Placement ari is plural and has singular anu. It is not only the homophonous fire-lighting verb."
+    },
+    "A14": {
+      "url": "https://ainugo.nam.go.jp/dic?word=oka",
+      "type": "Tamura primary dictionary",
+      "evidence": "Plural existence is distinguished from relational after/behind. Supports the canvas-purpose plural; temporal oka ta must still be interpreted with its contextual comparison."
+    },
+    "A15": {
+      "url": "https://ainugo.nam.go.jp/dic?word=poro",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "poro can mean becoming larger as well as being large, so expansion is a supported reading rather than a mechanically forced backtranslation."
+    },
+    "A16": {
+      "url": "https://ainugo.nam.go.jp/dic?word=nuye",
+      "type": "Kayano and Tamura primary dictionaries",
+      "evidence": "Kayano has a drawing example with noka as design/object; Tamura warns that the traditionally marked surface is often the object. The draft’s image-drawing extension is possible, but cannot be certified merely from the gloss write."
+    },
+    "A17": {
+      "url": "https://ainugo.nam.go.jp/dic?word=sinep",
+      "type": "Tamura primary dictionary",
+      "evidence": "sinep sinep is explicitly distributive, one by one. This removes an alleged automatic an/oka mismatch but does not independently add continuance to the whole clause."
+    },
+    "A18": {
+      "url": "https://ainugo.nam.go.jp/dic?word=piski",
+      "type": "Tamura and Kayano primary dictionaries",
+      "evidence": "piski counts objects. Integer-domain membership is not established by this word alone."
+    },
+    "A19": {
+      "url": "https://ainugo.nam.go.jp/dic?word=or",
+      "type": "Tamura primary dictionary",
+      "evidence": "or supplies a locative relation to a preceding referent; or wa also has an agentive use. The numeric-list construction must be justified as a collection-source reading, not inferred solely from the gloss from."
+    },
+    "C1": {
+      "url": "https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/dictionary.html",
+      "payload_urls": [
+        "https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/js/ainu.js",
+        "https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/js/source.js"
+      ],
+      "type": "Published community terminology collection; primary evidence of this collection’s proposals, not linguistic authority",
+      "evidence": "Payload directly has cipiskip number, omare import and sanke export attributed to a translation collection; pororu size is explicitly tagged neologism. Thus these are not newly invented by this patch, but publication does not establish broad acceptance."
+    },
+    "A20": {
+      "url": "https://ainugo.nam.go.jp/dic?word=ukaomare",
+      "type": "Tamura primary dictionary",
+      "evidence": "The complete entry is transitive combine one on top of another. The image-overlap application has clear stacking support; it is not a claim of a standardized digital-overlap term."
+    },
+    "A21": {
+      "url": "https://ainugo.nam.go.jp/dic?word=onnay",
+      "type": "Tamura primary dictionary",
+      "evidence": "onnay is the interior of a referent; the possessed form is onnayke. Actual locative examples supply a container. The draft’s purpose clause leaves the canvas container implicit after a preceding images NP, creating a reference/attachment question not answered by the word interior alone."
+    },
+    "A22": {
+      "url": "https://ainugo.nam.go.jp/dic?word=noka",
+      "type": "Tamura primary dictionary",
+      "evidence": "noka explicitly includes image, design, likeness and model. The unknown-image message is therefore not accepted solely by borrowing catalogue usage."
+    },
+    "A23": {
+      "url": "https://ainugo.nam.go.jp/dic?word=koracipo",
+      "type": "Tamura primary dictionary",
+      "evidence": "An intensified comparison corresponding to exactly like/as. This supplies the replacement title’s proposed word but does not certify that whole title."
+    }
+  },
+  "replacement_candidates": [
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_exact_position",
+      "replaces_target_sha256": "06136b2c71af3a02ec47e96c61945773f45fec51a33ac90d057b726bbc20a4d5",
+      "candidate": "A=nuye cipiskip koracipo a=anu uske",
+      "candidate_sha256": "0fe8f64ab7a7de53231ed432149d8b74d25f5cf56df549aee25b19c10f7399ce",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Attested intensified koracipo strengthens correspondence, but still needs confirmation as numerical-exactness phrasing."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_position_help",
+      "replaces_target_sha256": "d89eec5b424608f143d3f633a351d6e28e48d1d7588610e56d8d981351f7c48c",
+      "candidate": "A=sanke noka a=nuye uske or ta, tan noka tuyka un sikkewe, harkisama ta an pe, anu yan. X ka Y ka, 「0, 1, 2, 3, …」 or wa a=numke cipiskip ne; pixel ani, 0 wano a=piski. Mosma noka a=ari uske anak a=sinnare ka somo ki. Te ta noka a=ukaomare yakka pirka; oka ta a=omare noka anak hoski a=omare noka ka ta a=nuye. A=ari noka opitta anak noka a=nuye uske onnay ta oka kuni, noka a=nuye uske poro. A=tuye uske ka noka kor pororu ka a=sinnare ka somo ki.",
+      "candidate_sha256": "d8c85d483ca3bdd55a1d68b1ea47f8007571b58c50fc7cde7021f7b941b2928f",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Makes the corner apposition explicit, replaces the list-as-pixel identity with a number-selection formulation, and expressly negates changes to other placement locations. Uses ka coordination to reduce reliance on cross-dialect newa. The new apposition and numeric-domain syntax remain unapproved. Names the canvas container explicitly within the purpose clause; this fuller phrase still requires independent full-value review."
+    },
+    {
+      "language": "ain-Latn",
+      "key": "ui_assembly_position_nonnegative",
+      "replaces_target_sha256": "14c42a0535aa56fee36c30a26cd8533fe571e36815c94b8cb9ab3f5a13f75608",
+      "candidate": "X ka Y ka, 「0, 1, 2, 3, …, 2147483647」 or wa a=numke cipiskip ne kuni p ne.",
+      "candidate_sha256": "6d43c1fece5401f5273b6a59abda8670f551de16f0b799965b798dda44235fab",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Quotes the enumeration as a domain and tries the attested normative kuni p ne pattern. This remains a proposal, not evidence that the original is ungrammatical or that the replacement solves numeric-set syntax."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_exact_position",
+      "replaces_target_sha256": "65ac30d6bf086902341db8cb33048f5e4f1f0e8b691c150703ddb3f1e19f0f85",
+      "candidate": "アヌイェ チピㇱキㇷ゚ コラチポ アアヌ ウㇱケ",
+      "candidate_sha256": "ab11c085f5689060f58205d3eb3025ac925adc9618be28143e3e5ee54118f8f1",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Attested intensified koracipo strengthens correspondence, but still needs confirmation as numerical-exactness phrasing."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_position_help",
+      "replaces_target_sha256": "fd4f733270fc5203e87c3646f261e345699921cd8eeffdbbe1dafd7421092e97",
+      "candidate": "アサンケ ノカ アヌイェ ウㇱケ オㇿ タ, タン ノカ トゥイカ ウン シッケウェ, ハㇻキサマ タ アン ペ, アヌ ヤン. X カ Y カ, 「0, 1, 2, 3, …」 オㇿ ワ アヌㇺケ チピㇱキㇷ゚ ネ; pixel アニ, 0 ワノ アピㇱキ. モㇱマ ノカ アアリ ウㇱケ アナㇰ アシンナレ カ ソモ キ. テ タ ノカ アウカオマレ ヤッカ ピㇼカ; オカ タ アオマレ ノカ アナㇰ ホㇱキ アオマレ ノカ カ タ アヌイェ. アアリ ノカ オピッタ アナㇰ ノカ アヌイェ ウㇱケ オンナイ タ オカ クニ, ノカ アヌイェ ウㇱケ ポロ. アトゥイェ ウㇱケ カ ノカ コㇿ ポロル カ アシンナレ カ ソモ キ.",
+      "candidate_sha256": "49ef879f0a17da19f4701e7dbb3a98fed6e3736253a6866076ba4ed35acef09a",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Makes the corner apposition explicit, replaces the list-as-pixel identity with a number-selection formulation, and expressly negates changes to other placement locations. Uses ka coordination to reduce reliance on cross-dialect newa. The new apposition and numeric-domain syntax remain unapproved. Names the canvas container explicitly within the purpose clause; this fuller phrase still requires independent full-value review."
+    },
+    {
+      "language": "ain-Kana",
+      "key": "ui_assembly_position_nonnegative",
+      "replaces_target_sha256": "92f32c05727ba8579a73e247fe4564f0b33b5ba32830838a85cf2cdddde907fe",
+      "candidate": "X カ Y カ, 「0, 1, 2, 3, …, 2147483647」 オㇿ ワ アヌㇺケ チピㇱキㇷ゚ ネ クニ ㇷ゚ ネ.",
+      "candidate_sha256": "37a86ffb4d653c54e68ef8b33eff167d145420fad3105abdb74aa85320f1c10a",
+      "decision": "hold",
+      "approved_for_integration": false,
+      "confidence": "low-to-moderate; new full-value alternatives requiring independent review",
+      "purpose": "Quotes the enumeration as a domain and tries the attested normative kuni p ne pattern. This remains a proposal, not evidence that the original is ungrammatical or that the replacement solves numeric-set syntax."
+    }
+  ],
+  "accepted_translations": {
+    "ain-Latn": {
+      "ui_assembly_target_x": "A=anu uske kor X (harkisam wano, pixel ani)",
+      "ui_assembly_target_y": "A=anu uske kor Y (tuyka wano, pixel ani)",
+      "ui_assembly_unknown_image": "A=numke noka anak tane tan 「Noka ukote」 or ta isam."
+    },
+    "ain-Kana": {
+      "ui_assembly_target_x": "アアヌ ウㇱケ コㇿ X (ハㇻキサㇺ ワノ, pixel アニ)",
+      "ui_assembly_target_y": "アアヌ ウㇱケ コㇿ Y (トゥイカ ワノ, pixel アニ)",
+      "ui_assembly_unknown_image": "アヌㇺケ ノカ アナㇰ タネ タン 「ノカ ウコテ」 オㇿ タ イサㇺ."
+    }
+  },
+  "important_negative_findings": [
+    "Do not reject bare purpose kuni: the primary dictionary explicitly attests that use.",
+    "Do not treat poro as only static large: become larger is attested.",
+    "Do not reject the permission formula yakka pirka or plural ari/oka: both are supported.",
+    "No Latin/Kana mismatch was detected; correct pairing does not clear whole-value linguistic holds.",
+    "No dictionary equivalent is required for every composed UI phrase, but the particular unresolved constructions cannot be promoted on hashes, glosses or backtranslation alone."
+  ],
+  "remaining_limits": [
+    "Title: numerical-exactness reading of comparison to written numeric values.",
+    "Help: nested/appositional upper-left corner reference, per-coordinate numeric-list membership, and complete idiomatic technical prose.",
+    "Validation: collection-source construction for the finite numeric domain and unambiguous normative force.",
+    "Newa has evidence outside the particular Saru materials inspected; no blanket claim that it is invalid Ainu is made.",
+    "Published modern terminology is evidence of a proposal, not broad community or native approval.",
+    "Expansion: explicitly distinguish placed images as the subject and drawing area as the container of onnay, rather than treating lexical purpose support as full-sentence approval."
+  ],
+  "source_access": "Web grammar read successfully. Some dictionary URL opens returned retrieval errors, so ordinary HTTPS reads were used without bypassing any denied access. Temporary shell transport failure recovered.",
+  "repository_writes": false,
+  "published": false
+}
