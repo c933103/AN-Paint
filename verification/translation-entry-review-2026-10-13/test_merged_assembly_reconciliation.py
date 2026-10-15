@@ -20,6 +20,11 @@ class ScopeGates(unittest.TestCase):
         cls.base_counts = read(HERE / 'entry-review-counts.json')
         cls.base_receipts = read(HERE / 'entry-review-receipts.json')
         cls.base_fixture = read(HERE / FIXTURE)
+        if cls.base_receipts['source_revision'] != 'e53b2e6aaaa9ac231cfdd38485e28ee9d638e870':
+            from validate_position_reconciliation import historical_receipts
+            cls.base_receipts = historical_receipts(cls.base_receipts)
+            previous = cls.base_identities['previous_resource_manifest_at_position_merge']
+            cls.base_identities = {**cls.base_identities, **previous}
 
     def setUp(self):
         self.identities = copy.deepcopy(self.base_identities)
@@ -239,6 +244,7 @@ class ScopeGates(unittest.TestCase):
             check_pairs(self.receipts, historical, self.fixture, english, cats)
 
     def test_all_171_table_rows_and_exact_counts(self):
+        self.counts = read(HERE / 'entry-review-counts.json')
         self.assertGreaterEqual(check_tables(HERE, self.counts), 1)
         self.counts['languages'][0]['reviewed_current'] += 1
         with self.assertRaises(ValueError):

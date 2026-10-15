@@ -298,10 +298,11 @@ def check_tables(directory, counts, previous=None):
     rows = {row['tag']: row for row in counts['languages']}
     files = [directory / 'current-entry-review.md']
     for candidate in (directory / 'TRANSLATION_PROGRESS.md', directory.parents[1] / 'TRANSLATION_PROGRESS.md', directory / 'new-body.md'):
-        if candidate.exists() and candidate not in files:
+        if candidate.exists() and candidate not in files and (candidate.name != 'new-body.md' or '### Current per-language entry counts' in candidate.read_text(encoding='utf-8')):
             files.append(candidate)
     for file in files:
         text = file.read_text(encoding='utf-8')
+        require('### Current per-language entry counts' in text, 'Required current table marker missing: ' + str(file))
         section = text.split('### Current per-language entry counts', 1)[1].split('### Preserved earlier review checkpoints', 1)[0]
         seen = []
         for line in section.splitlines():
@@ -322,6 +323,9 @@ def check_tables(directory, counts, previous=None):
 
 
 def validate(source, previous=None, directory=HERE):
+    if read(directory / 'entry-review-counts.json')['source_revision'] == '0aa6c89c9d3a4d133a8b231e7002783b60ead46d':
+        from validate_position_reconciliation import validate as validate_position
+        return validate_position(source, previous, directory)
     summary = validate_internal(directory)
     receipts = read(directory / 'entry-review-receipts.json')
     counts = read(directory / 'entry-review-counts.json')
