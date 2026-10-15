@@ -58,7 +58,8 @@ class GalleryBackDirectionTest {
                 val controller=open(provider)
                 try {
                     val activity=controller.get()
-                    val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint" else tag
+                    val resourceTag=if(tag=="ko-Kore-KR") "ko-Kore-KR-anpaint"
+                        else if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
                     assertEquals(resourceTag,activity.resources.configuration.locales[0].toLanguageTag())
                     assertEquals(tag,AppLanguage.selectedTag(activity))
                     assertEquals(tag,activity.getSharedPreferences("app-language",Context.MODE_PRIVATE)

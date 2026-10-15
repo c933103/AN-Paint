@@ -313,7 +313,7 @@ class VerticalLocaleDeviceTest {
                 activity.getSharedPreferences("app-language",0).getString("language-tag",null)==tag
         }
         awaitState("recreated $tag activity") {
-            activity.startupReady && activity.resources.configuration.locales[0].toLanguageTag()==tag &&
+            activity.startupReady && activity.resources.configuration.locales[0].toLanguageTag()==resourceTag(tag) &&
                 root().findViewWithTag<View>("vertical_status_rail")?.isShown==true && !activity.busy
         }
         onMain {assertEquals(tag,activity.getSharedPreferences("app-language",0).getString("language-tag",null))}
@@ -378,8 +378,23 @@ class VerticalLocaleDeviceTest {
         assertEquals("$label starts at the first ${if(rtl) "right" else "left"} reading column",if(rtl) maximum else 0,columns.scrollX)
     }
 
+    private fun resourceTag(tag: String)=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+
     private fun assertCanvas(tag: String)=onMain {
-        assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+        assertEquals(resourceTag(tag),activity.resources.configuration.locales[0].toLanguageTag())
+        assertEquals(tag,activity.getSharedPreferences("app-language",0).getString("language-tag",null))
+        assertEquals(tag,java.util.Locale.getDefault().toLanguageTag())
+        if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
+            activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+        if(tag=="qaa-Zsye-XV") {
+            assertEquals("💾 Save",activity.getString(R.string.ui_save))
+            assertEquals("📁 File",activity.getString(R.string.ui_menu_file))
+            for(count in listOf(0,1,2,20)) {
+                val noun=if(count==1) "image" else "images"
+                assertEquals("✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images may move their attached images.",
+                    activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
+            }
+        }
         assertTrue(root().findViewWithTag<View>("vertical_status_rail").isShown)
         assertTrue("Usable canvas width",activity.paintCanvas.width>=48*activity.resources.displayMetrics.density)
         assertTrue("Usable canvas height",activity.paintCanvas.height>=48*activity.resources.displayMetrics.density)

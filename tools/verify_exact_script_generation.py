@@ -13,9 +13,11 @@ import re
 import subprocess
 import tempfile
 
-CANONICAL = Path('Paintroid/src/main/res/values-b+ko+Kore+KR')
 GENERATED = Path('Paintroid/build/generated/exactScriptResources')
-QUALIFIER = 'values-b+ko+Kore+KR+anpaint'
+MIRRORS = {
+    Path('Paintroid/src/main/res/values-b+ko+Kore+KR'): 'values-b+ko+Kore+KR+anpaint',
+    Path('Paintroid/src/main/res/values-b+qaa+Zsye+XV'): 'values-b+en+Zsye+XV+anpaint',
+}
 GENERATOR = ':Paintroid:generateExactScriptResources'
 MERGES = (':Paintroid:mergeDebugResources', ':Paintroid:mergeReleaseResources')
 
@@ -25,13 +27,15 @@ def sha(data):
 
 
 def mirror_hashes(root):
-    inputs = {p.name: p.read_bytes() for p in (root / CANONICAL).glob('*.xml')}
-    if not inputs:
-        raise AssertionError('Canonical XML inputs are missing')
+    expected = {}
+    for canonical, qualifier in MIRRORS.items():
+        inputs = {p.name: p.read_bytes() for p in (root / canonical).glob('*.xml')}
+        if not inputs:
+            raise AssertionError(f'Canonical XML inputs are missing: {canonical}')
+        expected.update({f'{qualifier}/{name}': data for name, data in inputs.items()})
     output = root / GENERATED
     actual = {p.relative_to(output).as_posix(): p.read_bytes()
               for p in output.rglob('*') if p.is_file()}
-    expected = {f'{QUALIFIER}/{name}': data for name, data in inputs.items()}
     if actual != expected:
         raise AssertionError(f'Generated XML differs or contains stale files: '
                              f'expected={sorted(expected)}, actual={sorted(actual)}')
@@ -79,8 +83,9 @@ def run_probes(repository, output):
                 raise AssertionError('Update probe provenance when the pinned toolchain changes')
             report['wrapper_sha256'] = sha(wrapper)
             report['root_build_sha256'] = sha(build)
-            original = {p.name: p.read_bytes() for p in (worktree / CANONICAL).glob('*.xml')}
-            if not original:
+            original = {canonical: {p.name: p.read_bytes()
+                        for p in (worktree / canonical).glob('*.xml')} for canonical in MIRRORS}
+            if not all(original.values()):
                 raise AssertionError('Missing canonical resource inputs')
 
             def gradle(label, tasks):
@@ -109,25 +114,28 @@ def run_probes(repository, output):
             log, _ = gradle('03-unchanged', [GENERATOR])
             require_generation_before(log, (), up_to_date=True)
 
-            canonical = worktree / CANONICAL / sorted(original)[0]
-            canonical.write_bytes(original[canonical.name] + b'\n<!-- isolated incremental resource probe -->\n')
-            stale = worktree / GENERATED / QUALIFIER / 'stale_probe.xml'
-            stale.write_text('<resources/>\n')
-            log, record = gradle('04-input-change-and-stale-output', [MERGES[0]])
-            require_generation_before(log, [MERGES[0]])
-            record['generated_sha256'] = mirror_hashes(worktree)
-            if stale.exists():
-                raise AssertionError('Sync did not remove stale output')
-            canonical.write_bytes(original[canonical.name])
-            log, record = gradle('05-restored-input-release', [MERGES[1]])
-            require_generation_before(log, [MERGES[1]])
-            record['generated_sha256'] = mirror_hashes(worktree)
+            for index, (source, qualifier) in enumerate(MIRRORS.items(), 1):
+                canonical = worktree / source / sorted(original[source])[0]
+                canonical.write_bytes(original[source][canonical.name] +
+                                      b'\n<!-- isolated incremental resource probe -->\n')
+                stale = worktree / GENERATED / qualifier / 'stale_probe.xml'
+                stale.write_text('<resources/>\n')
+                log, record = gradle(f'04-{index}-input-change-and-stale-output', [MERGES[0]])
+                require_generation_before(log, [MERGES[0]])
+                record['generated_sha256'] = mirror_hashes(worktree)
+                if stale.exists():
+                    raise AssertionError('Sync did not remove stale output')
+                canonical.write_bytes(original[source][canonical.name])
+                log, record = gradle(f'05-{index}-restored-input-release', [MERGES[1]])
+                require_generation_before(log, [MERGES[1]])
+                record['generated_sha256'] = mirror_hashes(worktree)
 
             gradle('06-second-clean', [':Paintroid:clean'])
             log, record = gradle('07-release-first-after-clean', [MERGES[1]])
             require_generation_before(log, [MERGES[1]])
             record['generated_sha256'] = mirror_hashes(worktree)
-            if {p.name: p.read_bytes() for p in (worktree / CANONICAL).glob('*.xml')} != original:
+            if {canonical: {p.name: p.read_bytes() for p in (worktree / canonical).glob('*.xml')}
+                    for canonical in MIRRORS} != original:
                 raise AssertionError('Canonical input was not restored byte-for-byte')
             subprocess.run(['git', 'diff', '--exit-code'], cwd=worktree, check=True)
             report['success'] = True
