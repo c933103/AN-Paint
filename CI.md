@@ -39,6 +39,7 @@ external force-stop seed/verify phases. A missing or excluded test is not a pass
 The exact-script job tests clean debug/release resource merges, release-first,
 producer-before-consumer order, identical generated XML, an unchanged up-to-date
 run, input-change regeneration and stale-output removal in a disposable worktree.
+Both the mixed-script Korean and emoji-English mirrors are checked independently.
 Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
 verifies that native-source/bundling graph. Production translations are not edited.
 

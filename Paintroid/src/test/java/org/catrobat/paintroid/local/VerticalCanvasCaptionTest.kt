@@ -68,7 +68,9 @@ class VerticalCanvasCaptionTest {
         val context=AppLanguage.wrap(application)
         PaintApplication.currentResources=context.resources
         assertEquals(Locale.forLanguageTag(tag),Locale.getDefault())
-        assertEquals(Locale.forLanguageTag(tag),context.resources.configuration.locales[0])
+        assertEquals(tag,AppLanguage.selectedTag(context))
+        val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+        assertEquals(Locale.forLanguageTag(resourceTag),context.resources.configuration.locales[0])
         assertEquals(context.getString(R.string.ui_rotate),ui(R.string.ui_rotate))
         return context
     }

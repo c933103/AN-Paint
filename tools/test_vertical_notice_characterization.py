@@ -24,7 +24,9 @@ def contracts(source):
         "API30/35": "@Config(sdk=[30,35]",
         "native renderer": "@GraphicsMode(GraphicsMode.Mode.NATIVE)",
         "compiled wrapping": "super.attachBaseContext(AppLanguage.wrap(base))",
-        "source locale": 'assertEquals(tag,a.resources.configuration.locales[0].toLanguageTag())',
+        "public locale": 'assertEquals(tag,AppLanguage.selectedTag(a))',
+        "resource locale": 'assertEquals(resourceTag,a.resources.configuration.locales[0].toLanguageTag())',
+        "emoji resource alias": 'val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag',
         "oracle packaging": 'getResourceAsStream("/vertical-notice-resize/expected-resources.json")',
         "caller newline": 'getString(R.string.ui_cursor_pan_move32)+"\\n"+a.getString(R.string.ui_cursor_tap_hint37)',
         "real validator": "ExportNames.valid(joinedEmoji,ImageFormat.PNG)",
@@ -99,6 +101,9 @@ class VerticalNoticeCharacterizationContractTest(unittest.TestCase):
     def test_control_removal_mutations_are_rejected(self):
         source = TEST.read_text()
         mutations = [
+            'assertEquals(tag,AppLanguage.selectedTag(a))',
+            'assertEquals(resourceTag,a.resources.configuration.locales[0].toLanguageTag())',
+            'val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag',
             'assertTrue("Observer must see an announcement from the actual node"',
             'assertTrue("A working observer must see a genuine TextView content mutation"',
             'assertTrue("Reference guard must not itself crop any ink: "+id,',

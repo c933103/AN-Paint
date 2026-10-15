@@ -149,11 +149,17 @@ tasks.withType(Javadoc).configureEach { enabled = false }
 // Android infers Kore for ordinary ko-KR. A whole-catalogue variant breaks its
 // resource-ranking tie with the explicitly selected mixed-script catalogue.
 // The canonical source stays in res/values-b+ko+Kore+KR; never edit a second copy.
+// The private emoji-English mirror supplies English plural rules while keeping
+// the public qaa-Zsye-XV tag and the entire canonical emoji catalogue unchanged.
 def exactScriptResourceDirectory = layout.buildDirectory.dir('generated/exactScriptResources')
 def generateExactScriptResources = tasks.register('generateExactScriptResources', Sync) {
     from('src/main/res/values-b+ko+Kore+KR') {
         include '*.xml'
         into 'values-b+ko+Kore+KR+anpaint'
+    }
+    from('src/main/res/values-b+qaa+Zsye+XV') {
+        include '*.xml'
+        into 'values-b+en+Zsye+XV+anpaint'
     }
     into exactScriptResourceDirectory
 }

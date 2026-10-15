@@ -393,7 +393,11 @@ class AppLanguageTest {
             assertEquals(tag,Locale.forLanguageTag(tag).toLanguageTag())
             AppLanguage.select(context,tag)
             val selected=AppLanguage.wrap(context)
-            assertEquals(tag,selected.resources.configuration.locales[0].toLanguageTag())
+            val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+            assertEquals(resourceTag,selected.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,AppLanguage.selectedTag(context))
+            assertEquals(tag,Locale.getDefault().toLanguageTag())
+            assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection(selected))
             assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection())
             assertTrue(AppLanguage.name(tag).contains("vertical"))
             if(tag=="en-XV") assertEquals("Save",selected.getString(R.string.ui_save))

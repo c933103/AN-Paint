@@ -350,4 +350,69 @@ class CursorDrawingTest {
             } finally {board.document.close()}
         }
     }
+
+    @Test fun navigateToolStillPansWhileCursorModeRemainsEnabled() {
+        val document=PaintDocument().apply {newImage(1200,900);foreground=Color.RED}
+        val board=PaintCanvas(context,document).apply {
+            layout(0,0,824,1000);fit();zoomAt(2f);setCursorMode(true);selectTool(PaintTool.ZOOM)
+        }
+        val original=document.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+        try {
+            val before=board.draftState()
+            val zoom=board.zoom
+            touch(board,MotionEvent.ACTION_DOWN,100f,500f)
+            touch(board,MotionEvent.ACTION_MOVE,140f,520f)
+            touch(board,MotionEvent.ACTION_UP,140f,520f)
+            assertTrue(board.cursorMode);assertEquals(PaintTool.ZOOM,board.tool)
+            assertEquals(before.getDouble("pan_x")+40.0,board.panX.toDouble(),.001)
+            assertEquals(before.getDouble("pan_y")+20.0,board.panY.toDouble(),.001)
+            assertEquals(zoom,board.zoom,0f)
+            assertEquals(before.getDouble("cursor_x"),board.draftState().getDouble("cursor_x"),0.0)
+            assertEquals(before.getDouble("cursor_y"),board.draftState().getDouble("cursor_y"),0.0)
+            assertTrue(original.sameAs(document.bitmap));assertFalse(document.canUndo)
+            assertFalse(board.cursorDrawing)
+        } finally {original.recycle();document.close()}
+    }
+
+    @Test fun twoFingerPanStillMovesViewportInCursorModeWithoutCommittingInk() {
+        for(drawing in listOf(false,true)) {
+            val document=PaintDocument().apply {newImage(1200,900);foreground=Color.RED}
+            val board=PaintCanvas(context,document).apply {
+                layout(0,0,824,1000);fit();zoomAt(2f);setCursorMode(true);setCursorDrawing(drawing)
+            }
+            val original=document.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+            try {
+                val before=board.draftState()
+                val zoom=board.zoom
+                val properties=Array(2) {i -> MotionEvent.PointerProperties().apply {
+                    id=i;toolType=MotionEvent.TOOL_TYPE_FINGER
+                }}
+                val coordinates=Array(2) {i -> MotionEvent.PointerCoords().apply {
+                    x=300f+i*100;y=400f;pressure=1f;size=1f
+                }}
+                fun multi(action: Int) {
+                    val event=MotionEvent.obtain(0,30,action,2,properties,coordinates,0,0,1f,1f,0,0,
+                        android.view.InputDevice.SOURCE_TOUCHSCREEN,0)
+                    try {board.onTouchEvent(event)} finally {event.recycle()}
+                }
+                // The first touch can begin cursor ink; adding the second must cancel it.
+                touch(board,MotionEvent.ACTION_DOWN,300f,400f)
+                assertEquals("Initial touch must start ink only when drawing is enabled",
+                    drawing,!original.sameAs(document.bitmap))
+                multi(MotionEvent.ACTION_POINTER_DOWN or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT))
+                coordinates.forEach {it.x+=40f;it.y+=20f}
+                multi(MotionEvent.ACTION_MOVE)
+                multi(MotionEvent.ACTION_POINTER_UP or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT))
+                touch(board,MotionEvent.ACTION_UP,340f,420f)
+                assertTrue(board.cursorMode);assertEquals(PaintTool.BRUSH,board.tool)
+                assertEquals(before.getDouble("pan_x")+40.0,board.panX.toDouble(),.001)
+                assertEquals(before.getDouble("pan_y")+20.0,board.panY.toDouble(),.001)
+                assertEquals(zoom,board.zoom,0f)
+                assertEquals(before.getDouble("cursor_x"),board.draftState().getDouble("cursor_x"),0.0)
+                assertEquals(before.getDouble("cursor_y"),board.draftState().getDouble("cursor_y"),0.0)
+                assertTrue(original.sameAs(document.bitmap));assertFalse(document.canUndo)
+                assertEquals(drawing,board.cursorDrawing)
+            } finally {original.recycle();document.close()}
+        }
+    }
 }
