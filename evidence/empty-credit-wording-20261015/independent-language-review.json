@@ -1,0 +1,808 @@
+[
+  {
+    "locale": "values",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-ar",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "لا يتوفر نص لاعتمادات الصور.",
+    "rationale": "The whole sentence says that no text is available for image credits. نص is the absent object; لا يتوفر does not negate image insertion or describe a failed copy. اعتمادات is broad Arabic terminology but is recognizable as media credits in this image-credit context and matches the field heading.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Media-credit اعتمادات is less explicit than source-attribution wording; no claim that it is the only or preferred Arabic editorial term.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://wwwimages2.adobe.com/content/dam/cc/mena_ar/legal/servicetou/Stock-Additional-Terms-ar_AE-20210129.pdf"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+af",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Geen teks vir beeldkrediete is beskikbaar nie.",
+    "rationale": "The double negative Geen ... nie is grammatical Afrikaans. Text is expressly unavailable, and beeldkrediete connects the statement to the image-credit field rather than a bank balance.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ain+Kana",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "ノカ オルㇱペ オㇿ タ イタㇰ イサㇺ.",
+    "rationale": "The full Kana sentence is the counterpart of Noka oruspe or ta itak isam: text is absent within the application’s image-credit field. オㇿ タ marks location and イサㇺ is negative existence; the sentence does not reuse the old insertion predicate. Small final kana and ASCII punctuation match this catalogue.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "Noka oruspe literally has the broader image-story/account sense. Its specialized attribution meaning is inherited application terminology, not independently established modern Ainu usage. The exact complete UI sentence is not native-attested.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://ainu.ninjal.ac.jp/folklore/",
+      "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/94628/16_Kishimoto.pdf"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ain+Latn",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Noka oruspe or ta itak isam.",
+    "rationale": "Noka oruspe or ta itak isam has the same full wording as the Kana entry. Locative or ta plus negative existential isam makes itak the absent item; this is compatible with both empty-source and blank-credit states. Latin spelling contains no Kana fallback.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "The image-credit sense of noka oruspe is a local technical convention; oruspe is broader account/story information. No native Ainu reader has validated this complete UI sentence.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://ainu.ninjal.ac.jp/folklore/",
+      "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/94628/16_Kishimoto.pdf"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+bo",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "པར་རིས་ཀྱི་གསལ་བཤད་ཡི་གེ་མེད།",
+    "rationale": "The full Tibetan sentence makes image-credit/explanation text the noun phrase and ends in མེད, a negative existential. པར་རིས་ཀྱི links it to the image, and no failed-copy or insertion predicate remains. Tibetan script and shad are preserved.",
+    "confidence": "moderate",
+    "unknowns": [
+      "གསལ་བཤད is broader explanation/clarification wording; attribution is supplied by the named credit field. No independent native-reader or font-shaping validation.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ceb",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Walay magamit nga teksto sa kredito sa hulagway.",
+    "rationale": "Walay negates the existence of usable text; magamit nga teksto is available text, and sa kredito sa hulagway links it to the image credit. The complete sentence does not contain a failed-copy or uninserted-image predicate.",
+    "confidence": "moderate",
+    "unknowns": [
+      "Kredito is a loanword with other senses; the image modifier and established credit-field context supply the attribution sense. Exact Cebuano idiom has not been native-reader tested.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+dz",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "གཟུགས་བརྙན་གྱི་གསལ་བཤད་ཚིག་ཡིག་མེད།",
+    "rationale": "The full Dzongkha candidate uses the existing image-credit term with ཚིག་ཡིག for text and negative existential མེད. It describes absent credit text rather than inability to copy or absence of an inserted image. The script is consistent with the catalogue.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "The specialized attribution sense of གསལ་བཤད and idiomatic suitability of the complete compound are not independently native-attested. This is limited linguistic clearance, not full Dzongkha acceptance.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+en+001",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+en+XV",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+eo",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Neniu teksto por bildaj agnoskoj estas disponebla.",
+    "rationale": "Neniu teksto ... estas disponebla is grammatical and targets missing text. Bildaj agnoskoj denotes image acknowledgments and avoids financial-credit vocabulary.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+es+419",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No hay texto disponible para los créditos de las imágenes.",
+    "rationale": "No hay texto disponible is an unambiguous present absence of available text. Créditos de las imágenes has the intended media-attribution sense; this wording is neutral across Latin American varieties.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+es+ES",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No hay texto disponible para los créditos de las imágenes.",
+    "rationale": "The complete sentence is grammatical European Spanish and states that credit text is unavailable. It does not imply that no image was inserted, or waive attribution.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+et",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Pildi viitetekst pole saadaval.",
+    "rationale": "Pole saadaval applies to the singular viitetekst, not to the image. Pildi viitetekst is image-reference/credit text and matches the local editor terminology.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Viitetekst is a reference-text term, rather than an independently standardized translation of every possible kind of artwork credit.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+fil",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Walang tekstong magagamit para sa credit ng larawan.",
+    "rationale": "Walang tekstong magagamit negates available text, and para sa credit ng larawan specifies image credit. The borrowed credit is used in a clear media-image context rather than as a monetary balance.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "The English loanword credit is retained from this Filipino catalogue; no broader Filipino terminology acceptance is claimed.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+hak+Hant+TW",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "無圖像致謝文字。",
+    "rationale": "無 negates the full 圖像致謝文字 noun phrase. This is a complete and concise Hakka absence statement, consistent with the Sixian Han catalogue; it is neither a not-yet-inserted statement nor an obligation statement. It aligns with the PFS entry.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Common Han vocabulary alone does not demonstrate a pan-Hakka written standard; clearance is limited to the specified Sixian convention.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+hak+Latn+TW",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Mò thù-siong chṳ-chhia vùn-sṳ.",
+    "rationale": "Mò corresponds to 無, followed by the image, credit and text noun sequence thù-siong chṳ-chhia vùn-sṳ. It is semantically aligned with the Han sentence and preserves PFS syllables, combining marks and word grouping instead of Mandarin transliteration.",
+    "confidence": "moderate",
+    "unknowns": [
+      "Exact PFS dialect/tone choices in the inherited technical noun phrase have not received native-reader confirmation. The linked government dictionary could not be retrieved during independent review, so it is not counted as independently verified evidence.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+jje",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "이미지 크레딧 텍스트가 엇수다.",
+    "rationale": "이미지 크레딧 텍스트 is the technical image-credit-text phrase, and 가 엇수다 supplies the Jejueo absence predicate. The complete value describes missing text and retains the local polite register rather than using the insertion phrase.",
+    "confidence": "moderate",
+    "unknowns": [
+      "The technical loanword register and exact full-sentence Jejueo idiom have not received independent native-reader confirmation.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ko+KP",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "화상 감사의 말 텍스트가 없습니다.",
+    "rationale": "The sentence literally says there is no image-acknowledgment text. 없습니다 correctly states absence, and 화상 감사의 말 aligns with the credit field rather than a money balance. No insertion or copy predicate remains.",
+    "confidence": "moderate",
+    "unknowns": [
+      "감사의 말 텍스트 is an awkward literal acknowledgment-text compound, retained from the field. Its status as preferred DPRK terminology is not independently established; this is bounded semantic clearance only.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ko+KR",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "이미지 크레딧 텍스트가 없습니다.",
+    "rationale": "The whole Korean sentence is grammatical: 가 attaches to 텍스트 and 없습니다 expresses present absence. 이미지 크레딧 supplies the media-attribution meaning, distinct from a monetary balance.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ko+Kore+KR",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "이미지 크레딧 텍스트가 없습니다.",
+    "rationale": "The complete Korean sentence is the same as ko-KR. Its nouns are loanwords and its predicate is native grammar, so keeping it all Hangul is appropriate even in the mixed Hanja/Hangul catalogue. Forcing Hanja here would invent vocabulary rather than honor the script convention.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+lv",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Nav pieejams attēlu norāžu teksts.",
+    "rationale": "Nav pieejams agrees with singular teksts; attēlu norāžu is the appropriate dependent genitive. The sentence concerns text for image references, with no insertion-history assertion.",
+    "confidence": "moderate",
+    "unknowns": [
+      "Norādes is broad reference/information terminology; field context supplies the attribution meaning. Exact preferred Latvian media-credit wording remains unverified.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+lzh+Hant",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "無圖像致謝之文。",
+    "rationale": "無 negates 圖像致謝之文, a concise literary construction with 之 linking the text to image acknowledgments. Traditional characters and the stated technical Literary Chinese register are respected; it does not say that an image was not inserted.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+mn+Cyrl+MN",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Зургийн эх сурвалжийн текст байхгүй байна.",
+    "rationale": "Зургийн эх сурвалжийн текст denotes text for the image source, and байхгүй байна is present absence. It follows the editor’s source-credit phrase and cannot be read as financial credit or failure to insert.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Source-attribution wording is used instead of the catalogue heading’s thanks term; broad terminology harmonization was not part of this review.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+mn+Mong",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠠᠷᠬᠠᠯ ᠤᠨ ᠪᠢᠴᠢᠭ ᠪᠠᠶᠢᠬᠤ ᠦᠭᠡᠢ᠃",
+    "rationale": "Read as jirug-un talarqal-un bicig bayiqu ügei: the image-acknowledgment text is absent. The credit-text noun phrase and negative existential remain in traditional Mongolian script, including U+1803 punctuation. No Cyrillic fallback or insertion-history assertion appears.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "The specialized talarqal acknowledgment sense, suffix spacing, exact modern UI idiom and rendered vertical text need qualified native-reader/rendering review; the sentence is not certified on those dimensions.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+mnc+Mong",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡤᡝᠪᡠᠯᡝᡥᡝ ᡥᡝᡵᡤᡝᠨ ᠠᡴᡡ.",
+    "rationale": "Read as nirugan i gebulehe hergen akū. Standalone akū negates existence of the image-related named/credit text, rather than the action of copying or inserting. The script is Manchu, and the existential analysis is independently supported by Porter’s lesson.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "Gebulehe hergen is inherited application wording with the broader named-letter/text sense; its precise credit/attribution usage is not independently attested. The complete modern UI sentence and rendering are not native-validated.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://www.manchustudiesgroup.org/wp-content/uploads/2020/08/Lesson-11-Negation.pdf"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+nan+Hant+TW",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "無圖片致謝文字。",
+    "rationale": "無 negates 圖片致謝文字, giving a complete Taiwanese absence statement. 致謝 and 文字 are the same concepts as tì-siā and bûn-jī in the POJ entry. No insertion or copying claim remains.",
+    "confidence": "high",
+    "unknowns": [
+      "Technical image-credit terminology remains limited to the specified Taiwanese convention, without a claim of universal Southern Min wording.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://sutian.moe.edu.tw/zh-hant/su/26278/",
+      "https://sutian.moe.edu.tw/zh-hant/poosiu/poosiu/67/%E6%96%87/"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+nan+Latn+TW",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Bô tô͘-phìⁿ tì-siā bûn-jī.",
+    "rationale": "Bô supplies negative existence, followed by the image-credit-text noun phrase. The full sentence aligns with 無圖片致謝文字, retaining POJ dotted-o, superscript nasal and tones. The education-ministry dictionary independently supports tì-siā and bûn-jī; this is not Mandarin romanization.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "The complete UI sentence itself is newly composed and not independently native-attested.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://sutian.moe.edu.tw/zh-hant/su/26278/",
+      "https://sutian.moe.edu.tw/zh-hant/poosiu/poosiu/67/%E6%96%87/"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+pt+PT",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Não há texto disponível para os créditos das imagens.",
+    "rationale": "Não há texto disponível correctly states absence of available text. Créditos das imagens has the media-credit meaning and is grammatical for European Portuguese.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+qaa+Zsye+XV",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "🖼️ No image credit text is available.",
+    "rationale": "The exact English diagnosis is retained with the existing image emoji prefix. This development locale does not add a warning symbol or change the meaning to image absence.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+ryu",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "画像クレジットぬ文ぬ ねーやびらん。",
+    "rationale": "画像クレジットぬ文 names the image-credit text; the following subject ぬ and polite existential negative ねーやびらん state that it is absent. This replaces the insertion predicate and remains consistent with the nearby Okinawan absence register.",
+    "confidence": "limited-moderate",
+    "unknowns": [
+      "The exact sentence and the mix of Japanese technical loans with Okinawan grammar have not been independently native-reader validated. No whole-locale acceptance is implied.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+vi+Hani",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "空𣎏 文本 𥱬 功 形 影.",
+    "rationale": "The full character sequence reads Không có văn bản ghi công hình ảnh, which states absence of image-credit text in Vietnamese word order. It agrees in meaning with the Quốc-ngữ value, although có sẵn is represented simply as absence. No Latin fallback or insertion verb remains.",
+    "confidence": "moderate",
+    "unknowns": [
+      "Modern Hán-Nôm technical spelling is not uniquely standardized; inherited character assignments and rendered font coverage remain unverified by a native Hán-Nôm reader.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+wuu+Hans",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "呒没图片致谢文字。",
+    "rationale": "呒没 gives the Shanghainese-based Wu negative existential, followed by 图片致谢文字. The entire value describes missing credit text; dropping 还 also removes the old not-yet implication. Simplified script is maintained.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "The scoped Shanghainese-based convention is being checked, not a standardized pan-Wu written norm.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+yue+Hant",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "冇圖片鳴謝文字。",
+    "rationale": "冇 is the Cantonese absence predicate, governing 圖片鳴謝文字. The full Traditional-script sentence is grammatical and matches the Jyutping pair without a history, failure, or licensing claim.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-b+yue+Latn",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Mou5 tou4 pin2 ming4 ze6 man4 zi6.",
+    "rationale": "Mou5 tou4 pin2 ming4 ze6 man4 zi6 maps coherently to 冇圖片鳴謝文字. The tone-number Jyutping form and word sequence express missing image-credit text and contain no Han fallback.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-de",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Es ist kein Text für Bildnachweise verfügbar.",
+    "rationale": "Kein Text ... verfügbar is a neutral unavailable-text diagnosis. Bildnachweise specifically means image credits/source acknowledgments and is not financial credit.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-el",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Δεν υπάρχει διαθέσιμο κείμενο για τις αναφορές των εικόνων.",
+    "rationale": "Δεν υπάρχει διαθέσιμο κείμενο is grammatical and makes available text the missing object. Αναφορές των εικόνων refers to image references in this editor, without a copy-failure or insertion claim.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Αναφορές is broader than explicit creator attribution, but matches the image-credit field and nearby source context.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rAU",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rCA",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rGB",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rIN",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rSG",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-en-rUS",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "No image credit text is available.",
+    "rationale": "The full English value exactly states the requested unavailable image-credit-text diagnosis. It is true both when there are no sources and when inserted-image credits have been saved blank; it does not infer insertion history or failure.",
+    "confidence": "high",
+    "unknowns": [],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-fi",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Kuvakrediittitekstiä ei ole saatavilla.",
+    "rationale": "The partitive Kuvakrediittitekstiä under ei ole and saatavilla give an absent available-text state. The compound is understandable as image-credit text and preserves the editor term.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "The long compound and krediitti loanword have not been native-reader style-tested; the image modifier resolves the financial sense in this context.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-fr",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Aucun texte de crédit d’image n’est disponible.",
+    "rationale": "Independently read the full supplied candidate: Aucun controls texte, de crédit d’image identifies attribution text, and n’est disponible predicates availability. It is grammatical and remains true both for zero sources and for blank saved credit text.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-hu",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Nem áll rendelkezésre szöveg a képek forrásmegjelöléséhez.",
+    "rationale": "Nem áll rendelkezésre is unavailable, szöveg is the text, and a képek forrásmegjelöléséhez expressly identifies the source-credit purpose. The sentence makes no claim about whether images were inserted.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-in",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Tidak ada teks kredit gambar yang tersedia.",
+    "rationale": "Tidak ada ... yang tersedia correctly states that no image-credit text is available. Kredit gambar is image-credit terminology here, not a monetary amount. The legacy Android in qualifier does not change the Indonesian language of the sentence.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-it",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Non è disponibile alcun testo per i crediti delle immagini.",
+    "rationale": "Non è disponibile alcun testo makes the complete sentence a missing-text state. Crediti delle immagini supplies the familiar media-credit sense; grammar and agreement are sound.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-ja",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "利用できる画像クレジット文がありません。",
+    "rationale": "利用できる modifies 画像クレジット文, and がありません states that such text is absent. It does not say that images are absent or that copying failed; クレジット文 matches the saved-credit label.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-lt",
+    "decision": "accept_with_caveats",
+    "reviewed_replacement": "Nėra vaizdų priskyrimo teksto.",
+    "rationale": "Nėra governs genitive vaizdų priskyrimo teksto and directly states that image-attribution text is absent. Priskyrimas can mean assignment elsewhere, but Creative Commons independently uses it for attribution; the credit editor resolves this sense.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "The sentence conveys unavailability through absence rather than a separate availability adjective.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://creativecommons.org/licenses/by/4.0/deed.lt"
+    ],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-ms",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Tiada teks kredit imej yang tersedia.",
+    "rationale": "Tiada ... yang tersedia is a neutral statement of unavailable text. Teks kredit imej is understood as image-credit text in this editor and does not imply financial credit or insertion failure.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-nl",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Er is geen tekst voor afbeeldingscredits beschikbaar.",
+    "rationale": "Er is geen tekst ... beschikbaar is grammatical Dutch. Afbeeldingscredits is the image-credit compound; the sentence describes unavailable text, not an unsuccessful copy.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-pt-rBR",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Não há texto disponível para os créditos das imagens.",
+    "rationale": "The complete Brazilian Portuguese sentence is idiomatic and targets the availability of text for image credits. No regional change is necessary relative to the European Portuguese candidate.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-ru",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Нет доступного текста с указанием авторства изображений.",
+    "rationale": "Нет доступного текста is a correctly formed absence construction, while с указанием авторства изображений explicitly refers to image attribution. It is clearer about the intended credit sense than a literal borrowing of financial credit.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-sw",
+    "decision": "accept_after_correction",
+    "reviewed_replacement": "Hakuna maandishi ya kutaja vyanzo vya picha yanayopatikana.",
+    "rationale": "Correction replaces sifa za picha, which can read as image properties/qualities, with an explicit image-source-identification phrase. Hakuna negates available maandishi; ya kutaja vyanzo vya picha expresses the attribution purpose, and yanayopatikana agrees with maandishi. This remains true for absent or blank credit text.",
+    "confidence": "moderate-high",
+    "unknowns": [
+      "Source-identification is a descriptive rendering of image attribution; it does not separately enumerate creator, licence, and modification notices. Native-reader acceptance of the full sentence is not established.",
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [
+      "https://swahili-dictionary.com/swahili-english/sifa_sifa",
+      "https://swahili-dictionary.com/english-swahili/source_source"
+    ],
+    "candidate_corrected": true,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-tr",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Görüntüler için kullanılabilir atıf metni yok.",
+    "rationale": "Atıf metni expressly means attribution text and avoids financial kredi. Görüntüler için identifies the images, and kullanılabilir ... yok means no available text, not that copying failed.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-vi",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "Không có sẵn văn bản ghi công hình ảnh.",
+    "rationale": "Không có sẵn negates availability and văn bản ghi công hình ảnh names image-attribution text. The sentence is grammatical Vietnamese and contains no implication about insertion or whether credit is required.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-zh-rCN",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "没有可用的图片致谢文字。",
+    "rationale": "没有可用的 predicates absence of available text. 图片致谢文字 matches the Simplified Chinese credit editor; no words assert image absence, copy failure, or waived attribution.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-zh-rHK",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "沒有可用的圖片鳴謝文字。",
+    "rationale": "Traditional characters and Hong Kong 鳴謝 terminology are retained. 沒有可用的 ... 文字 states unavailable credit text and remains appropriate for an image with emptied saved credits.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  },
+  {
+    "locale": "values-zh-rTW",
+    "decision": "accept_scoped",
+    "reviewed_replacement": "沒有可用的圖片致謝文字。",
+    "rationale": "Traditional characters and Taiwan 致謝 terminology are retained. The complete sentence states absence of available image-credit text, without the prior incorrect insertion-history claim.",
+    "confidence": "high",
+    "unknowns": [
+      "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+    ],
+    "supporting_sources": [],
+    "candidate_corrected": false,
+    "applied_source_matches": true
+  }
+]

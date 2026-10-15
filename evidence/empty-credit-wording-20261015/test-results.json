@@ -1,0 +1,68 @@
+{
+  "focused": {
+    "status": "passed",
+    "tests": 39,
+    "seconds": 4.144,
+    "log": "focused-final.log",
+    "log_sha256": "5e860c48e7d70410bacba8d6b4bacbca916e6a12f4e82b3aa0f11152025d200a"
+  },
+  "normal_aggregate": {
+    "status": "passed",
+    "tests": 725,
+    "seconds": 179.395,
+    "log": "host-full.log",
+    "log_sha256": "34a62514fb0003bc73d9bd101b504d42a3bd21c8f80ab6c15b2b851b1b696b4d"
+  },
+  "optimized_aggregate": {
+    "status": "passed",
+    "tests": 725,
+    "seconds": 176.812,
+    "log": "host-full-optimized.log",
+    "log_sha256": "209dbef01e8e2a5cc8b033310a2c3eaed8c1689b1d1a48a5b10b21ceb726eb17"
+  },
+  "before_fix_negative_control": {
+    "status": "expected_rejection",
+    "mismatched_complete_values": 60,
+    "log": "resource-before-fix-negative.log",
+    "note": "Resource expectations reject all old values; this does not execute the UI."
+  },
+  "jvm": {
+    "status": "not_run",
+    "attempt": "GRADLE_USER_HOME=/tmp/anpaint-credit-fix-2hNzSp/gradle-home ./source/gradlew -p source :Paintroid:testDebugUnitTest --tests *CommonsCreditFlowTest --offline",
+    "blocker": "Gradle 8.13 distribution absent; wrapper download failed with Network is unreachable before Gradle could start. No Android SDK/adb/toolchain available.",
+    "log": "gradle-attempt.log"
+  },
+  "android_compilation": {
+    "status": "not_run"
+  },
+  "lint": {
+    "status": "not_run"
+  },
+  "native_build": {
+    "status": "not_run"
+  },
+  "apk": {
+    "status": "not_run"
+  },
+  "exact_script_gradle_generation": {
+    "status": "not_run"
+  },
+  "emulator": {
+    "status": "not_run"
+  },
+  "physical_device": {
+    "status": "not_run"
+  },
+  "live_provider": {
+    "status": "not_run"
+  },
+  "patch_verification": {
+    "base_sha": "d61ce6832f35b826a56b8ee23c59938776aa4331",
+    "baseline_blobs_verified": 1139,
+    "changed_or_new_files_verified": 64,
+    "removals": [],
+    "unchanged_original_blobs_preserved": 1078,
+    "patch_sha256": "a504304ce0e75493aee02fc03d296978cfafcf094558d73d09914c1e6a2f44f1",
+    "success": true
+  }
+}
