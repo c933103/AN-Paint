@@ -75,7 +75,12 @@ class LegacyBitmapCodecTest {
             for(tagged in listOf(bmp,gif.dropLast(1).toByteArray()+application+byteArrayOf(0x3b))) {
                 file.writeBytes(tagged)
                 try {ImportedImage(file,"tagged.bin");fail("Expected unsupported profile rejection")}
-                catch(expected: IOException) {assertEquals(context.getString(R.string.save20_unsupported_tagged_colour),expected.message)}
+                catch(expected: IOException) {
+                    assertEquals(context.getString(R.string.save20_unsupported_image_colour),expected.message)
+                    assertTrue(expected.cause is LegacyColourMetadata.UnsupportedColour)
+                    assertFalse(expected.message!!.contains("BMP"))
+                    assertFalse(expected.message!!.contains("GIF"))
+                }
                 assertArrayEquals(tagged,file.readBytes())
             }
         } finally {image.recycle();file.delete()}

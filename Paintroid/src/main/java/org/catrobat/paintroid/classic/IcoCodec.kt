@@ -18,7 +18,7 @@ object IcoCodec {
 
     private fun entry(file: File): IcoContainer.Entry = try { IcoContainer.best(file) }
     catch (error: LegacyColourMetadata.UnsupportedColour) {
-        throw IOException(ui(R.string.save20_unsupported_tagged_colour), error)
+        throw IOException(ui(R.string.save20_unsupported_image_colour), error)
     }
 
     fun dimensions(file: File): ImageDimensions = entry(file).let { ImageDimensions(it.width, it.height) }
@@ -47,7 +47,7 @@ object IcoCodec {
         }
         val pixels = try { IcoContainer.decodeDib(file, selected) }
         catch (error: LegacyColourMetadata.UnsupportedColour) {
-            throw IOException(ui(R.string.save20_unsupported_tagged_colour), error)
+            throw IOException(ui(R.string.save20_unsupported_image_colour), error)
         }
         val decoded = Bitmap.createBitmap(source.width, source.height, Bitmap.Config.ARGB_8888)
         var output: Bitmap? = null

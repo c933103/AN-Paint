@@ -37,6 +37,7 @@ class StringImportanceTests(unittest.TestCase):
             "string/formats22_ascii_description", "string/formats22_pdf_raster_hint", "string/save20_lossy_quality_description",
             "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
             "string/save20_gif_description",
+            "string/save20_unsupported_image_colour",
             "string/ui_the_image_was_saved_but_android_could_not",
             "string/ui_export_did_not_save23", "string/ui_keep_editing23", "string/save20_destination_error",
             "string/formats22_animation_message", "string/ui_the_previous_draft_could_not_be_restored",
