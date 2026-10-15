@@ -48,6 +48,7 @@ class UiDirectionContextTest {
     @Test fun verticalEmojiUiStaysVerticalWhenProcessDefaultIsHorizontal()=checkMismatch("qaa-Zsye-XV",true,true)
     @Test fun horizontalUiStaysHorizontalWhenProcessDefaultIsVertical()=checkMismatch("en-US",false,false)
 
+    private fun resourceTag(tag: String)=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     private fun opposite(vertical: Boolean)=Locale.forLanguageTag(if(vertical) "en-US" else "lzh-Hant")
     private data class Frame(val width: Int,val height: Int,val pixels: IntArray)
@@ -77,7 +78,7 @@ class UiDirectionContextTest {
         awaitUi("Attached widget host") {host.width>0 && views.all {it.isAttachedToWindow && it.width>0 && it.height>0}}
         val before=views.map(::frame)
         Locale.setDefault(opposite(vertical))
-        assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+        assertEquals(resourceTag(tag),activity.resources.configuration.locales[0].toLanguageTag())
         assertNotEquals(Locale.getDefault(),activity.resources.configuration.locales[0])
         views.forEachIndexed {index,view ->
             val after=frame(view)
@@ -185,7 +186,7 @@ class UiDirectionContextTest {
     }
     private fun assertWorkspaceAndSave(activity: ClassicPaintActivity,tag: String,vertical: Boolean,rtl: Boolean) {
         assertEquals(tag,AppLanguage.selectedTag(activity))
-        assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
+        assertEquals(resourceTag(tag),activity.resources.configuration.locales[0].toLanguageTag())
         assertEquals(opposite(vertical),Locale.getDefault())
         val asset=when(tag) {
             "mnc-Mong" -> "fonts/notosansmongolian.ttf"
@@ -223,6 +224,7 @@ class UiDirectionContextTest {
                 "mnc-Mong" to TextDirection.VERTICAL_LR,
                 "en-XV" to TextDirection.VERTICAL_LR,
                 "qaa-Zsye-XV" to TextDirection.VERTICAL_RL,
+                "en-Zsye-XV-anpaint" to TextDirection.VERTICAL_RL,
                 "en-US" to TextDirection.HORIZONTAL
             )) {
                 val localized=base.createConfigurationContext(Configuration().apply {setLocale(Locale.forLanguageTag(tag))})
