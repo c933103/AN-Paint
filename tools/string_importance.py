@@ -23,15 +23,17 @@ RESOURCE_TAGS = frozenset(("string", "plurals", "string-array"))
 RESOURCE_NAME = re.compile(r"[a-zA-Z_][a-zA-Z_0-9]*")
 
 
-def resource_names(path: Path) -> set[str]:
+def resource_names(path: Path, *, translatable_only: bool = True) -> set[str]:
     """Read Android resource identities; plural and array each count as one."""
     result: set[str] = set()
     for element in ET.parse(path).getroot():
-        if element.tag not in RESOURCE_TAGS or element.get("translatable") == "false":
+        if element.tag not in RESOURCE_TAGS:
+            continue
+        if translatable_only and element.get("translatable") == "false":
             continue
         name = element.get("name")
         if not name or not RESOURCE_NAME.fullmatch(name):
-            raise ValueError(f"{path}: malformed translatable resource name {name!r}")
+            raise ValueError(f"{path}: malformed resource name {name!r}")
         if name in result:
             raise ValueError(f"{path}: duplicate resource name {name}")
         result.add(name)
@@ -119,7 +121,7 @@ def locale_coverage(manifest: dict, tag: str, include_missing: bool = False) -> 
     path = catalogues.catalogue_paths().get(tag)
     if path is None:
         raise ValueError(f"No exact canonical catalogue for {tag!r}")
-    present = resource_names(path)
+    present = resource_names(path, translatable_only=False)
     result = {}
     for tier in manifest["tiers"]:
         keys = set(tier["keys"])

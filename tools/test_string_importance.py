@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import string_importance as importance
 import translation_catalogues as catalogues
@@ -84,6 +85,25 @@ class StringImportanceTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual({"yes", "count", "choices"}, importance.resource_names(path))
+
+    def test_nontranslatable_locale_entries_are_directly_present(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "strings.xml"
+            path.write_text(
+                '<resources><string name="label" translatable="false">Label</string>'
+                '<plurals name="count" translatable="false">'
+                '<item quantity="other">%d items</item></plurals>'
+                '<string-array name="choices" translatable="false"><item>A</item></string-array>'
+                '<string name="unclassified">Extra</string></resources>', encoding="utf-8",
+            )
+            manifest = {"tiers": [{"id": "P0", "keys": ["label", "count", "choices", "absent"]}]}
+            self.assertEqual({"unclassified"}, importance.resource_names(path))
+            with patch.object(catalogues, "offered_tags", return_value=["test"]), \
+                    patch.object(catalogues, "catalogue_paths", return_value={"test": path}):
+                self.assertEqual(
+                    {"P0": {"present": 3, "missing": 1, "total": 4, "missing_keys": ["absent"]}},
+                    importance.locale_coverage(manifest, "test", include_missing=True),
+                )
 
     def test_direct_coverage_bounds_and_language_fallback_distinction(self):
         tags = catalogues.offered_tags()
