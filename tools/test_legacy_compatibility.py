@@ -31,8 +31,8 @@ class LegacyInventoryTest(unittest.TestCase):
             self.assertEqual(result['receipt_scope'], 'sdk-ineligible-app-omission')
             self.assertEqual(result['completed_tests'], 0)
             self.assertEqual(result['selected_tests'], 0)
-            self.assertEqual(result['declared_tests'], 42)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 40)
+            self.assertEqual(result['declared_tests'], 45)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 43)
             self.assertEqual({(DIALOG, method) for method in DIALOG_METHODS} | {(COLOUR, method) for method in COLOUR_METHODS},
                              {tuple(item) for item in result['sdk_suppressed_tests'] if item[0] in (DIALOG,COLOUR)})
             self.assertEqual(set(result['explicitly_excluded_tests']), expected)

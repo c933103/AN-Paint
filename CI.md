@@ -98,19 +98,35 @@ before retrying; use the affected scope, not a repeated full matrix by default.
 
 ## Localized dialog evidence and separate phase
 
-Nine installed dialog method/class pairs run in the `app-dialog` report: four
-current notice/credit cases plus three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
+Twelve installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
 still requires every SDK-eligible app identity, without duplication or omission.
 The colour cases replace the old zero-height limitation characterization; its
 original failed positive and measured negative results remain historical evidence,
 not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
 
 The dialog 300-second cancellation cap and each 45-second interaction limit stay
-unchanged. Nine individual maxima exceed that aggregate cap; fresh actual combined
+unchanged. Twelve individual maxima exceed that aggregate cap; fresh actual combined
 execution must fit, and a timeout remains a failure. Neither historical timings
 nor synthetic transport fixtures prove the combined runtime. The new 2× cases cover English/Hungarian caption and preview-rail reachability
 only. Large-font IME/footer, physical-device and TalkBack coverage remain separate
 limits; C05 large-font ancestor visibility is still open.
+
+The three Korean cases select `ko-KP`, `ko-KR` and `ko-Kore-KR` through the real
+picker and require their public/platform/resource identities. They open the
+actual image-credit editor from the About row with a synthetic document credit,
+then the production crop dialog with synthetic pixels and placed/linked image
+metadata. Exact complete title/Copy text, accessible text and native layout-line
+coverage are bound to source-checked fixtures. Four screenshots per case show
+the attribution title, Copy control and conditional crop status for one/two
+selected images after a real text-watcher margin update and native checkbox tap.
+Native Back/Cancel must preserve the fixture credit and never apply the crop.
+Copy is displayed and measured, not executed in these Korean cases; assembly
+movement, the assembly toolbar launch route, expanded fonts, full catalogues,
+pixel-level glyph clipping and native-language acceptance are not claimed.
+No provider is opened and no user image is read. Existing immutable Mongolian,
+PR56 and Hakka holds and historical evidence remain unchanged. New test code is
+not installed evidence until its exact-source API35 run and captures are checked.
 
 The dialog collector checks a bounded native-screenshot PNG profile: noninterlaced
 RGB8/RGBA8, with IHDR, optional single sRGB/sBIT before consecutive IDAT chunks,
@@ -229,8 +245,8 @@ main/test APK and corresponding-source hashes, and the exact disjoint source-bou
 app report union. Exact-identity groups from earlier attempts of the same run may
 be reused; both positive attempt numbers are recorded and cannot be in the future.
 Missing/failed/duplicate methods, wrong selectors/deadlines,
-stale artifacts and SDK mismatches fail closed. All 42 declared methods remain
-required according to their existing SDK rules (30 selected on API30; 42 on API35).
+stale artifacts and SDK mismatches fail closed. All 45 declared methods remain
+required according to their existing SDK rules (30 selected on API30; 45 on API35).
 Count/selector contracts and synthetic receipts do not prove Android execution
 or runtime. These
 checks cover native layout boxes and input, not pixel-level glyph clipping,

@@ -26,6 +26,12 @@ NOTICE_METHODS = {
     'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow': 2,
 }
+KOREAN_METHODS = {
+    'northKoreanAttributionAndConditionalCropUseRealConsumers': 'ko-KP',
+    'southKoreanAttributionAndConditionalCropUseRealConsumers': 'ko-KR',
+    'mixedKoreanAttributionAndConditionalCropUseRealConsumers': 'ko-Kore-KR',
+}
+KOREAN_EXPECTATIONS = Path(__file__).resolve().parents[1] / 'app/src/androidTest/assets/korean-consumer-expectations.json'
 DIALOG_SCREENS = {
     'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': [
         '0-about-portrait.png', '1-about-landscape.png',
@@ -45,6 +51,9 @@ COLOUR_SCREENS = {
     'hungarianColourCaptionsFitPortraitAndLandscape': [
         '0-hungarian-captions-landscape.png', '1-hungarian-captions-portrait.png'],
 }
+for method in KOREAN_METHODS:
+    DIALOG_SCREENS[method] = ['0-korean-attribution-title.png', '1-korean-attribution-copy.png',
+                            '2-korean-crop-one.png', '3-korean-crop-two.png']
 LARGE_COLOUR_METHODS = {
     'largeEnglishColourCaptionsAndPreviewRemainReachable': 'en-US',
     'largeHungarianColourCaptionsAndPreviewRemainReachable': 'hu',
@@ -59,7 +68,7 @@ METHOD_CLASSES = {**dict.fromkeys(DIALOG_SCREENS, TEST_CLASS),
                   **dict.fromkeys(COLOUR_SCREENS, COLOUR_CLASS)}
 MAX_FILE = 2 * 1024 * 1024
 MAX_CASE = 24 * 1024 * 1024
-MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; nine cases contain 27 PNGs.
+MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; twelve cases contain 39 PNGs.
 MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
@@ -78,12 +87,12 @@ def source_binding(summary):
     require(len(cases) == len(expected)
             and {(c.get('classname'), c.get('name')) for c in cases} == expected
             and all(c.get('status') == 'passed' for c in cases),
-            'All nine exact method/class pairs must pass in dedicated dialog report')
+            'All twelve exact method/class pairs must pass in dedicated dialog report')
     require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == len(METHOD_CLASSES)
             and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(METHOD_CLASSES)
             and summary.get('missing') == [] and summary.get('unexpected') == [] and summary.get('errors') == []
             and summary.get('included_tests') == sorted(owner + '#' + method for method, owner in METHOD_CLASSES.items()),
-            'Exact selected nine-method two-class dialog phase required')
+            'Exact selected twelve-method two-class dialog phase required')
     return digest
 
 
@@ -120,6 +129,8 @@ def verify_receipt(receipt, method, digest):
     else:
         verify_interaction_budget(receipt, observations)
         verify_native_back(method, observations)
+        if method in KOREAN_METHODS:
+            verify_korean_profile(method, observations)
     lines = [x for x in observations if x.get('kind') == 'caption-line-reached']
     require(lines, 'No measured caption reachability')
     for line in lines:
@@ -151,10 +162,64 @@ def verify_receipt(receipt, method, digest):
         bounds = rectangle(pointer['geometry']['visible'])
         require(bounds[0] <= tap[0] < bounds[2] and bounds[1] <= tap[1] < bounds[3], 'Pointer outside visible control')
     required = (['notice copy', 'other terms', 'notice done'] if method in NOTICE_METHODS else
+                ['korean View tab', 'korean language command', 'korean language row',
+                 'korean crop include linked', 'korean crop cancel'] if method in KOREAN_METHODS else
                 ['credit save', 'credit copy', 'credit done'] if method ==
                 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else COLOUR_POINTERS[method])
     require(set(required) <= {item.get('label') for item in before}, 'Required native footer actions absent')
 
+
+
+def korean_captions(tag):
+    expected = json.loads(KOREAN_EXPECTATIONS.read_text(encoding='utf-8'))[tag]
+    crop = expected['ui_crop_preview_images'].replace('%1$d', '22').replace('%2$d', '16')
+    return [(key, expected[key]) for key in ('ui_image_credits', 'gallery_copy_credit')] + [
+        ('ui_crop_preview_images', crop.replace('%3$d', str(count))) for count in (1, 2)]
+
+
+def verify_korean_profile(method, observations):
+    tag = KOREAN_METHODS[method]
+    selections = [o for o in observations if o.get('kind') == 'korean-picker-selection']
+    require(len(selections) == 1, 'Exact Korean picker selection missing')
+    choice = selections[0]
+    require(choice.get('locale') == choice.get('platform_locale') == tag
+            and choice.get('resource_locale') == tag + ('-anpaint' if tag == 'ko-Kore-KR' else '')
+            and type(choice.get('expected_index')) is int and choice['expected_index'] > 0
+            and type(choice.get('selected_index')) is int and choice['selected_index'] == choice['expected_index'],
+            'Wrong Korean public/platform/resource selection')
+    captions = [o for o in observations if o.get('kind') == 'korean-consumer-caption']
+    require([(o.get('key'), o.get('text')) for o in captions] == korean_captions(tag)
+            and all(o.get('accessible_text') == o.get('text') for o in captions),
+            'Complete source-bound Korean consumer text/accessibility required')
+    # Bind measured native line coverage/reachability to each changed consumer,
+    # rather than accepting an unrelated picker row's generic layout metrics.
+    for index, caption in enumerate(captions):
+        start = observations.index(caption)
+        end = observations.index(captions[index + 1]) if index + 1 < len(captions) else len(observations)
+        measured = [o for o in observations[start + 1:end] if o.get('kind') == 'intrinsic-caption'
+                    and o.get('consumer_key') == caption['key']]
+        lines = [o for o in observations[start + 1:end] if o.get('kind') == 'caption-line-reached'
+                 and o.get('consumer_key') == caption['key']]
+        require(len(measured) == 1 and measured[0].get('caption_length') == len(caption['text'].encode('utf-16-le')) // 2
+                and type(measured[0].get('lines')) is int
+                and [o.get('line') for o in lines] == list(range(measured[0]['lines'])),
+                'Changed Korean caption lacks its own complete measured line coverage')
+    states = [o for o in observations if o.get('kind') == 'korean-crop-state']
+    require(len(states) == 2 and [o.get('count') for o in states] == [1, 2]
+            and all(type(o.get('count')) is int and o.get('width') == 22 and o.get('height') == 16
+                    and type(o.get('width')) is int and type(o.get('height')) is int
+                    and o.get('placed_reference') is True and o.get('linked_peer') is True
+                    and type(o.get('applications')) is int and o['applications'] == 0 for o in states),
+            'Missing real conditional crop/count update')
+    completed = [o for o in observations if o.get('kind') == 'korean-consumers-complete']
+    require(len(completed) == 1 and completed[0].get('locale') == tag
+            and completed[0].get('copy_scope') == 'display-accessibility-layout-only'
+            and completed[0].get('crop_cancelled') is True
+            and type(completed[0].get('applications')) is int and completed[0]['applications'] == 0,
+            'Korean scope or cancellation result missing')
+    require(observations.index(choice) < observations.index(captions[0])
+            < observations.index(states[0]) < observations.index(states[1]) < observations.index(completed[0]),
+            'Korean consumer observations must follow real selection')
 
 
 def verify_interaction_budget(receipt, observations):
@@ -189,6 +254,7 @@ def verify_interaction_budget(receipt, observations):
 def verify_native_back(method, observations):
     expected = ([f'notice-{NOTICE_METHODS[method]}-{action}' for action in ('nested', 'close')]
                 if method in NOTICE_METHODS else
+                ['korean-credit-discard'] if method in KOREAN_METHODS else
                 ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
     events = [o for o in observations if o.get('kind', '').startswith('native-back-')]
     require([(e.get('kind'), e.get('label')) for e in events] ==
@@ -225,6 +291,9 @@ def verify_native_back(method, observations):
         elif before['label'].endswith('-close'):
             require(a.get('notice_present') is True and b.get('notice_present') is False and b.get('editor_focused') is True,
                     'Notice Back did not return to editor')
+        elif method in KOREAN_METHODS:
+            require(a.get('synthetic_credit_unchanged') is True and b.get('synthetic_credit_unchanged') is True,
+                    'Korean attribution Back changed the synthetic credit')
         else:
             require(a.get('dialog_showing') is True and b.get('dialog_showing') is False
                     and type(a.get('save_calls')) is int and type(b.get('save_calls')) is int
@@ -712,6 +781,7 @@ def extract(exports, destination, dialog_summary):
         require(not os.path.lexists(destination), 'Destination appeared during validation')
         os.rename(staged, destination)
     return {'success': True, 'scope': ('source-bound-installed-api35-notice-credit-and-normal-font-colour; '
+                                     'ko-KP/ko-KR/ko-Kore-KR real-picker attribution-controls and conditional crop status; '
                                      'en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; '
                                      'whole-dialog and universal 2x not accepted'),
             'source_tests_sha256': digest, 'source_report': 'dedicated dialog instrumentation summary',

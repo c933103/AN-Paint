@@ -12,6 +12,8 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Point
 import android.graphics.Rect
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Build
 import android.os.LocaleList
 import android.os.Looper
@@ -41,6 +43,12 @@ import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.AdvancedColourDialog
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageCredit
+import org.catrobat.paintroid.classic.AssemblyImage
+import org.catrobat.paintroid.classic.Attachment
+import org.catrobat.paintroid.classic.ImageCropDialog
+import org.catrobat.paintroid.classic.ImageDimensions
+import org.catrobat.paintroid.classic.ImagePosition
+import org.catrobat.paintroid.classic.SnapEdge
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
@@ -48,13 +56,15 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Locale
+import java.io.File
 import java.util.concurrent.atomic.AtomicReference
 import java.util.concurrent.CopyOnWriteArrayList
 
 /** API35 installed-emulator checks; no physical-device or linguistic acceptance.
  * The initial dialog/draft are explicit fixtures. Every menu row, footer, scroll
  * and Back assertion uses injected device input, never a production handler call.
- * No provider, image import, file destination or document edit is involved.
+ * Korean cases seed a synthetic document credit and placed-image metadata.
+ * No provider, image import, user file or file destination is involved.
  */
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
@@ -65,6 +75,7 @@ class LocalizedDialogDeviceTest {
     @get:Rule val evidence=DialogEvidenceExportRule(instrumentation)
     private lateinit var activity: ClassicPaintActivity
     private var deadline=Long.MAX_VALUE
+    private var measuredConsumerKey: String?=null
 
     @Test fun aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow()=noticeFlow(0)
     @Test fun aboutArtworkNoticeCompletesNativeFooterFlow()=noticeFlow(1)
@@ -234,6 +245,148 @@ class LocalizedDialogDeviceTest {
         } finally {onMain {dialog.dismiss()}}
     }
 
+    @Test fun northKoreanAttributionAndConditionalCropUseRealConsumers()=koreanConsumers("ko-KP")
+    @Test fun southKoreanAttributionAndConditionalCropUseRealConsumers()=koreanConsumers("ko-KR")
+    @Test fun mixedKoreanAttributionAndConditionalCropUseRealConsumers()=koreanConsumers("ko-Kore-KR")
+
+    /** Exact changed captions in real consumers, rather than another resource-only
+     * read. Copy is displayed/accessible/reachable here; clipboard execution is
+     * covered by retainedCreditDialog..., not claimed for these Korean cases.
+     */
+    private fun koreanConsumers(tag: String)=fixture("en-US",1f) {
+        val expected=JSONObject(instrumentation.context.assets.open("korean-consumer-expectations.json")
+            .bufferedReader().use {it.readText()}).getJSONObject(tag)
+        chooseKoreanLanguage(tag,expected.getString("resource_tag"))
+        val credit=ImageCredit("https://example.invalid/korean-fixture.png","Synthetic creator / local fixture")
+        onMain {
+            activity.document.newImage(24,16)
+            assertTrue(activity.document.attachImageCredit(credit) {})
+            activity.document.markSaved()
+            activity.paintCanvas.fit()
+        }
+        openAbout()
+        tapRow(onMain {aboutList()},expected.getString("ui_image_credits"))
+        await("actual image attribution editor") {creditRoot()?.hasWindowFocus()==true}
+        val creditRoot=onMain {creditRoot()!!}
+        onMain {activity.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(creditRoot.windowToken,0)}
+        await("credit IME hidden") {creditRoot.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false}
+        val title=onMain {descendants(creditRoot).filterIsInstance<TextView>().single {
+            it.text.toString()==expected.getString("ui_image_credits")
+        }}
+        caption("ui_image_credits",title,expected.getString("ui_image_credits"))
+        evidence.capture("korean-attribution-title")
+        val copy=onMain {creditRoot.findViewWithTag<TextView>("gallery_credit_copy")}
+        caption("gallery_copy_credit",copy,expected.getString("gallery_copy_credit"))
+        evidence.capture("korean-attribution-copy")
+        onMain {
+            assertEquals(credit.text,creditRoot.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+        }
+        nativeBack("korean-credit-discard",state={backWindowState(creditRoot)
+            .put("synthetic_credit_unchanged",activity.document.imageCredits==listOf(credit))}) {
+            !creditRoot.isAttachedToWindow && activity.window.decorView.hasWindowFocus() &&
+                activity.document.imageCredits==listOf(credit)
+        }
+
+        // The first image is explicitly placed; the second is linked to its
+        // right edge. These metadata and preview pixels are wholly synthetic.
+        // The warning is checked in full, including the conditional clause.
+        // Cancel does not apply a crop or claim to verify assembly movement.
+        val bitmap=Bitmap.createBitmap(24,16,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.CYAN)}
+        var applications=0
+        val images=listOf(
+            AssemblyImage("korean-base",File(context.cacheDir,"synthetic-not-read-a.png"),"Synthetic A",null,
+                ImageDimensions(24,16),position=ImagePosition(0,0)),
+            AssemblyImage("korean-linked",File(context.cacheDir,"synthetic-not-read-b.png"),"Synthetic B",null,
+                ImageDimensions(24,16),attachment=Attachment("korean-base",SnapEdge.RIGHT)))
+        val crop=onMain {ImageCropDialog(activity,images,{bitmap},{applications++}).show()}
+        try {
+            val root=onMain {crop.window!!.decorView}
+            await("actual crop consumer") {root.findViewWithTag<TextView>("crop_status")?.layout!=null}
+            onMain {root.findViewWithTag<EditText>("crop_left").setText("2")}
+            val status=onMain {root.findViewWithTag<TextView>("crop_status")}
+            fun checkCrop(count: Int) {
+                val text=String.format(Locale.ROOT,expected.getString("ui_crop_preview_images"),22,16,count)
+                await("crop status for $count selected images") {status.text.toString()==text}
+                caption("ui_crop_preview_images",status,text)
+                evidence.observe(JSONObject().put("kind","korean-crop-state").put("count",count)
+                    .put("width",22).put("height",16).put("placed_reference",true).put("linked_peer",true)
+                    .put("applications",applications))
+            }
+            checkCrop(1);evidence.capture("korean-crop-one")
+            tap("korean crop include linked",onMain {root.findViewWithTag("crop_include_korean-linked")})
+            checkCrop(2);evidence.capture("korean-crop-two")
+            tap("korean crop cancel",onMain {crop.getButton(AlertDialog.BUTTON_NEGATIVE)})
+            await("crop Cancel returned to editor") {!crop.isShowing && activity.window.decorView.hasWindowFocus()}
+            onMain {assertEquals("Cancel never applies synthetic crops",0,applications)
+                assertEquals(Rect(0,0,24,16),images[0].crop);assertEquals(Rect(0,0,24,16),images[1].crop)}
+            evidence.observe(JSONObject().put("kind","korean-consumers-complete").put("locale",tag)
+                .put("copy_scope","display-accessibility-layout-only").put("crop_cancelled",true)
+                .put("applications",applications))
+        } finally {onMain {crop.dismiss();bitmap.recycle()}}
+    }
+
+    private fun creditRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull {
+        it.isShown && it.findViewWithTag<View>("gallery_credit_text")!=null
+    }
+
+    private fun caption(key: String,view: TextView,expected: String) {
+        onMain {
+            assertEquals("Complete source-bound consumer text: $key",expected,view.text.toString())
+            val node=view.createAccessibilityNodeInfo()
+            try {assertEquals("Complete accessible consumer text: $key",expected,node.text.toString())}
+            finally {node.recycle()}
+            evidence.observe(JSONObject().put("kind","korean-consumer-caption").put("key",key)
+                .put("text",view.text.toString()).put("accessible_text",expected))
+        }
+        measuredConsumerKey=key
+        try {revealText(view)} finally {measuredConsumerKey=null}
+    }
+
+    private fun chooseKoreanLanguage(tag: String,resourceTag: String) {
+        // Use the real View ribbon command and original picker listener. Only
+        // scroll positioning is a fixture; the choice is a native pointer tap.
+        tapControl("korean View tab",onMain {activity.window.decorView.findViewWithTag("menu_View")})
+        val command=onMain {descendants(activity.window.decorView).single {
+            it.tag?.toString()?.startsWith("command_")==true &&
+                it.contentDescription?.toString()==activity.getString(R.string.ui_languages23)
+        }}
+        tapControl("korean language command",command)
+        await("real language picker") {topList()?.count==activity.resources.getStringArray(R.array.app_language_tags).size+1}
+        val list=onMain {topList()!!}
+        val index=onMain {activity.resources.getStringArray(R.array.app_language_tags).indexOf(tag).also {assertTrue(it>=0)}+1}
+        val received=AtomicReference<Int?>()
+        onMain {
+            val original=checkNotNull(list.onItemClickListener)
+            list.setOnItemClickListener {parent,view,position,id ->received.set(position);original.onItemClick(parent,view,position,id)}
+            list.setSelection(index)
+        }
+        instrumentation.waitForIdleSync()
+        val row=onMain {list.getChildAt(index-list.firstVisiblePosition) as TextView}
+        onMain {assertTrue("Exact public picker tag",row.text.toString().endsWith("[$tag]"))}
+        tap("korean language row",row)
+        await("exact selected Korean resources") {
+            received.get()==index && activity.startupReady && !activity.busy &&
+                activity.getSharedPreferences("app-language",0).getString("language-tag",null)==tag &&
+                context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()==tag &&
+                activity.resources.configuration.locales[0].toLanguageTag()==resourceTag &&
+                activity.window.decorView.hasWindowFocus()
+        }
+        evidence.observe(JSONObject().put("kind","korean-picker-selection").put("locale",tag)
+            .put("resource_locale",resourceTag).put("platform_locale",onMain {
+                context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()})
+            .put("selected_index",received.get()).put("expected_index",index))
+    }
+
+    private fun tapControl(label: String,view: View) {
+        settle(view)
+        val bounds=onMain {assertComplete(view);assertTrue(view.isEnabled);visibleBounds(view)}
+        evidence.observe(onMain {JSONObject().put("kind","pointer-before").put("label",label)
+            .put("tap",JSONArray().put(bounds.centerX()).put(bounds.centerY())).put("geometry",geometry(view))})
+        assertTrue("Injected native control tap: $label",device.click(bounds.centerX(),bounds.centerY()))
+        instrumentation.waitForIdleSync()
+        evidence.observe(JSONObject().put("kind","pointer-injected").put("label",label))
+    }
+
     /** This characterizes an unchanged-source limitation; it does not accept
      * colour usability. The original positive oracle is preserved verbatim in
      * verification/localized-dialog-layout-2026-10-11/colour-separate-scope/.
@@ -262,6 +415,7 @@ class LocalizedDialogDeviceTest {
         }
         val lifecycle=ActivityLifecycleCallback {seen,stage ->
             if(seen is ClassicPaintActivity && stage==Stage.PRE_ON_CREATE) activities.add(seen)
+            if(seen is ClassicPaintActivity && stage==Stage.CREATED) activity=seen
         }
         var scenario: ActivityScenario<ClassicPaintActivity>?=null
         var oldOrientation=ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
@@ -482,6 +636,7 @@ class LocalizedDialogDeviceTest {
         val layout=checkNotNull(view.layout)
         val transformed=view.transformationMethod?.getTransformation(view.text,view)?.toString() ?: view.text.toString()
         evidence.observe(JSONObject().put("kind","intrinsic-caption").put("tag",view.tag ?: "About-row")
+            .put("consumer_key",measuredConsumerKey ?: JSONObject.NULL)
             .put("lines",layout.lineCount).put("layout_height",layout.height)
             .put("available_text_height",view.height-view.totalPaddingTop-view.totalPaddingBottom)
             .put("text_padding",JSONArray().put(view.totalPaddingLeft).put(view.totalPaddingTop)
@@ -507,6 +662,7 @@ class LocalizedDialogDeviceTest {
                 Rect(raw.left+view.totalPaddingLeft,raw.top+view.totalPaddingTop+layout.getLineTop(line),
                     raw.right-view.totalPaddingRight,raw.top+view.totalPaddingTop+layout.getLineBottom(line))}
             evidence.observe(onMain {JSONObject().put("kind","caption-line-reached").put("line",line)
+                .put("consumer_key",measuredConsumerKey ?: JSONObject.NULL)
                 .put("tag",view.tag ?: "About-row").put("geometry",geometry(view))
                 .put("line_rect",rect(rawBounds(view).let {raw ->Rect(raw.left+view.totalPaddingLeft,
                     raw.top+view.totalPaddingTop+view.layout.getLineTop(line),raw.right-view.totalPaddingRight,
