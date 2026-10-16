@@ -114,7 +114,7 @@ class AppLanguageResourceRoutingTest {
     @Test fun mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments() {
         AppLanguage.select(context,"ko-Kore-KR")
         val resources=AppLanguage.wrap(context).resources
-        val expected="미리 보기: 12 × 34 px\n2개 이미지에 適用합니다. 配置된 이미지를 자르면 連結된 이미지의 位置도 조정됩니다."
+        val expected="미리 보기: 12 × 34 px\n2개 이미지에 適用합니다. 配置된 이미지를 자르면 連結된 이미지의 位置도 조정될 수 있습니다."
         assertEquals(expected,resources.getQuantityString(R.plurals.ui_crop_preview_images,2,12,34,2))
         assertEquals("貯藏",resources.getString(R.string.ui_save))
         assertEquals("이미지 크레딧을 複寫할 수 없습니다.",resources.getString(R.string.commons_credit_copy_failed))
