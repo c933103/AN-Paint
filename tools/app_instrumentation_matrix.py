@@ -43,6 +43,9 @@ COLOUR_METHODS = {
 
 }
 DIALOG_METHODS = {
+    'northKoreanAttributionAndConditionalCropUseRealConsumers',
+    'southKoreanAttributionAndConditionalCropUseRealConsumers',
+    'mixedKoreanAttributionAndConditionalCropUseRealConsumers',
     'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow',
     'aboutArtworkNoticeCompletesNativeFooterFlow',
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
@@ -89,7 +92,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
                   {(COLOUR, method) for method in COLOUR_METHODS} if sdk == 35 else set()):
-        raise ValueError('The exact nine API35 method/class pairs and lower-SDK suppression are required')
+        raise ValueError('The exact twelve API35 method/class pairs and lower-SDK suppression are required')
     parts = {}
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})

@@ -213,6 +213,9 @@ run_dialog_regression() {
     --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests app/src/androidTest --output "$report/app-dialog/androidTest-results" \
     --suite app-dialog --timeout-seconds 300 \
+    --include-test "$dialog_class#northKoreanAttributionAndConditionalCropUseRealConsumers" \
+    --include-test "$dialog_class#southKoreanAttributionAndConditionalCropUseRealConsumers" \
+    --include-test "$dialog_class#mixedKoreanAttributionAndConditionalCropUseRealConsumers" \
     --include-test "$dialog_class#aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow" \
     --include-test "$dialog_class#aboutArtworkNoticeCompletesNativeFooterFlow" \
     --include-test "$dialog_class#aboutGimpTranslationNoticeCompletesNativeFooterFlow" \

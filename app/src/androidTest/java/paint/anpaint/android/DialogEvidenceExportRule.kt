@@ -211,6 +211,9 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
         const val MAX_FILE=2L*1024*1024
         const val MAX_CASE=24L*1024*1024
         val METHOD_CLASSES=mapOf(
+            "northKoreanAttributionAndConditionalCropUseRealConsumers" to "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "southKoreanAttributionAndConditionalCropUseRealConsumers" to "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "mixedKoreanAttributionAndConditionalCropUseRealConsumers" to "paint.anpaint.android.LocalizedDialogDeviceTest",
             "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow" to "paint.anpaint.android.LocalizedDialogDeviceTest",
             "aboutArtworkNoticeCompletesNativeFooterFlow" to "paint.anpaint.android.LocalizedDialogDeviceTest",
             "aboutGimpTranslationNoticeCompletesNativeFooterFlow" to "paint.anpaint.android.LocalizedDialogDeviceTest",

@@ -14,7 +14,7 @@ import textwrap
 import unittest
 import zipfile
 
-from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, OWNER, TEST_CLASS, PNG,
+from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
 from synthetic_colour_receipts import geometry, synthetic_colour_receipt, synthetic_colour_endpoint
@@ -24,7 +24,7 @@ DIGEST = 'a' * 64
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=9, completed_tests=9, missing=[], unexpected=[], errors=[],
+                source_tests_sha256=DIGEST, expected_tests=12, completed_tests=12, missing=[], unexpected=[], errors=[],
                 included_tests=sorted(owner + '#' + name for name, owner in METHOD_CLASSES.items()),
                 cases=[dict(classname=owner, name=m, status='passed') for m, owner in METHOD_CLASSES.items()])
 
@@ -47,6 +47,9 @@ def receipt(method):
     if method in COLOUR_SCREENS:
         return synthetic_colour_receipt(method, DIGEST)
     labels = ['notice copy', 'other terms', 'notice done', 'credit save', 'credit copy', 'credit done', 'colour cancel']
+    if method in KOREAN_METHODS:
+        labels = ['korean View tab', 'korean language command', 'korean language row',
+                  'korean crop include linked', 'korean crop cancel']
     geometry = dict(visible=[0, 0, 100, 100], raw=[0, 0, 100, 100])
     observations = [dict(kind='intrinsic-caption', lines=1, layout_height=20, available_text_height=30,
                          caption_length=5, layout_width=100, line_metrics=[dict(end=5, ellipsis=0, left=0, right=99)]),
@@ -60,6 +63,7 @@ def receipt(method):
                  screenshots=METHOD_SCREENS[method], observations=observations)
     back_labels = ([f'notice-{NOTICE_METHODS[method]}-{action}' for action in ('nested', 'close')]
                    if method in NOTICE_METHODS else
+                   ['korean-credit-discard'] if method in KOREAN_METHODS else
                    ['credit-discard'] if method == 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation' else [])
     for label in back_labels:
         before = dict(target_attached=True, target_showing=True, target_focused=True)
@@ -70,6 +74,9 @@ def receipt(method):
         elif label.endswith('-close'):
             before.update(notice_present=True, editor_focused=False)
             after.update(notice_present=False, editor_focused=True)
+        elif method in KOREAN_METHODS:
+            before.update(synthetic_credit_unchanged=True)
+            after.update(synthetic_credit_unchanged=True)
         else:
             before.update(dialog_showing=True, save_calls=4, dismiss_calls=1, saved_draft_unchanged=True)
             after.update(dialog_showing=False, save_calls=4, dismiss_calls=2, saved_draft_unchanged=True)
@@ -85,6 +92,24 @@ def receipt(method):
                  route='UiDevice.pressKeyCode(KEYCODE_BACK)', keycode=4, injection_count=1, injected=True),
             dict(kind='native-back-after', label=label, state=after, injected=True, completed=True, postcondition_met=True)])
     observations.insert(0, dict(kind='interaction-start', started_uptime_ms=2000, deadline_uptime_ms=47000, budget_ms=45000))
+    if method in KOREAN_METHODS:
+        tag = KOREAN_METHODS[method]
+        observations.append(dict(kind='korean-picker-selection', locale=tag, platform_locale=tag,
+                                 resource_locale=tag + ('-anpaint' if tag == 'ko-Kore-KR' else ''),
+                                 expected_index=1, selected_index=1))
+        for index, (key, text) in enumerate(korean_captions(tag)):
+            observations.append(dict(kind='korean-consumer-caption', key=key, text=text, accessible_text=text))
+            length = len(text.encode('utf-16-le')) // 2
+            observations.append(dict(kind='intrinsic-caption', consumer_key=key, lines=1, layout_height=20,
+                                     available_text_height=30, caption_length=length, layout_width=100,
+                                     line_metrics=[dict(end=length, ellipsis=0, left=0, right=99)]))
+            observations.append(dict(kind='caption-line-reached', consumer_key=key, line=0,
+                                     geometry=geometry, line_rect=[1, 1, 90, 20]))
+            if index >= 2:
+                observations.append(dict(kind='korean-crop-state', count=index - 1, width=22, height=16,
+                                         placed_reference=True, linked_peer=True, applications=0))
+        observations.append(dict(kind='korean-consumers-complete', locale=tag,
+                                 copy_scope='display-accessibility-layout-only', crop_cancelled=True, applications=0))
     observations.append(dict(kind='interaction-end', started_uptime_ms=2000, ended_uptime_ms=5000,
                              deadline_uptime_ms=47000, elapsed_ms=3000, budget_ms=45000,
                              block_completed=True, within_deadline=True))
@@ -133,14 +158,14 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             write_archive(self.exports, method)
         self.method = next(iter(METHOD_SCREENS))
 
-    def test_exact_source_bound_nine_case_export_and_atomic_extraction(self):
+    def test_exact_source_bound_twelve_case_export_and_atomic_extraction(self):
         result = extract(self.exports, self.output, self.summary)
         self.assertTrue(result['success'])
         self.assertEqual(result['source_tests_sha256'], DIGEST)
-        self.assertEqual(len(result['cases']), 9)
-        self.assertEqual(len(list(self.output.rglob('*.png'))), 27)
-        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 9)
-        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 9)
+        self.assertEqual(len(result['cases']), 12)
+        self.assertEqual(len(list(self.output.rglob('*.png'))), 39)
+        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 12)
+        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 12)
         self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted')
         self.assertIs(result['universal_colour_acceptance'], False)
         self.assertIs(result['normal_font_colour_source_bound_pass'], True)
@@ -262,7 +287,7 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
         cls.flow = cls.source.split('private fun noticeFlow(index: Int)', 1)[1].split(
             '@Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()', 1)[0]
 
-    def test_exact_three_notice_bindings_and_nine_two_class_sdk35_methods(self):
+    def test_exact_three_notice_bindings_and_twelve_two_class_sdk35_methods(self):
         expected = {
             'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
             'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
@@ -309,12 +334,12 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
                          'assertEquals("Actual menu callback loaded the bundled notice",expected,'):
             self.assertIn(required, normalized)
 
-    def test_exact_twenty_seven_pngs_preserve_profiles_and_capture_indices(self):
+    def test_exact_thirty_nine_pngs_preserve_profiles_and_capture_indices(self):
         self.assertEqual([METHOD_SCREENS[name] for name in NOTICE_METHODS], [
             ['0-about-portrait.png', '1-about-landscape.png', '2-notice-0-initial.png', '3-notice-0-portrait.png'],
             ['0-notice-1-initial.png'], ['0-notice-2-initial.png']])
-        self.assertEqual(len(METHOD_SCREENS), 9)
-        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 27)
+        self.assertEqual(len(METHOD_SCREENS), 12)
+        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 39)
         self.assertEqual(len(METHOD_SCREENS['retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']), 2)
         self.assertNotIn('unchangedAdvancedColourReportsShortLandscapeLimitation', METHOD_SCREENS)
         self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 19)
