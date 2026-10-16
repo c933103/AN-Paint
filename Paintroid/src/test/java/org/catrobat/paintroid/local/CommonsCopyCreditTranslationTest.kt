@@ -66,7 +66,7 @@ class CommonsCopyCreditTranslationTest {
         "it" to listOf("Impossibile copiare l’attribuzione dell’immagine.", "Impossibile copiare l’attribuzione dell’immagine: %1\$s", "Memoria insufficiente per copiare l’attribuzione dell’immagine."),
         "ja" to listOf("画像クレジットをコピーできませんでした。", "画像クレジットをコピーできませんでした: %1\$s", "画像クレジットをコピーするためのメモリが不足しています。"),
         "jje" to listOf("이미지 크레딧을 복사허지 못허엿수다.", "이미지 크레딧을 복사허지 못허엿수다: %1\$s", "이미지 크레딧을 복사헐 만큼 메모리가 엇수다."),
-        "ko-KP" to listOf("화상 감사의 말을 복사할 수 없습니다.", "화상 감사의 말을 복사할 수 없습니다: %1\$s", "화상 감사의 말을 복사할 기억기가 부족합니다."),
+        "ko-KP" to listOf("화상 저작자·출처 정보를 복사할 수 없습니다.", "화상 저작자·출처 정보를 복사할 수 없습니다: %1\$s", "화상 저작자·출처 정보를 복사할 기억기가 부족합니다."),
         "ko-KR" to listOf("이미지 크레딧을 복사할 수 없습니다.", "이미지 크레딧을 복사할 수 없습니다: %1\$s", "이미지 크레딧을 복사할 메모리가 부족합니다."),
         "ko-Kore-KR" to listOf("이미지 크레딧을 複寫할 수 없습니다.", "이미지 크레딧을 複寫할 수 없습니다: %1\$s", "이미지 크레딧을 複寫할 메모리가 부족합니다."),
         "lt" to listOf("Nepavyko nukopijuoti vaizdo priskyrimo.", "Nepavyko nukopijuoti vaizdo priskyrimo: %1\$s", "Nepakanka atminties vaizdo priskyrimui nukopijuoti."),
