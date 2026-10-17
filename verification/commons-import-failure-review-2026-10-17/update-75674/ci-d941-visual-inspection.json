@@ -1,0 +1,23 @@
+{
+  "head": "d94174371bc8363bc994e0d89a8b3433ae85fdab",
+  "kind": "Manual inspection of native Robolectric captures, not installed-device or native linguistic certification",
+  "inspected": [
+    {
+      "file": "api35-vi-Hani-320x640-font1.0-copy-commons_metadata_field_too_large.png",
+      "finding": "Complete localized failure reason visible in portrait; no visible missing-glyph boxes in this error. Existing title retains the separate old label addressed by PR113."
+    },
+    {
+      "file": "api35-vi-Hani-640x320-font2.0-insert-commons_metadata_field_too_large.png",
+      "finding": "Complete localized failure reason wraps and remains visible at 2x in short landscape. Lower controls require scrolling, as exercised by the test."
+    },
+    {
+      "file": "api35-ar-640x320-font2.0-copy-commons_metadata_field_too_large.png",
+      "finding": "Complete Arabic failure reason remains visible with RTL alignment and the Commons identifier at 2x. Earlier header content is above the current scroll position; this is not a whole-page visibility claim."
+    }
+  ],
+  "limits": [
+    "No comprehensive script/font layout audit",
+    "No TalkBack or installed-device evidence",
+    "Does not validate the 46 subsequently prepared values or PR113 label correction"
+  ]
+}
