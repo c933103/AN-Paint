@@ -152,20 +152,20 @@ class CommonsCopyCreditErrorTest {
             response(it,"{\"error\":{\"code\":\"fixture\"}}")
         }
     }
-    @Test fun metadataValidationFailuresKeepTheirExistingReasons() {
+    @Test fun metadataValidationFailuresUseTheirLocalizedApplicationReasons() {
         val cases=listOf(
-            "{\"query\":{\"pages\":[]}}" to "Commons metadata returned an ambiguous file",
-            "{\"query\":{\"pages\":[{\"ns\":6,\"missing\":true}]}}" to "Commons file metadata is unavailable",
-            CommonsTestMetadata.response("https://upload.wikimedia.org/wikipedia/commons/a/ab/Other.svg",page) to "Commons attribution does not match the selected original file",
-            CommonsTestMetadata.response(source,"https://example.org/not-commons") to "Invalid Commons attribution page"
+            "{\"query\":{\"pages\":[]}}" to R.string.commons_metadata_ambiguous_file,
+            "{\"query\":{\"pages\":[{\"ns\":6,\"missing\":true}]}}" to R.string.commons_metadata_unavailable,
+            CommonsTestMetadata.response("https://upload.wikimedia.org/wikipedia/commons/a/ab/Other.svg",page) to R.string.commons_metadata_original_mismatch,
+            CommonsTestMetadata.response(source,"https://example.org/not-commons") to R.string.commons_metadata_invalid_page
         )
-        for((body,reason) in cases) checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,reason)}) {response(it,body)}
+        for((body,key) in cases) checkFailure("fr",expected={it.getString(R.string.commons_credit_copy_failed_reason,it.getString(key))}) {response(it,body)}
     }
     @Test fun oversizedMetadataResponseKeepsEnglishDefaultAndFieldLimitStaysSeparate() {
         checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,it.getString(R.string.commons_metadata_response_too_large))}) {
             response(it," ".repeat(2*1024*1024+1))
         }
-        checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,"Commons attribution field exceeds the text limit")}) {
+        checkFailure(expected={it.getString(R.string.commons_credit_copy_failed_reason,it.getString(R.string.commons_metadata_field_too_large))}) {
             response(it,CommonsTestMetadata.response(source,page,"A".repeat(64*1024+1)))
         }
     }

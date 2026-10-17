@@ -207,6 +207,48 @@ tasks.withType(Test).configureEach {
     systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
 }
 
+// Keep compilation/resource/input preparation out of the bounded test-execution
+// phase without excluding dependencies from the real Test task. Resolve the
+// actual task lazily: AGP creates variant tasks after this script is evaluated.
+['Debug', 'Release'].each { variant ->
+    def testName = "test${variant}UnitTest"
+    def preparationName = "prepare${variant}UnitTest"
+    def preparationPath = "${project.path}:${preparationName}"
+    def selectedTest = { tasks.named(testName, Test).get() }
+    tasks.register(preparationName) {
+        group = 'verification'
+        description = "Build and resolve inputs for ${testName} without running tests."
+        dependsOn {
+            def target = selectedTest()
+            target.taskDependencies.getDependencies(target)
+        }
+        // Includes inferred producers, runtime transforms and nested inputs
+        // such as the JaCoCo agent; it does not include the Test's outputs.
+        inputs.files({ selectedTest().inputs.files })
+            .withPropertyName('unitTestInputFiles')
+            .withPathSensitivity(org.gradle.api.tasks.PathSensitivity.RELATIVE)
+        doLast {
+            def target = selectedTest()
+            def report = layout.buildDirectory.file("reports/jvm-preparation/${variant.toLowerCase()}.json").get().asFile
+            def receipt = [target: target.path,
+                scheduledTasks: gradle.taskGraph.allTasks.collect { it.path },
+                scheduledTests: gradle.taskGraph.allTasks.findAll { it instanceof Test }.collect { it.path },
+                directDependencies: target.taskDependencies.getDependencies(target).collect { it.path }.sort(),
+                resolvedInputFileCount: target.inputs.files.files.size()]
+            report.parentFile.mkdirs()
+            report.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(receipt)) + '\n'
+            logger.lifecycle("Prepared inputs for ${target.path}; tests were not scheduled")
+        }
+    }
+    // Fail before any action if a producer/finalizer unexpectedly schedules a
+    // Test. The following CI phase still invokes the complete normal Test task.
+    gradle.taskGraph.whenReady { graph ->
+        if (graph.hasTask(preparationPath) && graph.allTasks.any { it instanceof Test }) {
+            throw new GradleException("${preparationPath} must not schedule test execution")
+        }
+    }
+}
+
 // Local addition, 2026-09-07: this exact build carries its corresponding source.
 def bundleCorrespondingSource = tasks.register('bundleCorrespondingSource', Zip) {
     archiveFileName = 'AN-Paint-source.zip'

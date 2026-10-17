@@ -167,13 +167,13 @@ class CommonsMetadataResponseLimitFlowTest {
             assertFalse(connection.instanceFollowRedirects)
         }
     }
-    @Test fun parserPreconditionAndFieldLimitRemainSeparateUnchangedFailures() {
+    @Test fun parserPreconditionAndTypedFieldLimitRemainSeparateFailures() {
         try {CommonsAttribution.parse(" ".repeat(limit+1),source);fail("Oversized direct parse must fail")}
         catch(error: IllegalArgumentException) {assertEquals("Failed requirement.",error.message)}
         try {CommonsAttribution.plain("A".repeat(64*1024+1));fail("Oversized field must fail")}
         catch(error: IOException) {
             assertFalse(error is CommonsAttribution.ResponseLimitException)
-            assertEquals("Commons attribution field exceeds the text limit",error.message)
+            assertTrue(error is CommonsImportFailure.FieldTooLarge);assertNull(error.message)
         }
     }
     @Test fun unrelatedStreamFailureAndCancellationStillCloseAndClearActiveConnection() {

@@ -80,6 +80,10 @@ jobs:
         if: ${{ !cancelled() }}
         timeout-minutes: 4
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
+      - name: Prepare JVM test inputs
+        if: ${{ !cancelled() }}
+        timeout-minutes: 6
+        run: bash tools/ci_run_timed.sh jvm-prepare ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:prepare${BUILD_VARIANT^}UnitTest
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}
         timeout-minutes: 12

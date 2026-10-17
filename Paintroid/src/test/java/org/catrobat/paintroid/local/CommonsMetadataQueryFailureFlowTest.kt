@@ -174,9 +174,9 @@ class CommonsMetadataQueryFailureFlowTest {
         catch(error: CommonsAttribution.ResponseLimitException) {assertNull(error.message)}
         assertTrue((oversize.input as TrackedInput).closed);assertTrue(oversize.disconnected)
         try {CommonsAttribution.plain("A".repeat(64*1024+1));fail("M09 field limit must remain distinct")}
-        catch(error: IOException) {assertFalse(error is CommonsAttribution.QueryFailureException);assertEquals("Commons attribution field exceeds the text limit",error.message)}
+        catch(error: IOException) {assertFalse(error is CommonsAttribution.QueryFailureException);assertTrue(error is CommonsImportFailure.FieldTooLarge);assertNull(error.message)}
         try {CommonsAttribution.parse("{\"query\":{\"pages\":[]}}",source);fail("M05 ambiguity must remain distinct")}
-        catch(error: IOException) {assertFalse(error is CommonsAttribution.QueryFailureException);assertEquals("Commons metadata returned an ambiguous file",error.message)}
+        catch(error: IOException) {assertFalse(error is CommonsAttribution.QueryFailureException);assertTrue(error is CommonsImportFailure.AmbiguousFile);assertNull(error.message)}
     }
     @Test fun bothActionsLocalizeTypedMetadataFailureKeepStateAndRetryWithValidMetadata() {
         for(insert in listOf(false,true)) for(tag in listOf("en-GB","fr","ar","ja","ko-KR","ko-Kore-KR","mn-Mong","vi-Hani")) {

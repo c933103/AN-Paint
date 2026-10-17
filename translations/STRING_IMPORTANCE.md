@@ -82,7 +82,7 @@ revalidate an entry-review receipt; the independent corrections in
 
 ## Current source partition
 
-Current partition (15 October 2026), including the six exact-position controls
+Current partition (17 October 2026), including the six exact-position controls
 added by PR #67. Before the source-role audit the counts were
 P0/P1/P2/P3 = 92/246/286/76; the audit produced 92/249/288/71.
 The six new labels, active coordinate instructions and validation messages are
@@ -90,16 +90,25 @@ P2 because they operate the specialized assembly dialog. The inline
 `ui_assembly_position_help` is required position guidance, not the optional
 general assembly how-to guide. No existing identity changes tier.
 
-PR85 adds the P2 external-link handler diagnostic. The merged tracker denominator
-changes only when this additional key merges.
+The prior implemented partition contains 708 identities, including the P2
+external-link and native-image-component diagnostics. This slice externalizes
+nine previously literal Commons/import reasons as P2, matching the existing
+Commons HTTP, response-limit and API-query failure messages. These are active
+specialist-operation failures, not optional long-form reference. No existing
+key changes tier, including the detailed explanations and guides assigned P3.
+
+The source denominator therefore increases from 708 to 717 and P2 from 296 to
+305. P0 + P1 remains exactly 341; a prior 341-key language review does not cover
+any of these nine new P2 keys. Applicability and translation/review progress for
+the new keys remain separate; see [the bounded implementation plan](../verification/commons-import-failures.md).
 
 | Tier | Source entries |
 | --- | ---: |
 | P0 | 92 |
 | P1 | 249 |
-| P2 | 295 |
+| P2 | 305 |
 | P3 | 71 |
-| **Total** | **707** (706 strings and 1 plural) |
+| **Total** | **717** (716 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or
 accepted reviews. The validator recomputes totals and fails when an English

@@ -50,7 +50,7 @@ internal object CommonsAttribution {
 
     fun requestUrl(page: String): URL {
         val uri = Uri.parse(page)
-        require(IllustrationSource.COMMONS.isArtworkPage(uri)) { "Not a Commons file page" }
+        if (!IllustrationSource.COMMONS.isArtworkPage(uri)) throw CommonsImportFailure.NotFilePage()
         val title = if (uri.path == "/w/index.php") uri.getQueryParameter("title")!!
             else uri.path!!.removePrefix("/wiki/")
         require(title.startsWith("File:") && title.length in 6..1024 && !title.contains('|'))
@@ -96,14 +96,14 @@ internal object CommonsAttribution {
         val root = JSONObject(json)
         if (root.has("error")) throw QueryFailureException()
         val pages = root.getJSONObject("query").getJSONArray("pages")
-        if (pages.length() != 1) throw IOException("Commons metadata returned an ambiguous file")
+        if (pages.length() != 1) throw CommonsImportFailure.AmbiguousFile()
         val page = pages.getJSONObject(0)
-        if (page.optBoolean("missing") || page.optInt("ns", -1) != 6) throw IOException("Commons file metadata is unavailable")
+        if (page.optBoolean("missing") || page.optInt("ns", -1) != 6) throw CommonsImportFailure.MetadataUnavailable()
         val image = page.getJSONArray("imageinfo").getJSONObject(0)
         val source = image.getString("url")
-        if (!sameOriginal(expectedSource, source)) throw IOException("Commons attribution does not match the selected original file")
+        if (!sameOriginal(expectedSource, source)) throw CommonsImportFailure.MetadataOriginalMismatch()
         val pageUrl = image.getString("descriptionurl")
-        if (!IllustrationSource.COMMONS.isArtworkPage(Uri.parse(pageUrl))) throw IOException("Invalid Commons attribution page")
+        if (!IllustrationSource.COMMONS.isArtworkPage(Uri.parse(pageUrl))) throw CommonsImportFailure.InvalidAttributionPage()
         val title = page.getString("title").removePrefix("File:")
         val metadata = image.optJSONObject("extmetadata") ?: JSONObject()
         val text = fields.associateWith { key ->
@@ -122,7 +122,7 @@ internal object CommonsAttribution {
     /** HTML is decoded as text, never loaded or executed. Preserve safe credit URLs separately. */
     @Suppress("DEPRECATION")
     internal fun plain(html: String): String {
-        if (html.length > MAX_FIELD) throw IOException("Commons attribution field exceeds the text limit")
+        if (html.length > MAX_FIELD) throw CommonsImportFailure.FieldTooLarge()
         val spanned = if (Build.VERSION.SDK_INT >= 24) Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) else Html.fromHtml(html)
         val text = spanned.toString().trim()
         val links = spanned.getSpans(0, spanned.length, URLSpan::class.java).mapNotNull { span ->
@@ -143,7 +143,7 @@ internal object CommonsAttribution {
         val value = JSONObject().put("source", record.source).put("page", record.page).put("title", record.title)
             .put("metadata", JSONObject(record.metadata))
         if (!context.getSharedPreferences("commons-attribution-v1", Context.MODE_PRIVATE).edit()
-                .putString(record.source, value.toString()).commit()) throw IOException("Could not retain Commons attribution")
+                .putString(record.source, value.toString()).commit()) throw CommonsImportFailure.CacheFailed()
     }
 
     fun cached(context: Context, source: String): Record? {

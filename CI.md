@@ -65,6 +65,15 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 - Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
+- JVM input preparation: 6 minutes; full JVM test execution: 12 minutes. The
+  preparation task builds the actual Test task's dependencies and resolves its
+  declared file inputs, including runtime transforms and the JaCoCo agent. A
+  graph guard rejects any Test scheduled during preparation. The next phase
+  invokes the unchanged complete Test task; no dependency, test or assertion is
+  excluded, and individual test deadlines are unchanged. Both phases retain
+  logs/profiles and failure status under the same 22-minute aggregate job cap.
+  Preparation does not warm up Robolectric or execute tests. Its task-graph/input
+  receipt is uploaded from `Paintroid/build/reports/jvm-preparation/`.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
   Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.

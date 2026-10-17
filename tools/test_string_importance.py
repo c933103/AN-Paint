@@ -115,6 +115,26 @@ class StringImportanceTests(unittest.TestCase):
         ):
             self.assertEqual("P3", assigned[key], key)
 
+    def test_commons_import_failures_have_deliberate_specialist_error_priority(self):
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        # These block a specialist import/credit operation; no drawing data is silently changed.
+        # Keep them with the existing typed Commons failures, not optional reference prose.
+        for key in (
+            "string/commons_metadata_not_file_page",
+            "string/commons_metadata_ambiguous_file",
+            "string/commons_metadata_unavailable",
+            "string/commons_metadata_original_mismatch",
+            "string/commons_metadata_invalid_page",
+            "string/commons_metadata_field_too_large",
+            "string/commons_metadata_cache_failed",
+            "string/commons_download_original_mismatch",
+            "string/commons_svg_png_encode_failed",
+            "string/commons_metadata_http_error",
+            "string/commons_metadata_query_failed",
+            "string/commons_metadata_response_too_large",
+        ):
+            self.assertEqual("P2", assigned[key], key)
+
     def test_new_source_resource_must_not_silently_enter_a_default_tier(self):
         errors = importance.validate(self.manifest, self.source | {"string/new_important_warning"})
         self.assertTrue(any("unclassified" in e and "string/new_important_warning" in e for e in errors))

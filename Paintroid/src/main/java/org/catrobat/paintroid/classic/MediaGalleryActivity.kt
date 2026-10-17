@@ -285,6 +285,17 @@ class MediaGalleryActivity : Activity() {
         if(error is CommonsAttribution.HttpException) ui(R.string.commons_metadata_http_error,error.status.toString())
         else if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
         else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)
+        else if(error is CommonsImportFailure) ui(when(error) {
+            is CommonsImportFailure.NotFilePage -> R.string.commons_metadata_not_file_page
+            is CommonsImportFailure.AmbiguousFile -> R.string.commons_metadata_ambiguous_file
+            is CommonsImportFailure.MetadataUnavailable -> R.string.commons_metadata_unavailable
+            is CommonsImportFailure.MetadataOriginalMismatch -> R.string.commons_metadata_original_mismatch
+            is CommonsImportFailure.InvalidAttributionPage -> R.string.commons_metadata_invalid_page
+            is CommonsImportFailure.FieldTooLarge -> R.string.commons_metadata_field_too_large
+            is CommonsImportFailure.CacheFailed -> R.string.commons_metadata_cache_failed
+            is CommonsImportFailure.DownloadOriginalMismatch -> R.string.commons_download_original_mismatch
+            is CommonsImportFailure.PngEncodeFailed -> R.string.commons_svg_png_encode_failed
+        })
         else error.message
 
     private fun showStatus(message: String) {
@@ -334,9 +345,8 @@ class MediaGalleryActivity : Activity() {
                 }
                 val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))
                 check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}
-                if(provider==IllustrationSource.COMMONS) require(CommonsAttribution.sameOriginal(uri.toString(),url.toString())) {
-                    "The Commons download redirected to a different original file."
-                }
+                if(provider==IllustrationSource.COMMONS && !CommonsAttribution.sameOriginal(uri.toString(),url.toString()))
+                    throw CommonsImportFailure.DownloadOriginalMismatch()
                 val file=File.createTempFile("gallery-",".image",cacheDir);temporary=file
                 source.inputStream.use {input -> file.outputStream().use {out ->
                     val buffer=ByteArray(65536);var total=0L

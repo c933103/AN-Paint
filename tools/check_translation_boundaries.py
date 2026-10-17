@@ -221,27 +221,37 @@ def check_source(source, path):
 
 
 def production_sources(root, source_roots=()):
-    root = Path(root)
+    root = Path(root).resolve()
+    configured = [(root / extra).resolve() for extra in source_roots]
     for base, dirs, files in os.walk(root):
         dirs[:] = [d for d in dirs if d not in ('.git','.gradle','.cxx','node_modules','__pycache__')]
-        relative = Path(base).relative_to(root).parts
-        if 'build' in relative and 'generated' not in relative[relative.index('build')+1:]:
-            dirs[:] = [d for d in dirs if d == 'generated']; continue
+        directory = Path(base)
+        relative = directory.relative_to(root).parts
+        explicit = any(directory.is_relative_to(extra) for extra in configured)
+        if 'build' in relative and 'generated' not in relative[relative.index('build')+1:] and not explicit:
+            # Keep only conventional generated output and ancestors needed to
+            # reach explicitly configured roots. Unrelated build output stays
+            # excluded, and the test-source exclusions below still apply.
+            dirs[:] = [d for d in dirs if (d == 'generated' and directory.name == 'build') or
+                       any(extra.is_relative_to(directory / d) for extra in configured)]
+            continue
         if 'build' in relative and any(TEST_SET.fullmatch(part) for part in relative[relative.index('build')+1:]):
             dirs[:] = []; continue
         source_set = relative[relative.index('src')+1] if 'src' in relative and len(relative)>relative.index('src')+1 else None
         if source_set and TEST_SET.fullmatch(source_set): dirs[:] = []; continue
         included = source_set is not None or ('build' in relative and 'generated' in relative)
-        included = included or any(Path(base).is_relative_to(root / extra) for extra in source_roots)
+        included = included or explicit
         if included:
             for name in sorted(files):
                 if Path(name).suffix in ('.kt','.java'): yield Path(base)/name
 
 
 def check_repository(root, source_roots=()):
-    root = Path(root)
+    root = Path(root).resolve()
     missing = [f'{extra}: Missing explicitly configured source root' for extra in source_roots if not (root/extra).is_dir()]
-    return missing + [problem for path in production_sources(root, source_roots)
+    outside = [f'{extra}: Explicit source root must remain inside the repository' for extra in source_roots
+               if not (root/extra).resolve().is_relative_to(root)]
+    return missing + outside + [problem for path in production_sources(root, source_roots)
             for problem in check_source(path.read_text(), path.relative_to(root))]
 
 

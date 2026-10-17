@@ -70,13 +70,24 @@ internal object VerticalText {
     }
     private val punctuation=mapOf('、' to '︑','。' to '︒','「' to '﹁','」' to '﹂','『' to '﹃','』' to '﹄','（' to '︵','）' to '︶','【' to '︻','】' to '︼','…' to '︙')
     private data class Run(val text: String,val upright: Boolean)
+    private fun mongolian(cluster: String): Boolean {
+        val cp=Character.codePointAt(cluster,0)
+        return cp in 0x1800..0x18af && Character.isLetter(cp)
+    }
+    private fun suffixBoundary(previous: String?,cluster: String,next: String?): Boolean =
+        cluster=="\u202f" && previous!=null && next!=null && !mongolian(previous) && mongolian(next)
     private fun runs(line: String,orientation: GlyphOrientation): List<Run> {
-        if(orientation==GlyphOrientation.SIDEWAYS) return listOf(Run(line,false))
         val result=mutableListOf<Run>();val sideways=StringBuilder()
         fun flush() {if(sideways.isNotEmpty()) {result.add(Run(sideways.toString(),false));sideways.setLength(0)}}
-        for(cluster in clusters(line)) {
-            val up=orientation==GlyphOrientation.UPRIGHT || upright(cluster)
-            if(up) {flush();result.add(Run(cluster,true))} else sideways.append(cluster)
+        val parts=clusters(line)
+        for((index,cluster) in parts.withIndex()) {
+            val up=orientation==GlyphOrientation.UPRIGHT || orientation==GlyphOrientation.MIXED && upright(cluster)
+            // Keep the unchanged NNBSP with its Mongolian suffix in a shaping
+            // run, including after Latin/Common script. This is not a word or
+            // column break. The incremental measurer uses this same boundary.
+            val split=suffixBoundary(parts.getOrNull(index-1),cluster,parts.getOrNull(index+1))
+            if(up) {flush();result.add(Run(cluster,true))}
+            else {if(split) flush();sideways.append(cluster)}
         }
         flush()
         return result
@@ -168,16 +179,26 @@ internal object VerticalText {
         private val sideways=StringBuilder()
         private var sidewaysWidth=0
         private var dirty=false
+        private var previous: String?=null
         private fun width(): Int {
             if(dirty) {sidewaysWidth=layout(sideways.toString(),paint).width;dirty=false}
             return sidewaysWidth
         }
+        private fun flush() {
+            if(sideways.isNotEmpty()) {completed+=width();sideways.setLength(0);sidewaysWidth=0}
+        }
         fun append(text: String) {
-            for(cluster in clusters(text)) {
+            // Wrapping tokens keep NNBSP with its following Mongolian suffix.
+            // The preceding cluster can be in an earlier token (for example a
+            // breakable space), so retain it across incremental appends.
+            val parts=clusters(text)
+            for((index,cluster) in parts.withIndex()) {
+                val split=suffixBoundary(previous,cluster,parts.getOrNull(index+1))
                 if(upright(cluster)) {
-                    if(sideways.isNotEmpty()) {completed+=width();sideways.setLength(0);sidewaysWidth=0}
+                    flush()
                     completed+=cell.toDouble()
-                } else {sideways.append(cluster);dirty=true}
+                } else {if(split) flush();sideways.append(cluster);dirty=true}
+                previous=cluster
             }
         }
         fun height(): Float=(completed+width()).toFloat().coerceAtLeast(cell)

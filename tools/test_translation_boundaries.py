@@ -110,3 +110,32 @@ class TranslationBoundaryPolicyTest(unittest.TestCase):
             self.assertEqual(set(production), found)
             self.assertEqual(len(production), len(guard.check_repository(root, extra)))
             self.assertIn('Missing explicitly configured source root', guard.check_repository(root,['absent'])[0])
+
+    def test_explicit_build_roots_are_scanned_without_including_unrelated_output(self):
+        configured = 'app/build/customSource/producer/debug'
+        production = configured + '/example/Labels.kt'
+        excluded = ['app/build/Unrelated.kt', 'app/build/customSource/Other.kt',
+                    'app/build/customSource/generated/Other.kt',
+                    'app/build/customSource/producer/release/Other.kt',
+                    configured + '/debugUnitTest/Test.kt']
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for name in [production, *excluded]:
+                path = root/name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('String.format(translated, value)')
+            self.assertEqual([], list(guard.production_sources(root)))
+            equivalent = [configured, 'app/build/../build/customSource/producer/debug',
+                          configured + '/../debug']
+            for extra in equivalent:
+                found = {path.relative_to(root).as_posix()
+                         for path in guard.production_sources(root, [extra])}
+                self.assertEqual({production}, found, extra)
+                problems = guard.check_repository(root, [extra])
+                self.assertEqual(1, len(problems), problems)
+                self.assertIn(production + ':1:', problems[0])
+                self.assertIn('Raw formatter requires a code literal template', problems[0])
+            (root/production).write_text('String.format("%s", value)')
+            for extra in equivalent:
+                self.assertEqual([], guard.check_repository(root, [extra]))
+            self.assertIn('must remain inside the repository',
+                          guard.check_repository(root, ['..'])[0])

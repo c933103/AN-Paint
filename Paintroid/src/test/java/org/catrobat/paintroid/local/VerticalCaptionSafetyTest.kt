@@ -50,7 +50,10 @@ class VerticalCaptionSafetyTest {
         val fixtures=listOf(
             listOf("AV"," ","office"," ","To"," ","again"),
             listOf("ᠵᠢᠷᠤᠭ\u202fᠤᠨ"," ","ᠪᠠᠶᠢᠷᠢᠯᠠᠯ\u202fᠢᠶᠠᠨ"),
+            listOf("Commons\u202fᠤᠨ"," ","ᠮᠡᠳᠡᠭᠡ"),
+            listOf("A"," ","\u202fᠤᠨ"," ","B"),
             listOf("漢","字","A"," ","B","✅","👩🏽‍🎨"))
+        fun breakable(char: Char)=char.isWhitespace() && char !in "\u00a0\u2007\u202f"
         val paint=Paint().apply {textSize=32f;typeface=VerticalText.uiTypeface(context("mn-Mong"))}
         for(direction in listOf(TextDirection.VERTICAL_LR,TextDirection.VERTICAL_RL)) {
             for(height in listOf(1f,paint.fontSpacing*2,160f,100000f)) for(tokens in fixtures) {
@@ -58,10 +61,12 @@ class VerticalCaptionSafetyTest {
                 for(token in tokens) {
                     val proposed=column+token
                     val measured=VerticalText.bounds(proposed,paint,direction,GlyphOrientation.MIXED,1f).height()
-                    if(column.isNotBlank() && measured>height) {expected.add(column.trim());column=token.trimStart()}
+                    if(column.any {!breakable(it)} && measured>height) {
+                        expected.add(column.trim(::breakable));column=token.trimStart(::breakable)
+                    }
                     else column=proposed
                 }
-                expected.add(column.trim())
+                expected.add(column.trim(::breakable))
                 assertEquals(expected.joinToString("\n"),VerticalText.wrapLabel(tokens.joinToString(""),paint,height,direction))
             }
         }
