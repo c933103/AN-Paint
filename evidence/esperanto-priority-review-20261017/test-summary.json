@@ -1,0 +1,65 @@
+{
+  "source_revision": "5dba779c904a25bde2ec6d6f8f48eb3cad901a1e",
+  "source_tree": "2f15510fa46894e9a372ee58f2bf2b1ffeb4f691",
+  "candidate_tree": "5f0fab23aadd6cc6ecec4233e2fc7a88f7784b24",
+  "candidate_commit": "57eaa704b7bd7944e5d794cae00a72e7496fd65e",
+  "checks": [
+    {
+      "check": "focused-normal",
+      "exit": 0,
+      "test_count": 8,
+      "seconds": 0.756,
+      "command": "python -m unittest discover -s tools -p 'test_esperanto_priority_wording.py'"
+    },
+    {
+      "check": "focused-optimized",
+      "exit": 0,
+      "test_count": 8,
+      "seconds": 0.614,
+      "command": "python -O -m unittest discover -s tools -p 'test_esperanto_priority_wording.py'"
+    },
+    {
+      "check": "host-normal",
+      "exit": 0,
+      "test_count": 905,
+      "seconds": 211.838,
+      "command": "python -m unittest discover -s tools -p 'test_*.py'"
+    },
+    {
+      "check": "host-optimized",
+      "exit": 0,
+      "test_count": 905,
+      "seconds": 205.864,
+      "command": "python -O -m unittest discover -s tools -p 'test_*.py'"
+    },
+    {
+      "check": "AAPT2 compile, exact-script mirrors compile, resource link",
+      "status": "passed",
+      "commands": "resource-check/commands.json"
+    },
+    {
+      "check": "supplementary new Kotlin test compilation",
+      "status": "passed",
+      "command_receipt": "kotlin-compile.json",
+      "limit": "Existing dependency classes and fresh resource symbols, not full Gradle or execution"
+    },
+    {
+      "check": "old-value full-contract negative controls",
+      "status": "passed",
+      "rejected": 16
+    },
+    {
+      "check": "baseline/full-tree integrity and review ledger",
+      "status": "passed",
+      "baseline_leaves": 1194,
+      "candidate_leaves": 1197,
+      "application_paths": 4
+    }
+  ],
+  "not_run": [
+    "Three authored Robolectric consumer tests (hosted execution required)",
+    "Full Gradle build/JVM/lint",
+    "Installed Android device or emulator",
+    "APK/source delivery/signature validation"
+  ]
+}
