@@ -1,0 +1,113 @@
+{
+  "candidate_commit": "30413454eaa1c1599c15a0a42a4110d8d1976514",
+  "candidate_tree": "3ac7a0abe119504abbde70537bd6d4a2fcc46d3d",
+  "checks": {
+    "host-normal": {
+      "tests": 878,
+      "seconds": 205.382,
+      "exit_code": 0,
+      "log": "host-normal.log",
+      "sha256": "9304a51e0fdf291e089b98436959a5cbf1fcc05be94f124152a0b56b4c00b6c5"
+    },
+    "host-optimized": {
+      "tests": 878,
+      "seconds": 200.361,
+      "exit_code": 0,
+      "log": "host-optimized.log",
+      "sha256": "d0e4f5fdbe9eb703474e896984364dab191157640e8b241f8ce0168351cbd746"
+    },
+    "focused-ptbr-normal": {
+      "tests": 12,
+      "seconds": 0.29,
+      "exit_code": 0,
+      "log": "focused-ptbr-normal.log",
+      "sha256": "348dfa2388f587984e1edcd58d8e448749da45e7a0890beefae3331538bdb195"
+    },
+    "focused-ptbr-optimized": {
+      "tests": 12,
+      "seconds": 0.322,
+      "exit_code": 0,
+      "log": "focused-ptbr-optimized.log",
+      "sha256": "7ba3491be7e3c8368a48970b22174bc4644723e85e4939722b8bbc3d4b35b0b8"
+    },
+    "focused-ru-normal": {
+      "tests": 12,
+      "seconds": 0.095,
+      "exit_code": 0,
+      "log": "focused-ru-normal.log",
+      "sha256": "f372c314838ece34802732db24c141d8f82c2fcb310272aa1c45964a509e6743"
+    }
+  },
+  "direct_kotlin_compile": {
+    "command": [
+      "/usr/lib/jvm/java-21-openjdk-amd64/bin/java",
+      "-cp",
+      "/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/androidsvg-aar-1.4.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotation-1.1.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotations-13.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotations-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/appcompat-1.0.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/core-1.3.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/exifinterface-1.3.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/hamcrest-core-1.3.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/junit-4.13.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/junit-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-compiler-embeddable-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-daemon-embeddable-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-reflect-1.6.10.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-script-runtime-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-stdlib-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/nativeruntime-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/pluginapi-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/resources-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/robolectric-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/sandbox-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/shadowapi-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/shadows-framework-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/trove4j-1.0.20200330.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/utils-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/utils-reflector-4.14.1.jar",
+      "org.jetbrains.kotlin.cli.jvm.K2JVMCompiler",
+      "-no-stdlib",
+      "-no-reflect",
+      "-jvm-target",
+      "17",
+      "-Xstring-concat=inline",
+      "-Xfriend-paths=/workspace/shared/anpaint-commons-errors-20261017/compile-check/classes17,/workspace/shared/anpaint-commons-errors-20261017/compile-check/test-classes17",
+      "-classpath",
+      "/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/androidsvg-aar-1.4.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotation-1.1.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotations-13.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/annotations-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/appcompat-1.0.0.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/core-1.3.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/exifinterface-1.3.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/hamcrest-core-1.3.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/junit-4.13.2.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/junit-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-compiler-embeddable-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-daemon-embeddable-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-reflect-1.6.10.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-script-runtime-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/kotlin-stdlib-1.9.24.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/nativeruntime-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/pluginapi-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/resources-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/robolectric-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/sandbox-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/shadowapi-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/shadows-framework-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/trove4j-1.0.20200330.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/utils-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/deps/utils-reflector-4.14.1.jar:/workspace/shared/anpaint-commons-errors-20261017/compile-check/classes17:/workspace/shared/anpaint-commons-errors-20261017/compile-check/test-classes17:/workspace/shared/passengercount-restart-race-20261017/investigation/sdk-platform/android-35/android.jar",
+      "-d",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/numeric-locale-fix/compiled-check",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/test/java/org/catrobat/paintroid/local/ImageDisplayLocaleTest.kt",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/test/java/org/catrobat/paintroid/local/BrazilianPortuguesePriorityWordingTest.kt",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/test/java/org/catrobat/paintroid/local/SizingAndTrimTest.kt",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/test/java/org/catrobat/paintroid/local/EditorStartupTestSupport.kt",
+      "/workspace/shared/anpaint-brazilian-portuguese-review-20261017/worktree/Paintroid/src/test/java/org/catrobat/paintroid/local/EditorTestNavigation.kt"
+    ],
+    "exit_code": 0,
+    "changed_source_sha256": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/ImageDisplayLocaleTest.kt": "57506de8651fda10f2b6791143e6fec66dc749f673fe34f3e128194fceafc8d0",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/BrazilianPortuguesePriorityWordingTest.kt": "bf008786545027673eb408299aaebed08da609613a0d91f511cde358d8cd4b0e",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/SizingAndTrimTest.kt": "ffe7860d440d5e9c29e76c8f1877914f6a64c4ab0e46a3f1640bfc12f439f94e",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/EditorStartupTestSupport.kt": "d7d01c17ab1444996d7e242d8b22a219c4138f01c09641c1e0aab37ee1266811",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/EditorTestNavigation.kt": "955be4c11fbb06e4620e5c6fa717608f5126b711e43179f6c1ceff2bade6877e"
+    },
+    "scope": "Supplementary direct Kotlin 1.9.24/API35 changed-file compile against previously built dependency classes; not full Gradle build or Robolectric execution."
+  },
+  "isolated_jvm": {
+    "source_file_sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+    "scope": "Exact ImageDimensions/memoryLabel bodies executed on Java21/Kotlin1.9.24 using source XML templates and a resource-locale String.format stand-in. Not Android or Robolectric execution.",
+    "cases": [
+      {
+        "variant": "repaired",
+        "compile_exit": 0,
+        "run_exit": 0,
+        "result": "pass",
+        "source_sha256": "b17da267b3048893e0c2a2483239d3fc657cff4e44e13729d630ce8fa110702e"
+      },
+      {
+        "variant": "old_root_dimensions",
+        "compile_exit": 0,
+        "run_exit": 1,
+        "result": "rejected as expected",
+        "source_sha256": "1394bc13bd476669ad4d80470925f02efacf30ec2938ca7c40c7355f4b00a140"
+      },
+      {
+        "variant": "old_root_memory",
+        "compile_exit": 0,
+        "run_exit": 1,
+        "result": "rejected as expected",
+        "source_sha256": "90ea08bf6086e0eee743c5230acd38f5a352a81aa6d393f4dbe90c3bcedd422f"
+      },
+      {
+        "variant": "process_default_dimensions",
+        "compile_exit": 0,
+        "run_exit": 1,
+        "result": "rejected as expected",
+        "source_sha256": "91235c9312687580c43004664ce4d4fe4f25ba1d4efdfe6ae19aaf6f0605df4b"
+      }
+    ]
+  },
+  "earlier_normal_run": "Passed 878 tests but a negative-byte clamp test case was added while it ran. Preserved separately; final normal aggregate repeated after all source edits.",
+  "android_gradle_robolectric_lint_device": "Not run locally. Direct compilation and isolated helper execution do not replace exact-head hosted gates.",
+  "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/39046719952",
+  "older_run_not_new_head_coverage": "https://github.com/c933103/AN-Paint/actions/runs/39045262426"
+}

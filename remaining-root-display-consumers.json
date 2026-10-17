@@ -1,0 +1,82 @@
+{
+  "scope": "Follow-up only. No changes to these consumers in PR117 numeric repair. Actual Java Formatter examples using exact source XML templates and representative arguments; no installed UI claim.",
+  "records": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+      "line": 43,
+      "locale": "pt-BR",
+      "key": "ui_current_safe_editing_budget_s_up_to_2f",
+      "impact": "Resize budget line combines localized memory text with ROOT decimal-dot megapixels.",
+      "root_formatted_example": "Limite seguro de edição atual: 1,5 MiB · até 2.25 MP antes da sobrecarga do decodificador",
+      "selected_locale_example": "Limite seguro de edição atual: 1,5 MiB · até 2,25 MP antes da sobrecarga do decodificador",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L43",
+      "source_sha256": "d17d71727cfa1238748c1139beb5aa41af56386f551a24c358187a6c73940bb0",
+      "source_line": "            budget.text = String.format(Locale.ROOT, ui(R.string.ui_current_safe_editing_budget_s_up_to_2f), memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+      "line": 47,
+      "locale": "pt-BR",
+      "key": "ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "impact": "Oversize rejection warning retains decimal-dot requested and allowed MP values in a Brazilian Portuguese sentence; admission math is unaffected.",
+      "root_formatted_example": "1500 × 1500 pixels (2.25 MP) excedem o limite seguro de edição atual de 1.50 MP. O AN Paint mantém a imagem completa na memória e reserva espaço para transformações e seleções. A memória disponível determina esse limite. A operação foi interrompida antes de alocar o bitmap grande demais. Nenhum redimensionamento automático foi aplicado.",
+      "selected_locale_example": "1500 × 1500 pixels (2,25 MP) excedem o limite seguro de edição atual de 1,50 MP. O AN Paint mantém a imagem completa na memória e reserva espaço para transformações e seleções. A memória disponível determina esse limite. A operação foi interrompida antes de alocar o bitmap grande demais. Nenhum redimensionamento automático foi aplicado.",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt#L47",
+      "source_sha256": "faf0e3182716c08ba67a7a5f2ff2188a7d1c9d14b1662a4205795a2af0296f54",
+      "source_line": "        if (pixels > permitted) throw ImageSizeException(String.format(Locale.ROOT,"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 1008,
+      "locale": "pt-BR",
+      "key": "ui_current_safe_budget_2f_mp",
+      "impact": "New/resize/canvas-size dialog budget caption retains decimal-dot MP values.",
+      "root_formatted_example": "Limite seguro atual: 2.25 MP.",
+      "selected_locale_example": "Limite seguro atual: 2,25 MP.",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1008",
+      "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+      "source_line": "        column.addView(label(String.format(java.util.Locale.ROOT, ui(R.string.ui_current_safe_budget_2f_mp), ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 705,
+      "locale": "pt-BR",
+      "key": "ui_0f_0f_px_1f",
+      "impact": "Selection dimensions caption retains decimal-dot rotation angle; other locales also retain ROOT digits.",
+      "root_formatted_example": "1500 × 1000 px\n12.5°",
+      "selected_locale_example": "1500 × 1000 px\n12,5°",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L705",
+      "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+      "source_line": "            String.format(java.util.Locale.ROOT,ui(R.string.ui_0f_0f_px_1f),it.rect.width(),it.rect.height(),it.rotation)"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 1425,
+      "locale": "ar-EG",
+      "key": "ui_recent_colour_d_06x_tap_foreground_hold_background",
+      "impact": "Populated recent-colour accessibility caption uses ROOT index digits while empty-cell caption uses localized ui formatting. Hex identifier must remain unchanged.",
+      "root_formatted_example": "اللون الأخير 3: #ABCDEF. اضغط للمقدمة، واضغط مطولًا للخلفية.",
+      "selected_locale_example": "اللون الأخير ٣: #ABCDEF. اضغط للمقدمة، واضغط مطولًا للخلفية.",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1425",
+      "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+      "source_line": "            cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, index+1) else String.format(java.util.Locale.ROOT,ui(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background),index+1,colour and 0xffffff)"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+      "line": 217,
+      "locale": "pt-BR",
+      "key": null,
+      "impact": "Low-zoom label and its consumers retain decimal-dot percentage. The >=10% integer branch also uses unlocalized string interpolation.",
+      "root_formatted_example": "2.50%",
+      "selected_locale_example": "2,50%",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L217",
+      "source_sha256": "cae84fc3bd8b7ee2b0cbdc8224b98ef49658f8fdd965cb3c3627a6718e6d5b11",
+      "source_line": "    fun zoomLabel(): String = if (zoom >= .1f) \"${(zoom * 100).roundToInt()}%\" else String.format(java.util.Locale.ROOT, \"%.2f%%\", zoom * 100)"
+    }
+  ],
+  "intentional_invariants": [
+    "DimensionControls.kt:59, ImageCropDialog.kt:82 and NormalizeImagesDialog.kt:35 serialize editable numeric fields with decimal dots accepted by existing parsers; keep separate from display labels.",
+    "Colour hex values use ASCII hexadecimal syntax; they must not be localized as decimal digits.",
+    "Identifiers, sort keys and text codec syntax using Locale.ROOT are machine semantics, not locale display defects."
+  ]
+}
