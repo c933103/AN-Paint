@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-17T17:52:00Z",
+  "project": "c933103/AN-Paint",
+  "tracker": "https://github.com/c933103/AN-Paint/pull/71",
+  "key": "ui_sampled_resize_memory_explanation",
+  "source_commit": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+  "provenance": {
+    "supplied_by_parent": true,
+    "independently_fetched_repository": false,
+    "original_receipt": "https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640",
+    "previous_review": "Clause-removal/inheritance review only, confidence L; no fresh whole-message acceptance.",
+    "this_review": "Fresh read-only whole-message linguistic/semantic review against the supplied complete values. It does not retrospectively upgrade or replace the prior receipt.",
+    "limits": "No native-speaker or specialist certification. No source edits, external communications, routing re-review, build, UI screenshot, runtime test or device verification."
+  },
+  "source_english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+  "context_used": {
+    "supplied_ui_facts": "ImageResizeDialog.kt at the exact commit shows original decoded size/memory, safe budget, suggested smaller dimensions, Resize the copy heading and estimate; this key is selected iff !memoryRequirements.hasNativeWork. The actual resize callback is only on the enabled positive button.",
+    "interpretation": "The prose describes the consequences of choosing the smaller copy. It must not imply that merely opening the dialog resizes anything.",
+    "backgrounds": [
+      "Commons white-backed insertion",
+      "Ordinary alpha-over-existing-canvas insertion",
+      "Selected-background replacement"
+    ],
+    "background_neutrality_result": "All three supplied values omit background/color/transparency/flattening promises. No background-specific wording defect found in the complete messages. This is a textual finding, not a routing or rendering certification."
+  },
+  "summary": {
+    "accepted_full_values": 0,
+    "full_value_holds": [
+      "hak-Latn-TW",
+      "jje",
+      "ryu"
+    ],
+    "bounded_correction_candidates": 1,
+    "no_confidence_upgrade": true
+  },
+  "references": [
+    {
+      "id": "HAK_CURRENT",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: 這下",
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=1&id=3426",
+      "supports": "Defines this time/currently and gives ia/lia variants. Supports the intended current-time reading of yá-ha; not a full Pha̍k-fa-sṳ conversion certification."
+    },
+    {
+      "id": "HAK_ESTIMATE",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: 估算",
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=1816",
+      "supports": "Estimation meaning, with dialectal readings. This does not by itself validate the exact romanization or the technical list."
+    },
+    {
+      "id": "HAK_EDIT",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: 編輯",
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=4876",
+      "supports": "Editing lexeme and variant readings; not an attestation of the complete software buffer compound."
+    },
+    {
+      "id": "HAK_FILE",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: 檔案",
+      "url": "https://hakkadict.moe.edu.tw/search_result/?accent=4&id=5154",
+      "supports": "Includes a computer-data/program-record sense, supporting the file rather than current-canvas reading."
+    },
+    {
+      "id": "HAK_CHANGE",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: 改變",
+      "url": "https://hakkadict.moe.edu.tw/search_result/?id=8957",
+      "supports": "Change/alter sense; does not certify the whole sentence's orthography."
+    },
+    {
+      "id": "HAK_DIALECTS",
+      "title": "Taiwan Ministry of Education Taiwanese Hakka Dictionary: editorial principles",
+      "url": "https://hakkadict.moe.edu.tw/directions/%E7%B7%A8%E8%BC%AF%E8%AA%AA%E6%98%8E/%E7%B7%A8%E8%BC%AF%E5%89%8D%E8%A8%80/",
+      "supports": "Distinguishes six dialects and preserves within-dialect variants. A mismatch with one official romanized entry must not be treated automatically as an error in this Latin-script locale."
+    },
+    {
+      "id": "JJE_COORDINATION",
+      "title": "Jeju provincial education platform: conjunction particles",
+      "url": "https://www.jeju.go.kr/jedu/data/data.htm?act=view&page=169&seq=1538710",
+      "supports": "Official indexed teaching entry lists 이영 and 영 as conjunction particles. Search-result evidence was available; a later full-page fetch returned cache miss."
+    },
+    {
+      "id": "JJE_RESULTATIVE",
+      "title": "Jeju provincial oral corpus: Jocheon-eup Seonheul village material",
+      "url": "https://www.jeju.go.kr/jedu/map/record.htm?page=127",
+      "supports": "Attests the resultative construction 뒈어 이수다. Supports the grammatical analogy for the bounded candidate; it does not directly attest 줄어들어 이수다 or this software sentence."
+    },
+    {
+      "id": "KOR_MODAL",
+      "title": "National Institute of Korean Language: 수 and 있다 possibility construction",
+      "url": "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=326938",
+      "supports": "The -(으)ㄹ 수 있다 construction expresses ability/possibility. Used only to explain the recognizable modal construction, not to certify all Jeju grammar."
+    },
+    {
+      "id": "ANDROID_KO",
+      "title": "Android Developers: loading large bitmaps efficiently, Korean",
+      "url": "https://developer.android.com/topic/performance/graphics/load-bitmap?hl=ko",
+      "supports": "Distinguishes subsampling a smaller image from decoding, and uses 서브 샘플링/디코딩 terminology. This supports the intended technical concept, not Jeju idiomaticity."
+    },
+    {
+      "id": "ANDROID_JA",
+      "title": "Android Developers: loading large bitmaps efficiently, Japanese",
+      "url": "https://developer.android.com/topic/performance/graphics/load-bitmap?hl=ja",
+      "supports": "Uses サブサンプリング for loading a reduced image and デコード for decoding. This supports the intended technical distinction, not Okinawan grammar."
+    },
+    {
+      "id": "RYU_USAGE",
+      "title": "Shinsho Miyara / NINJAL: うちなーぐち活用辞典 (2021)",
+      "url": "https://repository.ninjal.ac.jp/record/3226/files/20210312Uchinaaguchi_e.pdf",
+      "supports": "Printed pp.77, 110 and 414 distinguish change (かわいん), exchange/return (けーいん) and small/fine (ぐまさん). The introduction explains Shuri/Naha variation. These partial checks leave the file-predicate choice and technical clauses unresolved."
+    }
+  ],
+  "reviews": [
+    {
+      "locale": "hak-Latn-TW",
+      "catalogue_blob": "c91181f09a2ba39c0daf1c297ec8c4c921b43cff",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bhak%2BLatn%2BTW/strings.xml",
+      "full_value": "Kû-son pâu kuat yá-ha fa pu khi̍p chién tap phû, chhí yong kié mâ khi̍p piên-si̍p fón chhûng khî. sṳ̍t-chi ki-yit thí yung liong voi yû só put thùng. kha-se ke fu-pún voi sún-sṳt se chiet. Ngièn-pún tóng on m̀-voi kói-pien.",
+      "verdict": "hold",
+      "confidence": "L",
+      "decision_reason": "All four intended propositions are recoverable on a cautious reading, but the first sentence's technical compounds and the exact Latin-script dialect/tonal consistency are not sufficiently validated for whole-message acceptance. No definite correction established.",
+      "clauses": [
+        {
+          "contract": "Estimate includes current canvas, clipboard, sampled decoding and editing buffers",
+          "text": "Kû-son pâu kuat yá-ha fa pu khi̍p chién tap phû, chhí yong kié mâ khi̍p piên-si̍p fón chhûng khî.",
+          "result": "hold",
+          "reason": "The intended list and estimation frame are recognizable. Current-time and editing vocabulary have partial lexical support. The precise clipboard and sampled-decoding/buffer terminology and the scope of the compound remain unverified. Do not infer correct Pha̍k-fa-sṳ tones merely by mapping Chinese glosses.",
+          "evidence": [
+            "HAK_CURRENT",
+            "HAK_ESTIMATE",
+            "HAK_EDIT",
+            "HAK_DIALECTS"
+          ]
+        },
+        {
+          "contract": "Actual memory use varies",
+          "text": "sṳ̍t-chi ki-yit thí yung liong voi yû só put thùng.",
+          "result": "provisional semantic match",
+          "reason": "Intended reading is actual memory usage will/can differ. No fixed-memory guarantee is introduced. Exact spelling/word division remains under the whole-value L limit."
+        },
+        {
+          "contract": "A smaller copy loses detail",
+          "text": "kha-se ke fu-pún voi sún-sṳt se chiet.",
+          "result": "provisional semantic match",
+          "reason": "The comparative smaller phrase attaches to copy and the loss attaches to detail. This does not move the loss onto the original file. No definite defect was established."
+        },
+        {
+          "contract": "Original file remains unchanged",
+          "text": "Ngièn-pún tóng on m̀-voi kói-pien.",
+          "result": "provisional semantic match",
+          "reason": "The intended subject is the original file and the predicate negates change. Dictionary entries support file/change senses. This is not whole-sentence orthographic certification.",
+          "evidence": [
+            "HAK_FILE",
+            "HAK_CHANGE"
+          ]
+        }
+      ],
+      "exact_candidate": null,
+      "next_action": "Review the complete message with a reader competent in the locale's intended Hakka variety and Latin orthography, specifically the four memory-list elements and compounds; keep L until that or equivalent stronger evidence."
+    },
+    {
+      "locale": "jje",
+      "catalogue_blob": "d951aaef5bbc21efaffd9e86d7ed08465fbb7f3c",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bjje/strings.xml",
+      "full_value": "예상 메모리에는 지금 캔버스영 클립보드, 샘플 해독이영 편집 버퍼가 들어 이수다. 실제 쓰는 양은 다를 수 이수다. 작은 사본을 만들민 세밀헌 부분은 줄어들 수 이수다. 원본 파일은 그대로우다.",
+      "verdict": "hold",
+      "confidence": "L",
+      "decision_reason": "One bounded semantic correction is justified: the third sentence softens detail loss to possibility. A local candidate is supplied, but unresolved technical terminology and full-message dialect/register confidence prevent acceptance.",
+      "clauses": [
+        {
+          "contract": "Estimate includes current canvas, clipboard, sampled decoding and editing buffers",
+          "text": "예상 메모리에는 지금 캔버스영 클립보드, 샘플 해독이영 편집 버퍼가 들어 이수다.",
+          "result": "hold",
+          "reason": "The estimate, current canvas, clipboard and editing-buffer elements are explicit. 영/이영 coordination has official teaching support. 샘플 해독 can be understood as decoding a sample; it does not clearly express subsampled image decoding. Official Android Korean distinguishes 서브 샘플링 and 디코딩. This is a terminology concern, not proof that 해독 can never mean decoding.",
+          "evidence": [
+            "JJE_COORDINATION",
+            "ANDROID_KO"
+          ]
+        },
+        {
+          "contract": "Actual memory use varies",
+          "text": "실제 쓰는 양은 다를 수 이수다.",
+          "result": "provisional semantic match",
+          "reason": "The amount actually used may differ. Memory is recoverable from the immediately preceding sentence, so its omission here is not a demonstrated defect. A variability possibility is compatible with this clause."
+        },
+        {
+          "contract": "A smaller copy loses detail",
+          "text": "작은 사본을 만들민 세밀헌 부분은 줄어들 수 이수다.",
+          "result": "correction candidate",
+          "reason": "The copy and its details are correctly connected, and the dialog's displayed original/suggested sizes contextualize 작은. However, 줄어들 수 states that detail may decrease rather than asserting the reduced-detail result in the source contract.",
+          "defect_confidence": "H for the modality difference; no native-speaker certification",
+          "evidence": [
+            "KOR_MODAL",
+            "JJE_RESULTATIVE"
+          ]
+        },
+        {
+          "contract": "Original file remains unchanged",
+          "text": "원본 파일은 그대로우다.",
+          "result": "provisional semantic match",
+          "reason": "Original file is explicit and 그대로 states unchanged/as-is. No original-file rewrite or transparency promise is asserted; full-register validation is still limited."
+        }
+      ],
+      "exact_candidate": {
+        "status": "bounded local correction proposal only",
+        "replace_from": "줄어들 수 이수다",
+        "replace_to": "줄어들어 이수다",
+        "corrected_clause": "작은 사본을 만들민 세밀헌 부분은 줄어들어 이수다.",
+        "corrected_full_value": "예상 메모리에는 지금 캔버스영 클립보드, 샘플 해독이영 편집 버퍼가 들어 이수다. 실제 쓰는 양은 다를 수 이수다. 작은 사본을 만들민 세밀헌 부분은 줄어들어 이수다. 원본 파일은 그대로우다.",
+        "confidence": "M for this local repair; whole-message confidence remains L",
+        "basis": "Replaces the possibility construction with a result-state construction, preserving surrounding words and the existing 이수다 register. The supplied first sentence uses 들어 이수다, and the official oral corpus attests 뒈어 이수다. The exact new technical sentence is a grammatical inference, not a quotation or directly attested native sentence.",
+        "remaining_limits": "Does not fix or certify 샘플 해독, establish idiomatic whole-value Jeju, or upgrade the original receipt. If the result-state phrasing is rejected by a competent reviewer, obtain a direct non-modal Jeju clause rather than reverting to the weaker modal claim."
+      },
+      "next_action": "Consider the bounded detail-loss repair separately from full-value acceptance. Resolve sampled-decoding terminology and review the final entire message before any confidence upgrade."
+    },
+    {
+      "locale": "ryu",
+      "catalogue_blob": "b1fc4a1ede050458999510a4d950bd90bf8c122c",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bryu/strings.xml",
+      "full_value": "推定メモリんかいや、なまぬキャンバスとぅクリップボード、サンプルぬデコード、編集ぬバッファーぬ 入っちょーいびーん。実際んかい ちかゆる量や 変わゆるくとぅん あいびーん。ぐまさるコピーっしや 細かさぬ失わりやびーん。元ぬファイルや けーやびらん。",
+      "verdict": "hold",
+      "confidence": "L",
+      "decision_reason": "Most intended propositions are recognizable, but the sampled-decoding relation, some inflection/idiomaticity, and the original-file predicate cannot support full-value acceptance. No exact replacement is sufficiently established.",
+      "clauses": [
+        {
+          "contract": "Estimate includes current canvas, clipboard, sampled decoding and editing buffers",
+          "text": "推定メモリんかいや、なまぬキャンバスとぅクリップボード、サンプルぬデコード、編集ぬバッファーぬ 入っちょーいびーん。",
+          "result": "hold",
+          "reason": "Estimate/current canvas/clipboard/editing buffer are identifiable. サンプルぬデコード reads literally as a sample's decoding and does not clearly specify decoding by subsampling. Official Android Japanese uses サブサンプリング for the reduced-image process, but that source cannot authorize Okinawan syntax or a new idiom.",
+          "evidence": [
+            "ANDROID_JA"
+          ]
+        },
+        {
+          "contract": "Actual memory use varies",
+          "text": "実際んかい ちかゆる量や 変わゆるくとぅん あいびーん。",
+          "result": "provisional semantic match; form unverified",
+          "reason": "Intended reading is that the quantity actually used can vary. Memory is recoverable from the preceding sentence. The dictionary supports change vocabulary, but the displayed 変わゆる inflection and full mixed-script phrase are not independently certified.",
+          "evidence": [
+            "RYU_USAGE"
+          ]
+        },
+        {
+          "contract": "A smaller copy loses detail",
+          "text": "ぐまさるコピーっしや 細かさぬ失わりやびーん。",
+          "result": "provisional semantic match; form unverified",
+          "reason": "The small-copy/detail-loss relationship is visible, and the dialog supplies the size comparison. ぐまさん is attested for small/fine. The exact passive/loss form 失わりやびーん remains unresolved; resemblance to Japanese is not by itself proof of error.",
+          "evidence": [
+            "RYU_USAGE"
+          ]
+        },
+        {
+          "contract": "Original file remains unchanged",
+          "text": "元ぬファイルや けーやびらん。",
+          "result": "hold",
+          "reason": "The original file is explicit and the predicate is negative. The lexical reference distinguishes change from exchange/return: かわいん versus けーいん. Consequently けーやびらん could be understood as not exchanging/returning or not changing it; the evidence does not securely establish preservation of file contents. This is a specific review question rather than a categorical claim that the existing phrase is wrong.",
+          "evidence": [
+            "RYU_USAGE"
+          ]
+        }
+      ],
+      "exact_candidate": null,
+      "next_action": "Obtain a competent Okinawan review of the full value, focusing on subsampled decoding, the loss predicate and unambiguous original-file preservation. Do not treat Japanese technical documentation as Okinawan certification."
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-17",
+  "repository": "c933103/AN-Paint",
+  "tracker": "https://github.com/c933103/AN-Paint/pull/71",
+  "base_commit": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+  "key": "ui_sampled_resize_memory_explanation",
+  "scope": "Read-only review of this complete value in bo and dz. No source changes, no Work task, no PR56 changes, no external communications. Temporary review artifact only.",
+  "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+  "history": "Both locales previously received only clause-removal/inheritance review with confidence L. This is a fresh whole-message assessment but does not supply whole-message acceptance. Preserve prior receipt and confidence limits.",
+  "runtime_context_from_parent": "ImageResizeDialog at the exact base commit shows original decoded size/memory, safe budget, suggested smaller dimensions, Resize the copy heading, and estimate. This key is selected iff !memoryRequirements.hasNativeWork; only the enabled positive button executes resizing. Routing not re-reviewed.",
+  "review_limit": "Research-assisted linguistic assessment. No native-speaker or specialist certification. Literal clause coverage and primary term evidence are distinguished from full-message idiomatic/technical acceptance.",
+  "locales": [
+    {
+      "locale": "bo",
+      "blob_sha": "0076e5c4008d1d542b82791fec71c2e2622465a8",
+      "full_value": "ཚོད་རྩིས་ནང་ད་ལྟའི་རས་གཞི་དང་འདྲ་བཤུས་སྣོད། དཔེ་ལེན་གསང་བཤད་དང་རྩོམ་སྒྲིག་གི་གནས་སྐབས་སྣོད་ཚུད། དངོས་སྤྱོད་དྲན་ཤེས་མི་འདྲ་བ་སྲིད། འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས་སྲིད། མ་ཡིག་མི་བསྒྱུར།",
+      "disposition": "hold",
+      "confidence": "L",
+      "full_message_accepted": false,
+      "summary": "The broad list, actual-use variability, smaller-copy warning and unchanged-original statement are present. Whole-value acceptance remains blocked by unresolved domain phrasing/fluency and a bounded modality mismatch in the detail-loss warning.",
+      "clauses": [
+        {
+          "contract": "Estimates include current canvas and clipboard",
+          "text": "ཚོད་རྩིས་ནང་ད་ལྟའི་རས་གཞི་དང་འདྲ་བཤུས་སྣོད།",
+          "assessment": "provisionally_covered",
+          "reason": "Estimate/current/canvas and a copy-container expression occur and connect to the inclusion predicate in the following segment. No item is visibly omitted. The clipboard compound is descriptively interpretable; this review has not established its idiomatic UI suitability."
+        },
+        {
+          "contract": "Sampled decoding and editing buffers included",
+          "text": "དཔེ་ལེན་གསང་བཤད་དང་རྩོམ་སྒྲིག་གི་གནས་སྐབས་སྣོད་ཚུད།",
+          "assessment": "hold_for_domain_review",
+          "reason": "Sampling, decoding/deciphering, editing and temporary-container elements are represented. Exact image-decoding sense of གསང་བཤད and the shared buffer attachment need a competent bo technical-language reviewer. No claim that the wording is proven cryptography-only or definitely wrong."
+        },
+        {
+          "contract": "Actual memory use varies",
+          "text": "དངོས་སྤྱོད་དྲན་ཤེས་མི་འདྲ་བ་སྲིད།",
+          "assessment": "provisionally_covered_with_domain_ambiguity",
+          "reason": "Says actual-use memory may differ; the estimate caveat is retained. དྲན་ཤེས has primary attestation for cognitive memory while Emory distinguishes computer memory with གསོག་ཆས. This is a domain-clarity question, not proof that the current term cannot be used for computer memory. Do not mandate a terminology rewrite from dictionary preference alone.",
+          "evidence": [
+            "bo_computer_memory",
+            "bo_cognitive_memory"
+          ]
+        },
+        {
+          "contract": "A smaller COPY loses detail",
+          "text": "འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས་སྲིད།",
+          "assessment": "bounded_correction_proposed",
+          "reason": "The smaller copy remains the affected object, but སྲིད adds possibility: may/can lose detail. This is weaker than the supplied categorical warning. Removing only that possibility auxiliary aligns the proposition without inventing terminology. This is a contract-alignment proposal, not a claim that every rescaled image loses visibly noticeable detail.",
+          "evidence": [
+            "bo_possibility"
+          ]
+        },
+        {
+          "contract": "Original FILE stays unchanged",
+          "text": "མ་ཡིག་མི་བསྒྱུར།",
+          "assessment": "provisionally_covered",
+          "reason": "Negative change statement targets the original/master document, not the resized copy. In the supplied import dialog the original-file referent is recoverable. No observed reversal or claim the canvas is unchanged; final technical-language reviewer should confirm this compact original/master wording is sufficiently clear for an image file."
+        }
+      ],
+      "bounded_candidate": {
+        "status": "limited_edit_proposal_not_whole_message_acceptance",
+        "before": "འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས་སྲིད།",
+        "after": "འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས།",
+        "complete_value": "ཚོད་རྩིས་ནང་ད་ལྟའི་རས་གཞི་དང་འདྲ་བཤུས་སྣོད། དཔེ་ལེན་གསང་བཤད་དང་རྩོམ་སྒྲིག་གི་གནས་སྐབས་སྣོད་ཚུད། དངོས་སྤྱོད་དྲན་ཤེས་མི་འདྲ་བ་སྲིད། འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས། མ་ཡིག་མི་བསྒྱུར།",
+        "note": "Only the detail-loss modality changes. Other clauses are preserved, not newly certified. Do not mark full value accepted or merge this as a completed linguistic sign-off."
+      },
+      "next_acceptance_condition": "A competent bo technical-language review of the full value in the supplied dialog, resolving image-decoding/buffer wording, computer-memory clarity, original-file referent and sentence flow. Any final candidate needs whole-value re-read."
+    },
+    {
+      "locale": "dz",
+      "blob_sha": "8b4d8c6230a29f0e5ec1854c095a64399c1c5931",
+      "full_value": "ཚོད་རྩིས་ནང་ད་ལྟོའི་འབྲི་གཞི་དང་འདྲ་བཤུས་སྣོད། དཔེ་ལེན་ཨང་བཤད་དང་བསྒྱུར་བཅོས་སྐབས་སྣོད་ཚུ་ཚུདཔ་ཨིན། དྲན་ཚད་ལག་ལེན་ངོ་མ་མ་འདྲཝ་འོང་སྲིད། འདྲ་བཤུས་ཆུང་ཀུ་གིས་ཞིབ་ཆ་ཉམས་འོང་། མ་ཡིག་མི་བསྒྱུར།",
+      "disposition": "hold",
+      "confidence": "L",
+      "full_message_accepted": false,
+      "summary": "All broad contract clauses remain represented and the current memory noun has direct computing-domain attestation. No safely justified mandatory replacement was established. Full-message technical fluency/compound clarity remains unresolved.",
+      "clauses": [
+        {
+          "contract": "Estimates include current canvas and clipboard",
+          "text": "ཚོད་རྩིས་ནང་ད་ལྟོའི་འབྲི་གཞི་དང་འདྲ་བཤུས་སྣོད།",
+          "assessment": "provisionally_covered",
+          "reason": "Estimates, current drawing surface and a copy-container expression are present. The primary glossary offers an established clipboard term, but a different descriptive compound is not thereby wrong. User comprehension of this exact compound remains unverified.",
+          "evidence": [
+            "dz_computer_terms"
+          ]
+        },
+        {
+          "contract": "Sampled decoding and editing buffers included",
+          "text": "དཔེ་ལེན་ཨང་བཤད་དང་བསྒྱུར་བཅོས་སྐབས་སྣོད་ཚུ་ཚུདཔ་ཨིན།",
+          "assessment": "hold_for_domain_review",
+          "reason": "The inclusion predicate and sampling/code-explanation/editing/container elements are visible. It remains unestablished whether དཔེ་ལེན་ཨང་བཤད denotes sampled image decoding naturally and whether སྐབས་སྣོད communicates memory buffers adequately. Existing primary decode/buffer terminology provides comparison points, not proof of error or grounds for an automatic rewrite.",
+          "evidence": [
+            "dz_computer_terms"
+          ]
+        },
+        {
+          "contract": "Actual memory use varies",
+          "text": "དྲན་ཚད་ལག་ལེན་ངོ་མ་མ་འདྲཝ་འོང་སྲིད།",
+          "assessment": "provisionally_covered",
+          "reason": "Actual memory use can differ, preserving the estimate caveat. Unlike bo's unresolved memory domain question, dz དྲན་ཚད is directly attested as Memory in the computing glossary (printed p.123). No memory-noun replacement warranted.",
+          "evidence": [
+            "dz_computer_terms"
+          ]
+        },
+        {
+          "contract": "A smaller COPY loses detail",
+          "text": "འདྲ་བཤུས་ཆུང་ཀུ་གིས་ཞིབ་ཆ་ཉམས་འོང་།",
+          "assessment": "provisionally_covered",
+          "reason": "The small copy is connected to subsequent loss/degradation of detail. Smaller-than-original comparison is supplied by the suggested dimensions and Resize the copy heading. This clause does not add the explicit possibility auxiliary found in bo's warning."
+        },
+        {
+          "contract": "Original FILE stays unchanged",
+          "text": "མ་ཡིག་མི་བསྒྱུར།",
+          "assessment": "provisionally_covered",
+          "reason": "The original/master document is explicitly not changed. No reversal, file deletion claim or claim that the edited canvas remains unchanged. Final reviewer should confirm the compact original/master term is sufficiently clear for the imported image file."
+        }
+      ],
+      "bounded_candidate": null,
+      "reason_no_candidate": "The main unresolved issues are domain-specific intelligibility and whole-message fluency. Glossary alternatives alone are not sufficient to label the descriptive wording erroneous or justify manufacturing a full replacement.",
+      "next_acceptance_condition": "A competent dz technical-language review of this complete value in the supplied dialog, specifically sampled image decoding, temporary editing buffers, clipboard compound, original image-file referent and sentence flow."
+    }
+  ],
+  "cross_route_wording": {
+    "result": "background_neutral",
+    "reason": "Neither complete value names a background color, white fill, transparency preservation or a selected background. Neither claims resizing has already executed. Therefore no wording contradiction was found with Commons white-backed insertion, ordinary alpha-over-existing-canvas insertion or selected-background replacement. This is a wording assessment only, not a re-review or certification of routing."
+  },
+  "evidence": [
+    {
+      "id": "bo_source",
+      "url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bbo/strings.xml",
+      "note": "Value independently retrieved from catalogue blob 0076e5c4008d1d542b82791fec71c2e2622465a8; matches supplied value."
+    },
+    {
+      "id": "dz_source",
+      "url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bdz/strings.xml",
+      "note": "Value independently retrieved from catalogue blob 8b4d8c6230a29f0e5ec1854c095a64399c1c5931; matches supplied value."
+    },
+    {
+      "id": "prior_receipt",
+      "url": "https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640",
+      "note": "Historical scope supplied by parent: clause removal/inheritance review only, confidence L. Not reclassified as whole-message acceptance."
+    },
+    {
+      "id": "bo_computer_memory",
+      "url": "https://www.emorytibetscienceinitiative.com/glossary-test/?instance=1&listpage=271",
+      "note": "Emory-Tibet Science Initiative primary bilingual glossary explicitly labels computer memory as གསོག་ཆས། and separately lists biological memory. This establishes an available computer-specific term; it does not prove all alternative terms wrong."
+    },
+    {
+      "id": "bo_cognitive_memory",
+      "url": "https://rywiki.tsadra.org/index.php/dran_shes",
+      "note": "Rangjung Yeshe dictionary entry attests cognitive awareness/mindfulness/memory meanings for དྲན་ཤེས. Used as ambiguity evidence, not an exhaustive ban on domain extension."
+    },
+    {
+      "id": "bo_possibility",
+      "url": "https://rywiki.tsadra.org/index.php/srid_pa",
+      "note": "Rangjung Yeshe dictionary supports possibility/may meanings. The present clause-level modality reading is the reviewer's linguistic analysis."
+    },
+    {
+      "id": "dz_computer_terms",
+      "url": "https://download-mirror.savannah.gnu.org/releases/dzongkha-gnome/dzongkha_computer_terms.pdf",
+      "note": "Primary DzonghkaLinux Team glossary, published by CRULP/NUCES under IDRC project; ISBN 978-969-8961-06-0. Downloaded original PDF and visually inspected printed pages 26, 36, 50, 123 (PDF pages 30, 40, 54, 127). These attest buffer གནད་ཁོངས།, clipboard འཛིན་པང་།, decode transliteration ཌི་ཀོཌི།, and memory དྲན་ཚད།. The current memory term is directly supported; alternative entries do not prove the current descriptive compounds incorrect. Search-index text for this PDF sometimes differed from actual PDF; conclusions use downloaded/visually checked pages."
+    },
+    {
+      "id": "ddc_attempt",
+      "url": "https://www.dzongkha.gov.bt/uploads/files/publications/1.computer_term_text_e53071b6528a9081cabd770fda7a26c4.pdf",
+      "note": "Official DDC computer glossary found but direct fetch timed out/returned 502. Search-index excerpts had corrupted Tibetan text. Not relied on for exact replacement wording."
+    }
+  ],
+  "verification": {
+    "source_values_match_supplied": true,
+    "source_edits": false,
+    "external_posts": false,
+    "native_specialist_certification": false,
+    "full_value_acceptance_count": 0
+  }
+}

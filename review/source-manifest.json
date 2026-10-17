@@ -1,0 +1,115 @@
+{
+  "ref": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+  "key": "ui_sampled_resize_memory_explanation",
+  "handoff_url": "https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640",
+  "tracker_url": "https://github.com/c933103/AN-Paint/pull/71",
+  "context": {
+    "content": "/* AN Paint additions, 2026-09-07. GNU AGPL-3.0-or-later. */\npackage org.catrobat.paintroid.classic\n\nimport org.catrobat.paintroid.R\n\nimport android.app.Activity\nimport android.app.AlertDialog\nimport android.text.Editable\nimport android.text.InputType\nimport android.text.TextWatcher\nimport android.widget.*\nimport kotlin.math.roundToInt\n\nclass ImageResizeDialog(\n    private val activity: Activity, private val source: ImageDimensions,\n    private val residentPixels: Long, private val policy: () -> ImageMemoryPolicy,\n    private val previousAttempt: ImageDimensions? = null,\n    private val resize: (ImageDimensions) -> Unit, private val cancel: () -> Unit,\n    private val memoryRequirements: ImportMemoryRequirements = ImportMemoryRequirements()\n) {\n    fun show(): AlertDialog {\n        val density = activity.resources.displayMetrics.density\n        fun dp(n: Int) = (n * density + .5f).toInt()\n        fun label(value: String, name: String) = TextView(activity).apply { text = value; tag = name; textSize = 14f; setPadding(0,dp(5),0,dp(5)) }\n        val body = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(20),dp(8),dp(20),dp(12)) }\n        body.addView(label(ui(R.string.ui_original_decoded_image_rgba_4_bytes_pixel_estimated, source.describe(), memoryLabel(source.pixels * 4.0), memoryLabel(memoryRequirements.estimatedBytes(ImportPlan.create(source,source),residentPixels))), \"resize_original\"))\n        body.addView(label(ui(R.string.ui_the_full_image_and_working_buffers_exceed_the), \"resize_reason\"))\n        val budget = label(\"\", \"resize_budget\"); body.addView(budget)\n        val maxScale = previousAttempt?.let { it.width.toDouble() / source.width * .75 } ?: 1.0\n        val suggested = memoryRequirements.suggestResize(source,policy(),residentPixels,maxScale) ?: ImageDimensions(1,1)\n        val sizing = DimensionControls(activity,source,suggested,\"resize\",true)\n        body.addView(label(ui(R.string.ui_resize_the_copy), \"resize_heading\")); body.addView(sizing)\n        val estimate = label(\"\", \"resize_estimate\"); body.addView(estimate)\n        body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_sampled_resize_memory_explanation), \"resize_explanation\"))\n        var accepted = false\n        val dialog = EditorDialogBuilder(activity).setTitle(ui(R.string.ui_resize_large_image))\n            .setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()\n        fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }\n        fun refresh(): Boolean {\n            val current = policy()\n            budget.text = ui(R.string.ui_current_safe_editing_budget_s_up_to_2f, memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)\n            val size = target()\n            val plan = size?.let { ImportPlan.create(source,it) }\n            val fits = plan != null && memoryRequirements.accepts(current,plan,residentPixels)\n            val cannotResize=memoryRequirements.hasNativeWork && !memoryRequirements.accepts(current,ImportPlan.create(source,ImageDimensions(1,1)),residentPixels)\n            estimate.text = if (size == null) ui(R.string.ui_enter_positive_dimensions_no_larger_than_the_original)\n                else ui(R.string.ui_copy_decoded_image_at_this_size_estimated_loading, size.describe(), memoryLabel(size.pixels * 4.0), memoryLabel(memoryRequirements.estimatedBytes(plan!!,residentPixels))) +\n                    if (fits) ui(R.string.ui_fits_the_current_budget) else if(cannotResize) \"\\n\"+ui(R.string.ui_no_resize_fits_decoder_memory) else ui(R.string.ui_too_large_for_the_current_budget_reduce_the)\n            dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = fits\n            return fits\n        }\n        sizing.changed = { refresh() }\n        dialog.setOnDismissListener { if (!accepted) cancel() }\n        dialog.setOnShowListener {\n            refresh()\n            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n                if (refresh()) { accepted = true; val size = target()!!; dialog.dismiss(); resize(size) }\n            }\n        }\n        dialog.show(); return dialog\n    }\n}\n",
+    "encoding": "utf-8",
+    "sha": "15723c1171cac09c7bd67881175827b5f3f330dd",
+    "display_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+    "display_title": "ImageResizeDialog.kt"
+  },
+  "rows": [
+    {
+      "qualifier": "",
+      "blob": "50fe59f226e55fa13d1164d5bf1808038ab3d936",
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values/strings.xml#L563",
+      "value": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "matches_historical_handoff": true,
+      "value_sha256": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "line": 563
+    },
+    {
+      "qualifier": "b+ain+Kana",
+      "blob": "fcb19902b310d8dd2a6206bba0cfbc711da54fd9",
+      "path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bain%2BKana/strings.xml#L182",
+      "value": "タン アエラㇺペテㇰ チピㇱキㇷ゚ オㇿ タ タネ アン カㇺピソ, アアットゥㇷ゚テ ワ イルカイ アアマ ノカ, ポン ノカ ネ ヌレ クス RAM, ネワ ノカ ヌイェ クス イルカイポ アン タトゥㇺ アアマ ウㇱケ カ アン. ソンノ アエイワンケ RAM コㇿ ポロル アナㇰ ラㇺマ ウネノ ソモ ネ. ノカ アポンテ ヤクン, ノカ オㇿ タ ノカン ペ アイサㇺカ. エトㇰ コㇿ チヌイェㇷ゚ アシンナレ カ ソモ キ.",
+      "matches_historical_handoff": true,
+      "value_sha256": "c575fde165d9b50206cd5deebf9604f59c64ae06001733e49e29e54bd580cd8a",
+      "line": 182
+    },
+    {
+      "qualifier": "b+ain+Latn",
+      "blob": "e960f5521a00c73d671f36f4092ced5694609610",
+      "path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bain%2BLatn/strings.xml#L182",
+      "value": "Tan a=erampetek cipiskip or ta tane an kampiso, a=attupte wa irukay a=ama noka, pon noka ne nure kusu RAM, newa noka nuye kusu irukaypo an tatum a=ama uske ka an. Sonno a=eywanke RAM kor pororu anak ramma uneno somo ne. Noka a=ponte yakun, noka or ta nokan pe a=isamka. Etok kor cinuyep a=sinnare ka somo ki.",
+      "matches_historical_handoff": true,
+      "value_sha256": "f8df5cd5eba015b56a8f66ba34d45de11f375f8c7662fbadf58f2f2b323c9182",
+      "line": 182
+    },
+    {
+      "qualifier": "b+bo",
+      "blob": "0076e5c4008d1d542b82791fec71c2e2622465a8",
+      "path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bbo/strings.xml#L198",
+      "value": "ཚོད་རྩིས་ནང་ད་ལྟའི་རས་གཞི་དང་འདྲ་བཤུས་སྣོད། དཔེ་ལེན་གསང་བཤད་དང་རྩོམ་སྒྲིག་གི་གནས་སྐབས་སྣོད་ཚུད། དངོས་སྤྱོད་དྲན་ཤེས་མི་འདྲ་བ་སྲིད། འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས་སྲིད། མ་ཡིག་མི་བསྒྱུར།",
+      "matches_historical_handoff": true,
+      "value_sha256": "10fd772a67d00b58ef0f64c236441ed3e7032f1df32f52140e7d33fc7464eecb",
+      "line": 198
+    },
+    {
+      "qualifier": "b+dz",
+      "blob": "8b4d8c6230a29f0e5ec1854c095a64399c1c5931",
+      "path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bdz/strings.xml#L210",
+      "value": "ཚོད་རྩིས་ནང་ད་ལྟོའི་འབྲི་གཞི་དང་འདྲ་བཤུས་སྣོད། དཔེ་ལེན་ཨང་བཤད་དང་བསྒྱུར་བཅོས་སྐབས་སྣོད་ཚུ་ཚུདཔ་ཨིན། དྲན་ཚད་ལག་ལེན་ངོ་མ་མ་འདྲཝ་འོང་སྲིད། འདྲ་བཤུས་ཆུང་ཀུ་གིས་ཞིབ་ཆ་ཉམས་འོང་། མ་ཡིག་མི་བསྒྱུར།",
+      "matches_historical_handoff": true,
+      "value_sha256": "98c8f1b7bfd4e811c98fe7c0bb8808eab0deb96b93a2c193dfc9d0992875abf8",
+      "line": 210
+    },
+    {
+      "qualifier": "b+hak+Latn+TW",
+      "blob": "c91181f09a2ba39c0daf1c297ec8c4c921b43cff",
+      "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bhak%2BLatn%2BTW/strings.xml#L340",
+      "value": "Kû-son pâu kuat yá-ha fa pu khi̍p chién tap phû, chhí yong kié mâ khi̍p piên-si̍p fón chhûng khî. sṳ̍t-chi ki-yit thí yung liong voi yû só put thùng. kha-se ke fu-pún voi sún-sṳt se chiet. Ngièn-pún tóng on m̀-voi kói-pien.",
+      "matches_historical_handoff": true,
+      "value_sha256": "52a374df59fe28ffff1baad8aa15389d72f4ce5a5523760465cc0a4dfed8c35f",
+      "line": 340
+    },
+    {
+      "qualifier": "b+jje",
+      "blob": "d951aaef5bbc21efaffd9e86d7ed08465fbb7f3c",
+      "path": "Paintroid/src/main/res/values-b+jje/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bjje/strings.xml#L320",
+      "value": "예상 메모리에는 지금 캔버스영 클립보드, 샘플 해독이영 편집 버퍼가 들어 이수다. 실제 쓰는 양은 다를 수 이수다. 작은 사본을 만들민 세밀헌 부분은 줄어들 수 이수다. 원본 파일은 그대로우다.",
+      "matches_historical_handoff": true,
+      "value_sha256": "f1c6ca849af2a1a44e1732c6a12e725c7a761d39c157e9738cb57b6ba87f7581",
+      "line": 320
+    },
+    {
+      "qualifier": "b+mnc+Mong",
+      "blob": "aad14ba1629f915f147701b59fea9244f446944e",
+      "path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bmnc%2BMong/strings.xml#L193",
+      "value": "ᠪᠣᡩᠣᡥᠣᠩᡤᡝ ᡩᡝ ᡨᡝ ᠨᡳᡵᡠᡵᡝ ᠪᠠ, ᡩᡠᡵᠰᡠᡴᡳᠯᡝᡥᡝ ᠨᡳᡵᡠᡤᠠᠨ, ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡠᠪᡠ ᠪᡝ ᠰᠣᠨᠵᠣᡶᡳ ᡥᡡᠯᠠᡵᠠ ᠵᠠᡳ ᡩᠠᠰᠠᡵᠠ ᡩᡝ ᠮᠠᠵᡳᡤᡝ ᡝᡵᡳᠨ ᡳ ᠪᡳᠪᡠᡵᡝ ᠪᠠ ᠪᠠᡴᡨᠠᠮᠪᡳ. ᠶᠠᡵᡤᡳᠶᠠᠨ ᡳ ᠪᠠᡳᡨᠠᠯᠠᡵᠠ RAM ᡳ ᡴᡝᠮᡠᠨ ᡝᠨᠴᡠ ᠣᠴᡳ ᠣᠮᠪᡳ. ᠠᠵᡳᡤᡝ ᠠᡩᠠᠯᡳ ᠠᡵᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡩᡝ ᠠᠵᡳᡤᡝ ᡥᠠᠴᡳᠨ ᠪᡝ ᠸᠠᠯᡳᠶᠠᠮᠪᡳ. ᡩᠠ ᠪᡳᡨᡥᡝ ᠪᡝ ᡥᠠᠯᠠᡵᠠᡴᡡ.",
+      "matches_historical_handoff": true,
+      "value_sha256": "e44ca5a747bcf938ac35f2a61899af8a78538a2ffb880de9fa14fb0d61252329",
+      "line": 193
+    },
+    {
+      "qualifier": "b+ryu",
+      "blob": "b1fc4a1ede050458999510a4d950bd90bf8c122c",
+      "path": "Paintroid/src/main/res/values-b+ryu/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bryu/strings.xml#L368",
+      "value": "推定メモリんかいや、なまぬキャンバスとぅクリップボード、サンプルぬデコード、編集ぬバッファーぬ 入っちょーいびーん。実際んかい ちかゆる量や 変わゆるくとぅん あいびーん。ぐまさるコピーっしや 細かさぬ失わりやびーん。元ぬファイルや けーやびらん。",
+      "matches_historical_handoff": true,
+      "value_sha256": "fa122d6faef6ec71b4e968cd3405e4fc6d676c58746c7a8131b7f93c23367ac8",
+      "line": 368
+    },
+    {
+      "qualifier": "b+vi+Hani",
+      "blob": "e5fcf78b97ba994af39416811d8fa93758547fcf",
+      "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bvi%2BHani/strings.xml#L322",
+      "value": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢. 𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮. 版 抄 𡮈 欣 仕 𠅒 枝節. 𣜿 㭲 空 𠊝 𢷮.",
+      "matches_historical_handoff": true,
+      "value_sha256": "c440148385de677afbe0d08d981c57a64267f53d1224c5effd502af513c1a270",
+      "line": 322
+    }
+  ]
+}

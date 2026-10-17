@@ -1,185 +1,85 @@
-# AN Paint
+# Sampled-memory wording: bounded corrections and complete-value review
 
-AN Paint is an independently maintained Android image editor derived from
-[Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid).
-It is based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`;
-original copyright and licence notices are retained.
+Application [PR #121](https://github.com/c933103/AN-Paint/pull/121), exact head
+[`e45eb63a4539109a1270fc76f9ab73b0fb78b15e`](https://github.com/c933103/AN-Paint/commit/e45eb63a4539109a1270fc76f9ab73b0fb78b15e),
+parent [`44ad5ce2156fef79baae3ef5650b9ac5eac06202`](https://github.com/c933103/AN-Paint/commit/44ad5ce2156fef79baae3ef5650b9ac5eac06202).
+Tracker: [#71](https://github.com/c933103/AN-Paint/pull/71). This separate evidence ref is not an application change or tracker closure.
 
-[Download the latest published release](https://github.com/c933103/AN-Paint/releases/latest).
-The `develop` branch can contain changes that are still being built or tested.
-Check [GitHub Actions](https://github.com/c933103/AN-Paint/actions/workflows/android.yml)
-for their actual status and [HANDOFF.md](HANDOFF.md) for version-specific evidence.
+## Exact scope
 
-The application ID is **`paint.anpaint.android`**. Android 5.0 (API 21) or newer
-is required. Published APKs contain all four supported ABIs: arm64-v8a,
-armeabi-v7a, x86_64 and x86.
+The reviewed key is `ui_sampled_resize_memory_explanation`, consumed by the
+sampled-memory branch of `ImageResizeDialog`. The fresh linguistic/static-context
+review examined nine complete values on `f988a94d8e4fa300bfe181ba67bba7b546651ca1`.
+All nine catalogue blobs and complete-value hashes remained identical on the
+integration base above, including merged PR #120.
 
-## Editing
+The application patch makes only these two one-span changes:
 
-- View, Draw, File, Edit and Color tabs. Portrait uses a panel above the canvas;
-  landscape uses a side ribbon. Tool tiles keep the original compact 64 dp square
-  size, including vertical scripts. Larger text wraps or uses an ellipsis, with
-  the full caption retained for accessibility and tooltips.
-- Draw groups tools into Drawing, Selection and Insert. Edit groups its commands
-  into Selection, Canvas and Flip / Rotate. Invert colours is under Canvas. Expand a group to reach its
-  commands; collapse it to recover canvas space.
-- Pencil, brush, watercolor, spray, eraser, fill, colour picker, shapes and text.
-  Pencil and brush widths have independent numeric controls up to 100 px.
-- Rectangular and free-form selections, resize/rotation handles, an aspect-ratio
-  lock, canvas trimming/expansion, image resizing and disk-backed undo/redo.
-- Navigate supports pinch zoom and pan, actual-size and Fit view. Pixel grid is a
-  short, selected-state toggle; its 800% threshold and pixel rulers are explained
-  under View > How to use and by holding the grid button.
-- The magnifier works while drawing or navigating and samples the
-  cursor in cursor mode, remaining visible between cursor strokes. It changes
-  corners only when the finger approaches it. Its View control edits the active
-  mode's setting. Its 120 dp lens enlarges the drawing and cursor together;
-  bitmap density does not change the selected magnification. Zoomed-out overviews
-  use progressive filtering to retain thin strokes; actual-size and enlarged
-  views keep crisp pixels. Display filtering does not alter drawing AA or exports.
-- View > Cursor drawing expands cursor options, with an Enable/Disable button,
-  independent round/square outline, magnifier and marker size. Brush controls stay
-  under Draw > Drawing. Enabling cursor mode keeps its settings open and starts with
-  positioning only. Tap the cursor itself or the labelled on-canvas Start/Stop
-  control to switch drawing on/off; the cursor visibly changes and guidance
-  appears. Dragging the cursor still moves or draws. Reopening cursor options
-  or a draft pauses drawing. Instructions are under Cursor drawing > How to use.
-- Autosave restores the canvas, unfinished selection and both undo/redo stacks
-  after Android closes the app. It saves history with the private draft, so cache
-  cleanup does not remove the saved steps.
-- Foreground/background previews, recent colours, sixteen saved colour slots
-  and an advanced colour picker.
-- A separate assembly workspace for up to 20 images, with cropping, normalization,
-  edge snapping, exact X/Y positions, direct PNG saving and
-  transfer to the editor. See [image assembly controls](docs/IMAGE_ASSEMBLY.md).
+- `bo`: `འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས་སྲིད།` becomes `འདྲ་བཤུས་ཆུང་བས་ཞིབ་ཆ་ཉམས།`.
+- `jje`: `줄어들 수 이수다` becomes `줄어들어 이수다` in the smaller-copy detail-loss sentence.
 
-Both editing workspaces produce opaque images. Layers, transparency controls,
-Smudge, automatic crop and native project formats are absent. Large imports
-receive a memory-based size check and an explicit resize choice. See
-[EDITOR_PARITY.md](EDITOR_PARITY.md) for the feature mapping.
+Actual memory-use variability, all other clauses, resource attributes, quantities,
+format arguments, routing and consumer code remain unchanged. Reversing each exact
+span reconstructs its baseline catalogue blob. The key is a scalar string with no
+quantity forms or format arguments. The patch adds a compact complete-value
+fixture, four host methods and two real-dialog Robolectric methods; it does not
+certify the complete Tibetan or Jeju messages.
 
-## Files and image formats
+## Current decisions
 
-**Save as** offers PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB and TIFF in
-one filename/format panel. It exposes applicable quality, lossless, dithering and
-TIFF compression controls. JPEG XL supports actual lossless encoding.
-**Save** reuses the last successful Save as destination and encoding settings,
-including after draft recovery.
+[Current exact values and dispositions](current-status.json) bind the post-edit
+hashes to the application head. [Complete original review](review/complete-review.json)
+preserves all original values, candidate values, reasoning summaries and source
+links. The [historical inheritance-only receipt](https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640)
+remains unchanged.
 
-**Export as** offers ICO, ASCII art and Base64 text with their relevant options.
-Export does not replace the Save destination or clear unsaved changes.
-**Save and share** saves a copy in any supported output format to your chosen
-location, then opens Android sharing. It keeps the current Save destination
-and does not mark that working file saved.
+- **One bounded complete-value semantic acceptance, confidence M:** unchanged
+  `vi-Hani`, SHA-256 `c440148385de677afbe0d08d981c57a64267f53d1224c5effd502af513c1a270`.
+  [Full review](review/vietnamese-hani-review.json) and
+  [independent challenge receipt](review/vietnamese-hani-independent-review.json)
+  support all four estimate components, variable usage, definite smaller-copy
+  detail loss and unchanged original file. Contemporary technical-compound
+  interpretation remains reviewer synthesis. Some primary PDF evidence was
+  search-indexed only after the full PDF returned HTTP403; that limit is retained.
+- **Eight complete-value holds:** `ain-Kana`, `ain-Latn`, `bo`, `dz`, `hak-Latn-TW`,
+  `jje`, `mnc-Mong`, `ryu`. The two modality corrections resolve only that bounded
+  mismatch; their technical-language and complete-message fluency holds remain.
+  Other held values are unchanged. See the detailed Ainu/Manchu,
+  Tibetan/Dzongkha and Hakka/Jeju/Ryukyuan review files.
 
-PDF and TIFF imports provide page previews and selection. Animated GIF, APNG and
-WebP imports warn when opening a still frame.
+No native-speaker, specialist, whole-catalogue, universal Nôm orthography, runtime,
+layout, accessibility or release certification is implied. PR #56 is untouched.
+No new dictionary alternative or absence of a phrase attestation is treated as
+proof of error by itself.
 
-**Draw > Insert > Other images** groups device files, Catrobat, Irasutoya and
-Openclipart. An inserted image stays selected; the view includes its resize and
-rotation handles even when it exceeds the canvas. **Fit to canvas** changes its
-placement while keeping the source pixels; **Original size** restores its dimensions.
+## Verification
 
-Online artwork pages have **Use image** and **Copy credit** actions. Irasutoya
-uses its English/Japanese search; its original titles and website text remain
-Japanese. Openclipart imports the published Large PNG. Each source retains its
-own terms and copyable, editable credits under File > About > Image credits.
-Irasutoya is free within its stated conditions, including a limit of 20 items
-per commercial design; it is not public domain. No gallery artwork is bundled.
-See [illustration source notes](docs/ILLUSTRATION_SOURCES.md).
+- Four focused host methods pass normally and optimized, including 27 malformed
+  resource controls. Both original complete-value controls fail as expected.
+- All 897 full host tests pass normally (210.522 seconds reported by unittest)
+  and optimized (202.797 seconds); process timings are in `host-results.json`.
+- Full current AAPT2 resource compile/link passes. Supplementary Kotlin 1.9.24/API35
+  compilation of the new consumer test with fresh resource symbols passes.
+- Real consumer coverage is authored for complete compiled bo/jje values, sampled
+  dialog invalid/valid width changes, Cancel/reopen, and the unchanged native-floor
+  branch that disables an impossible resize. It has **not executed locally**:
+  Gradle wrapper download returned `Network is unreachable` after retrying with a
+  writable Gradle cache. Supplementary compilation is not Robolectric execution.
+- All 1,194 remote application leaves, blob hashes and modes match the reviewed
+  candidate; its sole parent and tree were read back. The application diff is
+  five files and removes no files.
 
-## Languages and text
+[Exact-head hosted run 596](https://github.com/c933103/AN-Paint/actions/runs/39056963474)
+is asynchronous. Its existence does not establish a pass. The parent review/merge
+process owns exact-head CI and review gates.
 
-**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+## Packet
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
-
-Every localization assertion below is a prior claim pending full recheck.
-
-Choose **View > Languages** to override the device language. The system-default
-choice is labelled in the device's language, independently of the selected app
-language. Android 13 and newer also expose the setting in system App languages.
-
-The main tabs, first-level commands, Edit groups and Other images controls have explicit translations
-for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
-`de`, `pl`, `ru`, `es-419`, `es-ES`, `pt-PT`, `pt-BR`, `it`, `fr`, `he`, `ko-KR`,
-`ko-KP`, `id`, `ms`, `vi`, `fil`, `th`, `el`, `sr-Cyrl`, `sr-Latn`, `tr` and `hy`.
-Other languages and deeper dialogs have varying partial coverage, with English
-fallback. Translation completeness is not a claim of independent native review.
-
-Existing Paintroid, Android, GIMP, Krita, LibreOffice and MediaWiki vocabulary retains its
-provenance and translator credits. Krita fills selected gaps for languages absent
-from the GIMP import, including eight additional partial language choices. LibreOffice
-and MediaWiki fill further common-command gaps in 21 existing language choices. See the
-[mainstream source audit](translations/MAINSTREAM_SOURCE_AUDIT.md).
-Armenian, both Tatar scripts and both Ainu scripts are
-available. See [translation notes](translations/README.md) and
-[TRANSLATING.md](TRANSLATING.md) for catalogues, coverage and regeneration.
-
-Inserted text supports horizontal writing and both vertical column orders, with
-mixed, sideways or upright letters. Literary Chinese and traditional Mongolian
-also use vertical interface captions; the bundled Mongolian font preserves joined
-words.
-
-## Installation and updates
-
-Install the signed APK from a published release. Updates to `paint.anpaint.android`
-require the same signing certificate and a higher version code. Earlier builds
-with different package IDs and the original Pocket Paint remain separate apps.
-To move an image between separate installations, save it as PNG and open it in
-the other app; private drafts and preferences do not transfer automatically.
-
-CI artifacts are development outputs. Their availability does not mean all checks
-passed, and their temporary CI signing key does not replace the existing upgrade
-key used for published releases.
-
-## Building and checking
-
-Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,
-NDK 27.2.12479018 and CMake 3.22.1. Set `JAVA_HOME` and `ANDROID_HOME`, then run:
-
-```sh
-python3 -m unittest discover -s tools -p 'test_*.py'
-./gradlew --no-daemon --max-workers=1 :app:assembleDebug
-./gradlew --no-daemon --max-workers=1 :Paintroid:testDebugUnitTest :app:lintDebug
-```
-
-The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build needs
-Google Maven, Maven Central, the Gradle Plugin Portal, GitHub and
-download.osgeo.org for dependencies and pinned native codec sources.
-Use `-PnativeAbis=x86_64` for an emulator-only build. Instrumentation tests use
-`:Paintroid:connectedDebugAndroidTest` and `:app:connectedDebugAndroidTest`.
-
-GitHub uploads the APK and matching source before emulator tests finish.
-Regression/lint runs independently. Routine runs test API 35; release verification
-uses both API 30 and 35. See [CI.md](CI.md) for triggers, deadlines and the
-separation between development artifacts and verified releases.
-
-The APK includes corresponding source, including pinned native codec sources,
-exportable from File > About / licences / credits. Published releases also include
-a separate source archive, verification evidence and checksums. See
-[LOCAL_BUILD.md](LOCAL_BUILD.md), [CHANGES_FROM_UPSTREAM.md](CHANGES_FROM_UPSTREAM.md)
-and the preserved [upstream README](UPSTREAM_README.md).
-
-## Licences and artwork
-
-- Application and original paintbrush launcher: [GNU AGPL-3.0-or-later](LICENSE).
-  Original code: Copyright © 2010–2022 The Catrobat Team and contributors;
-  AN Paint modifications and launcher: Copyright © 2026 AN Paint contributors.
-- Tool/action icons: KDE Breeze, LGPL-3.0-or-later. Sources, revision and notices
-  are in [artwork/breeze](artwork/breeze). Standard Android controls use platform
-  artwork. The launcher source is [artwork/an-paint/launcher.svg](artwork/an-paint/launcher.svg).
-- Bundled fonts: SIL Open Font License 1.1, with authors and full terms in
-  [font notices](Paintroid/src/main/assets/legal/FONT_NOTICES.txt).
-- [Asset credits](Paintroid/src/main/assets/legal/ASSET_CREDITS.txt) and
-  [third-party notices](Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt)
-  identify packaged artwork, libraries and translation sources.
-- Native codec licences and grants are retained in the
-  [JPEG XL](Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt),
-  [WebP](Paintroid/src/main/assets/legal/WEBP_NOTICES.txt),
-  [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) and
-  [TIFF](Paintroid/src/main/assets/legal/TIFF_NOTICES.txt) notices.
-  Gallery artwork retains its CC BY-SA 4.0 attribution and source links.
-
-The upstream issue tracker covers Pocket Paint; AN Paint is independently
-maintained. Signing keys and private build backups are never published here.
+[`evidence.zip`](evidence.zip) includes full-value reviews, the independent challenge,
+all local raw test logs, both original-value controls, complete source/resource
+comparison, remote tree proof and supplementary check scripts. The scripts retain
+the paths used for these runs; cached dependency paths are not portable setup
+instructions. [`archive-record.json`](archive-record.json) gives ZIP size and SHA-256;
+the ZIP contains its per-file hash manifest. Historical review statements describing
+no mutations refer to the review stage; publication and the two bounded changes
+are documented here separately.

@@ -1,0 +1,128 @@
+{
+  "schema": "anpaint-neutral-memory-linguistic-review-v1",
+  "reviewed_at_utc": "2026-10-17",
+  "key": "ui_sampled_resize_memory_explanation",
+  "scope": "Complete current value only, linguistic/static context review; no routing changes, source edits, PR56 edits, or external publication.",
+  "source_commit": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+  "source": {
+    "qualifier": "b+vi+Hani",
+    "blob": "e5fcf78b97ba994af39416811d8fa93758547fcf",
+    "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+    "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bvi%2BHani/strings.xml",
+    "value": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢. 𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮. 版 抄 𡮈 欣 仕 𠅒 枝節. 𣜿 㭲 空 𠊝 𢷮.",
+    "matches_historical_handoff": true,
+    "value_sha256": "c440148385de677afbe0d08d981c57a64267f53d1224c5effd502af513c1a270"
+  },
+  "historical_receipt": {
+    "url": "https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640",
+    "confidence": "L",
+    "scope": "Clause removal and retained-source inheritance; no fresh specialist-language certification. Preserved as historical evidence, not overwritten."
+  },
+  "decision": "accept",
+  "confidence": "M",
+  "decision_scope": "Bounded full-value semantic acceptance of this exact one-key value. Not native-speaker, specialist, catalogue-wide, universal Nôm orthography, layout, runtime, or release certification.",
+  "candidate_value": null,
+  "transcription": "Ước tính bao gồm khung vẽ hiện tại, bảng tạm, bộ đệm giải mã lấy mẫu và bộ đệm chỉnh sửa. Mức dùng bộ nhớ thực tế có thể thay đổi. Bản sao nhỏ hơn sẽ mất chi tiết. Tệp gốc không thay đổi.",
+  "clauses": [
+    {
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers.",
+      "target": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢.",
+      "assessment": "The estimate remains approximate through ước tính; the list retains the current drawing canvas, clipboard, sampled-decoding buffer and editing buffer. 解碼 = giải mã, 𥙩㑄 = lấy mẫu; this is sampling-based decoding, not a test/example decode. 'Bộ đệm' makes the memory allocations explicit, consistent with the surrounding decoded-image and buffer estimate."
+    },
+    {
+      "source": "Actual memory use varies.",
+      "target": "𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮.",
+      "assessment": "Reads mức dùng bộ nhớ thực tế có thể thay đổi: actual memory usage can vary. The qualification does not promise a precise guaranteed allocation."
+    },
+    {
+      "source": "A smaller copy loses detail.",
+      "target": "版 抄 𡮈 欣 仕 𠅒 枝節.",
+      "assessment": "Reads bản sao nhỏ hơn sẽ mất chi tiết: explicitly a smaller copy, with definite future detail loss, not possible-only loss. All three safety-critical elements are retained."
+    },
+    {
+      "source": "The original file stays unchanged.",
+      "target": "𣜿 㭲 空 𠊝 𢷮.",
+      "assessment": "Reads tệp gốc không thay đổi: original file does not change. Negation and original-file referent are present; there is no selected-background or white-backing promise."
+    }
+  ],
+  "evidence": [
+    {
+      "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BD%B5&radicalNum=9&strokeCt=6&uiLang=en",
+      "kind": "Primary dictionary, Nguyễn Quang Hồng",
+      "supports": "併 = tính; direct entry opened and read."
+    },
+    {
+      "url": "https://www.nomfoundation.org/nom-project/tale-of-kieu/Glossary-of-characters-in-all-versions-of-Kieu?uiLang=vn",
+      "kind": "Primary corpus character glossary",
+      "supports": "𠁟 = gồm. Read in search-indexed primary-source text."
+    },
+    {
+      "url": "https://www.hannom-rcv.org/NS/bchnctd%20300623.pdf",
+      "kind": "Primary Hán-Nôm association character-list proposal, 2023 edition",
+      "supports": "Indexed entries explicitly support 椌 khung (printed p.151), 𠅒 mất (p.181), 㑄 mẫu (p.182), 𣞪 mức with mức độ/mức sống (p.189), and 𢷮 đổi with 𠊝𢷮 thay đổi. Full PDF open returned HTTP403; claims here are limited to the actual indexed entries, not a claimed full-document inspection."
+    },
+    {
+      "url": "https://www.hannom-rcv.org/standard-nom/Lookup-CHNC.html?uiLang=vi",
+      "kind": "Primary association lookup",
+      "supports": "Indexed entry explicitly reads 墊 = đệm."
+    },
+    {
+      "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E5%8F%A4&radicalNum=30&strokeCt=2&uiLang=en",
+      "kind": "Primary annotated historical corpus",
+      "supports": "Examples pair 𡳒 with vẽ and 欣 with hơn."
+    },
+    {
+      "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%AB%A2%A9&radicalNum=9&strokeCt=7&uiLang=vn",
+      "kind": "Primary annotated historical corpus",
+      "supports": "Example pairs 𢯢 with sửa."
+    },
+    {
+      "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BB%95&radicalNum=9&strokeCt=3&uiLang=en",
+      "kind": "Primary dictionary, Nguyễn Quang Hồng",
+      "supports": "Direct entry 仕 sẽ includes future-tense examples, not merely the unrelated sĩ reading."
+    },
+    {
+      "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E5%87%8C&radicalNum=15&strokeCt=8&uiLang=vn",
+      "kind": "Primary annotated historical corpus",
+      "supports": "𣜿 is paired with tệp. The computer-file sense comes from contemporary Vietnamese context, not the historical food example."
+    },
+    {
+      "url": "https://chunom.org/shelf/corpus/16/",
+      "kind": "Primary corpus transcription",
+      "supports": "㭲 paired with gốc in several lines; 吧 with và."
+    },
+    {
+      "url": "https://new.chunom.org/pages/%F0%A2%96%B5/",
+      "kind": "Primary educational dictionary",
+      "supports": "𢖵 = nhớ."
+    },
+    {
+      "url": "https://chunom.org/pages/2338F/",
+      "kind": "Primary educational dictionary",
+      "supports": "𣎏 = có."
+    },
+    {
+      "url": "https://www.hannom-rcv.org/BCHNCTD.html",
+      "kind": "Character-list publisher's statement",
+      "supports": "Names the 2023 revised proposal and demonstrates 版 as bản. It is a publisher's standardization proposal; no claim of universal or government-mandated orthography."
+    },
+    {
+      "url": "https://learn.microsoft.com/vi-vn/power-automate/desktop-flows/actions-reference/clipboard",
+      "kind": "Primary software documentation",
+      "supports": "Modern Vietnamese bảng tạm refers to the clipboard."
+    },
+    {
+      "url": "https://developer.android.com/topic/performance/graphics/load-bitmap?hl=vi",
+      "kind": "Primary Android documentation",
+      "supports": "Technical context ties giải mã and lấy mẫu con to smaller decoded bitmap allocation and bộ nhớ; supports decoding/sampling interpretation, without being a quotation of this exact UI sentence."
+    }
+  ],
+  "limits": [
+    "No native speaker or specialist was consulted, and this is not certification.",
+    "Nôm allows orthographic variants; the review checks the actual glyph readings and complete meaning, not a claim that these are the only accepted spellings.",
+    "Primary-source lexical/corpus evidence supports the reading; contemporary technical-compound interpretation is reviewer synthesis, not a directly attested full Nôm computing sentence.",
+    "Full primary association PDF could not be opened (HTTP403); only its search-indexed entries were used. Other primary dictionary pages were opened directly.",
+    "No Android/UI rendering or runtime testing was performed in this review."
+  ],
+  "next_action": "Parent may record exact-value bounded semantic acceptance while retaining original historical L receipt and all broader-language limitations. No source edit is proposed."
+}
