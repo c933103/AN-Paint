@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -20,6 +21,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import java.util.Locale
 
@@ -101,6 +103,7 @@ class EstonianPriorityWordingTest {
             assertEquals(expected, ui(R.string.language20_translation_note))
             assertTrue(texts(shown.window!!.decorView).contains(expected))
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            shadowOf(Looper.getMainLooper()).idle()
             assertFalse(shown.isShowing)
             assertFalse(selectionChanged)
             assertEquals(selected, AppLanguage.selectedTag(activity))
