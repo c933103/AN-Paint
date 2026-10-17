@@ -38,3 +38,7 @@ and [source-publication-manifest.json](source-publication-manifest.json) for the
 The cs/pl SVG-warning additions are limited to that two-key message family. All other families and the global 59-scoped/112-open-fallback inventory remain unchanged. The separate nine-key upcoming Commons batch is absent from both locale resources and from this application change. Existing PR56 is not modified.
 
 No full-locale completion, native-speaker certification, Android runtime, TalkBack, glyph/layout, device or release acceptance is claimed. Local host checks are not Android build or installed UI evidence. Exact-head hosted CI and Codex review are separate gates and must be checked before merge; merging remains gated on those exact-head results.
+
+## PR112 review and CI follow-up
+
+The original results above describe application head `75c59756`. See the [complete-value contract and tagged-colour oracle repair](pr112-contract-followup/README.md) for the subsequent seven-file test-only correction, preserved failed runs, and final exclusive test receipts. Original linguistic review limits are unchanged.

@@ -1,0 +1,128 @@
+{
+  "application_head": "4842bfafc49e45d9aaf85471e68ece0972b6fc3f",
+  "application_tree": "d2e0bead9842ba445862f817cfe8a54f6c7e45fa",
+  "base_head": "75c59756900f80535b87eae173d9c9eebb155cd9",
+  "changed_file_count": 7,
+  "all_leaf_count": 1169,
+  "production_resources_byte_identical": true,
+  "final_exclusive_host_results": [
+    {
+      "mode": "normal",
+      "returncode": 0,
+      "wall_seconds": 178.769,
+      "log": "host-final-normal.log",
+      "tests": 842,
+      "test_seconds": 178.432
+    },
+    {
+      "mode": "optimized",
+      "returncode": 0,
+      "wall_seconds": 189.469,
+      "log": "host-final-optimized.log",
+      "tests": 842,
+      "test_seconds": 188.768
+    }
+  ],
+  "prior_overlapping_host_results": [
+    {
+      "mode": "normal",
+      "returncode": 1,
+      "wall_seconds": 291.615,
+      "log": "host-normal.log"
+    },
+    {
+      "mode": "optimized",
+      "returncode": 1,
+      "wall_seconds": 265.835,
+      "log": "host-optimized.log"
+    }
+  ],
+  "prior_failed_source_commit": "887651b2114aca94579fd70e13a33eb04971a89d",
+  "prior_failed_source_tree": "9864683ccaf6a2b7e589bde661f4241348dcc098",
+  "prior_failures": "Both 840-test runs had one 10-second subprocess TimeoutExpired in the unchanged composed CLI test, in different cases. No limits or assertions were changed.",
+  "isolated_same_test": {
+    "tests": 1,
+    "seconds": 55.996,
+    "exit": 0
+  },
+  "polish": {
+    "changed_full_values": 229,
+    "xml_node_delta_including_whitespace_only": 230,
+    "exact_pair_and_six_corruption_contracts": 231,
+    "unchanged_composition_guards": 2,
+    "context_unverified_held_changed_keys": 18
+  },
+  "czech": {
+    "changed_full_values": 255,
+    "xml_node_delta_including_whitespace_only": 256,
+    "exact_pair_and_six_corruption_contracts": 255,
+    "context_unverified_held_changed_keys": 21
+  },
+  "negative_control": {
+    "old_head": {
+      "source": "source-current",
+      "mutation": "remove_complete_assembly_memory_remedy",
+      "detected": false
+    },
+    "normal_fix": {
+      "source": "source",
+      "mutation": "remove_complete_assembly_memory_remedy",
+      "detected": true,
+      "error_type": "ValueError",
+      "error": "ui_assembly_source_memory_floor: wording differs"
+    },
+    "optimized_fix": {
+      "source": "source",
+      "mutation": "remove_complete_assembly_memory_remedy",
+      "detected": true,
+      "error_type": "ValueError",
+      "error": "ui_assembly_source_memory_floor: wording differs"
+    }
+  },
+  "tagged_colour": {
+    "baseline_fixture_entries": 59,
+    "family_fixture_entries": 61,
+    "explicit_english_fallbacks": 110,
+    "global_scope_unchanged": [
+      59,
+      112
+    ],
+    "previous_hosted_artifact": {
+      "run_id": 39008472918,
+      "artifact_id": 12092177056,
+      "artifact_name": "regression-and-lint-1e80f5a36e2ae0d397df28b466d3c185a3ef65ed",
+      "head": "75c59756900f80535b87eae173d9c9eebb155cd9",
+      "ci_checkout": "1e80f5a36e2ae0d397df28b466d3c185a3ef65ed",
+      "bytes": 79718010,
+      "sha256": "d3a2bf92c9e9262a6e1a23ababd8b16bc58c550b4277959cf60e0e6d2c97c533",
+      "junit_members": [
+        "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TaggedColourImportTest.xml"
+      ]
+    },
+    "diagnosis": "The previous JVM oracle expected English for newly translated Czech; actual Czech matches the independent reviewed complete pair. Polish had the same latent stale-oracle problem. All original 59 oracle values remain unchanged.",
+    "corruption_controls": "Missing, English and arbitrary cs/pl resource values or oracle values fail; a true fallback must equal the exact English value, and an arbitrary default fails.",
+    "focused_final_normal": {
+      "tests": 14,
+      "seconds": 3.919,
+      "exit": 0
+    },
+    "earlier_host_model_correction": "The first new host model failed on the pre-existing Turkish Android apostrophe escapes. It now narrowly decodes those escapes, and Android runtime routing remains independently tested by TaggedColourImportTest."
+  },
+  "review_limits": "All original independent linguistic/context holds and unchanged Fit layout holds remain. No whole-locale, native-speaker, Android runtime, TalkBack or glyph/layout acceptance is inferred.",
+  "supplementary_kotlin_compile": {
+    "exit_code": 0,
+    "seconds": 8.203,
+    "compiler": "Kotlin 1.9.24",
+    "api_jar": 35,
+    "jvm_target": 17,
+    "source_sha256": "11c24f9bb955070a72b7c5892d7e82a58d1d813d78939d70408eb95290b3dec3",
+    "classification": "Supplementary direct compiler check against existing compiled production/test dependencies. Not canonical Gradle, Robolectric execution, or Android runtime validation."
+  },
+  "not_run_locally": [
+    "Android Gradle build",
+    "Robolectric app-JVM execution",
+    "emulator installed UI",
+    "TalkBack and layout/glyph checks"
+  ],
+  "archive_sha256": "f1e564817b9982ce1d4c5c53da8900a2f3f4e33e0793d1412bdce5fe3ba4f982"
+}

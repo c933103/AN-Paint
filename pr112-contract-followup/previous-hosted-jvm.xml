@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.TaggedColourImportTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2026-10-17T06:16:23.245Z" hostname="runnervmk1d70" time="0.242">
+  <properties/>
+  <testcase name="everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback" classname="org.catrobat.paintroid.local.TaggedColourImportTest" time="0.119">
+    <failure message="org.junit.ComparisonFailure: Scoped message or explicit English fallback for cs expected:&lt;T[his image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing].&gt; but was:&lt;T[ento obrázek používá barevný profil, který AN Paint zatím neumí převést. Před importem jej v editoru se správou barev převeďte na PNG v barevném prostoru sRGB].&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Scoped message or explicit English fallback for cs expected:&lt;T[his image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing].&gt; but was:&lt;T[ento obrázek používá barevný profil, který AN Paint zatím neumí převést. Před importem jej v editoru se správou barev převeďte na PNG v barevném prostoru sRGB].&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.TaggedColourImportTest.everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback(TaggedColourImportTest.kt:137)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile" classname="org.catrobat.paintroid.local.TaggedColourImportTest" time="0.067"/>
+  <testcase name="americanEnglishImportsUseTheAmericanResource" classname="org.catrobat.paintroid.local.TaggedColourImportTest" time="0.02"/>
+  <testcase name="packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources" classname="org.catrobat.paintroid.local.TaggedColourImportTest" time="0.018"/>
+  <testcase name="explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection" classname="org.catrobat.paintroid.local.TaggedColourImportTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
