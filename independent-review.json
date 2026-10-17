@@ -1,0 +1,94 @@
+{
+  "result": "No blocking finding in independent read-only source/API/test review of the integrated dependency patch.",
+  "parents": [
+    "a5e3ed03c58f2bf6fde5d5562e873a18df47b55a",
+    "5401d2bd3a8287ac4ce517c0c8e216bdbe8241fe"
+  ],
+  "common_base": "8c08554995f4d07be1b47736746ab2d0771e810e",
+  "source_changes_made_by_reviewer": false,
+  "findings": [],
+  "composition": {
+    "preserved_pr117_leaves": 1181,
+    "exact_pr119_production_and_resource_leaves": 5,
+    "content_and_executable_modes_match": true,
+    "shared_file_resolution": "tools/test_russian_portuguese_priority_wording.py retains both the PR117 ImageDimensions ui(id,args) assertion and PR119 ImageMemoryPolicy ui(id,args) assertions.",
+    "production_changes_beyond_parent_union": [],
+    "test_only_strengthening": "NumericDisplayLocaleTest replaces self-referential memoryLabel expectations with literal complete initial and refreshed budget captions for pt-BR, de, en-001, ar and ro; drains queued OnShow and dismissal callbacks and asserts dialog dismissal."
+  },
+  "reviewed_behavior": [
+    "ImageDimensions and memoryLabel use selected-resource formatting, while resize budget uses the same locale for its outer MP value.",
+    "The six NumericDisplayLocaleTest methods exercise production warning, resize budget, new/resize/canvas budget views, selection caption, recent-colour accessibility and zoom label consumers with deliberately different process defaults.",
+    "The strengthened full resize captions independently require both dependency repairs. Removing either the inner memory or outer MP repair makes non-English expectations differ.",
+    "Policy admission arithmetic, resident accounting, zoom thresholds and rounding, selection geometry, stored colour values, hexadecimal syntax and canonical numeric edit fields remain unchanged.",
+    "Existing PR117 ImageDisplayLocaleTest coverage of dimensions, grouping, memory units, English fallback, input parsing, repeated unit changes and overflow boundaries is preserved.",
+    "PR117 Brazilian Portuguese wording, sizing assertions and position-readiness fixes remain byte-for-byte preserved."
+  ],
+  "independent_checks": [
+    {
+      "check": "Git-blob and mode comparison against saved parent manifests",
+      "result": "pass",
+      "detail": "All 1,181 untouched PR117 leaves and five copied PR119 production/resource leaves match."
+    },
+    {
+      "check": "Complete resize-caption literals against current XML templates through JVM Formatter",
+      "result": "pass",
+      "positive_cases": 10,
+      "negative_controls": 26,
+      "detail": "Both budgets in five locales; negative controls cover ROOT inner memory, ROOT outer MP and opposite process-default formatting."
+    },
+    {
+      "check": "Optimized shared Russian/Portuguese host tests",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -O -m unittest discover -s tools -p 'test_russian_portuguese_priority_wording.py' -v",
+      "result": "pass",
+      "tests": 12
+    }
+  ],
+  "limits": [
+    "The JVM literal/template probe is a selected-locale formatting stand-in, not Android resource-resolution or View execution.",
+    "This review did not run the integrated Robolectric, Gradle/lint, APK or installed-device stages. Exact-head hosted CI and Codex review remain required before merge.",
+    "No linguistic acceptance, full-catalogue completion, rendered clipping or physical-device coverage is claimed."
+  ],
+  "reviewed_sha256": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": "8f2ddd3632bf58afca9dbd86d2fd4bd1d98ba5b37c4116c2f9948ed79c187c50",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt": "72b511c8142b256a7d2806badc0c88608b966dcedf79252f8ffa682cc559aa10",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "Paintroid/src/main/res/values/display_numbers.xml": "eda4b3e25dff9cd73f7a26a6deaa00f6635f96df3bccac0e9839461017be6286",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt": "60f2eb1bc220abaa2a07b04a22a8c695b3fd519cf70a4d1b649d83176ee13df3",
+    "tools/test_russian_portuguese_priority_wording.py": "fb1cbfc572f58605ab30ae8a9a9b8e4fca8a6df10e23e6069d3a12edba2834ed",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/ImageDisplayLocaleTest.kt": "57506de8651fda10f2b6791143e6fec66dc749f673fe34f3e128194fceafc8d0"
+  },
+  "subsequent_primary_evidence": [
+    {
+      "check": "Subsequent exact-parent hosted JVM failure confirms the reviewed lifecycle-order gap",
+      "run_id": 39050219892,
+      "job_id": 117447107250,
+      "source_head": "5401d2bd3a8287ac4ce517c0c8e216bdbe8241fe",
+      "run_url": "https://github.com/c933103/AN-Paint/actions/runs/39050219892",
+      "job_url": "https://github.com/c933103/AN-Paint/actions/runs/39050219892/job/117447107250",
+      "receipt": "pr119-failure-receipt.json",
+      "preserved_junit": "pr119-regression-artifact/Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.NumericDisplayLocaleTest.xml",
+      "preserved_junit_sha256": "22db6611868f5a604e15ce4865b5b28698b9f2d561bcfbd8cdac6a646d8b4152",
+      "suite": {
+        "tests": 6,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "failed_method": "resizeBudgetRefreshUsesResourceLocaleAndCancelPreservesInputs",
+      "exact_comparison": "org.junit.ComparisonFailure: pt-BR expected:<[Limite seguro de edição atual: 25.7 MiB · até 2,25 MP antes da sobrecarga do decodificador]> but was:<[]>",
+      "suppressed_exception": "org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.",
+      "assessment": "The existing integrated test idles the main looper immediately after ImageResizeDialog.show(), before reading resize_budget. Production installs its initial refresh through setOnShowListener. This conceptually closes the demonstrated queued-OnShow/read ordering gap without altering production behavior or weakening the assertion. The additional post-Cancel idle similarly precedes dismissal/callback assertions.",
+      "scope_note": "The old expected memory text was 25.7 MiB because unintegrated PR119 still used the PR117-dependent ROOT memoryLabel helper. The integrated literal expectation is 25,7 MiB and checks that dependency separately.",
+      "integrated_execution_status": "pending exact-head hosted execution; the prior failure is diagnostic evidence, not proof that the integrated repair passes",
+      "reviewed_source_hashes_unchanged": true,
+      "job_jvm_result": {
+        "tests": 1089,
+        "failures": 1,
+        "preserved_job_log": "pr119-regression117447107250.log",
+        "exact_log_line": "2026-10-17T16:47:14.3986627Z 1089 tests completed, 1 failed"
+      }
+    }
+  ]
+}
