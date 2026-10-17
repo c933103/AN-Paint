@@ -101,7 +101,7 @@ internal object LocaleText {
         if (values.isEmpty() && (expected == null || expected.none { it.index != null })) return candidate ?: source
         if (expected == null) return source
         val actual = candidate?.let(::tokens)
-        if (actual != null && actual.all { it.index == null || values.getOrNull(it.index) != null } &&
+        if (actual != null && actual.all { it.index == null || it.index in values.indices } &&
             actual.filter { it.index != null }.map { it.contract() }.groupingBy { it }.eachCount() ==
             expected.filter { it.index != null }.map { it.contract() }.groupingBy { it }.eachCount()) {
             try { return String.format(locale, candidate, *values) }
@@ -109,6 +109,7 @@ internal object LocaleText {
         }
         // A caller can also omit an argument or pass the wrong type. Preserve
         // every English clause and render only the unavailable slot as '?'.
+        // A present null is a valid Formatter value, distinct from an omitted slot.
         return buildString {
             var position = 0
             for (token in expected) {
@@ -116,7 +117,7 @@ internal object LocaleText {
                 val value = token.index?.let { values.getOrNull(it) }
                 append(try {
                     if (token.index == null) String.format(locale, token.standalone())
-                    else if (value == null) "?"
+                    else if (token.index !in values.indices) "?"
                     else String.format(locale, token.standalone(), value)
                 } catch (_: IllegalFormatException) { "?" })
                 position = token.end

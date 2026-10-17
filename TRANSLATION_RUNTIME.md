@@ -23,7 +23,9 @@ Missing/blank translations, malformed formats, mismatched
 contracts and oversized translated templates fall back to the complete English
 source. No warning/action clauses or user arguments are truncated. If the caller
 itself omits a required value or supplies the wrong type, only that source slot
-becomes `?`; the rest of the English message remains intact.
+becomes `?`; the rest of the English message remains intact. A present null
+retains Java Formatter's existing conversion behavior; an omitted argument is
+detected by its index rather than being confused with null.
 
 Templates are limited to 65,536 UTF-16 units, 128 formatting tokens, width 1,024
 and precision 128 before formatting. These limits exceed the current default

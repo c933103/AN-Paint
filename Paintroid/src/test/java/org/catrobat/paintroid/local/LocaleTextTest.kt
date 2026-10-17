@@ -40,11 +40,11 @@ class LocaleTextTest {
         assertEquals("done 9%",render("done %1\$d%%","done %1\$d%%",Locale.ROOT,9))
     }
 
-    @Test fun missingNullAndWrongTypedValuesKeepEverySourceClause() {
+    @Test fun missingAndWrongTypedValuesKeepEverySourceClause() {
         val source = "Size %1\$d × %2\$d. Close documents. Try again; the document is unchanged."
         assertEquals("Size ? × ?. Close documents. Try again; the document is unchanged.",render("%q",source))
         assertEquals("Size 42 × ?. Close documents. Try again; the document is unchanged.",render(source,source,Locale.ROOT,42))
-        assertEquals("Size ? × 9. Close documents. Try again; the document is unchanged.",render(source,source,Locale.ROOT,null,9))
+        assertEquals("Size null × 9. Close documents. Try again; the document is unchanged.",render(source,source,Locale.ROOT,null,9))
         assertEquals("Size ? × 9. Close documents. Try again; the document is unchanged.",render(source,source,Locale.ROOT,"wrong",9))
     }
 
@@ -167,6 +167,21 @@ class LocaleTextTest {
             assertEquals(label,expected,LocaleText.resolve(translation,source,true,Locale.ROOT,args))
             assertEquals(label,String.format(Locale.ROOT,source,*args),LocaleText.resolve(source,translation,true,Locale.ROOT,args))
         }
+    }
+
+    @Test fun presentNullMatchesFormatterForEverySourceConversionButMissingSlotsRemainMissing() {
+        // All canonical conversion types, with their numeric precision/padding forms.
+        for (format in listOf("%1\$s", "%1\$d", "%1\$,d", "%1\$06X", "%1\$.0f", "%1\$.1f", "%1\$.2f")) {
+            val source="Value $format. Keep the document unchanged."
+            val translated="Translated $format. Keep the document unchanged."
+            val args=arrayOf<Any?>(null)
+            assertEquals(String.format(Locale.ROOT,translated,*args),LocaleText.resolve(translated,source,true,Locale.ROOT,args))
+            assertEquals(String.format(Locale.ROOT,source,*args),LocaleText.resolve("%99\$s",source,true,Locale.ROOT,args))
+            assertEquals("Value ?. Keep the document unchanged.",LocaleText.resolve(translated,source,true,Locale.ROOT,emptyArray()))
+        }
+        assertEquals("null / ?",render("%1\$s / %2\$s","%1\$s / %2\$s",Locale.ROOT,null))
+        assertEquals("? / null",render("%2\$s / %1\$s","%2\$s / %1\$s",Locale.ROOT,null))
+        assertEquals("null / null",render("%2\$s / %1\$s","%2\$s / %1\$s",Locale.ROOT,null,null))
     }
 
 }

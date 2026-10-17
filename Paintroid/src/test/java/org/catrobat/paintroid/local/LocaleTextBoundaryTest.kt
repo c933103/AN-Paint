@@ -72,7 +72,7 @@ class LocaleTextBoundaryTest {
         val text="100% %q \" \\ \u2028\u2029\u202eالعربية\u202c ᠮᠣᠩᠭᠣᠯ\u202f𡨸 👩🏽‍🎨\n".repeat(100)
         inject("mn-Mong",mapOf(R.string.ui_help23 to text))
         assertEquals(text,ui(R.string.ui_help23))
-        val source=previous.getString(previous.getIdentifier("anpaint_source_ui_help23","string","org.catrobat.paintroid"))
+        val source=previous.getString(previous.getIdentifier("anpaint_source_ui_help23","string",previous.getResourcePackageName(R.string.ui_help23)))
         inject("en-US",mapOf(R.string.ui_help23 to "x".repeat(LocaleText.MAX_TEMPLATE_LENGTH+1)))
         assertEquals(source,ui(R.string.ui_help23))
     }
@@ -103,7 +103,7 @@ class LocaleTextBoundaryTest {
 
     @Test fun sourceAliasesCannotResolveBackToCorruptTranslatedTargets() {
         inject("en-US",mapOf(R.string.ui_cursor_help29 to "",R.string.ui_cursor_help31 to "wrong target"))
-        val id=previous.getIdentifier("anpaint_source_ui_cursor_help31","string","org.catrobat.paintroid")
+        val id=previous.getIdentifier("anpaint_source_ui_cursor_help31","string",previous.getResourcePackageName(R.string.ui_cursor_help31))
         assertEquals(previous.getString(id),ui(R.string.ui_cursor_help29))
         assertNotEquals("wrong target",ui(R.string.ui_cursor_help29))
     }
