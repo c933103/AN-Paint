@@ -1,0 +1,20 @@
+{
+  "source_revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+  "candidate_commit": "76807df744b990159fa62c2a68cfe7f4558b967b",
+  "method": "Separate AI-assisted read-only code/API/test review",
+  "result": "No blocking findings in bounded review",
+  "checks": [
+    "Exactly four intended files differ; eight pt-BR values changed; retained executable modes unchanged.",
+    "Kotlin constructors, tags, types, visibility and resources match current production APIs; global resource/locale restoration follows existing tests.",
+    "Both new test files are included in current automatic CI discovery.",
+    "Consumer coverage includes 64 tool/category/orientation-state combinations, dimension and unit changes, and production image checklist None, rejected empty Apply, All and Cancel.",
+    "Host mutation controls cover missing, duplicate, truncated, format-attribute, markup, extra-argument, invalid Android apostrophe and incomplete-fixture cases.",
+    "Full message text, typed placeholders and paragraph breaks are checked. Numeric expectations reflect existing Locale.ROOT formatting.",
+    "Recovery command and gesture guidance match current source; the changed None and unit keys each have only the intended consumer sites."
+  ],
+  "limits": [
+    "Source/API review, not Kotlin compilation or Robolectric execution.",
+    "Recovery, fallback note and gesture checks establish resource text and source wiring, not executed recovery, picker or gesture flows.",
+    "No layout, clipping, installed TalkBack or device acceptance."
+  ]
+}

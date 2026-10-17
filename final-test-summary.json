@@ -1,0 +1,38 @@
+{
+  "candidate_commit": "76807df744b990159fa62c2a68cfe7f4558b967b",
+  "candidate_tree": "170487fc82abd4f5ef68533aecd02325925d77f1",
+  "checks": {
+    "focused-normal": {
+      "tests": 12,
+      "seconds": 0.332,
+      "exit_code": 0,
+      "log": "focused-normal.log",
+      "log_sha256": "d57076cac1774741d06533e4c59fd0711b2b32f1675630b5dfc70d462475f0e7"
+    },
+    "focused-optimized": {
+      "tests": 12,
+      "seconds": 0.32,
+      "exit_code": 0,
+      "log": "focused-optimized.log",
+      "log_sha256": "fb602631acb201ea9357ee5dd48973b9cfb440fe8c1b88109eaae43694d69780"
+    },
+    "host-normal": {
+      "tests": 878,
+      "seconds": 187.136,
+      "exit_code": 0,
+      "log": "host-normal.log",
+      "log_sha256": "b7d6932e14958bc390dbe727546bba57930c49375e033e49181ae9ff2adeeb62"
+    },
+    "host-optimized": {
+      "tests": 878,
+      "seconds": 181.045,
+      "exit_code": 0,
+      "log": "host-optimized.log",
+      "log_sha256": "215cc63ac4c44118dbe7a1b070933874e26049228fbed545fb465800c12e3a3c"
+    }
+  },
+  "one_time_packet_audit": "normal and optimized passed: all 341 pairs, baseline 1,180 blobs/modes, all eight old-value controls, prior receipts and three holds",
+  "aapt2_catalogue_compile": "passed",
+  "local_android_jvm_lint_build_link_and_device": "not_run; no installed Gradle distribution/complete SDK toolchain. Hosted exact-head results required.",
+  "limits": "Source tests and resource compilation are not fluency, layout or installed interaction certification."
+}
