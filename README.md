@@ -1,185 +1,110 @@
-# AN Paint
+# Japanese assembly Help: independent correction
 
-AN Paint is an independently maintained Android image editor derived from
-[Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid).
-It is based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`;
-original copyright and licence notices are retained.
+## Scope and source binding
 
-[Download the latest published release](https://github.com/c933103/AN-Paint/releases/latest).
-The `develop` branch can contain changes that are still being built or tested.
-Check [GitHub Actions](https://github.com/c933103/AN-Paint/actions/workflows/android.yml)
-for their actual status and [HANDOFF.md](HANDOFF.md) for version-specific evidence.
+This is a complete review and correction of the single Japanese resource `string/ui_add_up_to_20_images_with_android_s`, on develop **5dba779c904a25bde2ec6d6f8f48eb3cad901a1e** (tree `2f15510fa46894e9a372ee58f2bf2b1ffeb4f691`). All 1,194 base files and executable modes were verified against GitHub before applying the four-file change. Merged PR121 is fully retained.
 
-The application ID is **`paint.anpaint.android`**. Android 5.0 (API 21) or newer
-is required. Published APKs contain all four supported ABIs: arm64-v8a,
-armeabi-v7a, x86_64 and x86.
+The proposed corrected English Help at **fcdb417dddd5cba516eea661e917f0183ed61d46** (PR122) provides an explicit editorial reference for distinguishing snapping from Exact position. It is **not** an implementation or merge dependency. The actual production implementation on develop already provides the behavior described by this Japanese correction. This branch does not import PR122's English resources, fixtures, tests or other files. Current develop's English Help remains unchanged and its correction is tracked separately.
 
-## Editing
+Exactly one Japanese resource value changes. The other three files are the complete-value fixture, six standalone host regression tests and one added actual-Help consumer test. The host test has no import or runtime dependency on PR122. No production Kotlin/model code changes. P3, all other resource keys/catalogues, current repository visibility, and held PR56 remain unchanged.
 
-- View, Draw, File, Edit and Color tabs. Portrait uses a panel above the canvas;
-  landscape uses a side ribbon. Tool tiles keep the original compact 64 dp square
-  size, including vertical scripts. Larger text wraps or uses an ellipsis, with
-  the full caption retained for accessibility and tooltips.
-- Draw groups tools into Drawing, Selection and Insert. Edit groups its commands
-  into Selection, Canvas and Flip / Rotate. Invert colours is under Canvas. Expand a group to reach its
-  commands; collapse it to recover canvas space.
-- Pencil, brush, watercolor, spray, eraser, fill, colour picker, shapes and text.
-  Pencil and brush widths have independent numeric controls up to 100 px.
-- Rectangular and free-form selections, resize/rotation handles, an aspect-ratio
-  lock, canvas trimming/expansion, image resizing and disk-backed undo/redo.
-- Navigate supports pinch zoom and pan, actual-size and Fit view. Pixel grid is a
-  short, selected-state toggle; its 800% threshold and pixel rulers are explained
-  under View > How to use and by holding the grid button.
-- The magnifier works while drawing or navigating and samples the
-  cursor in cursor mode, remaining visible between cursor strokes. It changes
-  corners only when the finger approaches it. Its View control edits the active
-  mode's setting. Its 120 dp lens enlarges the drawing and cursor together;
-  bitmap density does not change the selected magnification. Zoomed-out overviews
-  use progressive filtering to retain thin strokes; actual-size and enlarged
-  views keep crisp pixels. Display filtering does not alter drawing AA or exports.
-- View > Cursor drawing expands cursor options, with an Enable/Disable button,
-  independent round/square outline, magnifier and marker size. Brush controls stay
-  under Draw > Drawing. Enabling cursor mode keeps its settings open and starts with
-  positioning only. Tap the cursor itself or the labelled on-canvas Start/Stop
-  control to switch drawing on/off; the cursor visibly changes and guidance
-  appears. Dragging the cursor still moves or draws. Reopening cursor options
-  or a draft pauses drawing. Instructions are under Cursor drawing > How to use.
-- Autosave restores the canvas, unfinished selection and both undo/redo stacks
-  after Android closes the app. It saves history with the private draft, so cache
-  cleanup does not remove the saved steps.
-- Foreground/background previews, recent colours, sixteen saved colour slots
-  and an advanced colour picker.
-- A separate assembly workspace for up to 20 images, with cropping, normalization,
-  edge snapping, exact X/Y positions, direct PNG saving and
-  transfer to the editor. See [image assembly controls](docs/IMAGE_ASSEMBLY.md).
+This is a bounded complete-value linguistic/source review, not whole-Japanese-catalogue acceptance, restoration of withdrawn conclusions, independent native-speaker certification, or installed-device rendering/accessibility evidence.
 
-Both editing workspaces produce opaque images. Layers, transparency controls,
-Smudge, automatic crop and native project formats are absent. Large imports
-receive a memory-based size check and an explicit resize choice. See
-[EDITOR_PARITY.md](EDITOR_PARITY.md) for the feature mapping.
+## Complete-value assessment
 
-## Files and image formats
+1. Import/tray: preserved the 20-image cap, cropped/normalized display dimensions, optional provider modification time, and tray-only sorting. The whole paragraph remains unchanged.
+2. Crop: corrected the ambiguous “margin specification” to the amount trimmed from each edge; uses パーセント to match the current unit control. Reset now explicitly restores the crop region to the whole original image. Selection, handles/numeric entry, non-destructive operation and undo remain intact.
+3. Snap: preserved long-press/drag/drop, exact translucent preview, right/top and bottom/left alignment, + target and conditional movement on cropping an anchor. Origin placement and overlap rejection are now explicitly limited to snapping.
+4. Exact position: added a separate paragraph using the exact ［正確な位置］ label. It identifies the image’s top-left X/Y coordinates, pixel units, nonnegative integers, preservation of other image positions and allowed overlaps.
+5. Normalization: clarified that all inputs share the selected width or height while retaining individual aspect ratios; neither both dimensions nor aspect ratios are made identical. Pixel/percent/smallest/largest references now match the live control labels. Reset continues to retain crops.
+6. Removal/navigation: distinguishes returning only the selected image to the tray from removing that input. Other images remain placed; connected images may move into the gap. Corrected ［やり直し］ to the actual ［やり直す］ control and explains undo/redo directly. Rearrangement is described as changing placement, avoiding confusion with tray sorting. Pan, pinch and zoom-only Show all remain intact.
+7. Output/memory/persistence: made the undoable main-editor replacement explicit in natural Japanese. Retained direct PNG save, conditional smaller-copy offer, warning when even a tiny output does not fit, unchanged original files and local assembly reopening.
+8. Credits: preserved the exact About/credits label and the Catrobat/AGPL/asset-credit claim. The whole paragraph remains unchanged.
 
-**Save as** offers PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB and TIFF in
-one filename/format panel. It exposes applicable quality, lossless, dithering and
-TIFF compression controls. JPEG XL supports actual lossless encoding.
-**Save** reuses the last successful Save as destination and encoding settings,
-including after draft recovery.
+## Implementation evidence
 
-**Export as** offers ICO, ASCII art and Base64 text with their relevant options.
-Export does not replace the Save destination or clear unsaved changes.
-**Save and share** saves a copy in any supported output format to your chosen
-location, then opens Android sharing. It keeps the current Save destination
-and does not mark that working file saved.
+The inspected files are byte-identical between the proposed English reference and current develop: `ImageAssembly.kt`, `AssemblyActivity.kt`, `AssemblyCanvas.kt`, `AssemblyPlacementDialog.kt`, `ImageCropDialog.kt`, `NormalizeImagesDialog.kt`, `AssemblyRenderer.kt`, `ClassicPaintActivity.kt` and `ActionButton.kt`.
 
-PDF and TIFF imports provide page previews and selection. Animated GIF, APNG and
-WebP imports warn when opening a still frame.
+- `position()` sets nonnegative absolute top-left coordinates, preserves other positions, and permits overlaps. `validateSnapPlacement()` rejects overlapping snap drops; `targets()` starts an empty snapped assembly at (0,0).
+- `detached()` preserves coordinates for children of an explicitly positioned anchor, while attachment-tree promotion can close gaps. The Help therefore makes gap filling conditional.
+- Crop margins trim each original edge; Reset selects full original bounds. Normalization adjusts the selected dimension and preserves crops/individual aspect ratios.
+- The actual toolbar labels match the Help, including 正確な位置, パーセント and やり直す. The main editor receives assembly output as an undoable replacement (`asEdit = true`). Memory handling has both an optional smaller-copy chooser and a no-size-fits warning path.
 
-**Draw > Insert > Other images** groups device files, Catrobat, Irasutoya and
-Openclipart. An inserted image stays selected; the view includes its resize and
-rotation handles even when it exceeds the canvas. **Fit to canvas** changes its
-placement while keeping the source pixels; **Original size** restores its dimensions.
+See source/comparison manifests in the evidence packet for exact file binding. The complete old/new values and paragraph diff follow below.
 
-Online artwork pages have **Use image** and **Copy credit** actions. Irasutoya
-uses its English/Japanese search; its original titles and website text remain
-Japanese. Openclipart imports the published Large PNG. Each source retains its
-own terms and copyable, editable credits under File > About > Image credits.
-Irasutoya is free within its stated conditions, including a limit of 20 items
-per commercial design; it is not public domain. No gallery artwork is bundled.
-See [illustration source notes](docs/ILLUSTRATION_SOURCES.md).
+Application commit: [f1aae6ebd453bac18ddabf7c63e629b4291e4d59](https://github.com/c933103/AN-Paint/commit/f1aae6ebd453bac18ddabf7c63e629b4291e4d59). The complete remote application tree was verified against all 1,196 candidate files and modes before publication.
 
-## Languages and text
+## Verification
 
-**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+- PASS: 67 assembly-Help host tests normally and 67 with optimized Python, including the six Japanese tests and 25 synthetic omission/semantic/resource-corruption mutations.
+- PASS: the actual original Japanese value is rejected by the complete-value oracle.
+- PASS: canonical catalogue structure and placeholders.
+- PASS: complete resource compilation/linking with aapt2/API35, including both exact-script mirrors.
+- PASS: supplementary Kotlin 1.9.24/API35 compilation of the changed activity-test source and helper sources with freshly compiled resource symbols and previously compiled dependency classes. This is not full Gradle compilation or runtime execution.
+- PASS: all unchanged file content/modes and the four-file-only diff; whitespace checks.
+- PASS: 903 complete host tests normally (227.725 s) and 903 with optimized Python (227.907 s), on this independent source.
+- BLOCKED/UNRUN: Gradle 8.13 download fails with `Network is unreachable`; the new Robolectric consumer has compiled but has not run. Full Gradle unit/lint/APK and installed-device checks are not claimed. Exact-head hosted CI must supply fresh Android evidence.
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
+The actual Japanese consumer selects Japanese, opens the production Help via its toolbar, compares the complete eight-paragraph message, verifies the current Exact position button label, dismisses the dialog and checks that assembly contents remain unchanged.
 
-Every localization assertion below is a prior claim pending full recheck.
+## Full old value
 
-Choose **View > Languages** to override the device language. The system-default
-choice is labelled in the device's language, independently of the selected app
-language. Android 13 and newer also expose the setting in system App languages.
+Android のファイル選択画面から最大20枚の画像を追加できます。下部のトレイには、サムネイル、ファイル名、トリミングと［同じ幅］または［同じ高さ］の調整を反映した画像寸法が表示されます。提供元からファイル更新日時を取得できる場合は、その日時も表示されます。ファイル名または更新日時で並べ替えられますが、並べ替えても配置済み画像の位置は変わりません。
 
-The main tabs, first-level commands, Edit groups and Other images controls have explicit translations
-for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
-`de`, `pl`, `ru`, `es-419`, `es-ES`, `pt-PT`, `pt-BR`, `it`, `fr`, `he`, `ko-KR`,
-`ko-KP`, `id`, `ms`, `vi`, `fil`, `th`, `el`, `sr-Cyrl`, `sr-Latn`, `tr` and `hy`.
-Other languages and deeper dialogs have varying partial coverage, with English
-fallback. Translation completeness is not a claim of independent native review.
+サムネイルをタップして選択します。［画像をトリミング］はその画像をトリミングし、［一括トリミング］は選択した画像にピクセルまたは百分率の余白指定を適用します。トリミングハンドルをドラッグするか、数値を入力してください。［トリミングをリセット］で元の端に戻せます。トリミングは非破壊で、元に戻すこともできます。
 
-Existing Paintroid, Android, GIMP, Krita, LibreOffice and MediaWiki vocabulary retains its
-provenance and translator credits. Krita fills selected gaps for languages absent
-from the GIMP import, including eight additional partial language choices. LibreOffice
-and MediaWiki fill further common-command gaps in 21 existing language choices. See the
-[mainstream source audit](translations/MAINSTREAM_SOURCE_AUDIT.md).
-Armenian, both Tatar scripts and both Ainu scripts are
-available. See [translation notes](translations/README.md) and
-[TRANSLATING.md](TRANSLATING.md) for catalogues, coverage and regeneration.
+サムネイルを長押しするか、作業領域に配置済みの画像をドラッグし、強調表示された辺へドロップします。半透明のプレビューにはスナップ後の正確な結果が表示されます。右側への接続では上端がそろい、下側への接続では左端がそろいます。サムネイルをタップしてから「+」のターゲットをタップすることもできます。最初の画像は原点に配置されます。親画像をトリミングすると、そこに接続した画像も移動する場合があります。重なりは許可されません。
 
-Inserted text supports horizontal writing and both vertical column orders, with
-mixed, sideways or upright letters. Literary Chinese and traditional Mongolian
-also use vertical interface captions; the bundled Mongolian font preserves joined
-words.
+［同じ幅］と［同じ高さ］では、各画像固有の縦横比を維持したまま、すべての入力画像の寸法をそろえます。ピクセル、百分率、最小、最大から選択してください。［元のサイズに戻す］では寸法の統一だけを解除し、トリミングは保持します。
 
-## Installation and updates
+［配置解除］は選択した画像だけをトレイへ戻します。後続の画像は隙間を詰めますが、配置済みのままです。［削除］はその入力画像だけを削除します。［元に戻す］／［やり直し］でこれらの変更を復元できます。配置済み画像をドラッグすると並べ替えられ、空白部分をドラッグすると表示を移動できます。ピンチでズームできます。［すべて表示］は結合画像全体が見える倍率に変更するだけで、出力寸法は変更しません。
 
-Install the signed APK from a published release. Updates to `paint.anpaint.android`
-require the same signing certificate and a higher version code. Earlier builds
-with different package IDs and the original Pocket Paint remain separate apps.
-To move an image between separate installations, save it as PNG and open it in
-the other app; private drafts and preferences do not transfer automatically.
+［PNG を保存］は結合済み画像を直接保存します。［Paintで編集］はメインエディターへ転送し、元に戻せる画像置換として扱います。出力がメモリ上限を超える場合は、選択画面が表示されたときに小さい出力コピーを選択してください。ごく小さい出力でもメモリ上限を超える場合は、サイズの選択画面の代わりにメモリ警告が表示されます。元の画像ファイルは変更されません。現在の結合状態は端末内に保存され、戻ってきたときに再度開かれます。
 
-CI artifacts are development outputs. Their availability does not mean all checks
-passed, and their temporary CI signing key does not replace the existing upgrade
-key used for published releases.
+このモードには、メインエディターの［ファイル］→［このアプリについて・ライセンス・クレジット］メニューに記載されているものと同じ Catrobat/AGPL および素材クレジットが適用されます。
 
-## Building and checking
+## Full new value
 
-Install JDK 17, Android SDK Platform 35, Build-Tools 35.0.0,
-NDK 27.2.12479018 and CMake 3.22.1. Set `JAVA_HOME` and `ANDROID_HOME`, then run:
+Android のファイル選択画面から最大20枚の画像を追加できます。下部のトレイには、サムネイル、ファイル名、トリミングと［同じ幅］または［同じ高さ］の調整を反映した画像寸法が表示されます。提供元からファイル更新日時を取得できる場合は、その日時も表示されます。ファイル名または更新日時で並べ替えられますが、並べ替えても配置済み画像の位置は変わりません。
 
-```sh
-python3 -m unittest discover -s tools -p 'test_*.py'
-./gradlew --no-daemon --max-workers=1 :app:assembleDebug
-./gradlew --no-daemon --max-workers=1 :Paintroid:testDebugUnitTest :app:lintDebug
+サムネイルをタップして選択します。［画像をトリミング］はその画像をトリミングし、［一括トリミング］では選択した画像の各辺から切り取る量を、ピクセル数またはパーセントで指定します。トリミングハンドルをドラッグするか、数値を入力してください。［トリミングをリセット］でトリミング範囲を元画像全体に戻せます。トリミングは非破壊で、元に戻すこともできます。
+
+サムネイルを長押しするか、作業領域に配置済みの画像をドラッグし、強調表示された辺へドロップします。半透明のプレビューにはスナップ後の正確な結果が表示されます。右側への接続では上端がそろい、下側への接続では左端がそろいます。サムネイルをタップしてから「+」のターゲットをタップすることもできます。スナップで配置する場合、最初の画像は原点に配置されます。親画像をトリミングすると、そこに接続した画像も移動する場合があります。スナップで配置する場合は、画像の重なりは許可されません。
+
+画像を選択し、［正確な位置］でその左上隅の X 座標と Y 座標をピクセル単位で指定します。座標には 0 以上の整数を指定してください。他の画像の位置は変わらず、画像を重ねることもできます。
+
+［同じ幅］と［同じ高さ］では、各画像固有の縦横比を維持したまま、すべての入力画像の幅または高さをそろえます。［ピクセル］、［パーセント］、［最小］、［最大］から選択してください。［元のサイズに戻す］では寸法の統一だけを解除し、トリミングは保持します。
+
+［配置解除］は選択した画像だけをトレイへ戻します。他の画像は配置済みのままで、接続された画像が隙間を埋めるように移動する場合があります。［削除］はその入力画像だけを削除します。［元に戻す］／［やり直す］でこれらの変更を取り消したり、やり直したりできます。配置済み画像をドラッグすると配置を変更でき、空白部分をドラッグすると表示を移動できます。ピンチでズームできます。［すべて表示］は結合画像全体が見える倍率に変更するだけで、出力寸法は変更しません。
+
+［PNG を保存］は結合済み画像を直接保存します。［Paintで編集］では、結合画像でメインエディターの画像を置き換えます。この置き換えは元に戻せます。出力がメモリ上限を超える場合は、選択画面が表示されたときに小さい出力コピーを選択してください。ごく小さい出力でもメモリ上限を超える場合は、サイズの選択画面の代わりにメモリ警告が表示されます。元の画像ファイルは変更されません。現在の結合状態は端末内に保存され、戻ってきたときに再度開かれます。
+
+このモードには、メインエディターの［ファイル］→［このアプリについて・ライセンス・クレジット］メニューに記載されているものと同じ Catrobat/AGPL および素材クレジットが適用されます。
+
+## Paragraph diff
+
+```diff
+--- Japanese Help before
++++ Japanese Help after
+@@ -1,13 +1,15 @@
+ Android のファイル選択画面から最大20枚の画像を追加できます。下部のトレイには、サムネイル、ファイル名、トリミングと［同じ幅］または［同じ高さ］の調整を反映した画像寸法が表示されます。提供元からファイル更新日時を取得できる場合は、その日時も表示されます。ファイル名または更新日時で並べ替えられますが、並べ替えても配置済み画像の位置は変わりません。
+ 
+-サムネイルをタップして選択します。［画像をトリミング］はその画像をトリミングし、［一括トリミング］は選択した画像にピクセルまたは百分率の余白指定を適用します。トリミングハンドルをドラッグするか、数値を入力してください。［トリミングをリセット］で元の端に戻せます。トリミングは非破壊で、元に戻すこともできます。
++サムネイルをタップして選択します。［画像をトリミング］はその画像をトリミングし、［一括トリミング］では選択した画像の各辺から切り取る量を、ピクセル数またはパーセントで指定します。トリミングハンドルをドラッグするか、数値を入力してください。［トリミングをリセット］でトリミング範囲を元画像全体に戻せます。トリミングは非破壊で、元に戻すこともできます。
+ 
+-サムネイルを長押しするか、作業領域に配置済みの画像をドラッグし、強調表示された辺へドロップします。半透明のプレビューにはスナップ後の正確な結果が表示されます。右側への接続では上端がそろい、下側への接続では左端がそろいます。サムネイルをタップしてから「+」のターゲットをタップすることもできます。最初の画像は原点に配置されます。親画像をトリミングすると、そこに接続した画像も移動する場合があります。重なりは許可されません。
++サムネイルを長押しするか、作業領域に配置済みの画像をドラッグし、強調表示された辺へドロップします。半透明のプレビューにはスナップ後の正確な結果が表示されます。右側への接続では上端がそろい、下側への接続では左端がそろいます。サムネイルをタップしてから「+」のターゲットをタップすることもできます。スナップで配置する場合、最初の画像は原点に配置されます。親画像をトリミングすると、そこに接続した画像も移動する場合があります。スナップで配置する場合は、画像の重なりは許可されません。
+ 
+-［同じ幅］と［同じ高さ］では、各画像固有の縦横比を維持したまま、すべての入力画像の寸法をそろえます。ピクセル、百分率、最小、最大から選択してください。［元のサイズに戻す］では寸法の統一だけを解除し、トリミングは保持します。
++画像を選択し、［正確な位置］でその左上隅の X 座標と Y 座標をピクセル単位で指定します。座標には 0 以上の整数を指定してください。他の画像の位置は変わらず、画像を重ねることもできます。
+ 
+-［配置解除］は選択した画像だけをトレイへ戻します。後続の画像は隙間を詰めますが、配置済みのままです。［削除］はその入力画像だけを削除します。［元に戻す］／［やり直し］でこれらの変更を復元できます。配置済み画像をドラッグすると並べ替えられ、空白部分をドラッグすると表示を移動できます。ピンチでズームできます。［すべて表示］は結合画像全体が見える倍率に変更するだけで、出力寸法は変更しません。
++［同じ幅］と［同じ高さ］では、各画像固有の縦横比を維持したまま、すべての入力画像の幅または高さをそろえます。［ピクセル］、［パーセント］、［最小］、［最大］から選択してください。［元のサイズに戻す］では寸法の統一だけを解除し、トリミングは保持します。
+ 
+-［PNG を保存］は結合済み画像を直接保存します。［Paintで編集］はメインエディターへ転送し、元に戻せる画像置換として扱います。出力がメモリ上限を超える場合は、選択画面が表示されたときに小さい出力コピーを選択してください。ごく小さい出力でもメモリ上限を超える場合は、サイズの選択画面の代わりにメモリ警告が表示されます。元の画像ファイルは変更されません。現在の結合状態は端末内に保存され、戻ってきたときに再度開かれます。
++［配置解除］は選択した画像だけをトレイへ戻します。他の画像は配置済みのままで、接続された画像が隙間を埋めるように移動する場合があります。［削除］はその入力画像だけを削除します。［元に戻す］／［やり直す］でこれらの変更を取り消したり、やり直したりできます。配置済み画像をドラッグすると配置を変更でき、空白部分をドラッグすると表示を移動できます。ピンチでズームできます。［すべて表示］は結合画像全体が見える倍率に変更するだけで、出力寸法は変更しません。
++
++［PNG を保存］は結合済み画像を直接保存します。［Paintで編集］では、結合画像でメインエディターの画像を置き換えます。この置き換えは元に戻せます。出力がメモリ上限を超える場合は、選択画面が表示されたときに小さい出力コピーを選択してください。ごく小さい出力でもメモリ上限を超える場合は、サイズの選択画面の代わりにメモリ警告が表示されます。元の画像ファイルは変更されません。現在の結合状態は端末内に保存され、戻ってきたときに再度開かれます。
+ 
+ このモードには、メインエディターの［ファイル］→［このアプリについて・ライセンス・クレジット］メニューに記載されているものと同じ Catrobat/AGPL および素材クレジットが適用されます。
 ```
-
-The APK is `app/build/outputs/apk/debug/app-debug.apk`. The first build needs
-Google Maven, Maven Central, the Gradle Plugin Portal, GitHub and
-download.osgeo.org for dependencies and pinned native codec sources.
-Use `-PnativeAbis=x86_64` for an emulator-only build. Instrumentation tests use
-`:Paintroid:connectedDebugAndroidTest` and `:app:connectedDebugAndroidTest`.
-
-GitHub uploads the APK and matching source before emulator tests finish.
-Regression/lint runs independently. Routine runs test API 35; release verification
-uses both API 30 and 35. See [CI.md](CI.md) for triggers, deadlines and the
-separation between development artifacts and verified releases.
-
-The APK includes corresponding source, including pinned native codec sources,
-exportable from File > About / licences / credits. Published releases also include
-a separate source archive, verification evidence and checksums. See
-[LOCAL_BUILD.md](LOCAL_BUILD.md), [CHANGES_FROM_UPSTREAM.md](CHANGES_FROM_UPSTREAM.md)
-and the preserved [upstream README](UPSTREAM_README.md).
-
-## Licences and artwork
-
-- Application and original paintbrush launcher: [GNU AGPL-3.0-or-later](LICENSE).
-  Original code: Copyright © 2010–2022 The Catrobat Team and contributors;
-  AN Paint modifications and launcher: Copyright © 2026 AN Paint contributors.
-- Tool/action icons: KDE Breeze, LGPL-3.0-or-later. Sources, revision and notices
-  are in [artwork/breeze](artwork/breeze). Standard Android controls use platform
-  artwork. The launcher source is [artwork/an-paint/launcher.svg](artwork/an-paint/launcher.svg).
-- Bundled fonts: SIL Open Font License 1.1, with authors and full terms in
-  [font notices](Paintroid/src/main/assets/legal/FONT_NOTICES.txt).
-- [Asset credits](Paintroid/src/main/assets/legal/ASSET_CREDITS.txt) and
-  [third-party notices](Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt)
-  identify packaged artwork, libraries and translation sources.
-- Native codec licences and grants are retained in the
-  [JPEG XL](Paintroid/src/main/assets/legal/JPEG_XL_NOTICES.txt),
-  [WebP](Paintroid/src/main/assets/legal/WEBP_NOTICES.txt),
-  [HEIC–AVIF](Paintroid/src/main/assets/legal/HEIF_AVIF_NOTICES.txt) and
-  [TIFF](Paintroid/src/main/assets/legal/TIFF_NOTICES.txt) notices.
-  Gallery artwork retains its CC BY-SA 4.0 attribution and source links.
-
-The upstream issue tracker covers Pocket Paint; AN Paint is independently
-maintained. Signing keys and private build backups are never published here.
