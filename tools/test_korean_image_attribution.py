@@ -99,7 +99,7 @@ class KoreanImageAttributionTests(unittest.TestCase):
                          Counter((e['directory'], e['key'], e['quantity']) for e in self.entries))
         self.assertEqual(ACKNOWLEDGEMENTS, set(self.fixture['unchanged_acknowledgements']))
 
-    def test_all_thirty_complete_accepted_values_and_attributes(self):
+    def test_all_thirty_complete_recorded_values_and_attributes(self):
         for entry in self.entries:
             with self.subTest(directory=entry['directory'], key=entry['key']):
                 require_value(self.xml[entry['directory']], entry)
@@ -113,7 +113,15 @@ class KoreanImageAttributionTests(unittest.TestCase):
             value = require_value(self.xml[entry['directory']], entry)
             with self.subTest(directory=entry['directory'], key=entry['key']):
                 self.assertEqual(catalogues.placeholders(english), catalogues.placeholders(value))
-                self.assertEqual(english.count(r'\n'), value.count(r'\n'))
+                if entry['key'] == ASSEMBLY:
+                    # English now has an Exact position paragraph. Keep the
+                    # Korean seven-paragraph regression input, but explicitly
+                    # do not carry full-Help/source-binding acceptance forward.
+                    # Separate re-review receipt: PR75's English mode correction.
+                    self.assertEqual(14, english.count(r'\n'))
+                    self.assertEqual(12, value.count(r'\n'))
+                else:
+                    self.assertEqual(english.count(r'\n'), value.count(r'\n'))
 
     def test_broad_acknowledgements_and_active_main_help_stay_unchanged(self):
         for key, expected in self.fixture['unchanged_acknowledgements'].items():
