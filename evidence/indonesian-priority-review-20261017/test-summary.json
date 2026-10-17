@@ -1,0 +1,65 @@
+{
+  "source_revision": "9bff0abd8f7bc04facbb556908b3a6f578c7346f",
+  "application_head": "949e8ccb0d60ac2e46da1b30e33069ff56ec8506",
+  "application_tree": "f12e3f31420ab23c8edc67d72607150b796b1571",
+  "checks": [
+    {
+      "check": "focused-normal",
+      "status": "passed",
+      "tests": 6,
+      "seconds": 0.073,
+      "log": "focused-normal.log"
+    },
+    {
+      "check": "focused-optimized",
+      "status": "passed",
+      "tests": 6,
+      "seconds": 0.073,
+      "log": "focused-optimized.log"
+    },
+    {
+      "check": "host-normal",
+      "status": "passed",
+      "tests": 911,
+      "seconds": 192.09,
+      "log": "host-normal.log"
+    },
+    {
+      "check": "host-optimized",
+      "status": "passed",
+      "tests": 911,
+      "seconds": 191.509,
+      "log": "host-optimized.log"
+    },
+    {
+      "check": "full AAPT2 resource compile/mirrors/link",
+      "status": "passed",
+      "commands": "resource-check/commands.json"
+    },
+    {
+      "check": "supplementary changed Kotlin test compilation",
+      "status": "passed",
+      "commands": "kotlin-compile.json",
+      "limit": "Fresh resource symbols and existing dependency classes; not full Gradle/runtime"
+    },
+    {
+      "check": "review/full-source validation, normal and optimized",
+      "status": "passed",
+      "commands": [
+        "review-validation-normal.log",
+        "review-validation-optimized.log"
+      ]
+    },
+    {
+      "check": "exact remote source tree",
+      "status": "passed",
+      "receipt": "remote-tree-verification.json"
+    }
+  ],
+  "not_run_locally": [
+    "Full Gradle/Robolectric/lint build (distribution network failure)",
+    "Installed device/emulator",
+    "APK build/source/signature acceptance"
+  ],
+  "hosted": "Pending exact-head CI after draft publication"
+}
