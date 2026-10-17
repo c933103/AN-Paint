@@ -162,12 +162,45 @@ class SourceTextResourcesTest(unittest.TestCase):
             (absent/'values-fr/strings.xml').write_text('<resources><string name="anpaint_source_a">bad</string></resources>')
             self.assertNotEqual(0,self.run_generator(res,output,app,library,absent,output).returncode)
 
+    def test_android_unicode_format_escapes_validate_without_rewriting_xml(self):
+        valid = [
+            (r'Value \u00251\u0024\u0030\u0036X', True),
+            (r'Value %1$\u002e\u0032f', True),
+            (r'Value \u00251$d\u0025\u0025', True),
+            (r'Literal \u00251$999999999s', False),
+            (r'Literal \\u00251$999999999s', True),
+            (r'Literal \u005cu00251$999999999s', True),
+        ]
+        invalid = [
+            r'Value \u00251$999999999s',
+            r'Value %\u0031\u0024\u0039\u0039\u0039\u0039s',
+            r'Value %1$\u002e\u0031\u0032\u0039f',
+            r'Value \u00250$s',
+            r'Value \u00251$q',
+            r'Value \u00g0',
+            r'Value \u002',
+            r'\u00251$s' * 129,
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            res=Path(tmp)/'res';output=Path(tmp)/'output';(res/'values').mkdir(parents=True)
+            source=res/'values/strings.xml'
+            for text,formatted in valid:
+                source.write_text(f'<resources><string name="a" formatted="{str(formatted).lower()}">{text}</string></resources>')
+                result=self.run_generator(res,output)
+                self.assertEqual(0,result.returncode,result.stderr)
+                self.assertEqual(text,ET.parse(output/'values/source_text.xml').getroot()[0].text)
+                self.assertEqual(str(formatted).lower(),ET.parse(output/'values/source_text_contracts.xml').getroot()[0].text)
+            previous=(output/'values/source_text.xml').read_bytes()
+            for text in invalid:
+                source.write_text(f'<resources><string name="a">{text}</string></resources>')
+                self.assertNotEqual(0,self.run_generator(res,output).returncode,text)
+                self.assertEqual(previous,(output/'values/source_text.xml').read_bytes())
+
     def test_all_translated_formatter_consumers_use_the_guarded_boundary(self):
         java=ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-        for path in java.glob('*.kt'):
-            text=path.read_text()
-            self.assertNotRegex(text,r'String\.format\([^;\n]*ui\(',path.name)
-            if path.name!='UiText.kt': self.assertNotIn('.getQuantityString(',text,path.name)
+        import check_translation_boundaries as guard
+        self.assertTrue(list(guard.production_sources(ROOT)), 'No production source files discovered')
+        self.assertEqual([],guard.check_repository(ROOT))
         build=(ROOT/'Paintroid/build.gradle').read_text()
         self.assertIn("tasks.register('generateSourceTextResources', Exec)",build)
         self.assertIn("tasks.named('preBuild').configure { dependsOn(generateSourceTextResources) }",build)

@@ -41,18 +41,21 @@ internal object VerticalText {
     fun uiTypeface(context: Context,locale: Locale=uiLocale(context)): Typeface? = LocaleTypography.typeface(context,locale)
     /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */
     fun clusters(text: String): List<String> {
-        val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0
+        val result=mutableListOf<String>();var i=0;var start=0;var previous=-1;var regionalCount=0
         while(i<text.length) {
-            val cp=Character.codePointAt(text,i);val count=Character.charCount(cp);val part=text.substring(i,i+count)
+            val cp=Character.codePointAt(text,i);val count=Character.charCount(cp)
             val type=Character.getType(cp)
             val regional=cp in 0x1f1e6..0x1f1ff
-            val attach=result.isNotEmpty() && (previous==0x200d || cp==0x200d || cp in 0xfe00..0xfe0f || cp in 0xe0100..0xe01ef ||
+            val attach=i>0 && (previous==0x200d || cp==0x200d || cp in 0xfe00..0xfe0f || cp in 0xe0100..0xe01ef ||
                 // UAX #29 classifies emoji tags as Extend despite their FORMAT category.
                 cp in 0xe0020..0xe007f || cp in 0x1f3fb..0x1f3ff || type==Character.NON_SPACING_MARK.toInt() || type==Character.COMBINING_SPACING_MARK.toInt() ||
                 type==Character.ENCLOSING_MARK.toInt() || regional && regionalCount%2==1)
-            if(attach) result[result.lastIndex]+=part else result.add(part)
+            // Copy a completed cluster once. Rebuilding it for every combining
+            // mark made a valid long label allocate quadratic temporary text.
+            if(i>0 && !attach) {result.add(text.substring(start,i));start=i}
             regionalCount=if(regional) regionalCount+1 else 0;previous=cp;i+=count
         }
+        if(start<text.length) result.add(text.substring(start))
         return result
     }
     private fun upright(text: String): Boolean {
@@ -69,13 +72,13 @@ internal object VerticalText {
     private data class Run(val text: String,val upright: Boolean)
     private fun runs(line: String,orientation: GlyphOrientation): List<Run> {
         if(orientation==GlyphOrientation.SIDEWAYS) return listOf(Run(line,false))
-        val result=mutableListOf<Run>()
+        val result=mutableListOf<Run>();val sideways=StringBuilder()
+        fun flush() {if(sideways.isNotEmpty()) {result.add(Run(sideways.toString(),false));sideways.setLength(0)}}
         for(cluster in clusters(line)) {
             val up=orientation==GlyphOrientation.UPRIGHT || upright(cluster)
-            if(!up && result.lastOrNull()?.upright==false) {
-                val last=result.removeAt(result.lastIndex);result.add(Run(last.text+cluster,false))
-            } else result.add(Run(cluster,up))
+            if(up) {flush();result.add(Run(cluster,true))} else sideways.append(cluster)
         }
+        flush()
         return result
     }
     @Suppress("DEPRECATION")
@@ -119,8 +122,8 @@ internal object VerticalText {
         fun breakableSpace(char: Char)=char.isWhitespace() && !noBreak(char)
         val columns=mutableListOf<String>()
         text.split('\n').forEach {paragraph ->
-            val tokens=mutableListOf<String>();var word=""
-            fun flush() {if(word.isNotEmpty()) {tokens.add(word);word=""}}
+            val tokens=mutableListOf<String>();val word=StringBuilder()
+            fun flush() {if(word.isNotEmpty()) {tokens.add(word.toString());word.setLength(0)}}
             clusters(paragraph).forEach {cluster ->
                 when {
                     // Kotlin considers nonbreaking spaces blank. Keep them in
@@ -128,25 +131,55 @@ internal object VerticalText {
                     // Glue upright neighbors too, without changing their draw orientation.
                     cluster.length==1 && noBreak(cluster[0])->{
                         if(word.isEmpty() && tokens.lastOrNull()?.all {breakableSpace(it)}==false)
-                            word=tokens.removeAt(tokens.lastIndex)
-                        word+=cluster
+                            word.append(tokens.removeAt(tokens.lastIndex))
+                        word.append(cluster)
                     }
                     upright(cluster)->{
-                        if(word.lastOrNull()?.let {noBreak(it)}==true) {word+=cluster;flush()}
+                        if(word.lastOrNull()?.let {noBreak(it)}==true) {word.append(cluster);flush()}
                         else {flush();tokens.add(cluster)}
                     }
                     cluster.isBlank()->{flush();tokens.add(" ")}
-                    else->word+=cluster}
+                    else->word.append(cluster)}
             };flush()
-            var line=""
+            val line=StringBuilder();var hasContent=false;var measurement=MixedLineMeasurement(paint)
             tokens.forEach {token ->
-                val candidate=line+token
-                if(line.any {!breakableSpace(it)} && bounds(candidate,paint,direction,GlyphOrientation.MIXED,1f).height()>height) {
-                    columns.add(line.trim {breakableSpace(it)});line=token.trimStart {breakableSpace(it)}
-                } else line=candidate
+                val previousLength=line.length
+                line.append(token);measurement.append(token)
+                if(hasContent && measurement.height()>height) {
+                    line.setLength(previousLength)
+                    columns.add(line.toString().trim {breakableSpace(it)})
+                    val first=token.trimStart {breakableSpace(it)}
+                    line.setLength(0);line.append(first)
+                    measurement=MixedLineMeasurement(paint).apply {append(first)}
+                    hasContent=first.any {!breakableSpace(it)}
+                } else hasContent=hasContent || token.any {!breakableSpace(it)}
             }
-            columns.add(line.trim {breakableSpace(it)})
+            columns.add(line.toString().trim {breakableSpace(it)})
         }
         return columns.joinToString("\n")
+    }
+
+    /** Match bounds(..., MIXED, 1f) without rebuilding and reclustering the
+     * completed part of a column for every wrapping token. Adjacent sideways
+     * text is still shaped as one run, including its spaces and suffix marks. */
+    private class MixedLineMeasurement(private val paint: Paint) {
+        private val cell=paint.fontSpacing
+        private var completed=0.0
+        private val sideways=StringBuilder()
+        private var sidewaysWidth=0
+        private var dirty=false
+        private fun width(): Int {
+            if(dirty) {sidewaysWidth=layout(sideways.toString(),paint).width;dirty=false}
+            return sidewaysWidth
+        }
+        fun append(text: String) {
+            for(cluster in clusters(text)) {
+                if(upright(cluster)) {
+                    if(sideways.isNotEmpty()) {completed+=width();sideways.setLength(0);sidewaysWidth=0}
+                    completed+=cell.toDouble()
+                } else {sideways.append(cluster);dirty=true}
+            }
+        }
+        fun height(): Float=(completed+width()).toFloat().coerceAtLeast(cell)
     }
 }

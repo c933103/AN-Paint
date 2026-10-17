@@ -34,6 +34,35 @@ a legitimate future source change outside them needs an explicit bound review.
 Arguments are not reinterpreted as format strings. Their size is not capped or
 silently modified, so this is not a universal heap/output-size guarantee.
 
+`tools/check_translation_boundaries.py` checks production Kotlin and Java across
+packages and source sets, including present generated trees. Raw printf calls
+outside `LocaleText` must use code-owned literal templates; dynamic aliases must
+go through the shared boundary. Formatted Android string access and raw plural
+access belong in `UiText`. The guard handles multiline calls, callable/import
+aliases and Kotlin string interpolation. It distinguishes string-key storage
+access from Android resource formatting. This is a conservative lexical policy,
+not interprocedural type analysis; custom source roots outside the conventional
+trees must be supplied with `--source-root`.
+
+## Long vertical labels
+
+Cluster, sideways-run and word assembly copy completed text with builders or
+substring boundaries instead of repeatedly concatenating a growing string.
+Vertical wrapping retains measured completed runs while continuing to shape
+adjacent sideways text together, including Mongolian suffix separators. This
+removes the identified repeated copying and completed-run processing without
+changing the text supplied to drawing or the existing cluster rules.
+
+Fixed ribbon tiles already shorten their drawn captions when necessary. Captions
+of at most 64 clusters retain exhaustive prefix fitting. Longer captions use
+logarithmic probes and at most 64 local refinement probes, and only return a
+candidate actually measured to fit. With nonmonotonic shaping this may select a
+shorter prefix than an exhaustive search. If even a tested ellipsis cannot fit,
+the tile draws no caption ink. The complete control text, accessibility text and
+tooltip remain available. Fitted captions are cached by text, geometry, direction
+and the paint's text-measurement settings. Shaping cost inside Android remains a
+platform limit; these changes do not claim a universal runtime or heap bound.
+
 ## Canonical fallback and builds
 
 The JDK-only `tools/SourceTextResources.java` generator derives reserved
@@ -46,7 +75,15 @@ passes it explicitly to the formatter; `formatted="false"` text, including
 incidental `%d`, `% s` or `%1$s`, is never parsed or interpolated. Source format
 templates require explicit argument indices; unmarked literal percent text must
 be declared `formatted="false"`. AAPT still decodes escapes/markup and
-validates the package. The generator rejects reserved names across every configured application/library
+validates the package. Format validation recognises four-digit Android Unicode
+escapes in a separate view of the text, including encoded percent signs and
+numeric fields. Escaped backslashes are consumed once; a backslash produced by
+a Unicode escape is not decoded again. This closes the encoded-format bypass
+without rewriting resource text. It is not a complete AAPT whitespace/quoting
+decoder: the source validator retains conservative spelling rules and requires
+four hex digits even where AAPT accepts a shorter trailing escape.
+
+The generator rejects reserved names across every configured application/library
 Android source-set resource root, including variant overlays. Discovery runs after
 all projects are configured, tracks absent/new roots and XML inputs, excludes only
 its own generated directory, and orders the existing mirror producer before
@@ -84,6 +121,12 @@ plural and dialog consumers. Repeated preset changes, cancel, reopen and apply
 preserve action identity. These injections are distinct from installing an APK
 with deliberately malformed translations. The gallery DOM fixture and Android
 JSON checks cover quote/backslash/newline/U+2028/U+2029 labels and repeated setup.
+
+Real packaged resources exercise all 18 existing Ainu/Manchu escaped-percent
+templates. The Japanese crop consumer checks the restored single `%` in each
+edge's accessibility description. The targeted historical wording audit and
+retained encoding repairs are recorded in
+[the compatibility review](TRANSLATION_COMPATIBILITY_REVIEW.md).
 
 Android layout, fonts/shaping, accessibility, finite memory, very large argument
 values, the OS, native code and non-translation application defects retain their

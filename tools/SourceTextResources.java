@@ -23,9 +23,35 @@ public class SourceTextResources {
     static void require(boolean condition, String message) {
         if (!condition) throw new IllegalArgumentException(message);
     }
+    /** Validation view only: AAPT expands Unicode escapes after XML parsing.
+     * Preserve emitted XML and existing conservative source spelling rules.
+     * This is not a full AAPT whitespace/quoting decoder. Consume escaped pairs
+     * once; a backslash produced by a Unicode escape is never decoded again.
+     * Source contracts require four hex digits, including at end of text where
+     * AAPT itself can also accept a shorter escape.
+     */
+    static String formatValidationText(String text) {
+        StringBuilder result = new StringBuilder(text.length());
+        for (int i = 0; i < text.length(); i++) {
+            char value = text.charAt(i);
+            if (value != '\\' || i + 1 == text.length()) { result.append(value); continue; }
+            char escaped = text.charAt(++i);
+            if (escaped != 'u') { result.append('\\').append(escaped); continue; }
+            require(i + 4 < text.length(), "Source Unicode escapes require four hex digits");
+            int code = 0;
+            for (int digit = 1; digit <= 4; digit++) {
+                int hex = "0123456789abcdef".indexOf(Character.toLowerCase(text.charAt(i + digit)));
+                require(hex >= 0, "Invalid source Unicode escape");
+                code = (code << 4) | hex;
+            }
+            result.append((char) code); i += 4;
+        }
+        return result.toString();
+    }
     static void validateFormat(String text, boolean formatted) {
         require(text.length() <= 65536, "Source text exceeds runtime template bound");
         if (!formatted) return;
+        text = formatValidationText(text);
         Object[] values = new Object[128];
         int position = 0, count = 0;
         while ((position = text.indexOf('%', position)) >= 0) {

@@ -166,4 +166,29 @@ class LocaleTextBoundaryTest {
         assertEquals(18,checked)
     }
 
+    @Test @Config(sdk=[35])
+    fun japaneseCropAccessibilityKeepsThePercentSymbol() {
+        val controller=Robolectric.buildActivity(Activity::class.java)
+        val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+        val config=Configuration(previous.configuration).apply {setLocale(Locale.JAPANESE)}
+        PaintApplication.currentResources=activity.createConfigurationContext(config).resources
+        val file=File(activity.cacheDir,"translation-crop-${System.nanoTime()}.image")
+        val item=AssemblyImage("crop",file,"sample.png",null,ImageDimensions(80,160))
+        var dialog: AlertDialog?=null
+        var applied=false
+        try {
+            dialog=ImageCropDialog(activity,listOf(item),{null}) {applied=true}.show()
+            shadowOf(Looper.getMainLooper()).idle()
+            val root=dialog.window!!.decorView
+            root.findViewWithTag<View>("crop_percent").performClick()
+            val edges=mapOf("left" to "左","top" to "上","right" to "右","bottom" to "下")
+            for((edge,name) in edges) {
+                assertEquals("${name}の切り詰め量（%）",
+                    root.findViewWithTag<EditText>("crop_$edge").contentDescription.toString())
+            }
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            assertFalse(applied)
+        } finally {dialog?.dismiss();controller.close();file.delete()}
+    }
+
 }
