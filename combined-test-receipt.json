@@ -1,0 +1,102 @@
+{
+  "source_commit": "75c59756900f80535b87eae173d9c9eebb155cd9",
+  "source_tree": "841ac4f12c4d6f75271bba289f8a1b189655c4e3",
+  "base_commit": "7f69e915485b2eeb1d0a97af29c7e00a8a4b5fbe",
+  "commands": [
+    "python3 -m unittest discover -s tools -p test_*.py -v",
+    "python3 -O -m unittest discover -s tools -p test_*.py -v",
+    "python3 [-O] -m unittest discover -s tools -p test_*priority*wording.py -v",
+    "python3 [-O] -m unittest discover -s tools -p test_current_localization_contracts.py -v"
+  ],
+  "aggregate_process_results": [
+    {
+      "mode": "normal",
+      "returncode": 0,
+      "seconds": 221.956,
+      "log": "final-host-normal.log"
+    },
+    {
+      "mode": "optimized",
+      "returncode": 0,
+      "seconds": 206.392,
+      "log": "final-host-optimized.log"
+    }
+  ],
+  "checks": [
+    {
+      "log": "final-host-normal.log",
+      "tests": 836,
+      "test_runtime_seconds": 221.333,
+      "status": "passed",
+      "sha256": "16317dc3b21a8b03c6a618e3793479628786ed8d7a0e89a1a2a9eaba8cd181fc"
+    },
+    {
+      "log": "final-host-optimized.log",
+      "tests": 836,
+      "test_runtime_seconds": 205.372,
+      "status": "passed",
+      "sha256": "b84038d4ab3f94e3f330f6d7675842a03a60d4e2e6c13a22aac6195a449d9d53"
+    },
+    {
+      "log": "final-priority-normal.log",
+      "tests": 52,
+      "test_runtime_seconds": 1.275,
+      "status": "passed",
+      "sha256": "e9681fe0a57d1173138ce91ecfbb481dff423313afef67c89d56f15ae46bf396"
+    },
+    {
+      "log": "final-priority-optimized.log",
+      "tests": 52,
+      "test_runtime_seconds": 1.658,
+      "status": "passed",
+      "sha256": "c6ebad094c1a4cf5d542999963b73f5ab953a60e39e672a55156daa25d82979e"
+    },
+    {
+      "log": "final-family-normal.log",
+      "tests": 12,
+      "test_runtime_seconds": 3.997,
+      "status": "passed",
+      "sha256": "72c11fc2566a036f4ec5778ea7b4a23c6b53f82477d3511aa6a3b2fcd14f85b0"
+    },
+    {
+      "log": "final-family-optimized.log",
+      "tests": 12,
+      "test_runtime_seconds": 3.835,
+      "status": "passed",
+      "sha256": "c24466966afc3c1b44422d0fa829521d2e53362540e087f719b95901cf29db67"
+    }
+  ],
+  "raw_final_logs": "combined-host-logs.zip",
+  "after_tests_all_1169_source_leaves_and_modes_match_verified_remote_tree": true,
+  "previous_base_results": {
+    "base": "2da486c6a1969e14d73a64666921d6a1c35e2e99",
+    "tests_per_mode": 802,
+    "process_results": [
+      {
+        "mode": "normal",
+        "returncode": 0,
+        "seconds": 192.153,
+        "log": "combined-host-normal.log"
+      },
+      {
+        "mode": "optimized",
+        "returncode": 0,
+        "seconds": 203.186,
+        "log": "combined-host-optimized.log"
+      }
+    ],
+    "purpose": "Preserved historical preliminary composition result only; not substituted for current-base aggregate."
+  },
+  "harness_invocation_notes": [
+    "An initial focused invocation used the parent directory rather than the source directory; discovery did not run tests. Correct working-directory invocations are the recorded focused passes.",
+    "An integration-only pair-validation helper initially named a syntax function incorrectly and exited; the corrected helper successfully verified all final pairs. No application code change was required."
+  ],
+  "unrun": [
+    "Android resource compilation",
+    "Gradle/app-JVM and lint",
+    "installed device",
+    "TalkBack",
+    "glyph/layout and physical-device checks"
+  ],
+  "review_and_release_limits": "Static model review and host regressions do not certify native-language fluency, entire locales, installed rendering, or release readiness. Exact-head Codex and hosted CI remain separate gates."
+}
