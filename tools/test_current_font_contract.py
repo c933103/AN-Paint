@@ -84,6 +84,22 @@ class CurrentFontContractTest(unittest.TestCase):
     def test_actual_current_font(self):
         self.assertEqual([],errors(FONT,INVENTORY,ASSETS,FIXTURE))
 
+    def test_commons_error_additions_have_exact_outline_and_cmap_contracts(self):
+        additions = {'U+4E00', 'U+552F', 'U+5834', 'U+7B26', 'U+28C7D', 'U+259EA'}
+        glyphs = {entry['codepoint']: entry for entry in FIXTURE['glyphs']}
+        self.assertTrue(additions <= glyphs.keys())
+        maps = validated_unicode_maps(FONT)
+        for codepoint in additions:
+            cp = int(codepoint[2:], 16)
+            glyph = glyphs[codepoint]
+            self.assertGreater(glyph['outline_bytes'], 0)
+            self.assertEqual('nom-na-tong-v5.18', glyph['source_id'])
+            for kind, mapping in maps:
+                if kind == 12 or cp <= 0xffff:
+                    self.assertEqual(glyph['glyph_id'], mapping[cp])
+                else:
+                    self.assertNotIn(cp, mapping)
+
     def test_each_glyph_outline_corruption_rejected_with_updated_inventory(self):
         glyf,_,_=location(FONT,'glyf'); p=parts(FONT)
         for glyph in FIXTURE['glyphs']:

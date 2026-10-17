@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import com.caverock.androidsvg.SVG
 import java.io.File
-import java.io.IOException
 
 /** Rasterise the Commons original SVG at its own declared dimensions, on solid white. */
 internal object BlankMapSvg {
@@ -44,7 +43,7 @@ internal object BlankMapSvg {
             // Masks/clip effects may clear pixels despite the initial white canvas.
             Canvas(bitmap).drawColor(Color.WHITE,android.graphics.PorterDuff.Mode.DST_OVER)
             destination.outputStream().use {out ->
-                if(!bitmap.compress(Bitmap.CompressFormat.PNG,100,out)) throw IOException("Could not encode blank map as PNG")
+                if(!bitmap.compress(Bitmap.CompressFormat.PNG,100,out)) throw CommonsImportFailure.PngEncodeFailed()
             }
         } finally {bitmap.recycle()}
     }
