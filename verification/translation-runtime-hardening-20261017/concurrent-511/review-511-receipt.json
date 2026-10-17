@@ -1,0 +1,76 @@
+{
+  "source_head": "511f9607c7889a5acd2e6f79dc96e484cb37bf5a",
+  "source_parent": "e434c5e779183a017ca9153e688dc77a79a0fc39",
+  "source_tree": "2c1b18bdf7ef64e828e56b60a7cd96b4bb7f85e5",
+  "local_snapshot_blobs_and_modes_verified": 1182,
+  "generator_and_boundary_policy_tests": 12,
+  "pure_formatter_and_prefix_tests": 15,
+  "xml_sweep": {
+    "rows": 48421,
+    "null_samples": 23632,
+    "mismatches": 0,
+    "invalid_formats": 0
+  },
+  "compiled_sweep": {
+    "rows": 50550,
+    "configs": 145,
+    "null_samples": 24820,
+    "mismatches": 0,
+    "invalid_formats": 0,
+    "alias_resolutions": 205,
+    "missing_alias_config_targets": 0
+  },
+  "resource_delta": [
+    {
+      "file": "values-ja/strings.xml",
+      "key": "ui_trim_in_percent",
+      "old": "<string name=\"ui_trim_in_percent\">%1$sの切り詰め量（百分率）</string>\n    ",
+      "new": "<string name=\"ui_trim_in_percent\">%1$sの切り詰め量（%%）</string>\n    "
+    }
+  ],
+  "compiled_japanese_row": [
+    {
+      "key": "ui_trim_in_percent",
+      "kind": "string",
+      "config": "ja",
+      "quantity": null,
+      "source": "%1$s trim in percent",
+      "translation": "%1$sの切り詰め量（%%）",
+      "source_formatted": true
+    }
+  ],
+  "qualified_checker_finding": "https://github.com/c933103/AN-Paint/pull/114#issuecomment-6231852162",
+  "limits": [
+    "The current JVM workflow gate failed its unchanged12-minute deadline despite all test cases completing successfully.",
+    "Native SDK33 caption and Japanese consumer tests passed in the hosted JUnit artifact; installed API35 groups passed. This does not establish all-device/OS guarantees.",
+    "API21–27 cache comparison behavior was inspected but was not executed by the new caption test.",
+    "A qualified explicit-root checker discovery defect was reported; its separate locally reviewed repair is not applied to511.",
+    "No source or source ref modifications were made by this read-only reconciliation."
+  ],
+  "hosted": {
+    "run": 39017556055,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39017556055",
+    "build": "passed",
+    "resource_generation": "passed",
+    "core_api35": "passed",
+    "position_api35": "passed",
+    "api35_aggregate": "passed",
+    "regression_and_lint": "failed JVM step deadline",
+    "python": "passed",
+    "lint": "passed",
+    "native_preparation": "passed",
+    "jvm_artifact": {
+      "id": 12094924734,
+      "sha256": "91d573a069d0a5d563830e9611cf67e471c1b00158bbe1c38d2a0cda0fb7d773",
+      "suites": 110,
+      "tests": 1099,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "phase_seconds": 720.907,
+      "test_task_seconds": 572.14
+    },
+    "code_review": "completed/no findings for511f9607",
+    "security_review": "stale db076197"
+  }
+}
