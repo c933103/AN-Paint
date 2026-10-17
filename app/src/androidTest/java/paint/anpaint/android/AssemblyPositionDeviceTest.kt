@@ -244,6 +244,13 @@ class AssemblyPositionDeviceTest {
         tap(field)
         try {
             await("native field focus: ${field.tag}") {field.hasFocus() && field.hasWindowFocus()}
+            // A field tap requests the IME asynchronously. Typing can finish
+            // before it appears; a single hidden-insets sample would then skip
+            // Back and let the late IME cover the next Apply/Cancel target.
+            await("IME shown for native field input: ${field.tag}") {
+                field.hasFocus() && field.hasWindowFocus() &&
+                    field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==true
+            }
         } catch(error: AssertionError) {
             throw AssertionError(onMain {"${error.message}; raw=${rawBounds(field)} visible=${visibleBounds(field)} " +
                 "focused=${field.rootView.findFocus()?.tag} windowFocus=${field.hasWindowFocus()} " +
@@ -322,7 +329,12 @@ class AssemblyPositionDeviceTest {
         revealText(view)
         reveal(view) {rawBounds(view).let {raw ->val half=(12*view.resources.displayMetrics.density).toInt()
             Rect(raw.centerX()-half,raw.centerY()-half,raw.centerX()+half,raw.centerY()+half)}}
-        val bounds=onMain {assertTrue(view.isEnabled);visibleBounds(view)}
+        val bounds=onMain {
+            assertTrue(view.isEnabled)
+            assertTrue("Native tap requires a focused window with the IME hidden: ${view.text}",
+                view.hasWindowFocus() && view.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false)
+            visibleBounds(view)
+        }
         assertTrue("Native dialog tap",device.click(bounds.centerX(),bounds.centerY()))
         instrumentation.waitForIdleSync()
     }

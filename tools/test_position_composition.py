@@ -185,6 +185,21 @@ run_position_regression
         for text in ('field.hasFocus() && field.hasWindowFocus()','KEYCODE_A,KeyEvent.META_CTRL_ON',
                      'KEYCODE_DEL','instrumentation.sendStringSync(value)','field.text.toString()==value'):
             self.assertIn(text,replace)
+        # Explicit native field taps must complete the asynchronous IME-show
+        # transition before typing can race the existing native-Back hide.
+        show=replace.index('await("IME shown for native field input:')
+        self.assertLess(replace.index('tap(field)'),show)
+        self.assertLess(show,replace.index('KEYCODE_A,KeyEvent.META_CTRL_ON'))
+        self.assertIn('field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==true',replace)
+        tap=source.split('private fun tap(',1)[1].split('private data class Gesture',1)[0]
+        self.assertLess(tap.index('view.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false'),
+                        tap.index('device.click('))
+        hide=source.split('private fun hideIme(',1)[1].split('private fun orient(',1)[0]
+        self.assertIn('device.pressKeyCode(KeyEvent.KEYCODE_BACK)',hide)
+        self.assertIn('root.isAttachedToWindow && root.hasWindowFocus()',hide)
+        self.assertIn('root.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false',hide)
+        for forbidden in ('showSoftInput(', 'hideSoftInputFromWindow(', '.performClick('):
+            self.assertNotIn(forbidden,source)
         self.assertIn('SystemClock.uptimeMillis()+8000',source)
         self.assertIn('45-second interaction budget',source)
         self.assertNotIn('requestFocus(',source)

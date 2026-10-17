@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
@@ -19,6 +20,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 import java.io.File
 import java.util.Locale
@@ -96,6 +98,9 @@ class BrazilianPortuguesePriorityWordingTest {
             var applied = false
             val shown = ImageCropDialog(activity, images, { null }) { applied = true }.show()
             dialog = shown
+            // Android queues OnShow; drain it so the production validating
+            // Apply listener is installed before exercising the native button.
+            shadowOf(Looper.getMainLooper()).idle()
             val root = shown.window!!.decorView
             val none = root.findViewWithTag<TextView>("crop_none")
             assertEquals("Nenhuma", none.text.toString())
@@ -110,6 +115,8 @@ class BrazilianPortuguesePriorityWordingTest {
             root.findViewWithTag<View>("crop_all").performClick()
             images.forEach { assertTrue(root.findViewWithTag<CheckBox>("crop_include_${it.id}").isChecked) }
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            shadowOf(Looper.getMainLooper()).idle()
+            assertFalse(shown.isShowing)
             assertFalse(applied)
         } finally {
             dialog?.dismiss()
