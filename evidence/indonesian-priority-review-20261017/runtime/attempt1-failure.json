@@ -1,0 +1,38 @@
+{
+  "classification": "Observed ADB transport loss; no source defect established",
+  "application_head": "949e8ccb0d60ac2e46da1b30e33069ff56ec8506",
+  "run_id": 39067106836,
+  "attempt": 1,
+  "job_id": 117498724052,
+  "artifact_id": 12113694219,
+  "artifact_sha256": "b092ccaf9a10f8300c3ae5b7fee4384adfd6ef2ee593162fc98abb1f2faf348f",
+  "artifact_bytes": 2149418,
+  "native": {
+    "passed": 74,
+    "complete_protocol": true
+  },
+  "ordinary_app": {
+    "individual_pass_records": 17,
+    "declared": 17,
+    "complete_protocol": false,
+    "adb_exit": 255,
+    "errors": [
+      "Missing final instrumentation result",
+      "Subsequent device offline"
+    ]
+  },
+  "diagnosis": [
+    "Device adbd host-17 write failed and became offline at20:45:05.148",
+    "Android app_process logged System.exit 0 immediately before disconnect; ActivityManager recorded the app stopped due to finished instrumentation, not a fatal app exception",
+    "A new adbd host-18 transport started at20:45:05.817, after dependent phases had already failed",
+    "Host emulator invalid-color-buffer errors occur without timestamps; causal relation is uncertain"
+  ],
+  "limits": [
+    "17 individual pass records are not a successful instrumentation phase",
+    "Later core phases are missing or unrun",
+    "Underlying cause of transport loss is not proven"
+  ],
+  "next_action": "One targeted unchanged-head core-job retry after original workflow is terminal; retain all gates and deadlines",
+  "raw_logcat_sha256": "6ec3318051cfc9c05595539f5abc328555c246cdc728ddbff2e34c465ee3d652",
+  "raw_logcat_lines": 118594
+}
