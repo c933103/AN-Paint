@@ -59,6 +59,16 @@ metadata are retained. The current font contract pins the six new glyphs and
 checks supplementary characters in format-12 cmap subtables. This is UI-font
 coverage, not an extension of drawing/font export support.
 
+The traditional-script reasons preserve U+202F suffix boundaries. In vertical
+mixed/sideways drawing, a suffix following a non-Mongolian label such as
+`Commons` starts a separate shaping run at the unchanged U+202F. This lets the
+native shaper see the separator together with the Mongolian suffix instead of
+displaying the font's diagnostic N marker in the preceding Latin run. It does
+not introduce a word/column break, change the resource/accessibility text or
+modify the bundled Mongolian font. Native pixel tests compare independently
+segmented layouts, require blank separator ink, reproduce the old visible-marker
+case as a negative control, and retain whole-root Mongolian shaping.
+
 None of the nine values has a placeholder. Commons and PNG retain their service
 and format identities. Provider attribution and licence text is not translated.
 
@@ -81,6 +91,8 @@ native Robolectric captures for representative scripts. These require execution
 and visual inspection; test source is not evidence of a passing render, installed
 device behavior, TalkBack speech or native-language acceptance. The existing
 M02–M04, untyped-error, clipboard and SVG-size tests remain complementary.
+Scrollable vertical warnings record both ends of the rail. Each capture is one
+viewport; full-text layout and scroll reachability are separate assertions.
 
 Run focused Python contracts first, then the normal and optimized full host
 suites in `CI.md`; use the repository wrapper for Android unit tests, lint and

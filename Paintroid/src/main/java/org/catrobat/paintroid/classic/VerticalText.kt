@@ -68,11 +68,22 @@ internal object VerticalText {
     private val punctuation=mapOf('、' to '︑','。' to '︒','「' to '﹁','」' to '﹂','『' to '﹃','』' to '﹄','（' to '︵','）' to '︶','【' to '︻','】' to '︼','…' to '︙')
     private data class Run(val text: String,val upright: Boolean)
     private fun runs(line: String,orientation: GlyphOrientation): List<Run> {
-        if(orientation==GlyphOrientation.SIDEWAYS) return listOf(Run(line,false))
         val result=mutableListOf<Run>()
-        for(cluster in clusters(line)) {
-            val up=orientation==GlyphOrientation.UPRIGHT || upright(cluster)
-            if(!up && result.lastOrNull()?.upright==false) {
+        val parts=clusters(line)
+        fun mongolian(cluster: String): Boolean {
+            val cp=Character.codePointAt(cluster,0)
+            return cp in 0x1800..0x18af && Character.isLetter(cp)
+        }
+        for((index,cluster) in parts.withIndex()) {
+            val up=orientation==GlyphOrientation.UPRIGHT || orientation==GlyphOrientation.MIXED && upright(cluster)
+            // Android assigns a Common-script NNBSP after Latin (e.g. Commons)
+            // to that preceding script run. Noto's suffix substitution then
+            // cannot see the Mongolian letter and draws its diagnostic N box.
+            // Start this shaping run with the *unchanged* NNBSP and suffix so
+            // it inherits Mongolian script. This is not a word/column break.
+            val suffixBoundary=cluster=="\u202f" && index>0 && index+1<parts.size &&
+                !mongolian(parts[index-1]) && mongolian(parts[index+1])
+            if(!up && result.lastOrNull()?.upright==false && !suffixBoundary) {
                 val last=result.removeAt(result.lastIndex);result.add(Run(last.text+cluster,false))
             } else result.add(Run(cluster,up))
         }
