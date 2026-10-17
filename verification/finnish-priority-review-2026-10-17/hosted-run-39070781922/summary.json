@@ -1,0 +1,134 @@
+{
+  "run_id": 39070781922,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/39070781922",
+  "run_attempt": 1,
+  "status": "completed",
+  "conclusion": "success",
+  "head_sha": "69fe1495d4468fc028cf1bc30bdac35e70e6cdf0",
+  "tested_pr_merge_sha": "4daf64866b621af8adbe618d135cdd5ca0902cfd",
+  "tested_tree": "c723db3d5e2c3202ea24c021f6a3e3574e840a83",
+  "same_tree_as_reviewed_head": true,
+  "jobs": [
+    {
+      "name": "Exact-script resource generation",
+      "id": 117507760219,
+      "conclusion": "success"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "id": 117507760363,
+      "conclusion": "success"
+    },
+    {
+      "name": "Regression tests and lint",
+      "id": 117507760489,
+      "conclusion": "success"
+    },
+    {
+      "name": "Position dialog API 35",
+      "id": 117509849243,
+      "conclusion": "success"
+    },
+    {
+      "name": "Core emulator API 35",
+      "id": 117509849261,
+      "conclusion": "success"
+    },
+    {
+      "name": "Emulator API 35",
+      "id": 117512239619,
+      "conclusion": "success"
+    }
+  ],
+  "checks": {
+    "python": {
+      "passed": 918,
+      "seconds": 207.619
+    },
+    "jvm": {
+      "tests": 1113,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reports": 118
+    },
+    "finnish_consumer_tests": {
+      "passed": 4,
+      "seconds": 0.334,
+      "methods": [
+        {
+          "name": "actualLanguagePickerExplainsEnglishFallbackWithoutCompletenessClaim",
+          "classname": "org.catrobat.paintroid.local.FinnishPriorityWordingTest",
+          "time": "0.117"
+        },
+        {
+          "name": "actualDimensionSummaryHandlesSingularAndGroupedCounts",
+          "classname": "org.catrobat.paintroid.local.FinnishPriorityWordingTest",
+          "time": "0.1"
+        },
+        {
+          "name": "liveDimensionDescriptionsUseInflectedUnitsAcrossRepeatedSwitches",
+          "classname": "org.catrobat.paintroid.local.FinnishPriorityWordingTest",
+          "time": "0.054"
+        },
+        {
+          "name": "failedPngAndDerivedEncodersReportIncompleteEncodingAndKeepSourcePixels",
+          "classname": "org.catrobat.paintroid.local.FinnishPriorityWordingTest",
+          "time": "0.062"
+        }
+      ]
+    },
+    "lint": {
+      "issues": 0
+    },
+    "exact_script_resource_graph": {
+      "passed_probes": 9
+    },
+    "api35_native": {
+      "name": "Paintroid",
+      "tests": "74",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "48.568"
+    },
+    "api35_app": {
+      "passed": 45,
+      "receipt_scope": "complete-composed-app-union",
+      "phases": {
+        "ordinary": 17,
+        "gallery-draft": 3,
+        "vertical-english-manchu": 2,
+        "vertical-literary-chinese-emoji": 2,
+        "position-ainu-manchu": 3,
+        "position-tibetan-jeju-nom": 4,
+        "dialog": 12,
+        "seed": 1,
+        "verify": 1
+      },
+      "device_identity": {
+        "commit": "4daf64866b621af8adbe618d135cdd5ca0902cfd",
+        "run_id": "39070781922",
+        "build_variant": "debug",
+        "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+        "device_sdk": 35,
+        "apk_sha256": "7de7ea350c99b50e9f7f189fa0a0b8adb8c4fd93c7a90e3adc34a8ccf2e3c55c",
+        "source_sha256": "c3a9102619859a5c8aa1203262735e2e1a9c689464cefefcf7e33332bafc7208",
+        "test_apk_sha256": "f44c94e234095fe74ee0fb754c79a801dd89e4c5b4ad4e454f328e1a9f3892fb",
+        "group_run_attempts": {
+          "core": 1,
+          "position": 1
+        },
+        "composed_in_run_attempt": 1
+      }
+    }
+  },
+  "limits": [
+    "Finnish tests are source-bound JVM/Robolectric checks, not installed Finnish layout or TalkBack coverage.",
+    "The general API35 regression suite is not whole-catalogue linguistic acceptance.",
+    "API30, physical-device coverage and private upgrade signing were not requested or established by this run.",
+    "APK/source hashes are the hosted composed identity receipt; this packet does not claim a separate local signature or embedded-source reinspection.",
+    "Initial local optimized failure and overwritten raw-log disclosure remain unchanged in the first evidence packet."
+  ],
+  "preservation": "Additive to evidence commit c2d1bdd3fd1f4f37f640f2fe3b38d031d25543a8; every existing source/evidence leaf and mode retained."
+}
