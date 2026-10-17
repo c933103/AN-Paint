@@ -101,8 +101,9 @@ internal object LocaleText {
         if (values.isEmpty() && (expected == null || expected.none { it.index != null })) return candidate ?: source
         if (expected == null) return source
         val actual = candidate?.let(::tokens)
-        if (actual != null && actual.all { it.index == null || values.getOrNull(it.index) != null } && actual.map { it.contract() }.groupingBy { it }.eachCount() ==
-            expected.map { it.contract() }.groupingBy { it }.eachCount()) {
+        if (actual != null && actual.all { it.index == null || values.getOrNull(it.index) != null } &&
+            actual.filter { it.index != null }.map { it.contract() }.groupingBy { it }.eachCount() ==
+            expected.filter { it.index != null }.map { it.contract() }.groupingBy { it }.eachCount()) {
             try { return String.format(locale, candidate, *values) }
             catch (_: IllegalFormatException) { /* Render the source below. */ }
         }

@@ -131,14 +131,39 @@ class LocaleTextBoundaryTest {
                 repeat(3) {small.performClick();assertEquals("20",value.text.toString());large.performClick();assertEquals("80",value.text.toString())}
                 small.performClick()
                 dialog!!.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+                shadowOf(Looper.getMainLooper()).idle()
                 assertFalse(dialog!!.isShowing)
                 assertEquals(ImageDimensions(80,160),assembly.image("large").placedSize)
             }
             dialog=NormalizeImagesDialog(activity,assembly,NormalizeAxis.WIDTH).show()
+            shadowOf(Looper.getMainLooper()).idle()
             dialog!!.window!!.decorView.findViewWithTag<View>("normalize_smallest").performClick()
             dialog!!.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            shadowOf(Looper.getMainLooper()).idle()
             assertEquals(ImageDimensions(20,40),assembly.image("large").placedSize)
             assertFalse(dialog!!.isShowing)
         } finally {dialog?.dismiss();controller.close();directory.deleteRecursively()}
     }
+    @Test fun packagedAinuAndManchuEscapedPercentsPreserveReviewedWording() {
+        val strings=listOf(R.string.ui_each_px_px_percent_is_relative_to_the,
+            R.string.ui_percent_of_pixels,R.string.ui_trim_in_percent)
+        val numbers=listOf(R.string.ui_normalize_width_info,R.string.ui_normalize_height_info,
+            R.string.ui_normalize_width_input_percent,R.string.ui_normalize_height_input_percent)
+        var checked=0
+        for (tag in listOf("ain-Kana","ain-Latn","mnc-Mong")) {
+            val config=Configuration(previous.configuration).apply {setLocale(Locale.forLanguageTag(tag))}
+            val resources=RuntimeEnvironment.getApplication().createConfigurationContext(config).resources
+            PaintApplication.currentResources=resources
+            for (id in (if(tag.startsWith("ain")) strings else emptyList())+numbers) {
+                val text=resources.getString(id)
+                assertTrue("Packaged $tag / ${resources.getResourceEntryName(id)}",text.contains("%%"))
+                val args: Array<out Any> = if(id in numbers) arrayOf(20,10,40,80)
+                    else arrayOf("width","20","height","10","40","width","80")
+                assertEquals(String.format(Locale.ROOT,text,*args),uiRoot(id,*args))
+                checked++
+            }
+        }
+        assertEquals(18,checked)
+    }
+
 }

@@ -17,7 +17,9 @@ characters) are data, not a format program.
 
 For formatted messages, the translated template must preserve the source's
 argument indices, types, multiplicities, flags, width and precision. Argument
-order may change. Missing/blank translations, malformed formats, mismatched
+order may change. Literal `%%` and `%n` may vary with the wording; they do not
+consume arguments, but still undergo syntax, token-count and expansion bounds.
+Missing/blank translations, malformed formats, mismatched
 contracts and oversized translated templates fall back to the complete English
 source. No warning/action clauses or user arguments are truncated. If the caller
 itself omits a required value or supplies the wrong type, only that source slot

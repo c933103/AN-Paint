@@ -87,4 +87,86 @@ class LocaleTextTest {
             assertEquals("7 data",render("%2\$d %1\$s",source,Locale.ROOT,"data",7))
         }
     }
+    @Test fun literalFormatterTokensCanFollowLocalWordingWithoutChangingArgumentContracts() {
+        val source="Value %1\$d percent. Keep the image unchanged."
+        for (candidate in listOf("Value %1\$d%%", "%nValue %1\$d%% %%", "Value %1\$d%5%")) {
+            assertEquals(String.format(Locale.ROOT,candidate,7),render(candidate,source,Locale.ROOT,7))
+            assertEquals(String.format(Locale.ROOT,source,7),render(source,candidate,Locale.ROOT,7))
+        }
+        for (candidate in listOf("Value %1\$d%999999999%", "Value %1\$d%1025%", "Value %1\$d%.129%",
+            "Value %1\$d%--%", "Value %1\$d%1n", "Value %1\$d"+"%%".repeat(128), "Value %1\$s%%")) {
+            assertEquals(String.format(Locale.ROOT,source,7),render(candidate,source,Locale.ROOT,7))
+        }
+    }
+
+    @Test fun allEighteenReviewedLiteralPercentTranslationsRetainTheirCompleteText() {
+        // Exact existing source/translation pairs: seven per Ainu script and four Manchu.
+        // Kept literal so a catalogue edit cannot silently rewrite the regression oracle.
+        val pairs=listOf(
+            Triple("values-b+ain+Kana/ui_each_px_px_percent_is_relative_to_the",
+                "Each %1\$s: %2\$s px\n%3\$s: %4\$s–%5\$s px\nPercent is relative to the largest current %6\$s: %7\$s px. Placed images reflow to make room.",
+                "シネㇷ゚ シネㇷ゚ コㇿ %1\$s: %2\$s px\n%3\$s: %4\$s–%5\$s px\n%% アナㇰ タネ イヨッタ ポロ %6\$s: %7\$s px アニ アカㇻ. アアヌ ノカ アナㇰ ウㇱケ アカㇻ クス スイ アアヌ."),
+            Triple("values-b+ain+Kana/ui_percent_of_pixels",
+                "percent of %1\$s pixels",
+                "%1\$s px コㇿ %%"),
+            Triple("values-b+ain+Kana/ui_trim_in_percent",
+                "%1\$s trim in percent",
+                "%1\$s アトゥイェ パㇰノ %% アニ"),
+            Triple("values-b+ain+Kana/ui_normalize_width_info",
+                "Width of each image: %1\$d px\nHeights: %2\$d–%3\$d px\nPercent is relative to the largest current width: %4\$d px. Placed images reflow to make room.",
+                "ノカ シネㇷ゚ シネㇷ゚ セリ: %1\$d px\nケウェリヒ: %2\$d–%3\$d px\n100%% アナㇰ タネ イヨッタ ポロ セリ, %4\$d px, ネ. アアヌ ノカ アナㇰ ウㇱケ アカㇻ クス スイ アアヌ."),
+            Triple("values-b+ain+Kana/ui_normalize_height_info",
+                "Height of each image: %1\$d px\nWidths: %2\$d–%3\$d px\nPercent is relative to the largest current height: %4\$d px. Placed images reflow to make room.",
+                "ノカ シネㇷ゚ シネㇷ゚ ケウェリヒ: %1\$d px\nセリ: %2\$d–%3\$d px\n100%% アナㇰ タネ イヨッタ ポロ ケウェリヒ, %4\$d px, ネ. アアヌ ノカ アナㇰ ウㇱケ アカㇻ クス スイ アアヌ."),
+            Triple("values-b+ain+Kana/ui_normalize_width_input_percent",
+                "Common width as a percentage of %1\$d px",
+                "ウパㇰノ アカㇻ セリ, %% アニ. 100%%: %1\$d px."),
+            Triple("values-b+ain+Kana/ui_normalize_height_input_percent",
+                "Common height as a percentage of %1\$d px",
+                "ウパㇰノ アカㇻ ケウェリヒ, %% アニ. 100%%: %1\$d px."),
+            Triple("values-b+ain+Latn/ui_each_px_px_percent_is_relative_to_the",
+                "Each %1\$s: %2\$s px\n%3\$s: %4\$s–%5\$s px\nPercent is relative to the largest current %6\$s: %7\$s px. Placed images reflow to make room.",
+                "Sinep sinep kor %1\$s: %2\$s px\n%3\$s: %4\$s–%5\$s px\n%% anak tane iyotta poro %6\$s: %7\$s px ani a=kar. A=anu noka anak uske a=kar kusu suy a=anu."),
+            Triple("values-b+ain+Latn/ui_percent_of_pixels",
+                "percent of %1\$s pixels",
+                "%1\$s px kor %%"),
+            Triple("values-b+ain+Latn/ui_trim_in_percent",
+                "%1\$s trim in percent",
+                "%1\$s a=tuye pakno %% ani"),
+            Triple("values-b+ain+Latn/ui_normalize_width_info",
+                "Width of each image: %1\$d px\nHeights: %2\$d–%3\$d px\nPercent is relative to the largest current width: %4\$d px. Placed images reflow to make room.",
+                "Noka sinep sinep seri: %1\$d px\nKewerihi: %2\$d–%3\$d px\n100%% anak tane iyotta poro seri, %4\$d px, ne. A=anu noka anak uske a=kar kusu suy a=anu."),
+            Triple("values-b+ain+Latn/ui_normalize_height_info",
+                "Height of each image: %1\$d px\nWidths: %2\$d–%3\$d px\nPercent is relative to the largest current height: %4\$d px. Placed images reflow to make room.",
+                "Noka sinep sinep kewerihi: %1\$d px\nSeri: %2\$d–%3\$d px\n100%% anak tane iyotta poro kewerihi, %4\$d px, ne. A=anu noka anak uske a=kar kusu suy a=anu."),
+            Triple("values-b+ain+Latn/ui_normalize_width_input_percent",
+                "Common width as a percentage of %1\$d px",
+                "Upakno a=kar seri, %% ani. 100%%: %1\$d px."),
+            Triple("values-b+ain+Latn/ui_normalize_height_input_percent",
+                "Common height as a percentage of %1\$d px",
+                "Upakno a=kar kewerihi, %% ani. 100%%: %1\$d px."),
+            Triple("values-b+mnc+Mong/ui_normalize_width_info",
+                "Width of each image: %1\$d px\nHeights: %2\$d–%3\$d px\nPercent is relative to the largest current width: %4\$d px. Placed images reflow to make room.",
+                "ᠶᠠᠶᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᠣᠨᠴᠣ ᡴᡝᠮᡠᠨ: %1\$d px\nᡩᡝᠨ ᡴᡝᠮᡠᠨ: %2\$d–%3\$d px\n%% ᠪᡝ ᡨᡝ ᡠᠮᡝᠰᡳ ᠠᠮᠪᠠ ᠣᠨᠴᠣ ᡴᡝᠮᡠᠨ (%4\$d px) ᡳ ᠰᠣᠩᡴᠣᡳ ᠪᠣᡩᠣᠮᠪᡳ. ᠰᡳᠨᡩᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡩᠠᡥᡡᠮᡝ ᠰᡳᠨᡩᠠᡶᡳ ᠪᠠ ᠪᡝ ᠰᡠᠯᠠ ᠣᠪᡠᠮᠪᡳ."),
+            Triple("values-b+mnc+Mong/ui_normalize_height_info",
+                "Height of each image: %1\$d px\nWidths: %2\$d–%3\$d px\nPercent is relative to the largest current height: %4\$d px. Placed images reflow to make room.",
+                "ᠶᠠᠶᠠ ᠨᡳᡵᡠᡤᠠᠨ ᡳ ᡩᡝᠨ ᡴᡝᠮᡠᠨ: %1\$d px\nᠣᠨᠴᠣ ᡴᡝᠮᡠᠨ: %2\$d–%3\$d px\n%% ᠪᡝ ᡨᡝ ᡠᠮᡝᠰᡳ ᠠᠮᠪᠠ ᡩᡝᠨ ᡴᡝᠮᡠᠨ (%4\$d px) ᡳ ᠰᠣᠩᡴᠣᡳ ᠪᠣᡩᠣᠮᠪᡳ. ᠰᡳᠨᡩᠠᡥᠠ ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᡩᠠᡥᡡᠮᡝ ᠰᡳᠨᡩᠠᡶᡳ ᠪᠠ ᠪᡝ ᠰᡠᠯᠠ ᠣᠪᡠᠮᠪᡳ."),
+            Triple("values-b+mnc+Mong/ui_normalize_width_input_percent",
+                "Common width as a percentage of %1\$d px",
+                "ᠠᡩᠠᠯᡳ ᠣᠨᠴᠣ ᡴᡝᠮᡠᠨ (%1\$d px ᡳ %%)"),
+            Triple("values-b+mnc+Mong/ui_normalize_height_input_percent",
+                "Common height as a percentage of %1\$d px",
+                "ᠠᡩᠠᠯᡳ ᡩᡝᠨ ᡴᡝᠮᡠᠨ (%1\$d px ᡳ %%)")
+        )
+        assertEquals(18,pairs.size)
+        for ((label,source,translation) in pairs) {
+            val args: Array<out Any> = if (source.contains("%1\$d")) arrayOf(20,10,40,80)
+                else arrayOf("width","20","height","10","40","width","80")
+            val expected=String.format(Locale.ROOT,translation,*args)
+            assertNotEquals(label,String.format(Locale.ROOT,source,*args),expected)
+            assertEquals(label,expected,LocaleText.resolve(translation,source,true,Locale.ROOT,args))
+            assertEquals(label,String.format(Locale.ROOT,source,*args),LocaleText.resolve(source,translation,true,Locale.ROOT,args))
+        }
+    }
+
 }
