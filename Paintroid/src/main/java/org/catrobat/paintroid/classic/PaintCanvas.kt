@@ -214,7 +214,8 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
     }
     fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))
         else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)
-    fun zoomLabel(): String = if (zoom >= .1f) "${(zoom * 100).roundToInt()}%" else String.format(java.util.Locale.ROOT, "%.2f%%", zoom * 100)
+    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())
+        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)
     fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) " · "+ui(R.string.ui_cursor_position26,
         floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else ""
 
