@@ -1,0 +1,53 @@
+{
+  "source_head": "e434c5e779183a017ca9153e688dc77a79a0fc39",
+  "source_tree": "a39746ee5b7bb4d51bcd66f88697e26a0adf05ce",
+  "run_id": 39014409987,
+  "attempt": 1,
+  "deadline_seconds": 720,
+  "jvm_gradle_real_seconds": 828.957,
+  "jvm_gradle_exit_status": 0,
+  "junit_suites": 108,
+  "junit_cases": 1090,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "locale_text_cases": 11,
+  "locale_text_boundary_cases": 24,
+  "gate_status": "failed_step_deadline",
+  "full_artifact_id": 12095285064,
+  "full_artifact_sha256": "ae2185482858582b37b8f5307b353596a8a8573f778e4c1c95e0487244908289",
+  "preserved_deadline_archive_sha256": "197884ebd0217f3f6e1c8189ea28e35a45ace86e91982ec7b58d6e9ca2635e2f",
+  "local_reruns": [
+    {
+      "label": "focused",
+      "command": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "test_app_instrumentation_matrix.ComposedDriverTest.test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 53.75651356903836,
+      "snapshot_sha256": "d410b790dae9752966ccef9807706e24213d60e7426dc883506e67a1b0da841d"
+    },
+    {
+      "label": "optimized-rerun",
+      "command": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 194.7235300700413,
+      "snapshot_sha256": "d410b790dae9752966ccef9807706e24213d60e7426dc883506e67a1b0da841d"
+    }
+  ]
+}
