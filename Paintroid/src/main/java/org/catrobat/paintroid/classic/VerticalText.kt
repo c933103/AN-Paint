@@ -68,7 +68,8 @@ internal object VerticalText {
     private val punctuation=mapOf('、' to '︑','。' to '︒','「' to '﹁','」' to '﹂','『' to '﹃','』' to '﹄','（' to '︵','）' to '︶','【' to '︻','】' to '︼','…' to '︙')
     private data class Run(val text: String,val upright: Boolean)
     private fun runs(line: String,orientation: GlyphOrientation): List<Run> {
-        val result=mutableListOf<Run>()
+        val result=mutableListOf<Run>();val sideways=StringBuilder()
+        fun flush() {if(sideways.isNotEmpty()) {result.add(Run(sideways.toString(),false));sideways.setLength(0)}}
         val parts=clusters(line)
         fun mongolian(cluster: String): Boolean {
             val cp=Character.codePointAt(cluster,0)
@@ -83,10 +84,10 @@ internal object VerticalText {
             // it inherits Mongolian script. This is not a word/column break.
             val suffixBoundary=cluster=="\u202f" && index>0 && index+1<parts.size &&
                 !mongolian(parts[index-1]) && mongolian(parts[index+1])
-            if(!up && result.lastOrNull()?.upright==false && !suffixBoundary) {
-                val last=result.removeAt(result.lastIndex);result.add(Run(last.text+cluster,false))
-            } else result.add(Run(cluster,up))
+            if(up) {flush();result.add(Run(cluster,true))}
+            else {if(suffixBoundary) flush();sideways.append(cluster)}
         }
+        flush()
         return result
     }
     @Suppress("DEPRECATION")
