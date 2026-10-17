@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "cohort": "FR-SAVE-EXPORT-20261014",
+  "source_revision": "647a4b5647cabf3e51cb6dcf20d41ae08143ccdb",
+  "preceding_tracker_revision": "cc0d534f765397aef93622cf27fe3c6953f91001",
+  "public_review_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6160338774",
+  "review_type": "Fresh bounded linguistic and static source-context review",
+  "result": "accepted_unchanged",
+  "reviewed_entry_count": 4,
+  "confidence": "High for bounded French semantics and source-context fit; optional idiomatic polish is non-blocking.",
+  "independent_reviews": [
+    {
+      "role": "French UI language reviewer",
+      "result": "Accepted all four complete current values unchanged; no placeholder issues."
+    },
+    {
+      "role": "Independent French semantic and source-context reviewer",
+      "result": "Accepted all four values; verified save destination/options reuse, export state separation and dirty-state warning callsites."
+    }
+  ],
+  "value_hash_format": "SHA-256 of UTF-8 JSON with ensure_ascii=false, sort_keys=true, separators comma/colon; strings retain Android escape sequences; plural values map quantities to text.",
+  "files": [
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "git_blob_sha": "005ec95b25cc816f067b78a073a2b1b8c37b71d6"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-fr/strings.xml",
+      "git_blob_sha": "fa861c4823565b9ce32b8ed0690c408504a92baa"
+    }
+  ],
+  "entries": [
+    {
+      "tag": "fr",
+      "key": "string/ui_save_explanation23",
+      "cohort": "FR-SAVE-EXPORT-20261014",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "a397786d4a64fccff99506e255c547ed0df5c27aaa9550870fb51f9f9f7919c7",
+      "current_english_sha256": "a397786d4a64fccff99506e255c547ed0df5c27aaa9550870fb51f9f9f7919c7",
+      "reviewed_localized_sha256": "c93bc1a68416f3d760563617a33d5308d496bb76e4a61b9224f25fe81191a5ab",
+      "current_localized_sha256": "c93bc1a68416f3d760563617a33d5308d496bb76e4a61b9224f25fe81191a5ab",
+      "english": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "localized": "Choisissez un format d’image et ses réglages de compression. Enregistrer réutilisera ce nom de fichier, cet emplacement, ce format et ces réglages.",
+      "source_lines": {
+        "english": 511,
+        "localized": 545
+      },
+      "decision": "accept_unchanged",
+      "semantic_finding": "Preserves format/compression selection and all four Save reuse dimensions: file name, location, format and settings.",
+      "placeholders": []
+    },
+    {
+      "tag": "fr",
+      "key": "string/ui_export_explanation23",
+      "cohort": "FR-SAVE-EXPORT-20261014",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "644547326316cec702f38e8fdc09f73099d5fbc902515ab4f093f39a522e3eae",
+      "current_english_sha256": "644547326316cec702f38e8fdc09f73099d5fbc902515ab4f093f39a522e3eae",
+      "reviewed_localized_sha256": "e7964512f57b763bf88543540b03bd7eac1d7d8ea3f7b8af6991943a130ee10c",
+      "current_localized_sha256": "e7964512f57b763bf88543540b03bd7eac1d7d8ea3f7b8af6991943a130ee10c",
+      "english": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "localized": "Exportez une icône, du texte Base64 ou de l’art ASCII. L’exportation ne modifie ni l’image actuelle ni sa destination d’enregistrement.",
+      "source_lines": {
+        "english": 512,
+        "localized": 546
+      },
+      "decision": "accept_unchanged",
+      "semantic_finding": "Preserves icon/Base64/ASCII alternatives and both unchanged current image and unchanged remembered Save destination.",
+      "placeholders": []
+    },
+    {
+      "tag": "fr",
+      "key": "string/ui_export_did_not_save23",
+      "cohort": "FR-SAVE-EXPORT-20261014",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "a0f97782dab4fa5a3a0b06d160370f981797c6ad7f722a0a3cdb06343a793866",
+      "current_english_sha256": "a0f97782dab4fa5a3a0b06d160370f981797c6ad7f722a0a3cdb06343a793866",
+      "reviewed_localized_sha256": "0e62a7d3df13696b702a7594047b9600c8dfa772c08d0e5081d16b67febcef9e",
+      "current_localized_sha256": "0e62a7d3df13696b702a7594047b9600c8dfa772c08d0e5081d16b67febcef9e",
+      "english": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "localized": "L’exportation a été créée. Utilisez Enregistrer ou Enregistrer sous pour enregistrer l’image actuelle avant de continuer.",
+      "source_lines": {
+        "english": 513,
+        "localized": 547
+      },
+      "decision": "accept_unchanged",
+      "semantic_finding": "Distinguishes successful export creation from ordinary saving before continuing; French command names match the UI.",
+      "placeholders": []
+    },
+    {
+      "tag": "fr",
+      "key": "string/ui_your_current_image_has_unsaved_changes",
+      "cohort": "FR-SAVE-EXPORT-20261014",
+      "state": "reviewed_current",
+      "reviewed_english_sha256": "418ebe429fe6f4e7e57bda5064eb851c58450e7d436b469e258cb9db557e97cc",
+      "current_english_sha256": "418ebe429fe6f4e7e57bda5064eb851c58450e7d436b469e258cb9db557e97cc",
+      "reviewed_localized_sha256": "5f4b5fb885edd60c3fda9093881f47a241373ff3f647ccdee9ecdc44c99d58c6",
+      "current_localized_sha256": "5f4b5fb885edd60c3fda9093881f47a241373ff3f647ccdee9ecdc44c99d58c6",
+      "english": "Your current image has unsaved changes.",
+      "localized": "Votre image actuelle comporte des modifications non enregistrées.",
+      "source_lines": {
+        "english": 472,
+        "localized": 526
+      },
+      "decision": "accept_unchanged",
+      "semantic_finding": "Warns of unsaved changes without implying the whole image has never been saved.",
+      "placeholders": []
+    }
+  ],
+  "source_context": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "lines": "43–52, 183",
+      "finding": "Separate Save/export prose and format filtering; same entries in horizontal and vertical branches."
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "lines": "1065–1070, 1095–1112, 1345–1365",
+      "finding": "Dirty replacement guard; remembered Save URI/options; only non-export updates savedTarget and markSaved; export with pending continuation shows warning."
+    }
+  ],
+  "optional_editorial_note": {
+    "key": "string/ui_export_did_not_save23",
+    "suggestion": "L’exportation est terminée.",
+    "disposition": "Optional idiomatic alternative only. Current complete entry accepted by both reviewers; no change applied."
+  },
+  "count_delta": {
+    "new_current": 4,
+    "replaced_stale": 0,
+    "fr_current_before": 11,
+    "fr_current_after": 15,
+    "fr_unknown_before": 687,
+    "fr_unknown_after": 683,
+    "global_current_before": 1286,
+    "global_current_after": 1290,
+    "global_unknown_before": 45796,
+    "global_unknown_after": 45792,
+    "global_stale_after": 0,
+    "global_missing_after": 69484
+  },
+  "requirements_closed": [],
+  "limits": [
+    "No application text or code change.",
+    "No runtime, capture, layout, font or accessibility execution claim.",
+    "No native-speaker certification or whole-language acceptance.",
+    "All 57 broad mandates, French register items and 471 pending reset obligations remain open.",
+    "Proposed PR66 priorities were selection aids only; no priority preference or proposed inventory accepted.",
+    "Cebuano checkbox remains unapplied and uncredited."
+  ]
+}
