@@ -1,0 +1,26 @@
+{
+  "observed_head": "75674fc2eb4491315753a7e8d56f6c71e88ca851",
+  "captures": [
+    {
+      "file": "before-render-fix/api35-mn-Mong-320x640-font1.0-copy-commons_metadata_field_too_large.png",
+      "sha256": "efd66e8067ef7aa4b0c5495d3d1bf228a3d6a08fae33861153e2a5aaeead6507"
+    },
+    {
+      "file": "before-render-fix/api35-mnc-Mong-640x320-font2.0-insert-commons_metadata_field_too_large.png",
+      "sha256": "0d5c6c67d4f53e71fec2385e4899c3980bb0fff685638330aaef1d92913e1bf5"
+    }
+  ],
+  "finding": "Visible dotted-box N marker at U+202F after Latin Commons; Noto provides a diagnostic glyph, so hasGlyph/layout bounds cannot detect this defect. Initial 2x frame shows only the rail starting columns.",
+  "font_unchanged": {
+    "path": "Paintroid/src/main/assets/fonts/notosansmongolian.ttf",
+    "sha256": "805a55e10492c547ccadc1ad04faabdef61a74a5c02ecce69748378d66ef032d",
+    "nnbsp_glyph_contours": 21,
+    "nnbsp_advance_units": 770,
+    "substituted_mvs_wide_contours": 0,
+    "substituted_mvs_wide_advance_units": 260
+  },
+  "prepared_repair": "Start an unchanged U+202F+Mongolian suffix shaping run after a non-Mongolian prefix. Preserve word/column glue, reviewed text, font and whole Mongolian-root shaping.",
+  "native_pixel_regression": "Independent segmented native layouts require blank separator ink and exact suffix pixels; legacy whole Latin/Common run is a visible-ink negative control. Combining Latin marks, Mongolian FVS, empty/newline and mixed CJK cases included. Actual new-head execution pending.",
+  "source_explanation": "The observed Common-script behavior is consistent with AOSP getScriptRun: Common adopts a following script only when still unresolved; after Latin it stays in that preceding run. The new native tests, rather than this older code reference, are the API30/35 acceptance check.",
+  "reference": "https://android.googlesource.com/platform/frameworks/minikin/+/13f1aae02bacd475722bc8ea3fc2cf6abc1a82e3/libs/minikin/Layout.cpp#443"
+}
