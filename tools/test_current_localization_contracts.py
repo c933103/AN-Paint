@@ -25,9 +25,16 @@ EXPECTED_KEYS = {
 }
 
 
+# Additions are message-family-specific; Czech and Polish still fall back for metadata/copy-credit.
+FAMILY_EXTRA_TAGS = {FAMILIES[2]: {'cs', 'pl'}}
+
+
+def wording_tags(name):
+    return {'hu'} if name == FAMILIES[3] else {'default'} | SCOPED_TAGS | FAMILY_EXTRA_TAGS.get(name, set())
+
+
 def wording_fixture(name):
-    return require_wording_shape(fixture(name), EXPECTED_KEYS[name],
-        {'hu'} if name==FAMILIES[3] else {'default'}|SCOPED_TAGS)
+    return require_wording_shape(fixture(name), EXPECTED_KEYS[name], wording_tags(name))
 
 
 def paths():
@@ -39,7 +46,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
         from copy import deepcopy
         for name in FAMILIES:
             original=wording_fixture(name)
-            tags={'hu'} if name==FAMILIES[3] else {'default'}|SCOPED_TAGS
+            tags=wording_tags(name)
             for key in EXPECTED_KEYS[name]:
                 for mutation in ('missing-key','empty-values','missing-locale','empty-text','missing-constraint'):
                     data=deepcopy(original)
@@ -52,6 +59,19 @@ class CurrentLocalizationContracts(unittest.TestCase):
                         require_wording_shape(data,EXPECTED_KEYS[name],tags)
             data=deepcopy(original);data['values']={}
             with self.assertRaises(ValueError): require_wording_shape(data,EXPECTED_KEYS[name],tags)
+
+    def test_czech_polish_svg_scope_does_not_expand_other_message_families(self):
+        svg = wording_fixture(FAMILIES[2])
+        extra_tags = {'cs', 'pl'}
+        self.assertEqual(extra_tags, set(svg['additional_draft_tags']))
+        self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
+        self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
+        self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
+        for name in FAMILIES[:2]:
+            self.assertTrue(extra_tags.isdisjoint(wording_tags(name)))
+            self.assertEqual({'default'} | SCOPED_TAGS, wording_tags(name))
+        self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
+        self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
 
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')
@@ -105,7 +125,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
         for name in FAMILIES[:3]:
             data = wording_fixture(name)
             for key, values in data['values'].items():
-                self.assertEqual({'default'} | SCOPED_TAGS, set(values))
+                self.assertEqual(wording_tags(name), set(values))
                 for tag, root in xml.items():
                     with self.subTest(key=key, tag=tag):
                         self.assertEqual(int(tag in values), len(root.findall(f"./string[@name='{key}']")))

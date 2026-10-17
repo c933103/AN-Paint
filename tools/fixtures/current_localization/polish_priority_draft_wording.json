@@ -1,0 +1,708 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded Polish safety and grammatical-composition draft regression targets. Not independent linguistic acceptance, native-speaker, Android or layout certification.",
+  "values": {
+    "save20_file_format": {
+      "default": "File format",
+      "pl": "Format pliku"
+    },
+    "ui_keep_editing23": {
+      "default": "Keep editing",
+      "pl": "Kontynuuj edycję"
+    },
+    "ui_background_colour": {
+      "default": "Background colour",
+      "pl": "Kolor tła"
+    },
+    "ui_foreground_colour": {
+      "default": "Foreground colour",
+      "pl": "Kolor pierwszego planu"
+    },
+    "ui_pixels_6ec9c2": {
+      "default": "pixels",
+      "pl": "pikselach"
+    },
+    "ui_solid_fill": {
+      "default": "Solid fill",
+      "pl": "Jednolite wypełnienie"
+    },
+    "formats22_animation_message": {
+      "default": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "pl": "Liczba klatek w tym pliku %1$s: %2$s. AN Paint edytuje obrazy nieruchome i nie zachowuje animacji."
+    },
+    "formats22_animation_poster": {
+      "default": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "pl": "Ten plik PNG ma oddzielny obraz domyślny. Zostanie on zaimportowany zamiast klatek animacji. Zapisanie utworzy obraz nieruchomy."
+    },
+    "formats22_animation_still": {
+      "default": "Only the first frame will be imported. Saving creates a still image.",
+      "pl": "Zostanie zaimportowana tylko pierwsza klatka. Zapisanie utworzy obraz nieruchomy."
+    },
+    "formats22_animation_unknown": {
+      "default": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "pl": "Ten plik %1$s jest zbyt złożony, aby potwierdzić, czy zawiera wiele klatek. AN Paint otworzy tylko obraz nieruchomy i nie zachowa żadnej animacji."
+    },
+    "formats22_at_least_frames": {
+      "default": "at least %1$d",
+      "pl": "co najmniej %1$d"
+    },
+    "ui_share_explanation34": {
+      "default": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "pl": "Zapisz kopię w wybranym miejscu, a następnie wybierz aplikację do udostępnienia. Bieżące miejsce zapisu pozostanie bez zmian."
+    },
+    "ui_a_separate_recovery_copy_has_been_kept_use": {
+      "default": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "pl": "%1$s Zachowano oddzielną kopię odzyskiwania. Użyj polecenia Plik → Wyeksportuj kopię odzyskiwania, aby zapisać ją jako plik ZIP. Wypakuj z niego plik canvas.png i otwórz ten obraz, aby w razie potrzeby skorzystać ze zwykłych opcji zmiany rozmiaru."
+    },
+    "ui_autosave_is_paused_to_protect_that_draft_use": {
+      "default": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "pl": "%1$s Automatyczny zapis został wstrzymany, aby chronić tę wersję roboczą. Użyj polecenia „Plik → Wyeksportuj kopię odzyskiwania…”, aby ją zachować, oraz „Plik → Zapisz jako…” (Format pliku: PNG / JPEG), aby zapisać bieżącą pracę."
+    },
+    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+      "default": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "pl": "Obraz o wymiarach %1$d × %2$d px (%3$.2f MP) przekracza obecny bezpieczny limit edycji wynoszący %4$.2f MP. AN Paint przechowuje cały obraz w pamięci i rezerwuje miejsce na przekształcenia oraz zaznaczenia. Ten limit zależy od dostępnej pamięci. Operacja została zatrzymana przed przydzieleniem pamięci na zbyt dużą bitmapę. Nie zastosowano automatycznej zmiany rozmiaru."
+    },
+    "ui_the_full_image_and_working_buffers_exceed_the": {
+      "default": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+      "pl": "Cały obraz i bufory robocze przekraczają obecny bezpieczny limit pamięci lub system Android nie mógł przydzielić im pamięci. Zmień rozmiar kopii, aby ją edytować. Oryginalny plik pozostanie bez zmian."
+    },
+    "ui_codec_resize_memory_floor": {
+      "default": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+      "pl": "Ten format wymaga zdekodowania obrazu źródłowego lub jego kafelków przed zmianą rozmiaru. Nawet mniejszy obraz wynikowy może przekroczyć dostępną pamięć."
+    },
+    "ui_no_resize_fits_decoder_memory": {
+      "default": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "pl": "Nawet przy najmniejszym obrazie wynikowym bufory robocze dekodera tego obrazu nie mieszczą się w obecnym limicie pamięci. Anuluj i użyj mniejszego obrazu źródłowego."
+    },
+    "ui_history_unavailable34": {
+      "default": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "pl": "Płótno zostało przywrócone, ale nie udało się odczytać historii cofania. Oryginalna wersja robocza została zachowana jako kopia odzyskiwania."
+    },
+    "ui_height_in": {
+      "default": "Height in %1$s",
+      "pl": "Wysokość w %1$s"
+    },
+    "ui_width_in": {
+      "default": "Width in %1$s",
+      "pl": "Szerokość w %1$s"
+    },
+    "ui_percent_fd8671": {
+      "default": "percent",
+      "pl": "procentach"
+    },
+    "ui_pixels": {
+      "default": "Pixels",
+      "pl": "\"piksele\""
+    },
+    "ui_percent": {
+      "default": "Percent",
+      "pl": "Procenty"
+    },
+    "ui_expand_tool_category": {
+      "default": "%1$s: %2$s selected. Expand tools and options",
+      "pl": "%1$s. Wybrane narzędzie: %2$s. Rozwiń narzędzia i opcje"
+    },
+    "ui_collapse_tool_category": {
+      "default": "%1$s: %2$s selected. Collapse tools and options",
+      "pl": "%1$s. Wybrane narzędzie: %2$s. Zwiń narzędzia i opcje"
+    },
+    "ui_drawing_canvas_pinch_and_move_two_fingers_to": {
+      "default": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "pl": "Płótno do rysowania. Zbliżaj lub rozsuwaj dwa palce, aby zmieniać powiększenie, i przesuwaj je, aby przesuwać widok. Tryb „Przesuwanie i powiększanie” pozwala także przesuwać widok jednym palcem."
+    },
+    "ui_paste_hint34": {
+      "default": "Copy an area or use Draw → Insert → Other images.",
+      "pl": "Skopiuj obszar lub wybierz Rysowanie → Wstawianie → Inne obrazy."
+    },
+    "ui_trim_amounts_must_be_zero_or_greater": {
+      "default": "Trim amounts must be zero or greater.",
+      "pl": "Wielkości przycięcia muszą być równe zeru lub większe."
+    },
+    "ui_trim_amounts_must_fit_inside_each_image_use": {
+      "default": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+      "pl": "Wielkości przycięcia muszą mieścić się w granicach każdego obrazu; użyj całkowitej liczby pikseli lub wartości procentowych."
+    },
+    "ui_the_trim_would_remove_the_entire_image": {
+      "default": "The trim would remove the entire image.",
+      "pl": "To przycięcie usunęłoby cały obraz."
+    },
+    "ui_trim_expand_canvas_by_touch": {
+      "default": "Trim / expand canvas by touch…",
+      "pl": "Przytnij lub rozszerz płótno dotykiem…"
+    }
+  },
+  "constraints": {
+    "save20_file_format": {
+      "default": {
+        "attributes": {
+          "name": "save20_file_format"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "save20_file_format"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_keep_editing23": {
+      "default": {
+        "attributes": {
+          "name": "ui_keep_editing23"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_keep_editing23"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_background_colour": {
+      "default": {
+        "attributes": {
+          "name": "ui_background_colour"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_background_colour",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      }
+    },
+    "ui_foreground_colour": {
+      "default": {
+        "attributes": {
+          "name": "ui_foreground_colour"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_foreground_colour",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      }
+    },
+    "ui_pixels_6ec9c2": {
+      "default": {
+        "attributes": {
+          "name": "ui_pixels_6ec9c2"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_pixels_6ec9c2"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_solid_fill": {
+      "default": {
+        "attributes": {
+          "name": "ui_solid_fill"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_solid_fill"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "formats22_animation_message": {
+      "default": {
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      }
+    },
+    "formats22_animation_poster": {
+      "default": {
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "formats22_animation_still": {
+      "default": {
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "formats22_animation_unknown": {
+      "default": {
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      }
+    },
+    "formats22_at_least_frames": {
+      "default": {
+        "attributes": {
+          "name": "formats22_at_least_frames"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$d": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "formats22_at_least_frames"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$d": 1
+        }
+      }
+    },
+    "ui_share_explanation34": {
+      "default": {
+        "attributes": {
+          "name": "ui_share_explanation34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_share_explanation34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      }
+    },
+    "ui_a_separate_recovery_copy_has_been_kept_use": {
+      "default": {
+        "attributes": {
+          "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      }
+    },
+    "ui_autosave_is_paused_to_protect_that_draft_use": {
+      "default": {
+        "attributes": {
+          "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      }
+    },
+    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+      "default": {
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$d": 1,
+          "%2$d": 1,
+          "%3$.2f": 1,
+          "%4$.2f": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$d": 1,
+          "%2$d": 1,
+          "%3$.2f": 1,
+          "%4$.2f": 1
+        }
+      }
+    },
+    "ui_the_full_image_and_working_buffers_exceed_the": {
+      "default": {
+        "attributes": {
+          "name": "ui_the_full_image_and_working_buffers_exceed_the"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_the_full_image_and_working_buffers_exceed_the"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_codec_resize_memory_floor": {
+      "default": {
+        "attributes": {
+          "name": "ui_codec_resize_memory_floor"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_codec_resize_memory_floor"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_no_resize_fits_decoder_memory": {
+      "default": {
+        "attributes": {
+          "name": "ui_no_resize_fits_decoder_memory"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_no_resize_fits_decoder_memory"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_history_unavailable34": {
+      "default": {
+        "attributes": {
+          "name": "ui_history_unavailable34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_history_unavailable34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      }
+    },
+    "ui_height_in": {
+      "default": {
+        "attributes": {
+          "name": "ui_height_in"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_height_in"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      }
+    },
+    "ui_width_in": {
+      "default": {
+        "attributes": {
+          "name": "ui_width_in"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_width_in"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1
+        }
+      }
+    },
+    "ui_percent_fd8671": {
+      "default": {
+        "attributes": {
+          "name": "ui_percent_fd8671"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_percent_fd8671"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_pixels": {
+      "default": {
+        "attributes": {
+          "name": "ui_pixels"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_pixels"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_percent": {
+      "default": {
+        "attributes": {
+          "name": "ui_percent"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_percent"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_expand_tool_category": {
+      "default": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      }
+    },
+    "ui_collapse_tool_category": {
+      "default": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "formatted": true,
+        "placeholders": {
+          "%1$s": 1,
+          "%2$s": 1
+        }
+      }
+    },
+    "ui_drawing_canvas_pinch_and_move_two_fingers_to": {
+      "default": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_paste_hint34": {
+      "default": {
+        "attributes": {
+          "name": "ui_paste_hint34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_paste_hint34",
+          "formatted": "false"
+        },
+        "formatted": false,
+        "placeholders": {}
+      }
+    },
+    "ui_trim_amounts_must_be_zero_or_greater": {
+      "default": {
+        "attributes": {
+          "name": "ui_trim_amounts_must_be_zero_or_greater"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_trim_amounts_must_be_zero_or_greater"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_trim_amounts_must_fit_inside_each_image_use": {
+      "default": {
+        "attributes": {
+          "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_the_trim_would_remove_the_entire_image": {
+      "default": {
+        "attributes": {
+          "name": "ui_the_trim_would_remove_the_entire_image"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_the_trim_would_remove_the_entire_image"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    },
+    "ui_trim_expand_canvas_by_touch": {
+      "default": {
+        "attributes": {
+          "name": "ui_trim_expand_canvas_by_touch"
+        },
+        "formatted": true,
+        "placeholders": {}
+      },
+      "pl": {
+        "attributes": {
+          "name": "ui_trim_expand_canvas_by_touch"
+        },
+        "formatted": true,
+        "placeholders": {}
+      }
+    }
+  }
+}
