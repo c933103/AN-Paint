@@ -1,0 +1,29 @@
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt
+index 97b6c56..25ab1e7 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt
+@@ -453,12 +453,18 @@ class AssemblyActivityTest {
+     @Test fun englishHelpModesReachActualHelpAndExactPositionToolbarWithCurrentLabels() {
+         val expected=org.json.JSONObject(javaClass.getResourceAsStream("/assembly-help-modes/expected.json")!!
+             .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("locales")
+-        // A language-only configuration explicitly exercises the default resource,
+-        // independently of the test device's regional English setting.
+-        val config=android.content.res.Configuration(activity.resources.configuration)
+-        config.setLocales(android.os.LocaleList.forLanguageTags("en"))
+-        assertEquals(expected.getJSONObject("en").getString("help"),activity.createConfigurationContext(config)
+-            .getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s))
++        // Android resolves language-only English to its US regional resource here.
++        // Use a language with no catalogue to exercise the unqualified default too;
++        // keep both complete oracles distinct rather than normalizing their spelling.
++        assertNotEquals(expected.getJSONObject("en").getString("help"),expected.getJSONObject("en-US").getString("help"))
++        for((requested,fixtureTag) in listOf("en" to "en-US","zxx" to "en")) {
++            val config=android.content.res.Configuration(activity.resources.configuration)
++            config.setLocales(android.os.LocaleList.forLanguageTags(requested))
++            val resources=activity.createConfigurationContext(config).resources
++            assertEquals(requested,resources.configuration.locales[0].toLanguageTag())
++            assertEquals("Complete Help for requested locale $requested",expected.getJSONObject(fixtureTag).getString("help"),
++                resources.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s))
++        }
+         val tags=listOf("en-001","en-AU","en-CA","en-GB","en-IN","en-SG","en-US","en-XV","qaa-Zsye-XV")
+         for(tag in tags) withLanguage(tag) {
+             // Rebuild real toolbar consumers after the app-language change.

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.AssemblyActivityTest" tests="22" skipped="0" failures="1" errors="0" timestamp="2026-10-17T18:31:55.510Z" hostname="runnervmk1d70" time="16.959">
+  <properties/>
+  <testcase name="editInPaintTransfersCompositeAndMainUndoRestoresPreviousCanvas" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.637"/>
+  <testcase name="sameWidthAndHeightOfferPercentPreserveRatiosAndUndoWithoutChangingSources" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.477"/>
+  <testcase name="exactPositionMovesOnlySelectedImageAllowsOverlapAndSurvivesReopening" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.444"/>
+  <testcase name="frenchHeaderTracksAddPlaceUnplaceAndRemoveIncludingOne" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.209"/>
+  <testcase name="exactFirstPlacementAndUnplaceMatchHelpWhileSnapRemovalCanFillTheGap" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.424"/>
+  <testcase name="reopeningAssemblyRestoresOriginalFilesCropsAndAttachments" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.289"/>
+  <testcase name="twentyImagesLoadAndAnOversizedPickerBatchIsRejectedBeforeReading" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="5.357"/>
+  <testcase name="everyEnglishOverrideAndFrenchQualifiesWholeCropQuantityMessages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.249"/>
+  <testcase name="capacityRefusalUsesTrueRemainingCountBeforeReadingAndAcceptsAnExactFit" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="4.316"/>
+  <testcase name="unplaceButtonRemovesOnlySelectedRootAndPromotesRemainingImages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.229"/>
+  <testcase name="individualAndBatchCropUsePercentAndAreUndoableBeforePlacement" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.461"/>
+  <testcase name="multiPickerLoadsNamesTimesAndThumbnailsThenNativeDragEventsSnapBothDirections" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.349"/>
+  <testcase name="placedImageCanBeDraggedByTouchWithVisibleSnappingAndCancelledSafely" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.325"/>
+  <testcase name="englishHelpModesReachActualHelpAndExactPositionToolbarWithCurrentLabels" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.071">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;...«File &gt; About, licen[c]es &amp; credits» panel.&gt; but was:&lt;...«File &gt; About, licen[s]es &amp; credits» panel.&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;...«File &gt; About, licen[c]es &amp; credits» panel.&gt; but was:&lt;...«File &gt; About, licen[s]es &amp; credits» panel.&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AssemblyActivityTest.englishHelpModesReachActualHelpAndExactPositionToolbarWithCurrentLabels(AssemblyActivityTest.kt:460)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.
+</failure>
+  </testcase>
+  <testcase name="frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.265"/>
+  <testcase name="landscapeTrayAndWorkspaceRemainReachable" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.328"/>
+  <testcase name="savePngStreamsExactCompositeAndCancelRemovesOnlyTemporaryOutput" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.347"/>
+  <testcase name="invalidPositionAndCancelDoNotChangeImagesOrTheSavedProject" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.264"/>
+  <testcase name="frenchActualBatchCropShowsCompleteWarningForZeroOneAndTwoSelectedImages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.279"/>
+  <testcase name="renderingOneAndTwoImagesDisplaysEachActualProgressCallbackAndCreatesOutput" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="1.087"/>
+  <testcase name="cropTouchHandlesKeepTrackingAcrossMovesAndPixelPercentChoiceIsVisible" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.296"/>
+  <testcase name="positionDialogKeepsInputsAndActionsReachableInShortLandscape" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.255"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
