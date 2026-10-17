@@ -299,7 +299,7 @@
     <string name="ui_draw_around_an_area_drag_inside_to_move">Disegna intorno a un’area. Trascina all’interno per spostare, usa le maniglie quadrate agli angoli o ai bordi per ridimensionare oppure la maniglia rotonda per ruotare. «Conferma selezione» applica la modifica.</string>
     <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Disegna pennellate morbide ad acquerello. L’intensità controlla quanto il colore si fonde con la tela.</string>
     <string name="ui_draw_with_the_selected_brush_tip_and_size">Disegna con la punta e la dimensione del pennello selezionate.</string>
-    <string name="ui_drawing_canvas_pinch_and_move_two_fingers_to">Tela di disegno. Pizzica e muovi due dita per ingrandire e spostare. La modalità Naviga consente anche lo spostamento con un dito.</string>
+    <string name="ui_drawing_canvas_pinch_and_move_two_fingers_to">Tela di disegno. Avvicina o allontana due dita per ridurre o ingrandire la vista; muovile insieme per spostarla. La modalità Naviga consente anche lo spostamento con un dito.</string>
     <string name="ui_drawing_settings">Impostazioni di disegno…</string>
     <string name="ui_drawing_settings_d900c6">Impostazioni di disegno</string>
     <string name="ui_drop_at_a_highlighted_edge_right_top_aligned">Rilascia su un bordo evidenziato: a destra/allineato in alto oppure sotto/allineato a sinistra.</string>
@@ -410,7 +410,7 @@
     <string name="ui_recent_colour_d_06x_tap_foreground_hold_background">Colore recente %1$d: #%2$06X. Tocca per primo piano, tieni premuto per sfondo.</string>
     <string name="ui_recent_colour_empty">Colore recente %1$s: vuoto</string>
     <string name="ui_recovered_image">Immagine recuperata</string>
-    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">Copia di recupero esportata. Estrai canvas.png dallo ZIP e aprila con File &gt; Carica immagine. Lo ZIP contiene anche le impostazioni della bozza e l’eventuale selezione flottante.</string>
+    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">Copia di recupero esportata. Estrai canvas.png dallo ZIP e apri l’immagine con «File &gt; Apri immagine…». Lo ZIP contiene anche le impostazioni della bozza e l’eventuale selezione flottante.</string>
     <string name="ui_rendering_images">Rendering di %1$s / %2$s immagini…</string>
     <string name="ui_reset_crop">Reimposta ritaglio</string>
     <string name="ui_reset_to_black_white">Reimposta su nero / bianco</string>
@@ -548,7 +548,7 @@
     <string name="ui_colour_hsl_lightness_range" formatted="false">HSL L · 0–100%</string>
     <string name="ui_save_explanation23">Scegli un formato immagine e le relative impostazioni di compressione. «Salva» riutilizzerà questo nome file, posizione, formato e impostazioni.</string>
     <string name="ui_export_explanation23">Esporta un’icona, testo Base64 o arte ASCII. L’esportazione mantiene invariati l’immagine corrente e la destinazione di Salva.</string>
-    <string name="ui_export_did_not_save23">L’esportazione è stata creata. Usa Salva o Salva come per salvare l’immagine corrente prima di continuare.</string>
+    <string name="ui_export_did_not_save23">L’esportazione è stata creata. Usa «Salva» o «Salva con nome…» per salvare l’immagine corrente prima di continuare.</string>
     <string name="ui_selected_colour23">Colore selezionato</string>
     <string name="ui_saved_palette23">Tavolozza salvata</string>
     <string name="ui_added_palette23">Aggiunto alla tavolozza</string>
@@ -647,18 +647,18 @@
     <string name="formats22_ico_dimensions_error">Le dimensioni dell’immagine dell’icona non corrispondono a quelle della directory.</string>
     <string name="formats22_ico_invalid_size">Scegli una dimensione icona di 16, 24, 32, 48, 64, 128 o 256 pixel.</string>
     <string name="language20_current">Lingua dell’app: %1$s</string>
-    <string name="language20_translation_note">Lingua dell’app\n\nLe traduzioni sono mantenute direttamente nelle risorse di lingua di AN Paint. Il testo aggiunto dopo l’ultimo aggiornamento di questo catalogo può temporaneamente apparire nell’inglese di base dell’app.</string>
+    <string name="language20_translation_note">Lingua dell’app\n\nLe traduzioni sono mantenute nelle risorse linguistiche di AN Paint. I testi nuovi o non tradotti appaiono in inglese.</string>
     <string name="save20_gif_description">Immagine statica, fino a 256 colori. Il dithering rende più uniformi i gradienti di colore. Le GIF animate si aprono sul primo fotogramma.</string>
     <string name="save20_bmp_description">RGB a 24 bit non compresso; colori esatti, file più grandi.</string>
     <string name="save20_invalid_name">Inserisci un nome file senza barre o caratteri di controllo.</string>
     <string name="save20_encoding_budget">L’immagine e i buffer di codifica superano il limite di memoria per l’esportazione.</string>
     <string name="save20_bmp_size_limit">L’immagine supera il limite di dimensione file BMP.</string>
     <string name="save20_gif_size_limit">Le dimensioni GIF non possono superare 65.535 pixel per lato.</string>
-    <string name="save20_destination_error">L’immagine completata non ha potuto sostituire la destinazione.</string>
+    <string name="save20_destination_error">Non è stato possibile sostituire il file di destinazione con l’immagine completata.</string>
     <string name="save20_unsupported_tagged_colour">Questo BMP o GIF usa un profilo colore che AN Paint non può ancora convertire. Convertilo in PNG sRGB in un editor con gestione colore prima dell’importazione.</string>
     <string name="save20_lossy_quality_description">Una qualità più alta conserva più dettagli e in genere produce un file più grande.</string>
-    <string name="ui_expand_tool_category">%1$s: %2$s selezionato. Espandi strumenti e opzioni</string>
-    <string name="ui_collapse_tool_category">%1$s: %2$s selezionato. Comprimi strumenti e opzioni</string>
+    <string name="ui_expand_tool_category">%1$s. Strumento selezionato: %2$s. Espandi strumenti e opzioni</string>
+    <string name="ui_collapse_tool_category">%1$s. Strumento selezionato: %2$s. Comprimi strumenti e opzioni</string>
     <string name="ui_tool_categories">Categorie strumenti. Scorri per vedere altri strumenti</string>
     <string name="ui_pencil_crisp_adjustable_strokes">La matita mantiene bordi netti con qualsiasi larghezza selezionata.</string>
     <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
@@ -713,4 +713,15 @@
     <string name="ui_assembly_position_nonnegative">X e Y devono essere numeri interi compresi tra 0 e 2147483647.</string>
     <string name="ui_assembly_unknown_image">L’immagine selezionata non fa più parte di questa composizione.</string>
     <string name="gallery_external_link_no_handler">Android non ha trovato un’app per aprire questo link.</string>
+
+    <!-- Commons/import application failures: complete independently reviewed reasons. -->
+    <string name="commons_metadata_not_file_page">Non è una pagina di file di Commons</string>
+    <string name="commons_metadata_ambiguous_file">I metadati di Commons non identificano un file in modo univoco</string>
+    <string name="commons_metadata_unavailable">I metadati del file di Commons non sono disponibili</string>
+    <string name="commons_metadata_original_mismatch">L’attribuzione di Commons non corrisponde al file originale selezionato</string>
+    <string name="commons_metadata_invalid_page">Pagina di attribuzione di Commons non valida</string>
+    <string name="commons_metadata_field_too_large">Un campo di attribuzione di Commons supera il limite di lunghezza del testo</string>
+    <string name="commons_metadata_cache_failed">Impossibile conservare l’attribuzione di Commons</string>
+    <string name="commons_download_original_mismatch">Il download da Commons è stato reindirizzato a un file originale diverso.</string>
+    <string name="commons_svg_png_encode_failed">Impossibile codificare la carta muta come PNG</string>
 </resources>

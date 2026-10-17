@@ -12,7 +12,8 @@ import struct
 ASSETS_REL = 'Paintroid/src/main/assets'
 # Product glyphs and complete canonical licence paragraph inventories, not source hashes.
 REQUIRED_GLYPHS = {'U+651D','U+671D','U+8C6B','U+8FD4','U+3002','U+554F','U+8FFD',
-                   'U+4EFD','U+6089','U+6578','U+91CD','U+2A700','U+2CA20'}
+                   'U+4EFD','U+6089','U+6578','U+91CD','U+2A700','U+2CA20',
+                   'U+4E00','U+552F','U+5834','U+7B26','U+28C7D','U+259EA'}
 LICENCE_PARAGRAPHS = {'MIT': 5, 'OFL-1.1': 21}
 
 def sha256(data):

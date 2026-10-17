@@ -52,6 +52,13 @@ The keys and translation constraints are:
 - `commons_download_original_mismatch`: an allowed redirect changes the original image; insertion only.
 - `commons_svg_png_encode_failed`: PNG encoding returned false; SVG insertion only.
 
+The Hán-Nôm reasons require six additional UI glyphs. They are appended from
+already-pinned Nom Na Tong v5.18 with the preservation-only font extension tool;
+existing glyph order/outlines, metrics, Unicode subtable identities and licence
+metadata are retained. The current font contract pins the six new glyphs and
+checks supplementary characters in format-12 cmap subtables. This is UI-font
+coverage, not an extension of drawing/font export support.
+
 None of the nine values has a placeholder. Commons and PNG retain their service
 and format identities. Provider attribution and licence text is not translated.
 
