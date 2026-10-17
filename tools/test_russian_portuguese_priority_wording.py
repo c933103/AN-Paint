@@ -154,7 +154,7 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
                 self.assertNotIn(str(count) + ' пикселей', text)
         source = (CLASSIC / 'ImageImport.kt').read_text()
         self.assertIn('val pixels: Long get() = width.toLong() * height', source)
-        self.assertIn('ui(R.string.ui_d_d_px_d_pixels_2f_mp), width, height, pixels, pixels / 1_000_000.0)', source)
+        self.assertIn('ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)', source)
 
     def test_russian_memory_warning_retains_all_safety_clauses(self):
         value = self.values['ru']['ui_d_d_pixels_2f_mp_exceeds_the_current']

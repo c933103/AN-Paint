@@ -121,7 +121,7 @@ class BrazilianPortuguesePriorityWordingTests(unittest.TestCase):
         source = (CLASSIC / 'ImageImport.kt').read_text(encoding='utf-8')
         self.assertIn('width > 0 && height > 0', source)
         self.assertIn('val pixels: Long get() = width.toLong() * height', source)
-        self.assertIn('ui(R.string.' + COUNT + '), width, height, pixels, pixels / 1_000_000.0)', source)
+        self.assertIn('ui(R.string.' + COUNT + ', width, height, pixels, pixels / 1_000_000.0)', source)
 
     def test_zoom_and_pan_instructions_match_real_gesture_span_and_focus(self):
         self.assertEqual('Tela de desenho. Afaste dois dedos para ampliar e aproxime-os para reduzir o zoom. '

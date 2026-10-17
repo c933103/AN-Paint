@@ -68,12 +68,12 @@ class BrazilianPortuguesePriorityWordingTest {
     @Test fun dimensionControlsKeepCountAndComposedUnitsAcrossSizeAndUnitChanges() {
         val controls = DimensionControls(portuguese, ImageDimensions(1, 1), locked = false)
         val result = controls.findViewWithTag<TextView>("size_result")
-        assertEquals("1 × 1 px · Quantidade de pixels: 1 (0.00 MP)", result.text.toString())
+        assertEquals("1 × 1 px · Quantidade de pixels: 1 (0,00 MP)", result.text.toString())
         assertEquals("Largura em pixels", controls.widthInput.contentDescription.toString())
         assertEquals("Altura em pixels", controls.heightInput.contentDescription.toString())
         assertEquals("Pixels", controls.findViewWithTag<TextView>("size_pixels").text.toString())
         controls.setDimensions(ImageDimensions(40, 25))
-        assertEquals("40 × 25 px · Quantidade de pixels: 1,000 (0.00 MP)", result.text.toString())
+        assertEquals("40 × 25 px · Quantidade de pixels: 1.000 (0,00 MP)", result.text.toString())
         controls.findViewWithTag<View>("size_percent").performClick()
         assertEquals("Largura em porcentagem", controls.widthInput.contentDescription.toString())
         assertEquals("Altura em porcentagem", controls.heightInput.contentDescription.toString())
@@ -81,7 +81,7 @@ class BrazilianPortuguesePriorityWordingTest {
         assertEquals("Largura em pixels", controls.widthInput.contentDescription.toString())
         assertEquals("Altura em pixels", controls.heightInput.contentDescription.toString())
         controls.setDimensions(ImageDimensions(2000, 1000))
-        assertEquals("2000 × 1000 px · Quantidade de pixels: 2,000,000 (2.00 MP)", result.text.toString())
+        assertEquals("2000 × 1000 px · Quantidade de pixels: 2.000.000 (2,00 MP)", result.text.toString())
     }
 
     @Test fun noneButtonClearsActualImageChecklistAndDoesNotApplyAnEmptySelection() {
