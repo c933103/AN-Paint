@@ -1,0 +1,37 @@
+{
+  "candidate_commit": "5a43d2a6a90fc578319914537b7ea55e46c75070",
+  "candidate_tree": "3c91d75c7be084077787564d68e72d58a2699ec9",
+  "checks": {
+    "focused-normal": {
+      "tests": 14,
+      "seconds": 0.465,
+      "exit_code": 0,
+      "log": "focused-normal.log",
+      "log_sha256": "00200f7909c3dba021e2fce2442bd819f072b86e0cdc85a9055fb5e03077aa67"
+    },
+    "focused-optimized": {
+      "tests": 14,
+      "seconds": 0.445,
+      "exit_code": 0,
+      "log": "focused-optimized.log",
+      "log_sha256": "0a7871293b828a20e5ed7a61bc5a3205f13eab11ee1dd571fa314983b9d56991"
+    },
+    "host-normal": {
+      "tests": 865,
+      "seconds": 194.751,
+      "exit_code": 0,
+      "log": "host-normal.log",
+      "log_sha256": "3c4cdebb04c370d0181638025767f67c721bd8c59c2e7e14651452ba77105c89"
+    },
+    "host-optimized": {
+      "tests": 865,
+      "seconds": 198.534,
+      "exit_code": 0,
+      "log": "host-optimized.log",
+      "log_sha256": "aeff72a98f41ad6e1933b6dfd4dbcb5a69cd8759bc8feb78735f4bfb13156ba5"
+    }
+  },
+  "aapt_compile": "passed; separate receipt",
+  "jvm_build_lint_resource_link_device": "not_run locally; hosted exact-head results required",
+  "limitations": "Host resource/source assertions and AAPT2 compilation do not certify Turkish fluency, runtime behavior or layout. First test failures are preserved; no production change was made to accommodate tests."
+}
