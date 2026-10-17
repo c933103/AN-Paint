@@ -2,6 +2,10 @@
 
 Download the [complete review packet](esperanto-review-packet.zip), [test summary](test-summary.json), and [archive checksum](packet.sha256). Detailed files named below are inside the packet.
 
+## Hosted follow-up
+
+[Run39063156079 completed successfully: all three Esperanto consumers, the full JVM suite, lint and all six jobs passed](runtime-39063156079/README.md). This later receipt supersedes the pending hosted-execution status in the original review below; it does not expand linguistic or layout acceptance.
+
 ## Scope and result
 
 All **341 complete English/Esperanto pairs** were read individually: 92 P0 and 249 P1, against develop `5dba779c904a25bde2ec6d6f8f48eb3cad901a1e` (tree `2f15510fa46894e9a372ee58f2bf2b1ffeb4f691`). This is a fresh model-based linguistic/static-source pass, not restoration of the withdrawn PR5 conclusions. Current PRs, branch names, PR56's read-only historical material and earlier bounded receipts were checked to avoid duplicating another full Esperanto priority batch.
