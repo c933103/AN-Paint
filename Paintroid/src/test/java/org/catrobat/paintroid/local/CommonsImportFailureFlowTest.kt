@@ -458,17 +458,34 @@ class CommonsImportFailureFlowTest {
                 if(tag=="ar") assertEquals(View.LAYOUT_DIRECTION_RTL,view.layoutDirection)
                 val directory=java.io.File("build/reports/commons-import-failures").apply {mkdirs()}
                 val name="api35-$tag-${widthDp}x${heightDp}-font$scale-${if(insert) "insert" else "copy"}-${activity.resources.getResourceEntryName(key)}"
-                val bitmap=android.graphics.Bitmap.createBitmap(width,height,android.graphics.Bitmap.Config.ARGB_8888)
-                try {
-                    root.draw(android.graphics.Canvas(bitmap))
-                    java.io.File(directory,"$name.png").outputStream().use {
-                        assertTrue(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it))
-                    }
-                } finally {bitmap.recycle()}
-                java.io.File(directory,"$name.json").writeText(org.json.JSONObject()
-                    .put("evidence_kind","Robolectric NATIVE capture; requires visual inspection; not installed-device or TalkBack evidence")
-                    .put("locale",tag).put("font_scale",scale).put("message",text)
-                    .put("all_characters_laid_out",true).put("status_width",view.width).put("status_height",view.height).toString(2)+"\n")
+                fun capture(suffix: String,scrollX: Int=0,maxScrollX: Int=0) {
+                    val bitmap=android.graphics.Bitmap.createBitmap(width,height,android.graphics.Bitmap.Config.ARGB_8888)
+                    try {
+                        root.draw(android.graphics.Canvas(bitmap))
+                        java.io.File(directory,"$name$suffix.png").outputStream().use {
+                            assertTrue(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it))
+                        }
+                    } finally {bitmap.recycle()}
+                    java.io.File(directory,"$name$suffix.json").writeText(org.json.JSONObject()
+                        .put("evidence_kind","Robolectric NATIVE capture; requires visual inspection; not installed-device or TalkBack evidence")
+                        .put("locale",tag).put("font_scale",scale).put("message",text)
+                        .put("all_characters_laid_out",true).put("status_width",view.width).put("status_height",view.height)
+                        .put("scroll_x",scrollX).put("max_scroll_x",maxScrollX)
+                        .put("horizontal_scroll_required",maxScrollX>0)
+                        .put("frame_scope","One viewport; full layout and scroll reachability are separate assertions").toString(2)+"\n")
+                }
+                if(VerticalText.uiVertical()) {
+                    val rail=view.parent as ColumnScrollView
+                    val start=rail.scrollX
+                    val end=(view.width-rail.width+rail.paddingLeft+rail.paddingRight).coerceAtLeast(0)
+                    capture("",start,end)
+                    if(end>0) try {
+                        // Record both reachable ends; the initial 2x frame alone
+                        // must not be presented as the complete warning.
+                        rail.scrollTo(end,0);assertEquals(end,rail.scrollX)
+                        capture("-end",rail.scrollX,end)
+                    } finally {rail.scrollTo(start,0)}
+                } else capture("")
             }
         }
     }

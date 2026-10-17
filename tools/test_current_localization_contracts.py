@@ -1,5 +1,6 @@
 """Current wording, syntax, fallback and Unicode contracts, not linguistic certification."""
 from pathlib import Path
+import json
 import re
 import unittest
 import unicodedata
@@ -25,9 +26,43 @@ EXPECTED_KEYS = {
 }
 
 
+# Additions are message-family-specific; Czech and Polish still fall back for metadata/copy-credit.
+FAMILY_EXTRA_TAGS = {FAMILIES[2]: {'cs', 'pl'}}
+
+
+def wording_tags(name):
+    return {'hu'} if name == FAMILIES[3] else {'default'} | SCOPED_TAGS | FAMILY_EXTRA_TAGS.get(name, set())
+
+
 def wording_fixture(name):
-    return require_wording_shape(fixture(name), EXPECTED_KEYS[name],
-        {'hu'} if name==FAMILIES[3] else {'default'}|SCOPED_TAGS)
+    return require_wording_shape(fixture(name), EXPECTED_KEYS[name], wording_tags(name))
+
+
+TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
+TAGGED_COLOUR_EXTRA_TAGS = {'cs', 'pl'}
+
+
+def tagged_colour_expectations(data):
+    if set(data) != SCOPED_TAGS | TAGGED_COLOUR_EXTRA_TAGS:
+        raise ValueError('Tagged-colour family locale inventory differs')
+    if not all(isinstance(value, str) and value for value in data.values()):
+        raise ValueError('Tagged-colour expectations must be complete nonempty strings')
+    for tag, name in [('cs', 'czech'), ('pl', 'polish')]:
+        reviewed = fixture(name + '_priority_draft_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed complete pair: ' + tag)
+    return data
+
+
+def require_tagged_colour_resolution(data, strings, offered, english):
+    """Model exact family expectations; Android resource routing is tested separately."""
+    data = tagged_colour_expectations(data)
+    for tag in offered:
+        expected = data[tag] if tag in data else english
+        # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
+        actual = strings[tag].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
+        if actual != expected:
+            raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
 
 
 def paths():
@@ -39,7 +74,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
         from copy import deepcopy
         for name in FAMILIES:
             original=wording_fixture(name)
-            tags={'hu'} if name==FAMILIES[3] else {'default'}|SCOPED_TAGS
+            tags=wording_tags(name)
             for key in EXPECTED_KEYS[name]:
                 for mutation in ('missing-key','empty-values','missing-locale','empty-text','missing-constraint'):
                     data=deepcopy(original)
@@ -52,6 +87,59 @@ class CurrentLocalizationContracts(unittest.TestCase):
                         require_wording_shape(data,EXPECTED_KEYS[name],tags)
             data=deepcopy(original);data['values']={}
             with self.assertRaises(ValueError): require_wording_shape(data,EXPECTED_KEYS[name],tags)
+
+    def test_czech_polish_svg_scope_does_not_expand_other_message_families(self):
+        svg = wording_fixture(FAMILIES[2])
+        extra_tags = {'cs', 'pl'}
+        self.assertEqual(extra_tags, set(svg['additional_draft_tags']))
+        self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
+        self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
+        self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
+        for name in FAMILIES[:2]:
+            self.assertTrue(extra_tags.isdisjoint(wording_tags(name)))
+            self.assertEqual({'default'} | SCOPED_TAGS, wording_tags(name))
+        self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
+        self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
+
+    def test_tagged_colour_family_resolves_complete_cs_pl_values_and_exact_english_fallbacks(self):
+        data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+        strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
+        offered = set(catalogues.offered_tags())
+        english = strings['default'][TAGGED_COLOUR_KEY]
+        self.assertEqual(61, len(data))
+        self.assertEqual(110, len(offered - set(data)))
+        self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
+        require_tagged_colour_resolution(data, strings, offered, english)
+        for tag in TAGGED_COLOUR_EXTRA_TAGS:
+            self.assertNotEqual(english, data[tag])
+
+    def test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults(self):
+        data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+        strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
+        offered = set(catalogues.offered_tags())
+        english = strings['default'][TAGGED_COLOUR_KEY]
+        for tag in TAGGED_COLOUR_EXTRA_TAGS:
+            for mutation in ('missing-resource', 'english-resource', 'arbitrary-resource',
+                             'missing-oracle', 'english-oracle', 'arbitrary-oracle'):
+                changed_data = dict(data)
+                changed_strings = dict(strings)
+                changed_strings[tag] = dict(strings[tag])
+                if mutation == 'missing-resource': changed_strings[tag].pop(TAGGED_COLOUR_KEY)
+                elif mutation == 'english-resource': changed_strings[tag][TAGGED_COLOUR_KEY] = english
+                elif mutation == 'arbitrary-resource': changed_strings[tag][TAGGED_COLOUR_KEY] = 'arbitrary default'
+                elif mutation == 'missing-oracle': changed_data.pop(tag)
+                elif mutation == 'english-oracle': changed_data[tag] = english
+                else: changed_data[tag] = 'arbitrary default'
+                with self.subTest(tag=tag, mutation=mutation), self.assertRaises(ValueError):
+                    require_tagged_colour_resolution(changed_data, changed_strings, offered, english)
+        fallback = sorted(offered - set(data))[0]
+        changed_strings = dict(strings)
+        changed_strings[fallback] = dict(strings[fallback])
+        changed_strings[fallback][TAGGED_COLOUR_KEY] = english
+        require_tagged_colour_resolution(data, changed_strings, offered, english)
+        changed_strings[fallback][TAGGED_COLOUR_KEY] = 'arbitrary default'
+        with self.assertRaises(ValueError):
+            require_tagged_colour_resolution(data, changed_strings, offered, english)
 
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')
@@ -105,7 +193,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
         for name in FAMILIES[:3]:
             data = wording_fixture(name)
             for key, values in data['values'].items():
-                self.assertEqual({'default'} | SCOPED_TAGS, set(values))
+                self.assertEqual(wording_tags(name), set(values))
                 for tag, root in xml.items():
                     with self.subTest(key=key, tag=tag):
                         self.assertEqual(int(tag in values), len(root.findall(f"./string[@name='{key}']")))
