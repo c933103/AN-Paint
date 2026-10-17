@@ -1,0 +1,116 @@
+[
+  {
+    "key": "ui_the_encoder_did_not_finish",
+    "tier": "P0",
+    "english": "The encoder did not finish.",
+    "before": "Kooderi ei valmistunut.",
+    "after": "Kooderi ei suorittanut koodausta loppuun.",
+    "reason": "Correct Kooderi ei valmistunut, which describes the encoder itself becoming complete, to Kooderi ei suorittanut koodausta loppuun. All three real emitters follow a false Bitmap.compress result; no unsupported failure cause added.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+        "line": 25
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+        "line": 33
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "line": 97
+      }
+    ]
+  },
+  {
+    "key": "language20_translation_note",
+    "tier": "P1",
+    "english": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+    "before": "Tämä kieliversio sisältää kaikki AN Paintin käännettävät käyttöliittymätekstit.",
+    "after": "Sovelluksen kieli\\n\\nKäännöksiä ylläpidetään AN Paintin kieliresursseissa. Uusi tai kääntämätön teksti näkyy englanniksi.",
+    "reason": "Replace the false whole-translation-completeness assertion with the complete source meaning: app-language heading, maintained language resources and English fallback for new or untranslated text. This note is the actual picker custom title.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "line": 149
+      }
+    ]
+  },
+  {
+    "key": "ui_d_d_px_d_pixels_2f_mp",
+    "tier": "P1",
+    "english": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+    "before": "%1$d × %2$d px · %3$,d pikseliä (%4$.2f MP)",
+    "after": "%1$d × %2$d px · Pikselimäärä: %3$,d (%4$.2f MP)",
+    "reason": "Fixed pikseliä yields ungrammatical 1 pikseliä for an allowed 1×1 image. Replace it with invariant Pikselimäärä: followed by the count, preserving every numeric slot and unit.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "line": 15
+      }
+    ]
+  },
+  {
+    "key": "ui_height_in",
+    "tier": "P1",
+    "english": "Height in %1$s",
+    "before": "Korkeus yksikössä %1$s",
+    "after": "Korkeus %1$s",
+    "reason": "Correct shared-unit composition to Korkeus %1$s together with pikseleinä/prosentteina. The complete outputs now name height in pixels/percent naturally; paired P2 width is separately recorded.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 82
+      }
+    ]
+  },
+  {
+    "key": "ui_width_in",
+    "tier": "P2",
+    "english": "Width in %1$s",
+    "before": "Leveys yksikössä %1$s",
+    "after": "Leveys %1$s",
+    "reason": "Sole authorized P2 companion: Leveys %1$s composes with shared pikseleinä/prosentteina to match the corrected height accessibility sentence. Both axes have the same actual consumer and require coordinated repair.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 81
+      }
+    ]
+  },
+  {
+    "key": "ui_pixels_6ec9c2",
+    "tier": "P1",
+    "english": "pixels",
+    "before": "pikseliä",
+    "after": "pikseleinä",
+    "reason": "Change embedded pikseliä to pikseleinä with both width/height sentence templates; this eliminates Korkeus/Leveys yksikössä pikseliä without changing standalone Pikselit.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 81
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 82
+      }
+    ]
+  },
+  {
+    "key": "ui_percent_fd8671",
+    "tier": "P1",
+    "english": "percent",
+    "before": "prosentti",
+    "after": "prosentteina",
+    "reason": "Change embedded prosentti to prosentteina only for the two width/height accessible sentences; standalone Prosentti remains unchanged.",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 81
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 82
+      }
+    ]
+  }
+]
