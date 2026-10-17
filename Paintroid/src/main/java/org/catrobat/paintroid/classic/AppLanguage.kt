@@ -130,7 +130,7 @@ internal object AppLanguage {
             if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
-        return context.createConfigurationContext(config).getString(R.string.language20_device_default)
+        return uiText(context.createConfigurationContext(config).resources,R.string.language20_device_default)
     }
 
     fun showSettings(activity: Activity, changed: () -> Unit) {
