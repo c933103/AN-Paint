@@ -1,0 +1,52 @@
+{
+  "candidate_parent": "30413454eaa1c1599c15a0a42a4110d8d1976514",
+  "composed_develop": "8c08554995f4d07be1b47736746ab2d0771e810e",
+  "final_host_normal": {
+    "tests": 888,
+    "seconds": 195.352,
+    "status": "pass"
+  },
+  "final_host_optimized": {
+    "tests": 888,
+    "seconds": 187.362,
+    "status": "pass"
+  },
+  "position_focused": {
+    "normal_tests": 8,
+    "optimized_tests": 8,
+    "status": "pass"
+  },
+  "host_mutations": {
+    "current": "pass",
+    "original_code_and_four_regressions": "all_rejected",
+    "scope": "source-order/guard checks, not Android execution"
+  },
+  "supplementary_changed_jvm_test_compile": {
+    "status": "pass",
+    "scope": "direct Kotlin1.9.24/API35 compile against previous dependency classes; not Gradle/Robolectric run"
+  },
+  "repaired_android_instrumentation_compile_and_execution": "not_run_locally; fresh exact-source hosted CI required",
+  "repaired_robolectric_execution": "not_run_locally; fresh exact-source hosted CI required",
+  "prior_composed_failed_run": {
+    "id": 39046719952,
+    "jvm": {
+      "tests": 1093,
+      "failed": 1
+    },
+    "position": {
+      "tests": 7,
+      "failed": 1
+    },
+    "core_api35": "pass",
+    "build": "pass",
+    "lint": "pass",
+    "exact_script": "pass",
+    "aggregate": "failure"
+  },
+  "pre_greek_normal": {
+    "tests": 878,
+    "seconds": 189.865,
+    "status": "pass",
+    "scope": "superseded by final888-test composition"
+  }
+}

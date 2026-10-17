@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-17T16:18:00Z",
+  "scope": "Independent read-only source and failed-JUnit-artifact review of the bounded pt-BR crop consumer test lifecycle repair; no production/source edits or publication by this reviewer.",
+  "decision": "Acceptable bounded test repair; exact-source Robolectric rerun still required.",
+  "blocking_findings": [],
+  "source": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/BrazilianPortuguesePriorityWordingTest.kt",
+    "sha256": "04f0b8778821c12c2e09f2bf81ae68d46266f24ce4188050e093c63542b66fab",
+    "before_sha256": "bf008786545027673eb408299aaebed08da609613a0d91f511cde358d8cd4b0e"
+  },
+  "failure_evidence": {
+    "run_url": "https://github.com/c933103/AN-Paint/actions/runs/39046719952",
+    "pr_head": "30413454eaa1c1599c15a0a42a4110d8d1976514",
+    "tested_merge_commit": "2116b091a087bb5e44d1f8f531d6584372dc6c0d",
+    "xml": "regression-artifact/Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.BrazilianPortuguesePriorityWordingTest.xml",
+    "xml_sha256": "3ad5cb3fafc05e0dea4848ed834ece664befa8bc0de6c6712d010ab15e07a6e9",
+    "suite_result": {
+      "tests": 4,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "observed": "The crop test failed at its full expected Portuguese validation message. Actual status was the English zero-selection preview; the exception suppressed an UnExecutedRunnablesException for queued main-loop work."
+  },
+  "assessment": [
+    "ImageCropDialog.kt:143-150 installs the custom validating Apply click listener inside setOnShowListener. The original test clicked without processing the queued show lifecycle; unchanged preview, no apply callback, and a still-showing dialog are consistent with the native pre-install listener queuing dismissal rather than executing validation.",
+    "Idling the main looper immediately after show() allows the production OnShow listener and initial posted preview work to complete before None/Apply interaction. The production validating listener then runs synchronously on performClick().",
+    "Idling after the native negative button accounts for queued native dismissal; asserting !isShowing adds lifecycle coverage.",
+    "The exact diff is additive: two imports, explanatory comment, two idle calls and one dismissal assertion. Every previous full-message, selection, no-apply and still-open-on-invalid assertion remains unchanged.",
+    "The saved supplementary Kotlin 1.9.24/API35 compile result has exit_code 0 and its changed-source SHA-256 matches this reviewed file. This is compile evidence only, against prebuilt dependency classes."
+  ],
+  "limitations": [
+    "The queued-OnShow diagnosis is strongly supported by production source and the original failure artifact, but this reviewer has not executed the repaired test.",
+    "The failing run is evidence for the original source, not a runtime pass for this repair. Full exact-source Gradle/Robolectric and required CI results remain pending.",
+    "The generic Activity has English activity.resources while ui() uses overridden pt-BR resources; this explains the English preview and is not itself evidence of broken production locale routing. This bounded test does not certify all crop status localization, native-device timing, layout or TalkBack."
+  ]
+}

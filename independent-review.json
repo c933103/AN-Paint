@@ -1,0 +1,216 @@
+{
+  "review_scope": "Independent read-only code and failed-run evidence review of the exact two-file IME-readiness repair; this report is the only file written by this reviewer.",
+  "result": "acceptable_with_runtime_verification_pending",
+  "blocking_issues": [],
+  "source_binding": {
+    "original_head": "30413454eaa1c1599c15a0a42a4110d8d1976514",
+    "failed_run_synthetic_merge": "2116b091a087bb5e44d1f8f531d6584372dc6c0d",
+    "shared_tree": "3ac7a0abe119504abbde70537bd6d4a2fcc46d3d",
+    "binding_receipt": "failed-run-source-binding.json",
+    "all_original_tracked_files_compared": 1184,
+    "missing_tracked_files": [],
+    "exact_changed_files": [
+      {
+        "path": "app/src/androidTest/java/paint/anpaint/android/AssemblyPositionDeviceTest.kt",
+        "before_git_blob_sha": "1b688de5374d8dec2b6468b01adb6ffb087c62f8",
+        "reviewed_git_blob_sha": "2a116978732ca7c2b9bd9d6c3a36ffc2281b0ee0",
+        "reviewed_sha256": "e6154f4f4eee749358e98fbbf61c87f72611715309ce3cb0f9d4ec0a3e3a3c65"
+      },
+      {
+        "path": "tools/test_position_composition.py",
+        "before_git_blob_sha": "f51875fcea7d1a732e53f34684cf17ce3355341a",
+        "reviewed_git_blob_sha": "48b0381ed288db3d243b53d9ac136a2176d8b72e",
+        "reviewed_sha256": "359e5b83ab437fbd8aa309940034219cadd6eae6ed0fbe58c36a1f0e5e951f83"
+      }
+    ],
+    "before_copies_match_original_tree": true
+  },
+  "failed_run": {
+    "run_id": 39046719952,
+    "job_id": 117438868203,
+    "sdk": 35,
+    "test": "ainuLatinPositionTextAndNativeEditing",
+    "failure": "Timed out at 8-second wait bound: native Cancel dismisses",
+    "failure_source_line_before_patch": 169,
+    "logcat_sha256": "9d546a0215fba4897b2ac6663579c6b54d1ad9bc1c8412c92dfd8149a2fc130f",
+    "all_seven_methods_completed": true,
+    "passed_methods": 6,
+    "failed_methods": 1
+  },
+  "observed_evidence": [
+    "The Latin landscape Y-field click at 16:01:18.422 was followed by an IME show request at 18.558 and onShown at 19.217; the final native Cancel click at 19.309 occurred after that onShown event.",
+    "There is no IME hide request between the final Latin Y-field tap and Cancel or during the ensuing 8-second dismissal wait. Cleanup starts at 16:01:27.494.",
+    "Gboard logs fullscreen mode and a 640x158 keyboard body on the 640x320 landscape display.",
+    "The successful Kana control logs IME shown at 16:01:58.721, native Back hide at 59.902, hidden at 59.938, Cancel click at 16:02:00.112 and window callback removal at 00.253.",
+    "All seven locale methods log four show requests and four onShown events each. Each passing method has four native Back hide requests; failed Latin has three.",
+    "Production Cancel remains the native setNegativeButton(..., null) path; only Apply overrides its click listener. Ainu Latin does not mount the vertical shell."
+  ],
+  "inferences_and_unknowns": [
+    "High-confidence mechanism: hideIme sampled hidden insets before the pending show completed, so the test proceeded to a Cancel coordinate while the landscape IME was shown.",
+    "The actual receiver of the failed native touch is not logged. IME occlusion is strongly supported, but a Cancel ACTION_DOWN/UP or keyboard key receipt is not captured.",
+    "The assertion is the individual 8-second wait failure, not exhaustion of the shared 45-second interaction deadline.",
+    "The evidence does not justify relabeling the failure as a flake or changing production Cancel handling."
+  ],
+  "patch_review": [
+    {
+      "file": "app/src/androidTest/java/paint/anpaint/android/AssemblyPositionDeviceTest.kt",
+      "lines": "250-253",
+      "finding": "Waits for field focus, window focus and visible IME after the real field tap and before Ctrl+A/Delete/text injection; closes the observed pending-show hole before the unchanged native Back hide."
+    },
+    {
+      "file": "app/src/androidTest/java/paint/anpaint/android/AssemblyPositionDeviceTest.kt",
+      "lines": "332-338",
+      "finding": "Fails closed unless the window is focused and IME is hidden immediately before capturing tap coordinates; does not retry clicks or replace the native listener."
+    },
+    {
+      "file": "app/src/androidTest/java/paint/anpaint/android/AssemblyPositionDeviceTest.kt",
+      "lines": "254-257",
+      "finding": "The new readiness wait remains inside the existing diagnostic catch, which reports field geometry, focus and IME visibility."
+    },
+    {
+      "file": "tools/test_position_composition.py",
+      "lines": "188-202",
+      "finding": "Source-contract checks bind the show barrier ordering, hidden tap guard and native Back hide, and forbid programmatic show/hide/click shortcuts. These checks do not simulate Android IME timing."
+    }
+  ],
+  "preserved_requirements": [
+    "Eight-second individual wait and shared 45-second interaction limit",
+    "Both 180-second position shards and exact method inventory",
+    "Native field focus, input and touch injection",
+    "Full text/accessibility and scroll reachability",
+    "Invalid-input rejection, Apply, saved-project reload, Cancel and Back persistence assertions",
+    "Production application files and locale resources"
+  ],
+  "all_locale_event_counts": {
+    "ainuLatinPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 3
+    },
+    "ainuKanaPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    },
+    "manchuPositionColumnsAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    },
+    "jejuPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    },
+    "nomPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    },
+    "tibetanPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    },
+    "dzongkhaPositionTextAndNativeEditing": {
+      "native_clicks": 7,
+      "ime_show_requests": 4,
+      "ime_shown": 4,
+      "native_back_hide_requests": 4
+    }
+  },
+  "key_log_lines": [
+    {
+      "line": 48066,
+      "text": "10-17 16:01:18.422  2607  2782 D InteractionController: clickNoSync (320, 199)"
+    },
+    {
+      "line": 48089,
+      "text": "10-17 16:01:18.558  2607  2607 I ImeTracker: paint.anpaint.android:30280516: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser true"
+    },
+    {
+      "line": 48090,
+      "text": "10-17 16:01:18.559  2607  2607 D InputMethodManager: showSoftInput() view=android.widget.EditText{f1d8f51 VFED..CL. .F.P..ID 16,262-368,308 aid=1073741858} flags=0 reason=SHOW_SOFT_INPUT"
+    },
+    {
+      "line": 48141,
+      "text": "10-17 16:01:18.700  1360  1360 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 62 height for app when ime window height:296, header height:38 and isFullscreenMode:true, so the max keyboard body height is:196"
+    },
+    {
+      "line": 48244,
+      "text": "10-17 16:01:19.172  1360  1360 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{5511e74 V.E...... ........ 0,0-640,158}"
+    },
+    {
+      "line": 48262,
+      "text": "10-17 16:01:19.190  2607  2607 D InsetsController: show(ime(), fromIme=true)"
+    },
+    {
+      "line": 48275,
+      "text": "10-17 16:01:19.217  2607  2607 I ImeTracker: paint.anpaint.android:30280516: onShown"
+    },
+    {
+      "line": 48294,
+      "text": "10-17 16:01:19.309  2607  2782 D InteractionController: clickNoSync (372, 252)"
+    },
+    {
+      "line": 52076,
+      "text": "10-17 16:01:27.494  2607  2607 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@7578256"
+    },
+    {
+      "line": 53921,
+      "text": "10-17 16:01:30.650  2607  2782 E TestRunner: java.lang.AssertionError: Timed out at 8-second wait bound: native Cancel dismisses"
+    },
+    {
+      "line": 63757,
+      "text": "10-17 16:01:58.029  2607  2782 D InteractionController: clickNoSync (320, 199)"
+    },
+    {
+      "line": 64030,
+      "text": "10-17 16:01:58.472  2607  2607 I ImeTracker: paint.anpaint.android:ebd1e714: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser true"
+    },
+    {
+      "line": 64166,
+      "text": "10-17 16:01:58.721  2607  2607 I ImeTracker: paint.anpaint.android:ebd1e714: onShown"
+    },
+    {
+      "line": 64518,
+      "text": "10-17 16:01:59.902  1360  1360 I ImeTracker: com.google.android.inputmethod.latin:c0aa35eb: onRequestHide at ORIGIN_IME reason HIDE_SOFT_INPUT_BY_BACK_KEY fromUser true"
+    },
+    {
+      "line": 64522,
+      "text": "10-17 16:01:59.907  2607  2607 D InsetsController: hide(ime(), fromIme=true)"
+    },
+    {
+      "line": 64530,
+      "text": "10-17 16:01:59.938  2607  2607 I ImeTracker: com.google.android.inputmethod.latin:c0aa35eb: onHidden"
+    },
+    {
+      "line": 64611,
+      "text": "10-17 16:02:00.112  2607  2782 D InteractionController: clickNoSync (368, 252)"
+    },
+    {
+      "line": 64689,
+      "text": "10-17 16:02:00.253  2607  2607 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@38fe1f3"
+    }
+  ],
+  "verification_reviewed": {
+    "focused_host_normal": "8 tests passed in supplied focused-position-normal.log",
+    "focused_host_optimized": "8 tests passed in supplied focused-position-optimized.log",
+    "source_mutation_evidence": "Current source passes; original/remove-show/move-show-after-typing/remove-hidden-guard/bypass-native-hide mutations are all rejected in readiness-mutations.json. Source contracts only.",
+    "complete_host_suite": "In progress when reviewed; no aggregate pass claimed.",
+    "android_compile_and_installed_repair": "Not run by this reviewer; exact repaired-head CI remains required."
+  },
+  "coverage_limits": [
+    "Requiring a naturally shown soft IME intentionally fails hardware-keyboard/device configurations that suppress it. This is suitable for the observed controlled emulator path, not a universal device guarantee.",
+    "The same WindowInsets.Type.ime()/isVisible API was already used under minSdk30. API30 runtime behavior is not proven by this API35 artifact or static review.",
+    "No force-show/hide operation, production input change, action retry or timeout relaxation is added.",
+    "Fresh installed verification must establish all seven methods still complete within unchanged individual and shard budgets; source-order tests are insufficient.",
+    "No screenshot or touch-recipient trace exists for the failed frame; pixel-level occlusion remains inferred from the IME timeline and geometry logs."
+  ]
+}
