@@ -166,7 +166,8 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
             self.assertIn(clause, value)
         source = (CLASSIC / 'ImageMemoryPolicy.kt').read_text()
         self.assertIn('if (pixels > permitted) throw ImageSizeException', source)
-        self.assertIn('ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current)', source)
+        self.assertIn('ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,', source)
+        self.assertIn('width, height, pixels / 1_000_000.0, permitted / 1_000_000.0)', source)
 
     def test_portuguese_canvas_recovery_names_the_actual_undo_command(self):
         values = self.values['pt-PT']
