@@ -1,0 +1,65 @@
+[
+  {
+    "type": "NotFilePage",
+    "key": "commons_metadata_not_file_page",
+    "english": "Not a Commons file page",
+    "category": "IllegalArgumentException",
+    "context": "Commons metadata precondition; may be wrapped by an image-import failure. Commons is the service name."
+  },
+  {
+    "type": "AmbiguousFile",
+    "key": "commons_metadata_ambiguous_file",
+    "english": "Commons metadata returned an ambiguous file",
+    "category": "IOException",
+    "context": "Metadata response matched zero OR multiple files; do not narrow this to multiple matches."
+  },
+  {
+    "type": "MetadataUnavailable",
+    "key": "commons_metadata_unavailable",
+    "english": "Commons file metadata is unavailable",
+    "category": "IOException",
+    "context": "File missing, namespace absent, or response is not a file. Metadata-only credit and image insertion share this reason."
+  },
+  {
+    "type": "MetadataOriginalMismatch",
+    "key": "commons_metadata_original_mismatch",
+    "english": "Commons attribution does not match the selected original file",
+    "category": "IOException",
+    "context": "The attribution metadata identifies a different original image. Keep attribution distinct from the edited drawing."
+  },
+  {
+    "type": "InvalidAttributionPage",
+    "key": "commons_metadata_invalid_page",
+    "english": "Invalid Commons attribution page",
+    "category": "IOException",
+    "context": "The provider supplied an invalid Commons file-description page URL."
+  },
+  {
+    "type": "FieldTooLarge",
+    "key": "commons_metadata_field_too_large",
+    "english": "Commons attribution field exceeds the text limit",
+    "category": "IOException",
+    "context": "Raw attribution field exceeds the text-length limit before HTML is decoded; not a response-byte or rendered-text limit."
+  },
+  {
+    "type": "CacheFailed",
+    "key": "commons_metadata_cache_failed",
+    "english": "Could not retain Commons attribution",
+    "category": "IOException",
+    "context": "Could not retain the provider metadata snapshot. This is not a drawing, edited-credit, or clipboard save failure."
+  },
+  {
+    "type": "DownloadOriginalMismatch",
+    "key": "commons_download_original_mismatch",
+    "english": "The Commons download redirected to a different original file.",
+    "category": "IllegalArgumentException",
+    "context": "Image insertion only: an allowed download redirect identifies a different Commons original."
+  },
+  {
+    "type": "PngEncodeFailed",
+    "key": "commons_svg_png_encode_failed",
+    "english": "Could not encode blank map as PNG",
+    "category": "IOException",
+    "context": "Commons SVG image insertion only: PNG compression returned failure. PNG is a format identifier."
+  }
+]
