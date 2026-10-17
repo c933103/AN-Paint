@@ -154,7 +154,11 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
                 self.assertNotIn(str(count) + ' пикселей', text)
         source = (CLASSIC / 'ImageImport.kt').read_text()
         self.assertIn('val pixels: Long get() = width.toLong() * height', source)
-        self.assertIn('ui(R.string.ui_d_d_px_d_pixels_2f_mp), width, height, pixels, pixels / 1_000_000.0)', source)
+        guarded = 'uiRoot(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)'
+        def require_guarded(code): self.assertIn(guarded, code)
+        require_guarded(source)
+        with self.assertRaises(AssertionError):
+            require_guarded(source.replace(guarded, 'String.format(Locale.ROOT, ui(R.string.ui_d_d_px_d_pixels_2f_mp), width, height, pixels, pixels / 1_000_000.0)'))
 
     def test_russian_memory_warning_retains_all_safety_clauses(self):
         value = self.values['ru']['ui_d_d_pixels_2f_mp_exceeds_the_current']
@@ -166,7 +170,13 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
             self.assertIn(clause, value)
         source = (CLASSIC / 'ImageMemoryPolicy.kt').read_text()
         self.assertIn('if (pixels > permitted) throw ImageSizeException', source)
-        self.assertIn('ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current)', source)
+        guarded = ('uiRoot(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,\n'
+                   '            width, height, pixels / 1_000_000.0, permitted / 1_000_000.0)')
+        def require_guarded(code): self.assertIn(guarded, code)
+        require_guarded(source)
+        with self.assertRaises(AssertionError):
+            require_guarded(source.replace('uiRoot(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,',
+                                          'String.format(Locale.ROOT, ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current),'))
 
     def test_portuguese_canvas_recovery_names_the_actual_undo_command(self):
         values = self.values['pt-PT']

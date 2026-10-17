@@ -204,7 +204,12 @@ class TimeoutBudgetTest(unittest.TestCase):
         checks = job(WORKFLOW, 'checks')
         self.assertEqual(int(one(r'^    timeout-minutes: (\d+)$', checks)), 22)
         self.assertEqual(step_minutes(checks, 'Run Python contracts'), 4)
-        self.assertEqual(sum(int(n) for n in re.findall(r'^        timeout-minutes: (\d+)$', checks, re.M)), 38)
+        preparation = step_minutes(checks, 'Prepare JVM test inputs')
+        self.assertEqual(preparation, 6)
+        self.assertEqual(step_minutes(checks, 'Run JVM regression tests'), 12)
+        # Preparation adds its own bound; every previous step and the 22-minute
+        # aggregate cancellation policy remain unchanged, not a sum guarantee.
+        self.assertEqual(sum(int(n) for n in re.findall(r'^        timeout-minutes: (\d+)$', checks, re.M)) - preparation, 38)
         self.assertNotIn('continue-on-error', checks)
 
 
