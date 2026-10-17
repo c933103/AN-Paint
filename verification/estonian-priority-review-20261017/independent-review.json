@@ -1,0 +1,233 @@
+{
+  "review_type": "Independent bounded full-value linguistic and source-consumer review",
+  "reviewed_at_utc": "2026-10-17T21:16:00Z",
+  "source_snapshot_base": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+  "source_snapshot_tree": "f12e3f31420ab23c8edc67d72607150b796b1571",
+  "source_snapshot_limit": "Base/tree identity supplied by originating reviewer; this independent pass read the actual resource and consumer files in that snapshot. It did not freshly reconcile the entire snapshot against GitHub.",
+  "decision": "Recommend the first three proposed complete values and replace the fourth minimal noun proposal with an atomic four-resource width/height/unit composition repair.",
+  "application_edits_made": false,
+  "external_publication_performed": false,
+  "scope": {
+    "requested_cases": 4,
+    "recommended_resource_changes": 7,
+    "tiers": {
+      "P0": 1,
+      "P1": 5,
+      "P2_narrow_dependency": 1
+    },
+    "whole_language_acceptance": false
+  },
+  "entries": [
+    {
+      "key": "language20_translation_note",
+      "tier": "P1",
+      "english": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "old": "See keeleversioon sisaldab kogu AN Painti tõlgitavat kasutajaliidese teksti.",
+      "recommended": "Rakenduse keel\\n\\nTõlkeid hallatakse AN Painti keeleressurssides. Uus või tõlkimata tekst kuvatakse inglise keeles.",
+      "decision": "accept_proposed_full_value",
+      "rationale": "The old text claims all translatable UI text is included and omits the English-fallback caveat. The complete replacement accurately follows the current source and restores the picker heading, needed because the note is the custom title. Keeleressurssides is technical but understandable; no unneeded stylistic rewrite is warranted.",
+      "confidence_and_limits": "High source-fidelity confidence; medium-high wording confidence; no claim that all fallback or runtime layout paths were tested.",
+      "complete_examples": [
+        "Rakenduse keel\n\nTõlkeid hallatakse AN Painti keeleressurssides. Uus või tõlkimata tekst kuvatakse inglise keeles."
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml"
+    },
+    {
+      "key": "ui_export_did_not_save23",
+      "tier": "P0",
+      "english": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "old": "Eksport loodi. Enne jätkamist salvesta praegune pilt käsuga Salvesta või Salvesta kui.",
+      "recommended": "Eksport loodi. Enne jätkamist salvesta praegune pilt käsuga Salvesta või Salvesta nimega.",
+      "decision": "accept_proposed_full_value",
+      "rationale": "Salvesta kui does not match the actual Save as command Salvesta nimega…. The proposal restores command-name identity while retaining the export-versus-save distinction and required action before continuing. Omitting the menu ellipsis inside running prose is appropriate. The retained opening Eksport loodi is understandable and faithful; it is not certified as the uniquely best stylistic translation.",
+      "confidence_and_limits": "High for command identity and meaning; medium-high for the full sentence.",
+      "complete_examples": [
+        "Eksport loodi. Enne jätkamist salvesta praegune pilt käsuga Salvesta või Salvesta nimega."
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml",
+      "usage_evidence": {
+        "url": "https://support.microsoft.com/et-ee/office/failide-salvestamine-cf7536a3-6842-4056-b9cc-443a7f44b104",
+        "support": "Official Microsoft Estonian help uses Salvesta nimega as the Save as command. Internal AN Paint menu identity is the decisive evidence."
+      }
+    },
+    {
+      "key": "ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "english": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "old": "%1$d × %2$d px · %3$,d pikslit (%4$.2f MP)",
+      "recommended": "%1$d × %2$d px · Pikslite arv: %3$,d (%4$.2f MP)",
+      "decision": "accept_proposed_full_value",
+      "rationale": "ImageDimensions permits 1×1, so the old bare count can be 1 pikslit, which violates the singular form. Pikslite arv introduces a noun phrase followed by a value and works for 1 and larger counts without a plural resource. It also faithfully follows the current English Pixel count formulation. Every numeric token and both units remain unchanged.",
+      "confidence_and_limits": "High for grammatical defect, proposed count neutrality, source fidelity and placeholder preservation; localized Android numeric punctuation not executed.",
+      "complete_examples": [
+        "1 × 1 px · Pikslite arv: 1 (0,00 MP)",
+        "1 × 2 px · Pikslite arv: 2 (0,00 MP)",
+        "2 × 2 px · Pikslite arv: 4 (0,00 MP)"
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml",
+      "grammar_evidence": {
+        "url": "https://eki.ee/teatmik/mitmeosaliste-kaandsonade-kaanamine/",
+        "support": "EKI states that numeral+noun nominative phrases normally have the noun in the partitive, except numeral one. The particular pixel-summary judgment is an application of that rule."
+      }
+    },
+    {
+      "key": "ui_width_in",
+      "tier": "P2",
+      "english": "Width in %1$s",
+      "old": "Laius ühikus %1$s",
+      "recommended": "Laius %1$s",
+      "decision": "recommend_compositional_correction_p2_dependency",
+      "rationale": "Use the whole label Laius pikslites or Laius protsentides. This P2 template must accompany the unit changes because the same dedicated unit values feed both width and height.",
+      "confidence_and_limits": "Medium-high, with primary usage corroboration.",
+      "complete_examples": [
+        "Laius pikslites",
+        "Laius protsentides"
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml"
+    },
+    {
+      "key": "ui_height_in",
+      "tier": "P1",
+      "english": "Height in %1$s",
+      "old": "Kõrgus ühikus %1$s",
+      "recommended": "Kõrgus %1$s",
+      "decision": "recommend_compositional_correction",
+      "rationale": "Use the whole label Kõrgus pikslites or Kõrgus protsentides, maintaining the actual height-input meaning and unit.",
+      "confidence_and_limits": "Medium-high, with composition and consumer verified.",
+      "complete_examples": [
+        "Kõrgus pikslites",
+        "Kõrgus protsentides"
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml"
+    },
+    {
+      "key": "ui_pixels_6ec9c2",
+      "tier": "P1",
+      "english": "pixels",
+      "old": "pikslit",
+      "recommended": "pikslites",
+      "decision": "replace_minimal_proposal",
+      "rationale": "Use pikslites with both templates shortened to dimension plus unit. Existing pikslit is a count form with no preceding count in these consumers. Minimal piksel repairs that local mismatch but leaves a less idiomatic full label.",
+      "confidence_and_limits": "Medium-high; bounded to the current verified consumers.",
+      "complete_examples": [
+        "Laius pikslites",
+        "Kõrgus pikslites"
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml",
+      "initial_proposal_not_selected": "piksel"
+    },
+    {
+      "key": "ui_percent_fd8671",
+      "tier": "P1",
+      "english": "percent",
+      "old": "protsent",
+      "recommended": "protsentides",
+      "decision": "recommend_compositional_correction",
+      "rationale": "Use protsentides under both shortened templates. This is required by the idiomatic composition; no change to the standalone Protsent radio label.",
+      "confidence_and_limits": "Medium-high; bounded to the current verified consumers.",
+      "complete_examples": [
+        "Laius protsentides",
+        "Kõrgus protsentides"
+      ],
+      "resource_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml"
+    }
+  ],
+  "dimension_composition": {
+    "minimal_proposal": "Laius ühikus piksel / Kõrgus ühikus piksel",
+    "minimal_judgment": "Understandable and a grammatical improvement over the existing partitive pikslit, but literal and unnecessarily cumbersome for accessible field labels. Do not call it a false meaning or a severe functional defect; prefer the idiomatic complete labels below.",
+    "existing_percent_judgment": "Laius/Kõrgus ühikus protsent is understandable. Changing protsent to protsentides is the corresponding compositional adjustment, not an allegation that the isolated noun protsent is wrong.",
+    "recommended_full_values": [
+      "Laius pikslites",
+      "Kõrgus pikslites",
+      "Laius protsentides",
+      "Kõrgus protsentides"
+    ],
+    "atomic_dependency": "Change both templates and both dedicated lower-case unit resources together. Leaving either template as ühikus %1$s would yield the bad combination ühikus pikslites/protsentides. Do not alter ui_pixels=Pikslid or ui_percent=Protsent, which name the separate visible radio choices.",
+    "p2_boundary": "ui_width_in is one explicitly identified P2 counterpart required by this shared-unit repair. This does not broaden the review to other P2 wording.",
+    "verified_consumers": {
+      "ui_width_in": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 81,
+          "text": "widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        }
+      ],
+      "ui_height_in": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 82,
+          "text": "heightInput.contentDescription = ui(R.string.ui_height_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        }
+      ],
+      "ui_pixels_6ec9c2": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 81,
+          "text": "widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 82,
+          "text": "heightInput.contentDescription = ui(R.string.ui_height_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        }
+      ],
+      "ui_percent_fd8671": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 81,
+          "text": "widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 82,
+          "text": "heightInput.contentDescription = ui(R.string.ui_height_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+        }
+      ]
+    },
+    "confidence": "High that all four recommended compositions accurately convey the dimension and selected unit; medium-high linguistic confidence as a source-backed model review, not a native-speaker sign-off.",
+    "usage_evidence": [
+      {
+        "url": "https://support.microsoft.com/et-ee/sharepoint/web-parts-and-apps-in-sharepoint/image-sizing-and-scaling-in-sharepoint-modern-pages",
+        "support": "Official Estonian Microsoft page uses the full heading Laius pikslites and related width/height-in-pixels forms. This corroborates usage, not app accessibility behavior."
+      },
+      {
+        "url": "https://arhiiv.eki.ee/dict/kol/index.cgi?Q=M",
+        "support": "EKI collocation entry for väljendama includes protsentides väljendama, confirming the natural in-percent construction. Applying it to these dimension labels is the reviewer’s grammatical judgment."
+      }
+    ]
+  },
+  "verification": {
+    "performed": [
+      "Read the repository AGENTS.md and preserved the withdrawn-audit/no-completion-credit boundary.",
+      "Compared all four candidate English and old Estonian full values against actual XML.",
+      "Read AppLanguage.showPicker, DimensionControls.display/showResult, ImageDimensions.describe/validation, and ClassicPaintActivity save/export call sites.",
+      "Scanned Kotlin, Java and non-strings XML under Paintroid/src/main for all four dimension resource names; only the two stated contentDescription assignments consume them.",
+      "Checked formatter placeholder identity/order for all seven recommended values.",
+      "Read primary-language usage evidence from EKI and official Microsoft documentation."
+    ],
+    "not_performed": [
+      "No Android build or test suite.",
+      "No emulator, TalkBack or other screen-reader execution.",
+      "No on-device layout/font-scale/line-wrap verification.",
+      "No fresh entire-repository remote-tree reconciliation.",
+      "No whole-language, native-speaker, translation-completeness or terminology acceptance."
+    ],
+    "suggested_regressions": [
+      "Assert the four complete composed dimension labels, not only individual replacement words.",
+      "Assert both unit radio labels remain unchanged.",
+      "Format pixel summaries for 1×1 and several plural counts; retain every numeric formatter token.",
+      "Verify export warning names the two actual menu commands.",
+      "Verify picker title plus blank line plus fallback explanation appear in the compiled Android resource; do not accidentally double-escape newline characters."
+    ]
+  },
+  "preserved_holds": [
+    "ui_the_draft_is_saving_try_again_shortly faithfully translates the source but has a generic busy use at ClassicPaintActivity.kt:1434 in legacy-credit attachment. Existing source-context hold stays open.",
+    "save20_gif_description uses Rasterdamine for dithering; preserve terminology uncertainty rather than fabricate an alternative. The separate P2 checkbox save20_dither is Rasterda värvid and is not changed.",
+    "ui_sampled_resize_memory_explanation uses näidispõhine for sampled decoding; prior bounded review receipt is retained, with terminology uncertainty rather than native acceptance.",
+    "ui_fg=ES and ui_bg=TA remain compact foreground/background abbreviations; native clarity/layout not proven.",
+    "ui_foreground_background_colour_palette has no current consumer, so unknown %3$s composition stays open.",
+    "ui_hex_rrggbb=Kuueteistkümnend #RRGGBB is terse; no confident correction to its technical form is proposed.",
+    "PR56 is read-only and upload-held. All Indonesian/Malay/Japanese/Hong Kong ui_rendering_images holds remain unchanged."
+  ],
+  "hold_limit": "The listed holds were carried forward unchanged; this review does not resolve or accept their terminology, source-context, layout, upload or other-language questions."
+}

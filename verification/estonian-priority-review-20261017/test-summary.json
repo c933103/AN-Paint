@@ -1,0 +1,66 @@
+{
+  "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+  "application_head": "118b134787c62fde9a598591e2091267a17b1735",
+  "application_tree": "7fa2b56ba7f69cca910bdf75e30a0951a9cc413e",
+  "checks": [
+    {
+      "check": "focused-normal",
+      "status": "passed",
+      "tests": 6,
+      "seconds": 0.199,
+      "log": "focused-normal.log"
+    },
+    {
+      "check": "focused-optimized",
+      "status": "passed",
+      "tests": 6,
+      "seconds": 0.224,
+      "log": "focused-optimized.log"
+    },
+    {
+      "check": "host-normal",
+      "status": "passed",
+      "tests": 917,
+      "seconds": 202.372,
+      "log": "host-normal.log"
+    },
+    {
+      "check": "host-optimized",
+      "status": "passed",
+      "tests": 917,
+      "seconds": 203.795,
+      "log": "host-optimized.log"
+    },
+    {
+      "check": "full AAPT2 resource compile/mirrors/link",
+      "status": "passed",
+      "commands": "resource-check/commands.json"
+    },
+    {
+      "check": "supplementary changed Kotlin test compilation",
+      "status": "passed",
+      "commands": "kotlin-compile.json",
+      "limit": "Fresh resource symbols and existing dependency classes; not full Gradle/runtime"
+    },
+    {
+      "check": "review/full-source validation, normal and optimized",
+      "status": "passed",
+      "commands": [
+        "review-validation-normal.log",
+        "review-validation-optimized.log"
+      ]
+    },
+    {
+      "check": "exact remote source tree",
+      "status": "passed",
+      "receipt": "remote-tree-verification.json"
+    }
+  ],
+  "not_run_locally": [
+    "Full Gradle/Robolectric/lint build (Gradle distribution network failure)",
+    "Installed device/emulator",
+    "APK build/source/signature acceptance"
+  ],
+  "hosted": "Pending exact-head CI after draft publication",
+  "corrected_test_authoring_issue": "Initial source-contract assertion used a nonexistent megapixels property; corrected to the inspected pixels / 1_000_000.0 expression. No production logic changed; initial failure log retained."
+}
