@@ -2,6 +2,7 @@
 from collections import Counter
 from copy import deepcopy
 import json
+import hashlib
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
@@ -27,10 +28,52 @@ CORRECTIONS={
 MEMORY='ui_d_d_pixels_2f_mp_exceeds_the_current'
 COUNT='ui_d_d_px_d_pixels_2f_mp'
 
+REVIEW_BINDING = {'archive_url': 'https://github.com/c933103/AN-Paint/blob/399d7ab1ec6fd197c9824518b470a6d8a0086df9/priority-review-packets.zip',
+ 'archive_sha256': 'ade1e4eca35692f70dae7691ea14cebc17da0e353fa9fb9a0b4eee17eea45c7a',
+ 'priority_receipt_member': 'cs/independent-final-receipt.json',
+ 'priority_receipt_original_sha256': 'aa46b9a9806eb55c3365faec817d48c65d2cb355080cfa01f2b8b582ebda4f54',
+ 'p2_receipt_member': 'cs/independent-final-receipt.json',
+ 'p2_receipt_original_sha256': 'aa46b9a9806eb55c3365faec817d48c65d2cb355080cfa01f2b8b582ebda4f54',
+ 'reviewed_values_sha256': '4784cfefb3d5c5dfe4eedf0578cad8485b099e8cf224fa7fc4f012cc2dac47b9',
+ 'digest_format': 'SHA-256 of UTF-8 JSON values with sorted keys, ensure_ascii=False and compact '
+                  'comma/colon separators',
+ 'context_unverified_keys': ['formats22_derived_exported',
+                             'ui_1_px',
+                             'ui_actual_size_100',
+                             'ui_collapse_colour_palette',
+                             'ui_expand_colour_palette',
+                             'ui_foreground_background_colour_palette',
+                             'ui_heights',
+                             'ui_hide_editor_controls',
+                             'ui_insert_image_into_canvas',
+                             'ui_left_arrow_collapse',
+                             'ui_menu',
+                             'ui_new_colour',
+                             'ui_pinch_and_pan_mode',
+                             'ui_reset_to_black_white',
+                             'ui_save_as',
+                             'ui_save_as_jpeg',
+                             'ui_save_as_jpeg_xl',
+                             'ui_save_as_png',
+                             'ui_show_editor_controls',
+                             'ui_tool_categories',
+                             'ui_trim_expand_canvas_by_touch']}
+
+
+def require_review_binding(data):
+    """Bind the complete expected pairs to immutable review evidence, not source-file hashes."""
+    if data.get('review_binding') != REVIEW_BINDING:
+        raise ValueError('Independent review binding differs')
+    payload = json.dumps(data['values'], ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    if hashlib.sha256(payload.encode()).hexdigest() != REVIEW_BINDING['reviewed_values_sha256']:
+        raise ValueError('Complete reviewed pair set differs')
+
+
 class CzechPriorityDraftWordingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=fixture(FIXTURE)
+        require_review_binding(cls.data)
         cls.xml={tag:(catalogues.RES / folder / 'strings.xml').read_text()
                  for tag,folder in [('default','values'),('cs','values-cs')]}
         cls.strings={tag:catalogues.read_strings(catalogues.RES / folder / 'strings.xml')
@@ -71,17 +114,42 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
         self.assertEqual('%1$d × %2$d px · Počet pixelů: %3$,d (%4$.2f MP)',self.strings['cs'][COUNT])
 
     def test_missing_duplicate_truncated_and_markup_values_fail_closed(self):
-        for key in (MEMORY,'formats22_animation_poster','ui_sampled_resize_memory_explanation','ui_width_in','ui_background_colour'):
-            for mutation in ('missing','duplicate','truncated','markup','attributes'):
+        for key in self.data['values']:
+            for mutation in ('missing','duplicate','truncated','changed','markup','attributes'):
                 root=ET.fromstring(self.xml['cs']);node=root.find(f"./string[@name='{key}']")
                 if mutation=='missing':root.remove(node)
                 elif mutation=='duplicate':root.append(deepcopy(node))
                 elif mutation=='truncated':node.text=node.text[:-1]
-                elif mutation=='attributes':node.set('formatted','false')
+                elif mutation=='changed':node.text='změna '+node.text
+                elif mutation=='attributes':node.set('formatted','true' if node.get('formatted')=='false' else 'false')
                 else:
                     child=ET.SubElement(node,'b');child.text,node.text=node.text,None
                 with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):
                     require_string(ET.tostring(root,encoding='unicode'),key,self.data['values'][key]['cs'],self.data['constraints'][key])
+
+    def test_independent_binding_preserves_complete_pairs_and_context_holds(self):
+        require_review_binding(self.data)
+        self.assertEqual(21, len(self.data['review_binding']['context_unverified_keys']))
+        for mutation in ('missing-binding', 'changed-receipt', 'changed-pair', 'removed-hold'):
+            data=deepcopy(self.data)
+            if mutation=='missing-binding':del data['review_binding']
+            elif mutation=='changed-receipt':data['review_binding']['priority_receipt_member']='other.json'
+            elif mutation=='removed-hold':data['review_binding']['context_unverified_keys'].pop()
+            else:data['values']['ui_assembly_source_memory_floor']['cs']+=' změna'
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):
+                require_review_binding(data)
+
+    def test_assembly_memory_floor_remedy_and_unchanged_guarantee_cannot_be_lost(self):
+        key='ui_assembly_source_memory_floor'
+        value=self.data['values'][key]['cs']
+        for clause in (
+            'Zavřete jiné dokumenty nebo připravte menší zdrojový obrázek a zkuste to znovu.',
+            'Sestava zůstala beze změny.',
+        ):
+            self.assertIn(clause,value)
+            root=ET.fromstring(self.xml['cs']);root.find(f"./string[@name='{key}']").text=value.replace(clause,'')
+            with self.subTest(clause=clause),self.assertRaises(ValueError):
+                require_string(ET.tostring(root,encoding='unicode'),key,value,self.data['constraints'][key])
 
     def test_argument_mutations_fail_even_if_mutated_text_is_given_as_expected(self):
         for key in (MEMORY,COUNT):

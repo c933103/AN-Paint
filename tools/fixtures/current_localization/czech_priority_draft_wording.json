@@ -3,6 +3,30 @@
   "review_status": "independent_static_review_with_holds",
   "locale": "cs",
   "values": {
+    "colour_converter_unavailable": {
+      "default": "The image colour converter could not start. The image was not imported.",
+      "cs": "Převodník barev obrázku se nepodařilo spustit. Obrázek nebyl importován."
+    },
+    "colour_invalid_metadata": {
+      "default": "The image has invalid or unsupported colour metadata.",
+      "cs": "Obrázek obsahuje neplatná nebo nepodporovaná metadata barev."
+    },
+    "colour_truncated_metadata": {
+      "default": "The image ends inside its colour metadata.",
+      "cs": "Soubor obrázku končí uprostřed metadat barev."
+    },
+    "colour_unsupported_icc_model": {
+      "default": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+      "cs": "Tento obrázek používá barevný model ICC, který dekodér obrázků neumí převést. Nejprve exportujte kopii v RGB v aplikaci se správou barev."
+    },
+    "commons_svg_original_size_too_large": {
+      "default": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+      "cs": "Původní velikost SVG překračuje rozměry bitmap podporované Androidem. Ke změně velikosti nedošlo."
+    },
+    "commons_svg_original_size_unavailable": {
+      "default": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+      "cs": "SVG neuvádí použitelnou původní velikost. Nebyla nahrazena velikostí podle plátna."
+    },
     "formats22_animation_message": {
       "default": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
       "cs": "Počet snímků v souboru %1$s: %2$s. AN Paint upravuje pouze statické obrázky a nezachovává animaci."
@@ -27,9 +51,17 @@
       "default": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
       "cs": "Zapíše prostý text tvořený světlými a tmavými znaky. Zobrazte jej neproporcionálním písmem. Jde o vizuální ztvárnění; nelze je znovu otevřít jako původní obrázek."
     },
+    "formats22_at_least_frames": {
+      "default": "at least %1$d",
+      "cs": "alespoň %1$d"
+    },
     "formats22_derived_exported": {
       "default": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
       "cs": "Exportováno: %1$s. Celá kresba stále obsahuje neuložené změny; než ji nahradíte, uložte kopii celého obrázku."
+    },
+    "formats22_import_limit": {
+      "default": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+      "cs": "Tento soubor překračuje limit pro import 512 MiB. Vyberte menší soubor."
     },
     "formats22_open_still": {
       "default": "Open still image",
@@ -46,6 +78,14 @@
     "gallery_credit_too_large": {
       "default": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
       "cs": "Kvůli těmto údajům o autorství obrázků by byla kresba příliš velká pro obnovení. Předchozí kresba i údaje byly zachovány."
+    },
+    "language20_current": {
+      "default": "App language: %1$s",
+      "cs": "Jazyk aplikace: %1$s"
+    },
+    "language20_translation_note": {
+      "default": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "cs": "Jazyk aplikace\\n\\nPřeklady se spravují v jazykových souborech AN Paint. Nový nebo nepřeložený text se zobrazuje anglicky."
     },
     "legacy_credits_unreadable": {
       "default": "Some saved credits could not be read. Their stored copies have been kept.",
@@ -79,13 +119,69 @@
       "default": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
       "cs": "Tento obrázek používá barevný profil, který AN Paint zatím neumí převést. Před importem jej v editoru se správou barev převeďte na PNG v barevném prostoru sRGB."
     },
+    "ui_0f_0f_px_1f": {
+      "default": "%1$.0f × %2$.0f px\\n%3$.1f°",
+      "cs": "%1$.0f × %2$.0f px\\n%3$.1f°"
+    },
+    "ui_100": {
+      "default": "100%",
+      "cs": "100%"
+    },
+    "ui_1_px": {
+      "default": "1 px",
+      "cs": "1 px"
+    },
+    "ui_1f_s": {
+      "default": "%1$.1f %2$s",
+      "cs": "%1$.1f %2$s"
+    },
     "ui_a_separate_recovery_copy_has_been_kept_use": {
       "default": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
       "cs": "%1$s Byla zachována samostatná kopie pro obnovení. Její soubor ZIP uložte příkazem Soubor > Exportovat kopii pro obnovení. Extrahujte z něj soubor canvas.png a načtěte tento obrázek, abyste v případě potřeby mohli použít běžné možnosti změny velikosti."
     },
+    "ui_actual_size_100": {
+      "default": "Actual size (100%)",
+      "cs": "Skutečná velikost (100%)"
+    },
+    "ui_add_colour26": {
+      "default": "Add colour",
+      "cs": "Přidat barvu"
+    },
+    "ui_add_text": {
+      "default": "Add text",
+      "cs": "Přidat text"
+    },
+    "ui_all": {
+      "default": "All",
+      "cs": "Vše"
+    },
     "ui_an_assembly_source_image_is_missing": {
       "default": "An assembly source image is missing.",
       "cs": "Chybí zdrojový obrázek sestavy."
+    },
+    "ui_android_blocked_the_file_picker": {
+      "default": "Android blocked the file picker: %1$s",
+      "cs": "Android zablokoval výběr souboru: %1$s"
+    },
+    "ui_android_could_not_decode_this_image": {
+      "default": "Android could not decode this image.",
+      "cs": "Android nedokázal dekódovat tento obrázek."
+    },
+    "ui_android_could_not_find_a_file_picker_enable": {
+      "default": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+      "cs": "Android nenašel aplikaci pro výběr souborů. V nastavení Androidu povolte aplikaci Soubory nebo Dokumenty a zkuste to znovu."
+    },
+    "ui_apply": {
+      "default": "Apply",
+      "cs": "Použít"
+    },
+    "ui_apply_bounds": {
+      "default": "Apply bounds",
+      "cs": "Použít hranice"
+    },
+    "ui_apply_crop": {
+      "default": "Apply crop",
+      "cs": "Použít ořez"
     },
     "ui_assembly_saved": {
       "default": "Assembly saved",
@@ -127,314 +223,6 @@
       "default": "Autosave selection encoding failed.",
       "cs": "Kódování výběru pro automatické uložení selhalo."
     },
-    "ui_cannot_create_the_undo_cache_free_some_device": {
-      "default": "Cannot create the undo cache. Free some device storage and try again.",
-      "cs": "Nelze vytvořit mezipaměť historie úprav. Uvolněte místo v úložišti zařízení a zkuste to znovu."
-    },
-    "ui_clear_all": {
-      "default": "Clear all",
-      "cs": "Vymazat vše"
-    },
-    "ui_clear_image": {
-      "default": "Clear image",
-      "cs": "Vymazat obrázek"
-    },
-    "ui_could_not_export_the_recovery_copy": {
-      "default": "Could not export the recovery copy",
-      "cs": "Kopii pro obnovení se nepodařilo exportovat"
-    },
-    "ui_could_not_open_image": {
-      "default": "Could not open image",
-      "cs": "Obrázek se nepodařilo otevřít"
-    },
-    "ui_could_not_save_image": {
-      "default": "Could not save image",
-      "cs": "Obrázek se nepodařilo uložit"
-    },
-    "ui_could_not_save_the_assembly": {
-      "default": "Could not save the assembly: %1$s",
-      "cs": "Sestavu se nepodařilo uložit: %1$s"
-    },
-    "ui_could_not_store_the_assembly": {
-      "default": "Could not store the assembly.",
-      "cs": "Sestavu se nepodařilo uložit."
-    },
-    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
-      "default": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
-      "cs": "%1$d × %2$d pixelů (%3$.2f MP) překračuje aktuální bezpečný limit pro úpravy %4$.2f MP. AN Paint uchovává v paměti celý obrázek a vyhrazuje místo pro transformace a výběry. Tento limit závisí na dostupné paměti. Operace byla zastavena před vyhrazením paměti pro příliš velkou bitmapu. K automatické změně velikosti nedošlo."
-    },
-    "ui_draft_not_saved_yet": {
-      "default": "Draft not saved yet",
-      "cs": "Rozpracovaný obrázek zatím není uložen"
-    },
-    "ui_draft_restored": {
-      "default": "Draft restored",
-      "cs": "Rozpracovaný obrázek obnoven"
-    },
-    "ui_draft_saved": {
-      "default": "Draft saved",
-      "cs": "Rozpracovaný obrázek uložen"
-    },
-    "ui_export_did_not_save23": {
-      "default": "The export was created. Use Save or Save as to save the current image before continuing.",
-      "cs": "Export byl vytvořen. Než budete pokračovat, uložte aktuální obrázek pomocí Uložit nebo Uložit jako."
-    },
-    "ui_export_explanation23": {
-      "default": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
-      "cs": "Exportujte ikonu, text Base64 nebo obrázek ze znaků ASCII. Export ponechá aktuální obrázek i cíl příkazu Uložit beze změny."
-    },
-    "ui_export_recovery_copy": {
-      "default": "Export recovery copy…",
-      "cs": "Exportovat kopii pro obnovení…"
-    },
-    "ui_export_recovery_copy_144b8a": {
-      "default": "Export recovery copy",
-      "cs": "Exportovat kopii pro obnovení"
-    },
-    "ui_higher_quality_usually_makes_a_larger_file_lossless": {
-      "default": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
-      "cs": "Vyšší kvalita obvykle zvětšuje soubor. Bezeztrátové ukládání zachovává všechny barevné hodnoty."
-    },
-    "ui_history_unavailable34": {
-      "default": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
-      "cs": "Plátno bylo obnoveno, ale historii úprav se nepodařilo přečíst. Původní rozpracovaný obrázek byl zachován jako kopie pro obnovení."
-    },
-    "ui_invalid_autosave_metadata": {
-      "default": "Invalid autosave metadata.",
-      "cs": "Neplatná metadata automaticky uloženého obrázku."
-    },
-    "ui_keep_editing23": {
-      "default": "Keep editing",
-      "cs": "Pokračovat v úpravách"
-    },
-    "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
-      "default": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
-      "cs": "Zachová pixely vlevo nahoře. Při zmenšení plátna se odstraní pixely za pravým a dolním okrajem; příkaz Zpět je obnoví."
-    },
-    "ui_not_enough_memory_for_this_operation_the_assembly": {
-      "default": "Not enough memory for this operation. The assembly source files are retained.",
-      "cs": "Pro tuto operaci není dostatek paměti. Zdrojové soubory sestavy byly zachovány."
-    },
-    "ui_not_enough_memory_to_save_in_this_format": {
-      "default": "Not enough memory to save in this format. Try PNG",
-      "cs": "Pro uložení v tomto formátu není dostatek paměti. Zkuste PNG"
-    },
-    "ui_png_encoding_failed": {
-      "default": "PNG encoding failed.",
-      "cs": "Kódování PNG selhalo."
-    },
-    "ui_previous_draft_kept_for_recovery": {
-      "default": "Previous draft kept for recovery",
-      "cs": "Předchozí rozpracovaný obrázek zachován pro obnovení"
-    },
-    "ui_recovered_image": {
-      "default": "Recovered image",
-      "cs": "Obnovený obrázek"
-    },
-    "ui_recovery_copy_exported_extract_canvas_png_from_the": {
-      "default": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
-      "cs": "Kopie pro obnovení byla exportována. Ze souboru ZIP extrahujte canvas.png a otevřete jej pomocí Soubor > Načíst obrázek. ZIP obsahuje také nastavení rozpracovaného obrázku a případný plovoucí výběr."
-    },
-    "ui_resize_large_image": {
-      "default": "Resize large image?",
-      "cs": "Změnit velikost velkého obrázku?"
-    },
-    "ui_sampled_resize_memory_explanation": {
-      "default": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
-      "cs": "Odhady zahrnují aktuální plátno a schránku, dekódování se sníženým rozlišením a vyrovnávací paměti pro úpravy. Skutečná spotřeba paměti se může lišit. Menší kopie ztrácí detaily. Původní soubor zůstane beze změny."
-    },
-    "ui_save_and_share": {
-      "default": "Save and share…",
-      "cs": "Uložit a sdílet…"
-    },
-    "ui_save_and_share_41edb4": {
-      "default": "Save and share",
-      "cs": "Uložit a sdílet"
-    },
-    "ui_save_as": {
-      "default": "Save as %1$s",
-      "cs": "Uložit jako %1$s"
-    },
-    "ui_save_as_jpeg": {
-      "default": "Save as JPEG…",
-      "cs": "Uložit jako JPEG…"
-    },
-    "ui_save_as_jpeg_xl": {
-      "default": "Save as JPEG XL…",
-      "cs": "Uložit jako JPEG XL…"
-    },
-    "ui_save_as_png": {
-      "default": "Save as PNG…",
-      "cs": "Uložit jako PNG…"
-    },
-    "ui_save_explanation23": {
-      "default": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
-      "cs": "Vyberte formát obrázku a nastavení komprese. Příkaz Uložit bude znovu používat tento název souboru, umístění, formát a nastavení."
-    },
-    "ui_save_png": {
-      "default": "Save PNG",
-      "cs": "Uložit PNG"
-    },
-    "ui_saved": {
-      "default": "Saved %1$s",
-      "cs": "Uloženo: %1$s"
-    },
-    "ui_share_explanation34": {
-      "default": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
-      "cs": "Uložte kopii do zvoleného umístění a poté vyberte aplikaci pro sdílení. Aktuální cíl příkazu Uložit zůstane beze změny."
-    },
-    "ui_the_draft_is_saving_try_again_shortly": {
-      "default": "The draft is saving. Try again shortly.",
-      "cs": "Rozpracovaný obrázek se právě ukládá. Zkuste to za chvíli znovu."
-    },
-    "ui_the_encoder_did_not_finish": {
-      "default": "The encoder did not finish.",
-      "cs": "Kodér nedokončil operaci."
-    },
-    "ui_the_image_was_saved_but_android_could_not": {
-      "default": "The image was saved, but Android could not open sharing: %1$s",
-      "cs": "Obrázek byl uložen, ale Android nemohl otevřít sdílení: %1$s"
-    },
-    "ui_the_previous_draft_could_not_be_moved_to": {
-      "default": "The previous draft could not be moved to a recovery copy.",
-      "cs": "Předchozí rozpracovaný obrázek se nepodařilo přesunout do kopie pro obnovení."
-    },
-    "ui_the_previous_draft_could_not_be_preserved_separately": {
-      "default": "The previous draft could not be preserved separately.",
-      "cs": "Předchozí rozpracovaný obrázek se nepodařilo zachovat samostatně."
-    },
-    "ui_the_previous_draft_could_not_be_restored": {
-      "default": "The previous draft could not be restored.",
-      "cs": "Předchozí rozpracovaný obrázek se nepodařilo obnovit."
-    },
-    "ui_the_previous_draft_needs_more_memory_to_reopen": {
-      "default": "The previous draft needs more memory to reopen.",
-      "cs": "K opětovnému otevření předchozího rozpracovaného obrázku je potřeba více paměti."
-    },
-    "ui_the_saved_assembly_could_not_be_opened": {
-      "default": "The saved assembly could not be opened: %1$s",
-      "cs": "Uloženou sestavu se nepodařilo otevřít: %1$s"
-    },
-    "ui_the_selected_location_is_not_writable": {
-      "default": "The selected location is not writable.",
-      "cs": "Do vybraného umístění nelze zapisovat."
-    },
-    "ui_the_trim_would_remove_the_entire_image": {
-      "default": "The trim would remove the entire image.",
-      "cs": "Ořez by odstranil celý obrázek."
-    },
-    "ui_the_undo_cache_is_damaged": {
-      "default": "The undo cache is damaged.",
-      "cs": "Mezipaměť historie úprav je poškozená."
-    },
-    "ui_there_is_not_enough_memory_for_this_operation": {
-      "default": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
-      "cs": "Pro tuto operaci v původním rozlišení není dostatek paměti. K automatické změně velikosti nedošlo."
-    },
-    "ui_this_location_is_not_writable": {
-      "default": "This location is not writable.",
-      "cs": "Do tohoto umístění nelze zapisovat."
-    },
-    "ui_unexpected_data_in_the_undo_cache": {
-      "default": "Unexpected data in the undo cache.",
-      "cs": "Neočekávaná data v mezipaměti historie úprav."
-    },
-    "ui_your_current_image_has_unsaved_changes": {
-      "default": "Your current image has unsaved changes.",
-      "cs": "Aktuální obrázek obsahuje neuložené změny."
-    },
-    "colour_converter_unavailable": {
-      "default": "The image colour converter could not start. The image was not imported.",
-      "cs": "Převodník barev obrázku se nepodařilo spustit. Obrázek nebyl importován."
-    },
-    "colour_invalid_metadata": {
-      "default": "The image has invalid or unsupported colour metadata.",
-      "cs": "Obrázek obsahuje neplatná nebo nepodporovaná metadata barev."
-    },
-    "colour_truncated_metadata": {
-      "default": "The image ends inside its colour metadata.",
-      "cs": "Soubor obrázku končí uprostřed metadat barev."
-    },
-    "colour_unsupported_icc_model": {
-      "default": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
-      "cs": "Tento obrázek používá barevný model ICC, který dekodér obrázků neumí převést. Nejprve exportujte kopii v RGB v aplikaci se správou barev."
-    },
-    "commons_svg_original_size_too_large": {
-      "default": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
-      "cs": "Původní velikost SVG překračuje rozměry bitmap podporované Androidem. Ke změně velikosti nedošlo."
-    },
-    "commons_svg_original_size_unavailable": {
-      "default": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
-      "cs": "SVG neuvádí použitelnou původní velikost. Nebyla nahrazena velikostí podle plátna."
-    },
-    "formats22_import_limit": {
-      "default": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
-      "cs": "Tento soubor překračuje limit pro import 512 MiB. Vyberte menší soubor."
-    },
-    "language20_current": {
-      "default": "App language: %1$s",
-      "cs": "Jazyk aplikace: %1$s"
-    },
-    "language20_translation_note": {
-      "default": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
-      "cs": "Jazyk aplikace\\n\\nPřeklady se spravují v jazykových souborech AN Paint. Nový nebo nepřeložený text se zobrazuje anglicky."
-    },
-    "ui_0f_0f_px_1f": {
-      "default": "%1$.0f × %2$.0f px\\n%3$.1f°",
-      "cs": "%1$.0f × %2$.0f px\\n%3$.1f°"
-    },
-    "ui_100": {
-      "default": "100%",
-      "cs": "100%"
-    },
-    "ui_1_px": {
-      "default": "1 px",
-      "cs": "1 px"
-    },
-    "ui_1f_s": {
-      "default": "%1$.1f %2$s",
-      "cs": "%1$.1f %2$s"
-    },
-    "ui_actual_size_100": {
-      "default": "Actual size (100%)",
-      "cs": "Skutečná velikost (100%)"
-    },
-    "ui_add_colour26": {
-      "default": "Add colour",
-      "cs": "Přidat barvu"
-    },
-    "ui_add_text": {
-      "default": "Add text",
-      "cs": "Přidat text"
-    },
-    "ui_all": {
-      "default": "All",
-      "cs": "Vše"
-    },
-    "ui_android_blocked_the_file_picker": {
-      "default": "Android blocked the file picker: %1$s",
-      "cs": "Android zablokoval výběr souboru: %1$s"
-    },
-    "ui_android_could_not_decode_this_image": {
-      "default": "Android could not decode this image.",
-      "cs": "Android nedokázal dekódovat tento obrázek."
-    },
-    "ui_android_could_not_find_a_file_picker_enable": {
-      "default": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
-      "cs": "Android nenašel aplikaci pro výběr souborů. V nastavení Androidu povolte aplikaci Soubory nebo Dokumenty a zkuste to znovu."
-    },
-    "ui_apply": {
-      "default": "Apply",
-      "cs": "Použít"
-    },
-    "ui_apply_bounds": {
-      "default": "Apply bounds",
-      "cs": "Použít hranice"
-    },
-    "ui_apply_crop": {
-      "default": "Apply crop",
-      "cs": "Použít ořez"
-    },
     "ui_autosaving_draft": {
       "default": "Autosaving draft…",
       "cs": "Automatické ukládání rozpracovaného obrázku…"
@@ -454,6 +242,10 @@
     "ui_brush": {
       "default": "Brush",
       "cs": "Štětec"
+    },
+    "ui_cannot_create_the_undo_cache_free_some_device": {
+      "default": "Cannot create the undo cache. Free some device storage and try again.",
+      "cs": "Nelze vytvořit mezipaměť historie úprav. Uvolněte místo v úložišti zařízení a zkuste to znovu."
     },
     "ui_canvas_bounds": {
       "default": "Canvas bounds",
@@ -486,6 +278,14 @@
     "ui_choose_location": {
       "default": "Choose location…",
       "cs": "Vybrat umístění…"
+    },
+    "ui_clear_all": {
+      "default": "Clear all",
+      "cs": "Vymazat vše"
+    },
+    "ui_clear_image": {
+      "default": "Clear image",
+      "cs": "Vymazat obrázek"
     },
     "ui_codec_resize_memory_floor": {
       "default": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
@@ -535,6 +335,14 @@
       "default": "Could not complete the operation.",
       "cs": "Operaci se nepodařilo dokončit."
     },
+    "ui_could_not_export_the_recovery_copy": {
+      "default": "Could not export the recovery copy",
+      "cs": "Kopii pro obnovení se nepodařilo exportovat"
+    },
+    "ui_could_not_open_image": {
+      "default": "Could not open image",
+      "cs": "Obrázek se nepodařilo otevřít"
+    },
     "ui_could_not_place_the_image": {
       "default": "Could not place the image.",
       "cs": "Obrázek se nepodařilo umístit."
@@ -542,6 +350,18 @@
     "ui_could_not_prepare_the_image": {
       "default": "Could not prepare the image.",
       "cs": "Obrázek se nepodařilo připravit."
+    },
+    "ui_could_not_save_image": {
+      "default": "Could not save image",
+      "cs": "Obrázek se nepodařilo uložit"
+    },
+    "ui_could_not_save_the_assembly": {
+      "default": "Could not save the assembly: %1$s",
+      "cs": "Sestavu se nepodařilo uložit: %1$s"
+    },
+    "ui_could_not_store_the_assembly": {
+      "default": "Could not store the assembly.",
+      "cs": "Sestavu se nepodařilo uložit."
     },
     "ui_crop": {
       "default": "Crop %1$s",
@@ -555,6 +375,10 @@
       "default": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
       "cs": "Náhled ořezu. Táhněte za okraj nebo roh; tažením uvnitř ořez přesunete."
     },
+    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+      "default": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "cs": "%1$d × %2$d pixelů (%3$.2f MP) překračuje aktuální bezpečný limit pro úpravy %4$.2f MP. AN Paint uchovává v paměti celý obrázek a vyhrazuje místo pro transformace a výběry. Tento limit závisí na dostupné paměti. Operace byla zastavena před vyhrazením paměti pro příliš velkou bitmapu. K automatické změně velikosti nedošlo."
+    },
     "ui_d_d_px_d_pixels_2f_mp": {
       "default": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
       "cs": "%1$d × %2$d px · Počet pixelů: %3$,d (%4$.2f MP)"
@@ -563,9 +387,21 @@
       "default": "Delete selection",
       "cs": "Smazat výběr"
     },
+    "ui_draft_not_saved_yet": {
+      "default": "Draft not saved yet",
+      "cs": "Rozpracovaný obrázek zatím není uložen"
+    },
     "ui_draft_pending": {
       "default": "Draft pending",
       "cs": "Rozpracovaný obrázek čeká na uložení"
+    },
+    "ui_draft_restored": {
+      "default": "Draft restored",
+      "cs": "Rozpracovaný obrázek obnoven"
+    },
+    "ui_draft_saved": {
+      "default": "Draft saved",
+      "cs": "Rozpracovaný obrázek uložen"
     },
     "ui_draw_again": {
       "default": "Draw again",
@@ -647,6 +483,22 @@
       "default": "Expand toolbox",
       "cs": "Rozbalit panel nástrojů"
     },
+    "ui_export_did_not_save23": {
+      "default": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "cs": "Export byl vytvořen. Než budete pokračovat, uložte aktuální obrázek pomocí Uložit nebo Uložit jako."
+    },
+    "ui_export_explanation23": {
+      "default": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "cs": "Exportujte ikonu, text Base64 nebo obrázek ze znaků ASCII. Export ponechá aktuální obrázek i cíl příkazu Uložit beze změny."
+    },
+    "ui_export_recovery_copy": {
+      "default": "Export recovery copy…",
+      "cs": "Exportovat kopii pro obnovení…"
+    },
+    "ui_export_recovery_copy_144b8a": {
+      "default": "Export recovery copy",
+      "cs": "Exportovat kopii pro obnovení"
+    },
     "ui_fit_selection34": {
       "default": "Fit image to canvas",
       "cs": "Přizpůsobit obrázek plátnu"
@@ -695,9 +547,21 @@
       "default": "Hide editor controls",
       "cs": "Skrýt ovládací prvky editoru"
     },
+    "ui_higher_quality_usually_makes_a_larger_file_lossless": {
+      "default": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "cs": "Vyšší kvalita obvykle zvětšuje soubor. Bezeztrátové ukládání zachovává všechny barevné hodnoty."
+    },
+    "ui_history_unavailable34": {
+      "default": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "cs": "Plátno bylo obnoveno, ale historii úprav se nepodařilo přečíst. Původní rozpracovaný obrázek byl zachován jako kopie pro obnovení."
+    },
     "ui_insert_image_into_canvas": {
       "default": "Insert image into canvas…",
       "cs": "Vložit obrázek do plátna…"
+    },
+    "ui_invalid_autosave_metadata": {
+      "default": "Invalid autosave metadata.",
+      "cs": "Neplatná metadata automaticky uloženého obrázku."
     },
     "ui_invalid_colour": {
       "default": "Invalid colour",
@@ -710,6 +574,14 @@
     "ui_invert_colours": {
       "default": "Invert colours",
       "cs": "Invertovat barvy"
+    },
+    "ui_keep_editing23": {
+      "default": "Keep editing",
+      "cs": "Pokračovat v úpravách"
+    },
+    "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
+      "default": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "cs": "Zachová pixely vlevo nahoře. Při zmenšení plátna se odstraní pixely za pravým a dolním okrajem; příkaz Zpět je obnoví."
     },
     "ui_left_arrow_collapse": {
       "default": "Left arrow: collapse",
@@ -763,6 +635,10 @@
       "default": "None",
       "cs": "Žádné"
     },
+    "ui_not_enough_memory_for_this_operation_the_assembly": {
+      "default": "Not enough memory for this operation. The assembly source files are retained.",
+      "cs": "Pro tuto operaci není dostatek paměti. Zdrojové soubory sestavy byly zachovány."
+    },
     "ui_not_enough_memory_to_finish_opening_this_image": {
       "default": "Not enough memory to finish opening this image",
       "cs": "Pro dokončení otevírání tohoto obrázku není dostatek paměti"
@@ -770,6 +646,10 @@
     "ui_not_enough_memory_to_inspect_this_image": {
       "default": "Not enough memory to inspect this image",
       "cs": "Pro prozkoumání tohoto obrázku není dostatek paměti"
+    },
+    "ui_not_enough_memory_to_save_in_this_format": {
+      "default": "Not enough memory to save in this format. Try PNG",
+      "cs": "Pro uložení v tomto formátu není dostatek paměti. Zkuste PNG"
     },
     "ui_numeric_slider_value": {
       "default": "%1$s: %2$d",
@@ -819,6 +699,14 @@
       "default": "Please wait for the current operation.",
       "cs": "Počkejte na dokončení aktuální operace."
     },
+    "ui_png_encoding_failed": {
+      "default": "PNG encoding failed.",
+      "cs": "Kódování PNG selhalo."
+    },
+    "ui_previous_draft_kept_for_recovery": {
+      "default": "Previous draft kept for recovery",
+      "cs": "Předchozí rozpracovaný obrázek zachován pro obnovení"
+    },
     "ui_px": {
       "default": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
       "cs": "%1$s · %2$s\\n%3$s × %4$s px · %5$s"
@@ -826,6 +714,18 @@
     "ui_px_724eb3": {
       "default": "%1$s × %2$s px",
       "cs": "%1$s × %2$s px"
+    },
+    "ui_recovered_image": {
+      "default": "Recovered image",
+      "cs": "Obnovený obrázek"
+    },
+    "ui_recovery_copy_exported_extract_canvas_png_from_the": {
+      "default": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "cs": "Kopie pro obnovení byla exportována. Ze souboru ZIP extrahujte canvas.png a otevřete jej pomocí Soubor > Načíst obrázek. ZIP obsahuje také nastavení rozpracovaného obrázku a případný plovoucí výběr."
+    },
+    "ui_rectangle_select": {
+      "default": "Rectangle select",
+      "cs": "Obdélníkový výběr"
     },
     "ui_reset_bw23": {
       "default": "Black / white",
@@ -843,9 +743,53 @@
       "default": "Resize and load",
       "cs": "Změnit velikost a načíst"
     },
+    "ui_resize_large_image": {
+      "default": "Resize large image?",
+      "cs": "Změnit velikost velkého obrázku?"
+    },
     "ui_resize_the_copy": {
       "default": "Resize the copy",
       "cs": "Změnit velikost kopie"
+    },
+    "ui_sampled_resize_memory_explanation": {
+      "default": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "cs": "Odhady zahrnují aktuální plátno a schránku, dekódování se sníženým rozlišením a vyrovnávací paměti pro úpravy. Skutečná spotřeba paměti se může lišit. Menší kopie ztrácí detaily. Původní soubor zůstane beze změny."
+    },
+    "ui_save_and_share": {
+      "default": "Save and share…",
+      "cs": "Uložit a sdílet…"
+    },
+    "ui_save_and_share_41edb4": {
+      "default": "Save and share",
+      "cs": "Uložit a sdílet"
+    },
+    "ui_save_as": {
+      "default": "Save as %1$s",
+      "cs": "Uložit jako %1$s"
+    },
+    "ui_save_as_jpeg": {
+      "default": "Save as JPEG…",
+      "cs": "Uložit jako JPEG…"
+    },
+    "ui_save_as_jpeg_xl": {
+      "default": "Save as JPEG XL…",
+      "cs": "Uložit jako JPEG XL…"
+    },
+    "ui_save_as_png": {
+      "default": "Save as PNG…",
+      "cs": "Uložit jako PNG…"
+    },
+    "ui_save_explanation23": {
+      "default": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "cs": "Vyberte formát obrázku a nastavení komprese. Příkaz Uložit bude znovu používat tento název souboru, umístění, formát a nastavení."
+    },
+    "ui_save_png": {
+      "default": "Save PNG",
+      "cs": "Uložit PNG"
+    },
+    "ui_saved": {
+      "default": "Saved %1$s",
+      "cs": "Uloženo: %1$s"
     },
     "ui_scales_the_image_unlock_the_ratio_to_stretch": {
       "default": "Scales the image. Unlock the ratio to stretch width and height independently.",
@@ -866,6 +810,10 @@
     "ui_selection_dimensions_are_too_large": {
       "default": "Selection dimensions are too large.",
       "cs": "Rozměry výběru jsou příliš velké."
+    },
+    "ui_share_explanation34": {
+      "default": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "cs": "Uložte kopii do zvoleného umístění a poté vyberte aplikaci pro sdílení. Aktuální cíl příkazu Uložit zůstane beze změny."
     },
     "ui_share_saved_image": {
       "default": "Share saved image",
@@ -927,9 +875,21 @@
       "default": "The decoder and editing buffers need about %1$s; the current safe editing budget is %2$s. Choose a smaller copy.",
       "cs": "Dekodér a vyrovnávací paměti pro úpravy potřebují přibližně %1$s; aktuální bezpečný limit pro úpravy je %2$s. Zvolte menší kopii."
     },
+    "ui_the_draft_is_saving_try_again_shortly": {
+      "default": "The draft is saving. Try again shortly.",
+      "cs": "Rozpracovaný obrázek se právě ukládá. Zkuste to za chvíli znovu."
+    },
+    "ui_the_encoder_did_not_finish": {
+      "default": "The encoder did not finish.",
+      "cs": "Kodér nedokončil operaci."
+    },
     "ui_the_full_image_and_working_buffers_exceed_the": {
       "default": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
       "cs": "Celý obrázek a pracovní vyrovnávací paměti překračují aktuální bezpečný limit, nebo jim Android nemohl vyhradit paměť. Pro úpravy změňte velikost kopie. Původní soubor zůstane beze změny."
+    },
+    "ui_the_image_was_saved_but_android_could_not": {
+      "default": "The image was saved, but Android could not open sharing: %1$s",
+      "cs": "Obrázek byl uložen, ale Android nemohl otevřít sdílení: %1$s"
     },
     "ui_the_picker_returned_no_file_please_choose_the": {
       "default": "The picker returned no file. Please choose the file again.",
@@ -939,13 +899,53 @@
       "default": "The picker returned no files.",
       "cs": "Výběr souborů nevrátil žádné soubory."
     },
+    "ui_the_previous_draft_could_not_be_moved_to": {
+      "default": "The previous draft could not be moved to a recovery copy.",
+      "cs": "Předchozí rozpracovaný obrázek se nepodařilo přesunout do kopie pro obnovení."
+    },
+    "ui_the_previous_draft_could_not_be_preserved_separately": {
+      "default": "The previous draft could not be preserved separately.",
+      "cs": "Předchozí rozpracovaný obrázek se nepodařilo zachovat samostatně."
+    },
+    "ui_the_previous_draft_could_not_be_restored": {
+      "default": "The previous draft could not be restored.",
+      "cs": "Předchozí rozpracovaný obrázek se nepodařilo obnovit."
+    },
+    "ui_the_previous_draft_needs_more_memory_to_reopen": {
+      "default": "The previous draft needs more memory to reopen.",
+      "cs": "K opětovnému otevření předchozího rozpracovaného obrázku je potřeba více paměti."
+    },
+    "ui_the_saved_assembly_could_not_be_opened": {
+      "default": "The saved assembly could not be opened: %1$s",
+      "cs": "Uloženou sestavu se nepodařilo otevřít: %1$s"
+    },
+    "ui_the_selected_location_is_not_writable": {
+      "default": "The selected location is not writable.",
+      "cs": "Do vybraného umístění nelze zapisovat."
+    },
     "ui_the_selected_provider_did_not_return_any_image": {
       "default": "The selected provider did not return any image data.",
       "cs": "Vybraný poskytovatel nevrátil žádná obrazová data."
     },
+    "ui_the_trim_would_remove_the_entire_image": {
+      "default": "The trim would remove the entire image.",
+      "cs": "Ořez by odstranil celý obrázek."
+    },
+    "ui_the_undo_cache_is_damaged": {
+      "default": "The undo cache is damaged.",
+      "cs": "Mezipaměť historie úprav je poškozená."
+    },
+    "ui_there_is_not_enough_memory_for_this_operation": {
+      "default": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "cs": "Pro tuto operaci v původním rozlišení není dostatek paměti. K automatické změně velikosti nedošlo."
+    },
     "ui_this_file_is_not_a_supported_image_use": {
       "default": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
       "cs": "Tento soubor není podporovaným obrázkem. Použijte PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF nebo text Base64 s obrazovými daty."
+    },
+    "ui_this_location_is_not_writable": {
+      "default": "This location is not writable.",
+      "cs": "Do tohoto umístění nelze zapisovat."
     },
     "ui_tolerance": {
       "default": "Tolerance",
@@ -979,6 +979,10 @@
       "default": "Type text",
       "cs": "Zadejte text"
     },
+    "ui_unexpected_data_in_the_undo_cache": {
+      "default": "Unexpected data in the undo cache.",
+      "cs": "Neočekávaná data v mezipaměti historie úprav."
+    },
     "ui_use_1_1024_pixels": {
       "default": "Use 1–1024 pixels.",
       "cs": "Použijte 1–1024 pixelů."
@@ -1007,24 +1011,68 @@
       "default": "Width (%1$s)",
       "cs": "Šířka (%1$s)"
     },
-    "ui_working": {
-      "default": "Working…",
-      "cs": "Pracuji…"
-    },
     "ui_width_in": {
       "default": "Width in %1$s",
       "cs": "Šířka v %1$s"
     },
-    "formats22_at_least_frames": {
-      "default": "at least %1$d",
-      "cs": "alespoň %1$d"
+    "ui_working": {
+      "default": "Working…",
+      "cs": "Pracuji…"
     },
-    "ui_rectangle_select": {
-      "default": "Rectangle select",
-      "cs": "Obdélníkový výběr"
+    "ui_your_current_image_has_unsaved_changes": {
+      "default": "Your current image has unsaved changes.",
+      "cs": "Aktuální obrázek obsahuje neuložené změny."
     }
   },
   "constraints": {
+    "colour_converter_unavailable": {
+      "attributes": {
+        "name": "colour_converter_unavailable"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "colour_invalid_metadata": {
+      "attributes": {
+        "name": "colour_invalid_metadata"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "colour_truncated_metadata": {
+      "attributes": {
+        "name": "colour_truncated_metadata"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "colour_unsupported_icc_model": {
+      "attributes": {
+        "name": "colour_unsupported_icc_model"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "commons_svg_original_size_too_large": {
+      "attributes": {
+        "name": "commons_svg_original_size_too_large"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "commons_svg_original_size_unavailable": {
+      "attributes": {
+        "name": "commons_svg_original_size_unavailable"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "formats22_animation_message": {
       "attributes": {
         "name": "formats22_animation_message"
@@ -1078,6 +1126,16 @@
       "formatted": true,
       "child_elements": 0
     },
+    "formats22_at_least_frames": {
+      "attributes": {
+        "name": "formats22_at_least_frames"
+      },
+      "placeholders": {
+        "%1$d": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
     "formats22_derived_exported": {
       "attributes": {
         "name": "formats22_derived_exported"
@@ -1085,6 +1143,14 @@
       "placeholders": {
         "%1$s": 1
       },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "formats22_import_limit": {
+      "attributes": {
+        "name": "formats22_import_limit"
+      },
+      "placeholders": {},
       "formatted": true,
       "child_elements": 0
     },
@@ -1115,6 +1181,24 @@
     "gallery_credit_too_large": {
       "attributes": {
         "name": "gallery_credit_too_large"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "language20_current": {
+      "attributes": {
+        "name": "language20_current"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "language20_translation_note": {
+      "attributes": {
+        "name": "language20_translation_note"
       },
       "placeholders": {},
       "formatted": true,
@@ -1184,6 +1268,46 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_0f_0f_px_1f": {
+      "attributes": {
+        "name": "ui_0f_0f_px_1f"
+      },
+      "placeholders": {
+        "%1$.0f": 1,
+        "%2$.0f": 1,
+        "%3$.1f": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_100": {
+      "attributes": {
+        "name": "ui_100",
+        "formatted": "false"
+      },
+      "placeholders": {},
+      "formatted": false,
+      "child_elements": 0
+    },
+    "ui_1_px": {
+      "attributes": {
+        "name": "ui_1_px"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_1f_s": {
+      "attributes": {
+        "name": "ui_1f_s"
+      },
+      "placeholders": {
+        "%1$.1f": 1,
+        "%2$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_a_separate_recovery_copy_has_been_kept_use": {
       "attributes": {
         "name": "ui_a_separate_recovery_copy_has_been_kept_use"
@@ -1194,9 +1318,92 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_actual_size_100": {
+      "attributes": {
+        "name": "ui_actual_size_100",
+        "formatted": "false"
+      },
+      "placeholders": {},
+      "formatted": false,
+      "child_elements": 0
+    },
+    "ui_add_colour26": {
+      "attributes": {
+        "name": "ui_add_colour26"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_add_text": {
+      "attributes": {
+        "name": "ui_add_text"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_all": {
+      "attributes": {
+        "name": "ui_all"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_an_assembly_source_image_is_missing": {
       "attributes": {
         "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_android_blocked_the_file_picker": {
+      "attributes": {
+        "name": "ui_android_blocked_the_file_picker"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_android_could_not_decode_this_image": {
+      "attributes": {
+        "name": "ui_android_could_not_decode_this_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_android_could_not_find_a_file_picker_enable": {
+      "attributes": {
+        "name": "ui_android_could_not_find_a_file_picker_enable"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_apply": {
+      "attributes": {
+        "name": "ui_apply"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_apply_bounds": {
+      "attributes": {
+        "name": "ui_apply_bounds"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_apply_crop": {
+      "attributes": {
+        "name": "ui_apply_crop"
       },
       "placeholders": {},
       "formatted": true,
@@ -1284,652 +1491,6 @@
       "formatted": true,
       "child_elements": 0
     },
-    "ui_cannot_create_the_undo_cache_free_some_device": {
-      "attributes": {
-        "name": "ui_cannot_create_the_undo_cache_free_some_device"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_clear_all": {
-      "attributes": {
-        "name": "ui_clear_all"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_clear_image": {
-      "attributes": {
-        "name": "ui_clear_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_could_not_export_the_recovery_copy": {
-      "attributes": {
-        "name": "ui_could_not_export_the_recovery_copy"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_could_not_open_image": {
-      "attributes": {
-        "name": "ui_could_not_open_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_could_not_save_image": {
-      "attributes": {
-        "name": "ui_could_not_save_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_could_not_save_the_assembly": {
-      "attributes": {
-        "name": "ui_could_not_save_the_assembly"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_could_not_store_the_assembly": {
-      "attributes": {
-        "name": "ui_could_not_store_the_assembly"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
-      "attributes": {
-        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
-      },
-      "placeholders": {
-        "%1$d": 1,
-        "%2$d": 1,
-        "%3$.2f": 1,
-        "%4$.2f": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_draft_not_saved_yet": {
-      "attributes": {
-        "name": "ui_draft_not_saved_yet"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_draft_restored": {
-      "attributes": {
-        "name": "ui_draft_restored"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_draft_saved": {
-      "attributes": {
-        "name": "ui_draft_saved"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_export_did_not_save23": {
-      "attributes": {
-        "name": "ui_export_did_not_save23"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_export_explanation23": {
-      "attributes": {
-        "name": "ui_export_explanation23"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_export_recovery_copy": {
-      "attributes": {
-        "name": "ui_export_recovery_copy"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_export_recovery_copy_144b8a": {
-      "attributes": {
-        "name": "ui_export_recovery_copy_144b8a"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_higher_quality_usually_makes_a_larger_file_lossless": {
-      "attributes": {
-        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_history_unavailable34": {
-      "attributes": {
-        "name": "ui_history_unavailable34",
-        "formatted": "false"
-      },
-      "placeholders": {},
-      "formatted": false,
-      "child_elements": 0
-    },
-    "ui_invalid_autosave_metadata": {
-      "attributes": {
-        "name": "ui_invalid_autosave_metadata"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_keep_editing23": {
-      "attributes": {
-        "name": "ui_keep_editing23"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
-      "attributes": {
-        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_not_enough_memory_for_this_operation_the_assembly": {
-      "attributes": {
-        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_not_enough_memory_to_save_in_this_format": {
-      "attributes": {
-        "name": "ui_not_enough_memory_to_save_in_this_format"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_png_encoding_failed": {
-      "attributes": {
-        "name": "ui_png_encoding_failed"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_previous_draft_kept_for_recovery": {
-      "attributes": {
-        "name": "ui_previous_draft_kept_for_recovery"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_recovered_image": {
-      "attributes": {
-        "name": "ui_recovered_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_recovery_copy_exported_extract_canvas_png_from_the": {
-      "attributes": {
-        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_resize_large_image": {
-      "attributes": {
-        "name": "ui_resize_large_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_sampled_resize_memory_explanation": {
-      "attributes": {
-        "name": "ui_sampled_resize_memory_explanation"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_and_share": {
-      "attributes": {
-        "name": "ui_save_and_share"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_and_share_41edb4": {
-      "attributes": {
-        "name": "ui_save_and_share_41edb4"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_as": {
-      "attributes": {
-        "name": "ui_save_as"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_as_jpeg": {
-      "attributes": {
-        "name": "ui_save_as_jpeg"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_as_jpeg_xl": {
-      "attributes": {
-        "name": "ui_save_as_jpeg_xl"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_as_png": {
-      "attributes": {
-        "name": "ui_save_as_png"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_explanation23": {
-      "attributes": {
-        "name": "ui_save_explanation23"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_save_png": {
-      "attributes": {
-        "name": "ui_save_png"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_saved": {
-      "attributes": {
-        "name": "ui_saved"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_share_explanation34": {
-      "attributes": {
-        "name": "ui_share_explanation34",
-        "formatted": "false"
-      },
-      "placeholders": {},
-      "formatted": false,
-      "child_elements": 0
-    },
-    "ui_the_draft_is_saving_try_again_shortly": {
-      "attributes": {
-        "name": "ui_the_draft_is_saving_try_again_shortly"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_encoder_did_not_finish": {
-      "attributes": {
-        "name": "ui_the_encoder_did_not_finish"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_image_was_saved_but_android_could_not": {
-      "attributes": {
-        "name": "ui_the_image_was_saved_but_android_could_not"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_previous_draft_could_not_be_moved_to": {
-      "attributes": {
-        "name": "ui_the_previous_draft_could_not_be_moved_to"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_previous_draft_could_not_be_preserved_separately": {
-      "attributes": {
-        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_previous_draft_could_not_be_restored": {
-      "attributes": {
-        "name": "ui_the_previous_draft_could_not_be_restored"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_previous_draft_needs_more_memory_to_reopen": {
-      "attributes": {
-        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_saved_assembly_could_not_be_opened": {
-      "attributes": {
-        "name": "ui_the_saved_assembly_could_not_be_opened"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_selected_location_is_not_writable": {
-      "attributes": {
-        "name": "ui_the_selected_location_is_not_writable"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_trim_would_remove_the_entire_image": {
-      "attributes": {
-        "name": "ui_the_trim_would_remove_the_entire_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_the_undo_cache_is_damaged": {
-      "attributes": {
-        "name": "ui_the_undo_cache_is_damaged"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_there_is_not_enough_memory_for_this_operation": {
-      "attributes": {
-        "name": "ui_there_is_not_enough_memory_for_this_operation"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_this_location_is_not_writable": {
-      "attributes": {
-        "name": "ui_this_location_is_not_writable"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_unexpected_data_in_the_undo_cache": {
-      "attributes": {
-        "name": "ui_unexpected_data_in_the_undo_cache"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_your_current_image_has_unsaved_changes": {
-      "attributes": {
-        "name": "ui_your_current_image_has_unsaved_changes"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "colour_converter_unavailable": {
-      "attributes": {
-        "name": "colour_converter_unavailable"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "colour_invalid_metadata": {
-      "attributes": {
-        "name": "colour_invalid_metadata"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "colour_truncated_metadata": {
-      "attributes": {
-        "name": "colour_truncated_metadata"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "colour_unsupported_icc_model": {
-      "attributes": {
-        "name": "colour_unsupported_icc_model"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "commons_svg_original_size_too_large": {
-      "attributes": {
-        "name": "commons_svg_original_size_too_large"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "commons_svg_original_size_unavailable": {
-      "attributes": {
-        "name": "commons_svg_original_size_unavailable"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "formats22_import_limit": {
-      "attributes": {
-        "name": "formats22_import_limit"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "language20_current": {
-      "attributes": {
-        "name": "language20_current"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "language20_translation_note": {
-      "attributes": {
-        "name": "language20_translation_note"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_0f_0f_px_1f": {
-      "attributes": {
-        "name": "ui_0f_0f_px_1f"
-      },
-      "placeholders": {
-        "%1$.0f": 1,
-        "%2$.0f": 1,
-        "%3$.1f": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_100": {
-      "attributes": {
-        "name": "ui_100",
-        "formatted": "false"
-      },
-      "placeholders": {},
-      "formatted": false,
-      "child_elements": 0
-    },
-    "ui_1_px": {
-      "attributes": {
-        "name": "ui_1_px"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_1f_s": {
-      "attributes": {
-        "name": "ui_1f_s"
-      },
-      "placeholders": {
-        "%1$.1f": 1,
-        "%2$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_actual_size_100": {
-      "attributes": {
-        "name": "ui_actual_size_100",
-        "formatted": "false"
-      },
-      "placeholders": {},
-      "formatted": false,
-      "child_elements": 0
-    },
-    "ui_add_colour26": {
-      "attributes": {
-        "name": "ui_add_colour26"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_add_text": {
-      "attributes": {
-        "name": "ui_add_text"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_all": {
-      "attributes": {
-        "name": "ui_all"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_android_blocked_the_file_picker": {
-      "attributes": {
-        "name": "ui_android_blocked_the_file_picker"
-      },
-      "placeholders": {
-        "%1$s": 1
-      },
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_android_could_not_decode_this_image": {
-      "attributes": {
-        "name": "ui_android_could_not_decode_this_image"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_android_could_not_find_a_file_picker_enable": {
-      "attributes": {
-        "name": "ui_android_could_not_find_a_file_picker_enable"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_apply": {
-      "attributes": {
-        "name": "ui_apply"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_apply_bounds": {
-      "attributes": {
-        "name": "ui_apply_bounds"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
-    "ui_apply_crop": {
-      "attributes": {
-        "name": "ui_apply_crop"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
     "ui_autosaving_draft": {
       "attributes": {
         "name": "ui_autosaving_draft"
@@ -1967,6 +1528,14 @@
     "ui_brush": {
       "attributes": {
         "name": "ui_brush"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_cannot_create_the_undo_cache_free_some_device": {
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
       },
       "placeholders": {},
       "formatted": true,
@@ -2033,6 +1602,22 @@
     "ui_choose_location": {
       "attributes": {
         "name": "ui_choose_location"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_clear_all": {
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_clear_image": {
+      "attributes": {
+        "name": "ui_clear_image"
       },
       "placeholders": {},
       "formatted": true,
@@ -2143,6 +1728,22 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_could_not_export_the_recovery_copy": {
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_could_not_open_image": {
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_could_not_place_the_image": {
       "attributes": {
         "name": "ui_could_not_place_the_image"
@@ -2154,6 +1755,32 @@
     "ui_could_not_prepare_the_image": {
       "attributes": {
         "name": "ui_could_not_prepare_the_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_could_not_save_image": {
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_could_not_save_the_assembly": {
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_could_not_store_the_assembly": {
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
       },
       "placeholders": {},
       "formatted": true,
@@ -2185,6 +1812,19 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "placeholders": {
+        "%1$d": 1,
+        "%2$d": 1,
+        "%3$.2f": 1,
+        "%4$.2f": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_d_d_px_d_pixels_2f_mp": {
       "attributes": {
         "name": "ui_d_d_px_d_pixels_2f_mp"
@@ -2206,9 +1846,33 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_draft_not_saved_yet": {
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_draft_pending": {
       "attributes": {
         "name": "ui_draft_pending"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_draft_restored": {
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_draft_saved": {
+      "attributes": {
+        "name": "ui_draft_saved"
       },
       "placeholders": {},
       "formatted": true,
@@ -2383,6 +2047,38 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_export_did_not_save23": {
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_export_explanation23": {
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_export_recovery_copy": {
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_export_recovery_copy_144b8a": {
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_fit_selection34": {
       "attributes": {
         "name": "ui_fit_selection34",
@@ -2491,9 +2187,34 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_higher_quality_usually_makes_a_larger_file_lossless": {
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_history_unavailable34": {
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "placeholders": {},
+      "formatted": false,
+      "child_elements": 0
+    },
     "ui_insert_image_into_canvas": {
       "attributes": {
         "name": "ui_insert_image_into_canvas"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_invalid_autosave_metadata": {
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
       },
       "placeholders": {},
       "formatted": true,
@@ -2518,6 +2239,22 @@
     "ui_invert_colours": {
       "attributes": {
         "name": "ui_invert_colours"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_keep_editing23": {
+      "attributes": {
+        "name": "ui_keep_editing23"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
       },
       "placeholders": {},
       "formatted": true,
@@ -2629,6 +2366,14 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_not_enough_memory_for_this_operation_the_assembly": {
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_not_enough_memory_to_finish_opening_this_image": {
       "attributes": {
         "name": "ui_not_enough_memory_to_finish_opening_this_image"
@@ -2640,6 +2385,14 @@
     "ui_not_enough_memory_to_inspect_this_image": {
       "attributes": {
         "name": "ui_not_enough_memory_to_inspect_this_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_not_enough_memory_to_save_in_this_format": {
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
       },
       "placeholders": {},
       "formatted": true,
@@ -2747,6 +2500,22 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_png_encoding_failed": {
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_previous_draft_kept_for_recovery": {
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_px": {
       "attributes": {
         "name": "ui_px"
@@ -2769,6 +2538,30 @@
         "%1$s": 1,
         "%2$s": 1
       },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_recovered_image": {
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_recovery_copy_exported_extract_canvas_png_from_the": {
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_rectangle_select": {
+      "attributes": {
+        "name": "ui_rectangle_select"
+      },
+      "placeholders": {},
       "formatted": true,
       "child_elements": 0
     },
@@ -2804,11 +2597,103 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_resize_large_image": {
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_resize_the_copy": {
       "attributes": {
         "name": "ui_resize_the_copy"
       },
       "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_sampled_resize_memory_explanation": {
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_and_share": {
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_and_share_41edb4": {
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_as": {
+      "attributes": {
+        "name": "ui_save_as"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_as_jpeg": {
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_as_jpeg_xl": {
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_as_png": {
+      "attributes": {
+        "name": "ui_save_as_png"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_explanation23": {
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_save_png": {
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_saved": {
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
       "formatted": true,
       "child_elements": 0
     },
@@ -2850,6 +2735,15 @@
       },
       "placeholders": {},
       "formatted": true,
+      "child_elements": 0
+    },
+    "ui_share_explanation34": {
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "placeholders": {},
+      "formatted": false,
       "child_elements": 0
     },
     "ui_share_saved_image": {
@@ -2978,11 +2872,37 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_the_draft_is_saving_try_again_shortly": {
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_encoder_did_not_finish": {
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_the_full_image_and_working_buffers_exceed_the": {
       "attributes": {
         "name": "ui_the_full_image_and_working_buffers_exceed_the"
       },
       "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_image_was_saved_but_android_could_not": {
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
       "formatted": true,
       "child_elements": 0
     },
@@ -3002,6 +2922,56 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_the_previous_draft_could_not_be_moved_to": {
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_previous_draft_could_not_be_preserved_separately": {
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_previous_draft_could_not_be_restored": {
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_previous_draft_needs_more_memory_to_reopen": {
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_saved_assembly_could_not_be_opened": {
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "placeholders": {
+        "%1$s": 1
+      },
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_selected_location_is_not_writable": {
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_the_selected_provider_did_not_return_any_image": {
       "attributes": {
         "name": "ui_the_selected_provider_did_not_return_any_image"
@@ -3010,9 +2980,41 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_the_trim_would_remove_the_entire_image": {
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_the_undo_cache_is_damaged": {
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_there_is_not_enough_memory_for_this_operation": {
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_this_file_is_not_a_supported_image_use": {
       "attributes": {
         "name": "ui_this_file_is_not_a_supported_image_use"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
+    "ui_this_location_is_not_writable": {
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
       },
       "placeholders": {},
       "formatted": true,
@@ -3082,6 +3084,14 @@
       "formatted": true,
       "child_elements": 0
     },
+    "ui_unexpected_data_in_the_undo_cache": {
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "placeholders": {},
+      "formatted": true,
+      "child_elements": 0
+    },
     "ui_use_1_1024_pixels": {
       "attributes": {
         "name": "ui_use_1_1024_pixels"
@@ -3141,14 +3151,6 @@
       "formatted": true,
       "child_elements": 0
     },
-    "ui_working": {
-      "attributes": {
-        "name": "ui_working"
-      },
-      "placeholders": {},
-      "formatted": true,
-      "child_elements": 0
-    },
     "ui_width_in": {
       "attributes": {
         "name": "ui_width_in"
@@ -3159,24 +3161,55 @@
       "formatted": true,
       "child_elements": 0
     },
-    "formats22_at_least_frames": {
+    "ui_working": {
       "attributes": {
-        "name": "formats22_at_least_frames"
+        "name": "ui_working"
       },
-      "placeholders": {
-        "%1$d": 1
-      },
+      "placeholders": {},
       "formatted": true,
       "child_elements": 0
     },
-    "ui_rectangle_select": {
+    "ui_your_current_image_has_unsaved_changes": {
       "attributes": {
-        "name": "ui_rectangle_select"
+        "name": "ui_your_current_image_has_unsaved_changes"
       },
       "placeholders": {},
       "formatted": true,
       "child_elements": 0
     }
   },
-  "review_limit": "Static wording and consumer review only. See the separate entry receipt for context and layout holds; this fixture is not runtime or whole-language acceptance."
+  "review_limit": "Static wording and consumer review only. See the separate entry receipt for context and layout holds; this fixture is not runtime or whole-language acceptance.",
+  "review_binding": {
+    "archive_url": "https://github.com/c933103/AN-Paint/blob/399d7ab1ec6fd197c9824518b470a6d8a0086df9/priority-review-packets.zip",
+    "archive_sha256": "ade1e4eca35692f70dae7691ea14cebc17da0e353fa9fb9a0b4eee17eea45c7a",
+    "priority_receipt_member": "cs/independent-final-receipt.json",
+    "priority_receipt_original_sha256": "aa46b9a9806eb55c3365faec817d48c65d2cb355080cfa01f2b8b582ebda4f54",
+    "p2_receipt_member": "cs/independent-final-receipt.json",
+    "p2_receipt_original_sha256": "aa46b9a9806eb55c3365faec817d48c65d2cb355080cfa01f2b8b582ebda4f54",
+    "reviewed_values_sha256": "4784cfefb3d5c5dfe4eedf0578cad8485b099e8cf224fa7fc4f012cc2dac47b9",
+    "digest_format": "SHA-256 of UTF-8 JSON values with sorted keys, ensure_ascii=False and compact comma/colon separators",
+    "context_unverified_keys": [
+      "formats22_derived_exported",
+      "ui_1_px",
+      "ui_actual_size_100",
+      "ui_collapse_colour_palette",
+      "ui_expand_colour_palette",
+      "ui_foreground_background_colour_palette",
+      "ui_heights",
+      "ui_hide_editor_controls",
+      "ui_insert_image_into_canvas",
+      "ui_left_arrow_collapse",
+      "ui_menu",
+      "ui_new_colour",
+      "ui_pinch_and_pan_mode",
+      "ui_reset_to_black_white",
+      "ui_save_as",
+      "ui_save_as_jpeg",
+      "ui_save_as_jpeg_xl",
+      "ui_save_as_png",
+      "ui_show_editor_controls",
+      "ui_tool_categories",
+      "ui_trim_expand_canvas_by_touch"
+    ]
+  }
 }
