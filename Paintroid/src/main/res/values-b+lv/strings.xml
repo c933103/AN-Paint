@@ -42,9 +42,9 @@
     <string name="ui_paste">Ielīmēt</string>
     <string name="ui_pencil">Zīmulis</string>
     <string name="ui_percent">Procenti</string>
-    <string name="ui_percent_fd8671">procenti</string>
+    <string name="ui_percent_fd8671">procentos</string>
     <string name="ui_pixels">Pikseļi</string>
-    <string name="ui_pixels_6ec9c2">pikseļi</string>
+    <string name="ui_pixels_6ec9c2">pikseļos</string>
     <string name="ui_polygon">Daudzstūris</string>
     <string name="ui_preview">Priekšskatījums</string>
     <string name="ui_ready">Gatavs</string>
@@ -181,8 +181,8 @@
     <string name="ui_collapse_colour_palette">Sakļaut krāsu paleti</string>
     <string name="ui_collapse_toolbox">Sakļaut rīklodziņu</string>
     <string name="ui_colour">Krāsa %1$s</string>
-    <string name="ui_colour_palette_tap_for_foreground_hold_for_background">Krāsu palete. Pieskarieties priekšplānam; turiet nospiestu fonam. Ritiniet, lai skatītu vairāk krāsu.</string>
-    <string name="ui_colour_tap_foreground_hold_background">Krāsa #%1$s. Pieskarieties priekšplānam, turiet nospiestu fonam.</string>
+    <string name="ui_colour_palette_tap_for_foreground_hold_for_background">Krāsu palete. Pieskarieties krāsai, lai izvēlētos priekšplāna krāsu; turiet to nospiestu, lai izvēlētos fona krāsu. Ritiniet, lai skatītu vairāk krāsu.</string>
+    <string name="ui_colour_tap_foreground_hold_background">Krāsa #%1$s. Pieskarieties, lai izvēlētos priekšplāna krāsu; turiet nospiestu, lai izvēlētos fona krāsu.</string>
     <string name="ui_commit_selection">Lietot atlasi</string>
     <string name="ui_common_in">Kopīgs %1$s (%2$s)</string>
     <string name="ui_common_in_pixels">Kopīgs %1$s pikseļos</string>
@@ -217,7 +217,7 @@
     <string name="ui_custom_colour">Pielāgota krāsa %1$s</string>
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Pielāgotās krāsas · turiet paraugu nospiestu, lai to aizstātu</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pikseļi (%3$.2f MP) pārsniedz pašreizējo drošo rediģēšanas limitu %4$.2f MP. AN Paint glabā visu attēlu atmiņā un rezervē vietu pārveidojumiem un atlasēm. Pieejamā atmiņa nosaka šo limitu. Darbība tika apturēta pirms pārāk liela bitkartes attēla piešķiršanas. Automātiska izmēra maiņa netika veikta.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pikseļi (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Pikseļu skaits: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Dzēst atlasi</string>
     <string name="ui_disable_cursor_drawing">Atspējot zīmēšanu ar kursoru</string>
     <string name="ui_done">Gatavs</string>
@@ -288,7 +288,7 @@
     <string name="ui_gnu_affero_general_public_license">GNU Affero General Public License</string>
     <string name="ui_gold">Zelts</string>
     <string name="ui_height">Augstums (%1$s)</string>
-    <string name="ui_height_in">Augstums %1$s vienībās</string>
+    <string name="ui_height_in">Augstums %1$s</string>
     <string name="ui_heights">Augstumi</string>
     <string name="ui_hex_rrggbb">Heksadecimāls #RRGGBB</string>
     <string name="ui_hide_editor_controls">Paslēpt redaktora vadīklas</string>
@@ -491,7 +491,7 @@
     <string name="ui_use_rrggbb">Lietot #RRGGBB</string>
     <string name="ui_watercolor">Akvarelis</string>
     <string name="ui_width">Platums (%1$s)</string>
-    <string name="ui_width_in">Platums %1$s vienībās</string>
+    <string name="ui_width_in">Platums %1$s</string>
     <string name="ui_widths">Platumi</string>
     <string name="ui_working">Apstrādā…</string>
     <string name="ui_you_can_add_more_images_select_fewer_files">Varat pievienot vēl %1$s attēlus. Atlasiet mazāk failu.</string>
@@ -584,7 +584,7 @@
     <string name="formats22_preview_unavailable">Priekšskatījums nav pieejams: %1$s</string>
     <string name="formats22_preview_memory">Šim priekšskatījumam nepietiek atmiņas. Atverot lapu, ja iespējams, tiks piedāvāti mazāki izmēri.</string>
     <string name="formats22_animation_title">Animēts attēls</string>
-    <string name="formats22_animation_message">Šis %1$s satur %2$s kadrus. AN Paint rediģē nekustīgus attēlus un nesaglabā animāciju.</string>
+    <string name="formats22_animation_message">Kadru skaits šajā %1$s attēlā: %2$s. AN Paint rediģē nekustīgus attēlus un nesaglabā animāciju.</string>
     <string name="formats22_animation_unknown">Šis %1$s ir pārāk sarežģīts, lai apstiprinātu, vai tajā ir vairāki kadri. AN Paint atvērs tikai nekustīgu attēlu un nesaglabās animāciju.</string>
     <string name="formats22_at_least_frames">vismaz %1$d</string>
     <string name="formats22_animation_still">Tiks importēts tikai pirmais kadrs. Saglabāšana izveido nekustīgu attēlu.</string>
@@ -623,7 +623,7 @@
     <string name="formats22_ico_dimensions_error">Ikonas attēla izmēri neatbilst tā direktorija ierakstam.</string>
     <string name="formats22_ico_invalid_size">Izvēlieties ikonas izmēru 16, 24, 32, 48, 64, 128 vai 256 pikseļi.</string>
     <string name="language20_current">Lietotnes valoda: %1$s</string>
-    <string name="language20_translation_note">Šajā valodas versijā ir viss AN Paint tulkojamais saskarnes teksts.</string>
+    <string name="language20_translation_note">Lietotnes valoda\n\nTulkojumi tiek uzturēti AN Paint valodu resursos. Jauns vai netulkots teksts tiek rādīts angļu valodā.</string>
     <string name="save20_file_format">Faila formāts</string>
     <string name="save20_gif_description">Nekustīgs attēls, līdz 256 krāsām. Diterēšana izlīdzina krāsu pārejas. Animēti GIF tiek atvērti ar pirmo kadru.</string>
     <string name="save20_bmp_description">Nesaspiests 24 bitu RGB; precīzas krāsas, lielāki faili.</string>
@@ -634,8 +634,8 @@
     <string name="save20_destination_error">Pabeigtais attēls nevarēja aizstāt galamērķi.</string>
     <string name="save20_unsupported_tagged_colour">Šis BMP vai GIF izmanto krāsu profilu, ko AN Paint vēl nevar pārveidot. Pirms importēšanas pārveidojiet to uz sRGB PNG krāsu pārvaldītā redaktorā.</string>
     <string name="save20_lossy_quality_description">Augstāka kvalitāte saglabā vairāk detaļu un parasti rada lielāku failu.</string>
-    <string name="ui_expand_tool_category">%1$s: atlasīts %2$s. Izvērst rīkus un opcijas</string>
-    <string name="ui_collapse_tool_category">%1$s: atlasīts %2$s. Sakļaut rīkus un opcijas</string>
+    <string name="ui_expand_tool_category">%1$s. Atlasītais rīks: %2$s. Izvērst rīkus un opcijas</string>
+    <string name="ui_collapse_tool_category">%1$s. Atlasītais rīks: %2$s. Sakļaut rīkus un opcijas</string>
     <string name="ui_tool_categories">Rīku kategorijas. Ritiniet, lai skatītu citus rīkus</string>
     <string name="ui_pencil_crisp_adjustable_strokes">Zīmulis saglabā asas malas jebkurā izvēlētajā platumā.</string>
     <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
