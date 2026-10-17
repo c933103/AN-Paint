@@ -1,0 +1,20 @@
+{
+  "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+  "candidate_tree": "1e889212ae7ab9b58ada819dfd0981405b2b526f",
+  "recorded_utc": "2026-10-17T11:48:00Z",
+  "baseline_ledger_policy": "Keep the original 341 pair judgments and four baseline defects unchanged. This record separately records the bounded candidate acceptance; it does not rewrite prior credits or tracker counters.",
+  "independent_parent_review": {
+    "status": "Four bounded corrections accepted for tested draft publication",
+    "reviewed": "Complete English/current Greek/proposed Greek pairs and current consumer descriptions",
+    "findings": ["Greek semicolon correctly marks the save question.", "Recovery menu instruction now matches Άνοιγμα εικόνας.", "Fallback note preserves both new and untranslated source cases.", "Solid-fill terminology was independently corroborated in the primary Microsoft Greek source."],
+    "remaining_gate": "Final source reconciliation, exact-head code/security review and required CI remain with the parent before merge."
+  },
+  "independent_application_test_review": {
+    "status": "No blocking findings",
+    "verified": ["All 1178 baseline files and executable modes; source tree 74972d7a7e6fb94015d2b7dcb51a2b64796f6bed.", "Exactly four Greek string values plus focused test and fixture; no production code change, removal or mode drift.", "Complete bilingual values match correction evidence.", "Five holds unchanged and prior receipts byte-identical.", "10 normal and 10 optimized focused tests passed independently."],
+    "limits": "Bounded source and test review, not Android runtime/layout acceptance or broader linguistic completion."
+  },
+  "five_open_holds": ["string/save20_gif_description", "string/ui_bg", "string/ui_fg", "string/ui_foreground_background_colour_palette", "string/ui_main23"],
+  "excluded_mutations": ["PR56 tracking evidence", "Hakka holds", "ms/id/ja/zh-HK processing-label holds", "unmerged PR114 runtime source", "unmerged PR113 source"],
+  "publication_scope": "Only Greek resource, compact fixture and focused test in the application branch. Bulk 341-entry evidence on a separate dedicated evidence ref."
+}

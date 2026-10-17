@@ -1,0 +1,13 @@
+{
+  "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+  "candidate_tree": "1e889212ae7ab9b58ada819dfd0981405b2b526f",
+  "completed_utc": "2026-10-17T11:49:27Z",
+  "focused": {"normal": {"tests": 10, "result": "pass"}, "optimized": {"tests": 10, "result": "pass"}, "command": "python [-O] -m unittest discover -s tools -p test_greek_priority_wording.py -v", "independent_repetition": "10 + 10 passed"},
+  "aggregate": {"normal": {"tests": 861, "seconds": 199.713, "result": "pass"}, "optimized": {"tests": 861, "seconds": 193.678, "result": "pass"}, "command": "python [-O] -m unittest discover -s tools -p 'test_*.py'", "note": "Raw logs include expected malformed-input diagnostic output from negative tests. Terminal unittest result is OK with exit 0 in both modes."},
+  "catalogues": {"result": "pass", "exit_code": 0, "command": "python tools/translation_catalogues.py"},
+  "priority_manifest": {"result": "pass", "exit_code": 0, "command": "python tools/string_importance.py --locale el --json", "review_denominator": {"P0": 92, "P1": 249}},
+  "packet_integrity": {"normal": "pass", "optimized": "pass", "command": "python [-O] validate_packet.py", "source_leaves": 1178, "candidate_leaves": 1180, "removed": 0, "old_values_rejected": 4, "patch_forward_reverse": "pass", "holds_unchanged": 5, "prior_receipts_bytes": "unchanged"},
+  "android_resource_compile": {"result": "pass", "exit_code": 0, "command": "aapt2 compile Paintroid/src/main/res/values-el/strings.xml -o ../aapt/compiled-greek.zip", "version": "Android Asset Packaging Tool (aapt) 2.19-11948202", "executable_sha256": "d1096e11aba9c974644369ee3c50d239acac3f3428ffa928e5b9c14dfb7a57de", "stderr_empty": true, "scope": "Greek XML compile only, not resource link or APK build"},
+  "not_run_locally": ["Android resource link", "Gradle JVM tests", "lint", "APK build", "emulator or physical device", "layout and TalkBack", "native-speaker assessment"],
+  "remaining_merge_gate": "Exact-head hosted review and required CI; no merge authorized by this local report alone."
+}

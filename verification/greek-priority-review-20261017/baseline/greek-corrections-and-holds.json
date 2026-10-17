@@ -1,0 +1,442 @@
+{
+  "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+  "corrections": [
+    {
+      "n": 62,
+      "tier": "P0",
+      "key": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "greek": "Το αντίγραφο ανάκτησης εξήχθη. Εξαγάγετε το canvas.png από το ZIP και ανοίξτε το με Αρχείο > Φόρτωση εικόνας. Το ZIP περιέχει επίσης τις ρυθμίσεις του προχείρου και τυχόν αιωρούμενη επιλογή.",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1399
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 320,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 413,
+      "english_value_sha256": "db7b76f4532f4c744a8f635bf4433b0e7b8b408a3dc7e36eb17e42336f0ad97c",
+      "localized_value_sha256": "bf451ad64de8bcdfd68a38fac430e6bcd34180c434dd39dd77b7a24c5584999e",
+      "english_utf8_sha256": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "localized_utf8_sha256": "d77a4086d1aac74da99ade14cae7adf053dc7f453120af7fc66b64af22701f68",
+      "state": "open_correction_proposed",
+      "meaning_confidence": "high",
+      "idiom_confidence": "high",
+      "linguistic_assessment": "The ZIP extraction and settings/floating-selection content are correct, but the instruction names Φόρτωση εικόνας while the live File command is Άνοιγμα εικόνας…. Replace only that command reference.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1399,
+          "source_git_blob_sha": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+          "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+          "snippet_start": 1394,
+          "snippet_end": 1405,
+          "snippet": "        val file=recoveryExport ?: return\n        beginIo()\n        worker.execute {\n            try {\n                file.inputStream().use { source -> contentResolver.openOutputStream(uri,\"wt\")?.use { source.copyTo(it) } ?: throw IOException(ui(R.string.ui_this_location_is_not_writable)) }\n                runOnUiThread { if (!isDestroyed) { endIo();message(ui(R.string.ui_recovery_copy_exported_extract_canvas_png_from_the)) } }\n            } catch (e: Exception) { ioFailed(ui(R.string.ui_could_not_export_the_recovery_copy),e) }\n        }\n    }\n\n    private fun displayName(uri: Uri): String {\n        try { contentResolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1394-L1405"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null,
+      "proposed_localized_value": "Το αντίγραφο ανάκτησης εξήχθη. Εξαγάγετε το canvas.png από το ZIP και ανοίξτε το με Αρχείο > Άνοιγμα εικόνας. Το ZIP περιέχει επίσης τις ρυθμίσεις του προχείρου και τυχόν αιωρούμενη επιλογή.",
+      "proposed_value_sha256": "d281bec71b4db8712ba1ade7a71b5e1865d2e56c8a21eb548282d4542c778eea",
+      "candidate_state": "local linguistic proposal; independent root review required before publication",
+      "related_resource_context": {
+        "ui_menu_file": {
+          "english": "File",
+          "greek": "Αρχείο"
+        },
+        "ui_load_image": {
+          "english": "Load image…",
+          "greek": "Άνοιγμα εικόνας…"
+        }
+      }
+    },
+    {
+      "n": 75,
+      "tier": "P0",
+      "key": "string/ui_save_your_changes",
+      "english": "Save your changes?",
+      "greek": "Save changes?",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1068
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 359,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 27,
+      "english_value_sha256": "ce467964352d8cc6c0f6e68c9cd75232cd1e607c9c24c5bbea4b0b522a059cdb",
+      "localized_value_sha256": "2cb0df0687c1f0e7332a96c345a027142f3ea67b1a5c88388b95c305954c776e",
+      "english_utf8_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+      "localized_utf8_sha256": "a241799a18cc0cd639ca184dd1aa73a5de44afcbe174ef3224c71e7ca632e5cb",
+      "state": "open_correction_proposed",
+      "meaning_confidence": "high",
+      "idiom_confidence": "high",
+      "linguistic_assessment": "The live destructive-replacement confirmation title is English Save changes? in the Greek catalogue. Provide a Greek saving question consistent with the translated unsaved-changes body and actions.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1068,
+          "source_git_blob_sha": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+          "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+          "snippet_start": 1063,
+          "snippet_end": 1074,
+          "snippet": "    }\n\n    private fun confirmReplacement(action: () -> Unit) {\n        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }\n\n    fun launchOpen(import: Boolean) {\n        if (busy) return",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1063-L1074"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null,
+      "proposed_localized_value": "Αποθήκευση των αλλαγών;",
+      "proposed_value_sha256": "2275ad9bbda51bf95c72fab783b718d301c97b0878daa53658411d1eefac852b",
+      "candidate_state": "local linguistic proposal; independent root review required before publication",
+      "external_terminology_sources": [
+        {
+          "url": "https://support.microsoft.com/el-GR/Excel/how-to-suppress-save-changes-prompt-when-you-close-a-workbook-in-excel",
+          "role": "Official Greek UI usage corroborates Αποθήκευση αλλαγών in a save-changes prompt."
+        }
+      ]
+    },
+    {
+      "n": 104,
+      "tier": "P1",
+      "key": "string/language20_translation_note",
+      "english": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "greek": "Γλώσσα εφαρμογής\\n\\nΟι μεταφράσεις διατηρούνται απευθείας στους γλωσσικούς πόρους του AN Paint. Κείμενο που προστέθηκε μετά την τελευταία ενημέρωση αυτού του καταλόγου μπορεί προσωρινά να εμφανιστεί στα βασικά αγγλικά της εφαρμογής.",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "line": 149
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 629,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 650,
+      "english_value_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "localized_value_sha256": "313f470197e3824d7d92a04c61d5319d21a36fb24caeb32b0b8a6e0df440b3fd",
+      "english_utf8_sha256": "dbe577c3e0215663252f4ec7eef1808f0bf5930d74b8fdd116d44b2d010a70e6",
+      "localized_utf8_sha256": "af935456e604db6062f13ca32604a5e1205685fb7faa5b6717e56e5dfed99339",
+      "state": "open_correction_proposed",
+      "meaning_confidence": "high",
+      "idiom_confidence": "high",
+      "linguistic_assessment": "The old Greek note covers only text added after the last catalogue update and suggests temporary possible English. Current source includes all new or untranslated text and states English fallback; restore both cases without that promise.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "line": 149,
+          "source_git_blob_sha": "5f62edb7622f66ebb4ce17af4a03d713a9dda962",
+          "source_sha256": "7c438eef1642aa0d9f9c1812761ffaff98480fa7b65b5d78d23998589749c035",
+          "snippet_start": 144,
+          "snippet_end": 155,
+          "snippet": "        val choices = listOf(\"\") + tags(activity)\n        // Use one device-locale snapshot for both the label and its row typography.\n        val deviceLanguage=deviceLocale(activity)\n        val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity,deviceLanguage) else name(it) }\n        val note = TextView(activity).apply {\n            text = ui(R.string.language20_translation_note)\n            val padding = (20 * resources.displayMetrics.density).toInt()\n            setPadding(padding, padding, padding, padding / 2)\n            LocaleTypography.typeface(activity)?.let {typeface=it}\n            VerticalUi.caption(this,128)\n        }\n        return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L144-L155"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null,
+      "proposed_localized_value": "Γλώσσα εφαρμογής\\n\\nΟι μεταφράσεις διατηρούνται στους γλωσσικούς πόρους του AN Paint. Το νέο ή αμετάφραστο κείμενο εμφανίζεται στα αγγλικά.",
+      "proposed_value_sha256": "a7603fc7a4409f29140762f7c42a0336f49690580ab7f5b984ec425d181fad06",
+      "candidate_state": "local linguistic proposal; independent root review required before publication"
+    },
+    {
+      "n": 304,
+      "tier": "P1",
+      "key": "string/ui_solid_fill",
+      "english": "Solid fill",
+      "greek": "Fill",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 781
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 381,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 35,
+      "english_value_sha256": "c76b00978d6ea8dc6650389745ba6e1a92e2b480c336e311c5ff0bcd62f7badf",
+      "localized_value_sha256": "86b5fee1c65415dc8f2d6ed565dace378b49d49261dc78776cb93d658d600f2b",
+      "english_utf8_sha256": "0b099867389c4838fc7540af1a699d4f90dfdefb2ed1b43b866524fffd6b7640",
+      "localized_utf8_sha256": "033955d469b620d6612cb25b80a8d014acb633e4e0b14eb9e7618675f94e4a06",
+      "state": "open_correction_proposed",
+      "meaning_confidence": "high",
+      "idiom_confidence": "high",
+      "linguistic_assessment": "The active shape-style choice is untranslated Fill and omits the solid qualifier. Συμπαγές γέμισμα gives the correct Greek filled-interior option distinct from Περίγραμμα and Γέμισμα + γραμμή.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 781,
+          "source_git_blob_sha": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+          "source_sha256": "31bc7f35475dc1c54e6814df37108d9789905f3adda3994bba3b47d7f7e03c0a",
+          "snippet_start": 776,
+          "snippet_end": 787,
+          "snippet": "                if (tool in listOf(PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER,PaintTool.LINE)) {\n                    val tips=if(tool==PaintTool.BRUSH) listOf(ui(R.string.ui_round),ui(R.string.ui_square),ui(R.string.ui_calligraphy)) else listOf(ui(R.string.ui_round),ui(R.string.ui_square))\n                    addChoice(tips,document.brushTip.coerceIn(tips.indices)) {document.brushTip=it}\n                }\n                if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT,PaintTool.HEART,PaintTool.STAR,PaintTool.ARROW))\n                    addChoice(listOf(ui(R.string.ui_outline), ui(R.string.ui_solid_fill), ui(R.string.ui_fill_line)), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }\n            }\n        }\n        if (tool in listOf(PaintTool.POLYGON, PaintTool.CURVE, PaintTool.SELECT, PaintTool.LASSO)) {\n            options.addView(button(when (tool) { PaintTool.POLYGON -> ui(R.string.ui_finish_polygon); PaintTool.CURVE -> ui(R.string.ui_finish_curve); else -> ui(R.string.ui_commit_selection) }, \"apply\") {\n                paintCanvas.applyPending()\n            }, LinearLayout.LayoutParams(-1, dp(48)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L776-L787"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null,
+      "proposed_localized_value": "Συμπαγές γέμισμα",
+      "proposed_value_sha256": "a52a0843365a4f295c67623ba80caafc123dffc37baf6ef195effe54c10433ed",
+      "candidate_state": "local linguistic proposal; independent root review required before publication",
+      "external_terminology_sources": [
+        {
+          "url": "https://support.microsoft.com/el-gr/office/graphics-visuals/create-a-venn-diagram",
+          "role": "Official Greek shape-fill UI attests Συμπαγές γέμισμα."
+        }
+      ]
+    }
+  ],
+  "holds": [
+    {
+      "n": 17,
+      "tier": "P0",
+      "key": "string/save20_gif_description",
+      "english": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "greek": "Στατική εικόνα, έως 256 χρώματα. Η διασπορά εξομαλύνει τις διαβαθμίσεις χρώματος. Τα κινούμενα GIF ανοίγουν στο πρώτο καρέ.",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 95
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 634,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 651,
+      "english_value_sha256": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "localized_value_sha256": "b41487a0a5617db21e62ea35011e7ea3ff8ddd4bffa3af4c8025aac0ba61d510",
+      "english_utf8_sha256": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "localized_utf8_sha256": "a17c89e5679ec5a1e0b9b78a5949f0ced15d57a40f161443ab288f691c84d0a3",
+      "state": "open_idiom_or_context",
+      "meaning_confidence": "unresolved",
+      "idiom_confidence": "unresolved",
+      "linguistic_assessment": "The still-image, 256-colour and first-frame clauses are sound. Διασπορά is insufficiently precise for dithering: GIMP Greek uses Πρόσμειξη and distinguishes a spread filter. The current P2 dither checkbox also says Διασπορά χρώματος; retain an explicit terminology/composition hold rather than silently accept or change only the explanation.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 95,
+          "source_git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "source_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "snippet_start": 90,
+          "snippet_end": 101,
+          "snippet": "            ditherBox.visibility=if(format==ImageFormat.GIF) View.VISIBLE else View.GONE\n            tiffCompressionBox.visibility=if(format==ImageFormat.TIFF) View.VISIBLE else View.GONE\n            iconControls.visibility=if(format==ImageFormat.ICO) View.VISIBLE else View.GONE\n            asciiControls.visibility=if(format==ImageFormat.ASCII_ART) View.VISIBLE else View.GONE\n            explanation.text=ui(when(format) {\n                ImageFormat.GIF -> R.string.save20_gif_description\n                ImageFormat.BMP -> R.string.save20_bmp_description\n                ImageFormat.DIB -> R.string.formats22_dib_description\n                ImageFormat.TIFF -> R.string.formats22_tiff_description\n                ImageFormat.ICO -> R.string.formats22_ico_description\n                ImageFormat.BASE64 -> R.string.formats22_base64_description\n                ImageFormat.ASCII_ART -> R.string.formats22_ascii_description",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L90-L101"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null,
+      "external_terminology_sources": [
+        {
+          "url": "https://docs.gimp.org/3.0/el/gimp-filter-dither.html",
+          "role": "Greek GIMP terminology explicitly labels dithering Πρόσμειξη; used as comparison, not automatically authoritative."
+        },
+        {
+          "url": "https://testing.docs.gimp.org/3.2/el/gimp-filter-noise-spread.html",
+          "role": "Greek GIMP separately calls the noise spread filter Διασπορά; motivates terminology hold."
+        }
+      ],
+      "outside_batch_dependency": {
+        "key": "string/save20_dither",
+        "tier": "P2",
+        "english": "Dither colours",
+        "greek": "Διασπορά χρώματος",
+        "state": "not reviewed or changed in this P0/P1 batch",
+        "reason": "Review control and explanation together before adopting a new dithering term."
+      }
+    },
+    {
+      "n": 124,
+      "tier": "P1",
+      "key": "string/ui_bg",
+      "english": "BG",
+      "greek": "BG",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 45
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 59
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 63,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 52,
+      "english_value_sha256": "82ff23ecefd92d226ca3d16733aafb6dcc798bfbe47b26d7b1f910247eb405a9",
+      "localized_value_sha256": "82ff23ecefd92d226ca3d16733aafb6dcc798bfbe47b26d7b1f910247eb405a9",
+      "english_utf8_sha256": "736b57465bc098745b079bbf59b7645dc4548bc5e23e4805c92fa6a35eb0e3a9",
+      "localized_utf8_sha256": "736b57465bc098745b079bbf59b7645dc4548bc5e23e4805c92fa6a35eb0e3a9",
+      "state": "open_idiom_or_context",
+      "meaning_confidence": "unresolved",
+      "idiom_confidence": "unresolved",
+      "linguistic_assessment": "BG remains an English abbreviation on the visible colour swatch. Full Greek accessibility labels exist, but Greek user comprehension and a fitting local abbreviation are not established; hold rather than certify or invent a replacement.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 45,
+          "source_git_blob_sha": "f233c81fbdbfefd76f461ca5dbb1c0da5351448e",
+          "source_sha256": "838115992a09b99841cac9a976dd83305d6d1e2febee48f824b2278b31068a6c",
+          "snippet_start": 40,
+          "snippet_end": 51,
+          "snippet": "    override fun onDraw(c: Canvas) {\n        super.onDraw(c)\n        val d=resources.displayMetrics.density\n        val p=Paint(Paint.ANTI_ALIAS_FLAG)\n        if(VerticalText.uiVertical(context)) {\n            listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed {i,(colour,name) ->\n                val left=i*width/2f\n                p.color=colour;c.drawRect(left+2*d,2*d,left+width/2f-2*d,height-2*d,p)\n                val luminance=androidx.core.graphics.ColorUtils.calculateLuminance(colour)\n                p.color=if(luminance>.179) Color.BLACK else Color.WHITE;p.textSize=11*resources.displayMetrics.scaledDensity\n                p.typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD\n                val caption=name+\"\\n\"+hex(colour)",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L40-L51"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 59,
+          "source_git_blob_sha": "f233c81fbdbfefd76f461ca5dbb1c0da5351448e",
+          "source_sha256": "838115992a09b99841cac9a976dd83305d6d1e2febee48f824b2278b31068a6c",
+          "snippet_start": 54,
+          "snippet_end": 65,
+          "snippet": "                VerticalText.draw(c,caption,p,VerticalText.uiDirection(context),GlyphOrientation.MIXED);c.restore()\n            }\n            return\n        }\n        val colourRight=width.toFloat()\n        listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->\n            val top=i*height/2f\n            p.color=colour;c.drawRect(3*d,top+2*d,colourRight,top+height/2f-2*d,p)\n            fun linear(value: Int): Double { val s=value/255.0;return if (s<=.04045) s/12.92 else Math.pow((s+.055)/1.055,2.4) }\n            val luminance=.2126*linear(Color.red(colour))+.7152*linear(Color.green(colour))+.0722*linear(Color.blue(colour))\n            p.color=if (luminance>.179) Color.BLACK else Color.WHITE\n            p.textSize=11*d;p.typeface=Typeface.create(VerticalText.uiTypeface(context) ?: Typeface.DEFAULT,Typeface.BOLD)",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L54-L65"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null
+    },
+    {
+      "n": 199,
+      "tier": "P1",
+      "key": "string/ui_fg",
+      "english": "FG",
+      "greek": "FG",
+      "refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 45
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 59
+        }
+      ],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 191,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 60,
+      "english_value_sha256": "301fc7ce55f0cc2adfad869f6bd6e2896cc81b93633805859d76ca28ed20c646",
+      "localized_value_sha256": "301fc7ce55f0cc2adfad869f6bd6e2896cc81b93633805859d76ca28ed20c646",
+      "english_utf8_sha256": "2097d9edbebf7ccc834ac87b2bf4f2b871908a7f8ef80b35a8608cbb08e0ce07",
+      "localized_utf8_sha256": "2097d9edbebf7ccc834ac87b2bf4f2b871908a7f8ef80b35a8608cbb08e0ce07",
+      "state": "open_idiom_or_context",
+      "meaning_confidence": "unresolved",
+      "idiom_confidence": "unresolved",
+      "linguistic_assessment": "FG remains an English abbreviation on the visible foreground swatch. Greek accessibility naming is present, but a Greek abbreviation and its width/comprehension are unverified; do not count this label accepted.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 45,
+          "source_git_blob_sha": "f233c81fbdbfefd76f461ca5dbb1c0da5351448e",
+          "source_sha256": "838115992a09b99841cac9a976dd83305d6d1e2febee48f824b2278b31068a6c",
+          "snippet_start": 40,
+          "snippet_end": 51,
+          "snippet": "    override fun onDraw(c: Canvas) {\n        super.onDraw(c)\n        val d=resources.displayMetrics.density\n        val p=Paint(Paint.ANTI_ALIAS_FLAG)\n        if(VerticalText.uiVertical(context)) {\n            listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed {i,(colour,name) ->\n                val left=i*width/2f\n                p.color=colour;c.drawRect(left+2*d,2*d,left+width/2f-2*d,height-2*d,p)\n                val luminance=androidx.core.graphics.ColorUtils.calculateLuminance(colour)\n                p.color=if(luminance>.179) Color.BLACK else Color.WHITE;p.textSize=11*resources.displayMetrics.scaledDensity\n                p.typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD\n                val caption=name+\"\\n\"+hex(colour)",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L40-L51"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+          "line": 59,
+          "source_git_blob_sha": "f233c81fbdbfefd76f461ca5dbb1c0da5351448e",
+          "source_sha256": "838115992a09b99841cac9a976dd83305d6d1e2febee48f824b2278b31068a6c",
+          "snippet_start": 54,
+          "snippet_end": 65,
+          "snippet": "                VerticalText.draw(c,caption,p,VerticalText.uiDirection(context),GlyphOrientation.MIXED);c.restore()\n            }\n            return\n        }\n        val colourRight=width.toFloat()\n        listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->\n            val top=i*height/2f\n            p.color=colour;c.drawRect(3*d,top+2*d,colourRight,top+height/2f-2*d,p)\n            fun linear(value: Int): Double { val s=value/255.0;return if (s<=.04045) s/12.92 else Math.pow((s+.055)/1.055,2.4) }\n            val luminance=.2126*linear(Color.red(colour))+.7152*linear(Color.green(colour))+.0722*linear(Color.blue(colour))\n            p.color=if (luminance>.179) Color.BLACK else Color.WHITE\n            p.textSize=11*d;p.typeface=Typeface.create(VerticalText.uiTypeface(context) ?: Typeface.DEFAULT,Typeface.BOLD)",
+          "url": "https://github.com/c933103/AN-Paint/blob/e414a4df64a56c2d8a2f374741b1f1b58fceea9b/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L54-L65"
+        }
+      ],
+      "consumer_status": "current production references found",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null
+    },
+    {
+      "n": 208,
+      "tier": "P1",
+      "key": "string/ui_foreground_background_colour_palette",
+      "english": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "greek": "Προσκήνιο %1$s, φόντο %2$s. Παλέτα χρωμάτων %3$s.",
+      "refs": [],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 207,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 336,
+      "english_value_sha256": "ab790df82eb7dbc1f7339b77b80f047d3b06aac7a1abbc98f874d10599d8ee4d",
+      "localized_value_sha256": "63d10aa9d6c0b80f420f000c46c57eeb8319e0784c12c1b1130e4f8da1d5e318",
+      "english_utf8_sha256": "67af5bc5800068853c10482361ea2d76758f4c8d2c189577b317e470a2c9ab51",
+      "localized_utf8_sha256": "5c1914a2012c97c461a1e2b636edcb3e182acb4c86fa86497366fe5312a4c40d",
+      "state": "open_idiom_or_context",
+      "meaning_confidence": "unresolved",
+      "idiom_confidence": "unresolved",
+      "linguistic_assessment": "Foreground and background clauses are correct, but no current consumer establishes the third inserted palette descriptor or its Greek agreement/placement. Hold the full composition rather than certify an unknown %3$s.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [],
+      "consumer_status": "No direct current production reference found; only catalogue meaning is assessed",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null
+    },
+    {
+      "n": 236,
+      "tier": "P1",
+      "key": "string/ui_main23",
+      "english": "Main",
+      "greek": "Κύρια",
+      "refs": [],
+      "source_revision": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+      "english_file": "Paintroid/src/main/res/values/strings.xml",
+      "english_line": 504,
+      "localized_file": "Paintroid/src/main/res/values-el/strings.xml",
+      "localized_line": 130,
+      "english_value_sha256": "1f46c0f59ce84579193611f1d7e1a965a72a21e71348e6f544bc40c36908dfe9",
+      "localized_value_sha256": "b98742ad32c4b2fa29ade6cab6ce85272fd080e98667457965af3a86272681c4",
+      "english_utf8_sha256": "eb814be3ca3b78c0734c560518be2a03e8d8f6e7e26447224cc7c7b105e1193e",
+      "localized_utf8_sha256": "346bcf8a60c3d79ef54afc2a3875dbafcf70c49748d749c56ad90f473c815e74",
+      "state": "open_idiom_or_context",
+      "meaning_confidence": "unresolved",
+      "idiom_confidence": "unresolved",
+      "linguistic_assessment": "Κύρια is gender-dependent and has no established noun or current consumer for the legacy Main label. Hold until its intended subject is known.",
+      "review_method": "AI-assisted complete English/Greek pair reading with current source-consumer context; not native-speaker certification",
+      "consumer_context": [],
+      "consumer_status": "No direct current production reference found; only catalogue meaning is assessed",
+      "layout_status": "not_run",
+      "prior_tracker_record": null,
+      "prior_other_bounded_review": null
+    }
+  ]
+}

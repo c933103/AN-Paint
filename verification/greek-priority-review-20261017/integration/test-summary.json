@@ -1,0 +1,87 @@
+{
+  "completed_utc": "2026-10-17T15:45:43.077036+00:00",
+  "integration_source": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+  "candidate_tree": "58e82faaddfacc1b64d721ba3845aa28ae841580",
+  "historical_linguistic_source": "e414a4df64a56c2d8a2f374741b1f1b58fceea9b",
+  "focused_normal": {
+    "tests": 10,
+    "seconds": 0.207,
+    "result": "pass",
+    "log": "focused-normal.log"
+  },
+  "focused_optimized": {
+    "tests": 10,
+    "seconds": 0.214,
+    "result": "pass",
+    "log": "focused-optimized.log"
+  },
+  "aggregate_normal": {
+    "tests": 876,
+    "seconds": 205.159,
+    "result": "pass",
+    "log": "host-normal.log"
+  },
+  "aggregate_optimized": {
+    "tests": 876,
+    "seconds": 218.501,
+    "result": "pass",
+    "log": "host-optimized.log"
+  },
+  "independent_composition_review": "No blocking findings; all current source leaves/modes and exact reused three-file Greek delta verified. See independent-review.txt.",
+  "commands": [
+    "python [-O] -m unittest discover -s tools -p test_greek_priority_wording.py -v",
+    "python [-O] -m unittest discover -s tools -p test_*.py",
+    "python tools/translation_catalogues.py",
+    "python tools/string_importance.py --locale el --json",
+    "python [-O] verify_integration.py",
+    "aapt2 compile Paintroid/src/main/res/values-el/strings.xml -o ../aapt/compiled-greek.zip"
+  ],
+  "catalogue_validation": "pass",
+  "priority_manifest": {
+    "el": {
+      "P0": {
+        "present": 92,
+        "missing": 0,
+        "total": 92
+      },
+      "P1": {
+        "present": 249,
+        "missing": 0,
+        "total": 249
+      },
+      "P2": {
+        "present": 305,
+        "missing": 0,
+        "total": 305
+      },
+      "P3": {
+        "present": 71,
+        "missing": 0,
+        "total": 71
+      }
+    }
+  },
+  "resource_compile": {
+    "result": "pass",
+    "scope": "Greek XML compile only",
+    "aapt2_version": "2.19-11948202",
+    "aapt2_sha256": "d1096e11aba9c974644369ee3c50d239acac3f3428ffa928e5b9c14dfb7a57de"
+  },
+  "five_holds_unchanged": [
+    "save20_gif_description",
+    "ui_bg",
+    "ui_fg",
+    "ui_foreground_background_colour_palette",
+    "ui_main23"
+  ],
+  "prior_receipts_unchanged": true,
+  "not_run_locally": [
+    "resource link",
+    "Gradle JVM/lint/APK",
+    "Android device/emulator",
+    "layout and TalkBack",
+    "native-speaker assessment"
+  ],
+  "merge_gate": "Exact-head hosted review and required CI remain pending.",
+  "discovered_cases": 876
+}
