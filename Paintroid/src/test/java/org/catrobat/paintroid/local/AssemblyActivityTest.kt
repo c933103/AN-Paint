@@ -237,6 +237,29 @@ class AssemblyActivityTest {
         }
     }
 
+    /** Complete Japanese Help/control consumer; rendering and linguistic acceptance are separate. */
+    @Test fun japaneseHelpModesReachActualHelpAndCurrentPositionLabel() {
+        val expected=org.json.JSONObject(javaClass.getResourceAsStream("/assembly-help-japanese/expected.json")!!
+            .bufferedReader(Charsets.UTF_8).use { it.readText() })
+        withLanguage("ja") {
+            activity.onConfigurationChanged(activity.resources.configuration); idle()
+            assertEquals("ja",AppLanguage.selectedTag(activity))
+            assertEquals("ja",activity.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(expected.getString("positionLabel"),
+                activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
+            click("assembly_help")
+            val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertTrue(dialog.isShowing)
+            val message=dialog.findViewById<TextView>(android.R.id.message)
+            assertTrue(message.isShown)
+            assertEquals(expected.getString("help"),message.text.toString())
+            assertEquals(8,message.text.toString().split("\n\n").size)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+            assertFalse(dialog.isShowing)
+            assertTrue(activity.assembly.images.isEmpty())
+        }
+    }
+
     @Test fun frenchHeaderTracksAddPlaceUnplaceAndRemoveIncludingOne() = withLanguage("fr") {
         val header = ReflectionHelpers.getField<android.widget.TextView>(activity, "count")
         fun checkCount(inputs: Int, placed: Int) = assertEquals(
