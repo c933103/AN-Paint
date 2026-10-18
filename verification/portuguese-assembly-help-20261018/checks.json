@@ -1,0 +1,107 @@
+{
+  "source_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+  "source_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+  "base_commit": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+  "checks": {
+    "normal": {
+      "full_host": 937,
+      "focused": 17,
+      "exit": 0
+    },
+    "optimized": {
+      "full_host": 937,
+      "focused": 17,
+      "exit": 0
+    }
+  },
+  "independent_full_value_review": "Accepted without required replacements; exact proposed text hash in linguistic-review.md",
+  "resource_compile": "AAPT2 full resources, exact-script mirrors and link passed",
+  "supplementary_compile": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+  "catalogues": "Canonical translation catalogues are structurally valid",
+  "scope": {
+    "base": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "base_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "production_scope": "One pt-PT Help value only; every other production byte retained",
+    "paragraph_scope": "Five unchanged paragraphs plus three bounded corrections and the new Exact position paragraph",
+    "fixture_scope": "Only locales.pt-PT.help changed; crop plural and other locale fixtures identical",
+    "base_blobs_verified": 1209,
+    "executable_modes": "All preserved",
+    "old_value_negative_control": "Complete Help differs",
+    "changes": [
+      {
+        "path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+        "mode": "100644",
+        "base_sha": "2c5e0e8d0a5623d76f965b09fcdde37bb47d4220",
+        "sha": "d73b9b880ef9bfd4f98359f5f6630f39ef4d9990"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CropCounterpartGuidanceTest.kt",
+        "mode": "100644",
+        "base_sha": "5727d123f67597b40c582681e2a4d745d1cd2e2f",
+        "sha": "6f1721995a0a9b9df59391785948256b3304b374"
+      },
+      {
+        "path": "Paintroid/src/test/resources/crop-counterparts/expected.json",
+        "mode": "100644",
+        "base_sha": "a163f445ea6d5e519ee3fd03ae36230d6feb08e1",
+        "sha": "208e57ec7a7555dbd61146ce6e802f8cb1409ffe"
+      },
+      {
+        "path": "tools/test_assembly_no_resize_help_pr5.py",
+        "mode": "100644",
+        "base_sha": "aa0f6d8e7e1302830af4451af8bc086dc36614ff",
+        "sha": "9a00accbffa50ddc74ce25efb87bc219eb4c56ba"
+      },
+      {
+        "path": "tools/test_crop_counterpart_guidance.py",
+        "mode": "100644",
+        "base_sha": "d70800e94a31baf15382c996778fb74abf0f9056",
+        "sha": "a39167b6fbe308880cd2976552096a6fdd5221e4"
+      }
+    ]
+  },
+  "source_bindings": {
+    "base": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "corrected_english_reference": "0d56dd970c22398f7fa032d1baee4a1b74c83f2b",
+    "reference_resource_blob": "4dc158226adadbf074f8ea9c55069f5b7c4578ba",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "currentBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "englishReferenceBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "currentBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "englishReferenceBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "currentBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "englishReferenceBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "identical": true
+      }
+    ]
+  },
+  "checkout_binding": {
+    "base": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "source_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+    "source_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "parent_verified": true,
+    "all_remote_blobs_modes_verified": 1209
+  },
+  "local_gradle": {
+    "status": "blocked",
+    "reason": "Gradle 8.13 distribution download: java.net.SocketException: Network is unreachable",
+    "runtime_execution": false
+  },
+  "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/39097285470",
+  "hosted_status": "Pending at initial evidence preparation; inspect exact-head run separately",
+  "limits": [
+    "No installed Portuguese layout, glyph, TalkBack or native-speaker acceptance",
+    "No whole-language acceptance or closure of remaining PR75 scope",
+    "No routing changes; pt-BR, PR56 and explicit holds unchanged"
+  ]
+}
