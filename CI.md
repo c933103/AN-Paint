@@ -278,3 +278,14 @@ Only the final composition job receives read-only Actions metadata permission;
 no write permission or persistent credential is added. The selector has a one-minute
 step cap inside the unchanged eight-minute composition-job cap. Existing device,
 interaction, setup, report and composition deadlines remain unchanged.
+
+The pinned download action re-lists with `latest: true` even for explicit IDs; its
+SDK filters duplicate names by highest ID. The final gate therefore uses the
+runner's existing GitHub CLI to GET each selected REST artifact ID directly, then
+checks the selected SHA-256 before safe report extraction. Each transfer has a
+90-second deadline; the two-transfer step is capped at four minutes within the
+unchanged eight-minute job. Report archives are limited to 128 MiB compressed,
+512 MiB expanded and 10,000 members. Unsafe paths, symlinks, duplicate members,
+unsupported encodings and attempts to overwrite existing evidence are rejected.
+No downloaded artifact can replace the saved selection receipt. The normal
+content/inventory composer still runs after extraction.

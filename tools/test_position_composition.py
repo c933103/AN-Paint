@@ -156,8 +156,8 @@ run_position_regression
             self.assertNotIn('continue-on-error',block)
         for text in ('name: Emulator API ${{ matrix.api }}','needs: [device, position]',
                      'always() &&','test "$CORE_RESULT" = success && test "$POSITION_RESULT" = success',
-                     'artifact-ids: ${{ steps.artifacts.outputs.core }}',
-                     'artifact-ids: ${{ steps.artifacts.outputs.position }}',
+                     '--core-root build/reports/android-api-${{ matrix.api }}',
+                     '--position-root build/reports/position-api-${{ matrix.api }}',
                      'compose_device_reports.py compose','name: emulator-api-'):
             self.assertIn(text,union)
         self.assertNotIn('if: always()',union.split('actions/upload-artifact')[1])
