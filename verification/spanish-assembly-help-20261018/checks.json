@@ -1,0 +1,93 @@
+{
+  "source_commit": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+  "source_tree": "e3ba7b23a38230f7820d148d5e99eaf364f7c20c",
+  "base_commit": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+  "checks": {
+    "normal": {
+      "full_host": 933,
+      "focused": 13,
+      "exit": 0
+    },
+    "optimized": {
+      "full_host": 933,
+      "focused": 13,
+      "exit": 0
+    }
+  },
+  "resource_compile": "AAPT2 full resources, exact-script mirrors and link passed",
+  "supplementary_compile": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+  "catalogues": "Canonical translation catalogues are structurally valid",
+  "scope": {
+    "base": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+    "base_tree": "05f725b3a5c64acdace799cfb8cb5d5768ce8f63",
+    "production_scope": "One es-ES Help value only; every other production byte retained",
+    "paragraph_scope": "Five unchanged paragraphs plus three bounded corrections and the new Exact position paragraph",
+    "fixture_scope": "Only locales.es-ES.help changed; crop plural and other locale fixtures identical",
+    "base_blobs_verified": 1209,
+    "executable_modes": "All preserved",
+    "old_value_negative_control": "Complete Help differs",
+    "changes": [
+      {
+        "path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+        "mode": "100644",
+        "base_sha": "e8dda7b89cacff754d570a1e23da8e83128855d7",
+        "sha": "fbd94f6eb9b886cee8a8a8546d7ca4bff6d423be"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CropCounterpartGuidanceTest.kt",
+        "mode": "100644",
+        "base_sha": "253e79676236309d5da203f67bda21e94d588a3b",
+        "sha": "81f6171feee1765ffa32f3c40b75582b4d6ad647"
+      },
+      {
+        "path": "Paintroid/src/test/resources/crop-counterparts/expected.json",
+        "mode": "100644",
+        "base_sha": "245304145f1ea9fc0b6b1741ca84cd8825e3550c",
+        "sha": "a5d05bc9415849472161af41a8ae150876ac1986"
+      },
+      {
+        "path": "tools/test_assembly_no_resize_help_pr5.py",
+        "mode": "100644",
+        "base_sha": "83cc65c76623e499ba0f03bf610486cc61c6b065",
+        "sha": "72afefde9f37a466e7d5ac7aa86246f53dc350a6"
+      },
+      {
+        "path": "tools/test_crop_counterpart_guidance.py",
+        "mode": "100644",
+        "base_sha": "a496ca14ba1d933a4e764ac80ed2d2a1817dad45",
+        "sha": "7f734925475195f8285cd474543597e4250a9587"
+      }
+    ]
+  },
+  "source_bindings": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "currentBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "englishReferenceBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "identical": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+      "currentBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+      "englishReferenceBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+      "identical": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "currentBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "englishReferenceBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "identical": true
+    }
+  ],
+  "local_gradle": {
+    "status": "blocked",
+    "reason": "Gradle 8.13 distribution download: java.net.SocketException: Network is unreachable",
+    "runtime_execution": false
+  },
+  "hosted_status": "Pending at initial evidence preparation; inspect exact-head run separately",
+  "limits": [
+    "No installed Spanish layout, glyph, TalkBack or native-speaker acceptance",
+    "No whole-language acceptance or closure of remaining PR75 scope",
+    "No generic-es/es419 routing changes; PR56 and explicit holds unchanged"
+  ]
+}
