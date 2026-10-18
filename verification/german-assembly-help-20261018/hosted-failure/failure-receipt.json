@@ -1,0 +1,19 @@
+{
+  "source_commit": "4e3816f82cabd73295a06acaac75a304504f871b",
+  "checkout_commit": "3b33db77edb1dd7ce13b11a5448779fb2adafe55",
+  "run": 39084426999,
+  "job": 117547916672,
+  "artifact_id": 12120303314,
+  "artifact_sha256": "4600f826129e6838629b1f4a9cb2493395a22fbd7bb09a728ec2ea78cf126546",
+  "junit": {
+    "tests": 1124,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "class_suites": 120,
+  "failed_method": "CropCounterpartGuidanceTest.germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+  "failure": "expected Exakte Position; actual Exact position",
+  "cause": "Fixture selected German but built toolbar before binding app-wide selected-language UI resources; later-created Help/crop passed after refresh",
+  "repair": "Initialize PaintApplication.currentResources from AppLanguage.wrap(context) before building Activity; preserve every exact assertion and all production bytes"
+}

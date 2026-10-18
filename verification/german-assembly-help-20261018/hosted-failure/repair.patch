@@ -1,0 +1,12 @@
+--- ../hosted-failure/CropCounterpartGuidanceTest-failed.kt	2026-10-18 10:17:27.756332670 +0900
++++ Paintroid/src/test/java/org/catrobat/paintroid/local/CropCounterpartGuidanceTest.kt	2026-10-18 10:17:27.788949458 +0900
+@@ -53,6 +53,9 @@
+         try {
+             File(context.filesDir, "image-assembly").deleteRecursively()
+             AppLanguage.select(context, tag)
++            // Selecting LocaleManager in Robolectric does not dispatch the app callback.
++            // Bind the selected UI resources before onCreate builds toolbar labels.
++            PaintApplication.currentResources = AppLanguage.wrap(context).resources
+             val started = Robolectric.buildActivity(AssemblyActivity::class.java)
+             controller = started
+             val activity = started.setup().get()
