@@ -65,3 +65,15 @@ The extended Robolectric consumer regression checks compiled resource resolution
 - Attempted `./gradlew --offline :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.ChineseCropPreviewTest --tests org.catrobat.paintroid.local.AssemblyModelTest`: stopped before Gradle execution while downloading the missing wrapper distribution (`Network is unreachable`). No local JVM, Android lint, compile, emulator or installed test pass is claimed. Hosted exact-source CI must provide those results.
 
 Host logs include intentionally invalid synthetic scenarios printed by negative tests. The final unittest summary identifies whether the host suite itself passed. New hosted CI and Codex review remain separate gates; this evidence does not establish them or authorize a release.
+
+## Hosted PR verification and merge — 18 October 2026
+
+Exact-head Code review and advisory Security both completed with no findings on `c46d303495fb65cba4c993930c0bdfe930dcacf3`; no unresolved review threads remained. [Run 39135477086](https://github.com/c933103/AN-Paint/actions/runs/39135477086) passed all six jobs on attempt 1. The synthetic PR checkout `4974d24129aa2505854835a02bdd1ad4277a895b` has the same tree as the reviewed head.
+
+Independent artifact checks found 1,142 passing JVM methods in 123 suites, with zero failures/errors/skips. All six `ChineseCropPreviewTest`, twenty `AssemblyModelTest`, and seven `CropCounterpartGuidanceTest` methods match their actual source declarations. Hosted Python passed 976 tests. All nine exact-script probes passed and their logs match the recorded hashes. The complete source-bound API35 union passed: 74 native methods and 45 app methods, with matching build/APK/test-source identities and no missing, duplicate or skipped identities.
+
+APK signature and 16 KiB alignment checks passed; the universal APK contains all four ABIs. Its embedded source ZIP equals the delivered source ZIP. All 1,221 bundled source blobs and executable modes match the reviewed tree; only the expected `.gitignore`, `.idea/codeStyles/Project.xml` and `colorpicker/.gitignore` metadata files are omitted by packaging. This APK uses the CI debug key, not private upgrade signing.
+
+The parent merged [PR137](https://github.com/c933103/AN-Paint/pull/137) as `3681194d9499cdbf8ce6004a3b993b1472380436`. Natural post-merge verification is a separate observation and was still pending when this PR receipt was saved.
+
+`hosted-checks.json` summarizes the verified receipts. `hosted-verification.zip` (342,207 bytes, SHA-256 `9d500b9a4e3ef2628915866d12306f5ae109550ee9c1b6b9116513fedc7953a2`) preserves 226 raw/derived files with an internal manifest: all JVM XML, phase logs, complete device summaries/JUnit, exact-script probes, run/jobs/review metadata, source bindings, APK signature/alignment results and the verifier. This does not claim installed acceptance of the three changed locale messages, physical devices, pixel clipping, whole catalogues or a release. All earlier holds remain.
