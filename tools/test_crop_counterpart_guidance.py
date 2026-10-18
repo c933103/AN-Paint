@@ -53,7 +53,7 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual({'help', 'crop'}, set(expected))
                 self.assertEqual({'one', 'other'}, set(expected['crop']))
-                self.assertEqual(8 if tag == 'de' else 7, len(expected['help'].split('\n\n')))
+                self.assertEqual(8 if tag in ('de', 'es-ES') else 7, len(expected['help'].split('\n\n')))
                 self.assertFalse(re.search(r'%\d+\$', expected['help']))
                 require_complete(self.roots[tag], expected)
                 for quantity, value in expected['crop'].items():
@@ -120,6 +120,20 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
         self.assertIn('Die anderen Bilder bleiben platziert; verbundene Bilder können sich verschieben, '
                       'um die Lücke zu schließen.', paragraphs[5])
         self.assertNotIn('Nachfolgende Bilder schließen die Lücke', help_text)
+
+    def test_spanish_help_distinguishes_snapping_from_exact_position(self):
+        help_text = self.expected['es-ES']['help']
+        paragraphs = help_text.split('\n\n')
+        self.assertIn('Al encajar, la primera imagen empieza en el origen.', paragraphs[2])
+        self.assertIn('No se permiten solapamientos al encajar.', paragraphs[2])
+        label = decoded(self.roots['es-ES'].find("./string[@name='ui_assembly_exact_position']").text)
+        self.assertEqual(
+            'Selecciona una imagen y usa ' + label + ' para establecer las coordenadas X/Y de su '
+            'esquina superior izquierda en números enteros de píxeles, a partir de cero. '
+            'Las demás imágenes mantienen sus posiciones y se permiten solapamientos.', paragraphs[3])
+        self.assertIn('Las demás imágenes siguen colocadas; las imágenes unidas pueden desplazarse '
+                      'para ocupar el hueco.', paragraphs[5])
+        self.assertNotIn('Las imágenes siguientes ocupan el hueco', help_text)
 
     def test_help_and_plural_priority_remain_p3_and_p2(self):
         tiers = json.loads((ROOT / 'translations/string-importance.json').read_text())['tiers']

@@ -52,8 +52,8 @@ def strings(directory):
 def check_memory_help(test, directory):
     # Do not accept the correct phrase in the source-memory warning resource,
     # a separate help paragraph, or an unrelated part of the main editor manual.
-    # German now has a separate Exact position paragraph before output guidance.
-    output_index = 6 if directory == "values-de" else 5
+    # German and es-ES have a separate Exact position paragraph before output guidance.
+    output_index = 6 if directory in ("values-de", "values-b+es+ES") else 5
     paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[output_index]
     for branch, phrase in zip(("conditional resize", "warning without chooser"), PHRASES[directory]):
         with test.subTest(locale=directory, branch=branch):
