@@ -1,0 +1,217 @@
+{
+  "source_binding": {
+    "merge": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "reviewed_head": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+    "tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "identical_tree": true,
+    "source_files_verified": 1209
+  },
+  "preserved_first_attempt": "https://github.com/c933103/AN-Paint/blob/9aa1d27c4702858a35111199e66d4768279e591c/verification/italian-assembly-help-20261018/postmerge-attempt1/receipt.json",
+  "run": {
+    "id": 39094504880,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39094504880",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 2
+  },
+  "jobs": [
+    {
+      "id": 117582425030,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117582425542,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117582425804,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117582443460,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117582450374,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117584751296,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "junit": {
+    "source_commit": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "source_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "artifact_id": 12124358443,
+    "artifact_name": "regression-and-lint-3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "artifact_sha256": "c996cbe5e1a0fb8b01f965a31ae4529e123c0af541b77384fcd7cd37c5e07712",
+    "run_id": 39094504880,
+    "junit": {
+      "tests": 1126,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suite_count": 120,
+    "affected_source_methods": 6,
+    "affected_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.217
+      },
+      {
+        "name": "spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.234
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "seconds": 0.19
+      },
+      {
+        "name": "italianExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.208
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "seconds": 0.127
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "seconds": 0.696
+      }
+    ]
+  },
+  "build_binding": {
+    "commit": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "run_id": 39094504880,
+    "artifact_id": 12124610158,
+    "artifact_sha256": "d5c7fad8f4ba1e73ea57995747b433c8a9fa5730ff5df667998b6d1273d2423b",
+    "apk_sha256": "e36c6183bfc33b0383bfa4e96da3b173b73be1d81e3187693a9adbaaa53f0d5b",
+    "source_sha256": "c67cb52bc8ab4ae3fd8f2dbb68983586f62fcbc463825f99924e89f820c39731",
+    "hashes_match_build_info": true,
+    "embedded_source_matches_corresponding_archive": true,
+    "reviewed_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step.",
+    "tracked_source_files_examined": 1209,
+    "matched_payload_files": 1206,
+    "archive_omissions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "scope": "Exact source/payload binding only; CI debug key, no upgrade-signature or installed Italian acceptance."
+  },
+  "device": {
+    "commit": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "run_id": 39094504880,
+    "attempt": 2,
+    "artifact_id": 12124837502,
+    "artifact_sha256": "e0b30811151204974f665b03272a2dd1c03759ec88261508864d00877d9098cd",
+    "identity": {
+      "commit": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+      "run_id": "39094504880",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "e36c6183bfc33b0383bfa4e96da3b173b73be1d81e3187693a9adbaaa53f0d5b",
+      "source_sha256": "c67cb52bc8ab4ae3fd8f2dbb68983586f62fcbc463825f99924e89f820c39731",
+      "test_apk_sha256": "87762cb60d8ac785aed0f6a946d03d75591906a9df2f9522cdaa0f0568d04ac5",
+      "group_run_attempts": {
+        "core": 2,
+        "position": 1
+      },
+      "composed_in_run_attempt": 2
+    },
+    "reports": [
+      {
+        "path": "Paintroid/androidTest-results/summary.json",
+        "expected": 74,
+        "completed": 74,
+        "seconds": 78.95351107199997
+      },
+      {
+        "path": "app/accepted-credit-restart/seed/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 6.983665830000064
+      },
+      {
+        "path": "app/accepted-credit-restart/verify/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 8.850857933999805
+      },
+      {
+        "path": "app/androidTest-results/summary.json",
+        "expected": 17,
+        "completed": 17,
+        "seconds": 142.01503688200012
+      },
+      {
+        "path": "app-dialog/androidTest-results/summary.json",
+        "expected": 12,
+        "completed": 12,
+        "seconds": 169.24593289200016
+      },
+      {
+        "path": "app-gallery-draft/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 47.773813234000045
+      },
+      {
+        "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 105.09788925199999
+      },
+      {
+        "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+        "expected": 4,
+        "completed": 4,
+        "seconds": 90.888852332
+      },
+      {
+        "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 121.29403197200008
+      },
+      {
+        "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 116.94483123300006
+      }
+    ],
+    "native_completed": 74,
+    "app_completed": 45,
+    "source_bound_app_inventory_reverified": true,
+    "capture_review": "Transport/inventory independently rechecked; not independent visual acceptance.",
+    "limits": [
+      "No independent visual acceptance of ordinary-language captures",
+      "No installed Italian or TalkBack acceptance"
+    ],
+    "capture_transport_reverified": {
+      "dialog": 12,
+      "vertical": 104,
+      "vertical-screenshots": 32
+    }
+  },
+  "resource_probe_count": 9,
+  "prior_evidence": "https://github.com/c933103/AN-Paint/blob/c602c893b7eaa2ca9f7478a85b17b94a8191cdc0/verification/italian-assembly-help-20261018/terminal/README.md"
+}
