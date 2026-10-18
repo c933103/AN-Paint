@@ -1,0 +1,111 @@
+{
+  "source_commit": "aeabd97550d82ea7bff9a0e3e9e5e06e906b2c57",
+  "source_tree": "6b04626f3a0353ff6a417387e07db02b62db0651",
+  "base_commit": "702f0d8afa5bd5c950ec22ae14f29aecf4140482",
+  "checks": {
+    "normal": {
+      "full_host": 942,
+      "focused": 22,
+      "exit": 0
+    },
+    "optimized": {
+      "full_host": 942,
+      "focused": 22,
+      "exit": 0
+    }
+  },
+  "independent_full_value_review": "Approved exact candidate; full linguistic/source assessment retained in linguistic-review.md",
+  "proposed_value_sha256": "53386e276d943e3bae64d4188b966bf3c7d1ef33aa1d64d160a8a3936b4aac4d",
+  "resource_compile": "AAPT2 full resources, exact-script mirrors and link passed",
+  "supplementary_compile": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+  "catalogues": "Canonical translation catalogues are structurally valid",
+  "scope": {
+    "base": "702f0d8afa5bd5c950ec22ae14f29aecf4140482",
+    "base_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "production_scope": "Exactly one French full Help value; every other production byte retained",
+    "paragraph_scope": "Five unchanged paragraphs; four corrected sentences plus one new Exact position paragraph",
+    "existing_fixtures": "All unchanged, including German, Spanish, Italian and Portuguese Help/crop",
+    "base_blobs_verified": 1209,
+    "candidate_blobs": 1212,
+    "executable_modes": "All preserved",
+    "old_value_negative_control": "Complete French Help differs",
+    "changes": [
+      {
+        "path": "Paintroid/src/main/res/values-fr/strings.xml",
+        "mode": "100644",
+        "base_sha": "ccfb3d709ebd3153d0f1b2d65995c48b5f9a7602",
+        "sha": "441edf41e0abdcd3d8dcdab308912ee8c12c6d9b"
+      },
+      {
+        "path": "tools/test_assembly_no_resize_help_pr5.py",
+        "mode": "100644",
+        "base_sha": "9a00accbffa50ddc74ce25efb87bc219eb4c56ba",
+        "sha": "14731a9ce7809fc1ee78e8bb3666940501c01f49"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/FrenchAssemblyHelpTest.kt",
+        "mode": "100644",
+        "base_sha": null,
+        "sha": "0e88e472f578eaf26343d75d7b2104a773fe7556"
+      },
+      {
+        "path": "Paintroid/src/test/resources/french-assembly-help/expected.txt",
+        "mode": "100644",
+        "base_sha": null,
+        "sha": "ee357bcbefadaa154577fed49a3b361a3b3c2ebc"
+      },
+      {
+        "path": "tools/test_french_assembly_help.py",
+        "mode": "100644",
+        "base_sha": null,
+        "sha": "1982596dab730534b44ae2cda719b75959c1bca2"
+      }
+    ],
+    "remaining": "Separate French main-editor manual guaranteed gap filling at line 465 is outside this single-entry scope"
+  },
+  "source_bindings": {
+    "base": "702f0d8afa5bd5c950ec22ae14f29aecf4140482",
+    "corrected_english_reference": "0d56dd970c22398f7fa032d1baee4a1b74c83f2b",
+    "reference_resource_blob": "4dc158226adadbf074f8ea9c55069f5b7c4578ba",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "currentBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "englishReferenceBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "currentBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "englishReferenceBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "currentBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "englishReferenceBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "identical": true
+      }
+    ]
+  },
+  "checkout_binding": {
+    "head": "aeabd97550d82ea7bff9a0e3e9e5e06e906b2c57",
+    "tree": "6b04626f3a0353ff6a417387e07db02b62db0651",
+    "base": "702f0d8afa5bd5c950ec22ae14f29aecf4140482",
+    "remote_blob_modes_verified": 1212,
+    "matches_reviewed_checkout": true
+  },
+  "local_gradle": {
+    "status": "blocked",
+    "reason": "Gradle 8.13 distribution download: java.net.SocketException: Network is unreachable",
+    "runtime_execution": false
+  },
+  "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/39099580752",
+  "hosted_status": "Pending at initial evidence preparation; inspect exact-head run separately",
+  "limits": [
+    "No installed French layout, glyph, TalkBack, physical-device or native-speaker acceptance",
+    "No whole-language acceptance or closure of remaining PR75 scope",
+    "Separate French main-editor manual line 465 remains open",
+    "No routing changes; PR56 and explicit holds unchanged"
+  ]
+}
