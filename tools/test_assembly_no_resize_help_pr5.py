@@ -52,7 +52,9 @@ def strings(directory):
 def check_memory_help(test, directory):
     # Do not accept the correct phrase in the source-memory warning resource,
     # a separate help paragraph, or an unrelated part of the main editor manual.
-    paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[5]
+    # German now has a separate Exact position paragraph before output guidance.
+    output_index = 6 if directory == "values-de" else 5
+    paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[output_index]
     for branch, phrase in zip(("conditional resize", "warning without chooser"), PHRASES[directory]):
         with test.subTest(locale=directory, branch=branch):
             test.assertIn(phrase, paragraph, f"{directory}: missing assembly output guidance for {branch}")
