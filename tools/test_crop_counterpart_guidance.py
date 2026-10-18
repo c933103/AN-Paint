@@ -53,7 +53,7 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual({'help', 'crop'}, set(expected))
                 self.assertEqual({'one', 'other'}, set(expected['crop']))
-                self.assertEqual(8 if tag in ('de', 'es-ES', 'it') else 7, len(expected['help'].split('\n\n')))
+                self.assertEqual(8, len(expected['help'].split('\n\n')))
                 self.assertFalse(re.search(r'%\d+\$', expected['help']))
                 require_complete(self.roots[tag], expected)
                 for quantity, value in expected['crop'].items():
@@ -148,6 +148,20 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
         self.assertIn('Le altre immagini restano posizionate; le immagini collegate possono spostarsi '
                       'per colmare lo spazio.', paragraphs[5])
         self.assertNotIn('Le immagini successive colmano lo spazio', help_text)
+
+    def test_portuguese_help_distinguishes_snapping_from_exact_position(self):
+        help_text = self.expected['pt-PT']['help']
+        paragraphs = help_text.split('\n\n')
+        self.assertIn('Ao encaixar, a primeira imagem começa na origem.', paragraphs[2])
+        self.assertIn('As sobreposições são rejeitadas ao encaixar.', paragraphs[2])
+        label = decoded(self.roots['pt-PT'].find("./string[@name='ui_assembly_exact_position']").text)
+        self.assertEqual(
+            'Selecione uma imagem e use «' + label + '» para definir as coordenadas X/Y do seu '
+            'canto superior esquerdo em números inteiros de píxeis, a partir de zero. '
+            'As outras imagens mantêm as suas posições e são permitidas sobreposições.', paragraphs[3])
+        self.assertIn('As outras imagens continuam colocadas; as imagens ligadas podem deslocar-se '
+                      'para preencher o espaço.', paragraphs[5])
+        self.assertNotIn('As imagens seguintes preenchem o espaço', help_text)
 
     def test_help_and_plural_priority_remain_p3_and_p2(self):
         tiers = json.loads((ROOT / 'translations/string-importance.json').read_text())['tiers']

@@ -16,6 +16,10 @@ import xml.etree.ElementTree as ET
 RES = Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
 ASSEMBLY = "ui_add_up_to_20_images_with_android_s"
 PHRASES = {
+    "values-b+pt+PT": (
+        "Se a saída exceder o limite de memória, escolha uma cópia de saída mais pequena, se essa opção estiver disponível.",
+        "Se até uma saída mínima exceder o limite, a aplicação mostra um aviso de falta de memória em vez de um seletor de tamanho.",
+    ),
     "values-it": (
         "Se l’uscita supera il limite di memoria, scegli una copia di uscita più piccola, se viene proposta.",
         "Se anche un’uscita molto piccola supera il limite, l’app mostra un avviso di memoria insufficiente invece della finestra per scegliere le dimensioni.",
@@ -56,8 +60,8 @@ def strings(directory):
 def check_memory_help(test, directory):
     # Do not accept the correct phrase in the source-memory warning resource,
     # a separate help paragraph, or an unrelated part of the main editor manual.
-    # German, es-ES and Italian have a separate Exact position paragraph before output guidance.
-    output_index = 6 if directory in ("values-de", "values-b+es+ES", "values-it") else 5
+    # These four reviewed counterparts have a separate Exact position paragraph.
+    output_index = 6 if directory in ("values-de", "values-b+es+ES", "values-it", "values-b+pt+PT") else 5
     paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[output_index]
     for branch, phrase in zip(("conditional resize", "warning without chooser"), PHRASES[directory]):
         with test.subTest(locale=directory, branch=branch):
@@ -65,6 +69,9 @@ def check_memory_help(test, directory):
 
 
 class AssemblyNoResizeHelpTests(unittest.TestCase):
+    def test_portuguese_memory_limit_branches(self):
+        check_memory_help(self, "values-b+pt+PT")
+
     def test_italian_memory_limit_branches(self):
         check_memory_help(self, "values-it")
 
