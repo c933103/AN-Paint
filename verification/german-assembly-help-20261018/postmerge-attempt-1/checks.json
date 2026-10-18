@@ -1,0 +1,215 @@
+{
+  "commit": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+  "reviewed_tree": "05f725b3a5c64acdace799cfb8cb5d5768ce8f63",
+  "run": {
+    "id": 39087387993,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39087387993",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "jobs": [
+    {
+      "id": 117556709209,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117556709348,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117556709365,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117558413117,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117558413131,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 117560572574,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "junit": {
+    "suites": 120,
+    "totals": {
+      "tests": 1124,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "affected_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": "0.216"
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "seconds": "0.164"
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "seconds": "0.114"
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "seconds": "0.593"
+      }
+    ],
+    "artifact_id": 12121746774,
+    "artifact_sha256": "9d07e48d1ca6b797291ef5d077e471435e52e331a9244be71782b59daf83de8f"
+  },
+  "core": {
+    "artifact_id": 12121304963,
+    "artifact_sha256": "d89d0448c3604b731713b1460302148050d8e6519f4ec02e7c9f193add187538",
+    "identity": {
+      "group": "core",
+      "commit": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+      "run_id": "39087387993",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "5f970c8d6e6f1edc69b4b99e0a7c006e0c3d2e99780c3970326bffc41c7532a1",
+      "source_sha256": "7e7befc8bc1c14f04b37766e633ace7dd7f64dd41e0ce5015178efe1f4bc1c32",
+      "test_apk_sha256": "6c9c3e96ed4de7e5fadacc67c00e6f4fd7ec00c7aa46ebf11427dd027fb057a9"
+    },
+    "reports": [
+      {
+        "path": "Paintroid/androidTest-results/summary.json",
+        "expected": 74,
+        "completed": 74,
+        "seconds": 54.03074925599998
+      },
+      {
+        "path": "app/accepted-credit-restart/seed/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 5.713187995999988
+      },
+      {
+        "path": "app/accepted-credit-restart/verify/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 6.6707360860000335
+      },
+      {
+        "path": "app/androidTest-results/summary.json",
+        "expected": 17,
+        "completed": 17,
+        "seconds": 136.16200728299998
+      },
+      {
+        "path": "app-dialog/androidTest-results/summary.json",
+        "expected": 12,
+        "completed": 12,
+        "seconds": 152.402948907
+      },
+      {
+        "path": "app-gallery-draft/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 44.575169150999955
+      },
+      {
+        "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 108.68368507299999
+      },
+      {
+        "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 101.59615270400002
+      }
+    ],
+    "core_app_selected_completed": 38,
+    "native_selected_completed": 74,
+    "coverage_passed": true,
+    "capture_collection_passed": false,
+    "pull_errors": {
+      "dialog-pull.log": "adb: error: failed to get feature set: device offline\n",
+      "vertical-locale-pull.log": "adb: error: failed to get feature set: device offline\n"
+    }
+  },
+  "position": {
+    "artifact_id": 12121717068,
+    "artifact_sha256": "0e5414e120c43b017efebae8dd3f3dc405b8cb9b8d9820a0a8113c4afddc45b4",
+    "identity": {
+      "group": "position",
+      "commit": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+      "run_id": "39087387993",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "5f970c8d6e6f1edc69b4b99e0a7c006e0c3d2e99780c3970326bffc41c7532a1",
+      "source_sha256": "7e7befc8bc1c14f04b37766e633ace7dd7f64dd41e0ce5015178efe1f4bc1c32",
+      "test_apk_sha256": "6c9c3e96ed4de7e5fadacc67c00e6f4fd7ec00c7aa46ebf11427dd027fb057a9"
+    },
+    "coverage_status": "passed",
+    "reports": [
+      {
+        "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 103.1370110150001
+      },
+      {
+        "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+        "expected": 4,
+        "completed": 4,
+        "seconds": 94.00630562800006
+      }
+    ],
+    "total_selected_passed": 7,
+    "scope": "Routine API35 position methods. No German installed rendering or TalkBack acceptance."
+  },
+  "build_binding": {
+    "commit": "ec4d74eb222c58d51e4a339e43ca83cc7aa16ec3",
+    "run_id": 39087387993,
+    "artifact_id": 12121137895,
+    "artifact_sha256": "fbfb5829cd5782a1e560695d61b6425a409fb7663b42a2d4432fc71a5032fbd4",
+    "apk_sha256": "5f970c8d6e6f1edc69b4b99e0a7c006e0c3d2e99780c3970326bffc41c7532a1",
+    "source_sha256": "7e7befc8bc1c14f04b37766e633ace7dd7f64dd41e0ce5015178efe1f4bc1c32",
+    "hashes_match_build_info": true,
+    "embedded_source_matches_corresponding_archive": true,
+    "reviewed_tree": "05f725b3a5c64acdace799cfb8cb5d5768ce8f63",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step.",
+    "scope": "Source binding only. Archive omits two .gitignore files and .idea/codeStyles/Project.xml; all other 1,206 tracked payload files match reviewed blobs and executable modes. No installed German device or upgrade-signature acceptance.",
+    "tracked_source_files_examined": 1209,
+    "matched_payload_files": 1206,
+    "archive_omissions": [
+      {
+        "path": ".gitignore",
+        "error": "missing"
+      },
+      {
+        "path": ".idea/codeStyles/Project.xml",
+        "error": "missing"
+      },
+      {
+        "path": "colorpicker/.gitignore",
+        "error": "missing"
+      }
+    ]
+  },
+  "retry": "One rerun of failed jobs requested after diagnosis; no test assertions, deadlines or production changes."
+}
