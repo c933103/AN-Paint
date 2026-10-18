@@ -6,6 +6,8 @@ import android.app.LocaleManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
@@ -27,7 +29,7 @@ import org.robolectric.shadows.ShadowAlertDialog
 import java.io.File
 import java.util.Locale
 
-/** Complete Chinese, Cantonese and Literary Chinese warnings through the real batch-crop toolbar. */
+/** Complete bounded Sinitic crop warnings through the real batch-crop toolbar. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], shadows = [PixelRegionDecoderShadow::class], qualifiers = "w412dp-h900dp-port-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -38,6 +40,8 @@ class ChineseCropPreviewTest {
         "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。",
         "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
         "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
+        "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇怹的圖片可能會移動。",
+        "nan-Latn-TW" to "Ī-lám: %1\$d × %2\$d px\nThò-iōng tī %3\$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.",
         "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
     )
     private val tags = templates.keys
@@ -117,6 +121,44 @@ class ChineseCropPreviewTest {
     @Test fun literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
         checkActualBatchCrop("lzh-Hant", withUnplaced = true)
 
+    @Test fun taiwaneseHanWarningKeepsPlacedAntecedentAndAlternateGraph() =
+        checkActualBatchCrop("nan-Hant-TW", withUnplaced = true)
+
+    @Test fun taiwanesePojWarningKeepsPlacedAntecedentAndCombiningDot() =
+        checkActualBatchCrop("nan-Latn-TW", withUnplaced = true)
+
+    private fun checkTaiwaneseGlyphs(status: TextView, tag: String) {
+        val paint = Paint(status.paint).apply { color = Color.BLACK }
+        // MOE alternate 怹/in retains the referent; API33 lacks preferred 𪜶.
+        val sample = if (tag == "nan-Hant-TW") "怹" else "ô͘"
+        sample.codePoints().forEach { point ->
+            assertTrue("$tag actual status font covers U+${point.toString(16)}",
+                paint.hasGlyph(String(Character.toChars(point))))
+        }
+        val missing = String(Character.toChars(0x10ffff))
+        assertFalse(paint.hasGlyph(missing))
+        fun raster(text: String): IntArray {
+            val bitmap = Bitmap.createBitmap(192, 192, Bitmap.Config.ARGB_8888)
+            try {
+                Canvas(bitmap).drawText(text, 48f, 112f, paint)
+                return IntArray(192 * 192).also { pixels ->
+                    bitmap.getPixels(pixels, 0, 192, 0, 0, 192, 192)
+                    assertTrue(text, pixels.any { Color.alpha(it) > 0 })
+                    for (i in 0 until 192) {
+                        assertEquals(text, 0, Color.alpha(pixels[i]))
+                        assertEquals(text, 0, Color.alpha(pixels[191 * 192 + i]))
+                        assertEquals(text, 0, Color.alpha(pixels[i * 192]))
+                        assertEquals(text, 0, Color.alpha(pixels[i * 192 + 191]))
+                    }
+                }
+            } finally { bitmap.recycle() }
+        }
+        val actual = raster(sample)
+        assertFalse("$tag must not draw a missing-glyph box", actual.contentEquals(raster(missing)))
+        if (tag == "nan-Latn-TW")
+            assertFalse("POJ dot above right must contribute ink", actual.contentEquals(raster("ô")))
+    }
+
     private fun checkActualBatchCrop(tag: String, withUnplaced: Boolean = false) = withLanguage(tag) { activity ->
         val total = if (withUnplaced) 3 else 2
         val initialCount = if (withUnplaced) 1 else total
@@ -149,10 +191,19 @@ class ChineseCropPreviewTest {
         val root = dialog.window!!.decorView
         if (tag == "lzh-Hant") assertNotNull(root.findViewWithTag<View>("vertical_dialog"))
         val status = root.findViewWithTag<TextView>("crop_status")
+        if (tag.startsWith("nan-")) checkTaiwaneseGlyphs(status, tag)
         fun check(count: Int, height: Int = 16) {
             idle()
             val expected = formatted(activity, tag, count, height)
             assertEquals(tag + "/" + count, expected, status.text.toString())
+            if (tag.startsWith("nan-")) {
+                val layout = status.layout
+                assertNotNull("$tag native status layout", layout)
+                assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
+                for (line in 0 until layout.lineCount) assertEquals(0, layout.getEllipsisCount(line))
+                assertTrue("$tag complete status height", layout.height <=
+                    status.height - status.compoundPaddingTop - status.compoundPaddingBottom)
+            }
             val accessibility = status.createAccessibilityNodeInfo()
             try { assertEquals(expected, accessibility.text.toString()) }
             finally { accessibility.recycle() }
