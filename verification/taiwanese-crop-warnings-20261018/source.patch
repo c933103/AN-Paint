@@ -1,0 +1,147 @@
+--- a/Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml
++++ b/Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml
+@@ -676,7 +676,7 @@
+     <string name="ui_irasutoya_credit34">版權由作者留咧。使用須遵守「いらすとや」條款；這並非 Creative Commons 授權。</string>
+     <string name="ui_history_unavailable34">畫布恢復矣，毋過復原記錄讀袂出來。原本草稿已經留做復原副本。</string>
+     <plurals name="ui_crop_preview_images">
+-        <item quantity="other">預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁揀著的圖片時，連咧的圖片位置嘛會閣調整。</item>
++        <item quantity="other">預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁囥好的圖片時，接佇𪜶的圖片可能會移動。</item>
+     </plurals>
+ 
+     <string name="ui_normalize_width_intro">共全部圖片的闊度攏調做仝款。圖片數量：%1$d。逐張圖片的長闊比例攏袂改。原本檔案佮裁切設定嘛袂改。</string>
+--- a/Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml
++++ b/Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml
+@@ -676,7 +676,7 @@
+     <string name="ui_irasutoya_credit34">Pán khoân iû chok-chiá lâu leh. Sú-iōng su chun-siú "いらすとや" tiâu-khoán; che pēng hui Creative Commons siū-khoân.</string>
+     <string name="ui_history_unavailable34">Ōe-pò͘ khoe-ho̍k--ah, m̄-koh ho̍k-goân kì-lo̍k tha̍k bē chhut-lâi. Goân-pún chhó-kó í-keng lâu chò ho̍k-goân hù-pún.</string>
+     <plurals name="ui_crop_preview_images">
+-        <item quantity="other">Ī lám: %1$d × %2$d px \n thò ēng tī %3$d tiuⁿ tô͘-phìⁿ. Chhâi kéng tio̍h ê tô͘-phìⁿ sî, liân leh ê tô͘-phìⁿ ūi-tì mā ē koh tiâu-chéng.</item>
++        <item quantity="other">Ī-lám: %1$d × %2$d px\nThò-iōng tī %3$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.</item>
+     </plurals>
+ 
+     <string name="ui_normalize_width_intro">Kā choân-pō͘ tô͘-phìⁿ ê khoah-tō͘ lóng tiâu chò kāng-khoán. Tô͘-phìⁿ sò͘-liōng: %1$d. Ta̍k tiuⁿ tô͘-phìⁿ ê tn̂g-khoah pí-lē lóng bē kái. Goân-pún tóng-àn kah chhâi-chhiat siat-tēng mā bē kái.</string>
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/ChineseCropPreviewTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/ChineseCropPreviewTest.kt
+@@ -6,6 +6,8 @@
+ import android.content.Context
+ import android.graphics.Bitmap
+ import android.graphics.Color
++import android.graphics.Canvas
++import android.graphics.Paint
+ import android.os.Looper
+ import android.view.View
+ import android.widget.CheckBox
+@@ -27,7 +29,7 @@
+ import java.io.File
+ import java.util.Locale
+ 
+-/** Complete Chinese, Cantonese and Literary Chinese warnings through the real batch-crop toolbar. */
++/** Complete bounded Sinitic crop warnings through the real batch-crop toolbar. */
+ @RunWith(RobolectricTestRunner::class)
+ @Config(sdk = [33], shadows = [PixelRegionDecoderShadow::class], qualifiers = "w412dp-h900dp-port-xhdpi")
+ @GraphicsMode(GraphicsMode.Mode.NATIVE)
+@@ -38,6 +40,8 @@
+         "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。",
+         "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
+         "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
++        "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇𪜶的圖片可能會移動。",
++        "nan-Latn-TW" to "Ī-lám: %1\$d × %2\$d px\nThò-iōng tī %3\$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.",
+         "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
+     )
+     private val tags = templates.keys
+@@ -117,6 +121,43 @@
+     @Test fun literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
+         checkActualBatchCrop("lzh-Hant", withUnplaced = true)
+ 
++    @Test fun taiwaneseHanWarningKeepsPlacedAntecedentAndSupplementaryGlyph() =
++        checkActualBatchCrop("nan-Hant-TW", withUnplaced = true)
++
++    @Test fun taiwanesePojWarningKeepsPlacedAntecedentAndCombiningDot() =
++        checkActualBatchCrop("nan-Latn-TW", withUnplaced = true)
++
++    private fun checkTaiwaneseGlyphs(status: TextView, tag: String) {
++        val paint = Paint(status.paint).apply { color = Color.BLACK }
++        val sample = if (tag == "nan-Hant-TW") "𪜶" else "ô͘"
++        sample.codePoints().forEach { point ->
++            assertTrue("$tag actual status font covers U+${point.toString(16)}",
++                paint.hasGlyph(String(Character.toChars(point))))
++        }
++        val missing = String(Character.toChars(0x10ffff))
++        assertFalse(paint.hasGlyph(missing))
++        fun raster(text: String): IntArray {
++            val bitmap = Bitmap.createBitmap(192, 192, Bitmap.Config.ARGB_8888)
++            try {
++                Canvas(bitmap).drawText(text, 48f, 112f, paint)
++                return IntArray(192 * 192).also { pixels ->
++                    bitmap.getPixels(pixels, 0, 192, 0, 0, 192, 192)
++                    assertTrue(text, pixels.any { Color.alpha(it) > 0 })
++                    for (i in 0 until 192) {
++                        assertEquals(text, 0, Color.alpha(pixels[i]))
++                        assertEquals(text, 0, Color.alpha(pixels[191 * 192 + i]))
++                        assertEquals(text, 0, Color.alpha(pixels[i * 192]))
++                        assertEquals(text, 0, Color.alpha(pixels[i * 192 + 191]))
++                    }
++                }
++            } finally { bitmap.recycle() }
++        }
++        val actual = raster(sample)
++        assertFalse("$tag must not draw a missing-glyph box", actual.contentEquals(raster(missing)))
++        if (tag == "nan-Latn-TW")
++            assertFalse("POJ dot above right must contribute ink", actual.contentEquals(raster("ô")))
++    }
++
+     private fun checkActualBatchCrop(tag: String, withUnplaced: Boolean = false) = withLanguage(tag) { activity ->
+         val total = if (withUnplaced) 3 else 2
+         val initialCount = if (withUnplaced) 1 else total
+@@ -149,10 +190,19 @@
+         val root = dialog.window!!.decorView
+         if (tag == "lzh-Hant") assertNotNull(root.findViewWithTag<View>("vertical_dialog"))
+         val status = root.findViewWithTag<TextView>("crop_status")
++        if (tag.startsWith("nan-")) checkTaiwaneseGlyphs(status, tag)
+         fun check(count: Int, height: Int = 16) {
+             idle()
+             val expected = formatted(activity, tag, count, height)
+             assertEquals(tag + "/" + count, expected, status.text.toString())
++            if (tag.startsWith("nan-")) {
++                val layout = status.layout
++                assertNotNull("$tag native status layout", layout)
++                assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
++                for (line in 0 until layout.lineCount) assertEquals(0, layout.getEllipsisCount(line))
++                assertTrue("$tag complete status height", layout.height <=
++                    status.height - status.compoundPaddingTop - status.compoundPaddingBottom)
++            }
+             val accessibility = status.createAccessibilityNodeInfo()
+             try { assertEquals(expected, accessibility.text.toString()) }
+             finally { accessibility.recycle() }
+--- a/tools/test_chinese_crop_warning.py
++++ b/tools/test_chinese_crop_warning.py
+@@ -1,4 +1,4 @@
+-"""Complete bounded Chinese/Cantonese/Literary Chinese crop warnings, not whole-catalogue acceptance."""
++"""Complete bounded Sinitic crop warnings, not whole-catalogue acceptance."""
+ from pathlib import Path
+ import unittest
+ import xml.etree.ElementTree as ET
+@@ -13,6 +13,8 @@
+     'values-b+yue+Hant': r'預覽：%1$d × %2$d px\n套用去 %3$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。',
+     'values-b+yue+Latn': r'Jyu6 laam5: %1$d × %2$d px\nTou3 jung6 heoi3 %3$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.',
+     'values-b+lzh+Hant': r'預覽：%1$d × %2$d px\n施於 %3$d 圖。裁已置之圖，所連諸圖或因之而移。',
++    'values-b+nan+Hant+TW': r'預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁囥好的圖片時，接佇𪜶的圖片可能會移動。',
++    'values-b+nan+Latn+TW': r'Ī-lám: %1$d × %2$d px\nThò-iōng tī %3$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.',
+ }
+ 
+ 
+@@ -49,11 +51,13 @@
+             'values-b+yue+Hant': (EXPECTED['values-b+yue+Hant'], r'預覽：%1$d × %2$d px\n套用去 %3$d 張圖片。裁剪已擺位嘅圖片時，連接圖片嘅位置都會再調整。'),
+             'values-b+yue+Latn': (EXPECTED['values-b+yue+Latn'], r'Jyu6 laam5:%1$d ×%2$d px\ntou3 jung6 heoi3%3$d zoeng1 tou4 pin2. coi4 zin2 ji5 baai2 wai6 ge3 tou4 pin2 si4, lin4 zip3 tou4 pin2 ge3 wai6 zi3 dou1 wui5 zoi3 diu6 zing2.'),
+             'values-b+lzh+Hant': (EXPECTED['values-b+lzh+Hant'], r'預覽：%1$d × %2$d px\n施於 %3$d 圖。裁已置之圖，所連諸圖亦隨之移。'),
++            'values-b+nan+Hant+TW': (EXPECTED['values-b+nan+Hant+TW'], r'預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁揀著的圖片時，連咧的圖片位置嘛會閣調整。'),
++            'values-b+nan+Latn+TW': (EXPECTED['values-b+nan+Latn+TW'], r'Ī lám: %1$d × %2$d px \n thò ēng tī %3$d tiuⁿ tô͘-phìⁿ. Chhâi kéng tio̍h ê tô͘-phìⁿ sî, liân leh ê tô͘-phìⁿ ūi-tì mā ē koh tiâu-chéng.'),
+         }
+         for folder, expected in EXPECTED.items():
+             old = expected.replace(*mutations[folder])
+             for damaged in (old, expected.replace('%3$d', '%3$s'), expected.split(r'\n')[1],
+-                            expected.replace('可能會', '').replace('可能会', '').replace('ho2 nang4 ', '').replace('或因之', '因之')):
++                            expected.replace('可能會', '').replace('可能会', '').replace('ho2 nang4 ', '').replace('或因之', '因之').replace('khó-lêng ', '')):
+                 with self.subTest(folder=folder, damaged=damaged):
+                     self.assertNotEqual(expected, damaged)
+                     root = ET.Element('resources')
