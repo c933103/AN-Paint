@@ -60,8 +60,8 @@ def strings(directory):
 def check_memory_help(test, directory):
     # Do not accept the correct phrase in the source-memory warning resource,
     # a separate help paragraph, or an unrelated part of the main editor manual.
-    # These four reviewed counterparts have a separate Exact position paragraph.
-    output_index = 6 if directory in ("values-de", "values-b+es+ES", "values-it", "values-b+pt+PT") else 5
+    # These reviewed counterparts have a separate Exact position paragraph.
+    output_index = 6 if directory in ("values-de", "values-b+es+ES", "values-it", "values-b+pt+PT", "values-fr") else 5
     paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[output_index]
     for branch, phrase in zip(("conditional resize", "warning without chooser"), PHRASES[directory]):
         with test.subTest(locale=directory, branch=branch):
