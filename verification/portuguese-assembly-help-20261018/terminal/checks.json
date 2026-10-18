@@ -1,0 +1,245 @@
+{
+  "source_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+  "source_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+  "checkout_binding": {
+    "source_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+    "source_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "pr_checkout": "6fddf1ed3a753d7e977c90cfaa5e09e14af96e8e",
+    "pr_checkout_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "parents": [
+      "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+      "cadee014aacdc2d3422d533f76e626f3d4433dd9"
+    ],
+    "matches_reviewed_head": true,
+    "base": "3a88bfea931c5fad9b4d8d3d71da34a2a0609376",
+    "all_remote_leaves_match_checkout": 1209
+  },
+  "run": {
+    "id": 39097285470,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39097285470",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 1
+  },
+  "jobs": [
+    {
+      "id": 117586249820,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117586249952,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117586250000,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117587273309,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117587273330,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117589505956,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "junit": {
+    "source_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+    "source_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "artifact_id": 12125313487,
+    "artifact_name": "regression-and-lint-6fddf1ed3a753d7e977c90cfaa5e09e14af96e8e",
+    "artifact_sha256": "0f603e86d8768d804c33824cef300c271865945178725e90ca3b378ce824e02d",
+    "run_id": 39097285470,
+    "junit": {
+      "tests": 1127,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suite_count": 120,
+    "affected_source_methods": 7,
+    "affected_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.177
+      },
+      {
+        "name": "spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.191
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "seconds": 0.157
+      },
+      {
+        "name": "italianExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.467
+      },
+      {
+        "name": "portugueseExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.171
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "seconds": 0.093
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "seconds": 0.533
+      }
+    ]
+  },
+  "review": {
+    "commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+    "code": {
+      "commit_sha": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security": {
+      "commit_sha": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "url": "https://github.com/c933103/AN-Paint/pull/132#issuecomment-6245664458",
+    "comment_id": 6245664458,
+    "updated_at": "2026-10-18T04:33:52Z"
+  },
+  "build_binding": {
+    "commit": "6fddf1ed3a753d7e977c90cfaa5e09e14af96e8e",
+    "run_id": 39097285470,
+    "artifact_id": 12125018306,
+    "artifact_sha256": "7429e3a41def030e8efdfa997609185489b1b477059c7ab30fe4baeeeeb8f477",
+    "apk_sha256": "aff80f7aa4d6ef25bdecd8a8d2d1927209ac2e17478867da3329cf39a58883da",
+    "source_sha256": "4dced05aea70bc005cc2697d272cecdc8217238a58af8e68379b6574c3401da0",
+    "hashes_match_build_info": true,
+    "embedded_source_matches_corresponding_archive": true,
+    "reviewed_tree": "c0474eab8fccd272b90fb181d3989862044be7f0",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step.",
+    "tracked_source_files_examined": 1209,
+    "matched_payload_files": 1206,
+    "archive_omissions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "scope": "Exact source/payload binding only; CI debug key, no upgrade-signature or installed Portuguese acceptance."
+  },
+  "device": {
+    "commit": "6fddf1ed3a753d7e977c90cfaa5e09e14af96e8e",
+    "run_id": 39097285470,
+    "attempt": 1,
+    "artifact_id": 12125392244,
+    "artifact_sha256": "9af4de76729a6b95076ed41bf3e974eeafba00abad674cf5c8d735961d018eec",
+    "identity": {
+      "commit": "6fddf1ed3a753d7e977c90cfaa5e09e14af96e8e",
+      "run_id": "39097285470",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "aff80f7aa4d6ef25bdecd8a8d2d1927209ac2e17478867da3329cf39a58883da",
+      "source_sha256": "4dced05aea70bc005cc2697d272cecdc8217238a58af8e68379b6574c3401da0",
+      "test_apk_sha256": "bf2d3d7048ed50f2a751439fbfb696a065bc40c3dddd8d1a575c3b2b53c749e7",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "reports": [
+      {
+        "path": "Paintroid/androidTest-results/summary.json",
+        "expected": 74,
+        "completed": 74,
+        "seconds": 86.17766286799997
+      },
+      {
+        "path": "app/accepted-credit-restart/seed/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 6.987814366000066
+      },
+      {
+        "path": "app/accepted-credit-restart/verify/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 8.452790398999923
+      },
+      {
+        "path": "app/androidTest-results/summary.json",
+        "expected": 17,
+        "completed": 17,
+        "seconds": 145.60328890400007
+      },
+      {
+        "path": "app-dialog/androidTest-results/summary.json",
+        "expected": 12,
+        "completed": 12,
+        "seconds": 168.141763491
+      },
+      {
+        "path": "app-gallery-draft/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 48.29960494499994
+      },
+      {
+        "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 101.71946821799997
+      },
+      {
+        "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+        "expected": 4,
+        "completed": 4,
+        "seconds": 92.67889771399996
+      },
+      {
+        "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 119.08911322100005
+      },
+      {
+        "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 113.90713357099992
+      }
+    ],
+    "native_completed": 74,
+    "app_completed": 45,
+    "source_bound_app_inventory_reverified": true,
+    "capture_review": "Not independently revalidated in this bounded Help correction; ordinary hosted gates retained unchanged.",
+    "limits": [
+      "No independent visual acceptance of ordinary-language captures",
+      "No installed Portuguese or TalkBack acceptance"
+    ]
+  },
+  "exact_script_probe_count": 9,
+  "local_evidence": "https://github.com/c933103/AN-Paint/blob/8f67189b3b333a2abf2fcb707f3f00c3ab341851/verification/portuguese-assembly-help-20261018/README.md",
+  "limits": [
+    "No native-speaker, whole-language, installed Portuguese layout/glyph or TalkBack acceptance",
+    "No production model or routing changes",
+    "PR75 broader obligations remain open; pt-BR, PR56 and explicit holds unchanged"
+  ]
+}
