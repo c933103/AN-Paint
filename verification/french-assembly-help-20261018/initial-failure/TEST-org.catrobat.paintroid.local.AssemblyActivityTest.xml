@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.AssemblyActivityTest" tests="20" skipped="0" failures="1" errors="0" timestamp="2026-10-18T05:18:21.426Z" hostname="runnervmk1d70" time="15.339">
+  <properties/>
+  <testcase name="editInPaintTransfersCompositeAndMainUndoRestoresPreviousCanvas" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.639"/>
+  <testcase name="sameWidthAndHeightOfferPercentPreserveRatiosAndUndoWithoutChangingSources" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.441"/>
+  <testcase name="exactPositionMovesOnlySelectedImageAllowsOverlapAndSurvivesReopening" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.374"/>
+  <testcase name="frenchHeaderTracksAddPlaceUnplaceAndRemoveIncludingOne" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.194"/>
+  <testcase name="reopeningAssemblyRestoresOriginalFilesCropsAndAttachments" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.288"/>
+  <testcase name="twentyImagesLoadAndAnOversizedPickerBatchIsRejectedBeforeReading" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="4.846"/>
+  <testcase name="everyEnglishOverrideAndFrenchQualifiesWholeCropQuantityMessages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.218"/>
+  <testcase name="capacityRefusalUsesTrueRemainingCountBeforeReadingAndAcceptsAnExactFit" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="4.153"/>
+  <testcase name="unplaceButtonRemovesOnlySelectedRootAndPromotesRemainingImages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.232"/>
+  <testcase name="individualAndBatchCropUsePercentAndAreUndoableBeforePlacement" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.438"/>
+  <testcase name="multiPickerLoadsNamesTimesAndThumbnailsThenNativeDragEventsSnapBothDirections" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.32"/>
+  <testcase name="placedImageCanBeDraggedByTouchWithVisibleSnappingAndCancelledSafely" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.311"/>
+  <testcase name="frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.092">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;...s sur une cible +. L[a première image commence à l’origine. Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée. Les chevauchements sont refusés.&#10;&#10;Même largeur et Même hauteur donnent à toutes les entrées une dimension commune tout en conservant le rapport hauteur/largeur propre à chaque image. Choisissez Pixels, Pourcentage, Plus petite ou Plus grande. Restaurer les tailles d’origine supprime la normalisation et conserve les recadrages.&#10;&#10;Retirer du placement renvoie uniquement l’image sélectionnée dans le bac. Les images suivantes comblent l’espace ; elles restent placées. Supprimer efface uniquement cette entrée. Annuler/Rétablir restaure] ces modifications. ...&gt; but was:&lt;...s sur une cible +. L[ors de l’alignement sur une cible, la première image commence à l’origine. Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée. Les chevauchements sont refusés lors de l’alignement sur une cible.&#10;&#10;Sélectionnez une image et utilisez Position exacte pour définir les coordonnées X/Y de son coin supérieur gauche en nombres entiers de pixels, à partir de zéro. Les autres images conservent leur position et les chevauchements sont autorisés.&#10;&#10;Même largeur et Même hauteur donnent à toutes les entrées une dimension commune tout en conservant le rapport hauteur/largeur propre à chaque image. Choisissez Pixels, Pourcentage, Plus petite ou Plus grande. Restaurer les tailles d’origine supprime la normalisation et conserve les recadrages.&#10;&#10;Retirer du placement renvoie uniquement l’image sélectionnée dans le bac. Les autres images restent placées ; les images rattachées peuvent se déplacer pour combler l’espace libéré. Supprimer efface uniquement cette entrée. Annuler et Rétablir permettent d’annuler ou de rétablir] ces modifications. ...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;...s sur une cible +. L[a première image commence à l’origine. Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée. Les chevauchements sont refusés.
+
+Même largeur et Même hauteur donnent à toutes les entrées une dimension commune tout en conservant le rapport hauteur/largeur propre à chaque image. Choisissez Pixels, Pourcentage, Plus petite ou Plus grande. Restaurer les tailles d’origine supprime la normalisation et conserve les recadrages.
+
+Retirer du placement renvoie uniquement l’image sélectionnée dans le bac. Les images suivantes comblent l’espace ; elles restent placées. Supprimer efface uniquement cette entrée. Annuler/Rétablir restaure] ces modifications. ...&gt; but was:&lt;...s sur une cible +. L[ors de l’alignement sur une cible, la première image commence à l’origine. Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée. Les chevauchements sont refusés lors de l’alignement sur une cible.
+
+Sélectionnez une image et utilisez Position exacte pour définir les coordonnées X/Y de son coin supérieur gauche en nombres entiers de pixels, à partir de zéro. Les autres images conservent leur position et les chevauchements sont autorisés.
+
+Même largeur et Même hauteur donnent à toutes les entrées une dimension commune tout en conservant le rapport hauteur/largeur propre à chaque image. Choisissez Pixels, Pourcentage, Plus petite ou Plus grande. Restaurer les tailles d’origine supprime la normalisation et conserve les recadrages.
+
+Retirer du placement renvoie uniquement l’image sélectionnée dans le bac. Les autres images restent placées ; les images rattachées peuvent se déplacer pour combler l’espace libéré. Supprimer efface uniquement cette entrée. Annuler et Rétablir permettent d’annuler ou de rétablir] ces modifications. ...&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AssemblyActivityTest$frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage$1.invoke(AssemblyActivityTest.kt:410)
+	at org.catrobat.paintroid.local.AssemblyActivityTest$frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage$1.invoke(AssemblyActivityTest.kt:406)
+	at org.catrobat.paintroid.local.AssemblyActivityTest.withLanguage(AssemblyActivityTest.kt:232)
+	at org.catrobat.paintroid.local.AssemblyActivityTest.frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage(AssemblyActivityTest.kt:406)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.
+</failure>
+  </testcase>
+  <testcase name="landscapeTrayAndWorkspaceRemainReachable" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.352"/>
+  <testcase name="savePngStreamsExactCompositeAndCancelRemovesOnlyTemporaryOutput" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.362"/>
+  <testcase name="invalidPositionAndCancelDoNotChangeImagesOrTheSavedProject" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.25"/>
+  <testcase name="frenchActualBatchCropShowsCompleteWarningForZeroOneAndTwoSelectedImages" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.289"/>
+  <testcase name="renderingOneAndTwoImagesDisplaysEachActualProgressCallbackAndCreatesOutput" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="1.006"/>
+  <testcase name="cropTouchHandlesKeepTrackingAcrossMovesAndPixelPercentChoiceIsVisible" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.295"/>
+  <testcase name="positionDialogKeepsInputsAndActionsReachableInShortLandscape" classname="org.catrobat.paintroid.local.AssemblyActivityTest" time="0.239"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
