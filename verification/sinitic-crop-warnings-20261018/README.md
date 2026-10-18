@@ -77,3 +77,13 @@ APK signature and 16 KiB alignment checks passed; the universal APK contains all
 The parent merged [PR137](https://github.com/c933103/AN-Paint/pull/137) as `3681194d9499cdbf8ce6004a3b993b1472380436`. Natural post-merge verification is a separate observation and was still pending when this PR receipt was saved.
 
 `hosted-checks.json` summarizes the verified receipts. `hosted-verification.zip` (342,207 bytes, SHA-256 `9d500b9a4e3ef2628915866d12306f5ae109550ee9c1b6b9116513fedc7953a2`) preserves 226 raw/derived files with an internal manifest: all JVM XML, phase logs, complete device summaries/JUnit, exact-script probes, run/jobs/review metadata, source bindings, APK signature/alignment results and the verifier. This does not claim installed acceptance of the three changed locale messages, physical devices, pixel clipping, whole catalogues or a release. All earlier holds remain.
+
+## Natural post-merge verification — completed 18 October 2026
+
+The natural push [run 39137365965](https://github.com/c933103/AN-Paint/actions/runs/39137365965) completed successfully on attempt 1 for merge `3681194d9499cdbf8ce6004a3b993b1472380436`. All six jobs passed without a failed step, repair or retry. Its checkout tree is identical to the reviewed PR head.
+
+Fresh downloaded post-merge artifacts independently establish the same complete source-bound results: 1,142 passing JVM methods across 123 suites with zero failures/errors/skips; all six crop-preview, twenty assembly-model and seven counterpart methods; hosted Python 976; all nine exact-script probes; and the complete API35 union of 74 native plus 45 app methods. Artifact digests, run/commit/source/APK identities, embedded/external source equality, all 1,221 bundled source blobs/modes, four ABIs, APK signature and 16 KiB alignment were checked again against these post-merge bytes.
+
+`postmerge-checks.json` records the results. `postmerge-verification.zip` preserves 227 raw/derived files with a verified internal manifest: 386,054 bytes, SHA-256 `681f52c4ba75b0875c1129daafdba4575c108622c3adc13783650f9b84df33f1`. Earlier PR and local evidence remain intact. No collector fix was required for this run; unrelated PR136/138 failures and repairs are separate records.
+
+This closes the bounded implementation and natural verification of the three crop-preview values. It does not close tracker #75, accept the five held counterparts or any long Help entry, establish installed linguistic/layout acceptance of these three messages, or create a privately signed release.
