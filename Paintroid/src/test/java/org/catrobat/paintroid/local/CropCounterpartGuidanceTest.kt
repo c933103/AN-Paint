@@ -112,7 +112,7 @@ class CropCounterpartGuidanceTest {
             assertTrue(dialog.isShowing)
             val shown = dialog.findViewById<TextView>(android.R.id.message).text.toString()
             assertEquals(tag, expected.getJSONObject(tag).getString("help"), shown)
-            assertEquals(if (tag in listOf("de", "es-ES", "it")) 8 else 7, shown.split("\n\n").size)
+            assertEquals(8, shown.split("\n\n").size)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             idle()
             assertFalse(dialog.isShowing)
@@ -131,6 +131,10 @@ class CropCounterpartGuidanceTest {
     @Test fun italianExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
         checkExactPositionAndUnplace("it", "Posizione esatta",
             "X e Y devono essere numeri interi compresi tra 0 e 2147483647.")
+
+    @Test fun portugueseExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("pt-PT", "Posição exata",
+            "X e Y têm de ser números inteiros entre 0 e 2147483647.")
 
     private fun checkExactPositionAndUnplace(
         tag: String, positionLabel: String, invalidMessage: String
