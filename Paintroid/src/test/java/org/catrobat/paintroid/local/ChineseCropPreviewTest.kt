@@ -27,7 +27,7 @@ import org.robolectric.shadows.ShadowAlertDialog
 import java.io.File
 import java.util.Locale
 
-/** Complete TW/CN warnings through compiled resources and the real batch-crop toolbar. */
+/** Complete Chinese, Cantonese and Literary Chinese warnings through the real batch-crop toolbar. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], shadows = [PixelRegionDecoderShadow::class], qualifiers = "w412dp-h900dp-port-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -35,7 +35,10 @@ class ChineseCropPreviewTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
     private val templates = mapOf(
         "zh-TW" to "預覽：%1\$d × %2\$d px\n套用至 %3\$d 張圖片。裁切已放置圖片時，連接到它們的圖片可能會移動。",
-        "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。"
+        "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。",
+        "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
+        "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
+        "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
     )
     private val tags = templates.keys
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
@@ -105,8 +108,19 @@ class ChineseCropPreviewTest {
     @Test fun chinaWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen() =
         checkActualBatchCrop("zh-CN")
 
-    private fun checkActualBatchCrop(tag: String) = withLanguage(tag) { activity ->
-        val images = (0 until 2).map { index ->
+    @Test fun cantoneseHanWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
+        checkActualBatchCrop("yue-Hant", withUnplaced = true)
+
+    @Test fun cantoneseJyutpingWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
+        checkActualBatchCrop("yue-Latn", withUnplaced = true)
+
+    @Test fun literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
+        checkActualBatchCrop("lzh-Hant", withUnplaced = true)
+
+    private fun checkActualBatchCrop(tag: String, withUnplaced: Boolean = false) = withLanguage(tag) { activity ->
+        val total = if (withUnplaced) 3 else 2
+        val initialCount = if (withUnplaced) 1 else total
+        val images = (0 until total).map { index ->
             val file = File(activity.assembly.directory, "crop-counterpart-$index.png")
             val bitmap = Bitmap.createBitmap(24, 16, Bitmap.Config.ARGB_8888)
             bitmap.eraseColor(if (index == 0) Color.RED else Color.BLUE)
@@ -120,7 +134,9 @@ class ChineseCropPreviewTest {
         idle()
         assertFalse(activity.lastError, activity.busy)
         assertNull("Synthetic previews must decode successfully", activity.lastError)
-        // Both images are placed, and one is attached to the other. Preview
+        // Two images are placed, with a child attached to its parent. An optional
+        // third image stays unplaced and is the initial selection: the displayed
+        // count describes selected images, independently of placement. Preview
         // warnings describe possible effects without applying any mutation.
         activity.assembly.place(images[0].id, Attachment(null, null))
         activity.assembly.place(images[1].id, Attachment(images[0].id, SnapEdge.RIGHT))
@@ -131,6 +147,7 @@ class ChineseCropPreviewTest {
         click(activity, "assembly_batch_crop")
         val dialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val root = dialog.window!!.decorView
+        if (tag == "lzh-Hant") assertNotNull(root.findViewWithTag<View>("vertical_dialog"))
         val status = root.findViewWithTag<TextView>("crop_status")
         fun check(count: Int, height: Int = 16) {
             idle()
@@ -140,12 +157,13 @@ class ChineseCropPreviewTest {
             try { assertEquals(expected, accessibility.text.toString()) }
             finally { accessibility.recycle() }
         }
-        check(2)
+        check(initialCount)
+        root.findViewWithTag<View>("crop_all").performClick(); check(total)
         root.findViewWithTag<View>("crop_none").performClick(); check(0)
         root.findViewWithTag<CheckBox>("crop_include_" + images[0].id).isChecked = true; check(1)
-        root.findViewWithTag<View>("crop_all").performClick(); check(2)
-        root.findViewWithTag<EditText>("crop_top").setText("4"); check(2, 12)
-        root.findViewWithTag<View>("crop_reset").performClick(); check(2)
+        root.findViewWithTag<View>("crop_all").performClick(); check(total)
+        root.findViewWithTag<EditText>("crop_top").setText("4"); check(total, 12)
+        root.findViewWithTag<View>("crop_reset").performClick(); check(total)
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
         assertFalse(dialog.isShowing)
         assertEquals(before, activity.assembly.images)
@@ -155,7 +173,7 @@ class ChineseCropPreviewTest {
         // Reopening uses the same current complete message, with no retained draft.
         click(activity, "assembly_batch_crop")
         val reopened = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        assertEquals(formatted(activity, tag, 2),
+        assertEquals(formatted(activity, tag, initialCount),
             reopened.window!!.decorView.findViewWithTag<TextView>("crop_status").text.toString())
         reopened.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
         assertFalse(reopened.isShowing)
