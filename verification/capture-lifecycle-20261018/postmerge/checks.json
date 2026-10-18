@@ -1,0 +1,1526 @@
+{
+  "source_commit": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+  "reviewed_pr_head": "81404c63c54b47a7cc3f55bacaee93e14d98eb9b",
+  "source_tree": "f2870b51aba6c8290e929c7fa176c4d14c802d52",
+  "publication": {
+    "head": "81404c63c54b47a7cc3f55bacaee93e14d98eb9b",
+    "tree": "f2870b51aba6c8290e929c7fa176c4d14c802d52",
+    "base": "3681194d9499cdbf8ce6004a3b993b1472380436",
+    "pr": 138,
+    "run": 39140653627,
+    "pr_checkout": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+    "pr_checkout_tree": "f2870b51aba6c8290e929c7fa176c4d14c802d52",
+    "run_head": "248d5d41e4114f9252c858c3ac08f2bb124746dc"
+  },
+  "run": {
+    "id": 39140653627,
+    "name": "Android build and checks",
+    "node_id": "WFR_kwLOUTkwWc8AAAAJHPb6Ow",
+    "head_branch": "develop",
+    "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+    "path": ".github/workflows/android.yml",
+    "display_title": "Merge pull request #138 from c933103/fix/capture-before-logcat",
+    "run_number": 637,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "workflow_id": 354972367,
+    "check_suite_id": 106066452578,
+    "check_suite_node_id": "CS_kwDOUTkwWc8AAAAYsg2gYg",
+    "url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+    "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627",
+    "pull_requests": [],
+    "created_at": "2026-10-18T15:28:42Z",
+    "updated_at": "2026-10-18T15:56:39Z",
+    "actor": {
+      "login": "c933103",
+      "id": 1525293,
+      "node_id": "MDQ6VXNlcjE1MjUyOTM=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1525293?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c933103",
+      "html_url": "https://github.com/c933103",
+      "followers_url": "https://api.github.com/users/c933103/followers",
+      "following_url": "https://api.github.com/users/c933103/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c933103/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c933103/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c933103/subscriptions",
+      "organizations_url": "https://api.github.com/users/c933103/orgs",
+      "repos_url": "https://api.github.com/users/c933103/repos",
+      "events_url": "https://api.github.com/users/c933103/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c933103/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 2,
+    "referenced_workflows": [],
+    "run_started_at": "2026-10-18T15:53:59Z",
+    "triggering_actor": {
+      "login": "c933103",
+      "id": 1525293,
+      "node_id": "MDQ6VXNlcjE1MjUyOTM=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1525293?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/c933103",
+      "html_url": "https://github.com/c933103",
+      "followers_url": "https://api.github.com/users/c933103/followers",
+      "following_url": "https://api.github.com/users/c933103/following{/other_user}",
+      "gists_url": "https://api.github.com/users/c933103/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/c933103/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/c933103/subscriptions",
+      "organizations_url": "https://api.github.com/users/c933103/orgs",
+      "repos_url": "https://api.github.com/users/c933103/repos",
+      "events_url": "https://api.github.com/users/c933103/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/c933103/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/jobs",
+    "logs_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/logs",
+    "check_suite_url": "https://api.github.com/repos/c933103/AN-Paint/check-suites/106066452578",
+    "artifacts_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/artifacts",
+    "cancel_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/cancel",
+    "rerun_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/rerun",
+    "previous_attempt_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627/attempts/1",
+    "workflow_url": "https://api.github.com/repos/c933103/AN-Paint/actions/workflows/354972367",
+    "head_commit": {
+      "id": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "tree_id": "f2870b51aba6c8290e929c7fa176c4d14c802d52",
+      "message": "Merge pull request #138 from c933103/fix/capture-before-logcat\n\nci: collect required captures before diagnostic logcat",
+      "timestamp": "2026-10-18T15:28:39Z",
+      "author": {
+        "name": "c933103",
+        "email": "c933103@gmail.com"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com"
+      }
+    },
+    "repository": {
+      "id": 1362702425,
+      "node_id": "R_kgDOUTkwWQ",
+      "name": "AN-Paint",
+      "full_name": "c933103/AN-Paint",
+      "private": false,
+      "owner": {
+        "login": "c933103",
+        "id": 1525293,
+        "node_id": "MDQ6VXNlcjE1MjUyOTM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/1525293?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/c933103",
+        "html_url": "https://github.com/c933103",
+        "followers_url": "https://api.github.com/users/c933103/followers",
+        "following_url": "https://api.github.com/users/c933103/following{/other_user}",
+        "gists_url": "https://api.github.com/users/c933103/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/c933103/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/c933103/subscriptions",
+        "organizations_url": "https://api.github.com/users/c933103/orgs",
+        "repos_url": "https://api.github.com/users/c933103/repos",
+        "events_url": "https://api.github.com/users/c933103/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/c933103/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/c933103/AN-Paint",
+      "description": null,
+      "fork": true,
+      "url": "https://api.github.com/repos/c933103/AN-Paint",
+      "forks_url": "https://api.github.com/repos/c933103/AN-Paint/forks",
+      "keys_url": "https://api.github.com/repos/c933103/AN-Paint/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/c933103/AN-Paint/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/c933103/AN-Paint/teams",
+      "hooks_url": "https://api.github.com/repos/c933103/AN-Paint/hooks",
+      "issue_events_url": "https://api.github.com/repos/c933103/AN-Paint/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/c933103/AN-Paint/events",
+      "assignees_url": "https://api.github.com/repos/c933103/AN-Paint/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/c933103/AN-Paint/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/c933103/AN-Paint/tags",
+      "blobs_url": "https://api.github.com/repos/c933103/AN-Paint/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/c933103/AN-Paint/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/c933103/AN-Paint/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/c933103/AN-Paint/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/c933103/AN-Paint/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/c933103/AN-Paint/languages",
+      "stargazers_url": "https://api.github.com/repos/c933103/AN-Paint/stargazers",
+      "contributors_url": "https://api.github.com/repos/c933103/AN-Paint/contributors",
+      "subscribers_url": "https://api.github.com/repos/c933103/AN-Paint/subscribers",
+      "subscription_url": "https://api.github.com/repos/c933103/AN-Paint/subscription",
+      "commits_url": "https://api.github.com/repos/c933103/AN-Paint/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/c933103/AN-Paint/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/c933103/AN-Paint/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/c933103/AN-Paint/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/c933103/AN-Paint/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/c933103/AN-Paint/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/c933103/AN-Paint/merges",
+      "archive_url": "https://api.github.com/repos/c933103/AN-Paint/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/c933103/AN-Paint/downloads",
+      "issues_url": "https://api.github.com/repos/c933103/AN-Paint/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/c933103/AN-Paint/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/c933103/AN-Paint/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/c933103/AN-Paint/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/c933103/AN-Paint/labels{/name}",
+      "releases_url": "https://api.github.com/repos/c933103/AN-Paint/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/c933103/AN-Paint/deployments"
+    },
+    "head_repository": {
+      "id": 1362702425,
+      "node_id": "R_kgDOUTkwWQ",
+      "name": "AN-Paint",
+      "full_name": "c933103/AN-Paint",
+      "private": false,
+      "owner": {
+        "login": "c933103",
+        "id": 1525293,
+        "node_id": "MDQ6VXNlcjE1MjUyOTM=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/1525293?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/c933103",
+        "html_url": "https://github.com/c933103",
+        "followers_url": "https://api.github.com/users/c933103/followers",
+        "following_url": "https://api.github.com/users/c933103/following{/other_user}",
+        "gists_url": "https://api.github.com/users/c933103/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/c933103/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/c933103/subscriptions",
+        "organizations_url": "https://api.github.com/users/c933103/orgs",
+        "repos_url": "https://api.github.com/users/c933103/repos",
+        "events_url": "https://api.github.com/users/c933103/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/c933103/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/c933103/AN-Paint",
+      "description": null,
+      "fork": true,
+      "url": "https://api.github.com/repos/c933103/AN-Paint",
+      "forks_url": "https://api.github.com/repos/c933103/AN-Paint/forks",
+      "keys_url": "https://api.github.com/repos/c933103/AN-Paint/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/c933103/AN-Paint/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/c933103/AN-Paint/teams",
+      "hooks_url": "https://api.github.com/repos/c933103/AN-Paint/hooks",
+      "issue_events_url": "https://api.github.com/repos/c933103/AN-Paint/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/c933103/AN-Paint/events",
+      "assignees_url": "https://api.github.com/repos/c933103/AN-Paint/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/c933103/AN-Paint/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/c933103/AN-Paint/tags",
+      "blobs_url": "https://api.github.com/repos/c933103/AN-Paint/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/c933103/AN-Paint/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/c933103/AN-Paint/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/c933103/AN-Paint/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/c933103/AN-Paint/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/c933103/AN-Paint/languages",
+      "stargazers_url": "https://api.github.com/repos/c933103/AN-Paint/stargazers",
+      "contributors_url": "https://api.github.com/repos/c933103/AN-Paint/contributors",
+      "subscribers_url": "https://api.github.com/repos/c933103/AN-Paint/subscribers",
+      "subscription_url": "https://api.github.com/repos/c933103/AN-Paint/subscription",
+      "commits_url": "https://api.github.com/repos/c933103/AN-Paint/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/c933103/AN-Paint/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/c933103/AN-Paint/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/c933103/AN-Paint/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/c933103/AN-Paint/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/c933103/AN-Paint/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/c933103/AN-Paint/merges",
+      "archive_url": "https://api.github.com/repos/c933103/AN-Paint/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/c933103/AN-Paint/downloads",
+      "issues_url": "https://api.github.com/repos/c933103/AN-Paint/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/c933103/AN-Paint/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/c933103/AN-Paint/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/c933103/AN-Paint/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/c933103/AN-Paint/labels{/name}",
+      "releases_url": "https://api.github.com/repos/c933103/AN-Paint/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/c933103/AN-Paint/deployments"
+    }
+  },
+  "jobs": [
+    {
+      "id": 117719763077,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKUIhQ",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719763077",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719763077",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:00Z",
+      "started_at": "2026-10-18T15:54:03Z",
+      "completed_at": "2026-10-18T15:56:39Z",
+      "name": "Exact-script resource generation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:54:03Z",
+          "completed_at": "2026-10-18T15:54:05Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:54:05Z",
+          "completed_at": "2026-10-18T15:54:09Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:54:09Z",
+          "completed_at": "2026-10-18T15:54:14Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:54:14Z",
+          "completed_at": "2026-10-18T15:55:05Z"
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:55:05Z",
+          "completed_at": "2026-10-18T15:56:34Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:56:34Z",
+          "completed_at": "2026-10-18T15:56:36Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-18T15:56:36Z",
+          "completed_at": "2026-10-18T15:56:36Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-18T15:56:36Z",
+          "completed_at": "2026-10-18T15:56:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-18T15:56:36Z",
+          "completed_at": "2026-10-18T15:56:36Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719763077",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012814,
+      "runner_name": "GitHub Actions 1000012814",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117719764061,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKUMXQ",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719764061",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719764061",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:01Z",
+      "started_at": "2026-10-18T15:28:45Z",
+      "completed_at": "2026-10-18T15:47:22Z",
+      "name": "Regression tests and lint",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:28:45Z",
+          "completed_at": "2026-10-18T15:28:46Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:28:46Z",
+          "completed_at": "2026-10-18T15:28:48Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:28:48Z",
+          "completed_at": "2026-10-18T15:28:56Z"
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:28:56Z",
+          "completed_at": "2026-10-18T15:28:57Z"
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:28:57Z",
+          "completed_at": "2026-10-18T15:29:02Z"
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:29:02Z",
+          "completed_at": "2026-10-18T15:29:09Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T15:29:09Z",
+          "completed_at": "2026-10-18T15:30:06Z"
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T15:30:06Z",
+          "completed_at": "2026-10-18T15:33:46Z"
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-18T15:33:46Z",
+          "completed_at": "2026-10-18T15:43:50Z"
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T15:43:50Z",
+          "completed_at": "2026-10-18T15:45:07Z"
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-18T15:45:07Z",
+          "completed_at": "2026-10-18T15:47:11Z"
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-18T15:47:11Z",
+          "completed_at": "2026-10-18T15:47:11Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-18T15:47:11Z",
+          "completed_at": "2026-10-18T15:47:17Z"
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-18T15:47:17Z",
+          "completed_at": "2026-10-18T15:47:17Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-18T15:47:17Z",
+          "completed_at": "2026-10-18T15:47:20Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-18T15:47:20Z",
+          "completed_at": "2026-10-18T15:47:20Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-18T15:47:20Z",
+          "completed_at": "2026-10-18T15:47:20Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719764061",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012796,
+      "runner_name": "GitHub Actions 1000012796",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117719764484,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKUOBA",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719764484",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719764484",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:01Z",
+      "started_at": "2026-10-18T15:28:45Z",
+      "completed_at": "2026-10-18T15:38:37Z",
+      "name": "Build APK and corresponding source",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:28:45Z",
+          "completed_at": "2026-10-18T15:28:46Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:28:46Z",
+          "completed_at": "2026-10-18T15:28:48Z"
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:28:48Z",
+          "completed_at": "2026-10-18T15:28:54Z"
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:28:54Z",
+          "completed_at": "2026-10-18T15:28:54Z"
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:28:54Z",
+          "completed_at": "2026-10-18T15:29:00Z"
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:29:00Z",
+          "completed_at": "2026-10-18T15:29:08Z"
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T15:29:08Z",
+          "completed_at": "2026-10-18T15:30:16Z"
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T15:30:16Z",
+          "completed_at": "2026-10-18T15:36:30Z"
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-18T15:36:30Z",
+          "completed_at": "2026-10-18T15:36:30Z"
+        },
+        {
+          "name": "Upload build diagnostics even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T15:36:30Z",
+          "completed_at": "2026-10-18T15:36:31Z"
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-18T15:36:31Z",
+          "completed_at": "2026-10-18T15:36:32Z"
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-18T15:36:32Z",
+          "completed_at": "2026-10-18T15:36:40Z"
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-18T15:36:40Z",
+          "completed_at": "2026-10-18T15:38:26Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-18T15:38:26Z",
+          "completed_at": "2026-10-18T15:38:30Z"
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-18T15:38:30Z",
+          "completed_at": "2026-10-18T15:38:30Z"
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-18T15:38:30Z",
+          "completed_at": "2026-10-18T15:38:34Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-10-18T15:38:34Z",
+          "completed_at": "2026-10-18T15:38:34Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-10-18T15:38:34Z",
+          "completed_at": "2026-10-18T15:38:34Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719764484",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012795,
+      "runner_name": "GitHub Actions 1000012795",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117719765091,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKUQYw",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719765091",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719765091",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:01Z",
+      "started_at": "2026-10-18T15:52:41Z",
+      "completed_at": "2026-10-18T15:52:55Z",
+      "name": "Emulator API 35",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:52:42Z",
+          "completed_at": "2026-10-18T15:52:42Z"
+        },
+        {
+          "name": "Require both complete emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:52:42Z",
+          "completed_at": "2026-10-18T15:52:43Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:52:43Z",
+          "completed_at": "2026-10-18T15:52:45Z"
+        },
+        {
+          "name": "Select artifacts from successful job intervals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:52:45Z",
+          "completed_at": "2026-10-18T15:52:46Z"
+        },
+        {
+          "name": "Download and verify the selected artifact IDs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:52:46Z",
+          "completed_at": "2026-10-18T15:52:50Z"
+        },
+        {
+          "name": "Require exact disjoint app union and matching prebuilt identity",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:52:50Z",
+          "completed_at": "2026-10-18T15:52:50Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T15:52:50Z",
+          "completed_at": "2026-10-18T15:52:52Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-18T15:52:52Z",
+          "completed_at": "2026-10-18T15:52:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-18T15:52:53Z",
+          "completed_at": "2026-10-18T15:52:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719765091",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012813,
+      "runner_name": "GitHub Actions 1000012813",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117719788490,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKVryg",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719788490",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719788490",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:07Z",
+      "started_at": "2026-10-18T15:38:39Z",
+      "completed_at": "2026-10-18T15:43:36Z",
+      "name": "Position dialog API 35",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:38:40Z",
+          "completed_at": "2026-10-18T15:38:41Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:38:41Z",
+          "completed_at": "2026-10-18T15:38:43Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:38:43Z",
+          "completed_at": "2026-10-18T15:38:49Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:38:49Z",
+          "completed_at": "2026-10-18T15:38:55Z"
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:38:55Z",
+          "completed_at": "2026-10-18T15:38:55Z"
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:38:55Z",
+          "completed_at": "2026-10-18T15:39:43Z"
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T15:39:43Z",
+          "completed_at": "2026-10-18T15:43:32Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T15:43:32Z",
+          "completed_at": "2026-10-18T15:43:34Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-18T15:43:34Z",
+          "completed_at": "2026-10-18T15:43:34Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-18T15:43:34Z",
+          "completed_at": "2026-10-18T15:43:34Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719788490",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012806,
+      "runner_name": "GitHub Actions 1000012806",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117719795534,
+      "run_id": 39140653627,
+      "workflow_name": "Android build and checks",
+      "head_branch": "develop",
+      "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39140653627",
+      "run_attempt": 2,
+      "node_id": "CR_kwDOUTkwWc8AAAAbaKWHTg",
+      "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117719795534",
+      "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39140653627/job/117719795534",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-18T15:54:09Z",
+      "started_at": "2026-10-18T15:38:39Z",
+      "completed_at": "2026-10-18T15:52:39Z",
+      "name": "Core emulator API 35",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T15:38:39Z",
+          "completed_at": "2026-10-18T15:38:41Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T15:38:41Z",
+          "completed_at": "2026-10-18T15:38:42Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T15:38:42Z",
+          "completed_at": "2026-10-18T15:38:46Z"
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T15:38:46Z",
+          "completed_at": "2026-10-18T15:38:49Z"
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T15:38:49Z",
+          "completed_at": "2026-10-18T15:38:50Z"
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T15:38:50Z",
+          "completed_at": "2026-10-18T15:39:49Z"
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T15:39:49Z",
+          "completed_at": "2026-10-18T15:52:35Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T15:52:35Z",
+          "completed_at": "2026-10-18T15:52:37Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-18T15:52:37Z",
+          "completed_at": "2026-10-18T15:52:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-18T15:52:37Z",
+          "completed_at": "2026-10-18T15:52:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117719795534",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000012805,
+      "runner_name": "GitHub Actions 1000012805",
+      "runner_group_id": null,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "review": {
+    "state": {
+      "code_review": {
+        "commit_sha": "81404c63c54b47a7cc3f55bacaee93e14d98eb9b",
+        "has_any_findings": false,
+        "has_unresolved_findings": false,
+        "status": "completed"
+      },
+      "security_review": {
+        "commit_sha": "a569e08eb22a55e68483733fea7dec4229ef36d3",
+        "has_any_findings": false,
+        "has_unresolved_findings": false,
+        "status": "completed"
+      }
+    },
+    "summary_comment": {
+      "url": "https://api.github.com/repos/c933103/AN-Paint/issues/comments/6251191347",
+      "html_url": "https://github.com/c933103/AN-Paint/pull/138#issuecomment-6251191347",
+      "issue_url": "https://api.github.com/repos/c933103/AN-Paint/issues/138",
+      "id": 6251191347,
+      "node_id": "IC_kwDOUTkwWc8AAAABdJmcMw",
+      "user": {
+        "login": "chatgpt-codex-connector[bot]",
+        "id": 199175422,
+        "node_id": "BOT_kgDOC98s_g",
+        "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T14:39:20Z",
+      "updated_at": "2026-10-18T14:53:46Z",
+      "body": "<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"81404c63c54b47a7cc3f55bacaee93e14d98eb9b\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":\"a569e08eb22a55e68483733fea7dec4229ef36d3\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"}} -->\n<!-- codex-security-review:v1 {\"blockingSeverityThreshold\":\"P0\",\"headSha\":\"a569e08eb22a55e68483733fea7dec4229ef36d3\",\"mergeGateEnabled\":false,\"pullRequestNumber\":138,\"repository\":\"c933103/AN-Paint\",\"status\":\"completed\"} -->\n## Codex Review Summary\n\nThis comment shows the latest Codex review activity on this pull request.\n\n| Review | Status | Commit | Review trigger |\n| --- | --- | --- | --- |\n| 📝 **Code Review** | ✅ **Completed** <relative-time datetime=\"2026-10-18T14:53:45.411589Z\">2026-10-18T14:53:45.411589Z</relative-time> | `81404c6` | Manual request |\n| 🔒 **Security Review** | ✅ **Completed** <relative-time datetime=\"2026-10-18T14:42:43.702232Z\">2026-10-18T14:42:43.702232Z</relative-time> | `a569e08` | Draft marked ready |\n\n\n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\" or \"@codex security review\".\n\nCodex reacts with 👀 while any review is running, comments if it has suggestions, and reacts with 👍 once all reviews finish with no findings.\n\n</details>",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/c933103/AN-Paint/issues/comments/6251191347/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 1144995,
+        "client_id": "Iv23liVemv8A9if9v0F2",
+        "slug": "chatgpt-codex-connector",
+        "node_id": "A_kwHOAOQ6Gs4AEXij",
+        "owner": {
+          "login": "openai",
+          "id": 14957082,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjE0OTU3MDgy",
+          "avatar_url": "https://avatars.githubusercontent.com/u/14957082?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/openai",
+          "html_url": "https://github.com/openai",
+          "followers_url": "https://api.github.com/users/openai/followers",
+          "following_url": "https://api.github.com/users/openai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/openai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/openai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/openai/subscriptions",
+          "organizations_url": "https://api.github.com/users/openai/orgs",
+          "repos_url": "https://api.github.com/users/openai/repos",
+          "events_url": "https://api.github.com/users/openai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/openai/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "ChatGPT Codex Connector",
+        "description": "Bring ChatGPT and Codex to your GitHub repositories.",
+        "external_url": "https://www.chatgpt.com",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "created_at": "2025-02-14T01:37:05Z",
+        "updated_at": "2026-09-23T18:52:59Z",
+        "permissions": {
+          "actions": "write",
+          "checks": "read",
+          "contents": "write",
+          "emails": "read",
+          "issues": "write",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "read",
+          "workflows": "write"
+        },
+        "events": [
+          "check_run",
+          "check_suite",
+          "commit_comment",
+          "issues",
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "repository",
+          "status",
+          "sub_issues"
+        ]
+      },
+      "minimized": null
+    },
+    "unresolved_threads": []
+  },
+  "junit": {
+    "artifact": {
+      "id": 12141522873,
+      "node_id": "MDg6QXJ0aWZhY3QxMjE0MTUyMjg3Mw==",
+      "name": "regression-and-lint-248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "size_in_bytes": 83978974,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12141522873",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12141522873/zip",
+      "expired": false,
+      "digest": "sha256:750eb79b21744b7abbe067dbe7c7915bc47140accf8abd86c683e58d2cadfb11",
+      "created_at": "2026-10-18T15:47:16Z",
+      "updated_at": "2026-10-18T15:47:16Z",
+      "expires_at": "2026-11-01T15:47:11Z",
+      "workflow_run": {
+        "id": 39140653627,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc"
+      }
+    },
+    "counts": {
+      "tests": 1142,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suite_count": 123,
+    "source_bound_suites": {
+      "AssemblyModelTest": {
+        "source_methods": 20,
+        "passed_methods": [
+          "absoluteCoordinatesAllowIntentionalOverlapsAndPersistWithUndoRedo",
+          "absoluteCoordinatesPlaceImagesBelowAnUnequalHeightRowWithoutResizing",
+          "absoluteCoordinatesPreserveChosenCropsAndNormalization",
+          "attachToAnyPlacedImageWithExactTopOrLeftAlignmentAndPreventOverlap",
+          "attachmentMovementDependsOnTheCroppedDimensionAndKeepsTheRelationship",
+          "batchMarginsUseEachOriginalSizeAndTwentyImageCapPreservesExistingItems",
+          "changingExactCoordinatesOfASnapRootOrMiddleMovesOnlyThatImage",
+          "cropReflowsAttachmentsAndAnInvalidBatchIsAtomicWithUndoRedoAndPersistence",
+          "exportUsesCroppedOriginalPixelsAndFlattensImportsAndEmptySpaceOnWhite",
+          "invalidCoordinatesAreAtomicAndDoNotConsumeUndo",
+          "legacyAttachmentsStillLoadAndMalformedStoredPositionsAreRejected",
+          "movingFirstImageAfterItsFormerSuccessorsKeepsEveryOtherImagePlaced",
+          "normalizationPreservesEachAspectRatioCropsAndProjectPersistence",
+          "normalizedExportUsesOriginalImagesAndFlattensAlphaAtTheSharedEdge",
+          "regionCropUsesOrientedCoordinatesForRotatedAndMirroredPhotos",
+          "removingBranchRootAndNormalizationKeepAllOtherImagesWithoutOverlap",
+          "removingExplicitAnchorPreservesItsSnappedSuccessorsAtTheirExactCoordinates",
+          "snapsToExplicitAnchorsStillPreventCollisionsAndClearAbsoluteCoordinates",
+          "sortByNameOrRealModificationTimeDoesNotChangePlacementAndUnknownTimesStayLast",
+          "unplaceClosesHorizontalAndVerticalGapsWithoutUnplacingSuccessors"
+        ]
+      },
+      "ChineseCropPreviewTest": {
+        "source_methods": 6,
+        "passed_methods": [
+          "cantoneseHanWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+          "cantoneseJyutpingWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+          "chinaWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen",
+          "compiledResourcesKeepCompleteWarningsAndAllThreeArguments",
+          "literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+          "taiwanWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen"
+        ]
+      },
+      "CropMovementTranslationTest": {
+        "source_methods": 2,
+        "passed_methods": [
+          "actualCropDialogKeepsCompleteWarningsAcrossSelectionTrimAndReset",
+          "compiledResourcesSelectCompletePluralMessagesAndFormatAllThreeArguments"
+        ]
+      },
+      "FrenchAssemblyHelpTest": {
+        "source_methods": 3,
+        "passed_methods": [
+          "actualHelpToolbarDisplaysCompleteFrenchEntryAndReopens",
+          "compiledResourcesPreserveCompleteFrenchHelp",
+          "frenchExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap"
+        ]
+      },
+      "JapaneseActiveGuidanceTest": {
+        "source_methods": 3,
+        "passed_methods": [
+          "actualAssemblyHelpPreservesAllParagraphsAndQualifiesOnlyOptionalDataAndMovement",
+          "actualLanguagePickerShowsMaintenanceAndEnglishFallbackWithoutChangingSelection",
+          "pendingDraftLabelUsesANaturalPendingSaveStatus"
+        ]
+      }
+    },
+    "hosted_python_tests": 985
+  },
+  "build": {
+    "artifact": {
+      "id": 12142075376,
+      "node_id": "MDg6QXJ0aWZhY3QxMjE0MjA3NTM3Ng==",
+      "name": "apk-and-source-248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "size_in_bytes": 140757566,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12142075376",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12142075376/zip",
+      "expired": false,
+      "digest": "sha256:9d5d58383a0d75f01b5b0c4d9369222da4b6d72450793440905e14487ed59b58",
+      "created_at": "2026-10-18T15:36:40Z",
+      "updated_at": "2026-10-18T15:36:40Z",
+      "expires_at": "2026-11-01T15:36:32Z",
+      "workflow_run": {
+        "id": 39140653627,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc"
+      }
+    },
+    "build_info": {
+      "commit": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "run_id": "39140653627",
+      "build_variant": "debug",
+      "apk_sha256": "2d04bb3aafae572976791be9b81d97a3c408dc60792d4822d67605269bafd114",
+      "source_sha256": "774169abe3793a4baaa0895835819cafe9ec1e932201a38b8569e39bdd618896",
+      "test_status": "Reported separately; artifact availability does not imply tests passed.",
+      "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+    },
+    "embedded_source_matches": true,
+    "matched_source_files": 1222,
+    "source_metadata_omissions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ]
+  },
+  "device": {
+    "artifact": {
+      "id": 12141458563,
+      "node_id": "MDg6QXJ0aWZhY3QxMjE0MTQ1ODU2Mw==",
+      "name": "emulator-api-35-248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "size_in_bytes": 11434297,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12141458563",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12141458563/zip",
+      "expired": false,
+      "digest": "sha256:aa85904637d74a9315ae184501b4f69faef63afa94ece8149e8d05d7e2a43fcc",
+      "created_at": "2026-10-18T15:52:52Z",
+      "updated_at": "2026-10-18T15:52:52Z",
+      "expires_at": "2026-11-01T15:52:50Z",
+      "workflow_run": {
+        "id": 39140653627,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "248d5d41e4114f9252c858c3ac08f2bb124746dc"
+      }
+    },
+    "identity": {
+      "commit": "248d5d41e4114f9252c858c3ac08f2bb124746dc",
+      "run_id": "39140653627",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "2d04bb3aafae572976791be9b81d97a3c408dc60792d4822d67605269bafd114",
+      "source_sha256": "774169abe3793a4baaa0895835819cafe9ec1e932201a38b8569e39bdd618896",
+      "test_apk_sha256": "0ddfc4570466a350a22b1c5b4d71fa9199718956282cf487d6b3ef8c61304ece",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "native_completed": 74,
+    "app_completed": 45,
+    "app_inventory": {
+      "success": true,
+      "execution_status": "passed",
+      "inventory_validated": true,
+      "device_sdk": 35,
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "timeout_seconds_by_phase": {
+        "ordinary": 180,
+        "gallery-draft": 90,
+        "vertical-english-manchu": 180,
+        "vertical-literary-chinese-emoji": 180,
+        "position-ainu-manchu": 180,
+        "position-tibetan-jeju-nom": 180,
+        "dialog": 300,
+        "seed": 60,
+        "verify": 60
+      },
+      "dialog_timeout_seconds": 300,
+      "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted",
+      "ordinary_and_gallery_total_timeout_seconds": 270,
+      "vertical_timeout_seconds_per_shard": 180,
+      "vertical_total_timeout_seconds": 360,
+      "receipt_scope": "complete-composed-app-union",
+      "deferred_tests": [],
+      "all_app_total_timeout_seconds": 1410,
+      "declared_tests": 45,
+      "sdk_eligible_tests": 45,
+      "sdk_suppressed_tests": [],
+      "selected_tests": 45,
+      "explicitly_excluded_tests": [],
+      "completed_tests": 45,
+      "phases": {
+        "ordinary": 17,
+        "gallery-draft": 3,
+        "vertical-english-manchu": 2,
+        "vertical-literary-chinese-emoji": 2,
+        "position-ainu-manchu": 3,
+        "position-tibetan-jeju-nom": 4,
+        "dialog": 12,
+        "seed": 1,
+        "verify": 1
+      },
+      "completed": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuKanaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuLatinPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "dzongkhaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "jejuPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "manchuPositionColumnsAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "nomPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "tibetanPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "hungarianColourCaptionsFitPortraitAndLandscape"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeEnglishColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeHungarianColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "retainedColourStateSurvivesRotationImeCancelAndReopen"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutArtworkNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "northKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "southKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.PageCountWordingDeviceTest",
+          "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ]
+    },
+    "capture_transport": {
+      "success": true,
+      "dialog_cases": 12,
+      "vertical_exports": 4,
+      "vertical_data_files": 104,
+      "vertical_matrix_screenshots": 32,
+      "native_reachability_cases": 8,
+      "native_reachability_screenshots": 64,
+      "all_extracted_files_byte_equal": 168,
+      "scope": "Exact source, complete inventories, native state/bounds and transport/content hashes; no independent pixel, glyph, linguistic or physical-device review"
+    },
+    "scope": "Ordinary source-bound API35 union; no independent Chinese installed layout/glyph/TalkBack acceptance"
+  },
+  "exact_script_probes": 9,
+  "local": {
+    "focused_cleanup_tests": 9,
+    "unchanged_deadline_tests": 7,
+    "existing_composition_tests": 8,
+    "full_host_tests_per_mode": 985,
+    "jvm": "Not rerun locally for the CI-only change; exact-source hosted JVM results verified above"
+  }
+}
