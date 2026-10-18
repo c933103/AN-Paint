@@ -1,0 +1,539 @@
+[
+  {
+    "artifact": {
+      "id": 12136188934,
+      "name": "emulator-position-api-35-614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "size_in_bytes": 1935486,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136188934",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136188934/zip",
+      "expired": false,
+      "created_at": "2026-10-18T12:22:38Z",
+      "expires_at": "2026-11-01T12:22:36Z",
+      "updated_at": "2026-10-18T12:22:38Z",
+      "digest": "sha256:0623145b17613a2fc01dc65cedc7c9c6af8782a6112162654f967363db60e787",
+      "workflow_run": {
+        "id": 39126110768,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f"
+      }
+    },
+    "downloaded_identity": {
+      "group": "position",
+      "commit": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "run_id": "39126110768",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "3e76ebe785b9627d92d37f6e5e3def0abe419cb4b258ac6ee5990bb91d9a267e",
+      "source_sha256": "5475f365378c66b9c8194301e25fac0297d314c4b5a56e93a5e4b78b143e096c",
+      "test_apk_sha256": "869a8bd1da8a9899a269478d9a3340e625a2294ff0b93fb3286fc271ceecea70"
+    },
+    "execution_interval_job_records": [
+      {
+        "id": 117673010551,
+        "run_id": 39126110768,
+        "workflow_name": "Android build and checks",
+        "head_branch": "develop",
+        "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39126110768",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUTkwWc8AAAAbZduldw",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117673010551",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39126110768/job/117673010551",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-18T12:16:51Z",
+        "started_at": "2026-10-18T12:16:53Z",
+        "completed_at": "2026-10-18T12:22:40Z",
+        "name": "Position dialog API 35",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-18T12:16:54Z",
+            "completed_at": "2026-10-18T12:16:56Z"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-18T12:16:56Z",
+            "completed_at": "2026-10-18T12:16:58Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-18T12:16:58Z",
+            "completed_at": "2026-10-18T12:17:03Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-18T12:17:03Z",
+            "completed_at": "2026-10-18T12:17:06Z"
+          },
+          {
+            "name": "Bind prebuilt artifacts to this checkout and run",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-18T12:17:06Z",
+            "completed_at": "2026-10-18T12:17:07Z"
+          },
+          {
+            "name": "Install emulator image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-18T12:17:07Z",
+            "completed_at": "2026-10-18T12:17:52Z"
+          },
+          {
+            "name": "Run prebuilt tests with deadlines and live logs",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 7,
+            "started_at": "2026-10-18T12:17:52Z",
+            "completed_at": "2026-10-18T12:22:36Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-18T12:22:36Z",
+            "completed_at": "2026-10-18T12:22:38Z"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-18T12:22:38Z",
+            "completed_at": "2026-10-18T12:22:38Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-18T12:22:38Z",
+            "completed_at": "2026-10-18T12:22:38Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117673010551",
+        "labels": [
+          "ubuntu-22.04"
+        ],
+        "runner_id": 1000012667,
+        "runner_name": "GitHub Actions 1000012667",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  {
+    "artifact": {
+      "id": 12136049338,
+      "name": "emulator-position-api-35-614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "size_in_bytes": 1926580,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136049338",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136049338/zip",
+      "expired": false,
+      "created_at": "2026-10-18T12:37:26Z",
+      "expires_at": "2026-11-01T12:37:25Z",
+      "updated_at": "2026-10-18T12:37:26Z",
+      "digest": "sha256:703949703754259a6afb1401d90da69dc63f9d16b0387048c07b180068273d57",
+      "workflow_run": {
+        "id": 39126110768,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f"
+      }
+    },
+    "downloaded_identity": {
+      "group": "position",
+      "commit": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "run_id": "39126110768",
+      "run_attempt": "2",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "3e76ebe785b9627d92d37f6e5e3def0abe419cb4b258ac6ee5990bb91d9a267e",
+      "source_sha256": "5475f365378c66b9c8194301e25fac0297d314c4b5a56e93a5e4b78b143e096c",
+      "test_apk_sha256": "869a8bd1da8a9899a269478d9a3340e625a2294ff0b93fb3286fc271ceecea70"
+    },
+    "execution_interval_job_records": [
+      {
+        "id": 117676195214,
+        "run_id": 39126110768,
+        "workflow_name": "Android build and checks",
+        "head_branch": "develop",
+        "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39126110768",
+        "run_attempt": 2,
+        "node_id": "CR_kwDOUTkwWc8AAAAbZgw9jg",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117676195214",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39126110768/job/117676195214",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-18T12:32:22Z",
+        "started_at": "2026-10-18T12:32:24Z",
+        "completed_at": "2026-10-18T12:37:29Z",
+        "name": "Position dialog API 35",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-18T12:32:25Z",
+            "completed_at": "2026-10-18T12:32:26Z"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-18T12:32:26Z",
+            "completed_at": "2026-10-18T12:32:29Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-18T12:32:29Z",
+            "completed_at": "2026-10-18T12:32:33Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-18T12:32:33Z",
+            "completed_at": "2026-10-18T12:32:37Z"
+          },
+          {
+            "name": "Bind prebuilt artifacts to this checkout and run",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-18T12:32:37Z",
+            "completed_at": "2026-10-18T12:32:37Z"
+          },
+          {
+            "name": "Install emulator image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-18T12:32:37Z",
+            "completed_at": "2026-10-18T12:33:15Z"
+          },
+          {
+            "name": "Run prebuilt tests with deadlines and live logs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-18T12:33:15Z",
+            "completed_at": "2026-10-18T12:37:25Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-18T12:37:25Z",
+            "completed_at": "2026-10-18T12:37:26Z"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-18T12:37:26Z",
+            "completed_at": "2026-10-18T12:37:27Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-18T12:37:27Z",
+            "completed_at": "2026-10-18T12:37:27Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117676195214",
+        "labels": [
+          "ubuntu-22.04"
+        ],
+        "runner_id": 1000012682,
+        "runner_name": "GitHub Actions 1000012682",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  },
+  {
+    "artifact": {
+      "id": 12136657509,
+      "name": "emulator-core-api-35-614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "size_in_bytes": 11411195,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136657509",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12136657509/zip",
+      "expired": false,
+      "created_at": "2026-10-18T12:31:14Z",
+      "expires_at": "2026-11-01T12:31:11Z",
+      "updated_at": "2026-10-18T12:31:14Z",
+      "digest": "sha256:f6509175f3ea7fce50a8a53dd0f87404312c777ca9902109d40372ac3cf6bb43",
+      "workflow_run": {
+        "id": 39126110768,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "develop",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f"
+      }
+    },
+    "downloaded_identity": {
+      "group": "core",
+      "commit": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+      "run_id": "39126110768",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "3e76ebe785b9627d92d37f6e5e3def0abe419cb4b258ac6ee5990bb91d9a267e",
+      "source_sha256": "5475f365378c66b9c8194301e25fac0297d314c4b5a56e93a5e4b78b143e096c",
+      "test_apk_sha256": "869a8bd1da8a9899a269478d9a3340e625a2294ff0b93fb3286fc271ceecea70"
+    },
+    "execution_interval_job_records": [
+      {
+        "id": 117673010494,
+        "run_id": 39126110768,
+        "workflow_name": "Android build and checks",
+        "head_branch": "develop",
+        "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39126110768",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUTkwWc8AAAAbZdulPg",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117673010494",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39126110768/job/117673010494",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-18T12:16:51Z",
+        "started_at": "2026-10-18T12:16:53Z",
+        "completed_at": "2026-10-18T12:31:17Z",
+        "name": "Core emulator API 35",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-18T12:16:55Z",
+            "completed_at": "2026-10-18T12:16:56Z"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-18T12:16:56Z",
+            "completed_at": "2026-10-18T12:16:58Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-18T12:16:58Z",
+            "completed_at": "2026-10-18T12:17:04Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-18T12:17:04Z",
+            "completed_at": "2026-10-18T12:17:09Z"
+          },
+          {
+            "name": "Bind prebuilt artifacts to this checkout and run",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-18T12:17:09Z",
+            "completed_at": "2026-10-18T12:17:09Z"
+          },
+          {
+            "name": "Install emulator image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-18T12:17:09Z",
+            "completed_at": "2026-10-18T12:17:50Z"
+          },
+          {
+            "name": "Run prebuilt tests with deadlines and live logs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-18T12:17:50Z",
+            "completed_at": "2026-10-18T12:31:11Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-18T12:31:11Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-18T12:31:14Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-18T12:31:14Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117673010494",
+        "labels": [
+          "ubuntu-22.04"
+        ],
+        "runner_id": 1000012666,
+        "runner_name": "GitHub Actions 1000012666",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 117676217327,
+        "run_id": 39126110768,
+        "workflow_name": "Android build and checks",
+        "head_branch": "develop",
+        "run_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/39126110768",
+        "run_attempt": 2,
+        "node_id": "CR_kwDOUTkwWc8AAAAbZgyT7w",
+        "head_sha": "614f28f9f8edd489e5d13cffbe481d3b49c99d7f",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/jobs/117676217327",
+        "html_url": "https://github.com/c933103/AN-Paint/actions/runs/39126110768/job/117676217327",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-18T12:32:29Z",
+        "started_at": "2026-10-18T12:16:53Z",
+        "completed_at": "2026-10-18T12:31:17Z",
+        "name": "Core emulator API 35",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-18T12:16:55Z",
+            "completed_at": "2026-10-18T12:16:56Z"
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-18T12:16:56Z",
+            "completed_at": "2026-10-18T12:16:58Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-18T12:16:58Z",
+            "completed_at": "2026-10-18T12:17:04Z"
+          },
+          {
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-18T12:17:04Z",
+            "completed_at": "2026-10-18T12:17:09Z"
+          },
+          {
+            "name": "Bind prebuilt artifacts to this checkout and run",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-18T12:17:09Z",
+            "completed_at": "2026-10-18T12:17:09Z"
+          },
+          {
+            "name": "Install emulator image",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-18T12:17:09Z",
+            "completed_at": "2026-10-18T12:17:50Z"
+          },
+          {
+            "name": "Run prebuilt tests with deadlines and live logs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-18T12:17:50Z",
+            "completed_at": "2026-10-18T12:31:11Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-18T12:31:11Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16,
+            "started_at": "2026-10-18T12:31:14Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17,
+            "started_at": "2026-10-18T12:31:14Z",
+            "completed_at": "2026-10-18T12:31:14Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/c933103/AN-Paint/check-runs/117676217327",
+        "labels": [
+          "ubuntu-22.04"
+        ],
+        "runner_id": 1000012666,
+        "runner_name": "GitHub Actions 1000012666",
+        "runner_group_id": null,
+        "runner_group_name": "GitHub Actions"
+      }
+    ]
+  }
+]
