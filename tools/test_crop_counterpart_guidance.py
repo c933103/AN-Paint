@@ -53,7 +53,7 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual({'help', 'crop'}, set(expected))
                 self.assertEqual({'one', 'other'}, set(expected['crop']))
-                self.assertEqual(7, len(expected['help'].split('\n\n')))
+                self.assertEqual(8 if tag == 'de' else 7, len(expected['help'].split('\n\n')))
                 self.assertFalse(re.search(r'%\d+\$', expected['help']))
                 require_complete(self.roots[tag], expected)
                 for quantity, value in expected['crop'].items():
@@ -106,6 +106,20 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
                     self.assertIn(decoded(node.text), self.expected[tag]['help'])
         self.assertIn('halbtransparente Vorschau', self.expected['de']['help'])
         self.assertIn('ampliar o reducir', self.expected['es-ES']['help'])
+
+    def test_german_help_distinguishes_snapping_from_exact_position(self):
+        help_text = self.expected['de']['help']
+        paragraphs = help_text.split('\n\n')
+        self.assertIn('Beim Einrasten beginnt das erste Bild am Ursprung.', paragraphs[2])
+        self.assertIn('Beim Einrasten werden Überlappungen abgelehnt.', paragraphs[2])
+        label = decoded(self.roots['de'].find("./string[@name='ui_assembly_exact_position']").text)
+        self.assertEqual(
+            'Wählen Sie ein Bild aus und legen Sie mit «' + label + '» die X- und Y-Koordinaten '
+            'seiner oberen linken Ecke in ganzen Pixeln fest. Die Koordinaten beginnen bei null. '
+            'Die anderen Bilder behalten ihre Positionen, und Überlappungen sind erlaubt.', paragraphs[3])
+        self.assertIn('Die anderen Bilder bleiben platziert; verbundene Bilder können sich verschieben, '
+                      'um die Lücke zu schließen.', paragraphs[5])
+        self.assertNotIn('Nachfolgende Bilder schließen die Lücke', help_text)
 
     def test_help_and_plural_priority_remain_p3_and_p2(self):
         tiers = json.loads((ROOT / 'translations/string-importance.json').read_text())['tiers']
