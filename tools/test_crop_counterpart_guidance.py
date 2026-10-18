@@ -53,7 +53,7 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual({'help', 'crop'}, set(expected))
                 self.assertEqual({'one', 'other'}, set(expected['crop']))
-                self.assertEqual(8 if tag in ('de', 'es-ES') else 7, len(expected['help'].split('\n\n')))
+                self.assertEqual(8 if tag in ('de', 'es-ES', 'it') else 7, len(expected['help'].split('\n\n')))
                 self.assertFalse(re.search(r'%\d+\$', expected['help']))
                 require_complete(self.roots[tag], expected)
                 for quantity, value in expected['crop'].items():
@@ -134,6 +134,20 @@ class CropCounterpartGuidanceTests(unittest.TestCase):
         self.assertIn('Las demás imágenes siguen colocadas; las imágenes unidas pueden desplazarse '
                       'para ocupar el hueco.', paragraphs[5])
         self.assertNotIn('Las imágenes siguientes ocupan el hueco', help_text)
+
+    def test_italian_help_distinguishes_snapping_from_exact_position(self):
+        help_text = self.expected['it']['help']
+        paragraphs = help_text.split('\n\n')
+        self.assertIn('Quando si usa l’aggancio, la prima immagine parte dall’origine.', paragraphs[2])
+        self.assertIn('Le sovrapposizioni non sono consentite quando si usa l’aggancio.', paragraphs[2])
+        label = decoded(self.roots['it'].find("./string[@name='ui_assembly_exact_position']").text)
+        self.assertEqual(
+            'Seleziona un’immagine e usa «' + label + '» per impostare le coordinate X/Y del suo '
+            'angolo superiore sinistro, espresse in numeri interi di pixel a partire da zero. '
+            'Le altre immagini mantengono le proprie posizioni e le sovrapposizioni sono consentite.', paragraphs[3])
+        self.assertIn('Le altre immagini restano posizionate; le immagini collegate possono spostarsi '
+                      'per colmare lo spazio.', paragraphs[5])
+        self.assertNotIn('Le immagini successive colmano lo spazio', help_text)
 
     def test_help_and_plural_priority_remain_p3_and_p2(self):
         tiers = json.loads((ROOT / 'translations/string-importance.json').read_text())['tiers']
