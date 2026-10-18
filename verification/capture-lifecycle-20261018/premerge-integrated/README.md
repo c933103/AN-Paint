@@ -1,0 +1,22 @@
+# Capture lifecycle repair: integrated exact-head acceptance
+
+[PR 138](https://github.com/c933103/AN-Paint/pull/138), reviewed head `81404c63c54b47a7cc3f55bacaee93e14d98eb9b`, tree `f2870b51aba6c8290e929c7fa176c4d14c802d52`. All five merged #137 blobs are retained exactly, in addition to #123/#133/#135/#136. The only three-file diff from develop `3681194d` is the bounded collector change, its behavior tests and CI guidance.
+
+[Exact-source run 39137753266](https://github.com/c933103/AN-Paint/actions/runs/39137753266) passed all six jobs on attempt 1. The synthetic PR checkout `af90d5ed23953e5685637cabcfb6ea58445675fe` has the same tree as the reviewed head. [Codex Code review](https://github.com/c933103/AN-Paint/pull/138#issuecomment-6251191347) completed clean on that exact head, with no unresolved review threads. Security is advisory and its completed clean review still names the earlier `a569e08` head; it is not claimed as exact-head Security coverage.
+
+## Independently verified artifacts
+
+- 1,142 JVM tests in 123 suites, zero failures/errors/skips. Exact declared methods in ChineseCropPreviewTest, AssemblyModelTest, CropMovementTranslationTest, FrenchAssemblyHelpTest and JapaneseActiveGuidanceTest were matched, including all six expanded Chinese crop test methods.
+- All 985 hosted Python contracts; all 985 local normal and optimized tests on the integrated source. Nine focused collector tests and seven unchanged deadline tests also passed.
+- All nine exact-script generation probes and their log digests passed.
+- 1,222 packaged tracked source files and executable modes match the complete 1,225-file Git tree; only the three previously documented metadata exclusions are absent. The APK's embedded source ZIP equals its companion source ZIP. Main APK, source ZIP and prebuilt test APK identities match the composed device report.
+- All 74 native and 45 app methods match the SDK35 source inventory. Independent replay of the unchanged composer on downloaded exact-ID core/position ZIPs produced 248 byte-identical composed files; only the independently recomputed artifact-selection receipt is additional in the hosted result.
+- Independent replay of the unchanged capture validators accepted all 12 dialog cases, four vertical exports/104 data files, 32 matrix screenshots and eight native reachability cases/64 screenshots. All 168 extracted evidence files match the hosted bytes. These are transport/inventory/state/bounds checks, not independent visual or linguistic review.
+
+Selected core artifact `12141425752` (job `117708103186`, 15:01:22–15:14:34 UTC) was created 15:14:31, SHA-256 `476a5779a05e1f5ab3c1fc07138b73763106ec5af5dcaa95022c47cc4683e11b`. Position artifact `12141205598` (job `117708103176`, 15:01:21–15:05:57) was created 15:05:55, SHA-256 `6014ad9832ad2756fcda47e35399f43514bb5d28b3e303e99e9561bf9cc07ce6`. Composed artifact `12141600249` has SHA-256 `ac1b6681de6bd650a0a4bb76cf7a282a960f54686319b298f29961df0a8fc31c`. Every downloaded artifact's original ZIP digest was checked against API metadata.
+
+Both mandatory pulls and logcat exited 0. The live collector log shows required evidence collection before the best-effort logcat dump; the latter completed with 23,831,279 bytes, and a 470-byte existing ADB server log was retained. This successful run supports the bounded ordering mitigation. It does not establish the underlying cause of the prior disconnects or a universal liveness guarantee. All capture requirements and deadlines are unchanged.
+
+`verification-packet.zip` is 373,895 bytes, SHA-256 `12f49031185fb1bc15dd21b0eafa5765d64dcbf60c97e7257ba126ce539bf54a`. It contains raw run/job/artifact/review metadata, complete JVM XML and CI-phase outputs, local test logs, collector diagnostics, source/capture identities, independent verification scripts and replay receipts, plus a verified member manifest. Raw generated image bytes remain in the linked CI artifact; no image-level review claim is inferred from hashes.
+
+Parent merged the reviewed head as `248d5d41e4114f9252c858c3ac08f2bb124746dc`, with the same tree. [Natural integrated postmerge run 39140653627](https://github.com/c933103/AN-Paint/actions/runs/39140653627) is pending at this record's preparation. Earlier SDK-image, capture and stale-artifact composer failures remain immutable on their prior refs; the cancelled initial PR run is superseded, not passed. No release, physical-device, whole-language or additional glyph/layout acceptance is claimed.
