@@ -1,0 +1,95 @@
+{
+  "source_commit": "4e3816f82cabd73295a06acaac75a304504f871b",
+  "source_tree": "72dd7be2cdd28486a0f8347e73f16ae13b25c4f2",
+  "base_commit": "d47ae81a7dca1ab562ab0e8b276b13c24a374cee",
+  "pull_request": "https://github.com/c933103/AN-Paint/pull/129",
+  "full_host": {
+    "normal": {
+      "tests": 932,
+      "exit": 0,
+      "command": "python3 -m unittest discover -s tools -p test_*.py -v"
+    },
+    "optimized": {
+      "tests": 932,
+      "exit": 0,
+      "command": "python3 -O -m unittest discover -s tools -p test_*.py"
+    }
+  },
+  "focused": {
+    "normal": 12,
+    "optimized": 12,
+    "status": "passed"
+  },
+  "resources": "All resource and exact-script-mirror compilation/link passed",
+  "supplementary_compile": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+  "catalogues": "Canonical translation catalogues are structurally valid",
+  "old_value_negative_control": "Complete Help differs",
+  "scope_verification": {
+    "base": "d47ae81a7dca1ab562ab0e8b276b13c24a374cee",
+    "base_tree": "ff1b183c1449a10f55d43489ef8d41541f11ff5c",
+    "production_scope": "One German Help value only; every other production byte retained",
+    "paragraph_scope": "Five unchanged paragraphs plus three bounded corrections and the new Exact position paragraph",
+    "fixture_scope": "Only locales.de.help changed; crop plural and other locale fixtures identical",
+    "base_blobs_verified": 1209,
+    "executable_modes": "All preserved",
+    "old_value_negative_control": "Complete Help differs",
+    "changes": [
+      {
+        "path": "Paintroid/src/main/res/values-de/strings.xml",
+        "mode": "100644",
+        "base_sha": "98a7464257e2d9b18998645cef5ca4da3172d0ef",
+        "sha": "b441c8401614893ad1d9abd6339ff7309ecd4e12"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CropCounterpartGuidanceTest.kt",
+        "mode": "100644",
+        "base_sha": "d35097fb5a10b5570e282e3204e52dfe41431752",
+        "sha": "7eb241313d8f8f2a746abdfde61b9a40993872c9"
+      },
+      {
+        "path": "Paintroid/src/test/resources/crop-counterparts/expected.json",
+        "mode": "100644",
+        "base_sha": "9d5caf75e2cf2bb13d69a37bded5b846767e8724",
+        "sha": "245304145f1ea9fc0b6b1741ca84cd8825e3550c"
+      },
+      {
+        "path": "tools/test_assembly_no_resize_help_pr5.py",
+        "mode": "100644",
+        "base_sha": "36604f46267d581a964ee6407d9e51f2cd065875",
+        "sha": "83cc65c76623e499ba0f03bf610486cc61c6b065"
+      },
+      {
+        "path": "tools/test_crop_counterpart_guidance.py",
+        "mode": "100644",
+        "base_sha": "dcee5944a3e4430e84f8805e1bf55f01012bf1cf",
+        "sha": "a496ca14ba1d933a4e764ac80ed2d2a1817dad45"
+      }
+    ]
+  },
+  "initial_aggregate_runs": {
+    "tests": 932,
+    "failures": 2,
+    "reason": "German memory output paragraph moved from index 5 to 6; the original test index was repaired, keeping both phrase assertions unchanged",
+    "status": "superseded by final reruns"
+  },
+  "local_gradle": {
+    "status": "blocked",
+    "reason": "Gradle 8.13 distribution download: java.net.SocketException: Network is unreachable",
+    "runtime_execution": false
+  },
+  "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/39084426999",
+  "hosted_status": "pending at local evidence preparation; inspect exact-head run separately",
+  "codex_review": {
+    "commit": "4e3816f82cabd73295a06acaac75a304504f871b",
+    "status": "completed",
+    "has_findings": false,
+    "summary": "https://github.com/c933103/AN-Paint/pull/129#issuecomment-6243937404",
+    "receipt": "https://github.com/c933103/AN-Paint/pull/129#issuecomment-6243946687",
+    "completed_at": "2026-10-18T00:54:52.406399Z"
+  },
+  "limits": [
+    "No installed-device layout, glyph, TalkBack or native-speaker acceptance",
+    "No whole-language acceptance or closure of remaining PR75 scope",
+    "PR56 and explicit holds unchanged"
+  ]
+}
