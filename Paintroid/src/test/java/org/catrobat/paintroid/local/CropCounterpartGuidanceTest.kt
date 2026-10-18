@@ -112,7 +112,7 @@ class CropCounterpartGuidanceTest {
             assertTrue(dialog.isShowing)
             val shown = dialog.findViewById<TextView>(android.R.id.message).text.toString()
             assertEquals(tag, expected.getJSONObject(tag).getString("help"), shown)
-            assertEquals(if (tag == "de") 8 else 7, shown.split("\n\n").size)
+            assertEquals(if (tag in listOf("de", "es-ES")) 8 else 7, shown.split("\n\n").size)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             idle()
             assertFalse(dialog.isShowing)
@@ -120,16 +120,26 @@ class CropCounterpartGuidanceTest {
         }
     }
 
-    @Test fun germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() = withLanguage("de") { activity ->
-        assertEquals("Exakte Position",
+    @Test fun germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("de", "Exakte Position",
+            "X und Y müssen ganze Zahlen von 0 bis 2147483647 sein.")
+
+    @Test fun spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("es-ES", "Posición exacta",
+            "X e Y deben ser números enteros entre 0 y 2147483647.")
+
+    private fun checkExactPositionAndUnplace(
+        tag: String, positionLabel: String, invalidMessage: String
+    ) = withLanguage(tag) { activity ->
+        assertEquals(positionLabel,
             activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
         val images = (0 until 3).map { index ->
-            val file = File(activity.assembly.directory, "german-help-$index.png")
+            val file = File(activity.assembly.directory, "assembly-help-$index.png")
             val bitmap = Bitmap.createBitmap(24, 16, Bitmap.Config.ARGB_8888)
             bitmap.eraseColor(Color.RED)
             file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
             bitmap.recycle()
-            AssemblyImage("german-help-$index", file, "Image $index", null, ImageDimensions(24, 16))
+            AssemblyImage("assembly-help-$index", file, "Image $index", null, ImageDimensions(24, 16))
         }
         activity.assembly.add(images)
         val deadline = System.nanoTime() + 15_000_000_000L
@@ -164,7 +174,7 @@ class CropCounterpartGuidanceTest {
             coordinates(invalid, x, y)
             invalid.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
             assertTrue("$x,$y", invalid.isShowing)
-            assertEquals("X und Y müssen ganze Zahlen von 0 bis 2147483647 sein.",
+            assertEquals(invalidMessage,
                 invalid.window!!.decorView.findViewWithTag<TextView>("assembly_position_error").text.toString())
             assertEquals(attached, activity.assembly.layout())
             assertArrayEquals(saved, File(activity.assembly.directory, "project.json").readBytes())
