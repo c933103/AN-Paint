@@ -53,6 +53,9 @@ class CropCounterpartGuidanceTest {
         try {
             File(context.filesDir, "image-assembly").deleteRecursively()
             AppLanguage.select(context, tag)
+            // Selecting LocaleManager in Robolectric does not dispatch the app callback.
+            // Bind the selected UI resources before onCreate builds toolbar labels.
+            PaintApplication.currentResources = AppLanguage.wrap(context).resources
             val started = Robolectric.buildActivity(AssemblyActivity::class.java)
             controller = started
             val activity = started.setup().get()
