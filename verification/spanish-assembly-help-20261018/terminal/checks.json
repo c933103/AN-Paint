@@ -1,0 +1,116 @@
+{
+  "source_commit": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+  "source_tree": "e3ba7b23a38230f7820d148d5e99eaf364f7c20c",
+  "checkout_binding": {
+    "commit": "d6b66a352eb8baf7cb5ebba98d86861b3fdbb02d",
+    "tree": "e3ba7b23a38230f7820d148d5e99eaf364f7c20c",
+    "matchesReviewedHead": true
+  },
+  "run": {
+    "id": 39089294725,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39089294725",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": [
+    {
+      "id": 117562374417,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117562374631,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117562374730,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117563918874,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117563918890,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117566592028,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "junit": {
+    "run_id": 39089294725,
+    "source_commit": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+    "checkout_commit": "d6b66a352eb8baf7cb5ebba98d86861b3fdbb02d",
+    "artifact_id": 12122297219,
+    "artifact_sha256": "1a89ed89692eaf3f251d1942f1ef76ec2d5c4654f9e425cf9d73d6613de8d003",
+    "junit": {
+      "tests": 1125,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": 120,
+    "affected_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": "0.232",
+        "status": "passed"
+      },
+      {
+        "name": "spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": "0.235",
+        "status": "passed"
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "seconds": "0.198",
+        "status": "passed"
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "seconds": "0.13",
+        "status": "passed"
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "seconds": "0.626",
+        "status": "passed"
+      }
+    ]
+  },
+  "review": {
+    "commit": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+    "url": "https://github.com/c933103/AN-Paint/pull/130#issuecomment-6244609369",
+    "code": {
+      "commit_sha": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security": {
+      "commit_sha": "94869be423441fc943ff0b2eeb8dfe76036c83bb",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    }
+  },
+  "local_evidence": "https://github.com/c933103/AN-Paint/blob/c2983bd2b05cd6c418e4681bbc8b0de58920259e/verification/spanish-assembly-help-20261018/README.md",
+  "limits": [
+    "No native-speaker, whole-language, installed Spanish layout/glyph or TalkBack acceptance",
+    "No generic-es/es419 routing changes",
+    "PR75 broader obligations remain open; PR56 and all explicit holds unchanged"
+  ]
+}
