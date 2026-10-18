@@ -1,0 +1,241 @@
+{
+  "source_commit": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+  "source_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+  "checkout_binding": {
+    "source_commit": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+    "source_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "pr_checkout": "b5f74d85436e33326d75dc1fdf2a8cbd52016312",
+    "pr_checkout_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "parents": [
+      "7ee75e4a1400587a775db420c1e1bebdbe88fa1d",
+      "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d"
+    ],
+    "matches_reviewed_head": true,
+    "base": "7ee75e4a1400587a775db420c1e1bebdbe88fa1d",
+    "all_remote_leaves_match_checkout": 1209
+  },
+  "run": {
+    "id": 39093113728,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39093113728",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 1
+  },
+  "jobs": [
+    {
+      "id": 117573848592,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117573848666,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117573848671,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117575184950,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117575185093,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117577693159,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "junit": {
+    "source_commit": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+    "source_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "artifact_id": 12123708023,
+    "artifact_name": "regression-and-lint-b5f74d85436e33326d75dc1fdf2a8cbd52016312",
+    "artifact_sha256": "206e6ef9c21eb5f4334fec47ec955feab3618c73528247c7aa11561966c01c8d",
+    "run_id": 39093113728,
+    "junit": {
+      "tests": 1126,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suite_count": 120,
+    "affected_source_methods": 6,
+    "affected_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.26
+      },
+      {
+        "name": "spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.225
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "seconds": 0.133
+      },
+      {
+        "name": "italianExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "seconds": 0.271
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "seconds": 0.108
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "seconds": 0.601
+      }
+    ]
+  },
+  "review": {
+    "commit": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+    "code": {
+      "commit_sha": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "security": {
+      "commit_sha": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "status": "completed"
+    },
+    "url": "https://github.com/c933103/AN-Paint/pull/131#issuecomment-6245112258",
+    "comment_id": 6245112258,
+    "updated_at": "2026-10-18T03:19:34Z"
+  },
+  "build_binding": {
+    "commit": "b5f74d85436e33326d75dc1fdf2a8cbd52016312",
+    "run_id": 39093113728,
+    "artifact_id": 12124050594,
+    "artifact_sha256": "8f057303643d877dfc471cde651cf07b9cd5fe9a6bde865d9ac076e2b8c88194",
+    "apk_sha256": "f3b14b9ceed49856fd48fc8c71a586be6fe546d10d767ee5695e872879541253",
+    "source_sha256": "c67cb52bc8ab4ae3fd8f2dbb68983586f62fcbc463825f99924e89f820c39731",
+    "hashes_match_build_info": true,
+    "embedded_source_matches_corresponding_archive": true,
+    "reviewed_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step.",
+    "tracked_source_files_examined": 1209,
+    "matched_payload_files": 1206,
+    "archive_omissions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "scope": "Exact source/payload binding only; CI debug key, no upgrade-signature or installed Italian acceptance."
+  },
+  "device": {
+    "commit": "b5f74d85436e33326d75dc1fdf2a8cbd52016312",
+    "run_id": 39093113728,
+    "attempt": 1,
+    "artifact_id": 12123598850,
+    "artifact_sha256": "855da93b441b8ea730c745858649234af2eca63d4ead2d9792e1176ba38586ed",
+    "identity": {
+      "commit": "b5f74d85436e33326d75dc1fdf2a8cbd52016312",
+      "run_id": "39093113728",
+      "build_variant": "debug",
+      "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+      "device_sdk": 35,
+      "apk_sha256": "f3b14b9ceed49856fd48fc8c71a586be6fe546d10d767ee5695e872879541253",
+      "source_sha256": "c67cb52bc8ab4ae3fd8f2dbb68983586f62fcbc463825f99924e89f820c39731",
+      "test_apk_sha256": "9aa92e6a895fe77d19adc3131d7d661460bdab0e2b02f6bbc54083f1c2928a38",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "reports": [
+      {
+        "path": "Paintroid/androidTest-results/summary.json",
+        "expected": 74,
+        "completed": 74,
+        "seconds": 87.85694247000004
+      },
+      {
+        "path": "app/accepted-credit-restart/seed/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 7.364041178000207
+      },
+      {
+        "path": "app/accepted-credit-restart/verify/summary.json",
+        "expected": 1,
+        "completed": 1,
+        "seconds": 8.96351373099992
+      },
+      {
+        "path": "app/androidTest-results/summary.json",
+        "expected": 17,
+        "completed": 17,
+        "seconds": 146.51563962599994
+      },
+      {
+        "path": "app-dialog/androidTest-results/summary.json",
+        "expected": 12,
+        "completed": 12,
+        "seconds": 187.942024521
+      },
+      {
+        "path": "app-gallery-draft/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 48.48867624000002
+      },
+      {
+        "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+        "expected": 3,
+        "completed": 3,
+        "seconds": 106.43170438700008
+      },
+      {
+        "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+        "expected": 4,
+        "completed": 4,
+        "seconds": 94.251003277
+      },
+      {
+        "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 121.96185739899988
+      },
+      {
+        "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+        "expected": 2,
+        "completed": 2,
+        "seconds": 118.52688291999993
+      }
+    ],
+    "native_completed": 74,
+    "app_completed": 45,
+    "source_bound_app_inventory_reverified": true,
+    "capture_review": "Not independently revalidated in this bounded Help correction; ordinary hosted gates retained unchanged.",
+    "limits": [
+      "No independent visual acceptance of ordinary-language captures",
+      "No installed Italian or TalkBack acceptance"
+    ]
+  },
+  "exact_script_probe_count": 9,
+  "local_evidence": "https://github.com/c933103/AN-Paint/blob/fb28e12722440882fb17a9386275c45cadc677b9/verification/italian-assembly-help-20261018/README.md",
+  "limits": [
+    "No native-speaker, whole-language, installed Italian layout/glyph or TalkBack acceptance",
+    "No routing changes",
+    "PR75 broader obligations remain open; PR56 and explicit holds unchanged"
+  ]
+}
