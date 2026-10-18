@@ -1,0 +1,109 @@
+{
+  "source_commit": "13cdaf6f8cbf8a764c36aba6bd227f455cbaef8d",
+  "source_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+  "base_commit": "7ee75e4a1400587a775db420c1e1bebdbe88fa1d",
+  "checks": {
+    "normal": {
+      "full_host": 935,
+      "focused": 15,
+      "exit": 0
+    },
+    "optimized": {
+      "full_host": 935,
+      "focused": 15,
+      "exit": 0
+    }
+  },
+  "resource_compile": "AAPT2 full resources, exact-script mirrors and link passed",
+  "supplementary_compile": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+  "catalogues": "Canonical translation catalogues are structurally valid",
+  "scope": {
+    "base": "7ee75e4a1400587a775db420c1e1bebdbe88fa1d",
+    "base_tree": "e3ba7b23a38230f7820d148d5e99eaf364f7c20c",
+    "production_scope": "One it Help value only; every other production byte retained",
+    "paragraph_scope": "Five unchanged paragraphs plus three bounded corrections and the new Exact position paragraph",
+    "fixture_scope": "Only locales.it.help changed; crop plural and other locale fixtures identical",
+    "base_blobs_verified": 1209,
+    "executable_modes": "All preserved",
+    "old_value_negative_control": "Complete Help differs",
+    "changes": [
+      {
+        "path": "Paintroid/src/main/res/values-it/strings.xml",
+        "mode": "100644",
+        "base_sha": "56ab785dde2416bf4a5d56048ce70d697e22b374",
+        "sha": "eb926be0d9bed2ddbbfc34a0b1dc06c643954ae5"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CropCounterpartGuidanceTest.kt",
+        "mode": "100644",
+        "base_sha": "81f6171feee1765ffa32f3c40b75582b4d6ad647",
+        "sha": "5727d123f67597b40c582681e2a4d745d1cd2e2f"
+      },
+      {
+        "path": "Paintroid/src/test/resources/crop-counterparts/expected.json",
+        "mode": "100644",
+        "base_sha": "a5d05bc9415849472161af41a8ae150876ac1986",
+        "sha": "a163f445ea6d5e519ee3fd03ae36230d6feb08e1"
+      },
+      {
+        "path": "tools/test_assembly_no_resize_help_pr5.py",
+        "mode": "100644",
+        "base_sha": "72afefde9f37a466e7d5ac7aa86246f53dc350a6",
+        "sha": "aa0f6d8e7e1302830af4451af8bc086dc36614ff"
+      },
+      {
+        "path": "tools/test_crop_counterpart_guidance.py",
+        "mode": "100644",
+        "base_sha": "7f734925475195f8285cd474543597e4250a9587",
+        "sha": "d70800e94a31baf15382c996778fb74abf0f9056"
+      }
+    ]
+  },
+  "source_bindings": {
+    "base": "7ee75e4a1400587a775db420c1e1bebdbe88fa1d",
+    "corrected_english_reference": "0d56dd970c22398f7fa032d1baee4a1b74c83f2b",
+    "reference_resource_blob": "4dc158226adadbf074f8ea9c55069f5b7c4578ba",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "currentBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "englishReferenceBlob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "currentBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "englishReferenceBlob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+        "identical": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "currentBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "englishReferenceBlob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+        "identical": true
+      }
+    ]
+  },
+  "checkout_binding": {
+    "candidate_tree": "38f4130f0452db1fab1477d0362cee0304d2fced",
+    "all_remote_leaves_match_checkout": 1209,
+    "no_added_removed_files": true,
+    "all_modes_preserved": true
+  },
+  "local_gradle": {
+    "status": "blocked",
+    "reason": "Gradle 8.13 distribution download: java.net.SocketException: Network is unreachable",
+    "runtime_execution": false,
+    "attempts": [
+      "Default Gradle home could not create a lock file; retried with a writable task-local GRADLE_USER_HOME.",
+      "Writable home reached the distribution download, which failed with Network is unreachable."
+    ]
+  },
+  "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/39093113728",
+  "hosted_status": "Pending at initial evidence preparation; inspect exact-head run separately",
+  "limits": [
+    "No installed Italian layout, glyph, TalkBack or native-speaker acceptance",
+    "No whole-language acceptance or closure of remaining PR75 scope",
+    "No routing changes; PR56 and explicit holds unchanged"
+  ]
+}
