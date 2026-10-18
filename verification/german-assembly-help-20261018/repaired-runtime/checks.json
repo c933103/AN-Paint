@@ -1,0 +1,126 @@
+{
+  "source_commit": "2686f35c1c43910f659fdfe48944a61516bd473e",
+  "source_tree": "05f725b3a5c64acdace799cfb8cb5d5768ce8f63",
+  "checkout_commit": "83076bcd18fd6d664fdbacf1d586d8e121424498",
+  "checkout_tree_matches_head": true,
+  "run": {
+    "id": 39086030171,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39086030171",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "jobs": [
+    {
+      "id": 117552674868,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117552674942,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117552675102,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117553692260,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117553692317,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 117556118259,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "junit": {
+    "source_commit": "2686f35c1c43910f659fdfe48944a61516bd473e",
+    "checkout_commit": "83076bcd18fd6d664fdbacf1d586d8e121424498",
+    "source_and_checkout_tree": "05f725b3a5c64acdace799cfb8cb5d5768ce8f63",
+    "run": 39086030171,
+    "job": 117552674942,
+    "artifact_id": 12120834014,
+    "artifact_sha256": "438503f6ed86fe3806a97808784601ae2be9b27cad68793adb53c4b875e2192b",
+    "junit": {
+      "tests": 1124,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "class_suites": 120,
+    "affected_class_methods": [
+      {
+        "name": "germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap",
+        "classname": "org.catrobat.paintroid.local.CropCounterpartGuidanceTest",
+        "time": "0.215"
+      },
+      {
+        "name": "actualHelpButtonDisplaysTheCompleteCurrentEntry",
+        "classname": "org.catrobat.paintroid.local.CropCounterpartGuidanceTest",
+        "time": "0.132"
+      },
+      {
+        "name": "compiledResourcesPreserveEveryCompleteHelpAndQuantityValue",
+        "classname": "org.catrobat.paintroid.local.CropCounterpartGuidanceTest",
+        "time": "0.099"
+      },
+      {
+        "name": "actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel",
+        "classname": "org.catrobat.paintroid.local.CropCounterpartGuidanceTest",
+        "time": "0.506"
+      }
+    ],
+    "scope": "Actual complete resource/Help/crop consumers and German toolbar/placement regression; no installed German layout or whole-language acceptance"
+  },
+  "review": {
+    "commit": "2686f35c1c43910f659fdfe48944a61516bd473e",
+    "code": {
+      "status": "completed",
+      "findings": false,
+      "completed_at": "2026-10-18T01:29:45.742438Z"
+    },
+    "security": {
+      "status": "completed",
+      "findings": false,
+      "completed_at": "2026-10-18T01:26:19.141211Z"
+    },
+    "summary_url": "https://github.com/c933103/AN-Paint/pull/129#issuecomment-6243937404"
+  },
+  "local_checks": {
+    "source_commit": "2686f35c1c43910f659fdfe48944a61516bd473e",
+    "full_host_normal": 932,
+    "full_host_optimized": 932,
+    "focused_normal": 12,
+    "focused_optimized": 12,
+    "all_passed": true,
+    "resources": "AAPT2 full compile, exact-script mirrors and link passed",
+    "kotlin": "Supplementary Kotlin 1.9.24/API35 changed-source compilation with freshly compiled resource symbols and previously compiled dependency classes; not full Gradle build or Robolectric execution.",
+    "scope": {
+      "only_change": "Two explanatory comments and selected-language resource binding before Activity construction",
+      "all_assertions_unchanged": true,
+      "all_production_files_unchanged_from_failed_head": true,
+      "failed_test_blob": "7eb241313d8f8f2a746abdfde61b9a40993872c9",
+      "repaired_test_blob": "253e79676236309d5da203f67bda21e94d588a3b",
+      "remote_retained_files_verified": 1209
+    }
+  },
+  "failure_receipt": "https://github.com/c933103/AN-Paint/blob/a16c2dd099eba7a0127cd02710da8602b32f2136/verification/german-assembly-help-20261018/hosted-failure/README.md",
+  "limits": [
+    "No native-speaker, whole-language, installed German layout or TalkBack acceptance",
+    "PR75 broader obligations remain open; PR56 and all explicit holds unchanged"
+  ]
+}
