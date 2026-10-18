@@ -1,0 +1,23 @@
+# PR136 exact-head hosted verification
+
+**Passed:** reviewed head `817ec4633b697a3ac0b33d584292fba2b8292cbd`, tree `9c7d9123a134ab75e8bc5f2d090e283f4ac0f218`, synthetic PR checkout `287a2387163d38c54c904462172c2bdfae5f8ff6`. All six jobs in [run39129926489](https://github.com/c933103/AN-Paint/actions/runs/39129926489) completed successfully on attempt 1. [Codex Code review](https://github.com/c933103/AN-Paint/pull/136#issuecomment-6250140174) was clean at that exact head, with no unresolved review threads. The separate advisory Security result still covered prior head `2477633`; this record does not claim current-head Security coverage or impose an additional merge gate.
+
+Parent merged PR136 as `8700ca4d921875bdc9f3cf824290cfb83cda2037`; the merge has the identical verified tree. It preserves integrated #123 Japanese Help, #133 French Help and #135 TW/CN conditional crop warnings. The natural postmerge [run39131791712](https://github.com/c933103/AN-Paint/actions/runs/39131791712) was still running when this premerge record was made and requires its own terminal verification.
+
+## Independently checked artifacts
+
+- 1,139 JVM tests in 123 suites; zero failures, errors or skips. Full source-declared method sets match the XML results for ChineseCropPreviewTest (3), FrenchAssemblyHelpTest (3), JapaneseActiveGuidanceTest (3), CropMovementTranslationTest (2) and AssemblyModelTest (20).
+- 976 hosted Python tests, matching all 976 tests run locally in normal and optimized modes. Eleven selector and eight transport regression methods plus the existing eight composition tests are included.
+- Nine exact-script probes passed with exact commit/tree identity and matching per-probe log SHA-256.
+- Actual complete API35 union: 74 native plus 45 app methods passed, with exact SDK/source inventories, no missing/unexpected/failed methods, and unchanged deadlines.
+- Hosted composition selected core artifact `12137573206` (job `117685009569`) and position artifact `12138021619` (job `117685009593`). Its saved receipt exactly matches independent selection from all current-run API metadata: exact run/head/checkout, SDK, artifact digests and successful job intervals. Both downloaded identity receipts are attempt 1.
+- Composer job `117687550743` logs direct exact-ID REST download and digest-checked extraction of those two IDs. The unchanged composer then validates the complete disjoint inventory and shared APK/source/test-APK identity.
+- All downloaded archive SHA-256 digests match GitHub metadata. The debug APK embeds the identical separately delivered source ZIP. All 1,221 packaged tracked blobs/modes match the 1,224-file source tree, with only the three documented metadata omissions. The app-test-APK hash additionally matches an independently downloaded instrumentation artifact.
+
+## Preserved record and limits
+
+`checks.json` contains the complete compact run/job/review/build/JUnit/API35 evidence. `artifact-selection.json` retains the chosen IDs, digests and timestamps. `verification-packet.zip` is 333,063 bytes, SHA-256 `6f14b2b321b917f2c33891f37b41b44d76b138e237b2e56a03cf97ac7bee553c`. It preserves all JVM XML, phase logs, selected device JSON/XML, exact-script logs, source/run/job/review metadata, all-attempt job metadata, the hosted composer log, selected IDs and prebuilt APK hashes, plus the verification script. Every packet member's manifest hash was checked after construction. Large binaries and screenshot/logcat payloads remain in the original Actions artifacts; this packet does not claim to contain every archive byte.
+
+The [original failed composer and duplicate-artifact diagnosis](https://github.com/c933103/AN-Paint/blob/4d027e2ed0525888c120cac018cc7936aaab1ea0/verification/ci-artifact-selection-20261018/initial/README.md), [original interaction timeout](https://github.com/c933103/AN-Paint/blob/8b839faf25214fa0a60d25ffd5f5b79924d339a7/verification/chinese-crop-preview-20261018/postmerge-attempt-1-failure/README.md) and [intermediate direct-transport checks](https://github.com/c933103/AN-Paint/blob/0d29b922607cb481e7b264b30d6bdba53c06442b/verification/ci-artifact-selection-20261018/transport/README.md) remain intact. Original run39126110768 remains failed; it is not relabelled by this later successful run. The superseded earlier PR136 run was cancelled by existing workflow concurrency after the source update and earns no acceptance credit.
+
+This is integrated development verification, not a release or whole-language/native-speaker, Chinese installed-appearance, physical-device or TalkBack acceptance claim. CN full Help and eight Sinitic catalogue follow-ups remain separate unreviewed scope in tracker75. No existing content assertions, caps or deadlines were relaxed.
