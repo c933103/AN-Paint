@@ -84,6 +84,16 @@ failures. Success requires the final protocol plus every selected identity,
 without unexpected, missing, ignored, failed or aborted methods. A zero ADB exit
 alone is insufficient. Artifact upload runs even on failure, but cancellation
 can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
+Mandatory dialog and vertical exports are pulled and fully validated before
+best-effort bulk logcat collection. Each pull still runs once within its original
+15-second deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
+A failed/partial export keeps the job failed and its raw files available, while a
+logcat failure remains diagnostic only. Collection exit codes and, when available,
+the last 64 KiB of the existing runner ADB server log are retained before shutdown.
+There is no screenshot recapture, ADB restart or automatic collection retry. This
+ordering avoids exposing mandatory evidence to an earlier diagnostic transport
+failure; it does not diagnose or claim to fix an underlying emulator disconnect.
+
 Actions artifacts expire after 14 days; preserve needed final evidence on a
 separate durable ref before expiration. Never include keys, credentials or
 unrelated private data.
