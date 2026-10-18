@@ -13,7 +13,7 @@ EXPECTED = {
     'values-b+yue+Hant': r'預覽：%1$d × %2$d px\n套用去 %3$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。',
     'values-b+yue+Latn': r'Jyu6 laam5: %1$d × %2$d px\nTou3 jung6 heoi3 %3$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.',
     'values-b+lzh+Hant': r'預覽：%1$d × %2$d px\n施於 %3$d 圖。裁已置之圖，所連諸圖或因之而移。',
-    'values-b+nan+Hant+TW': r'預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁囥好的圖片時，接佇𪜶的圖片可能會移動。',
+    'values-b+nan+Hant+TW': r'預覽：%1$d × %2$d px\n套用佇 %3$d 張圖片。裁囥好的圖片時，接佇怹的圖片可能會移動。',
     'values-b+nan+Latn+TW': r'Ī-lám: %1$d × %2$d px\nThò-iōng tī %3$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.',
 }
 

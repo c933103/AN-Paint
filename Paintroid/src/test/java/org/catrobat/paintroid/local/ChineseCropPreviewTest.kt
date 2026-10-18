@@ -40,7 +40,7 @@ class ChineseCropPreviewTest {
         "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。",
         "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
         "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
-        "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇𪜶的圖片可能會移動。",
+        "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇怹的圖片可能會移動。",
         "nan-Latn-TW" to "Ī-lám: %1\$d × %2\$d px\nThò-iōng tī %3\$d tiuⁿ tô͘-phìⁿ. Chhâi khǹg-hó ê tô͘-phìⁿ sî, chiap tī in ê tô͘-phìⁿ khó-lêng ē î-tōng.",
         "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
     )
@@ -121,7 +121,7 @@ class ChineseCropPreviewTest {
     @Test fun literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly() =
         checkActualBatchCrop("lzh-Hant", withUnplaced = true)
 
-    @Test fun taiwaneseHanWarningKeepsPlacedAntecedentAndSupplementaryGlyph() =
+    @Test fun taiwaneseHanWarningKeepsPlacedAntecedentAndAlternateGraph() =
         checkActualBatchCrop("nan-Hant-TW", withUnplaced = true)
 
     @Test fun taiwanesePojWarningKeepsPlacedAntecedentAndCombiningDot() =
@@ -129,7 +129,8 @@ class ChineseCropPreviewTest {
 
     private fun checkTaiwaneseGlyphs(status: TextView, tag: String) {
         val paint = Paint(status.paint).apply { color = Color.BLACK }
-        val sample = if (tag == "nan-Hant-TW") "𪜶" else "ô͘"
+        // MOE alternate 怹/in retains the referent; API33 lacks preferred 𪜶.
+        val sample = if (tag == "nan-Hant-TW") "怹" else "ô͘"
         sample.codePoints().forEach { point ->
             assertTrue("$tag actual status font covers U+${point.toString(16)}",
                 paint.hasGlyph(String(Character.toChars(point))))
