@@ -254,3 +254,27 @@ linguistic acceptance, picker/import/export, forced IME visibility, enlarged-fon
 layouts, physical devices or all catalogue languages. The production dialog is
 opened as a fixture; the assembly toolbar launch route retains its separate JVM
 coverage. The existing glyph/font checks remain complementary.
+
+## Selecting artifacts after a partial retry
+
+The final emulator gate resolves each exact core/position artifact name to an
+explicit ID before download. It paginates current-run artifacts and jobs, requires
+the latest matching job to have succeeded, and requires exactly one nonexpired
+artifact created/updated inside that job's recorded start/end interval. Repository,
+run, workflow head, exact checkout in the name, SDK and positive/nonfuture attempt
+identities must match. Duplicate names from earlier attempts are retained; numeric
+artifact IDs and API list order are not chronological selection rules. Ambiguous
+or incomplete metadata fails closed.
+
+On a partial rerun, GitHub may carry a successful earlier job into the current
+attempt's job metadata with its original execution interval. That interval selects
+the existing successful core artifact, while the rerun position job selects its
+new artifact. The unchanged composer still checks complete successful inventories,
+exact prebuilt/source hashes and each artifact's declared original attempt. The
+selection receipt does not replace those content checks. PR workflow head and
+synthetic merge checkout are distinct identities and are checked separately.
+
+Only the final composition job receives read-only Actions metadata permission;
+no write permission or persistent credential is added. The selector has a one-minute
+step cap inside the unchanged eight-minute composition-job cap. Existing device,
+interaction, setup, report and composition deadlines remain unchanged.
