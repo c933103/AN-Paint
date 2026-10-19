@@ -1,0 +1,275 @@
+{
+  "artifact": {
+    "id": 12145723282,
+    "name": "emulator-api-35-798e6159939fa06beb27755700a1320a5970cb7b",
+    "size_in_bytes": 11361069,
+    "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12145723282",
+    "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12145723282/zip",
+    "expired": false,
+    "created_at": "2026-10-18T18:12:20Z",
+    "expires_at": "2026-11-01T18:12:18Z",
+    "updated_at": "2026-10-18T18:12:20Z",
+    "digest": "sha256:15a9af48e251d86f4c10d29c3b9920a53456832ff23e2672574f71808323b07c",
+    "workflow_run": {
+      "id": 39151583564,
+      "repository_id": 1362702425,
+      "head_repository_id": 1362702425,
+      "head_branch": "develop",
+      "head_sha": "798e6159939fa06beb27755700a1320a5970cb7b"
+    }
+  },
+  "identity": {
+    "commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "run_id": "39151583564",
+    "build_variant": "debug",
+    "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+    "device_sdk": 35,
+    "apk_sha256": "a96fda2fc476062808a900967069077cbb48d353acf97a68e63dc79a7fe1e94b",
+    "source_sha256": "82c5cc351b36f54bc50e428ed26bb4057eef4ada2531ae030f5570ec91b0c08b",
+    "test_apk_sha256": "89594b0760fd7cd7ae766f61f7b71a831dd49919857799f64e9531069df28c53",
+    "group_run_attempts": {
+      "core": 1,
+      "position": 1
+    },
+    "composed_in_run_attempt": 1
+  },
+  "native_completed": 74,
+  "app_completed": 45,
+  "app_inventory": {
+    "success": true,
+    "execution_status": "passed",
+    "inventory_validated": true,
+    "device_sdk": 35,
+    "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+    "timeout_seconds_by_phase": {
+      "ordinary": 180,
+      "gallery-draft": 90,
+      "vertical-english-manchu": 180,
+      "vertical-literary-chinese-emoji": 180,
+      "position-ainu-manchu": 180,
+      "position-tibetan-jeju-nom": 180,
+      "dialog": 300,
+      "seed": 60,
+      "verify": 60
+    },
+    "dialog_timeout_seconds": 300,
+    "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted",
+    "ordinary_and_gallery_total_timeout_seconds": 270,
+    "vertical_timeout_seconds_per_shard": 180,
+    "vertical_total_timeout_seconds": 360,
+    "receipt_scope": "complete-composed-app-union",
+    "deferred_tests": [],
+    "all_app_total_timeout_seconds": 1410,
+    "declared_tests": 45,
+    "sdk_eligible_tests": 45,
+    "sdk_suppressed_tests": [],
+    "selected_tests": 45,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 45,
+    "phases": {
+      "ordinary": 17,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "position-ainu-manchu": 3,
+      "position-tibetan-jeju-nom": 4,
+      "dialog": 12,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuKanaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuLatinPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "dzongkhaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "jejuPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "manchuPositionColumnsAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "nomPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "tibetanPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "hungarianColourCaptionsFitPortraitAndLandscape"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "retainedColourStateSurvivesRotationImeCancelAndReopen"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutArtworkNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "northKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "southKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ]
+  },
+  "capture_transport": {
+    "success": true,
+    "dialog_cases": 12,
+    "vertical_exports": 4,
+    "vertical_data_files": 104,
+    "vertical_matrix_screenshots": 32,
+    "native_reachability_cases": 8,
+    "native_reachability_screenshots": 64,
+    "all_extracted_files_byte_equal": 168,
+    "scope": "Exact source, complete inventories, native state/bounds and transport/content hashes; no independent pixel, glyph, linguistic or physical-device review"
+  },
+  "scope": "Ordinary source-bound API35 union; no independent Taiwanese installed layout/glyph/TalkBack acceptance"
+}
