@@ -1,0 +1,82 @@
+[
+  {
+    "key": "string/ui_the_encoder_did_not_finish",
+    "english": "The encoder did not finish.",
+    "before": "Die enkodeerder het nie voltooi nie.",
+    "after": "Die enkodeerder het nie die enkodering voltooi nie.",
+    "source_commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+        "line": 33,
+        "context": "        replace(file, \"base64-export-\") { temporary ->\n            temporary.outputStream().buffered().use { output ->\n                output.write(\"data:image/png;base64,\".toByteArray(Charsets.US_ASCII))\n                val encoded = TextImageData.Base64Output(output)\n                if (!image.compress(Bitmap.CompressFormat.PNG, 100, encoded))\n                    throw IOException(ui(R.string.ui_the_encoder_did_not_finish))\n                encoded.finish()\n                output.write('\\n'.code)\n            }\n        }\n    }"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "line": 97,
+        "context": "            val top = (edge - height) / 2\n            Canvas(square).drawBitmap(image, null, RectF(left, top, left + width, top + height),\n                Paint(Paint.FILTER_BITMAP_FLAG or Paint.ANTI_ALIAS_FLAG))\n            pngFile.outputStream().buffered().use {\n                if (!square.compress(Bitmap.CompressFormat.PNG, 100, it))\n                    throw IOException(ui(R.string.ui_the_encoder_did_not_finish))\n            }\n            temporary.outputStream().buffered().use { IcoContainer.writePng(pngFile, edge, edge, it) }\n            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))\n        } finally { icon?.recycle(); png?.delete(); temporary.delete() }\n    }"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+        "line": 25,
+        "context": "            ImageFormat.ICO -> IcoCodec.encode(image,file,options.icoSize,budget)\n            ImageFormat.BASE64 -> TextImageCodec.encodeBase64(image,file,budget)\n            ImageFormat.ASCII_ART -> TextImageCodec.encodeAscii(image,file,options.asciiColumns,options.asciiInvert,budget)\n            ImageFormat.PNG,ImageFormat.JPEG -> file.outputStream().use {\n                val format=if(options.format==ImageFormat.JPEG) Bitmap.CompressFormat.JPEG else Bitmap.CompressFormat.PNG\n                if(!image.compress(format,options.quality.coerceIn(1,100),it)) throw IOException(ui(R.string.ui_the_encoder_did_not_finish))\n            }\n        }\n    }\n}"
+      }
+    ]
+  },
+  {
+    "key": "string/ui_the_image_was_saved_but_android_could_not",
+    "english": "The image was saved, but Android could not open sharing: %1$s",
+    "before": "Die beeld is gestoor, maar Android kon deel nie oopmaak nie: %1$s",
+    "after": "Die beeld is gestoor, maar Android kon nie die deelopsies oopmaak nie: %1$s",
+    "source_commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 1380,
+        "context": "                type=format.mime;putExtra(Intent.EXTRA_STREAM,uri)\n                clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)\n                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)\n            }\n            startActivity(Intent.createChooser(send,ui(R.string.ui_share_saved_image)))\n        } catch(error: Exception) {message(ui(R.string.ui_the_image_was_saved_but_android_could_not, error.message))}\n    }\n\n    private fun exportSourceTo(uri: Uri) {\n        beginIo()\n        worker.execute {"
+      }
+    ]
+  },
+  {
+    "key": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+    "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+    "before": "Hoër kwaliteit lewer gewoonlik ’n groter lêer. Lossless behou elke kleurwaarde.",
+    "after": "Hoër kwaliteit lewer gewoonlik ’n groter lêer. Kompressie sonder verlies behou elke kleurwaarde.",
+    "source_commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "line": 103,
+        "context": "                ImageFormat.TIFF -> R.string.formats22_tiff_description\n                ImageFormat.ICO -> R.string.formats22_ico_description\n                ImageFormat.BASE64 -> R.string.formats22_base64_description\n                ImageFormat.ASCII_ART -> R.string.formats22_ascii_description\n                ImageFormat.JPEG,ImageFormat.HEIC -> R.string.save20_lossy_quality_description\n                else -> R.string.ui_higher_quality_usually_makes_a_larger_file_lossless\n            })\n            explanation.visibility=if(format==ImageFormat.PNG) View.GONE else View.VISIBLE\n        }\n        losslessBox.setOnCheckedChangeListener {_,checked ->lossless=checked;update()}\n        body.addView(Spinner(activity).apply {"
+      }
+    ]
+  },
+  {
+    "key": "string/language20_translation_note",
+    "english": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+    "before": "Hierdie taalweergawe bevat al AN Paint se vertaalbare koppelvlakteks.",
+    "after": "App-taal\\n\\nVertalings word in AN Paint se taalhulpbronne onderhou. Nuwe of onvertaalde teks verskyn in Engels.",
+    "source_commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "line": 149,
+        "context": "        val choices = listOf(\"\") + tags(activity)\n        // Use one device-locale snapshot for both the label and its row typography.\n        val deviceLanguage=deviceLocale(activity)\n        val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity,deviceLanguage) else name(it) }\n        val note = TextView(activity).apply {\n            text = ui(R.string.language20_translation_note)\n            val padding = (20 * resources.displayMetrics.density).toInt()\n            setPadding(padding, padding, padding, padding / 2)\n            LocaleTypography.typeface(activity)?.let {typeface=it}\n            VerticalUi.caption(this,128)\n        }"
+      }
+    ]
+  },
+  {
+    "key": "string/ui_d_d_px_d_pixels_2f_mp",
+    "english": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+    "before": "%1$d × %2$d px · %3$,d piksels (%4$.2f MP)",
+    "after": "%1$d × %2$d px · Aantal piksels: %3$,d (%4$.2f MP)",
+    "source_commit": "798e6159939fa06beb27755700a1320a5970cb7b",
+    "consumers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "line": 15,
+        "context": "import kotlin.math.*\n\ndata class ImageDimensions(val width: Int, val height: Int) {\n    init { require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) } }\n    val pixels: Long get() = width.toLong() * height\n    fun describe() = ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)\n    fun scaled(scale: Double) = ImageDimensions(max(1, floor(width * scale).toInt()), max(1, floor(height * scale).toInt()))\n}\n\n/** Estimates are doubles only for byte display/comparison; exact pixel counts use Long. */\nfun memoryLabel(bytes: Double): String {"
+      }
+    ]
+  }
+]

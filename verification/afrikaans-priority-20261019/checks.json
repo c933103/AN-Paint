@@ -1,0 +1,53 @@
+{
+  "source_commit": "bf56a676a6a59ca791fe8eccf0816d80ed52177e",
+  "host_focused": {
+    "command": "python3 -m unittest discover -s tools -p 'test_afrikaans_priority_wording.py' -v",
+    "status": "passed",
+    "tests": 7,
+    "seconds": 0.175,
+    "exit_code": 0
+  },
+  "host_normal": {
+    "command": "python3 -m unittest discover -s tools -p 'test_*.py' -v",
+    "status": "passed",
+    "tests": 992,
+    "seconds": 233.976,
+    "exit_code": 0
+  },
+  "host_optimized": {
+    "command": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+    "status": "passed",
+    "tests": 992,
+    "seconds": 221.454,
+    "exit_code": 0
+  },
+  "aapt2": {
+    "command": "aapt2 compile Paintroid/src/main/res/values-b+af/strings.xml -o <temporary-output-directory>",
+    "status": "passed",
+    "exit_code": 0
+  },
+  "local_robolectric": {
+    "command": "./gradlew :Paintroid:testDebugUnitTest --tests org.catrobat.paintroid.local.AfrikaansPriorityWordingTest --no-daemon",
+    "status": "blocked_before_compilation",
+    "cause": "Gradle 8.13 distribution download from services.gradle.org failed: java.net.SocketException: Network is unreachable",
+    "exit_code": 1
+  },
+  "hosted": {
+    "run_id": 39240946949,
+    "status_at_publication": "in_progress",
+    "exact_script_generation": "passed",
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39240946949"
+  },
+  "codex_code_review": {
+    "status": "completed",
+    "has_findings": false,
+    "source_commit": "bf56a676a6a59ca791fe8eccf0816d80ed52177e",
+    "receipt": "https://github.com/c933103/AN-Paint/pull/140#issuecomment-6265607100"
+  },
+  "limits": [
+    "Normal and optimized host processes briefly overlapped; these elapsed times are observations, not isolated performance benchmarks.",
+    "Negative fixture diagnostics after unittest OK are expected synthetic cases, not aggregate failures.",
+    "Authored Robolectric tests are unrun locally; hosted execution remains pending at this snapshot.",
+    "No installed Afrikaans UI, physical-device, TalkBack, native-speaker or full-language acceptance."
+  ]
+}
