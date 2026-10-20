@@ -1,16 +1,104 @@
 {
-  "head": "3fa741c06e8116443e8de3adbf82a3439ff177fc",
-  "develop": "23e95c76161d8a84fe2f62df2b13f20e5c8aa8e7",
+  "merge_commit": "9a7a052d7458cf08f280ead1173c66c2992e4254",
   "tree": "69a1aebdfe35feefd7292d1b47cc6ef3450f57f9",
-  "merge_source": "e57baf7a0bcf4598564e3010d2750a87ca3d6c80",
-  "run_id": 39476623276,
-  "artifact_id": 12290380951,
-  "artifact_sha256": "f1bb042dc7addcbf0b74b6090363bf5c57fcc536cd1e989028ccc608aacc687a",
+  "parents": [
+    "23e95c76161d8a84fe2f62df2b13f20e5c8aa8e7",
+    "3fa741c06e8116443e8de3adbf82a3439ff177fc"
+  ],
+  "run_id": 39481127358,
+  "run_attempt": 1,
+  "event": "push",
+  "artifact_id": 12293041124,
+  "artifact_sha256": "cec5b5063414637e299153cc39223dc56ee53ef0cfa53f9fc05ce099120edc1b",
   "junit_suites": 133,
   "junit_totals": {
     "tests": 1264,
-    "skipped": 0,
     "failures": 0,
-    "errors": 0
+    "errors": 0,
+    "skipped": 0
+  },
+  "selected_suites": {
+    "CzechExtendedWordingTest": {
+      "counts": {
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "testcases": [
+        "cropSelectionChangesQuantityAndCancelNeverAppliesThePreview",
+        "exactPositionValidatesLocalizedInputAndOnlyMovesTheSelectedImage",
+        "allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim",
+        "pageChooserUsesCzechControlsAndRangeErrorsWithoutSelectingOnCancel",
+        "completeCriticalMessagesResolveWithoutDefaultEnglishFallback"
+      ],
+      "sha256": "ac63348eb9bb08d7f8be95f44952e1cd238811bcc50cc1cbac3227e86daee4b4"
+    },
+    "LocaleNumberInputTest": {
+      "counts": {
+        "tests": 35,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "testcases": [
+        "cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins[21]",
+        "cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins[25]",
+        "cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins",
+        "colourRefactorKeepsCommaEntryAndNegativeRangeRejection[21]",
+        "colourRefactorKeepsCommaEntryAndNegativeRangeRejection[25]",
+        "colourRefactorKeepsCommaEntryAndNegativeRangeRejection",
+        "legacyDefaultNumberFilterReproducesTheUnfixedLoss[21]",
+        "legacyDefaultNumberFilterReproducesTheUnfixedLoss",
+        "dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation[21]",
+        "dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation[25]",
+        "dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation",
+        "focusedUnitSwitchRestartsInputWithTheFinalNumericMode[21]",
+        "focusedUnitSwitchRestartsInputWithTheFinalNumericMode[25]",
+        "focusedUnitSwitchRestartsInputWithTheFinalNumericMode",
+        "dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges[21]",
+        "dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges[25]",
+        "dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges",
+        "textSizeAndSpacingRetainDecimalsAndTheExistingRanges[21]",
+        "textSizeAndSpacingRetainDecimalsAndTheExistingRanges[25]",
+        "textSizeAndSpacingRetainDecimalsAndTheExistingRanges",
+        "pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries[21]",
+        "pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries[25]",
+        "pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries",
+        "api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme",
+        "normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit[21]",
+        "normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit[25]",
+        "normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit",
+        "legacyTypefaceShadowDoesNotModelTheFrameworkIdentityCache",
+        "everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[21]",
+        "everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[25]",
+        "everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[30]",
+        "everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes",
+        "sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers[21]",
+        "sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers[25]",
+        "sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers"
+      ],
+      "sha256": "4870299a1cc4474bd7ef2bafed15283fd661792dee4417e3f490239365f0637e"
+    },
+    "UnicodeMinusInputTest": {
+      "counts": {
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "testcases": [
+        "unicodeMinusReachesTheParserUnchangedInBothKeyboardModes[21]",
+        "unicodeMinusReachesTheParserUnchangedInBothKeyboardModes[25]",
+        "unicodeMinusReachesTheParserUnchangedInBothKeyboardModes",
+        "unicodeMinusCannotCommitAsAPositiveCoordinate[21]",
+        "unicodeMinusCannotCommitAsAPositiveCoordinate[25]",
+        "unicodeMinusCannotCommitAsAPositiveCoordinate",
+        "nativeSignsStrictValidationCancelAndValidCoordinatesRemainUnchanged[21]",
+        "nativeSignsStrictValidationCancelAndValidCoordinatesRemainUnchanged[25]",
+        "nativeSignsStrictValidationCancelAndValidCoordinatesRemainUnchanged"
+      ],
+      "sha256": "f3c0761e47666b3cbf4774b04ad53536d48160e7c0ff8e9e2515ba1dfe71b627"
+    }
   }
 }

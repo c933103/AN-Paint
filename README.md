@@ -1,34 +1,54 @@
-# Current-develop combined Unicode-minus verification
+# Unicode-minus fix: post-merge attempt 1 and retry diagnosis
 
 PR: https://github.com/c933103/AN-Paint/pull/155
-Exact combined head: `3fa741c06e8116443e8de3adbf82a3439ff177fc`.
-Incorporated develop: `23e95c76161d8a84fe2f62df2b13f20e5c8aa8e7` (Czech PR #156).
-Combined tree: `69a1aebdfe35feefd7292d1b47cc6ef3450f57f9`.
-Hosted PR merge source: `e57baf7a0bcf4598564e3010d2750a87ca3d6c80`.
-Run: https://github.com/c933103/AN-Paint/actions/runs/39476623276
-Artifact ID: `12290380951`.
-Original artifact SHA-256: `f1bb042dc7addcbf0b74b6090363bf5c57fcc536cd1e989028ccc608aacc687a`.
+Merged commit: `9a7a052d7458cf08f280ead1173c66c2992e4254`.
+Parents: `23e95c76161d8a84fe2f62df2b13f20e5c8aa8e7` and `3fa741c06e8116443e8de3adbf82a3439ff177fc`.
+Tree: `69a1aebdfe35feefd7292d1b47cc6ef3450f57f9`, exactly the tested combined tree.
+Natural push run: https://github.com/c933103/AN-Paint/actions/runs/39481127358
 
-## New combined evidence
+## Attempt 1: real failed gate, passing numeric/Czech tests
 
-- All 1,264 hosted JVM tests passed across 133 suites, with zero failures, errors or skips.
-- All 5 CzechExtendedWordingTest, 35 LocaleNumberInputTest and 9 UnicodeMinusInputTest executions passed together on this current-base composition.
-- Hosted Android lint passed. The raw JVM and lint logs are retained here.
-- Local combined host checks passed 1,082 tests in normal mode and 1,082 in optimized mode. Focused checks passed 42 tests: numeric 3, Czech 22, shared localization 14 and position translation 3.
-- Fresh exact-head Codex code review completed with no findings. The security summary still pointed to the older source head when this receipt was created, so it is not being counted as refreshed security review.
+- Build/APK/source, exact-script resources, regression/lint, and API35 position jobs passed.
+- API35 core and its aggregate failed. This attempt is not a green post-merge verification.
+- The hash-verified regression artifact (ID 12293041124, SHA-256 `cec5b5063414637e299153cc39223dc56ee53ef0cfa53f9fc05ce099120edc1b`) contains 1,264 passing JVM tests across 133 suites, with zero failures/errors/skips. All CzechExtendedWordingTest 5, LocaleNumberInputTest 35, and UnicodeMinusInputTest 9 executions passed.
+- Raw device XML records 74 Paintroid instrumentation tests, 38 core app tests, and 7 position app tests passed. Those passing assertions do not override missing mandatory screenshot evidence.
 
-The new Unicode-minus-specific cases are hosted Robolectric/JVM tests on SDK21/25/35, not installed-device paste tests. The all-offered-locale test also covers SDK30. API35 installed-device suites run separately in the linked workflow; this receipt alone does not claim their completion. Local JVM/Android execution was unrun because the Gradle distribution download could not start.
+## Exact collection failure
 
-## Composition and preservation
+The unchanged cleanup command at tools/ci_emulator.sh:261 was:
 
-The complete source tree was verified locally and remotely: 1,273 leaves, including executable modes. All 30 Czech files exactly match the incorporated develop commit. All four numeric production/test files exactly match previously reviewed fixed head `36c20df8044c79b3da308bc2149bdef6e5cb72c5`. Relative to current develop, this PR still changes only those four numeric files. Existing Czech scope holds and review receipts remain intact; published 0.0.40 is unchanged.
+`timeout --kill-after=3s 15s "$adb" pull /sdcard/Download/anpaint-ci-vertical-evidence "$report/vertical-locale-export"`
 
-This current-base integration was completed in the same PR, not by an alternate PR or an indirect merge to develop. It provides materially new verification after the earlier guarded merge was not executed for lack of current-base composition checks. Only the parent may consider a normal guarded merge after all required current-head gates pass.
+It exited 1 in less than one second, not timeout 124. The pull log shows transfer had begun for qaa-Zsye-XV.zip (8% of that file) before interruption. At 19:32:09 UTC the host adb logged a connection-terminated read failure and guest adbd logged a write failure/offline transport. A new transport connected shortly afterwards and logcat collection succeeded. The emulator was then stopped by normal cleanup. The logs do not establish the deeper cause of this short transport loss.
 
-## Raw report binding
+Logcat records MediaProvider publishing all four expected export ZIPs (en-XV, mnc-Mong, qaa-Zsye-XV and lzh-Hant) before collection. All four vertical tests passed, including their export rule's complete required inventory, content SHA-256 readback, exact ownership/path and published-row checks. This supports recoverable transfer interruption rather than missing expected screenshot production. However, attempt 1's uploaded artifact contains no complete pulled vertical export ZIPs, and the host screenshot/reachability validators were not reached. No complete receipt is claimed for them.
 
-`all-jvm-results.zip` contains unchanged XML bytes for every suite extracted from the hash-verified combined artifact, with new archive packaging only. Individual Czech/numeric XMLs and JVM/lint logs are unchanged artifact files. The JSON summary is a derived count/source binding, not a replacement for those raw results.
+Same-tree premerge comparison: run 39476623276, artifact 12291312788, SHA-256 `8107d1ac366772860a6b3b9710b1362f8700f7ec554d133435fd88a27746b739`. Its unchanged collection command pulled four files in 0.070 seconds and passed the 32 screenshot / 8 reachability-case validators. This is diagnostic comparison only, not a substitute for post-merge evidence.
 
-Earlier immutable evidence remains distinct:
-- [Expected-red baseline](https://github.com/c933103/AN-Paint/tree/8138fa0f95dccc1696d756fb5587122d01eb9d08).
-- [Old-base fixed result and complete red/green JUnit suites](https://github.com/c933103/AN-Paint/tree/a4a5dc20be720536b3a5f7b2165ccf39ce0be5cf).
+Post-merge core artifact: 12293006415, SHA-256 `8af87ff2ab53879dbe0a24ebabda119e89616d6d6d1848f24fc5ce96a19e5e33`.
+Post-merge position artifact: 12292446705, SHA-256 `74b7fa95fb10c9efab7cf303852a1c6e9407416224d89092a21a4fc763489ad1`.
+
+## Retry status at receipt creation
+
+After reconciling the known failed outcome and this transport diagnosis, the parent initiated one normal failed-job retry at 19:34:45 UTC. Attempt 2 binds the same merge commit and is pending/running. No code, timeout, assertion, screenshot requirement or release input was changed for the retry. It must earn its own complete fresh mandatory evidence before any post-merge release-gate credit.
+
+## Preserved merge history and limits
+
+The earlier guarded merge was explicitly rejected and not executed because develop had advanced with Czech changes. The same PR was then integrated with current develop; all six combined CI jobs and fresh exact-head code/security reviews passed. Only then did the parent's normal guarded retry merge the reviewed combined tree. No alternative PR or indirect merge bypassed the rejection.
+
+Published 0.0.40 remains untouched. This is not arbitrary Unicode numeric support. Parser/range validation and layout are unchanged. Unicode-minus-specific regression evidence is hosted Robolectric/JVM execution on SDK21/25/35, not installed-device Unicode paste verification. The offered-locale filter check also covers SDK30. Local JVM/Android remains unrun because Gradle could not download and no SDK was configured.
+
+The two local host logs each record 1,082 passing tests against the same combined tree before merge; they are not represented as a new post-merge execution. Negative fixture diagnostic text in these logs belongs to passing host tests; both process exits are retained as 0.
+
+## Files and provenance
+
+- all-jvm-results.zip repackages unchanged XML bytes for all 133 post-merge JVM suites. The three individually exposed Czech/numeric XMLs and JVM/lint/Python logs are unchanged artifact bytes.
+- device-diagnostics.zip contains unchanged selected XML/log/JSON files from the three hash-verified device artifacts, in distinct attempt-1 and premerge-comparison directories. It is not the missing screenshot payload.
+- core-logcat-excerpts.log is an explicitly selected, unedited-line subset of attempt 1 logcat containing the four published ZIP paths and transport loss/recovery. It is not the full logcat.
+- JSON summaries/manifests are derived binding/count records, not replacements for raw results.
+
+Earlier immutable evidence:
+- Expected-red baseline: https://github.com/c933103/AN-Paint/tree/8138fa0f95dccc1696d756fb5587122d01eb9d08
+- Old-base fixed red/green: https://github.com/c933103/AN-Paint/tree/a4a5dc20be720536b3a5f7b2165ccf39ce0be5cf
+- Current-base premerge: https://github.com/c933103/AN-Paint/tree/971adae8d33da9a859a5c83ab280de0cc6467cec
+
