@@ -1,0 +1,74 @@
+{
+  "base_sha": "7243bac3225fa9aa45be919e2eb3332b9fa5a40a",
+  "candidate_tree": "b35fa4a0b18f31d1a61a9febb6ac612b362ca211",
+  "checked_at_utc": "2026-10-20T17:47:25.383174+00:00",
+  "host": {
+    "normal": {
+      "tests": 1082,
+      "seconds": 240.876,
+      "failed": 0,
+      "sha256": "a5e3f3a862c7d39601a613042517f720838e0431b830adbd7af675fc31095f92"
+    },
+    "optimized": {
+      "tests": 1082,
+      "seconds": 237.119,
+      "failed": 0,
+      "sha256": "5b856ad1259627b43f5ca5ca69044b81e57c558a1e66bec92eeb56d9f20ca1f9"
+    }
+  },
+  "resource_compile": {
+    "aapt2_czech_compile": "passed",
+    "apk_resource_link": "not_run"
+  },
+  "structural": {
+    "complete_source_target_rebinding": "passed",
+    "all_original_72_holds_preserved": true,
+    "all_existing_fixture_values_preserved": true,
+    "published_0_0_40_inputs_unchanged": true,
+    "only_production_change": "Paintroid/src/main/res/values-cs/strings.xml",
+    "kotlin_oracle_scopes": "61 exact / 110 fallback in five extended message-family tests"
+  },
+  "review": {
+    "bounded_static_language_accepts": 645,
+    "holds": 72,
+    "narrow_consumer_supplements": "accepted; no new count credit",
+    "bounded_static_technical_review": "clear on frozen tree after native-minus test repair",
+    "native_speaker": "not_claimed",
+    "whole_language_acceptance": false
+  },
+  "android": {
+    "gradle_attempt": "blocked before compilation while downloading Gradle 8.13: java.net.SocketException: Network is unreachable",
+    "jvm": "not_run",
+    "lint": "not_run",
+    "apk": "not_run",
+    "hosted_ci": "not_run",
+    "device_emulator": "not_run",
+    "installed_layout_talkback": "not_run"
+  },
+  "application_head": "20c8740915a562fd2acbefed5cd4c3bc65848061",
+  "full_remote_tree_verified": {
+    "leaves": 1272,
+    "modes_and_blob_ids_match_local": true,
+    "sole_parent": "7243bac3225fa9aa45be919e2eb3332b9fa5a40a"
+  },
+  "evidence_availability": {
+    "original_complete_review_receipt": {
+      "sha256": "29e9fd5cfaa76c5674559ad28b90990805180c3fda797adf253c4efabc99a79f",
+      "availability": "Verified locally; not published here"
+    },
+    "pixel_grid_consumer_supplement": {
+      "sha256": "f890903ee35bb2394fc0a65e2b95433a9b3c2e404bc72b2909edcfd72e84c095",
+      "availability": "Verified locally; not published here"
+    },
+    "done_feedback_consumer_supplement": {
+      "sha256": "fbc025f427765b832bf76e81a37d3de953d8606a17b3b08a5f98f2c3ff2817c9",
+      "availability": "Verified locally; not published here"
+    },
+    "original_full_archive": "Publication pending separately. Neither archive nor original receipt/supplement bodies are reproduced by this evidence ref."
+  },
+  "test_repair": {
+    "test_sha256": "dd5e7f9a15cccc17d59470f51c54ab17801c7b513033d8158cdceb2e0b0378b7",
+    "static_re_review": "clear",
+    "scope": "Use native Czech process-locale negative sign(s), not the Swedish U+2212 premise. Both-field/state-preservation checks remain. Arbitrary Unicode-minus production behavior is separate."
+  }
+}
