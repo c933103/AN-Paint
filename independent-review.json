@@ -1,0 +1,2761 @@
+{
+  "schema_version": 1,
+  "title": "Independent bounded Swedish remaining-P1 linguistic review",
+  "repository": "c933103/AN-Paint",
+  "source_sha": "0134e79c588a027bbd239f7685fff52b0771819f",
+  "locale": "sv",
+  "reviewed_draft_sha256": "c115cd0f4d53fbeb4b28ac02ce3ec78a3306e1aadd5010499446fb4177b253f4",
+  "reviewed_draft_file": "swedish-p1-gap-draft.json",
+  "review_method": "Independent model-based review of every complete English and Swedish message, production call sites and surrounding operation context; structural parity checked separately. No application source was edited by this reviewer.",
+  "coverage": {
+    "scope": "Exactly the 149 missing Swedish P1 string identities at source_sha; no pre-existing Swedish entry or other tier reviewed anew.",
+    "reviewed": 149,
+    "accepted": 148,
+    "correct": 0,
+    "uncertain_withheld": 1,
+    "production_context_reviewed": 134,
+    "source_semantic_only_reviewed": 15,
+    "source_semantic_only_accepted": 14,
+    "plurals_in_scope": 0,
+    "prior_reviews_recredited": 0
+  },
+  "checks": {
+    "exact_missing_key_set": "pass: 149/149, no additions from other tiers or existing Swedish keys",
+    "full_english_text_and_attributes_match": "pass: 149/149",
+    "placeholder_token_multiset": "pass: 149/149, including positional indexes, types, precision and grouping flag",
+    "escaped_newlines": "pass: 149/149",
+    "android_apostrophe_and_percent_handling": "pass: 149/149",
+    "xml_value_roundtrip": "pass: 149/149",
+    "source_head": "0134e79c588a027bbd239f7685fff52b0771819f"
+  },
+  "revisions_reviewed": [
+    {
+      "key": "string/ui_pinch_and_pan_mode",
+      "result": "Final two-finger wording independently re-read and accepted with source-only limit."
+    },
+    {
+      "key": "string/ui_this_file_is_not_a_supported_image_use",
+      "result": "An earlier TSV used Base64-kodad bildtext. The author and reviewer independently identified its caption ambiguity. Final bilddata som Base64-text is accepted."
+    },
+    {
+      "key": "string/ui_trim_expand_canvas_by_touch",
+      "result": "Final pekgester wording independently re-read and accepted with source-only limit."
+    }
+  ],
+  "limits": [
+    "Independent AI/model-based bounded linguistic review; not native-speaker acceptance.",
+    "No whole-Swedish or whole-language acceptance; pre-existing uncertainty and withdrawn historical conclusions remain unchanged.",
+    "No device rendering, layout, TalkBack execution, Android build or runtime test was performed by this reviewer.",
+    "Fifteen resources have no current direct production reference. Fourteen receive source-semantic acceptance only; the third-placeholder palette resource is withheld.",
+    "No plural resource occurs in this P1 batch; this review makes no claim about Swedish plural coverage in other tiers.",
+    "The 148 accepted values close only 148 exact direct-presence gaps if integrated; one P1 gap remains. Presence does not certify broader language completeness."
+  ],
+  "entries": [
+    {
+      "key": "string/colour_converter_unavailable",
+      "priority": "P1",
+      "english": "The image colour converter could not start. The image was not imported.",
+      "proposed_swedish": "Färgkonverteraren kunde inte startas. Bilden importerades inte.",
+      "decision": "accept",
+      "suggested_swedish": "Färgkonverteraren kunde inte startas. Bilden importerades inte.",
+      "rationale": "The two sentences separately preserve converter-start failure and the explicit non-import outcome; no successful fallback is implied.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L58"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "colour_converter_unavailable"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/colour_invalid_metadata",
+      "priority": "P1",
+      "english": "The image has invalid or unsupported colour metadata.",
+      "proposed_swedish": "Bilden har färgmetadata som är ogiltiga eller inte stöds.",
+      "decision": "accept",
+      "suggested_swedish": "Bilden har färgmetadata som är ogiltiga eller inte stöds.",
+      "rationale": "Both invalid metadata and unsupported metadata remain alternative causes; Swedish agreement with metadata is correct.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L98",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L117"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "colour_invalid_metadata"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/colour_truncated_metadata",
+      "priority": "P1",
+      "english": "The image ends inside its colour metadata.",
+      "proposed_swedish": "Bildfilen slutar mitt i färgmetadata.",
+      "decision": "accept",
+      "suggested_swedish": "Bildfilen slutar mitt i färgmetadata.",
+      "rationale": "Bildfilen and mitt i clearly express a truncated file ending inside its colour metadata, rather than merely missing a profile.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L72"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "colour_truncated_metadata"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/colour_unsupported_icc_model",
+      "priority": "P1",
+      "english": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+      "proposed_swedish": "Den här bilden använder en ICC-färgmodell som bildavkodaren inte kan konvertera. Exportera först en RGB-kopia i ett program med färghantering.",
+      "decision": "accept",
+      "suggested_swedish": "Den här bilden använder en ICC-färgmodell som bildavkodaren inte kan konvertera. Exportera först en RGB-kopia i ett program med färghantering.",
+      "rationale": "The ICC model limitation, decoder inability, prior RGB export and colour-managed application prerequisite all remain explicit.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L214"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "colour_unsupported_icc_model"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/commons_svg_original_size_too_large",
+      "priority": "P1",
+      "english": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+      "proposed_swedish": "SVG-bildens originalstorlek överskrider Androids gränser för bitmappsmått. Ingen storleksändring gjordes.",
+      "decision": "accept",
+      "suggested_swedish": "SVG-bildens originalstorlek överskrider Androids gränser för bitmappsmått. Ingen storleksändring gjordes.",
+      "rationale": "Bitmappsmått expresses a dimension limit, and the second sentence preserves the absence of any resizing.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L386"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "commons_svg_original_size_too_large"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/commons_svg_original_size_unavailable",
+      "priority": "P1",
+      "english": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+      "proposed_swedish": "SVG-filen anger ingen användbar originalstorlek. Ingen storlek baserad på ritytan användes i stället.",
+      "decision": "accept",
+      "suggested_swedish": "SVG-filen anger ingen användbar originalstorlek. Ingen storlek baserad på ritytan användes i stället.",
+      "rationale": "The unusable declared original size and refusal to substitute canvas-derived dimensions are both retained without adding a fallback.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L385"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "commons_svg_original_size_unavailable"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/formats22_import_limit",
+      "priority": "P1",
+      "english": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+      "proposed_swedish": "Den här filen överskrider importgränsen på 512 MiB. Välj en mindre fil.",
+      "decision": "accept",
+      "suggested_swedish": "Den här filen överskrider importgränsen på 512 MiB. Välj en mindre fil.",
+      "rationale": "The exact 512 MiB import limit and smaller-file remedy remain unchanged; fil avoids conflating byte size with dimensions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L26"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "formats22_import_limit"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_0f_0f_px_1f",
+      "priority": "P1",
+      "english": "%1$.0f × %2$.0f px\\n%3$.1f°",
+      "proposed_swedish": "%1$.0f × %2$.0f px\\n%3$.1f°",
+      "decision": "accept",
+      "suggested_swedish": "%1$.0f × %2$.0f px\\n%3$.1f°",
+      "rationale": "The complete geometry string retains width, height, angle, degree sign and the two-line presentation; its wording is language-neutral.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L705"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_0f_0f_px_1f"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_100",
+      "priority": "P1",
+      "english": "100%",
+      "proposed_swedish": "100 %",
+      "decision": "accept",
+      "suggested_swedish": "100 %",
+      "rationale": "The 100-percent zoom action is intact; spacing before the percent sign is natural Swedish typography.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L762"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_100",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_1_px",
+      "priority": "P1",
+      "english": "1 px",
+      "proposed_swedish": "1 px",
+      "decision": "accept",
+      "suggested_swedish": "1 px",
+      "rationale": "The complete one-pixel unit label needs no lexical translation; source-semantic review only because there is no live caller.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_1_px"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_1f_s",
+      "priority": "P1",
+      "english": "%1$.1f %2$s",
+      "proposed_swedish": "%1$.1f %2$s",
+      "decision": "accept",
+      "suggested_swedish": "%1$.1f %2$s",
+      "rationale": "The numeric amount and supplied unit remain in the correct order with one-decimal precision; no translated unit is invented.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L24"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_1f_s"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_actual_size_100",
+      "priority": "P1",
+      "english": "Actual size (100%)",
+      "proposed_swedish": "Verklig storlek (100 %)",
+      "decision": "accept",
+      "suggested_swedish": "Verklig storlek (100 %)",
+      "rationale": "Verklig storlek expresses actual-size view zoom and differs from original pixel dimensions; current usage is unverified.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_actual_size_100",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_add_colour26",
+      "priority": "P1",
+      "english": "Add colour",
+      "proposed_swedish": "Lägg till färg",
+      "decision": "accept",
+      "suggested_swedish": "Lägg till färg",
+      "rationale": "Lägg till färg naturally describes adding a palette colour and works for the action and its dialog title.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L965",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L304",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_add_colour26"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_add_text",
+      "priority": "P1",
+      "english": "Add text",
+      "proposed_swedish": "Lägg till text",
+      "decision": "accept",
+      "suggested_swedish": "Lägg till text",
+      "rationale": "The imperative accurately confirms insertion of the typed text, rather than merely opening the text editor.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_add_text"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_all",
+      "priority": "P1",
+      "english": "All",
+      "proposed_swedish": "Alla",
+      "decision": "accept",
+      "suggested_swedish": "Alla",
+      "rationale": "Alla agrees with the selected images in the batch-crop list; it is correctly distinct from the pixel-selection command Markera allt.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L135"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_all"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_android_blocked_the_file_picker",
+      "priority": "P1",
+      "english": "Android blocked the file picker: %1$s",
+      "proposed_swedish": "Android blockerade filväljaren: %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Android blockerade filväljaren: %1$s",
+      "rationale": "Android remains the blocking actor, filväljaren correctly names the picker, and the full supplied reason survives.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L120",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1092",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L195"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_android_blocked_the_file_picker"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_android_could_not_decode_this_image",
+      "priority": "P1",
+      "english": "Android could not decode this image.",
+      "proposed_swedish": "Android kunde inte avkoda den här bilden.",
+      "decision": "accept",
+      "suggested_swedish": "Android kunde inte avkoda den här bilden.",
+      "rationale": "Avkoda accurately expresses decode failure without falsely asserting corruption, an unsupported format or a completed import.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L162"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_android_could_not_decode_this_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_android_could_not_find_a_file_picker_enable",
+      "priority": "P1",
+      "english": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+      "proposed_swedish": "Android kunde inte hitta någon filväljare. Aktivera appen Filer eller Dokument i Androids inställningar och försök sedan igen.",
+      "decision": "accept",
+      "suggested_swedish": "Android kunde inte hitta någon filväljare. Aktivera appen Filer eller Dokument i Androids inställningar och försök sedan igen.",
+      "rationale": "The unavailable picker, Filer/Dokument alternatives, Android settings and enable-then-retry sequence are complete. OEM app names remain device-dependent.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L119",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1091"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_android_could_not_find_a_file_picker_enable"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_apply_bounds",
+      "priority": "P1",
+      "english": "Apply bounds",
+      "proposed_swedish": "Verkställ nya gränser",
+      "decision": "accept",
+      "suggested_swedish": "Verkställ nya gränser",
+      "rationale": "Verkställ nya gränser correctly commits both possible canvas-bound changes, expansion and trimming, rather than only cropping.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1044"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_apply_bounds"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_apply_crop",
+      "priority": "P1",
+      "english": "Apply crop",
+      "proposed_swedish": "Verkställ beskärning",
+      "decision": "accept",
+      "suggested_swedish": "Verkställ beskärning",
+      "rationale": "The command applies the pending crop and is consistent with existing Verkställ terminology; it does not confuse reset with apply.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_apply_crop"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_autosaving_draft",
+      "priority": "P1",
+      "english": "Autosaving draft…",
+      "proposed_swedish": "Sparar utkast automatiskt…",
+      "decision": "accept",
+      "suggested_swedish": "Sparar utkast automatiskt…",
+      "rationale": "The progressive Sparar and automatiskt preserve an ongoing automatic save; the ellipsis does not imply completion.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L682"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_autosaving_draft"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_background_edit_colour",
+      "priority": "P1",
+      "english": "Background %1$s. Edit colour.",
+      "proposed_swedish": "Bakgrundsfärg %1$s. Redigera färg.",
+      "decision": "accept",
+      "suggested_swedish": "Bakgrundsfärg %1$s. Redigera färg.",
+      "rationale": "The accessibility name explicitly identifies the background colour and the edit action; the argument already supplies the hash-prefixed value.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L35"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_background_edit_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_basic_colours",
+      "priority": "P1",
+      "english": "Basic colours",
+      "proposed_swedish": "Standardfärger",
+      "decision": "accept",
+      "suggested_swedish": "Standardfärger",
+      "rationale": "Standardfärger naturally labels the fixed 48-swatch palette without the misleading primary-colour sense of Grundfärger.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L123"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_basic_colours"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_canvas_bounds",
+      "priority": "P1",
+      "english": "Canvas bounds",
+      "proposed_swedish": "Ritytans gränser",
+      "decision": "accept",
+      "suggested_swedish": "Ritytans gränser",
+      "rationale": "Ritytans gränser denotes editable canvas boundaries, preserving the established rityta term and avoiding image-scaling semantics.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L840"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_canvas_bounds"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_canvas_zoom",
+      "priority": "P1",
+      "english": "Canvas zoom",
+      "proposed_swedish": "Zoomnivå för ritytan",
+      "decision": "accept",
+      "suggested_swedish": "Zoomnivå för ritytan",
+      "rationale": "Zoomnivå för ritytan accurately labels the view-scale slider; it does not suggest changing saved image dimensions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L654"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_canvas_zoom"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_canvas_zoom_771f84",
+      "priority": "P1",
+      "english": "Canvas zoom %1$s",
+      "proposed_swedish": "Zoomnivå för ritytan: %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Zoomnivå för ritytan: %1$s",
+      "rationale": "The value-bearing label naturally extends the unvalued zoom label and preserves the complete supplied zoom value.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L702"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_canvas_zoom_771f84"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_choose_a_smaller_output_copy_the_source_images",
+      "priority": "P1",
+      "english": "Choose a smaller output copy. The source images and crop settings stay at their original resolution.",
+      "proposed_swedish": "Välj en mindre utdatakopia. Källbilderna och beskärningsinställningarna behålls i originalupplösningen.",
+      "decision": "accept",
+      "suggested_swedish": "Välj en mindre utdatakopia. Källbilderna och beskärningsinställningarna behålls i originalupplösningen.",
+      "rationale": "The complete message distinguishes the smaller rendered output copy from source images and crop settings retained at original resolution.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L305"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_choose_a_smaller_output_copy_the_source_images"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_choose_a_smaller_size",
+      "priority": "P1",
+      "english": "Choose a smaller size.",
+      "proposed_swedish": "Välj en mindre storlek.",
+      "decision": "accept",
+      "suggested_swedish": "Välj en mindre storlek.",
+      "rationale": "The imperative asks for a smaller size after an oversized estimate; it makes no claim that an automatic change has occurred.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L311"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_choose_a_smaller_size"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_choose_at_least_one_image",
+      "priority": "P1",
+      "english": "Choose at least one image.",
+      "proposed_swedish": "Välj minst en bild.",
+      "decision": "accept",
+      "suggested_swedish": "Välj minst en bild.",
+      "rationale": "Minst en bild correctly preserves the minimum image count in both crop-selection and assembly validation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L145",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L155"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_choose_at_least_one_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_choose_dimensions_no_larger_than_the_original",
+      "priority": "P1",
+      "english": "Choose dimensions no larger than the original.",
+      "proposed_swedish": "Välj mått som inte är större än originalets.",
+      "decision": "accept",
+      "suggested_swedish": "Välj mått som inte är större än originalets.",
+      "rationale": "Mått and originalets correctly compare target dimensions with original dimensions, not file-byte size; the non-enlargement requirement survives.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L31",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L36"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_choose_dimensions_no_larger_than_the_original"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_choose_location",
+      "priority": "P1",
+      "english": "Choose location…",
+      "proposed_swedish": "Välj plats…",
+      "decision": "accept",
+      "suggested_swedish": "Välj plats…",
+      "rationale": "Välj plats is a natural destination-choice action; the ellipsis correctly signals that another chooser follows.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L189"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_choose_location"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_codec_resize_memory_floor",
+      "priority": "P1",
+      "english": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+      "proposed_swedish": "I det här formatet måste källbilden eller dess bildblock avkodas före storleksändringen. Även en mindre utdatabild kan kräva mer minne än vad som är tillgängligt.",
+      "decision": "accept",
+      "suggested_swedish": "I det här formatet måste källbilden eller dess bildblock avkodas före storleksändringen. Även en mindre utdatabild kan kräva mer minne än vad som är tillgängligt.",
+      "rationale": "The source-or-tile decoding prerequisite and continued memory-overrun possibility both survive; bildblock appropriately describes image tiles.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L34"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_codec_resize_memory_floor"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_collapse_colour_palette",
+      "priority": "P1",
+      "english": "Collapse colour palette",
+      "proposed_swedish": "Fäll ihop färgpaletten",
+      "decision": "accept",
+      "suggested_swedish": "Fäll ihop färgpaletten",
+      "rationale": "Fäll ihop is natural disclosure wording with the correct palette target; acceptance is source-semantic because the label is unreferenced.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_collapse_colour_palette"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_collapse_toolbox",
+      "priority": "P1",
+      "english": "Collapse toolbox",
+      "proposed_swedish": "Fäll ihop verktygslådan",
+      "decision": "accept",
+      "suggested_swedish": "Fäll ihop verktygslådan",
+      "rationale": "Fäll ihop verktygslådan correctly describes closing the expanded sidebar panel and pairs with Fäll ut.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L537"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_collapse_toolbox"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_colour",
+      "priority": "P1",
+      "english": "Colour %1$s",
+      "proposed_swedish": "Färg %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Färg %1$s",
+      "rationale": "Färg naturally introduces the supplied RGB representation; no second hash is introduced when the caller already includes one.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L972",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L128"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "priority": "P1",
+      "english": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "proposed_swedish": "Färgpalett. Tryck för att välja förgrundsfärg. Tryck och håll för att välja bakgrundsfärg. Rulla för att se fler färger.",
+      "decision": "accept",
+      "suggested_swedish": "Färgpalett. Tryck för att välja förgrundsfärg. Tryck och håll för att välja bakgrundsfärg. Rulla för att se fler färger.",
+      "rationale": "All three operational instructions survive: tap for foreground, long press for background, and scrolling for additional swatches.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L604"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_colour_tap_foreground_hold_background",
+      "priority": "P1",
+      "english": "Colour #%1$s. Tap foreground, hold background.",
+      "proposed_swedish": "Färg #%1$s. Tryck för att välja förgrundsfärg. Tryck och håll för att välja bakgrundsfärg.",
+      "decision": "accept",
+      "suggested_swedish": "Färg #%1$s. Tryck för att välja förgrundsfärg. Tryck och håll för att välja bakgrundsfärg.",
+      "rationale": "The complete swatch description retains its one literal hash and distinguishes the tap and long-press colour roles clearly.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L615"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_colour_tap_foreground_hold_background"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_commit_selection",
+      "priority": "P1",
+      "english": "Commit selection",
+      "proposed_swedish": "Fäst markeringen",
+      "decision": "accept",
+      "suggested_swedish": "Fäst markeringen",
+      "rationale": "Fäst markeringen correctly anchors floating selection content through applyPending; it does not mean reselecting or saving the file.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_commit_selection"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_copy_all",
+      "priority": "P1",
+      "english": "Copy all",
+      "proposed_swedish": "Kopiera allt",
+      "decision": "accept",
+      "suggested_swedish": "Kopiera allt",
+      "rationale": "Allt is the natural neuter form for complete text payloads, including Base64 output, credits and licence text.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L129",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L107",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L100"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_copy_all"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_could_not_apply_the_crop",
+      "priority": "P1",
+      "english": "Could not apply the crop.",
+      "proposed_swedish": "Beskärningen kunde inte verkställas.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningen kunde inte verkställas.",
+      "rationale": "The failed crop application is expressed accurately, with terminology matching the positive crop action and no unsupported cause.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L149"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_could_not_apply_the_crop"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_could_not_complete_the_edit",
+      "priority": "P1",
+      "english": "Could not complete the edit. %1$s",
+      "proposed_swedish": "Redigeringen kunde inte slutföras. %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Redigeringen kunde inte slutföras. %1$s",
+      "rationale": "Redigeringen kunde inte slutföras preserves the failed edit and leaves the complete detailed reason as a separate sentence.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L181",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L930"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_could_not_complete_the_edit"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_could_not_complete_the_operation",
+      "priority": "P1",
+      "english": "Could not complete the operation.",
+      "proposed_swedish": "Åtgärden kunde inte slutföras.",
+      "decision": "accept",
+      "suggested_swedish": "Åtgärden kunde inte slutföras.",
+      "rationale": "Åtgärden is appropriately broad for the generic failure shared across several operations; no narrower action is invented.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L121",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L122",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L143",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L146",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L155",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L54",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1435",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L117"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_could_not_complete_the_operation"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_could_not_place_the_image",
+      "priority": "P1",
+      "english": "Could not place the image.",
+      "proposed_swedish": "Bilden kunde inte placeras.",
+      "decision": "accept",
+      "suggested_swedish": "Bilden kunde inte placeras.",
+      "rationale": "Placeras correctly describes failed image positioning in the assembly canvas, as distinct from opening or decoding.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L90"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_could_not_place_the_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_could_not_prepare_the_image",
+      "priority": "P1",
+      "english": "Could not prepare the image.",
+      "proposed_swedish": "Bilden kunde inte förberedas.",
+      "decision": "accept",
+      "suggested_swedish": "Bilden kunde inte förberedas.",
+      "rationale": "Förberedas faithfully states the generic image-preparation failure without inventing a corruption or memory diagnosis.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L191"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_could_not_prepare_the_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_crop",
+      "priority": "P1",
+      "english": "Crop %1$s",
+      "proposed_swedish": "Beskär %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Beskär %1$s",
+      "rationale": "The crop imperative combines naturally with an arbitrary supplied filename or image name and preserves the complete argument.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L141"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_crop"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_crop_must_stay_inside_the_canvas",
+      "priority": "P1",
+      "english": "Crop must stay inside the canvas.",
+      "proposed_swedish": "Beskärningsområdet måste ligga inom ritytan.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningsområdet måste ligga inom ritytan.",
+      "rationale": "Beskärningsområdet clearly identifies the constrained geometric region; inom ritytan preserves the canvas boundary requirement.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L435"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_crop_must_stay_inside_the_canvas"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_crop_preview_drag_an_edge_or_corner_drag",
+      "priority": "P1",
+      "english": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+      "proposed_swedish": "Förhandsvisning av beskärning. Dra i en kant eller ett hörn. Dra inuti beskärningsområdet för att flytta det.",
+      "decision": "accept",
+      "suggested_swedish": "Förhandsvisning av beskärning. Dra i en kant eller ett hörn. Dra inuti beskärningsområdet för att flytta det.",
+      "rationale": "The accessibility message retains edge/corner manipulation and interior dragging separately; the final pronoun clearly refers to the crop region.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L23"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_d_d_px_d_pixels_2f_mp",
+      "priority": "P1",
+      "english": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "proposed_swedish": "%1$d × %2$d px · Antal bildpunkter: %3$,d (%4$.2f MP)",
+      "decision": "accept",
+      "suggested_swedish": "%1$d × %2$d px · Antal bildpunkter: %3$,d (%4$.2f MP)",
+      "rationale": "Antal bildpunkter is natural and accurate; all four values retain their positional types, grouping flag, precision, px and MP units.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L15"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_d_d_px_d_pixels_2f_mp"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_delete_selection",
+      "priority": "P1",
+      "english": "Delete selection",
+      "proposed_swedish": "Radera markeringen",
+      "decision": "accept",
+      "suggested_swedish": "Radera markeringen",
+      "rationale": "Radera markeringen is a conventional destructive selection action and fits deletion of selected content rather than deselection.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L841"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_delete_selection"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_draft_pending",
+      "priority": "P1",
+      "english": "Draft pending",
+      "proposed_swedish": "Utkastet väntar på att sparas",
+      "decision": "accept",
+      "suggested_swedish": "Utkastet väntar på att sparas",
+      "rationale": "Väntar på att sparas correctly expresses a scheduled but not-yet-running draft save, distinct from saving and saved states.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1581"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_draft_pending"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_draw_again",
+      "priority": "P1",
+      "english": "Draw again",
+      "proposed_swedish": "Fortsätt rita",
+      "decision": "accept",
+      "suggested_swedish": "Fortsätt rita",
+      "rationale": "Fortsätt rita matches returning to the previous drawing tool; it avoids the misleading redo/start-over implication of a literal translation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L761"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_draw_again"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "priority": "P1",
+      "english": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "proposed_swedish": "Rityta. För ihop eller isär två fingrar för att zooma och flytta dem för att panorera. I läget Navigera kan du även panorera med ett finger.",
+      "decision": "accept",
+      "suggested_swedish": "Rityta. För ihop eller isär två fingrar för att zooma och flytta dem för att panorera. I läget Navigera kan du även panorera med ett finger.",
+      "rationale": "The complete canvas instructions explain pinch zoom and two-finger panning, plus one-finger panning in the consistently named Navigera mode.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L148",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L271"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_drawing_settings",
+      "priority": "P1",
+      "english": "Drawing settings…",
+      "proposed_swedish": "Ritinställningar…",
+      "decision": "accept",
+      "suggested_swedish": "Ritinställningar…",
+      "rationale": "Ritinställningar is a natural compound for drawing settings; the ellipsis belongs to the dialog-opening action.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L797"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_drawing_settings"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_drawing_settings_d900c6",
+      "priority": "P1",
+      "english": "Drawing settings",
+      "proposed_swedish": "Ritinställningar",
+      "decision": "accept",
+      "suggested_swedish": "Ritinställningar",
+      "rationale": "The dialog title matches its opening action and correctly omits the action ellipsis.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1561"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_drawing_settings_d900c6"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_edit_canvas33",
+      "priority": "P1",
+      "english": "Canvas",
+      "proposed_swedish": "Rityta",
+      "decision": "accept",
+      "suggested_swedish": "Rityta",
+      "rationale": "Rityta is the established and natural group name for canvas-specific commands.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L76"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_edit_canvas33"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_edit_transform33",
+      "priority": "P1",
+      "english": "Flip / Rotate",
+      "proposed_swedish": "Vänd / rotera",
+      "decision": "accept",
+      "suggested_swedish": "Vänd / rotera",
+      "rationale": "Vänd and rotera match the actual flip and rotation commands; the short grouped action label remains clear.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L77"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_edit_transform33"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_a_number_from_to",
+      "priority": "P1",
+      "english": "Enter a number from %1$s to %2$s.",
+      "proposed_swedish": "Ange ett tal från %1$s till %2$s.",
+      "decision": "accept",
+      "suggested_swedish": "Ange ett tal från %1$s till %2$s.",
+      "rationale": "Ange ett tal is natural validation wording; both endpoints and their ordering remain intact.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L74"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_a_number_from_to"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_a_positive_size",
+      "priority": "P1",
+      "english": "Enter a positive size.",
+      "proposed_swedish": "Ange en positiv storlek.",
+      "decision": "accept",
+      "suggested_swedish": "Ange en positiv storlek.",
+      "rationale": "Positiv storlek preserves the mathematical greater-than-zero constraint and does not weaken it to merely valid size.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L42"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_a_positive_size"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_a_trim_amount_for_every_edge",
+      "priority": "P1",
+      "english": "Enter a trim amount for every edge.",
+      "proposed_swedish": "Ange hur mycket som ska beskäras från varje kant.",
+      "decision": "accept",
+      "suggested_swedish": "Ange hur mycket som ska beskäras från varje kant.",
+      "rationale": "The sentence naturally explains trim amount rather than using a misleading width/height label; varje kant preserves all-edge coverage.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L88"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_a_trim_amount_for_every_edge"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_a_whole_number_from_to",
+      "priority": "P1",
+      "english": "Enter a whole number from %1$s to %2$s.",
+      "proposed_swedish": "Ange ett heltal från %1$s till %2$s.",
+      "decision": "accept",
+      "suggested_swedish": "Ange ett heltal från %1$s till %2$s.",
+      "rationale": "Heltal accurately retains the integer requirement in addition to both supplied range endpoints.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L70"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_a_whole_number_from_to"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_all_four_trim_amounts",
+      "priority": "P1",
+      "english": "Enter all four trim amounts.",
+      "proposed_swedish": "Ange alla fyra beskärningsmåtten.",
+      "decision": "accept",
+      "suggested_swedish": "Ange alla fyra beskärningsmåtten.",
+      "rationale": "Alla fyra preserves the required number of edge inputs; beskärningsmåtten is clear in the four-edge crop dialog.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L146"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_all_four_trim_amounts"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_positive_canvas_dimensions_within_android_s_coordinate",
+      "priority": "P1",
+      "english": "Enter positive canvas dimensions within Android\\'s coordinate range.",
+      "proposed_swedish": "Ange positiva mått för ritytan inom Androids koordinatintervall.",
+      "decision": "accept",
+      "suggested_swedish": "Ange positiva mått för ritytan inom Androids koordinatintervall.",
+      "rationale": "The message retains positive canvas dimensions and Android coordinate limits; Androids is correct Swedish genitive spelling.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L441"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_positive_canvas_dimensions_within_android_s_coordinate"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_positive_dimensions",
+      "priority": "P1",
+      "english": "Enter positive dimensions.",
+      "proposed_swedish": "Ange positiva mått.",
+      "decision": "accept",
+      "suggested_swedish": "Ange positiva mått.",
+      "rationale": "Positiva mått naturally and completely expresses the width-and-height positivity requirement.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_positive_dimensions_no_larger_than_the_original",
+      "priority": "P1",
+      "english": "Enter positive dimensions no larger than the original.",
+      "proposed_swedish": "Ange positiva mått som inte är större än originalets.",
+      "decision": "accept",
+      "suggested_swedish": "Ange positiva mått som inte är större än originalets.",
+      "rationale": "Both positivity and no enlargement beyond the original dimensions remain requirements of the same input.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L47"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_no_larger_than_the_original"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "priority": "P1",
+      "english": "Enter positive dimensions that resolve to at least 1 pixel.",
+      "proposed_swedish": "Ange positiva mått som motsvarar minst 1 bildpunkt vardera.",
+      "decision": "accept",
+      "suggested_swedish": "Ange positiva mått som motsvarar minst 1 bildpunkt vardera.",
+      "rationale": "Vardera correctly clarifies the actual per-axis minimum of one pixel after conversion; no extra unsupported restriction is added.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L75"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_positive_image_dimensions",
+      "priority": "P1",
+      "english": "Enter positive image dimensions.",
+      "proposed_swedish": "Ange positiva bildmått.",
+      "decision": "accept",
+      "suggested_swedish": "Ange positiva bildmått.",
+      "rationale": "Positiva bildmått faithfully names both the relevant image dimensions and their positivity constraint across the shared callers.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L155",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L424",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt#L43",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L13"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_positive_image_dimensions"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_enter_valid_dimensions",
+      "priority": "P1",
+      "english": "Enter valid dimensions.",
+      "proposed_swedish": "Ange giltiga mått.",
+      "decision": "accept",
+      "suggested_swedish": "Ange giltiga mått.",
+      "rationale": "Giltiga mått is appropriately general for the invalid-dimensions result and avoids inventing an unsupported numerical limit.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L311"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_enter_valid_dimensions"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_expand_colour_palette",
+      "priority": "P1",
+      "english": "Expand colour palette",
+      "proposed_swedish": "Fäll ut färgpaletten",
+      "decision": "accept",
+      "suggested_swedish": "Fäll ut färgpaletten",
+      "rationale": "Fäll ut is correctly paired with Fäll ihop for disclosure; current runtime use is unverified because this resource is unreferenced.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_expand_colour_palette"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_expand_toolbox",
+      "priority": "P1",
+      "english": "Expand toolbox",
+      "proposed_swedish": "Fäll ut verktygslådan",
+      "decision": "accept",
+      "suggested_swedish": "Fäll ut verktygslådan",
+      "rationale": "The expand action has the correct toolbox target and is linguistically symmetric with the collapse action.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L537"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_expand_toolbox"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_fit_selection34",
+      "priority": "P1",
+      "english": "Fit image to canvas",
+      "proposed_swedish": "Anpassa bilden till ritytan",
+      "decision": "accept",
+      "suggested_swedish": "Anpassa bilden till ritytan",
+      "rationale": "Till ritytan distinguishes scaling the floating selected image to the canvas from fitting the whole image to the viewport.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L746"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_fit_selection34",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_font_family",
+      "priority": "P1",
+      "english": "Font family",
+      "proposed_swedish": "Typsnittsfamilj",
+      "decision": "accept",
+      "suggested_swedish": "Typsnittsfamilj",
+      "rationale": "Typsnittsfamilj is an accurate, natural compound for the family selector and is consistent with Typsnitt.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L38"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_font_family"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "english": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "proposed_swedish": "Förgrundsfärg %1$s, bakgrundsfärg %2$s. Färgpalett: %3$s.",
+      "decision": "uncertain",
+      "suggested_swedish": null,
+      "rationale": "The first two values are sound, but no current caller establishes whether %3$s is an action, state or descriptor. A colon cannot prove grammatical or semantic fidelity. Keep this proposed translation unaccepted and retain English fallback until that contract is known.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "withhold; keep default-English fallback until placeholder contract is established",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_foreground_edit_colour",
+      "priority": "P1",
+      "english": "Foreground %1$s. Edit colour.",
+      "proposed_swedish": "Förgrundsfärg %1$s. Redigera färg.",
+      "decision": "accept",
+      "suggested_swedish": "Förgrundsfärg %1$s. Redigera färg.",
+      "rationale": "The foreground accessibility name mirrors the background target, preserves the complete supplied colour and clearly names the editing action.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L34"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_foreground_edit_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_from_device34",
+      "priority": "P1",
+      "english": "From device…",
+      "proposed_swedish": "Från enheten…",
+      "decision": "accept",
+      "suggested_swedish": "Från enheten…",
+      "rationale": "Från enheten naturally identifies the device source and retains the follow-on chooser ellipsis.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L887"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_from_device34",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_full_text_copied",
+      "priority": "P1",
+      "english": "Full text copied",
+      "proposed_swedish": "Hela texten har kopierats",
+      "decision": "accept",
+      "suggested_swedish": "Hela texten har kopierats",
+      "rationale": "Hela texten and har kopierats explicitly preserve completeness and completed copying rather than issuing an instruction.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L102"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_full_text_copied"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_height",
+      "priority": "P1",
+      "english": "Height (%1$s)",
+      "proposed_swedish": "Höjd (%1$s)",
+      "decision": "accept",
+      "suggested_swedish": "Höjd (%1$s)",
+      "rationale": "Höjd is the correct short field label; parentheses preserve the supplied pixel or percentage unit without inflecting it.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L56",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L61",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L79"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_height"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_height_in",
+      "priority": "P1",
+      "english": "Height in %1$s",
+      "proposed_swedish": "Höjd i %1$s",
+      "decision": "accept",
+      "suggested_swedish": "Höjd i %1$s",
+      "rationale": "Höjd i combines naturally with both existing unit strings, bildpunkter and procent, for the accessibility label.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L82"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_height_in"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_heights",
+      "priority": "P1",
+      "english": "Heights",
+      "proposed_swedish": "Höjder",
+      "decision": "accept",
+      "suggested_swedish": "Höjder",
+      "rationale": "Höjder correctly preserves the plural height label; no live UI usage is asserted.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_heights"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_hex_rrggbb",
+      "priority": "P1",
+      "english": "Hex #RRGGBB",
+      "proposed_swedish": "Hexkod #RRGGBB",
+      "decision": "accept",
+      "suggested_swedish": "Hexkod #RRGGBB",
+      "rationale": "Hexkod makes the hexadecimal field clear and preserves the exact required #RRGGBB notation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L246"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_hex_rrggbb"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_hide_editor_controls",
+      "priority": "P1",
+      "english": "Hide editor controls",
+      "proposed_swedish": "Dölj redigeringskontrollerna",
+      "decision": "accept",
+      "suggested_swedish": "Dölj redigeringskontrollerna",
+      "rationale": "Dölj redigeringskontrollerna clearly expresses temporary visibility and pairs with Visa; acceptance is limited to source semantics.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_hide_editor_controls"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_insert_image_into_canvas",
+      "priority": "P1",
+      "english": "Insert image into canvas…",
+      "proposed_swedish": "Infoga bild på ritytan…",
+      "decision": "accept",
+      "suggested_swedish": "Infoga bild på ritytan…",
+      "rationale": "Infoga bild på ritytan preserves insertion into the existing canvas and the continuing-dialog ellipsis; live use remains unverified.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_insert_image_into_canvas"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_invalid_colour",
+      "priority": "P1",
+      "english": "Invalid colour",
+      "proposed_swedish": "Ogiltig färg",
+      "decision": "accept",
+      "suggested_swedish": "Ogiltig färg",
+      "rationale": "Ogiltig färg is accurate and broad enough for all colour-field parsing/application failures.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L362"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_invalid_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_invalid_selection_outline",
+      "priority": "P1",
+      "english": "Invalid selection outline.",
+      "proposed_swedish": "Ogiltig markeringskontur.",
+      "decision": "accept",
+      "suggested_swedish": "Ogiltig markeringskontur.",
+      "rationale": "Markeringskontur accurately names the outline geometry rather than the selected pixel contents or the whole image.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionOutline.kt#L34"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_invalid_selection_outline"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_invert_colours",
+      "priority": "P1",
+      "english": "Invert colours",
+      "proposed_swedish": "Invertera färger",
+      "decision": "accept",
+      "suggested_swedish": "Invertera färger",
+      "rationale": "Invertera färger is natural image-editing terminology and stays distinct from swapping foreground and background colours.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L849"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_invert_colours"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_left_arrow_collapse",
+      "priority": "P1",
+      "english": "Left arrow: collapse",
+      "proposed_swedish": "Vänsterpil: fäll ihop",
+      "decision": "accept",
+      "suggested_swedish": "Vänsterpil: fäll ihop",
+      "rationale": "Vänsterpil retains the indicated direction, and fäll ihop retains the disclosure action without inventing the input device.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_left_arrow_collapse"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_line_spacing",
+      "priority": "P1",
+      "english": "Line spacing (%)",
+      "proposed_swedish": "Radavstånd (%)",
+      "decision": "accept",
+      "suggested_swedish": "Radavstånd (%)",
+      "rationale": "Radavstånd is the correct typographic term and the percentage unit remains intact.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L44"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_line_spacing",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_lock_aspect_ratio",
+      "priority": "P1",
+      "english": "Lock aspect ratio",
+      "proposed_swedish": "Lås bildförhållandet",
+      "decision": "accept",
+      "suggested_swedish": "Lås bildförhållandet",
+      "rationale": "Lås bildförhållandet correctly means linking width and height, not freezing both input values.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L19"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_lock_aspect_ratio"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_lock_proportions",
+      "priority": "P1",
+      "english": "Lock proportions",
+      "proposed_swedish": "Lås proportionerna",
+      "decision": "accept",
+      "suggested_swedish": "Lås proportionerna",
+      "rationale": "Lås proportionerna naturally conveys preserving the selected image shape while resizing and matches the source distinction.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L753"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_lock_proportions"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_magnification",
+      "priority": "P1",
+      "english": "Magnification (%)",
+      "proposed_swedish": "Förstoring (%)",
+      "decision": "accept",
+      "suggested_swedish": "Förstoring (%)",
+      "rationale": "Förstoring accurately labels the local magnifier factor, distinct from the whole-canvas zoom control; percentage semantics remain intact.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1534",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1553"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_magnification",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_navigate",
+      "priority": "P1",
+      "english": "Navigate",
+      "proposed_swedish": "Navigera",
+      "decision": "accept",
+      "suggested_swedish": "Navigera",
+      "rationale": "Navigera naturally names the panning/zooming tool and matches the referenced mode name in the canvas instructions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L20"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_navigate"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_new_colour",
+      "priority": "P1",
+      "english": "New colour",
+      "proposed_swedish": "Ny färg",
+      "decision": "accept",
+      "suggested_swedish": "Ny färg",
+      "rationale": "Ny färg preserves the neutral noun phrase without inventing a command; the absent live caller limits contextual acceptance.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_new_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_no_readable_image_data",
+      "priority": "P1",
+      "english": "No readable image data.",
+      "proposed_swedish": "Inga läsbara bilddata.",
+      "decision": "accept",
+      "suggested_swedish": "Inga läsbara bilddata.",
+      "rationale": "Inga läsbara bilddata correctly preserves unreadability or absent readable data, without asserting a specific file corruption.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L243"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_no_readable_image_data"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_no_resize_fits_decoder_memory",
+      "priority": "P1",
+      "english": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "proposed_swedish": "Även med minsta möjliga utdatabild ryms inte bildavkodarens arbetsbuffertar inom den nuvarande minnesbudgeten. Avbryt och använd en mindre källbild.",
+      "decision": "accept",
+      "suggested_swedish": "Även med minsta möjliga utdatabild ryms inte bildavkodarens arbetsbuffertar inom den nuvarande minnesbudgeten. Avbryt och använd en mindre källbild.",
+      "rationale": "The full message retains the irreducible decoder working set, even at minimum output size, and both cancel/use-smaller-source instructions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L49"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_no_resize_fits_decoder_memory"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_none",
+      "priority": "P1",
+      "english": "None",
+      "proposed_swedish": "Inga",
+      "decision": "accept",
+      "suggested_swedish": "Inga",
+      "rationale": "Inga correctly agrees with the plural images deselected in batch crop and avoids a misleading no-colour or no-operation interpretation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L135"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_none"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_not_enough_memory_to_finish_opening_this_image",
+      "priority": "P1",
+      "english": "Not enough memory to finish opening this image",
+      "proposed_swedish": "Det finns inte tillräckligt med minne för att slutföra öppningen av den här bilden",
+      "decision": "accept",
+      "suggested_swedish": "Det finns inte tillräckligt med minne för att slutföra öppningen av den här bilden",
+      "rationale": "Slutföra öppningen preserves the later opening/decoding stage and remains distinct from the earlier inspection-memory failure.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1331"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_finish_opening_this_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_not_enough_memory_to_inspect_this_image",
+      "priority": "P1",
+      "english": "Not enough memory to inspect this image",
+      "proposed_swedish": "Det finns inte tillräckligt med minne för att undersöka den här bilden",
+      "decision": "accept",
+      "suggested_swedish": "Det finns inte tillräckligt med minne för att undersöka den här bilden",
+      "rationale": "Undersöka correctly identifies file inspection before opening; the message makes no claim of completed decoding.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1285"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_inspect_this_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_numeric_slider_value",
+      "priority": "P1",
+      "english": "%1$s: %2$d",
+      "proposed_swedish": "%1$s: %2$d",
+      "decision": "accept",
+      "suggested_swedish": "%1$s: %2$d",
+      "rationale": "The name-and-integer template is language-neutral and retains its exact label/value and integer contracts.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L58"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_numeric_slider_value"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_original_size34",
+      "priority": "P1",
+      "english": "Original size",
+      "proposed_swedish": "Originalstorlek",
+      "decision": "accept",
+      "suggested_swedish": "Originalstorlek",
+      "rationale": "Originalstorlek correctly describes restoration of source pixel dimensions, not the separate actual-size view scale.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L749"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_original_size34",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_other_images34",
+      "priority": "P1",
+      "english": "Other images",
+      "proposed_swedish": "Andra bilder",
+      "decision": "accept",
+      "suggested_swedish": "Andra bilder",
+      "rationale": "Andra bilder is a natural label for the device/gallery-source chooser and can be reused verbatim in navigation guidance.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L305",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L888"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_other_images34",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_paste_hint34",
+      "priority": "P1",
+      "english": "Copy an area or use Draw → Insert → Other images.",
+      "proposed_swedish": "Kopiera ett område eller välj Rita → Lägg till → Andra bilder.",
+      "decision": "accept",
+      "suggested_swedish": "Kopiera ett område eller välj Rita → Lägg till → Andra bilder.",
+      "rationale": "The complete failed-Paste instruction uses the actual Swedish path Rita → Lägg till → Andra bilder and preserves the alternative copy-an-area prerequisite.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L912"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_paste_hint34",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "english": "Pinch and pan mode",
+      "proposed_swedish": "Läge för zoomning med två fingrar och panorering",
+      "decision": "accept",
+      "suggested_swedish": "Läge för zoomning med två fingrar och panorering",
+      "rationale": "The final wording explicitly preserves two-finger zooming and panning in natural Swedish. Source-semantic acceptance only: no current caller establishes live use.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_place_text",
+      "priority": "P1",
+      "english": "Place text",
+      "proposed_swedish": "Placera text",
+      "decision": "accept",
+      "suggested_swedish": "Placera text",
+      "rationale": "Placera text accurately titles positioning text on the canvas and remains distinct from its Lägg till text confirmation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L98"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_place_text"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_please_try_again",
+      "priority": "P1",
+      "english": "Please try again.",
+      "proposed_swedish": "Försök igen.",
+      "decision": "accept",
+      "suggested_swedish": "Försök igen.",
+      "rationale": "Försök igen is a natural complete retry instruction; literal translation of please is unnecessary in Swedish UI text.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L180",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L930"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_please_try_again"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_please_wait_for_the_current_operation",
+      "priority": "P1",
+      "english": "Please wait for the current operation.",
+      "proposed_swedish": "Vänta tills den pågående åtgärden är klar.",
+      "decision": "accept",
+      "suggested_swedish": "Vänta tills den pågående åtgärden är klar.",
+      "rationale": "The sentence asks the user to wait for the ongoing operation to finish and does not imply failure or a restart requirement.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L170",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L549",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L555"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_please_wait_for_the_current_operation"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_px",
+      "priority": "P1",
+      "english": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
+      "proposed_swedish": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
+      "decision": "accept",
+      "suggested_swedish": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
+      "rationale": "The complete two-line status template preserves tool, zoom, canvas dimensions and draft status in their original positions and types.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L681"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_px"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_px_724eb3",
+      "priority": "P1",
+      "english": "%1$s × %2$s px",
+      "proposed_swedish": "%1$s × %2$s px",
+      "decision": "accept",
+      "suggested_swedish": "%1$s × %2$s px",
+      "rationale": "The width-by-height display retains both supplied string values, multiplication sign and px unit without unnecessary lexical changes.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L707"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_px_724eb3"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_reset_bw23",
+      "priority": "P1",
+      "english": "Black / white",
+      "proposed_swedish": "Svart / vitt",
+      "decision": "accept",
+      "suggested_swedish": "Svart / vitt",
+      "rationale": "Svart / vitt is a natural compact colour-pair label and preserves foreground-black/background-white ordering.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L423"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_reset_bw23"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_reset_crop",
+      "priority": "P1",
+      "english": "Reset crop",
+      "proposed_swedish": "Återställ beskärning",
+      "decision": "accept",
+      "suggested_swedish": "Återställ beskärning",
+      "rationale": "Återställ beskärning accurately describes resetting crop margins to the full image; it does not promise source-file recovery.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L125"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_reset_crop"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_reset_to_black_white",
+      "priority": "P1",
+      "english": "Reset to black / white",
+      "proposed_swedish": "Återställ till svart / vitt",
+      "decision": "accept",
+      "suggested_swedish": "Återställ till svart / vitt",
+      "rationale": "The explicit reset action and black/white order are preserved; current use is unverified.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_reset_to_black_white"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_resize_and_load",
+      "priority": "P1",
+      "english": "Resize and load",
+      "proposed_swedish": "Ändra storlek och öppna",
+      "decision": "accept",
+      "suggested_swedish": "Ändra storlek och öppna",
+      "rationale": "Ändra storlek och öppna naturally describes resizing the imported copy and loading it into the editor; both actions remain explicit.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_resize_and_load"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_resize_the_copy",
+      "priority": "P1",
+      "english": "Resize the copy",
+      "proposed_swedish": "Ändra storlek på kopian",
+      "decision": "accept",
+      "suggested_swedish": "Ändra storlek på kopian",
+      "rationale": "Kopian unambiguously restricts the size change to the copy, retaining the unchanged-source distinction.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L32"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_resize_the_copy"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_scales_the_image_unlock_the_ratio_to_stretch",
+      "priority": "P1",
+      "english": "Scales the image. Unlock the ratio to stretch width and height independently.",
+      "proposed_swedish": "Skalar bilden. Lås upp bildförhållandet för att ändra bredd och höjd oberoende av varandra.",
+      "decision": "accept",
+      "suggested_swedish": "Skalar bilden. Lås upp bildförhållandet för att ändra bredd och höjd oberoende av varandra.",
+      "rationale": "The explanation retains image scaling and unlocking the width/height relationship for independent changes, distinct from canvas trimming.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1007"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_scales_the_image_unlock_the_ratio_to_stretch"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_select_an_area",
+      "priority": "P1",
+      "english": "Select an area",
+      "proposed_swedish": "Markera ett område",
+      "decision": "accept",
+      "suggested_swedish": "Markera ett område",
+      "rationale": "Markera ett område is the natural selection prerequisite and aligns with existing markering terminology.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L706"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_select_an_area"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_select_an_area_first",
+      "priority": "P1",
+      "english": "Select an area first.",
+      "proposed_swedish": "Markera ett område först.",
+      "decision": "accept",
+      "suggested_swedish": "Markera ett område först.",
+      "rationale": "Först preserves the required order before cut/copy/crop/delete actions and does not imply that the attempted action succeeded.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L841",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L843",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L908",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_select_an_area_first"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_selected_colour23",
+      "priority": "P1",
+      "english": "Selected color",
+      "proposed_swedish": "Vald färg",
+      "decision": "accept",
+      "suggested_swedish": "Vald färg",
+      "rationale": "Vald färg correctly labels the currently selected colour sample as a state, not an instruction.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L211"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_selected_colour23"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_selection_dimensions_are_too_large",
+      "priority": "P1",
+      "english": "Selection dimensions are too large.",
+      "proposed_swedish": "Markeringens mått är för stora.",
+      "decision": "accept",
+      "suggested_swedish": "Markeringens mått är för stora.",
+      "rationale": "Markeringens mått keeps the oversized condition attached to selection geometry rather than total file size.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L354"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_selection_dimensions_are_too_large"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_show_all",
+      "priority": "P1",
+      "english": "Show all",
+      "proposed_swedish": "Visa alla",
+      "decision": "accept",
+      "suggested_swedish": "Visa alla",
+      "rationale": "Visa alla naturally refers to all placed images in this fit-to-view action; it does not claim to select them.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L101"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_show_all"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_show_controls",
+      "priority": "P1",
+      "english": "Show controls",
+      "proposed_swedish": "Visa kontroller",
+      "decision": "accept",
+      "suggested_swedish": "Visa kontroller",
+      "rationale": "Visa kontroller clearly names restoration of the hidden editor controls from fullscreen.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1573"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_show_controls"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_show_editor_controls",
+      "priority": "P1",
+      "english": "Show editor controls",
+      "proposed_swedish": "Visa redigeringskontrollerna",
+      "decision": "accept",
+      "suggested_swedish": "Visa redigeringskontrollerna",
+      "rationale": "The source-only show action mirrors Dölj redigeringskontrollerna with the same explicit editor qualifier.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_show_editor_controls"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_show_magnified_drawing_preview",
+      "priority": "P1",
+      "english": "Show magnified drawing preview",
+      "proposed_swedish": "Visa en förstorad förhandsvisning av ritområdet",
+      "decision": "accept",
+      "suggested_swedish": "Visa en förstorad förhandsvisning av ritområdet",
+      "rationale": "The sentence accurately describes enabling an enlarged local drawing-area preview rather than altering image resolution or canvas dimensions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1531",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1549"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_show_magnified_drawing_preview"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_size_pixels",
+      "priority": "P1",
+      "english": "Size (pixels)",
+      "proposed_swedish": "Storlek (bildpunkter)",
+      "decision": "accept",
+      "suggested_swedish": "Storlek (bildpunkter)",
+      "rationale": "Bildpunkter preserves actual image-pixel font size rather than typographic points and matches the existing unit terminology.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L44"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_size_pixels"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_size_px",
+      "priority": "P1",
+      "english": "Size (px)",
+      "proposed_swedish": "Storlek (px)",
+      "decision": "accept",
+      "suggested_swedish": "Storlek (px)",
+      "rationale": "The compact size label retains px and fits the actual pencil/brush width control semantics.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L765",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L769"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_size_px"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_tap_an_image_first",
+      "priority": "P1",
+      "english": "Tap an image first.",
+      "proposed_swedish": "Tryck först på en bild.",
+      "decision": "accept",
+      "suggested_swedish": "Tryck först på en bild.",
+      "rationale": "Tryck först på en bild preserves both the touch selection gesture and its prerequisite order for assembly actions.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_tap_canvas_to_type",
+      "priority": "P1",
+      "english": "Tap canvas\\nto type",
+      "proposed_swedish": "Tryck på ritytan\\nför att skriva",
+      "decision": "accept",
+      "suggested_swedish": "Tryck på ritytan\\nför att skriva",
+      "rationale": "The complete two-line prompt retains tapping the canvas as the prerequisite for text entry; the Swedish line continuation is natural.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L766"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_tap_canvas_to_type"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_tap_to_type_a_number",
+      "priority": "P1",
+      "english": "%1$s: %2$s. Tap to type a number.",
+      "proposed_swedish": "%1$s: %2$s. Tryck för att ange ett tal.",
+      "decision": "accept",
+      "suggested_swedish": "%1$s: %2$s. Tryck för att ange ett tal.",
+      "rationale": "Both name and current value remain intact, followed by a clear accessibility instruction for direct numeric entry by tapping.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L58"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_tap_to_type_a_number"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_text_direction23",
+      "priority": "P1",
+      "english": "Text direction",
+      "proposed_swedish": "Textriktning",
+      "decision": "accept",
+      "suggested_swedish": "Textriktning",
+      "rationale": "Textriktning correctly names horizontal/vertical writing direction without imposing an unrequested orientation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L56",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L58"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_text_direction23"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_crop_must_contain_at_least_one_pixel",
+      "priority": "P1",
+      "english": "The crop must contain at least one pixel.",
+      "proposed_swedish": "Beskärningsområdet måste innehålla minst en bildpunkt.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningsområdet måste innehålla minst en bildpunkt.",
+      "rationale": "The complete message names the crop region and preserves the minimum-one-pixel constraint.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L29"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_crop_must_contain_at_least_one_pixel"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_crop_must_stay_inside_the_image",
+      "priority": "P1",
+      "english": "The crop must stay inside the image.",
+      "proposed_swedish": "Beskärningsområdet måste ligga inom bilden.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningsområdet måste ligga inom bilden.",
+      "rationale": "The crop region must remain inside the source image, correctly distinct from the separate canvas-bound warning.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L223"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_crop_must_stay_inside_the_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_decoder_and_editing_buffers_need_about_the",
+      "priority": "P1",
+      "english": "The decoder and editing buffers need about %1$s; the current safe editing budget is %2$s. Choose a smaller copy.",
+      "proposed_swedish": "Avkodaren och redigeringsbuffertarna kräver ungefär %1$s; den nuvarande säkra minnesbudgeten för redigering är %2$s. Välj en mindre kopia.",
+      "decision": "accept",
+      "suggested_swedish": "Avkodaren och redigeringsbuffertarna kräver ungefär %1$s; den nuvarande säkra minnesbudgeten för redigering är %2$s. Välj en mindre kopia.",
+      "rationale": "The approximation, decoder/edit-buffer requirement, current safe editing budget and smaller-copy remedy all survive with both amounts intact.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L48",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L88",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L149"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_decoder_and_editing_buffers_need_about_the"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_full_image_and_working_buffers_exceed_the",
+      "priority": "P1",
+      "english": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+      "proposed_swedish": "Hela bilden och arbetsbuffertarna överskrider den nuvarande säkra minnesbudgeten, eller så kunde Android inte allokera minne för dem. Ändra storlek på en kopia för att redigera den. Originalfilen förblir oförändrad.",
+      "decision": "accept",
+      "suggested_swedish": "Hela bilden och arbetsbuffertarna överskrider den nuvarande säkra minnesbudgeten, eller så kunde Android inte allokera minne för dem. Ändra storlek på en kopia för att redigera den. Originalfilen förblir oförändrad.",
+      "rationale": "Both failure alternatives survive: budget overrun or Android allocation failure. Copy-only resizing and the unchanged original guarantee are explicit.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L27"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_full_image_and_working_buffers_exceed_the"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_picker_returned_no_file_please_choose_the",
+      "priority": "P1",
+      "english": "The picker returned no file. Please choose the file again.",
+      "proposed_swedish": "Filväljaren returnerade ingen fil. Välj filen igen.",
+      "decision": "accept",
+      "suggested_swedish": "Filväljaren returnerade ingen fil. Välj filen igen.",
+      "rationale": "The empty picker result and request to choose the file again are both preserved; the single-file wording matches the editor flow.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1242"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_file_please_choose_the"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_picker_returned_no_files",
+      "priority": "P1",
+      "english": "The picker returned no files.",
+      "proposed_swedish": "Filväljaren returnerade inga filer.",
+      "decision": "accept",
+      "suggested_swedish": "Filväljaren returnerade inga filer.",
+      "rationale": "The plural result correctly describes no files returned by the multi-file chooser, distinct from the single-file retry message.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L201"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_files"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_the_selected_provider_did_not_return_any_image",
+      "priority": "P1",
+      "english": "The selected provider did not return any image data.",
+      "proposed_swedish": "Den valda filleverantören returnerade inga bilddata.",
+      "decision": "accept",
+      "suggested_swedish": "Den valda filleverantören returnerade inga bilddata.",
+      "rationale": "Filleverantören usefully identifies the Android file/content provider; no image data returned is preserved without blaming the user.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1265"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_the_selected_provider_did_not_return_any_image"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_this_file_is_not_a_supported_image_use",
+      "priority": "P1",
+      "english": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "proposed_swedish": "Den här filen är inte en bild i ett format som stöds. Använd PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF eller bilddata som Base64-text.",
+      "decision": "accept",
+      "suggested_swedish": "Den här filen är inte en bild i ett format som stöds. Använd PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF eller bilddata som Base64-text.",
+      "rationale": "The final wording bilddata som Base64-text resolves the earlier caption ambiguity. The full warning retains the unsupported-image meaning, every listed format, and text-represented image data.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L133"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_this_file_is_not_a_supported_image_use"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_tolerance",
+      "priority": "P1",
+      "english": "Tolerance",
+      "proposed_swedish": "Tolerans",
+      "decision": "accept",
+      "suggested_swedish": "Tolerans",
+      "rationale": "Tolerans is the natural fill-colour-difference control term and does not change the slider meaning.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L758"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_tolerance"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_too_large_for_the_current_budget_reduce_the",
+      "priority": "P1",
+      "english": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+      "proposed_swedish": "För stor för den nuvarande minnesbudgeten. Minska måtten eller avbryt och frigör minne.",
+      "decision": "accept",
+      "suggested_swedish": "För stor för den nuvarande minnesbudgeten. Minska måtten eller avbryt och frigör minne.",
+      "rationale": "The message retains both remedies, reducing dimensions or cancelling and freeing memory, and correctly identifies the budget as memory-related.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L49"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_too_large_for_the_current_budget_reduce_the"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_tool_categories",
+      "priority": "P1",
+      "english": "Tool categories. Scroll to see more tools",
+      "proposed_swedish": "Verktygskategorier. Rulla för att se fler verktyg",
+      "decision": "accept",
+      "suggested_swedish": "Verktygskategorier. Rulla för att se fler verktyg",
+      "rationale": "The tool-category label and scroll-to-see-more instruction are both complete; current use is unverified.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_tool_categories"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_trim_amounts_must_be_zero_or_greater",
+      "priority": "P1",
+      "english": "Trim amounts must be zero or greater.",
+      "proposed_swedish": "Beskärningsmåtten måste vara noll eller större.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningsmåtten måste vara noll eller större.",
+      "rationale": "Noll eller större preserves the inclusive lower bound and stays distinct from strictly positive dimension requirements.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L42"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_trim_amounts_must_be_zero_or_greater"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_trim_amounts_must_fit_inside_each_image_use",
+      "priority": "P1",
+      "english": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+      "proposed_swedish": "Beskärningsmåtten måste rymmas inom varje bild. Använd hela bildpunkter eller procent.",
+      "decision": "accept",
+      "suggested_swedish": "Beskärningsmåtten måste rymmas inom varje bild. Använd hela bildpunkter eller procent.",
+      "rationale": "The full sentence preserves per-image crop limits and the distinction between whole-pixel inputs and percentage inputs.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L45"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_trim_expand_canvas_by_touch",
+      "priority": "P1",
+      "english": "Trim / expand canvas by touch…",
+      "proposed_swedish": "Beskär / utöka ritytan med pekgester…",
+      "decision": "accept",
+      "suggested_swedish": "Beskär / utöka ritytan med pekgester…",
+      "rationale": "The final wording preserves both trimming and expanding the canvas with touch gestures. Pekgester avoids restricting the interaction to a bare finger. Current live use is unverified.",
+      "context_review": "source-semantics-only; no current direct production caller",
+      "production_source_links": [],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_trim_expand_canvas_by_touch"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_try_a_different_file_or_location",
+      "priority": "P1",
+      "english": "Please try a different file or location.",
+      "proposed_swedish": "Prova en annan fil eller plats.",
+      "decision": "accept",
+      "suggested_swedish": "Prova en annan fil eller plats.",
+      "rationale": "Both file and location alternatives remain available; the sentence does not guess which one caused the failure.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1414"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_try_a_different_file_or_location"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_type_text",
+      "priority": "P1",
+      "english": "Type text",
+      "proposed_swedish": "Skriv text",
+      "decision": "accept",
+      "suggested_swedish": "Skriv text",
+      "rationale": "Skriv text is a natural input placeholder and does not confuse typing with immediate insertion.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L35"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_type_text"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_use_1_1024_pixels",
+      "priority": "P1",
+      "english": "Use 1–1024 pixels.",
+      "proposed_swedish": "Ange 1–1024 bildpunkter.",
+      "decision": "accept",
+      "suggested_swedish": "Ange 1–1024 bildpunkter.",
+      "rationale": "The exact 1–1024 range and image-pixel unit are preserved; no substitution of typographic points occurs.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L103"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_use_1_1024_pixels"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_use_50_300",
+      "priority": "P1",
+      "english": "Use 50–300%.",
+      "proposed_swedish": "Ange 50–300 %.",
+      "decision": "accept",
+      "suggested_swedish": "Ange 50–300 %.",
+      "rationale": "The exact 50–300-percent range is retained with natural Swedish percentage spacing.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L104"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_use_50_300",
+        "formatted": "false"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_use_a_positive_target_dimension",
+      "priority": "P1",
+      "english": "Use a positive target dimension.",
+      "proposed_swedish": "Ange ett positivt målmått.",
+      "decision": "accept",
+      "suggested_swedish": "Ange ett positivt målmått.",
+      "rationale": "Ett positivt målmått correctly refers to one normalization axis, greater than zero, without demanding a second independently specified target.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L26"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_use_a_positive_target_dimension"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_use_colour",
+      "priority": "P1",
+      "english": "Use colour",
+      "proposed_swedish": "Använd färg",
+      "decision": "accept",
+      "suggested_swedish": "Använd färg",
+      "rationale": "Använd färg naturally accepts the chosen colour and remains distinct from adding a saved-palette entry.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_use_colour"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_use_rrggbb",
+      "priority": "P1",
+      "english": "Use #RRGGBB",
+      "proposed_swedish": "Använd #RRGGBB",
+      "decision": "accept",
+      "suggested_swedish": "Använd #RRGGBB",
+      "rationale": "The complete validation prompt preserves the exact #RRGGBB syntax without translating the RGB component notation.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L354"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_use_rrggbb"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_width",
+      "priority": "P1",
+      "english": "Width (%1$s)",
+      "proposed_swedish": "Bredd (%1$s)",
+      "decision": "accept",
+      "suggested_swedish": "Bredd (%1$s)",
+      "rationale": "Bredd is the correct short width label and retains its caller-supplied unit in parentheses.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L56",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L61",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L79"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_width"
+      },
+      "structural_result": "pass"
+    },
+    {
+      "key": "string/ui_working",
+      "priority": "P1",
+      "english": "Working…",
+      "proposed_swedish": "Arbetar…",
+      "decision": "accept",
+      "suggested_swedish": "Arbetar…",
+      "rationale": "Arbetar is a natural neutral busy state across all callers; the ellipsis maintains ongoing-operation meaning.",
+      "context_review": "production-callsite",
+      "production_source_links": [
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L147",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L682",
+        "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L122"
+      ],
+      "integration_action": "add exact accepted value with supplied attributes",
+      "attributes": {
+        "name": "ui_working"
+      },
+      "structural_result": "pass"
+    }
+  ]
+}
