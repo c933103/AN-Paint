@@ -1,0 +1,39 @@
+{
+  "expected_composed_tree": "70b93689fa83422be586e1b49ab1203cff082ece",
+  "focus_afrikaans": {
+    "tests": 7,
+    "seconds": 0.48,
+    "exit": 0
+  },
+  "focus_gallery_redirect": {
+    "tests": 5,
+    "seconds": 0.698,
+    "exit": 0
+  },
+  "host_normal": {
+    "command": "python3 -m unittest discover -s tools -p 'test_*.py' -v",
+    "tests": 1075,
+    "seconds": 524.004,
+    "exit": 0,
+    "result": "OK"
+  },
+  "host_optimized": {
+    "command": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+    "tests": 1075,
+    "seconds": 515.973,
+    "exit": 0,
+    "result": "OK"
+  },
+  "aapt2": {
+    "command": "aapt2 compile Paintroid/src/main/res/values-b+af/strings.xml -o <temporary output directory>",
+    "exit": 0
+  },
+  "limits": [
+    "The composed current-develop tree was tested locally, not published as an application head.",
+    "No fresh hosted JVM, lint, APK or emulator run was performed for the composed tree.",
+    "Original PR head has all six successful hosted check runs in run 39240946949 attempt 2.",
+    "Local durations are observations, not performance benchmarks or hosted workflow timing claims.",
+    "Nine terminology/context holds and the bounded 341-pair review remain unchanged.",
+    "Negative-fixture stdout contains deliberately unsuccessful instrumentation receipts; the unittest aggregates above exited zero."
+  ]
+}
