@@ -21,8 +21,8 @@ class GalleryRedirectWordingTests(unittest.TestCase):
         cls.scope = contracts.fixture("locale_contract_scope.json")
         cls.wording = contracts.fixture("gallery_redirect_current_wording.json")
 
-    def test_only_reviewed_swedish_extends_this_family(self):
-        self.assertEqual(['sv'], self.wording['additional_reviewed_tags'])
+    def test_only_reviewed_czech_and_swedish_extend_this_family(self):
+        self.assertEqual(['cs', 'sv'], self.wording['additional_reviewed_tags'])
 
     def test_complete_values_and_exact_existing_locale_scope(self):
         contracts.require_wording_shape(self.wording, {KEY}, {"default", *self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]})

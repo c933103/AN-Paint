@@ -26,8 +26,8 @@ EXPECTED_KEYS = {
 }
 
 
-# Additions are message-family-specific. Swedish now has independently reviewed metadata/copy-credit values.
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'sv'}, FAMILIES[1]: {'sv'}, FAMILIES[2]: {'cs', 'pl', 'sv'}}
+# Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'cs', 'pl', 'sv'}}
 
 
 def wording_tags(name):
@@ -98,9 +98,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
         for name in FAMILIES[:2]:
-            self.assertTrue({'cs', 'pl'}.isdisjoint(wording_tags(name)))
-            self.assertEqual({'default'} | SCOPED_TAGS | {'sv'}, wording_tags(name))
-            self.assertEqual(['sv'], wording_fixture(name)['additional_reviewed_tags'])
+            self.assertTrue({'pl'}.isdisjoint(wording_tags(name)))
+            self.assertEqual({'default'} | SCOPED_TAGS | {'cs', 'sv'}, wording_tags(name))
+            self.assertEqual(['cs', 'sv'], wording_fixture(name)['additional_reviewed_tags'])
         self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
         self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
         swedish = fixture('swedish_remaining_p1_wording.json')
@@ -154,13 +154,13 @@ class CurrentLocalizationContracts(unittest.TestCase):
         self.assertEqual(112, len(fallback))
         self.assertEqual(27, len(ADDED_TAGS))
         self.assertLessEqual(ADDED_TAGS, fallback)
-        self.assertEqual(fallback - {'sv'}, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
+        self.assertEqual(fallback - {'cs', 'sv'}, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
         source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt').read_text()
         declaration = re.search(r'private val fallbackTags=setOf\((.*?)\n    \)', source, re.S)
         self.assertIsNotNone(declaration)
         runtime_fallbacks = re.findall(r'"([\w-]+)"', declaration.group(1))
-        self.assertEqual(len(fallback - {'sv'}), len(runtime_fallbacks))
-        self.assertEqual(fallback - {'sv'}, set(runtime_fallbacks))
+        self.assertEqual(len(fallback - {'cs', 'sv'}), len(runtime_fallbacks))
+        self.assertEqual(fallback - {'cs', 'sv'}, set(runtime_fallbacks))
 
     def test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected(self):
         from copy import deepcopy

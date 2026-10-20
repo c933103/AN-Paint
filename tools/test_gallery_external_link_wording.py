@@ -21,8 +21,8 @@ class GalleryExternalLinkWordingTests(unittest.TestCase):
         cls.scope = contracts.fixture("locale_contract_scope.json")
         cls.wording = contracts.fixture("gallery_external_link_current_wording.json")
 
-    def test_only_reviewed_swedish_extends_this_family(self):
-        self.assertEqual(['sv'], self.wording['additional_reviewed_tags'])
+    def test_only_reviewed_czech_and_swedish_extend_this_family(self):
+        self.assertEqual(['cs', 'sv'], self.wording['additional_reviewed_tags'])
 
     def test_complete_independent_wording_and_scope(self):
         expected_tags = {"default", *self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]}
