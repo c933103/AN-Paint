@@ -1,0 +1,291 @@
+................................................................................................................................................................................................................................................................................................................................................./opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+......................................................................................................................................................................................................................Installed glyph ink evidence rejected: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+F.FFF...F......F...FE....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_two_routes_full_pngs_source_and_successful_protocol_are_required (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_two_routes_full_pngs_source_and_successful_protocol_are_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 132, in test_two_routes_full_pngs_source_and_successful_protocol_are_required
+    receipt, records = ink.verify_capture(raw, SOURCE, summary)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 475, in verify_capture
+    protocol = verify_runner(raw, runner_summary, expected_source_sha256, source_tests)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 455, in verify_runner
+    expected = source_expected_inventory(expected_source_sha256, source_tests)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 430, in source_expected_inventory
+    raise EvidenceError(f'cannot establish exact ordinary-app source inventory: {exc}') from exc
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+======================================================================
+FAIL: test_cli_extracts_verified_bytes_receipt_and_never_overwrites (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_cli_extracts_verified_bytes_receipt_and_never_overwrites)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 415, in test_cli_extracts_verified_bytes_receipt_and_never_overwrites
+    self.assertEqual(0, ink.main(args))
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_cross_route_device_metrics_must_agree (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_cross_route_device_metrics_must_agree) (name='fingerprint')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 343, in test_cross_route_device_metrics_must_agree
+    with self.subTest(name=name), self.assertRaisesRegex(ink.EvidenceError, 'route device/profile mismatch'):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "route device/profile mismatch" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+======================================================================
+FAIL: test_cross_route_device_metrics_must_agree (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_cross_route_device_metrics_must_agree) (name='root_width')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 343, in test_cross_route_device_metrics_must_agree
+    with self.subTest(name=name), self.assertRaisesRegex(ink.EvidenceError, 'route device/profile mismatch'):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "route device/profile mismatch" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+======================================================================
+FAIL: test_cross_route_device_metrics_must_agree (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_cross_route_device_metrics_must_agree) (name='default_textview_use_bounds_for_width')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 343, in test_cross_route_device_metrics_must_agree
+    with self.subTest(name=name), self.assertRaisesRegex(ink.EvidenceError, 'route device/profile mismatch'):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "route device/profile mismatch" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+======================================================================
+FAIL: test_final_evidence_keys_do_not_manufacture_success_or_hide_real_failure (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_final_evidence_keys_do_not_manufacture_success_or_hide_real_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 355, in test_final_evidence_keys_do_not_manufacture_success_or_hide_real_failure
+    with self.assertRaisesRegex(ink.EvidenceError, 'raw instrumentation did not pass'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "raw instrumentation did not pass" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+======================================================================
+FAIL: test_nonpassing_truncated_or_wrong_source_summary_is_rejected (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_nonpassing_truncated_or_wrong_source_summary_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 376, in test_nonpassing_truncated_or_wrong_source_summary_is_rejected
+    with self.assertRaisesRegex(ink.EvidenceError, 'summary/raw protocol disagree'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "summary/raw protocol disagree" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+======================================================================
+FAIL: test_self_consistent_producer_only_subset_fails_exact_source_inventory (test_installed_glyph_ink_evidence.InstalledGlyphTransportTests.test_self_consistent_producer_only_subset_fails_exact_source_inventory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 426, in source_expected_inventory
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+  File "/tmp/an-position-ime-diagnosis/source/tools/installed_glyph_ink_evidence.py", line 81, in require
+    raise EvidenceError(message)
+installed_glyph_ink_evidence.EvidenceError: checked-out app test source does not match expected source digest
+
+The above exception was the direct cause of the following exception:
+
+installed_glyph_ink_evidence.EvidenceError: cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/an-position-ime-diagnosis/source/tools/test_installed_glyph_ink_evidence.py", line 387, in test_self_consistent_producer_only_subset_fails_exact_source_inventory
+    with self.assertRaisesRegex(ink.EvidenceError, 'source-derived ordinary-app partition'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "source-derived ordinary-app partition" does not match "cannot establish exact ordinary-app source inventory: checked-out app test source does not match expected source digest"
+
+----------------------------------------------------------------------
+Ran 1054 tests in 214.729s
+
+FAILED (failures=7, errors=1)
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
