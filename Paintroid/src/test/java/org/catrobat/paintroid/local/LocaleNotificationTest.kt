@@ -99,7 +99,7 @@ class LocaleNotificationTest {
             assertNull(ShadowToast.getLatestToast())
             advance(2100);assertNull("Normal short-notice timeout retained",notice())
         }
-        for(tag in listOf("mn-Mong","en-US")) {
+        for(tag in listOf("en-US")) {
             selectLocale(Locale.forLanguageTag(tag))
             Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
             assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
@@ -151,15 +151,15 @@ class LocaleNotificationTest {
             selectLocale(Locale.forLanguageTag(tag))
             ShadowToast.reset()
             show(tag)
-            if(tag in bundledHorizontal) {
+            if(tag in bundledHorizontal || org.catrobat.paintroid.classic.VerticalText.uiVertical(activity)) {
                 assertNotNull(tag,message())
                 assertEquals(tag,message().text.toString())
-                assertSame(tag,LocaleTypography.typeface(activity),message().typeface)
+                LocaleTypography.typeface(activity)?.let {assertSame(tag,it,message().typeface)}
                 assertNull(tag,ShadowToast.getLatestToast())
                 advance(2100)
                 assertNull(tag,notice())
             } else {
-                // Includes all vertical scripts: do not flatten them into this surface.
+                // Ordinary horizontal locales retain system-rendered text toasts.
                 assertNull(tag,notice())
                 assertEquals(tag,tag,ShadowToast.getTextOfLatestToast())
             }

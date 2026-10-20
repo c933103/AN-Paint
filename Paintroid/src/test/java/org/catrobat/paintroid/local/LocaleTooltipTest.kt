@@ -123,7 +123,7 @@ class LocaleTooltipTest {
         assertNull(LocaleTooltip.format(context,null));assertSame("",LocaleTooltip.format(context,""))
     }
 
-    @Test fun allPickerLocalesKeepNativeTextAndOnlyHorizontalBundledFacesAreAdded() {
+    @Test fun allPickerLocalesKeepCompleteTextAndSelectNativeOrColumnOwnership() {
         val tags=context.resources.getStringArray(R.array.app_language_tags)
         assertEquals(171,tags.size)
         val previousResources=PaintApplication.currentResources
@@ -134,20 +134,23 @@ class LocaleTooltipTest {
             val view=View(localized).apply {contentDescription="accessible label"}
             val original=SpannableString("$tag tooltip")
             LocaleTooltip.set(view,original)
-            assertEquals(original.toString(),view.tooltipText.toString())
+            val vertical=VerticalText.uiVertical(localized)
+            fun text(v: View)=if(vertical) LocaleTooltip.logicalText(v) else v.tooltipText
+            if(vertical) assertNull("No duplicate native tooltip",view.tooltipText)
+            assertEquals(original.toString(),text(view).toString())
             assertEquals("accessible label",view.contentDescription)
             val count=if(tag in setOf("vi-Hani","wuu-Hans")) 1 else 0
-            assertEquals(tag,count,spans(view.tooltipText).size)
-            if(count==0) assertSame(tag,original,view.tooltipText)
+            assertEquals(tag,count,spans(text(view)).size)
+            if(count==0) assertSame(tag,original,text(view))
             val category=ToolCategoryButton(localized,ToolCategory.BRUSH,PaintTool.PENCIL,true)
             for(control in listOf(ToolButton(localized,PaintTool.PENCIL),ActionButton(localized,EditIcon.UNDO),category)) {
-                assertEquals(tag,control.contentDescription.toString(),control.tooltipText.toString())
-                assertEquals(tag,count,spans(control.tooltipText).size)
+                assertEquals(tag,control.contentDescription.toString(),text(control).toString())
+                assertEquals(tag,count,spans(text(control)).size)
             }
             category.expanded=true;category.selectedTool=PaintTool.WATERCOLOR;category.refresh()
-            assertEquals(category.contentDescription.toString(),category.tooltipText.toString())
-            assertTrue(category.tooltipText.toString().contains(PaintTool.WATERCOLOR.label))
-            assertEquals(tag,count,spans(category.tooltipText).size)
+            assertEquals(category.contentDescription.toString(),text(category).toString())
+            assertTrue(text(category).toString().contains(PaintTool.WATERCOLOR.label))
+            assertEquals(tag,count,spans(text(category)).size)
             LocaleTooltip.set(view,null);assertNull(view.tooltipText)
             LocaleTooltip.set(view,original);LocaleTooltip.set(view,"");assertNull(view.tooltipText)
         } } finally {PaintApplication.currentResources=previousResources}

@@ -37,7 +37,7 @@ internal object LocaleNotification {
         return null
     }
 
-    fun show(context: Context,text: CharSequence,duration: Int,font: Typeface,anchor: View?): Boolean {
+    fun show(context: Context,text: CharSequence,duration: Int,font: Typeface?,anchor: View?): Boolean {
         val owner=activity(context) ?: return false
         if(owner.isFinishing || owner.isDestroyed || owner.window.decorView.windowVisibility!=View.VISIBLE) return false
         if(anchor!=null && activity(anchor.context)!==owner) return false
@@ -48,7 +48,7 @@ internal object LocaleNotification {
         if(!host.isAttachedToWindow || !host.isShown || host.windowVisibility!=View.VISIBLE) return false
         // The old instance owns its timeout. It can never remove its replacement.
         host.findViewWithTag<Notice>(TAG)?.dismiss()
-        val notice=Notice(owner,text,font)
+        val notice=Notice(context,text,font)
         host.addView(notice,FrameLayout.LayoutParams(-1,-1))
         notice.requestApplyInsets()
         val base=if(duration==Toast.LENGTH_LONG) 3500 else 2000
@@ -64,17 +64,32 @@ internal object LocaleNotification {
         (y+height-windowHeight+insets.bottom).coerceAtLeast(0)
     )
 
-    private class Notice(context: Context,text: CharSequence,font: Typeface): FrameLayout(context) {
+    private class Notice(context: Context,text: CharSequence,font: Typeface?): FrameLayout(context) {
         private val callbackHandler=Handler(Looper.getMainLooper())
         private val expire=Runnable {dismiss()}
         private val dismissLater=Runnable {dismiss()}
         private var dismissed=false
+        private val vertical=VerticalText.uiVertical(context)
+        private var viewport: VerticalFeedbackView?=null
+        private var card: VerticalFeedbackCard?=null
+        private var interactive=false
+        private var persistent=false
+        private var timerStarted=false
+        private var capturingGesture=false
+        private var appliedInsets: WindowInsets?=null
+        private var timeout=2000L
         private fun dp(value: Int)=(value*resources.displayMetrics.density+.5f).toInt()
         init {
             tag=TAG
             isClickable=false
             isFocusable=false
-            addView(TextView(context).apply {
+            if(vertical) {
+                val surface=VerticalFeedbackCard(context,text,"locale_notification") {dismiss()}
+                surface.viewport.message.accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
+                viewport=surface.viewport
+                card=surface
+                addView(surface,LayoutParams(-1,-2,Gravity.BOTTOM).apply {setMargins(dp(16),dp(16),dp(16),dp(16))})
+            } else addView(TextView(context).apply {
                 tag="locale_notification_text"
                 this.text=text
                 typeface=font
@@ -92,10 +107,31 @@ internal object LocaleNotification {
             },LayoutParams(-1,-2,Gravity.BOTTOM).apply {setMargins(dp(16),dp(16),dp(16),dp(16))})
         }
 
-        // Drawing, taps and gestures continue to reach the editor underneath.
-        override fun dispatchTouchEvent(event: MotionEvent)=false
+        override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+            card?.let {surface ->
+                val margin=if(View.MeasureSpec.getSize(heightMeasureSpec)-paddingTop-paddingBottom<dp(160)) dp(4) else dp(16)
+                (surface.layoutParams as LayoutParams).setMargins(margin,margin,margin,margin)
+            }
+            super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        }
+
+        // Short notices remain wholly touch-transparent. An overflow card owns
+        // only a gesture begun inside its visible bounds; outside drawing keeps
+        // its target even when a later movement crosses the card.
+        override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+            if(event.actionMasked==MotionEvent.ACTION_DOWN) {
+                val bounds=card
+                capturingGesture=interactive && bounds!=null && event.x>=bounds.left && event.x<bounds.right &&
+                    event.y>=bounds.top && event.y<bounds.bottom
+            }
+            if(!capturingGesture) return false
+            super.dispatchTouchEvent(event)
+            if(event.actionMasked==MotionEvent.ACTION_UP || event.actionMasked==MotionEvent.ACTION_CANCEL) capturingGesture=false
+            return true
+        }
 
         override fun onApplyWindowInsets(insets: WindowInsets): WindowInsets {
+            appliedInsets=insets
             updateInsets()
             return insets
         }
@@ -103,10 +139,17 @@ internal object LocaleNotification {
         override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {
             updateInsets()
             super.onLayout(changed,left,top,right,bottom)
+            viewport?.let {
+                val overflow=card?.persistent==true
+                interactive=overflow && card?.deferred!=true
+                persistent=overflow
+                if(persistent) callbackHandler.removeCallbacks(expire) else startTimer()
+
+            }
         }
 
         private fun updateInsets() {
-            val insets=rootWindowInsets?.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout() or WindowInsets.Type.ime()) ?: return
+            val insets=(appliedInsets ?: rootWindowInsets)?.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout() or WindowInsets.Type.ime()) ?: return
             val location=IntArray(2)
             getLocationInWindow(location)
             // The content may already be inset. Subtract its window offset so
@@ -117,7 +160,18 @@ internal object LocaleNotification {
             }
         }
 
-        fun scheduleDismiss(timeout: Long) {callbackHandler.postDelayed(expire,timeout)}
+        fun scheduleDismiss(timeout: Long) {
+            this.timeout=timeout
+            // Vertical lifetime is decided after its first complete measurement.
+            // A slow first traversal must not expire an as-yet-unclassified card.
+            if(!vertical) startTimer()
+        }
+        private fun startTimer() {
+            if(!timerStarted && !dismissed) {
+                timerStarted=true
+                callbackHandler.postDelayed(expire,timeout)
+            }
+        }
         fun dismiss() {
             callbackHandler.removeCallbacks(expire)
             callbackHandler.removeCallbacks(dismissLater)

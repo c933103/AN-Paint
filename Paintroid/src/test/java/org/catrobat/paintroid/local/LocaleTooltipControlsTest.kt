@@ -61,7 +61,7 @@ class LocaleTooltipControlsTest {
     }
     private fun settle()=shadowOf(Looper.getMainLooper()).idleFor(32,TimeUnit.MILLISECONDS)
     private fun check(view: View,expected: String,tag: String) {
-        val text=requireNotNull(view.tooltipText)
+        val text=requireNotNull(if(VerticalText.uiVertical(view.context)) LocaleTooltip.logicalText(view) else view.tooltipText)
         assertEquals(expected,text.toString())
         val spans=(text as? Spanned)?.getSpans(0,text.length,MetricAffectingSpan::class.java).orEmpty()
         if(tag in setOf("vi-Hani","wuu-Hans")) {
@@ -141,6 +141,47 @@ class LocaleTooltipControlsTest {
                 check(view("cursor_draw_toggle"),ui(R.string.ui_cursor_start31),tag)
                 assertEquals(EditIcon.SAVE.label,view("save_image").contentDescription.toString())
             }
+        } finally {
+            ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+            controller.pause().stop()
+            val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(10)
+            while(activity.busy && System.nanoTime()<deadline) {settle();Thread.sleep(5)}
+            assertFalse(activity.busy);controller.destroy()
+        }
+    }
+
+    @Test fun verticalEditorHelpActionsAndCategoryTooltipRemainDistinct() {
+        AppLanguage.select(context,"mnc-Mong")
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get();awaitEditorStartup(activity)
+        controller.visible().windowFocusChanged(true);settle()
+        fun view(tag: String)=requireNotNull(activity.window.decorView.findViewWithTag<View>(tag))
+        fun click(tag: String) {EditorTestNavigation.click(activity,tag);settle()}
+        fun help(tag: String) {
+            val control=view(tag)
+            assertTrue(control.performLongClick());settle()
+            assertTrue(ShadowAlertDialog.getLatestAlertDialog().isShowing)
+            assertNull(LocaleTooltipWindowTest.popup(control))
+            assertNull(activity.window.decorView.findViewWithTag<View>(VerticalTooltipOverlay.TAG))
+            ShadowAlertDialog.getLatestAlertDialog().dismiss();settle()
+        }
+        try {
+            click("menu_Draw");help("tool_PENCIL")
+            val category=view("category_BRUSH")
+            assertTrue(category.performLongClick());settle()
+            val shown=requireNotNull(activity.window.decorView.findViewWithTag<VerticalTooltipOverlay>(VerticalTooltipOverlay.TAG))
+            assertEquals(category.contentDescription.toString(),shown.card.viewport.message.text.toString())
+            assertNull(LocaleTooltipWindowTest.popup(category))
+            assertTrue(category.performAccessibilityAction(android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP.id,null))
+            click("menu_View");help("command_View_1")
+            click("command_View_2");click("cursor_mode_enabled");help("cursor_draw_toggle")
+            val save=view("save_image")
+            assertTrue(save.performLongClick());settle()
+            val notification=activity.window.decorView.findViewWithTag<TextView>("locale_notification_text")
+            assertEquals(EditIcon.SAVE.label,notification.text.toString())
+            assertTrue(notification is FlowTextView)
+            assertNull(activity.window.decorView.findViewWithTag<View>(VerticalTooltipOverlay.TAG))
+            assertNull(LocaleTooltipWindowTest.popup(save))
         } finally {
             ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
             controller.pause().stop()
