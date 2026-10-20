@@ -1,5 +1,9 @@
 # Current Swedish catalogue evidence
 
+Latest application head: `994e448a7cf424ee33439662956fe46b221ba3f4`.
+Its current hosted merge combines develop `4feab3d6a13ac8c8e049393498ecf059ebd2f9d7`
+with this head; all 1,263 leaf contents/modes match the locally checked composition.
+
 Current source baseline: `d7436b3df842b9be9aa12be622ebc88ed8e8e2b9`.
 
 The original independent review is preserved unmodified in `README.md` and
@@ -74,3 +78,28 @@ The original independent receipt and the three genuine language holds remain.
 remote-tree comparison. Current-head Codex review and hosted run
 [39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235) have
 started; only their eventual current-head results can close the runtime gate.
+
+## Runtime repair verification and finite CI budgets
+
+The finalized c8bf159 artifact verifies all 1,186 JVM tests passed, including both
+repaired fixtures and the Curve button regression. All 1,066 Python tests were
+reported OK with two skips. Nevertheless, Actions explicitly timed out Python
+at 4 minutes and JVM at 12 minutes: their zero-exit command receipts took
+250.311 and 773.047 seconds. The regression job's final conclusion was cancelled;
+the available log does not separately prove why that aggregate state was chosen.
+`hosted-jvm-repair-verification.json` preserves exact artifact identity, verified
+SHA-256, full suite inventory, target results, timings and interpretation limits.
+All five other jobs passed. This is runtime evidence, not a new linguistic review.
+
+Head 994e448 keeps all tests and assertions while setting finite Python/JVM caps
+of 8/20 minutes and a 55-minute regression-job cap. Explicit phase maxima total
+50 minutes, with 5 minutes reserved for checkout/cache/evidence overhead. Device
+interaction caps, strict compiler cache rules and failure propagation are unchanged.
+`ci-budget-correction.json` records the measured rationale and strengthened finite
+budget contracts; `ci-budget-publication-receipt.json` records both complete remote
+trees and expected-head publication lease. All 56 CI contracts and the full
+1,068-test normal host suite passed on the fresh combined source. The optimized
+suite and [new hosted run 39434720839](https://github.com/c933103/AN-Paint/actions/runs/39434720839)
+are pending. No earlier passing report is relabelled as a pass for this new head.
+The original independent receipt, all production/translation values and three
+language holds remain unchanged.

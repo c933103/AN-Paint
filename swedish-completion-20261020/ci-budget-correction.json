@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "kind": "author CI budget correction from explicit hosted timeouts; no relaxed test acceptance",
+  "new_application_commit": "994e448a7cf424ee33439662956fe46b221ba3f4",
+  "parent": "c8bf159e06cacf351407a0ac7cdd28a2a3e16b3f",
+  "application_tree": "16c8feb0852af0e85ed2e7af5c0bae763f8e2270",
+  "branch_updated": true,
+  "changed_files": [
+    ".github/workflows/android.yml",
+    "CI.md",
+    "tools/test_ci_timeout_budget.py",
+    "tools/test_ci_check_phases.py"
+  ],
+  "budgets_minutes": {
+    "compiler_cache_install": 2,
+    "prepare_build_tools": 8,
+    "python": 8,
+    "jvm": 20,
+    "native_lint_dependencies": 6,
+    "lint": 6,
+    "explicit_phase_total": 50,
+    "aggregate_job": 55,
+    "unallocated_checkout_cache_evidence_allowance": 5
+  },
+  "previous_budgets_minutes": {
+    "python": 4,
+    "jvm": 12,
+    "aggregate_job": 22
+  },
+  "measurements": [
+    {
+      "run": 39427218699,
+      "head": "92aa4fb6f379f5a0c520d02ace266a2ee86ca769",
+      "job": 118642696164,
+      "method": "GitHub step timestamps",
+      "python_seconds": 232,
+      "jvm_seconds": 614,
+      "regression_job_seconds": 1189,
+      "conclusion": "success"
+    },
+    {
+      "run": 39412001502,
+      "head": "cafb244e8bd8342926d5696ce63a67860cb9b9ad",
+      "job": 118592033645,
+      "method": "GitHub step timestamps",
+      "python_seconds": 233,
+      "jvm_seconds": 617,
+      "jvm_result": "completed with the two subsequently repaired test failures"
+    },
+    {
+      "run": 39427728235,
+      "head": "c8bf159e06cacf351407a0ac7cdd28a2a3e16b3f",
+      "job": 118644409580,
+      "method": "SHA-256-verified artifact command timing receipts",
+      "python_seconds": 250.311,
+      "jvm_seconds": 773.047,
+      "command_exit_statuses": [
+        0,
+        0
+      ],
+      "workflow_step_results": [
+        "timed out after 4 minutes",
+        "timed out after 12 minutes"
+      ],
+      "aggregate_conclusion": "cancelled; separate cause not established by available log"
+    }
+  ],
+  "margins": "8-minute Python cap is about 92 percent above 250.311 seconds; 20-minute JVM cap is about 55 percent above 773.047 seconds. The aggregate reserves the sum of six finite explicit phase maxima plus five minutes overhead. This is a hard cancellation policy, not a guaranteed runtime bound.",
+  "preserved": "All Python/JVM/native/lint commands, full test inventories, assertion semantics, failure propagation, artifact capture, compiler cache safety, device phase deadlines and per-interaction limits are unchanged. No rerun of known-insufficient unchanged budgets.",
+  "integration": {
+    "fresh_develop": "4feab3d6a13ac8c8e049393498ecf059ebd2f9d7",
+    "original_tested_merge": "d038630efc72dc41f8da66944314d67977eaf9ef",
+    "added_develop_files": 20,
+    "retained_and_planned_leaf_contents_and_modes_checked": 1263,
+    "result": "The new GitHub synthetic merge has exact parents develop 4feab3d and application head 994e448; all 1263 remote leaf contents/modes equal the locally validated composition.",
+    "new_tested_merge": "d2785884f33e7171cc28cc6bd4487068da481d08",
+    "new_tested_tree": "808f0cedfc261d652f351fdc080e1c40492e6ceb",
+    "remote_merge_leaf_contents_modes_verified": 1263
+  },
+  "local_checks": {
+    "focused_budget": {
+      "tests": 8,
+      "seconds": 0.378,
+      "result": "passed"
+    },
+    "focused_phase": {
+      "tests": 8,
+      "seconds": 1.073,
+      "result": "passed"
+    },
+    "all_ci_contracts": {
+      "tests": 56,
+      "seconds": 83.957,
+      "result": "passed"
+    },
+    "initial_combined_run": {
+      "tests": 1068,
+      "seconds": 441.231,
+      "failures": 1,
+      "reason": "One existing second phase-contract oracle still expected old 22/4/12-minute caps. Corrected that dependent oracle without removing its command, failure-propagation or cache assertions; a fresh complete run is required."
+    },
+    "corrected_combined_normal": {
+      "tests": 1068,
+      "seconds": 435.857,
+      "result": "passed"
+    },
+    "corrected_combined_optimized": "running"
+  },
+  "language_limits": "All translations and production source unchanged. Original independent linguistic receipt remains unmodified; three genuine language holds remain."
+}
