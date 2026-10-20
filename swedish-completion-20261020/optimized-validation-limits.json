@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "head": "994e448a7cf424ee33439662956fe46b221ba3f4",
+  "validated_composition": "d2785884f33e7171cc28cc6bd4487068da481d08",
+  "result": "Full local optimized aggregate NOT PASSED. No further retry or internal test-limit relaxation.",
+  "attempts": [
+    {
+      "tests": 1068,
+      "seconds": 633.401,
+      "assertion_failures": 0,
+      "errors": 3,
+      "all_exception_types": "subprocess.TimeoutExpired",
+      "scope": "Three subcases of LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes; SDK24 flag/environment modes; original 10-second boundaries",
+      "log": "host-budget-current-develop-optimized-attempt1.log"
+    },
+    {
+      "tests": 1068,
+      "seconds": 764.947,
+      "assertion_failures": 0,
+      "errors": 3,
+      "all_exception_types": "subprocess.TimeoutExpired",
+      "scope": "One SDK24 flag-mode legacy CLI stale-report subcase plus NativeScrollLaneTest.test_fully_obstructed_path_fails_instead_of_touching_an_editor and test_horizontal_gesture_uses_same_geometry_on_y_axis; original 10-second subprocess boundaries",
+      "log": "host-budget-current-develop-optimized-attempt2.log"
+    }
+  ],
+  "focused_diagnostic": {
+    "tests": 7,
+    "seconds": 36.155,
+    "result": "Optimized legacy suite passed unchanged, including all first-attempt timed-out subcases",
+    "log": "host-budget-legacy-optimized-focused.log"
+  },
+  "hosted_normal_coverage": {
+    "tests": 1068,
+    "result": "OK (skipped=2)",
+    "same_error_tests": "All three exact second-attempt test identities are unconditional, unskipped cases in the successful hosted normal suite. Its progress contains exactly 1068 markers matching the source discovery inventory; their positions 638, 694 and 695 are passing dots.",
+    "legacy_modes": "The legacy test source explicitly executes normal, -O flag and PYTHONOPTIMIZE=1 environment subprocess modes in the normal driver; these same CLI modes were exercised successfully in hosted normal execution.",
+    "java_cases": "The native-scroll tests run the same Java harness with the same 10-second subprocess limits under either Python driver mode.",
+    "unrelated_skips": [
+      "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+      "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    ]
+  },
+  "interpretation": "These are observed local subprocess deadline errors, not established assertion defects. No host-load, service or other environmental cause is claimed. Successful normal-driver optimized CLI subcases and a focused run do not certify the entire optimized aggregate.",
+  "unchanged_requirements": "No test command, assertion, skip policy or these internal 10-second limits was changed in response. Current exact-head Code review and required CI are separate parent-owned merge gates."
+}

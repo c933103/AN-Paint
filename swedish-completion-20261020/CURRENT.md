@@ -121,3 +121,24 @@ The focused optimized legacy suite subsequently passed all seven tests unchanged
 in 36.155 seconds, including every timed-out subcase with the original limits.
 One full unchanged optimized confirmation run is now running. Focused success
 does not relabel the failed aggregate or establish its environmental cause.
+
+
+## Final local optimized limitation and current hosted regression
+
+The second full optimized confirmation also failed: 1,068 tests in 764.947 seconds,
+with three TimeoutExpired errors at unchanged 10-second subprocess limits and
+no assertion failures. One is the legacy SDK24 -O CLI stale-report case; two are
+native-scroll Java harness cases (fully obstructed path and horizontal geometry).
+Both failed aggregates are preserved and no further retry or limit change is
+planned. `optimized-validation-limits.json` records exact cases and distinctions.
+The full local optimized aggregate is NOT PASSED; no environmental cause is claimed.
+
+The current hosted regression job independently succeeded on exact merge d2785884:
+all 130 JVM suites / 1,245 tests passed with zero failures/errors/skips. Python
+reported 1,068 tests OK with two unrelated optional Pillow ICO-decoder skips.
+Its legacy case explicitly exercised normal/-O/environment CLI modes, and all
+three second-attempt error identities passed there. This does not certify the
+whole local optimized aggregate. `current-head-hosted-regression.json` records
+verified artifact SHA-256, source/merge identity, target results and timings.
+Current-head Codex Code review is clean. The remaining required hosted jobs and
+merge are parent-owned gates; no whole-language or release certification is made.

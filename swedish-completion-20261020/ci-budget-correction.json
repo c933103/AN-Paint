@@ -105,20 +105,25 @@
       "result": "passed"
     },
     "corrected_combined_optimized": {
-      "result": "not passed; unchanged full confirmation running",
-      "first_attempt": {
+      "result": "not passed; both full attempts preserved; no further reruns",
+      "attempt_1": {
         "tests": 1068,
         "seconds": 633.401,
-        "result": "failed",
         "errors": 3,
-        "diagnosis": "Three unchanged 10-second subprocess TimeoutExpired errors in subcases of LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes, SDK24 flag/environment modes. No assertion mismatch. Complete normal run passed the same CLI modes; focused unchanged optimized diagnostic is running. No environmental cause has been established."
+        "assertion_failures": 0
+      },
+      "attempt_2": {
+        "tests": 1068,
+        "seconds": 764.947,
+        "errors": 3,
+        "assertion_failures": 0
       },
       "focused_legacy_optimized": {
         "tests": 7,
         "seconds": 36.155,
-        "result": "passed unchanged, including every timed-out subcase with original 10-second limits"
+        "result": "passed unchanged"
       },
-      "confirmation": "One complete unchanged optimized rerun started after exact timeout inspection and focused reproduction attempt; failed attempt retained."
+      "details": "optimized-validation-limits.json"
     }
   },
   "language_limits": "All translations and production source unchanged. Original independent linguistic receipt remains unmodified; three genuine language holds remain."

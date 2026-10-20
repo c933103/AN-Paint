@@ -55,28 +55,39 @@
     "result": "passed"
   },
   "host_optimized": {
-    "result": "not passed; unchanged full confirmation running",
-    "first_attempt": {
+    "result": "not passed; both full attempts preserved; no further reruns",
+    "attempt_1": {
       "tests": 1068,
       "seconds": 633.401,
-      "result": "failed",
       "errors": 3,
-      "diagnosis": "Three unchanged 10-second subprocess TimeoutExpired errors in subcases of LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes, SDK24 flag/environment modes. No assertion mismatch. Complete normal run passed the same CLI modes; focused unchanged optimized diagnostic is running. No environmental cause has been established."
+      "assertion_failures": 0
+    },
+    "attempt_2": {
+      "tests": 1068,
+      "seconds": 764.947,
+      "errors": 3,
+      "assertion_failures": 0
     },
     "focused_legacy_optimized": {
       "tests": 7,
       "seconds": 36.155,
-      "result": "passed unchanged, including every timed-out subcase with original 10-second limits"
+      "result": "passed unchanged"
     },
-    "confirmation": "One complete unchanged optimized rerun started after exact timeout inspection and focused reproduction attempt; failed attempt retained."
+    "details": "optimized-validation-limits.json"
   },
   "hosted_ci": {
     "run": 39434720839,
     "url": "https://github.com/c933103/AN-Paint/actions/runs/39434720839",
     "head": "994e448a7cf424ee33439662956fe46b221ba3f4",
-    "status": "in_progress"
+    "status": "in_progress",
+    "regression_job": "success; exact artifact has 1245 JVM tests and 1068 normal host tests with two unrelated Pillow skips"
   },
   "review_request": "https://github.com/c933103/AN-Paint/pull/151#issuecomment-6292552617",
   "original_independent_receipt_sha256": "c48ab9c06c5dc0ace3573f271f2a256ef18d43a5c8f5a4d6e6aae70f51370001",
-  "limits": "No production/translation changes or new linguistic acceptance. Three genuine language holds remain. Prior runtime reports are not relabelled current-head CI."
+  "limits": "No production/translation changes or new linguistic acceptance. Three genuine language holds remain. Prior runtime reports are not relabelled current-head CI.",
+  "review_status": {
+    "head": "994e448a7cf424ee33439662956fe46b221ba3f4",
+    "code_review": "completed, no findings or unresolved findings",
+    "receipt": "https://github.com/c933103/AN-Paint/pull/151#issuecomment-6292584163"
+  }
 }

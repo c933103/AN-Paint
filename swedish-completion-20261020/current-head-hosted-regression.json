@@ -1,0 +1,58 @@
+{
+  "head": "994e448a7cf424ee33439662956fe46b221ba3f4",
+  "merge": "d2785884f33e7171cc28cc6bd4487068da481d08",
+  "base": "4feab3d6a13ac8c8e049393498ecf059ebd2f9d7",
+  "run": 39434720839,
+  "artifact": 12272456971,
+  "artifact_bytes": 83999676,
+  "artifact_sha256": "f466afb6decfd9c0dd43f6935cf2ee699a3271259bf1a45185ae42412e34d823",
+  "jvm": {
+    "suites": 130,
+    "tests": 1245,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "suite": "org.catrobat.paintroid.local.ClassicWorkspaceTest",
+      "name": "finishCurveCommitsBeforeBothBendsWithoutDuplicatingTheUndoStep",
+      "classname": "org.catrobat.paintroid.local.ClassicWorkspaceTest",
+      "time": "0.159",
+      "failure": false
+    },
+    {
+      "suite": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "name": "everyPickerLocaleResolvesCompleteEmptyCreditTextOrEnglishFallback",
+      "classname": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "time": "0.414",
+      "failure": false
+    },
+    {
+      "suite": "org.catrobat.paintroid.local.SwedishExtendedWordingTest",
+      "name": "exactPositionValidatesLocalizedInputAndOnlyMovesTheSelectedImage",
+      "classname": "org.catrobat.paintroid.local.SwedishExtendedWordingTest",
+      "time": "0.217",
+      "failure": false
+    }
+  ],
+  "phase_timings": {
+    "build/reports/ci-phases/jvm.time": "real_seconds=600.648\nuser_seconds=2.824\nsys_seconds=0.334\nexit_status=0\n",
+    "build/reports/ci-phases/lint.time": "real_seconds=121.088\nuser_seconds=412.664\nsys_seconds=5.932\nexit_status=0\n",
+    "build/reports/ci-phases/native.time": "real_seconds=63.457\nuser_seconds=143.185\nsys_seconds=41.211\nexit_status=0\n",
+    "build/reports/ci-phases/python.time": "real_seconds=210.328\nuser_seconds=159.158\nsys_seconds=16.266\nexit_status=0\n"
+  },
+  "python_summary": [
+    "Ran 1068 tests in 209.920s",
+    "OK (skipped=2)"
+  ],
+  "kind": "Author verification of exact-head hosted regression artifact; not full-run or linguistic certification",
+  "regression_job": {
+    "id": 118668601212,
+    "conclusion": "success"
+  },
+  "hosted_normal_skips": [
+    "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+    "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+  ]
+}
