@@ -10,6 +10,7 @@ Current source-rebound checkout:
 - `python3 tools/translation_catalogues.py`: passed structural validation.
 - `python3 -m unittest discover -s tools -p 'test_swedish*wording.py'`: 22 passed.
 - `python3 -m unittest discover -s tools -p 'test_*.py'`: 1,055 passed in 218.460 seconds.
+- `python3 -O -m unittest discover -s tools -p 'test_*.py'`: 1,055 passed in 215.997 seconds.
 - `verify_current_source_rebind.py`: all 717 complete current English identities,
   values and attributes; all 714 bounded Swedish values/attributes; named holds.
 
@@ -27,5 +28,5 @@ An earlier full host run exposed old Swedish-fallback oracles. Those were update
 only for independently reviewed Swedish family entries, then both full suites
 passed. The global 59-locale baseline was not changed. Final normal and earlier
 optimized logs, focused current checks and the Gradle failure accompany this
-receipt. A current optimized run was started separately; it is not counted here
-until a terminal result exists.
+receipt. The current optimized run also completed successfully, as recorded above
+and in `host-current-optimized.log`.
