@@ -112,6 +112,12 @@ class SwedishExtendedWordingTests(unittest.TestCase):
                     'ui_save_png', 'ui_edit_in_paint', 'ui_menu_file', 'ui_about_credits23'):
             self.assertIn(s[key], value, key)
 
+    def test_curve_hint_describes_early_completion_not_an_attachment(self):
+        hint = self.strings['ui_drag_a_line_then_drag_twice_to_set']
+        self.assertIn(self.strings['ui_finish_curve'], hint)
+        self.assertIn('slutföra kurvan innan båda böjarna har ställts in.', hint)
+        self.assertNotIn('fästa', hint)
+
 
 if __name__ == '__main__':
     unittest.main()
