@@ -151,7 +151,7 @@ class LocaleNumberInputTest {
                         enter(field,text)
                         assertEquals(tag,expected,uiNumber(field.text.toString())!!,0.0)
                     }
-                    for(sign in setOf('-',symbols.minusSign)) {
+                    for(sign in setOf('-', '\u2212', symbols.minusSign)) {
                         enter(field,sign+digits("12"))
                         val parsed=uiNumber(field.text.toString())
                         assertTrue("$tag must not turn a negative into positive input",parsed==null || parsed<0)
