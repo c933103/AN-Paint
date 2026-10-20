@@ -1,16 +1,22 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Rect
+import android.os.Looper
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
+import android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction
+import android.widget.FrameLayout
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
@@ -107,17 +113,43 @@ class VerticalFeedbackViewTest {
         assertTrue(card.dismissControl.performClick());assertEquals(1,dismissed)
     }
     @Test @Config(fontScale=2f) fun narrowTallEmojiCaptionUsesACompleteNamedIconInsteadOfClippingColumns() {
-        val card=VerticalFeedbackCard(context("qaa-Zsye-XV"),"中文 ".repeat(100),"test") {}
-        layout(card,44,260)
-        assertFalse(card.deferred);assertTrue(card.persistent)
-        assertSame(card.compactDone,card.dismissControl)
-        assertEquals(44,card.compactDone.width);assertEquals(44,card.compactDone.height)
-        assertTrue(card.compactDone.left>=0);assertTrue(card.compactDone.right<=card.width)
-        assertEquals(card.context.getString(org.catrobat.paintroid.R.string.ui_done),card.compactDone.createAccessibilityNodeInfo().contentDescription)
+        var dismissed=0
+        val card=VerticalFeedbackCard(context("qaa-Zsye-XV"),"中文 ".repeat(100),"test") {dismissed++}
+        val controller=Robolectric.buildActivity(Activity::class.java).setup()
+        try {
+            controller.get().setContentView(FrameLayout(controller.get()).apply {
+                addView(card,FrameLayout.LayoutParams(44,260))
+            })
+            controller.visible().windowFocusChanged(true)
+            shadowOf(Looper.getMainLooper()).idle()
+            // View's native node initialization is intentionally empty until
+            // attached. Exercise the actual mounted ImageButton, not that stub.
+            assertTrue(card.compactDone.isAttachedToWindow)
+            assertFalse(card.deferred);assertTrue(card.persistent)
+            assertSame(card.compactDone,card.dismissControl)
+            assertEquals(44,card.compactDone.width);assertEquals(44,card.compactDone.height)
+            assertTrue(card.compactDone.left>=0);assertTrue(card.compactDone.right<=card.width)
+            assertTrue(card.compactDone.bottom<=card.height-card.paddingBottom)
+            val visible=Rect();assertTrue(card.compactDone.getLocalVisibleRect(visible))
+            assertTrue(visible.contains(Rect(0,0,44,44)))
+            val node=card.compactDone.createAccessibilityNodeInfo()
+            assertEquals(card.context.getString(org.catrobat.paintroid.R.string.ui_done),node.contentDescription)
+            assertTrue(node.isClickable);assertTrue(node.isFocusable);assertTrue(node.isVisibleToUser)
+            assertTrue(node.actionList.contains(AccessibilityAction.ACTION_CLICK))
+            assertTrue(card.compactDone.performAccessibilityAction(AccessibilityAction.ACTION_CLICK.id,null))
+            assertEquals(1,dismissed)
+        } finally {controller.close();shadowOf(Looper.getMainLooper()).idle()}
     }
     @Test fun onceOverflowingReflowToFitKeepsExplicitDismissal() {
-        val card=VerticalFeedbackCard(context("en-XV"),"One two three four five six seven eight nine ten","test") {}
+        val caption="One two three four five six seven eight nine ten"
+        // Preserve the original fixture as a fitting control, not as false
+        // evidence that the persistent branch was exercised.
+        val fitting=VerticalFeedbackCard(context("en-XV"),caption,"test") {}
+        layout(fitting,80,140)
+        assertFalse(fitting.hasOverflow);assertFalse(fitting.persistent)
+        val card=VerticalFeedbackCard(context("en-XV"),(caption+" ").repeat(6),"test") {}
         layout(card,80,140)
+        assertTrue("The starting fixture must actually overflow",card.hasOverflow)
         assertTrue(card.persistent)
         layout(card,2000,500)
         assertFalse(card.hasOverflow)

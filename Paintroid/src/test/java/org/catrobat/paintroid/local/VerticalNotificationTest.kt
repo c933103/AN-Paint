@@ -100,9 +100,14 @@ class VerticalNotificationTest {
         drawing.setOnTouchListener {_,event ->actions.add(event.actionMasked);true}
         val field=EditText(activity)
         drawing.addView(field,FrameLayout.LayoutParams(100,50).apply {leftMargin=100;topMargin=60})
-        field.requestFocus();advance()
+        advance() // Establish a measured, attached input before requesting focus.
+        assertTrue(field.requestFocus());advance()
+        // Robolectric 4.14.1 shadows Activity.currentFocus with an unrelated
+        // manually assigned field. Query the actual framework hierarchy instead.
+        assertTrue(field.isFocused)
+        assertSame(field,activity.window.decorView.findFocus())
         show("中文 ".repeat(150))
-        assertSame(field,activity.currentFocus)
+        assertSame(field,activity.window.decorView.findFocus())
         val card=card()
         dispatch(MotionEvent.ACTION_DOWN,5f,5f)
         dispatch(MotionEvent.ACTION_MOVE,card.left+10f,card.top+10f)
@@ -116,7 +121,7 @@ class VerticalNotificationTest {
         dispatch(MotionEvent.ACTION_DOWN,fit.left+10f,fit.top+10f)
         dispatch(MotionEvent.ACTION_UP,fit.left+10f,fit.top+10f)
         assertEquals(listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP),actions)
-        assertSame(field,activity.currentFocus)
+        assertSame(field,activity.window.decorView.findFocus())
     }
     @Test fun imeResizeKeepsFixedDismissVisibleAndHiddenWindowDropsPersistentMessage() {
         show("1234567890".repeat(80))

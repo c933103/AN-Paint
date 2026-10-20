@@ -11,7 +11,11 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import android.view.inputmethod.EditorInfo
+import android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
 import org.junit.After
@@ -182,6 +186,44 @@ class LocaleTooltipControlsTest {
             assertTrue(notification is FlowTextView)
             assertNull(activity.window.decorView.findViewWithTag<View>(VerticalTooltipOverlay.TAG))
             assertNull(LocaleTooltipWindowTest.popup(save))
+        } finally {
+            ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+            controller.pause().stop()
+            val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(10)
+            while(activity.busy && System.nanoTime()<deadline) {settle();Thread.sleep(5)}
+            assertFalse(activity.busy);controller.destroy()
+        }
+    }
+
+    @Test fun verticalTextEditorKeepsItsActualInputFocusAndDrawingTypefaceWhenFeedbackAppears() {
+        AppLanguage.select(context,"mn-Mong")
+        val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val activity=controller.get();awaitEditorStartup(activity)
+        controller.visible().windowFocusChanged(true);settle()
+        try {
+            // Invoke the same production callback used by the canvas Text tool.
+            activity.paintCanvas.onText(40f,40f);settle()
+            val dialog=requireNotNull(ShadowAlertDialog.getLatestAlertDialog())
+            val root=dialog.window!!.decorView
+            val field=requireNotNull(root.findViewWithTag<EditText>("text_content"))
+            field.setText("Editable drawing text");field.setSelection(field.length());settle()
+            assertTrue(field.requestFocus());settle()
+            assertSame(field,root.findFocus());assertTrue(field.isFocused)
+            val drawingTypeface=field.typeface
+            val message="ᠮᠣᠩᠭᠣᠯ\u202fᠤ ".repeat(100)
+            LocaleTypography.showMessage(activity,message,Toast.LENGTH_SHORT,field);settle()
+            val card=requireNotNull(root.findViewWithTag<VerticalFeedbackCard>("locale_notification_card"))
+            assertTrue(card.persistent);assertFalse(card.deferred)
+            assertSame(field,root.findFocus());assertSame(drawingTypeface,field.typeface)
+            // Exercise the real editor InputConnection. This is not an installed
+            // keyboard or hardware input claim.
+            val input=requireNotNull(field.onCreateInputConnection(EditorInfo()))
+            assertTrue(input.commitText(" still typing",1));settle()
+            assertEquals("Editable drawing text still typing",field.text.toString())
+            assertSame(field,root.findFocus())
+            assertTrue(card.dismissControl.performAccessibilityAction(AccessibilityAction.ACTION_CLICK.id,null));settle()
+            assertNull(root.findViewWithTag<View>("locale_notification"))
+            assertSame(field,root.findFocus());assertTrue(dialog.isShowing)
         } finally {
             ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
             controller.pause().stop()

@@ -185,9 +185,14 @@ class VerticalTooltipOverlayTest {
     @Test @Config(sdk=[30,35]) fun imeAndCutoutInsetsBoundCardWithoutStealingEditorFocusAndAnchorChangesReposition() {
         val field=EditText(activity)
         layout.addView(field,FrameLayout.LayoutParams(100,60).apply {topMargin=30})
-        field.requestFocus();advance()
+        advance() // Establish a measured, attached input before requesting focus.
+        assertTrue(field.requestFocus());advance()
+        // Robolectric 4.14.1 shadows Activity.currentFocus with an unrelated
+        // manually assigned field. Query the actual framework hierarchy instead.
+        assertTrue(field.isFocused)
+        assertSame(field,activity.window.decorView.findFocus())
         val over=show()
-        assertSame(field,activity.currentFocus)
+        assertSame(field,activity.window.decorView.findFocus())
         val insets=WindowInsets.Builder().setInsets(WindowInsets.Type.systemBars(),Insets.of(0,24,0,0))
             .setInsets(WindowInsets.Type.displayCutout(),Insets.of(30,0,0,0))
             .setInsets(WindowInsets.Type.ime(),Insets.of(0,0,0,260)).build()
@@ -196,7 +201,7 @@ class VerticalTooltipOverlayTest {
         assertTrue(safe.contains(Rect(over.card.left,over.card.top,over.card.right,over.card.bottom)))
         val location=IntArray(2);over.getLocationInWindow(location)
         assertTrue(location[1]+over.card.bottom<=activity.window.decorView.height-260)
-        assertSame(field,activity.currentFocus)
+        assertSame(field,activity.window.decorView.findFocus())
         val before=over.card.top
         (anchor.layoutParams as FrameLayout.LayoutParams).topMargin=350
         anchor.requestLayout();advance();advance()
