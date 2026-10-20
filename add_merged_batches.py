@@ -16,3 +16,12 @@ d['languages']=[rows[tag] for tag in sorted(changed)];d['source_commit']='1734d0
 assert sum(d['summary'].values())==171*717
 json.dump(d,open('/tmp/an-merged-review-delta/delta-all-merged.json','w'),ensure_ascii=False,indent=2)
 print(d['summary']);print([(r['tag'],r['reviewed_current'],r['needs_rereview'],r['present_review_unknown'],r['missing']) for r in d['languages']])
+# Reconcile the completed unchanged-value re-review; most pairs already count.
+for rec in json.load(open('/tmp/an-open-review-resolution/review.json'))['records']:
+ if rec['disposition']=='accept_unchanged':
+  assert rec['complete_message_read']
+  accept(rec['tag'],rec['key'],rec['current'],'/tmp/an-open-item-fixes/'+rows[rec['tag']]['catalogue_path'],'open-review-resolution/review.json, evidence2b22c4f')
+d['languages']=[rows[tag] for tag in sorted(changed)];d['summary']={k:sum(r[k] for r in rows.values()) for k in ['reviewed_current','needs_rereview','present_review_unknown','missing']}
+assert sum(d['summary'].values())==171*717
+json.dump(d,open('/tmp/an-merged-review-delta/delta-all-merged.json','w'),ensure_ascii=False,indent=2)
+print('With unchanged-value re-review:',d['summary']);print([(r['tag'],r['reviewed_current'],r['needs_rereview']) for r in d['languages']])
