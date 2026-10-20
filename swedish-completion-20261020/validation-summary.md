@@ -16,7 +16,7 @@ Current checks after the Curve correction:
   original modes. Same branch updated non-force with expected-head lease.
 - Exact-head hosted run 39412001502 has started. Current-head Codex code review
   is running. Neither is counted passed here.
-- Optimized host suite started on this correction; pending at this receipt.
+- Complete optimized host suite: 1,056 passed in 225.410 seconds.
 
 Earlier head `6cfe2e924bb733366599d89d93ead11dff7dd689` passed both normal and
 optimized host suites with 1,055 tests. Its earlier APK/build and position-dialog
