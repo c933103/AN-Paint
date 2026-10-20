@@ -1,5 +1,23 @@
 # Current Swedish catalogue evidence
 
+## Final exact-head gates and parent merge
+
+PR #151 head `994e448a7cf424ee33439662956fe46b221ba3f4` passed all six
+required jobs in [run 39434720839](https://github.com/c933103/AN-Paint/actions/runs/39434720839)
+and has a clean exact-head Codex Code receipt. The parent merged it at
+2026-10-20 14:23:30 UTC as `f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6`.
+Its complete tree equals the validated develop4fe + head994 synthetic merge.
+`current-head-ci-and-merge.json` preserves the six job identities, source tree,
+review receipt and actual merged readback.
+
+Natural postmerge run 39438793303 was in progress at this final snapshot and
+remains parent-owned, not counted as passed here. Both failed full local optimized
+attempts remain NOT PASSED and preserved unchanged. Three language holds remain;
+this is not blanket whole-language or device-localization acceptance.
+
+The sections below are chronological evidence snapshots. Earlier pending-state
+statements describe their original observation, not the final current status.
+
 Latest application head: `994e448a7cf424ee33439662956fe46b221ba3f4`.
 Its current hosted merge combines develop `4feab3d6a13ac8c8e049393498ecf059ebd2f9d7`
 with this head; all 1,263 leaf contents/modes match the locally checked composition.

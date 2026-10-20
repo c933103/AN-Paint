@@ -2,7 +2,9 @@
 
 Application head: `994e448a7cf424ee33439662956fe46b221ba3f4`.
 Fresh develop: `4feab3d6a13ac8c8e049393498ecf059ebd2f9d7`.
-Exact hosted merge: `d2785884f33e7171cc28cc6bd4487068da481d08`.
+Exact tested synthetic merge: `d2785884f33e7171cc28cc6bd4487068da481d08`.
+Parent merged as `f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6` at 14:23:30 UTC.
+Both have identical complete tree `808f0cedfc261d652f351fdc080e1c40492e6ceb`.
 
 ## Passed evidence
 - All 1,263 merged leaf contents/modes equal the locally checked composition.
@@ -15,6 +17,8 @@ Exact hosted merge: `d2785884f33e7171cc28cc6bd4487068da481d08`.
   repaired fixtures and Curve completion. Hosted normal Python: 1,068 tests OK,
   two unrelated optional Pillow ICO checks skipped; command exit zero in 210.328s.
 - Current-head Codex Code review: completed with no findings.
+- All six required jobs in exact-head run 39434720839: completed successfully.
+  The parent then merged PR #151; `current-head-ci-and-merge.json` records readback.
 
 ## Explicit limitation: optimized aggregate not passed
 Two local full optimized attempts each completed 1,068 tests with three
@@ -33,8 +37,10 @@ The original hosted failure and later step timeout evidence are preserved, not
 erased. Finite Python/JVM/job caps are now 8/20/55 minutes, covering 50 minutes
 of explicit phase maxima plus five overhead. No command, assertion, skip policy,
 compiler cache rule or device/interaction deadline was removed or weakened.
-Current-head CI is run 39434720839; complete required gates and merging remain
-parent-owned. A regression-job pass alone is not a full CI or release pass.
+All six required jobs passed in exact-head run 39434720839, followed by the
+parent-owned merge. Natural postmerge run 39438793303 was still in progress
+at this final snapshot; the parent continues that separate validation.
+A successful PR workflow does not certify a postmerge run or release.
 
 All 717 current English identities/values/attributes remain source-bound;
 715 Swedish resources are present. The 713 unchanged bounded targets and explicit
