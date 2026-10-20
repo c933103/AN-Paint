@@ -3,10 +3,12 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.LocaleManager
 import android.content.Context
-import android.content.res.Configuration
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.Rect
+import android.os.LocaleList
 import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +42,14 @@ import java.util.concurrent.TimeUnit
 @Config(sdk = [33], qualifiers = "sv-rSE-w412dp-h900dp-port-xhdpi")
 class SwedishExtendedWordingTest {
     private lateinit var previousResources: Resources
+    private lateinit var previousLocale: Locale
+    private lateinit var preferences: SharedPreferences
+    private var previousTag: String? = null
+    private var hadTag = false
+    private var previousInitialized = false
+    private var hadInitialized = false
+    private var localeManager: LocaleManager? = null
+    private var previousPlatformLocales: LocaleList? = null
     private lateinit var swedish: Context
     private val fixture by lazy {
         JSONObject(File("../tools/fixtures/current_localization/swedish_extended_wording.json").readText())
@@ -47,15 +57,31 @@ class SwedishExtendedWordingTest {
 
     @Before fun swedishResources() {
         previousResources = PaintApplication.currentResources
+        previousLocale = Locale.getDefault()
         val context = RuntimeEnvironment.getApplication() as Context
-        swedish = context.createConfigurationContext(Configuration(context.resources.configuration).apply {
-            setLocale(Locale.forLanguageTag("sv"))
-        })
+        preferences = context.getSharedPreferences("app-language", Context.MODE_PRIVATE)
+        hadTag = preferences.contains("language-tag")
+        previousTag = preferences.getString("language-tag", null)
+        hadInitialized = preferences.contains("platform-initialized")
+        previousInitialized = preferences.getBoolean("platform-initialized", false)
+        localeManager = context.getSystemService(LocaleManager::class.java)
+        previousPlatformLocales = localeManager?.applicationLocales
+        // Select the real app language, not only a resource overlay: uiNumber
+        // uses the process locale which AppLanguage.wrap/refresh also updates.
+        AppLanguage.select(context, "sv")
+        swedish = AppLanguage.wrap(context)
         PaintApplication.currentResources = swedish.resources
     }
     @After fun restoreResources() {
         ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+        idle()
+        previousPlatformLocales?.let { localeManager?.applicationLocales = it }
+        preferences.edit().apply {
+            if (hadTag) putString("language-tag", previousTag) else remove("language-tag")
+            if (hadInitialized) putBoolean("platform-initialized", previousInitialized) else remove("platform-initialized")
+        }.commit()
         PaintApplication.currentResources = previousResources
+        Locale.setDefault(previousLocale)
     }
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     private fun expected(key: String) = fixture.getJSONObject("values").getJSONObject(key).getString("sv")
@@ -116,6 +142,7 @@ class SwedishExtendedWordingTest {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
         val activity = controller.setup().get()
+        AppLanguage.refresh(activity)
         var applied = 0
         val images = (1..2).map { AssemblyImage("sv-$it", File(activity.cacheDir, "sv-$it.image"),
             "Bild $it", null, ImageDimensions(24, 16)) }
@@ -142,8 +169,13 @@ class SwedishExtendedWordingTest {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
         val activity = controller.setup().get()
+        AppLanguage.refresh(activity)
         val directory = File(activity.cacheDir, "swedish-position").apply { deleteRecursively(); mkdirs() }
         try {
+            assertEquals("sv", AppLanguage.selectedTag(activity))
+            assertEquals("sv", activity.resources.configuration.locales[0].language)
+            assertEquals("sv", Locale.getDefault().language)
+            assertEquals(1.5, checkNotNull(uiNumber("1,5")), 0.0)
             val assembly = ImageAssembly(directory)
             val first = AssemblyImage("first", File(directory, "first.image").apply { writeBytes(byteArrayOf(1)) },
                 "Första", null, ImageDimensions(24, 16))
@@ -152,23 +184,32 @@ class SwedishExtendedWordingTest {
             assembly.add(listOf(first, second)); assembly.position(first.id, 0, 0); assembly.position(second.id, 24, 0)
             val before = assembly.layout(); val saved = File(directory, "project.json").readBytes()
             val dialog = AssemblyPositionDialog(activity, assembly, first.id).show()
+            // Dialog.show queues OnShow; let it install the validation click
+            // listener before sending input to the positive button.
+            idle()
             assertEquals("Exakt position", shadowOf(dialog).title.toString())
             assertTrue(texts(dialog.window!!.decorView).contains(expected("ui_assembly_position_help")))
             val x = dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_x")
             val y = dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_y")
             assertEquals(expected("ui_assembly_target_x"), x.contentDescription.toString())
             assertEquals(expected("ui_assembly_target_y"), y.contentDescription.toString())
-            for (invalid in listOf("-1", "1,5", "2147483648", "")) {
-                x.setText(invalid); dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
-                assertTrue(dialog.isShowing)
-                assertEquals(expected("ui_assembly_position_nonnegative"),
-                    dialog.window!!.decorView.findViewWithTag<TextView>("assembly_position_error").text.toString())
-                assertEquals(before, assembly.layout()); assertArrayEquals(saved, File(directory, "project.json").readBytes())
+            for (field in listOf(x, y)) {
+                for (invalid in listOf("-1", "−1", "1,5", "1.5", "2147483648", "")) {
+                    x.setText("0"); y.setText("0")
+                    field.setText(""); field.text.replace(0, 0, invalid)
+                    assertEquals("Numeric syntax must reach validation unchanged", invalid, field.text.toString())
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+                    assertTrue("${field.tag}=$invalid must leave the dialog open", dialog.isShowing)
+                    assertEquals(expected("ui_assembly_position_nonnegative"),
+                        dialog.window!!.decorView.findViewWithTag<TextView>("assembly_position_error").text.toString())
+                    assertEquals(before, assembly.layout()); assertArrayEquals(saved, File(directory, "project.json").readBytes())
+                }
             }
             x.setText("24"); y.setText("0")
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
             assertEquals(before, assembly.layout())
             val accepted = AssemblyPositionDialog(activity, assembly, first.id).show()
+            idle()
             accepted.window!!.decorView.findViewWithTag<EditText>("assembly_position_x").setText("24")
             accepted.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
             assertFalse(accepted.isShowing)
@@ -182,6 +223,7 @@ class SwedishExtendedWordingTest {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
         val activity = controller.setup().get()
+        AppLanguage.refresh(activity)
         val worker = Executors.newSingleThreadExecutor()
         var selected = 0; var cancelled = 0; var failure: Throwable? = null
         var selection: ImportSelection? = null
