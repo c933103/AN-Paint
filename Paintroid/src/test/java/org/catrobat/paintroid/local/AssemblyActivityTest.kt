@@ -520,6 +520,26 @@ class AssemblyActivityTest {
         }
     }
 
+    @Test fun swedishCompleteHelpReachesTheActualToolbarWithoutChangingTheAssembly() = withLanguage("sv") {
+        val expected=org.json.JSONObject(java.io.File("../tools/fixtures/current_localization/swedish_extended_wording.json")
+            .readText()).getJSONObject("values").getJSONObject("ui_add_up_to_20_images_with_android_s")
+            .getString("sv").replace("\\n","\n")
+        activity.onConfigurationChanged(activity.resources.configuration);idle()
+        assertEquals("sv",AppLanguage.selectedTag(activity))
+        assertEquals("Exakt position",activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
+        click("assembly_help")
+        val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertTrue(dialog.isShowing)
+        val shown=dialog.findViewById<TextView>(android.R.id.message)
+        assertTrue(shown.isShown)
+        assertEquals(expected,shown.text.toString())
+        assertEquals(8,shown.text.toString().split("\n\n").size)
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+        assertFalse(dialog.isShowing)
+        assertTrue(activity.assembly.images.isEmpty())
+        assertFalse(activity.busy)
+    }
+
     @Test fun exactFirstPlacementAndUnplaceMatchHelpWhileSnapRemovalCanFillTheGap() {
         load()
         val first=image("b.png").id;val child=image("a.png").id;val last=image("c.png").id
