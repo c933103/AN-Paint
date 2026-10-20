@@ -25,6 +25,7 @@ import org.robolectric.annotation.Config
 class CommonsMetadataResponseLimitTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val expectedMessages=mapOf(
+        "sv" to "Commons-metadata överskrider gränsen för svarsstorlek",
         "ain-Kana" to "Commons オㇿ ワ アウㇰ タトゥㇺ (ノカ オルㇱペ) アナㇰ ポロ カㇱパ ワ アウㇰ エアイカㇷ゚.",
         "ain-Latn" to "Commons or wa a=uk tatum (noka oruspe) anak poro kaspa wa a=uk eaykap.",
         "mnc-Mong" to "ᠨᡳᡵᡠᡤᠠᠨ ᡳ Commons ᠴᡳ ᠠᠯᡳᠮᡝ ᡤᠠᡳᡥᠠ ᠮᡝᠵᡳᡤᡝ ᡳ ᡠᡥᡝᡵᡳ ᡴᡝᠮᡠᠨ ᡨᠣᡴᡨᠣᡥᠣ ᡴᡝᠮᡠᠨ ᠴᡳ ᡶᡠᠯᡠ.",
@@ -117,8 +118,8 @@ class CommonsMetadataResponseLimitTranslationTest {
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
     }
-    @Test fun allRequired59CataloguesHaveExplicitProposals() {
-        assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
+    @Test fun allRequiredCataloguesAndReviewedSwedishHaveExplicitValues() {
+        assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",60,expectedMessages.size)
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
         assertEquals(171,AppLanguage.tags(context).size)
@@ -129,6 +130,6 @@ class CommonsMetadataResponseLimitTranslationTest {
             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_response_too_large))
             assertTrue(expected.contains("Commons"))
         }
-        assertEquals(112,fallbacks)
+        assertEquals(111,fallbacks)
     }
 }

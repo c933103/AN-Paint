@@ -33,6 +33,7 @@ import java.util.Locale
 class CommonsHelpProviderTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val scopedTags=listOf(
+        "sv",
         "af", "ain-Kana", "ain-Latn", "ar", "bo", "ceb", "de", "dz",
         "el", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US",
         "en-XV", "eo", "es-419", "es-ES", "et", "fi", "fr", "hak-Hant-TW",
@@ -46,7 +47,7 @@ class CommonsHelpProviderTranslationTest {
         setLocales(LocaleList.forLanguageTags(tag))
     }).resources
 
-    @Test fun all59CataloguesContainTheirExactCommonsCaptionAndBundledGlyphs() {
+    @Test fun allReviewedCataloguesContainTheirExactCommonsCaptionAndBundledGlyphs() {
         val english=resourcesFor("en-GB").getString(R.string.ui_help23)
         for(tag in scopedTags) {
             val resources=resourcesFor(tag)
@@ -71,7 +72,7 @@ class CommonsHelpProviderTranslationTest {
     @Test fun otherOfferedTagsUseTheGenuineDefaultHelpFallback() {
         // The host contract verifies these XML catalogues do not contain ui_help23.
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(112,remaining.size)
+        assertEquals(111,remaining.size)
         val english=resourcesFor("en-GB").getString(R.string.ui_help23)
         for(tag in remaining) assertEquals("$tag explicit incomplete/fallback",english,
             resourcesFor(tag).getString(R.string.ui_help23))
@@ -122,7 +123,7 @@ class CommonsHelpProviderTranslationTest {
     @Test @Config(sdk=[35])
     fun realFileHelpAndOtherImagesPickerAgreeAfterDismissalAndLanguageChanges() {
         assertEquals(listOf("CATROBAT","IRASUTOYA","OPENCLIPART","COMMONS"),IllustrationSource.values().map {it.name})
-        for(tag in listOf("hu","fr","ja","mn-Mong","vi-Hani","am")) withLanguage(tag) {
+        for(tag in listOf("hu","fr","ja","mn-Mong","vi-Hani","sv","am")) withLanguage(tag) {
             val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
             val activity=controller.get()
             try {

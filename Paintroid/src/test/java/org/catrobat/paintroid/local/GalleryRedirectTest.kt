@@ -211,7 +211,7 @@ class GalleryRedirectTest {
         val fallback=scope.getJSONArray("fallback_tags").let {array ->(0 until array.length()).map {array.getString(it)}.toSet()}
         for(tag in AppLanguage.tags(context)) {
             AppLanguage.select(context,tag)
-            val raw=if(tag in fallback) expected.getString("default") else expected.getString(tag)
+            val raw=if(expected.has(tag)) expected.getString(tag) else expected.getString("default")
             assertEquals("Whole compiled redirect message for $tag",raw.replace("\\'", "'").replace("\\\"", "\""),
                 AppLanguage.wrap(context).getString(messageId))
         }

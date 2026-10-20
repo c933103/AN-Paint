@@ -21,8 +21,11 @@ class GalleryExternalLinkWordingTests(unittest.TestCase):
         cls.scope = contracts.fixture("locale_contract_scope.json")
         cls.wording = contracts.fixture("gallery_external_link_current_wording.json")
 
+    def test_only_reviewed_swedish_extends_this_family(self):
+        self.assertEqual(['sv'], self.wording['additional_reviewed_tags'])
+
     def test_complete_independent_wording_and_scope(self):
-        expected_tags = {"default", *self.scope["scoped_tags"]}
+        expected_tags = {"default", *self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]}
         contracts.require_wording_shape(self.wording, {KEY}, expected_tags)
         self.assertEqual(SOURCE, self.wording["values"][KEY]["default"])
         catalogues_by_tag = catalogues.catalogue_paths()
@@ -38,7 +41,7 @@ class GalleryExternalLinkWordingTests(unittest.TestCase):
         self.assertFalse(scoped & fallback)
         self.assertEqual(offered, scoped | fallback)
         paths = catalogues.catalogue_paths()
-        for tag in sorted(fallback):
+        for tag in sorted(fallback - set(self.wording["additional_reviewed_tags"])):
             with self.subTest(tag=tag):
                 self.assertNotIn(KEY, catalogues.read_strings(paths[tag]))
         self.assertEqual(SOURCE, catalogues.read_strings(catalogues.RES / "values/strings.xml")[KEY])
