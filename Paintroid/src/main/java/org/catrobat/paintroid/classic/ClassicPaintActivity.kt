@@ -1431,7 +1431,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun attachLegacyImageCredit(token: String?) {
         val credit=ImageCreditArchive.find(this,token) ?: return
-        if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}
+        if(busy) {message(ui(R.string.ui_please_wait_for_the_current_operation));return}
         if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}
         editAction {
             val added=try {

@@ -119,6 +119,36 @@ class LegacyImageCreditsUpgradeTest {
         assertEquals(listOf(legacy.copy(text="")),activity.document.imageCredits)
     }
 
+    @Test fun attachmentDistinguishesGeneralBusyFromAutosaveAndDoesNotMutateCredits() {
+        launch()
+        val beforeCredits=activity.document.imageCreditsState().toString()
+        val beforeHistory=activity.document.historySnapshot()
+        val beforeBitmap=activity.document.bitmap
+        fun deliver()=activity.onActivityResult(ClassicPaintActivity.LEGACY_CREDITS,Activity.RESULT_OK,
+            Intent().putExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN,
+                ImageCreditArchive.selectionToken(LegacyImageCredits.read(activity).single())))
+        try {
+            for ((field,resource) in listOf("busy" to R.string.ui_please_wait_for_the_current_operation,
+                    "autosaving" to R.string.ui_the_draft_is_saving_try_again_shortly)) {
+                ReflectionHelpers.setField(activity,field,true)
+                deliver()
+                shadowOf(Looper.getMainLooper()).idle()
+                val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+                assertEquals(ui(resource),shadowOf(dialog).message.toString())
+                assertEquals(beforeCredits,activity.document.imageCreditsState().toString())
+                assertEquals(beforeHistory,activity.document.historySnapshot())
+                assertSame(beforeBitmap,activity.document.bitmap)
+                dialog.dismiss()
+                ReflectionHelpers.setField(activity,field,false)
+            }
+            deliver()
+            assertEquals(listOf(legacy),activity.document.imageCredits)
+        } finally {
+            ReflectionHelpers.setField(activity,"busy",false)
+            ReflectionHelpers.setField(activity,"autosaving",false)
+        }
+    }
+
     @Test fun rejectedProspectiveAttachmentLeavesPixelsSelectionHistoryAndCreditsUnchanged() {
         val folder=File(context.cacheDir,"legacy-atomic-${java.util.UUID.randomUUID()}")
         val doc=PaintDocument(8,6,folder)
