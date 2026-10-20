@@ -234,6 +234,12 @@ class LocalizedDialogLayoutTest {
                 // At 2×, an indivisible localized word can overflow even this
                 // short confirmation. Such a card intentionally owns inside
                 // touches: dismiss it once before pressing the underlying Done.
+                // Run 39413330405 captured this exact API/profile taking the
+                // card-dismiss path. Keep that positive precondition mandatory,
+                // outside the branch it protects: all-fitting must not pass.
+                if(RuntimeEnvironment.getApiLevel()==30 && tag=="mn-Mong") {
+                    assertTrue("API30 / mn-Mong / 2× Copy must exercise overflow dismissal",feedback.persistent)
+                }
                 if(feedback.persistent) {
                     assertFalse(feedback.deferred)
                     val dismiss=feedback.dismissControl

@@ -61,12 +61,18 @@ Those failures are not retrospectively counted as passes:
 - The original short English resize fixture never overflowed. Its replacement
   explicitly proves initial overflow before checking sticky persistence after fit.
 - At 2× on API30, Copy’s localized confirmation can itself overflow. The dialog
-  test now verifies and dismisses that visible feedback through root-dispatched
-  pointer input before the underlying Done action. Fitting feedback remains in
-  place during Done, retaining the touch-transparency check.
+  test now requires the captured API30 / `mn-Mong` / 2× case to enter the
+  overflow path, then verifies and dismisses that visible feedback through
+  root-dispatched pointer input before the underlying Done action. This positive
+  precondition is outside the conditional dismissal branch, so an all-fitting
+  regression cannot skip the geometry/accessibility/dismissal assertions. Fitting
+  feedback remains in place during Done, retaining the touch-transparency check.
 
 These harness corrections do not change production layout or relax full-text,
 focus, reachability, accessibility, timeout or pixel-negative-control assertions.
-A fresh exact-head hosted result is required for the corrected tests; local
-Python contracts cannot certify them. Simulated IME insets and input connections
+[Run 39413330405](https://github.com/c933103/AN-Paint/actions/runs/39413330405)
+on `ea462f5` passed 1,238 JVM instances without failures or skips; its pointer
+trace identifies the mandatory API30 / `mn-Mong` overflow case. A fresh exact-head
+hosted result is required after making that precondition non-optional; local
+Python contracts cannot certify it. Simulated IME insets and input connections
 are not a physical keyboard or TalkBack session. No verified release is claimed.
