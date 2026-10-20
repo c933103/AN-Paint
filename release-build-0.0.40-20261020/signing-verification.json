@@ -1,0 +1,50 @@
+{
+  "version": "0.0.40",
+  "version_code": 97,
+  "source_commit": "d664b3e72ea3261dba662119a429b0bb3914c04a",
+  "source_tree": "409a41191173f98d10155b8058b232efa1a527fc",
+  "run_id": 39452992495,
+  "ci_apk_sha256": "4ef65f088c36fdcd065506ade0f49b9134e603ef9fcbf54696ff58850d9ec303",
+  "signed_apk_sha256": "b2e6243583ad7a4b6a4b5c3dfb6211cc747fbb2f6b4ad926a18370da72ebcf14",
+  "signed_apk_bytes": 113983450,
+  "patch_format": 1,
+  "patch_bytes": 380263,
+  "patch_sha256": "1618828da21591ae8a9448e23552e70839de10ad2def5df4d27ea0c9df391fd5",
+  "patch_parts": 1315,
+  "sole_signing_certificate_sha256": "f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b0b7791",
+  "signature_verification_sha256": "959eaafdbb18ddcff9638a55cbb361d6aa06f9de5d14332d0cab704447f7f655",
+  "source_sha256": "fa07c7111fe0dd8144c340d6366d095d6b7721398d6949837466deb69b77c62e",
+  "non_signature_payload_unchanged": true,
+  "embedded_source_byte_equal_to_delivery": true,
+  "package": "paint.anpaint.android",
+  "debuggable": false,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "zipalign_16kb_passed": true,
+  "original_ci_apk_unchanged": true,
+  "publisher_apply_unmodified": true,
+  "publisher_apply_full_byte_roundtrip_passed": true,
+  "signing_material_uploaded": false,
+  "standard_generator_attempt": {
+    "command": "python tools/apk_release_patch.py ORIGINAL_CI_APK SEPARATE_SIGNED_APK NEW_PUBLIC_PATCH",
+    "exit_code": 137,
+    "patch_written": false,
+    "interpretation": "Process terminated during memory-intensive generation; no format or payload validation failure was reported. The resource-pressure workaround changes construction memory usage, not the public format or publisher acceptance."
+  },
+  "streamed_generator_attempt": {
+    "exit_code": 0,
+    "format": "Identical format 1 and unchanged allowed signature-entry classification",
+    "bounded_fixture_comparison": "Stored and deflated ZIP fixtures produce exactly the same patch objects as the standard create routine",
+    "verification": "Existing unmodified apk_release_patch.apply on the exact original CI APK; full byte equality against the separately signed APK"
+  },
+  "limits": [
+    "Private local existing upgrade key/setup used without changing credentials or access.",
+    "Patch and receipts contain public APK/signature bytes and public verification metadata only; no key, password or alias values.",
+    "No release tag, publication request merge, or release publication has occurred.",
+    "Existing 0.0.39 assets and all language/UI holds are unchanged."
+  ]
+}
