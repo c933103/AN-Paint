@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.LocaleNumberInputTest" tests="35" skipped="0" failures="4" errors="0" timestamp="2026-10-20T17:56:30.103Z" hostname="runnervmk1d70" time="4.759">
+  <properties/>
+  <testcase name="cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.164"/>
+  <testcase name="cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.394"/>
+  <testcase name="cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.251"/>
+  <testcase name="colourRefactorKeepsCommaEntryAndNegativeRangeRejection[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.247"/>
+  <testcase name="colourRefactorKeepsCommaEntryAndNegativeRangeRejection[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.325"/>
+  <testcase name="colourRefactorKeepsCommaEntryAndNegativeRangeRejection" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.336"/>
+  <testcase name="legacyDefaultNumberFilterReproducesTheUnfixedLoss[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.028"/>
+  <testcase name="legacyDefaultNumberFilterReproducesTheUnfixedLoss" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.029"/>
+  <testcase name="dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.093"/>
+  <testcase name="dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.092"/>
+  <testcase name="dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.116"/>
+  <testcase name="focusedUnitSwitchRestartsInputWithTheFinalNumericMode[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.045"/>
+  <testcase name="focusedUnitSwitchRestartsInputWithTheFinalNumericMode[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.052"/>
+  <testcase name="focusedUnitSwitchRestartsInputWithTheFinalNumericMode" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.075"/>
+  <testcase name="dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.082"/>
+  <testcase name="dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.062"/>
+  <testcase name="dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.093"/>
+  <testcase name="textSizeAndSpacingRetainDecimalsAndTheExistingRanges[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.218"/>
+  <testcase name="textSizeAndSpacingRetainDecimalsAndTheExistingRanges[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.225"/>
+  <testcase name="textSizeAndSpacingRetainDecimalsAndTheExistingRanges" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.287"/>
+  <testcase name="pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.071"/>
+  <testcase name="pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.099"/>
+  <testcase name="pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.133"/>
+  <testcase name="api21DialogCreationPrecedesDecorInspectionWithTheActualAppTheme" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.187"/>
+  <testcase name="normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.143"/>
+  <testcase name="normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.213"/>
+  <testcase name="normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.185"/>
+  <testcase name="legacyTypefaceShadowDoesNotModelTheFrameworkIdentityCache" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.017"/>
+  <testcase name="everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.03">
+    <failure message="org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.enter(LocaleNumberInputTest.kt:45)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes(LocaleNumberInputTest.kt:155)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.034">
+    <failure message="org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.enter(LocaleNumberInputTest.kt:45)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes(LocaleNumberInputTest.kt:155)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes[30]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.039">
+    <failure message="org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.enter(LocaleNumberInputTest.kt:45)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes(LocaleNumberInputTest.kt:155)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.026">
+    <failure message="org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:&lt;[−]12&gt; but was:&lt;[]12&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.enter(LocaleNumberInputTest.kt:45)
+	at org.catrobat.paintroid.local.LocaleNumberInputTest.everyOfferedLocaleRetainsItsDigitsAndDecimalSyntaxWithBothImeModes(LocaleNumberInputTest.kt:155)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers[21]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.09"/>
+  <testcase name="sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers[25]" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.095"/>
+  <testcase name="sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers" classname="org.catrobat.paintroid.local.LocaleNumberInputTest" time="0.177"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
