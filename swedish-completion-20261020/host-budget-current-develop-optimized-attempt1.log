@@ -1,0 +1,181 @@
+................................................................................................................................................................................................................................................................................................................................................../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+............................................................................................................................................................................................................................................................................................................EEE.............................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_cli_proves_source_omission_and_clears_stale_success_in_all_modes (test_legacy_compatibility.LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes) (sdk=24, mode='flag', script='vertical_locale_matrix.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-swedish-merge-check/tools/test_legacy_compatibility.py", line 97, in test_cli_proves_source_omission_and_clears_stale_success_in_all_modes
+    run = subprocess.run(changed_command, env=env, text=True, capture_output=True, timeout=10)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-O', '/tmp/an-swedish-merge-check/tools/vertical_locale_matrix.py', 'verify-reports', '--source-tests', '/tmp/tmpqc7iinay/source', '--sdk', '24', '--root', '/tmp/tmpqc7iinay']' timed out after 10 seconds
+
+======================================================================
+ERROR: test_cli_proves_source_omission_and_clears_stale_success_in_all_modes (test_legacy_compatibility.LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes) (sdk=24, mode='environment', script='app_instrumentation_matrix.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-swedish-merge-check/tools/test_legacy_compatibility.py", line 75, in test_cli_proves_source_omission_and_clears_stale_success_in_all_modes
+    run = subprocess.run(command, env=env, text=True, capture_output=True, timeout=10)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '/tmp/an-swedish-merge-check/tools/app_instrumentation_matrix.py', '--source-tests', '/tmp/an-swedish-merge-check/app/src/androidTest', '--sdk', '24', '--root', '/tmp/tmp7chpytjc']' timed out after 10 seconds
+
+======================================================================
+ERROR: test_cli_proves_source_omission_and_clears_stale_success_in_all_modes (test_legacy_compatibility.LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes) (sdk=24, mode='environment', script='vertical_locale_matrix.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/an-swedish-merge-check/tools/test_legacy_compatibility.py", line 75, in test_cli_proves_source_omission_and_clears_stale_success_in_all_modes
+    run = subprocess.run(command, env=env, text=True, capture_output=True, timeout=10)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '/tmp/an-swedish-merge-check/tools/vertical_locale_matrix.py', 'verify-reports', '--source-tests', '/tmp/an-swedish-merge-check/app/src/androidTest', '--sdk', '24', '--root', '/tmp/tmp_pa_sdsq']' timed out after 10 seconds
+
+----------------------------------------------------------------------
+Ran 1068 tests in 633.401s
+
+FAILED (errors=3)
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}

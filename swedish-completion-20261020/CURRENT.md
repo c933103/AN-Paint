@@ -103,3 +103,21 @@ suite and [new hosted run 39434720839](https://github.com/c933103/AN-Paint/actio
 are pending. No earlier passing report is relabelled as a pass for this new head.
 The original independent receipt, all production/translation values and three
 language holds remain unchanged.
+
+
+## Optimized host follow-up
+
+The first optimized combined-source run completed 1,068 tests in 633.401 seconds
+with three TimeoutExpired errors in subcases of the existing legacy CLI-omission
+test. Each exceeded its unchanged 10-second subprocess limit; no assertion
+mismatch was reported. This optimized aggregate is failed, not pending or passed.
+The normal suite passed those same normal/-O/environment CLI modes. An unchanged
+focused diagnostic is running; no host-load or other environmental cause is
+claimed as established. `host-budget-current-develop-optimized-attempt1.log`
+preserves the complete failure. The current hosted Python step independently
+succeeded; JVM and later hosted stages are still pending.
+
+The focused optimized legacy suite subsequently passed all seven tests unchanged
+in 36.155 seconds, including every timed-out subcase with the original limits.
+One full unchanged optimized confirmation run is now running. Focused success
+does not relabel the failed aggregate or establish its environmental cause.

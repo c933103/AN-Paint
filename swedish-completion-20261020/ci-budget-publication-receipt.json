@@ -55,7 +55,20 @@
     "result": "passed"
   },
   "host_optimized": {
-    "result": "running"
+    "result": "not passed; unchanged full confirmation running",
+    "first_attempt": {
+      "tests": 1068,
+      "seconds": 633.401,
+      "result": "failed",
+      "errors": 3,
+      "diagnosis": "Three unchanged 10-second subprocess TimeoutExpired errors in subcases of LegacyInventoryTest.test_cli_proves_source_omission_and_clears_stale_success_in_all_modes, SDK24 flag/environment modes. No assertion mismatch. Complete normal run passed the same CLI modes; focused unchanged optimized diagnostic is running. No environmental cause has been established."
+    },
+    "focused_legacy_optimized": {
+      "tests": 7,
+      "seconds": 36.155,
+      "result": "passed unchanged, including every timed-out subcase with original 10-second limits"
+    },
+    "confirmation": "One complete unchanged optimized rerun started after exact timeout inspection and focused reproduction attempt; failed attempt retained."
   },
   "hosted_ci": {
     "run": 39434720839,
