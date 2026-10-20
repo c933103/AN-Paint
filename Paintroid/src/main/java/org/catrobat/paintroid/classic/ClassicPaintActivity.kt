@@ -330,7 +330,7 @@ class ClassicPaintActivity : Activity() {
                     ?: button(action.first,"command_${name}_$index",onClick)).apply {
                     isEnabled=menuActionEnabled();columnHeightDp=112
                     if(name=="View" && index==1) {
-                        setOnLongClickListener {message(ui(R.string.ui_pixel_grid_help33));true}
+                        LocaleTooltip.setHelpAction(this) {message(ui(R.string.ui_pixel_grid_help33));true}
                         LocaleTooltip.set(this,ui(R.string.ui_pixel_grid_help33))
                     }
                 }
@@ -450,7 +450,7 @@ class ClassicPaintActivity : Activity() {
         canvasArea.addView(panelButton(ui(R.string.ui_cursor_start31),"cursor_draw_toggle",R.drawable.classic_cursor) {
             paintCanvas.toggleCursorDrawing()
         }.apply {
-            setOnLongClickListener {showCursorHelp();true}
+            LocaleTooltip.setHelpAction(this) {showCursorHelp();true}
         },FrameLayout.LayoutParams(-2,toolHeight,Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
         makeStatus();populateToolOptions(paintCanvas.tool)
@@ -493,7 +493,7 @@ class ClassicPaintActivity : Activity() {
     private fun makeToolButton(tool: PaintTool)=ToolButton(this,tool).apply {
         tag="tool_${tool.name}"
         setOnClickListener {if(!busy) editAction {chooseTool(tool)}}
-        setOnLongClickListener {message(tool.label+": "+tool.hint);true}
+        LocaleTooltip.setHelpAction(this) {message(tool.label+": "+tool.hint);true}
         toolButtons[tool]=this
     }
 
@@ -558,7 +558,7 @@ class ClassicPaintActivity : Activity() {
     private fun actionIcon(icon: EditIcon, tagName: String, action: () -> Unit) = ActionButton(this, icon).apply {
         tag = tagName
         setOnClickListener { if (!busy) editAction(action) }
-        setOnLongClickListener { LocaleTypography.showMessage(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT); true }
+        LocaleTooltip.setHelpAction(this) { LocaleTypography.showMessage(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT); true }
     }
 
     private fun makeHeader() {

@@ -96,8 +96,8 @@ class LocalizedDialogLayoutTest {
     private fun tap(dialog: Dialog,view: TextView) {
         reveal(view);tapVisible(dialog,view)
     }
-    private fun pointerState(root: View,view: TextView,phase: String,x: Float,y: Float) {
-        val row=JSONObject().put("phase",phase).put("time",SystemClock.uptimeMillis()).put("text",view.text)
+    private fun pointerState(root: View,view: View,phase: String,x: Float,y: Float) {
+        val row=JSONObject().put("phase",phase).put("time",SystemClock.uptimeMillis()).put("text",(view as? TextView)?.text ?: view.contentDescription)
             .put("x",x).put("y",y).put("attached",view.isAttachedToWindow).put("touch_mode",view.isInTouchMode)
             .put("explicit_focusable",view.hasExplicitFocusable()).put("parent",view.parent?.javaClass?.name)
         val visible=Rect();view.getLocalVisibleRect(visible);row.put("visible",visible.toShortString())
@@ -112,7 +112,7 @@ class LocalizedDialogLayoutTest {
         val directory=File("build/reports/localized-dialog-layout").apply {mkdirs()}
         File(directory,"pointer-api${RuntimeEnvironment.getApiLevel()}-${Locale.getDefault().toLanguageTag()}.jsonl").appendText(row.toString()+"\n")
     }
-    private fun tapVisible(dialog: Dialog,view: TextView) {
+    private fun tapVisible(dialog: Dialog,view: View) {
         val visible=Rect();assertTrue(view.getLocalVisibleRect(visible))
         val root=dialog.window!!.decorView;val target=IntArray(2);val origin=IntArray(2)
         view.getLocationOnScreen(target);root.getLocationOnScreen(origin)
@@ -122,7 +122,7 @@ class LocalizedDialogLayoutTest {
         for(action in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP)) {
             if(action==MotionEvent.ACTION_UP) shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(40))
             val event=MotionEvent.obtain(time,SystemClock.uptimeMillis(),action,x,y,0).apply {source=InputDevice.SOURCE_TOUCHSCREEN}
-            try {assertTrue("Pointer event was not handled for ${view.text}",root.dispatchTouchEvent(event))} finally {event.recycle()}
+            try {assertTrue("Pointer event was not handled for ${view.tag}",root.dispatchTouchEvent(event))} finally {event.recycle()}
             pointerState(root,view,"after-$action",x,y)
         }
         // ListView retains its real pressed-state delay before delivering an item click.
@@ -227,6 +227,36 @@ class LocalizedDialogLayoutTest {
                     .put("controls",rows).toString(2)+"\n")
                 val copy=controls[1];copy.requestRectangleOnScreen(Rect(0,0,minOf(16,copy.width),minOf(16,copy.height)),true);idle();tapVisible(dialog,copy)
                 assertEquals(text,(activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip!!.getItemAt(0).text.toString())
+                val feedback=requireNotNull(root.findViewWithTag<VerticalFeedbackCard>("locale_notification_card"))
+                val copied=activity.getString(R.string.ui_full_text_copied)
+                assertEquals(copied,feedback.viewport.message.text.toString())
+                assertEquals(copied,feedback.viewport.message.createAccessibilityNodeInfo().text.toString())
+                // At 2×, an indivisible localized word can overflow even this
+                // short confirmation. Such a card intentionally owns inside
+                // touches: dismiss it once before pressing the underlying Done.
+                // Run 39413330405 captured this exact API/profile taking the
+                // card-dismiss path. Keep that positive precondition mandatory,
+                // outside the branch it protects: all-fitting must not pass.
+                if(RuntimeEnvironment.getApiLevel()==30 && tag=="mn-Mong") {
+                    assertTrue("API30 / mn-Mong / 2× Copy must exercise overflow dismissal",feedback.persistent)
+                }
+                if(feedback.persistent) {
+                    assertFalse(feedback.deferred)
+                    val dismiss=feedback.dismissControl
+                    assertEquals(View.VISIBLE,dismiss.visibility)
+                    val visible=Rect();assertTrue(dismiss.getLocalVisibleRect(visible))
+                    assertTrue(visible.contains(Rect(0,0,dismiss.width,dismiss.height)))
+                    val minimum=(44*dismiss.resources.displayMetrics.density).toInt()
+                    assertTrue(dismiss.width>=minimum);assertTrue(dismiss.height>=minimum)
+                    val node=dismiss.createAccessibilityNodeInfo()
+                    assertEquals(activity.getString(R.string.ui_done),
+                        (if(dismiss is TextView) node.text else node.contentDescription).toString())
+                    tapVisible(dialog,dismiss)
+                    assertNull(root.findViewWithTag<View>("locale_notification"))
+                    assertTrue(dialog.isShowing)
+                } else assertFalse(feedback.hasOverflow)
+                // Fitting feedback stays in place: this also proves its touch
+                // transparency, without waiting for or shortening its timeout.
                 val done=controls[3];done.requestRectangleOnScreen(Rect(0,0,minOf(16,done.width),minOf(16,done.height)),true);idle();tapVisible(dialog,done);assertFalse(dialog.isShowing)
             } finally {dialog.dismiss()}
         }
