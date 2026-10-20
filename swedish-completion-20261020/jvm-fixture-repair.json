@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "author diagnosis and test fixture repair; no translation or production behavior change",
+  "failed_head": "cafb244e8bd8342926d5696ce63a67860cb9b9ad",
+  "run": "https://github.com/c933103/AN-Paint/actions/runs/39412001502",
+  "job_id": 118592033645,
+  "artifact_id": 12260681255,
+  "artifact_zip_sha256": "129691db6c9751e03e709bab8545ed13fe5cec8e6628816170afa56a31359bf6",
+  "jvm_aggregate": {
+    "suites": 127,
+    "tests": 1186,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "suite": "org.catrobat.paintroid.local.CommonsCreditFlowTest",
+      "test": "everyPickerLocaleResolvesCompleteEmptyCreditTextOrEnglishFallback",
+      "type": "org.junit.ComparisonFailure",
+      "message": "org.junit.ComparisonFailure: Complete empty-credit message for sv expected:<[No image credit text is available].> but was:<[Det finns ingen text om bildkällor och erkännanden].>",
+      "stack_trace": "org.junit.ComparisonFailure: Complete empty-credit message for sv expected:<[No image credit text is available].> but was:<[Det finns ingen text om bildkällor och erkännanden].>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.catrobat.paintroid.local.CommonsCreditFlowTest.everyPickerLocaleResolvesCompleteEmptyCreditTextOrEnglishFallback(CommonsCreditFlowTest.kt:233)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n",
+      "artifact_report_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.CommonsCreditFlowTest.xml"
+    },
+    {
+      "suite": "org.catrobat.paintroid.local.SwedishExtendedWordingTest",
+      "test": "exactPositionValidatesLocalizedInputAndOnlyMovesTheSelectedImage",
+      "type": "java.lang.AssertionError",
+      "message": "java.lang.AssertionError",
+      "stack_trace": "java.lang.AssertionError\n\tat org.junit.Assert.fail(Assert.java:87)\n\tat org.junit.Assert.assertTrue(Assert.java:42)\n\tat org.junit.Assert.assertTrue(Assert.java:53)\n\tat org.catrobat.paintroid.local.SwedishExtendedWordingTest.exactPositionValidatesLocalizedInputAndOnlyMovesTheSelectedImage(SwedishExtendedWordingTest.kt:163)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n",
+      "artifact_report_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.SwedishExtendedWordingTest.xml"
+    }
+  ],
+  "verified_other_jobs": "Exact-script generation, APK/source build, Position dialog API35, Core emulator API35, and aggregate Emulator API35 all completed success on the failed head. These passes do not cover the repair head.",
+  "diagnosis": [
+    {
+      "test": "CommonsCreditFlowTest.everyPickerLocaleResolvesCompleteEmptyCreditTextOrEnglishFallback",
+      "verified": "Runtime Swedish text is correct and equals the explicit family fixture. The test incorrectly chose English from the original global fallback set without subtracting family-specific additional_reviewed_tags.",
+      "repair": "Use the existing explicit family extension; assert additions are baseline fallbacks, scope sets remain disjoint and cover every picker locale, fixture keys equal complete reviewed family scope plus default; retain full exact runtime equality."
+    },
+    {
+      "test": "SwedishExtendedWordingTest.exactPositionValidatesLocalizedInputAndOnlyMovesTheSelectedImage",
+      "verified": "The artifact reports only assertTrue(dialog.isShowing) failing at line 163, without identifying the invalid input. The original test clicked immediately after show(), although AssemblyPositionDialog installs its validation click listener in OnShow. Android 13 Dialog.show posts that callback through a Handler. The original setup also overlaid Swedish resources without selecting AppLanguage or setting the process locale. Actual uiNumber uses Locale.getDefault(); production AppLanguage.wrap/refresh sets it.",
+      "inference": "The unprocessed OnShow callback can leave the default dismissing button handler active on the first click. Separately, a comma fraction can parse as a grouping-separated integer under an English process locale. A host Java NumberFormat probe confirmed en-US parses 1,5 as 15 while sv parses it as 1.5. These source/probe findings identify fixture defects; the original artifact does not distinguish their contribution, and the probe is not a reproduction of the full Android test.",
+      "repair": "Drain the main looper after both dialog show calls, before clicking. Select Swedish through AppLanguage, wrap/refresh the consumer context, restore prior preference/platform/process/resource state after each test, assert selected/context/process language and comma parsing, preserve invalid syntax through the actual key filter on both axes, and retain full localized error, open-dialog, layout and persisted-byte assertions. Each invalid-case assertion now names its axis and input.",
+      "framework_source": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-13.0.0_r1/core/java/android/app/Dialog.java#L397-L401",
+      "application_source": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt:29-42"
+    }
+  ],
+  "development_interaction": "Develop 37515f556fb013b0caa82fb87e2eb8fa4e2d99e0 changes only AssemblyPositionDeviceTest, NativeScrollLane, their documentation and Python test. No overlap with these two JVM fixtures; no rebase performed.",
+  "acceptance": "No production resources or accepted translation values changed. Three language holds remain. New JVM result is pending hosted execution.",
+  "local_validation": {
+    "focused_swedish_tests": 23,
+    "focused_empty_credit_tests": 5,
+    "normal_host_tests": 1056,
+    "normal_host_result": "passed",
+    "optimized_host_result": "passed",
+    "android_jvm_result": "not executed locally: Android SDK unavailable and Gradle distribution download unavailable; hosted rerun required",
+    "optimized_host_tests": 1056
+  }
+}

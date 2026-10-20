@@ -1,28 +1,44 @@
 # Current Swedish validation
 
-Latest application head: `cafb244e8bd8342926d5696ce63a67860cb9b9ad`.
-This corrects only the Curve hint and its tests/documentation over the original
-Swedish PR head. The complete original independent receipt is unchanged.
+Latest application head: `c8bf159e06cacf351407a0ac7cdd28a2a3e16b3f`.
+It repairs two JVM test fixtures over `cafb244e8bd8342926d5696ce63a67860cb9b9ad`.
+No production source, resource or accepted translation value changed.
+The complete original independent receipt is unchanged.
 
-Current checks after the Curve correction:
-- Swedish wording suites: 23 passed in 3.836 seconds.
-- Complete normal host suite: 1,056 passed in 223.709 seconds.
-- Translation catalogue structural validation: passed.
+Current local checks:
+- Swedish wording suites: 23 passed in 5.976 seconds.
+- Empty-credit wording suite: 5 passed in 0.363 seconds.
+- Complete normal host suite: 1,056 passed in 287.129 seconds.
+- Complete optimized host suite: 1,056 passed in 331.65 seconds.
 - Source binding: all 717 complete current English identities/values/attributes;
   713 unchanged bounded Swedish targets plus the explicitly author-corrected
-  pending target, 715 resources present and three unrelated holds.
+  Curve target, 715 resources present and three unrelated language holds.
 - Remote application tree: all 1,254 leaf entries verified against the expected
-  parent, including five intended changed files and 1,249 retained entries with
-  original modes. Same branch updated non-force with expected-head lease.
-- Exact-head hosted run 39412001502 has started. Current-head Codex code review
-  is running. Neither is counted passed here.
-- Complete optimized host suite: 1,056 passed in 225.410 seconds.
+  parent, including two intended changed files and 1,252 retained entries/modes.
+  The same branch was updated non-force with an expected-head lease; final ref,
+  sole parent and tree readback matched.
+- Current-head hosted run 39427728235 and Codex code review have started.
+  Neither is counted passed by this receipt.
 
-Earlier head `6cfe2e924bb733366599d89d93ead11dff7dd689` passed both normal and
-optimized host suites with 1,055 tests. Its earlier APK/build and position-dialog
-checks passed, but they do not verify the new correction/test head.
+The prior hosted run 39412001502 on `cafb244` had 1,186 JVM tests in 127 suites,
+with two failures, zero errors and zero skipped. The other five CI jobs passed.
+The new real-button Curve test passed in that run, and its exact-head Codex code
+review reported no major issues, but these are not current-head acceptance.
+`jvm-fixture-repair.json` preserves the exact failures and diagnosis limits.
 
-Local Gradle distribution download was unavailable due network unreachable, so
-local JVM, lint, APK and installed-device checks remain unrun. The new real-button
-curve regression covers zero/one bends, repeated activation and undo/redo; it
-must run in hosted JVM CI before a behavioral pass is claimed.
+The empty-credit failure was a stale English fallback oracle for Swedish.
+The Exact position fixture omitted the queued OnShow callback and selected only
+Swedish resources, not the production app/process locale. The repair adds those
+setup requirements and strengthens both-axis syntax, localized error, open-dialog,
+layout and persisted-byte checks. The host Java parser probe is not an Android
+reproduction; the original assertion report did not identify the invalid input.
+
+The host logs include expected negative-case fixture output from tests of the
+instrumentation-result parser. Their overall unittest results are passing;
+those emitted mock results do not constitute installed-device execution.
+
+Local Android SDK/Gradle execution is unavailable, so local JVM, lint, APK and
+installed-device checks remain unrun. Hosted CI must verify the new exact head.
+The original linguistic receipt is not silently rewritten by these author test
+corrections; native-speaker, installed-layout and TalkBack certification is not
+claimed.

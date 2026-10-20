@@ -50,3 +50,27 @@ and one author-corrected target awaiting new-head review. Presence remains
 715/717; three unrelated holds remain. Source-binding verification checks all
 complete target values including this explicitly labelled pending correction,
 without turning structural verification into linguistic acceptance.
+
+## Hosted JVM fixture repair
+
+Hosted run [39412001502](https://github.com/c933103/AN-Paint/actions/runs/39412001502)
+on `cafb244e8bd8342926d5696ce63a67860cb9b9ad` completed with two failures among
+1,186 JVM tests (127 suites, zero errors/skips). The five other CI jobs passed.
+The actual Swedish empty-credit text was correct, but its test still expected
+English because it ignored the explicit family-specific review extension.
+The Exact position fixture clicked before processing the queued OnShow handler
+and did not select the app/process locale; its failure lacked a per-input label.
+`jvm-fixture-repair.json` preserves the exact reports, source-backed diagnosis,
+parser-probe limits and strengthened checks. It is author-produced test evidence,
+not a replacement translation review or a claim that Android was rerun locally.
+
+Application head `c8bf159e06cacf351407a0ac7cdd28a2a3e16b3f` changes only those two
+JVM fixtures, retaining every application/translation value. The test now uses
+the explicit reviewed locale family, selects/restores Swedish through the real
+app path, drains OnShow before interaction, and checks retained invalid syntax,
+localized errors, open-dialog state and unchanged project bytes on both axes.
+The original independent receipt and the three genuine language holds remain.
+`jvm-fixture-publication-receipt.json` records the expected-head lease and full
+remote-tree comparison. Current-head Codex review and hosted run
+[39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235) have
+started; only their eventual current-head results can close the runtime gate.
