@@ -25,6 +25,14 @@ NOTE = 'language20_translation_note'
 
 
 class TaiwanPriorityWordingTests(unittest.TestCase):
+    def test_gif_dithering_description_names_the_actual_checkbox(self):
+        self.assertEqual('遞色', self.strings['save20_dither'])
+        self.assertIn(self.strings['save20_dither'], self.strings['save20_gif_description'])
+        self.assertNotIn('抖色', self.strings['save20_gif_description'])
+        dialog = (CLASSIC / 'SaveOptionsDialog.kt').read_text(encoding='utf-8')
+        self.assertIn('text=ui(R.string.save20_dither)', dialog)
+        self.assertIn('ImageFormat.GIF -> R.string.save20_gif_description', dialog)
+
     @classmethod
     def setUpClass(cls):
         cls.data = require_wording_shape(fixture('taiwan_priority_current_wording.json'), KEYS, TAGS)
