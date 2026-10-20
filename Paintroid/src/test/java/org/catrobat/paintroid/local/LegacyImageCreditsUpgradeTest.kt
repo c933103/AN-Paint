@@ -128,9 +128,13 @@ class LegacyImageCreditsUpgradeTest {
             Intent().putExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN,
                 ImageCreditArchive.selectionToken(LegacyImageCredits.read(activity).single())))
         try {
-            for ((field,resource) in listOf("busy" to R.string.ui_please_wait_for_the_current_operation,
-                    "autosaving" to R.string.ui_the_draft_is_saving_try_again_shortly)) {
-                ReflectionHelpers.setField(activity,field,true)
+            // Real autosave sets both flags; retain the autosaving-only defensive case too.
+            for ((busy,autosaving,resource) in listOf(
+                    Triple(true,false,R.string.ui_please_wait_for_the_current_operation),
+                    Triple(true,true,R.string.ui_the_draft_is_saving_try_again_shortly),
+                    Triple(false,true,R.string.ui_the_draft_is_saving_try_again_shortly))) {
+                ReflectionHelpers.setField(activity,"busy",busy)
+                ReflectionHelpers.setField(activity,"autosaving",autosaving)
                 deliver()
                 shadowOf(Looper.getMainLooper()).idle()
                 val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
@@ -139,7 +143,8 @@ class LegacyImageCreditsUpgradeTest {
                 assertEquals(beforeHistory,activity.document.historySnapshot())
                 assertSame(beforeBitmap,activity.document.bitmap)
                 dialog.dismiss()
-                ReflectionHelpers.setField(activity,field,false)
+                ReflectionHelpers.setField(activity,"busy",false)
+                ReflectionHelpers.setField(activity,"autosaving",false)
             }
             deliver()
             assertEquals(listOf(legacy),activity.document.imageCredits)
