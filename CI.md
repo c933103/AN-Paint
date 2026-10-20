@@ -60,7 +60,8 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
+- Regression job: 55 minutes; Python contracts: 8 minutes; JVM regression: 20 minutes;
+  build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
@@ -78,6 +79,26 @@ Focused checks do not turn an incomplete aggregate into a pass.
 - The current 43-minute step includes separately bounded setup, processing and
   cleanup allowances. Inner deadlines and failure behavior must not be relaxed
   to obtain green results. Test/installation failures are not automatically retried.
+
+The expanded regression suite exceeded its former 4-minute Python and 12-minute
+JVM caps in [run 39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235):
+the command receipts exited zero after 250.311 and 773.047 seconds, respectively,
+but Actions explicitly timed out both steps. The artifact contains 1,066 Python
+tests (two skipped) and 1,186 successful JVM tests; those results do not turn the
+timed-out workflow into a pass. The job's terminal conclusion was cancelled;
+the available log proves the step timeouts, not the separate source of that
+aggregate conclusion. Nearby successful [run 39427218699](https://github.com/c933103/AN-Paint/actions/runs/39427218699)
+took 232 seconds for Python and 614 seconds for JVM by step timestamps.
+
+The new caps leave about 92% and 55% margin over the slower hosted command
+measurements. The regression job's explicit phase maxima are 2 minutes for
+compiler-cache installation, 8 for preparation, 8 for Python, 20 for JVM, 6 for
+native lint dependencies and 6 for lint: 50 minutes total. Its 55-minute hard
+stop additionally reserves 5 minutes for checkout, cache and evidence overhead.
+This is an explicit cancellation policy, not a universal runtime guarantee.
+All tests, assertions, failure propagation and existing device/interaction caps
+remain unchanged. A future timeout still fails; it must be diagnosed, not
+silently retried or counted as success.
 
 The runner retains live raw output, JUnit XML and summaries, including partial
 failures. Success requires the final protocol plus every selected identity,
