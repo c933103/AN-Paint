@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="app-position-ainu-manchu" tests="3" failures="1" errors="0" skipped="0" time="107.971">
+  <testcase classname="paint.anpaint.android.AssemblyPositionDeviceTest" name="ainuLatinPositionTextAndNativeEditing">
+    <failure message="java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false">java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:255)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.checkLocale(AssemblyPositionDeviceTest.kt:166)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.ainuLatinPositionTextAndNativeEditing(AssemblyPositionDeviceTest.kt:62)
+	... 32 trimmed
+Caused by: java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y
+	at paint.anpaint.android.AssemblyPositionDeviceTest.await(AssemblyPositionDeviceTest.kt:401)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:250)
+	... 35 more</failure>
+  </testcase>
+  <testcase classname="paint.anpaint.android.AssemblyPositionDeviceTest" name="ainuKanaPositionTextAndNativeEditing" />
+  <testcase classname="paint.anpaint.android.AssemblyPositionDeviceTest" name="manchuPositionColumnsAndNativeEditing" />
+</testsuite>

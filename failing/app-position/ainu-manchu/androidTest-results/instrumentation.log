@@ -1,0 +1,84 @@
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+paint.anpaint.android.AssemblyPositionDeviceTest:
+INSTRUMENTATION_STATUS: test=ainuLatinPositionTextAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:255)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.checkLocale(AssemblyPositionDeviceTest.kt:166)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.ainuLatinPositionTextAndNativeEditing(AssemblyPositionDeviceTest.kt:62)
+	... 32 trimmed
+Caused by: java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y
+	at paint.anpaint.android.AssemblyPositionDeviceTest.await(AssemblyPositionDeviceTest.kt:401)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:250)
+	... 35 more
+
+INSTRUMENTATION_STATUS: stream=
+Error in ainuLatinPositionTextAndNativeEditing(paint.anpaint.android.AssemblyPositionDeviceTest):
+java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:255)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.checkLocale(AssemblyPositionDeviceTest.kt:166)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.ainuLatinPositionTextAndNativeEditing(AssemblyPositionDeviceTest.kt:62)
+	... 32 trimmed
+Caused by: java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y
+	at paint.anpaint.android.AssemblyPositionDeviceTest.await(AssemblyPositionDeviceTest.kt:401)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:250)
+	... 35 more
+
+INSTRUMENTATION_STATUS: test=ainuLatinPositionTextAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=ainuKanaPositionTextAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=ainuKanaPositionTextAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=manchuPositionColumnsAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=paint.anpaint.android.AssemblyPositionDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=manchuPositionColumnsAndNativeEditing
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 100.137
+There was 1 failure:
+1) ainuLatinPositionTextAndNativeEditing(paint.anpaint.android.AssemblyPositionDeviceTest)
+java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:255)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.checkLocale(AssemblyPositionDeviceTest.kt:166)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.ainuLatinPositionTextAndNativeEditing(AssemblyPositionDeviceTest.kt:62)
+	... 32 trimmed
+Caused by: java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y
+	at paint.anpaint.android.AssemblyPositionDeviceTest.await(AssemblyPositionDeviceTest.kt:401)
+	at paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:250)
+	... 35 more
+
+FAILURES!!!
+Tests run: 3,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,44 @@
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 3,
+  "missing": [],
+  "unexpected": [],
+  "errors": [],
+  "cases": [
+    {
+      "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+      "name": "ainuLatinPositionTextAndNativeEditing",
+      "status": "failure",
+      "message": "java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y; raw=Rect(144, 177 - 496, 223) visible=Rect(144, 177 - 496, 223) focused=assembly_position_y windowFocus=true ime=false\n\tat paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:255)\n\tat paint.anpaint.android.AssemblyPositionDeviceTest.checkLocale(AssemblyPositionDeviceTest.kt:166)\n\tat paint.anpaint.android.AssemblyPositionDeviceTest.ainuLatinPositionTextAndNativeEditing(AssemblyPositionDeviceTest.kt:62)\n\t... 32 trimmed\nCaused by: java.lang.AssertionError: Timed out at 8-second wait bound: IME shown for native field input: assembly_position_y\n\tat paint.anpaint.android.AssemblyPositionDeviceTest.await(AssemblyPositionDeviceTest.kt:401)\n\tat paint.anpaint.android.AssemblyPositionDeviceTest.replace(AssemblyPositionDeviceTest.kt:250)\n\t... 35 more"
+    },
+    {
+      "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+      "name": "ainuKanaPositionTextAndNativeEditing",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+      "name": "manchuPositionColumnsAndNativeEditing",
+      "status": "passed",
+      "message": "."
+    }
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+  "excluded_classes": [],
+  "included_tests": [
+    "paint.anpaint.android.AssemblyPositionDeviceTest#ainuKanaPositionTextAndNativeEditing",
+    "paint.anpaint.android.AssemblyPositionDeviceTest#ainuLatinPositionTextAndNativeEditing",
+    "paint.anpaint.android.AssemblyPositionDeviceTest#manchuPositionColumnsAndNativeEditing"
+  ],
+  "source_tests_sha256": "3022fe07657c952e64e63bfc0fcc3da622cf2c337827df9f601be7cb22c826f4",
+  "timeout_seconds": 180,
+  "device_sdk": 35,
+  "sdk_suppressed_tests": [],
+  "leave_target_running": false,
+  "target_pid_before_instrumentation": null,
+  "elapsed_seconds": 107.97085420299999
+}
