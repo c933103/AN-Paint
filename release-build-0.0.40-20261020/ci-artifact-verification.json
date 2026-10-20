@@ -1,0 +1,103 @@
+{
+  "commit": "d664b3e72ea3261dba662119a429b0bb3914c04a",
+  "tree": "409a41191173f98d10155b8058b232efa1a527fc",
+  "run_id": 39452992495,
+  "artifact_id": 12280200570,
+  "artifact_zip_sha256": "422b59b94837d83fe29126417fd7beed52e26e43c0cd263feb928277f0af1191",
+  "artifact_zip_bytes": 130187329,
+  "build_info": {
+    "commit": "d664b3e72ea3261dba662119a429b0bb3914c04a",
+    "run_id": "39452992495",
+    "build_variant": "release",
+    "apk_sha256": "4ef65f088c36fdcd065506ade0f49b9134e603ef9fcbf54696ff58850d9ec303",
+    "source_sha256": "fa07c7111fe0dd8144c340d6366d095d6b7721398d6949837466deb69b77c62e",
+    "test_status": "Reported separately; artifact availability does not imply tests passed.",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "apk_bytes": 113981709,
+  "source_bytes": 49308041,
+  "embedded_source_equals_delivery_source": true,
+  "source_verification": {
+    "matched_tracked_files": 1263,
+    "missing_tracked_files": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "different_tracked_files": [],
+    "source_prefix": "AN-Paint/"
+  },
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "zipalign_16k_passed": true,
+  "version_name": "0.0.40",
+  "version_code": 97,
+  "package": "paint.anpaint.android",
+  "debuggable": false,
+  "artifact_files": [
+    {
+      "path": "app/build/outputs/apk/release/app-release.apk",
+      "bytes": 113981709,
+      "sha256": "4ef65f088c36fdcd065506ade0f49b9134e603ef9fcbf54696ff58850d9ec303"
+    },
+    {
+      "path": "build/delivery/AN-Paint-source.zip",
+      "bytes": 49308041,
+      "sha256": "fa07c7111fe0dd8144c340d6366d095d6b7721398d6949837466deb69b77c62e"
+    },
+    {
+      "path": "build/delivery/build-info.json",
+      "bytes": 468,
+      "sha256": "26bf08691ad1fc49f4042f9359c72719ed776b2f316f94f37c6a5da43a1e86c5"
+    },
+    {
+      "path": "app/build/runtime-dependencies.json",
+      "bytes": 4009,
+      "sha256": "6537a171209c937b4800a178fe0ccddff4325694a9309b5a2faa435169cd204a"
+    },
+    {
+      "path": "build/reports/native-runtime-notices.json",
+      "bytes": 586,
+      "sha256": "4bf7d83bc206c28f234ef06c254e50118f697696178ff15effc55a67f4a00caf"
+    },
+    {
+      "path": "Paintroid/src/main/assets/legal/THIRD_PARTY_NOTICES.txt",
+      "bytes": 802541,
+      "sha256": "d8f3c14a57bcfd2f47a577bbcac15a31219a523a68cae5ed0cbc3c69711e997e"
+    },
+    {
+      "path": "Paintroid/src/main/assets/legal/NATIVE_RUNTIME_NOTICES.txt",
+      "bytes": 131732,
+      "sha256": "b26b9bbc634a69cd62d6f39b610829575c7fc0089c800f267d9b58426cd073de"
+    },
+    {
+      "path": "verification-tools/aapt2",
+      "bytes": 6299424,
+      "sha256": "d1096e11aba9c974644369ee3c50d239acac3f3428ffa928e5b9c14dfb7a57de"
+    },
+    {
+      "path": "verification-tools/apksigner.jar",
+      "bytes": 1074241,
+      "sha256": "00ef9948f843fe395d2440ae3ef41405b8040a6d5d46493bd1902ac0ee6deae7"
+    },
+    {
+      "path": "verification-tools/lib64/libc++.so",
+      "bytes": 1085776,
+      "sha256": "71c9f5d2e9d6e3e1875340c20a2f6b750c2c7f54f730f5fb7f1fd1d0877c8d6f"
+    },
+    {
+      "path": "verification-tools/zipalign",
+      "bytes": 273032,
+      "sha256": "a205d94a45c8522ca1b571dcbe190df145c818f0a29dfb366e4dd78eef4f56a7"
+    }
+  ],
+  "limits": [
+    "Read-only CI-artifact verification; no signing or publication.",
+    "CI signer is not the private upgrade certificate.",
+    "Full natural workflow and device gates must pass independently."
+  ]
+}
