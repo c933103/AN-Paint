@@ -63,6 +63,11 @@ internal object CommonsAttribution {
             .appendQueryParameter("iiextmetadatalanguage", "en").build().toString())
     }
 
+    fun userAgent(context: Context): String {
+        val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "unknown"
+        return "AN-Paint/$version (https://github.com/c933103/AN-Paint; Android)"
+    }
+
     fun fetch(context: Context, source: String, page: String, open: (URL) -> HttpURLConnection,
         checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): Record {
         checkActive()
@@ -70,8 +75,7 @@ internal object CommonsAttribution {
         try {
             connection.instanceFollowRedirects = false
             connection.connectTimeout = 15000; connection.readTimeout = 30000
-            val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "unknown"
-            connection.setRequestProperty("User-Agent", "AN-Paint/$version (https://github.com/c933103/AN-Paint; Android)")
+            connection.setRequestProperty("User-Agent", userAgent(context))
             connection.setRequestProperty("Referer", page)
             connection.setRequestProperty("Accept", "application/json")
             val status = connection.responseCode

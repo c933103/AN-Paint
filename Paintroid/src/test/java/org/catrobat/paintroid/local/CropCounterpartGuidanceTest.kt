@@ -6,6 +6,7 @@ import android.app.LocaleManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
@@ -52,6 +53,9 @@ class CropCounterpartGuidanceTest {
         try {
             File(context.filesDir, "image-assembly").deleteRecursively()
             AppLanguage.select(context, tag)
+            // Selecting LocaleManager in Robolectric does not dispatch the app callback.
+            // Bind the selected UI resources before onCreate builds toolbar labels.
+            PaintApplication.currentResources = AppLanguage.wrap(context).resources
             val started = Robolectric.buildActivity(AssemblyActivity::class.java)
             controller = started
             val activity = started.setup().get()
@@ -101,19 +105,120 @@ class CropCounterpartGuidanceTest {
         }
     }
 
-    @Test fun actualHelpButtonDisplaysTheCompleteSevenParagraphEntry() {
+    @Test fun actualHelpButtonDisplaysTheCompleteCurrentEntry() {
         for (tag in tags) withLanguage(tag) { activity ->
             click(activity, "assembly_help")
             val dialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
             assertTrue(dialog.isShowing)
             val shown = dialog.findViewById<TextView>(android.R.id.message).text.toString()
             assertEquals(tag, expected.getJSONObject(tag).getString("help"), shown)
-            assertEquals(7, shown.split("\n\n").size)
+            assertEquals(8, shown.split("\n\n").size)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             idle()
             assertFalse(dialog.isShowing)
             assertTrue(activity.assembly.images.isEmpty())
         }
+    }
+
+    @Test fun germanExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("de", "Exakte Position",
+            "X und Y müssen ganze Zahlen von 0 bis 2147483647 sein.")
+
+    @Test fun spanishExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("es-ES", "Posición exacta",
+            "X e Y deben ser números enteros entre 0 y 2147483647.")
+
+    @Test fun italianExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("it", "Posizione esatta",
+            "X e Y devono essere numeri interi compresi tra 0 e 2147483647.")
+
+    @Test fun portugueseExactPositionToolbarMatchesHelpAndUnplaceOnlySometimesClosesAGap() =
+        checkExactPositionAndUnplace("pt-PT", "Posição exata",
+            "X e Y têm de ser números inteiros entre 0 e 2147483647.")
+
+    private fun checkExactPositionAndUnplace(
+        tag: String, positionLabel: String, invalidMessage: String
+    ) = withLanguage(tag) { activity ->
+        assertEquals(positionLabel,
+            activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
+        val images = (0 until 3).map { index ->
+            val file = File(activity.assembly.directory, "assembly-help-$index.png")
+            val bitmap = Bitmap.createBitmap(24, 16, Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(Color.RED)
+            file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
+            bitmap.recycle()
+            AssemblyImage("assembly-help-$index", file, "Image $index", null, ImageDimensions(24, 16))
+        }
+        activity.assembly.add(images)
+        val deadline = System.nanoTime() + 15_000_000_000L
+        while (activity.busy && System.nanoTime() < deadline) { idle(); Thread.sleep(10) }
+        idle()
+        assertFalse(activity.lastError, activity.busy)
+        assertNull(activity.lastError)
+        val first = images[0].id; val child = images[1].id; val last = images[2].id
+        fun openPosition(id: String): AlertDialog {
+            click(activity, "assembly_item_$id"); click(activity, "assembly_position")
+            return ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        }
+        fun coordinates(dialog: AlertDialog, x: String, y: String) {
+            dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_x").setText(x)
+            dialog.window!!.decorView.findViewWithTag<EditText>("assembly_position_y").setText(y)
+        }
+        fun position(id: String, x: String, y: String) {
+            val dialog = openPosition(id)
+            coordinates(dialog, x, y)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+            assertFalse(dialog.isShowing)
+        }
+        // Exact placement of even the first image is not restricted to the origin.
+        position(first, "5", "7")
+        assertEquals(Rect(5, 7, 29, 23), activity.assembly.layout()[first])
+        activity.assembly.place(child, Attachment(first, SnapEdge.RIGHT))
+        activity.assembly.place(last, Attachment(child, SnapEdge.RIGHT)); idle()
+        val attached = activity.assembly.layout()
+        val saved = File(activity.assembly.directory, "project.json").readBytes()
+        val invalid = openPosition(first)
+        for ((x, y) in listOf("-1" to "0", "0" to "-1", "1,5" to "0", "0" to "1,5")) {
+            coordinates(invalid, x, y)
+            invalid.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+            assertTrue("$x,$y", invalid.isShowing)
+            assertEquals(invalidMessage,
+                invalid.window!!.decorView.findViewWithTag<TextView>("assembly_position_error").text.toString())
+            assertEquals(attached, activity.assembly.layout())
+            assertArrayEquals(saved, File(activity.assembly.directory, "project.json").readBytes())
+        }
+        coordinates(invalid, "30", "8")
+        invalid.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+        assertFalse(invalid.isShowing)
+        assertEquals(attached, activity.assembly.layout())
+        assertArrayEquals(saved, File(activity.assembly.directory, "project.json").readBytes())
+        // Zero is valid; moving the selected anchor preserves every other rectangle.
+        position(first, "0", "0")
+        assertEquals(attached.toMutableMap().apply { put(first, Rect(0, 0, 24, 16)) }, activity.assembly.layout())
+        position(first, "30", "8")
+        val moved = attached.toMutableMap().apply { put(first, Rect(30, 8, 54, 24)) }
+        assertEquals(moved, activity.assembly.layout())
+        assertTrue(Rect.intersects(moved.getValue(first), moved.getValue(child)))
+        // An absolute placement leaves a gap when unplaced; the others stay put.
+        click(activity, "assembly_unplace")
+        assertEquals(moved.filterKeys { it != first }, activity.assembly.layout())
+        assertEquals(3, activity.assembly.images.size)
+        assertFalse(activity.assembly.image(first).isPlaced)
+        // Snapping starts at the origin, rejects overlap, and can close a gap.
+        images.forEach { activity.assembly.unplace(it.id) }
+        activity.assembly.place(first, Attachment(null, null))
+        activity.assembly.place(child, Attachment(first, SnapEdge.RIGHT))
+        activity.assembly.place(last, Attachment(child, SnapEdge.RIGHT)); idle()
+        val snapped = activity.assembly.layout()
+        assertEquals(Rect(0, 0, 24, 16), snapped[first])
+        assertThrows(IllegalArgumentException::class.java) {
+            activity.assembly.place(last, Attachment(first, SnapEdge.RIGHT))
+        }
+        assertEquals(snapped, activity.assembly.layout())
+        click(activity, "assembly_item_$child"); click(activity, "assembly_unplace")
+        assertEquals(Rect(24, 0, 48, 16), activity.assembly.layout()[last])
+        assertEquals(2, activity.assembly.layout().size)
+        click(activity, "assembly_undo"); assertEquals(snapped, activity.assembly.layout())
     }
 
     @Test fun actualBatchCropToolbarKeepsWholeWarningsAcrossSelectionTrimResetAndCancel() {

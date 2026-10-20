@@ -128,6 +128,31 @@ class CommonsCreditFlowTest {
         CommonsAttribution.cache(context,record)
         return ImageCredit(source,record.text(true))
     }
+    @Test fun metadataAndImageRequestsUseTheInstalledApplicationVersion() {
+        val info=context.packageManager.getPackageInfo(context.packageName,0)
+        val originalVersion=info.versionName
+        info.versionName="91.2-regression"
+        shadowOf(context.packageManager).installPackage(info)
+        val controller=gallery();val activity=controller.get()
+        val connections=mutableListOf<Connection>()
+        try {
+            activity.openConnection={url ->
+                Connection(url,ByteArrayInputStream((if(url.host=="commons.wikimedia.org")
+                    CommonsTestMetadata.response(source,page) else svg).toByteArray())).also {connections.add(it)}
+            }
+            select(activity);await {activity.isFinishing && !activity.downloading}
+            assertEquals(setOf("commons.wikimedia.org","upload.wikimedia.org"),connections.map {it.url.host}.toSet())
+            assertEquals(2,connections.size)
+            for(connection in connections) assertEquals(
+                "AN-Paint/91.2-regression (https://github.com/c933103/AN-Paint; Android)",
+                connection.getRequestProperty("User-Agent"))
+        } finally {
+            controller.pause().stop().destroy()
+            info.versionName=originalVersion
+            shadowOf(context.packageManager).installPackage(info)
+        }
+    }
+
     @Test fun copyFromFileFetchesOnlyMetadataAndDoesNotRecordInsertion() {
         selectLanguage("fr")
         val controller=gallery();val activity=controller.get();var count=0

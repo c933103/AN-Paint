@@ -336,7 +336,7 @@ class MediaGalleryActivity : Activity() {
                     require(provider.allowsDownload(Uri.parse(url.toString()))) {ui(R.string.ui_the_gallery_redirected_outside_its_supported_hosts)}
                     val current=openConnection(url);activeConnection=current
                     current.setRequestProperty("Referer",page.takeIf {provider.allowsPage(Uri.parse(it))} ?: provider.home)
-                    if(provider==IllustrationSource.COMMONS) current.setRequestProperty("User-Agent","AN-Paint/0.0.38 (https://github.com/c933103/AN-Paint) Android")
+                    if(provider==IllustrationSource.COMMONS) current.setRequestProperty("User-Agent",CommonsAttribution.userAgent(this@MediaGalleryActivity))
                     current.connectTimeout=15000;current.readTimeout=30000;current.instanceFollowRedirects=false
                     if(current.responseCode in 300..399) {
                         val redirect=current.getHeaderField("Location");current.disconnect();activeConnection=null
