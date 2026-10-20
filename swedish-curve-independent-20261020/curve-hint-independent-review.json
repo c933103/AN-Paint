@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "review": "Independent model-based bounded review of the corrected Swedish Curve Help hint",
+  "reviewed_on_utc": "2026-10-20",
+  "decision": "accepted_bounded_current_context",
+  "required_revisions": [],
+  "scope": "One complete English/Swedish help-hint pair, with its actual Curve Help consumer, Finish curve label and action, pending-curve state machine, commit operation and existing regression source. No other wording entry is newly accepted by this receipt.",
+  "independence": "Read-only second-pass reviewer of the author-corrected target. Did not author the correction, modify production code or tests, modify the earlier independent receipt, create a Work task, or publish repository changes.",
+  "current_source_commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+  "correction_commit": "cafb244e8bd8342926d5696ce63a67860cb9b9ad",
+  "pr151_merge_commit": "f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6",
+  "pair": {
+    "identity": "string/ui_drag_a_line_then_drag_twice_to_set",
+    "english": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+    "swedish": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.",
+    "source_attributes": {
+      "name": "ui_drag_a_line_then_drag_twice_to_set"
+    },
+    "target_attributes": {
+      "name": "ui_drag_a_line_then_drag_twice_to_set"
+    },
+    "english_sha256": "4b55a4e7bd81aa9b32c8639026a36758fc8895f8922766e7e67eb41ae6b3a8c9",
+    "swedish_sha256": "fc85a5cabd8f0c1c09cb299cfbe13569b6166bc38a4bb14c9bd2a617002e207e",
+    "english_json_string_sha256": "4e5db6a8fc1ccb761c2ca4ee89351b8fad8cbac19cb99379b9f5534f87c56318",
+    "swedish_json_string_sha256": "66fefa2b72b517d9555aa3ce032380c25822da660ecfd652830946723a756885",
+    "json_string_hash_definition": "SHA-256 of UTF-8 json.dumps(value, ensure_ascii=False), including the surrounding JSON quotation marks. Included to interoperate with the prior independent receipt, whose individual-value hashes use this convention. The author-correction target hash uses raw UTF-8 instead.",
+    "canonical_pair_sha256": "428968ac6c080238de14444efa5e2667de57f4a08b889f5a09ae50f9b4e8f5b1",
+    "canonical_pair_hash_definition": "SHA-256 over UTF-8 JSON of identity, english, swedish, source_attributes, target_attributes, with ensure_ascii=false, sort_keys=true, separators=(comma,colon), no BOM or trailing newline. Individual hashes use the exact decoded XML text value, UTF-8, no added newline.",
+    "source_child_elements": 0,
+    "target_child_elements": 0,
+    "placeholders": [],
+    "escaped_newlines": 0
+  },
+  "context_label": {
+    "identity": "string/ui_finish_curve",
+    "english": "Finish curve",
+    "swedish": "Avsluta kurva",
+    "english_sha256": "6ed983e78ca9be84e3040da34fdcdb2cf74fc6d4827fdb0319ff83415384fbed",
+    "swedish_sha256": "97490426b19279c59b758658e5853c3879776b3989ff8b8fa091c72fc03da597",
+    "role": "Exact UI-label reference checked as context, not a new standalone catalogue acceptance."
+  },
+  "linguistic_assessment": [
+    "First sentence preserves the initial line-drag gesture followed by two further drags to establish the two bends. Dra, två gånger and två böjar convey the operation and count without omission.",
+    "Med Avsluta kurva identifies the actual Swedish Finish curve button verbatim. The unquoted UI label remains intelligible as a control name in this sentence; no wording revision is necessary for bounded semantic acceptance.",
+    "kan du slutföra kurvan describes optional completion of the current curve. Unlike fästa, it does not suggest fastening, attachment, image assembly, or a new external save operation.",
+    "innan båda böjarna har ställts in makes the early-completion boundary explicit. It permits finishing after zero or one bend, rather than requiring both. This is a faithful contextual explanation of commits it early, not an additional feature claim.",
+    "The full target is grammatical and sufficiently clear for this specific help action. This is model-based judgment, not a native-speaker or exhaustive idiomatic-style guarantee."
+  ],
+  "behavior_assessment": [
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L14-L36",
+      "finding": "PaintTool.CURVE binds ui_curve and this exact hint resource; hint obtains the localized resource through ui(hintId)."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L784-L795",
+      "finding": "For CURVE, the apply button uses ui_finish_curve and calls paintCanvas.applyPending(). The tool_help button displays tool.hint; the cursor-help override does not apply to CURVE."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L758-L790",
+      "finding": "The initial drag establishes start/end. Later Curve gestures update control1 at internal stage 1 or control2 at stage 2."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L827-L834",
+      "finding": "After the initial line is released, the internal stage becomes 1 (zero bend gestures complete). After the next drag it becomes 2 (one bend gesture complete). After the second bend it becomes 3 and automatically calls applyPending()."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L423-L449",
+      "finding": "applyPending commits the current Curve path only when curveStage > 0, then resets curveStage to 0. Thus the early-completion cases are internal stages 1 and 2, not 0 and 1. At stage 1 both control points are initialized on the line; at stage 2 the first has been repositioned. Repeated apply with no new pending curve does not recommit the Curve."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L285-L287",
+      "finding": "commitShape checkpoints document history, draws the path onto the document bitmap and marks it edited. This is a commit/finish operation, not attachment and not a file-save promise."
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt#L369-L388",
+      "finding": "Existing regression source drives the real apply control after zero/one bends, asserts internal stage bends+1, pending state, committed ink, repeated activation and undo/redo. Reviewed as supporting test design only; not executed in this review."
+    }
+  ],
+  "source_bindings": [
+    {
+      "file": "Paintroid/src/main/res/values/strings.xml",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/res/values/strings.xml",
+      "read_line_ranges": [
+        [
+          143,
+          143
+        ],
+        [
+          196,
+          196
+        ]
+      ]
+    },
+    {
+      "file": "Paintroid/src/main/res/values-sv/strings.xml",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/res/values-sv/strings.xml",
+      "read_line_ranges": [
+        [
+          418,
+          418
+        ],
+        [
+          446,
+          446
+        ]
+      ]
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "3f996b19a97f4869009c9e19243b7b9949608320",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "read_line_ranges": [
+        [
+          14,
+          37
+        ],
+        [
+          285,
+          287
+        ]
+      ]
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "a5360fa01f094153e7bc2a8e0c06987237de395b",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "read_line_ranges": [
+        [
+          784,
+          795
+        ]
+      ]
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+      "read_line_ranges": [
+        [
+          72,
+          73
+        ],
+        [
+          423,
+          427
+        ],
+        [
+          443,
+          449
+        ],
+        [
+          758,
+          762
+        ],
+        [
+          789,
+          791
+        ],
+        [
+          827,
+          834
+        ]
+      ]
+    },
+    {
+      "file": "Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "6049c9907f2c57489d73259da3ef61184007a823",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt",
+      "read_line_ranges": [
+        [
+          66,
+          78
+        ],
+        [
+          361,
+          389
+        ]
+      ]
+    },
+    {
+      "file": "tools/fixtures/current_localization/swedish_extended_wording.json",
+      "commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "git_blob_sha1": "081a949e3bbd13640c79b60358de4160c2535ec7",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/tools/fixtures/current_localization/swedish_extended_wording.json",
+      "read_line_ranges": []
+    }
+  ],
+  "historical_exact_pair_bindings": [
+    {
+      "snapshot": "correction_en",
+      "url": "https://github.com/c933103/AN-Paint/blob/cafb244e8bd8342926d5696ce63a67860cb9b9ad/Paintroid/src/main/res/values/strings.xml",
+      "file_blob_sha1": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "exact_value_sha256": "4b55a4e7bd81aa9b32c8639026a36758fc8895f8922766e7e67eb41ae6b3a8c9",
+      "value_and_attributes_match_current": true
+    },
+    {
+      "snapshot": "correction_sv",
+      "url": "https://github.com/c933103/AN-Paint/blob/cafb244e8bd8342926d5696ce63a67860cb9b9ad/Paintroid/src/main/res/values-sv/strings.xml",
+      "file_blob_sha1": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "exact_value_sha256": "fc85a5cabd8f0c1c09cb299cfbe13569b6166bc38a4bb14c9bd2a617002e207e",
+      "value_and_attributes_match_current": true
+    },
+    {
+      "snapshot": "merge_en",
+      "url": "https://github.com/c933103/AN-Paint/blob/f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6/Paintroid/src/main/res/values/strings.xml",
+      "file_blob_sha1": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "exact_value_sha256": "4b55a4e7bd81aa9b32c8639026a36758fc8895f8922766e7e67eb41ae6b3a8c9",
+      "value_and_attributes_match_current": true
+    },
+    {
+      "snapshot": "merge_sv",
+      "url": "https://github.com/c933103/AN-Paint/blob/f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6/Paintroid/src/main/res/values-sv/strings.xml",
+      "file_blob_sha1": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "exact_value_sha256": "fc85a5cabd8f0c1c09cb299cfbe13569b6166bc38a4bb14c9bd2a617002e207e",
+      "value_and_attributes_match_current": true
+    }
+  ],
+  "fixture_check": "Both full current values exactly match swedish_extended_wording.json. This mechanical check supports provenance only and is not the basis for linguistic acceptance.",
+  "supersession": {
+    "original_receipt_url": "https://github.com/c933103/AN-Paint/blob/6ce9b5dea56e441baaa50675510988e0db758c43/swedish-completion-20261020/independent-review.json",
+    "original_receipt_git_blob_sha1": "54b2435237777faad018016493444a96d64ff9d8",
+    "superseded_swedish": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Avsluta kurva kan fästa den tidigare.",
+    "superseded_swedish_raw_utf8_sha256": "86085aace30b32ccd6c061d64259dea990812872ba3fd778110fde87d3cbe8ec",
+    "superseded_swedish_recorded_json_string_sha256": "a49969926dc4a1b5f70b1d07c49cc9353afbbdaa1460c0fca36432e7bddd8b2f",
+    "author_correction_url": "https://github.com/c933103/AN-Paint/blob/6ce9b5dea56e441baaa50675510988e0db758c43/swedish-completion-20261020/curve-hint-author-correction.json",
+    "author_correction_git_blob_sha1": "611e186090ee5c1b671c67bcb301001fe3954362",
+    "meaning": "This new receipt accepts the corrected target separately. The superseded fästa target is not accepted by this review, and the original historical receipt remains unmodified."
+  },
+  "confidence": {
+    "semantic_fidelity_and_action_mapping": "high within the inspected code-bound scope",
+    "Swedish_grammar_and_clarity": "moderate-to-high model-based confidence for this complete short help pair",
+    "native_speaker_or_broad_locale_quality": "not established"
+  },
+  "limits": [
+    "No runtime, build, installed-device, rendered-layout, clipping or TalkBack test was executed by this reviewer. Existing test source and historical reports are not relabelled as new passes.",
+    "No blanket Swedish or whole-locale approval. No assertion that every current source string or every language was rechecked.",
+    "The dormant Main label, ambiguous legacy palette argument and dormant full manual remain outside scope and unresolved by this receipt.",
+    "Other 713 bounded entries are not rereviewed here. If their prior bindings remain valid, accepting this one previously pending correction permits the documentary count 713 + 1 = 714 bounded wording accepts; this receipt does not independently revalidate that inventory.",
+    "This decision is bound to the exact pair and source/action context recorded above. A later source, target or behavioral change requires reassessment.",
+    "This is a wording review, not CI, release, deploy, merge, device-localization, file-save or unrestricted end-user acceptance."
+  ],
+  "qualification_change": "The phrase corrected Swedish Curve hint has no new independent linguistic review can now be replaced by independently accepted, model-based and bounded to the full pair and production context at ad3ef6d9e1e44b364a65188a6d20235f68eb16c8. Preserve all other documented qualifications and holds.",
+  "mechanical_validation": {
+    "current_pair_matches_author_correction": true,
+    "current_pair_matches_full_value_fixture": true,
+    "exact_pair_matches_correction_and_pr151_merge": true,
+    "individual_hashes_recomputed": true,
+    "current_and_historical_string_file_blob_ids_equal": true,
+    "required_revisions": 0
+  }
+}

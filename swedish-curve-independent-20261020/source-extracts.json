@@ -1,0 +1,223 @@
+{
+  "current_commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+  "correction_commit": "cafb244e8bd8342926d5696ce63a67860cb9b9ad",
+  "merge_commit": "f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6",
+  "files": {
+    "en": {
+      "blob_sha": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9/Paintroid/src/main/res/values/strings.xml",
+      "excerpts": [
+        {
+          "start": 143,
+          "end": 143,
+          "content": "    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Drag a line, then drag twice to set its two bends. Finish curve commits it early.</string>"
+        },
+        {
+          "start": 196,
+          "end": 196,
+          "content": "    <string name=\"ui_finish_curve\">Finish curve</string>"
+        }
+      ]
+    },
+    "sv": {
+      "blob_sha": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9/Paintroid/src/main/res/values-sv/strings.xml",
+      "excerpts": [
+        {
+          "start": 418,
+          "end": 418,
+          "content": "    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.</string>"
+        },
+        {
+          "start": 446,
+          "end": 446,
+          "content": "    <string name=\"ui_finish_curve\">Avsluta kurva</string>"
+        }
+      ]
+    },
+    "document": {
+      "blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "excerpts": [
+        {
+          "start": 14,
+          "end": 37,
+          "content": "enum class PaintTool(private val labelId: Int, private val hintId: Int) {\n    LASSO(R.string.ui_free_form_select, R.string.ui_draw_around_an_area_drag_inside_to_move),\n    SELECT(R.string.ui_rectangle_select, R.string.ui_drag_a_selection_drag_inside_to_move_square),\n    ERASER(R.string.ui_eraser, R.string.ui_drag_to_erase_with_the_background_colour),\n    FILL(R.string.ui_bucket_fill, R.string.ui_tap_an_enclosed_area_adjust_tolerance_for_similar),\n    PICKER(R.string.ui_eyedropper, R.string.ui_tap_the_image_to_sample_the_foreground_colour),\n    ZOOM(R.string.ui_navigate, R.string.ui_drag_to_pan_without_drawing_pinch_with_two),\n    PENCIL(R.string.ui_pencil, R.string.ui_draw_a_crisp_one_pixel_line),\n    BRUSH(R.string.ui_brush, R.string.ui_draw_with_the_selected_brush_tip_and_size),\n    WATERCOLOR(R.string.ui_watercolor, R.string.ui_draw_soft_watercolor_strokes_strength_controls_how_strongly),\n    SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),\n    TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),\n    LINE(R.string.ui_line, R.string.ui_drag_from_the_start_to_the_end_of),\n    CURVE(R.string.ui_curve, R.string.ui_drag_a_line_then_drag_twice_to_set),\n    RECTANGLE(R.string.ui_rectangle, R.string.ui_drag_between_opposite_corners_choose_outline_or_fill),\n    POLYGON(R.string.ui_polygon, R.string.ui_tap_vertices_then_double_tap_the_last_vertex),\n    ELLIPSE(R.string.ui_ellipse, R.string.ui_drag_across_the_ellipse_s_bounding_box),\n    ROUND_RECT(R.string.ui_rounded_rectangle, R.string.ui_set_radius_px_then_drag_between_opposite_corners),\n    HEART(R.string.ui_heart, R.string.ui_drag_between_opposite_corners_to_draw_a_heart),\n    STAR(R.string.ui_star, R.string.ui_drag_between_opposite_corners_to_draw_a_five),\n    ARROW(R.string.ui_arrow, R.string.ui_drag_from_the_tail_towards_the_arrowhead_choose);\n    val label: String get() = ui(labelId)\n    val hint: String get() = ui(hintId)\n}"
+        },
+        {
+          "start": 285,
+          "end": 287,
+          "content": "    fun commitShape(tool: PaintTool, path: Path) {\n        checkpoint(); drawShape(Canvas(bitmap), tool, path); edited()\n    }"
+        }
+      ]
+    },
+    "activity": {
+      "blob_sha": "a5360fa01f094153e7bc2a8e0c06987237de395b",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "excerpts": [
+        {
+          "start": 784,
+          "end": 795,
+          "content": "        if (tool in listOf(PaintTool.POLYGON, PaintTool.CURVE, PaintTool.SELECT, PaintTool.LASSO)) {\n            options.addView(button(when (tool) { PaintTool.POLYGON -> ui(R.string.ui_finish_polygon); PaintTool.CURVE -> ui(R.string.ui_finish_curve); else -> ui(R.string.ui_commit_selection) }, \"apply\") {\n                paintCanvas.applyPending()\n            }, LinearLayout.LayoutParams(-1, dp(48)))\n        }\n        if(tool==PaintTool.POLYGON) options.addView(CheckBox(this).apply {\n            tag=\"polygon_close\";text=ui(R.string.ui_close_polygon);textSize=11f;isChecked=paintCanvas.closePolygon\n            setOnCheckedChangeListener {_,checked -> paintCanvas.closePolygon=checked;paintCanvas.invalidate();scheduleAutosave()}\n        })\n        options.addView(button(ui(R.string.ui_how_to_use), \"tool_help\") {\n            message(if(paintCanvas.cursorMode && tool in listOf(PaintTool.PENCIL,PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER)) ui(R.string.ui_cursor_help29) else tool.hint)\n        }, LinearLayout.LayoutParams(-1, dp(48)))"
+        }
+      ]
+    },
+    "canvas": {
+      "blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+      "excerpts": [
+        {
+          "start": 72,
+          "end": 73,
+          "content": "    private var curveStage = 0\n    val hasPendingEdit get() = polygon.isNotEmpty() || curveStage > 0 || trim?.changed == true"
+        },
+        {
+          "start": 423,
+          "end": 427,
+          "content": "    private fun curvePath() = Path().apply {\n        moveTo(start.x, start.y)\n        if (curveStage == 0) lineTo(end.x, end.y)\n        else cubicTo(control1.x, control1.y, control2.x, control2.y, end.x, end.y)\n    }"
+        },
+        {
+          "start": 443,
+          "end": 449,
+          "content": "    fun applyPending() {\n        if (trim != null) applyTrim()\n        if (polygon.size >= 2) document.commitShape(if(closePolygon) PaintTool.POLYGON else PaintTool.LINE, polygonPath(closePolygon))\n        polygon.clear();resetPolygonTap()\n        if (curveStage > 0) document.commitShape(PaintTool.CURVE, curvePath())\n        curveStage = 0\n        document.finishSelection(); invalidate(); onStatus()"
+        },
+        {
+          "start": 758,
+          "end": 762,
+          "content": "                if (tool == PaintTool.CURVE && curveStage > 0) {\n                    if (curveStage == 1) control1 = point else control2 = point\n                } else {\n                    start = point; end = point; trace = Path().apply { moveTo(point.x, point.y) }\n                }"
+        },
+        {
+          "start": 789,
+          "end": 791,
+          "content": "                    PaintTool.CURVE -> {\n                        if (curveStage == 1) control1 = point else if (curveStage == 2) control2 = point else end = point\n                    }"
+        },
+        {
+          "start": 827,
+          "end": 834,
+          "content": "                        PaintTool.CURVE -> {\n                            if (curveStage == 0) {\n                                end = point; control1 = PointF(start.x + (end.x - start.x) / 3, start.y + (end.y - start.y) / 3)\n                                control2 = PointF(start.x + 2 * (end.x - start.x) / 3, start.y + 2 * (end.y - start.y) / 3)\n                            } else if (curveStage == 1) control1 = point else control2 = point\n                            curveStage++\n                            if (curveStage == 3) applyPending()\n                        }"
+        }
+      ]
+    },
+    "workspaceTest": {
+      "blob_sha": "6049c9907f2c57489d73259da3ef61184007a823",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt",
+      "excerpts": [
+        {
+          "start": 66,
+          "end": 78,
+          "content": "    private fun click(tag: String) { EditorTestNavigation.click(activity,tag) }\n    private fun tool(tool: PaintTool) { click(\"tool_${tool.name}\"); assertEquals(tool, canvas.tool) }\n    private fun event(action: Int, x: Float, y: Float) {\n        val p = canvas.toScreen(x, y)\n        val event = MotionEvent.obtain(0, 10, action, p.x, p.y, 0)\n        assertTrue(canvas.dispatchTouchEvent(event)); event.recycle()\n    }\n    private fun tap(x: Float, y: Float) { event(MotionEvent.ACTION_DOWN, x, y); event(MotionEvent.ACTION_UP, x, y); shadowOf(Looper.getMainLooper()).idle(); awaitIo() }\n    private fun drag(x1: Float, y1: Float, x2: Float, y2: Float) {\n        event(MotionEvent.ACTION_DOWN, x1, y1)\n        event(MotionEvent.ACTION_MOVE, (x1 + x2) / 2, (y1 + y2) / 2)\n        event(MotionEvent.ACTION_UP, x2, y2)\n    }"
+        },
+        {
+          "start": 361,
+          "end": 389,
+          "content": "    @Test fun lineAndTwoBendCurveCommitAsSeparateUndoSteps() {\n        tool(PaintTool.LINE); drag(10f, 10f, 70f, 10f); val lineInk = inkCount()\n        tool(PaintTool.CURVE); drag(10f, 30f, 80f, 30f)\n        drag(25f, 30f, 25f, 75f); drag(65f, 30f, 65f, 75f)\n        assertTrue(inkCount() > lineInk + 30)\n        assertTrue((45..70).any { y -> (20..75).any { x -> doc.bitmap.getPixel(x, y) != Color.WHITE } })\n        click(\"undo\"); assertEquals(lineInk, inkCount())\n    }\n    @Test fun finishCurveCommitsBeforeBothBendsWithoutDuplicatingTheUndoStep() {\n        tool(PaintTool.CURVE)\n        for (bends in 0..1) {\n            doc.newImage(96, 96); canvas.fit()\n            drag(10f, 30f, 80f, 30f)\n            if (bends == 1) drag(25f, 30f, 25f, 75f)\n            assertEquals(bends + 1, canvas.draftState().getInt(\"curve_stage\"))\n            assertTrue(canvas.hasPendingEdit)\n            assertEquals(0, inkCount())\n            // The real Finish curve button commits the current path, not an attachment.\n            click(\"apply\")\n            assertFalse(canvas.hasPendingEdit)\n            assertEquals(0, canvas.draftState().getInt(\"curve_stage\"))\n            val committed = inkCount()\n            assertTrue(committed > 0)\n            click(\"apply\")\n            assertEquals(committed, inkCount())\n            click(\"undo\"); assertEquals(0, inkCount())\n            click(\"redo\"); assertEquals(committed, inkCount())\n        }\n    }"
+        }
+      ]
+    },
+    "fixture": {
+      "blob_sha": "081a949e3bbd13640c79b60358de4160c2535ec7",
+      "url": "https://github.com/c933103/AN-Paint/blob/ad3ef6d9e1e44b364a65188a6d20235f68eb16c8/tools/fixtures/current_localization/swedish_extended_wording.json"
+    },
+    "prior_review": {
+      "blob_sha": "54b2435237777faad018016493444a96d64ff9d8",
+      "url": "https://github.com/c933103/AN-Paint/blob/6ce9b5dea56e441baaa50675510988e0db758c43/swedish-completion-20261020/independent-review.json"
+    },
+    "correction": {
+      "blob_sha": "611e186090ee5c1b671c67bcb301001fe3954362",
+      "url": "https://github.com/c933103/AN-Paint/blob/6ce9b5dea56e441baaa50675510988e0db758c43/swedish-completion-20261020/curve-hint-author-correction.json"
+    }
+  },
+  "bindings": [
+    {
+      "key": "correction_en",
+      "content": "    <string name=\"ui_draft_pending\">Draft pending</string>\n    <string name=\"ui_draft_restored\">Draft restored</string>\n    <string name=\"ui_draft_saved\">Draft saved</string>\n    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Drag a line, then drag twice to set its two bends. Finish curve commits it early.</string>\n    <string name=\"ui_drag_a_selection_drag_inside_to_move_square\">Drag a selection. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Lock proportions keeps its shape.</string>\n    <string name=\"ui_drag_across_the_ellipse_s_bounding_box\">Drag across the ellipse\\'s bounding box.</string>\n    <string name=\"ui_drag_between_opposite_corners_choose_outline_or_fill\">Drag between opposite corners. Choose outline or fill below.</string>",
+      "encoding": "utf-8",
+      "sha": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "display_url": "https://github.com/c933103/AN-Paint/blob/cafb244e8bd8342926d5696ce63a67860cb9b9ad/Paintroid/src/main/res/values/strings.xml",
+      "display_title": "strings.xml"
+    },
+    {
+      "key": "correction_sv",
+      "content": "    <string name=\"ui_custom_colours_hold_a_swatch_to_replace_it\">Egna färger · tryck och håll på en färgruta för att ersätta den</string>\n    <string name=\"ui_disable_cursor_drawing\">Inaktivera markörritning</string>\n    <string name=\"ui_downloading_image\">Hämtar bild…</string>\n    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.</string>\n    <string name=\"ui_drag_a_selection_drag_inside_to_move_square\">Dra upp en markering. Dra inuti för att flytta, i fyrkantiga hörn- eller kanthandtag för att ändra storlek eller i det runda handtaget för att rotera. Lås proportionerna bevarar formen.</string>\n    <string name=\"ui_drag_across_the_ellipse_s_bounding_box\">Dra över ellipsens omslutande rektangel.</string>",
+      "encoding": "utf-8",
+      "sha": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "display_url": "https://github.com/c933103/AN-Paint/blob/cafb244e8bd8342926d5696ce63a67860cb9b9ad/Paintroid/src/main/res/values-sv/strings.xml",
+      "display_title": "strings.xml"
+    },
+    {
+      "key": "merge_en",
+      "content": "    <string name=\"ui_draft_pending\">Draft pending</string>\n    <string name=\"ui_draft_restored\">Draft restored</string>\n    <string name=\"ui_draft_saved\">Draft saved</string>\n    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Drag a line, then drag twice to set its two bends. Finish curve commits it early.</string>\n    <string name=\"ui_drag_a_selection_drag_inside_to_move_square\">Drag a selection. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Lock proportions keeps its shape.</string>\n    <string name=\"ui_drag_across_the_ellipse_s_bounding_box\">Drag across the ellipse\\'s bounding box.</string>\n    <string name=\"ui_drag_between_opposite_corners_choose_outline_or_fill\">Drag between opposite corners. Choose outline or fill below.</string>",
+      "encoding": "utf-8",
+      "sha": "4cff5008eb000ee9a3121dc4b6f611615be09517",
+      "display_url": "https://github.com/c933103/AN-Paint/blob/f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6/Paintroid/src/main/res/values/strings.xml",
+      "display_title": "strings.xml"
+    },
+    {
+      "key": "merge_sv",
+      "content": "    <string name=\"ui_drag_a_line_then_drag_twice_to_set\">Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.</string>",
+      "encoding": "utf-8",
+      "sha": "c7e98cb22ba73bfb46491475b38da08966dcfa3d",
+      "display_url": "https://github.com/c933103/AN-Paint/blob/f0705a33c6f5aa3bc1e4020eef5f0a3ea1d3e6a6/Paintroid/src/main/res/values-sv/strings.xml",
+      "display_title": "strings.xml"
+    }
+  ],
+  "prior_independent_entry": {
+    "identity": "string/ui_drag_a_line_then_drag_twice_to_set",
+    "english": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+    "swedish": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Avsluta kurva kan fästa den tidigare.",
+    "english_sha256": "4e5db6a8fc1ccb761c2ca4ee89351b8fad8cbac19cb99379b9f5534f87c56318",
+    "swedish_sha256": "a49969926dc4a1b5f70b1d07c49cc9353afbbdaa1460c0fca36432e7bddd8b2f",
+    "source_attributes": {
+      "name": "ui_drag_a_line_then_drag_twice_to_set"
+    },
+    "baseline_status": "missing",
+    "decision": "accepted_bounded_current_context",
+    "rationale": "Preserves the initial line, two bend gestures, and Finish curve allowing an earlier commit. Refinement avoids the negative implication of i förtid.",
+    "context": [
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "line": 27,
+        "text": "CURVE(R.string.ui_curve, R.string.ui_drag_a_line_then_drag_twice_to_set),"
+      }
+    ],
+    "review_correction": "The independent review requested a correction/refinement to the first draft; the complete final target was reread and accepted."
+  },
+  "author_correction": {
+    "schema_version": 1,
+    "kind": "explicit author correction following current-head Codex review; original independent receipt unchanged",
+    "supersedes_target_in_commit": "6cfe2e924bb733366599d89d93ead11dff7dd689",
+    "finding": "https://github.com/c933103/AN-Paint/pull/151#discussion_r4324102831",
+    "identity": "string/ui_drag_a_line_then_drag_twice_to_set",
+    "source": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+    "source_attributes": {
+      "name": "ui_drag_a_line_then_drag_twice_to_set"
+    },
+    "previous_target": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Avsluta kurva kan fästa den tidigare.",
+    "corrected_target": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.",
+    "corrected_target_sha256": "fc85a5cabd8f0c1c09cb299cfbe13569b6166bc38a4bb14c9bd2a617002e207e",
+    "consumer_context": [
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "line": 27,
+        "meaning": "CURVE uses this complete hint"
+      },
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "lines": "784-795",
+        "meaning": "Finish curve apply button calls paintCanvas.applyPending(); tool Help displays tool.hint"
+      },
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "lines": "443-449, 827-833",
+        "meaning": "Pending curve stages 1 or 2 commit the current path; stage3 auto-commits after second bend; there is no attachment operation"
+      }
+    ],
+    "rationale": "Replace fästa (fasten/attach), misleading especially beside assembly terminology, with slutföra kurvan (finish the curve). Explicit before-both-bends clause preserves early completion without negative ambiguity. First complete line/two-bends instruction and exact Finish curve label remain unchanged.",
+    "review_status": "Author correction. The earlier independent acceptance of the superseded target is not carried forward. Current-head Codex review requested after publication.",
+    "scope_counts": "373 other newly reviewed current-source entries and 340 prior bounded entries remain unchanged. This corrected entry is separately marked pending current-head review; three unrelated holds remain."
+  },
+  "fixture_pair": {
+    "default": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+    "sv": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in."
+  }
+}
