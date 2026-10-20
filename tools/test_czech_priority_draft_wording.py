@@ -89,8 +89,10 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
         scope=fixture('locale_contract_scope.json')
         self.assertIn('cs',scope['fallback_tags'])
         self.assertNotIn('cs',scope['scoped_tags'])
-        self.assertNotIn('commons_import_svg_changes',self.strings['cs'])
-        self.assertNotIn('commons_import_raster_changes',self.strings['cs'])
+        # Later completion adds these families without promoting the whole locale.
+        extended=fixture('czech_extended_wording.json')
+        for key in ('commons_import_svg_changes','commons_import_raster_changes'):
+            self.assertEqual(extended['values'][key]['cs'],self.strings['cs'][key])
 
     def test_full_candidate_values_attributes_placeholders_and_syntax(self):
         keys=set(self.data['values'])

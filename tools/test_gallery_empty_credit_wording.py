@@ -20,8 +20,8 @@ class GalleryEmptyCreditWordingTests(unittest.TestCase):
         cls.scope = contracts.fixture("locale_contract_scope.json")
         cls.wording = contracts.fixture("gallery_empty_credit_current_wording.json")
 
-    def test_only_reviewed_swedish_extends_this_family(self):
-        self.assertEqual(['sv'], self.wording['additional_reviewed_tags'])
+    def test_only_reviewed_czech_and_swedish_extend_this_family(self):
+        self.assertEqual(['cs', 'sv'], self.wording['additional_reviewed_tags'])
 
     def test_every_complete_affected_resource_matches_its_reviewed_text(self):
         tags = {"default", *self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]}
