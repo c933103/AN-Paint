@@ -44,6 +44,19 @@ class AssemblyRendererTest {
 
     private fun solid(w: Int,h: Int,color: Int) = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888).apply { eraseColor(color) }
 
+    @Test fun progressCountsProcessedInputsEvenWhenRoundingSkipsDrawing() {
+        val first = solid(1, 10, Color.RED)
+        val second = solid(99, 10, Color.BLUE)
+        val images = listOf(source(first), source(second))
+        val layout = mapOf(images[0].id to Rect(0, 0, 1, 10), images[1].id to Rect(1, 0, 100, 10))
+        val progress = mutableListOf<Pair<Int, Int>>()
+        val output = AssemblyRenderer(context, images, layout, 0).render(ImageDimensions(1, 1)) { n, total -> progress.add(n to total) }
+        try {
+            assertEquals(listOf(1 to 2, 2 to 2), progress)
+            assertEquals(Color.BLUE, output.getPixel(0, 0))
+        } finally { output.recycle(); first.recycle(); second.recycle() }
+    }
+
     @Test fun unevenSnapRowsReconstructEveryOriginalPixelWithoutResizing() {
         val original = Bitmap.createBitmap(11,10,Bitmap.Config.ARGB_8888)
         for (y in 0 until original.height) for (x in 0 until original.width) {

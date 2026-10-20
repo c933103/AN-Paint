@@ -61,9 +61,9 @@ class IndonesianPriorityWordingTests(unittest.TestCase):
         for key, expected in [('ui_width_in', 'Lebar dalam piksel'), ('ui_height_in', 'Tinggi dalam piksel')]:
             self.assertEqual(expected, self.strings[key].replace('%1$s', self.strings['ui_pixels_6ec9c2']))
 
-    def test_full_catalogue_and_saved_processing_hold_are_preserved(self):
+    def test_full_catalogue_and_reviewed_processing_wording_are_preserved(self):
         self.assertEqual([], catalogues.validate_catalogue('id', require_complete=True))
-        self.assertEqual('Merender %1$s / %2$s gambar…', self.strings['ui_rendering_images'])
+        self.assertEqual('Gambar yang telah diproses: %1$s / %2$s…', self.strings['ui_rendering_images'])
         self.assertEqual('@string/ui_save', self.strings['ui_save_a5d0d9'])
         self.assertEqual('Simpan', self.strings['ui_save'])
         self.assertEqual('Latar depan %1$s, latar belakang %2$s. Palet warna %3$s.', self.strings['ui_foreground_background_colour_palette'])
