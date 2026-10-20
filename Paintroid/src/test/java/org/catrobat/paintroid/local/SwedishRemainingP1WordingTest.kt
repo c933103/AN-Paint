@@ -74,6 +74,7 @@ class SwedishRemainingP1WordingTest {
             assertEquals("Tolerans: 7. Tryck för att ange ett tal.", slider.number.contentDescription.toString())
             repeat(2) {
                 assertTrue(slider.number.performClick())
+                shadowOf(Looper.getMainLooper()).idle()
                 val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog()); shown = dialog
                 assertEquals("Tolerans", shadowOf(dialog).title.toString())
                 assertEquals("Ange ett heltal från 1 till 100.", shadowOf(dialog).message.toString())
@@ -94,6 +95,7 @@ class SwedishRemainingP1WordingTest {
                 assertTrue(changes.isEmpty())
             }
             slider.number.performClick()
+            shadowOf(Looper.getMainLooper()).idle()
             val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog()); shown = dialog
             dialog.window!!.decorView.findViewWithTag<EditText>("numeric_input").setText("42")
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
