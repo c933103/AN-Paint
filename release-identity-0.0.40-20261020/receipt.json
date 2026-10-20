@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "scope": "Minimal 0.0.40/code 97 version identity and stale LOCAL_BUILD.md candidate statement. No application behavior, workflow, resource, signing or publication-input changes.",
+  "repository": "c933103/AN-Paint",
+  "pull_request": "https://github.com/c933103/AN-Paint/pull/153",
+  "base_commit": "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+  "base_tree": "70b93689fa83422be586e1b49ab1203cff082ece",
+  "head_commit": "ea863227ea6b3b15186064a205096e659060a973",
+  "reviewed_tree": "409a41191173f98d10155b8058b232efa1a527fc",
+  "intended_changes": [
+    "build.gradle",
+    "LOCAL_BUILD.md"
+  ],
+  "full_tree_verification": {
+    "leaves": 1266,
+    "unintended_changes": 0,
+    "missing_leaves": 0,
+    "content_type_and_mode_mismatches": 0,
+    "local_git_write_tree_matches": true,
+    "post_test_tree_unchanged": true
+  },
+  "version": {
+    "package": "paint.anpaint.android",
+    "name": "0.0.40",
+    "code": 97
+  },
+  "tests": [
+    {
+      "command": "python -m unittest discover -s tools -p 'test_*release*.py' -v",
+      "tests": 61,
+      "elapsed_seconds": 0.507,
+      "exit_code": 0,
+      "raw_log": "release-focused-normal.log",
+      "sha256": "1bf2f1aabb7307062fd857835169d9bb1791a4727401194ed1bcc82d6803c214"
+    },
+    {
+      "command": "python -O -m unittest discover -s tools -p 'test_*release*.py' -v",
+      "tests": 61,
+      "elapsed_seconds": 0.472,
+      "exit_code": 0,
+      "raw_log": "release-focused-optimized.log",
+      "sha256": "29854a628aed0541b8211af8a0acac2d48cb574bcf4fd51fd851a2c3550d29ce"
+    },
+    {
+      "command": "python -m unittest discover -s tools -p 'test_*.py'",
+      "tests": 1075,
+      "elapsed_seconds": 489.723,
+      "exit_code": 0,
+      "raw_log": "host-normal.log",
+      "sha256": "29b332e17921358d081d0e7ece7a0496447d347315ac13c9211acc45aa1c0d79"
+    },
+    {
+      "command": "python -O -m unittest discover -s tools -p 'test_*.py'",
+      "tests": 1075,
+      "elapsed_seconds": 476.746,
+      "exit_code": 0,
+      "raw_log": "host-optimized.log",
+      "sha256": "fc76f72a314772377c7ac92faecce8cfcf94f0bace5ab250e3e4e20a5a1c2e7b"
+    }
+  ],
+  "additional_assertions": [
+    "Version regexes resolve to code97 and 0.0.40; existing -LOCAL override retained.",
+    "The real bounded workflow expression evaluator selects release, API30/API35 matrices and device gates for the exact proposed merge subject Release 0.0.40: prepare release identity."
+  ],
+  "review": {
+    "url": "https://github.com/c933103/AN-Paint/pull/153#issuecomment-6294552114",
+    "head": "ea863227ea6b3b15186064a205096e659060a973",
+    "code": "completed_no_findings",
+    "security": "completed_no_findings"
+  },
+  "hosted_status_at_2026_10_20_1543_utc": {
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39448792549",
+    "event": "pull_request",
+    "head": "ea863227ea6b3b15186064a205096e659060a973",
+    "status": "in_progress",
+    "passed": [
+      "Build APK and corresponding source",
+      "Exact-script resource generation"
+    ],
+    "pending": [
+      "Regression tests and lint",
+      "Core emulator API 35",
+      "Position dialog API 35",
+      "Emulator API 35"
+    ]
+  },
+  "interpretation": "Raw host logs include intentionally unsuccessful synthetic instrumentation-runner reports from negative controls. unittest's terminal OK and captured process exit0 establish host-suite success; these simulated receipts are not actual Android device execution.",
+  "limits": [
+    "No local JVM/lint/APK/installed-device execution claimed.",
+    "Host timings are observations, not performance benchmarks.",
+    "Hosted PR CI is separate and was pending at this immutable snapshot.",
+    "No merge, private signing, publication or release request change performed.",
+    "Three unrelated Swedish holds and all existing language/layout/device qualifications remain. Newer unpublished Czech batch is excluded.",
+    "The actual later develop merge subject must begin Release ; the PR title alone does not select a release build.",
+    "The release publisher requires the successful exact-source push-to-develop release/API30+35 run and existing upgrade-signing/source/asset gates."
+  ]
+}
