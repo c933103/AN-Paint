@@ -1,0 +1,204 @@
+﻿2026-10-20T16:45:09.9591580Z Current runner version: '2.338.0'
+2026-10-20T16:45:09.9615463Z ##[group]Runner Image Provisioner
+2026-10-20T16:45:09.9616338Z Hosted Compute Agent
+2026-10-20T16:45:09.9616870Z Version: 20261012.601
+2026-10-20T16:45:09.9617493Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-20T16:45:09.9618161Z Build Date: 2026-10-12T17:48:21Z
+2026-10-20T16:45:09.9618793Z Worker ID: {ae821d6d-b9b7-41c4-af51-ae69c82525ae}
+2026-10-20T16:45:09.9619637Z Region: westus3
+2026-10-20T16:45:09.9620178Z Cloud: Azure
+2026-10-20T16:45:09.9620689Z ##[endgroup]
+2026-10-20T16:45:09.9622073Z ##[group]Operating System
+2026-10-20T16:45:09.9622653Z Ubuntu
+2026-10-20T16:45:09.9623171Z 22.04.5
+2026-10-20T16:45:09.9623643Z LTS
+2026-10-20T16:45:09.9624123Z ##[endgroup]
+2026-10-20T16:45:09.9624664Z ##[group]Runner Image
+2026-10-20T16:45:09.9625210Z Image: ubuntu-22.04
+2026-10-20T16:45:09.9626103Z Version: 20261012.322.1
+2026-10-20T16:45:09.9627240Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261012.322/images/ubuntu/Ubuntu2204-Readme.md
+2026-10-20T16:45:09.9628644Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261012.322
+2026-10-20T16:45:09.9629654Z ##[endgroup]
+2026-10-20T16:45:09.9630763Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T16:45:09.9632688Z Actions: read
+2026-10-20T16:45:09.9633299Z Contents: write
+2026-10-20T16:45:09.9633820Z Metadata: read
+2026-10-20T16:45:09.9634312Z ##[endgroup]
+2026-10-20T16:45:09.9636731Z Secret source: Actions
+2026-10-20T16:45:09.9637589Z Cache mode: write
+2026-10-20T16:45:09.9638447Z Prepare workflow directory
+2026-10-20T16:45:09.9972611Z Prepare all required actions
+2026-10-20T16:45:10.0021229Z Getting action download info
+2026-10-20T16:45:10.3540535Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-20T16:45:10.4282369Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-10-20T16:45:10.8005860Z Complete job name: publish
+2026-10-20T16:45:10.8677431Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-20T16:45:10.8678475Z with:
+2026-10-20T16:45:10.8679153Z   persist-credentials: false
+2026-10-20T16:45:10.8679891Z   repository: c933103/AN-Paint
+2026-10-20T16:45:10.8683584Z   token: ***
+2026-10-20T16:45:10.8684086Z   ssh-strict: true
+2026-10-20T16:45:10.8684568Z   ssh-user: git
+2026-10-20T16:45:10.8685015Z   clean: true
+2026-10-20T16:45:10.8685571Z   sparse-checkout-cone-mode: true
+2026-10-20T16:45:10.8686138Z   fetch-depth: 1
+2026-10-20T16:45:10.8686623Z   fetch-tags: false
+2026-10-20T16:45:10.8687125Z   show-progress: true
+2026-10-20T16:45:10.8687609Z   lfs: false
+2026-10-20T16:45:10.8688078Z   submodules: false
+2026-10-20T16:45:10.8688608Z   set-safe-directory: true
+2026-10-20T16:45:10.8689427Z   allow-unsafe-pr-checkout: false
+2026-10-20T16:45:10.8690354Z ##[endgroup]
+2026-10-20T16:45:10.9729219Z Syncing repository: c933103/AN-Paint
+2026-10-20T16:45:10.9731788Z ##[group]Getting Git version info
+2026-10-20T16:45:10.9732917Z Working directory is '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-20T16:45:10.9734028Z [command]/usr/bin/git version
+2026-10-20T16:45:10.9788404Z git version 2.55.0
+2026-10-20T16:45:10.9809887Z ##[endgroup]
+2026-10-20T16:45:10.9820190Z Temporarily overriding HOME='/home/runner/work/_temp/80c3e0d3-a071-4cb0-99e2-99d8c2e51e0e' before making global git config changes
+2026-10-20T16:45:10.9823122Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T16:45:10.9827099Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-20T16:45:10.9869391Z Deleting the contents of '/home/runner/work/AN-Paint/AN-Paint'
+2026-10-20T16:45:10.9873213Z ##[group]Determining repository object format
+2026-10-20T16:45:10.9875494Z ##[endgroup]
+2026-10-20T16:45:10.9877244Z ##[group]Initializing the repository
+2026-10-20T16:45:10.9880629Z [command]/usr/bin/git init /home/runner/work/AN-Paint/AN-Paint
+2026-10-20T16:45:11.0132831Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T16:45:11.0158904Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T16:45:11.0167396Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T16:45:11.0169195Z hint: call:
+2026-10-20T16:45:11.0170032Z hint:
+2026-10-20T16:45:11.0171026Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T16:45:11.0172201Z hint:
+2026-10-20T16:45:11.0173308Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T16:45:11.0175060Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T16:45:11.0176534Z hint:
+2026-10-20T16:45:11.0177343Z hint: 	git branch -m <name>
+2026-10-20T16:45:11.0178250Z hint:
+2026-10-20T16:45:11.0179558Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T16:45:11.0181513Z Initialized empty Git repository in /home/runner/work/AN-Paint/AN-Paint/.git/
+2026-10-20T16:45:11.0184946Z [command]/usr/bin/git remote add origin https://github.com/c933103/AN-Paint
+2026-10-20T16:45:11.0187947Z ##[endgroup]
+2026-10-20T16:45:11.0189820Z ##[group]Disabling automatic garbage collection
+2026-10-20T16:45:11.0191123Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T16:45:11.0193802Z ##[endgroup]
+2026-10-20T16:45:11.0195061Z ##[group]Setting up auth
+2026-10-20T16:45:11.0195976Z Removing SSH command configuration
+2026-10-20T16:45:11.0197179Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T16:45:11.0201082Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T16:45:11.0555432Z Removing HTTP extra header
+2026-10-20T16:45:11.0565133Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T16:45:11.0635963Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T16:45:11.0893621Z Removing includeIf entries pointing to credentials config files
+2026-10-20T16:45:11.0900179Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T16:45:11.0930673Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T16:45:11.1149984Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T16:45:11.1183906Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path /home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:11.1212376Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:11.1239625Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:11.1265225Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:11.1288577Z ##[endgroup]
+2026-10-20T16:45:11.1289485Z ##[group]Fetching the repository
+2026-10-20T16:45:11.1295326Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7243bac3225fa9aa45be919e2eb3332b9fa5a40a:refs/remotes/origin/develop
+2026-10-20T16:45:12.7307284Z From https://github.com/c933103/AN-Paint
+2026-10-20T16:45:12.7310474Z  * [new ref]         7243bac3225fa9aa45be919e2eb3332b9fa5a40a -> origin/develop
+2026-10-20T16:45:12.7319319Z [command]/usr/bin/git branch --list --remote origin/develop
+2026-10-20T16:45:12.7342249Z   origin/develop
+2026-10-20T16:45:12.7349423Z [command]/usr/bin/git rev-parse refs/remotes/origin/develop
+2026-10-20T16:45:12.7369515Z 7243bac3225fa9aa45be919e2eb3332b9fa5a40a
+2026-10-20T16:45:12.7373950Z ##[endgroup]
+2026-10-20T16:45:12.7375396Z ##[group]Determining the checkout info
+2026-10-20T16:45:12.7377672Z ##[endgroup]
+2026-10-20T16:45:12.7378691Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T16:45:12.7414945Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T16:45:12.7440452Z ##[group]Checking out the ref
+2026-10-20T16:45:12.7442952Z [command]/usr/bin/git checkout --progress --force -B develop refs/remotes/origin/develop
+2026-10-20T16:45:12.8835224Z Switched to a new branch 'develop'
+2026-10-20T16:45:12.8838050Z branch 'develop' set up to track 'origin/develop'.
+2026-10-20T16:45:12.8847177Z ##[endgroup]
+2026-10-20T16:45:12.8887476Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T16:45:12.8912199Z 7243bac3225fa9aa45be919e2eb3332b9fa5a40a
+2026-10-20T16:45:12.8922362Z ##[group]Removing auth
+2026-10-20T16:45:12.8923711Z Removing SSH command configuration
+2026-10-20T16:45:12.8925930Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T16:45:12.8955688Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T16:45:12.9140055Z Removing HTTP extra header
+2026-10-20T16:45:12.9143703Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T16:45:12.9177871Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T16:45:12.9364181Z Removing includeIf entries pointing to credentials config files
+2026-10-20T16:45:12.9367449Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T16:45:12.9381856Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-20T16:45:12.9384627Z includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-20T16:45:12.9386626Z includeif.gitdir:/github/workspace/.git.path
+2026-10-20T16:45:12.9388296Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-20T16:45:12.9394182Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path
+2026-10-20T16:45:12.9416140Z /home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:12.9425334Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-7850f9ed\-095c\-44f3\-98ea\-b4648e730f13\.config
+2026-10-20T16:45:12.9455522Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path
+2026-10-20T16:45:12.9477095Z /home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:12.9488080Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/AN-Paint/AN-Paint/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-7850f9ed\-095c\-44f3\-98ea\-b4648e730f13\.config
+2026-10-20T16:45:12.9519882Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-20T16:45:12.9540529Z /github/runner_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:12.9547960Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-7850f9ed\-095c\-44f3\-98ea\-b4648e730f13\.config
+2026-10-20T16:45:12.9575299Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-20T16:45:12.9594734Z /github/runner_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config
+2026-10-20T16:45:12.9601689Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-7850f9ed\-095c\-44f3\-98ea\-b4648e730f13\.config
+2026-10-20T16:45:12.9630359Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T16:45:12.9807811Z Removing credentials config '/home/runner/work/_temp/git-credentials-7850f9ed-095c-44f3-98ea-b4648e730f13.config'
+2026-10-20T16:45:12.9815206Z ##[endgroup]
+2026-10-20T16:45:13.0038144Z ##[group]Run python3 tools/publish_github_release.py verification/releases/request.json
+2026-10-20T16:45:13.0040867Z [36;1mpython3 tools/publish_github_release.py verification/releases/request.json[0m
+2026-10-20T16:45:13.0299473Z shell: /usr/bin/bash -e {0}
+2026-10-20T16:45:13.0300526Z env:
+2026-10-20T16:45:13.0309834Z   GH_TOKEN: ***
+2026-10-20T16:45:13.0310662Z ##[endgroup]
+2026-10-20T16:45:35.5782888Z Traceback (most recent call last):
+2026-10-20T16:45:35.5784155Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/publish_github_release.py", line 103, in <module>
+2026-10-20T16:45:35.5785010Z     main(Path(sys.argv[1]))
+2026-10-20T16:45:35.5785602Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/publish_github_release.py", line 98, in main
+2026-10-20T16:45:35.5786339Z     print(publish_verified_release(api, run, repo=repo, tag=tag, commit=commit,
+2026-10-20T16:45:35.5787266Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/release_publication.py", line 105, in publish_verified_release
+2026-10-20T16:45:35.5788100Z     verify_release(release, tag=tag, commit=commit, title=title, notes=notes)
+2026-10-20T16:45:35.5788855Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/release_publication.py", line 67, in verify_release
+2026-10-20T16:45:35.5790557Z     raise ValueError('Existing release does not match the verified request')
+2026-10-20T16:45:35.5791701Z ValueError: Existing release does not match the verified request
+2026-10-20T16:45:35.6068650Z ##[error]Process completed with exit code 1.
+2026-10-20T16:45:35.6154780Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-10-20T16:45:35.6155210Z with:
+2026-10-20T16:45:35.6155406Z   archive: true
+2026-10-20T16:45:35.6155644Z   name: release-publication-evidence
+2026-10-20T16:45:35.6155924Z   retention-days: 14
+2026-10-20T16:45:35.6156147Z   path: build/github-release/*.json
+2026-10-20T16:45:35.6156402Z   if-no-files-found: warn
+2026-10-20T16:45:35.6156632Z   compression-level: 6
+2026-10-20T16:45:35.6156842Z   overwrite: false
+2026-10-20T16:45:35.6157064Z   include-hidden-files: false
+2026-10-20T16:45:35.6157305Z ##[endgroup]
+2026-10-20T16:45:35.7582169Z With the provided path, there will be 1 file uploaded
+2026-10-20T16:45:35.7587603Z Artifact name is valid!
+2026-10-20T16:45:35.7588122Z Root directory input is valid!
+2026-10-20T16:45:36.1306313Z Uploading artifact: release-publication-evidence.zip
+2026-10-20T16:45:36.1364486Z Beginning upload of artifact content to blob storage
+2026-10-20T16:45:36.4259880Z Uploaded bytes 9456
+2026-10-20T16:45:36.4922842Z Finished uploading artifact content to blob storage!
+2026-10-20T16:45:36.4923827Z SHA256 digest of uploaded artifact is 2f8841df4a8bbae5d854d1dc2f6974915800651764a191f3220f06e3d3596ffb
+2026-10-20T16:45:36.4950221Z Finalizing artifact upload
+2026-10-20T16:45:36.8630059Z Artifact release-publication-evidence successfully finalized. Artifact ID 12282177007
+2026-10-20T16:45:36.8631455Z Artifact release-publication-evidence has been successfully uploaded! Final size is 9456 bytes. Artifact ID is 12282177007
+2026-10-20T16:45:36.8634181Z Artifact download URL: https://github.com/c933103/AN-Paint/actions/runs/39460180541/artifacts/12282177007
+2026-10-20T16:45:36.8836696Z Post job cleanup.
+2026-10-20T16:45:36.9637214Z [command]/usr/bin/git version
+2026-10-20T16:45:36.9684671Z git version 2.55.0
+2026-10-20T16:45:36.9718388Z Temporarily overriding HOME='/home/runner/work/_temp/dd5183fc-1836-4dcb-a391-921226a75fc5' before making global git config changes
+2026-10-20T16:45:36.9719947Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T16:45:36.9724132Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/AN-Paint/AN-Paint
+2026-10-20T16:45:36.9753121Z Removing SSH command configuration
+2026-10-20T16:45:36.9759809Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T16:45:36.9790247Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T16:45:36.9996857Z Removing HTTP extra header
+2026-10-20T16:45:37.0004182Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T16:45:37.0037484Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T16:45:37.0240326Z Removing includeIf entries pointing to credentials config files
+2026-10-20T16:45:37.0248204Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T16:45:37.0283326Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T16:45:37.0636551Z Cleaning up orphan processes
