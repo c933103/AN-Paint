@@ -25,6 +25,7 @@ import org.robolectric.annotation.Config
 class CommonsMetadataHttpTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val expectedMessages=mapOf(
+        "cs" to "Metadata Commons: HTTP %1\$s",
         "sv" to "Commons-metadata: HTTP %1\$s",
         "af" to "Commons-metadata: HTTP %1\$s",
         "ain-Kana" to "Commons コㇿ イヤヌ ネワ オルㇱペ: HTTP %1\$s",
@@ -120,7 +121,7 @@ class CommonsMetadataHttpTranslationTest {
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallbackWithAsciiStatus() {
         assertEquals(171,AppLanguage.tags(context).size)
-        assertEquals(60,expectedMessages.size)
+        assertEquals(61,expectedMessages.size)
         var fallbacks=0
         for(tag in AppLanguage.tags(context)) {
             val resources=resourcesFor(tag)
@@ -133,6 +134,6 @@ class CommonsMetadataHttpTranslationTest {
                 assertTrue(expected.contains("HTTP ${code}"))
             }
         }
-        assertEquals(111,fallbacks)
+        assertEquals(110,fallbacks)
     }
 }

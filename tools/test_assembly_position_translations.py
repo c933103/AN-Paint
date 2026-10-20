@@ -28,8 +28,8 @@ class AssemblyPositionTranslationsTest(unittest.TestCase):
         manifest = json.loads(MANIFEST.read_text())
         paths = catalogues.catalogue_paths()
         translated = set(manifest['translations'])
-        self.assertEqual(['sv'], manifest['additional_reviewed_tags'])
-        self.assertLessEqual(translated, SCOPED_TAGS | {'sv'})
+        self.assertEqual(['cs', 'sv'], manifest['additional_reviewed_tags'])
+        self.assertLessEqual(translated, SCOPED_TAGS | {'cs', 'sv'})
         for tag, expected in manifest['translations'].items():
             with self.subTest(tag=tag):
                 self.assertEqual(KEYS, set(expected))
