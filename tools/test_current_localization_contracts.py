@@ -26,8 +26,8 @@ EXPECTED_KEYS = {
 }
 
 
-# Additions are message-family-specific; Czech and Polish still fall back for metadata/copy-credit.
-FAMILY_EXTRA_TAGS = {FAMILIES[2]: {'cs', 'pl'}}
+# Additions are message-family-specific; these tags still fall back for metadata/copy-credit.
+FAMILY_EXTRA_TAGS = {FAMILIES[2]: {'cs', 'pl', 'sv'}}
 
 
 def wording_tags(name):
@@ -89,10 +89,11 @@ class CurrentLocalizationContracts(unittest.TestCase):
             data=deepcopy(original);data['values']={}
             with self.assertRaises(ValueError): require_wording_shape(data,EXPECTED_KEYS[name],tags)
 
-    def test_czech_polish_svg_scope_does_not_expand_other_message_families(self):
+    def test_czech_polish_swedish_svg_scope_does_not_expand_other_message_families(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'cs', 'pl'}
-        self.assertEqual(extra_tags, set(svg['additional_draft_tags']))
+        extra_tags = {'cs', 'pl', 'sv'}
+        self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
+        self.assertEqual({'sv'}, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -101,6 +102,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
             self.assertEqual({'default'} | SCOPED_TAGS, wording_tags(name))
         self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
         self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
+        swedish = fixture('swedish_remaining_p1_wording.json')
+        for key, values in svg['values'].items():
+            self.assertEqual(swedish['values'][key]['sv'], values['sv'])
 
     def test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks(self):
         data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
