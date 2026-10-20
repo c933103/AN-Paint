@@ -192,7 +192,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         self.assertLess(activity.index("if (suggested == null)"), activity.index("val sizing = DimensionControls(this,renderer.original,suggested"))
 
     def test_english_contract_and_four_exact_active_catalogues(self):
-        first, output = paragraph("values", 0), paragraph("values", 5)
+        first, output = paragraph("values", 0), paragraph("values", 6)
         self.assertIn("image dimensions after cropping and any Same width or Same height adjustment", first)
         self.assertIn("choose a smaller output copy if offered", output)
         self.assertIn("If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.", output)
