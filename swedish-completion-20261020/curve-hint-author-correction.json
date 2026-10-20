@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "explicit author correction following current-head Codex review; original independent receipt unchanged",
+  "supersedes_target_in_commit": "6cfe2e924bb733366599d89d93ead11dff7dd689",
+  "finding": "https://github.com/c933103/AN-Paint/pull/151#discussion_r4324102831",
+  "identity": "string/ui_drag_a_line_then_drag_twice_to_set",
+  "source": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+  "source_attributes": {
+    "name": "ui_drag_a_line_then_drag_twice_to_set"
+  },
+  "previous_target": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Avsluta kurva kan fästa den tidigare.",
+  "corrected_target": "Dra en linje och dra sedan två gånger för att ställa in dess två böjar. Med Avsluta kurva kan du slutföra kurvan innan båda böjarna har ställts in.",
+  "corrected_target_sha256": "fc85a5cabd8f0c1c09cb299cfbe13569b6166bc38a4bb14c9bd2a617002e207e",
+  "consumer_context": [
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "line": 27,
+      "meaning": "CURVE uses this complete hint"
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "lines": "784-795",
+      "meaning": "Finish curve apply button calls paintCanvas.applyPending(); tool Help displays tool.hint"
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+      "lines": "443-449, 827-833",
+      "meaning": "Pending curve stages 1 or 2 commit the current path; stage3 auto-commits after second bend; there is no attachment operation"
+    }
+  ],
+  "rationale": "Replace fästa (fasten/attach), misleading especially beside assembly terminology, with slutföra kurvan (finish the curve). Explicit before-both-bends clause preserves early completion without negative ambiguity. First complete line/two-bends instruction and exact Finish curve label remain unchanged.",
+  "review_status": "Author correction. The earlier independent acceptance of the superseded target is not carried forward. Current-head Codex review requested after publication.",
+  "scope_counts": "373 other newly reviewed current-source entries and 340 prior bounded entries remain unchanged. This corrected entry is separately marked pending current-head review; three unrelated holds remain."
+}

@@ -1,32 +1,28 @@
-# Swedish extension validation
+# Current Swedish validation
 
-Current application composition uses develop
-`d7436b3df842b9be9aa12be622ebc88ed8e8e2b9`, preserving all upstream English Help
-and release-note changes. All 1,222 unmodified tracked blobs were compared with
-that complete current remote tree; content matched. Publication uses the
-original remote executable modes, not modes lost by a downloaded source archive.
+Latest application head: `cafb244e8bd8342926d5696ce63a67860cb9b9ad`.
+This corrects only the Curve hint and its tests/documentation over the original
+Swedish PR head. The complete original independent receipt is unchanged.
 
-Current source-rebound checkout:
-- `python3 tools/translation_catalogues.py`: passed structural validation.
-- `python3 -m unittest discover -s tools -p 'test_swedish*wording.py'`: 22 passed.
-- `python3 -m unittest discover -s tools -p 'test_*.py'`: 1,055 passed in 218.460 seconds.
-- `python3 -O -m unittest discover -s tools -p 'test_*.py'`: 1,055 passed in 215.997 seconds.
-- `verify_current_source_rebind.py`: all 717 complete current English identities,
-  values and attributes; all 714 bounded Swedish values/attributes; named holds.
+Current checks after the Curve correction:
+- Swedish wording suites: 23 passed in 3.836 seconds.
+- Complete normal host suite: 1,056 passed in 223.709 seconds.
+- Translation catalogue structural validation: passed.
+- Source binding: all 717 complete current English identities/values/attributes;
+  713 unchanged bounded Swedish targets plus the explicitly author-corrected
+  pending target, 715 resources present and three unrelated holds.
+- Remote application tree: all 1,254 leaf entries verified against the expected
+  parent, including five intended changed files and 1,249 retained entries with
+  original modes. Same branch updated non-force with expected-head lease.
+- Exact-head hosted run 39412001502 has started. Current-head Codex code review
+  is running. Neither is counted passed here.
+- Optimized host suite started on this correction; pending at this receipt.
 
-Pre-rebind checkout, still useful but not claimed as the current run:
-- Broad wording family: 223 passed; current-localization contracts: 14 passed.
-- Full normal host suite: 1,037 passed in 221.962 seconds.
-- Full optimized host suite: 1,037 passed in 218.403 seconds.
-- Original independent structural verifier passed separately from linguistic review.
+Earlier head `6cfe2e924bb733366599d89d93ead11dff7dd689` passed both normal and
+optimized host suites with 1,055 tests. Its earlier APK/build and position-dialog
+checks passed, but they do not verify the new correction/test head.
 
-Local Gradle could not start its tests because the distribution download returned
-`java.net.SocketException: Network is unreachable`. No local JVM, lint, APK or
-installed-device checks are claimed. Hosted CI remains required.
-
-An earlier full host run exposed old Swedish-fallback oracles. Those were updated
-only for independently reviewed Swedish family entries, then both full suites
-passed. The global 59-locale baseline was not changed. Final normal and earlier
-optimized logs, focused current checks and the Gradle failure accompany this
-receipt. The current optimized run also completed successfully, as recorded above
-and in `host-current-optimized.log`.
+Local Gradle distribution download was unavailable due network unreachable, so
+local JVM, lint, APK and installed-device checks remain unrun. The new real-button
+curve regression covers zero/one bends, repeated activation and undo/redo; it
+must run in hosted JVM CI before a behavioral pass is claimed.

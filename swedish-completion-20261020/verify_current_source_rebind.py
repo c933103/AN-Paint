@@ -11,6 +11,7 @@ HERE = Path(__file__).resolve().parent
 root = Path(sys.argv[1])
 receipt = json.loads((HERE / 'independent-review.json').read_text())
 rebind = json.loads((HERE / 'assembly-current-source-rebind.json').read_text())
+correction = json.loads((HERE / 'curve-hint-author-correction.json').read_text())
 def catalogue(directory):
     result = {}
     for node in ET.parse(root / 'Paintroid/src/main/res' / directory / 'strings.xml').getroot():
@@ -39,7 +40,8 @@ for entry in receipt['entries']:
     require(source[identity].attrib, entry['source_attributes'], 'Current source attribute drift: ' + identity)
     accepted = entry['decision'].startswith(('accepted_', 'retained_prior_')) or identity == rebind['identity']
     if accepted:
-        proposed = rebind['target'] if identity == rebind['identity'] else entry['swedish']
+        proposed = (correction['corrected_target'] if identity == correction['identity'] else
+                    rebind['target'] if identity == rebind['identity'] else entry['swedish'])
         require(value(target[identity]), proposed, 'Application target drift: ' + identity)
         require(target[identity].attrib, entry['source_attributes'], 'Application attributes drift: ' + identity)
         bound += 1
@@ -47,4 +49,4 @@ require(bound, 714, 'Unexpected bounded count')
 require(set(source) - set(target), {'string/ui_foreground_background_colour_palette',
                                   'string/ui_the_arrow_on_the_left_directly_below_the'}, 'Missing catalogue identities')
 require(value(target['string/ui_main23']), 'Huvud', 'Held Main changed')
-print('PASS: all 717 complete current source values and attributes; 714 bounded target values and attributes; 715 present; 3 explicit holds.')
+print('PASS: all 717 complete current source values and attributes; 713 unchanged bounded targets plus 1 author-corrected pending target; 715 present; 3 unrelated explicit holds.')
