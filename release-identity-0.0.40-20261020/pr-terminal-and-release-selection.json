@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "prepared_head": "ea863227ea6b3b15186064a205096e659060a973",
+  "reviewed_tree": "409a41191173f98d10155b8058b232efa1a527fc",
+  "pr_url": "https://github.com/c933103/AN-Paint/pull/153",
+  "pr_run": {
+    "id": 39448792549,
+    "head": "ea863227ea6b3b15186064a205096e659060a973",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39448792549",
+    "jobs": [
+      {
+        "id": 118717736275,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118717736322,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118717736476,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118723559269,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118723559392,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118730848245,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "merge": {
+    "sha": "d664b3e72ea3261dba662119a429b0bb3914c04a",
+    "tree": "409a41191173f98d10155b8058b232efa1a527fc",
+    "parents": [
+      "ad3ef6d9e1e44b364a65188a6d20235f68eb16c8",
+      "ea863227ea6b3b15186064a205096e659060a973"
+    ],
+    "message": "Release AN Paint 0.0.40 (code 97)\n\nPrepare the reviewed release identity and corrected local build documentation. Publication request and signing inputs remain unchanged. Run the full release/API30+35 verification before signing and publication.",
+    "merged_by_parent": true,
+    "publication_input_blobs_and_modes_unchanged": true
+  },
+  "release_run": {
+    "id": 39452992495,
+    "event": "push",
+    "branch": "develop",
+    "head": "d664b3e72ea3261dba662119a429b0bb3914c04a",
+    "workflow": ".github/workflows/android.yml",
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/39452992495",
+    "observed_status": "in_progress",
+    "selection": {
+      "variant": "release",
+      "core_matrix": [
+        30,
+        35
+      ],
+      "position_matrix": [
+        30,
+        35
+      ],
+      "final_union_matrix": [
+        30,
+        35
+      ],
+      "device_gates_all_true": true,
+      "basis": "Actual push head commit subject begins Release ; exact merged workflow expressions evaluated with their existing bounded contract adapter. Identical workflow blob a3b36543056103c804bdac99a3cef9643f80b4fb. This proves selected workflow configuration, not completed build variant/artifact acceptance."
+    },
+    "initial_jobs": [
+      {
+        "id": 118732441763,
+        "name": "Exact-script resource generation",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 118732442373,
+        "name": "Regression tests and lint",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 118732442411,
+        "name": "Build APK and corresponding source",
+        "status": "in_progress",
+        "conclusion": null
+      }
+    ]
+  },
+  "limits": [
+    "PR gates succeeded; they are not the separate exact-source full release/API30+35 gates.",
+    "Natural release build still pending; no artifact or device execution is claimed finished.",
+    "No signing dispatch, credentials/access changes, publication request mutation or release publication performed by this task.",
+    "All existing language/layout/device holds remain."
+  ]
+}
