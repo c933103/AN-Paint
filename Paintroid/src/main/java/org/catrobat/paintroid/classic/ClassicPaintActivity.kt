@@ -643,7 +643,10 @@ class ClassicPaintActivity : Activity() {
 
     private fun makeStatus() {
         cursorStatusHeight=0
-        val row = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0) }
+        val vertical=VerticalText.uiVertical(this@ClassicPaintActivity)
+        val row = (if(vertical) LinearLayout(this) else ZoomStatusLayout(this)).apply {
+            gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0); tag="status_bar"
+        }
         if(!VerticalText.uiVertical(this@ClassicPaintActivity)) {
             statusText = label(ui(R.string.ui_ready), 11f).apply {tag="status_text";maxLines=2}
             row.addView(statusText, LinearLayout.LayoutParams(0, dp(44), 1f))
@@ -662,10 +665,15 @@ class ClassicPaintActivity : Activity() {
         }
         zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))
         zoomRow.addView(actionIcon(EditIcon.PLUS, "zoom_in") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))
-        zoomRow.addView((if(VerticalText.uiVertical(this@ClassicPaintActivity)) actionIcon(EditIcon.FIT,"zoom_fit_view") {paintCanvas.fit()} else button(ui(R.string.ui_fit),"zoom_fit_view") {paintCanvas.fit()}).apply {
-            contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)
-        },LinearLayout.LayoutParams(dp(44),dp(44)))
+        val fit=if(vertical) actionIcon(EditIcon.FIT,"zoom_fit_view") {paintCanvas.fit()}
+            else button(ui(R.string.ui_fit),"zoom_fit_view") {paintCanvas.fit()}.apply {
+                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)
+                minHeight=dp(44); minimumHeight=dp(44)
+            }
+        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)
+        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))
         row.addView(zoomRow)
+        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}
         root.addView(row)
     }
 
@@ -680,7 +688,8 @@ class ClassicPaintActivity : Activity() {
         root.findViewWithTag<PanelToolButton>("command_View_2")?.isSelected=paintCanvas.cursorMode
         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
         val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus
-        if(!VerticalText.uiVertical(this@ClassicPaintActivity)) {
+        if(!VerticalText.uiVertical(this@ClassicPaintActivity) &&
+            root.findViewWithTag<ZoomStatusLayout>("status_bar")?.isStatusScrollable!=true) {
             statusText.maxLines=if(paintCanvas.cursorMode) Int.MAX_VALUE else 2
             if(paintCanvas.cursorMode) {
                 val available=if(statusText.width>0) statusText.width-statusText.compoundPaddingLeft-statusText.compoundPaddingRight
