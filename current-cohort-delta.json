@@ -180,7 +180,6 @@
       "present": 341,
       "newly_accepted_unchanged": 336,
       "prior_exact_carry": 1,
-      "correction_candidates_unapplied_and_pending_independent_review": 4,
       "P0": {
         "total": 92,
         "newly_accepted": 90,
@@ -204,7 +203,28 @@
       },
       "global_union_credit_added": 0,
       "production_changes": 0,
-      "evidence": "vi-review-packet.zip"
+      "evidence": "vi-review-packet.zip",
+      "correction_candidates_unapplied": 4,
+      "independent_candidate_review": {
+        "accepted_original_proposals": 3,
+        "revised_original_proposals": 1,
+        "held": 0,
+        "accepted_original_proposal_identities": [
+          "string/ui_the_encoder_did_not_finish",
+          "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+          "string/ui_no_resize_fits_decoder_memory"
+        ],
+        "revision": {
+          "identity": "string/ui_show_magnified_drawing_preview",
+          "revised_value": "Hiện bản xem trước phóng đại của bản vẽ",
+          "reason": "The original proposed khi vẽ wording could imply visibility only during active drawing, but the inspected PaintCanvas consumer permits cursor preview without down/cursorDrawing.",
+          "status": "Substitute assessed by the independent reviewer, not separately cross-reviewed or applied."
+        },
+        "scope": "Exactly four original proposals; not a repeat review of the other 337 P0/P1 entries.",
+        "current_value_acceptance_credit_added": 0,
+        "receipt": "independent-candidate-reviews.zip/vi/independent-review.json",
+        "receipt_sha256": "ae2fa10a50b1585f89427b19900aa79b194aba9f958aee8a54ce882a75c1cdd3"
+      }
     }
   },
   "validation": {

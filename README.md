@@ -10,7 +10,7 @@ Source: [develop 4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e19
 | Polish P0+P1 | 341/341 | 310 retained bounded accepts | 31 holds: 30 dormant-context + 1 compact Fit layout; no correction |
 | Arabic ar P0+P1 | 341/341 first pass | 1 prior carry + 332 unchanged assessed (302 static-context + 30 wording-only) | 8 independently accepted candidate values, not integrated |
 | Spain Spanish es-ES P0+P1 | 341/341 first pass | 336 current values accepted in first pass, including 9 prior carries | 5 independently accepted candidate values, not integrated; 30 source-only limits preserved |
-| Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | 4 correction candidates, unapplied and awaiting independent review; 30 wording-only limits; Nôm untouched |
+| Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | Independent candidate review: 3 accept, 1 revise, 0 hold; all unapplied; 30 wording-only limits; Nôm untouched |
 | Czech full 717-identity catalogue | 717/717 existing review rebound | 645 retained bounded accepts; 716 exact entries present | 72 holds: 71 no-direct-consumer, including the absent legacy manual, plus 1 Fit layout |
 | Swedish full 717-identity catalogue | 717/717 existing review rebound | 714 retained bounded accepts; 715 exact entries present | 3 holds: present Main label, absent palette and absent legacy manual; source-semantic limits remain |
 
@@ -20,11 +20,17 @@ Japanese's `ui_the_draft_is_saving_try_again_shortly` keeps its already-reviewed
 
 Spanish has 30 exact old accepted receipts, only 9 overlapping this batch; the other 21 are outside it. Its separate assembly-Help hold is also outside the batch and remains open. The unavailable original full-priority Spanish evidence is not reconstructed. Arabic's first-pass decisions and all proposed replacement values stay distinguished from independently accepted, integrated corrections.
 
-Vietnamese has 21 exact prior receipts, only one overlapping the priority batch. Its deduplicated locale-only current partition is **357 bounded current / 4 needing correction or re-review / 356 unknown / 0 missing = 717**. This is not a recomputed all-language total. The four candidate values have not been independently accepted or integrated.
+Vietnamese has 21 exact prior receipts, only one overlapping the priority batch. Its deduplicated locale-only current partition is **357 bounded current / 4 needing correction or re-review / 356 unknown / 0 missing = 717**. This is not a recomputed all-language total. Independent review of the four original proposals is complete: **3 accept, 1 revise, 0 hold**. All remain unapplied, so the current-source counts do not increase.
 
 ## Independent candidate review supplement
 
 The separate independent model reviewers accepted all **8 Arabic** and **5 Spanish** candidates, with zero revise/hold decisions. These are candidate-wording decisions only: no corrected value has been integrated, and current-source counts above do not increase. Spanish includes four clarity/idiom improvements and one optional capitalization change; the review establishes zero new save/cancel/output-state defects. Earlier author terminology such as “correction” must not be interpreted as a confirmed state-behavior defect. The independent checks cover only these proposed values, not a second review of all 341 entries. Complete source/target/proposal values, hashes, consumer links and limits are in `independent-candidate-reviews.zip`.
+
+### Vietnamese independent candidate decisions
+
+Three original proposals are accepted: `ui_the_encoder_did_not_finish`, `ui_drawing_canvas_pinch_and_move_two_fingers_to`, and `ui_no_resize_fits_decoder_memory`. The original `ui_show_magnified_drawing_preview` proposal requires revision. The reviewer-assessed substitute is **Hiện bản xem trước phóng đại của bản vẽ**. The original proposed “khi vẽ” could imply active-stroke-only visibility, while the inspected PaintCanvas consumer permits cursor preview without `down`/`cursorDrawing`. The substitute has not received separate cross-review and has not been applied. This independent receipt covers exactly four proposals, not a second review of the other 337 priority entries, and grants no new current-value, runtime, UI-fit, TalkBack or native-human acceptance.
+
+The exact receipt SHA-256 is `ae2fa10a50b1585f89427b19900aa79b194aba9f958aee8a54ce882a75c1cdd3`; its complete values, source bindings, rationale and limits are in `independent-candidate-reviews.zip/vi/`.
 
 ## Existing Czech and Swedish evidence
 
@@ -43,7 +49,7 @@ The [original immutable union](https://github.com/c933103/AN-Paint/tree/2fff1955
 - `current-cohort-delta.json`: compact source-bound, denominator-explicit cohort status.
 - `review-packets.zip`: complete Japanese/Polish rebound ledgers and reports, original Polish final packet, completed Arabic/Spanish first-pass ledgers and summaries. Arabic/Spanish corrections are proposals, not accepted production changes.
 - `vi-review-packet.zip`: complete 341-entry Vietnamese review, prior-receipt rebind, four unintegrated candidates and static validation.
-- `independent-candidate-reviews.zip`: Arabic eight and Spanish five complete independent candidate receipts, unintegrated.
+- `independent-candidate-reviews.zip`: Arabic eight, Spanish five and Vietnamese four complete independent candidate receipts, all unintegrated. The Vietnamese magnifier substitute retains its separate-cross-review limit.
 - `SHA256SUMS.json`: identities of the published packets and their members.
 
 Read-only XML/JSON/hash checks confirmed the source-tree bindings, Japanese/Polish 341-entry counts, unchanged Czech resources, all Swedish source/target bindings, and the independently reviewed Curve pair. **No app build, Gradle, CI dispatch, emulator, version or release action occurred. No production resources changed.** This is not new runtime, installed layout, TalkBack, native-speaker or whole-language certification.
