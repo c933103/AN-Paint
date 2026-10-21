@@ -252,8 +252,12 @@ class KoreanImageAttributionTests(unittest.TestCase):
         assembly = (CLASSIC / 'AssemblyActivity.kt').read_text()
         crop = (CLASSIC / 'ImageCropDialog.kt').read_text()
         self.assertTrue(code_locations(assembly, 'private fun showHelp() = message(ui(R.string.' + ASSEMBLY + '))'))
-        self.assertTrue(code_locations(crop, 'status.text = activity.resources.getQuantityString('
-                                       'R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)'))
+        guarded = ('status.text = uiQuantity(activity.resources,'
+                   'R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)')
+        def require_guarded(source): self.assertTrue(code_locations(source, guarded))
+        require_guarded(crop)
+        with self.assertRaises(AssertionError):
+            require_guarded(crop.replace('uiQuantity(activity.resources,', 'activity.resources.getQuantityString('))
         classic = (CLASSIC / 'ClassicPaintActivity.kt').read_text()
         self.assertTrue(code_locations(classic, 'private fun showHelp() = message(ui(R.string.ui_help23))'))
         for path in CLASSIC.glob('*.kt'):

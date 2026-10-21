@@ -70,7 +70,7 @@ class ImageDisplayLocaleTest {
     @Test fun englishFallbackStillUsesSelectedLocaleNumbers() {
         resources("ro", "en-US")
         assertEquals("%1\$d × %2\$d px · Pixel count: %3\$,d (%4\$.2f MP)",
-            ui(R.string.ui_d_d_px_d_pixels_2f_mp))
+            PaintApplication.currentResources.getString(R.string.ui_d_d_px_d_pixels_2f_mp))
         val symbols = DecimalFormatSymbols(Locale.forLanguageTag("ro"))
         assertEquals(',', symbols.decimalSeparator)
         val group = symbols.groupingSeparator

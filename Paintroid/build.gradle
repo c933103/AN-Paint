@@ -167,6 +167,37 @@ def generateExactScriptResources = tasks.register('generateExactScriptResources'
 android.sourceSets.main.res.srcDir(exactScriptResourceDirectory)
 tasks.named('preBuild').configure { dependsOn(generateExactScriptResources) }
 
+// AAPT decodes canonical English under reserved IDs. Generation validates and
+// rebinds aliases, so fallback never re-enters a translated catalogue.
+def sourceTextDirectory = layout.buildDirectory.dir('generated/sourceTextResources')
+def generateSourceTextResources = tasks.register('generateSourceTextResources', Exec) {
+    inputs.file(rootProject.file('tools/SourceTextResources.java'))
+    inputs.files(fileTree('src/main/res/values') { include '*.xml' })
+    outputs.dir(sourceTextDirectory)
+    // Its copied catalogues also participate in the reserved-name check.
+    dependsOn(generateExactScriptResources)
+}
+android.sourceSets.main.res.srcDir(sourceTextDirectory)
+tasks.named('preBuild').configure { dependsOn(generateSourceTextResources) }
+// Source sets are finalized by every Android project before discovering roots.
+// Include application/library variants and currently absent conventional roots;
+// exclude only this generator's own output, never another source-set overlay.
+gradle.projectsEvaluated {
+    def ownOutput = sourceTextDirectory.get().asFile.canonicalFile
+    def resourceRoots = rootProject.allprojects.findAll {
+        it.plugins.hasPlugin('com.android.application') || it.plugins.hasPlugin('com.android.library')
+    }.collectMany { project ->
+        project.extensions.getByName('android').sourceSets.collectMany { it.res.srcDirs }
+    }.collect { it.canonicalFile }.findAll { it != ownOutput }.unique().sort { it.absolutePath }
+    generateSourceTextResources.configure {
+        inputs.property('sourceResourceRoots', resourceRoots.collect { it.absolutePath })
+        inputs.files(resourceRoots.collect { directory -> fileTree(directory) { include 'values*/**/*.xml' } })
+        commandLine([new File(System.getProperty('java.home'), 'bin/java').absolutePath,
+            rootProject.file('tools/SourceTextResources.java').absolutePath,
+            file('src/main/res').absolutePath, ownOutput.absolutePath] + resourceRoots.collect { it.absolutePath })
+    }
+}
+
 // Host-side Android graphics tests supplement the upstream unit tests.
 tasks.withType(Test).configureEach {
     maxHeapSize = '2g'
