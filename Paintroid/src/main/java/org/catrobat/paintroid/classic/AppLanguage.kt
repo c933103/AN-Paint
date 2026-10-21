@@ -91,6 +91,22 @@ internal object AppLanguage {
         return context.createConfigurationContext(config)
     }
 
+    /** Android restores the process default from Application resources, sometimes without
+     * dispatching another configuration callback. Read the current choice from the unwrapped
+     * base, not a startup-locale override. Framework-facing resources need the public locale;
+     * UI contexts still use resourceLocale's private exact-catalogue variants above.
+     * This read must not mutate the default or the device's configuration.
+     */
+    fun applicationResources(base: Context): Resources {
+        val chosen = locale(base)
+        val config = Configuration().apply {
+            fontScale = 0f
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
+        }
+        return base.createConfigurationContext(config).resources
+    }
+
     /** Updating the current Activity avoids throwing away undo or an unfinished selection. */
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
