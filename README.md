@@ -1,8 +1,12 @@
 # Language review status: 21 October 2026
 
-Source: [develop 4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e198b5616419291cba225b018444fab), tree `b9b148d5d8ef7c7b088500a9c177f9f59304b800`. The live Git ref and commit-to-tree relation were verified through GitHub. This is an evidence-only update to [intentional draft tracker PR56](https://github.com/c933103/AN-Paint/pull/56), which must not merge.
+Reviewed source checkpoint: [4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e198b5616419291cba225b018444fab), tree `b9b148d5d8ef7c7b088500a9c177f9f59304b800`. The live Git ref and commit-to-tree relation were verified through GitHub. This is an evidence-only update to [intentional draft tracker PR56](https://github.com/c933103/AN-Paint/pull/56), which must not merge.
 
-## Current bounded cohorts
+## Later source movement, not a new linguistic review
+
+Develop advanced to [ef46e8aa](https://github.com/c933103/AN-Paint/tree/ef46e8aa4f55825a071f4c1ecd6f3c80b9355f51), tree `c96f97087692d7e0f3ec516ed309d1ceda1c11c3`. A read-only GitHub comparison found exactly six changed paths, **zero resource or priority-manifest edits**, and two production files affecting Fit/status layout. The horizontal Fit caption now uses natural sizing/wrapping rather than the old fixed 44×44 description. Fit, its accessible name and status consumer/layout contexts therefore need bounded current-context reconciliation; prior Polish/Czech layout holds are not automatically closed or represented as proven current defects. The linguistic receipts remain bound to **4355869e / b9b148d5**, not falsely relabeled as complete fresh-head review. Unchanged phrases were not rereviewed merely because the base moved. No builds or runtime checks were run for this reconciliation. `post-review-source-movement.json` preserves the compact exact comparison and scope.
+
+## Bounded cohorts at the reviewed source checkpoint
 
 | Language / exact scope | Reviewed or reconciled | Current disposition | Open work / limits |
 |---|---:|---|---|
@@ -12,7 +16,7 @@ Source: [develop 4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e19
 | Spain Spanish es-ES P0+P1 | 341/341 first pass | 336 current values accepted in first pass, including 9 prior carries | 5 independently accepted candidate values, not integrated; 30 source-only limits preserved |
 | Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | Effective independent candidate review: 2 accept, 2 revise, 0 hold; all unapplied; 30 wording-only limits; Nôm untouched |
 | Hungarian hu P0+P1 | 341/341 author review | 323 current bounded values: 292 static + 30 wording-only + 1 prior carry | 18 priority proposals: independent 17 accept / 1 revise; 2 adjacent P2 proposals accepted separately; all unapplied |
-| Lithuanian lt P0+P1 | 341/341 author review | 320 current bounded values: 289 static + 30 wording-only + 1 prior carry | 14 priority corrections + 3 dependent priority labels + 4 terminology holds; 3 separate P2 dependency edits; independent review pending |
+| Lithuanian lt P0+P1 | 341/341 author review | 320 current bounded values: 289 static + 30 wording-only + 1 prior carry | Independent acceptance of 14 priority edits + 3 atomic P2 dependencies; 3 labels conditional; 4 terminology holds remain; all unapplied |
 | Czech full 717-identity catalogue | 717/717 existing review rebound | 645 retained bounded accepts; 716 exact entries present | 72 holds: 71 no-direct-consumer, including the absent legacy manual, plus 1 Fit layout |
 | Swedish full 717-identity catalogue | 717/717 existing review rebound | 714 retained bounded accepts; 715 exact entries present | 3 holds: present Main label, absent palette and absent legacy manual; source-semantic limits remain |
 
@@ -41,7 +45,7 @@ Both substitutes have been assessed by the independent reviewer but have not rec
 
 Hungarian's complete author batch retains 323 priority values and proposes 18 changes. Its independent check accepts 17 original priority proposals and revises the decoder-memory proposal; two adjacent P2 crop proposals are accepted separately. The new decoder-memory substitute is recommended, not separately cross-reviewed. No candidate is integrated and no P2-tier completion is claimed. All 21 prior Hungarian pairs rebind, only one overlapping the priority batch. Including the two explicit adjacent P2 holds, the current locale-only partition is **343 bounded / 20 held or needing correction / 354 unknown / 0 missing = 717**. Candidate acceptance does not close those current-production holds. Raw autosave error details retained in `lastAutosaveError` are not asserted to be rendered verbatim.
 
-Lithuanian's author batch retains 320 priority values, proposes 14 priority text changes, separately withholds 3 priority labels pending corrected composition dependencies, and retains 4 terminology holds. The full candidate has 17 XML edits because it includes 3 separate P2 dependency templates. All 22 prior pairs rebind, only one overlapping P0/P1. Independent candidate review is still in progress. Preserve atomic unit/height/width and both crop-mode template dependencies; no candidate or held terminology receives current acceptance from this publication.
+Lithuanian's author batch retains 320 priority values, proposes 14 priority text changes, separately withholds 3 priority labels pending corrected composition dependencies, and retains 4 terminology holds. The full candidate has 17 XML edits because it includes 3 separate P2 dependency templates. All 22 prior pairs rebind, only one overlapping P0/P1. Independent review accepts the exact 14 priority edits and 3 external P2 edits atomically; the 3 unchanged crop labels are accepted only conditional on both crop templates. All 4 terminology holds remain. Preserve atomic unit/height/width and both crop-mode template dependencies; no candidate or held terminology receives current-production credit from this publication. The independently suggested follow-on terminology substitutes are not accepted or integrated. One report-only illustration correction is required: use **Įterpti / Elipsė** and **Žymėjimas / Laisvos formos žymėjimas**, not Piešimas for both; **Piešimas / Akvarelė** is the source-valid feminine drawing example. The translation patch itself requires no revision. Original author examples remain preserved in their packet; the independent receipt supplies the corrected source-valid examples.
 
 ## Existing Czech and Swedish evidence
 
@@ -57,12 +61,13 @@ The [original immutable union](https://github.com/c933103/AN-Paint/tree/2fff1955
 
 ## Files and validation
 
+- `post-review-source-movement.json`: read-only comparison to later ef46e8aa; unchanged text versus changed Fit/status contexts.
 - `current-cohort-delta.json`: compact source-bound, denominator-explicit cohort status.
 - `review-packets.zip`: complete Japanese/Polish rebound ledgers and reports, original Polish final packet, completed Arabic/Spanish first-pass ledgers and summaries. Arabic/Spanish corrections are proposals, not accepted production changes.
 - `hu-review-packet.zip`: complete Hungarian author batch, original prior bindings and separate P2 findings.
 - `lt-review-packet.zip`: complete Lithuanian author batch, atomic dependency proposals and terminology holds.
 - `vi-review-packet.zip`: complete 341-entry Vietnamese review, prior-receipt rebind, four unintegrated candidates and static validation.
-- `independent-candidate-reviews.zip`: Arabic, Spanish, Vietnamese and Hungarian independent candidate receipts, all unintegrated. The Vietnamese original receipt and one-key superseding addendum are both preserved; recommended substitutes retain their separate-cross-review limits.
+- `independent-candidate-reviews.zip`: Arabic, Spanish, Vietnamese, Hungarian and Lithuanian independent candidate receipts, all unintegrated. The Vietnamese original receipt and one-key superseding addendum are both preserved; recommended substitutes retain their separate-cross-review limits.
 - `SHA256SUMS.json`: identities of the published packets and their members.
 
 Read-only XML/JSON/hash checks confirmed the source-tree bindings, Japanese/Polish 341-entry counts, unchanged Czech resources, all Swedish source/target bindings, and the independently reviewed Curve pair. **No app build, Gradle, CI dispatch, emulator, version or release action occurred. No production resources changed.** This is not new runtime, installed layout, TalkBack, native-speaker or whole-language certification.

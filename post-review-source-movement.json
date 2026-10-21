@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "review_source_commit": "4355869e2e198b5616419291cba225b018444fab",
+  "review_source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+  "observed_develop_commit": "ef46e8aa4f55825a071f4c1ecd6f3c80b9355f51",
+  "observed_develop_tree": "c96f97087692d7e0f3ec516ed309d1ceda1c11c3",
+  "observed_at_utc": "2026-10-21T06:48:45Z",
+  "comparison_url": "https://github.com/c933103/AN-Paint/compare/4355869e2e198b5616419291cba225b018444fab...ef46e8aa4f55825a071f4c1ecd6f3c80b9355f51",
+  "changed_paths": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "status": "modified",
+      "changes": 19
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ZoomStatusLayout.kt",
+      "status": "added",
+      "changes": 77
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CzechFitWorkflowTest.kt",
+      "status": "added",
+      "changes": 250
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ZoomStatusLayoutTest.kt",
+      "status": "added",
+      "changes": 66
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ZoomStatusLifecycleTest.kt",
+      "status": "added",
+      "changes": 129
+    },
+    {
+      "path": "verification/localization/czech-active-workflows-20261021.md",
+      "status": "added",
+      "changes": 141
+    }
+  ],
+  "resource_or_priority_manifest_paths_changed": 0,
+  "production_changes": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "patch": "@@ -643,7 +643,10 @@ class ClassicPaintActivity : Activity() {\n \n     private fun makeStatus() {\n         cursorStatusHeight=0\n-        val row = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0) }\n+        val vertical=VerticalText.uiVertical(this@ClassicPaintActivity)\n+        val row = (if(vertical) LinearLayout(this) else ZoomStatusLayout(this)).apply {\n+            gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0); tag=\"status_bar\"\n+        }\n         if(!VerticalText.uiVertical(this@ClassicPaintActivity)) {\n             statusText = label(ui(R.string.ui_ready), 11f).apply {tag=\"status_text\";maxLines=2}\n             row.addView(statusText, LinearLayout.LayoutParams(0, dp(44), 1f))\n@@ -662,10 +665,15 @@ class ClassicPaintActivity : Activity() {\n         }\n         zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))\n         zoomRow.addView(actionIcon(EditIcon.PLUS, \"zoom_in\") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))\n-        zoomRow.addView((if(VerticalText.uiVertical(this@ClassicPaintActivity)) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()} else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}).apply {\n-            contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)\n-        },LinearLayout.LayoutParams(dp(44),dp(44)))\n+        val fit=if(vertical) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()}\n+            else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {\n+                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)\n+                minHeight=dp(44); minimumHeight=dp(44)\n+            }\n+        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)\n+        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))\n         row.addView(zoomRow)\n+        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}\n         root.addView(row)\n     }\n \n@@ -680,7 +688,8 @@ class ClassicPaintActivity : Activity() {\n         root.findViewWithTag<PanelToolButton>(\"command_View_2\")?.isSelected=paintCanvas.cursorMode\n         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)\n         val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus\n-        if(!VerticalText.uiVertical(this@ClassicPaintActivity)) {\n+        if(!VerticalText.uiVertical(this@ClassicPaintActivity) &&\n+            (root.findViewWithTag<View>(\"status_bar\") as? ZoomStatusLayout)?.isStatusScrollable!=true) {\n             statusText.maxLines=if(paintCanvas.cursorMode) Int.MAX_VALUE else 2\n             if(paintCanvas.cursorMode) {\n                 val available=if(statusText.width>0) statusText.width-statusText.compoundPaddingLeft-statusText.compoundPaddingRight"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ZoomStatusLayout.kt",
+      "patch": "@@ -0,0 +1,77 @@\n+/* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */\n+package org.catrobat.paintroid.classic\n+\n+import android.content.Context\n+import android.text.Layout\n+import android.view.View\n+import android.widget.FrameLayout\n+import android.widget.LinearLayout\n+import android.widget.ScrollView\n+import android.widget.TextView\n+import kotlin.math.ceil\n+\n+/** Natural-size Fit text, with a fixed scrolling status viewport for long captions.\n+ * Footer height depends on caption/configuration, never on a changing status message.\n+ * The ordinary compact status/cursor path remains owned by the Activity.\n+ */\n+internal class ZoomStatusLayout(context: Context): LinearLayout(context) {\n+    var isStatusScrollable=false; private set\n+    var onCompactStatus: (() -> Unit)?=null\n+    private var refreshCompactAfterLayout=false\n+    private fun dp(value: Int)=(value*resources.displayMetrics.density+.5f).toInt()\n+\n+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {\n+        if(childCount==2) {\n+            val status=findViewWithTag<TextView>(\"status_text\")\n+            val zoom=getChildAt(1) as LinearLayout\n+            val fit=zoom.findViewWithTag<TextView>(\"zoom_fit_view\")\n+            val slider=zoom.findViewWithTag<View>(\"zoom_slider\")\n+            val available=(MeasureSpec.getSize(widthMeasureSpec)-paddingLeft-paddingRight).coerceAtLeast(0)\n+            val caption=fit.transformationMethod?.getTransformation(fit.text,fit) ?: fit.text\n+            val desiredFit=maxOf(dp(44),ceil(Layout.getDesiredWidth(caption,fit.paint)).toInt()+\n+                fit.compoundPaddingLeft+fit.compoundPaddingRight)\n+            // Never give a longer Fit caption width previously owned by status.\n+            // Compact: 40dp icons, 108dp slider, and at least 64dp status.\n+            val stacked=desiredFit>dp(44) || desiredFit+dp(188+64)>available\n+            if(stacked!=isStatusScrollable) {\n+                isStatusScrollable=stacked\n+                if(stacked) {\n+                    removeView(status)\n+                    val viewport=ScrollView(context).apply {\n+                        tag=\"status_viewport\";isFillViewport=true\n+                        addView(status,FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT))\n+                    }\n+                    status.maxLines=Int.MAX_VALUE\n+                    addView(viewport,0,LayoutParams(LayoutParams.MATCH_PARENT,dp(44)))\n+                } else {\n+                    val viewport=getChildAt(0) as ScrollView\n+                    viewport.removeView(status);removeView(viewport)\n+                    addView(status,0,LayoutParams(0,dp(44),1f))\n+                    // Refresh after layout, when status.width is its new compact width.\n+                    refreshCompactAfterLayout=true\n+                }\n+            }\n+            orientation=if(stacked) VERTICAL else HORIZONTAL\n+            (zoom.layoutParams as LayoutParams).apply {\n+                width=if(stacked) LayoutParams.MATCH_PARENT else LayoutParams.WRAP_CONTENT\n+                height=LayoutParams.WRAP_CONTENT\n+            }\n+            (slider.layoutParams as LayoutParams).apply {\n+                width=if(stacked) 0 else dp(108)\n+                weight=if(stacked) 1f else 0f\n+            }\n+            // Reserve 64dp slider and both 40dp icons. Wrap, never shrink sp.\n+            val maximum=if(stacked) (available-dp(144)).coerceAtLeast(dp(44)) else Int.MAX_VALUE\n+            if(fit.maxWidth!=maximum) fit.maxWidth=maximum\n+        }\n+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)\n+    }\n+\n+    override fun onLayout(changed: Boolean,left: Int,top: Int,right: Int,bottom: Int) {\n+        super.onLayout(changed,left,top,right,bottom)\n+        if(refreshCompactAfterLayout && !isStatusScrollable) {\n+            refreshCompactAfterLayout=false\n+            onCompactStatus?.invoke()\n+        }\n+    }\n+}"
+    }
+  ],
+  "impact": "Locale and canonical resource values are unchanged. Horizontal Fit layout now wraps at natural size and status can use a scrolling viewport; the old fixed 44x44 horizontal-caption premise is not current. Fit, its accessibility caption and status-text consumer/layout contexts need bounded current-context reconciliation. Do not rerun linguistic review of identical phrases solely for this code movement or close prior UI/layout holds automatically.",
+  "affected_resource_contexts": [
+    "string/ui_fit",
+    "string/ui_fit_entire_canvas_in_view",
+    "string/ui_px",
+    "string/ui_ready",
+    "string/ui_autosaving_draft",
+    "string/ui_working"
+  ],
+  "new_linguistic_acceptance": 0,
+  "new_runtime_or_layout_acceptance": 0,
+  "app_builds_or_tests_run": 0,
+  "limits": "Read-only GitHub diff/source inspection. Receipts stay bound to the exact source they reviewed; this note is not a new complete consumer, runtime or whole-language re-certification."
+}
