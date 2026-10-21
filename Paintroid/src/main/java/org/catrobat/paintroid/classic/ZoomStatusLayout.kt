@@ -4,6 +4,7 @@ package org.catrobat.paintroid.classic
 import android.content.Context
 import android.text.Layout
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -38,7 +39,7 @@ internal class ZoomStatusLayout(context: Context): LinearLayout(context) {
                     removeView(status)
                     val viewport=ScrollView(context).apply {
                         tag="status_viewport";isFillViewport=true
-                        addView(status,ScrollView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT))
+                        addView(status,FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT))
                     }
                     status.maxLines=Int.MAX_VALUE
                     addView(viewport,0,LayoutParams(LayoutParams.MATCH_PARENT,dp(44)))
