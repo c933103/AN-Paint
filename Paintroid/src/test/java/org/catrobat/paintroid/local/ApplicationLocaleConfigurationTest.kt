@@ -33,6 +33,10 @@ class ApplicationLocaleConfigurationTest {
     private val originalSystem=Configuration(Resources.getSystem().configuration)
     private val originalResources=PaintApplication.currentResources
 
+    @Suppress("DEPRECATION")
+    private fun firstTag(configuration: Configuration): String =
+        (if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale).toLanguageTag()
+
     @After @Suppress("DEPRECATION") fun restoreLanguage() {
         if(Build.VERSION.SDK_INT>=33)
             application.getSystemService(LocaleManager::class.java)!!.applicationLocales=LocaleList.getEmptyLocaleList()
@@ -65,6 +69,7 @@ class ApplicationLocaleConfigurationTest {
                 resetDefaultFromApplication(LocaleList.forLanguageTags("en-US,fr"))
 
                 assertEquals("Framework reset must retain the current public choice",tag,Locale.getDefault().toLanguageTag())
+                assertEquals(tag,LocaleList.getAdjustedDefault()[0].toLanguageTag())
                 assertEquals(tag,application.resources.configuration.locales[0].toLanguageTag())
                 assertEquals(resourceTag,activity.resources.configuration.locales[0].toLanguageTag())
                 assertEquals(tag,AppLanguage.selectedTag(activity))
@@ -91,33 +96,45 @@ class ApplicationLocaleConfigurationTest {
             assertEquals(tag,application.resources.configuration.locales[0].toLanguageTag())
             assertEquals(Locale.ITALY,Locale.getDefault())
             application.onConfigurationChanged(Configuration(application.baseContext.resources.configuration))
+            assertEquals(tag,Locale.getDefault().toLanguageTag())
             val expected=AppLanguage.wrap(application.baseContext).resources
             assertEquals(AppLanguage.resourceLocale(Locale.forLanguageTag(tag)).toLanguageTag(),
                 PaintApplication.currentResources.configuration.locales[0].toLanguageTag())
             assertEquals(expected.getString(R.string.ui_save),ui(R.string.ui_save))
             assertEquals(expected.getString(R.string.ui_menu_file),ui(R.string.ui_menu_file))
-            assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals(systemBefore,Resources.getSystem().configuration)
         }
     }
 
-    @Test @Config(sdk=[30,35]) @Suppress("DEPRECATION")
+    @Test @Config(sdk=[21,25,30,35]) fun everyPickerChoiceRemainsPublicWithoutMutatingTheDefaultOnRead() {
+        val systemBefore=Configuration(Resources.getSystem().configuration)
+        for(tag in AppLanguage.tags(application)) {
+            AppLanguage.select(application,tag)
+            Locale.setDefault(Locale.ITALY)
+            assertEquals(tag,firstTag(application.resources.configuration))
+            assertEquals(Locale.ITALY,Locale.getDefault())
+            assertEquals(tag,AppLanguage.selectedTag(application))
+            assertEquals(systemBefore,Resources.getSystem().configuration)
+        }
+    }
+
+    @Test @Config(sdk=[21,25,30,35]) @Suppress("DEPRECATION")
     fun returningToSystemFollowDoesNotKeepThePreviousOverride() {
         val system=Resources.getSystem()
         AppLanguage.select(application,"mnc-Mong")
-        assertEquals("mnc-Mong",application.resources.configuration.locales[0].toLanguageTag())
+        assertEquals("mnc-Mong",firstTag(application.resources.configuration))
         AppLanguage.select(application,"")
         for(tag in listOf("en-US","ja","fr")) {
             val device=Locale.forLanguageTag(tag)
             system.updateConfiguration(Configuration(originalSystem).apply {
-                setLocales(LocaleList(device));setLayoutDirection(device)
+                setLocale(device);setLayoutDirection(device)
             },system.displayMetrics)
             assertEquals("",AppLanguage.selectedTag(application))
-            assertEquals(tag,application.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,firstTag(application.resources.configuration))
             application.onConfigurationChanged(Configuration(system.configuration))
             assertEquals(tag,Locale.getDefault().toLanguageTag())
-            assertEquals(tag,PaintApplication.currentResources.configuration.locales[0].toLanguageTag())
-            assertEquals(tag,system.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,firstTag(PaintApplication.currentResources.configuration))
+            assertEquals(tag,firstTag(system.configuration))
             if(Build.VERSION.SDK_INT>=33)
                 assertTrue(application.getSystemService(LocaleManager::class.java)!!.applicationLocales.isEmpty)
         }
@@ -139,12 +156,14 @@ class ApplicationLocaleConfigurationTest {
         // Prime the application resource path before changing the underlying device config.
         application.resources
         RuntimeEnvironment.setQualifiers("en-rUS-w900dp-h412dp-land-xhdpi")
+        RuntimeEnvironment.setFontScale(1.5f)
         val base=application.baseContext.resources.configuration
         val actual=application.resources.configuration
         assertEquals(Configuration.ORIENTATION_LANDSCAPE,actual.orientation)
         assertEquals(900,actual.screenWidthDp)
         assertEquals(412,actual.screenHeightDp)
         assertEquals(base.fontScale,actual.fontScale,0f)
+        assertEquals(1.5f,actual.fontScale,0f)
         assertEquals("mnc-Mong",actual.locales[0].toLanguageTag())
     }
 }
