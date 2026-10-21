@@ -8,9 +8,9 @@ Source: [develop 4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e19
 |---|---:|---|---|
 | Japanese P0+P1 | 341/341 | 340 unchanged prior carries + 1 static caller-context rebound | No wording correction; 30 wording-only/no-direct-consumer limits preserved |
 | Polish P0+P1 | 341/341 | 310 retained bounded accepts | 31 holds: 30 dormant-context + 1 compact Fit layout; no correction |
-| Arabic ar P0+P1 | 341/341 first pass | 1 prior carry + 332 unchanged assessed (302 static-context + 30 wording-only) | 8 correction proposals, not integrated or independently accepted |
-| Spain Spanish es-ES P0+P1 | 341/341 first pass | 336 current values accepted in first pass, including 9 prior carries | 5 correction proposals await independent acceptance; 30 source-only limits preserved |
-| Vietnamese vi P0+P1 | In progress | No completed batch or new acceptance credited in this snapshot | Latin-script vi only; no Nôm vi-Hani scope |
+| Arabic ar P0+P1 | 341/341 first pass | 1 prior carry + 332 unchanged assessed (302 static-context + 30 wording-only) | 8 independently accepted candidate values, not integrated |
+| Spain Spanish es-ES P0+P1 | 341/341 first pass | 336 current values accepted in first pass, including 9 prior carries | 5 independently accepted candidate values, not integrated; 30 source-only limits preserved |
+| Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | 4 correction candidates, unapplied and awaiting independent review; 30 wording-only limits; Nôm untouched |
 | Czech full 717-identity catalogue | 717/717 existing review rebound | 645 retained bounded accepts; 716 exact entries present | 72 holds: 71 no-direct-consumer, including the absent legacy manual, plus 1 Fit layout |
 | Swedish full 717-identity catalogue | 717/717 existing review rebound | 714 retained bounded accepts; 715 exact entries present | 3 holds: present Main label, absent palette and absent legacy manual; source-semantic limits remain |
 
@@ -19,6 +19,12 @@ Every priority batch is **92 P0 + 249 P1 = 341 typed identities**. Japanese and 
 Japanese's `ui_the_draft_is_saving_try_again_shortly` keeps its already-reviewed wording. PR146 now selects it only for autosaving; this resolves the specific static generic-busy caller hold without a new runtime, installed-device or translation claim. The 30 wording-only restrictions remain attached to the original identities.
 
 Spanish has 30 exact old accepted receipts, only 9 overlapping this batch; the other 21 are outside it. Its separate assembly-Help hold is also outside the batch and remains open. The unavailable original full-priority Spanish evidence is not reconstructed. Arabic's first-pass decisions and all proposed replacement values stay distinguished from independently accepted, integrated corrections.
+
+Vietnamese has 21 exact prior receipts, only one overlapping the priority batch. Its deduplicated locale-only current partition is **357 bounded current / 4 needing correction or re-review / 356 unknown / 0 missing = 717**. This is not a recomputed all-language total. The four candidate values have not been independently accepted or integrated.
+
+## Independent candidate review supplement
+
+The separate independent model reviewers accepted all **8 Arabic** and **5 Spanish** candidates, with zero revise/hold decisions. These are candidate-wording decisions only: no corrected value has been integrated, and current-source counts above do not increase. Spanish includes four clarity/idiom improvements and one optional capitalization change; the review establishes zero new save/cancel/output-state defects. Earlier author terminology such as “correction” must not be interpreted as a confirmed state-behavior defect. The independent checks cover only these proposed values, not a second review of all 341 entries. Complete source/target/proposal values, hashes, consumer links and limits are in `independent-candidate-reviews.zip`.
 
 ## Existing Czech and Swedish evidence
 
@@ -36,6 +42,8 @@ The [original immutable union](https://github.com/c933103/AN-Paint/tree/2fff1955
 
 - `current-cohort-delta.json`: compact source-bound, denominator-explicit cohort status.
 - `review-packets.zip`: complete Japanese/Polish rebound ledgers and reports, original Polish final packet, completed Arabic/Spanish first-pass ledgers and summaries. Arabic/Spanish corrections are proposals, not accepted production changes.
-- `SHA256SUMS.json`: identities of the published packet and its members.
+- `vi-review-packet.zip`: complete 341-entry Vietnamese review, prior-receipt rebind, four unintegrated candidates and static validation.
+- `independent-candidate-reviews.zip`: Arabic eight and Spanish five complete independent candidate receipts, unintegrated.
+- `SHA256SUMS.json`: identities of the published packets and their members.
 
 Read-only XML/JSON/hash checks confirmed the source-tree bindings, Japanese/Polish 341-entry counts, unchanged Czech resources, all Swedish source/target bindings, and the independently reviewed Curve pair. **No app build, Gradle, CI dispatch, emulator, version or release action occurred. No production resources changed.** This is not new runtime, installed layout, TalkBack, native-speaker or whole-language certification.

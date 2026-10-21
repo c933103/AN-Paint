@@ -121,14 +121,21 @@
       "unchanged_first_pass_assessed": 332,
       "static_context": 302,
       "wording_only": 30,
-      "correction_proposals_pending_independent_review": 8,
       "proposal_priority_breakdown": {
         "P0": 2,
         "P1": 6
       },
       "global_union_credit_added": 0,
       "production_changes": 0,
-      "evidence": "ar-first-pass-ledger.json.gz"
+      "evidence": "ar-first-pass-ledger.json.gz",
+      "independently_accepted_unintegrated_candidates": 8,
+      "independent_candidate_review": {
+        "accepted": 8,
+        "revised": 0,
+        "held": 0,
+        "scope": "Only the eight proposals; not a second full-batch review.",
+        "receipt": "independent-candidate-reviews.zip/ar/independent-review.json"
+      }
     },
     "es-ES": {
       "scope": "Spain Spanish P0+P1 first pass; excludes es-419 and generic es",
@@ -137,7 +144,6 @@
       "accepted_current_in_first_pass": 336,
       "old_prior_accepts_overlapping_priority": 9,
       "new_unchanged_accepts": 327,
-      "proposed_corrections_pending_independent_review": 5,
       "P0": {
         "total": 92,
         "accepted_current": 88,
@@ -155,12 +161,50 @@
       "original_full_priority_evidence": "Unavailable; this is a fresh full batch, not reconstructed prior credit.",
       "global_union_credit_added": 0,
       "production_changes": 0,
-      "evidence": "es-ES-first-pass-ledger.json.gz"
+      "evidence": "es-ES-first-pass-ledger.json.gz",
+      "independently_accepted_unintegrated_candidates": 5,
+      "independent_candidate_review": {
+        "accepted": 5,
+        "revised": 0,
+        "held": 0,
+        "clarity_or_idiom_improvements": 4,
+        "optional_capitalization_cosmetic": 1,
+        "required_behavior_or_warning_meaning_corrections_found": 0,
+        "scope": "Only the five proposals; not a second full-341-key review.",
+        "receipt": "independent-candidate-reviews.zip/es-ES/independent-review.json"
+      }
     },
     "vi": {
       "scope": "Latin-script Vietnamese P0+P1; excludes Nôm vi-Hani",
       "denominator": 341,
-      "status": "Full review in progress; no new completion or acceptance credit added"
+      "present": 341,
+      "newly_accepted_unchanged": 336,
+      "prior_exact_carry": 1,
+      "correction_candidates_unapplied_and_pending_independent_review": 4,
+      "P0": {
+        "total": 92,
+        "newly_accepted": 90,
+        "prior_carry": 1,
+        "correction_needed": 1
+      },
+      "P1": {
+        "total": 249,
+        "newly_accepted": 246,
+        "correction_needed": 3
+      },
+      "wording_only_limits": 30,
+      "all_old_receipts_exactly_rebound": 21,
+      "old_receipts_outside_priority": 20,
+      "deduplicated_current_vi_only_catalogue": {
+        "bounded_current": 357,
+        "needs_rereview": 4,
+        "present_review_unknown": 356,
+        "missing": 0,
+        "denominator": 717
+      },
+      "global_union_credit_added": 0,
+      "production_changes": 0,
+      "evidence": "vi-review-packet.zip"
     }
   },
   "validation": {
@@ -178,5 +222,6 @@
     "Mechanical evidence carry-forward does not count the same entry twice.",
     "Cohort holds may include absent resources; do not sum review dispositions and presence columns as separate populations.",
     "The tracker remains an intentional draft and must not merge."
-  ]
+  ],
+  "supplement": "Arabic eight and Spanish five proposed values accepted independently as candidate wording; no production integration or current-source count increase."
 }
