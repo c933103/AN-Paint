@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-21",
+  "source_commit": "4355869e2e198b5616419291cba225b018444fab",
+  "source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+  "scope": "Dated cohort status reconciliation; not a recomputed all-language union.",
+  "global_totals_recomputed": false,
+  "global_totals_status": "The 171-option table dated 20 October is retained as historical only; do not add overlapping cohort counts to it.",
+  "source_bindings": {
+    "values": {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "sha256": "04bf03c83788efb65f6b0f07c94ccf2da741115715678662c8f2cd359fc95e7d",
+      "git_blob": "4cff5008eb000ee9a3121dc4b6f611615be09517"
+    },
+    "values-ja": {
+      "path": "Paintroid/src/main/res/values-ja/strings.xml",
+      "sha256": "05bbcd1f298b1191fedb40f5999c4b92caf15bfb3946db2c1607e36178bb6b6d",
+      "git_blob": "f8f9043a790dc9870288699e4ec2dce7107ffd41"
+    },
+    "values-pl": {
+      "path": "Paintroid/src/main/res/values-pl/strings.xml",
+      "sha256": "2c1b92fe2ac261ab4d83a90e7a520259c2af60d40e595d1fcf08bafd4c1ca930",
+      "git_blob": "434d92f0ae51be39985163a9aa46f8370583b0dc"
+    },
+    "values-cs": {
+      "path": "Paintroid/src/main/res/values-cs/strings.xml",
+      "sha256": "19e6fd73cf96535108c5c38e776e36b646c3caa039cab3f5307f648793894d75",
+      "git_blob": "83816fcfc9a3a3a94f62020db6f9c0626c86ba7a"
+    },
+    "values-sv": {
+      "path": "Paintroid/src/main/res/values-sv/strings.xml",
+      "sha256": "9715b2e31d2945531c26207b9eea4743891c6d03e8e2b8ff228c403cfbcfdda0",
+      "git_blob": "c7e98cb22ba73bfb46491475b38da08966dcfa3d"
+    },
+    "values-ar": {
+      "path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "sha256": "4badecf02f385f67969b2a47c19b23b2c3d85c619ee639c58395a2c430ad2100",
+      "git_blob": "edf4ee8715b3ff9591e107674663b68d4868049f"
+    }
+  },
+  "cohorts": {
+    "ja": {
+      "scope": "P0+P1",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "present": 341,
+      "missing": 0,
+      "unchanged_prior_bounded_carries": 340,
+      "unchanged_wording_static_context_rebound": 1,
+      "wording_only_limit_preserved": 30,
+      "new_linguistic_review_credit": 0,
+      "new_translations": 0,
+      "proposed_corrections": 0,
+      "source_context_rebound": "string/ui_the_draft_is_saving_try_again_shortly; PR146; original wording already reviewed; current callers are autosave-specific.",
+      "evidence": "ja-priority-ledger.json.gz"
+    },
+    "pl": {
+      "scope": "P0+P1",
+      "denominator": 341,
+      "present": 341,
+      "missing": 0,
+      "retained_bounded_reviews": 310,
+      "holds": 31,
+      "dormant_context_holds": 30,
+      "compact_fit_hold": 1,
+      "P0": {
+        "total": 92,
+        "retained_bounded": 86,
+        "holds": 6
+      },
+      "P1": {
+        "total": 249,
+        "retained_bounded": 224,
+        "holds": 25
+      },
+      "new_linguistic_review_credit": 0,
+      "proposed_corrections": 0,
+      "whole_catalogue_presence": 398,
+      "whole_catalogue_denominator": 717,
+      "outside_priority_missing": 319,
+      "outside_priority_present_unknown": 45,
+      "evidence": "pl-priority-ledger.json.gz"
+    },
+    "cs": {
+      "scope": "Existing full catalogue bounded review, exact resource preservation plus prior current-source consumer audit",
+      "denominator": 717,
+      "bounded_accepts": 645,
+      "holds": 72,
+      "holds_include_one_missing_legacy_manual": true,
+      "no_direct_consumer_holds": 71,
+      "fit_layout_hold": 1,
+      "present": 716,
+      "missing": 1,
+      "new_linguistic_review_credit": 0,
+      "evidence": "https://github.com/c933103/AN-Paint/blob/f25c4514f42fcc5c6aa2bd01d65fd9782c30b0fc/czech-current-integration-20261020/README.md",
+      "evidence_boundary": "Original full archive publication remains separately pending; this update does not upload it or claim it is public.",
+      "production_merge": "https://github.com/c933103/AN-Paint/pull/156"
+    },
+    "sv": {
+      "scope": "Existing full catalogue bounded reviews rebound mechanically; not new linguistic review",
+      "denominator": 717,
+      "bounded_accepts": 714,
+      "holds": 3,
+      "present": 715,
+      "missing": 2,
+      "holds_include_two_missing_entries": true,
+      "source_semantics_only_limits_preserved": 40,
+      "prior_carries_in_original_completion_cohort": 340,
+      "new_linguistic_review_credit_in_this_reconciliation": 0,
+      "separate_curve_receipt_included": true,
+      "evidence": "https://github.com/c933103/AN-Paint/blob/cb3b384c69ca999ad3de95aa677a149f84c6360f/swedish-completion-20261020/CURRENT.md",
+      "curve_evidence": "https://github.com/c933103/AN-Paint/blob/180672106a1b0668b6eafa68a8ff2ac8d5ea4c45/swedish-curve-independent-20261020/curve-hint-independent-review.json",
+      "production_merge": "https://github.com/c933103/AN-Paint/pull/151"
+    },
+    "ar": {
+      "scope": "Modern Standard Arabic P0+P1 first pass, not ary",
+      "denominator": 341,
+      "present": 341,
+      "prior_carry": 1,
+      "unchanged_first_pass_assessed": 332,
+      "static_context": 302,
+      "wording_only": 30,
+      "correction_proposals_pending_independent_review": 8,
+      "proposal_priority_breakdown": {
+        "P0": 2,
+        "P1": 6
+      },
+      "global_union_credit_added": 0,
+      "production_changes": 0,
+      "evidence": "ar-first-pass-ledger.json.gz"
+    },
+    "es-ES": {
+      "scope": "Spain Spanish P0+P1 first pass; excludes es-419 and generic es",
+      "denominator": 341,
+      "present": 341,
+      "accepted_current_in_first_pass": 336,
+      "old_prior_accepts_overlapping_priority": 9,
+      "new_unchanged_accepts": 327,
+      "proposed_corrections_pending_independent_review": 5,
+      "P0": {
+        "total": 92,
+        "accepted_current": 88,
+        "proposals": 4
+      },
+      "P1": {
+        "total": 249,
+        "accepted_current": 248,
+        "proposals": 1
+      },
+      "wording_only_limits_preserved": 30,
+      "prior_bounded_receipts_exactly_rebound": 30,
+      "prior_bounded_outside_priority": 21,
+      "outside_priority_assembly_help_hold": 1,
+      "original_full_priority_evidence": "Unavailable; this is a fresh full batch, not reconstructed prior credit.",
+      "global_union_credit_added": 0,
+      "production_changes": 0,
+      "evidence": "es-ES-first-pass-ledger.json.gz"
+    },
+    "vi": {
+      "scope": "Latin-script Vietnamese P0+P1; excludes Nôm vi-Hani",
+      "denominator": 341,
+      "status": "Full review in progress; no new completion or acceptance credit added"
+    }
+  },
+  "validation": {
+    "source_files_match_frozen_tree": true,
+    "japanese_unique_records": 341,
+    "polish_unique_records": 341,
+    "swedish_all_717_source_values_attributes_and_714_target_values_match_prior_receipts_plus_supplements": true,
+    "czech_english_and_target_files_match_prior_review_sha256": true,
+    "curve_current_pair_matches_separate_independent_acceptance": true
+  },
+  "limits": [
+    "No app build, Gradle, CI dispatch, emulator, version or release action.",
+    "No production resource changes.",
+    "No new runtime, installed layout, TalkBack, native-speaker or whole-language acceptance.",
+    "Mechanical evidence carry-forward does not count the same entry twice.",
+    "Cohort holds may include absent resources; do not sum review dispositions and presence columns as separate populations.",
+    "The tracker remains an intentional draft and must not merge."
+  ]
+}
