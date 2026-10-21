@@ -10,7 +10,9 @@ Source: [develop 4355869e](https://github.com/c933103/AN-Paint/tree/4355869e2e19
 | Polish P0+P1 | 341/341 | 310 retained bounded accepts | 31 holds: 30 dormant-context + 1 compact Fit layout; no correction |
 | Arabic ar P0+P1 | 341/341 first pass | 1 prior carry + 332 unchanged assessed (302 static-context + 30 wording-only) | 8 independently accepted candidate values, not integrated |
 | Spain Spanish es-ES P0+P1 | 341/341 first pass | 336 current values accepted in first pass, including 9 prior carries | 5 independently accepted candidate values, not integrated; 30 source-only limits preserved |
-| Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | Independent candidate review: 3 accept, 1 revise, 0 hold; all unapplied; 30 wording-only limits; Nôm untouched |
+| Vietnamese vi P0+P1 | 341/341 | 336 fresh accepted values + 1 prior exact carry | Effective independent candidate review: 2 accept, 2 revise, 0 hold; all unapplied; 30 wording-only limits; Nôm untouched |
+| Hungarian hu P0+P1 | 341/341 author review | 323 current bounded values: 292 static + 30 wording-only + 1 prior carry | 18 priority proposals: independent 17 accept / 1 revise; 2 adjacent P2 proposals accepted separately; all unapplied |
+| Lithuanian lt P0+P1 | 341/341 author review | 320 current bounded values: 289 static + 30 wording-only + 1 prior carry | 14 priority corrections + 3 dependent priority labels + 4 terminology holds; 3 separate P2 dependency edits; independent review pending |
 | Czech full 717-identity catalogue | 717/717 existing review rebound | 645 retained bounded accepts; 716 exact entries present | 72 holds: 71 no-direct-consumer, including the absent legacy manual, plus 1 Fit layout |
 | Swedish full 717-identity catalogue | 717/717 existing review rebound | 714 retained bounded accepts; 715 exact entries present | 3 holds: present Main label, absent palette and absent legacy manual; source-semantic limits remain |
 
@@ -20,17 +22,26 @@ Japanese's `ui_the_draft_is_saving_try_again_shortly` keeps its already-reviewed
 
 Spanish has 30 exact old accepted receipts, only 9 overlapping this batch; the other 21 are outside it. Its separate assembly-Help hold is also outside the batch and remains open. The unavailable original full-priority Spanish evidence is not reconstructed. Arabic's first-pass decisions and all proposed replacement values stay distinguished from independently accepted, integrated corrections.
 
-Vietnamese has 21 exact prior receipts, only one overlapping the priority batch. Its deduplicated locale-only current partition is **357 bounded current / 4 needing correction or re-review / 356 unknown / 0 missing = 717**. This is not a recomputed all-language total. Independent review of the four original proposals is complete: **3 accept, 1 revise, 0 hold**. All remain unapplied, so the current-source counts do not increase.
+Vietnamese has 21 exact prior receipts, only one overlapping the priority batch. Its deduplicated locale-only current partition is **357 bounded current / 4 needing correction or re-review / 356 unknown / 0 missing = 717**. This is not a recomputed all-language total. Independent review of the four original proposals is complete: **2 accept, 2 revise, 0 hold**. All remain unapplied, so the current-source counts do not increase.
 
 ## Independent candidate review supplement
 
 The separate independent model reviewers accepted all **8 Arabic** and **5 Spanish** candidates, with zero revise/hold decisions. These are candidate-wording decisions only: no corrected value has been integrated, and current-source counts above do not increase. Spanish includes four clarity/idiom improvements and one optional capitalization change; the review establishes zero new save/cancel/output-state defects. Earlier author terminology such as “correction” must not be interpreted as a confirmed state-behavior defect. The independent checks cover only these proposed values, not a second review of all 341 entries. Complete source/target/proposal values, hashes, consumer links and limits are in `independent-candidate-reviews.zip`.
 
-### Vietnamese independent candidate decisions
+### Vietnamese superseding independent decisions
 
-Three original proposals are accepted: `ui_the_encoder_did_not_finish`, `ui_drawing_canvas_pinch_and_move_two_fingers_to`, and `ui_no_resize_fits_decoder_memory`. The original `ui_show_magnified_drawing_preview` proposal requires revision. The reviewer-assessed substitute is **Hiện bản xem trước phóng đại của bản vẽ**. The original proposed “khi vẽ” could imply active-stroke-only visibility, while the inspected PaintCanvas consumer permits cursor preview without `down`/`cursorDrawing`. The substitute has not received separate cross-review and has not been applied. This independent receipt covers exactly four proposals, not a second review of the other 337 priority entries, and grants no new current-value, runtime, UI-fit, TalkBack or native-human acceptance.
+The effective outcome is **2 accept, 2 revise, 0 hold**. Only `ui_the_encoder_did_not_finish` and `ui_drawing_canvas_pinch_and_move_two_fingers_to` retain acceptance of their original proposals. The original receipt remains byte-for-byte unchanged, but its prior ACCEPT for `ui_no_resize_fits_decoder_memory` is withdrawn by the source-bound addendum. Its other three original decisions are unchanged.
 
-The exact receipt SHA-256 is `ae2fa10a50b1585f89427b19900aa79b194aba9f958aee8a54ce882a75c1cdd3`; its complete values, source bindings, rationale and limits are in `independent-candidate-reviews.zip/vi/`.
+- Magnifier substitute: **Hiện bản xem trước phóng đại của bản vẽ**. The original proposed “khi vẽ” could imply active-stroke-only visibility, but the inspected consumer permits cursor preview without `down`/`cursorDrawing`.
+- Memory substitute: **Ngay cả khi chọn kích thước đầu ra nhỏ nhất, vẫn không thể tải và chỉnh sửa ảnh này trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.** The admission predicate covers combined decoder, editing/compositing and resident-image memory plus allocation-size constraints. Failure does not prove decoder buffers alone exceed the budget.
+
+Both substitutes have been assessed by the independent reviewer but have not received separate cross-review or been applied. Current-source counts therefore remain unchanged. The addendum's SHA-256 is `4ba02976c562954941da59ac5d5d10c907b4479626dbd8a795107f535b40ff96`; its scope is one key only. The preserved original receipt SHA-256 is `ae2fa10a50b1585f89427b19900aa79b194aba9f958aee8a54ce882a75c1cdd3`. Both are in `independent-candidate-reviews.zip/vi/` with complete values, hashes and source context. This does not repeat review of the other 337 priority entries or certify runtime, UI-fit, TalkBack or native-human fluency.
+
+### Hungarian and Lithuanian author/independent boundaries
+
+Hungarian's complete author batch retains 323 priority values and proposes 18 changes. Its independent check accepts 17 original priority proposals and revises the decoder-memory proposal; two adjacent P2 crop proposals are accepted separately. The new decoder-memory substitute is recommended, not separately cross-reviewed. No candidate is integrated and no P2-tier completion is claimed. All 21 prior Hungarian pairs rebind, only one overlapping the priority batch. Including the two explicit adjacent P2 holds, the current locale-only partition is **343 bounded / 20 held or needing correction / 354 unknown / 0 missing = 717**. Candidate acceptance does not close those current-production holds. Raw autosave error details retained in `lastAutosaveError` are not asserted to be rendered verbatim.
+
+Lithuanian's author batch retains 320 priority values, proposes 14 priority text changes, separately withholds 3 priority labels pending corrected composition dependencies, and retains 4 terminology holds. The full candidate has 17 XML edits because it includes 3 separate P2 dependency templates. All 22 prior pairs rebind, only one overlapping P0/P1. Independent candidate review is still in progress. Preserve atomic unit/height/width and both crop-mode template dependencies; no candidate or held terminology receives current acceptance from this publication.
 
 ## Existing Czech and Swedish evidence
 
@@ -48,8 +59,10 @@ The [original immutable union](https://github.com/c933103/AN-Paint/tree/2fff1955
 
 - `current-cohort-delta.json`: compact source-bound, denominator-explicit cohort status.
 - `review-packets.zip`: complete Japanese/Polish rebound ledgers and reports, original Polish final packet, completed Arabic/Spanish first-pass ledgers and summaries. Arabic/Spanish corrections are proposals, not accepted production changes.
+- `hu-review-packet.zip`: complete Hungarian author batch, original prior bindings and separate P2 findings.
+- `lt-review-packet.zip`: complete Lithuanian author batch, atomic dependency proposals and terminology holds.
 - `vi-review-packet.zip`: complete 341-entry Vietnamese review, prior-receipt rebind, four unintegrated candidates and static validation.
-- `independent-candidate-reviews.zip`: Arabic eight, Spanish five and Vietnamese four complete independent candidate receipts, all unintegrated. The Vietnamese magnifier substitute retains its separate-cross-review limit.
+- `independent-candidate-reviews.zip`: Arabic, Spanish, Vietnamese and Hungarian independent candidate receipts, all unintegrated. The Vietnamese original receipt and one-key superseding addendum are both preserved; recommended substitutes retain their separate-cross-review limits.
 - `SHA256SUMS.json`: identities of the published packets and their members.
 
 Read-only XML/JSON/hash checks confirmed the source-tree bindings, Japanese/Polish 341-entry counts, unchanged Czech resources, all Swedish source/target bindings, and the independently reviewed Curve pair. **No app build, Gradle, CI dispatch, emulator, version or release action occurred. No production resources changed.** This is not new runtime, installed layout, TalkBack, native-speaker or whole-language certification.

@@ -4,14 +4,14 @@
   "source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
   "files": {
     "README.md": {
-      "bytes": 8587,
-      "sha256": "4557cd371e2957ec94edca8e1d9ea0360cb1a819afc57f912b9c19a60160e581",
-      "git_blob": "48979fda4368a0602e35ec71d143bcece38b533a"
+      "bytes": 11518,
+      "sha256": "189e87480a8a7f3a56ba795a91374a8a0ea45177aaaf82f2340c2841982d122c",
+      "git_blob": "f4c2dbb9b138b2eb0348860b0518c993cd03a13c"
     },
     "current-cohort-delta.json": {
-      "bytes": 10299,
-      "sha256": "7d8ce38bc355f85e37222e0b3b5de386947afc758ee2bcd03a81b4c355b3e690",
-      "git_blob": "3676e3a21ec064a2e71da3aa4c576ff6c0a651ca"
+      "bytes": 13788,
+      "sha256": "e4f88ad97035ecf35ae420ae0489aaae5c3619dd7fe94dcf83b0fe9dc55d523a",
+      "git_blob": "bae51b31ab20611769bd0533095ad7898cb70654"
     },
     "review-packets.zip": {
       "bytes": 574590,
@@ -19,14 +19,24 @@
       "git_blob": "3f795418bd82fd8425ed1d8d2aef78b3922bd54d"
     },
     "independent-candidate-reviews.zip": {
-      "bytes": 45132,
-      "sha256": "982d5f6634913e1d2734541a658a3e7ab7b1c2c01ca549521d64e6468ee01341",
-      "git_blob": "e876dcde5e44ffa7211fe18e19e5f63f90fcfd8e"
+      "bytes": 90141,
+      "sha256": "6f87f08dfdb8ffe91f37df3e9e18ebaeb22059d995ebba7c68259375bf93c181",
+      "git_blob": "0b1f45bc090ed7610154835da29895eb8a5f3962"
     },
     "vi-review-packet.zip": {
       "bytes": 106121,
       "sha256": "03d7f2cfcc7ed9823f6778731d593221e23577336c413746c86f6c3d99b915fb",
       "git_blob": "6044a32dc6956dc493896eca9e9d2a1d9fd1e374"
+    },
+    "hu-review-packet.zip": {
+      "bytes": 229133,
+      "sha256": "762188d44573b3add4a39c18bc21dc453829330a13ab7a16963258ea2a2d83b6",
+      "git_blob": "25bc76362845db4e4209cc175dcc511c6e13fc50"
+    },
+    "lt-review-packet.zip": {
+      "bytes": 213191,
+      "sha256": "0a66d38a0ecfde95bde827d3b0188f82110cf61d5b5b6a85890fd2eba4de66f4",
+      "git_blob": "b3420f46a3aaf3431c36f3791f2c6a3fce93dc82"
     }
   },
   "packet_members": {
@@ -103,6 +113,34 @@
     "vi/context-excerpts.txt": {
       "bytes": 15644,
       "sha256": "cb673d2618f155cbe2cf75b101944e6e362d71b16a2d0b507a211c13a92c6366"
+    },
+    "vi/addendum-decoder-memory/review-addendum.json": {
+      "bytes": 19483,
+      "sha256": "4ba02976c562954941da59ac5d5d10c907b4479626dbd8a795107f535b40ff96"
+    },
+    "vi/addendum-decoder-memory/README.md": {
+      "bytes": 2415,
+      "sha256": "4aa383561e46fa4b2010d560ef2d695fdc2dbe0e881d30a61565bdb251705acc"
+    },
+    "vi/addendum-decoder-memory/manifest.json": {
+      "bytes": 524,
+      "sha256": "d927967c97e16b9a95e2187e958df28878e756fc30aaa23182c23fa41912799f"
+    },
+    "vi/addendum-decoder-memory/context-excerpts.txt": {
+      "bytes": 6591,
+      "sha256": "abc0444f58580d9c2be97d886232f57443f5c403a28a5c34e6df4ae3c060ee94"
+    },
+    "hu/independent-review.json": {
+      "bytes": 119425,
+      "sha256": "c0ff461542bc07ae087cd7192ab70d4d33d96f15fbfe0bbfa849a1ef2a003c85"
+    },
+    "hu/README.md": {
+      "bytes": 22955,
+      "sha256": "4b3f7a39cb1988078058f49278466673f9cf11f945c3e370d373940bfa6b42db"
+    },
+    "hu/SHA256SUMS.json": {
+      "bytes": 272,
+      "sha256": "46db7444c9999d9340714bc33b8f59a448027db754f488bbd988ce311d80ade7"
     }
   },
   "vi_packet_members": {
@@ -137,6 +175,90 @@
     "manifest.json": {
       "bytes": 1098,
       "sha256": "60bf747a4b0ad306aa2a8db07e713c06a93df6de839701568828ac3363cdf329"
+    }
+  },
+  "hu_packet_members": {
+    "README.md": {
+      "bytes": 3976,
+      "sha256": "78c800929e36bc87fdfe8b261b7d6eb4c77a0abbe8171d36e67f293f9c4ffe19"
+    },
+    "hungarian-p0-p1-341-review.json": {
+      "bytes": 997551,
+      "sha256": "40396e572d637676d353da788f4da1793c5340b79f401847050bb05f2128f80f"
+    },
+    "summary.json": {
+      "bytes": 1246,
+      "sha256": "3da937cad574eb9e348c7c535711cb4abacee4be48aad16236ad818fdf4b83a9"
+    },
+    "current-bindings.json": {
+      "bytes": 198503,
+      "sha256": "464ba6f55ba2618062b4a735be1b1634829c92bd14043c6a4a392db4831b52c3"
+    },
+    "prior-exact-current-bindings.json": {
+      "bytes": 29228,
+      "sha256": "d43618e983aa1fb3c9333f063b08ccc610efb96c39fe1a57d97a947ac707d240"
+    },
+    "correction-proposals.json": {
+      "bytes": 22903,
+      "sha256": "13e7a12a4fe16985d578f4a30cd7d1bc54abd9a118fc9551cd9b49b06ce518ac"
+    },
+    "adjacent-p2-findings.json": {
+      "bytes": 1979,
+      "sha256": "d6c92cca23c6b00d65bcdebee5d6f14fc797fa554b2709b5b2a6f5f304704c7d"
+    },
+    "hungarian-priority-candidate.patch": {
+      "bytes": 15217,
+      "sha256": "dc1b70abe2ab64f6f73490060b15a06004a722726ba5d1dd8ae5b3d7a99ec66a"
+    },
+    "validation.json": {
+      "bytes": 637,
+      "sha256": "fb3a92e306190939ef6777abc9d392ec3b297582a3ad72eabb9acfdcda303dc0"
+    },
+    "SHA256SUMS.json": {
+      "bytes": 1102,
+      "sha256": "4bce1af1ed88c8a97dc6bbc9f27abb8cb885889d3b11eafcfdb6d49c47cbc545"
+    }
+  },
+  "lt_packet_members": {
+    "README.md": {
+      "bytes": 8137,
+      "sha256": "968cb6609b5abc3fdc738c5422ff25376e638f61051567c97a337f06ba77dd0a"
+    },
+    "lithuanian-p0-p1-review.json": {
+      "bytes": 646599,
+      "sha256": "13c76f59ca5e8c2bf5ae992ddd77997aff01a1359b691d1ad582e8c10f4d35d3"
+    },
+    "lithuanian-p0-p1-review.csv": {
+      "bytes": 185018,
+      "sha256": "64309e740c8d8971ce8d7ff4cfe54fe4eeb219e215605c2c229639d491be5a0d"
+    },
+    "prior-22-exact-pairs.json": {
+      "bytes": 197639,
+      "sha256": "d69ab99da16b0d8cf44bd895b757484eef8c79fd135a39660018dc49416130d0"
+    },
+    "proposed-corrections.json": {
+      "bytes": 20142,
+      "sha256": "52aff6c54d287d9a9eaa5dde593ee55d0312388a4282bc5568954b6efd68e6b1"
+    },
+    "lithuanian-priority-candidate.patch": {
+      "bytes": 12179,
+      "sha256": "04af9d8436373fd7299c99bb32e1513072b6f94a01a845af77f6d89a68265800"
+    },
+    "static-composition-examples.json": {
+      "bytes": 2242,
+      "sha256": "014feebc132e5b0c38b0fd230d5500bccf7da2fd060b0d27493950704cf4e025"
+    },
+    "validation.json": {
+      "bytes": 1368,
+      "sha256": "724dffc264125608c71a4ec952e257d2f9647b0e112a1072c6fdce67f0a35f68"
+    },
+    "candidate/Paintroid/src/main/res/values-lt/strings.xml": {
+      "bytes": 87538,
+      "sha256": "89b0e0706a155f8d2f576b723ceadfcf2e8a1d026b68b9f9498de31147be8f6f"
+    },
+    "SHA256SUMS.json": {
+      "bytes": 919,
+      "sha256": "9f980c87d8b54370931f5e56de8a4d2677cc85eab64a2804ec41e2d0f506c5eb"
     }
   }
 }
