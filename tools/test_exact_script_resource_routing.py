@@ -31,7 +31,7 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
     def test_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild(self):
         build = (ROOT / 'Paintroid/build.gradle').read_text()
         task = build.split("tasks.register('generateExactScriptResources', Sync)", 1)[1]
-        task = task.split('// Host-side Android graphics tests', 1)[0]
+        task = task.split('// AAPT decodes canonical English', 1)[0]
         self.assertIn("from('src/main/res/values-b+ko+Kore+KR')", task)
         self.assertIn("include '*.xml'", task)
         self.assertIn("into 'values-b+ko+Kore+KR+anpaint'", task)

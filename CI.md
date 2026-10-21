@@ -43,6 +43,9 @@ Both the mixed-script Korean and emoji-English mirrors are checked independently
 Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
 verifies that native-source/bundling graph. Production translations are not edited.
 
+The same resource probe now verifies the generated canonical fallback catalogue
+and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
+
 ## Local commands
 
 Run relevant focused tests first, then the current host suite:

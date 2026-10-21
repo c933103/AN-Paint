@@ -61,8 +61,8 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
         input.contentDescription=ui(if (isWidth) R.string.ui_width else R.string.ui_height, "px")
         body.addView(units); body.addView(input)
         val presets=LinearLayout(activity)
-        listOf(ui(R.string.ui_smallest) to smallest,ui(R.string.ui_largest) to largest).forEach { (label,pixels) ->
-            presets.addView(Button(activity).apply { text=label; isAllCaps=false; tag="normalize_${label.lowercase(Locale.ROOT)}"; setOnClickListener { display(pixels); refresh() } },LinearLayout.LayoutParams(0,dp(48),1f))
+        listOf(Triple("smallest",R.string.ui_smallest,smallest),Triple("largest",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->
+            presets.addView(Button(activity).apply { text=ui(label); isAllCaps=false; tag="normalize_$key"; setOnClickListener { display(pixels); refresh() } },LinearLayout.LayoutParams(0,dp(48),1f))
         }
         body.addView(presets); body.addView(info)
         body.addView(Button(activity).apply {

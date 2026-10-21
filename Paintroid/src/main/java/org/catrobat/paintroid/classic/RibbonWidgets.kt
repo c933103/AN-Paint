@@ -67,6 +67,24 @@ open class PanelToolButton(context: Context): FlowButton(context) {
     }
     var disclosure: Boolean?=null
     var disclosureBeside=false
+    private data class CaptionGeometry(val text: String,val direction: TextDirection,val wrapHeight: Int,
+        val availableWidth: Int,val availableHeight: Int,val laidOut: Boolean)
+    private var captionGeometry: CaptionGeometry?=null
+    private var captionPaint: Paint?=null
+    private var fittedCaption: String?=null
+
+    private fun sameMeasurement(previous: Paint): Boolean {
+        if(android.os.Build.VERSION.SDK_INT>=28) return previous.equalsForTextMeasurement(paint)
+        // Older Paint has no comparison API. Include every available shaping
+        // setting, so font/locale/scale changes cannot reuse stale fitted text.
+        return previous.flags==paint.flags && previous.hinting==paint.hinting &&
+            previous.typeface==paint.typeface && previous.textSize==paint.textSize &&
+            previous.textScaleX==paint.textScaleX && previous.textSkewX==paint.textSkewX &&
+            previous.letterSpacing==paint.letterSpacing && previous.fontFeatureSettings==paint.fontFeatureSettings &&
+            previous.isElegantTextHeight==paint.isElegantTextHeight &&
+            (if(android.os.Build.VERSION.SDK_INT>=24) previous.textLocales==paint.textLocales else previous.textLocale==paint.textLocale) &&
+            (android.os.Build.VERSION.SDK_INT<26 || previous.fontVariationSettings==paint.fontVariationSettings)
+    }
     init {
         textSize=10f;typeface=VerticalText.uiTypeface(context) ?: Typeface.DEFAULT_BOLD
         // The activity theme supplies textAlignment=viewStart; gravity alone cannot override it.
@@ -104,24 +122,34 @@ open class PanelToolButton(context: Context): FlowButton(context) {
         super.onMeasure(MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY),MeasureSpec.makeMeasureSpec(side,MeasureSpec.EXACTLY))
     }
     override fun caption(): String {
-        val full=super.caption()
-        if(width<=0 || height<=0) return full
         val availableWidth=width-paddingLeft-paddingRight-(icon?.bounds?.width()?.plus(dp(8)) ?: 0)
         val availableHeight=height-paddingTop-paddingBottom
+        val value=text.toString()
+        val direction=VerticalText.uiDirection(context)
+        val geometry=CaptionGeometry(value,direction,dp(columnHeightDp),availableWidth,availableHeight,width>0 && height>0)
+        if(geometry==captionGeometry && captionPaint?.let(::sameMeasurement)==true) return fittedCaption!!
         fun fits(label: String): Boolean {
-            val box=VerticalText.bounds(label,paint,VerticalText.uiDirection(context),GlyphOrientation.MIXED,1f)
+            val box=VerticalText.bounds(label,paint,direction,GlyphOrientation.MIXED,1f)
             return box.width()<=availableWidth && box.height()<=availableHeight
         }
-        if(fits(full)) return full
-        // Retain natural glyph size and shaping; unusually long labels use an
-        // ellipsis inside the tile, with the full caption available to accessibility/tooltip.
-        val clusters=VerticalText.clusters(text.toString()).toMutableList()
-        while(clusters.isNotEmpty()) {
-            clusters.removeAt(clusters.lastIndex)
-            val label=VerticalText.wrapLabel(clusters.joinToString("").trimEnd()+"…",paint,availableHeight.toFloat(),VerticalText.uiDirection(context))
-            if(fits(label)) return label
+        val full=VerticalText.wrapLabel(value,paint,geometry.wrapHeight.toFloat(),direction)
+        val result=if(!geometry.laidOut || fits(full)) full else {
+            // Prefix offsets keep whole clusters without repeatedly joining the
+            // entire list. Long labels get bounded measured probes; small labels
+            // retain exhaustive fitting. No assumption about monotone shaping is
+            // needed to return a candidate actually measured to fit.
+            val clusters=VerticalText.clusters(value)
+            val ends=IntArray(clusters.size+1)
+            for(index in clusters.indices) ends[index+1]=ends[index]+clusters[index].length
+            CaptionPrefixSearch.choose(clusters.size,{count ->
+                VerticalText.wrapLabel(value.substring(0,ends[count]).trimEnd()+"…",paint,availableHeight.toFloat(),direction)
+            },::fits) ?: ""
         }
-        return "…"
+        // Only the drawn caption is shortened. TextView.text, accessibility and
+        // tooltips retain the complete source. If even an ellipsis cannot fit,
+        // draw no caption ink instead of overflowing the fixed tile.
+        captionGeometry=geometry;captionPaint=Paint(paint);fittedCaption=result
+        return result
     }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

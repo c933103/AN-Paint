@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.MotionEvent
 import androidx.core.graphics.ColorUtils
-import java.util.Locale
 import kotlin.math.*
 
 /** 127 chromatic hexagons and 13 greys. Every swatch is a labelled, focusable view. */
@@ -34,7 +33,7 @@ class HoneycombPalette(context: Context, private val value: ColourValue, private
                 private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
                 init {
                     tag = "honeycomb_colour_$index"; isFocusable = true; isClickable = true
-                    contentDescription = String.format(Locale.ROOT, ui(R.string.ui_honeycomb_colour_06x), cell.colour and 0xffffff)
+                    contentDescription = uiRoot(R.string.ui_honeycomb_colour_06x, cell.colour and 0xffffff)
                     setOnClickListener { value.rgb(cell.colour); invalidateSelection(); changed() }
                     setOnFocusChangeListener { _, _ -> invalidate() }
                 }
