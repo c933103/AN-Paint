@@ -3,8 +3,8 @@
   "base_tree": "5fa767ed5bb57364a1ca4bd3cab95cae36187847",
   "baseline_test_head": "82cd160e9dc059eb7ccfa9aedc81f959b22a4e93",
   "baseline_run": 39545448579,
-  "candidate_commit": "456df2b35bd168cfc575fa1468b3c7409f966bdb",
-  "candidate_tree": "77beaf518aa7c3a7535309b6245d030ae934e18f",
+  "candidate_commit": "8ec68c5e2294c272765b1a233cec92876156d54b",
+  "candidate_tree": "b5eac6ed0e4a29113b89f157de3c81a1b44baa38",
   "remote_tree_verified_leaves": 1274,
   "changes": [
     {
@@ -24,9 +24,9 @@
     {
       "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ApplicationLocaleConfigurationTest.kt",
       "mode": "100644",
-      "sha": "58e8643d77bd849774e0af708401145445899ce8",
-      "sha256": "7a2fb49468220121ea5398e223761773d8d35b54bc9947489182a21ecb76ae32",
-      "bytes": 9893
+      "sha": "11c52b5491009f58edb42b5603884922ed9b099a",
+      "sha256": "a82313a54ab3fd0fb2c45149dae5ac201cd1f83833424fb94f54a9eeded97075",
+      "bytes": 9982
     },
     {
       "path": "app/src/androidTest/java/paint/anpaint/android/VerticalLocaleDeviceTest.kt",
@@ -37,11 +37,12 @@
     }
   ],
   "release_inputs_changed": false,
-  "test_status": "Hosted baseline pending; candidate JVM/device not yet run",
+  "test_status": "Corrected hosted baseline reproduces mnc-Mong to en-US; 1278 JVM tests, 14 expected new-class failures. Candidate JVM/device pending; local canonical Python suites pass 1082 each.",
   "original_failure": {
     "run_id": 39540842251,
     "job_id": 119030652466,
     "artifact_id": 12319937300,
     "sha256": "c0f21c0db7240b1387b858ba72029fac45bebe023057fd2b515079df62d0feba"
-  }
+  },
+  "scope": "Independent bug repair only. Release progression paused; no version, publication, signing or release-triggering changes."
 }
