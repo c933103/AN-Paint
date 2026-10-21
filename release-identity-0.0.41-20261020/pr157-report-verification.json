@@ -1,0 +1,903 @@
+{
+  "commit": "90da56bfc5fbb83b7a924243b079560f30fd5393",
+  "tree": "5fa767ed5bb57364a1ca4bd3cab95cae36187847",
+  "run_id": 39532712417,
+  "run_conclusion": "success",
+  "run_attempt": 1,
+  "run_updated_at": "2026-10-21T02:45:03Z",
+  "jobs": [
+    {
+      "id": 119002139163,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 119002139431,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 119002139443,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Upload build diagnostics even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 119004552135,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 119004552158,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 119008619037,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39532712417,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Require both complete emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Select artifacts from successful job intervals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Download and verify the selected artifact IDs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Require exact disjoint app union and matching prebuilt identity",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "regression": {
+    "artifact_id": 12316343359,
+    "artifact_sha256": "24fcec42f8967ac8a9add059e8a4acadd65dbdb474b879a595631658dfcadf53",
+    "junit_xml_files": 133,
+    "tests": 1264,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "lint_issues": 0
+  },
+  "device": {
+    "35": {
+      "artifact_id": 12316847443,
+      "artifact_sha256": "0b7d9f4619bf51f7e60884c26e65cfc4e3087f3fbde8e4909a99583bc0fb61cf",
+      "device_identity": {
+        "commit": "90da56bfc5fbb83b7a924243b079560f30fd5393",
+        "run_id": "39532712417",
+        "build_variant": "debug",
+        "source_tests_sha256": "38c02f3b7c9545742af8d26e68c1ad2ec2a29aa40a3a68ff0fac3b8580e9b617",
+        "device_sdk": 35,
+        "apk_sha256": "c43fbff926113ce0abd20cdf6c737656b55414565c14a428e3e40016f42f3882",
+        "source_sha256": "b9f87122a874aa7533c456df935af655be6e26aa07c0f61648f1a19a29932a83",
+        "test_apk_sha256": "9fe3c23a533b5008236d739792b96c226a8d221ca8d217fcd579d94ad917f3db",
+        "group_run_attempts": {
+          "core": 1,
+          "position": 1
+        },
+        "composed_in_run_attempt": 1
+      },
+      "app": {
+        "success": true,
+        "execution_status": "passed",
+        "inventory_validated": true,
+        "device_sdk": 35,
+        "source_tests_sha256": "38c02f3b7c9545742af8d26e68c1ad2ec2a29aa40a3a68ff0fac3b8580e9b617",
+        "timeout_seconds_by_phase": {
+          "ordinary": 180,
+          "gallery-draft": 90,
+          "vertical-english-manchu": 180,
+          "vertical-literary-chinese-emoji": 180,
+          "position-ainu-manchu": 180,
+          "position-tibetan-jeju-nom": 180,
+          "dialog": 300,
+          "seed": 60,
+          "verify": 60
+        },
+        "dialog_timeout_seconds": 300,
+        "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted",
+        "ordinary_and_gallery_total_timeout_seconds": 270,
+        "vertical_timeout_seconds_per_shard": 180,
+        "vertical_total_timeout_seconds": 360,
+        "receipt_scope": "complete-composed-app-union",
+        "deferred_tests": [],
+        "all_app_total_timeout_seconds": 1410,
+        "declared_tests": 45,
+        "sdk_eligible_tests": 45,
+        "sdk_suppressed_tests": [],
+        "selected_tests": 45,
+        "explicitly_excluded_tests": [],
+        "completed_tests": 45,
+        "phases": {
+          "ordinary": 17,
+          "gallery-draft": 3,
+          "vertical-english-manchu": 2,
+          "vertical-literary-chinese-emoji": 2,
+          "position-ainu-manchu": 3,
+          "position-tibetan-jeju-nom": 4,
+          "dialog": 12,
+          "seed": 1,
+          "verify": 1
+        },
+        "completed": [
+          [
+            "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+            "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+          ],
+          [
+            "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+            "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "ainuKanaPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "ainuLatinPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "dzongkhaPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "jejuPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "manchuPositionColumnsAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "nomPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.AssemblyPositionDeviceTest",
+            "tibetanPositionTextAndNativeEditing"
+          ],
+          [
+            "paint.anpaint.android.ColourViewportDeviceTest",
+            "hungarianColourCaptionsFitPortraitAndLandscape"
+          ],
+          [
+            "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeEnglishColourCaptionsAndPreviewRemainReachable"
+          ],
+          [
+            "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeHungarianColourCaptionsAndPreviewRemainReachable"
+          ],
+          [
+            "paint.anpaint.android.ColourViewportDeviceTest",
+            "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+          ],
+          [
+            "paint.anpaint.android.ColourViewportDeviceTest",
+            "retainedColourStateSurvivesRotationImeCancelAndReopen"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+          ],
+          [
+            "paint.anpaint.android.EditorDeviceTest",
+            "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+          ],
+          [
+            "paint.anpaint.android.GalleryDraftDeviceTest",
+            "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+          ],
+          [
+            "paint.anpaint.android.GalleryDraftDeviceTest",
+            "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+          ],
+          [
+            "paint.anpaint.android.GalleryDraftDeviceTest",
+            "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+          ],
+          [
+            "paint.anpaint.android.GalleryViewportDeviceTest",
+            "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "aboutArtworkNoticeCompletesNativeFooterFlow"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "northKoreanAttributionAndConditionalCropUseRealConsumers"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+          ],
+          [
+            "paint.anpaint.android.LocalizedDialogDeviceTest",
+            "southKoreanAttributionAndConditionalCropUseRealConsumers"
+          ],
+          [
+            "paint.anpaint.android.PageCountWordingDeviceTest",
+            "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+          ],
+          [
+            "paint.anpaint.android.VerticalLocaleDeviceTest",
+            "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+          ],
+          [
+            "paint.anpaint.android.VerticalLocaleDeviceTest",
+            "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+          ],
+          [
+            "paint.anpaint.android.VerticalLocaleDeviceTest",
+            "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+          ],
+          [
+            "paint.anpaint.android.VerticalLocaleDeviceTest",
+            "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+          ]
+        ]
+      },
+      "paintroid_completed": 74,
+      "junit_tests": 119,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "junit_reports": [
+        {
+          "path": "Paintroid/androidTest-results/TEST-Paintroid.xml",
+          "name": "Paintroid",
+          "tests": "74",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "91.133"
+        },
+        {
+          "path": "app/accepted-credit-restart/seed/TEST-app-credit-restart-seed.xml",
+          "name": "app-credit-restart-seed",
+          "tests": "1",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "6.682"
+        },
+        {
+          "path": "app/accepted-credit-restart/verify/TEST-app-credit-restart-verify.xml",
+          "name": "app-credit-restart-verify",
+          "tests": "1",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "8.662"
+        },
+        {
+          "path": "app/androidTest-results/TEST-app.xml",
+          "name": "app",
+          "tests": "17",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "146.220"
+        },
+        {
+          "path": "app-dialog/androidTest-results/TEST-app-dialog.xml",
+          "name": "app-dialog",
+          "tests": "12",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "170.914"
+        },
+        {
+          "path": "app-gallery-draft/androidTest-results/TEST-app-gallery-draft.xml",
+          "name": "app-gallery-draft",
+          "tests": "3",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "46.952"
+        },
+        {
+          "path": "app-position/ainu-manchu/androidTest-results/TEST-app-position-ainu-manchu.xml",
+          "name": "app-position-ainu-manchu",
+          "tests": "3",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "101.530"
+        },
+        {
+          "path": "app-position/tibetan-jeju-nom/androidTest-results/TEST-app-position-tibetan-jeju-nom.xml",
+          "name": "app-position-tibetan-jeju-nom",
+          "tests": "4",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "90.025"
+        },
+        {
+          "path": "app-vertical/english-manchu/androidTest-results/TEST-app-vertical-english-manchu.xml",
+          "name": "app-vertical-english-manchu",
+          "tests": "2",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "120.933"
+        },
+        {
+          "path": "app-vertical/literary-chinese-emoji/androidTest-results/TEST-app-vertical-literary-chinese-emoji.xml",
+          "name": "app-vertical-literary-chinese-emoji",
+          "tests": "2",
+          "failures": "0",
+          "errors": "0",
+          "skipped": "0",
+          "time": "116.658"
+        }
+      ],
+      "artifact_selection": {
+        "run_id": 39532712417,
+        "current_attempt": 1,
+        "checkout": "90da56bfc5fbb83b7a924243b079560f30fd5393",
+        "workflow_head": "23f88311d8a8a28903975758751e6cf88a3ad536",
+        "device_sdk": 35,
+        "selected": {
+          "core": {
+            "artifact_id": 12317047299,
+            "name": "emulator-core-api-35-90da56bfc5fbb83b7a924243b079560f30fd5393",
+            "digest": "sha256:ba1c01c8acf1d119323479162a3b4f9e3e4f607760a39049320c8b94dc287f9e",
+            "created_at": "2026-10-21T02:44:50Z",
+            "updated_at": "2026-10-21T02:44:50Z",
+            "job_id": 119004552158,
+            "job_record_run_attempt": 1,
+            "job_started_at": "2026-10-21T02:31:14Z",
+            "job_completed_at": "2026-10-21T02:44:52Z"
+          },
+          "position": {
+            "artifact_id": 12316731279,
+            "name": "emulator-position-api-35-90da56bfc5fbb83b7a924243b079560f30fd5393",
+            "digest": "sha256:0aca7967b23dd28fc0afaf9ba47df1b4bd3472d68918e188303eb565505212e1",
+            "created_at": "2026-10-21T02:36:56Z",
+            "updated_at": "2026-10-21T02:36:56Z",
+            "job_id": 119004552135,
+            "job_record_run_attempt": 1,
+            "job_started_at": "2026-10-21T02:31:14Z",
+            "job_completed_at": "2026-10-21T02:36:58Z"
+          }
+        }
+      },
+      "vertical_screenshots": 32,
+      "reachability_screenshots": 64,
+      "reachability_cases": 8,
+      "vertical_export_files": 104,
+      "dialog_cases": 12,
+      "physical_device_or_linguistic_acceptance": false
+    }
+  },
+  "limits": [
+    "No private upgrade signing or publication performed.",
+    "Czech 72 holds and all Swedish, Afrikaans and other bounded holds remain unchanged.",
+    "This is debug/API35 PR evidence, not the future exact-source release/API30+35 gate. APK/source hashes are bound across report identities; the actual delivery APK/source bytes were not independently downloaded at this PR checkpoint."
+  ]
+}
