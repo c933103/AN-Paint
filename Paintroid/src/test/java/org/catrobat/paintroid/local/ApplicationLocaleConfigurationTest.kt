@@ -66,7 +66,7 @@ class ApplicationLocaleConfigurationTest {
 
                 // Invoke Android 11's real operation, including its preferred-locale index and
                 // prepend branches. No application/activity callback follows this operation.
-                resetDefaultFromApplication(LocaleList.forLanguageTags("en-US,fr"))
+                resetDefaultFromApplication("en-US,fr")
 
                 assertEquals("Framework reset must retain the current public choice",tag,Locale.getDefault().toLanguageTag())
                 assertEquals(tag,LocaleList.getAdjustedDefault()[0].toLanguageTag())
@@ -79,12 +79,12 @@ class ApplicationLocaleConfigurationTest {
         } finally {controller.pause().stop().destroy()}
     }
 
-    private fun resetDefaultFromApplication(systemLocales: LocaleList) {
+    private fun resetDefaultFromApplication(systemTags: String) {
         val activityThread=ReflectionHelpers.callStaticMethod<Any>(
             Class.forName("android.app.ActivityThread"),"currentActivityThread")
         ReflectionHelpers.callInstanceMethod<Unit>(activityThread,"updateLocaleListFromAppContext",
             ClassParameter.from(Context::class.java,application.applicationContext),
-            ClassParameter.from(LocaleList::class.java,systemLocales))
+            ClassParameter.from(LocaleList::class.java,LocaleList.forLanguageTags(systemTags)))
     }
 
     @Test @Config(sdk=[30,35]) fun applicationReadsCurrentPublicChoiceWhileUiKeepsExactResourceRouting() {
