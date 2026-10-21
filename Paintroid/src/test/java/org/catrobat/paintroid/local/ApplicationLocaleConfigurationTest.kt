@@ -119,7 +119,16 @@ class ApplicationLocaleConfigurationTest {
         for(tag in AppLanguage.tags(application)) {
             AppLanguage.select(application,tag)
             Locale.setDefault(Locale.ITALY)
-            assertEquals(tag,firstTag(application.resources.configuration))
+            val baseResources=application.baseContext.resources
+            val baseAssets=application.assets
+            val actual=application.resources
+            // WebView injects provider assets through Application.getAssets() and later
+            // resolves their package IDs through Application.getResources(). Both routes
+            // must keep the original resource owner, including after each language change.
+            assertSame("Keep the Application's base Resources",baseResources,actual)
+            assertSame("Keep assets injected through Application.getAssets",baseAssets,actual.assets)
+            assertSame(application.assets,actual.assets)
+            assertEquals(tag,firstTag(actual.configuration))
             assertEquals(Locale.ITALY,Locale.getDefault())
             assertEquals(tag,AppLanguage.selectedTag(application))
             assertEquals(systemBefore,Resources.getSystem().configuration)

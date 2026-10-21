@@ -95,16 +95,22 @@ internal object AppLanguage {
      * dispatching another configuration callback. Read the current choice from the unwrapped
      * base, not a startup-locale override. Framework-facing resources need the public locale;
      * UI contexts still use resourceLocale's private exact-catalogue variants above.
+     * Keep the base Resources/AssetManager: WebView injects its provider assets through
+     * Application.getAssets(), then looks them up through Application.getResources().
+     * A separate configuration context would split those two resource owners.
      * This read must not mutate the default or the device's configuration.
      */
+    @Suppress("DEPRECATION")
     fun applicationResources(base: Context): Resources {
         val chosen = locale(base)
-        val config = Configuration().apply {
-            fontScale = 0f
+        val resources = base.resources
+        val config = Configuration(resources.configuration).apply {
             if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
             setLayoutDirection(chosen)
         }
-        return base.createConfigurationContext(config).resources
+        if (config != resources.configuration)
+            resources.updateConfiguration(config, resources.displayMetrics)
+        return resources
     }
 
     /** Updating the current Activity avoids throwing away undo or an unfinished selection. */

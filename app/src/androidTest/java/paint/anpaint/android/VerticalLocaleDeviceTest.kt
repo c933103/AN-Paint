@@ -386,8 +386,11 @@ class VerticalLocaleDeviceTest {
         assertEquals(resourceTag(tag),activity.resources.configuration.locales[0].toLanguageTag())
         assertEquals(tag,activity.getSharedPreferences("app-language",0).getString("language-tag",null))
         assertEquals(tag,java.util.Locale.getDefault().toLanguageTag())
+        val applicationResources=activity.applicationContext.resources
         assertEquals("Application exposes the current public locale to Android",tag,
-            activity.applicationContext.resources.configuration.locales[0].toLanguageTag())
+            applicationResources.configuration.locales[0].toLanguageTag())
+        assertSame("Application resource and asset routes keep one owner",
+            activity.applicationContext.assets,applicationResources.assets)
         if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
             activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         if(tag=="qaa-Zsye-XV") {
