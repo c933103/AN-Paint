@@ -132,7 +132,7 @@ class ApplicationLocaleConfigurationTest {
         AppLanguage.select(application,"mnc-Mong")
         assertEquals("mnc-Mong",firstTag(application.resources.configuration))
         AppLanguage.select(application,"")
-        for(tag in listOf("en-US","ja","fr")) {
+        for(tag in listOf("en-US","ja","fr","zz-Zzzz-ZZ")) {
             val device=Locale.forLanguageTag(tag)
             system.updateConfiguration(Configuration(originalSystem).apply {
                 setLocale(device);setLayoutDirection(device)
@@ -143,6 +143,7 @@ class ApplicationLocaleConfigurationTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals(tag,firstTag(PaintApplication.currentResources.configuration))
             assertEquals(tag,firstTag(system.configuration))
+            if(tag=="zz-Zzzz-ZZ") assertEquals("Save",ui(R.string.ui_save))
             if(Build.VERSION.SDK_INT>=33)
                 assertTrue(application.getSystemService(LocaleManager::class.java)!!.applicationLocales.isEmpty)
         }
