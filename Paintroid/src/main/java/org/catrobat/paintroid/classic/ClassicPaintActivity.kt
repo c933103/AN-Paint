@@ -689,7 +689,7 @@ class ClassicPaintActivity : Activity() {
         val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)
         val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus
         if(!VerticalText.uiVertical(this@ClassicPaintActivity) &&
-            root.findViewWithTag<ZoomStatusLayout>("status_bar")?.isStatusScrollable!=true) {
+            (root.findViewWithTag<View>("status_bar") as? ZoomStatusLayout)?.isStatusScrollable!=true) {
             statusText.maxLines=if(paintCanvas.cursorMode) Int.MAX_VALUE else 2
             if(paintCanvas.cursorMode) {
                 val available=if(statusText.width>0) statusText.width-statusText.compoundPaddingLeft-statusText.compoundPaddingRight
