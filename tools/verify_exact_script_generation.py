@@ -48,7 +48,12 @@ def mirror_hashes(root):
 
 def source_text_hashes(root):
     """Exact source text, non-translatable IDs, aliases and formatting metadata."""
-    source = ET.parse(root / 'Paintroid/src/main/res/values/strings.xml').getroot()
+    source = ET.Element('resources')
+    for path in sorted((root / 'Paintroid/src/main/res/values').glob('*.xml')):
+        for entry in ET.parse(path).getroot():
+            if entry.tag in ('string', 'plurals'):
+                entry.tail = None
+                source.append(entry)
     output = root / SOURCE_GENERATED
     files = sorted(p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file())
     if files != ['values/source_text.xml', 'values/source_text_contracts.xml']:
@@ -188,6 +193,17 @@ def run_probes(repository, output):
             require_generation_before(log, [MERGES[0]], generator=SOURCE_GENERATOR)
             record['source_text_sha256'] = source_text_hashes(worktree)
             source.write_bytes(original_source)
+            companion = source.with_name('source_companion_probe.xml')
+            try:
+                companion.write_text('<resources><string name="source_companion_probe">Probe %1$d%%</string></resources>')
+                log, record = gradle('05-source-companion-added', [MERGES[0]])
+                require_generation_before(log, [MERGES[0]], generator=SOURCE_GENERATOR)
+                record['source_text_sha256'] = source_text_hashes(worktree)
+            finally:
+                companion.unlink(missing_ok=True)
+            log, record = gradle('05-source-companion-removed', [MERGES[1]])
+            require_generation_before(log, [MERGES[1]], generator=SOURCE_GENERATOR)
+            record['source_text_sha256'] = source_text_hashes(worktree)
             overlay = worktree / 'app/src/debug/res/values-en-rUS/source_namespace_probe.xml'
             overlay.parent.mkdir(parents=True, exist_ok=True)
             try:

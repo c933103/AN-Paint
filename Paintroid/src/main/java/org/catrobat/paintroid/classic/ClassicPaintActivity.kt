@@ -330,7 +330,7 @@ class ClassicPaintActivity : Activity() {
                     ?: button(action.first,"command_${name}_$index",onClick)).apply {
                     isEnabled=menuActionEnabled();columnHeightDp=112
                     if(name=="View" && index==1) {
-                        setOnLongClickListener {message(ui(R.string.ui_pixel_grid_help33));true}
+                        LocaleTooltip.setHelpAction(this) {message(ui(R.string.ui_pixel_grid_help33));true}
                         LocaleTooltip.set(this,ui(R.string.ui_pixel_grid_help33))
                     }
                 }
@@ -450,7 +450,7 @@ class ClassicPaintActivity : Activity() {
         canvasArea.addView(panelButton(ui(R.string.ui_cursor_start31),"cursor_draw_toggle",R.drawable.classic_cursor) {
             paintCanvas.toggleCursorDrawing()
         }.apply {
-            setOnLongClickListener {showCursorHelp();true}
+            LocaleTooltip.setHelpAction(this) {showCursorHelp();true}
         },FrameLayout.LayoutParams(-2,toolHeight,Gravity.BOTTOM or Gravity.END).apply {setMargins(dp(8),dp(8),dp(28),dp(28))})
         root.addView(workspace,LinearLayout.LayoutParams(-1,0,1f))
         makeStatus();populateToolOptions(paintCanvas.tool)
@@ -493,7 +493,7 @@ class ClassicPaintActivity : Activity() {
     private fun makeToolButton(tool: PaintTool)=ToolButton(this,tool).apply {
         tag="tool_${tool.name}"
         setOnClickListener {if(!busy) editAction {chooseTool(tool)}}
-        setOnLongClickListener {message(tool.label+": "+tool.hint);true}
+        LocaleTooltip.setHelpAction(this) {message(tool.label+": "+tool.hint);true}
         toolButtons[tool]=this
     }
 
@@ -558,7 +558,7 @@ class ClassicPaintActivity : Activity() {
     private fun actionIcon(icon: EditIcon, tagName: String, action: () -> Unit) = ActionButton(this, icon).apply {
         tag = tagName
         setOnClickListener { if (!busy) editAction(action) }
-        setOnLongClickListener { LocaleTypography.showMessage(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT); true }
+        LocaleTooltip.setHelpAction(this) { LocaleTypography.showMessage(this@ClassicPaintActivity, icon.label, Toast.LENGTH_SHORT); true }
     }
 
     private fun makeHeader() {
@@ -702,7 +702,7 @@ class ClassicPaintActivity : Activity() {
             zoomSlider.contentDescription = ui(R.string.ui_canvas_zoom_771f84, paintCanvas.zoomLabel())
         }
         if (::options.isInitialized) options.findViewWithTag<TextView>("selection_dimensions")?.text=document.selection?.let {
-            uiRoot(R.string.ui_0f_0f_px_1f,it.rect.width(),it.rect.height(),it.rotation)
+            ui(R.string.ui_0f_0f_px_1f,it.rect.width(),it.rect.height(),it.rotation)
         } ?: ui(R.string.ui_select_an_area)
         if (::options.isInitialized) root.findViewWithTag<TextView>("trim_dimensions")?.text = paintCanvas.trim?.rect?.let { ui(R.string.ui_px_724eb3, it.width(), it.height()) } ?: ""
         if (::editDetails.isInitialized && paintCanvas.trim==null) {editDetails.visibility=View.GONE;editCommands.visibility=View.VISIBLE}
@@ -1005,7 +1005,7 @@ class ClassicPaintActivity : Activity() {
         val sizing = DimensionControls(this,ImageDimensions(document.bitmap.width,document.bitmap.height),locked = stretch)
         column.addView(sizing)
         if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))
-        column.addView(label(uiRoot(R.string.ui_current_safe_budget_2f_mp, ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))
+        column.addView(label(ui(R.string.ui_current_safe_budget_2f_mp, ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))
         val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val size = sizing.dimensions
@@ -1422,7 +1422,7 @@ class ClassicPaintActivity : Activity() {
             val colour=recentColours.colours.getOrNull(index)
             cell.background=GradientDrawable().apply { setColor(colour ?: EditorColours.surface);setStroke(dp(2),EditorColours.outline) }
             cell.isEnabled=colour!=null
-            cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, index+1) else uiRoot(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background,index+1,colour and 0xffffff)
+            cell.contentDescription=if(colour==null) ui(R.string.ui_recent_colour_empty, ui(R.string.ui_display_integer, index+1)) else ui(R.string.ui_recent_colour_d_06x_tap_foreground_hold_background,index+1,colour and 0xffffff)
         }
     }
     private fun showLegacyImageCredits() {
@@ -1431,7 +1431,8 @@ class ClassicPaintActivity : Activity() {
 
     private fun attachLegacyImageCredit(token: String?) {
         val credit=ImageCreditArchive.find(this,token) ?: return
-        if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}
+        if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly
+            else R.string.ui_please_wait_for_the_current_operation));return}
         if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}
         editAction {
             val added=try {

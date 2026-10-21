@@ -63,17 +63,9 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
+- Regression job: 55 minutes; Python contracts: 8 minutes; JVM regression: 20 minutes;
+  build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
-- JVM input preparation: 6 minutes; full JVM test execution: 12 minutes. The
-  preparation task builds the actual Test task's dependencies and resolves its
-  declared file inputs, including runtime transforms and the JaCoCo agent. A
-  graph guard rejects any Test scheduled during preparation. The next phase
-  invokes the unchanged complete Test task; no dependency, test or assertion is
-  excluded, and individual test deadlines are unchanged. Both phases retain
-  logs/profiles and failure status under the same 22-minute aggregate job cap.
-  Preparation does not warm up Robolectric or execute tests. Its task-graph/input
-  receipt is uploaded from `Paintroid/build/reports/jvm-preparation/`.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
   Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.
@@ -91,11 +83,41 @@ Focused checks do not turn an incomplete aggregate into a pass.
   cleanup allowances. Inner deadlines and failure behavior must not be relaxed
   to obtain green results. Test/installation failures are not automatically retried.
 
+The expanded regression suite exceeded its former 4-minute Python and 12-minute
+JVM caps in [run 39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235):
+the command receipts exited zero after 250.311 and 773.047 seconds, respectively,
+but Actions explicitly timed out both steps. The artifact contains 1,066 Python
+tests (two skipped) and 1,186 successful JVM tests; those results do not turn the
+timed-out workflow into a pass. The job's terminal conclusion was cancelled;
+the available log proves the step timeouts, not the separate source of that
+aggregate conclusion. Nearby successful [run 39427218699](https://github.com/c933103/AN-Paint/actions/runs/39427218699)
+took 232 seconds for Python and 614 seconds for JVM by step timestamps.
+
+The new caps leave about 92% and 55% margin over the slower hosted command
+measurements. The regression job's explicit phase maxima are 2 minutes for
+compiler-cache installation, 8 for preparation, 8 for Python, 20 for JVM, 6 for
+native lint dependencies and 6 for lint: 50 minutes total. Its 55-minute hard
+stop additionally reserves 5 minutes for checkout, cache and evidence overhead.
+This is an explicit cancellation policy, not a universal runtime guarantee.
+All tests, assertions, failure propagation and existing device/interaction caps
+remain unchanged. A future timeout still fails; it must be diagnosed, not
+silently retried or counted as success.
+
 The runner retains live raw output, JUnit XML and summaries, including partial
 failures. Success requires the final protocol plus every selected identity,
 without unexpected, missing, ignored, failed or aborted methods. A zero ADB exit
 alone is insufficient. Artifact upload runs even on failure, but cancellation
 can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
+Mandatory dialog and vertical exports are pulled and fully validated before
+best-effort bulk logcat collection. Each pull still runs once within its original
+15-second deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
+A failed/partial export keeps the job failed and its raw files available, while a
+logcat failure remains diagnostic only. Collection exit codes and, when available,
+the last 64 KiB of the existing runner ADB server log are retained before shutdown.
+There is no screenshot recapture, ADB restart or automatic collection retry. This
+ordering avoids exposing mandatory evidence to an earlier diagnostic transport
+failure; it does not diagnose or claim to fix an underlying emulator disconnect.
+
 Actions artifacts expire after 14 days; preserve needed final evidence on a
 separate durable ref before expiration. Never include keys, credentials or
 unrelated private data.
@@ -266,3 +288,38 @@ linguistic acceptance, picker/import/export, forced IME visibility, enlarged-fon
 layouts, physical devices or all catalogue languages. The production dialog is
 opened as a fixture; the assembly toolbar launch route retains its separate JVM
 coverage. The existing glyph/font checks remain complementary.
+
+## Selecting artifacts after a partial retry
+
+The final emulator gate resolves each exact core/position artifact name to an
+explicit ID before download. It paginates current-run artifacts and jobs, requires
+the latest matching job to have succeeded, and requires exactly one nonexpired
+artifact created/updated inside that job's recorded start/end interval. Repository,
+run, workflow head, exact checkout in the name, SDK and positive/nonfuture attempt
+identities must match. Duplicate names from earlier attempts are retained; numeric
+artifact IDs and API list order are not chronological selection rules. Ambiguous
+or incomplete metadata fails closed.
+
+On a partial rerun, GitHub may carry a successful earlier job into the current
+attempt's job metadata with its original execution interval. That interval selects
+the existing successful core artifact, while the rerun position job selects its
+new artifact. The unchanged composer still checks complete successful inventories,
+exact prebuilt/source hashes and each artifact's declared original attempt. The
+selection receipt does not replace those content checks. PR workflow head and
+synthetic merge checkout are distinct identities and are checked separately.
+
+Only the final composition job receives read-only Actions metadata permission;
+no write permission or persistent credential is added. The selector has a one-minute
+step cap inside the unchanged eight-minute composition-job cap. Existing device,
+interaction, setup, report and composition deadlines remain unchanged.
+
+The pinned download action re-lists with `latest: true` even for explicit IDs; its
+SDK filters duplicate names by highest ID. The final gate therefore uses the
+runner's existing GitHub CLI to GET each selected REST artifact ID directly, then
+checks the selected SHA-256 before safe report extraction. Each transfer has a
+90-second deadline; the two-transfer step is capped at four minutes within the
+unchanged eight-minute job. Report archives are limited to 128 MiB compressed,
+512 MiB expanded and 10,000 members. Unsafe paths, symlinks, duplicate members,
+unsupported encodings and attempts to overwrite existing evidence are rejected.
+No downloaded artifact can replace the saved selection receipt. The normal
+content/inventory composer still runs after extraction.

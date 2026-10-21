@@ -47,13 +47,26 @@ class LocaleTextBoundaryTest {
     }
 
     @Test fun malformedEnglishAndOtherLocalesFallBackAtActualNumericConsumers() {
-        for(tag in listOf("en-US","ar","mn-Mong","qaa-Zsye-XV")) {
+        for(tag in listOf("en-US","ar","pt-BR","de","cs","mn-Mong","qaa-Zsye-XV")) {
             inject(tag,mapOf(R.string.ui_d_d_px_d_pixels_2f_mp to "%1\$999999999d",
                 R.string.ui_1f_s to "%1\$s %2\$d",R.string.ui_current_safe_budget_2f_mp to null))
-            assertEquals("640 × 480 px · Pixel count: 307,200 (0.31 MP)",ImageDimensions(640,480).describe())
-            assertEquals("1.0 MiB",memoryLabel(1024.0*1024))
+            val locale=Locale.forLanguageTag(tag)
+            assertEquals(String.format(locale,"%1\$d × %2\$d px · Pixel count: %3\$,d (%4\$.2f MP)",640,480,307200L,0.3072),ImageDimensions(640,480).describe())
+            assertEquals(String.format(locale,"%1\$.1f %2\$s",1.0,"MiB"),memoryLabel(1024.0*1024))
             assertEquals("Current safe budget: 2.50 MP.",uiRoot(R.string.ui_current_safe_budget_2f_mp,2.5))
             assertEquals("Enter positive image dimensions.",uiText(inject(tag,mapOf(R.string.ui_enter_positive_image_dimensions to "")),R.string.ui_enter_positive_image_dimensions))
+        }
+    }
+
+    @Test fun companionNumericTemplatesHaveCompleteCanonicalFallbacks() {
+        for(tag in listOf("en-US","ar","pt-BR","cs","sv")) {
+            inject(tag,mapOf(R.string.ui_display_integer to "%99\$d",
+                R.string.ui_zoom_percent_integer to "%1\$999999999d",
+                R.string.ui_zoom_percent_fractional to "%1\$s"))
+            val locale=Locale.forLanguageTag(tag)
+            assertEquals(String.format(locale,"%1\$d",120),ui(R.string.ui_display_integer,120))
+            assertEquals(String.format(locale,"%1\$d%%",120),ui(R.string.ui_zoom_percent_integer,120))
+            assertEquals(String.format(locale,"%1\$.2f%%",12.5),ui(R.string.ui_zoom_percent_fractional,12.5))
         }
     }
 

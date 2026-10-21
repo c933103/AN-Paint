@@ -17,18 +17,17 @@ STEPS = {
     if block.startswith('name: ')
 }
 PHASES = {
-    'Run Python contracts': ('python', 4),
-    'Prepare JVM test inputs': ('jvm-prepare', 6),
-    'Run JVM regression tests': ('jvm', 12),
+    'Run Python contracts': ('python', 8),
+    'Run JVM regression tests': ('jvm', 20),
     'Prepare lint native dependencies': ('native', 6),
     'Run Android lint': ('lint', 6),
 }
 
 
 class CheckPhaseContracts(unittest.TestCase):
-    def test_each_phase_required_and_bounded_with_unchanged_outer_limit(self):
-        # Identifier retained; 22m preserves the old aggregate allowance after Python +2m.
-        self.assertIn('    timeout-minutes: 22\n', CHECKS)
+    def test_each_phase_required_and_bounded_with_explicit_outer_limit(self):
+        # Expanded-suite measurements justify headroom, not omitted assertions.
+        self.assertIn('    timeout-minutes: 55\n', CHECKS)
         self.assertNotIn('continue-on-error', CHECKS)
         for name, (phase, minutes) in PHASES.items():
             with self.subTest(phase=phase):
@@ -61,50 +60,6 @@ class CheckPhaseContracts(unittest.TestCase):
                          cache_step(build).replace('-universal\n', '-ROLE\n'))
         self.assertLess(CHECKS.index('Prepare lint native dependencies'), CHECKS.index('Run Android lint'))
         self.assertNotIn(' -x ', CHECKS)
-
-    def test_preparation_precedes_the_unchanged_full_test_command(self):
-        self.assertLess(CHECKS.index('Prepare JVM test inputs'), CHECKS.index('Run JVM regression tests'))
-        self.assertLess(CHECKS.index('Run JVM regression tests'), CHECKS.index('Prepare lint native dependencies'))
-        for name in ('Prepare JVM test inputs', 'Run JVM regression tests'):
-            for forbidden in ('--tests', '--exclude-task', '--rerun', 'continue-on-error', '|| true'):
-                self.assertNotIn(forbidden, STEPS[name])
-
-    def assert_preparation_source_contract(self, source):
-        block = source.split('// Keep compilation/resource/input preparation', 1)[1].split(
-            '// Local addition, 2026-09-07', 1)[0]
-        for required in (
-            "['Debug', 'Release'].each { variant ->",
-            'def testName = "test${variant}UnitTest"',
-            'def preparationName = "prepare${variant}UnitTest"',
-            'def selectedTest = { tasks.named(testName, Test).get() }',
-            'target.taskDependencies.getDependencies(target)',
-            'inputs.files({ selectedTest().inputs.files })',
-            'resolvedInputFileCount: target.inputs.files.files.size()',
-            'gradle.taskGraph.whenReady { graph ->',
-            'graph.hasTask(preparationPath) && graph.allTasks.any { it instanceof Test }',
-            'throw new GradleException(',
-            'reports/jvm-preparation/${variant.toLowerCase()}.json',
-            'scheduledTasks: gradle.taskGraph.allTasks.collect { it.path }',
-            'scheduledTests: gradle.taskGraph.allTasks.findAll { it instanceof Test }.collect { it.path }',
-        ):
-            self.assertIn(required, block)
-        for forbidden in ('enabled = false', 'ignoreFailures', 'onlyIf', 'exclude ', 'filter {'):
-            self.assertNotIn(forbidden, block)
-
-    def test_preparation_tracks_real_dependencies_inputs_and_rejects_test_graphs(self):
-        source = (ROOT / 'Paintroid/build.gradle').read_text()
-        self.assert_preparation_source_contract(source)
-        # These source-contract controls are supplementary; the actual hosted
-        # task graph, profiles and JUnit results establish Gradle execution.
-        for original, replacement in (
-            ('target.taskDependencies.getDependencies(target)', 'target.dependsOn'),
-            ('inputs.files({ selectedTest().inputs.files })', 'inputs.files({ selectedTest().classpath })'),
-            ('graph.allTasks.any { it instanceof Test }', 'false'),
-            ('throw new GradleException(', 'logger.warn('),
-            ('def testName = "test${variant}UnitTest"', 'def testName = "testDebugUnitTest"'),
-        ):
-            with self.subTest(replacement=replacement), self.assertRaises(AssertionError):
-                self.assert_preparation_source_contract(source.replace(original, replacement))
 
     def test_full_matrix_pr_label_reuses_the_existing_android_jobs(self):
         source = (ROOT / '.github/workflows/android.yml').read_text()
@@ -146,8 +101,7 @@ class CheckPhaseContracts(unittest.TestCase):
                             if phase == 'python':
                                 self.assertEqual(args, ['-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py'])
                             else:
-                                task = {'jvm-prepare': f':Paintroid:prepare{variant.capitalize()}UnitTest',
-                                        'jvm': f':Paintroid:test{variant.capitalize()}UnitTest',
+                                task = {'jvm': f':Paintroid:test{variant.capitalize()}UnitTest',
                                         'native': f':Paintroid:externalNativeBuild{variant.capitalize()}',
                                         'lint': f':app:lint{variant.capitalize()}'}[phase]
                                 self.assertEqual(args, ['--no-daemon', '--max-workers=2', '--console=plain',

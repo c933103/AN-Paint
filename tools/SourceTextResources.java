@@ -146,7 +146,33 @@ public class SourceTextResources {
                 }
             }
         }
-        Document document = parse(resources.resolve("values/strings.xml"));
+        // Source strings may live in companion files (for example display_numbers.xml).
+        // Scan only the unqualified canonical directory; localized/variant overlays
+        // participate in the reserved-name check but cannot become fallback text.
+        Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+        Element catalogue = document.createElement("resources");
+        document.appendChild(catalogue);
+        try (var paths = Files.list(resources.resolve("values"))) {
+            for (Path file : paths.filter(p -> p.getFileName().toString().endsWith(".xml")).sorted().toList()) {
+                Element originalRoot = parse(file).getDocumentElement();
+                NodeList nodes = originalRoot.getChildNodes();
+                for (int i = 0; i < nodes.getLength(); i++) if (nodes.item(i) instanceof Element entry &&
+                        Set.of("string", "plurals").contains(entry.getTagName())) {
+                    Element imported = (Element) document.importNode(entry, true);
+                    // A prefix used by inline markup may be declared only on
+                    // this file's root. Keep that context on the imported entry,
+                    // not the merged root: another file can reuse the same prefix.
+                    NamedNodeMap attributes = originalRoot.getAttributes();
+                    for (int a = 0; a < attributes.getLength(); a++) {
+                        Node attribute = attributes.item(a);
+                        String name = attribute.getNodeName();
+                        if ((name.equals("xmlns") || name.startsWith("xmlns:")) && !imported.hasAttribute(name))
+                            imported.setAttribute(name, attribute.getNodeValue());
+                    }
+                    catalogue.appendChild(imported);
+                }
+            }
+        }
         Map<String, Element> entries = new LinkedHashMap<>();
         NodeList children = document.getDocumentElement().getChildNodes();
         for (int i = 0; i < children.getLength(); i++) if (children.item(i) instanceof Element) {

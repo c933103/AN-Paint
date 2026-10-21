@@ -22,6 +22,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
 import java.io.File
+import java.text.DecimalFormatSymbols
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33],qualifiers = "w412dp-h900dp-port-xhdpi")
@@ -57,6 +58,11 @@ class SizingAndTrimTest {
             for (tag in listOf("", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US", "en-XV", "fr")) {
                 AppLanguage.select(activity, tag); AppLanguage.refresh(activity)
                 val label = if (tag == "fr") "Nombre de pixels : " else "Pixel count: "
+                // Locale data may use a nonbreaking or narrow-nonbreaking space for French.
+                val symbols = DecimalFormatSymbols(activity.resources.configuration.locales[0])
+                val decimal = symbols.decimalSeparator
+                val group = symbols.groupingSeparator
+                assertEquals(if (tag == "fr") ',' else '.', decimal)
                 for (fresh in listOf(true, false)) {
                     activity.document.markSaved()
                     EditorTestNavigation.command(activity, if (fresh) "File" else "Edit", if (fresh) 0 else 5)
@@ -64,9 +70,9 @@ class SizingAndTrimTest {
                     val root = dialog.window!!.decorView
                     val result = root.findViewWithTag<android.widget.TextView>("size_result")
                     for ((size, suffix) in listOf(
-                        ImageDimensions(1, 1) to "1 (0.00 MP)",
-                        ImageDimensions(2, 3) to "6 (0.00 MP)",
-                        ImageDimensions(2000, 1000) to "2,000,000 (2.00 MP)")) {
+                        ImageDimensions(1, 1) to "1 (0${decimal}00 MP)",
+                        ImageDimensions(2, 3) to "6 (0${decimal}00 MP)",
+                        ImageDimensions(2000, 1000) to "2${group}000${group}000 (2${decimal}00 MP)")) {
                         setDimensions(dialog, size.width, size.height)
                         assertEquals("$tag / fresh=$fresh", "${size.width} × ${size.height} px · $label$suffix", result.text.toString())
                     }

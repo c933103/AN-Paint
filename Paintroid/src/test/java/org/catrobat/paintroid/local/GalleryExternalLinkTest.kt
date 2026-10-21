@@ -80,7 +80,7 @@ class GalleryExternalLinkTest {
         for(tag in AppLanguage.tags(context)) {
             AppLanguage.select(context,tag)
             val selected=AppLanguage.wrap(context)
-            val raw=if(tag in fallback) expected.getString("default") else expected.getString(tag)
+            val raw=if(expected.has(tag)) expected.getString(tag) else expected.getString("default")
             val message=raw.replace("\\'", "'").replace("\\\"", "\"")
             assertEquals("Whole compiled message for $tag",message,selected.getString(R.string.gallery_external_link_no_handler))
         }

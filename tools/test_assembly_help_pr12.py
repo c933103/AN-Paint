@@ -50,8 +50,9 @@ def catalogue(folder):
         raise AssertionError(f'{folder}: expected one canonical assembly-help key')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes if node.tag == 'string'}
     paragraphs = values[KEY].split(r'\n\n')
-    if len(paragraphs) != 7:
-        raise AssertionError(f'{folder}: expected seven assembly-help paragraphs')
+    expected_count = 8 if folder == 'values' else 7
+    if len(paragraphs) != expected_count:
+        raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
     return values, paragraphs
 
 
@@ -67,8 +68,8 @@ class AssemblyHelpPr12Tests(unittest.TestCase):
     def test_default_contract_still_requires_both_repairs(self):
         _, paragraphs = catalogue('values')
         self.assertIn('image dimensions after cropping and any Same width or Same height adjustment', paragraphs[0])
-        self.assertIn('choose a smaller output copy if offered', paragraphs[5])
-        self.assertIn('If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.', paragraphs[5])
+        self.assertIn('choose a smaller output copy if offered', paragraphs[6])
+        self.assertIn('If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.', paragraphs[6])
 
     def test_live_tray_uses_crop_and_normalization_with_the_named_controls(self):
         activity = (CLASSIC / 'AssemblyActivity.kt').read_text()

@@ -12,7 +12,7 @@ import kotlin.math.*
 data class ImageDimensions(val width: Int, val height: Int) {
     init { require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) } }
     val pixels: Long get() = width.toLong() * height
-    fun describe() = uiRoot(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)
+    fun describe() = ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)
     fun scaled(scale: Double) = ImageDimensions(max(1, floor(width * scale).toInt()), max(1, floor(height * scale).toInt()))
 }
 
@@ -21,7 +21,7 @@ fun memoryLabel(bytes: Double): String {
     val units = arrayOf("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB")
     var amount = bytes.coerceAtLeast(0.0); var unit = 0
     while (amount >= 1024 && unit < units.lastIndex) { amount /= 1024; unit++ }
-    return uiRoot(R.string.ui_1f_s, amount, units[unit])
+    return ui(R.string.ui_1f_s, amount, units[unit])
 }
 
 data class ImportPlan(val target: ImageDimensions, val sample: Int, val decodedPixels: Long) {

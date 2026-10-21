@@ -43,7 +43,7 @@ class ImageMemoryPolicy private constructor(val workingBytes: Long) {
         require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) }
         val pixels = width.toLong() * height.toLong()
         val permitted = maxPixels(residentPixels)
-        if (pixels > permitted) throw ImageSizeException(uiRoot(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,
+        if (pixels > permitted) throw ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,
             width, height, pixels / 1_000_000.0, permitted / 1_000_000.0))
     }
 }

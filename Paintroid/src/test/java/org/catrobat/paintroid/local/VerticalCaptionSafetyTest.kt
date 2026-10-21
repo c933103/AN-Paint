@@ -27,7 +27,7 @@ class VerticalCaptionSafetyTest {
         fun visibleCaption()=caption()
     }
     private fun tile(context: Context,value: String): Tile = Tile(context).apply {
-        text=value;contentDescription=value
+        text=value;contentDescription=value;LocaleTooltip.set(this,value)
         val unbounded=View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED)
         measure(unbounded,unbounded);layout(0,0,measuredWidth,measuredHeight)
     }
@@ -85,6 +85,7 @@ class VerticalCaptionSafetyTest {
                 }.firstOrNull {fits(button,it)} ?: ""
                 assertEquals("$tag/$value",expected,button.visibleCaption())
                 assertEquals(value,button.text.toString());assertEquals(value,button.contentDescription.toString())
+                assertEquals(value,LocaleTooltip.logicalText(button).toString())
             }
         }
     }
@@ -97,6 +98,7 @@ class VerticalCaptionSafetyTest {
         assertTrue(caption.endsWith("…"));assertTrue(fits(button,caption))
         assertSame("An unchanged draw reuses fitted text",caption,button.visibleCaption())
         assertEquals(full,button.text.toString());assertEquals(full,button.contentDescription.toString())
+        assertEquals(full,LocaleTooltip.logicalText(button).toString())
         button.paint.textSize*=1.8f
         val fresh=tile(context,full).apply {paint.textSize=button.paint.textSize}
         assertEquals("Font changes invalidate cached fitting",fresh.visibleCaption(),button.visibleCaption())

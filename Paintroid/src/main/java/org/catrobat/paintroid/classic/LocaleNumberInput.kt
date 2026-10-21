@@ -15,7 +15,9 @@ internal object LocaleNumberInput {
         // Even integer fields retain pasted fractions/signs so whole-number and
         // range checks can reject them instead of silently turning 12,5 into 125
         // or -12 into 12. This does not change a caller's parser or valid range.
-        val accepted = ("0123456789.+-" + digits + symbols.decimalSeparator + symbols.minusSign)
+        // A pasted Unicode minus must also survive in locales with ASCII minus.
+        // The caller may reject that spelling, but must not receive a positive value.
+        val accepted = ("0123456789.+-" + '\u2212' + digits + symbols.decimalSeparator + symbols.minusSign)
             .toSet().toCharArray()
         val keyboardType = InputType.TYPE_CLASS_NUMBER or if (decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0
         // TextView restarts an active IME while assigning the listener. Report

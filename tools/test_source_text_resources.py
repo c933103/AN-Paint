@@ -32,11 +32,14 @@ class SourceTextResourcesTest(unittest.TestCase):
             output=Path(tmp)/'output'
             result=self.run_generator(ROOT/'Paintroid/src/main/res',output)
             self.assertEqual(0,result.returncode,result.stderr)
-            original=ET.parse(ROOT/'Paintroid/src/main/res/values/strings.xml').getroot()
+            original=[]
+            for path in sorted((ROOT/'Paintroid/src/main/res/values').glob('*.xml')):
+                original.extend(node for node in ET.parse(path).getroot() if node.tag in ('string','plurals'))
             generated=ET.parse(output/'values/source_text.xml').getroot()
             self.assertEqual(len(original),len(generated))
             for source,actual in zip(original,generated):
                 expected=copy.deepcopy(source)
+                expected.tail=None
                 expected.set('name',PREFIX+source.get('name'))
                 expected.set('translatable','false')
                 for node in expected.iter():
@@ -54,6 +57,46 @@ class SourceTextResourcesTest(unittest.TestCase):
             (output/'stale.xml').write_text('<resources/>')
             self.assertEqual(0,self.run_generator(ROOT/'Paintroid/src/main/res',output).returncode)
             self.assertFalse((output/'stale.xml').exists())
+
+    def test_inline_markup_keeps_each_source_files_namespace_context(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            res=Path(tmp)/'res';output=Path(tmp)/'output';(res/'values').mkdir(parents=True)
+            (res/'values/strings.xml').write_text('<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="warning">Keep <xliff:g id="name">%1$s</xliff:g> unchanged.</string></resources>')
+            (res/'values/companion.xml').write_text('<resources xmlns:xliff="urn:other"><string name="second">Other <xliff:g id="value">%1$d</xliff:g>.</string><string name="local" xmlns:xliff="urn:local"><xliff:g>%1$s</xliff:g></string></resources>')
+            self.assertEqual(0,self.run_generator(res,output).returncode)
+            # Parsing catches the actual undeclared-prefix failure. Expanded tags
+            # also reject flattening all files onto one root namespace binding.
+            entries={e.get('name'):e for e in ET.parse(output/'values/source_text.xml').getroot()}
+            self.assertEqual('{urn:oasis:names:tc:xliff:document:1.2}g',entries['anpaint_source_warning'][0].tag)
+            self.assertEqual('{urn:other}g',entries['anpaint_source_second'][0].tag)
+            self.assertEqual('{urn:local}g',entries['anpaint_source_local'][0].tag)
+            self.assertEqual('Keep %1$s unchanged.',''.join(entries['anpaint_source_warning'].itertext()))
+            self.assertEqual('name',entries['anpaint_source_warning'][0].get('id'))
+
+    def test_companion_files_regenerate_add_remove_and_reject_duplicate_sources(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            res=Path(tmp)/'res';output=Path(tmp)/'output';(res/'values').mkdir(parents=True)
+            (res/'values/strings.xml').write_text('<resources><string name="warning">Keep the image unchanged.</string></resources>')
+            companion=res/'values/display_numbers.xml'
+            companion.write_text('<resources><string name="number" translatable="false">%1$d%%</string><color name="ink">#ffffff</color></resources>')
+            self.assertEqual(0,self.run_generator(res,output).returncode)
+            def generated(): return {e.get('name'):e.text for e in ET.parse(output/'values/source_text.xml').getroot()}
+            self.assertEqual('%1$d%%',generated()['anpaint_source_number'])
+            self.assertNotIn('anpaint_source_ink',generated())
+            companion.write_text(companion.read_text().replace('%1$d%%','%1$.2f%%'))
+            self.assertEqual(0,self.run_generator(res,output).returncode)
+            self.assertEqual('%1$.2f%%',generated()['anpaint_source_number'])
+            other=res/'values/new_text.xml'
+            other.write_text('<resources><string name="alias">@string/number</string></resources>')
+            self.assertEqual(0,self.run_generator(res,output).returncode)
+            self.assertEqual('@string/anpaint_source_number',generated()['anpaint_source_alias'])
+            before=(output/'values/source_text.xml').read_bytes()
+            other.write_text('<resources><string name="number">duplicate</string></resources>')
+            self.assertNotEqual(0,self.run_generator(res,output).returncode)
+            self.assertEqual(before,(output/'values/source_text.xml').read_bytes())
+            other.unlink();companion.unlink()
+            self.assertEqual(0,self.run_generator(res,output).returncode)
+            self.assertEqual({'anpaint_source_warning':'Keep the image unchanged.'},generated())
 
     def test_generation_probe_rejects_missing_changed_or_stale_source_output(self):
         import verify_exact_script_generation as probe

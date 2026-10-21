@@ -33,7 +33,7 @@ class LocaleNumberInputSourceTest(unittest.TestCase):
         source = (JAVA / 'LocaleNumberInput.kt').read_text()
         for text in ('DecimalFormatSymbols(view.resources.configuration.locale)',
                      'symbols.zeroDigit', 'symbols.decimalSeparator', 'symbols.minusSign',
-                     '"0123456789.+-"', 'view.keyListener = object : NumberKeyListener()',
+                     '"0123456789.+-"', "'\\u2212'", 'view.keyListener = object : NumberKeyListener()',
                      'val keyboardType = InputType.TYPE_CLASS_NUMBER or if (decimal) InputType.TYPE_NUMBER_FLAG_DECIMAL else 0',
                      'override fun getInputType() = keyboardType', 'override fun getAcceptedChars() = accepted'):
             self.assertIn(text, source)

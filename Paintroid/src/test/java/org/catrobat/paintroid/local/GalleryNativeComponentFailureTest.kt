@@ -394,7 +394,8 @@ class GalleryNativeComponentFailureTest {
         val offered=AppLanguage.tags(context)
         assertEquals(59,scoped.size);assertEquals(112,fallback.size);assertEquals(171,offered.size)
         assertTrue(scoped.intersect(fallback).isEmpty());assertEquals(scoped+fallback,offered.toSet())
-        assertEquals(scoped+"default",expected.keys().asSequence().toSet())
+        assertEquals(listOf("cs", "sv"), tags(fixture.getJSONArray("additional_reviewed_tags")).toList())
+        assertEquals(scoped+"cs"+"sv"+"default",expected.keys().asSequence().toSet())
         val constraints=fixture.getJSONObject("constraints").getJSONObject(key)
         assertEquals(0,constraints.getInt("child_elements"));assertEquals(0,constraints.getJSONObject("placeholders").length())
         assertEquals(0,constraints.getInt("escaped_newline_count"))
@@ -402,13 +403,13 @@ class GalleryNativeComponentFailureTest {
         for(tag in offered) {
             AppLanguage.select(context,tag)
             val selected=AppLanguage.wrap(context)
-            val raw=expected.getString(if(tag in fallback) "default" else tag)
+            val raw=expected.getString(if(expected.has(tag)) tag else "default")
             val message=raw.replace("\\'","'").replace("\\\"","\"")
             assertEquals("Complete neutral native-component reason for $tag",message,
                 selected.getString(R.string.gallery_image_component_unavailable))
             assertTrue(message.isNotBlank())
         }
         // Exact fixture/resource agreement preserves the bounded wording contract; it
-        // does not certify linguistic fluency or completion of the 112 fallback locales.
+        // does not certify linguistic fluency or whole-language acceptance of any locale.
     }
 }

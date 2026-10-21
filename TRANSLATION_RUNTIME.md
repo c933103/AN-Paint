@@ -9,9 +9,10 @@ quoted labels and `textContent`; translated labels never select action URLs.
 ## Guarded resource consumers
 
 `ui`, `uiRoot`, `uiQuantity` and context-specific `uiText` share `LocaleText`.
-All nine formerly direct `String.format(..., ui(...))` consumers and the crop
-plural consumer use this boundary. `uiRoot` retains invariant numeric/hex
-formatting; other callers retain their resource locale. Plain percent signs and
+Formerly direct `String.format(..., ui(...))` consumers and the crop plural
+consumer use this boundary. The current numeric-display callers retain their
+selected resource locale; `uiRoot` remains available only for intentionally
+invariant formatting. Plain percent signs and
 Unicode text (including RTL controls, Mongolian separators and supplementary
 characters) are data, not a format program.
 
@@ -66,7 +67,7 @@ platform limit; these changes do not claim a universal runtime or heap bound.
 ## Canonical fallback and builds
 
 The JDK-only `tools/SourceTextResources.java` generator derives reserved
-`anpaint_source_` resources from `values/strings.xml` during `preBuild` for all
+`anpaint_source_` resources from string/plural entries across `values/*.xml` during `preBuild` for all
 variants. XML text, attributes and structure are preserved except resource names,
 source-to-source alias references and deliberately marking these reserved entries
 `translatable="false"`. A second generated resource file carries the source

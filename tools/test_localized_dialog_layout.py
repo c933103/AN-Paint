@@ -54,6 +54,19 @@ class LocalizedDialogLayoutContracts(unittest.TestCase):
         self.assertIn('"Synthetic child\'s intrinsic width",contentWidth,child.width',test)
         self.assertIn('"Reader offset must be established before resize",73,offset()',test)
 
+    def test_known_copy_overflow_cannot_skip_native_dismissal_assertions(self):
+        test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()
+        case=test.split('fun verticalNoticeColumnsAndActionsRemainUnclippedAndReachable()',1)[1].split('    @Test',1)[0]
+        known='if(RuntimeEnvironment.getApiLevel()==30 && tag=="mn-Mong")'
+        mandatory='assertTrue("API30 / mn-Mong / 2× Copy must exercise overflow dismissal",feedback.persistent)'
+        branch='if(feedback.persistent)'
+        self.assertIn(known,case)
+        self.assertIn(mandatory,case)
+        self.assertLess(case.index(known),case.index(mandatory))
+        self.assertLess(case.index(mandatory),case.index(branch))
+        self.assertIn('tapVisible(dialog,dismiss)',case)
+        self.assertIn('tapVisible(dialog,done);assertFalse(dialog.isShowing)',case)
+
     def test_runtime_oracles_do_not_substitute_direct_click_for_pointer_reachability(self):
         test=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt').read_text()
         self.assertIn('root.dispatchTouchEvent(event)',test)
