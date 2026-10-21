@@ -1,3 +1,22 @@
+# Post-merge verification complete after one transport retry
+
+The natural post-merge run [39481127358, attempt 2](https://github.com/c933103/AN-Paint/actions/runs/39481127358/attempts/2) completed successfully on the unchanged merge commit `9a7a052d7458cf08f280ead1173c66c2992e4254`. All six jobs are successful. The initial failed attempt remains preserved below and at immutable commit [4e99474d1f05918ae338191ea98d8f4d6611ae3b](https://github.com/c933103/AN-Paint/tree/4e99474d1f05918ae338191ea98d8f4d6611ae3b), not relabeled as a pass.
+
+## Fresh retry verification
+
+- Fresh API35 core job 118841815794 passed. Its raw XML records 74 Paintroid tests and 38 app tests, with zero failures/errors/skips.
+- All four expected vertical exports were pulled: 2,917,047 bytes in 0.072 seconds. Dialog pull, vertical pull, logcat and overall collection exits are all 0.
+- Core artifact 12293637143 SHA-256: `50c725f58f91fa3a38f138171e3b99bf10d2f74579ed81bd5bbaed1aa3556785`.
+- The unchanged transport, screenshot and reachability validators were independently rerun locally on this hash-verified artifact: 104 data files, 32 matrix screenshots and 8 reachability cases / 64 frames passed. Their derived JSON values exactly equal the hosted receipts.
+- The four unchanged export ZIPs are retained in `attempt-2/exports/`. They include all required screenshots and native-input receipt data. This is validation of complete content and structured evidence, not a new independent visual review of every PNG.
+- The aggregate job 118848300612 passed and explicitly binds the same commit, source/test source and APK hashes. It composes fresh core attempt 2 with retained successful position attempt 1, completing all 45 app tests. Its combined raw XML totals 119 device tests, zero failures/errors/skips.
+- Aggregate artifact 12294190644 SHA-256: `3f9df2b841d753ffc656ee32031ce0fb78d4ebbdcd00094d26a975ccaa863772`.
+- Build/source, exact-script resources, regression/lint and position results were retained from successful attempt 1 jobs. They were not newly rerun. The post-merge JVM artifact remains the independently verified 1,264 passing tests, including Czech 5, shared numeric 35 and Unicode-minus 9.
+
+No source code, assertion, timeout or required evidence was changed to obtain this retry result. Published 0.0.40 remains untouched. Parent release preparation is separate; this receipt does not claim a new release or installation. The Unicode-minus-specific tests remain hosted Robolectric/JVM consumer execution, not installed-device Unicode paste verification.
+
+## Historical attempt-1 receipt (unchanged below)
+
 # Unicode-minus fix: post-merge attempt 1 and retry diagnosis
 
 PR: https://github.com/c933103/AN-Paint/pull/155
