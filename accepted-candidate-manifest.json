@@ -1,0 +1,1444 @@
+{
+  "schema_version": 1,
+  "purpose": "Exact accepted but unapplied replacement values for a later authorized implementation batch. This file performs no integration and is not an instruction to start a build.",
+  "reviewed_source_commit": "4355869e2e198b5616419291cba225b018444fab",
+  "reviewed_source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+  "later_source_note": "ef46e8aa/tree c96f9708 changed Fit/status code without resource edits; consumer limits remain in post-review-source-movement.json. Recheck exact source/current values against whatever base is used for implementation.",
+  "counts_by_locale": {
+    "ar": 8,
+    "es-ES": 5,
+    "vi": 4,
+    "hu": 20,
+    "lt": 22
+  },
+  "typed_resource_edits": 59,
+  "priority_edits": 53,
+  "outside_priority_P2_edits": 6,
+  "hash_contract": "*_sha256_json = SHA-256 of UTF-8 compact JSON with ensure_ascii=False, sort_keys=True, separators=(comma,colon); accepted_value_utf8_sha256 is exact unquoted UTF-8 string bytes, no newline. Plural values are complete quantity maps.",
+  "atomic_groups": [
+    {
+      "locale": "lt",
+      "name": "dimension-unit-hints",
+      "identities": [
+        "string/ui_width_in",
+        "string/ui_height_in",
+        "string/ui_percent_fd8671",
+        "string/ui_pixels_6ec9c2"
+      ]
+    },
+    {
+      "locale": "lt",
+      "name": "crop-edge-hints",
+      "identities": [
+        "string/ui_trim_in_pixels",
+        "string/ui_trim_in_percent"
+      ],
+      "unchanged_priority_labels_conditionally_supported": [
+        "string/ui_bottom",
+        "string/ui_left",
+        "string/ui_right"
+      ]
+    },
+    {
+      "locale": "lt",
+      "name": "dithering-description-and-checkbox",
+      "identities": [
+        "string/save20_gif_description",
+        "string/save20_dither"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "locale": "ar",
+      "identity": "string/formats22_animation_message",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_message"
+      },
+      "reviewed_source_value": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "expected_unmodified_current_value": "يحتوي %1$s هذا على %2$s إطارًا. يحرر AN Paint الصور الثابتة ولا يحتفظ بالحركة.",
+      "accepted_candidate_value": "عدد الإطارات في ملف %1$s هذا: %2$s. يحرر AN Paint الصور الثابتة ولا يحتفظ بالحركة.",
+      "source_value_sha256_json": "d05c3b67f3ecd22cbc14239a55efd069bbf44faf7d3d25efca67a5d5a13019a7",
+      "current_value_sha256_json": "68acd199c2f27d5e718dab350c686487fda67d954b31c5ff48456f1c35ab7813",
+      "candidate_value_sha256_json": "41df5de1d75e1a01615b5b9435ca0abf199a9add08cf80c9d48302b06989c59b",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "180f758db930d7fe2ca567cd92373b50e8423db8bcd36543f41d9dc60b0e922f"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/save20_gif_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "save20_gif_description"
+      },
+      "reviewed_source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "expected_unmodified_current_value": "صورة ثابتة، حتى 256 لونًا. ينعّم التمويه المتعمد تدرجات الألوان. تفتح صور GIF المتحركة بإطارها الأول.",
+      "accepted_candidate_value": "صورة ثابتة، حتى 256 لونًا. ينعّم تمويه الألوان بالنقط تدرجات الألوان. تفتح صور GIF المتحركة بإطارها الأول.",
+      "source_value_sha256_json": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "current_value_sha256_json": "573bdb7ffe264cd08c3eea3cad161ceda88ecbf2ed6daf5a38ef8422cee5f816",
+      "candidate_value_sha256_json": "2286606db5d4b4cea1af544a6819ad90d6d65eba49dad7b056b007feb1edf40f",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "34d315cea8591de0697c0782f1e3ef7a67c7fa0d969ae152ac0c24b0ae5626e9"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_bg",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_bg",
+        "formatted": "false"
+      },
+      "reviewed_source_value": "BG",
+      "expected_unmodified_current_value": "BG",
+      "accepted_candidate_value": "خلفية",
+      "source_value_sha256_json": "82ff23ecefd92d226ca3d16733aafb6dcc798bfbe47b26d7b1f910247eb405a9",
+      "current_value_sha256_json": "82ff23ecefd92d226ca3d16733aafb6dcc798bfbe47b26d7b1f910247eb405a9",
+      "candidate_value_sha256_json": "0b1ba35af7186b9c6838d1b94276fceb5d9a30a3c065bd1b875b47f5ba70ab5c",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "4773d3df11c1364165bada942dc8b7c1212cc41892e83c4e7cb71e600d54b721"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_d_d_px_d_pixels_2f_mp"
+      },
+      "reviewed_source_value": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "expected_unmodified_current_value": "%1$d × %2$d px · %3$,d بكسل (%4$.2f ميغابكسل)",
+      "accepted_candidate_value": "%1$d × %2$d px · عدد البكسلات: %3$,d (%4$.2f ميغابكسل)",
+      "source_value_sha256_json": "7b6571544285703a115c298c491dde5fdbfbb34a0eec388e5906e1d1fd26171c",
+      "current_value_sha256_json": "d733fd2de8eadf4f9adeda3e365ba4577ce58caae6fbdbc5c45ce963e2cc6390",
+      "candidate_value_sha256_json": "958530fa7da3082037fe3e595fe73b77cb8b065647d20476909e657a2d6a6123",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "49979315e32d5957c334b82c1d429a38bccd95b6a2a9470ea7437ca5366312c8"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_fg",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_fg",
+        "formatted": "false"
+      },
+      "reviewed_source_value": "FG",
+      "expected_unmodified_current_value": "FG",
+      "accepted_candidate_value": "مقدمة",
+      "source_value_sha256_json": "301fc7ce55f0cc2adfad869f6bd6e2896cc81b93633805859d76ca28ed20c646",
+      "current_value_sha256_json": "301fc7ce55f0cc2adfad869f6bd6e2896cc81b93633805859d76ca28ed20c646",
+      "candidate_value_sha256_json": "02277f5bbdb69af64c5517011c1510c6fd6bde9898f4582e8eaf9e8bd85e0c91",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "82b13cbf804c9a6bb16ee2cb0bf153f2b7294d8283da2cc84acddf798cc7bd9a"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_hex_rrggbb",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_hex_rrggbb"
+      },
+      "reviewed_source_value": "Hex #RRGGBB",
+      "expected_unmodified_current_value": "سداسي #RRGGBB",
+      "accepted_candidate_value": "سداسي عشري #RRGGBB",
+      "source_value_sha256_json": "60ddb4f3560ed58105571e4eba6ef7ddb092b31b4648d3ec848bfb7ff1c5b59d",
+      "current_value_sha256_json": "689088becb966b222bf26f8d347eac2ad370ec3fb5be187db7771b2f00cdd4e2",
+      "candidate_value_sha256_json": "c5eb6e34eb7fe3e150302f85569ad87aafee797164d44ba1177bc6779e54276b",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "8e29d7b1b690cee08ba93b1f997515b88946fef2151fa0f0449ea4ae1c7d73a9"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_invalid_selection_outline",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_invalid_selection_outline"
+      },
+      "reviewed_source_value": "Invalid selection outline.",
+      "expected_unmodified_current_value": "مخطط التحديد غير صالح.",
+      "accepted_candidate_value": "محيط التحديد غير صالح.",
+      "source_value_sha256_json": "8b7dca5bfbd85960d20323abab383ec2d96493672fe4f7a3768ab57eded6e2c3",
+      "current_value_sha256_json": "84022f614fa33ba5012aada48c2561f351efdabed0fdb7bbede9e7c97df33efa",
+      "candidate_value_sha256_json": "bd1b72e6732944fb7b751be1a6783fba3b6fd7e05f8f2458feaf2bd2b9bec3d1",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "58a3bf0045f8010dfcd46b394244b8b562a464d0067a38038d48bdba36172e1f"
+    },
+    {
+      "locale": "ar",
+      "identity": "string/ui_trim_amounts_must_fit_inside_each_image_use",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "resource_attributes": {
+        "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+      },
+      "reviewed_source_value": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+      "expected_unmodified_current_value": "يجب أن تلائم مقادير القص داخل كل صورة؛ استخدم بكسلات صحيحة أو نسبًا مئوية.",
+      "accepted_candidate_value": "يجب ألا تتجاوز مقادير القص أبعاد كل صورة؛ استخدم أعدادًا صحيحة من البكسلات أو نسبًا مئوية.",
+      "source_value_sha256_json": "f62aa580b1afac90d15d52a41ccfe283b096fd0995549383a3ae0490cf87771b",
+      "current_value_sha256_json": "cb50a932d7cf6c3015c1e8b42104f7d8a1e1cc2e4bb9229929b478ab9a152691",
+      "candidate_value_sha256_json": "ee35e7da687921bf02a2cdc1e6975f71b718e065d16d358209fa10d223939a4b",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "ar/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "74b223518dd624247f24617bbf2ce34afae6baf93166379b4557f002a05c5614"
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/save20_destination_error",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_attributes": {
+        "name": "save20_destination_error"
+      },
+      "reviewed_source_value": "The completed image could not replace its destination.",
+      "expected_unmodified_current_value": "La imagen terminada no pudo sustituir su destino.",
+      "accepted_candidate_value": "No se ha podido sustituir el archivo de destino por la imagen terminada.",
+      "source_value_sha256_json": "c7240f62fbf5ea4430b6b9ee00e435d5061b11de80295390d534109bee4830e5",
+      "current_value_sha256_json": "23d1069327f37e19b4685c17165a8705816b02e36114dced585d979a6e901d35",
+      "candidate_value_sha256_json": "1067a1d6595a97644ce29335cd0330232c5925f569ef3da541c922c0783dbc4c",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "es-ES/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "63ba20d149ae80a2963efad100cb9442d4009d54371ea0abe7f391dd05b0bb89",
+      "classification": "recommended referent/semantic-clarity repair; not a newly discovered save-state failure"
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_export_explanation23",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "reviewed_source_value": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "expected_unmodified_current_value": "Exporta un icono, texto Base64 o arte ASCII. Exportar no cambia la imagen actual ni su destino de Guardar.",
+      "accepted_candidate_value": "Exporta un icono, texto Base64 o arte ASCII. La exportación no modifica la imagen actual ni su destino de guardado.",
+      "source_value_sha256_json": "644547326316cec702f38e8fdc09f73099d5fbc902515ab4f093f39a522e3eae",
+      "current_value_sha256_json": "002018557c8f2daae83b9e59438066baada2d152028911d1d09839b7f0bf7c39",
+      "candidate_value_sha256_json": "7d937ce9b1d913bbe373a0ff011f0a422fe11f79c6cfe6a3eb431e57816101ed",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "es-ES/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "bef4adefd41f2019a375c7cb721c371311bb69586482f09cc53aed8785ffe227",
+      "classification": "recommended idiomatic terminology; existing state meaning already intact"
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "reviewed_source_value": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "expected_unmodified_current_value": "Una calidad mayor suele producir un archivo más grande. Sin pérdida conserva todos los valores de color.",
+      "accepted_candidate_value": "Una calidad mayor suele producir un archivo más grande. La compresión sin pérdidas conserva todos los valores de color.",
+      "source_value_sha256_json": "32ca8ab0fb36c89dffb83ee9656de83a958ac0acb975a3b5373bd26e1d41701a",
+      "current_value_sha256_json": "654af619a30ab0a98ab8c52e214df517b860dd09500e5e7467a6f04e46289be9",
+      "candidate_value_sha256_json": "a7c79cdbf93bd62531ae839e72066508d10ee714ce401d85a1e032c8fb58a08f",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "es-ES/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "8b4d7544903a0393298c279592b4f388d8f4f877f87232c8c88324ed823a4cd9",
+      "classification": "recommended explicit grammatical subject/terminology; not a change to lossless behavior"
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_percent",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_attributes": {
+        "name": "ui_percent"
+      },
+      "reviewed_source_value": "Percent",
+      "expected_unmodified_current_value": "porcentaje",
+      "accepted_candidate_value": "Porcentaje",
+      "source_value_sha256_json": "f386ffd3cd8615c901c035fac2073817fc6f021f1c1ba0c41bbfcb8566782b12",
+      "current_value_sha256_json": "6c4cbf5af5ac465e616b573bae382bb1a3c1b2e32689762ee4ac1cbdb1cfe04d",
+      "candidate_value_sha256_json": "bfc9547469d28438b1e87bbd1332a7a9b75845e54eccdd35382c636aae6e67a9",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "es-ES/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "b4a5e919985497f9c972af30f32b65212192675f5055b06c13bb8c174bf328d6",
+      "classification": "optional cosmetic capitalization consistency only"
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+      "resource_attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "reviewed_source_value": "The image was saved, but Android could not open sharing: %1$s",
+      "expected_unmodified_current_value": "La imagen se guardó, pero Android no pudo abrir el sistema de compartir: %1$s",
+      "accepted_candidate_value": "La imagen se ha guardado, pero Android no ha podido abrir las opciones para compartir: %1$s",
+      "source_value_sha256_json": "7b115e11304227f84bc8d3487b7663b279071de2e20c7d745b6fd5edd29493bf",
+      "current_value_sha256_json": "bd057cb8b051d9099bc8f997f2101176f0ba98f1f0bbc993505e8c890838af36",
+      "candidate_value_sha256_json": "47c814a64cfda7488a8aca9692c3253f8b9e8e8261147cc4b9e6bef38d6996c4",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "es-ES/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "97ca59598b0b51bf626aeac69dfdb871909c9e827a0c6ac38388a2f8bacda429",
+      "classification": "recommended idiom for share chooser; existing save-success/share-failure distinction already intact"
+    },
+    {
+      "locale": "hu",
+      "identity": "plurals/ui_crop_preview_images",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_crop_preview_images"
+      },
+      "reviewed_source_value": {
+        "one": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images.",
+        "other": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+      },
+      "expected_unmodified_current_value": {
+        "one": "Előnézet: %1$d × %2$d px\\nAlkalmazás %3$d képre. Az elhelyezett kép vágása áthelyezi a csatolásait.",
+        "other": "Előnézet: %1$d × %2$d px\\nAlkalmazás %3$d képre. Az elhelyezett képek vágása áthelyezi a csatolásaikat."
+      },
+      "accepted_candidate_value": {
+        "one": "Előnézet: %1$d × %2$d px\\nAlkalmazás %3$d képre. Az elhelyezett képek vágása elmozdíthatja a hozzájuk csatolt képeket.",
+        "other": "Előnézet: %1$d × %2$d px\\nAlkalmazás %3$d képre. Az elhelyezett képek vágása elmozdíthatja a hozzájuk csatolt képeket."
+      },
+      "source_value_sha256_json": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "current_value_sha256_json": "0ecc9b7d5572132baa407324320b27191e5a6763e8972d3b0ecb8911c9be74f0",
+      "candidate_value_sha256_json": "7fa4f8cb944daec273b1737e735ed5b6fd4d480342eb7275f80d339b23c1b435",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ]
+    },
+    {
+      "locale": "hu",
+      "identity": "string/language20_translation_note",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "language20_translation_note"
+      },
+      "reviewed_source_value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "expected_unmodified_current_value": "Ez a nyelvi változat az AN Paint összes fordítható felületi szövegét tartalmazza.",
+      "accepted_candidate_value": "Alkalmazás nyelve\\n\\nA fordításokat az AN Paint nyelvi erőforrásaiban tartjuk karban. Az új vagy le nem fordított szövegek angolul jelennek meg.",
+      "source_value_sha256_json": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "current_value_sha256_json": "5f7039ed99390283d351990807168fd9c95c552d6bb6991d9623a64743f7df1e",
+      "candidate_value_sha256_json": "16ca36747a254537a3a6a79a18a9d1b70f6f8e3216da096e463a85d273fab768",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "3c91cc477ea6e36044fe65e24f52ed228025dca4ed277dc419b4b69c8f0fec7e"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/save20_destination_error",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "save20_destination_error"
+      },
+      "reviewed_source_value": "The completed image could not replace its destination.",
+      "expected_unmodified_current_value": "A kész kép nem tudta lecserélni a célfájlt.",
+      "accepted_candidate_value": "A célfájlt nem sikerült lecserélni az elkészült képre.",
+      "source_value_sha256_json": "c7240f62fbf5ea4430b6b9ee00e435d5061b11de80295390d534109bee4830e5",
+      "current_value_sha256_json": "a719e74de69cfa3806406b9c3924d49b927e71ef686c52c5238f277b2fcb3f58",
+      "candidate_value_sha256_json": "2dc405c5dc4749136065f750435e863f8fdeb31a8aee4d81b7e034aa7e078424",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "549f6ab955f677011307a2266a866d615112763e00998f3cf1ad7c179d500184"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/save20_encoding_budget",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "reviewed_source_value": "The image and encoding buffers exceed the export memory budget.",
+      "expected_unmodified_current_value": "A kép és kódolási pufferek meghaladják az exportmemória-keretet.",
+      "accepted_candidate_value": "A kép és a kódolási pufferek memóriaigénye meghaladja az exportálás memóriakeretét.",
+      "source_value_sha256_json": "05e234964b97dc7894408533245c6c65379e8b3221d477820059a04733809e16",
+      "current_value_sha256_json": "64ac2bf626caab739fe839e8e2535950011648572a866ec30be19eff43e9215d",
+      "candidate_value_sha256_json": "9bca72a163b6239b1950509e4a31577c793958a00a0497ef4324933ebe8a4fb7",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "7bac84a53b9fa6d0b5f11116ec15554922a687b06c41144e3495a6b448a24d51"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/save20_gif_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "save20_gif_description"
+      },
+      "reviewed_source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "expected_unmodified_current_value": "Állókép, legfeljebb 256 szín. A dithering simítja a színátmeneteket. Az animált GIF-ek első képkockaként nyílnak meg.",
+      "accepted_candidate_value": "Állókép, legfeljebb 256 színnel. A színszórás simítja a színátmeneteket. Az animált GIF-ekből az első képkocka nyílik meg.",
+      "source_value_sha256_json": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "current_value_sha256_json": "73626ce8b1cd95b28a936b8c0e48b2007ac929f68f6a12521eeb2ebeaf72ce46",
+      "candidate_value_sha256_json": "9f178d8a7df1f23cc40eb27ed361aa9341bb11e20e60ad3560aa0080533ff9f6",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "0b8cbb5aac1593603eecb2bea6cf595c6f3ab75dfbf12cba4649957032f92987"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "reviewed_source_value": "Autosave image encoding failed.",
+      "expected_unmodified_current_value": "Az automatikus mentési kép kódolása sikertelen.",
+      "accepted_candidate_value": "Nem sikerült kódolni a képet az automatikus mentéshez.",
+      "source_value_sha256_json": "2ff46b633cccec71badef3d07dd81d34fd4ef95b7bd046244f2810f93508539b",
+      "current_value_sha256_json": "07f0dee0ac7d261f2dcc3906652b3ff127dbbf05664bb4862b26ed178e9136cd",
+      "candidate_value_sha256_json": "b36217866907498beecdd9f08c47fb61508a64b4fe0cb025828b06294da0b00a",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "6e0184fafa0224b59a3584ccb9494961d40d722a481a85fd3fc4f39222823ff0"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "reviewed_source_value": "Autosave selection encoding failed.",
+      "expected_unmodified_current_value": "Az automatikus mentési kijelölés kódolása sikertelen.",
+      "accepted_candidate_value": "Nem sikerült kódolni a kijelölést az automatikus mentéshez.",
+      "source_value_sha256_json": "99d7c5c0bb2324fb12b0249bd8157f4f8ea48de31b95d84ac47e51dda0fa317f",
+      "current_value_sha256_json": "73b42f5b1ed0fddea5e6ec5ff1576a90c2af4f2c5db172f1b441f94688a9e2e4",
+      "candidate_value_sha256_json": "4941f894532d6466499a94b1cc2f6fa9511ea894e12770caa92ce78d5b01c0bf",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "c98b7ff8f903b249f0f453c953a50ff44e1eef7726078527c29cffd0e601b71f"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_bottom",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_bottom"
+      },
+      "reviewed_source_value": "Bottom",
+      "expected_unmodified_current_value": "Alul",
+      "accepted_candidate_value": "Alsó szél",
+      "source_value_sha256_json": "b3a163b453896bef078b87ab855ba28d52076b0852e09af29f48b23dadb97dc9",
+      "current_value_sha256_json": "25f9c5176c7ea326a27446a16c7619b8d3f0a6125f6e653dbda0eaed70421d69",
+      "candidate_value_sha256_json": "f12458e0cf020899c319c6ffececd74f85d00cfc0fda2b861b601f22c674db98",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "f4de7f17baa2a95ea5197ef84b5c6f4800ad1cd03c516ae57d7a45997cc70030"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "reviewed_source_value": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "expected_unmodified_current_value": "Színpaletta. Koppintás az előtérhez; hosszan nyomás a háttérhez. Görgessen további színekért.",
+      "accepted_candidate_value": "Színpaletta. Az előtérszín kiválasztásához koppintson egy színre; a háttérszín kiválasztásához tartsa nyomva. További színekért görgessen.",
+      "source_value_sha256_json": "9c6046b7bc4a0c270d067b8713fc7c1e8df7b9139ef208d65e3d6f96a1edef26",
+      "current_value_sha256_json": "8f160c6015df86cbd9e808c1daf0aae29724fe274917873520be323f6a31c13b",
+      "candidate_value_sha256_json": "4d4279377261a04cb312e34f87b8ecffb62bbb8a6ff23056641618da35d12df0",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "1dc07abef497b7eb17a253d039c6703d2a5a2db346676e8dd9e288881a6823c0"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_colour_tap_foreground_hold_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_tap_foreground_hold_background"
+      },
+      "reviewed_source_value": "Colour #%1$s. Tap foreground, hold background.",
+      "expected_unmodified_current_value": "Szín #%1$s. Koppintás előtérhez, hosszan nyomás háttérhez.",
+      "accepted_candidate_value": "Szín: #%1$s. Koppintson az előtérszín kiválasztásához; tartsa nyomva a háttérszín kiválasztásához.",
+      "source_value_sha256_json": "582553229c04d10622bbd4aaf4e1ed5c5196a8026feb245029c2fc0d53227f16",
+      "current_value_sha256_json": "4b06838b41d97e416788f42e12a1ed7598eb6a3191726aca751ebb622507070f",
+      "candidate_value_sha256_json": "2ca38a8b887b25700c8883768faf05af7b5a909b2edd67688511b4897170e3cd",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "506621e2e9ccddbc1f282f790fec9e4c168e74e7cc9c4ed142b12e4f1e25a75e"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_draw_again",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_draw_again"
+      },
+      "reviewed_source_value": "Draw again",
+      "expected_unmodified_current_value": "Rajzolás újra",
+      "accepted_candidate_value": "Rajzolás folytatása",
+      "source_value_sha256_json": "d7572b150df33ad69263d3773f9f8fb9e6585f7db05be27baad32fa62099ecaa",
+      "current_value_sha256_json": "c70884cb100809cc47f5bf540ddc585fe074b6d48751f3f96afddae4b53ff383",
+      "candidate_value_sha256_json": "b32c70fd34fce81e11eb13fbf95abf1795c955e72e326d0d50ea7ddc41691baf",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "9422d6a51383ae8a3183fd82a134cdf4dbe2352dc7f4fd9c13a2a46228412261"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_history_unavailable34",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_history_unavailable34"
+      },
+      "reviewed_source_value": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "expected_unmodified_current_value": "A vászon visszaállt, de a visszavonási előzmény nem olvasható. Az eredeti piszkozat helyreállítási másolatként megmaradt.",
+      "accepted_candidate_value": "A vászon visszaállítása sikerült, de a visszavonási előzményeket nem sikerült beolvasni. Az eredeti piszkozat helyreállítási másolatként megmaradt.",
+      "source_value_sha256_json": "1c9c049ad19150dfb1f00b61b16f7c2755bbf79569d763fbf54f66c294624c3c",
+      "current_value_sha256_json": "ea2933f7f5920122f507ddc654e44035ed2090ea4ba7f0e1d5617f4658f9ce72",
+      "candidate_value_sha256_json": "9872c0229d11cfc83562d5f5c368ab345935338153e0fd4efa7abc03856f8a75",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "ce2810753009cf91f6ddc94f39828741a63e934dd9226a15cb6e74bbf24a6a21"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reviewed_source_value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "expected_unmodified_current_value": "A bal felső képpontokat tartja meg. A kisebb vászonméret eltávolítja a jobb/alsó szélen túli képpontokat; a Visszavonás visszaállítja őket.",
+      "accepted_candidate_value": "A képpontok helyzete a bal felső sarokhoz képest változatlan marad. Kisebb vászonméret esetén a jobb vagy alsó szélen túli képpontok törlődnek; a Visszavonás visszaállítja őket.",
+      "source_value_sha256_json": "ab6330149ebce5ddf92a1bfbea49563912ced2e9bdcff8f0c18f8a992483cff2",
+      "current_value_sha256_json": "a1dec8bd46626c9d8922f0ee4b9d42a9cd3ae3d1a8f8d5d01efc5543473acbc8",
+      "candidate_value_sha256_json": "1d53303b5c1bd7cca96b91a8d0f19c9c6e498383a88c7de3f943a3f30b20d524",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "184aee59e9dcf7dcae9794606b0f5cac4115e4040daa9b4b4825bffb896b98f4"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_left",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_left"
+      },
+      "reviewed_source_value": "Left",
+      "expected_unmodified_current_value": "Bal",
+      "accepted_candidate_value": "Bal szél",
+      "source_value_sha256_json": "f365c6b6dd9ebab91f1a6bf03eeb0b22833982cf4c0eae43440018268d3cbae8",
+      "current_value_sha256_json": "39bd6ac06515c3cc1d123b6dbcc608a8fbbd4ef261b633e0edc854186756dc30",
+      "candidate_value_sha256_json": "3efb3d4e55cc01b7051cbff39a50e894c13fa02b39252f5148174ff8ed56619c",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "b509b8d4ca01fdd1a209c45933b0041a18dd470fe813acde9cce79b22c2622ba"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_no_resize_fits_decoder_memory"
+      },
+      "reviewed_source_value": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "expected_unmodified_current_value": "Még a legkisebb kimenet sem fér el ennek a képnek a dekóder-munkapuffereivel a jelenlegi memóriakeretben. Szakítsa meg és használjon kisebb forrásképet.",
+      "accepted_candidate_value": "A jelenlegi memóriakorlátok miatt a kép még a legkisebb kimeneti mérettel sem tölthető be szerkesztésre. Válassza a Mégse lehetőséget, és használjon kisebb forrásképet.",
+      "source_value_sha256_json": "9ded382824a31f6bbd8b400e75cca69d2dea63f0c78e74aa85906ba5c79b7b9e",
+      "current_value_sha256_json": "eba3690d72066eb0b816c2c28b0510e5c0291f3d75c19eedea6a1a65f91cdea1",
+      "candidate_value_sha256_json": "7a92b07c2cbeca80d0ba6bd7986cff87dd84ce7d5a13f08a9ae9ead7c09fd425",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json",
+        "hu/addendum-final-memory-warning/receipt.json"
+      ],
+      "accepted_value_utf8_sha256": "4e4c9dd53627e79a52ac3bbe1e7986af5c632773488cabf2a30ae9bc111ca86f",
+      "supersession_note": "Both earlier decoder-memory proposals are superseded. The final whole-operation replacement was authored in the second check and separately accepted in the final Hungarian receipt."
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_right",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_right"
+      },
+      "reviewed_source_value": "Right",
+      "expected_unmodified_current_value": "Jobb",
+      "accepted_candidate_value": "Jobb szél",
+      "source_value_sha256_json": "b34d5ee0f218221d7db099145fe272859cb365e772a0fa23652df83c72b43b7f",
+      "current_value_sha256_json": "2b6d1cd0fe46cd5726c03e0a3dc70965eb6da9ab4ed6e0e818cfe6d7a43c700a",
+      "candidate_value_sha256_json": "7e741f9d55e5fd46fdefa429bac8ec4f72dcb8388056e08c50067d755c19f7ef",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "ed14c2302051dc708d72729baaa34f3d6ebc5a9906e5c8833aca83ce99714d2c"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "reviewed_source_value": "The previous draft could not be moved to a recovery copy.",
+      "expected_unmodified_current_value": "Az előző piszkozat nem mozgatható helyreállítási másolatba.",
+      "accepted_candidate_value": "Az előző piszkozatot nem sikerült helyreállítási másolatként áthelyezni.",
+      "source_value_sha256_json": "9516c79d3b823bec77b9f1d1d782e03f70b057eb82fa265bfe20234ffc7b43e7",
+      "current_value_sha256_json": "4a2c08fc67ece1a210dc5f1c479b3f53fafb73e850659df80ef9505c12bb26aa",
+      "candidate_value_sha256_json": "55606591fc47b2d3ac68c1ae08b0a54b1bbe17c4f510fdadfcdbcd49e5298ed9",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "76daf5b415e76ecc458f8aba6e22700959c50869c7a83f8970cdc7a016038f5b"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_this_file_is_not_a_supported_image_use",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_this_file_is_not_a_supported_image_use"
+      },
+      "reviewed_source_value": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "expected_unmodified_current_value": "Ez a fájl nem támogatott kép. Használjon PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF vagy Base64 képszöveget.",
+      "accepted_candidate_value": "Ez a fájl nem támogatott kép. Használjon PNG-, JPEG-, JPEG XL-, WebP-, HEIC-, AVIF-, BMP-, GIF-, DIB-, TIFF-, ICO- vagy PDF-fájlt, illetve Base64-kódolású képszöveget.",
+      "source_value_sha256_json": "ac596d293fb148e9d457c1baa565e8d257ca1072468870bc1662a6af853fda4a",
+      "current_value_sha256_json": "a0ab9ebf708ca6df46f2c680ae42e88d3b8120784615286f18e4abca1478bd41",
+      "candidate_value_sha256_json": "ad615e1613926bf17d8b87ffd2092f0148a9cf5629ba238113c7f070f4e97767",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "480395a4ca0d16b75446d917dea48faa52e78bccee04fa9dfcc4ec1046872529"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_top",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_top"
+      },
+      "reviewed_source_value": "Top",
+      "expected_unmodified_current_value": "Felül",
+      "accepted_candidate_value": "Felső szél",
+      "source_value_sha256_json": "27644f0497fd98494a71558c88dec6c3a7fcaaa8e023f7e35e2f4c60bf924d2c",
+      "current_value_sha256_json": "d1c9243a00f8a9a82de04d6528c09e200b8fd178a252f162ebfdf37ccec8aba5",
+      "candidate_value_sha256_json": "33f69a0d64b35ebdb9bfb13ebfcd3a5b4a3dd730f760fcf6235675d4328d718e",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "5aff3e81a7a5195b50cc054105ac5a547f9a4714d3d6ec07dee0e008e264e6a6"
+    },
+    {
+      "locale": "hu",
+      "identity": "string/ui_trim_amounts_must_be_zero_or_greater",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-hu/strings.xml",
+      "resource_attributes": {
+        "name": "ui_trim_amounts_must_be_zero_or_greater"
+      },
+      "reviewed_source_value": "Trim amounts must be zero or greater.",
+      "expected_unmodified_current_value": "A vágási értékeknek nullának vagy nagyobbnak kell lenniük.",
+      "accepted_candidate_value": "A vágási értékeknek nullának vagy annál nagyobbnak kell lenniük.",
+      "source_value_sha256_json": "874ef9223a4e047cc91d95415317c669c8a50fde1d0c4b66ec3ddcd51378ec81",
+      "current_value_sha256_json": "6965c526962a53a0a2d62c416792ba385f4d6cbe5c9d717a1c9db7f11180185e",
+      "candidate_value_sha256_json": "a50ec81deced18e518faa110fe0afba891af8f829a36b44e7c556e5c1b3a62b8",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "hu/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "080c789a74ebd65df35e01477fe573882299ba90aacbaf1121c32687f7af1362"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/formats22_animation_message",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_message"
+      },
+      "reviewed_source_value": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "expected_unmodified_current_value": "Šis %1$s turi %2$s kadrus. AN Paint redaguoja nejudančius vaizdus ir animacijos neišsaugo.",
+      "accepted_candidate_value": "Šio %1$s vaizdo kadrų skaičius: %2$s. AN Paint redaguoja nejudančius vaizdus ir animacijos neišsaugo.",
+      "source_value_sha256_json": "d05c3b67f3ecd22cbc14239a55efd069bbf44faf7d3d25efca67a5d5a13019a7",
+      "current_value_sha256_json": "ed12d42beb3cfd9e658360d66944f327fa4062c55b711b40dda4d7c12f1de218",
+      "candidate_value_sha256_json": "bc8781854ee3aadca63c509f79352b4a2d11dfd43b9d720ff24b2c0723df1803",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "ddefaaf81772bf0ff4d2f991b466fdd75605c9fbdbd947db4085a4f739b78209"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/formats22_animation_unknown",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "reviewed_source_value": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "expected_unmodified_current_value": "Šis %1$s per sudėtingas patvirtinti, ar turi kelis kadrus. AN Paint atvers tik nejudantį vaizdą ir animacijos neišsaugos.",
+      "accepted_candidate_value": "Šis %1$s vaizdas yra per sudėtingas, kad būtų galima nustatyti, ar jame yra keli kadrai. AN Paint atvers tik nejudantį vaizdą ir animacijos neišsaugos.",
+      "source_value_sha256_json": "d62d8bb89b2973349ae0413509eb4edbe4528a4969149829c823cdc188b0159b",
+      "current_value_sha256_json": "04901b1d2abeae2a89c92382ae593bcce0e72f0eda674510ec7c032580686856",
+      "candidate_value_sha256_json": "e618f3e8f9fdc43677d2150f597e978040a517ed26c9e39afd7e5916f2f346e0",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "01e3941986839e6d35078a7d09d3c8783af322ca99469b1e5e9ddfc7a66e5a7a"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/gallery_credit_could_not_save",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "reviewed_source_value": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "expected_unmodified_current_value": "Vaizdų priskyrimų nepavyko išsaugoti arba atkurti. Anksčiau išsaugoti priskyrimai išliko. Bandykite dar kartą.",
+      "accepted_candidate_value": "Vaizdų priskyrimo informacijos nepavyko išsaugoti arba atkurti. Anksčiau išsaugota priskyrimo informacija išliko. Bandykite dar kartą.",
+      "source_value_sha256_json": "31a0afe354413667f4b6b340723cc4549822490e937f12152836a6061b899241",
+      "current_value_sha256_json": "cfa7b3a68aad5830656e46086069f1715b95c444c8b2f42a295a8ec19c44077a",
+      "candidate_value_sha256_json": "20f822c0031284be0f522e0a9a33b7eae4b7279f21891c0dafed706a8bc14469",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "dad278dfad514f43493e82a5e1a81b061e34da225e06c04af20da0315bdd51e7",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "lt",
+      "identity": "string/gallery_credit_too_large",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "reviewed_source_value": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "expected_unmodified_current_value": "Dėl šių vaizdų priskyrimų piešinys taptų per didelis, kad jį būtų galima atkurti. Ankstesnis piešinys ir priskyrimai išsaugoti.",
+      "accepted_candidate_value": "Dėl šios vaizdų priskyrimo informacijos piešinys taptų per didelis, kad jį būtų galima atkurti. Ankstesnis piešinys ir priskyrimo informacija išsaugoti.",
+      "source_value_sha256_json": "38d572faf216caedfece97807e0ac06f93e5b328bdb68bc327f7fa6355e4a119",
+      "current_value_sha256_json": "1607bcbba33812a299d1906ac64e38060bf31325cee137b4cc86b6fa7981200b",
+      "candidate_value_sha256_json": "ba96888e7945993c0702bb89cdd60ce2e19d941b6f55d14fcb345614d80afd3a",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "4b4c19f0a5b7896f9de53c6dbcd8b13396ea22cdd44da150ddc25e174320e31f",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "lt",
+      "identity": "string/language20_translation_note",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "language20_translation_note"
+      },
+      "reviewed_source_value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "expected_unmodified_current_value": "Šioje kalbos versijoje yra visas verčiamas AN Paint sąsajos tekstas.",
+      "accepted_candidate_value": "Programos kalba\\n\\nVertimai tvarkomi AN Paint kalbų ištekliuose. Naujas arba neišverstas tekstas rodomas anglų kalba.",
+      "source_value_sha256_json": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "current_value_sha256_json": "76c7699e62ca08bbd3663c386ef9090d9de5f63c0e60e40ac3be27367af02cee",
+      "candidate_value_sha256_json": "0386b292f1e76498c4e095c4a1e38bc536b23b280deb4cd5ac45d78819bede31",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "5cb6e848d45864471d852efc92c2b37bab05e10c0d84e714c4f1cbb66a21276c"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/legacy_credits_unreadable",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "reviewed_source_value": "Some saved credits could not be read. Their stored copies have been kept.",
+      "expected_unmodified_current_value": "Kai kurių išsaugotų priskyrimų nepavyko perskaityti. Jų saugomos kopijos išsaugotos.",
+      "accepted_candidate_value": "Kai kurių išsaugotų priskyrimo įrašų nepavyko perskaityti. Jų saugomos kopijos išsaugotos.",
+      "source_value_sha256_json": "7b80ca20b3df08f89ff7f1e3d9e8ad96e617ad9a79601d849a6de057b20b1769",
+      "current_value_sha256_json": "0b5e8328d50c07622976d3ec37bb9f1a3ec7d56971b58e025742ad4d29c111d6",
+      "candidate_value_sha256_json": "a770fe98e6660a1fd5219d9e89ba11166a661f9148661623d0ab326fed927150",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "d30f0a4de3eeebc8269e2a0cfaf1e0bd0316641f2d7008d0aeef63986504a952",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "lt",
+      "identity": "string/save20_dither",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "save20_dither"
+      },
+      "reviewed_source_value": "Dither colours",
+      "expected_unmodified_current_value": "Diteruoti spalvas",
+      "accepted_candidate_value": "Smulkinti spalvas",
+      "source_value_sha256_json": "5b058d3dd8f41680f8b3937b95d95d6e968c4fe9dfd687867df3edea463fd5b8",
+      "current_value_sha256_json": "eba6eb54d04cfbaf773bd34d49ad83fc65bf3a7dd57e3bfcb3005d0bda63c0cf",
+      "candidate_value_sha256_json": "8422a17b9ef008092614e75a3215c8f2f9596e859cbaac4aec81e2def477e315",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "4ec8bc56824831b11754334d208e54d4c0776ebfee62a282c22d39674ead6257",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "lt",
+      "identity": "string/save20_gif_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "save20_gif_description"
+      },
+      "reviewed_source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "expected_unmodified_current_value": "Nejudantis vaizdas, iki 256 spalvų. Diteringas glotnina spalvų perėjimus. Animuoti GIF atveriami kaip pirmasis kadras.",
+      "accepted_candidate_value": "Nejudantis vaizdas, iki 256 spalvų. Spalvų smulkinimas glotnina spalvų perėjimus. Animuoti GIF atveriami kaip pirmasis kadras.",
+      "source_value_sha256_json": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "current_value_sha256_json": "65a279d41e17e9616502ab1daeca0c45c62ac20c4575c29741a10bcfa79babf2",
+      "candidate_value_sha256_json": "c54474e0f49c6dec38524b83ca87b405135e1ca48e652d52306d80376347cf09",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "206e42589e7b47df87601556bdd4df84fffc43ababd52cd79d297b6c722ad779",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_collapse_tool_category",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_collapse_tool_category"
+      },
+      "reviewed_source_value": "%1$s: %2$s selected. Collapse tools and options",
+      "expected_unmodified_current_value": "%1$s: pasirinkta %2$s. Suskleisti įrankius ir parinktis",
+      "accepted_candidate_value": "%1$s. Pasirinktas įrankis: %2$s. Suskleisti įrankius ir parinktis",
+      "source_value_sha256_json": "02972d9a3aa1c99efff16d8be8bd4cb3ade3def6bc3815d49e4dfb49327d278d",
+      "current_value_sha256_json": "c545b0cc79936b5acad057327e75c50e4fb0ddebd4c7a5124d4618b1362ce96a",
+      "candidate_value_sha256_json": "4e0f8aa4798f02844f76347489243516d621a45cfb651bf28fd39b9099384142",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "2d11f5f854ee8e294752d594b6110b876fa9997cd2d417bd8637048234b2353d"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "reviewed_source_value": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "expected_unmodified_current_value": "Spalvų paletė. Palieskite priekinio plano spalvai; laikykite nuspaudę fonui. Slinkite, kad matytumėte daugiau spalvų.",
+      "accepted_candidate_value": "Spalvų paletė. Palieskite spalvą, kad pasirinktumėte priekinio plano spalvą; palaikykite nuspaudę, kad pasirinktumėte fono spalvą. Slinkite, kad matytumėte daugiau spalvų.",
+      "source_value_sha256_json": "9c6046b7bc4a0c270d067b8713fc7c1e8df7b9139ef208d65e3d6f96a1edef26",
+      "current_value_sha256_json": "a1139f553602788b89c1d033031cadb9169bbcfb6cb5508e742b9271334c6fe6",
+      "candidate_value_sha256_json": "a8f6532924c10e40fc6ea572b0bafd6f09778efb7f30e7a37db1632cd935a498",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "c5ca68e07a1e0c84857d464423d157a458c2cc2f2c9c5d922ff1555f0b304af7"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_colour_tap_foreground_hold_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_tap_foreground_hold_background"
+      },
+      "reviewed_source_value": "Colour #%1$s. Tap foreground, hold background.",
+      "expected_unmodified_current_value": "Spalva #%1$s. Palieskite priekiniam planui, laikykite nuspaudę fonui.",
+      "accepted_candidate_value": "Spalva #%1$s. Palieskite, kad pasirinktumėte priekinio plano spalvą; palaikykite nuspaudę, kad pasirinktumėte fono spalvą.",
+      "source_value_sha256_json": "582553229c04d10622bbd4aaf4e1ed5c5196a8026feb245029c2fc0d53227f16",
+      "current_value_sha256_json": "e9b6295ae47c1896d6ee0f8f860b16c339deb39acaa141bf3a8a0f0913e718da",
+      "candidate_value_sha256_json": "3d595d5e85ec0b4db6d514168600910a152e4b37509d6a2714d89c7a6d56d676",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "c828e20c1d261c474a641d360683c74105425e353e0bf8e728d3dae848d25df2"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "reviewed_source_value": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "expected_unmodified_current_value": "%1$d × %2$d pikseliai (%3$.2f MP) viršija dabartinę saugią redagavimo ribą %4$.2f MP. AN Paint laiko visą vaizdą atmintyje ir rezervuoja vietą transformacijoms bei žymėjimams. Šią ribą lemia turima atmintis. Veiksmas sustabdytas prieš paskiriant per didelį rastrinį vaizdą. Automatinis dydžio keitimas netaikytas.",
+      "accepted_candidate_value": "Vaizdas, kurio matmenys %1$d × %2$d px (%3$.2f MP), viršija dabartinę saugią redagavimo ribą (%4$.2f MP). AN Paint laiko visą vaizdą atmintyje ir rezervuoja vietą transformacijoms bei žymėjimams. Šią ribą lemia turima atmintis. Veiksmas sustabdytas prieš skiriant atmintį per dideliam rastriniam vaizdui. Automatinis dydžio keitimas netaikytas.",
+      "source_value_sha256_json": "196496f3e9e88fb116faf6990a40136d33e990575a10d6ebe9a3ce10dd4659f7",
+      "current_value_sha256_json": "d87b8b537013096c922a2404e4501c7dad1644b76af211bba645027c7cdf54a7",
+      "candidate_value_sha256_json": "abd8c3ecaaf54821c300060e20fb14004031e5cc0cc6b0bc46ea42e27a142552",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "093030fc1e63e77e7690630f4ceaa66d2e2503069e935d7a2e0320457a10ee9b"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_d_d_px_d_pixels_2f_mp"
+      },
+      "reviewed_source_value": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "expected_unmodified_current_value": "%1$d × %2$d px · %3$,d pikseliai (%4$.2f MP)",
+      "accepted_candidate_value": "%1$d × %2$d px · Pikselių skaičius: %3$,d (%4$.2f MP)",
+      "source_value_sha256_json": "7b6571544285703a115c298c491dde5fdbfbb34a0eec388e5906e1d1fd26171c",
+      "current_value_sha256_json": "9d546eaa45d2d2f948ca9e84d7a5d58d123fdfb2effcda282e4213e728f03ae1",
+      "candidate_value_sha256_json": "07c381196824b19f447939be916e7bbefba99f8e93bf0571cb99d61a01078e08",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "cd18f53f7e0979502abb9fb14d8e44db3370a2eaeb6a0dc5b2cabd46431b382b"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_enter_valid_dimensions",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_enter_valid_dimensions"
+      },
+      "reviewed_source_value": "Enter valid dimensions.",
+      "expected_unmodified_current_value": "Įveskite galiojančius matmenis.",
+      "accepted_candidate_value": "Įveskite tinkamus matmenis.",
+      "source_value_sha256_json": "80eb8bcd11756cd8c7c75afbf2336c0b420bf7a44a693bb06da06f73f5251a3a",
+      "current_value_sha256_json": "983720b4133c29a82a36cce18cf329065d0648935743a550516a17e3ac349131",
+      "candidate_value_sha256_json": "167cac1163df4bccf7a0bdea9b4c4457bb05e7509c5dae254001c6f06ceebab6",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "b3778c27c0fd99b2cc25e492f4b4c8eb384afc67029bbc22a5a01785de4fd855"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_expand_tool_category",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_expand_tool_category"
+      },
+      "reviewed_source_value": "%1$s: %2$s selected. Expand tools and options",
+      "expected_unmodified_current_value": "%1$s: pasirinkta %2$s. Išskleisti įrankius ir parinktis",
+      "accepted_candidate_value": "%1$s. Pasirinktas įrankis: %2$s. Išskleisti įrankius ir parinktis",
+      "source_value_sha256_json": "470b94f0c967323c0812325a265e64e84e6fa0b702a5468f54d727de2463c272",
+      "current_value_sha256_json": "deebd1941322727f99bdc8ef8203f2ae03e414093272ec04c0f59000c29001ea",
+      "candidate_value_sha256_json": "cc0e20ba44b4b0cdaadaab632e853ee2915451eb06de4f3c621278bd468db7bb",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "7c1d8f9acbd57bc03543f40fa534e099f5d5c77f072c468031e4642ac869aed7"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_height_in",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_height_in"
+      },
+      "reviewed_source_value": "Height in %1$s",
+      "expected_unmodified_current_value": "Aukštis %1$s vienetais",
+      "accepted_candidate_value": "Aukštis %1$s",
+      "source_value_sha256_json": "d993dc7ad0327f05f536563ccf9c23870517bab33b9a580a732ec45945a095bb",
+      "current_value_sha256_json": "6a55051bd90773922ea0b75fa0666de53f13819d26258971ecd576d115415dac",
+      "candidate_value_sha256_json": "c7e4754c3874cf23fc8e62ce21457ab8bc593a9085ea0d43f8e6e560ccca73e9",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "6e3c88b2070b6b06e6c7ea4a29fbc39c00fb5345508379255fa22cefa74d58a8"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_none",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_none"
+      },
+      "reviewed_source_value": "None",
+      "expected_unmodified_current_value": "Nėra",
+      "accepted_candidate_value": "Nepažymėti nė vieno",
+      "source_value_sha256_json": "f2953d2931e36d0c55640f51865f8394ebe52194765d04e521017232558f871c",
+      "current_value_sha256_json": "2cda6dc34844aa44e3e486e37c3968256e703ba3f10ce1b6aeff50ab9c947dce",
+      "candidate_value_sha256_json": "725d4a4afcaacee19602941fdb51b5e1b538620a9eddc25e86db32cfdfeabcc9",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "899b8ebe2cc355b31ffd90b287ff46b0eb8051ec2527129f1b2fb0bade5768e0"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_percent_fd8671",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_percent_fd8671"
+      },
+      "reviewed_source_value": "percent",
+      "expected_unmodified_current_value": "procentai",
+      "accepted_candidate_value": "procentais",
+      "source_value_sha256_json": "927f113e4d1abc30c0ccb562d93d679ec99e0cdf8a2bb0da22473874574bba34",
+      "current_value_sha256_json": "2fc401d0385fd60172be020eeb0ce878387c8f5c449530fd7b3f805044fca72c",
+      "candidate_value_sha256_json": "c655ba1a619819843f6c448fdc25e736fc5d2928f818b415ed609c7ae9f5e25a",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "0444904082590d6f6470dc03030f20e35c6e676771ae025df767a24c872a20b4"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_pixels_6ec9c2",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_pixels_6ec9c2"
+      },
+      "reviewed_source_value": "pixels",
+      "expected_unmodified_current_value": "pikseliai",
+      "accepted_candidate_value": "pikseliais",
+      "source_value_sha256_json": "3e3846ae39fe594776df92cbd4eaba67fb59b3ab39d485b4554e1bae64a58a00",
+      "current_value_sha256_json": "df656c8128527e8ffc3bda124b8ad2f69bc478fa27c5bede5eb087d2526d8e30",
+      "candidate_value_sha256_json": "86c672a7c76affa60d59f028ceeb47e5593f0c5aaaf5851ac015a2dd8937fd00",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "2e3efe22bb14e3a2b71b084652a1afb53e848ff8a1d6334c2f0ab2727dc43a3e"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_trim_in_percent",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_trim_in_percent"
+      },
+      "reviewed_source_value": "%1$s trim in percent",
+      "expected_unmodified_current_value": "%1$s apkirpimas procentais",
+      "accepted_candidate_value": "%1$s: apkirpimas procentais",
+      "source_value_sha256_json": "1830587ad5b76463f33b54b0e16bc6df00086eca96ae32963e40e57520c25208",
+      "current_value_sha256_json": "6812f93fab135016a981f87137a2e3ffde88589209ea41751806b014d15f345f",
+      "candidate_value_sha256_json": "4011aaf2d654c56df9aafdd45f2d785f62ab571fd665744e9f6915711e3d87e7",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "d6e5e25091f9a9f6e474df7ca76a718e586c001ce8db02c4e964dc8f23af537e"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_trim_in_pixels",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_trim_in_pixels"
+      },
+      "reviewed_source_value": "%1$s trim in pixels",
+      "expected_unmodified_current_value": "%1$s apkirpimas pikseliais",
+      "accepted_candidate_value": "%1$s: apkirpimas pikseliais",
+      "source_value_sha256_json": "d0643db9d95eeb05d287bd1655ee98fa190734b581a67001ded27b2123a12e36",
+      "current_value_sha256_json": "39abaa1459161c7192460436242edbb180350a101dcda58cc92a612cc9d32ad7",
+      "candidate_value_sha256_json": "1e0ec5a8fad9324588b674683028c30bc024dd973565621023535624a42c6c15",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "6a2cab356518dd675678c0cbd41d71e5887299d7dc08f0517cf5853a432d5c7f"
+    },
+    {
+      "locale": "lt",
+      "identity": "string/ui_width_in",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "resource_attributes": {
+        "name": "ui_width_in"
+      },
+      "reviewed_source_value": "Width in %1$s",
+      "expected_unmodified_current_value": "Plotis %1$s vienetais",
+      "accepted_candidate_value": "Plotis %1$s",
+      "source_value_sha256_json": "9f27af12eb337f67560f82d055674fd015ba24516b84e931b24a7d2845969733",
+      "current_value_sha256_json": "699ff98018dfe25438e54a41914df2fb8abfb8a897672158109068fcd868185f",
+      "candidate_value_sha256_json": "fbf32766e6aa36fdb080ef3eb0760415d549756d01956feeaab069b8c276cf4c",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "lt/independent-lt-wording-review.json"
+      ],
+      "accepted_value_utf8_sha256": "35dbc691ba860a1b8bb30aaf6a0af14e21b1bbefbc6f31e506f307fe6bd2f995"
+    },
+    {
+      "locale": "vi",
+      "identity": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "resource_attributes": {
+        "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+      },
+      "reviewed_source_value": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "expected_unmodified_current_value": "Khung vẽ. Chụm và di chuyển hai ngón tay để thu phóng và di chuyển. Chế độ Điều hướng cũng cho phép di chuyển bằng một ngón.",
+      "accepted_candidate_value": "Khung vẽ. Chụm và di chuyển hai ngón tay để thu phóng và di chuyển khung vẽ. Chế độ “Di chuyển và thu phóng” cũng cho phép di chuyển khung vẽ bằng một ngón tay.",
+      "source_value_sha256_json": "f451000054228c871e570131e979845d148beb513e3254216840f762bc19e186",
+      "current_value_sha256_json": "56eb6e38cad00ba161a6a1363fd5da08c9831958086a211c936e74f6a1644438",
+      "candidate_value_sha256_json": "b89e35a2802936c200440d6f3f19b1a2a2e0127a195de0b4721aa69a326e4682",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "vi/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "685298e1b20f9e8a3ef010518ae180e0d6a8b80c2d8717d0516c25dcec1c5fda"
+    },
+    {
+      "locale": "vi",
+      "identity": "string/ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "resource_attributes": {
+        "name": "ui_no_resize_fits_decoder_memory"
+      },
+      "reviewed_source_value": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "expected_unmodified_current_value": "Ngay cả đầu ra nhỏ nhất cũng không thể chứa các bộ đệm làm việc của bộ giải mã ảnh này trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+      "accepted_candidate_value": "Ngay cả khi chọn kích thước đầu ra nhỏ nhất, vẫn không thể tải và chỉnh sửa ảnh này trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+      "source_value_sha256_json": "9ded382824a31f6bbd8b400e75cca69d2dea63f0c78e74aa85906ba5c79b7b9e",
+      "current_value_sha256_json": "cc5d34433cdc069371719bd8f187aceced9f13ec36d927bf00243b1a94b60daa",
+      "candidate_value_sha256_json": "d62815d58cf9e39225d045d22863cc7ab9ce9af86f409711c0706c10cda9d03c",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "1a677fb89a78855fcb640f498fc72e6935b80dc49eb68dbacef41f38d05c30aa",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "vi",
+      "identity": "string/ui_show_magnified_drawing_preview",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "resource_attributes": {
+        "name": "ui_show_magnified_drawing_preview"
+      },
+      "reviewed_source_value": "Show magnified drawing preview",
+      "expected_unmodified_current_value": "Hiện xem trước vẽ phóng đại",
+      "accepted_candidate_value": "Hiện bản xem trước phóng đại của bản vẽ",
+      "source_value_sha256_json": "9f80d5e473faf1ff99c97b573945df4b2ea6ee4d5d89e6887b235ec75f6be496",
+      "current_value_sha256_json": "101434c7db15782c9556be45409bbf5d2112fabb7bd12714bb3f42eb94246c1a",
+      "candidate_value_sha256_json": "b3bd038e64ead5ab8ec9765fea2b214a1bc2c59cde2c753c91cd488dab822a38",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "remaining-second-check/review.json"
+      ],
+      "accepted_value_utf8_sha256": "df6cfddb6508a6fccd1a5430a5752e59e159b3d3b0506fde39ec3df96d61e775",
+      "supersession_note": "Exact substitute independently accepted by the bounded second check; previous proposal/hold history remains preserved and current production is unchanged."
+    },
+    {
+      "locale": "vi",
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-vi/strings.xml",
+      "resource_attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "reviewed_source_value": "The encoder did not finish.",
+      "expected_unmodified_current_value": "Bộ mã hóa không hoàn tất.",
+      "accepted_candidate_value": "Quá trình mã hóa không hoàn tất.",
+      "source_value_sha256_json": "c3e9167c2113d9abdb557d7f2dfbd8f1e304fb671f259cc38d1bc10b2b8f1302",
+      "current_value_sha256_json": "be6e726ac404c10af576620bf8d2c2c788c2643056158494ad2dffb2badc59f2",
+      "candidate_value_sha256_json": "6ef89fd54c16bc0710d9738574d6fae8f5154e7c52edea92e538d0a372494f5e",
+      "candidate_status": "independently_accepted_candidate",
+      "integrated": false,
+      "current_production_value_accepted_by_this_candidate_review": false,
+      "evidence_archive": "independent-candidate-reviews.zip",
+      "evidence_members": [
+        "vi/independent-review.json"
+      ],
+      "accepted_value_utf8_sha256": "fcdb9470542bf30e0bd1704b442eeb7bddef2a7bea1ecdedb84adb449e2e419c"
+    }
+  ],
+  "limits": [
+    "Every candidate remains unapplied; current-source acceptance counts do not increase.",
+    "Do not apply older full candidate files blindly: Vietnamese and Hungarian memory/magnifier values and Lithuanian follow-ons supersede earlier variants.",
+    "Retain 30 wording-only entries per priority batch and all other original confidence/context limits.",
+    "Spanish capitalization is optional cosmetic; its remaining four candidates are clarity/idiom improvements, not proved save-state defects.",
+    "Hungarian crop plural is one typed resource with complete one/other forms, not two separately counted identities.",
+    "Lithuanian three unchanged crop labels are conditional acceptance only, not additional XML edits.",
+    "No full-language, native-human, installed-layout, TalkBack or runtime acceptance.",
+    "No new linguistic review, builds, CI, production edits, merge or release occurred during this assembly."
+  ]
+}
