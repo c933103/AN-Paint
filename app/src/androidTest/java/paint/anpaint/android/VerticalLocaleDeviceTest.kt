@@ -157,11 +157,13 @@ class VerticalLocaleDeviceTest {
         val started=SystemClock.uptimeMillis()
         try {
             chooseLanguage(tag)
+            val chosenActivity=onMain {activity}
             var overflowToolSwipes=0
             for(landscape in listOf(false,true)) {
                 val orientation=if(landscape) "landscape" else "portrait"
                 evidenceName="$tag-$orientation"
                 orient(landscape)
+                onMain {assertSame("Rotation retains the selected editor Activity",chosenActivity,activity)}
                 for(tab in listOf("View","Draw","File","Edit","Color")) {
                     selectTab(tab)
                     assertCanvas(tag)
