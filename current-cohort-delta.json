@@ -95,7 +95,27 @@
       "new_linguistic_review_credit": 0,
       "evidence": "https://github.com/c933103/AN-Paint/blob/f25c4514f42fcc5c6aa2bd01d65fd9782c30b0fc/czech-current-integration-20261020/README.md",
       "evidence_boundary": "Original full archive publication remains separately pending; this update does not upload it or claim it is public.",
-      "production_merge": "https://github.com/c933103/AN-Paint/pull/156"
+      "production_merge": "https://github.com/c933103/AN-Paint/pull/156",
+      "bounded_footer_layout_overlay": {
+        "disposition": "original footer criterion resolved only within existing API35 NATIVE Robolectric evidence",
+        "source_commit": "ef46e8aa4f55825a071f4c1ecd6f3c80b9355f51",
+        "source_tree": "c96f97087692d7e0f3ec516ed309d1ceda1c11c3",
+        "existing_Czech_profiles": 4,
+        "initial_and_rotated_Czech_captures": 8,
+        "existing_non_Czech_controls": 3,
+        "historical_645_72_unchanged": true,
+        "new_linguistic_credit": 0,
+        "remaining_no_direct_consumer_limits": 71,
+        "other_ui_fit_consumers_unverified": [
+          "zoom_fit",
+          "trim_fit"
+        ],
+        "no_installed_Czech_or_TalkBack_acceptance": true,
+        "whole_UI_no_clipping": false,
+        "evidence": "czech-fit-hold-disposition.json",
+        "public_comment": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6310525181",
+        "original_bulk_archive_and_23_path_pause_unchanged": true
+      }
     },
     "sv": {
       "scope": "Existing full catalogue bounded reviews rebound mechanically; not new linguistic review",
@@ -349,6 +369,122 @@
         "receipt": "independent-candidate-reviews.zip/lt/independent-lt-wording-review.json",
         "receipt_sha256": "5da9ebfb660115f3960087a5b5c884f26f9c40eee37a49035e2691abba224492"
       }
+    },
+    "es-419": {
+      "scope": "Latin American Spanish only; full fresh author batch, not borrowed es-ES acceptance",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 328,
+      "current_static_context": 299,
+      "current_wording_only": 29,
+      "proposal_wording_only": 1,
+      "no_direct_consumer_total": 30,
+      "independent_proposal_accept": 13,
+      "independent_revise": 0,
+      "independent_hold": 0,
+      "independent_classification": {
+        "contextual_grammar_or_meaning": 4,
+        "clarity_idiom_context": 8,
+        "optional_cosmetic": 1
+      },
+      "prior_exact_pairs": 21,
+      "prior_overlap": 1,
+      "prior_outside": 20,
+      "current_locale_only_partition": {
+        "bounded": 348,
+        "unapplied_proposals": 13,
+        "unknown": 356,
+        "missing": 0,
+        "denominator": 717
+      },
+      "production_changes": 0,
+      "evidence": "es-419-review-packet.zip",
+      "independent_evidence": "latest-independent-reviews.zip/es-419/receipt.json"
+    },
+    "ko-KR": {
+      "scope": "Recovered prior South Korean canonical full priority review, exact-pair reconciliation; not 341 new unique reviews. Other Korean locales excluded.",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 338,
+      "static_context": 311,
+      "wording_only": 27,
+      "context_holds": 3,
+      "context_hold_keys": [
+        "string/ui_discard",
+        "string/ui_main23",
+        "string/ui_save_as"
+      ],
+      "historical_accepted_pairs_retained": 327,
+      "historical_prior_carry": 1,
+      "historical_independently_accepted_corrections_now_present": 10,
+      "new_unique_review_credit": 0,
+      "old_union_pairs": 23,
+      "old_union_exact": 22,
+      "old_union_stale_source": 1,
+      "stale_key": "string/assemblyHelp",
+      "prior_exact_outside_priority": 21,
+      "current_locale_only_partition": {
+        "bounded": 359,
+        "priority_context_holds": 3,
+        "outside_priority_stale_source": 1,
+        "unmapped": 354,
+        "missing": 0,
+        "denominator": 717
+      },
+      "optional_candidate_not_independently_reviewed": 1,
+      "optional_is_confirmed_bug": false,
+      "production_changes": 0,
+      "evidence": "ko-KR-review-packet.zip"
+    },
+    "fil": {
+      "scope": "Filipino full author priority review; independent review covers only seven core proposals, five optional suggestions, dependent labels and one hold.",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 332,
+      "current_static_context": 301,
+      "current_wording_only": 29,
+      "prior_carries_in_batch": 2,
+      "priority_wording_proposals": 5,
+      "unchanged_priority_labels_blocked_on_two_templates": 3,
+      "unknown_palette_context_hold": 1,
+      "P2_dependency_templates": 2,
+      "independent_core_accept": 7,
+      "independent_core_revise": 0,
+      "independent_optional_accept_as_optional_only": 5,
+      "optional_confirmed_failures_added": 0,
+      "prior_exact_pairs": 22,
+      "prior_outside": 20,
+      "current_locale_only_partition": {
+        "bounded": 352,
+        "known_pending_or_context_hold_including_P2": 11,
+        "unknown": 354,
+        "missing": 0,
+        "denominator": 717
+      },
+      "production_changes": 0,
+      "evidence": "fil-review-packet.zip",
+      "independent_evidence": "latest-independent-reviews.zip/fil/receipt.json",
+      "independent_receipt_sha256": "72ba96b2f95d264139f04d7bc63ec0eb17473c39cb236da50aebc2be496c681d",
+      "atomic_dependencies": [
+        {
+          "locale": "fil",
+          "identities": [
+            "string/ui_trim_in_pixels",
+            "string/ui_trim_in_percent"
+          ],
+          "apply_together": true,
+          "unchanged_priority_labels_conditionally_supported": [
+            "string/ui_left",
+            "string/ui_right",
+            "string/ui_bottom"
+          ],
+          "unchanged_P2_top_inspected_only_as_dependency": true
+        }
+      ],
+      "optional_save_ellipsis_note": "Source punctuation alignment only; requestSave(false) sometimes writes directly, so no guaranteed dialog is inferred."
     }
   },
   "validation": {
@@ -357,7 +493,9 @@
     "polish_unique_records": 341,
     "swedish_all_717_source_values_attributes_and_714_target_values_match_prior_receipts_plus_supplements": true,
     "czech_english_and_target_files_match_prior_review_sha256": true,
-    "curve_current_pair_matches_separate_independent_acceptance": true
+    "curve_current_pair_matches_separate_independent_acceptance": true,
+    "latest_three_author_ledgers_have_exact_341_unique_identities_and_92_249_tiers": true,
+    "all_26_new_core_optional_proposal_English_and_current_values_match_reviewed_source_XML": true
   },
   "limits": [
     "No app build, Gradle, CI dispatch, emulator, version or release action.",
@@ -451,5 +589,22 @@
     "production_integration": false,
     "global_totals_recomputed": false,
     "warning": "Candidate readiness is not acceptance of current uncorrected production values or full-language completion. Original proposed/revised values and review withdrawals remain in immutable history."
+  },
+  "latest_three_cohort_supplement": {
+    "prior_59_manifest_unchanged": "accepted-candidate-manifest.json",
+    "additional_primary_handoff_edits": 20,
+    "additional_primary_priority": 18,
+    "additional_primary_P2": 2,
+    "additional_manifest": "latest-candidate-delta.json",
+    "separately_accepted_optional_Filipino_edits": 5,
+    "optional_Korean_author_proposal_not_accepted": 1,
+    "optional_manifest": "optional-candidate-delta.json",
+    "combined_primary_handoff_typed_edits": 79,
+    "combined_primary_priority_edits": 71,
+    "combined_primary_P2_edits": 8,
+    "primary_count_is_not_confirmed_failure_count": true,
+    "all_candidates_unapplied": true,
+    "global_totals_recomputed": false,
+    "candidate_scope_caveat": "The prior 59 and new 20 already include optional cosmetic values where explicitly classified; the five Filipino optional suggestions stay separately enumerated."
   }
 }

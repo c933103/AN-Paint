@@ -1,0 +1,275 @@
+{
+  "id": "czech-ui-fit-existing-evidence-disposition-20261021",
+  "review_kind": "Existing source/artifact reconciliation only; no build, test rerun or new linguistic review",
+  "source_commit": "ef46e8aa4f55825a071f4c1ecd6f3c80b9355f51",
+  "source_tree": "c96f97087692d7e0f3ec516ed309d1ceda1c11c3",
+  "reviewed_premerge_head": "194c01fc24baba4528c83eec56690d23d96c8867",
+  "original_receipt_sha256": "29e9fd5cfaa76c5674559ad28b90990805180c3fda797adf253c4efabc99a79f",
+  "resource_identity": "string/ui_fit",
+  "source_pair_sha256": "9f872ed43d00d8bdb372b1c05bd345b22f2ad5f7f41e06656d05625602e065b1",
+  "target_raw_xml_text_sha256": "658358e5a7e52ef230b72f25f4055e8dee69b4e0f8af1cf8b30b23b54a2f488d",
+  "target_runtime_caption": "Přizpůsobit obrázek oknu",
+  "original_criterion": "Render and check full Czech footer Fit caption in its constrained control; a compact caption or icon is needed only if the full text cannot remain visible.",
+  "disposition": "RESOLVED_BOUNDED_FOOTER_NATIVE_JVM_LAYOUT",
+  "resolved": [
+    "Horizontal zoom_fit_view is no longer fixed at 44 by 44 dp; the full caption wraps at unchanged 13 sp.",
+    "Four Czech profile tests cover 320x640 dp and 640x320 dp at 1x/2x text, plus same-Activity rotation in every case. All eight saved capture/geometry pairs are byte-identical between premerge and postmerge.",
+    "Native TextView geometry verifies full line endings, no ellipsis or clipping, complete hit target and retained contentDescription.",
+    "Root-dispatched tap/slider/plus/minus actions fit image corners without changing marked pixel, dirty or undo state; status/cursor changes retain geometry and final status line can be reached by scrolling."
+  ],
+  "historical_accounting": {
+    "bounded_accepts": 645,
+    "holds": 72,
+    "mutation": "none; original receipt remains immutable",
+    "current_hold_disposition": "71 no-direct-consumer limits retained; the original one footer-layout hold now has this bounded resolved overlay, not whole-resource or whole-workflow approval."
+  },
+  "not_established": [
+    "Installed Czech picker-to-Fit journey or installed Czech rendering. The generic 119-case API35 regression is supportive, not Czech-specific Fit acceptance.",
+    "Other ui_fit consumers zoom_fit and trim_fit at current source lines 772 and 1055; no saved direct measurements/actions for them in these Fit cases.",
+    "Physical-device/OEM font metrics, other API/density/viewport combinations, real TalkBack service reading/focus or keyboard accessibility.",
+    "Real Czech drawing/select/transform/draft recovery/import/PDF/TIFF/crop/normalize/position/colour/export/credits/Help journeys. Fit fixtures use synthetic pixels/status and quiesce autosave; separate lifecycle test is non-Czech.",
+    "Complete Czech UI reachability: existing enlarged captures show unrelated abbreviated ribbon captions, not a global no-clipping pass."
+  ],
+  "evidence_layers": {
+    "robolectric": "SDK35 NATIVE graphics, mounted actual Activity and root input, not an installed device.",
+    "test_class_count": 7,
+    "czech_profile_count": 4,
+    "non_czech_controls": [
+      "en-US compact",
+      "ar RTL",
+      "mn-Mong vertical"
+    ],
+    "current_premerge_run": 39554581470,
+    "natural_postmerge_run": 39557660487,
+    "premerge_jvm_artifact": {
+      "id": 12325823893,
+      "sha256": "8f63fa9f4b969b5df44abbb2f9b367cd0c75633ef05c88ba0fe5aa4a49942cd7"
+    },
+    "postmerge_jvm_artifact": {
+      "id": 12327162973,
+      "sha256": "462fd1d809dd81cc113ac99cadd3e71f1970136e7306ba6da5aa923c67bd186a"
+    },
+    "terminal_comment": "https://github.com/c933103/AN-Paint/pull/160#issuecomment-6310327936"
+  },
+  "files": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ZoomStatusLayout.kt",
+      "sha256": "4b298961b868647744079e9aaba47645a8bb309e951237dd8ca27a97223ce679"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CzechFitWorkflowTest.kt",
+      "sha256": "c30e10917fe3bdc59c54dfbbf753b5e07017047b3098a9083b969d7fb7edb590"
+    }
+  ],
+  "measurements": [
+    {
+      "file": "landscape-1x-rotated.json",
+      "measurement": {
+        "profile": "landscape-1x-rotated",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 1,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 324,
+        "height": 88,
+        "text_size_px": 26,
+        "layout_height": 36,
+        "line_count": 1,
+        "visible": "[0,0][324,88]",
+        "canvas_width": 640,
+        "canvas_height": 784
+      },
+      "geometry_sha256": "f5d1340823dbb4462dc272365ff94514355d2ff44e69b821a4fc7fecb6f3e117",
+      "premerge_png_sha256": "b1bfa9f8c1a937c35c49542e6df6d5469f8998725d962dd1a6533b4253f6a1e8",
+      "postmerge_png_sha256": "b1bfa9f8c1a937c35c49542e6df6d5469f8998725d962dd1a6533b4253f6a1e8",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "landscape-1x.json",
+      "measurement": {
+        "profile": "landscape-1x",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 1,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 324,
+        "height": 88,
+        "text_size_px": 26,
+        "layout_height": 36,
+        "line_count": 1,
+        "visible": "[0,0][324,88]",
+        "canvas_width": 984,
+        "canvas_height": 360
+      },
+      "geometry_sha256": "48b2cfd14c5f9dffeb6fd22bc50b539a13858006907d56a0ac1be19c46b76685",
+      "premerge_png_sha256": "d06e83c09dab6a0c02658d9dfc071260cadaa04819282450befe555111ebee8e",
+      "postmerge_png_sha256": "d06e83c09dab6a0c02658d9dfc071260cadaa04819282450befe555111ebee8e",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "landscape-2x-rotated.json",
+      "measurement": {
+        "profile": "landscape-2x-rotated",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 2,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 332,
+        "height": 149,
+        "text_size_px": 50,
+        "layout_height": 125,
+        "line_count": 2,
+        "visible": "[0,0][332,149]",
+        "canvas_width": 640,
+        "canvas_height": 710
+      },
+      "geometry_sha256": "933eb419cd865e420b9f2a01ca819076f84b08abafe2e58a43253cbd38caac37",
+      "premerge_png_sha256": "e4e4de8cae834ef55d43d35a05a286aa0455e782d6d59886c539654f59679d71",
+      "postmerge_png_sha256": "e4e4de8cae834ef55d43d35a05a286aa0455e782d6d59886c539654f59679d71",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "landscape-2x.json",
+      "measurement": {
+        "profile": "landscape-2x",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 2,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 596,
+        "height": 91,
+        "text_size_px": 50,
+        "layout_height": 67,
+        "line_count": 1,
+        "visible": "[0,0][596,91]",
+        "canvas_width": 984,
+        "canvas_height": 357
+      },
+      "geometry_sha256": "e94dcb80161af117c0d113b1f9575529219f73c8bd06b8fd2396aa36fea8738f",
+      "premerge_png_sha256": "1b9b77af86f2a342e0052179b52af5adf482bf14fbdb94d50a302758f6c0ca6e",
+      "postmerge_png_sha256": "1b9b77af86f2a342e0052179b52af5adf482bf14fbdb94d50a302758f6c0ca6e",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "portrait-1x-rotated.json",
+      "measurement": {
+        "profile": "portrait-1x-rotated",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 1,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 324,
+        "height": 88,
+        "text_size_px": 26,
+        "layout_height": 36,
+        "line_count": 1,
+        "visible": "[0,0][324,88]",
+        "canvas_width": 984,
+        "canvas_height": 360
+      },
+      "geometry_sha256": "07c2473a43c139b4ec0026cf0eedb7b497d1ec658499375370e1d4373ad63f13",
+      "premerge_png_sha256": "f5acffb66656ca09bd2a2942f0960772dcc89ae7fa51f9f9ae09b780078f8017",
+      "postmerge_png_sha256": "f5acffb66656ca09bd2a2942f0960772dcc89ae7fa51f9f9ae09b780078f8017",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "portrait-1x.json",
+      "measurement": {
+        "profile": "portrait-1x",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 1,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 324,
+        "height": 88,
+        "text_size_px": 26,
+        "layout_height": 36,
+        "line_count": 1,
+        "visible": "[0,0][324,88]",
+        "canvas_width": 640,
+        "canvas_height": 784
+      },
+      "geometry_sha256": "4bec0532a427383542d2256feeef14c7ff00e42262ee26e27219186ba31aef6f",
+      "premerge_png_sha256": "d56b9f822d20a183ec28a417313c300e62b4266a8eaac81839d5982c4773fdd3",
+      "postmerge_png_sha256": "d56b9f822d20a183ec28a417313c300e62b4266a8eaac81839d5982c4773fdd3",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "portrait-2x-rotated.json",
+      "measurement": {
+        "profile": "portrait-2x-rotated",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 2,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 596,
+        "height": 91,
+        "text_size_px": 50,
+        "layout_height": 67,
+        "line_count": 1,
+        "visible": "[0,0][596,91]",
+        "canvas_width": 984,
+        "canvas_height": 357
+      },
+      "geometry_sha256": "680340744c93c3b822476e9efb5470d101f8754ec2500099c22bb5729dce9679",
+      "premerge_png_sha256": "68d27fe7c44cb49db6a3a47eaebf0465977fa3e49ac7428eaeae65dd9722a81c",
+      "postmerge_png_sha256": "68d27fe7c44cb49db6a3a47eaebf0465977fa3e49ac7428eaeae65dd9722a81c",
+      "postmerge_geometry_identical": true
+    },
+    {
+      "file": "portrait-2x.json",
+      "measurement": {
+        "profile": "portrait-2x",
+        "sdk": 35,
+        "locale": "cs",
+        "font_scale": 2,
+        "caption": "Přizpůsobit obrázek oknu",
+        "accessible": "Přizpůsobit obrázek oknu",
+        "width": 332,
+        "height": 149,
+        "text_size_px": 50,
+        "layout_height": 125,
+        "line_count": 2,
+        "visible": "[0,0][332,149]",
+        "canvas_width": 640,
+        "canvas_height": 710
+      },
+      "geometry_sha256": "0f50ba932a71d8ec5ea98c12f78a80a8fe662acaf107e92a0ee4c7cbe7d5fb77",
+      "premerge_png_sha256": "253ae9cbdef66bdfc3dbf02dbaf5d33134adfb21dbec0faa1a2e32ad8b645ef4",
+      "postmerge_png_sha256": "253ae9cbdef66bdfc3dbf02dbaf5d33134adfb21dbec0faa1a2e32ad8b645ef4",
+      "postmerge_geometry_identical": true
+    }
+  ],
+  "testcases": [
+    "rtlFooterRetainsReachableZoom",
+    "verticalFooterRetainsOriginalIconAndStatusRail",
+    "compactEnglishFooterRetainsDirectStatus",
+    "enlargedLandscapeFitPreservesFullCaptionAndCanvas",
+    "enlargedPortraitFitPreservesFullCaptionAndCanvas",
+    "normalPortraitFitPreservesFullCaptionAndCanvas",
+    "normalLandscapeFitPreservesFullCaptionAndCanvas"
+  ],
+  "publication_limits": [
+    "Original bulky linguistic archive remains publication-pending; this is a new evidence disposition, not republication of original receipt or supplements.",
+    "The paused 23-path package stays unpublished; PR158 and release holds are unchanged.",
+    "Supersedes historical fixed 44x44/current-defect and authored-not-passed descriptions only for this tested footer scope."
+  ],
+  "public_addendum_url": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6310525181",
+  "public_readback_verified": true,
+  "independent_existing_evidence_review": {
+    "reviewer": "review_fit_hold_disposition",
+    "outcome": "Confirmed bounded footer criterion resolved, no linguistic count or whole-workflow regrade",
+    "inspection": "All eight PNG captures and16JSON/PNG members, original receipt, current source, both archives and installed inventory; no build or test rerun."
+  }
+}
