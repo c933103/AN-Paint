@@ -5,6 +5,8 @@ import unittest
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
+# The two memory translations remain pending review against the corrected source.
+from memory_warning_source_review import current_source_expectation
 
 KEYS = {
     'save20_unsupported_image_colour', 'ui_assembly_source_memory_floor',
@@ -28,7 +30,7 @@ class KoreanPriorityWordingTests(unittest.TestCase):
             self.assertEqual({}, self.data['constraints'][key]['ko-KR']['placeholders'])
             for tag, expected in values.items():
                 with self.subTest(key=key, tag=tag):
-                    require_string(self.xml[tag], key, expected, self.data['constraints'][key][tag])
+                    require_string(self.xml[tag], key, current_source_expectation(key, tag, expected), self.data['constraints'][key][tag])
         self.assertEqual([], catalogues.validate_catalogue('ko-KR', require_complete=True))
 
     def test_missing_empty_or_duplicate_values_markup_and_format_mutations_fail(self):
